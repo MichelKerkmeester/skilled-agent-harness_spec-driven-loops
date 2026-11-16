@@ -96,13 +96,7 @@
     "prompt hook health",
     "command transcripts",
     "workflow measure",
-    "skill graph is stale",
-    "rebuild the skill graph",
-    "vibe prompt hook",
-    "advisor briefs",
-    "behaviour arena",
-    "clean arena",
-    "routing arm"
+    "vibe prompt hook"
   ],
   "derived": {
     "trigger_phrases": [

@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A command you refuse or ask about is no longer offered when the refusal comes after the name, when you name the command as a document, when it sits in brackets, parentheses, strike marks, code tags, guillemets or primes, or when its doc path sits beside your refusal. The advisor now ranks itself first for the Vibe prompt hook setup and the behaviour arena, and one testing playbook scenario uses a prompt that still reaches `/doctor:update`.
+A command you refuse or ask about is no longer offered when the refusal comes after the name, when you name the command as a document, when it sits in brackets, parentheses, strike marks, code tags, guillemets or primes, or when its doc path sits beside your refusal. The advisor now ranks itself first for the Vibe prompt hook setup, and one testing playbook scenario uses a prompt that still reaches `/doctor:update`.
 
 ### Phase 40: final-alignment-loop
 
@@ -59,7 +59,7 @@ The final alignment run and review pass twelve found these gaps after the earlie
 | `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` | Modified | Later refusals, document namings, the wider wrapper set, doc paths, and the typed start boundary |
 | `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts` | Modified | 17 new cases and twelve wrapper pairs in the invariance matrix |
 | `.skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md` | Modified | The third prompt |
-| `.skilled/skills/system-skill-advisor/graph-metadata.json`, `runtime/scripts/skill-graph.json` | Modified | Seven advisor intent phrases and the recompiled graph |
+| `.skilled/skills/system-skill-advisor/graph-metadata.json`, `runtime/scripts/skill-graph.json` | Modified | The advisor intent phrase "vibe prompt hook" and the recompiled graph |
 | `decision-record.md`, `scratch/rule-diag.mjs` | Created | ADR-001 for P05, and the row-id diagnostic |
 <!-- /ANCHOR:what-built -->
 
@@ -79,7 +79,8 @@ The final alignment run and review pass twelve found these gaps after the earlie
 | Decision | Why |
 |----------|-----|
 | A document naming needs a determiner | A typed request puts its argument after the name, as in `/create:diff file a.md b.md`, while "read the /create:readme document" names it |
-| Decline probe P05 (ADR-001) | `/doctor:helper` ranks `/doctor:skill-advisor rebuild` first for it, the repair the reader asked for |
+| Decline probes P05, P08 and P09 (ADR-001) | `/doctor:helper` ranks `/doctor:skill-advisor rebuild` first for P05. P08 and P09 needed common words that pulled ordinary prompts to the advisor |
+| A refusal of "it" must end its clause, and a later request clause is read first | "don't run it twice" limits a run and "read the docs, then run it" asks for one, review pass thirteen |
 | Drop the wrapper marks everywhere, not only next to a name | They carry no lead word, so dropping them changes no lead reading, and the invariance matrix checks every fixture |
 <!-- /ANCHOR:decisions -->
 
@@ -91,9 +92,10 @@ The final alignment run and review pass twelve found these gaps after the earlie
 | Check | Result |
 |-------|--------|
 | Guards test | PASS, 185 passed, 16 new cases fail on `b8ebee37d75` |
-| Full suite, flag unset and set | PASS, 2381 passed 0 failed both ways |
+| Full suite, flag unset and set | PASS, 2385 passed 0 failed both ways (`scratch/after-pass-13.txt`) |
 | `FLOOR`, `EVAL`, stored sets | PASS, 24/44 0/35 2/44, [160,49,21,5], unchanged |
-| Alignment probes | 13 of 15: P05 waived (ADR-001), P04 overturned by the run's critic |
+| Alignment probes | 11 of 15: P05, P08 and P09 waived (ADR-001), P04 overturned by the run's critic |
+| Ordinary-word leak check | PASS, none of the five review prompts tops the advisor |
 | Playbook prompt through the Claude hook | PASS, `/doctor:update (ask)` parent, `(parent-named only)` child |
 <!-- /ANCHOR:verification -->
 

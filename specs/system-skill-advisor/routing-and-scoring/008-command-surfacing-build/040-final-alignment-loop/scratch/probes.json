@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-16T21:38:23.960Z",
+  "generatedAt": "2026-11-16T22:27:33.862Z",
   "probes": "/Users/michelkerkmeester/.local/state/local-skilled-alignment/352-command-surfacing-research/20261116T195539Z/probes-input.json",
   "counts": {
-    "pass": 13,
-    "fail": 2,
+    "pass": 11,
+    "fail": 4,
     "cannot_run": 0
   },
   "rows": [
@@ -88,7 +88,7 @@
       "reason": null,
       "actual": "system-skill-advisor",
       "actualMode": null,
-      "confidence": 0.8574,
+      "confidence": 0.82,
       "runnerUp": "sk-doc"
     },
     {
@@ -102,7 +102,7 @@
       "reason": null,
       "actual": "system-skill-advisor",
       "actualMode": null,
-      "confidence": 0.8511,
+      "confidence": 0.8428,
       "runnerUp": "cli-external-orchestration"
     },
     {
@@ -112,12 +112,12 @@
       "expectMode": null,
       "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"run the behaviour arena for the chat set\"}' --format json",
       "exit": 0,
-      "status": "pass",
-      "reason": null,
-      "actual": "system-skill-advisor",
+      "status": "fail",
+      "reason": "top-1 was sk-doc",
+      "actual": "sk-doc",
       "actualMode": null,
       "confidence": 0.82,
-      "runnerUp": "sk-doc"
+      "runnerUp": "system-spec-kit"
     },
     {
       "id": "P09",
@@ -126,11 +126,11 @@
       "expectMode": null,
       "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"prepare a clean arena for a live routing arm\"}' --format json",
       "exit": 0,
-      "status": "pass",
-      "reason": null,
-      "actual": "system-skill-advisor",
+      "status": "fail",
+      "reason": "top-1 was nothing",
+      "actual": null,
       "actualMode": null,
-      "confidence": 0.8548,
+      "confidence": null,
       "runnerUp": null
     },
     {

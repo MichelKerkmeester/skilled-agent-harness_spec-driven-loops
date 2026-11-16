@@ -55,8 +55,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 ## Phase 3: Verification
 
 - [x] T007 [C] Rebuild and rerun the gates both ways (`$SP/after.txt`). After T006. Verify: 0 failed with the flag unset and set, `FLOOR` unchanged, `EVAL` [160,49,21,5] or better, stored sets unchanged. Evidence: after.txt: stored sets unchanged, graph freshness exit 0, build and typecheck exit 0, 2381 passed 0 failed with the flag unset and set, FLOOR 24/44 0/35 2/44, EVAL [160,49,21,5], probes 13 of 15 with P05 declined and P04 overturned by the run's critic
-- [ ] T008 [C] Run review pass thirteen over this phase's code. After T007. Verify: both lineages converge with 0 P0 and 0 P1, or each P1 is fixed. Evidence:
-- [ ] T009 [C] Run the full alignment on the final HEAD. After T008. Verify: 0 P0 and 0 P1, or each remainder is recorded with the operator's decision. Evidence:
+- [x] T008 [C] Run review pass thirteen over this phase's code. After T007. Verify: both lineages converge with 0 P0 and 0 P1, or each P1 is fixed. Evidence: pass thirteen found 3 P1 and 7 P2; all three P1 fixed (later request clause read first, refusal must end its clause, six leaking advisor phrases removed) with cases that fail on the old code; after-pass-13.txt 2385 passed 0 failed both ways, floors unchanged, no ordinary prompt tops the advisor; mention-13 stopped on maxIterationsReached, so pass fourteen reads the fixes
+- [ ] T011 [C] Run review pass fourteen over the pass thirteen fixes. After T008. Verify: both lineages converge with 0 P0 and 0 P1. Evidence:
+- [ ] T009 [C] Run the full alignment on the final HEAD. After T011. Verify: 0 P0 and 0 P1, or each remainder is recorded with the operator's decision. Evidence:
 - [ ] T010 [C] Log and close (`../goal.md`, `implementation-summary.md`). After T009. Verify: `validate.sh $PK/040-final-alignment-loop --strict` prints `RESULT: PASSED`. Evidence:
 <!-- /ANCHOR:phase-3 -->
 

@@ -403,6 +403,7 @@ and findings belong here.
 | Merge origin/main 640cd0a2499 | Done | main's skill README rewrite taken for sk-doc and the advisor (it drops the branch's edited lines), advisor README version kept monotonic at 0.12.22.0, trigger index regenerated and checked; README validate 0 issues both, verdict parity PASS, advisor suite 2363 passed 0 failed |
 | Review pass twelve | Converged, one P1 accepted as a limit | both lineages stopped converged (mention-12 at 3, merged-12 at 6); P0 0, P1 1, P2 3; F001 unstripped wrappers such as brackets recorded as a known limit per the operator's capped close Q085, not patched; the merges match main except the branch's narrowings; operator answers Q081 to Q085 written to decision-record.md, 0 pending |
 | Phase 040 build | T001 to T007 done | full loop per the operator: later refusals, document namings, wider wrappers and doc paths read as mentions, typed reader takes the same marks, playbook prompt fixed, advisor phrases for P07 to P09; P05 declined because /doctor:helper ranks /doctor:skill-advisor rebuild first; 2381 passed 0 failed both ways, FLOOR and EVAL unchanged |
+| Review pass thirteen | 3 P1 fixed | data-13 converged, mention-13 hit maxIterationsReached; later request clause read first, refusal must end its clause, six leaking advisor phrases removed with P08 and P09 declined in ADR-001; after-pass-13.txt 2385 passed 0 failed both ways, floors unchanged; pass fourteen follows |
 
 ### Deviations and findings
 

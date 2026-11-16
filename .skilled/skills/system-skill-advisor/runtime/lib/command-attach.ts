@@ -409,13 +409,17 @@ const COMMAND_ASKED_BY_PRONOUN = new RegExp(`(?:^|[,.;!?\\n]) *(?:(?:and|then|so
 // A refusal can come after the name, as in "/create:readme is not what I want, do
 // not run it" or "run /doctor:git setup but do not actually run it". The clause
 // opens a new sentence or follows "but", "and" or "so", and refuses "it" with a
-// use verb, so "run /speckit:save and don't skip it" stays a request.
-const COMMAND_DECLINED_BY_PRONOUN = new RegExp(`(?:^|[,.;!?\\n]|\\b(?:but|and|so|though)\\b) *(?:(?:please|just|then|still) )*(?:do not|don't|dont|never)(?: (?:actually|really|yet|ever|even))? ${COMMAND_USE_VERB} it\\b`);
+// use verb, so "run /speckit:save and don't skip it" stays a request. The refusal
+// has to end its clause, because "don't run it twice" or "never run it without a
+// budget" limits the run rather than refusing it.
+const COMMAND_DECLINED_BY_PRONOUN = new RegExp(`(?:^|[,.;!?\\n]|\\b(?:but|and|so|though)\\b) *(?:(?:please|just|then|still) )*(?:do not|don't|dont|never)(?: (?:actually|really|yet|ever|even))? ${COMMAND_USE_VERB} it(?: (?:yet|now|for now|at all|please))? *(?:$|[,.;!?\\n])`);
 
 // A command named as a document is read about, not run: "read the /create:readme
 // document", "open the /deep:review command file". The name needs a determiner
 // before it, because a typed request puts its argument there instead, as in
-// "/create:diff file a.md b.md".
+// "/create:diff file a.md b.md". A naming followed by "then" goes on to ask for
+// work, as in "read the /deep:review docs, then do a thorough review", so it is
+// not only a read.
 const COMMAND_AS_DOCUMENT = /^(?: command)?(?:'s)? (?:doc|docs|document|documentation|file|page|source|definition|markdown)\b/;
 
 // A prompt names a command to refuse it or to ask about it as often as it names
@@ -424,16 +428,17 @@ const COMMAND_AS_DOCUMENT = /^(?: command)?(?:'s)? (?:doc|docs|document|document
 // hide the lead, while a line break survives as the sentence end it is. Inline
 // code, bold, strike, brackets, parentheses, guillemets, primes and quote marks
 // around a name are dropped for the same reason, so a refusal of a wrapped
-// command reads as the plain refusal does. An underscore
-// stays, because a command name may hold one. A single quote goes only where it
+// command reads as the plain refusal does. An underscore stays, because a
+// command name may hold one. A single quote goes only where it
 // opens or closes a command name, because the same mark is the apostrophe of a
 // lead such as "don't" or "what's". A retired name is read beside the current
 // one, because a reader who refuses the old spelling refuses the command it now
 // maps to. The
 // boundary before the lead keeps a command name from matching inside a word or a
 // path, and the boundary after it keeps a longer command name from reading as the
-// shorter one or a doc path such as `/create:readme.md` from reading as a naming. Every occurrence has to carry a lead, because one led naming does
-// not turn a later unled naming into a request.
+// shorter one or a doc path such as `/create:readme.md` from reading as a naming.
+// Every occurrence has to carry a lead, because one led naming does not turn a
+// later unled naming into a request.
 export function commandOnlyMentioned(prompt: string, command: string): boolean {
   const text = prompt
     .toLowerCase()
@@ -455,9 +460,10 @@ export function commandOnlyMentioned(prompt: string, command: string): boolean {
     const before = text.slice(0, nameEnd);
     const tail = text.slice(nameEnd);
     const clause = tail.split(/(?:^|[\s,;(])\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?![a-z0-9_\/-]|\.[a-z0-9])/)[0];
-    if (COMMAND_AS_DOCUMENT.test(tail) && new RegExp(`\\b(?:the|this|that) ${name}$`).test(before)) return true;
     if (COMMAND_DECLINED_BY_PRONOUN.test(clause)) return true;
     if (COMMAND_ASKED_BY_PRONOUN.test(clause)) return false;
+    if (COMMAND_AS_DOCUMENT.test(tail) && !/\bthen\b/.test(clause)
+      && new RegExp(`\\b(?:the|this|that) ${name}$`).test(before)) return true;
     const led = COMMAND_DECLINE_LEADS.some((lead) => (
       new RegExp(`(?:^|[^a-z0-9_/])${lead}${COMMAND_OR_LIST}${name}$`).test(before)
     )) || COMMAND_ASK_LEADS.some((lead) => (

@@ -207,8 +207,14 @@ describe('a command the prompt only mentions', () => {
     expect(commandOnlyMentioned(prompt, command)).toBe(true);
   });
 
-  it('still reads a later request of the same command as a request', () => {
-    expect(commandOnlyMentioned("run /speckit:save and don't skip it", '/speckit:save')).toBe(false);
+  it.each([
+    ["run /speckit:save and don't skip it", '/speckit:save'],
+    ["run /speckit:save and don't run it twice", '/speckit:save'],
+    ['run /deep:review but never run it without a budget', '/deep:review'],
+    ['open the /deep:review command file, then run it', '/deep:review'],
+    ['read the /deep:review docs, then do a thorough review of this diff', '/deep:review'],
+  ])('still reads %s as a request for %s', (prompt, command) => {
+    expect(commandOnlyMentioned(prompt, command)).toBe(false);
   });
 
   // A command named as a document is being read about, not run.

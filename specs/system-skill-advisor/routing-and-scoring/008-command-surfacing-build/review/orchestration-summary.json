@@ -1,5 +1,5 @@
 {
-  "run_id": "1794856957949-n58dw7",
+  "run_id": "1794865302020-qunumz",
   "loop_type": "review",
   "spec_folder": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
   "base_artifact_dir": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review",
@@ -9,7 +9,7 @@
   "succeeded": 2,
   "failed": 0,
   "all_failed": false,
-  "completed_with_containment_advisory": 2,
+  "completed_with_containment_advisory": 0,
   "gauges": {
     "lag": 0,
     "pending": 0,
