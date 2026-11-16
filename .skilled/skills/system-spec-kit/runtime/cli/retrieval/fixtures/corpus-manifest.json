@@ -36409,10 +36409,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/review/lineages",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/001-workflow-correctness-audit/research/prompts",
       "reason": "excluded directory"
     },
