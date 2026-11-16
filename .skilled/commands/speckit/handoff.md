@@ -58,7 +58,7 @@ A Vibe session started through `skilled-loop` gets its id from `node .skilled/ho
 | `claim <path> --session <id>` | Move the note `open -> claimed` and print its body | `0` ok, `2` refused |
 | `complete <path>` | Move the note `claimed -> done` | `0` ok, `2` refused |
 | `keep --handoff <path> --session <id> [--runtime <name>]` | Outside the loop only: validate the note, record it in the hop history and print the claim command to run after auto-compaction | `0` kept, `2` refused, including a call from inside the loop |
-| `cancel [--loop-id <id>]` | Call off the prepared hand-over so the session keeps running. The note stays open. The loop id defaults to `SKILLED_LOOP_ID` | `0` cancelled, `1` nothing to cancel or the record changed meanwhile, `2` refused |
+| `cancel [--loop-id <id>]` | Call off the prepared hand-over so the session keeps running. The note stays open. The loop id defaults to `SKILLED_LOOP_ID` | `0` cancelled, `1` nothing to cancel, `2` refused |
 
 ---
 
@@ -138,7 +138,7 @@ Frontmatter is flat `key: value` lines only: no nesting, no lists.
 Leave it out of the note, because a value you write is replaced or removed.
 `prepare` and `keep` also own the optional `goal_ended` field, which they write when a Claude goal was met, failed or cleared and remove any value you write by hand.
 `SESSION_HANDOVER_GOAL=0` turns both fields off, `goal_packet` and `goal_ended` alike.
-On Cursor and Devin, a receiver started from the manual command that `prepare` prints does not get the goal.
+On Cursor and Devin, a receiver started from the manual command that `prepare` prints binds the goal through its session-start hook.
 On Vibe, `prepare` records the packet the session's goal came from, `VIBE_SPEC_FOLDER` first and then a claimed note's packet, and the receiver's session-start hook renders that goal.
 Every section must be non-empty.
 Goal states what the work is for.

@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2",
+  "description": "Hand-over doc alignment, second pass: fix the 50 findings of the full 86-doc check",
+  "keywords": [
+    "hand-over",
+    "doc",
+    "alignment",
+    "second",
+    "pass",
+    "findings",
+    "full",
+    "86-doc",
+    "check"
+  ],
+  "lastUpdated": "2026-11-16T12:10:31.437Z",
+  "specId": "050",
+  "folderSlug": "handover-doc-alignment-2",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_13-10__second-hand-over-doc-alignment-pass-a-six-lane.md"
+  ]
+}

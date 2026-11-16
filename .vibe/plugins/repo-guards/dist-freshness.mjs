@@ -12,14 +12,12 @@
 import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { isAbsolute, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 import { isHookEnabled } from '../../../.skilled/hooks/shared/hook-flags.mjs';
 import { allow, readPayload, runGuard, sessionDirFor, toCoreCall, REPO_ROOT } from './lib/hook-io.mjs';
+import { isCliEntry } from '../../../.skilled/hooks/shared/cli-entry.mjs';
 
-const IS_CLI_ENTRY = process.argv[1]
-  ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
-  : false;
+const IS_CLI_ENTRY = isCliEntry(import.meta.url);
 
 const DIST_STALENESS_PATH = resolve(
   REPO_ROOT,

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "dc49a9239d48cb46692af2ffe9cb2f761c6605bc6857ac645084089bed5d1b82",
+  "corpusHash": "0ba6b7e4f324c121b0c4f798e6ae58eb8a6f36b8623b6b93a825a1b405f61c0a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27819,
+  "includedPathCount": 27826,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11811,6 +11811,7 @@
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/goal.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/decision-record.md",
     "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/implementation-summary.md",
     "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/spec.md",
@@ -12864,6 +12865,12 @@
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/plan.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/research.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
@@ -27851,7 +27858,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9becdc13c4e22d22ae3649f85971f39189d09818082b57672bb2a0a97d9d84c9",
+  "manifestHash": "9648d4997039ee9a94a70f7b53074951a2bec1285a8c03fbefe25cefdc5f2b80",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32215,6 +32222,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/scratch",
       "reason": "excluded directory"
     },
     {

@@ -8,19 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync"
-    last_updated_at: "2026-11-16T10:18:26Z"
-    last_updated_by: "claude-opus"
+    last_updated_at: "2026-11-16T12:01:59Z"
+    last_updated_by: "generate-context"
     recent_action: "Implemented and unit-verified the opt-in Claude user hook sync"
     next_safe_action: "None; the packet is complete"
+    packet_purpose: "Purpose: An operator who opts in gets a user-level copy of Skilled's Claude hooks that each session refreshes from the checkout, and nobody who installs Skilled gets their user settings touched unless they turn it on."
     blockers: []
     key_files:
       - ".skilled/bin/sync-claude-user-hooks.mjs"
       - ".skilled/bin/lib/user-hook-file.mjs"
       - ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a66ce0fa7a0baf8f969db4554f367ebf72c0cf433549f1cc6d5197bd26025c84"
       session_id: "scaffold-009-claude-user-hook-sync"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "425e79e1-c5de-4edb-b8bb-77ee620d2538"
+      workspace: "/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime"
+      savedAt: "2026-11-16T12:01:59Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []

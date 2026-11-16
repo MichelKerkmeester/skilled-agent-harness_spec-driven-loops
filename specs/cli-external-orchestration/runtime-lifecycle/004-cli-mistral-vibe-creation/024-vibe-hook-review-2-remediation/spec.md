@@ -154,6 +154,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-008 | In a live Vibe session, a dotenv read started through the background process tool is denied by env-secret-guard and no value reaches the journal |
 | REQ-009 | Input typed into a running background process with `process.write` is judged by the command guards as the shell command it becomes, in unit tests and in a live Vibe session |
 | REQ-010 | The skill-advisor, ask-surface and completion kill switches follow an injected env, and a live session still honours a switch saved to `.skilled/hooks/hook-flags.env` |
+| REQ-011 | A Vibe lifecycle hook or the dist-freshness guard started through a symlinked path still runs its main step |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

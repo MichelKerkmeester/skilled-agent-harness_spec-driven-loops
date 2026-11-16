@@ -45,6 +45,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-008 | REQ-008 | Given a live Vibe session on `deepseek-flash`, When the model starts `cat .env` with the background process tool, Then the journal holds a `process.start` effect, an env-secret-guard `Denied tool 'start'` notice and no placeholder value | `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation/scratch/live/VIB-HK-029/vibe/turns/background-read/check.txt:2` (`background-call-refused`) and `turns/no-leak/check.txt:2` (`guard-logged-and-value-absent`) | Met | - |
 | AC-009 | REQ-009 | Given a clean background shell started with `bash -i`, When the model types `cat .env` into it with `process.write`, Then env-secret-guard denies the write and no placeholder value reaches the journal, and the unit cases deny the same text and its base64 bytes while a control key and a plain line pass | `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation/scratch/live/VIB-HK-030/vibe/turns/typed-read/check.txt:2` (`typed-command-refused`), `turns/start-shell/check.txt:2` (`shell-started`), `turns/no-leak/check.txt:2` (`value-absent`); `.vibe/plugins/repo-guards/tests/env-secret-guard.test.mjs` write cases | Met | - |
 | AC-010 | REQ-010 | Given the real flag reader, When a caller injects an env holding the skill-advisor kill switch, or a live session finds a kill switch in `hook-flags.env`, Then the advisor, ask-surface and completion parts contribute nothing, and with an empty flag file the ask-surface part denies and the completion part records its advisory | `.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:178`, `.skilled/hooks/ask-surface-guard/vibe/ask-surface-post-agent.mjs:90`, `.skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs:111`; `.skilled/hooks/session-lifecycle/vibe/turn-start.test.mjs:127` and `:138`, `.skilled/hooks/session-lifecycle/vibe/turn-end.test.mjs:572`, `:576`, `:588` and `:592` | Met | - |
+| AC-011 | REQ-011 | Given a checkout reached through a symlink, When session-start runs from the symlinked path, Then it prints its context as it does from the real path, and the shared check names a symlinked entry script as the entry and an imported module as not | `.skilled/hooks/shared/cli-entry.mjs:30`, `.skilled/hooks/shared/tests/cli-entry.test.mjs:41` and `:46`; session-start through a symlinked checkout printed 0 bytes on the old code and 1139 bytes on the new | Met | - |
 
 ### Status values
 
@@ -69,7 +70,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
 Every criterion is Met. The unit suites prove each fix, and the live VIB-HK-029 run showed a background `cat` of a dotenv file denied in a real Vibe session, with the payload name `process.start` read from the session journal.
 <!-- /ANCHOR:closure -->

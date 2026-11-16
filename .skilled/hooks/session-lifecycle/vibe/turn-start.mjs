@@ -20,8 +20,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { readFileSync, unlinkSync } from 'node:fs';
-import { join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { join } from 'node:path';
 
 import { takeNudge } from '../../decision-capture/lib/capture-core.mjs';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
@@ -29,14 +28,13 @@ import { buildAdvisorPart } from '../../../skills/system-skill-advisor/hooks/vib
 import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 import { sessionDirFor } from '../../shared/payload-dir.mjs';
 import { buildCompactionPart } from './compaction-context.mjs';
+import { isCliEntry } from '../../shared/cli-entry.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const IS_CLI_ENTRY = process.argv[1]
-  ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
-  : false;
+const IS_CLI_ENTRY = isCliEntry(import.meta.url);
 
 // The completion part runs at turn end and leaves its advisory here; this
 // composer consumes it on the next turn. Both resolve the file from the

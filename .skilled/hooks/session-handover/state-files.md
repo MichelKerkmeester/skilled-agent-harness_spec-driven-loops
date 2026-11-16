@@ -97,7 +97,7 @@ The killer lock file stores the owner pid, the creation timestamp and the expiry
 
 `should-relaunch` writes nothing for `handed-over`, because the wrapper can still decline after it approves. The `handed-over` line carries the hop number. A `claimed` line ends with the first eight characters of the claiming session's id. `history` prints them as `by <id>`. The note's file name names the session that wrote it, so a session that claimed its own note shows the same id in both.
 
-A `withdrawn` line covers `cancel` and an operator prompt over a deferred or armed Claude or Codex record. It also covers a new turn over a deferred or armed Pi or OpenCode record. The note stays open with that session. A `note-kept` line means the session continues in place and claims the note after auto-compaction.
+A `withdrawn` line covers `cancel` and an operator prompt over a deferred or armed Claude, Codex or Vibe record. It also covers a new turn over a deferred or armed Pi or OpenCode record. The note stays open with that session. A `note-kept` line means the session continues in place and claims the note after auto-compaction.
 
 Each line holds the time, the event, the runtime, the hop number, the session folder, the first line of the note's Goal and the note's filename, separated by tabs. A failed write never fails the hop. Read the latest lines with `node .skilled/hooks/session-handover/bin/session-handover.cjs history` or `history --last <count>`. `/doctor:setup` shows the last one.
 

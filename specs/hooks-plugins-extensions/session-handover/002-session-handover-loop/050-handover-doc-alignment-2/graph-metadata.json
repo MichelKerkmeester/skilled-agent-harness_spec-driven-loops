@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "handover doc alignment second pass",
+      "hand-over doc alignment 050",
+      "handover doc alignment 2 plan",
+      "handover doc alignment 2 tasks",
+      "handover doc alignment 2 acceptance criteria",
+      "050-handover-doc-alignment-2 operator decisions",
+      "handover doc alignment 2 implementation summary"
+    ],
+    "key_topics": [
+      "handover",
+      "doc",
+      "alignment",
+      "second",
+      "pass",
+      "hand-over",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "050-handover-doc-alignment-2",
+      "operator"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/README.md",
+      ".skilled/bin/README.md",
+      ".skilled/commands/speckit/handoff.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Report",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The first doc alignment run left nine docs unreviewed after a lane timed out, so a second `/local-doc-alignment session-handover` run used six DeepSeek Flash lanes with a 60-minute limit and finished all 86 docs",
+    "created_at": "2026-11-16T11:35:33Z",
+    "last_save_at": "2026-11-16T12:10:31.437Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:50dc6a74db56cc93534a5f9356e83837fac403e3dd0aae75da103a64e84cfc3b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "924380d3ede1c2615d3a54adb3d88f2c8a1ce02652f7e6a262f8145cfd2d6703",
+      "plan.md": "388855b0d51735bb28ad090161e630f76aa658d114a6b20d0cd221ed3f35bf4b",
+      "tasks.md": "5ac31f61bc46a6e9d43355c1169369ce261ebe09cb7eabfcc95aa8cd3a7685a3",
+      "decision-record.md": "34a2ef6aecca3f3ce903d1f38e2c97bc322988d1d4cc67fc89583606bc29fd48",
+      "implementation-summary.md": "eb9d8f1ee8b942287102c2cbb69fee6a5622095bb7cd038e137c9be60911a3fe"
+    },
+    "last_active_at": null
+  }
+}

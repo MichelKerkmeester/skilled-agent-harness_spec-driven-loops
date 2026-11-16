@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9becdc13c4e22d22ae3649f85971f39189d09818082b57672bb2a0a97d9d84c9",
+  "manifestHash": "9648d4997039ee9a94a70f7b53074951a2bec1285a8c03fbefe25cefdc5f2b80",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2332,6 +2332,9 @@
     ],
     "009 changelogs constitutional and templates implementation summary": [
       "009-changelogs-constitutional-and-templates implementation summary"
+    ],
+    "009 claude user hook sync operator decisions": [
+      "009-claude-user-hook-sync operator decisions"
     ],
     "009 cocoindex ipc fix": [
       "009 cocoindex IPC fix"
@@ -7174,6 +7177,9 @@
     ],
     "049 supersession": [
       "049 supersession"
+    ],
+    "050 handover doc alignment 2 operator decisions": [
+      "050-handover-doc-alignment-2 operator decisions"
     ],
     "050 review remediation": [
       "050 review remediation"
@@ -57798,6 +57804,9 @@
     "hand drawn diagram variant": [
       "hand drawn diagram variant"
     ],
+    "hand over doc alignment 050": [
+      "hand-over doc alignment 050"
+    ],
     "hand over doc alignment fixes": [
       "hand-over doc alignment fixes"
     ],
@@ -57921,6 +57930,18 @@
     "handover doc alignment": [
       "handover doc alignment"
     ],
+    "handover doc alignment 2 acceptance criteria": [
+      "handover doc alignment 2 acceptance criteria"
+    ],
+    "handover doc alignment 2 implementation summary": [
+      "handover doc alignment 2 implementation summary"
+    ],
+    "handover doc alignment 2 plan": [
+      "handover doc alignment 2 plan"
+    ],
+    "handover doc alignment 2 tasks": [
+      "handover doc alignment 2 tasks"
+    ],
     "handover doc alignment acceptance criteria": [
       "handover doc alignment acceptance criteria"
     ],
@@ -57929,6 +57950,9 @@
     ],
     "handover doc alignment plan": [
       "handover doc alignment plan"
+    ],
+    "handover doc alignment second pass": [
+      "handover doc alignment second pass"
     ],
     "handover doc alignment tasks": [
       "handover doc alignment tasks"
