@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-026 -- The manual relaunch tier hands off and a fresh session claims it"
-description: "This scenario validates the Vibe manual relaunch tier: a sender prepares a handoff note, the operator ends the session, and a fresh Vibe session started from the wrapper's claim seed claims the note."
-version: 1.0.6.0
+description: "This scenario validates the Vibe manual relaunch tier: a sender prepares a handoff note, the operator ends the session, and a fresh Vibe session started from the printed claim seed claims the note."
+version: 1.0.7.0
 ---
 
 # VIB-HK-026 -- The manual relaunch tier hands off and a fresh session claims it
@@ -12,11 +12,11 @@ This document captures the operator contract for `VIB-HK-026`.
 
 ## 1. OVERVIEW
 
-This scenario covers the manual relaunch tier, now the fallback for a hand-typed `/speckit-handoff`. The sender writes a handoff note and prepares it, the operator exits the session, `skilled-loop vibe` consumes the pending record and prints the claim command, and the fresh Vibe session started from that seed claims the note and continues its remaining work. The automatic tier covers the nudge, the arm and the relaunch in `VIB-HK-027`, and this scenario keeps the route an operator still reaches by hand.
+This scenario covers the manual relaunch tier, the route a Vibe session takes when it runs outside `skilled-loop`. The sender writes a handoff note and prepares it, `prepare` prints the claim command because no loop will arm the record, the operator exits the session and runs that command, and the fresh Vibe session started from the seed claims the note and continues its remaining work. The automatic tier covers the nudge, the arm and the relaunch in `VIB-HK-027`, and a typed `/speckit-handoff` inside the loop takes that automatic route.
 
 ### Why This Matters
 
-Vibe exports no session id to its tools, so `/speckit-handoff` typed by hand prepares the record under an id the session never reports. The turn end matches only the payload's session id, so that record stays pending and the manual tier applies: the wrapper prints a command, the operator runs it, and the new session claims the note from the seed. With the switch off no nudge fires and prepare refuses, so that route needs the switch on. A broken claim leaves the note open and the sender's work stranded, and nothing in a session's reply proves which of the two happened.
+Vibe exports no session id to its tools. A session under `skilled-loop` records the payload id at turn start, so a typed `/speckit-handoff` prepares under that id and the turn end arms it, and the hop runs on the automatic tier. A Vibe session outside the loop has no recorded id, so the handoff command falls back to `uuidgen`, `prepare` writes no record and prints the claim command: the operator runs it, and the new session claims the note from the seed. With the switch off no nudge fires and prepare refuses, so this route needs the switch on. A broken claim leaves the note open and the sender's work stranded, and nothing in a session's reply proves which of the two happened.
 
 ---
 
@@ -27,7 +27,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 - Objective: verify that the manual relaunch tier prepares a handoff and that a fresh Vibe session claims it.
 - Real user request: `Hand this session's work to a fresh session, then claim the handoff there and continue it.`
 - Prompt: `Hand this session's work to a fresh session, then claim the handoff there and continue it.`
-- Expected execution process: the operator exports `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1`, because session handover is default-on for Claude Code only, and starts `skilled-loop vibe --trust`. The sender follows `.skilled/commands/speckit/handoff.md`, which the operator names in words because Vibe has no command loader. Its `prepare --runtime vibe` prints `STATUS=OK`. The operator exits the session, the wrapper prints one claim command that keeps the sender's launch flags, `--trust` included, and the operator runs it, so a fresh Vibe session starts with the claim seed. For the goal check the operator also exports `VIBE_SPEC_FOLDER` naming a packet that holds a `goal.md` before the sender starts, and unsets it before running the claim command.
+- Expected execution process: the operator exports `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1`, because session handover is default-on for Claude Code only, and starts Vibe outside `skilled-loop`, for example as `command vibe --trust` in a shell that sources the shim. The sender follows `.skilled/commands/speckit/handoff.md`, which the operator names in words because Vibe has no command loader. Its `prepare --runtime vibe` exits 3, reports `STATUS=OK RESULT=manual`, and prints one claim command in the plain form, so the operator adds `--trust` when running it. The operator exits the session and runs the command, so a fresh Vibe session starts from the claim seed under `skilled-loop`. For the goal check the operator also exports `VIBE_SPEC_FOLDER` naming a packet that holds a `goal.md` before the sender starts, and unsets it before running the claim command.
 - Expected signals: the note's frontmatter reads `status: claimed` with a `claimed_by` session id, the hop history holds one `claimed` line whose runtime column is `vibe`, and the fresh session's first turn carries the claim's output. With a packet bound, the note also carries `goal_packet`, and the fresh session's first input holds that packet's goal slice as hook context although its shell has no `VIBE_SPEC_FOLDER`.
 - Desired user-visible outcome: the fresh session reads the note, names its remaining work and continues it.
 - Pass/fail: PASS when the note reads claimed and the fresh session's first turn shows the claim. FAIL when the note stays open or the new session never claims it. The shared runner reports SKIP with the named blocker, because it cannot run the wrapper, cannot type a per-run absolute seed, and starts its subject in a scratch project that holds no relaunch CLI; the operator procedure carries the manual steps.
@@ -66,7 +66,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 }
 ```
 
-The preflight turn measures the two facts that keep this hop out of the runner: the scratch project holds no relaunch CLI, and the automatic part lives in the repository, so a scratch subject that starts without it never arms the record. That keeps the receiver on the claim command the seed names through its absolute path. The hop itself starts with `skilled-loop vibe`, which owns the terminal across the sender's exit and the fresh session's launch, so the operator runs it from the repository root as procedure.md records.
+The preflight turn measures the two facts that keep this hop out of the runner: the scratch project holds no relaunch CLI, and the automatic part lives in the repository, so a scratch subject that starts without it never arms the record. That keeps the receiver on the claim command the seed names through its absolute path. The fresh session starts from that command, which runs `skilled-loop vibe` and owns the terminal across the launch, so the operator runs it from the repository root as procedure.md records.
 
 ### Expected
 
@@ -85,7 +85,7 @@ Capture matrix.md, checkpoints.tsv, the preflight turn's screen.txt and check.tx
 ### Failure Triage
 
 1. Read turns/preflight/check.txt for the two probes.
-2. Compare the seed the wrapper printed with the note path under `.skilled/skills/.state/session-handover/handoffs/`.
+2. Compare the seed `prepare` printed with the note path under `.skilled/skills/.state/session-handover/handoffs/`.
 3. Run the claim command by hand and read whether the note's frontmatter flips to `claimed`.
 4. With a packet bound and no `goal_packet` in the note, run `prepare` again with `VIBE_SPEC_FOLDER` set and read the `[session-handover] goal not carried:` line, if any; a note with the field but a receiver without the goal points at `.skilled/hooks/goal/vibe/goal-inject.mjs`.
 
@@ -108,7 +108,7 @@ Capture matrix.md, checkpoints.tsv, the preflight turn's screen.txt and check.tx
 | `.skilled/hooks/session-handover/bin/session-handover.cjs` | The prepare, claim and history subcommands |
 | `.skilled/hooks/session-handover/lib/relaunch-core.cjs` | Resolves the packet a Vibe sender's note carries |
 | `.skilled/hooks/goal/vibe/goal-inject.mjs` | Renders the receiver's goal slice from the claimed packet |
-| `.skilled/bin/skilled-loop` | The wrapper that consumes the record and starts the fresh Vibe session |
+| `.skilled/bin/skilled-loop` | The wrapper the printed claim command runs, which starts the fresh Vibe session on the claim seed |
 | `.vibe/hooks.toml` | The hook bindings a Vibe session runs |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs` | The runner and its `vibe` adapter |
 

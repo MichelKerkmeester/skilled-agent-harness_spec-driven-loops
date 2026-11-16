@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-handover-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.27.0
+version: 1.0.28.0
 id: session-handover-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -76,7 +76,7 @@ Evidence: stdout is `object` and the command exits 0. The module's default expor
 #### Pi adapter suite (Automatable)
 
 ~~~bash
-./.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-handover/pi/session-handover.test.ts
+env -u AI_SESSION_CHILD ./.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-handover/pi/session-handover.test.ts
 ~~~
 
 Evidence: Vitest reports the Pi adapter suite passed. The cases cover threshold nudges, seed injection, `agent_settled` arming and `agent_settled respawns one killer for an armed record whose killer is gone`. The Plan or Build mode carry is `agent_settled arms with the plan-build mode from the session branch`.
@@ -84,7 +84,7 @@ Evidence: Vitest reports the Pi adapter suite passed. The cases cover threshold 
 #### OpenCode adapter suite (Automatable)
 
 ~~~bash
-node --test .opencode/plugins/tests/session-handover.test.cjs
+env -u AI_SESSION_CHILD node --test .opencode/plugins/tests/session-handover.test.cjs
 ~~~
 
 Evidence: Node reports the OpenCode adapter suite passed. The cases cover plugin import, events, transform injection, seed handling, idle arming and `session.idle respawns one killer for an armed record whose killer is gone`. The hold while a sub-agent is busy is `a parent session.idle does not arm while its sub-agent is busy` and `a deferred parent arm runs when its last busy sub-agent goes idle`. The title carry is `the claim seed sets the session title to SKILLED_LOOP_NAME`.
@@ -103,7 +103,7 @@ Evidence: the wrapper suite records `SKILLED_LOOP_RUNTIME`, Pi `--name` before t
 node --test .skilled/hooks/session-handover/tests/skilled-loop-shell.test.cjs
 ~~~
 
-Evidence: all 18 tests pass under bash and zsh. The suite holds nine cases and runs each under both shells. Plain `pi`, `pi --model <m> "<prompt>"`, `opencode` and `opencode -m <model>` resolve the wrapper through a symlinked `.skilled`. `pi -p`, `pi install`, `pi --mode rpc`, `opencode run` and `opencode serve` resolve nothing. The outside-loop note-only nudge for both adapters is the `a nudge outside skilled-loop asks for keep and never prepare` case in `.skilled/hooks/session-handover/tests/adapter-conformance.test.cjs` for OpenCode and in the Pi suite's conformance block.
+Evidence: all 37 tests pass under bash and zsh. The suite holds 18 cases and runs each under both shells. Plain `pi`, `pi --model <m> "<prompt>"`, `opencode` and `opencode -m <model>` resolve the wrapper through a symlinked `.skilled`. `pi -p`, `pi install`, `pi --mode rpc`, `opencode run` and `opencode serve` resolve nothing. The outside-loop note-only nudge for both adapters is the `a nudge outside skilled-loop asks for keep and never prepare` case in `.skilled/hooks/session-handover/tests/adapter-conformance.test.cjs` for OpenCode and in the Pi suite's conformance block.
 
 ### Live Checks
 
@@ -178,7 +178,7 @@ Observe `message.updated` usage handling, `message.part.updated` seed capture an
 
 These checks call a Pi or OpenCode hand-over off, or let it run, and read the result from the record, the logs and the hop history. Each runtime runs through `skilled-loop` in a detached tmux session so one shell can type into it and read it. The code paths are covered by the suites listed under PO-6. The live steps were authored from that code, so record your own run before you rely on a timing. The Pi commands in PO-5 were run as written while this file was authored, and the OpenCode flow in CO-046 was run on OpenCode 1 and 2. The tmux checks PO-1 to PO-4 were not.
 
-Both runtimes withdraw an armed record when a new turn starts, and neither withdraws a pending one. Pi acts on `agent_start` and OpenCode on a `message.updated` event for a user message it has not seen. Neither tells the model: the model gets no withdraw notice, `relaunch.log` records `arm-cancelled` where Claude and Codex record `withdrawn`, and the extra nudge comes after the next assistant message that grows the fill by a step. Neither runtime has background-task completion prompts, so there is no `<task-notification>` case.
+Both runtimes withdraw an armed record when a new turn starts, and a pending record a failed arm left deferred is withdrawn too; only a freshly prepared pending record is left alone. Pi acts on `agent_start` and OpenCode on a `message.updated` event for a user message it has not seen. Both tell the model it was withdrawn: Pi sends the withdraw notice as a steer and OpenCode adds it to the system prompt, `relaunch.log` records `arm-cancelled` where Claude and Codex record `withdrawn`, and the extra nudge comes after the next assistant message that grows the fill by a step. Neither runtime has background-task completion prompts, so there is no `<task-notification>` case.
 
 #### PO-0 Live setup shared by PO-1 to PO-4 (Live)
 
@@ -395,8 +395,8 @@ Evidence: the printed fields, log, history row and nudge file for each run. PASS
 Run both suites and read the named cases:
 
 ~~~bash
-./.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-handover/pi/session-handover.test.ts
-node --test .opencode/plugins/tests/session-handover.test.cjs .skilled/hooks/session-handover/tests/withdraw.test.cjs .skilled/hooks/session-handover/tests/hop-history.test.cjs
+env -u AI_SESSION_CHILD ./.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-handover/pi/session-handover.test.ts
+env -u AI_SESSION_CHILD node --test .opencode/plugins/tests/session-handover.test.cjs .skilled/hooks/session-handover/tests/withdraw.test.cjs .skilled/hooks/session-handover/tests/hop-history.test.cjs
 ~~~
 
 Evidence: both commands exit 0 and these cases pass.

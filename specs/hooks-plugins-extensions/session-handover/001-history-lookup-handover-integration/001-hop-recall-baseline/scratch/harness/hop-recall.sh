@@ -15,7 +15,7 @@ if [ -n "${XDG_RUNTIME_DIR:-}" ]; then state="$XDG_RUNTIME_DIR/skilled-relaunch"
 notes="$repo/.skilled/skills/.state/session-handover/handoffs"
 mkdir -p "$notes" "$state"
 project="$HOME/.claude/projects/$(printf '%s' "$repo" | sed 's/[^A-Za-z0-9]/-/g')"
-cli="$repo/.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js"
+cli="$repo/.skilled/hooks/session-handover/history/dist/cli.js"
 code=PDSNMMBW
 question="What exact code did show-codes.sh print for K073 in the previous session? Reply with the code only, or UNKNOWN if you cannot determine it. Do not write any file."
 

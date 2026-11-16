@@ -128,6 +128,7 @@ directive: Continue toward this objective. Before ending, run the goal verifier 
 | Session handover | Codex: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
 | Session handover | Pi: `message_end` decides, `turn_end` steers the held nudge into a run whose tools ran and `agent_end` delivers it when the run ended | `pi.sendMessage` with `display: false` | Once per reached threshold level in a session |
 | Session handover | OpenCode: `experimental.chat.system.transform` pushes the pending nudge, fed by message events | an entry in the system array | Once per reached threshold level in a session |
+| Session handover | Vibe: `pre_agent` delivers the seed, withdraws an armed hand-over and nudges past the threshold, and `post_tool` nudges again after a mid-turn compaction | `hook_specific_output.additional_context` | Once per reached threshold level in a session |
 
 The Codex nudge reads its fill from the transcript rollout's latest `token_count` record and emits the same `[SYS]` envelope the Claude adapter uses, so it is model-context-only by default. Neither the arming nor the usage records inject content: both are `[NONE]` side effects. Cursor, Devin and DSH carry no adapter, so `/speckit:handoff` is the only trigger on those runtimes and this table adds no row for them.
 

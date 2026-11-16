@@ -537,7 +537,7 @@ When the index has no scored candidate, Gate 1 also scores declared trigger phra
 
 When a session claims a handoff note, the claim can carry a `## History Lookup` section after the note body. It holds one read-only command that searches, browses, loads and pages the sender's earlier turns, at most 16 KiB per reply. It returns only what the conversation showed, and it ends with `Use it for a detail this note does not spell out, before you guess.`
 
-`prepare` stores a locator for the sending session, and `claim` mints a fresh one for it. Only Claude Code, Codex, Vibe, Pi and OpenCode senders get one. The section is left out when the sender has no transcript, when the note names another runtime, when the sender ran in another checkout, or when the runtime is not built, and the claim then prints what it printed before.
+`claim` mints a fresh locator for the sending session. Only Claude Code, Codex, Vibe, Pi and OpenCode senders get one. The section is left out when the sender has no transcript, when the note names another runtime, when the sender ran in another checkout, or when the runtime is not built, and the claim then prints what it printed before.
 
 The printed command is `node .skilled/hooks/session-handover/bin/history-lookup.mjs --session <id> --handle <hl1_...> <operation> <json>`. The locator works for 30 minutes from the claim and only for the session and checkout that minted it. Search matches whole identifier parts, split on `-`, `.`, `/`, `:` and `_` and on case changes. A query matches whole word parts, so 'live' does not match 'delivery'.
 
@@ -1076,7 +1076,7 @@ To turn it on for every runtime, set the global flag in `.skilled/hooks/hook-fla
 echo 'SYSTEM_SESSION_HANDOVER_ENABLED=1' >> .skilled/hooks/hook-flags.env
 ```
 
-Each runtime also has its own flag, `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED`, with `<RUNTIME>` one of `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR` or `DEVIN`. It overrides the global flag for that runtime whenever it holds a value. `1` turns it on and `0` turns it off. The global flag decides for every runtime without its own value, Claude Code included, and with neither set only Claude Code is on. So `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED=0` turns the Claude Code default off, and `SYSTEM_SESSION_HANDOVER_ENABLED=1` with `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED=0` hands over everywhere except Claude Code.
+Each runtime also has its own flag, `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED`, with `<RUNTIME>` one of `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR`, `DEVIN` or `VIBE`. It overrides the global flag for that runtime whenever it holds a value. `1` turns it on and `0` turns it off. The global flag decides for every runtime without its own value, Claude Code included, and with neither set only Claude Code is on. So `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED=0` turns the Claude Code default off, and `SYSTEM_SESSION_HANDOVER_ENABLED=1` with `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED=0` hands over everywhere except Claude Code.
 
 `SYSTEM_SESSION_HANDOVER_DISABLED=1` and `SYSTEM_HOOKS_DISABLED=1` beat every enable flag. While handover is off for a runtime, `/speckit:handoff` refuses there and the runtime's own auto-compaction handles a full context window.
 

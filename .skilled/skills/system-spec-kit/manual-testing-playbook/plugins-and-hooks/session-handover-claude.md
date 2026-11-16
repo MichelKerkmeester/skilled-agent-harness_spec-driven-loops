@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-handover-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.30.0
+version: 1.0.31.0
 id: session-handover-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -29,7 +29,7 @@ Operators confirm that a context nudge can lead to a validated note, Stop-time a
 - Objective: Verify threshold context, note validation, Stop arming, process shutdown, wrapper relaunch, note status changes, hop and age limits, the hop history and calling off a prepared hand-over with an operator prompt or `cancel`.
 - Real user request: Carry this task into a new Claude session before context compaction, then finish the remaining work.
 - Prompt: Start a short task. Follow the session-handover nudge. Finish the remaining work in the receiving Claude session.
-- Precondition: the session-handover hooks ship on for Claude Code, so a check needs no flag unless a flag file or the environment turns Claude off. Every check that expects a nudge, an arm or a hop still runs with `SYSTEM_SESSION_HANDOVER_ENABLED=1` in its environment or in `.skilled/hooks/hook-flags.env`, and the commands below set it inline. A non-empty `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED`, the Claude Code value of `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED`, overrides that flag, so a `0` there in the environment or in `hook-flags.env` keeps every Claude check silent. Unset it before a run. The kill-switch check sets `SYSTEM_SESSION_HANDOVER_DISABLED=1` instead and passes as written, because the disable switch wins over the enable flag. The `node --test` suites set their own environment.
+- Precondition: the session-handover hooks ship on for Claude Code, so a check needs no flag unless a flag file or the environment turns Claude off. Every check that expects a nudge, an arm or a hop still runs with `SYSTEM_SESSION_HANDOVER_ENABLED=1` in its environment or in `.skilled/hooks/hook-flags.env`, and the commands below set it inline. A non-empty `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED`, the Claude Code value of `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED`, overrides that flag, so a `0` there in the environment or in `hook-flags.env` keeps every Claude check silent. Unset it before a run. The kill-switch check sets `SYSTEM_SESSION_HANDOVER_DISABLED=1` instead and passes as written, because the disable switch wins over the enable flag. The `node --test` suites set their own hook flags but not `AI_SESSION_CHILD`. An agent session must run them with `env -u AI_SESSION_CHILD`, because otherwise the nudge decision returns `child-session` and the Claude adapter suite fails.
 - Expected execution process: Run Claude inside tmux with `SESSION_HANDOVER_THRESHOLD=0.05`, prepare the note when the nudge appears, wait for Stop to arm the record when the transcript path is present and background tasks have drained, then confirm the wrapper relaunches with the claim seed.
 - Expected signals: The relaunch record moves from pending to armed and is consumed by the wrapper. The receiving session starts with a `[session-handover]` claim seed. The note moves from open to claimed to done. `history` shows `handed-over`, `claimed ... by <id>` and `done` for that note. A hand-over the operator calls off ends disarmed with reason `user-message` or `cancelled`, `should-relaunch` reports `withdrawn`, the session earns one more context nudge and the wrapper prints one warning and no manual claim command.
 - Pass/fail: PASS if the new session claims the same note and completes its remaining work after an armed handoff, and a called-off hand-over keeps its session running with the signals above. FAIL if Stop arms without a transcript path, the wrapper declines an eligible record, the receiving session cannot claim the note, an operator prompt leaves an armed or deferred record in place or a `<task-notification>` prompt withdraws a deferred one.
@@ -267,7 +267,7 @@ Run the killer suite:
 node --test .skilled/hooks/session-handover/tests/killer.test.cjs
 ~~~
 
-Evidence: the suite checks that only an armed record is signalled, that a held lock logs `killer-lock-held`, that a stale lock logs `killer-lock-stale`, and that a target lost during SIGTERM logs `target-gone`. The killer polls every 100 ms and starts a separate 5000 ms grace period after SIGTERM. PASS when the expected state and log lines match. FAIL when the killer signals an unarmed record or leaves a held or stale lock in the wrong state.
+Evidence: the suite checks that only an armed record is signalled, that a held lock logs `killer-lock-held`, that a stale lock logs `killer-lock-stale`, and that a target lost during SIGTERM logs `target-gone`. The killer polls every 100 ms and starts a separate 15000 ms grace period after SIGTERM. PASS when the expected state and log lines match. FAIL when the killer signals an unarmed record or leaves a held or stale lock in the wrong state.
 
 #### Killer transcript grace (Automatable)
 
@@ -287,7 +287,7 @@ Run the killer suite. The takeover cases cover a dead owner's mutex, a live owne
 node --test .skilled/hooks/session-handover/tests/killer.test.cjs
 ~~~
 
-Evidence: each test below passes. The filtered run covers the same nine tests:
+Evidence: each test below passes. The filtered run covers the same 14 tests:
 
 ~~~bash
 node --test --test-name-pattern "takeover|leftover|stray|owner cannot|removal throws" .skilled/hooks/session-handover/tests/killer.test.cjs
@@ -295,15 +295,20 @@ node --test --test-name-pattern "takeover|leftover|stray|owner cannot|removal th
 
 - `killer reclaims a takeover mutex whose recorded owner is dead`
 - `killer leaves a takeover mutex to its live owner even when the directory is old`
-- `killer sweeps an old leftover takeover directory but keeps a fresh one`
+- `killer reclaims a takeover mutex whose live owner outlived the hold bound`
+- `killer sweeps old takeover and stale-lock leftovers but keeps a fresh one`
 - `killer reclaims a stale takeover directory that holds extra files`
-- `killer reclaims the takeover when a stale leftover already holds its pid`
+- `killer reclaims a stale takeover directory while its rename waits`
 - `killer releases a takeover directory that gained a stray file`
 - `killer leaves a takeover directory a contender replaced while it was held`
+- `killer leaves a replaced takeover directory even when its inode is reused`
+- `killer does not remove a takeover directory whose owner write lost the race`
+- `killer keeps a takeover directory a contender took over during an owner-write failure cleanup`
+- `killer restores a takeover directory swapped in after its ownership check`
 - `killer exits non-zero when the takeover owner cannot be read`
 - `killer keeps its result when the takeover removal throws`
 
-PASS when all nine pass. FAIL when a live owner's mutex is reclaimed. FAIL also when a dead owner's mutex blocks the takeover. FAIL also when a killer deletes a takeover directory it did not create. FAIL also when a mutex release error overrides a successful takeover, meaning the killer exits non-zero, drops the lock it acquired or stops supervising the target.
+PASS when all 14 pass. FAIL when a live owner's mutex is reclaimed. FAIL also when a dead owner's mutex blocks the takeover. FAIL also when a killer deletes a takeover directory it did not create. FAIL also when a mutex release error overrides a successful takeover, meaning the killer exits non-zero, drops the lock it acquired or stops supervising the target.
 
 #### Arm restarts a dead killer (Automatable)
 
@@ -411,7 +416,7 @@ Run the shell shim suite. It sources `.skilled/bin/skilled-loop-shell.sh` under 
 node --test .skilled/hooks/session-handover/tests/skilled-loop-shell.test.cjs
 ~~~
 
-Evidence: all 18 tests pass, nine cases each run under bash and zsh. PASS when the run reports 0 failures. FAIL when an interactive form resolves nothing, a pass-through form resolves the wrapper or the terminal test runs the binary directly.
+Evidence: all 37 tests pass, 18 cases each run under bash and zsh. PASS when the run reports 0 failures. FAIL when an interactive form resolves nothing, a pass-through form resolves the wrapper or the terminal test runs the binary directly.
 
 #### Symlinked repository through the shell shim (Live)
 
@@ -639,7 +644,7 @@ Evidence: the command output, the log lines and the pane. PASS when both exit co
 
 #### CL-6 Withdraw and cancel probe without a model (Automatable)
 
-This probe feeds real hook payloads to the Claude context-nudge adapter in a sandbox repository and runtime directory, so it touches neither your relaunch state nor your hop history. It checks the Claude rules for an operator prompt over a pending record, a `<task-notification>` over an armed one, an operator prompt over an armed one and `cancel`. Run it from the main session. The Claude sub-agent guard denies `prepare`, `claim`, `keep` and `complete` commands from a sub-agent.
+This probe feeds real hook payloads to the Claude context-nudge adapter in a sandbox repository and runtime directory, so it touches neither your relaunch state nor your hop history. It checks the Claude rules for an operator prompt over a pending record, a `<task-notification>` over an armed one, an operator prompt over an armed one and `cancel`. Run it from the main session. The Claude sub-agent guard denies `prepare`, `claim`, `keep`, `complete`, `cancel`, `consume` and `hand-over` commands from a sub-agent.
 
 ~~~bash
 bash <<'BASH'

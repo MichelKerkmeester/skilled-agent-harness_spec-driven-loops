@@ -71,7 +71,7 @@ Then add one line to `~/.zshrc` or `~/.bashrc`, with the absolute path of the ch
 source /path/to/repo/.skilled/bin/skilled-loop-shell.sh
 ```
 
-The shim defines `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent` and `skilled-loop` as shell functions. Its rules, the trusted-checkout list and the wrapper checksum note are in `runtime-behavior.md`.
+The shim defines `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent`, `vibe` and `skilled-loop` as shell functions. Its rules, the trusted-checkout list and the wrapper checksum note are in `runtime-behavior.md`.
 
 ---
 
