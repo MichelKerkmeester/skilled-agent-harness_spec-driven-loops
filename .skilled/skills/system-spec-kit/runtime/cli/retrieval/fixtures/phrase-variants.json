@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cdc5039b416e8bf2f400134136e5e07fc3fa5eb8170ec6df01a18aaad2658c39",
+  "manifestHash": "2d546ceab9ffda7ab6258baf99b308504753a117fb85325142f8329acb83c7c0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8456,6 +8456,9 @@
     "adopt parser glm lane": [
       "adopt parser GLM lane"
     ],
+    "adopt path under repin exclude": [
+      "adopt path under repin exclude"
+    ],
     "adopt spec kit modules": [
       "adopt spec-kit modules"
     ],
@@ -14352,6 +14355,9 @@
     ],
     "barter handover items": [
       "barter handover items"
+    ],
+    "barter host capture file command routing baseline": [
+      "barter host capture file command routing baseline"
     ],
     "barter overlay mechanics research": [
       "barter overlay mechanics research"
@@ -58068,6 +58074,9 @@
     "handover to barter repin limits": [
       "handover to barter repin limits"
     ],
+    "handover to barter stale capture after scan": [
+      "handover to barter stale capture after scan"
+    ],
     "handover trigger review": [
       "handover trigger review"
     ],
@@ -93414,6 +93423,9 @@
     "regenerate runtime mirrors after move": [
       "regenerate runtime mirrors after move"
     ],
+    "regenerated line regenerate step overlay": [
+      "regenerated line regenerate step overlay"
+    ],
     "regeneration and verification": [
       "regeneration and verification"
     ],
@@ -116025,6 +116037,9 @@
     ],
     "skilled hook handover": [
       "skilled-hook-handover"
+    ],
+    "skilled hosthook host pre commit": [
+      "skilled hostHook host pre-commit"
     ],
     "skilled house checklist": [
       "skilled house checklist"
