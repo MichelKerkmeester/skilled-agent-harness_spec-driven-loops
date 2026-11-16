@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8db5b467ec13dd50f54e64c5eb7323112b659803280a62809cbc87b4f7aaca63",
+  "manifestHash": "cdc5039b416e8bf2f400134136e5e07fc3fa5eb8170ec6df01a18aaad2658c39",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1930,6 +1930,9 @@
     "007 plan voyage cleanup": [
       "007 plan voyage cleanup"
     ],
+    "007 review doc reconciliation operator decisions": [
+      "007-review-doc-reconciliation operator decisions"
+    ],
     "007 review remediation operator decisions": [
       "007-review-remediation operator decisions"
     ],
@@ -2031,6 +2034,9 @@
     ],
     "008 changelog backfill rollup": [
       "008 changelog backfill rollup"
+    ],
+    "008 claude hook tree guard operator decisions": [
+      "008-claude-hook-tree-guard operator decisions"
     ],
     "008 command surfacing build operator decisions": [
       "008-command-surfacing-build operator decisions"
@@ -73185,6 +73191,9 @@
     ],
     "mistral vibe research angles": [
       "mistral vibe research angles"
+    ],
+    "mistral vibe runtime hooks": [
+      "mistral vibe runtime hooks"
     ],
     "mistral vibe session handover docs": [
       "mistral vibe session handover docs"

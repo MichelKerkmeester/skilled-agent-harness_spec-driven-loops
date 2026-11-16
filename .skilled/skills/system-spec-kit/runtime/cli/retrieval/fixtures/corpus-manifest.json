@@ -1,5 +1,5 @@
 {
-  "corpusHash": "bbf3c64d90eba342528300a311fc29deb6ac5330f4c012f87df714ff6995595a",
+  "corpusHash": "2d64b347fb0c8c5f8753ac08271ef2587495b1b4ed33b90b8f8dea7ed06508d4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27870,
+  "includedPathCount": 27872,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11816,10 +11816,12 @@
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/decision-record.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/implementation-summary.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/decision-record.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/implementation-summary.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/spec.md",
@@ -27902,7 +27904,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8db5b467ec13dd50f54e64c5eb7323112b659803280a62809cbc87b4f7aaca63",
+  "manifestHash": "cdc5039b416e8bf2f400134136e5e07fc3fa5eb8170ec6df01a18aaad2658c39",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
