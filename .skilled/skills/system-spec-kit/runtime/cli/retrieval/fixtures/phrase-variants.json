@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ce36b38c9fcfe6fa8136b9b0c629a031820a5926ac091474014d696b97c2f1a7",
+  "manifestHash": "668d3947a363a54bc47a00bbba8318b3d1f15d773ab5269979d698528740ff0a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8249,6 +8249,9 @@
     "add task to list": [
       "add task to list"
     ],
+    "add the mistral vibe and dsh runtimes": [
+      "add the mistral vibe and dsh runtimes"
+    ],
     "add the nine hub router json phrases": [
       "add the nine hub router json phrases"
     ],
@@ -11458,6 +11461,9 @@
     "alignment coverage integrity implementation": [
       "alignment coverage integrity implementation"
     ],
+    "alignment drift pi extensions module header": [
+      "alignment drift pi extensions module header"
+    ],
     "alignment drift verification": [
       "alignment drift verification"
     ],
@@ -14383,8 +14389,23 @@
     "baseline authoring run": [
       "baseline authoring run"
     ],
+    "baseline capture after graph scan": [
+      "baseline capture after graph scan"
+    ],
+    "baseline capture after graph scan goal": [
+      "baseline capture after graph scan goal"
+    ],
+    "baseline capture after graph scan implementation summary": [
+      "baseline capture after graph scan implementation summary"
+    ],
+    "baseline capture after graph scan plan": [
+      "baseline capture after graph scan plan"
+    ],
     "baseline capture after graph scan stale": [
       "baseline capture after graph scan stale"
+    ],
+    "baseline capture after graph scan tasks": [
+      "baseline capture after graph scan tasks"
     ],
     "baseline capture nesting": [
       "baseline capture nesting"
@@ -51264,6 +51285,9 @@
     "find source root function": [
       "find source root function"
     ],
+    "find why a command routing baseline capture run": [
+      "find why a command routing baseline capture run"
+    ],
     "findadvisorworkspaceroot bare sentinel": [
       "findAdvisorWorkspaceRoot bare sentinel"
     ],
@@ -51650,6 +51674,21 @@
     ],
     "fix audit findings": [
       "fix audit findings"
+    ],
+    "fix barter 022 handover items for doctor scripts": [
+      "fix barter 022 handover items for doctor scripts"
+    ],
+    "fix barter 022 handover items for doctor scripts goal": [
+      "fix barter 022 handover items for doctor scripts goal"
+    ],
+    "fix barter 022 handover items for doctor scripts implementation summary": [
+      "fix barter 022 handover items for doctor scripts implementation summary"
+    ],
+    "fix barter 022 handover items for doctor scripts plan": [
+      "fix barter 022 handover items for doctor scripts plan"
+    ],
+    "fix barter 022 handover items for doctor scripts tasks": [
+      "fix barter 022 handover items for doctor scripts tasks"
     ],
     "fix barter repin handover items for overlay engine": [
       "fix barter repin handover items for overlay engine"
@@ -59672,6 +59711,9 @@
     "host lifecycle epoch": [
       "host lifecycle epoch"
     ],
+    "host pre commit hook source": [
+      "host pre-commit hook source"
+    ],
     "host queue dependency": [
       "host queue dependency"
     ],
@@ -59719,6 +59761,21 @@
     ],
     "host spec tree readers tasks": [
       "host spec tree readers tasks"
+    ],
+    "host surface hint and score window": [
+      "host surface hint and score window"
+    ],
+    "host surface hint and score window goal": [
+      "host surface hint and score window goal"
+    ],
+    "host surface hint and score window implementation summary": [
+      "host surface hint and score window implementation summary"
+    ],
+    "host surface hint and score window plan": [
+      "host surface hint and score window plan"
+    ],
+    "host surface hint and score window tasks": [
+      "host surface hint and score window tasks"
     ],
     "host trigger index and repin generated": [
       "host trigger index and repin generated"
@@ -64891,6 +64948,9 @@
     ],
     "let a second pi cache optimizer copy stand": [
       "let a second pi cache optimizer copy stand"
+    ],
+    "let a session surface hint join a scored": [
+      "let a session surface hint join a scored"
     ],
     "let read only git history questions route": [
       "let read only git history questions route"
@@ -82269,6 +82329,9 @@
     "phase 11 remediation deep review": [
       "phase 11 remediation deep review"
     ],
+    "phase 11 restore pinned value when json entry": [
+      "phase 11 restore pinned value when json entry"
+    ],
     "phase 11 sk create quality control": [
       "phase 11 sk create quality control"
     ],
@@ -82322,6 +82385,9 @@
     ],
     "phase 12 deep loop modes and commands": [
       "phase 12 deep loop modes and commands"
+    ],
+    "phase 12 fix barter 022 handover items": [
+      "phase 12 fix barter 022 handover items"
     ],
     "phase 12 hook guards and audit log": [
       "phase 12 hook guards and audit log"
@@ -95745,6 +95811,9 @@
     "repin link replaced by folder": [
       "repin link replaced by folder"
     ],
+    "repin live run failed after stage passed": [
+      "repin live run failed after stage passed"
+    ],
     "repin plan": [
       "repin plan"
     ],
@@ -97692,6 +97761,21 @@
     ],
     "restore pi advisor brief tasks": [
       "restore pi advisor brief tasks"
+    ],
+    "restore pinned value json entry set implementation summary": [
+      "restore pinned value json entry set implementation summary"
+    ],
+    "restore pinned value when json entry set leaves overlay": [
+      "restore pinned value when json entry set leaves overlay"
+    ],
+    "restore pinned value when json entry set leaves overlay goal": [
+      "restore pinned value when json entry set leaves overlay goal"
+    ],
+    "restore pinned value when json entry set leaves overlay plan": [
+      "restore pinned value when json entry set leaves overlay plan"
+    ],
+    "restore pinned value when json entry set leaves overlay tasks": [
+      "restore pinned value when json entry set leaves overlay tasks"
     ],
     "restore refused beside sub tracks": [
       "restore refused beside sub-tracks"
@@ -122175,6 +122259,21 @@
     ],
     "symlink traversal disabled at open": [
       "symlink traversal disabled at open"
+    ],
+    "symlink vibe and dsh runtimes": [
+      "symlink vibe and dsh runtimes"
+    ],
+    "symlink vibe and dsh runtimes goal": [
+      "symlink vibe and dsh runtimes goal"
+    ],
+    "symlink vibe and dsh runtimes implementation summary": [
+      "symlink vibe and dsh runtimes implementation summary"
+    ],
+    "symlink vibe and dsh runtimes plan": [
+      "symlink vibe and dsh runtimes plan"
+    ],
+    "symlink vibe and dsh runtimes tasks": [
+      "symlink vibe and dsh runtimes tasks"
     ],
     "symlinked parent escape": [
       "symlinked parent escape"

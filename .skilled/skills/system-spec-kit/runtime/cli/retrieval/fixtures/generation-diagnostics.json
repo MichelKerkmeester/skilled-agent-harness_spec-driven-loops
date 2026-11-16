@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6851,
-    "ok": 19298,
+    "ok": 19324,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27776,
+  "documentsScanned": 27802,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "ce36b38c9fcfe6fa8136b9b0c629a031820a5926ac091474014d696b97c2f1a7",
+  "manifestHash": "668d3947a363a54bc47a00bbba8318b3d1f15d773ab5269979d698528740ff0a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44406,
+      "ok": 44439,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -57927,6 +57927,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/hub-architecture/z_archive",
       "reason": "excluded directory"
     },
@@ -60863,6 +60867,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/routing-and-scoring/z_archive",
       "reason": "excluded directory"
     },
@@ -60995,11 +61003,23 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skilled-doctor/002-symlink-first-link/scratch",
       "reason": "excluded directory"
     },
     {
       "path": "specs/system-skilled-doctor/003-removed-folder-classification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/scratch",
       "reason": "excluded directory"
     },
     {
