@@ -258,7 +258,7 @@ A loop can also spread across several AI CLIs at once. Each executor runs its ow
 
 Your main CLI does not have to do every task itself. The CLI orchestration hub hands a task to another AI CLI on the same machine and reads the result back. The agent you are talking to stays in charge. It writes the brief, waits for the answer and checks it before using it.
 
-This lets you mix subscriptions. You can stay in Claude Code or Codex on that plan and send research, reviews or bulk work to a cheaper model through another CLI. The bridges are provider agnostic. Each CLI runs whatever providers and models you have set up in it, so you match the bridge to the subscriptions you already pay for. Each dispatch is billed to that CLI's own plan, not to your main one.
+This lets you mix subscriptions. You can stay in Claude Code or Codex on that plan and send research, reviews or bulk work to a cheaper model through another CLI. The bridges are provider agnostic. Each CLI runs whatever providers and models you have set up in it, so you match the bridge to the subscriptions you already pay for. That is why Skilled supports eight runtimes: whichever plans you have, one of them is your main CLI and the others take the work you hand off. Each dispatch is billed to that CLI's own plan, not to your main one.
 
 You ask for it in plain words, for example "use cli-opencode to review this diff". The advisor routes the request to the matching bridge. The bridge checks that its CLI is installed and that the dispatch passes its hard rules, then runs it. The deep loops use the same bridges, so one research or review run can spread its passes across several models. [Runtimes And CLI Bridges](#10--runtimes-and-cli-bridges) lists all eight.
 
@@ -606,7 +606,7 @@ Some runtimes add a goal command of their own: `/goal-opencode`, `/goal-cursor` 
 
 ## 10. 🔌 RUNTIMES AND CLI BRIDGES
 
-Skilled runs in eight AI runtimes. Each one keeps its own folder and loads the hooks its own way:
+Skilled runs in eight AI runtimes, so you can work from the subscriptions you already have and hand work between them. Each one keeps its own folder and loads the hooks its own way:
 
 | Runtime | Folder | Commands look like | Hooks load through |
 | --- | --- | --- | --- |
