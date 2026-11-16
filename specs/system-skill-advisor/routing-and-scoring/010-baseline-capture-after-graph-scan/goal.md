@@ -88,5 +88,5 @@ and findings belong here.
 | The report was not reproduced before the plan was written | The reproduction runs a trusted scan, which rewrites advisor state. The operator chose plan-only, so it is T001 to T003. |
 | Two candidate causes are named in `plan.md` | Both are inferred from reading. Neither has been observed. |
 
-Open question: which row and which field returned the old value? The handover names neither.
+The vendoring project answered on 2026-11-16: the field is `top`, the rows are not recorded, and both stale captures followed an edit to sk-code router sources plus a regenerate step that rewrote `graph-metadata.json`. That is what T002 now reproduces. It also saw launcher lines such as `reclaimed stale bootstrap lock` in its suite log, so a long-lived process is one candidate. Nothing here is confirmed in this repository.
 <!-- /ANCHOR:log -->

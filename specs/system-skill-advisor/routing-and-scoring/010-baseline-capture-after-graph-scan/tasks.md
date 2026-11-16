@@ -36,7 +36,7 @@ contextType: "general"
 <!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Confirm `logs/archive/` holds 10 archives. Verify: `ls logs/archive | wc -l` prints 10. WEAK: T001 Set up the project. -->
 
 - [ ] T001 Write the reproduction: the scan and the capture in one command, a second capture a minute later, one result line (`S/repro-capture-after-scan.sh`). Verify: one run appends one line to `S/repro-results.txt` that reads `same` or `differs <row id>`.
-- [ ] T002 Run it ten times, with a changed `graph-metadata.json` before five of the scans (`S/repro-results.txt`). Verify: `wc -l S/repro-results.txt` prints 10 or more, and `git status --short` prints nothing afterwards.
+- [ ] T002 Run it ten times. Before five of the scans, flip one intent keyword that decides a baseline row and run `generate-router-intent-signals.cjs --write`, then restore both afterwards (`S/repro-results.txt`). Verify: `wc -l S/repro-results.txt` prints 10 or more, and `git status --short` prints nothing afterwards.
 - [ ] T003 On a differing run, hash every input the capture reads at both moments (`S/inputs-at-capture.txt`). Verify: the file names the input whose hash changed, or says every input held the same hash.
 <!-- /ANCHOR:phase-1 -->
 

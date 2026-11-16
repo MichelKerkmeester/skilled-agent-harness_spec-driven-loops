@@ -195,7 +195,7 @@
     ],
     "causal_summary": "A vendoring project reported, as item 10 of its second handover, that `capture-command-routing-baseline.mjs` run in the same command as `skill-advisor.cjs skillgraphscan --trusted` returned the value from before the scan for one row",
     "created_at": "2026-11-16T09:33:10Z",
-    "last_save_at": "2026-11-16T10:13:55.367Z",
+    "last_save_at": "2026-11-16T10:20:45.012Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5efdfc3217d75481e888176bd3beee53f4a8c481bb2ce91858bcaef03ba3a26d",
+    "source_fingerprint": "sha256:3107673d363524b675005b2c40862aac489482ea500cbca0c19cf42b0ff7fdcb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "629c5321d4034e31b69b99656ce7fb86ef8848dd067d2575b1627401e46df171",
+      "spec.md": "2a3e66180b3ea200613de91b4e60afb633a2a587096ece568ce97869244e8598",
       "plan.md": "ca22f463f8d9fe19ce9f729021cb79ea81d5697f9d0d3ab7af4df0aee203cc2f",
-      "tasks.md": "60c9128f4304f98fda54a64e995a40b9b9a759c389f8dff9634508d0ead242d2",
+      "tasks.md": "bd834e8c1aed14aebb63a0dfba9d72c2da5552994f4a1a01148d980c0b271d54",
       "implementation-summary.md": "3e32b5dce520b09506bcb5c57f61263eca8f1c30a32b8a13b503926b3560bf28"
     },
     "last_active_at": null

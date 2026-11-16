@@ -138,9 +138,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 7. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- Which row returned the old value, and which field? The handover says one row each time and names neither. Ask the vendoring project before T001 if the reproduction needs it.
+- Which row returned the old value, and which field? Answered by the vendoring project on 2026-11-16: the field is `top` in `command-routing-baseline.json`, both times. Its records do not name the rows. It infers `cmd-design-extract-plain-holdout-01` and `mns-d3-04`, the two rows whose `top` moved during that work.
 - Which form should a host's captured values take? Decided by the operator on 2026-11-16: a host capture file beside the upstream one, which the two tests read when it exists.
-- Did the vendoring project change a `graph-metadata.json` or a router file just before the scan? If so, the advisor daemon's file watcher was reindexing at the same moment, which is the first thing T003 looks at.
+- Did the vendoring project change a `graph-metadata.json` or a router file just before the scan? Answered on 2026-11-16: yes, both times. It had changed sk-code router sources and run the overlay engine's `apply`, whose regenerate step `generate-router-intent-signals.cjs --write` rewrites sk-code's `graph-metadata.json`. The scan and the capture then ran back to back in one shell command. The keyword `lcp regression` was being added to or removed from the frontend intents. Whether a daemon or launcher process was alive across the scan was not checked.
 <!-- /ANCHOR:questions -->
 
 ---
