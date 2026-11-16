@@ -138,7 +138,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | Runtime session variables | A runtime that stops setting its variable falls back to the newest session, as before | The fallback is unchanged |
-| Risk | Codex's app-server daemon keeps the environment of the session that started it | A second thread on one daemon could carry the first thread's id | The probe used `codex exec`, so the daemon case is still unproven |
+| Risk | Codex's app-server daemon keeps the environment of the session that started it | A second thread on one daemon could carry the first thread's id | The binary sets `CODEX_THREAD_ID` beside its per-command variables, so it is likely per thread. Unproven until a two-thread daemon probe |
 <!-- /ANCHOR:risks -->
 
 ---

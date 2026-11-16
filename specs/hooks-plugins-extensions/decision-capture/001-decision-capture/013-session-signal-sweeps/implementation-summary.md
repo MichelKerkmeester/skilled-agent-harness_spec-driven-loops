@@ -119,7 +119,7 @@ A read-only Opus investigation named each runtime's variable, and each claim was
 ## Known Limitations
 
 1. **Devin and Vibe still take the newest session.** With two sessions of either open in one project, a save can read the other one. A fix needs a signal that a live probe proves.
-2. **The Codex app-server daemon case is unproven.** The probe used `codex exec`. A daemon that keeps the environment of the session that started it could give a second thread the first one's id.
+2. **The Codex app-server daemon case is unproven.** Interactive Codex runs threads through a shared daemon that keeps the environment of the session that started it, and the probe used `codex exec`, one process per turn. In the 0.169.0 binary `CODEX_THREAD_ID` sits beside `PATH`, `LC_ALL` and `COLORTERM`, the variables Codex sets on each command it spawns, so the id is most likely set per command from the thread rather than inherited. That is read from binary strings, not observed. A probe with two threads on one daemon would settle it.
 3. **The DSH probe did not tell old from new.** The signal and the folder match, and the unit test shows an unknown id never falls back, but no live run showed the old sweep reading the wrong session.
 <!-- /ANCHOR:limitations -->
 

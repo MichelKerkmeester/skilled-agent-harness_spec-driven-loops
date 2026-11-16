@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Run without a flag, each sweep takes the newest session recorded for the project",
     "created_at": "2026-11-16T15:23:27Z",
-    "last_save_at": "2026-11-16T15:52:37.950Z",
+    "last_save_at": "2026-11-16T15:56:52.463Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ae89cbf92ca18dc3b39c314bceba002fe6c386616f3dae8c912f55a8d59d1d54",
+    "source_fingerprint": "sha256:cf700610f92abe072249fdf8976632ecd420219d852915d53c6da55cea8687bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7852117bd331c536c0d58984ec1236d37877380ec30f4cc24599e1f362f34609",
+      "spec.md": "7103afbe19338f92789e0042cf257f38c3a1792fe52c1cb5034d94b60e75ec3a",
       "plan.md": "9745178b88d27ee3bd22b2d89c0208a009cfee42cb08f9fd2df7063baa46c3b6",
       "tasks.md": "3e1be49eb10935228300283da2c4e7365a9aa362452b3d3ec6e2801e2fd8e226",
-      "implementation-summary.md": "4114be42ef0a24aa6ebd23f55393f4c9ed6235962cc258871f4d5d0ba3187a5a"
+      "implementation-summary.md": "b32bfce38194b362fe4b55683d24b96269640f274515196ee046bafe8085b2f6"
     },
     "last_active_at": null
   }
