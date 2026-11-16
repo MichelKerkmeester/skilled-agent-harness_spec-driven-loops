@@ -22,7 +22,7 @@ trigger_phrases:
 
 Each adapter asks for a handoff near its context threshold. The sender prepares a note and the adapter arms a matching record. After the runtime exits, `skilled-loop` relaunches it with a claim seed. That happens when the record is armed, fresh and below the hop cap. A record still pending at exit makes the wrapper print a manual claim command and consume the record.
 
-`SKILLED_LOOP_MANUAL_TEMPLATE` builds that command from the first launch's name and Pi extension flags. It also uses the model, provider and effort the record carries. A hop that switched model therefore prints the model the session was last using. The killer uses the same template in its timeout notification.
+`SKILLED_LOOP_MANUAL_TEMPLATE` builds that command from the name, model, provider and effort the loop carries, the record's live values first, plus the first launch's Pi extension flags. A hop that switched model therefore prints the model the session was last using, except on OpenCode 2, whose printed command carries no model. The killer uses the same template in its timeout notification.
 
 Claude Code uses `PreToolUse` for Bash and `AskUserQuestion`, `PostToolUse`, `UserPromptSubmit`, `Stop` and `SessionStart`. Pi, OpenCode, Codex and Vibe use their host events or a plugin. Cursor and Devin ship on the command trigger only.
 

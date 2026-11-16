@@ -75,7 +75,7 @@ The killer polls every 100 ms. The idle window defaults to 3000 ms and the overa
 
 A signal probe that fails with `EPERM` means the pid belongs to another user's process, so the killer treats its target as gone instead of signalling it. `killer-lock-held` also appears while another killer holds the `<lock>.takeover` mutex.
 
-If an armed record has no live killer, the next arm event starts one. A live killer that owns the lock blocks that restart by design. `killer-error` with exit code 1 means the takeover mutex's owner file could not be read, for example a read error other than `ENOENT`, `EACCES` or `EISDIR`; a directory at the owner path counts as no owner and is judged by age. The killer stops before the takeover and the armed record stays armed for the next arm event.
+If an armed record has no live killer, the next arm event starts one. A live killer that owns the lock blocks that restart by design. `killer-error` with exit code 1 means the takeover mutex's owner file could not be read, for example a read error other than `ENOENT`, `EACCES`, `EISDIR` or `ENOTDIR`; a directory at the owner path, or a non-directory at the mutex path, counts as no owner and is judged by age. The killer stops before the takeover and the armed record stays armed for the next arm event.
 
 `killer-mutex-release-error` means the `<lock>.takeover` directory could not be removed after the takeover finished. The takeover result stands and the killer keeps the lock it acquired, so this line does not mean the handoff failed. A leftover mutex is reclaimed by the next takeover once its owner is dead. It is also reclaimed once it has no owner file and is older than 30 s.
 

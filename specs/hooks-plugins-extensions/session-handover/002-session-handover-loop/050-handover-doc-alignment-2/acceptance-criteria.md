@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/050-handover-doc-alignment-2"
+    packet_pointer: "hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2"
     last_updated_at: "2026-11-16T11:35:33Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
