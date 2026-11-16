@@ -1,5 +1,5 @@
 {
-  "manifestHash": "800da989d47b53361feb9d5c1547869f4993e11ff4a6f42b07a2915f933b6535",
+  "manifestHash": "ce053329349496c0273eb3d11537800ab8dc287f1bf448d78a41720334929867",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -77551,6 +77551,15 @@
     "opencode model carry": [
       "opencode model carry"
     ],
+    "opencode model carry implementation summary": [
+      "opencode model carry implementation summary"
+    ],
+    "opencode model carry plan": [
+      "opencode model carry plan"
+    ],
+    "opencode model carry tasks": [
+      "opencode model carry tasks"
+    ],
     "opencode model context windows": [
       "opencode model context windows"
     ],
@@ -82253,6 +82262,9 @@
     ],
     "phase 12 mcp code mode": [
       "phase 12 mcp code mode"
+    ],
+    "phase 12 opencode model carry": [
+      "phase 12 opencode model carry"
     ],
     "phase 12 plain offer reach": [
       "phase 12 plain offer reach"
