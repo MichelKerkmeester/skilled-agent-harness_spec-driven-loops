@@ -54,27 +54,27 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/cli-dispatch/claude/dispatch-preflight-lint.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=dispatch-preflight-lint.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/cli-dispatch/claude/dispatch-preflight-lint.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=dispatch-preflight-lint.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=spec-gate-enforce.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=spec-gate-enforce.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=git-preflight-advisory.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=git-preflight-advisory.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=git-message-gate.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=git-message-gate.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/claude/handover-subagent-guard.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=handover-subagent-guard.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/session-handover/claude/handover-subagent-guard.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=handover-subagent-guard.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]
@@ -84,7 +84,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/subagent-dispatch-guard/claude/task-dispatch-guard.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=task-dispatch-guard.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/subagent-dispatch-guard/claude/task-dispatch-guard.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=task-dispatch-guard.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]
@@ -94,7 +94,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/subagent-dispatch-guard/claude/fable-subagent-guard.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=fable-subagent-guard.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/subagent-dispatch-guard/claude/fable-subagent-guard.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=fable-subagent-guard.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]
@@ -104,7 +104,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/mcp-route-guard/claude/mcp-route-guard.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=mcp-route-guard.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/mcp-route-guard/claude/mcp-route-guard.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=mcp-route-guard.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]
@@ -114,7 +114,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=spec-gate-enforce.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=spec-gate-enforce.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]
@@ -124,7 +124,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/overlay-guard/claude/overlay-guard.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=overlay-guard.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/overlay-guard/claude/overlay-guard.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=overlay-guard.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 10
           }
         ]
@@ -134,7 +134,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/env-secret-guard/command-hook/env-secret-guard.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=env-secret-guard.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/env-secret-guard/command-hook/env-secret-guard.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=env-secret-guard.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 10
           }
         ]
@@ -144,7 +144,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/claude/handover-subagent-guard.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=handover-subagent-guard.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/session-handover/claude/handover-subagent-guard.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=handover-subagent-guard.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]
@@ -156,17 +156,17 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js || { printf \"%s\\n\" \"mk-hook-drift host=claude event=UserPromptSubmit adapter=user-prompt-submit.js\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js || { printf \"%s\\n\" \"mk-hook-drift host=claude event=UserPromptSubmit adapter=user-prompt-submit.js\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 3
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=UserPromptSubmit adapter=spec-gate-classify.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=UserPromptSubmit adapter=spec-gate-classify.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 3
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/claude/handover-context-nudge.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=UserPromptSubmit adapter=handover-context-nudge.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/session-handover/claude/handover-context-nudge.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=UserPromptSubmit adapter=handover-context-nudge.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]
@@ -178,42 +178,47 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=session-prime.js\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=session-prime.js\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 3
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && bash .skilled/bin/worktree-guard.sh || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=worktree-guard.sh\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && bash .skilled/bin/worktree-guard.sh || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=worktree-guard.sh\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 3
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && bash .skilled/bin/check-git-hooks.sh || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=check-git-hooks.sh\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && bash .skilled/bin/check-git-hooks.sh || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=check-git-hooks.sh\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 3
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && bash .skilled/bin/git-primary-reconcile.sh >/dev/null 2>&1 &'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && bash .skilled/bin/git-primary-reconcile.sh >/dev/null 2>&1 &'",
             "timeout": 3
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && bash .skilled/bin/git-live-follow.sh --start || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=git-live-follow.sh\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && bash .skilled/bin/git-live-follow.sh --start || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=git-live-follow.sh\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 3
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=check-dist-staleness.sh\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=check-dist-staleness.sh\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/bin/install-codex-hooks.mjs --check >/dev/null 2>&1 || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=install-codex-hooks.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"[codex-hooks] drift detected - run: node .skilled/bin/install-codex-hooks.mjs --check\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/bin/install-codex-hooks.mjs --check >/dev/null 2>&1 || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=install-codex-hooks.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"[codex-hooks] drift detected - run: node .skilled/bin/install-codex-hooks.mjs --check\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/claude/handover-compact-pointer.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=handover-compact-pointer.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/session-handover/claude/handover-compact-pointer.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=handover-compact-pointer.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/bin/sync-claude-user-hooks.mjs --session-start >/dev/null 2>&1 || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=sync-claude-user-hooks.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"[claude-user-hooks] sync failed - run: node .skilled/bin/sync-claude-user-hooks.mjs --check\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]
@@ -225,25 +230,25 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js || { printf \"%s\\n\" \"mk-hook-drift host=claude event=Stop adapter=session-stop.js\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js || { printf \"%s\\n\" \"mk-hook-drift host=claude event=Stop adapter=session-stop.js\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 10,
             "async": true
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=Stop adapter=completion-evidence-stop.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=Stop adapter=completion-evidence-stop.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 10,
             "async": true
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/claude/handover-stop-arm.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=Stop adapter=handover-stop-arm.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/session-handover/claude/handover-stop-arm.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=Stop adapter=handover-stop-arm.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 10,
             "async": true
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/ask-surface-guard/claude/ask-surface-stop.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=Stop adapter=ask-surface-stop.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/ask-surface-guard/claude/ask-surface-stop.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=Stop adapter=ask-surface-stop.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]
@@ -255,7 +260,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && bash .skilled/scripts/session-cleanup.sh || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionEnd adapter=session-cleanup.sh\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionEnd\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && bash .skilled/scripts/session-cleanup.sh || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionEnd adapter=session-cleanup.sh\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionEnd\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 10
           }
         ]
@@ -267,7 +272,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=post-edit-quality.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=post-edit-quality.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 10
           }
         ]
@@ -277,7 +282,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/cli-dispatch/claude/dispatch-audit-posttooluse.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=dispatch-audit-posttooluse.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/cli-dispatch/claude/dispatch-audit-posttooluse.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=dispatch-audit-posttooluse.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]
@@ -287,7 +292,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=classifier-injection-screen-posttooluse.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=classifier-injection-screen-posttooluse.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 30
           }
         ]
@@ -297,7 +302,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/claude/handover-context-nudge.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=handover-context-nudge.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/session-handover/claude/handover-context-nudge.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=handover-context-nudge.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]
@@ -307,7 +312,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/decision-capture/claude/decision-capture-posttooluse.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=decision-capture-posttooluse.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/decision-capture/claude/decision-capture-posttooluse.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=decision-capture-posttooluse.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]
@@ -317,7 +322,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/env-secret-guard/command-hook/env-secret-guard-after.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=env-secret-guard-after.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/hooks/env-secret-guard/command-hook/env-secret-guard-after.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=env-secret-guard-after.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 10
           }
         ]
@@ -329,7 +334,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreCompact adapter=compact-inject.js\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreCompact\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && { [ -e .skilled ] || exit 0; } && node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreCompact adapter=compact-inject.js\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreCompact\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 3
           }
         ]

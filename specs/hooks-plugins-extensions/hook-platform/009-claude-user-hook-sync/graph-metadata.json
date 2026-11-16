@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync",
+  "spec_folder": "hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync",
+  "parent_id": "hooks-plugins-extensions/hook-platform",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "claude user hook sync",
+      "user level claude settings hooks",
+      "sync claude user hooks",
+      "claude user hook sync plan",
+      "claude user hook sync tasks",
+      "claude user hook sync acceptance criteria",
+      "claude user hook sync implementation summary"
+    ],
+    "key_topics": [
+      "claude",
+      "user",
+      "hook",
+      "sync",
+      "level",
+      "settings",
+      "hooks",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/bin/sync-claude-user-hooks.mjs",
+      ".skilled/bin/lib/user-hook-file.mjs",
+      ".skilled/bin/install-codex-hooks.mjs",
+      ".skilled/bin/tests/sync-claude-user-hooks.test.cjs",
+      ".skilled/hooks/shared/hook-flags.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+      ".claude/settings.json",
+      ".claude/hooks/sync-claude-user-hooks.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/commands/doctor/assets/doctor-env.yaml",
+      ".skilled/hooks/hook-flags.env.example",
+      ".skilled/bin/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-claude-user-hooks.mjs",
+        "kind": "file",
+        "path": ".skilled/bin/sync-claude-user-hooks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "user-hook-file.mjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/user-hook-file.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "install-codex-hooks.mjs",
+        "kind": "file",
+        "path": ".skilled/bin/install-codex-hooks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-claude-user-hooks.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/sync-claude-user-hooks.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "sync-hook-registrations.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registration-sync.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings-driven-invocation-parity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-env.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-env.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env.example",
+        "kind": "file",
+        "path": ".skilled/hooks/hook-flags.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator's `~/.claude/settings.json` carries a hand-made copy of Skilled's Claude hooks",
+    "created_at": "2026-11-16T10:18:26Z",
+    "last_save_at": "2026-11-16T10:41:30.503Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a9e04de7d5f667a14a89962e5afd523f3113adc4a9a72b70c33392395b99c4a7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "eee068f145f3fe8c34f00108c26b604dd85205283fda97d6604874113f0dd05b",
+      "plan.md": "b9395ccad37fa98ba87ab91f1d0c475d7ff3674b621d3f1c9c9addc299e52021",
+      "tasks.md": "f38bafcea57711410e8bf81580c3fb2547c431f6431bb0e992d5b9c53cceb6a6",
+      "implementation-summary.md": "b42cb9076f139aae66fbb8c4e22e38574e6883f2b1dc2a1f5d5ae14d3b440e21"
+    },
+    "last_active_at": null
+  }
+}

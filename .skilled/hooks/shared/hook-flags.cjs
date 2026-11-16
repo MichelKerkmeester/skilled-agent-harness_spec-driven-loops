@@ -98,11 +98,13 @@ const LEGACY_ALIASES = {
 
 // concern -> the switch that turns it on. A concern listed here is off until the
 // operator opts in, because it acts on the session itself (the relaunch loop can
-// end a running session and start a new one), except on a runtime DEFAULT_ON_RUNTIMES
-// names for it. The opt-in resolves like every other flag, environment over file,
-// and the master and kill switches still win over it.
+// end a running session and start a new one) or on a file outside the checkout
+// (the user-hook sync rewrites the operator's own Claude settings), except on a
+// runtime DEFAULT_ON_RUNTIMES names for it. The opt-in resolves like every other
+// flag, environment over file, and the master and kill switches still win over it.
 const DEFAULT_OFF = {
   "session-handover": "SYSTEM_SESSION_HANDOVER_ENABLED",
+  "claude-user-hook-sync": "SYSTEM_CLAUDE_USER_HOOK_SYNC_ENABLED",
 };
 
 // The CLI runtimes that can carry a default-off concern. An operator may want the
