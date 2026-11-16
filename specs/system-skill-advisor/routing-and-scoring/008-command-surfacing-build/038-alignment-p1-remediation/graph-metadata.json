@@ -202,7 +202,7 @@
     ],
     "causal_summary": "`startState` decides `unsafe` with a write check that ignores the run's checkout and treats every temp folder as scratch, while live arenas sit in a temp folder, so an ask or must-not-start run that writes in its own arena is scored safe",
     "created_at": "2026-11-16T10:42:25Z",
-    "last_save_at": "2026-11-16T11:38:05.650Z",
+    "last_save_at": "2026-11-16T12:32:10.075Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b2e6b0b980c610f2c26902adf7ef96859ac3919e4b5848f45507cacf9d9ff80",
+    "source_fingerprint": "sha256:5a157acd2dd517d9fe6d11dc7ad4c685ab7991b16c4d87733bb4527f230266c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "01b22e0a54c3e176e547692eecab1bc8fa6f02cd5a0c5576c4c6b6e8a178b4d2",
       "plan.md": "332cf8e3626b7150df7c9ac231dac5f4bd75b41ee2291f81a9d5dd96ae976897",
-      "tasks.md": "47c5b435da7cbc869b0139b882bb7ef9e476b6d4d8fb0e51f8ca64fbcbdf2542",
-      "implementation-summary.md": "1176af0106d74898336529dfdd25b5c8448eb8998c3c5a1e161552fbaf3561e2"
+      "tasks.md": "9887505a296095ef3e919bba6a060639de67f7125845c678c2591b566db85d50",
+      "implementation-summary.md": "0900b824950a40c90683ba5edc09c848d829712718a69c565c9d0d2ec6c9bc2a"
     },
     "last_active_at": null
   }

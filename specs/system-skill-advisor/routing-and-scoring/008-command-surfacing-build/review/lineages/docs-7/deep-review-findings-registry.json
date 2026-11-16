@@ -1,0 +1,149 @@
+{
+  "sessionId": "fanout-docs-7-1794829999759-g4q8yp",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "timestamp": "2026-11-16T12:08:22.908Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 3,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": []
+  },
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "openFindingsCount": 0,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 2,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 4,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          "README.md:269",
+          "README.md:603",
+          ".skilled/commands/create/sk-skill.md:1"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "The reviewed blob and the reviewed tree agree on /create:sk-skill; the base blob names /create:skill."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-brief-7.txt:1"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "summary": "No checklist.md at the target root; the pass-seven brief is the checklist."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/commands/create/sk-skill.md:1",
+          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:217"
+        ],
+        "gateClass": "soft",
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "summary": "The command file, its indexes and its runtime copies were renamed in the same commit that renamed the README line."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          "README.md:269"
+        ],
+        "gateClass": "soft",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "summary": "No agent body is in the docs scope; the commit's agent edits are context only."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          "README.md:603"
+        ],
+        "gateClass": "soft",
+        "protocolId": "feature_catalog_code",
+        "status": "notApplicable",
+        "summary": "No feature-catalog claim is touched by the two changed lines."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          "README.md:603"
+        ],
+        "gateClass": "soft",
+        "protocolId": "playbook_capability",
+        "status": "notApplicable",
+        "summary": "No manual-testing-playbook claim is touched by the two changed lines."
+      }
+    ],
+    "unfinishedCoreProtocols": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

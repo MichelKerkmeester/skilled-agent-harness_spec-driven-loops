@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"fanout-scorer-7-1794829999759-g4q8yp","sessionId":"fanout-scorer-7-1794829999759-g4q8yp"},"data":{"mode":"review","totalIterations":3,"activeP0":0,"activeP1":0,"activeP2":4,"dimensionCoverage":1,"verdict":"PASS","releaseReadinessState":"in-progress","stopReason":"maxIterationsReached"}}

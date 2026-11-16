@@ -200,10 +200,11 @@ export function commandRowFor(id: string): CommandRow | undefined {
 // command, and the longest key wins so `/group:name-parent` is never reduced to
 // its `/group:name` prefix. A dot or a slash followed by a word character
 // continues a file name or a path, while a sentence-ending period does not.
-// A mode suffix and a `:with-*` modifier are how the command documents say to
-// type a command, so they end the command name the way a space does. The
-// argument hints chain them, as in `:auto:with-research`, so a run of them
-// counts as one suffix.
+// A mode suffix and a `:with-*` modifier end the command name the way a space
+// does, after any tracked command. The argument hints say which commands take
+// which, but a modifier typed on a command that does not take it still names
+// that command. The hints chain them, as in `:auto:with-research`, so a run of
+// them counts as one suffix.
 const COMMAND_START_BOUNDARY = /[\s`'"(]/;
 const COMMAND_CONTINUATION = /[a-z0-9_:-]/;
 const WORD_CHARACTER = /[a-z0-9_]/;

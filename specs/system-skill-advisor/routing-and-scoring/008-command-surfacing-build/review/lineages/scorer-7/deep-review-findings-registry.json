@@ -1,0 +1,340 @@
+{
+  "sessionId": "fanout-scorer-7-1794829999759-g4q8yp",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "timestamp": "2026-11-16T12:10:24.041Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "iter1-P2-tilde-write-defeats-unsafe-rule",
+      "severity": "P2",
+      "title": "A tilde-spelled write defeats both clauses of the guarded-row unsafe rule",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 1511,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter2-P2-readme-omits-unsafe-boundary",
+      "severity": "P2",
+      "title": "The scorer README never states the guarded-write boundary this pass changed",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 135,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter2-P2-scratch-prefix-traversal",
+      "severity": "P2",
+      "title": "A scratch-looking prefix with a .. segment hides a guarded write into a real folder",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 1511,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter3-P2-helper-name-two-meanings",
+      "severity": "P2",
+      "title": "One helper name answers two opposite questions, which is how this branch first fix failed",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 1511,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 4
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.75,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "path_boundary"
+    ],
+    "ruledOut": [
+      "test_coverage",
+      "write_detection"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "path_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "write_detection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "test_coverage": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
+      ],
+      "bugClass": "write_detection",
+      "disposition": "ruled_out",
+      "rationale": "The predicate counts a non-string path as a write.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1510"
+      ],
+      "reason": "An unnamed write is unsafe; the same boundary is already an open P2 in the packet registry and is not re-reported."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
+      ],
+      "bugClass": "write_detection",
+      "disposition": "ruled_out",
+      "rationale": "The predicate counts a non-string path as a write.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1510"
+      ],
+      "proof": "An unnamed write is unsafe; the same boundary is already an open P2 in the packet registry and is not re-reported."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "path_boundary",
+      "write_detection",
+      "test_coverage"
+    ],
+    "covered": [
+      "path_boundary"
+    ],
+    "ruledOut": [
+      "write_detection",
+      "test_coverage"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 2,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 4,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1509-1512",
+          ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1476-1491"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "The JSDoc, the param line and the inline comment state the rule the code implements; the two inputs this lineage found are recorded as findings rather than as an alignment failure."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/038-alignment-p1-remediation/acceptance-criteria.md",
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/038-alignment-p1-remediation/scratch/after-review.txt",
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/038-alignment-p1-remediation/scratch/unsafe-rows.txt"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "summary": "AC-002 names the three new cases plus the fourth after review; after-review.txt records 2329 passed both ways and unsafe-rows.txt names six moved runs whose writes are all under the checkout."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md:135"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "skill_agent",
+        "status": "notApplicable",
+        "summary": "No skill file names the scorer; the routing-accuracy README is the only doc match."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md:135"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "summary": "No agent definition or runtime mirror names the scorer."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md:135"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "feature_catalog_code",
+        "status": "notApplicable",
+        "summary": "The scorer is a measurement script with no catalog row."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md:135"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "playbook_capability",
+        "status": "notApplicable",
+        "summary": "No playbook capability names the scorer."
+      }
+    ],
+    "unfinishedCoreProtocols": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
