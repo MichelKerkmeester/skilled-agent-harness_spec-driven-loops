@@ -1,5 +1,5 @@
 {
-  "manifestHash": "61fda407407ffb25d6f8a80a7ce1cc7eb5f1578b4ecb467468c313ff8c5d61f5",
+  "manifestHash": "6543bd61e943094c0949623a4532584f2f4ba1b4bd1e3fb371949eb5a6390bea",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6724,6 +6724,9 @@
     ],
     "033 retention tasks": [
       "033 retention tasks"
+    ],
+    "033 untuned arm arena run decisions": [
+      "033-untuned-arm-arena-run decisions"
     ],
     "034 complete": [
       "034 complete"
@@ -58435,6 +58438,9 @@
     "help printer test": [
       "help printer test"
     ],
+    "heredoc comparison misread as write": [
+      "heredoc comparison misread as write"
+    ],
     "heredoc script dispatch": [
       "heredoc script dispatch"
     ],
@@ -83591,6 +83597,9 @@
     "phase 33 zero iteration report": [
       "phase 33 zero iteration report"
     ],
+    "phase 34 scorer heredoc redirect fix": [
+      "phase 34 scorer heredoc redirect fix"
+    ],
     "phase 35 v2 bridge plugin effects": [
       "phase 35 v2 bridge plugin effects"
     ],
@@ -103529,6 +103538,21 @@
     ],
     "scorer fusion stress": [
       "scorer fusion stress"
+    ],
+    "scorer heredoc redirect fix": [
+      "scorer heredoc redirect fix"
+    ],
+    "scorer heredoc redirect fix acceptance criteria": [
+      "scorer heredoc redirect fix acceptance criteria"
+    ],
+    "scorer heredoc redirect fix implementation summary": [
+      "scorer heredoc redirect fix implementation summary"
+    ],
+    "scorer heredoc redirect fix plan": [
+      "scorer heredoc redirect fix plan"
+    ],
+    "scorer heredoc redirect fix tasks": [
+      "scorer heredoc redirect fix tasks"
     ],
     "scorer lanes": [
       "scorer lanes"
@@ -128949,6 +128973,9 @@
     ],
     "untuned arm arena run tasks": [
       "untuned arm arena run tasks"
+    ],
+    "untuned arm rescore b 5 trigger": [
+      "untuned arm rescore b-5 trigger"
     ],
     "untuned arm verdict": [
       "untuned arm verdict"

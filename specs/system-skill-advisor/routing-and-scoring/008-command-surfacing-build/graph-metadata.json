@@ -36,7 +36,8 @@
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/030-vibe-runtime-parity",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation",
-    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run"
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix"
   ],
   "manual": {
     "depends_on": [],
@@ -238,7 +239,7 @@
     ],
     "causal_summary": "A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-16T04:12:07.516Z",
+    "last_save_at": "2026-11-16T05:30:55.931Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -246,13 +247,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:6d1b8884e7bb30ea0eb6e0efe3f6da79038465434d16c1c89e34cc6e5efc5472",
+    "source_fingerprint": "sha256:b82d0c17cb61bbc105732bb5911e304e9febf0e8ae32b74907bdaaec1d6da360",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "669e4fbb9a8f46ae781b4313669059cd158937ee022f169acf04c7ab7f67665d",
+      "spec.md": "de95abe48f1ec08e42fb932bb9a42d4227e8b0fd8f9bc121ff60c549b7122144",
       "decision-record.md": "24b0499462a108efec1a034417bab479620a54c915e1d1c4bcad4c8c637e80c0"
     },
-    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run",
-    "last_active_at": "2026-11-16T04:12:07.516Z"
+    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix",
+    "last_active_at": "2026-11-16T05:30:30.108Z"
   }
 }

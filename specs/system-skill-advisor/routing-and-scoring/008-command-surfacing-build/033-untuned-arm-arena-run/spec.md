@@ -28,7 +28,7 @@ contextType: "general"
 | **Parent Spec** | ../spec.md |
 | **Phase** | 33 of 33 |
 | **Predecessor** | 032-review-pass-five-remediation |
-| **Successor** | None |
+| **Successor** | 034-scorer-heredoc-redirect-fix |
 | **Handoff Criteria** | The parent goal log holds the arm verdict, the per-runtime rows, the step reader row and the B-5 row, each from a printed line |
 <!-- /ANCHOR:metadata -->
 
