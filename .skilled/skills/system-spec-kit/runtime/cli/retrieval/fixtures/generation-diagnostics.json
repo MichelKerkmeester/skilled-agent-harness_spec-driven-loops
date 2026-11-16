@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6847,
+    "missing-frontmatter": 6849,
     "ok": 19299,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27773,
+  "documentsScanned": 27775,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "7fd1dccef0ad3dccb26e68bd2d3b2dd9f69fe169b5a74fde5c0facc4ac99bd30",
+  "manifestHash": "41af51675cb6e58f4f846d0f1a459057597af58ee10339ee2378e07535b6490e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -35000,6 +35000,18 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -55256,6 +55268,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/lineages",
       "reason": "excluded directory"
     },
     {

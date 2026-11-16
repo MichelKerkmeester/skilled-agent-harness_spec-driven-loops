@@ -624,7 +624,7 @@ Before iteration 1, read .skilled/skills/system-deep-loop/deep-review/assets/pro
 Read .skilled/skills/system-deep-loop/deep-review/SKILL.md and execute the review loop with these parameters:
   spec_folder: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation
   config.fanout_lineage_artifact_dir: /Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/lineages/vibe-1
-  session_id: fanout-vibe-1-1794765851303-zrv85l
+  session_id: fanout-vibe-1-1794808672532-65xu0h
   executor: cli-mistral-vibe model=deepseek-flash
   loop_type: review
   config.stopPolicy: max-iterations
@@ -633,10 +633,10 @@ Read .skilled/skills/system-deep-loop/deep-review/SKILL.md and execute the revie
   config.convergenceMode: default
 
 Review setup bindings (emit before any writes, same as native PRE-BOUND SETUP ANSWERS):
-review_target: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation
-review_target_type: spec-folder
+review_target: .vibe/hooks.toml .vibe/plugins/repo-guards/*.mjs .vibe/plugins/repo-guards/*.cjs .vibe/plugins/repo-guards/lib/*.mjs .skilled/hooks/session-lifecycle/vibe/*.mjs .skilled/hooks/ask-surface-guard/vibe/*.mjs .skilled/hooks/decision-capture/vibe/*.mjs .skilled/hooks/goal/vibe/*.mjs .skilled/hooks/session-handover/vibe/*.mjs .skilled/hooks/shared/session-readers/vibe.mjs .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs .skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs
+review_target_type: files
 review_dimensions: all
-review_focus: Find concrete improvements in the Mistral Vibe runtime work: phases 013-022 and the 2026-11-15 fixes (skilled-loop manual claim flags, Vibe goal fallback and vibeGoalPacket in relaunch-core.cjs, runner --remove-home, overlay and doctor Vibe rows, hardened VIB-HK checks). Open lead: VIB-HK-005, 006 and 007 failed live after the automatic handover tier (e5b8611a4fa) changed turn-start.mjs, turn-end.mjs and compaction-post-tool.mjs; three compaction records were journaled but no Context restored text was injected, while buildCompactionPart on the same journal with a fresh state dir returns it. Find the root cause.
+review_focus: Every Mistral Vibe hook and plugin: the bindings in .vibe/hooks.toml, the repo-guards plugins and lib/hook-io.mjs, render-home-hooks.cjs, the session-lifecycle composers (turn-start, turn-end, session-start, compaction), the goal, hand-over, ask-surface, decision-capture, completion and skill-advisor adapters, and the Vibe session reader. Find correctness, security and fail-open defects, wire-format and payload edge cases, ordering and kill-switch gaps, and parity gaps against the OpenCode plugins. 29 findings from the previous review are dispositioned in specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/implementation-summary.md: report only new or still-open issues, each with file:line evidence.
 spec_folder: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation
 execution_mode: AUTONOMOUS
 lineage_mode: auto

@@ -1,5 +1,5 @@
 {
-  "sessionId": "fanout-vibe-1-1794765851303-zrv85l",
+  "sessionId": "fanout-vibe-1-1794808672532-65xu0h",
   "parentSessionId": null,
   "generation": 1,
   "lineageMode": "new",
@@ -7,18 +7,18 @@
   "terminalStop": {
     "stopReason": "maxIterationsReached",
     "totalIterations": 5,
-    "timestamp": "2026-11-15T18:28:05.875Z"
+    "timestamp": "2026-11-16T06:10:06.109Z"
   },
   "status": "COMPLETE",
   "openFindings": [
     {
       "findingId": "R1-P1-001",
       "severity": "P1",
-      "title": "The compaction watermark advances before any text exists, so a compaction with no resolvable section is consumed silently and never retried",
-      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
-      "line": 231,
+      "title": "process_start is mapped onto the shell shape without a recorded tool_input key, so every shell guard fails open on a background command",
+      "file": ".vibe/plugins/repo-guards/lib/hook-io.mjs",
+      "line": 37,
       "description": "",
-      "findingClass": "correctness",
+      "findingClass": null,
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
@@ -38,77 +38,137 @@
       ],
       "dimensions": [
         "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R1-P1-002",
-      "severity": "P1",
-      "title": "The post-tool size gate records the journal size even when the detector produced no text, so a mid-turn compaction is consumed before the detector can retry",
-      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
-      "line": 319,
-      "description": "",
-      "findingClass": "correctness",
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R2-P1-001",
-      "severity": "P1",
-      "title": "Phase 022s live-verdict claim does not cover the code the branch ships: all three VIB-HK-005/006/007 runs finished before e5b8611a4fa",
-      "file": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/implementation-summary.md",
-      "line": 110,
-      "description": "",
-      "findingClass": "traceability",
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "traceability",
-      "firstSeen": 2,
-      "lastSeen": 2,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
       ],
       "mergedFindingIds": []
     },
     {
       "findingId": "R1-P2-001",
       "severity": "P2",
-      "title": "The seen list is capped at 64 ids, so a long session can re-inject a compaction a snapshot refolds",
-      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
-      "line": 115,
+      "title": "The spec gate's advisory reply uses a field the reference documents only for session_start, on a hook declared strict",
+      "file": ".vibe/plugins/repo-guards/spec-gate.mjs",
+      "line": 76,
       "description": "",
-      "findingClass": "correctness",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "The compaction post-tool binding injects the operator's goal slice into subagent sessions, while the hand-over part in the same hook excludes them",
+      "file": ".vibe/hooks.toml",
+      "line": 124,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "Two cwd conventions split the adapters, so a relative payload cwd resolves differently depending on which hook reads it",
+      "file": ".vibe/plugins/repo-guards/lib/hook-io.mjs",
+      "line": 25,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-004",
+      "severity": "P2",
+      "title": "The Vibe session-cleanup hook imports the OpenCode plugin module directly, contradicting the documented re-expression and coupling a Vibe binding to a mirror surface",
+      "file": ".vibe/plugins/repo-guards/session-cleanup.mjs",
+      "line": 16,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-005",
+      "severity": "P2",
+      "title": "overlay-guard is registered for bash and process_start but its own tool filter allows both, so the binding costs a process spawn per shell call and guards nothing",
+      "file": ".vibe/hooks.toml",
+      "line": 61,
+      "description": "",
+      "findingClass": null,
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
@@ -134,17 +194,17 @@
     {
       "findingId": "R2-P2-001",
       "severity": "P2",
-      "title": "The goal README still says Vibe has no compaction re-injection and reads only VIBE_SPEC_FOLDER, contradicting the code it documents",
-      "file": ".skilled/hooks/goal/README.md",
-      "line": 80,
+      "title": "Three adapters still create a directory tree at a payload-named path, and one of them then deletes a file there",
+      "file": ".skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs",
+      "line": 62,
       "description": "",
-      "findingClass": "traceability",
+      "findingClass": "unguarded-payload-path",
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "traceability",
+      "dimension": "security",
       "firstSeen": 2,
       "lastSeen": 2,
       "status": "active",
@@ -157,24 +217,24 @@
         }
       ],
       "dimensions": [
-        "traceability"
+        "security"
       ],
       "mergedFindingIds": []
     },
     {
       "findingId": "R2-P2-002",
       "severity": "P2",
-      "title": "The parent spec records all 22 phases Complete and a push-ready next action while three of 022s own live rows are pre-change",
-      "file": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md",
-      "line": 17,
+      "title": "compaction-post-tool fires on every tool call and its compaction half consults no kill switch, while the hand-over half in the same process does",
+      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+      "line": 350,
       "description": "",
-      "findingClass": "traceability",
+      "findingClass": "kill-switch-gap",
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "traceability",
+      "dimension": "security",
       "firstSeen": 2,
       "lastSeen": 2,
       "status": "active",
@@ -187,24 +247,54 @@
         }
       ],
       "dimensions": [
-        "traceability"
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-003",
+      "severity": "P2",
+      "title": "The home renderer's leftover-substitution check inspects only command = lines, so a multi-line TOML string hides a substitution on a continuation line",
+      "file": ".vibe/plugins/repo-guards/render-home-hooks.cjs",
+      "line": 94,
+      "description": "",
+      "findingClass": "incomplete-refusal-check",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
       ],
       "mergedFindingIds": []
     },
     {
       "findingId": "R3-P2-001",
       "severity": "P2",
-      "title": "The hand-over part uses payload.cwd and payload.transcript_path without a containment check, and arm persists the unvalidated cwd into the record the wrapper restarts from",
-      "file": ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
-      "line": 347,
+      "title": "The reference calls all six post_tool bindings non-strict while one of them is declared strict, and the same document says a strict post_tool failure clears the tool result",
+      "file": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
+      "line": 37,
       "description": "",
-      "findingClass": "security",
+      "findingClass": "stale-document-claim",
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "security",
+      "dimension": "traceability",
       "firstSeen": 3,
       "lastSeen": 3,
       "status": "active",
@@ -217,24 +307,24 @@
         }
       ],
       "dimensions": [
-        "security"
+        "traceability"
       ],
       "mergedFindingIds": []
     },
     {
       "findingId": "R3-P2-002",
       "severity": "P2",
-      "title": "The compaction watermark directory is created under payload.cwd with no check that the directory is inside the checkout",
-      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
-      "line": 69,
+      "title": "The reply table names only decision/reason as a conforming object and calls every other shape a schema mismatch, while eight of the bundle's own hooks reply with hook_specific_output.additional_context",
+      "file": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
+      "line": 203,
       "description": "",
-      "findingClass": "security",
+      "findingClass": "incomplete-reply-contract",
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "security",
+      "dimension": "traceability",
       "firstSeen": 3,
       "lastSeen": 3,
       "status": "active",
@@ -247,18 +337,48 @@
         }
       ],
       "dimensions": [
-        "security"
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-003",
+      "severity": "P2",
+      "title": "The shared tool-name seam keys process_start on the bare spelling only, while the fixture states every tool_name is qualified and one guard already hedges both spellings",
+      "file": ".vibe/plugins/repo-guards/lib/hook-io.mjs",
+      "line": 33,
+      "description": "",
+      "findingClass": "unhedged-name-mapping",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
       ],
       "mergedFindingIds": []
     },
     {
       "findingId": "R4-P2-001",
       "severity": "P2",
-      "title": "The turn-start.mjs module header names four parts while PARTS holds five, so the hand-over part added by e5b8611a4fa is undocumented where the ordering contract lives",
-      "file": ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
-      "line": 8,
+      "title": "session-start.mjs calls main() at module scope with no IS_CLI_ENTRY guard and exports nothing, so it cannot be imported without running the hook, and it is the only one of the five session-lifecycle modules with no test",
+      "file": ".skilled/hooks/session-lifecycle/vibe/session-start.mjs",
+      "line": 145,
       "description": "",
-      "findingClass": null,
+      "findingClass": "untestable-entry-point",
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
@@ -284,11 +404,11 @@
     {
       "findingId": "R4-P2-002",
       "severity": "P2",
-      "title": "The compaction test suite pins the watermark contract for the no-compaction case but not for the empty-section case, which is why the iteration-1 defect shipped",
-      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.test.mjs",
-      "line": 141,
+      "title": "Eight adapters hand-roll the same reply write and four hand-roll the same stdin read, while the shared seam exports a payload reader for one tree and no reply writer for either",
+      "file": ".vibe/plugins/repo-guards/lib/hook-io.mjs",
+      "line": 44,
       "description": "",
-      "findingClass": null,
+      "findingClass": "duplicated-contract",
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
@@ -314,11 +434,11 @@
     {
       "findingId": "R4-P2-003",
       "severity": "P2",
-      "title": "withdrawOnOperatorPrompt fires on any non-seed pre_agent without checking that the payload carries a prompt, contradicting the comment that justifies it",
-      "file": ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
-      "line": 209,
+      "title": "Three Vibe adapters have no test reference anywhere in the repository, and they are exactly the three that carry findings from this lineage",
+      "file": ".vibe/plugins/repo-guards/deep-loop-guard.mjs",
+      "line": 1,
       "description": "",
-      "findingClass": null,
+      "findingClass": "untested-adapter-layer",
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
@@ -344,41 +464,11 @@
     {
       "findingId": "R5-P2-001",
       "severity": "P2",
-      "title": "The feature catalog omits Vibe from both hand-over runtime enumerations and carries no entry for the Vibe compaction re-injection tier, so the two features this branch ships are absent from the feature index",
-      "file": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
-      "line": 1096,
+      "title": "session-start is the only one of the 18 bindings with no playbook scenario, and its adapter is also the only one with no unit test and no import guard, so nothing in the repository verifies it",
+      "file": ".skilled/hooks/session-lifecycle/vibe/session-start.mjs",
+      "line": 1,
       "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 5,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 5,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R5-P2-002",
-      "severity": "P2",
-      "title": "The packet's open-lead text attributes the VIB-HK-005 save-nudge failure to e5b8611a4fa changing turn-start.mjs, but that file's diff is purely additive, so the lead sends the next reader to a file the commit did not change behaviourally",
-      "file": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md",
-      "line": 139,
-      "description": "",
-      "findingClass": null,
+      "findingClass": "unverified-binding",
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
@@ -416,46 +506,811 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 3,
-    "P2": 10
+    "P1": 1,
+    "P2": 15
   },
-  "openFindingsCount": 13,
+  "openFindingsCount": 16,
   "resolvedFindingsCount": 0,
-  "convergenceScore": 0,
+  "convergenceScore": 0.875,
   "graphConvergenceScore": 0,
   "graphDecision": null,
   "graphBlockers": [],
   "graphSignals": {},
   "candidateCoverage": {
-    "covered": [],
-    "ruledOut": [],
+    "covered": [
+      "cross_runtime_coupling",
+      "dead_binding",
+      "duplicated_contract",
+      "duplicated_tree",
+      "fail_open",
+      "god_module",
+      "incomplete_refusal_check",
+      "incomplete_reply_contract",
+      "kill_switch_gap",
+      "misdeclared_binding",
+      "missing_port",
+      "parity_gap",
+      "path_resolution",
+      "payload_mismatch",
+      "self_injection",
+      "stale_document_claim",
+      "stale_finding",
+      "stale_verdict",
+      "tool_coverage_gap",
+      "uncovered_dimension",
+      "unguarded_payload_path",
+      "unhedged_name_mapping",
+      "untestable_entry_point",
+      "untested_adapter_layer",
+      "unverified_binding"
+    ],
+    "ruledOut": [
+      "dead_binding",
+      "delegated_kill_switch_absence",
+      "duplicated_tree",
+      "error_swallowing",
+      "god_module",
+      "kill_switch_gap",
+      "misdeclared_binding",
+      "missing_port",
+      "parity_gap",
+      "parse_failure_inconsistency",
+      "payload_mismatch",
+      "payload_rooted_marker_dir",
+      "payload_rooted_receipt_dir",
+      "self_injection",
+      "stale_finding",
+      "stale_verdict",
+      "strict_post_tool_reply",
+      "tool_coverage_gap",
+      "tool_status_absence",
+      "uncovered_dimension",
+      "undocumented_session_start_field"
+    ],
     "deferred": [],
     "blocked": [],
-    "byBugClass": {}
+    "byBugClass": {
+      "fail_open": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "payload_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "path_resolution": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "cross_runtime_coupling": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "dead_binding": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3
+        ]
+      },
+      "tool_status_absence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "strict_post_tool_reply": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "kill_switch_gap": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "unguarded_payload_path": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "incomplete_refusal_check": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "self_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "tool_coverage_gap": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "payload_rooted_receipt_dir": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "payload_rooted_marker_dir": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "delegated_kill_switch_absence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "stale_document_claim": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "incomplete_reply_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "unhedged_name_mapping": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "missing_port": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "parity_gap": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "undocumented_session_start_field": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "untestable_entry_point": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "duplicated_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "untested_adapter_layer": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "god_module": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "duplicated_tree": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "error_swallowing": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "parse_failure_inconsistency": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "unverified_binding": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "stale_finding": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "stale_verdict": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "misdeclared_binding": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "uncovered_dimension": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
   },
   "searchDebt": [],
-  "ruledOutCandidates": [],
-  "cleanSearchProof": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".vibe/plugins/repo-guards/post-edit-quality.mjs"
+      ],
+      "bugClass": "payload_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "no defect",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:196"
+      ],
+      "reason": "the field is documented for post_tool"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".vibe/plugins/repo-guards/env-secret-guard.mjs"
+      ],
+      "bugClass": "tool_coverage_gap",
+      "disposition": "ruled_out",
+      "rationale": "no defect",
+      "evidenceRefs": [
+        ".skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs:32-35",
+        ".skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs:40",
+        ".skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs:770-798"
+      ],
+      "reason": "the binding and the core agree on every tool name"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs",
+        ".skilled/hooks/ask-surface-guard/vibe/ask-surface-post-agent.mjs",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs"
+      ],
+      "bugClass": "self_injection",
+      "disposition": "ruled_out",
+      "rationale": "no defect",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs:260",
+        ".skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs:176-180"
+      ],
+      "reason": "no path carries model text into the advisory, and neither the marker nor the receipt directory is payload-rooted"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".vibe/plugins/repo-guards/mcp-route-guard.mjs"
+      ],
+      "bugClass": "dead_binding",
+      "disposition": "ruled_out",
+      "rationale": "no defect",
+      "evidenceRefs": [
+        ".vibe/plugins/repo-guards/mcp-route-guard.mjs:53-54"
+      ],
+      "reason": "the hook filters to MCP names before the core runs, and the names cannot be enumerated in a static selector"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
+        ".opencode/plugins/overlay-guard.js",
+        ".opencode/plugins/session-cleanup.js"
+      ],
+      "bugClass": "parity_gap",
+      "disposition": "ruled_out",
+      "rationale": "no new defect",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:118-140",
+        ".opencode/plugins/overlay-guard.js:101-103"
+      ],
+      "reason": "no new parity gap; the two known ones are already recorded"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-019",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs"
+      ],
+      "bugClass": "god_module",
+      "disposition": "ruled_out",
+      "rationale": "no defect",
+      "evidenceRefs": [
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:16-311"
+      ],
+      "reason": "the sections are cohesive and the size is the detector's, not a mix of concerns"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-020",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/env-secret-guard/vibe/env-secret-guard.mjs"
+      ],
+      "bugClass": "duplicated_tree",
+      "disposition": "ruled_out",
+      "rationale": "no defect",
+      "evidenceRefs": [
+        ".skilled/hooks/env-secret-guard/vibe/env-secret-guard.mjs"
+      ],
+      "reason": "the tree is a symlink farm, not a copy, so there is nothing to drift"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-022",
+      "dimension": "cross-reference",
+      "targetRefs": [
+        ".vibe/plugins/repo-guards/lib/hook-io.mjs",
+        ".vibe/plugins/repo-guards/spec-gate.mjs",
+        ".vibe/hooks.toml",
+        ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+        ".vibe/plugins/repo-guards/session-cleanup.mjs",
+        ".vibe/plugins/repo-guards/overlay-guard.mjs"
+      ],
+      "bugClass": "stale_finding",
+      "disposition": "ruled_out",
+      "rationale": "the residual sweep's re-read confirmed the carried set",
+      "evidenceRefs": [
+        ".vibe/plugins/repo-guards/lib/hook-io.mjs:37",
+        ".vibe/plugins/repo-guards/spec-gate.mjs:76",
+        ".vibe/hooks.toml:124-128"
+      ],
+      "reason": "no carried finding was fixed or invalidated; two were narrowed by counterevidence"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-023",
+      "dimension": "cross-reference",
+      "targetRefs": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md"
+      ],
+      "bugClass": "stale_verdict",
+      "disposition": "ruled_out",
+      "rationale": "no stale verdict",
+      "evidenceRefs": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md",
+        ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md:265"
+      ],
+      "reason": "the rows for the three hooks the hand-over merge changed were rerun on the merged code"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-024",
+      "dimension": "cross-reference",
+      "targetRefs": [
+        ".vibe/hooks.toml"
+      ],
+      "bugClass": "misdeclared_binding",
+      "disposition": "ruled_out",
+      "rationale": "no defect",
+      "evidenceRefs": [
+        ".vibe/hooks.toml:141-144",
+        ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:69"
+      ],
+      "reason": "the declaration is correct; the finding is the missing verification, not the declaration"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".vibe/plugins/repo-guards/post-edit-quality.mjs"
+      ],
+      "bugClass": "payload_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "no defect",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:196"
+      ],
+      "proof": "the field is documented for post_tool"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".vibe/plugins/repo-guards/env-secret-guard.mjs"
+      ],
+      "bugClass": "tool_coverage_gap",
+      "disposition": "ruled_out",
+      "rationale": "no defect",
+      "evidenceRefs": [
+        ".skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs:32-35",
+        ".skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs:40",
+        ".skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs:770-798"
+      ],
+      "proof": "the binding and the core agree on every tool name"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs",
+        ".skilled/hooks/ask-surface-guard/vibe/ask-surface-post-agent.mjs",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs"
+      ],
+      "bugClass": "self_injection",
+      "disposition": "ruled_out",
+      "rationale": "no defect",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs:260",
+        ".skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs:176-180"
+      ],
+      "proof": "no path carries model text into the advisory, and neither the marker nor the receipt directory is payload-rooted"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".vibe/plugins/repo-guards/mcp-route-guard.mjs"
+      ],
+      "bugClass": "dead_binding",
+      "disposition": "ruled_out",
+      "rationale": "no defect",
+      "evidenceRefs": [
+        ".vibe/plugins/repo-guards/mcp-route-guard.mjs:53-54"
+      ],
+      "proof": "the hook filters to MCP names before the core runs, and the names cannot be enumerated in a static selector"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
+        ".opencode/plugins/overlay-guard.js",
+        ".opencode/plugins/session-cleanup.js"
+      ],
+      "bugClass": "parity_gap",
+      "disposition": "ruled_out",
+      "rationale": "no new defect",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:118-140",
+        ".opencode/plugins/overlay-guard.js:101-103"
+      ],
+      "proof": "no new parity gap; the two known ones are already recorded"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-019",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs"
+      ],
+      "bugClass": "god_module",
+      "disposition": "ruled_out",
+      "rationale": "no defect",
+      "evidenceRefs": [
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:16-311"
+      ],
+      "proof": "the sections are cohesive and the size is the detector's, not a mix of concerns"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-020",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/env-secret-guard/vibe/env-secret-guard.mjs"
+      ],
+      "bugClass": "duplicated_tree",
+      "disposition": "ruled_out",
+      "rationale": "no defect",
+      "evidenceRefs": [
+        ".skilled/hooks/env-secret-guard/vibe/env-secret-guard.mjs"
+      ],
+      "proof": "the tree is a symlink farm, not a copy, so there is nothing to drift"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-022",
+      "dimension": "cross-reference",
+      "targetRefs": [
+        ".vibe/plugins/repo-guards/lib/hook-io.mjs",
+        ".vibe/plugins/repo-guards/spec-gate.mjs",
+        ".vibe/hooks.toml",
+        ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+        ".vibe/plugins/repo-guards/session-cleanup.mjs",
+        ".vibe/plugins/repo-guards/overlay-guard.mjs"
+      ],
+      "bugClass": "stale_finding",
+      "disposition": "ruled_out",
+      "rationale": "the residual sweep's re-read confirmed the carried set",
+      "evidenceRefs": [
+        ".vibe/plugins/repo-guards/lib/hook-io.mjs:37",
+        ".vibe/plugins/repo-guards/spec-gate.mjs:76",
+        ".vibe/hooks.toml:124-128"
+      ],
+      "proof": "no carried finding was fixed or invalidated; two were narrowed by counterevidence"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-023",
+      "dimension": "cross-reference",
+      "targetRefs": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md"
+      ],
+      "bugClass": "stale_verdict",
+      "disposition": "ruled_out",
+      "rationale": "no stale verdict",
+      "evidenceRefs": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md",
+        ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md:265"
+      ],
+      "proof": "the rows for the three hooks the hand-over merge changed were rerun on the merged code"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-024",
+      "dimension": "cross-reference",
+      "targetRefs": [
+        ".vibe/hooks.toml"
+      ],
+      "bugClass": "misdeclared_binding",
+      "disposition": "ruled_out",
+      "rationale": "no defect",
+      "evidenceRefs": [
+        ".vibe/hooks.toml:141-144",
+        ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:69"
+      ],
+      "proof": "the declaration is correct; the finding is the missing verification, not the declaration"
+    }
+  ],
   "searchCoverage": {
-    "requiredBugClasses": [],
-    "covered": [],
-    "ruledOut": [],
+    "requiredBugClasses": [
+      "unverified_binding",
+      "stale_finding",
+      "stale_verdict",
+      "misdeclared_binding",
+      "uncovered_dimension"
+    ],
+    "covered": [
+      "unverified_binding",
+      "stale_finding",
+      "stale_verdict",
+      "misdeclared_binding",
+      "uncovered_dimension"
+    ],
+    "ruledOut": [
+      "stale_finding",
+      "stale_verdict",
+      "misdeclared_binding",
+      "uncovered_dimension"
+    ],
     "deferred": [],
     "blocked": [],
     "graphCoverageMode": null
   },
   "traceability": {
     "summary": {
-      "required": 0,
-      "executed": 0,
-      "pass": 0,
+      "required": 4,
+      "executed": 4,
+      "pass": 4,
       "partial": 0,
       "fail": 0,
       "blocked": 0,
-      "notApplicable": 0,
+      "notApplicable": 2,
       "gatingFailures": 0
     },
-    "results": []
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          ".vibe/hooks.toml:7-150",
+          ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "The binding census was settled in iteration 3. This iteration added the scenario census: 28 scenarios against 18 bindings, 17 covered, 1 uncovered, raised as R5-P2-001."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/implementation-summary.md"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "summary": "The declared target is a file set, not a spec folder with a checklist."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "summary": "VIB-HK-003 and VIB-HK-028 both passed live for the advisor path, so the pre_agent advisor claim at guards-and-hooks.md:131 has a verdict row behind it."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "agent_cross_runtime",
+        "status": "pass",
+        "summary": "The two parity defects this lineage carries (R1-P2-004, R1-P2-005) are unchanged and both have live scenarios that pass: VIB-HK-021 for the cleanup hook and VIB-HK-012 for the overlay guard, so neither is a runtime break."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          ".vibe/hooks.toml:1-150"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "feature_catalog_code",
+        "status": "notApplicable",
+        "summary": "No feature catalogue covers this file set."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md:1-60",
+          ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md:265"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "playbook_capability",
+        "status": "pass",
+        "summary": "The verdict table was read in full: 27 PASS, 0 FAIL, 0 OPERATOR-ONLY, 26 from runner rows and 1 from the hand-driven hop, every runner row dated 2026-11-15 after the hand-over hardening merge. The gap is the uncovered session-start binding, raised as R5-P2-001."
+      }
+    ],
+    "unfinishedCoreProtocols": []
   },
   "divergence": {
     "started": [],

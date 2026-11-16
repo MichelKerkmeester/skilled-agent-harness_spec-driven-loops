@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Phase 022 records 26 scenarios as passing live, but three of them last passed before the automatic hand-over tier changed `turn-start.mjs`, `turn-end.mjs` and `compaction-post-tool.mjs`",
     "created_at": "2026-11-15T19:09:48Z",
-    "last_save_at": "2026-11-15T21:42:38.836Z",
+    "last_save_at": "2026-11-16T06:33:14.733Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:307df43ff7919ba410e74885c459904c70cfcf22c223fe9d6c1bb1cd7c2779a3",
+    "source_fingerprint": "sha256:3c7aeeaa721bd12544b9066597c042a9443eca7965b6466eb9671e29a1c24fbc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e1113f2e082731957ccd1a6a1a4acbb6fd4a4844c524b7b0d5bcbc3bb24ae1a6",
+      "spec.md": "6f627f8f2442225bf301058c0740b0976302f95881da10de9801080412ca4581",
       "plan.md": "9e964a0ddd948e0ae01df6a00ffccf7fa72b725360c3e7469e87ccd95d583e8d",
-      "tasks.md": "3373eceb1395d9ccc68c835a680a156e029a4f41d1c7df3f8360df7698848828",
-      "implementation-summary.md": "9cdd2b43012520a86f248a4e07adb7e322636b87128764c9ac1b29b660f24e75"
+      "tasks.md": "c61e7fbdaa018b653f686de3426c9fe47a55c01b4fdda3d020cd8077e47954f3",
+      "implementation-summary.md": "5dbd29fcc3228d731655a978738b3bf56195a49e4a1ef17fc0a8f145f6de40ae"
     },
     "last_active_at": null
   }

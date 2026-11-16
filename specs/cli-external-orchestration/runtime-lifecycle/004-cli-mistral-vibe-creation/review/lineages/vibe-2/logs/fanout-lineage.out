@@ -1,7 +1,14 @@
-Lineage `vibe-2` is complete: 5 iterations, 18 open findings (0 P0, 4 P1, 14 P2), verdict CONDITIONAL, `stopReason: maxIterationsReached`.
+Lineage complete. Final state:
 
-**The open lead is answered.** `compaction-context.mjs:231` writes the watermark before the sections are built at `:241-250` and before the empty return at `:252`. The first seam to run marks the compaction handled even when it has nothing to inject, and the filter at `:223` then drops that compaction by id forever. A fresh state dir has no watermark, so the filter passes and the text is built — which is exactly the control the operator ran. A second P1 records that the `post_tool` size gate watches only `journal/*.jsonl`, so a snapshot-only compaction never reaches the detector at all.
+| Artifact | Result |
+|---|---|
+| Iterations | 5 of 5, each `Review verdict: CONDITIONAL` |
+| Deltas | `iter-001.jsonl` … `iter-005.jsonl`, canonical record first |
+| State log | 7 rows: config + 5 iterations + `synthesis_complete` (`stopReason: maxIterationsReached`) |
+| Registry | 16 open findings — 0 P0, 1 P1, 15 P2; 0 corruption |
+| Strategy | 4 of 4 dimensions complete; 1 P1 / 15 P2 |
+| Report | `review-report.md`, 9 core sections + Dimension Expansion Map + Search Ledger + Audit Appendix, Planning Packet complete |
 
-Two notes on the closeout: the reducer collapsed the iteration-5 refinement into `R1-P1-001` (correct — the registry is canonical), which left the state log with 19 distinct ids against the registry's 18. `synthesis-closeout.cjs` staged `synthesis_incomplete` for that count mismatch with `missingStructuredFindingCount: 0`; both events are in the ledger, `synthesis_complete` last, and the mismatch is recorded in the report's Deferred Items rather than papered over.
+The one active P1 is `R1-P1-001`: the spec-gate advise path never calls `result.observe()`, so the delivery marker is never written and the notice repeats on every shell call — a parity gap against all four sibling adapters. The 15 P2s cluster into seven workstreams: wire-format assumptions (`tool_status`, `system_message`, the bare `process_start` key), fail-open and kill-switch coverage, cwd resolution and the duplicated `sessionDirFor`, composer budgets, the injected `env` seam, and two port-map rows that omit dropped tool registrations. Verdict is CONDITIONAL because a P1 remains and no P0 does; no `terminal_gates` row exists, so no required gate is recorded as failed at the stop.
 
 FANOUT_LINEAGE_COMPLETE:vibe-2

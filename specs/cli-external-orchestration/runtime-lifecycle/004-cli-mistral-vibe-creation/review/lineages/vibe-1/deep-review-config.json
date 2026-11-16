@@ -1,6 +1,6 @@
 {
-  "topic": "Review: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
-  "sessionId": "fanout-vibe-1-1794765851303-zrv85l",
+  "topic": "Review: .vibe/hooks.toml .vibe/plugins/repo-guards/*.mjs .vibe/plugins/repo-guards/*.cjs .vibe/plugins/repo-guards/lib/*.mjs .skilled/hooks/session-lifecycle/vibe/*.mjs .skilled/hooks/ask-surface-guard/vibe/*.mjs .skilled/hooks/decision-capture/vibe/*.mjs .skilled/hooks/goal/vibe/*.mjs .skilled/hooks/session-handover/vibe/*.mjs .skilled/hooks/shared/session-readers/vibe.mjs .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs .skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs",
+  "sessionId": "fanout-vibe-1-1794808672532-65xu0h",
   "parentSessionId": null,
   "lineageMode": "new",
   "generation": 1,
@@ -11,7 +11,7 @@
   "antiConvergence": {
     "minIterations": 2,
     "convergenceMode": "default",
-    "stopPolicy": "max-iterations"
+    "stopPolicy": "fail-closed"
   },
   "stuckThreshold": 2,
   "maxDurationMinutes": 120,
@@ -19,10 +19,10 @@
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": false,
   "specFolder": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
-  "createdAt": "2026-11-15T18:10:03Z",
-  "status": "complete",
+  "createdAt": "2026-11-16T06:00:44Z",
+  "status": "initialized",
   "releaseReadinessState": "in-progress",
-  "executionMode": "auto",
+  "executionMode": "AUTONOMOUS",
   "executor": {
     "kind": "cli-mistral-vibe",
     "model": "deepseek-flash",
@@ -32,37 +32,15 @@
     "timeoutSeconds": 900
   },
   "mode": "review",
-  "reviewTarget": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
-  "reviewTargetType": "spec-folder",
+  "reviewTarget": ".vibe/hooks.toml .vibe/plugins/repo-guards/*.mjs .vibe/plugins/repo-guards/*.cjs .vibe/plugins/repo-guards/lib/*.mjs .skilled/hooks/session-lifecycle/vibe/*.mjs .skilled/hooks/ask-surface-guard/vibe/*.mjs .skilled/hooks/decision-capture/vibe/*.mjs .skilled/hooks/goal/vibe/*.mjs .skilled/hooks/session-handover/vibe/*.mjs .skilled/hooks/shared/session-readers/vibe.mjs .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs .skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs",
+  "reviewTargetType": "files",
   "reviewDimensions": [
     "correctness",
     "security",
     "traceability",
     "maintainability"
   ],
-  "reviewFocus": "Find concrete improvements in the Mistral Vibe runtime work: phases 013-022 and the 2026-11-15 fixes (skilled-loop manual claim flags, Vibe goal fallback and vibeGoalPacket in relaunch-core.cjs, runner --remove-home, overlay and doctor Vibe rows, hardened VIB-HK checks). Open lead: VIB-HK-005, 006 and 007 failed live after the automatic handover tier (e5b8611a4fa) changed turn-start.mjs, turn-end.mjs and compaction-post-tool.mjs; three compaction records were journaled but no Context restored text was injected, while buildCompactionPart on the same journal with a fresh state dir returns it. Find the root cause.",
-  "resource_map_present": false,
-  "reviewScopeFiles": [
-    ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
-    ".skilled/hooks/session-lifecycle/vibe/turn-end.mjs",
-    ".skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs",
-    ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
-    ".skilled/hooks/shared/session-readers/vibe.mjs",
-    ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
-    ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
-    ".skilled/hooks/goal/vibe/goal-inject.mjs",
-    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md",
-    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/013-vibe-audit-fixes",
-    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/014-vibe-journal-fixture-and-reader",
-    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/015-vibe-turn-start-advisor-and-dist",
-    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/016-vibe-turn-end-guards",
-    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/017-vibe-decision-capture",
-    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/018-vibe-compaction-context",
-    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier",
-    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/020-vibe-dispatch-hardening",
-    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/021-vibe-hook-docs-correction",
-    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios"
-  ],
+  "reviewFocus": "Every Mistral Vibe hook and plugin: the bindings in .vibe/hooks.toml, the repo-guards plugins and lib/hook-io.mjs, render-home-hooks.cjs, the session-lifecycle composers (turn-start, turn-end, session-start, compaction), the goal, hand-over, ask-surface, decision-capture, completion and skill-advisor adapters, and the Vibe session reader. Find correctness, security and fail-open defects, wire-format and payload edge cases, ordering and kill-switch gaps, and parity gaps against the OpenCode plugins. 29 findings from the previous review are dispositioned in specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/implementation-summary.md: report only new or still-open issues, each with file:line evidence.",
   "severityThreshold": "P2",
   "crossReference": {
     "core": [
@@ -79,6 +57,39 @@
   "qualityGateThreshold": true,
   "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
   "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "reviewScopeFiles": [
+    ".vibe/hooks.toml",
+    ".vibe/plugins/repo-guards/spec-gate-classify.mjs",
+    ".vibe/plugins/repo-guards/spec-gate.mjs",
+    ".vibe/plugins/repo-guards/env-secret-guard.mjs",
+    ".vibe/plugins/repo-guards/dispatch-preflight.mjs",
+    ".vibe/plugins/repo-guards/overlay-guard.mjs",
+    ".vibe/plugins/repo-guards/mcp-route-guard.mjs",
+    ".vibe/plugins/repo-guards/git-message-gate.mjs",
+    ".vibe/plugins/repo-guards/deep-loop-guard.mjs",
+    ".vibe/plugins/repo-guards/post-edit-quality.mjs",
+    ".vibe/plugins/repo-guards/dist-freshness.mjs",
+    ".vibe/plugins/repo-guards/classifier-injection-screen.mjs",
+    ".vibe/plugins/repo-guards/session-cleanup.mjs",
+    ".vibe/plugins/repo-guards/render-home-hooks.cjs",
+    ".vibe/plugins/repo-guards/lib/hook-io.mjs",
+    ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+    ".skilled/hooks/session-lifecycle/vibe/turn-end.mjs",
+    ".skilled/hooks/session-lifecycle/vibe/session-start.mjs",
+    ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+    ".skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs",
+    ".skilled/hooks/ask-surface-guard/vibe/ask-surface-post-agent.mjs",
+    ".skilled/hooks/decision-capture/vibe/ask-capture-post-tool.mjs",
+    ".skilled/hooks/goal/vibe/goal-inject.mjs",
+    ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
+    ".skilled/hooks/shared/session-readers/vibe.mjs",
+    ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+    ".skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs"
+  ],
   "fileProtection": {
     "deep-review-config.json": "immutable",
     "deep-review-state.jsonl": "append-only",
@@ -110,24 +121,9 @@
       "convergenceScore"
     ]
   },
-  "_optimizerManaged": {
-    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
-    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
-    "tunableFields": [
-      "convergenceThreshold",
-      "stuckThreshold",
-      "maxIterations"
-    ],
-    "lockedFields": [
-      "lineageMode",
-      "reducer",
-      "fileProtection",
-      "sessionId",
-      "mode",
-      "reviewDimensions",
-      "antiConvergence.convergenceMode",
-      "antiConvergence.stopPolicy"
-    ],
-    "promotionMode": "advisory-only"
-  }
+  "fanout": {
+    "lineageLabel": "vibe-1",
+    "lineageArtifactDir": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/lineages/vibe-1"
+  },
+  "fanout_lineage_artifact_dir": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/lineages/vibe-1"
 }

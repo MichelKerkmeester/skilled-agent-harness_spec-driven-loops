@@ -56,7 +56,7 @@ contextType: "implementation"
 
 - [x] T010 Rerun VIB-HK-004 to 008 live with the pin, then VIB-HK-003 to 007 again on the merged code (`scratchpad/run-batch.sh`). Verify: each `scratch/live/VIB-HK-00N/vibe/result.json` under 022 reads `"verdict": "PASS"` with a `vibe_model`.
 - [x] T011 Update the verdict table, 022's summary and the parent row from the reruns. Verify: `rg -c 'before the automatic tier' ../022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md` prints 0.
-- [x] T012 Record a disposition for every review finding (`implementation-summary.md`). Verify: each finding id in `../review/review-report.md` section 3 appears in the disposition table.
+- [x] T012 Record a disposition for every review finding (`implementation-summary.md`). Verify: each finding id in `../review-archive/2026-11-16T05-57-42Z/review-report.md` section 3 appears in the disposition table.
 - [x] T014 Rerun VIB-HK-027 live: a full hop and a withdraw probe (`scratch/harness/`). Verify: `node scratch/harness/score.cjs scratch/runs/hop4-vibe` prints `"score": "5/5"`, and `scratch/runs/wd3-vibe/relaunch.log` holds `withdrawn` with `reason=user-message`; `hop3` and `wd2` are the same pair from before the last merge.
 - [x] T015 Rerun every other runner scenario with the pin; fix the scenario gaps it finds in VIB-HK-001, 012 and 022. Verify: every `result.json` under 022's `scratch/live/` reads PASS with a `vibe_model`.
 - [x] T016 [P] Add VIB-HK-028 and run it live (`hook-scenarios/turn-start-advisor-uptake.md`). Verify: `scratch/live/VIB-HK-028/vibe/turns/uptake/check.txt` prints `advised-skill-loaded`.
@@ -81,7 +81,7 @@ contextType: "implementation"
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Review**: See `../review/review-report.md`
+- **Review**: See `../review-archive/2026-11-16T05-57-42Z/review-report.md`
 <!-- /ANCHOR:cross-refs -->
 
 ---

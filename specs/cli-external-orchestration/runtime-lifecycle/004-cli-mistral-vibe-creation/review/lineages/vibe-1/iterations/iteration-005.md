@@ -2,98 +2,123 @@
 
 ## Dispatcher
 
-- Mode: review, target_agent `deep-review`, execution single_review_iteration
-- Review target: `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation` (spec-folder)
-- Dimension: cross-reference (all four dimensions revisited)
-- Operator review focus: the `feature_catalog_code` overlay left pending since iteration 2, plus the VIB-HK-005 half of the open lead.
-- Iteration: 5 of 5. Session `fanout-vibe-1-1794765851303-zrv85l`, generation 1, lineageMode new.
-- Sources read this iteration: `steer.md` (absent), `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md` (1086-1132, plus a full-file grep for `compaction|handover|vibe|goal|re-inject|watermark`), `.skilled/hooks/session-handover/lib/relaunch-core.cjs:35,54,57`, `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs` (60-101, 102-175), `.skilled/hooks/decision-capture/lib/capture-core.mjs` (395-455), `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-save-nudge.md` (1-80), and `git show e5b8611a4fa -- .skilled/hooks/session-lifecycle/vibe/turn-start.mjs`.
+- Mode: review (fan-out lineage `vibe-1`)
+- Session: `fanout-vibe-1-1794808672532-65xu0h`, generation 1, lineageMode `new`
+- Executor: cli-mistral-vibe, model `deepseek-flash`
+- Iteration: 5 of 5 (final iteration; the cap is reached)
+- Dimension: cross-reference (residual sweep)
+- Operator review focus: every Vibe hook and plugin binding, its fail-open behaviour, wire-format and payload edge cases, ordering and kill-switch gaps, and parity against the OpenCode plugins. Only new or still-open issues; the 29 findings dispositioned in `023-vibe-review-remediation/implementation-summary.md` are excluded.
+
+### How this iteration addressed the operator focus
+
+The focus asks for new or still-open issues with `file:line` evidence. This iteration did two things. It re-read every one of the 15 active findings against the current file content, and it cross-referenced the 18 bindings against the 28 playbook scenarios and their verdict table — the live-verdict surface the previous four iterations deferred. The re-read confirmed all 15 still open and produced one refinement that narrows `R1-P2-001` rather than closing it. The cross-reference produced the one new finding: 17 of the 18 bindings have a live scenario with a recorded PASS, and the eighteenth is `session-start`, which is also the only adapter with no unit test and the only one that cannot be imported. The verdict table also supplied counterevidence for two carried findings, recorded under Edge Cases rather than as new findings.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md` (the `## 9. CONTEXT PRESERVATION` section)
-- `.skilled/hooks/session-handover/lib/relaunch-core.cjs` (`RUNTIMES`, `GOAL_RECORD_RUNTIMES`, `HANDOVER_GOAL_RUNTIMES`)
-- `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs` (`buildSaveNudgePart`, `composeTurnStart`, `PARTS`)
-- `.skilled/hooks/decision-capture/lib/capture-core.mjs` (`pendingRecords`, `takeNudge`)
-- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-save-nudge.md` (VIB-HK-005 contract)
-- `e5b8611a4fa` diff for `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs`
+- `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md:1-60` — the 27-row verdict table, its counts and its rerun history
+- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/` — the 28 scenario files, listed and matched against the 18 bindings
+- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md:9,95-133,265,351-355` — the execution policy, the verdict vocabulary and the pointer to the verdict table
+- `.vibe/plugins/repo-guards/lib/hook-io.mjs:33-40,76-90` — `CORE_TOOL_NAMES` and `toCoreCall`, re-read for `R1-P1-001` and `R3-P2-003`
+- `.vibe/plugins/repo-guards/spec-gate.mjs:72-80` — the `advise` branch and its comment, re-read for `R1-P2-001`
+- `.vibe/hooks.toml:61,124-128` — the `overlay-guard` match and the `compaction-post-tool` binding, re-read for `R1-P2-002` and `R1-P2-005`
+- `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs:52,80` — the two `payload.cwd` reads, re-read for `R1-P2-003`
+- `.vibe/plugins/repo-guards/session-cleanup.mjs:14-18` — the OpenCode import, re-read for `R1-P2-004`
+- `.vibe/plugins/repo-guards/overlay-guard.mjs:26,42` — `WRITE_TOOLS` and the allow branch, re-read for `R1-P2-005`
+- `.skilled/hooks/session-lifecycle/vibe/session-start.mjs:1-147` — re-read for the new finding and for `R4-P2-001`
+- `.vibe/plugins/repo-guards/fixtures/wire-format/tool-names.md:1-14` — re-read for `R1-P1-001`'s downgrade trigger
+
+Context evidence (read-only, not review targets): `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/implementation-summary.md`, `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:37,196,203-212,238`.
 
 ## Findings - New
 
 ### P0 Findings
 
-None. The cross-reference pass found no blocker.
+None.
 
 ### P1 Findings
 
-None. The two findings below are documentation and framing defects with no runtime effect.
+None.
 
 ### P2 Findings
 
-1. **The feature catalog omits Vibe from both hand-over runtime enumerations and carries no entry for the Vibe compaction re-injection tier, so the two features this branch ships are absent from the feature index** -- `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md:1096` -- the section reads "Claude Code, Pi, OpenCode and Codex prepare handoffs through automatic adapters. Cursor and Devin use `/speckit:handoff`" and "an operator prompt does the same on Claude, Codex, Pi and OpenCode", while `relaunch-core.cjs:35` lists `vibe` in `RUNTIMES` and `.skilled/hooks/session-handover/vibe/handover-parts.mjs` is imported by all three Vibe composers (`turn-start.mjs:45`, `turn-end.mjs:39`, `compaction-post-tool.mjs:30`). A full-file grep of the 1232-line catalog returns zero hits for `re-inject`, `Context restored` and `watermark`, so `compaction-context.mjs` has no catalog entry at all.
-   Finding class: traceability
-   Scope proof: `feature-catalog.md:1096` (both enumerations) against `relaunch-core.cjs:35` (`vibe` in `RUNTIMES`) and the three composer imports; the compaction tier is proven absent by a zero-hit grep over the whole file.
-   Affected surface hints: `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md:1088-1100`, `.skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-handover-loop.md`
-   Case: an operator reads the feature index to learn which runtimes hand over automatically, sees Vibe in neither list, and concludes the Vibe tier is manual-only -- the exact opposite of what `e5b8611a4fa` shipped.
-
-2. **The packet's open-lead text attributes the VIB-HK-005 save-nudge failure to `e5b8611a4fa` changing `turn-start.mjs`, but that file's diff is purely additive, so the lead sends the next reader to a file the commit did not change behaviourally** -- `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md:139` -- `git show e5b8611a4fa -- .skilled/hooks/session-lifecycle/vibe/turn-start.mjs` returns three hunks, all additions: the `HANDOVER_PART_URL` constant at `:41-44`, the `handoverPart` function at `:82-89`, and one `PARTS` entry at `:96-98`. `buildSaveNudgePart` and `composeTurnStart` are byte-identical before and after, so no mechanism in this file can suppress the save nudge.
-   Finding class: traceability
-   Scope proof: the three-hunk diff above; `turn-start.mjs:74-83` (`buildSaveNudgePart`) and `:124-141` (`composeTurnStart`) fall outside every hunk.
-   Affected surface hints: `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md:139`, `022-vibe-hook-playbook-and-live-scenarios/implementation-summary.md:110`
-   Case: the next reviewer takes the lead at face value, re-reads `turn-start.mjs` looking for a save-nudge regression, finds none because there is none, and burns an iteration on a file the commit only appended to.
+1. **`session-start` is the only one of the 18 bindings with no playbook scenario, and its adapter is also the only one with no unit test and no import guard, so nothing in the repository verifies it** -- `.skilled/hooks/session-lifecycle/vibe/session-start.mjs:1-147` -- The verdict table records 27 PASS rows across 28 scenario files, and matching each scenario against the 18 `[[hooks]]` bindings leaves exactly one binding uncovered: `session-start` at `hooks.toml:141-144`. The other seventeen each have at least one scenario with a recorded PASS — `spec-gate-classify` VIB-HK-001, `turn-start` VIB-HK-003/004/005/006/028, `turn-end` VIB-HK-008/009, `spec-gate` VIB-HK-002, `env-secret-guard` VIB-HK-010, `dispatch-preflight` VIB-HK-011, `overlay-guard` VIB-HK-012, `mcp-route-guard` VIB-HK-013, `git-message-gate` VIB-HK-014, `deep-loop-guard` VIB-HK-015, `post-edit-quality` VIB-HK-016, `dist-freshness` VIB-HK-017/018, `classifier-injection-screen` VIB-HK-019, `compaction-post-tool` VIB-HK-007, `decision-capture-ask` VIB-HK-020, `session-cleanup` VIB-HK-021. `session-start` has neither a scenario nor a unit test, and `R4-P2-001` records that it cannot be imported because `:145` calls `main()` at module scope. The only evidence for its four parts is the prose at `guards-and-hooks.md:37` ("the first turn carried the goal slice") and `:155`, neither of which is a verdict row.
+   Finding class: unverified-binding
+   Scope proof: the 28 scenario files matched against the 18 bindings leave `session-start` as the only uncovered binding; the `vibe/` directory holds only the adapter and no test.
+   Affected surface hints: `.skilled/hooks/session-lifecycle/vibe/session-start.mjs`, `.vibe/hooks.toml`, `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/`, `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md`
+   Case: the goal slice, the session context, the startup-guard warnings or the stale-dist warning stops arriving at session start. No test fails and no scenario row turns red, because neither surface names the binding, so the loss is found only when an operator notices the missing context in a live session.
 
 ## Traceability Checks
 
-| Check | Result | Evidence |
-|-------|--------|----------|
-| `spec_code` (core) | partial | Unchanged from iteration 2; the cross-reference pass adds no new spec claim. |
-| `checklist_evidence` (core) | fail | Unchanged from iteration 2. |
-| `skill_agent` (overlay) | pass | The session-lifecycle and session-handover READMEs match the code; only the `turn-start.mjs` header is stale (R4-P2-001). |
-| `agent_cross_runtime` (overlay) | notApplicable | No agent profile changed in the 2026-11-15 fixes. |
-| `feature_catalog_code` (overlay) | fail | `feature-catalog.md:1096` omits Vibe from both hand-over enumerations and the file has no compaction re-injection entry (R5-P2-001). |
-| `playbook_capability` (overlay) | partial | Unchanged from iteration 2. |
+- **`spec_code` — pass.** The binding census was settled in iteration 3. This iteration added the scenario census, which is a different surface: 28 scenarios against 18 bindings, 17 covered, 1 uncovered, raised as finding 1.
+- **`checklist_evidence` — notApplicable.** The declared target is a file set, not a spec folder with a checklist.
+- **`skill_agent` (overlay) — pass.** VIB-HK-003 and VIB-HK-028 both passed live for the advisor path, so the `pre_agent` advisor claim at `guards-and-hooks.md:131` has a verdict row behind it.
+- **`agent_cross_runtime` (overlay) — pass.** The two parity defects this lineage carries (`R1-P2-004`, `R1-P2-005`) are unchanged and both have live scenarios that pass (VIB-HK-021 for the cleanup hook, VIB-HK-012 for the overlay guard), so neither is a runtime break.
+- **`feature_catalog_code` (overlay) — notApplicable.** No feature catalogue covers this file set.
+- **`playbook_capability` (overlay) — pass, with one gap.** The verdict table was read in full: 27 PASS, 0 FAIL, 0 OPERATOR-ONLY, 26 from runner rows and 1 from the hand-driven hop, every runner row dated 2026-11-15 after the hand-over hardening merge. The gap is the uncovered `session-start` binding, raised as finding 1.
+
+## Residual Re-Verification of Active Findings
+
+Every active finding was re-read against current file content. All 15 remain open; none was fixed or invalidated during the run.
+
+| Finding | Cited line re-read | Status |
+|---|---|---|
+| `R1-P1-001` | `hook-io.mjs:37` maps `process_start`→`bash`; `toCoreCall:82` reads only `input.command`; no capture exists in `fixtures/` | open, unchanged |
+| `R1-P2-001` | `spec-gate.mjs:76` still prints `system_message` from a strict `pre_tool` hook | open, refined below |
+| `R1-P2-002` | `hooks.toml:124-128` still declares no `match` on `compaction-post-tool` | open, unchanged |
+| `R1-P2-003` | `turn-start.mjs:52,80` still read `payload.cwd` raw while `sessionDirFor` resolves against `REPO_ROOT` | open, unchanged |
+| `R1-P2-004` | `session-cleanup.mjs:16` still imports `.opencode/plugins/session-cleanup.js` | open, unchanged |
+| `R1-P2-005` | `hooks.toml:61` still matches `bash\|process_start` while `overlay-guard.mjs:26,42` allows both | open, unchanged |
+| `R2-P2-001` | `completion-evidence-post-agent.cjs:62-66,110` and `turn-start.mjs:64` still unguarded | open, unchanged |
+| `R2-P2-002` | `compaction-context.mjs:350-380` still has no `isHookEnabled` | open, unchanged |
+| `R2-P2-003` | `render-home-hooks.cjs:94-99` still filters to `command =` lines | open, unchanged |
+| `R3-P2-001` | `guards-and-hooks.md:37` still reads "six non-strict checks on `post_tool`" | open, unchanged |
+| `R3-P2-002` | `guards-and-hooks.md:203-212` still lists only `decision`/`reason` | open, confirmed by live evidence |
+| `R3-P2-003` | `hook-io.mjs:33-39` still keys `process_start` bare; `toCoreCall:81` still falls through to the unmapped branch | open, unchanged |
+| `R4-P2-001` | `session-start.mjs:145` still calls `main()` unguarded and exports nothing | open, unchanged |
+| `R4-P2-002` | `hook-io.mjs:44-56` still exports only `readPayload`; eight reply sites unchanged | open, unchanged |
+| `R4-P2-003` | `deep-loop-guard.mjs` still has no test reference | open, refined below |
 
 ## Integration Evidence
 
-- `.skilled/hooks/session-handover/lib/relaunch-core.cjs:35` -- `RUNTIMES` is `['claude', 'pi', 'opencode', 'codex', 'cursor', 'devin', 'vibe']`, so Vibe is a first-class loop runtime and the catalog's four-runtime enumeration is stale.
-- `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs:45`, `.skilled/hooks/session-lifecycle/vibe/turn-end.mjs:39`, `.skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs:30` -- all three composers import `handover-parts.mjs`, which is what makes Vibe an automatic-adapter runtime rather than a `/speckit:handoff` runtime.
-- `.skilled/hooks/decision-capture/lib/capture-core.mjs:419-443` -- `takeNudge` is a cursor, not a consume: it returns the pending count only when the count rises above the stored peak, and writes the peak otherwise. The save nudge therefore cannot be consumed without being delivered, which is the opposite of the `compaction-context.mjs:231` defect.
-- `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs:124-141` -- `composeTurnStart` awaits each part in `PARTS` order inside its own try/catch, so the async `handoverPart` appended last cannot starve the save nudge at index 3.
+- `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md` — the live-verdict surface, read in full for the first time in this lineage.
+- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/` — the 28 scenario files, matched one by one against the 18 bindings.
+- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md:265` — the pointer that names the verdict table as the live-verdict surface and states that a row counts only when its run postdates the last change to the hook it judges.
+- `.vibe/hooks.toml:141-144` — the `session-start` binding, the one binding with no scenario.
+- `.skilled/hooks/session-lifecycle/vibe/session-start.mjs:145` — the unguarded `main()` call that makes the binding untestable.
 
 ## Edge Cases
 
-- **Ambiguity: whether the catalog is in the review target.** The catalog lives outside the spec folder. It is cited as the `feature_catalog_code` overlay surface the strategy names, not as a code finding against the packet, so the finding is scoped to the overlay protocol rather than to the packet's own files.
-- **Contradictory evidence on the VIB-HK-005 lead.** The operator reports the failure began after `e5b8611a4fa`; the diff shows the commit cannot cause it through `turn-start.mjs`. Both are recorded: the timing correlation is real, the mechanism is not in that file. The root cause stays open with the search space narrowed to `capture-core.mjs`, the `decision-capture-ask` `post_tool` hook, and the runner's scratch-project `cwd`.
-- **Missing dependency: no live re-run.** Confirming the 005 cause needs a live Vibe run, which this lineage cannot perform. Recorded as unverified rather than as a pass.
-- **Partial success.** The `feature_catalog_code` overlay is now resolved from `pending` to `fail`; it is the last overlay that was outstanding.
-- **Carried forward.** R1-P1-001, R1-P1-002 and R2-P1-001 remain active and unresolved.
+- **`R1-P2-001` is narrowed, not closed.** `spec-gate.mjs:73-75` carries a comment stating the choice: "Vibe ignores the context field on `pre_tool`; `system_message` is the one field its runner shows, as a UI note to the operator. Nothing here can reach the model, so the note is not recorded as a delivered question." That is stronger counterevidence than iteration 1 recorded — the author tested the alternative and documented why it was rejected. What keeps the finding open is the other half: `guards-and-hooks.md:238` documents `system_message` only for `session_start`, and the reply table at `:203-212` calls a schema mismatch a failure path that `strict = true` turns into a block. No scenario covers the `advise` path — VIB-HK-002 exercises the deny path — so whether a strict `pre_tool` hook may return `system_message` is still unverified live.
+- **`R4-P2-003` is narrowed by the verdict table.** All three adapters it names have a live scenario with a recorded PASS: `deep-loop-guard` VIB-HK-015, `ask-surface-post-agent` VIB-HK-008, `completion-evidence-post-agent` VIB-HK-009. The finding therefore stands as an automated-test gap, not a verification gap, and its severity stays P2 because a manual scenario is not a CI gate and does not run on a change.
+- **`R3-P2-002` is confirmed rather than weakened by the live evidence.** VIB-HK-016 passed with `post-edit-quality` returning `hook_specific_output.additional_context` and the tool output intact, which proves the field works and leaves the reply table as the only thing that is wrong.
+- **`R1-P1-001`'s downgrade trigger has not fired.** The only mention of `process_start` anywhere under `fixtures/` is the prose note at `tool-names.md:13`; no captured payload records its `tool_input` key. The finding stays P1 at medium confidence.
+- **The verdict table's own staleness rule was applied.** `manual-testing-playbook.md:265` states that a row counts only when its run postdates the last change to the hook it judges. The table records that `turn-start.mjs`, `turn-end.mjs` and `compaction-post-tool.mjs` changed after earlier runs and that VIB-HK-003 to 007 were rerun on the merged code, so the rows for those three bindings are current. No row is cited here as evidence for a hook it predates.
+- **The cap is reached with this iteration.** `config.maxIterations` is 5 and this is iteration 5, so the lineage stops on `max-iterations` rather than on convergence. The convergence score after iteration 4 was 0.8421, which is telemetry only for this lineage and did not trigger an early synthesis.
 
 ## Confirmed-Clean Surfaces
 
-- `.skilled/hooks/decision-capture/lib/capture-core.mjs:419-443` -- the nudge cursor writes before returning and returns the count it wrote, so delivery and bookkeeping agree.
-- `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs:124-141` -- the composer awaits every part in order and isolates each failure.
-- `.skilled/hooks/session-handover/lib/relaunch-core.cjs:35,54,57` -- the three runtime lists are distinct and each is used for its own purpose.
-- `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md:1112` -- the history-lookup section does name Vibe, so the omission is confined to the hand-over loop and compaction sections rather than the whole file.
+- `specs/.../022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md` — 27 PASS, 0 FAIL, 0 OPERATOR-ONLY, with the model pinned and recorded per row and the rerun history written out.
+- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md:9` — the execution policy names the only allowed verdicts (`PASS`, `FAIL`, `SKIP`) and requires a `SKIP` to name a blocker and a re-run condition.
+- `.vibe/plugins/repo-guards/spec-gate.mjs:73-75` — the `advise` branch documents why `system_message` was chosen over the context field, so the choice is auditable even though the field is undocumented for the type.
+- `.vibe/plugins/repo-guards/lib/hook-io.mjs:81` — `CORE_TOOL_NAMES.get(name) ?? name` falls through to the unmapped branch rather than throwing, so an unknown tool name reaches the core with its own name instead of crashing the hook.
+- `.vibe/hooks.toml:141-144` — the `session-start` binding is correctly declared on `session_start` with no `strict`, matching `guards-and-hooks.md:69`'s statement that the type cannot block.
 
 ## Ruled Out
 
-- **Part ordering as the VIB-HK-005 cause.** `composeTurnStart` awaits each part sequentially and the save nudge sits at index 3, before the appended `handoverPart`; the diff adds no reordering.
-- **A consume-without-inject defect in the save nudge.** `takeNudge` returns the count it stores, so the reminder and the cursor advance together.
-- **The catalog being uniformly Vibe-blind.** `feature-catalog.md:1112` names Vibe as a history-lookup sender, so the gap is two specific sections.
-- **A duplicate between R2-P2-001 and R5-P2-001.** R2-P2-001 is `.skilled/hooks/goal/README.md:80`; R5-P2-001 is the feature catalog. Different files, different claims.
-- **A contradiction among the ten active findings.** Each names a distinct file and line; no two assert incompatible behaviour for the same surface.
+- **The verdict table as stale evidence for the three hooks the hand-over merge changed.** Ruled out: the table records the reruns of VIB-HK-003 to 007 on the merged code between 19:40 and 19:56 UTC, and `manual-testing-playbook.md:265` states the rule the table follows.
+- **`R4-P2-003`'s three adapters as unverified.** Ruled out: VIB-HK-015, VIB-HK-008 and VIB-HK-009 each passed live for one of them. The finding is narrowed to the automated-test gap.
+- **`R3-P2-002` as a runtime defect.** Ruled out by VIB-HK-016's live pass. The finding is scoped to the reply table's completeness.
+- **`R1-P2-001` as an author oversight.** Ruled out: `spec-gate.mjs:73-75` documents the choice and the reason. The finding is scoped to the undocumented field on a strict hook and the missing `advise`-path scenario.
+- **The `session_start` binding as mis-declared.** Ruled out: `hooks.toml:141-144` declares it on `session_start` with no `strict`, which matches `guards-and-hooks.md:69`. The finding is the missing verification, not the declaration.
+- **A fifth dimension left uncovered.** Ruled out: correctness, security, traceability and maintainability each ran a full iteration, and this sweep closed the cross-reference protocol.
 
 ## Next Focus
 
-- Dimension: none remaining
-- Focus area: synthesis
-- Reason: all four dimensions and every overlay protocol are now covered; the iteration cap is reached
-- Rotation status: correctness, traceability, security, maintainability and cross-reference all reviewed
-- Blocked/productive carry-forward: productive -- the `git show` diff settled the 005 premise in one call
-- Required evidence: none; synthesis reads the registry
-
-## Verdict
-
-CONDITIONAL -- no active P0; three active P1 findings remain (R1-P1-001, R1-P1-002, R2-P1-001). Twelve findings total, of which ten are active.
+- Dimension: none remaining. All four declared dimensions are complete and the cross-reference sweep is closed.
+- Focus area: the synthesis. The report carries 16 active findings (1 P1, 15 P2), the verdict `CONDITIONAL`, and the Planning Packet built from the finding registry.
+- Reason: `config.maxIterations` is 5 and this is iteration 5, so the lineage stops on `max-iterations` with `stopReason: "maxIterationsReached"`.
+- Rotation status: correctness, security, traceability, maintainability and cross-reference all complete.
+- Blocked/productive carry-forward: productive — cross-referencing the scenario census against the binding census found the one unverified binding in a single pass, and the verdict table supplied counterevidence that narrowed two carried findings.
+- Required evidence: the synthesis cites the registry, not this narrative, for the finding count and the verdict.
 
 Review verdict: CONDITIONAL

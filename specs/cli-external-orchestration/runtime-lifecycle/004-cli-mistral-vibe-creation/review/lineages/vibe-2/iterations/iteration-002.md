@@ -2,113 +2,103 @@
 
 ## Dispatcher
 
-- Mode: review (fan-out lineage `vibe-2`)
-- Session: `fanout-vibe-2-1794765851303-zrv85l`, generation 1, lineageMode `new`
-- Dimension: traceability
-- Review target: `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation` (spec-folder)
-- Operator review focus: phases 013-022, the 2026-11-15 fixes, and the open lead on VIB-HK-005/006/007. This iteration addresses the focus by checking whether the packet's own artifacts still support the live verdicts those three scenarios carry.
-- Sources read this iteration: `steer.md` (absent), `spec.md:120-145`, `decision-record.md:1-60`, `022-vibe-hook-playbook-and-live-scenarios/tasks.md:143-153`, `022-vibe-hook-playbook-and-live-scenarios/implementation-summary.md:1-40`, `022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md`, `022-vibe-hook-playbook-and-live-scenarios/scratch/live/VIB-HK-006/{matrix.md,checkpoints.tsv,result.json}`, `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md:180-300,340-430`, `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection.md:1-110`, `.skilled/bin/skilled-loop:60-100,837-870`, `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:3050-3060,3220-3280,3340-3400`, `.skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml:1-190`, `.skilled/commands/doctor/scripts/overlay-engine.cjs:87`, `.skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs` (existence), `.vibe/agents/` (listing).
+- Route: `Resolved route: mode=review target_agent=deep-review`
+- Mode: review, execution single_review_iteration, state source externalized files
+- Session: `fanout-vibe-2-1794808672532-65xu0h`, generation 1, lineageMode `new`
+- Iteration: 2 of 5 (stopPolicy `max-iterations`)
+- Dimension: security
+- Operator review focus: correctness, security and fail-open defects, wire-format and payload edge cases, ordering and kill-switch gaps, and parity gaps against the OpenCode plugins. This iteration addresses the focus by testing whether a strict binding can turn a non-blocking note into a deny, whether the composer parts can each be switched off, and whether the spawn budgets leave the startup warnings reachable.
+- Sources read: `.vibe/hooks.toml`, `.vibe/plugins/repo-guards/spec-gate.mjs`, `.skilled/hooks/session-lifecycle/vibe/session-start.mjs`, `.skilled/hooks/session-lifecycle/vibe/README.md`, `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md`, `.opencode/plugins/session-cleanup.js`, `.skilled/hooks/shared/hook-flags.cjs`, `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs`.
 
 ## Files Reviewed
 
-- `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md:120-145`
-- `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/decision-record.md:1-60`
-- `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/tasks.md:143-153`
-- `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/implementation-summary.md:1-40`
-- `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md:1-40`
-- `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/live/VIB-HK-006/{matrix.md,checkpoints.tsv,result.json}`
-- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md:180-300,340-430`
-- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection.md:1-110`
-- `.skilled/bin/skilled-loop:60-100,837-870`
-- `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:3050-3060,3220-3280,3340-3400`
-- `.skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml:1-190`
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:87`
-- `.vibe/agents/` (11 profiles)
+- `.vibe/hooks.toml:1-140`
+- `.vibe/plugins/repo-guards/spec-gate.mjs:54-82`
+- `.skilled/hooks/session-lifecycle/vibe/session-start.mjs:1-147`
+- `.skilled/hooks/session-lifecycle/vibe/README.md:20-30`
+- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:186-245`
+- `.opencode/plugins/session-cleanup.js:40-50,255-300,340-375`
+- `.skilled/hooks/shared/hook-flags.cjs:100-140,212-245`
+- `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1611-1660,1763-1830`
 
 ## Findings - New
 
 ### P0 Findings
 
-None.
+None. No finding in this iteration is exploitable without an operator action or an unverified runtime field.
 
 ### P1 Findings
 
-1. **The packet's live-evidence claim for VIB-HK-005, 006 and 007 is stale after the automatic handover tier merged, and no artifact in the packet records the regression** -- `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md:139` -- the phase 22 row reads "Complete: 26 PASS live, the five checks hardened after the review included", and `022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md:11-13` records PASS for VIB-HK-005, 006 and 007 with matching `result.json` and `checkpoints.tsv`. The same file at `:38` says VIB-HK-027, the automatic handover tier, "belongs to the automatic handover work, not this phase, so it has no row here", while the playbook the phase owns lists 27 scenarios (`manual-testing-playbook.md:261,291`). The operator's review focus reports those three scenarios failing live after `e5b8611a4fa`, and nothing in the packet re-ran them or recorded the regression.
-   Finding class: traceability
-   Scope proof: every cited path is inside the declared review target; the playbook and the runner are cited as the integration surfaces the packet's claim depends on, not as code findings.
-   Affected surface hints: `spec.md`, `022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md`, `022-vibe-hook-playbook-and-live-scenarios/implementation-summary.md`, `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md`
-   Case: an operator reads `spec.md` and `verdicts.md`, sees 26 PASS and phase 22 Complete, and ships. The three scenarios the operator observed failing after the handover tier are recorded as passing, so the release-readiness claim rests on evidence that no longer holds.
-   ```json
-   {"type":"claim","claim":"The packet's live verdicts for VIB-HK-005/006/007 predate the automatic handover tier and were never re-run, so the packet's completion claim is unsupported for those three scenarios.","evidenceRefs":["spec.md:139","022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md:11-13","022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md:38","manual-testing-playbook.md:261","manual-testing-playbook.md:291"],"counterevidenceSought":"Checked every recorded artifact under `scratch/live/VIB-HK-005..007/` for a post-merge rerun (the `result.json` timestamps are 2026-11-15T00:46, 06:34 and 12:09, all before the 13:24 handover commit), checked `tasks.md:143-153` for a rerun task (none names 005, 006 or 007), and checked `verdicts.md` for a regression note (none).","alternativeExplanation":"The operator's failure may be a later, unrecorded run whose evidence was never written back. That does not change the finding: the packet still carries no record of it.","finalSeverity":"P1","confidence":"high","downgradeTrigger":"Downgrade to P2 if a post-merge rerun of the three scenarios is recorded and passes."}
-   ```
+None new. R1-P1-001 remains active and is carried forward; it is not re-raised here.
 
 ### P2 Findings
 
-1. **The recorded VIB-HK-006 evidence is from a four-turn scenario version the playbook no longer contains** -- `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/live/VIB-HK-006/vibe/checkpoints.tsv:1-5` -- the recorded `checkpoints.tsv` and `result.json` carry four turns (`first-turn`, `compact`, `reinject`, `history-offer`), while the current scenario defines three (`turn-start-compaction-reinjection.md:64,78,83`). `verdicts.md:38` documents the cut, but the evidence folder still carries the orphaned `turns/history-offer/` and a 4/4 row that a rerun of the current scenario cannot reproduce.
-   Finding class: traceability
-   Scope proof: the evidence folder and the scenario file are both inside the declared review target.
-   Affected surface hints: `022-vibe-hook-playbook-and-live-scenarios/scratch/live/VIB-HK-006/`, `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection.md`
-   Case: a reader re-runs the current three-turn scenario, gets a 3/3 row, and cannot compare it with the recorded 4/4 row; the `history-offer` evidence has no scenario turn that justifies it.
-   ```json
-   {"type":"claim","claim":"The recorded VIB-HK-006 evidence does not correspond to the scenario file the playbook ships.","evidenceRefs":["022-vibe-hook-playbook-and-live-scenarios/scratch/live/VIB-HK-006/vibe/checkpoints.tsv:1-5","022-vibe-hook-playbook-and-live-scenarios/scratch/live/VIB-HK-006/vibe/result.json","turn-start-compaction-reinjection.md:64","turn-start-compaction-reinjection.md:78","turn-start-compaction-reinjection.md:83"],"counterevidenceSought":"Checked whether the scenario still defines a fourth turn (it does not) and whether `verdicts.md` explains the mismatch (it does, at `:38`, which is why this is P2 rather than P1).","alternativeExplanation":"The four-turn evidence may be kept on purpose as the broader record, which `verdicts.md:38` states.","finalSeverity":"P2","confidence":"high","downgradeTrigger":"No downgrade path; the tier is already the lowest."}
-   ```
+1. **The advise reply uses a field the recorded `pre_tool` format does not carry, on a strict binding** -- `.vibe/plugins/repo-guards/spec-gate.mjs:72-78` -- the advise branch writes `{"system_message": result.detail}`. The recorded reply table in `references/guards-and-hooks.md:202-208` gives exactly one conforming `pre_tool` reply, `{"decision":"deny","reason":"..."}`, and classifies everything else as a failure path. The same document scopes `system_message` to `session_start` only (`guards-and-hooks.md:238`: "It reads `additional_context` and `system_message` only"). The binding is `strict = true` (`.vibe/hooks.toml:39`), and `guards-and-hooks.md:210` states that `strict = true` turns a `pre_tool` failure path into a deny. So if `system_message` is a schema mismatch on `pre_tool`, the note meant to be non-blocking denies the shell call instead.
+   Finding class: algorithmic
+   Scope proof: the reply write is inside the declared target; the reference doc and the binding are cited as the wire-format and configuration evidence.
+   Affected surface hints: `.vibe/plugins/repo-guards/spec-gate.mjs`, the `spec-gate` binding in `.vibe/hooks.toml:36-40`, `references/guards-and-hooks.md` §5
+   Case: a session whose gate is open and whose delivery marker is absent. The operator runs a shell command; the hook writes `{"system_message": ...}`; if the runner treats that as a schema mismatch, the strict binding converts it into a deny and the shell command never runs.
 
-2. **The playbook lists 27 scenarios but carries no per-scenario verdict, so the only verdict table lives under a phase's `scratch/`** -- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md:261` -- the section header reads `VIB-HK-001..VIB-HK-027` and `:291` lists VIB-HK-027, but the playbook has no verdict column and the only verdict table is `022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md`, which is a scratch artifact.
-   Finding class: traceability
-   Scope proof: the playbook is the integration surface the packet's phase 22 claim depends on; the verdict table is inside the declared review target.
-   Affected surface hints: `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md`, `022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md`
-   Case: a reader of the skill's playbook cannot tell which of the 27 scenarios have been run, and a `scratch/` folder is not a durable record for a shipped skill.
-   ```json
-   {"type":"claim","claim":"The playbook's scenario inventory and the packet's verdict table disagree in count and live in different artifacts, one of them scratch.","evidenceRefs":["manual-testing-playbook.md:261","manual-testing-playbook.md:291","022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md:1-40"],"counterevidenceSought":"Checked whether the playbook carries a verdict column or a link to the verdict table (it carries neither) and whether `verdicts.md` is referenced from a durable packet document (it is referenced from `implementation-summary.md` key_files, which is durable, but the table itself is not).","alternativeExplanation":"The playbook may be scoped to the operator procedure only, with verdicts owned by the packet. That is a defensible split, which is why this is P2.","finalSeverity":"P2","confidence":"medium","downgradeTrigger":"No downgrade path; the tier is already the lowest."}
-   ```
+2. **The startup-guard spawn budget equals the inner per-script budget, so the warnings are lost on a slow start** -- `.skilled/hooks/session-lifecycle/vibe/session-start.mjs:42,82-92` -- `SESSION_CLEANUP_TIMEOUT_MS` is `8_000`, and `startupGuardsPart` spawns `session-cleanup.mjs` with that budget. Inside, `session-cleanup.mjs:47-54` calls the OpenCode plugin's `server()` and `event()`, which reaches `runStartupGuards` and runs each guard script with `PROCESS_TIMEOUT_MS = 8000` (`.opencode/plugins/session-cleanup.js:46`). The outer budget therefore leaves no headroom for node startup, the plugin module load, or the plugin's own bookkeeping. `runNode` returns `String(result.stdout ?? '')` (`session-start.mjs:65`), so a killed spawn yields an empty string and the part contributes nothing.
+   Finding class: algorithmic
+   Scope proof: the outer budget and the spawn are inside the declared target; the inner budget is cited from the OpenCode plugin as the dependency that sets the floor.
+   Affected surface hints: `.skilled/hooks/session-lifecycle/vibe/session-start.mjs`, `.vibe/plugins/repo-guards/session-cleanup.mjs`, `.opencode/plugins/session-cleanup.js`
+   Case: a cold machine where node startup plus the plugin import takes a second or two and one guard script runs near its own 8-second ceiling. The outer spawn is killed at 8 seconds, `stdout` is empty, and the operator never sees the startup warnings the guards produced.
+
+3. **The goal part has no kill switch and the switch table does not mention it** -- `.skilled/hooks/session-lifecycle/vibe/session-start.mjs:68-70` -- `goalPart()` calls `renderVibeGoalSlice` with no `isHookEnabled` check, while every other part in the same file is gated: `sessionContextPart` on `session-lifecycle` (line 73), `distFreshnessPart` on `dist-freshness` (line 95), and the two turn-start parts on `completion` and `decision-capture`. The README's switch table (`README.md:29`) enumerates six environment switches plus the `decision-capture` flag, the hand-over switches and the compaction parts, and does not name the goal part at all.
+   Finding class: instance-only
+   Scope proof: inside the declared target; the README is cited as the documentation that should agree.
+   Affected surface hints: `.skilled/hooks/session-lifecycle/vibe/session-start.mjs`, `.skilled/hooks/session-lifecycle/vibe/README.md`
+   Case: an operator who wants a session with no injected packet context sets every switch the README names. The goal slice still arrives, because the only thing that stops it is an unset `VIBE_SPEC_FOLDER`, which is a binding rather than a switch.
 
 ## Traceability Checks
 
-| Protocol | Level | Status | Evidence |
-|----------|-------|--------|----------|
-| `spec_code` | core | partial | Phase 018's re-injection claim is implemented but single-consumer (iteration 1). Phase 22's "26 PASS live" claim is stale for VIB-HK-005/006/007 (this iteration). Phases 013-021's claims were not re-read this iteration. |
-| `checklist_evidence` | core | notApplicable | No phase in 013-022 carries a `checklist.md`; the acceptance evidence lives in `tasks.md` checkboxes (`022/tasks.md:143-153`). Recorded as notApplicable with the reason rather than as a pass. |
-| `skill_agent` | overlay | pass | The `cli-mistral-vibe` playbook lists 27 scenario files and `hook-scenarios/` holds 27 files, so the skill's inventory and its assets agree. |
-| `agent_cross_runtime` | overlay | pass | `.vibe/agents/` holds 11 `.toml` profiles, and `sync-agents-vibe.cjs` exists at the path `doctor-runtime-mirrors.yaml:49` names, so the doctor's Vibe agent row has a real target. |
-| `feature_catalog_code` | overlay | pending | Deferred to the cross-reference iteration. |
-| `playbook_capability` | overlay | partial | The playbook's capability rows name the runner and the scenario ids, but the verdicts they claim are not carried in the playbook (P2-002 this iteration). |
+| Protocol | Status | Evidence |
+|----------|--------|----------|
+| `spec_code` | partial | The binding set in `.vibe/hooks.toml` matches the 18 bindings the reference doc records (`guards-and-hooks.md:31-33`). The reply format does not match: the doc records one `pre_tool` reply and the code writes a second, unrecorded one. |
+| `checklist_evidence` | notApplicable | No checklist document on a hook and plugin surface. |
 
 ## Integration Evidence
 
-- `.skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml:47-49` names the three Vibe sync scripts, and `:159-161` gives each row its `--check` command and its `n/a` rule. This is the T099 doctor fix, and it is present.
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:87` lists `.vibe` in `DEFAULT_RUNTIME_FOLDERS`, which is the T099 re-pin fix, and it is present.
-- `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:3057,3225,3274-3275,3359,3398` implements the T098 `--remove-home` flag and records `vibe_home` and `vibe_home_removed` in `result.json`.
-- `.skilled/bin/skilled-loop:837-870` builds the manual claim command from the live launch arguments, which is the T097 fix, and `:1191-1194` exports `SESSION_HANDOVER_GOAL_PACKET` from the claim seed, which is the T098 goal fallback.
-- `decision-record.md:47` records Q008 as the operator decision that authorised all four fixes, carried by T097, T098, T099 and 019 T011. All four are present in the code.
+- `.vibe/hooks.toml:36-40` — `spec-gate` is `strict = true`; `.vibe/hooks.toml:64-68` — `mcp-route-guard` is `strict = true` with no `match`, so it runs on every `pre_tool` call.
+- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:202-210` — the reply table and the `strict` failure-path rule that finding R2-P2-001 turns on.
+- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:238` — `system_message` recorded for `session_start` only.
+- `.opencode/plugins/session-cleanup.js:46,260-300` — the inner `PROCESS_TIMEOUT_MS = 8000` and the parallel guard-script runs that set the floor for finding R2-P2-002.
+- `.skilled/hooks/shared/hook-flags.cjs:104-122` — `session-handover` is `DEFAULT_OFF` and `DEFAULT_ON_RUNTIMES` names only `claude`, so on Vibe the hand-over parts are off unless `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1` or the global switch is set. `handover-parts.mjs:68-74` passes `runtime: 'vibe'`, so the resolution is correct.
 
 ## Edge Cases
 
-- **Ambiguity: `checklist_evidence` has no target.** I chose `notApplicable` with the reason recorded, rather than a pass, because a missing checklist is not evidence of coverage.
-- **Contradiction: `verdicts.md:38` says VIB-HK-006 was cut to three turns, and the recorded evidence has four.** Both sides are cited; the adjudication is that the note is accurate about the cut and the evidence folder was not pruned, which is P2-001.
-- **Missing dependency: no keyed Vibe session.** The three scenarios cannot be re-run here, so the staleness finding rests on the recorded timestamps and the absence of a rerun task, not on a live observation.
-- **Partial success:** the four 2026-11-15 fixes named in the review focus are all present in the code, so the focus's fix claims are supported even though the live verdicts are not.
+- **The `pre_tool` reply schema is not recorded.** `guards-and-hooks.md:196-198` states that only the `pre_tool` and `post_agent` payloads were captured, and the reply table records one `pre_tool` reply. Whether the runner accepts `system_message` on `pre_tool` is therefore unverified. Finding R2-P2-001 is held at P2 for that reason, with an explicit upgrade trigger: if a captured `pre_tool` run shows the runner treating `system_message` as a schema mismatch, the finding becomes P1, because the strict binding then denies every shell call while the gate is open.
+- **The two findings interact.** R1-P1-001 (the missing `observe()`) is what keeps the advise branch reachable on every call; R2-P2-001 is what makes each of those calls a potential deny. Neither is P0 alone, and together they are still bounded by the gate being open and the marker being absent.
+- **`dispose()` at session start was checked and is not a defect.** `session-cleanup.mjs:47-54` does not call `hooks.dispose()`, but the plugin's `dispose()` calls `runCleanup()` (`.opencode/plugins/session-cleanup.js:364-371`), which is the session-end work. Not calling it at start is correct.
+- **Prior-finding overlap checked.** None of the three appears in the 29 dispositions. `R4-P2-003--8f1aef762f06` fixed the README's switch table for the parts it named; R2-P2-003 is the part it still omits.
 
 ## Confirmed-Clean Surfaces
 
-- `spec.md:120-139` phase rows for 013-021 each name a concrete artifact and a concrete verification, and every named artifact exists.
-- `022/tasks.md:143-153` records T095-T105 with a verify command and a dated evidence line for each.
-- `decision-record.md:47` Q008 names all four 2026-11-15 fixes and the tasks that carry them.
-- `manual-testing-playbook.md:182` states the one-runner-at-a-time constraint and why, which matches the runner's repository snapshot behaviour.
+- `.vibe/hooks.toml:1-140` — the 18 bindings match the reference doc's count and event assignment; every shell guard matches `re:bash|process_start`; every write guard matches `write_file|edit`.
+- `spec-gate-classify.mjs:35-40` and `spec-gate.mjs:46-52` — both halves mark a child session from `parent_session_id`, and `classifyIntent` returns before any state read for a child (`spec-gate-core.mjs:1631-1634`), so a subagent never opens the gate.
+- `spec-gate.mjs:50` — the enforce opt-in is supplied only when the operator has not set a value, so an explicit `0` keeps the core advisory.
+- `session-start.mjs:129-136` — every part runs in its own try/catch, so one failing part cannot suppress the rest.
+- `session-start.mjs:118-119` — a non-object payload and a non-`session_start` event both return before any work.
+- `hook-flags.cjs:222-245` — the environment wins over the config file, and the master and kill switches win over the runtime and global enable switches.
+- `handover-parts.mjs:68-74` — the hand-over concern resolves with `runtime: 'vibe'`, so the `DEFAULT_ON_RUNTIMES` list is consulted correctly.
+- `post-edit-quality.mjs:57-61` — the router dispatches with `spawnSync(checkerPath, args)` and no `shell: true` (`post-edit-router.cjs:493`), so an edited file's path is an argv element and cannot inject a command.
+- `overlay-guard.cjs:144-150` — `fileFieldPath` reads only `file_path`, `filePath` and `path`, never a write's `content`, so content cannot be mistaken for a path.
 
 ## Ruled Out
 
-- **The 2026-11-15 fixes were claimed but not landed.** Ruled out: all four are present at the cited lines.
-- **The playbook and the scenario folder disagree on the scenario count.** Ruled out: both are 27.
-- **The doctor's Vibe rows point at missing scripts.** Ruled out: all three scripts exist.
+- **`session-cleanup.mjs` not disposing the plugin at session start.** `dispose()` runs the cleanup script, which is the session-end work; skipping it at start is correct.
+- **`spec-gate-classify` opening the gate for a subagent.** `classifyIntent` returns before any state read when `isChildSession` is true.
+- **`mcp-route-guard` running on every `pre_tool` call.** It has no `match`, but `coreToolNameFor` returns null for any name that does not start with `mcp_`, so a non-MCP call is allowed before the core is consulted.
+- **`post-edit-quality` command injection through an edited file's path.** The router spawns without a shell.
 
 ## Next Focus
 
-- Dimension: security
-- Focus area: the Vibe hook trust boundary, the `VIBE_SPEC_FOLDER` and `SESSION_HANDOVER_GOAL_PACKET` precedence, the state directories the hooks write under `payload.cwd`, and the `skilled-loop` env allowlist.
-- Reason: the packet's hooks run model-adjacent code with write access under a caller-supplied `cwd`, and the goal packet path is caller-supplied too.
-- Rotation status: correctness and traceability complete, security next.
-- Blocked/productive carry-forward: productive — direct reads of the packet's own artifacts produced three findings.
-- Required evidence: `file:line` in the hooks, the goal core's path resolution, and the wrapper's env handling.
-- Recovery note: not applicable.
+- Dimension: correctness
+- Focus area: the session-lifecycle composers (`turn-start`, `turn-end`, `session-start`, `compaction-post-tool`) and the Vibe session reader
+- Reason: iteration 2 closed the binding and kill-switch questions; the composers and the reader are where a silent no-op costs the most, because every part fails open by design and a wrong field name produces no diagnostic.
+- Rotation status: correctness (guard seam) and security done; correctness (composers and reader) next.
+- Blocked/productive carry-forward: the `process_start` upgrade trigger and the `system_message` upgrade trigger are both carried forward as required evidence; the journal-ordering direction stays BLOCKED.
+- Required evidence: the `post_tool` and `session_start` payload field names, which the reference doc records as documented rather than observed.
 
 Review verdict: CONDITIONAL

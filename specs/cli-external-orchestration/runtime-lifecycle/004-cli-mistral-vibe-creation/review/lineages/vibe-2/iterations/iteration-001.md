@@ -2,122 +2,138 @@
 
 ## Dispatcher
 
-- Mode: review (fan-out lineage `vibe-2`)
-- Session: `fanout-vibe-2-1794765851303-zrv85l`, generation 1, lineageMode `new`
-- Executor: `cli-mistral-vibe` model `deepseek-flash`
+- Route: `Resolved route: mode=review target_agent=deep-review`
+- Mode: review, execution single_review_iteration, state source externalized files
+- Session: `fanout-vibe-2-1794808672532-65xu0h`, generation 1, lineageMode `new`
+- Iteration: 1 of 5 (stopPolicy `max-iterations`)
 - Dimension: correctness
-- Review target: `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation` (spec-folder)
-- Operator review focus: phases 013-022, the 2026-11-15 fixes, and the open lead on VIB-HK-005/006/007 failing live after the automatic handover tier.
-- Sources read this iteration: `steer.md` (absent, so no lead ruling applied), `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs`, `.skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs`, `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs`, `.skilled/hooks/session-lifecycle/vibe/turn-end.mjs`, `.skilled/hooks/session-lifecycle/vibe/session-start.mjs`, `.skilled/hooks/shared/session-readers/vibe.mjs`, `.skilled/hooks/session-handover/vibe/handover-parts.mjs`, `.skilled/hooks/goal/vibe/goal-inject.mjs`, `.skilled/bin/skilled-loop`, `.vibe/hooks.toml`, `022-vibe-hook-playbook-and-live-scenarios/scratch/live/VIB-HK-006/diagnosis.md`, `022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md`, `spec.md`.
+- Operator review focus: correctness, security and fail-open defects, wire-format and payload edge cases, ordering and kill-switch gaps, and parity gaps against the OpenCode plugins. This iteration addresses the focus by auditing the guard seam — `lib/hook-io.mjs` and the seven strict `pre_tool` guards — where a fail-open or a broken adapter contract costs the most.
+- Sources read: `.vibe/hooks.toml`, `.vibe/plugins/repo-guards/lib/hook-io.mjs`, `spec-gate.mjs`, `spec-gate-classify.mjs`, `env-secret-guard.mjs`, `dispatch-preflight.mjs`, `overlay-guard.mjs`, `git-message-gate.mjs`, `mcp-route-guard.mjs`, `deep-loop-guard.mjs`, `post-edit-quality.mjs`, `dist-freshness.mjs`, `classifier-injection-screen.mjs`, `session-cleanup.mjs`, `render-home-hooks.cjs`, `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs`, `.skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs`, `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md`, `.vibe/plugins/repo-guards/fixtures/wire-format/tool-names.md`, `023-vibe-review-remediation/implementation-summary.md`.
 
 ## Files Reviewed
 
-- `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:1-324`
-- `.skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs:1-86`
-- `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs:1-162`
-- `.skilled/hooks/session-lifecycle/vibe/turn-end.mjs:1-122`
-- `.skilled/hooks/session-lifecycle/vibe/session-start.mjs:1-80`
-- `.skilled/hooks/shared/session-readers/vibe.mjs:1-120,250-430,455-477`
-- `.skilled/hooks/session-handover/vibe/handover-parts.mjs:1-375`
-- `.skilled/hooks/goal/vibe/goal-inject.mjs:1-42`
-- `.skilled/bin/skilled-loop:895-935,1175-1215`
-- `.vibe/hooks.toml:1-80`
-- `.skilled/hooks/session-lifecycle/vibe/compaction-context.test.mjs:92-175`
-- `.skilled/hooks/session-lifecycle/vibe/compaction-post-tool.test.mjs:1-150`
+- `.vibe/plugins/repo-guards/lib/hook-io.mjs:1-106`
+- `.vibe/plugins/repo-guards/spec-gate.mjs:1-82`
+- `.vibe/plugins/repo-guards/spec-gate-classify.mjs:1-81`
+- `.vibe/plugins/repo-guards/env-secret-guard.mjs:1-27`
+- `.vibe/plugins/repo-guards/dispatch-preflight.mjs:1-58`
+- `.vibe/plugins/repo-guards/overlay-guard.mjs:1-62`
+- `.vibe/plugins/repo-guards/git-message-gate.mjs:1-59`
+- `.vibe/plugins/repo-guards/mcp-route-guard.mjs:1-64`
+- `.vibe/plugins/repo-guards/deep-loop-guard.mjs:1-122`
+- `.vibe/plugins/repo-guards/post-edit-quality.mjs:1-72`
+- `.vibe/plugins/repo-guards/dist-freshness.mjs:1-117`
+- `.vibe/plugins/repo-guards/classifier-injection-screen.mjs:1-51`
+- `.vibe/plugins/repo-guards/session-cleanup.mjs:1-80`
+- `.vibe/plugins/repo-guards/render-home-hooks.cjs:1-127`
+- `.vibe/hooks.toml:1-140`
 
 ## Findings - New
 
 ### P0 Findings
 
-None.
+None. No finding in this iteration can cause immediate harm without an operator action or an unverified runtime field.
 
 ### P1 Findings
 
-1. **The compaction watermark is consumed by whichever detector seam runs first, before the text is proven delivered, so a `post_tool` detection during the compact turn suppresses the turn-start re-injection** -- `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:231` -- `buildCompactionPart` writes the per-session watermark at `:231` and only then builds the sections at `:241-252`, so the compaction is recorded as injected before any text exists. The same detector backs two seams: `compaction-post-tool.mjs:59-64` runs it on every `post_tool` call whose journal grew, and `turn-start.mjs:96` runs it again at the next `pre_agent`. Whichever seam runs first consumes the one injection the watermark allows; the other seam then filters the compaction out at `:220-225` and returns `''`. This is the root cause of the open lead: the three journaled compactions were consumed at a `post_tool` seam inside the compact turn, so the `pre_agent_turn` the scenario checks carried no `Context restored after a compaction.`, while `buildCompactionPart` on the same journal with a fresh state dir returns the text because no watermark exists to filter it.
-   Finding class: correctness
-   Scope proof: the finding is inside the declared review target's implementation surface (`.skilled/hooks/session-lifecycle/vibe/`), and every claim cites a line in a file the config lists under `reviewScopeFiles`.
-   Affected surface hints: `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs`, `.skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs`, `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs`, `.skilled/hooks/session-lifecycle/vibe/compaction-context.test.mjs`
-   Case: a `/compact` turn ends with a tool call. The `post_tool` binding measures a grown journal, detects the compaction, writes the watermark at `:231`, and emits the text into the tool result. The next turn start reads that watermark, filters the compaction out at `:221-225`, and returns `''`, so the turn-start context the operator and the VIB-HK-006 check read carries no restored context.
-   ```json
-   {"type":"claim","claim":"The single per-session watermark is written before the text is built, so the first detector seam to run consumes the injection and the other seam can never deliver it.","evidenceRefs":["compaction-context.mjs:231","compaction-context.mjs:241-252","compaction-context.mjs:220-225","compaction-post-tool.mjs:59-64","turn-start.mjs:96"],"counterevidenceSought":"Read the whole detector, both bindings, the reader, and the recorded live evidence; checked whether the watermark is per-seam (it is not), whether the post_tool seam is skipped during a compact turn (it is not), and whether the turn-start seam bypasses the watermark (it does not).","alternativeExplanation":"The live run may simply have had no goal slice to render, which would also return '' after the watermark advanced. That variant is the same defect at a different trigger and does not change the fix.","finalSeverity":"P1","confidence":"medium","downgradeTrigger":"Downgrade to P2 if a live run shows the post_tool seam never fires during a compact turn, which would leave the turn-start seam as the only consumer."}
-   ```
+1. **The spec-gate advise path never acknowledges delivery, so the notice repeats on every shell call** -- `.vibe/plugins/repo-guards/spec-gate.mjs:72-78` -- `runEnforceGate` returns an `observe()` callback whose only job is to write the mutation-time delivery marker, and the core's own docstring says the adapter must call it once its envelope is on the wire (`spec-gate-core.mjs:1827-1831`: "The adapter writes its envelope first and calls `observe()` after, so delivery is recorded only once the runtime has the text"). The Vibe adapter writes the `system_message` envelope and returns without calling it. `evaluateMutation` computes `undelivered = !gate3DeliveryMarker(state)` (`spec-gate-core.mjs:1806`), so with no marker the advise branch is re-entered on every subsequent call. All four sibling adapters call it: `claude/spec-gate-enforce.mjs:52`, `codex/spec-gate-enforce.mjs:69`, `cursor/spec-gate-enforce.mjs:50`, `devin/spec-gate-enforce.mjs:54` — the Claude one with the comment "that is what stops the repeat". The Vibe half is the only adapter that breaks the contract.
+   Finding class: algorithmic
+   Scope proof: the defect is inside the declared target (`.vibe/plugins/repo-guards/spec-gate.mjs`); the core and the four sibling adapters are cited as the contract and the parity reference, not as review targets.
+   Affected surface hints: `.vibe/plugins/repo-guards/spec-gate.mjs`, `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs`, the `spec-gate` binding in `.vibe/hooks.toml:36-40`
+   Case: a session whose spec-folder gate is open and whose `spec-gate-classify` half did not deliver the deferral (delivery suppressed, or the gate opened on a turn with a blank prompt). The operator runs any shell command; the hook emits the `system_message` note and writes no marker; the next shell command emits it again, for the rest of the session.
 
-2. **The `post_tool` size gate watches only `journal/*.jsonl`, so a compaction that lands in the snapshot store without growing the journal never reaches the detector** -- `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:271-282` -- `measureJournal` sums the sizes of the numbered journal segments only, and `buildPostToolPart:314-316` returns `''` when that sum equals the recorded size. Since the VIB-HK-006 fix taught the reader to seed from the committed snapshot generation (`session-readers/vibe.mjs:76-107`), the detector can now see a compaction that the size gate never notices: Vibe folds the journal into `chunks/` and `generations/` at a quiet point, and the checkpoint can land there without a new journal segment. The gate then short-circuits before `detect` runs.
-   Finding class: correctness
-   Scope proof: both files are listed in `reviewScopeFiles`; the claim is a direct read of the gate and the reader's snapshot seeding.
-   Affected surface hints: `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs`, `.skilled/hooks/shared/session-readers/vibe.mjs`, `.skilled/hooks/session-lifecycle/vibe/compaction-post-tool.test.mjs`
-   Case: a headless turn compacts mid-turn and Vibe commits the checkpoint into a snapshot generation without appending a journal segment. Every later `post_tool` call measures the same journal size, returns `''` at `:316`, and the mid-turn re-injection never happens, while `buildCompactionPart` called directly on the same session root returns the text.
-   ```json
-   {"type":"claim","claim":"The size gate measures only the journal directory, so a snapshot-only compaction is invisible to the post_tool binding.","evidenceRefs":["compaction-context.mjs:271-282","compaction-context.mjs:314-316","session-readers/vibe.mjs:76-107"],"counterevidenceSought":"Checked whether the snapshot commit always appends a journal segment (the reader's own comment at `vibe.mjs:70-75` says the journal restarts after `snapshot_sequence`, which can leave the directory empty or unchanged), and whether the gate also stats `chunks/` or `generations/` (it does not).","alternativeExplanation":"Vibe may always write a fresh journal segment at the snapshot, which would make the gate fire. No recorded run proves either way, so the finding is stated as a reachable path rather than an observed one.","finalSeverity":"P1","confidence":"medium","downgradeTrigger":"Downgrade to P2 if a recorded session store shows a new journal segment written at every snapshot commit."}
-   ```
+```json
+{
+  "type": "claim-adjudication",
+  "claim": "The Vibe pre_tool spec-gate adapter emits the advise envelope but never calls result.observe(), so the mutation-time delivery marker is never written and the advise branch repeats on every call.",
+  "evidenceRefs": [
+    ".vibe/plugins/repo-guards/spec-gate.mjs:72-78",
+    ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1806",
+    ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1827-1831",
+    ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1866-1876",
+    ".skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs:50-52",
+    ".skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs:69",
+    ".skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs:50",
+    ".skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs:54"
+  ],
+  "counterevidenceSought": "Checked whether the classify half writes the marker on the same session, which would make the pre_tool marker redundant. It does (spec-gate-classify.mjs:77 recordGate3NoticeDelivered with channel 'classify-deferral'), so the repeat only occurs when classify did not deliver. Checked whether the adapter's comment claims a deliberate choice: spec-gate.mjs:73-75 says the note 'is not recorded as a delivered question' because it cannot reach the model — that explains not recording a *question* delivery, but the core's observe() records a *notice* delivery, a different marker, and the comment does not address it.",
+  "alternativeExplanation": "The author may have judged that an operator-facing UI note should repeat while the gate is open, as a persistent reminder. The code does not say so, and the four sibling adapters all stop the repeat, so the parity reading is the stronger one.",
+  "finalSeverity": "P1",
+  "confidence": "high",
+  "downgradeTrigger": "Downgrade to P2 if the Vibe runner is shown to dedupe an identical system_message within a session, or if a maintainer records that the repeat is the intended operator reminder."
+}
+```
 
 ### P2 Findings
 
-1. **`writeWatermark` records only the latest compaction id in `seen`, so a multi-compaction catch-up followed by a snapshot roll re-injects the older compactions** -- `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:111-115` -- the `seen` list is built from `previous.seen`, `previous.compactionId` and `compaction.compactionId`, where `compaction` is only `compactions[compactions.length - 1]` (`:227`). The intermediate compactions in the same catch-up are covered only by the `sequence` floor at `:221`, and a later snapshot generation re-reads them under a higher sequence, above that floor and absent from `seen`.
-   Finding class: correctness
-   Scope proof: direct read of the watermark writer and the filter; both in a `reviewScopeFiles` entry.
-   Affected surface hints: `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs`, `.skilled/hooks/session-lifecycle/vibe/compaction-context.test.mjs`
-   Case: three compactions are journaled between two hook calls. The detector injects once and records only the third id. A later snapshot generation re-reads the first two under a higher sequence, so the detector injects them a second time.
-   ```json
-   {"type":"claim","claim":"Only the latest compaction id enters the seen list, so a multi-compaction catch-up is not fully deduplicated across a snapshot roll.","evidenceRefs":["compaction-context.mjs:111-115","compaction-context.mjs:227","compaction-context.mjs:221"],"counterevidenceSought":"Checked whether the sequence floor alone covers the older ids (it does until a snapshot re-reads them under a higher sequence) and whether the test suite covers a multi-compaction catch-up (it covers one compaction re-read, `compaction-context.test.mjs:113-127`).","alternativeExplanation":"The reader may never re-read an older compaction under a higher sequence. The existing test at `:113-127` exists precisely because it does.","finalSeverity":"P2","confidence":"medium","downgradeTrigger":"No downgrade path; raise to P1 if a live run shows a duplicate restored-context block."}
-   ```
+1. **`process_start` is keyed by its bare name while every other map key is qualified** -- `.vibe/plugins/repo-guards/lib/hook-io.mjs:32-38` -- `CORE_TOOL_NAMES` maps four qualified names (`file_system.read_file`, `file_system.write_file`, `file_system.edit`, `file_system.bash`) and one bare name (`process_start`). The file's own comment two lines above states the premise the map is built on: "Vibe names its tools with a namespace". The recorded fixture agrees — `fixtures/wire-format/tool-names.md:3` says "`tool_name` is always the qualified name". A payload whose `tool_name` is `process.process_start` misses the map, falls through to the raw-name branch at line 86, and every shell guard then compares an unrecognized name against `'bash'` and allows.
+   Finding class: algorithmic
+   Scope proof: the inconsistency is visible in the target file alone; the fixture and the doc are cited as the wire-format reference.
+   Affected surface hints: `.vibe/plugins/repo-guards/lib/hook-io.mjs`, and through it `spec-gate.mjs:59`, `env-secret-guard.mjs:23`, `dispatch-preflight.mjs:44`, `overlay-guard.mjs:42`, `git-message-gate.mjs:40`, `dist-freshness.mjs:91`
+   Case: the model starts a background shell command. If Vibe reports it as `process.process_start`, the five shell guards and the dist-freshness shell check all allow it without judging the command.
 
-2. **`measureJournal` returns `null` for an empty journal directory, so the binding silently skips the detector right after a snapshot roll** -- `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:274-275` -- `if (names.length === 0) return null;` makes an empty journal indistinguishable from an unreadable one, and `buildPostToolPart:315` treats `null` as "do nothing".
-   Finding class: correctness
-   Scope proof: direct read of the measurement helper and its caller.
-   Affected surface hints: `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs`
-   Case: Vibe commits a snapshot generation and has not yet written the next journal segment. A `post_tool` call in that window measures `null`, returns `''`, and the compaction the snapshot holds is not re-injected at that seam.
-   ```json
-   {"type":"claim","claim":"An empty journal directory is reported as unreadable, so the binding skips a window in which the snapshot may hold a new compaction.","evidenceRefs":["compaction-context.mjs:274-275","compaction-context.mjs:314-315"],"counterevidenceSought":"Checked whether the caller distinguishes empty from unreadable (it does not) and whether the window is reachable (the reader's comment at `vibe.mjs:70-75` describes the journal restarting after `snapshot_sequence`).","alternativeExplanation":"Vibe may write the next segment before any tool call can run, closing the window.","finalSeverity":"P2","confidence":"low","downgradeTrigger":"No further downgrade; the tier is already the lowest."}
-   ```
+2. **The session-cleanup hook imports another runtime's plugin outside the fail-open wrapper** -- `.vibe/plugins/repo-guards/session-cleanup.mjs:16` -- `import sessionCleanupPlugin from '../../../.opencode/plugins/session-cleanup.js'` is a static top-level import, so a load failure throws before `runGuard(main, ...)` at line 80 is ever installed. `runGuard` is the file's whole fail-open guarantee (`hook-io.mjs:94-105`), and it only wraps `main()`. Every other guard imports only from `.skilled/`; this one reaches into `.opencode/`, the tree a Vibe-only or vendored checkout is least likely to carry.
+   Finding class: cross-consumer
+   Scope proof: the import line is inside the declared target; `.opencode/plugins/session-cleanup.js` is cited as the dependency, not reviewed.
+   Affected surface hints: `.vibe/plugins/repo-guards/session-cleanup.mjs`, the `session-cleanup-end` binding in `.vibe/hooks.toml:135-138`, and `session-start.mjs:82-92` which spawns the same script for the startup guards
+   Case: a checkout that carries `.skilled/` and `.vibe/` but not `.opencode/`. Every session start silently loses the startup-guard warnings, and every session end loses the cleanup and process sweep, with no diagnostic beyond a module-resolution stack trace.
+
+3. **The dispatch preflight passes the raw payload cwd to the rule engine** -- `.vibe/plugins/repo-guards/dispatch-preflight.mjs:22-25` -- `ruleContext` forwards `payload.cwd` unchanged, while every other guard that needs a directory resolves it through `sessionDirFor` (`hook-io.mjs:25-27`), which anchors a relative cwd to the checkout. The file's own comment at line 20-21 says "The rule checks read the folder the command runs in, which the payload carries", so the value matters to the verdict.
+   Finding class: instance-only
+   Scope proof: inside the declared target.
+   Affected surface hints: `.vibe/plugins/repo-guards/dispatch-preflight.mjs`, `.vibe/plugins/repo-guards/lib/hook-io.mjs`
+   Case: a fixture or a scratch-cwd run whose payload carries a relative `cwd`. The rule engine resolves it against the hook process's own working directory instead of the checkout, so a rule that depends on the run folder judges a different tree than the one the command runs in.
 
 ## Traceability Checks
 
-| Protocol | Level | Status | Evidence |
-|----------|-------|--------|----------|
-| `spec_code` | core | partial | Phase 018's claim ("Goal slice and history locator re-injected after a compaction, detected from the journal", `spec.md:136`) is implemented in `compaction-context.mjs`, but the delivery is single-consumer, so the claim holds only for the seam that runs first. |
-| `checklist_evidence` | core | pending | Deferred to the traceability iteration. |
-| `skill_agent` | overlay | notApplicable | No skill or agent definition is in this iteration's scope. |
-| `agent_cross_runtime` | overlay | pending | Deferred. |
-| `feature_catalog_code` | overlay | pending | Deferred. |
-| `playbook_capability` | overlay | partial | `022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md:12-13` records VIB-HK-006 and VIB-HK-007 as PASS, and the recorded `checkpoints.tsv` files agree, so the live evidence on disk does not reproduce the lead's failure. The lead's failure is therefore either a later run or a latent path, and this iteration treats it as latent. |
+| Protocol | Status | Evidence |
+|----------|--------|----------|
+| `spec_code` | partial | The recorded wire format in `references/guards-and-hooks.md` §5 matches the adapters' payload reads for `tool_name`, `tool_input.command`, `tool_input.file_path`, `session_id`, `parent_session_id` and `transcript_path`. It does not cover the `pre_tool` advise reply field, which `spec-gate.mjs:76` relies on — recorded as finding R1-P2-001's neighbour in iteration 2. |
+| `checklist_evidence` | notApplicable | The review target is a hook and plugin surface with no checklist document of its own; the governing evidence is the wire-format fixture and the playbook verdict table, both cited above. |
 
 ## Integration Evidence
 
-- `.vibe/hooks.toml:19-24` registers `turn-start` as the only `pre_agent` composer, and `:26-31` registers `turn-end` as the only `post_agent` composer. The `post_tool` compaction binding is registered through the rendered home hooks, not the project file, so a scratch-cwd run reaches it only through `render-home-hooks.cjs`.
-- `.skilled/bin/skilled-loop:911-912` unsets `SESSION_HANDOVER_GOAL_PACKET` and `SKILLED_LOOP_CLAIM_SEED` before a first launch, and `:1191-1194` re-exports `SESSION_HANDOVER_GOAL_PACKET` from the claim seed's note. `VIBE_SPEC_FOLDER` is neither unset nor re-exported, so a relaunched Vibe session keeps it only when the operator's shell exported it.
-- `.skilled/hooks/goal/vibe/goal-inject.mjs:33` prefers `VIBE_SPEC_FOLDER` and falls back to `SESSION_HANDOVER_GOAL_PACKET`, which is the 2026-11-15 goal fallback the review focus names.
+- `.vibe/hooks.toml:36-40` — the `spec-gate` binding is `type = "pre_tool"`, `strict = true`, `match = "re:bash|process_start|write_file|edit"`. The `strict` flag is what makes the missing acknowledgement matter: a non-conforming reply on a strict `pre_tool` hook is a failure path, and a failure path is a deny.
+- `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1866-1876` — `runEnforceGate` builds `observe` only for the advise branch and documents the adapter's obligation to call it.
+- `.skilled/skills/system-spec-kit/runtime/hooks/{claude,codex,cursor,devin}/spec-gate-enforce.mjs` — the four sibling adapters that satisfy the obligation.
+- `.vibe/plugins/repo-guards/fixtures/wire-format/tool-names.md:3` — "`tool_name` is always the qualified name", the premise finding R1-P2-001 tests.
 
 ## Edge Cases
 
-- **Ambiguity: the lead's live failure is not on disk.** The recorded VIB-HK-005/006/007 runs under `022-vibe-hook-playbook-and-live-scenarios/scratch/live/` all read PASS with matching `checkpoints.tsv` and `result.json`. I chose the safest in-scope interpretation: treat the lead as a latent defect in the delivery path rather than as a contradiction of the recorded evidence, and say so in the traceability row.
-- **Contradiction: the diagnosis file says the reader fix closed VIB-HK-006.** `VIB-HK-006/diagnosis.md:1-8` records PASS 4/4 after the reader and watermark fixes. Both sides are cited; the adjudication is that the reader fix made the compaction visible and the watermark fix made the write land, and neither addressed which seam consumes the injection.
-- **Missing dependency: no keyed Vibe session in this environment.** The live scenarios cannot be re-run here, so every finding is a code-path reading with recorded evidence as corroboration, never a live observation.
-- **Partial success:** the detector's own unit suite passes 29/29 per the diagnosis note, and the tests cover the single-compaction path only, so a green suite does not contradict these findings.
+- **Unverified `process_start` payload.** No captured `process_start` payload exists in the repository; `tool-names.md` records five tools and mentions `process_start` only in prose. Finding R1-P2-001 is therefore inference from the file's own stated premise plus the fixture's "always qualified" rule, not an observation. It is held at P2 for that reason, with an explicit upgrade trigger: capture one `process_start` payload; if `tool_name` is qualified, the finding becomes P1 because five guards fail open on the background-shell path.
+- **`system_message` on `pre_tool` is unverified.** The reference doc records `system_message` only for `session_start` (`guards-and-hooks.md:238`). Whether the `pre_tool` reply schema accepts it is not recorded. This is carried into iteration 2 as its own finding rather than folded into R1-P1-001, because the two have different fixes.
+- **Prior-finding overlap checked.** None of the four findings appears in the 29 dispositions in `023-vibe-review-remediation/implementation-summary.md`. The closest, `R4-P2-001--e3447f5b13ad` and `R4-P2-002--c3535226947a`, were documentation fixes in `guards-and-hooks.md`; R1-P1-001 is a code defect in the adapter.
 
 ## Confirmed-Clean Surfaces
 
-- `turn-start.mjs:125-139` composes each part inside its own `try/catch` and returns `''` for a non-`pre_agent` payload, so a failing part cannot blank the others.
-- `turn-end.mjs:86-99` stops at the first `deny` and never denies itself, and the hand-over part is last, so a turn another part sends back is never armed.
-- `compaction-post-tool.mjs:76-84` joins the parts and prints nothing when both are empty, and `:80-82` keeps the exit code at 0 on a failure.
-- `session-readers/vibe.mjs:455-477` deduplicates compactions by id and prefers the last write, so a completed entry replaces the running one.
-- `goal-inject.mjs:30-41` fails open on every path and never throws.
+- `hook-io.mjs:45-58` `readPayload` — decodes across chunk boundaries, rejects a non-object and an array, and returns null on a parse error.
+- `hook-io.mjs:66-69` `deny` — writes the exact `{"decision":"deny","reason":...}` shape the wire fixture recorded, and exits 0.
+- `hook-io.mjs:78-87` `toCoreCall` — carries only the fields a core judges, so a write's `content` is never mistaken for a path.
+- `spec-gate-classify.mjs:59` and `spec-gate.mjs:65` — both halves key gate state on the same session id; `resolveSessionKey` and `sessionStateKey` both fall back to `UNKNOWN_SESSION_ID`, so a payload with no `session_id` still lands on one shared state file.
+- `spec-gate-classify.mjs:78` — the classify half does call `result.observe()`, so the deferral delivery is recorded.
+- `env-secret-guard.mjs:23` — overrides the core call's cwd with `sessionDirFor(payload.cwd)`, which is the correct resolution for a path guard.
+- `overlay-guard.mjs:35-37` — judges both the session tree and the checkout, de-duplicated.
+- `git-message-gate.mjs:25-33` — blanks `process.argv[1]` around the core import so the core's own CLI entry cannot start.
+- `mcp-route-guard.mjs:33-40` — rejects an empty server segment and a trailing separator before repacking.
+- `deep-loop-guard.mjs:105` — `tool_input.config_name` is the real Vibe field, confirmed by `guards-and-hooks.md:126` and live scenario VIB-HK-024.
+- `render-home-hooks.cjs:32,36,84-99` — refuses a checkout path with a quote, backslash, dollar, backtick, CR or LF, and refuses a rendered command that still holds a substitution.
+- `render-home-hooks.cjs:61-66` — refuses the operator's own `~/.vibe`.
 
 ## Ruled Out
 
-- **The reader cannot see the compaction.** Ruled out: `session-readers/vibe.mjs:76-107` seeds from the committed snapshot generation plus the journal tail, and `VIB-HK-006/diagnosis.md:1-8` records the fix and a 4/4 rerun.
-- **The watermark write is denied by the sandbox.** Ruled out for the current code: `compaction-context.mjs:67-70` puts the state dir under `payload.cwd`, and the captured `pre_tool` payload carries `cwd` (`guards-and-hooks.md:180-195`), so the write lands in the session's own folder.
-- **The goal slice renderer is broken.** Ruled out: `goal-inject.mjs:30-41` returns the packet's `chatSlice`, and the diagnosis' positive control produced a 2503-character block with the goal slice and the history offer.
-- **The hook is not registered.** Ruled out: `.vibe/hooks.toml:19-24` registers `turn-start`, and the recorded runs show the advisor part landing in the same `pre_agent_turn` record.
+- **Journal segment ordering in the session reader.** `session-readers/vibe.mjs:66` sorts journal file names with a default lexicographic `.sort()`, which would misorder `10.jsonl` before `2.jsonl`. Ruled out: the live journal names are zero-padded to 16 digits (`journal/0000000000000234.jsonl`, recorded in `.skilled/logs/cli-dispatch-audit.log:163`), so lexicographic order equals numeric order. Recorded in the strategy as a BLOCKED approach.
+- **`deep-loop-guard.mjs` reading the wrong subagent field.** `tool_input.config_name` is confirmed as the Vibe field by `guards-and-hooks.md:126` and by live scenario VIB-HK-024, which asserts the spawn carries `"config_name":"prompt-improver"`.
+- **`toCoreCall` reading the wrong write path field.** `tool_input.file_path` is confirmed for `file_system.write_file` and `file_system.edit` by `fixtures/wire-format/tool-names.md:8-9`.
+- **`spec-gate.mjs` and `spec-gate-classify.mjs` keying different state files.** Both resolve to the same key; see Confirmed-Clean Surfaces.
+- **`git-message-gate.mjs` having no kill switch.** Documented as deliberate at lines 8-9: "The contract has no bypass on any surface, so this hook has no kill switch either."
 
 ## Next Focus
 
-- Dimension: traceability
-- Focus area: phases 013-022 spec-to-code alignment, starting with the phase 018 and phase 022 claims that this iteration found only partially supported, then the 2026-11-15 fix claims named in the review focus.
-- Reason: correctness produced two P1 findings on one surface; the packet's own claims about that surface are now the highest-value next check.
-- Rotation status: correctness complete, traceability next.
-- Blocked/productive carry-forward: productive — direct reads of the detector and its bindings produced the root cause.
-- Required evidence: `spec.md` phase rows, each phase's `implementation-summary.md` and `tasks.md`, and the playbook scenario rows that claim the live verdicts.
-- Recovery note: not applicable.
+- Dimension: security
+- Focus area: `.vibe/hooks.toml` binding set, the `system_message` reply on a strict `pre_tool` hook, and the kill-switch coverage of every composer part
+- Reason: iteration 1 established that the guard seam is sound except for the acknowledgement gap; the next highest-value question is whether a strict binding can turn a non-blocking note into a deny, and whether every part of the composers can be switched off.
+- Rotation status: correctness opened; security next.
+- Blocked/productive carry-forward: the `process_start` upgrade trigger is carried forward as required evidence; the journal-ordering direction is BLOCKED and must not be retried.
+- Required evidence: the recorded `pre_tool` reply schema, and the switch table in `.skilled/hooks/session-lifecycle/vibe/README.md:29`.
 
 Review verdict: CONDITIONAL

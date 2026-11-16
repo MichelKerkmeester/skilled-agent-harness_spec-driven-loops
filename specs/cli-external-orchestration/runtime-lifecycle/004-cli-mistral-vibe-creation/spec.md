@@ -174,7 +174,7 @@ Phases 004 to 012 follow `001-deep-research/research/phase-plan.md`. Phases 013 
 | 019-vibe-relaunch-command-tier | 020-vibe-dispatch-hardening | The relaunch command starts a fresh Vibe session from a handoff note | Command output and the new session's first turn |
 | 020-vibe-dispatch-hardening | 021-vibe-hook-docs-correction | A dispatch without the render step is refused, the lineage posture is decided in a decision record, and the Vibe tests run in CI, and in pre-commit where the hook runs test suites | Dispatch rule test output and the CI run |
 | 021-vibe-hook-docs-correction | 022-vibe-hook-playbook-and-live-scenarios | Every corrected doc line cites a run and the parent validates recursively | Recursive strict validate output |
-| 022-vibe-hook-playbook-and-live-scenarios | 023-vibe-review-remediation | Every scenario has a recorded live verdict, and the deep review has run over the packet | `scratch/verdicts.md` and `review/review-report.md` |
+| 022-vibe-hook-playbook-and-live-scenarios | 023-vibe-review-remediation | Every scenario has a recorded live verdict, and the deep review has run over the packet | `scratch/verdicts.md` and `review-archive/2026-11-16T05-57-42Z/review-report.md` |
 <!-- /ANCHOR:phase-map -->
 
 ---
