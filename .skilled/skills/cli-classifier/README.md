@@ -1,16 +1,16 @@
 ---
 title: "cli-classifier"
-description: "The hub for typed classifier judgments. It holds cli-jev for hosted Jev today; future classifiers join as new modes with their own packets."
+description: "Routes a request for a typed judgment to a classifier that can answer it and returns one value a script can branch on, with a clear signal when no judgment can be made."
 trigger_phrases:
   - "cli-classifier hub"
-  - "local classifier hub"
+  - "typed judgment hub"
   - "jev judgment hub"
-version: 0.8.7.0
+version: 0.8.8.0
 ---
 
 # cli-classifier
 
-> One skill identity for typed classifier judgments. The hub holds `cli-jev` for hosted Jev today; a future classifier joins as a new mode with its own packet.
+> Turns a question into one typed value that code can branch on, with a clear outcome when no judgment can be made.
 
 ---
 
@@ -20,119 +20,147 @@ version: 0.8.7.0
 
 | Aspect | What you get |
 |---|---|
-| **Invoke with** | A request that names Jev, `cli-jev` or its `cli-usage` alias. The advisor resolves the hub |
-| **Routes to** | The current mode `cli-jev` (packet `cli-jev`), through `mode-registry.json` and `hub-router.json` |
-| **Produces** | One typed Jev value, with an exit code that names the outcome |
+| **Use it for** | A category or a probability that code will branch on |
+| **Invoke with** | A request that names Jev, such as `jev choice` or `jev noul` |
+| **Works on** | One question and the text it judges, read from the command line or a file |
+| **Produces** | One typed value per question plus an exit code that names the outcome |
 
-### Purpose
+### What It Does
 
-`cli-classifier` is one public advisor identity over its registered transport packets. Today, its only `packetKind: "transport"` mode is `cli-jev`, which bridges the `jev` CLI and MCP surface. Each transport defines how to check its backend and return a typed judgment. The current mode, `cli-jev`, answers through the `jev` CLI with a stored key. The hub holds no packet-local logic. `mode-registry.json` resolves the mode, and `leaf-manifest.json` inventories its leaves. A future classifier backend joins as a new mode with a packet of its own, and the parent hub stays ready for it without changing its public identity.
+`cli-classifier` is the one public identity for typed classifier judgments. It resolves a request to a registered transport and loads that transport's packet. Today the only mode is `cli-jev`, which asks the hosted Jev service for a probability, an option key, an ordered position or a batch of keyed answers. The hub holds no packet-local logic, so a future classifier joins as a new mode and packet while callers keep addressing this skill.
 
-### When to Use
+A judgment is not an action. The transport reads state and returns a value. It changes nothing in this workspace. Pair it with a workflow mode when the value feeds an edit or a review.
 
-Use it for typed judgments from the hosted Jev service. Future classifiers can have their own modes.
+---
 
-### Why It Matters
+## 2. QUICK START
 
-- **A caller names Jev:** the transport returns the requested judgment type and never changes backends silently.
-- **One availability rule:** `command -v jev` gates the hosted CLI with one exit code.
-- **One stable hub identity:** a future classifier can arrive as a new mode while callers continue to address `cli-classifier`.
-
-```text
-request that names Jev
-   |
-   v
-advisor  -->  cli-classifier  -->  hub-router.json  -->  cli-jev
-                                                           |
-                                                           v
-                                          one typed answer and an exit code
-```
-
-### Before You Start
-
-The hub routes nothing until the `jev` binary is on `PATH`. Install the pinned CLI and store a key for the provider you use:
+**Step 1: Route a request.** The advisor sends a request that names Jev to `cli-classifier`. To see the decision without running anything, use the compiled route.
 
 ```bash
-uv tool install jev-cli                    # the contract is pinned against jev-cli 0.6.2
-jev auth set --provider official           # prompts for TYPESAFE_API_KEY; other providers use their own name
+node .skilled/bin/compiled-route.cjs --hub cli-classifier --prompt "use jev choice to pick a queue"
+```
+
+The command prints one JSON line with `"action":"route"` and a single target whose `workflowMode` is `cli-jev`.
+
+**Step 2: Check the CLI.**
+
+```bash
+jev --version
+```
+
+The command prints `jev 0.6.2`, the version the packet's contract is pinned against.
+
+**Step 3: Check the credential.**
+
+```bash
 jev auth status --provider official </dev/null
 ```
 
-Without `jev`, the hub reports mode `cli-jev` as unavailable instead of guessing a judgment. `cli-jev/references/providers-and-models.md` lists the four providers and their keys.
+The command prints one JSON line with `"ok": true` and `"stored": true`. A missing key exits 3 with `official API key is not stored`. Run `jev auth set --provider official` to store one. The four providers and their key variables are in the [providers reference](./cli-jev/references/providers-and-models.md).
 
-### Features That Run When a Key Is Stored
-
-Once `jev auth status` passes, two features ask Jev on their own:
-
-- Each one beat the best rule without a model in a measured run.
-- Each asks the question it was measured with.
-- `shared/scripts/jev-features.mjs` decides whether one runs.
-
-| Feature | Where it runs | Turn it off |
-|---|---|---|
-| Citation drift advisory | End of `validate_document.py`'s human report | `JEV_FEATURE_CITE_DRIFT=0` |
-| Injection screen | Claude Code, Devin, OpenCode and Pi, after each fetched page | `JEV_FEATURE_INJECTION_SCREEN=0` |
-
-`JEV_FEATURES=0` turns both off. A switch is read from the environment first and then from `.skilled/hooks/hook-flags.env`. None of them blocks work, and a failed call leaves the path as it would be without Jev.
+If `jev` is not on `PATH`, install it with `uv tool install jev-cli`.
 
 ---
 
-## 2. MODES AND PACKETS
+## 3. HOW IT WORKS
 
-The hub registers one mode today. A future classifier is added as a new mode and packet, and the root hub router remains the selection point.
+### Two Stages
 
-| Mode | Packet | Kind | Use it for | Pointer |
-|---|---|---|---|---|
-| `cli-jev` | `cli-jev/` | transport | Hosted Jev judgments through the `jev` CLI and its MCP surface | [`README.md`](./cli-jev/README.md) |
+Routing happens in two stages. The hub picks the mode and the router picks the leaves inside it. Stage one scores `routerSignals` from `hub-router.json` against its `vocabularyClasses` and applies `routerPolicy.tieBreak`. Stage two lives in `ROUTER.md`, which maps the chosen intent to the packet-local files that mode loads.
 
----
+`routerPolicy.defaultMode` is `null`, so an unclear request or one that names only the hub asks for clarification. It never guesses a backend. The compiled route returns `route` with its targets. `clarify` and `defer` ask for a clearer request. `reject` refuses.
 
-## 3. NAVIGATION
+```mermaid
+flowchart TD
+  Request["A request that names Jev"] --> Advisor["Advisor resolves cli-classifier"]
+  Advisor --> StageOne["hub-router.json picks the mode"]
+  StageOne --> StageTwo["ROUTER.md picks the leaves"]
+  StageTwo --> Packet["cli-jev packet"]
+  Packet --> Value["One typed value and an exit code"]
+```
 
-| File | What it holds | Why it matters |
-|---|---|---|
-| [`SKILL.md`](./SKILL.md) | The hub's routing contract and rules | The entry point an agent loads |
-| [`mode-registry.json`](./mode-registry.json) | The single source of truth for every mode | Resolve which packet owns a request |
-| [`hub-router.json`](./hub-router.json) | Router policy, signals and vocabulary classes | See which phrases pick the current `cli-jev` mode |
-| [`ROUTER.md`](./ROUTER.md) | The stage-two surface router, `router_state: active` | Keep its `INTENT_SIGNALS` and `RESOURCE_MAP` keys equal, every path a `leaf-manifest.json` leaf, and every registered mode router's keywords present; `JEV_JUDGMENT` adds hub-level aliases the packet model does not carry |
-| [`leaf-manifest.json`](./leaf-manifest.json) | The generated inventory of routed leaves | Find the references a mode loads |
-| [`benchmark/injection-screen/`](./benchmark/injection-screen/) | The offline injection screen scorer and its tests | Its default run makes zero model calls. `--jev` adds the hosted classifier behind its gate |
+### The Transport Axis
 
-The manifest regenerates when packets change, so read it as a snapshot.
+A `packetKind: "transport"` mode bridges an external tool. It selects a value and never mutates this workspace. That boundary is what keeps a judgment from turning into an action by accident.
 
----
-
-## 4. CHANGELOG
-
-Releases live in `changelog/` with one file per release, named `v[version].md`. `v0.1.0.0` and `v0.2.0.0` are the Jev hub's own releases from before it became mode `cli-jev` here.
-
-| Release | Entry |
+| Contract | What it means |
 |---|---|
-| v0.8.9.0 | [`changelog/v0.8.9.0.md`](./changelog/v0.8.9.0.md) |
-| v0.8.8.0 | [`changelog/v0.8.8.0.md`](./changelog/v0.8.8.0.md) |
-| v0.8.7.0 | [`changelog/v0.8.7.0.md`](./changelog/v0.8.7.0.md) |
-| v0.8.6.0 | [`changelog/v0.8.6.0.md`](./changelog/v0.8.6.0.md) |
-| v0.8.5.0 | [`changelog/v0.8.5.0.md`](./changelog/v0.8.5.0.md) |
-| v0.8.4.0 | [`changelog/v0.8.4.0.md`](./changelog/v0.8.4.0.md) |
-| v0.8.3.0 | [`changelog/v0.8.3.0.md`](./changelog/v0.8.3.0.md) |
-| v0.8.2.0 | [`changelog/v0.8.2.0.md`](./changelog/v0.8.2.0.md) |
-| v0.8.1.0 | [`changelog/v0.8.1.0.md`](./changelog/v0.8.1.0.md) |
-| v0.8.0.0 | [`changelog/v0.8.0.0.md`](./changelog/v0.8.0.0.md) |
-| v0.7.0.0 | [`changelog/v0.7.0.0.md`](./changelog/v0.7.0.0.md) |
-| v0.6.0.0 | [`changelog/v0.6.0.0.md`](./changelog/v0.6.0.0.md) |
-| v0.5.0.0 | [`changelog/v0.5.0.0.md`](./changelog/v0.5.0.0.md) |
-| v0.4.0.0 | [`changelog/v0.4.0.0.md`](./changelog/v0.4.0.0.md) |
-| v0.3.0.0 | [`changelog/v0.3.0.0.md`](./changelog/v0.3.0.0.md) |
-| v0.2.0.0 | [`changelog/v0.2.0.0.md`](./changelog/v0.2.0.0.md) |
-| v0.1.0.0 | [`changelog/v0.1.0.0.md`](./changelog/v0.1.0.0.md) |
+| `packetKind: "transport"` | The mode bridges an external CLI or MCP surface |
+| `mutatesWorkspace: false` | A judgment reads state and changes nothing |
+| `Write`, `Edit`, `Task` forbidden | A transport cannot edit a file or dispatch another agent |
+| `routingClass: "metadata"` | The advisor resolves the hub and the hub selects the transport |
+
+`mode-registry.json` declares the tool surface for `cli-jev`. Its `transport-axis` extension lists the registered transports. The parent-skill check enforces the whole contract.
 
 ---
 
-## 5. VERIFICATION
+## 4. OPTIONAL FEATURES
+
+Two features ask Jev on their own when a credential is stored. `shared/scripts/jev-features.mjs` is the one gate both ask. It resolves the master switch and each feature's own switch from the environment first and then from the shared hook-flags file at `.skilled/hooks/hook-flags.env`. Only after a switch allows the feature does it run one bounded `jev auth status` call for the provider.
+
+| Switch | What it controls |
+|---|---|
+| `JEV_FEATURES=0` | Both features |
+| `JEV_FEATURE_CITE_DRIFT=0` | The citation drift advisory |
+| `JEV_FEATURE_INJECTION_SCREEN=0` | The injection screen |
+
+A closed gate returns its reason and spawns nothing, so an off switch never touches the CLI. The gate never prints and never reads a key. It discards the command's output.
+
+---
+
+## 5. INTEGRATION & NAVIGATION
+
+### When To Use This Skill
+
+Reach for it when you need a value to drive a decision rather than prose. Gate a change on an urgency probability before a reviewer sees it, pick the queue that owns an incoming request, rank incident severity against fixed levels or ask several typed questions about one state in a single batch.
+
+Never use it for the action itself. An edit or a review belongs to a workflow mode, with the judgment passed in as an input. Never start `jev-mcp` from a shell either, because its stdio carries MCP frames and it belongs in an MCP host configuration.
+
+### Related Skills
+
+| Skill | Relationship |
+|---|---|
+| `cli-jev` | The hub's only mode today. It owns the judgment primitives and the dispatch rules |
+| `cli-external-orchestration` | The sibling hub for external CLI dispatch. That hub routes work to workflow modes. This hub returns a judgment |
+
+---
+
+## 6. TROUBLESHOOTING
+
+| What you see | Why | Fix |
+|---|---|---|
+| `defer` from the compiled route | The request names only the hub or matches no judgment | Name the judgment and its shape, such as `jev choice` or `jev score` |
+| Mode `cli-jev` reported as unavailable | `command -v jev` fails, so the CLI is not on `PATH` | `uv tool install jev-cli` |
+| Exit code 3 with `official API key is not stored` | The provider has no stored credential | `jev auth set --provider official` |
+| A `choice` call refused before it runs | Fewer than two options were passed | Pass at least two `-o` options |
+| Exit code 4 | The service returned an error or the connection failed | Retry, then check the endpoint for the provider |
+
+---
+
+## 7. VERIFICATION
+
+Run each command from the repository root.
 
 | Check | Command | Expected |
 |---|---|---|
-| Hub contract | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier` | exit 0 |
-| Compiled route | `node .skilled/bin/compiled-route.cjs --hub cli-classifier --prompt "use jev choice to pick a queue"` | a single `cli-jev` target |
-| README structure | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/README.md --type readme` | zero issues |
-| Jev transport tests | `node --test .skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs` | exit 0 |
+| Hub contract | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier` | Every hard invariant reports `PASS`, a rule that does not apply prints `INFO` and the command exits 0 |
+| Compiled route | `node .skilled/bin/compiled-route.cjs --hub cli-classifier --prompt "use jev choice to pick a queue"` | One JSON line with `"action":"route"` and one `cli-jev` target |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-classifier/README.md --type readme` | `VALID` with zero issues |
+| Transport tests | `node --test .skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs` | The runner reports 0 failures and exits 0 |
+
+---
+
+## 8. RELATED DOCUMENTS
+
+| Document | Purpose |
+|---|---|
+| [`SKILL.md`](./SKILL.md) | The hub's routing contract and the rules a transport obeys |
+| [`ROUTER.md`](./ROUTER.md) | The stage-two intent map and resource map |
+| [`mode-registry.json`](./mode-registry.json) | The packet registry: the mode and its tool surface |
+| [`hub-router.json`](./hub-router.json) | The stage-one policy and vocabulary classes |
+| [`leaf-manifest.json`](./leaf-manifest.json) | The generated inventory of leaves each mode loads |
+| [`cli-jev/README.md`](./cli-jev/README.md) | The transport's judgment primitives and dispatch rules |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator scenarios for hub routing |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Hub features and the measurement records behind them |
+| [`changelog/`](./changelog/) | One entry per release |

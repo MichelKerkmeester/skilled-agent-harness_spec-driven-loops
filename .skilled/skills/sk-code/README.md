@@ -5,12 +5,12 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.49.0
+version: 2.2.50.0
 ---
 
 # sk-code
 
-> Code work is more than one activity. sk-code is the single entry point that routes each request to the quality or review mode it needs, with the surface evidence to back it up, under one advisor identity.
+> You describe the code work and it routes to the mode that owns it, with the standards for your stack attached.
 
 ---
 
@@ -18,155 +18,143 @@ version: 2.2.49.0
 
 ### At a Glance
 
-| Aspect | What you get |
+| Aspect | What it gives you |
 |---|---|
-| **Use it for** | Code-family work: implementation, quality gating, debugging, verification and findings-first review |
-| **Invoke with** | `Skill(sk-code)` plus an optional mode hint such as `sk-code-quality:` or `sk-code-review:` |
-| **Works on** | The shared surface-detection router for the three surfaces the hub `SKILL.md` lists: the native SKILLED surface, the `sk-code-ci` CI standards surface and the stack-agnostic `sk-code-frontend` surface |
-| **Produces** | A routed workflow mode or bundled surface evidence packet with the matching code-work contract and tool surface. The quality and review modes work in any repository and read that repository's own rule overrides |
-
-### Purpose
-
-Code work is not one activity. Writing code needs author-side quality gates and comment hygiene. Reviewing it needs a findings-first baseline with security and correctness checks. CI workflow work needs trigger, permission and job-shape rules. System work needs hook and alignment verification. Each kind of code work carries its own contract, yet they all share the same surface identity rules.
-
-Without one routing point, every contract would duplicate surface detection and a request that touches several kinds of code work would have no ordered way to resolve. sk-code exists so one advisor identity covers the whole code family: the hub centralizes surface detection once and routes each request to the focused packet that owns the work.
-
-### When to Use
-
-Reach for sk-code when the task is code work and the next step is implementation, author-side quality, debugging, verification or review. Shared stack detection tries every declared specific surface first, then the SKILLED fallback, then UNKNOWN. A skill outside the hub that names family sk-code can declare its own `surface_detection` block in `graph-metadata.json` and outrank SKILLED. The CI surface is bundled from request vocabulary, not from detection (see `shared/references/stack-detection.md`). Use a mode hint when you already know the contract you need and let the hub classify when the request spans intents.
+| **Use it for** | Code work: writing, gating, debugging and review |
+| **Invoke with** | `sk-code`, with an optional mode hint such as `quality:` |
+| **Works on** | Any repository, with the surface chosen from the files you change |
+| **Produces** | One workflow mode plus the surface evidence beside it |
 
 ### What It Does
 
-`Skill(sk-code)` loads the hub. The hub routes the request through `mode-registry.json` to one of two workflow modes. Root `ROUTER.md` then selects the packet leaves and declared shared controls bundled alongside it. Each mode and surface holds its own code-work contract while the hub itself stays routing-only. The packets carry no `graph-metadata.json`, so the advisor discovers exactly one code skill.
+`sk-code` is the single entry point for code work. It reads the request and picks the workflow mode that owns the job. It then attaches the surface evidence for the files you touched. The hub only routes. The packet it selects does the work and reports back.
 
-The boundary is deliberate: sk-code routes code work. Documentation quality, git workflow, spec discipline and browser evidence belong to sibling skills that sk-code hands off to.
+The canonical entry point is `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<task>"`, which returns the targets to load. The skill advisor reaches the same hub from a plain code request, so you can also ask.
 
-### The Code Work Contract Grid
+### The Two Axes
 
-**Workflow modes (act):**
+The hub holds two kinds of packet. A workflow mode acts on your change. A surface packet is read-only evidence that the hub bundles beside a mode. The table lists all five.
 
-| Mode | Owns | Pointer |
-|---|---|---|
-| `sk-code-quality` | Author-side quality gates, comment hygiene and surface checklists, with a hard floor and rules a repository can change | [`README.md`](./sk-code-quality/README.md) |
-| `sk-code-review` | Findings-first review: a fixed security and correctness floor, a default lens a repository can change, review output cache | [`README.md`](./sk-code-review/README.md) |
+| Packet | What it owns |
+|---|---|
+| `sk-code-quality` | The author-side gate after a change: P0/P1/P2 checks and comment hygiene |
+| `sk-code-review` | Findings-first review with a fixed security and correctness floor and a default lens |
+| `sk-code-skilled` | Six language standard sets, shared patterns, hooks and the authoring checklists |
+| `sk-code-ci` | GitHub Actions evidence: trigger rules, job shape, the protected set and the scaffold templates |
+| `sk-code-frontend` | Web practice, visual decisions, motion and the five-pass Figma check |
 
-**Surface evidence packets (read-only and advisor-invisible, bundled alongside a workflow mode):**
+### Where It Stops
 
-| Surface | Carries | Pointer |
-|---|---|---|
-| `sk-code-ci` | GitHub Actions workflow standards: trigger and filter rules, job shape, the protected set and the scaffold templates | [`README.md`](./sk-code-ci/README.md) |
-| `sk-code-frontend` | Stack-agnostic web practice, topic references, visual values, visual hierarchy and review, motion and interaction, the `tokens.css` starter tokens and Figma-to-code checks | [`README.md`](./sk-code-frontend/README.md) |
-| `sk-code-skilled` | Native surface. System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists | [`README.md`](./sk-code-skilled/README.md) |
+`sk-doc` owns documentation quality. `sk-git` owns the git workflow. `system-spec-kit` owns spec folders and their validation. A measured style reference comes from `sk-design-md-generator` before the frontend surface implements it. Browser evidence comes from `mcp-chrome-devtools`. This hub reviews in one pass. `deep-review` owns the iterative loop.
 
 ---
 
-## 2. HOW IT WORKS
+## 2. QUICK START
 
-### How A Request Resolves
+**Step 1: Ask for the work.** Describe the change or the review in plain words. The advisor routes every code request to the one hub identity.
 
-A code request resolves through the hub to a primary workflow mode and one or more bundled surface packets. A request that spans intents stays at the hub for ordered routing or disambiguation. These examples show the shape of a resolution:
+**Step 2: Resolve the route.**
 
-| Request | Resolves to |
-|---|---|
-| "review my typescript module for jank" | `[sk-code-review, sk-code-skilled]` |
-| "review the github actions workflow yaml" | `[sk-code-review, sk-code-ci]` |
-| "run my implementation through the author-side quality gates" | `[sk-code-quality]` |
+```bash
+node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "review my typescript module for jank"
+```
 
-### The Implement To Verify Doctrine
+It prints one JSON line with `"action":"route"`. The `targets` array names `sk-code-review` first and `sk-code-skilled` beside it as evidence.
 
-The implement → debug → verify phases are not standalone modes. Their surface-agnostic doctrine lives once in `shared/references/`, symlinked into each surface so the active surface carries the full workflow without duplicating it:
+**Step 3: Open what it names.** Load the first target's packet. Its README carries the commands for that mode. An answer of `clarify` or `defer` asks you a question. `reject` refuses the request instead of guessing.
 
-- `workflow-implement.md` for the authoring pass
-- `workflow-debug.md` for the repair pass
-- `workflow-verify.md` for the proof pass
+---
+
+## 3. HOW IT WORKS
+
+Routing runs in two stages. Stage one scores the request against the mode vocabulary in `hub-router.json` and picks a workflow mode. Stage two maps the intent to the exact leaf files in `ROUTER.md`. The hub then bundles the surfaces that match, with the workflow mode leading.
+
+```mermaid
+flowchart TD
+  Request["code request"] --> Detect["surface detection"]
+  Detect --> Stage1["stage one: hub-router.json picks the workflow mode"]
+  Stage1 --> Stage2["stage two: ROUTER.md maps the intent to leaves"]
+  Stage2 --> Mode["workflow mode acts on the change"]
+  Stage2 --> Surface["surface packet supplies read-only evidence"]
+```
+
+Each answer is one of four actions. `route` loads its targets. `clarify` and `defer` ask a question. `reject` refuses the request. A request to write or debug code that names no mode becomes a surface bundle. An unclear code intent asks for disambiguation.
+
+### Surface Detection
+
+Detection runs before the mode choice. It tries every declared specific surface first, then the hub's SKILLED fallback. UNKNOWN is the last resort. The marker lists on each surface decide a match. A `--surface-hint` carries a detected surface into the compiled route. The rules are in [the stack detection reference](./shared/references/stack-detection.md).
+
+### Shared Workflow Doctrine
+
+The shared doctrine covers each phase of a change. It is not a mode. The files live once in `shared/references/`. Each surface symlinks them in so no packet keeps a copy.
+
+- `workflow-implement.md` for the authoring pass.
+- `workflow-debug.md` for the repair pass.
+- `workflow-verify.md` for the proof pass.
+
+A request to change or repair code resolves the surface first, then loads that surface's copy of the doctrine.
 
 ### Rules A Repository Can Change
 
-The quality and review modes ship defaults, and a repository does not have to accept them. Each rule has an id. A small hard floor is fixed everywhere: secrets, conflict markers, parse failures, input validation, silent failures, initialization safety, resource cleanup, accessibility for UI code, and the review severity ids, reach rule and security and correctness minimums. Every other rule can be dropped or replaced.
+The quality and review modes ship defaults. A repository can drop or replace any rule outside a small hard floor. The floor holds the checks whose breach causes an incident in any codebase, plus the review severity scale.
 
-A repository does that in a `## Rule overrides` section of a checklist its quality config names, and a surface does it in the checklists its declaration names.
-
-- Both modes read the same section through one linter, so a rule dropped for quality does not return as a review finding.
-- A quality run applies the section of every checklist it loads: a refused section or an unknown rule id is `CONFIG_INVALID`, exit 3, each accepted row is recorded in the run's decisions, and two checklists at one level that disagree make the rule unverified.
-- `commentHygiene.disableRules` in the quality config switches off named comment-hygiene rules for the runner, the pre-commit hook and the CI job together.
-
-The contract is [`shared/references/universal/rule-overrides.md`](./shared/references/universal/rule-overrides.md), and this framework's own house style lives in the SKILLED surface so a foreign repository does not inherit it.
+An override lives in a `## Rule overrides` section of a checklist. A row names one rule id and the action to apply. `none` drops the rule. `replace: <text>` puts new text in its place. Both modes read the section through one linter, so a rule dropped for quality does not return as a review finding. The modes differ on a bad row. Quality mode reports a refused section or an unknown rule id as `CONFIG_INVALID` with exit 3. A conflict at one level leaves the rule unverified. Review mode lists those rows under `Refused`, `Ignored` and `Conflicts` and adds no exit code. The contract is [the rule overrides reference](./shared/references/universal/rule-overrides.md).
 
 ### One Advisor Identity
 
-The mode packets and `shared/` carry no `graph-metadata.json` of their own. The hub root keeps the single graph identity for the whole family. `mode-registry.json` is the routing source of truth while `hub-router.json` preserves the vocabulary that helps code prompts resolve to the right mode.
-
----
-
-## 3. INTEGRATION & NAVIGATION
-
-### Related Skills
-
-| Skill | Relationship |
-|---|---|
-| `sk-design-md-generator` | Extracts a measured Style Reference (design tokens from a live source) that sk-code may implement |
-| `sk-doc` | Owns markdown and documentation quality |
-| `sk-git` | Owns branches, commits, PRs and the finish workflow |
-| `system-spec-kit` | Owns spec folders, memory, continuity and packet validation |
-| `mcp-chrome-devtools` | Provides browser evidence for frontend runtime behavior |
+The hub root holds the only `graph-metadata.json`. The mode packets and `shared/` carry none, so the advisor discovers one code skill and the hub routes from there. `mode-registry.json` holds each packet's contract. `hub-router.json` holds the vocabulary that scores a prompt. `leaf-manifest.json` holds the typed pairs the router guards check.
 
 ---
 
 ## 4. ADAPTING TO YOUR STACK
 
-sk-code ships three surfaces:
+sk-code ships three surfaces. Each one is a folder beside the hub. A surface you add for your own stack ranks ahead of Skilled, which is the fallback.
 
-- **CI** (`.skilled/skills/sk-code/sk-code-ci/`): the GitHub Actions workflow rules and their evidence. Its references say which values (switch names, protected workflows, branches) come from the repository's own CI profile at `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`.
-- **Frontend** (`.skilled/skills/sk-code/sk-code-frontend/`): stack-agnostic web practice, topic references, visual values, visual hierarchy and review, motion and interaction, the `tokens.css` starter tokens and Figma-to-code checks.
-- **Skilled** (`.skilled/skills/sk-code/sk-code-skilled/`): the native standards for this framework's own code, so keep it.
-
-A surface you add for your own stack ranks ahead of the Skilled surface. Run every command below from the repository root.
+- **CI** ([the CI packet](./sk-code-ci/README.md)): GitHub Actions rules with the protected set and the scaffold templates. The hub bundles it from request vocabulary. Its repository values come from the CI profile at `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`.
+- **Frontend** ([the frontend packet](./sk-code-frontend/README.md)): web practice, visual decisions, motion and the five-pass Figma check. Its own `FRONTEND` markers select it.
+- **Skilled** ([the SKILLED packet](./sk-code-skilled/README.md)): the native standards for this repository's code. It is the fallback and ranks last.
 
 ### Before You Start
 
-1. In a fresh clone, run `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .` first. It installs the dependencies and builds the spec-kit outputs the checks below load. Without it, `parent-skill-check.cjs` and `ci-skill-root-metadata.cjs` fail on a missing `@spec-kit/shared` build.
-2. In a clone, run `git config --local skilled.trustRepoHooks true` before you install the hooks. The hooks run this repository's scripts only in a trusted clone, so without it the commit-time re-mint never fires.
-3. Install the git hooks with `bash .skilled/scripts/install-git-hooks.sh`. A commit that stages the hub's routing files then re-mints its activation manifest and copies the manifest to its authored path. Without the hooks, do both by hand after each routing change: run `node .skilled/bin/compiled-route-manifest.cjs refresh --hub sk-code --skill-root .skilled/skills/sk-code`, then copy `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json` over `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json`.
-4. If you prune `specs/`, keep `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/`, the authored source of compiled routing, and keep the `.opencode/skills` link. Without either one the guard and sync checks fail.
+1. In a fresh clone, run `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .` first. It installs the dependencies and builds the artifacts the checks load. Without that build, the setup check reports `SHARED_NOT_BUILT` and names this command.
+2. In a clone, run `git config --local skilled.trustRepoHooks true` before you install the hooks. The hook scripts run this repository's gates only in a trusted clone.
+3. Install the hooks with `bash .skilled/scripts/install-git-hooks.sh`. A commit that stages the hub's routing files re-mints the compiled routing manifest and mirrors it to the authored copy. Without the hooks, run `node .skilled/bin/compiled-route-manifest.cjs refresh --hub sk-code --skill-root .skilled/skills/sk-code` after each routing change and mirror the result by hand. `compiled-route-sync.cjs --check` names any copy that is out of step.
 
 ### Remove A Surface
 
-Repeat these steps for each surface you drop. `<mode>` is the folder name of the surface packet.
+Repeat these steps for each surface you drop. `<surface>` is the folder name of the packet.
 
-1. Delete the folder `.skilled/skills/sk-code/<mode>/`.
-2. In `.skilled/skills/sk-code/mode-registry.json`, delete the mode's `modes` entry and its name in `extensions.surface-axis.surfaces`. In `.skilled/skills/sk-code/hub-router.json`, delete it from `routerPolicy.tieBreak`, delete its `routerSignals` entry and delete the two `vocabularyClasses` that entry names.
-3. Regenerate the leaf manifest with `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/sk-code`.
-4. Edit section 8 of `.skilled/skills/sk-code/ROUTER.md` by hand, because no command writes it. Delete every `RESOURCE_MAP` path under `<mode>/`, then delete each key left with no paths from both `RESOURCE_MAP` and `INTENT_SIGNALS`. Trim the prose map rows and sections above section 8 that point at the removed packet.
-5. Update the surface table and the surface list sentence in `.skilled/skills/sk-code/SKILL.md`, the mode's `surfaceDetection` block in `.skilled/skills/sk-code/mode-registry.json` (`stack-detection.md` section 2 reads it) and the surface lines in the root `README.md`.
-6. Delete or adjust the files written for the surface. These are its scenarios under `.skilled/skills/sk-code/manual-testing-playbook/`, with their rows in `manual-testing-playbook.md`, the surface checklist pointers in `.skilled/skills/sk-code/sk-code-quality/`, the entries in `.skilled/skills/sk-code/feature-catalog/feature-catalog.md` and `.skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, which name each live surface, the cases in `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` and the canary cases that name the mode in `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`. After a canary edit, copy that fixture over its authored twin at `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`.
-7. Run `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs` and fix every dead path and stale surface count it lists, including those in this README. Then run `node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/sk-code --write`, which prunes the dead `key_files`, `source_docs` and entities from the hub's `graph-metadata.json`. The only hand edit left in that file is its `causal_summary`, which names each surface.
-8. Refresh the README manifest with `python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py --write`.
-9. Commit with the hooks installed, or refresh and copy the manifest by hand as above.
+1. Delete the folder `.skilled/skills/sk-code/<surface>/`.
+2. Remove the packet from `mode-registry.json`: its `modes` entry and its name under `extensions.surface-axis.surfaces`.
+3. Remove its `routerPolicy.tieBreak` entry and its `vocabularyMirrors` entry from `hub-router.json`. Remove its `routerSignals` entry and the `vocabularyClasses` that entry names.
+4. Regenerate the leaf manifest with `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/sk-code`.
+5. Edit section 8 of `ROUTER.md` by hand, because it is the authored source for the intent vocabulary. Delete every `RESOURCE_MAP` path under `<surface>/`, then delete each key left with no paths from both `RESOURCE_MAP` and `INTENT_SIGNALS`.
+6. Update the docs that name the surface: the surface table in `SKILL.md`, the surface lines in the root `README.md`, the packet rows in `feature-catalog/feature-catalog.md` and the scenarios in `manual-testing-playbook/`.
+7. Run `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs` and fix every dead path and stale surface count it lists. Then run `node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/sk-code --write`, which prunes every derived path that no longer resolves. Update `causal_summary` by hand if it names the packet.
 
 ### Add Your Own Surface
 
-1. Run `/create:skill-parent update --surfaces <name>` in your AI runtime. Its steps live in `.skilled/commands/create/assets/create-skill-parent-auto.yaml`. It scaffolds the packet, registers it and places it ahead of `sk-code-skilled` in `tieBreak`, so your surface wins a keyword tie. If you edit `tieBreak` by hand instead, keep your surface ahead of `sk-code-skilled`, because the doctor's check 5l warns about a surface placed after it, and the registry compiler rejects a hub whose single fallback is not ranked last in `routerPolicy.tieBreak` (`SURFACE_FALLBACK_INVALID`).
-2. Link the three shared workflow docs into the new packet the way `sk-code-skilled/references/` does: in `.skilled/skills/sk-code/<name>/references/`, symlink `workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md` to the files of the same name in `.skilled/skills/sk-code/shared/references/` (link target `../../shared/references/<file>`).
-3. Add the packet's paths to the `ROUTER.md` maps and section 8, and its `surfaceDetection` block to its `mode-registry.json` entry (`stack-detection.md` section 2 reads it). Update any surface-count wording that `verify-doc-claims.cjs` checks in the hub's `README.md` and `SKILL.md`. `phase-detection.md` names the surfaces without a count. A packet copied from an existing surface has the same leaf set as that surface, so `generate-leaf-manifest.cjs --write` stops with `MODE_LEAF_SET_COLLISION`. Give each of the two modes its own `leafScopes` in a new `leaf-scopes.json` at the hub root, in the array format `.skilled/skills/sk-doc/leaf-scopes.json` uses, or change the copy until its files differ.
-4. Add a canary case that routes to the new surface in the canary fixture above, and copy the fixture over its authored twin. The completion report of the update command names both follow-ups.
-5. Commit with the hooks installed, or refresh and copy the manifest by hand.
+1. Run `/create:skill-parent <skill-name> update --surfaces <name>` in your AI runtime. It scaffolds the packet and registers it. The new surface lands ahead of `sk-code-skilled` in `tieBreak`. If you edit `tieBreak` by hand, keep your surface ahead of `sk-code-skilled`, because the registry compiler rejects a hub whose single fallback is not last, with `SURFACE_FALLBACK_INVALID`.
+2. Symlink the shared doctrine into the new packet's `references/` folder the way `sk-code-skilled/references/` does, with link targets of `../../shared/references/<file>`.
+3. Add the packet's paths to the `ROUTER.md` maps and its `surfaceDetection` block to its `mode-registry.json` entry. A packet copied from an existing surface has the same leaf set, so `generate-leaf-manifest.cjs --write` stops with `MODE_LEAF_SET_COLLISION`. Give each mode its own `leafScopes` in a `leaf-scopes.json` at the hub root or change the copy until the files differ.
+4. Add a routing scenario for the new surface to `manual-testing-playbook/manual-testing-playbook.md`, then run the checks under Verify The Result.
 
-Each phrase a mode matches adds the mode's `weight` to its score. The router selects workflow modes and surfaces in two separate windows. A workflow mode stays in the route when it scores within `routerPolicy.ambiguityDelta` of the top workflow mode. A surface stays when it scores within that delta of the top surface. So a surface that matches several phrases no longer pushes a workflow mode out. It can still push out a second surface that matched fewer phrases. To keep both surfaces, a host may lower a surface's `weight` or raise `routerPolicy.ambiguityDelta` in `hub-router.json`. Then refresh the manifest as in step 5.
+Each phrase a mode matches adds the mode's `weight` to its score. The router selects workflow modes and surfaces in two separate windows. A workflow mode stays when it scores within `routerPolicy.ambiguityDelta` of the top mode. A surface stays when it scores within that delta of the top surface. A surface that matches several phrases does not push a mode out. It can still push out a second surface that matched fewer phrases. To keep both, lower a surface's `weight` or raise `routerPolicy.ambiguityDelta` in `hub-router.json`.
 
 ### Add a Private Surface Outside the Hub
 
-A surface you keep out of the repository lives in its own skill beside the hub instead of inside it.
+A surface you keep out of the repository lives in its own skill beside the hub.
 
 1. Create the skill folder as `.skilled/skills/local-<name>/`. Git ignores every `local-*` skill, so the folder and its standards stay in your checkout. It can be a symlink to a folder in another repository.
-2. In the skill's own `graph-metadata.json`, set `"family": "sk-code"` and add a top-level `surface_detection` block with a `label`, `"role": "specific"` and at least one of `pathMarkers`, `fileMarkers` and `contentMarkers`. The example and the rules are in `shared/references/stack-detection.md`, under "Declaring an External Surface".
+2. In the skill's own `graph-metadata.json`, set `"family": "sk-code"` and add a top-level `surface_detection` block marked `"role": "specific"`. The block needs a `label` and at least one marker list. [The stack detection reference](./shared/references/stack-detection.md) holds the example and the rules.
 3. Check the block by hand against those rules. `ci-skill-root-metadata.cjs` skips folders whose name starts with `local-`, so no check validates it for you.
 4. If the folder is a symlink whose target sits outside `.skilled/skills/`, add a folder that contains that target to `SPECKIT_PRIVATE_SKILL_ROOTS` for every advisor process. Without it, the advisor skips the skill.
 
-Stack detection tries the hub's own specific surfaces first, then the surfaces that skills outside the hub declare, sorted by skill id, and SKILLED last as the fallback. Nothing in the hub's registry, router or tracked files names the private skill.
+Stack detection tries the hub's own specific surfaces first. It then tries the surfaces that skills outside the hub declare, sorted by skill id. SKILLED comes last as the fallback. Nothing in the hub's own files names the private skill.
 
 ### Verify The Result
 
-Each of these must exit 0. Then route a prompt that names your stack, and check that your surface comes first.
+Each of these must exit 0. Then route a prompt that names your stack. Check that your surface comes first among the surfaces. A workflow mode leads the list when one scores.
 
 ```bash
 node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code
@@ -177,52 +165,38 @@ bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<a prompt about your stack>"
 ```
 
-- `/doctor:sk-code setup` runs these legs in one read-only pass, adds the derived-metadata freshness check CI runs, a provisioning precheck and a quality leg that checks the quality runner is ready, fails the route probe when it returns the legacy stub and prints one repair command for each failing leg.
-- `/doctor:sk-code quality` shows which quality config the gate reads, checks it, names the comment-hygiene rules it switches off, and when there is none it creates the quality config the `sk-code-quality` packet holds, once after you approve.
-- Outside an AI runtime, run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs`.
-- For GitHub Actions workflows, `/doctor:ci report` lists each workflow's switch state and drift flags, and `/doctor:ci scaffold` or `/doctor:ci toggle` apply the CI surface's templates and switches after you say yes.
+`parent-skill-check.cjs` prints `all hard invariants passed`. `ci-skill-root-metadata.cjs` prints a summary line carrying `failed=0`, such as `checked=14 passed=14 failed=0 fixed=0`. `run-all-drift-guards.sh` ends with `all 4 guards PASSED`, followed by a warning count when a guard warns. The route probe prints a JSON `targets` array with your surface ahead of the other surfaces.
+
+`/doctor:sk-code setup` runs these legs in one read-only pass. It adds a derived-metadata freshness check and a provisioning precheck, then prints one repair command for each failing leg. Outside an AI runtime, run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs`. For GitHub Actions work, `/doctor:ci report` lists each workflow's switch state and drift flags.
 
 ---
 
-## 5. FAQ
-
-**Q: Why does the advisor see only one code skill when the hub contains a packet per mode and surface?**
-
-A: The mode packets and `shared/` carry no `graph-metadata.json` of their own. The hub root holds the single graph identity for the whole family, so prompts resolve to one entry point and the hub routes from there.
-
-**Q: What happens when a request spans intents, like review plus implementation?**
-
-A: The request stays at the hub. The hub orders the routing and asks for disambiguation instead of guessing a single mode.
-
----
-
-## 6. VERIFICATION
+## 5. VERIFICATION
 
 | Check | Result |
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/README.md --type readme` reports zero issues |
-| Routing scenarios | The manual testing playbook runs every routing and disambiguation scenario behind the hub |
-| Setup battery | `/doctor:sk-code setup` runs the adaptation battery read-only and names the repair command for each failing leg |
-| CI workflows | `/doctor:ci report` lists every workflow with its switch state, trigger, filters and drift flags, read against the repository's CI profile |
+| Routing scenarios | The [manual testing playbook](./manual-testing-playbook/manual-testing-playbook.md) holds the manual routing and disambiguation scenarios behind the hub |
+| Setup battery | `/doctor:sk-code setup` runs the adaptation checks read-only and names the repair command for each failing leg |
+| Drift guards | `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` ends with `all 4 guards PASSED`, plus a warning count when a guard warns |
 
 ---
 
-## 7. RELATED DOCUMENTS
+## 6. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime hub instructions and the routing authority split |
-| [`ROUTER.md`](./ROUTER.md) | Active stage-two surface router, leaf map, and explicit shared-control declaration |
-| [`mode-registry.json`](./mode-registry.json) | The mode-to-packet routing map |
-| [`leaf-manifest.json`](./leaf-manifest.json) | The generated inventory of routed leaves, regenerated when packets change |
-| [`hub-router.json`](./hub-router.json) | Hub-local routing vocabulary and mode signals, plus an optional `surfaceIntentFolds` map, keyed by surface packet, that lets a host hub fold all intents of a surface into one parent intent for the router sync check, and an optional `vocabularyMirrors` list of surface packets whose keywords that check compares across `hub-router.json`, the hub `ROUTER.md` rows and the packet's own rows. A host hub that keeps its own packet for a surface, with its own keyword set, removes that surface from the list, and the check then compares nothing for it |
-| [`shared/README.md`](./shared/README.md) | Shared surface detection and cross-mode helpers, plus the implement/debug/verify workflow doctrine |
-| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of every mode, surface and routing capability |
-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate routing and disambiguation |
-| [`shared/references/universal/rule-overrides.md`](./shared/references/universal/rule-overrides.md) | The `## Rule overrides` contract, the hard floor and the precedence both modes read |
-| [`changelog/`](./changelog/) | The hub release entries, newest first by version |
-| [`sk-code-quality/SKILL.md`](./sk-code-quality/SKILL.md) | Quality mode packet |
-| [`sk-code-review/SKILL.md`](./sk-code-review/SKILL.md) | Review mode packet |
-| [`sk-code-ci/SKILL.md`](./sk-code-ci/SKILL.md) | CI standards surface packet |
-| [`sk-code-frontend/SKILL.md`](./sk-code-frontend/SKILL.md) | Stack-agnostic frontend surface packet |
-| [`sk-code-skilled/SKILL.md`](./sk-code-skilled/SKILL.md) | Skilled surface packet |
+| [`ROUTER.md`](./ROUTER.md) | Stage-two leaf router with the intent signals and the resource maps |
+| [`mode-registry.json`](./mode-registry.json) | Each packet's contract, aliases and surface detection |
+| [`hub-router.json`](./hub-router.json) | The routing vocabulary, the tie-break order and the surface bundle policy |
+| [`leaf-manifest.json`](./leaf-manifest.json) | The typed pairs the router guards validate |
+| [`shared/README.md`](./shared/README.md) | The shared folder index and the workflow doctrine |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of every mode and routing capability |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual routing and disambiguation scenarios |
+| [`sk-code-quality/README.md`](./sk-code-quality/README.md) | The quality mode |
+| [`sk-code-review/README.md`](./sk-code-review/README.md) | The review mode |
+| [`sk-code-skilled/README.md`](./sk-code-skilled/README.md) | The SKILLED surface |
+| [`sk-code-ci/README.md`](./sk-code-ci/README.md) | The CI surface |
+| [`sk-code-frontend/README.md`](./sk-code-frontend/README.md) | The frontend surface |
+| [`changelog/`](./changelog/) | Hub release entries |

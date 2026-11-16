@@ -7,12 +7,12 @@ trigger_phrases:
   - "mcp tools"
   - "tool orchestration"
   - "context reduction"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # mcp-code-mode
 
-> Reach every external MCP tool you have registered through one TypeScript execution, with schemas discovered on demand so the context stays flat no matter how many servers you add.
+> Reach every external MCP tool you have configured from one TypeScript block while the context stays flat as you add servers.
 
 ---
 
@@ -22,142 +22,130 @@ version: 1.0.4.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Calling ClickUp, Figma, MyService, Notion, Chrome DevTools and any other external MCP tool through one TypeScript execution layer |
-| **Invoke with** | "code mode", "call_tool_chain", "mcp tools", "tool orchestration" or automatic routing on external-tool keywords |
-| **Works on** | External tools registered in `.utcp_config.json` at the project root, with environment variables in `.env` |
-| **Produces** | Typed tool results, captured console logs and structured state returned from a single execution |
-
-### Purpose
-
-Native MCP loads every tool schema into the context window before the agent does anything. With a few dozen tools across several servers, that is a large fixed tax on every turn and it grows with each server you add. The agent pays for tool definitions it will never call on this turn. A multi-step flow across two or three services also means several separate tool round-trips. At roughly 47 tools the traditional approach consumes about 141,000 tokens before any real work begins, hitting the practical wall somewhere around two or three MCP servers.
-
-Code Mode replaces that upfront load with progressive disclosure. The AI sees only the Code Mode meta-tools and discovers tool schemas on demand, so the context stays flat at about 1,600 tokens no matter how many servers are configured. A whole multi-tool workflow runs in one TypeScript execution with state held in local variables, saving the round trips and the re-parsing cost between steps.
-
-### When to Use
-
-Reach for Code Mode whenever you need to call an external MCP tool: ClickUp for task management, Figma for design files, MyService for CMS operations, Notion for documentation, Chrome DevTools for browser automation or any other server registered in `.utcp_config.json`. Reach for it too when you need to chain several of those tools into a single workflow.
-
-Skip Code Mode for native MCP tools a runtime registers directly, for local file operations (Read, Write, Edit, Grep, Glob, Bash) and for any first-class tool the active runtime already exposes directly. Calling native tools through Code Mode adds overhead without giving you access to them, because Code Mode only sees what is in `.utcp_config.json`.
+| **Use it for** | Calling a configured MCP manual and chaining several calls in one run |
+| **Invoke with** | "code mode", "call_tool_chain" or routing on an external service name |
+| **Works on** | Manuals in `.utcp_config.json`, with credentials in `.env` |
+| **Produces** | One envelope per run, with the returned data and the captured logs |
 
 ### What It Does
 
-Code Mode is the execution engine the `mcp-tooling` modes build on. It wraps every external MCP tool behind a single `call_tool_chain` call that runs TypeScript in a sandboxed V8 isolate. You search for tools with `search_tools`, confirm the callable signature with `tool_info`, write your tool calls inside a `call_tool_chain({ code: "..." })` block and return structured results. The four core tools are `search_tools`, `list_tools`, `tool_info` and `call_tool_chain`. Auxiliary runtime tools such as `register_manual` and `get_required_keys_for_tool` handle dynamic server registration and credential checks, keeping the context about 98% smaller than a full upfront schema load.
+Code Mode gives one TypeScript block direct access to the external MCP tools your project has configured. You start from a task description, not a tool name. Discovery turns that description into a tool name and `tool_info` adds the interface. The call then runs inside one sandboxed execution. State stays in local variables between calls, so a flow that spans several services stays one flow.
 
-Code Mode does not reach MCP servers a runtime registers natively in `opencode.json`, where the `code_mode` entry is Code Mode itself. The skill advisor is a command (`.skilled/bin/skill-advisor.cjs`), not an MCP tool. Code Mode is also not for local file operations. Its boundary is `.utcp_config.json` tools only.
+The entry point is `call_tool_chain`. `SKILL.md` allows four tools: `search_tools` and `list_tools` for discovery, `tool_info` for an interface, then `call_tool_chain` to execute. The server also registers `register_manual` and `deregister_manual` for runtime work, plus `get_required_keys_for_tool` for credential checks.
 
-### The Tool Surface
+The boundary is the manual list. Code Mode calls what `.utcp_config.json` declares, plus any manual registered at runtime through `register_manual`. A server the runtime registers natively stays outside it. So does every local tool the runtime already provides, which runs on its own.
 
-| Tool family | What Code Mode operates |
-|---|---|
-| **ClickUp** | task management calls through the registered `clickup_official` manual |
-| **Figma** | design file calls through the registered `figma` manual |
-| **MyService** | CMS operations through the registered `myservice` manual |
-| **Notion** | documentation calls through its registered manual |
-| **Chrome DevTools** | browser automation through its registered manual |
-| **Third-party servers** | any other tool registered in `.utcp_config.json`, discovered with `search_tools` |
+### Why The Context Stays Small
+
+Native MCP puts a schema for every tool into the context before the first call. The architecture reference puts that at about 141,000 tokens for 47 tools, which is why a project tends to stop at two or three servers.
+
+Code Mode opens with its execution and discovery tools at about 1,600 tokens, then returns interfaces on demand. `search_tools` carries one per match and `tool_info` returns the full one. Extra servers add no opening cost. A tool you never call costs nothing. The same reference puts the saving at 98.7%.
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Discover tools with `search_tools`.** Before calling any external tool, search by task description to get the registered name. Never guess tool names.
+**Step 1: Ask for the work in plain words.** Routing sends a request that names a configured service to this skill. You can also name the trigger: `code mode` or `call_tool_chain`.
+
+**Step 2: Let discovery find the tool.**
 
 ```typescript
-search_tools({ task_description: "ClickUp task management", limit: 10 })
-// Returns matching tool names and descriptions
+search_tools({ task_description: "find screens for banking onboarding", limit: 10 })
 ```
 
-**Step 2: Confirm the callable signature with `tool_info`.** Use the registered dotted name returned by `list_tools()` to get the TypeScript interface before writing parameterised code.
+It returns `{ tools: [...] }` with one entry per match. Each entry carries the tool `name` and its `typescript_interface`. The default `limit` is 10.
+
+**Step 3: Read the interface before you call it.**
 
 ```typescript
-tool_info({ tool_name: "clickup_official.clickup_official.create_task" })
-// Returns the full TypeScript function signature with parameter types
+tool_info({ tool_name: "mobbin.mobbin_search_screens" })
 ```
 
-**Step 3: Execute with `call_tool_chain`.** Every external tool call goes inside a `call_tool_chain({ code: "..." })` block. The naming pattern is `{manual_name}.{manual_name}_{tool_name}`.
+It returns the TypeScript interface for that one tool, with the parameters and the return type. A name that is not registered returns `{ success: false, error: "Tool '<name>' not found" }`.
+
+**Step 4: Run the call.**
 
 ```typescript
 call_tool_chain({
   code: `
-    const task = await clickup_official.clickup_official_create_task({
-      name: "New Feature",
-      listName: "Development Sprint",
-      description: "Implement user authentication"
+    const screens = await mobbin.mobbin_search_screens({
+      query: "iOS banking onboarding",
+      platform: "ios",
+      limit: 5
     })
-    console.log("Task created:", task.id)
-    return task
+    return screens
   `
 })
-// Returns { success: true, result: { id: "...", name: "New Feature", ... }, logs: ["Task created: ..."] }
 ```
 
-**Step 4: Chain multiple tools in one execution.** State persists across all calls in the same `code` block. Data from the first call is available to every subsequent call.
+It returns `{ success: true, result, logs }`. `result` holds what your code returned and `logs` holds every `console.log` line from the block. A failed call returns `{ success: false, error }`.
 
-```typescript
-call_tool_chain({
-  code: `
-    const design = await figma.figma_get_file({ fileId: "abc123" })
-    const task = await clickup_official.clickup_official_create_task({
-      name: \`Implement: \${design.name}\`,
-      listName: "Frontend Sprint"
-    })
-    return { design: design.name, taskId: task.id }
-  `,
-  timeout: 60000
-})
-// Returns { success: true, result: { design: "Homepage Redesign", taskId: "..." }, logs: [...] }
+**Step 5: Check the install when a call fails for no visible reason.**
+
+```bash
+bash .skilled/skills/mcp-code-mode/scripts/doctor.sh
 ```
+
+A healthy install prints three `PASS` lines and `Doctor done.`, then exits 0.
 
 ---
 
 ## 3. HOW IT WORKS
 
-### The Four Core Tools
+One request follows the same route. The router loads the reference files for the intent. Discovery resolves the tool name and `tool_info` resolves its interface. `call_tool_chain` then runs the code in a V8 isolate and returns one envelope.
 
-- `search_tools({ task_description, limit? })` finds registered tools by a natural-language task description. It returns tool names and short descriptions only, keeping the token cost negligible.
-- `list_tools()` returns every registered Code Mode tool name. Use it when you need the full inventory or want to group tools by manual prefix.
-- `tool_info({ tool_name })` returns the exact callable TypeScript signature for one tool. Always call it before writing parameterised execution code.
-- `call_tool_chain({ code, timeout?, max_output_size? })` executes a TypeScript block that calls the tools and returns structured state. It returns `{ success, result, logs }` where `logs` captures every `console.log` output from inside the block, or `{ success: false, error }` when the call itself fails.
+```mermaid
+flowchart TD
+  Request["A request that names an external service"] --> Route["Router loads the matching reference"]
+  Route --> Discover["search_tools or list_tools returns names"]
+  Discover --> Inspect["tool_info returns the interface"]
+  Inspect --> Execute["call_tool_chain runs the TypeScript"]
+  Execute --> Result["Result, logs and a success flag"]
+```
 
-Three auxiliary tools support dynamic server management.
+### The Naming Rule
 
-- `register_manual` adds an MCP server at runtime without a restart.
-- `deregister_manual` removes one.
-- `get_required_keys_for_tool` reports the prefixed environment variable keys a tool needs before you call it.
+Every external call to an `mcp` manual follows `{manual_name}.{manual_name}_{tool_name}`. The first part is the `name` field of the manual in `.utcp_config.json`, used as the TypeScript namespace. The second part repeats that name, then an underscore, then the tool name from the server.
 
-### Progressive Disclosure
+Discovery and calling use different forms. `list_tools()` returns the dotted shape, such as `mobbin.mobbin.search_screens`. The call drops the second dot and joins the parts with an underscore: `mobbin.mobbin_search_screens()`.
 
-The reason context stays flat is that tool schemas are never loaded upfront. The agent calls `search_tools` to discover what exists, then `tool_info` to inspect a specific tool interface, then `call_tool_chain` to run the TypeScript. Each step loads only the schema information needed for that step. Tools you never use cost zero tokens. Adding more servers to `.utcp_config.json` does not increase the initial context load at all. The context stays at about 1,600 tokens whether you have one MCP server or ten.
+Two more rules sit on top of this one. Tool names are snake_case, so a camelCase name is not found. The prefix rule covers `mcp` manuals only. A manual declared with `call_template_type: "cli"` keeps its own tool names and uses `{manual}.{tool}`.
 
-### The Naming Rule and Its Number-One Error
+### State, Errors and Limits
 
-Every tool call follows `{manual_name}.{manual_name}_{tool_name}`. The manual name comes from the `name` field in `.utcp_config.json`. The tool name comes from the MCP server and uses snake_case, joined to the manual name with an underscore.
+State lives for one execution. A variable set by the first call is visible to every later call in the same block, which is what lets a design fetch feed a task create in one chain.
 
-The most common error is the naming translation mismatch. `list_tools()` returns names in dotted `a.b.c` form, for example `clickup_official.clickup_official.create_task`. `tool_info` expects that registered dotted name. A call uses the dot-then-underscore form `clickup_official.clickup_official_create_task()`. When in doubt, run `tool_info` on the registered dotted name before writing the call.
+An unhandled exception ends the whole execution. Wrap the calls that can fail in `try/catch` and return a structured result with a success flag, so a partial run is visible to the caller. Use `Promise.all` when every call must succeed and `Promise.allSettled` when partial success is acceptable.
 
-### State Persistence and Error Handling
+The isolate cannot read the host file system or open its own network connection. A registered tool is the only way out.
 
-State persists across all tool calls inside a single `call_tool_chain` execution. A variable set by the first call is available to every subsequent call in the same block. You can fetch a Figma design, extract the component count, create a ClickUp task with that data and update a MyService CMS item, all without leaving the execution or manually passing state between tool calls.
+The defaults come from the server. `call_tool_chain` waits 30,000 ms and caps output at 200,000 characters. Raise `timeout` to 60000 for three to five tools, then to 120000 for a longer flow.
 
-An unhandled exception stops the entire execution. Wrap multi-step flows in `try/catch` and return structured results with a `success` boolean. For parallel work where partial success is acceptable, use `Promise.allSettled` instead of `Promise.all`. The execution is sandboxed in a V8 isolate with configurable timeouts (30 seconds default, extendable to 120 seconds or more for complex workflows) and output size limits (200,000 characters default).
+### The Credential Prefix
 
-### The .env Prefix Rule
+Code Mode reads credentials through the manual name, with every underscore in that name doubled. A manual named `clickup_official` that declares `${CLICKUP_API_KEY}` needs `clickup__official_CLICKUP_API_KEY` in `.env`. The plain `CLICKUP_API_KEY` is not visible to the wrapped server. The call fails on a missing variable.
 
-Code Mode prefixes every environment variable with the manual name from `.utcp_config.json`, doubling each underscore in that name first. If the manual name is `clickup_official` and the config references `${CLICKUP_API_KEY}`, your `.env` file must declare `clickup__official_CLICKUP_API_KEY`. Using the unprefixed form `CLICKUP_API_KEY` produces a runtime error. Run `get_required_keys_for_tool` before a workflow to confirm the exact prefixed variable names a tool expects.
+Run `get_required_keys_for_tool({ tool_name })` to print the exact names a tool expects. It returns `{ success, tool_name, required_variables }`.
 
 ---
 
 ## 4. INTEGRATION & NAVIGATION
 
+### When To Use It
+
+Reach for Code Mode when a request names a service that lives in `.utcp_config.json`: ClickUp, Notion, Figma, GitHub, Webflow, Chrome DevTools or a design research manual such as Mobbin. Reach for it too when one result feeds the next call and the hand-off should stay in one execution.
+
+Stay with the runtime's own tools for everything else. Read, Write, Edit, Grep, Glob and Bash own local files. A server registered natively in the runtime config is called by its own name. Code Mode cannot see either, so routing them here costs a round trip and reaches nothing.
+
 ### Related Skills
 
-The three MCP tool skills below are among the eight modes the `mcp-tooling` parent hub dispatches via `mcp-tooling/mode-registry.json`. Each one consumes Code Mode as an MCP transport.
+The [mcp-tooling](../mcp-tooling/SKILL.md) hub dispatches eight modes. Three of them run on Code Mode as their backend.
 
-| Skill | Relationship |
+| Mode | What it runs through Code Mode |
 |---|---|
-| `mcp-tooling/mcp-chrome-devtools` | Consumes Code Mode as its MCP transport. Routes Chrome DevTools calls through `call_tool_chain()` and registers chrome_devtools entries in `.utcp_config.json`. |
-| `mcp-tooling/mcp-click-up` | Consumes Code Mode as its MCP transport. Routes ClickUp calls through `call_tool_chain()` and registers clickup entries in `.utcp_config.json`. |
-| `mcp-tooling/mcp-figma` | Optionally consumes Code Mode as its MCP transport (Figma Desktop CLI is the primary surface). Routes the opt-in Framelink `figma` MCP context pull through `call_tool_chain()`. |
+| [mcp-notion](../mcp-tooling/mcp-notion/SKILL.md) | Notion workspace operations over the official Notion MCP |
+| [mcp-refero](../mcp-tooling/mcp-refero/SKILL.md) | Read-only UI reference search |
+| [mcp-mobbin](../mcp-tooling/mcp-mobbin/SKILL.md) | Read-only app and screen research |
 
 ---
 
@@ -165,59 +153,44 @@ The three MCP tool skills below are among the eight modes the `mcp-tooling` pare
 
 | What you see | Why | Fix |
 |---|---|---|
-| `Tool not found` or `Cannot read properties of undefined` | Missing manual prefix. Calling `myservice.sites_list()` instead of `myservice.myservice_sites_list()` | Use `search_tools()` to get the exact registered name, then `tool_info()` to confirm the callable syntax |
-| `TypeError: myservice.myservice is not a function` | Double-dot notation where an underscore belongs. `manual.manual.tool` instead of `manual.manual_tool` | Replace the second dot with an underscore: `myservice.myservice_sites_list()` |
-| `Variable 'clickup__official_CLICKUP_API_KEY' not found` | `.env` uses the unprefixed key. Code Mode expects `clickup__official_CLICKUP_API_KEY` | Prepend the manual name with each underscore doubled from `.utcp_config.json` to the key in `.env`. Run `get_required_keys_for_tool` to see the expected names |
-| `Execution timeout exceeded` | Workflow calls more tools than the default 30-second timeout allows | Set `timeout: 60000` for 3 to 5 tools or `timeout: 120000` for 6 or more |
-| Config file not found | `UTCP_CONFIG_FILE` points to a relative path or the file is missing | Use an absolute path in the `UTCP_CONFIG_FILE` value and confirm the file exists with `ls -la` |
-| Code Mode is not installed, its `dist` is stale or a runtime does not load it | The build or a runtime registration is missing | Run `/doctor:mcp install` to build Code Mode, configure `.utcp_config.json` and register it in the runtime configs, or `/doctor:mcp debug` for a PASS/WARN/FAIL check (`--fix` for guided repair) |
-| A tool is missing from `list_tools()` | The tool is a native MCP tool in `opencode.json`. Code Mode only sees `.utcp_config.json` tools | Call native MCP tools directly by their function name without using `call_tool_chain` |
+| `Tool not found: <name>` | The call left out the manual prefix, so only the bare tool name was resolved | Run `search_tools` and `tool_info`, then call `{manual}.{manual}_{tool}` |
+| `TypeError: <manual>.<manual> is not a function` | A double dot where an underscore belongs | Use one dot, then the repeated manual name and an underscore |
+| A missing-variable error that names a prefixed key | `.env` holds the plain key. Code Mode reads the prefixed name | Prefix the key with the manual name and double each underscore in that name |
+| A call stops at about 30 seconds | The default `timeout` is 30,000 ms | Set `timeout` on `call_tool_chain` for the size of the flow |
+| A manual is missing from `list_tools()` | The entry is `disabled` or the server is registered natively in the runtime config | Check `disabled` in `.utcp_config.json`, else call the native tool by its own name |
 
 ---
 
-## 6. FAQ
+## 6. VERIFICATION
 
-**Q: When do I use `call_tool_chain` versus calling a tool directly?**
+The first four checks are read-only and safe to run at any time.
 
-A: Use `call_tool_chain` for every tool registered in `.utcp_config.json`. Call native MCP tools from `opencode.json` directly. File operations (Read, Write, Edit, Grep, Glob, Bash) always go direct. The boundary is simple: if the tool exists because of an entry in `.utcp_config.json`, it goes through Code Mode.
+| Check | Command | What a pass prints |
+|---|---|---|
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/mcp-code-mode/README.md --type readme` | `✅ VALID` and `Total issues: 0` |
+| Config syntax | `python3 .skilled/skills/mcp-code-mode/scripts/validate_config.py .utcp_config.json` | `✅ VALIDATION PASSED` and a `✓` line for each structure check |
+| Server health | `bash .skilled/skills/mcp-code-mode/scripts/doctor.sh` | Three `PASS` lines and `Doctor done.`, exit 0 |
+| Routable resources | `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check .skilled/skills/mcp-code-mode` | `leaf-manifest.json OK` then a hash, exit 0 |
 
-**Q: Why does `list_tools()` not show a natively registered MCP server?**
+The config validator also takes `--check-env <path>` to check the prefixed keys in a dotenv file. The playbook covers the missing-key path, where the script exits non-zero and names the key.
 
-A: Code Mode discovery tools only see what is registered in `.utcp_config.json`. Native MCP tools are called directly by their function name and never appear in Code Mode tool listings.
-
-**Q: How do I add a new MCP server without restarting?**
-
-A: Use `register_manual` with the full UTCP call template to add a server at runtime. It is available immediately inside `call_tool_chain`. To remove it, call `deregister_manual` with the manual name. For persistent registration across sessions, add the entry to `.utcp_config.json` and restart.
-
-**Q: What happens when one tool fails in a multi-step workflow?**
-
-A: Without error handling, an unhandled exception stops the entire `call_tool_chain` execution. Wrap critical sections in `try/catch` and return structured results with a `success` boolean. For workflows where partial success is acceptable, use `Promise.allSettled` instead of `Promise.all`.
+Behavior needs a live session. The manual testing playbook holds 28 scenarios across 8 categories. Each one states its own expected signals and evidence.
 
 ---
 
-## 7. VERIFICATION
-
-The skill ships a manual testing playbook covering nine categories of scenario: the core tools, the naming contract, environment variable prefixing, multi-tool workflows, ClickUp and Chrome through Code Mode, third-party servers through Code Mode, recovery and configuration, plugins and hooks, and the doctor commands.
-
-| Check | How to run it |
-|---|---|
-| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/mcp-code-mode/README.md --type readme` reports zero issues |
-| Config health | `python3 .skilled/skills/mcp-code-mode/scripts/validate_config.py .utcp_config.json` passes with no errors |
-| Runtime health | `bash .skilled/skills/mcp-code-mode/scripts/doctor.sh` runs a read-only check of the server's installed dependencies and `dist/index.js` (`--strict` turns failures into exit codes) |
-| Behavior | Run the playbook scenarios under `manual-testing-playbook/core-tools/` through `manual-testing-playbook/recovery-and-config/` in a live session |
-
----
-
-## 8. RELATED DOCUMENTS
+## 7. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions and the full rule set |
-| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
-| [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Step-by-step install and configuration for `.utcp_config.json`, `.env` and per-client setup |
-| [`references/naming-convention.md`](./references/naming-convention.md) | The naming pattern guide and the number-one-error troubleshooting |
-| [`references/configuration.md`](./references/configuration.md) | `.utcp_config.json` and `.env` setup, server configs and environment variable prefixing |
-| [`references/workflows.md`](./references/workflows.md) | Workflow patterns: single tool, multi-tool orchestration, error handling and parallel execution |
-| [`references/architecture.md`](./references/architecture.md) | Token economics, the data flow and the V8 isolate sandbox model |
-| [`assets/config-template.md`](./assets/config-template.md) | Copy-ready `.utcp_config.json` template |
-| [`assets/env-template.md`](./assets/env-template.md) | Copy-ready `.env` template with prefixed placeholders |
+| [`SKILL.md`](./SKILL.md) | Runtime rules, routing and the naming contract |
+| [`ROUTER.md`](./ROUTER.md) | Intent map, resource map and loading levels |
+| [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Install and client wiring for the server |
+| [`references/naming-convention.md`](./references/naming-convention.md) | The naming pattern and the errors it prevents |
+| [`references/configuration.md`](./references/configuration.md) | `.utcp_config.json` and `.env` setup |
+| [`references/tool-catalog.md`](./references/tool-catalog.md) | Configured manuals and live discovery |
+| [`references/workflows.md`](./references/workflows.md) | Discovery-first patterns for chains and errors |
+| [`references/architecture.md`](./references/architecture.md) | Token economics and the V8 isolate sandbox |
+| [`assets/config-template.md`](./assets/config-template.md) | Copy-ready `.utcp_config.json` |
+| [`assets/env-template.md`](./assets/env-template.md) | Copy-ready `.env` with prefixed placeholders |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The live validation scenarios |
+| [`scripts/README.md`](./scripts/README.md) | Installer, updater, doctor and config validator |

@@ -9,12 +9,14 @@ trigger_phrases:
   - "notion mcp"
   - "figma cli"
   - "mcp tool bridge"
-version: 1.8.7.0
+version: 1.8.8.0
 ---
 
 # mcp-tooling
 
-> One advisor identity routes eight MCP tool bridges through the right workflow packet: five workflow bridges and three read-only design transports.
+> One hub picks the right MCP bridge for a request and loads only the files that bridge needs.
+
+---
 
 ## 1. OVERVIEW
 
@@ -22,83 +24,83 @@ version: 1.8.7.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Browser debugging, ClickUp, Obsidian, Aside, Notion, Figma Desktop, Refero, and Mobbin |
-| **Invoke with** | Plain-language tool-specific requests through the hub and its two-stage router |
-| **Routes to** | Eight packet directories via `mode-registry.json`, `hub-router.json`, and root `ROUTER.md` |
-| **Workflow modes** | `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion` |
-| **Transport modes** | `mcp-figma`, `mcp-refero`, `mcp-mobbin` |
-| **Produces** | External-tool evidence and state changes owned by the selected packet, with explicit safety boundaries |
+| **Use it for** | Browser debugging, task management, notes, workspace pages and design reference search across eight tool surfaces |
+| **Invoke with** | A plain-language request that names the tool, routed by the skill advisor to one hub identity |
+| **Works on** | Live browser sessions, ClickUp queues, Obsidian vaults, Aside runs, Notion workspaces and three design transports |
+| **Produces** | The selected packet's evidence or state change, under that packet's own safety contract |
 
-External tools do not share one setup story or one safety model. The hub gives them one advisor identity while keeping each provider's command surface, credential boundary, mutation policy, and recovery rules in a nested packet.
+### What It Does
 
-The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.json`. The root `ROUTER.md` then maps the selected mode to the exact packet-local references needed for the request. `mcp-code-mode` is shared infrastructure for packets that use Code Mode, not another hub member.
+`mcp-tooling` is the routing hub for every MCP tool bridge in this repository. A request names one external tool. The hub resolves a mode and the matching packet does the work with its own commands and safety gates. Start with the routing command in section 2, then read the selected packet's `SKILL.md`.
 
-[`SKILL.md`](./SKILL.md) is the hub's routing contract and the file an agent loads first. It carries the mode table, the routing summary, the compiled-route directive and the reference list, while every per-mode detail stays in the packets. The machine routing rule, the outcomes and the two-axis model live in [`ROUTER.md`](./ROUTER.md) section 5.
+`mcp-code-mode` is the shared MCP execution substrate for packets that call tools through Code Mode. It is infrastructure rather than a hub member, so a request for that substrate alone routes there directly.
 
----
+### The Bridge Packet Map
 
-## 2. MODE DIRECTORY
+Each packet owns one tool surface. The hub holds the routing decision and the packet holds the operating detail.
 
-| Mode | What the hub routes |
+| Packet | What it operates |
 |---|---|
-| [`mcp-chrome-devtools`](./mcp-chrome-devtools/README.md) | Developer-driven Chrome/CDP debugging, screenshots, network and console evidence, HAR export, and Lighthouse through `bdg` or its MCP fallback |
-| [`mcp-click-up`](./mcp-click-up/README.md) | ClickUp task management through `cupt` for daily operations and the official MCP for heavier document, goal, and bulk work |
-| [`mcp-obsidian`](./mcp-obsidian/README.md) | Obsidian vault and markdown-note management plus Iconic rulebook automation through CLI and MCP lanes |
-| [`mcp-aside-devtools`](./mcp-aside-devtools/README.md) | Goal-driven Aside browser tasks and deterministic REPL evidence, with Code Mode composition when needed |
-| [`mcp-notion`](./mcp-notion/README.md) | Notion pages, blocks, data sources, comments, users, search, and direct API gap fills |
-| [`mcp-figma`](./mcp-figma/README.md) | Figma Desktop transport through `figma-ds-cli`, with explicit-path local exports and design-reference handoff |
-| [`mcp-refero`](./mcp-refero/README.md) | Read-only real-app web UI reference search through Refero MCP |
-| [`mcp-mobbin`](./mcp-mobbin/README.md) | Read-only mobile app screen, flow, and UX pattern research through Mobbin MCP |
+| `mcp-chrome-devtools` | Chrome over CDP through `bdg`: screenshots, HAR export, console and network evidence, with performance audits through the MCP fallback |
+| `mcp-click-up` | ClickUp tasks through `cupt` or the official MCP: mark done, add notes, log time and create tasks and documents |
+| `mcp-obsidian` | Obsidian vaults and markdown notes through `notesmd-cli`, the `obsidian` CLI or MCP, plus Iconic icon rules |
+| `mcp-aside-devtools` | Aside browser runs through the Aside CLI and REPL, with goal-driven tasks and captured evidence |
+| `mcp-notion` | Notion pages, blocks, data sources, comments and search through MCP, with direct API gap fills |
+| `mcp-figma` | Figma Desktop through `figma-ds-cli`: component renders, token exports and explicit-path local exports |
+| `mcp-refero` | Read-only real-app web UI reference search through Refero MCP |
+| `mcp-mobbin` | Read-only mobile app screen, flow and UX pattern research through Mobbin MCP |
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
-For installation or debugging, use `/doctor:mcp`. Its `debug` action reports bridge state without changing configuration, and `install` changes a configuration file only after you approve that write.
-
-Make a plain-language request that names the owning surface:
+**Step 1: Name the tool you need.** The hub routes on the tool named in the request.
 
 ```text
 Use Chrome DevTools to capture a HAR for the staging dashboard.
-
-Mark the ClickUp task done and add a shipping note.
-
-Create a daily note in my Obsidian vault.
-
-Query my Notion roadmap data source for in-progress rows.
 ```
 
-The hub routes a browser/CDP request to Chrome and a generic agentic browser request to Aside. Orca CLI work is owned by the standalone `cli-orca` skill, which keeps a bare `orca` mention out of routing because unrelated OpenOrca model traffic and the GNOME screen reader share the token.
-
----
-
-## 4. ROUTING AND BOUNDARIES
-
-### Two-stage routing
-
-Stage 1 resolves the workflow mode. Stage 2 resolves packet-local resources. Use the compiled route when it is serving:
+**Step 2: Resolve the mode.**
 
 ```bash
-node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
+node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use Chrome DevTools to capture a HAR for the staging dashboard"
 ```
 
-On a route, load only the returned targets. On `clarify` or `defer`, ask for the missing tool identity. The hub's default resources are fallback-only and are not unioned into scored routes.
+It prints one JSON line. For the request above, that line reports the `route` action for `mcp-chrome-devtools` with `selectionKind` set to `single`.
 
-### Workflow modes
-
-Workflow packets may change local or external workflow state. Their packet contracts define the required authorization, rollback, and verification boundary.
-
-### Transport modes
-
-Transport packets bridge external tool surfaces and remain `mutatesWorkspace:false` in this workspace. Figma, Refero, and Mobbin use `sk-design-md-generator` when measured design-reference extraction is required.
-
-### Shared Code Mode
-
-`mcp-code-mode` owns the shared MCP execution substrate and manual registration mechanics. Packets that use it discover their live callables at runtime.
+**Step 3: Load what the route returns.** On `route`, open the returned targets. On `clarify` or `defer`, name the missing tool identity and run the command again.
 
 ---
 
-## 5. VERIFICATION
+## 3. HOW IT WORKS
+
+Routing runs in two stages. Stage one scores the request against `hub-router.json` and reads `mode-registry.json` to select a mode. Stage two reads `ROUTER.md` and loads the leaf files that mode declares, so a Chrome request opens the CDP pattern file and the session guide rather than the whole hub.
+
+```mermaid
+flowchart TD
+  Request["Tool request"] --> Stage1["hub-router.json scores the signal"]
+  Stage1 --> Registry["mode-registry.json names the packet"]
+  Registry --> Stage2["ROUTER.md selects the leaf files"]
+  Stage2 --> Packet["Selected packet runs the work"]
+```
+
+### Two Axes
+
+A mode sits on one of two axes. Workflow packets can change local or external state and apply the packet's own safety and verification gates. Transport packets bridge read or export surfaces and stay `mutatesWorkspace:false` in this workspace.
+
+Design transports return reference material, not a design verdict. When a measured Style Reference is needed, the design transports pair with `sk-design-md-generator`.
+
+### Outcomes
+
+- `single` routes one dominant tool signal to one mode.
+- `orderedBundle` routes several explicitly requested tools in tie-break order.
+- `defer` asks for the missing tool identity when intent is unclear or contradictory.
+
+A scored route carries only the selected mode's resources. The default resource set is fallback-only and never joins a scored route.
+
+---
+
+## 4. VERIFICATION
 
 Hub structure and coupled metadata:
 
@@ -106,36 +108,34 @@ Hub structure and coupled metadata:
 node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/mcp-tooling
 ```
 
-Positive route replay:
+Each passing invariant prints a `PASS` line. A check with nothing to compare prints `INFO`. The run ends with an `OK: parent-skill-check` line reporting 0 warnings. The exit status is 0.
+
+A positive route replay returns one target:
 
 ```bash
 node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use Chrome DevTools to capture a HAR for the staging dashboard"
 ```
 
-Advisor replay:
+The JSON reports `"action":"route"` and a `targets` array with `"workflowMode":"mcp-chrome-devtools"`.
+
+Skill package check:
 
 ```bash
-python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Use Chrome DevTools to capture a HAR for the staging dashboard" --threshold 0.5
-```
-
-Generated metadata and leaf package:
-
-```bash
-node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --skills-dir .skilled/skills --fix
 python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/mcp-tooling --check
 ```
 
+It prints `Result: PASS` and exits 0.
+
 ---
 
-## 6. RELATED SKILLS
+## 5. RELATED DOCUMENTS
 
-| Skill | Relationship |
+| Document | Purpose |
 |---|---|
-| `mcp-code-mode` | Shared MCP execution substrate for packets that use registered MCP or UTCP manuals |
-| `mcp-chrome-devtools` | Chrome/CDP debugging owner |
-| `mcp-aside-devtools` | Generic agentic browser owner |
-| `sk-git` | Generic Git worktree, branch, and commit owner |
-| `cli-orca` | Orca CLI owner: managed worktrees, terminals, automations, publishing, and the embedded browser |
-| `sk-design-md-generator` | Measured-reference partner for Figma, Refero, and Mobbin |
-| `sk-code` | Consumes external-tool evidence as implementation input |
-| `sk-doc` | Documentation and nested-packet authoring precedent |
+| [`SKILL.md`](./SKILL.md) | Runtime contract: mode table, routing summary and rules |
+| [`ROUTER.md`](./ROUTER.md) | Stage-two intent map and packet-qualified leaf resources |
+| [`mode-registry.json`](./mode-registry.json) | Mode identity, packet kind, backend and tool surface |
+| [`hub-router.json`](./hub-router.json) | Stage-one signals, vocabulary classes and tie-break order |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current capability inventory |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Live routing scenarios and holdouts |
+| [`benchmark/README.md`](./benchmark/README.md) | Frozen benchmark reports, kept as historical evidence |

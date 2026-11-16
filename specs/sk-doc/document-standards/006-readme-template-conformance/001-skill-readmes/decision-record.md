@@ -38,6 +38,8 @@ _memory:
 | Q002 | The README program is planned as a refactor of existing documents. | Not stated. | None | spec.md |
 | Q003 | The planning run offers a session goal for the program instead of skipping it. | Not stated. | None | plan.md |
 | Q004 | Phase 001 writes a new sk-design README from the skill README template. | Not stated. | None | spec.md REQ-001 |
+| Q005 | The implement run on phase 001 uses Autonomous mode. | Not stated. | None | tasks.md T004-T015 |
+| Q006 | Install-guide authoring stays retired, so the route was removed from every sk-doc routing surface in commit 56cb7775a8b. | Not stated. | None | implementation-summary.md Key Decisions |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -123,6 +125,45 @@ Leave it out
 Answer:
 ```text
 Write it (Recommended)
+```
+
+### Q005
+<!-- source: claude:f7735347-b0b1-4b4f-a0cd-c44e70a362ab:toolu_014pYMtgckDpEUbqizwCjbx8:0 -->
+
+Question:
+```text
+Which execution mode should the /speckit:implement run on phase 001 (the 14 skill READMEs) use?
+```
+
+Options:
+```text
+Autonomous :auto (Recommended)
+Confirm :confirm
+```
+
+Answer:
+```text
+Autonomous :auto (Recommended)
+```
+
+### Q006
+<!-- source: claude:f7735347-b0b1-4b4f-a0cd-c44e70a362ab:toolu_014pYMtgckDpEUbqizwCjbx8:2 -->
+
+Question:
+```text
+CI on main is red: install-guide-contract.test.cjs says install-guide authoring is retired, but commit fad83abd791 added sk-create-readme/assets/install-template.md and put "install guide" back at sk-doc/hub-router.json:252. Which truth wins?
+```
+
+Options:
+```text
+A) Keep the retirement
+B) Install guides are back
+C) Leave it red
+```
+
+Answer:
+```text
+A) Keep the retirement
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

@@ -23,6 +23,10 @@
       "readme template conformance phase parent spec",
       "rewrite every readme to its template",
       "skill readme hook readme runtime readme rewrite",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "006-readme-template-conformance operator decisions"
     ],
     "key_topics": [
@@ -37,27 +41,36 @@
       "skill",
       "hook",
       "runtime",
-      "006-readme-template-conformance"
+      "packet"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
+      "goal.md",
       "decision-record.md",
       ".skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md",
       ".skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md",
       ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md",
       ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-folder-template.md",
       ".skilled/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
+      ".skilled/skills/sk-design/README.md",
       ".skilled/hooks/README.md",
       ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
-      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "001-skill-readmes/goal.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -99,7 +112,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/hooks/README.md",
+        "path": ".skilled/skills/sk-design/README.md",
         "source": "derived"
       },
       {
@@ -116,6 +129,12 @@
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -145,9 +164,33 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Every",
+        "name": "Human Voice Rules",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "that",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "origin",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -161,48 +204,25 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Verbatim Operator Answers Each",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "text",
-        "kind": "technology",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Appendix: Verbatim Operator Answers",
-        "kind": "heading",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Q001",
-        "kind": "heading",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The root README and its five root guides now read in a plain human voice, and the `sk-create-readme` templates were rewritten to match",
     "created_at": "2026-11-16T15:20:12Z",
-    "last_save_at": "2026-11-16T15:48:53.973Z",
+    "last_save_at": "2026-11-16T19:04:07.508Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:03293f4c6dc228c9da42b93ff765a5706ab00ae6021de1c8c687f764295e58c6",
+    "source_fingerprint": "sha256:59056c8dcc30c7af4f5d53223f3652b3899c966d9efb720a07bb2d92938b2b6e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "afdbfb46fd43917cecf80a5869fd0adf53ac429e32ce7f86833605e74969c496",
-      "decision-record.md": "926289d8d8c5b25cb59a75c76df91abc0b2cb944a88ca77486f8ce93767fb83d"
+      "spec.md": "db2fa534e7ec7e0506e1523fa84bffd34af67c264ab3d126227470e93d0f1436",
+      "decision-record.md": "cbd5c8f0490a340db492ef2cd76662d4a11e06dce924dbc5933142f8a8cdae25"
     },
     "last_active_child_id": "sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes",
-    "last_active_at": "2026-11-16T15:48:53.973Z"
+    "last_active_at": "2026-11-16T18:57:37.361Z"
   }
 }

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6874,
-    "ok": 19434,
+    "ok": 19436,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27935,
+  "documentsScanned": 27937,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "ed69fa5c6f1ff3c08f4cfe08e84f4bd4fbed3a41433da3a7e17a3a0dc1ea535d",
+  "manifestHash": "b5bedc9e23c1af36969d75c3a55ce2b9869c701d28bceb06af66768cd2f6bc9f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -36,7 +36,7 @@
       "generic-workflow-word": 71,
       "numeric-only": 38,
       "prose-sentence": 13,
-      "single-token": 340,
+      "single-token": 341,
       "stop-word-only": 9,
       "template-default": 22
     },
@@ -61226,6 +61226,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/review/lineages",
       "reason": "excluded directory"
     },
     {

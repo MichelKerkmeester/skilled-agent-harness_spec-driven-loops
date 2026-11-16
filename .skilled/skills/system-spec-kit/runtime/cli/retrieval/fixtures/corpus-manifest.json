@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f9254c75ecf4da47f6be0367799c85d5792f78c64ba7c48b11b412a1a7135227",
+  "corpusHash": "7c2a8935056cb955c92eebccc4abe90fb805e8d7053147e5bef157529af593f8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27935,
+  "includedPathCount": 27937,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -3508,6 +3508,7 @@
     ".skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md",
     ".skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md",
     ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+    ".skilled/skills/sk-design/README.md",
     ".skilled/skills/sk-design/ROUTER.md",
     ".skilled/skills/sk-design/SKILL.md",
     ".skilled/skills/sk-design/benchmark/README.md",
@@ -16245,6 +16246,7 @@
     "specs/sk-doc/document-standards/005-root-readme-section-spacing/tasks.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/acceptance-criteria.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/decision-record.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/implementation-summary.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/plan.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/spec.md",
@@ -27967,7 +27969,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ed69fa5c6f1ff3c08f4cfe08e84f4bd4fbed3a41433da3a7e17a3a0dc1ea535d",
+  "manifestHash": "b5bedc9e23c1af36969d75c3a55ce2b9869c701d28bceb06af66768cd2f6bc9f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36515,6 +36517,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/review/lineages",
       "reason": "excluded directory"
     },
     {

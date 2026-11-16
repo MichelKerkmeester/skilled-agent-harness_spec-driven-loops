@@ -6,14 +6,12 @@ trigger_phrases:
   - "deep loop workflows"
   - "deep research review"
   - "deep-loop hub routing"
-version: 1.6.9.0
+version: 1.6.10.0
 ---
 
 # system-deep-loop
 
-> One skill that routes to every active deep-loop workflow: research and review.
-
-A planning council is not a mode of this hub. It runs as the standalone `@ai-council` agent, reached through `/speckit:ai-council`.
+> Run iterative research or an iterative code review as a loop that keeps its state on disk and stops on a convergence signal.
 
 ---
 
@@ -21,107 +19,130 @@ A planning council is not a mode of this hub. It runs as the standalone `@ai-cou
 
 ### At a Glance
 
-| Aspect | What you get |
+| Aspect | What it delivers |
 |---|---|
-| **Use it for** | Running an iterative deep-loop workflow: autonomous research or code review. |
-| **Invoke with** | `Skill(system-deep-loop)`, the `/deep:*` commands or the deep agents. |
-| **Works on** | A spec packet or a scoped target, with externalized state kept under the packet. |
-| **Produces** | The mode's artifacts (for example research.md or review-report.md) plus convergence state. |
+| **Use it for** | Multi-round research or a multi-pass review. Each round builds on what the round before it found |
+| **Invoke with** | `Skill(system-deep-loop)` with a mode hint. A `/deep:*` command such as `/deep:research` or `/deep:review` also reaches it |
+| **Works on** | A research topic with web or code sources. A review target such as a spec folder or a file set |
+| **Produces** | The selected mode's artifacts and convergence state under the target spec folder, such as `research/research.md` or `review/review-report.md` |
 
 ### What It Does
 
-`Skill(system-deep-loop)` loads the hub, and the hub routes by `workflowMode` through `mode-registry.json` to one active mode packet. The hub holds no per-mode logic. Each packet keeps its own convergence math, state shape, artifacts and tool-permission guards. The shared backend, `runtime/`, does the executor configuration, prompt-pack rendering, validation, atomic state, coverage graph and scoring.
+`system-deep-loop` is one routing hub for two active loops. A request for iterative investigation goes to the `deep-research/` packet, which writes `research/research.md` under the target spec folder. A request for an iterative audit or a release-readiness verdict goes to `deep-review/`, which writes `review/review-report.md` and returns a verdict. Each packet owns its convergence math, state files, artifacts and tool guards. The shared `runtime/` beneath both modes holds executor config, prompt-pack rendering, atomic state and the coverage graph.
+
+One-shot retrieval belongs to `@context`. Implementation planning belongs to `/speckit:plan`. A single-pass review belongs to the code-review mode in `sk-code`.
 
 ### Why This Skill Exists
 
-The deep-loop workflows used to ship as five separate sibling skills over one backend. Five identities for one runtime meant the advisor had to disambiguate near-duplicates, and a shared fix had to be applied five times. This hub gives the family one advisor identity while keeping each workflow's logic intact in its own packet.
+A deep-loop request can mean outward investigation or inward audit. The two loops share the same `runtime/` and the same append-only state path. One hub gives the family a single entry point, so the same request reaches the loop that owns it without a guess. The two packets still keep their own contracts, so one entry does not flatten the modes into one.
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Invoke it.** Let the advisor route a deep-loop request, run a `/deep:*` command, or read `SKILL.md` directly.
+**Step 1: Invoke it.** Run `Skill(system-deep-loop)` with a mode hint such as `research: <request>`. You can also call `/deep:research` or `/deep:review`. Every surface reaches the same packet.
 
-**Step 2: Run a mode.** For example, a deep review:
+**Step 2: Check where a request routes.**
 
 ```bash
-/deep:review
+node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt "deep review of the checklist changes"
 ```
 
-The hub resolves `workflowMode: review` to the `deep-review` packet and runs its convergence loop.
+Expected output: one JSON decision with `"action":"route"` and a target where `"workflowMode":"review"`. Exit code 0. Swap the prompt to `deep research on the routing drift` to see the research route.
 
-**Step 3: Find the output.** Each mode writes its artifacts and convergence state under the spec packet it was pointed at.
+**Step 3: Run the mode.** Pass the request to `/deep:review:auto "skill deep-review"`. The command workflow initializes `{spec_folder}/review/`, dispatches one review iteration per pass and synthesizes the report. The run produces `review-report.md` with a verdict, a findings registry, remediation workstreams and an audit appendix, plus the iteration files under `{spec_folder}/review/iterations/`.
 
 ---
 
 ## 3. HOW IT WORKS
 
-Every mode is described once in `mode-registry.json` by a three-tier discriminator, and no router re-derives that mapping:
+Routing runs in two stages. Stage one picks the mode: the hub scores the request against the vocabulary classes in `hub-router.json`. The winning `workflowMode` selects one entry in `mode-registry.json`. Stage two picks the leaves: `ROUTER.md` maps the request's intent to packet-qualified reference files. Each path resolves to a canonical pair in `leaf-manifest.json`. The packet then runs its loop. It initializes state, dispatches one fresh agent per iteration, checks convergence and synthesizes its artifact. The hub only routes, so per-mode logic stays in the packet.
 
-- **`workflowMode`** is the public key used by commands, the advisor and the registry, for example `research` or `review`.
-- **`runtimeLoopType`** is the graph-backed convergence key for `runtime/`, one of `research` or `review` for active modes. It is never guessed from `workflowMode`.
-- **`backendKind`** is the registry-defined backend kind: `runtime-loop-type`. See [`mode-registry.json`](./mode-registry.json); the registry is authoritative for this roster.
+```mermaid
+flowchart TD
+  Request["Deep-loop request"] --> Hub["Hub scores the request"]
+  Hub -->|research| Research["deep-research/ packet"]
+  Hub -->|review| Review["deep-review/ packet"]
+  Hub -->|no mode| Defer["defer: ask for the mode"]
+  Research --> Runtime["runtime/"]
+  Review --> Runtime
+  Runtime --> Output["Artifacts and convergence state"]
+```
 
-A router reads the registry, loads the mode packet, and selects the backend named by that entry.
+### The Three-Tier Discriminator
 
-### One advisor identity
+Every registry entry carries three keys. `workflowMode` is the public mode key. Its values are `research` and `review`. `runtimeLoopType` is the convergence key that `runtime/scripts/convergence.cjs` consumes. The router reads it from the registry rather than inferring it from `workflowMode`. `backendKind` names the backend that runs the mode, `runtime-loop-type` for both active modes. A custom mode would declare an explicit `null` and name its own backend path.
 
-The mode packets carry no `graph-metadata.json` of their own, so the advisor discovers exactly one skill. The hub's single `graph-metadata.json` is that identity.
+### One Advisor Identity
+
+Each packet carries no `graph-metadata.json`. The hub root carries the only one, so the advisor sees one skill identity no matter which surface reaches a mode.
 
 ---
 
 ## 4. INTEGRATION & NAVIGATION
 
-### Layout
+### When To Use This Skill
 
-| Path | What it holds |
-|------|---------------|
-| `SKILL.md` | The routing hub, with no per-mode logic. |
-| `ROUTER.md` | The machine router: the hub's intent map, resource map and loading levels. |
-| `mode-registry.json` | The single source of truth for the three-tier discriminator. |
-| `hub-router.json` | Stage one's authored signals, vocabulary classes and tie-break order. |
-| `graph-metadata.json` | The one advisor identity for the whole skill. |
-| `package.json` | The skill-root manifest. It lets the mode packets' scripts outside `runtime/` depend on the spec-kit shared package instead of carrying their own parsers. |
-| `deep-research/`, `deep-review/` | The active mode packets, each with its own `SKILL.md`, references, scripts, assets and governance. |
-| `runtime/` | The frozen, MCP-free backend layer every mode consumes: executor config, prompt-pack rendering, validation, atomic state, coverage graph and scoring. |
-| `shared/synthesis/` | Synthesis helpers shared across modes, such as resource-map emission. |
+Reach for the hub when a request needs more than one round. Use the research mode for a topic that spans several sources, where each round should shape the next query. Use the review mode for a multi-pass audit of a spec folder or a file set. Use it for a release-readiness verdict. Both modes fit an unattended run, because each keeps its state on disk and checks convergence after every pass.
 
-### Commands and agents
-
-Active `/deep:*` commands and deep agents (`deep-research` and `deep-review`) dispatch into the matching mode packet. `@context` remains the one-shot retrieval agent.
-
-`/doctor:deep-loop [--scope=research|review|both|all]` reads a run's coverage graph and convergence through the loop's own scripts.
+Use `@context` for a one-shot lookup and `/speckit:plan` for implementation planning. A single-pass review belongs to the code-review mode in `sk-code`. A planning council is a separate agent, reached through `/speckit:ai-council`. It is not a mode of this hub.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `system-spec-kit` | Owns the spec packets and memory continuity the modes read and write. |
-
-`runtime/` is not a related skill: it is this hub's own nested, frozen infrastructure layer (executor config, prompt-pack rendering, validation, atomic state, coverage graph, scoring) that every mode consumes internally. It carries no `graph-metadata.json` of its own and is not independently advisor-routable (see Layout above).
-
----
-
-## 5. ADDING A WORKFLOW MODE
-
-Adding another active mode (a new packet beyond `deep-research`, `deep-review`) touches every one of these surfaces: miss one and the mode is either unroutable, undiscoverable, or drift-guard-broken:
-
-- [ ] **`mode-registry.json`**: add the mode's registry entry: `workflowMode`, `runtimeLoopType` (or explicit `null`), `backendKind`, `packet`, `packetKind`, `toolSurface`, `advisorRouting`, and `aliases`.
-- [ ] **`leaf-manifest.json`**: regenerate the manifest so the new leaves resolve to canonical `(workflowMode, leafResourceId)` pairs.
-- [ ] **`description.json`**: add the new packet name as a description keyword.
-- [ ] **`ROUTER.md`**: add the mode's intent class to `INTENT_SIGNALS` and its leaf files to `RESOURCE_MAP` and `LOADING_LEVELS`, so the compiled route can name the mode's resources.
-- [ ] **`hub-router.json`**: add a `routerSignals` entry for the new mode's vocabulary classes, and add it to `routerPolicy.tieBreak`.
-- [ ] **`SKILL.md`**, add a row to the §1 WHEN TO USE mode table (mode, use-it-for, packet, command, agent), and update the frontmatter `allowed-tools` if the new mode's `toolSurface.allowed` introduces a tool no existing mode grants (keep it equal to the union, see the final MACHINE ROUTER section of `ROUTER.md`).
-- [ ] **`README.md`** (this document): add the mode to §1 OVERVIEW / §3 HOW IT WORKS as applicable, and to the Layout table if it changes the directory listing.
-- [ ] **Drift-guard test**: `system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts` asserts the advisor's hardcoded projection maps equal the registry projection; update the maps it checks against or the test fails on the next run.
-- [ ] **`node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-deep-loop`**: re-run after all of the above; it validates registry shape, alias uniqueness, tool-surface union (3j), hub-router consistency and the ROUTER contract in one pass.
+| `system-spec-kit` | Owns the spec packets, validation and memory continuity that both modes read and write. |
+| `sk-code` | Its code-review mode handles a single-pass review. The `deep-review/` packet runs the multi-pass loop. |
 
 ---
 
-## 6. RELATED DOCUMENTS
+## 5. TROUBLESHOOTING
+
+| What you see | Why | Fix |
+|---|---|---|
+| The compiled route returns `"action":"defer"` | The prompt names no mode, because `routerPolicy.defaultMode` is `null` | Add a mode word such as `deep research` or `deep review`. A mode hint works too. |
+| The loop did not start | The mode was dispatched outside its command, so no workflow owned the state | Run `/deep:research` or `/deep:review`. The command YAML owns state, dispatch and convergence. |
+| The drift check reports `registry packet absent from hub index` | This README no longer names a packet folder that `mode-registry.json` registers | Add the folder name with a trailing slash to the README |
+
+---
+
+## 6. VERIFICATION
+
+The parent-skill check validates the registry shape, the tool-surface union, the hub-router consistency and the ROUTER contract in one pass.
+
+```bash
+node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-deep-loop
+```
+
+Expected output: `PASS:` lines for the checked invariants, with `INFO:` lines where the hub declares no surface packets. The summary reads `all hard invariants passed, 0 warnings`. Exit code 0.
+
+```bash
+node .skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs
+```
+
+Expected output: a JSON report whose `errors` array is empty. Exit code 0. The check confirms that every registered packet appears in this README with a trailing slash and that every benchmark report folder is indexed. It also fails on a broken relative link in the hub, packet, runtime and report docs.
+
+```bash
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-deep-loop/README.md --type readme
+```
+
+Expected output: `✅ VALID` and `Total issues: 0`.
+
+---
+
+## 7. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic. |
-| [`ROUTER.md`](./ROUTER.md) | Stage-two surface router: deep-loop intent to the exact leaf resources the selected mode loads. |
-| [`mode-registry.json`](./mode-registry.json) | The three-tier discriminator for every mode. |
+| [`SKILL.md`](./SKILL.md) | The hub contract: routing, invariants and the mode table |
+| [`ROUTER.md`](./ROUTER.md) | Stage-two leaf router and the machine-readable resource map |
+| [`mode-registry.json`](./mode-registry.json) | The three-tier discriminator and each mode's packet path |
+| [`hub-router.json`](./hub-router.json) | Stage-one vocabulary classes, router signals and tie-break order |
+| [`ARCHITECTURE.md`](./ARCHITECTURE.md) | Package topology, canonical flows and runtime subsystems |
+| [`deep-research/SKILL.md`](./deep-research/SKILL.md) | The research mode's operating contract |
+| [`deep-review/SKILL.md`](./deep-review/SKILL.md) | The review mode's operating contract |
+| [`runtime/README.md`](./runtime/README.md) | The shared runtime surface and its validation commands |
+| [`shared/synthesis/README.md`](./shared/synthesis/README.md) | The shared resource-map render seam |
+| [`manual-testing-playbook/`](./manual-testing-playbook/) | Operator scenarios for hub routing, state discipline and per-mode artifact ownership |
+| [`benchmark/`](./benchmark/) | Baseline and compiled-routing benchmark reports |
+| [`changelog/`](./changelog/) | Versioned release notes |
