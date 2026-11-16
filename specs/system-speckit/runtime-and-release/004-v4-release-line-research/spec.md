@@ -124,6 +124,7 @@ Every write stays inside this packet.
 | 22 | 022-linked-project-host-index/ | Barter follow-up: Gate 1 from a linked project checkout reads the owning host index | Complete |
 | 23 | 023-configurable-host-index-folder/ | Barter follow-up: a host names its trigger index folder in `.skilled-host.json` | Complete |
 | 24 | 024-root-release-docs-alignment/ | Root docs: `PUBLIC-RELEASE.md`, `CONTRIBUTING.md` and `SECURITY.md` match the current repository | Complete |
+| 25 | 025-root-readme-rewrite/ | Root `README.md`: research the current repository, then rewrite it shorter and correct | Complete |
 
 ### Phase Transition Rules
 
@@ -159,6 +160,7 @@ Every write stays inside this packet.
 | 021-host-root-marker-refresh | 022-linked-project-host-index | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
 | 022-linked-project-host-index | 023-configurable-host-index-folder | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
 | 023-configurable-host-index-folder | 024-root-release-docs-alignment | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 024-root-release-docs-alignment | 025-root-readme-rewrite | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
 <!-- /ANCHOR:phase-map -->
 
 ---

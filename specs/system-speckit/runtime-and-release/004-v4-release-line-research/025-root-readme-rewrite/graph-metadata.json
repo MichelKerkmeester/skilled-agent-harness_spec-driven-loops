@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite",
+  "spec_folder": "system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite",
+  "parent_id": "system-speckit/runtime-and-release/004-v4-release-line-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "root readme rewrite",
+      "root readme rewrite research",
+      "root readme rewrite plan",
+      "root readme rewrite tasks",
+      "root readme rewrite implementation summary",
+      "root readme rewrite research synthesis"
+    ],
+    "key_topics": [
+      "root",
+      "readme",
+      "rewrite",
+      "research",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "synthesis",
+      "lines",
+      "long",
+      "written"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".skilled/bin/check-git-hooks.sh",
+      ".codex/hooks/README.md",
+      ".vibe/plugins/README.md",
+      "specs/system-speckit/runtime-and-release/004-v4-release-line-research/spec.md",
+      "specs/system-speckit/runtime-and-release/004-v4-release-line-research/graph-metadata.json",
+      "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/spec.md",
+      "research/resource-map.md",
+      ".skilled/changelog/skilled/v4.0.1.0.md",
+      ".opencode/commands/goal-opencode.md",
+      ".cursor/commands/goal-cursor.md",
+      ".pi/prompts/goal-pi.md",
+      ".skilled/commands/local-doc-alignment.md",
+      ".skilled/skills/mcp-code-mode/mcp-server/index.ts",
+      "runtime/cli/lib/validator-registry.json",
+      ".skilled/hooks/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-git-hooks.sh",
+        "kind": "script",
+        "path": ".skilled/bin/check-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".codex/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode.md",
+        "kind": "doc",
+        "path": ".opencode/commands/goal-opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-cursor.md",
+        "kind": "doc",
+        "path": ".cursor/commands/goal-cursor.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-pi.md",
+        "kind": "doc",
+        "path": ".pi/prompts/goal-pi.md",
+        "source": "derived"
+      },
+      {
+        "name": "local-doc-alignment.md",
+        "kind": "doc",
+        "path": ".skilled/commands/local-doc-alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".skilled/skills/mcp-code-mode/mcp-server/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "runtime/cli/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The root `README.md` is 1,773 lines long and was written before the v4.0.1.0, v4.0.2.0 and v4.0.2.1 releases and the commits on main after the v4.0.2.1 tag",
+    "created_at": "2026-11-16T09:02:18.037Z",
+    "last_save_at": "2026-11-16T09:28:05.276Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:205938325c89f3b35f5a24feaa3e9d413a9ede6493477756a40371d8f35e6577",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4040bc8bf84e516cb54145489a99110a1db5f9f101d5e1ddb7adb906351497c7",
+      "plan.md": "ffaae0e3428a7167ce1cce3cbb01e8dc9f71b342690fd8a12e87d538f254ec5f",
+      "tasks.md": "a9b2cb71bb96e3f7ed93a9bac2c67b300579cc47327523ce56de7c5d105884a8",
+      "implementation-summary.md": "7cc1fed17adb04f351f964b8f4a308890e25fc1fc411eb7cd1568e16adea833e",
+      "research/research.md": "7846035831f953b0fa9d0179c002c2bdd53d47c5b34c7cc334d299d68f852047"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
