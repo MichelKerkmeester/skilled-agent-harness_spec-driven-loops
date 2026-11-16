@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fda14279fea7d557887f66ac4d102e4bd1a8b2f8ee5703c3f37b43cc11864e69",
+  "corpusHash": "24fc9587bf1283f9faa16ad481f57b7dfdcbe46ce3de554d9e5044c2bce15672",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27752,
+  "includedPathCount": 27760,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -19171,6 +19171,14 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/review/review-report.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/handover-from-barter-024.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/handover-from-barter.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/handover-to-barter.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/research.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/spec.md",
     "specs/system-skilled-doctor/002-symlink-first-link/implementation-summary.md",
@@ -27784,7 +27792,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ce053329349496c0273eb3d11537800ab8dc287f1bf448d78a41720334929867",
+  "manifestHash": "18ad405da9a678e4ac1799ff8b2ee0f246ae31576c57449db11722b8e2351826",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36224,6 +36232,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/scratch",
       "reason": "excluded directory"
     },
     {
