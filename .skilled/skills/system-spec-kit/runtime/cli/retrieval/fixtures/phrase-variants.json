@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9648d4997039ee9a94a70f7b53074951a2bec1285a8c03fbefe25cefdc5f2b80",
+  "manifestHash": "7a0acc6fd869cead4701841c485624a45803ee51cdaea55b3445d5152b4c9941",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2728,6 +2728,9 @@
     ],
     "011 implementation summary": [
       "011 implementation summary"
+    ],
+    "011 level match operator record operator decisions": [
+      "011-level-match-operator-record operator decisions"
     ],
     "011 migration bridge": [
       "011 migration bridge"
@@ -65107,6 +65110,18 @@
     "level mapping thresholds": [
       "level mapping thresholds"
     ],
+    "level match operator record": [
+      "level match operator record"
+    ],
+    "level match operator record implementation summary": [
+      "level match operator record implementation summary"
+    ],
+    "level match operator record plan": [
+      "level match operator record plan"
+    ],
+    "level match operator record tasks": [
+      "level match operator record tasks"
+    ],
     "level one docs authoring": [
       "level one docs authoring"
     ],
@@ -82382,6 +82397,9 @@
     ],
     "phase 11 hub registration and routing": [
       "phase 11 hub registration and routing"
+    ],
+    "phase 11 level match operator record": [
+      "phase 11 level match operator record"
     ],
     "phase 11 opencode pi handover parity": [
       "phase 11 opencode pi handover parity"
@@ -134079,6 +134097,9 @@
     ],
     "writer lock stale reclaim race tasks": [
       "writer lock stale reclaim race tasks"
+    ],
+    "writer only decision record level warning": [
+      "writer-only decision record level warning"
     ],
     "writer regex widen task": [
       "writer regex widen task"
