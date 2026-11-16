@@ -22,12 +22,19 @@ Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor CLI, DeepSeek Ha
 
 **What's inside**
 
-- **Spec Kit Framework** - structured plans, task tracking, validation gates and handover docs
-- **Spec Memory & Search** - session context saved into each spec folder and recovered through instant keyword search, surviving resets and compactions
-- **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
+- **Gate System** - six gates check every request before the agent acts: prior context, the right skill, a spec folder and the repository rules
+- **Spec Kit Framework** - spec folders with plans, tasks and a 42-rule validator, grouped into tracks, sub-tracks and phases
+- **Continuity & Search** - progress saved into each spec folder and found again through a trigger index and ripgrep search, surviving resets and compactions
+- **Session Handover** - near the context limit, the work moves to a fresh session with a handoff note
+- **Skill Advisor** - routes every prompt to the right skill and workflow using 5-lane fusion and a live skill graph, so you never need to remember a command
 - **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
-- **11 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
-- **14 On-Demand Skills** - deep capabilities for code, design, docs, multi-CLI dispatch and installing Skilled in your own projects
+- **CLI Orchestration** - hand work to another AI CLI on its own subscription, such as DeepSeek Flash through OpenCode or Pi
+- **14 On-Demand Skills** - seven parent hubs with 42 modes, plus standalone skills for specs, git, prompts and Orca
+- **26 Shared Hooks** - guards for secrets, git, sessions and quality, running in all eight runtimes through one thin adapter each
+- **11 Specialized Agents** - focused roles for implementation, review, research, docs, design and orchestration
+- **17 Doctor Commands** - install Skilled in your own project, check the setup and keep it current
+- **Code Mode MCP** - external MCP tools called through one TypeScript interface
+- **Git Worktrees & Live Sync** - each session in its own worktree, with the main checkout following along
 
 &nbsp;
 
