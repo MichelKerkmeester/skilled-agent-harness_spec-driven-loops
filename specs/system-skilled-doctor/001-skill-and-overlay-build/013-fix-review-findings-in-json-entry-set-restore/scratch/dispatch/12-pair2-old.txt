@@ -1,0 +1,15 @@
+      (operation.op === 'insertItems' || operation.op === 'appendItems') && samePath(operation.path, container));
+    if (addsItems) return false;
+    const itemMatches = (index) => {
+      const written = writtenInside([...container, index]);
+      return deepEqual(
+        maskedValue(readItem(liveDocument, live.items[index]), written),
+        maskedValue(readItem(pinnedDocument, pinned.items[index]), written),
+      );
+    };
+    const index = Number(path[depth]);
+    if (!live.items[index] || !pinned.items[index]) return false;
+    if (!itemMatches(index)) return false;
+    const wholeItemWritten = writtenInside([...container, index]).some((steps) => steps.length === 0);
+    if (wholeItemWritten && !live.items.every((item, other) => other === index || itemMatches(other))) return false;
+  }

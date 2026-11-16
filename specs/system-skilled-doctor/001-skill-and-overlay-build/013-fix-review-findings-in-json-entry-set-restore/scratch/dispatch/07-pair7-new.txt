@@ -1,0 +1,2 @@
+| A `cannot-apply` line | The engine cannot apply a json-entry overlay's entry set to a file nobody edited. Do what the line's `fix:` text says to the entry set or the destination, then rerun `/doctor:overlay status` |
+| An `upstream-moved` line | A re-pin changed a file an overlay owns.

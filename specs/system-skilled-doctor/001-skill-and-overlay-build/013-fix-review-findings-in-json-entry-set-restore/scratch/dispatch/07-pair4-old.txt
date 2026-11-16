@@ -1,0 +1,1 @@
+| Any `live-edited`, `both-changed` or `upstream-moved` line | Each such line with its fix. The engine appends

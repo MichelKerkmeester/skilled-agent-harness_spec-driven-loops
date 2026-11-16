@@ -1,0 +1,1 @@
+  if (record.state === 'live-edited') return ENGINE_COMMAND + ' apply --capture ' + record.key;

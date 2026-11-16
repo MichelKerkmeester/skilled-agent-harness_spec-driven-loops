@@ -1,0 +1,6 @@
+    // A live value that already equals the pin's needs no write.
+    if (pinned && deepEqual(live, JSON.parse(upstreamText.slice(pinned.start, pinned.end)))) continue;
+    const { candidates, masks } = valueLeftBySets(record, records, keptPaths);
+    if (!candidates.some((candidate) => deepEqual(maskedValue(live, masks), maskedValue(candidate, masks)))) {
+      throw new Error('dropped set at ' + where +
+        ' was edited after it was applied; restore the value by hand or put the set back in the entry set');

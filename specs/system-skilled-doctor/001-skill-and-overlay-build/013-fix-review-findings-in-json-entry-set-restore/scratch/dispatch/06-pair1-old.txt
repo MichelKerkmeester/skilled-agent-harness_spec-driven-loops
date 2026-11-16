@@ -1,0 +1,1 @@
+Two `set` operations on one path share one record.

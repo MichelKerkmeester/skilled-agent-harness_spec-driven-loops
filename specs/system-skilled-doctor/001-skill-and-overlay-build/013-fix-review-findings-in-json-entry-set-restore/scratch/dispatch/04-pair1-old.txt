@@ -1,0 +1,6 @@
+  const readUpstreamText = () => {
+    if (upstreamText !== undefined) return upstreamText;
+    const bytes = upstreamBytes ? upstreamBytes(relativeKey(ctx.root, destinationPath)) : null;
+    upstreamText = bytes === null ? null : bytes.toString('utf8');
+    return upstreamText;
+  };

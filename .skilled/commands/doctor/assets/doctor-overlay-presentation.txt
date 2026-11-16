@@ -81,7 +81,7 @@ Overlay status: [the root the engine read]
 
 [state] [destination]  ([overlay: <folder>/<source> | layout link | remove-root row: <id>])  fix: [the engine's fix]
 ...
-in-sync=[n] overlay-edited=[n] live-edited=[n] both-changed=[n] upstream-moved=[n]
+in-sync=[n] overlay-edited=[n] live-edited=[n] both-changed=[n] upstream-moved=[n] cannot-apply=[n]
 MISS     [one line per check that failed, when any did]
 STALE    root-file [path]: [the engine's line about the pin, one per stale root file]
 LAYOUT   [overlay]: [field] [from] belongs at [to]; run [the engine command] apply --relayout
@@ -100,6 +100,7 @@ What each state means, and who acts on it:
 | `live-edited` | Someone edited the destination itself, and the overlay source does not have that edit yet. A path under a skill-root entry's `remove` list is never `live-edited`: it is `overlay-edited` and `apply` deletes it | `/doctor:overlay apply --capture <path>` |
 | `both-changed` | The overlay source and the destination both changed since the last apply | A person resolves the two, then reruns `/doctor:overlay status` |
 | `upstream-moved` | A re-pin brought in an upstream change to a file an overlay owns | A person resolves the overlay against the new upstream, then reruns `/doctor:overlay status` |
+| `cannot-apply` | A json-entry overlay's entry set cannot be applied to a destination nobody edited, and the `fix:` text names why | A person changes the entry set or the destination as the fix says, then reruns `/doctor:overlay status` |
 
 The `fix:` text the engine prints names the engine command itself. Show it as printed, and name the matching `/doctor:overlay` form from the table beside it.
 
@@ -184,7 +185,7 @@ A `STALE` line does not stop the apply, and no apply clears it. The plan carries
 |--------|--------------------|--------|
 | `RESULT: PASSED` | The unchanged result. Nothing is out of sync, so there is nothing to apply | `STATUS=OK` |
 | Any `live-edited` line | Each such line with its capture command. A plain apply refuses while one is there, so capture each one first | `STATUS=FAIL ERROR="live_edit_first"` |
-| Any `both-changed` or `upstream-moved` line | Each such line with the engine's fix. A person resolves it, and the engine writes nothing until then | `STATUS=FAIL ERROR="needs_resolution"` |
+| Any `both-changed`, `upstream-moved` or `cannot-apply` line | Each such line with the engine's fix. A person resolves it, and the engine writes nothing until then | `STATUS=FAIL ERROR="needs_resolution"` |
 | No line at all, but `RESULT: FAILED` | Each `MISS` line. No destination is behind, so an apply has nothing to write | `STATUS=FAIL ERROR="check_failed"` |
 
 ### The Apply Question
@@ -233,7 +234,7 @@ Adopt this path now? [yes/no]
 | Report | What the run shows | Status |
 |--------|--------------------|--------|
 | In sync, or only `overlay-edited` lines | The adopt plan and the adopt question | asks |
-| Any `live-edited`, `both-changed` or `upstream-moved` line | Each such line with its fix. The engine appends the entry first and applies after, and that apply would be refused | `STATUS=FAIL ERROR="needs_resolution"` |
+| Any `live-edited`, `both-changed`, `upstream-moved` or `cannot-apply` line | Each such line with its fix. The engine appends the entry first and applies after, and that apply would be refused | `STATUS=FAIL ERROR="needs_resolution"` |
 
 `Adopt this path now? [yes/no]` covers the copy into the overlay folder, the new manifest entry and the apply that follows. Any answer other than yes counts as no. Print the cancelled result and write nothing.
 
@@ -284,7 +285,7 @@ Move these sources now? [yes/no]
 |--------|--------------------|--------|
 | No `LAYOUT` line | The nothing-to-move result. Every source already sits on its layout path | `STATUS=OK` |
 | At least one `LAYOUT` line, and nothing else outstanding | The relayout plan and the relayout question | asks |
-| Any `live-edited`, `both-changed` or `upstream-moved` line | Each such line with its fix, beside the `LAYOUT` lines. The apply that follows the move would be refused until it is settled | `STATUS=FAIL ERROR="needs_resolution"` |
+| Any `live-edited`, `both-changed`, `upstream-moved` or `cannot-apply` line | Each such line with its fix, beside the `LAYOUT` lines. The apply that follows the move would be refused until it is settled | `STATUS=FAIL ERROR="needs_resolution"` |
 | A `MISS` line or a `STALE` line, and no line above | The relayout plan and the relayout question, with each such line shown beside the `LAYOUT` lines. The engine moves the sources and still exits 0, so the run goes on and ends on that line | asks |
 
 `Move these sources now? [yes/no]` covers every move, the backup, the manifest rewrite and the layout-link retargeting. Any answer other than yes counts as no. Print the cancelled result and write nothing.
@@ -364,7 +365,7 @@ An overlay that now equals upstream needs no change to re-pin. Its entry can be 
 | The engine refuses because | Fix |
 |----------------------------|-----|
 | The overlay lock is held | Wait for the other run to end, then remove the lock file the message names by hand. A lock whose owner has ended on this host does not stop a re-pin: the stage step reads it and prints a `note:` line, and the live step takes it over, so this row covers a live owner, another host or a line with no pid. A refusal that names a takeover marker says to run it again in a minute: do that and leave the lock. |
-| A destination is `live-edited`, `both-changed` or `upstream-moved` | Settle it first: `/doctor:overlay apply --capture <path>` for a live edit, or resolve the overlay by hand for the other two, then rerun `/doctor:overlay status` |
+| A destination is `live-edited`, `both-changed`, `upstream-moved` or `cannot-apply` | Settle it first: `/doctor:overlay apply --capture <path>` for a live edit, or resolve the overlay by hand for the other three, then rerun `/doctor:overlay status` |
 | An overlay is refused, shown as `blocked <overlay-id>: refused ...` | Follow the fix the line names, usually adding a token-named file to that entry's `protectedPaths`, then rerun `/doctor:overlay status` |
 | An unowned file in the copied roots differs from the old pin, at the path the engine names | That file holds an edit made in place, which the copy would revert. Move the edit into an overlay or upstream, then rerun |
 | A commit is missing from `--upstream` | Fetch both the pinned commit and the `--to` commit into that checkout, then rerun |
@@ -558,6 +559,7 @@ What each engine exit means for `Changed:`:
 | `pre-commit` prints `refuse: staged ...` | Each named path changed under a vendored root outside an overlay. Adopt it, add a generator's output to `generated`, or unstage it |
 | `root-file` lines in a re-pin report | Upstream changed a root file named in `repin.rootFiles`, and a re-pin never copies one. Carry the change over by hand or adopt the file, and rebase the overlay when the line says one owns it |
 | A `both-changed` line | Compare the overlay source with the destination and settle the content in the overlay source. Then rerun `/doctor:overlay status` |
+| A `cannot-apply` line | The engine cannot apply a json-entry overlay's entry set to a file nobody edited. Do what the line's `fix:` text says to the entry set or the destination, then rerun `/doctor:overlay status` |
 | An `upstream-moved` line | A re-pin changed a file an overlay owns. Rebase the overlay source onto the new upstream bytes, then rerun `/doctor:overlay status` |
 | `regeneration failed` after an apply | The overlays landed but a generator failed. Read the failed step's output, fix it, then rerun `/doctor:overlay apply` |
 | The apply question was answered no | Nothing was written. Rerun `/doctor:overlay apply` when the report is acceptable |

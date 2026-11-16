@@ -1,0 +1,1 @@
+Without capture_path, adopt_path or relayout: a both-changed, upstream-moved or cannot-apply line stops

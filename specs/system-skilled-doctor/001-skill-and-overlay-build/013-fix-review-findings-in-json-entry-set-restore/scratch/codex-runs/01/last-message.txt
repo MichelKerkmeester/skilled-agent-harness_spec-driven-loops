@@ -1,0 +1,12 @@
+1. FILES CHANGED: `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`
+
+2. COMMANDS:
+   - Append supplied text: exit 0. Output: none.
+   - `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs 2>&1 | grep -E "^ℹ (tests|pass|fail)"` — exit 0. Output:
+     ```text
+     ℹ tests 49
+     ℹ pass 43
+     ℹ fail 6
+     ```
+
+3. OPEN QUESTIONS: none. The six failures match the expected counts for the later engine change.

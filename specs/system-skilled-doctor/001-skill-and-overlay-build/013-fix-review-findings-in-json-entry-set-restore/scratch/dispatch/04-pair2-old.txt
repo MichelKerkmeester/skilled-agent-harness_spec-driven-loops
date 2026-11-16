@@ -1,0 +1,7 @@
+      // One record per path: a later set on the same path is the value the file
+      // ends with, and a key stays marked as added once either set added it.
+      onSet: (record) => {
+        const index = listedSets.findIndex((listed) => deepEqual(listed.path, record.path));
+        if (index < 0) listedSets.push(record);
+        else listedSets[index] = { ...record, added: listedSets[index].added === true || record.added === true };
+      },

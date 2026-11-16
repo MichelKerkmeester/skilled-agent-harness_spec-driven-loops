@@ -1,0 +1,5 @@
+  if (leftInPlace.length > 0) {
+    const lines = leftInPlace.flatMap((plan) => plan.problems.map((problem) => `blocked ${plan.entry.id}: refused ${problem}`));
+    lines.push(`refuse: ${leftInPlace.length} json-entry overlay(s) the copy leaves in place cannot be applied at the new pin; for a refused array, put it back to the copy at the current pin by hand, run apply, then re-pin`);
+    return refuseRepin(lines);
+  }

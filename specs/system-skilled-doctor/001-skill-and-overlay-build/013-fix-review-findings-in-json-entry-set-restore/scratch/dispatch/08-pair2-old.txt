@@ -1,0 +1,4 @@
+    ...operations.filter((operation) => operation.op === 'set').map((operation) => operation.path),
+  ];
+  for (let depth = 0; depth < path.length; depth += 1) {
+    const container = path.slice(0, depth);

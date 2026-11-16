@@ -1,0 +1,21 @@
+  const shape = treeShapeProblems(ctx.root, touched);
+  if (shape.length > 0) return refuseRepin(shape);
+  // A json-entry destination the copy leaves in place keeps its live bytes, so
+  // its entry set meets the new pin with the file as it is now. A refusal there
+  // would stop the apply after the copy had written, so it is planned here first.
+  const state = loadState(ctx, manifest);
+  const leftInPlace = manifest.overlays
+    .filter((entry) => entry.scope === 'json-entry' &&
+      !touched.copy.includes(entry.destination) && !touched.delete.includes(entry.destination))
+    .map((entry) => planOverlay(entry, ctx, {
+      acceptedSha256: state.files,
+      recordedItems: (state.items || {})[entry.destination] || [],
+      recordedSets: (state.sets || {})[entry.destination] || [],
+      upstreamBytes: commitBytesReader(job.upstream, job.newCommit),
+    }))
+    .filter((plan) => plan.problems.length > 0);
+  if (leftInPlace.length > 0) {
+    const lines = leftInPlace.flatMap((plan) => plan.problems.map((problem) => `blocked ${plan.entry.id}: refused ${problem}`));
+    lines.push(`refuse: ${leftInPlace.length} json-entry overlay(s) the copy leaves in place cannot be applied at the new pin; fix them before a re-pin`);
+    return refuseRepin(lines);
+  }

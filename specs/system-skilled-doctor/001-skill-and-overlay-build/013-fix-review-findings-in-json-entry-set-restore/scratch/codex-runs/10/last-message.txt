@@ -1,0 +1,8 @@
+1. FILES CHANGED:
+   - /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skilled-doctor/references/overlays.md
+
+2. COMMANDS:
+   - Replacement script: exit 0; no output.
+   - `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -c "every other item of that array" .skilled/skills/system-skilled-doctor/references/overlays.md` — exit 0; output: `1`.
+
+3. OPEN QUESTIONS: none.

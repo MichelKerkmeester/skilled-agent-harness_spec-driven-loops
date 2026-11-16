@@ -1,0 +1,4 @@
+  assert.deepEqual(readJson(fixture.livePath).rows.map((row) => row.top), ['x', 'a', 'b']);
+  assert.deepEqual(fixture.recordedSets(), []);
+  assert.equal(fixture.run(['status']).code, 0);
+});

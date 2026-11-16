@@ -1,0 +1,2 @@
+| `upstream-moved` | The pin moved, and the destination matches neither the recorded hash nor the overlay copy | A person, who rebases the overlay onto the new upstream file |
+| `cannot-apply` | A `json-entry` overlay's entry set cannot be applied to a destination nobody edited since the last apply or the pin, such as a dropped `set` the engine cannot restore. The fix text names why | A person, who changes the entry set or the destination as the fix text says |

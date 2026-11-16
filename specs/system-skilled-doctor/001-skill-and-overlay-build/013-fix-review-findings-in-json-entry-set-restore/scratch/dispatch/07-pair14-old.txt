@@ -1,0 +1,1 @@
+a destination in live-edited, both-changed or upstream-moved state, an unowned file

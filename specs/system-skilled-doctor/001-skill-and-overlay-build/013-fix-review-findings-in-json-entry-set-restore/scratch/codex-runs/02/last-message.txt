@@ -1,0 +1,16 @@
+1. FILES CHANGED:
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs`
+
+2. COMMANDS:
+
+- Python append attempt: rejected before execution, with no exit status. Output: `CreateProcess ... No such file or directory`. The target remained unchanged.
+- `node -e "const fs=require('fs'); const [target,source]=process.argv.slice(1); const bytes=fs.readFileSync(source); fs.appendFileSync(target,bytes); const result=fs.readFileSync(target); if(!result.subarray(result.length-bytes.length).equals(bytes)) throw new Error('appended bytes differ from source'); process.stdout.write('appended '+bytes.length+' bytes; suffix matches source\\n');" /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch/dispatch/02-pair1-new.txt` — exit 0. Output: `appended 3219 bytes; suffix matches source`
+- `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs 2>&1 | grep -E "^ℹ (tests|pass|fail)"` — exit 0. Output:
+  ```text
+  ℹ tests 30
+  ℹ pass 28
+  ℹ fail 2
+  ```
+
+3. OPEN QUESTIONS: none.

@@ -1,0 +1,16 @@
+TASK: add three restore tests to the sync test file. 1 file(s) change.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+P = R/specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch/dispatch
+
+The exact text lives in the files under P. Copy it byte for byte with a script; do not retype it, reflow it or change its whitespace. Apply the steps in order.
+
+STEP 1 of 1. In R/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs, the content of P/11-pair1-old.txt appears exactly once. Replace it with the content of P/11-pair1-new.txt.
+
+One way to do a replace step, with the paths filled in:
+python3 -c "import sys;f,o,n=sys.argv[1:];t=open(f).read();a=open(o).read();assert t.count(a)==1,t.count(a);open(f,'w').write(t.replace(a,open(n).read()))" <file> <old> <new>
+If an assert fails, stop and report it. Do not edit by hand to make it fit.
+
+CHECK. Run:
+cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs 2>&1 | grep -E "^ℹ (tests|pass|fail)"
+Expected: tests 85, pass 82, fail 3. The three failures are expected: the engine change comes in the next step.

@@ -1,0 +1,1 @@
+| An `upstream-moved` line | A re-pin changed a file an overlay owns.

@@ -1,0 +1,18 @@
+  writePin(ctx, job.newPin);
+
+  const loaded = loadManifest(ctx);
+  // A stage has no project install behind it, so it skips the regenerate and
+  // verify steps and reports only what the overlays do.
+  const manifest = job.isStage ? { ...loaded, regenerate: [], verifyGenerated: [] } : loaded;
+  if (job.isStage) {
+    report.stageSkipped = {
+      regenerate: (loaded.regenerate || []).length,
+      verify: (loaded.verifyGenerated || []).length,
+    };
+    // A clean stage proves the copy and the overlays, never the generators, so
+    // the report says so rather than reading as a full rehearsal.
+    if (report.stageSkipped.regenerate + report.stageSkipped.verify > 0) {
+      console.log(`stage skipped ${report.stageSkipped.regenerate} regenerate and ${report.stageSkipped.verify} verify step(s); the live run runs them`);
+    }
+  }
+  const readUpstream = treeBytesReader(newTree);

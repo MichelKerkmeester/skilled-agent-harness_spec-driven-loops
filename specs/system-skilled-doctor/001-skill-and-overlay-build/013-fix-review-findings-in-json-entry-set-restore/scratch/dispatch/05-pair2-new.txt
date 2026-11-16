@@ -1,0 +1,11 @@
+      if (plan.problems.length > 0 && stateName === 'overlay-edited') stateName = 'both-changed';
+      // An entry set the engine cannot apply to a file nobody edited since the
+      // last apply, or since the pin, is a problem in the entry set alone. Only
+      // the live copy moving as well makes it both-changed.
+      if (stateName === 'both-changed' && plan.entry.scope === 'json-entry' && output.buffer === null &&
+          plan.problems.length > 0) {
+        const live = readBufferOrNull(output.filePath);
+        if (hashMatches(live, acceptedHashFor(state.files, key)) || hashMatches(live, plan.entry.pinnedSha256)) {
+          stateName = 'cannot-apply';
+        }
+      }

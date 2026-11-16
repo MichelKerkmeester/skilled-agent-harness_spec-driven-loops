@@ -1,0 +1,6 @@
+    const relative = (written) => written.slice(itemPath.length);
+    const locations = writtenPaths.filter(inside).map(relative);
+    // A set on a path above the item wrote the whole item.
+    if (writtenPaths.some((written) => isInsidePath(itemPath, written))) locations.push([]);
+    for (const operation of operations) {
+      if (operation.op === 'setKeyOnItem' && samePath(operation.path, itemPath.slice(0, -1))) {

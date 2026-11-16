@@ -1,0 +1,185 @@
+1. FILES CHANGED:
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`
+
+2. COMMANDS:
+
+1. `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "add three restore tests to the sync test file by replacing exact dispatch text byte for byte; verify with the specified node test command"`  
+   Exit status: 1. Last output lines:
+
+   ```text
+   "staleFallback": {
+     "available": true,
+     "files": 183,
+     "matches": 0,
+     "paths": [],
+     "truncated": false
+   }
+   }
+   ```
+
+2. `cat 'REPO RULES.md'`  
+   Exit status: 0. Last output lines:
+
+   ```text
+   which of its surfaces carries an obligation the rule already imposes. `communication-handoff.md`
+   is the one rule on this side of the line, its §5 is the only place a tool name appears, and it
+   names only what this repository confirms. A fifth widening that let a rule pick between
+   runtimes would be the dissolution this one avoids.
+   ```
+
+3. `cat .skilled/repo-rules/prevent-overengineering.md`  
+   Exit status: 0. Last output lines:
+
+   ```text
+   - [ ] Named the move and wrote the climbing sentence for every move past "build nothing".
+   - [ ] When two moves cost the same, I took the one that handles the edge cases correctly. A shorter diff that the next reader must decode did not count as cheaper.
+   - [ ] Every new option, abstraction and dependency has a caller that needs it **today**.
+   - [ ] Nothing is justified only by a future nobody asked for.
+   - [ ] If I judged part of the scope unnecessary, I built it anyway and said so.
+   - [ ] Any fallback path I added names the environment that requires it.
+   - [ ] Where the change touches a caller or a shared contract, I named the owner, one real caller and the contract before editing. I listed the tests, fixtures, config and exports it must reach.
+   - [ ] Every catch handles what it catches, and no check re-validates what a type or a caller contract already guarantees.
+   - [ ] Every performance claim carries a measurement, and every new dependency names what the project's own tools could not do.
+   - [ ] Moved or merged code kept its error handling and validation. Every check dropped during a move has its own stated reason.
+   - [ ] Restraint did not cut accessibility on user-facing UI, where interactive elements stay keyboard-operable, carry an accessible name and keep a visible focus state.
+   ```
+
+4. `cat 'specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch/dispatch/11-pair1-old.txt'`  
+   Exit status: 0. Output:
+
+   ```text
+    assert.equal(restored, pinned);
+   });
+   ```
+
+5. `cat 'specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch/dispatch/11-pair1-new.txt'`  
+   Exit status: 0. Last output lines:
+
+   ```text
+   test('records an older engine kept with the inner set first still restore when it was written last', () => {
+     const pinned = JSON.stringify({ c: { a: 0, b: 0 } }, null, 2) + '\n';
+     const live = JSON.stringify({ c: { a: 9, b: 2 } }, null, 2) + '\n';
+
+     const restored = engine.applyJsonOperations(live, { operations: [] }, {
+       canReplaceExisting: true,
+       recordedSets: [{ path: ['c', 'a'], value: 9, added: false }, { path: ['c'], value: { a: 1, b: 2 }, added: false }],
+       readUpstreamText: () => pinned,
+     });
+
+     assert.equal(restored, pinned);
+   });
+   ```
+
+6. `rg -n -F -C 6 -- 'assert.equal(restored, pinned);' .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`  
+   Exit status: 0. Output:
+
+   ```text
+   1213-  const restored = engine.applyJsonOperations(live, { operations: [] }, {
+   1214-    canReplaceExisting: true,
+   1215-    recordedSets: [{ path: ['a'], value: { x: 3 }, added: false }, { path: ['a', 'x'], value: 2, added: false }],
+   1216-    readUpstreamText: () => pinned,
+   1217-  });
+   1218-
+   1219:  assert.equal(restored, pinned);
+   1220-});
+   ```
+
+7. `python3 -c "import sys;f,o,n=sys.argv[1:];t=open(f).read();a=open(o).read();assert t.count(a)==1,t.count(a);open(f,'w').write(t.replace(a,open(n).read()))" /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch/dispatch/11-pair1-old.txt /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch/dispatch/11-pair1-new.txt`  
+   Exit status: 0. Output: none.
+
+8. `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs 2>&1 | grep -E "^ℹ (tests|pass|fail)"`  
+   Exit status: unavailable at the initial yield. Output: none.
+
+9. Same check command as item 8.  
+   Exit status: 0 for the grep pipeline. Output:
+
+   ```text
+   ℹ tests 85
+   ℹ pass 82
+   ℹ fail 3
+   ```
+
+10. `rg -n -F -C 1 -e "test('a dropped set inside an item is restored while a kept set rewrites the whole array'" -e "test('sets that together wrote every key of an item restore only while every other item is the pin's'" -e "test('records an older engine kept with the inner set first still restore when it was written last'" .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`  
+    Exit status: 0. Last output lines:
+
+    ```text
+    1221-
+    1222:test('a dropped set inside an item is restored while a kept set rewrites the whole array', () => {
+    1223-  const pinned = JSON.stringify({ arr: [{ n: 1 }, { n: 2 }] }, null, 2) + '\n';
+    --
+    1254-
+    1255:test('records an older engine kept with the inner set first still restore when it was written last', () => {
+    1256-  const pinned = JSON.stringify({ c: { a: 0, b: 0 } }, null, 2) + '\n';
+    ```
+
+11. `cat .skilled/repo-rules/communication.md`  
+    Exit status: 0. The first captured output was truncated by the tool. Its last output lines were:
+
+    ```text
+    - [ ] The first line carries the answer or the action, not a label, an announcement or a setup, and the outcome is complete by the second line.
+    - [ ] I reached the verdict by analysis, recommended one path with its trade-off and stated the assumptions I made.
+    - [ ] Where the request was ambiguous or I delivered a different version of it, the first lines say which reading I took and why.
+    - [ ] Each paragraph stands alone and carries the reader forward, and multi-step work reads as a numbered list.
+    - [ ] No group runs past five items, nothing was dropped to keep it under, and a tangent appears once at the end or not at all.
+    - [ ] Every sentence carries information, each fact appears once, and no runtime instruction to plan privately was copied into the reply.
+    - [ ] Length matches the question, no table stands in a reply, and nothing was compressed past the point where the reader has to re-expand it.
+    - [ ] Every sentence carries one idea in plain words and says how it attaches to the one before.
+    - [ ] Arrows, bare IDs, counts and fragments were turned into action words, and every path, hash or flag is one the reader will act on.
+    - [ ] No em dash, no semicolon, no serial comma.
+    - [ ] Before a long stretch I said where I was going, with a concrete time estimate when it was long, and no estimate argued against starting.
+    - [ ] A synthesis I reported carries its findings, not just its path and its counts.
+    - [ ] When the reader did not follow, I changed modality, and a plain re-render kept every claim, number and caveat at the same strength.
+    ```
+
+12. `cat .skilled/repo-rules/communication-handoff.md`  
+    Exit status: 0. Last output lines:
+
+    ```text
+    - [ ] The status names what ran, what is inferred, what only the operator can verify, the state of the work and any known residual risk. It says "none known" when there is none.
+    - [ ] The turn ends by naming what is the operator's to do, or by saying nothing is.
+    - [ ] Every item on that list is theirs, not mine reframed.
+    - [ ] The handback is last, and survives a reader who stops halfway.
+    - [ ] Any choice I offered carries a recommendation and a reason.
+    - [ ] Nothing was handed back that I could have decided or done myself.
+    - [ ] No question-tool name appears that I did not confirm for the runtime I am in.
+    - [ ] Where the direction changed, two fixes failed or the work resumed after a gap, I restated what is done, what is open and what changed.
+    - [ ] Anything I started that is still running is named with the state it is in, and nothing appears there that has already finished.
+    - [ ] A claim that I will continue on my own names the event that resumes me, and no such claim stands on a turn that needs an operator decision.
+    ```
+
+13. `cat .skilled/repo-rules/evidence-and-proof.md`  
+    Exit status: 0. Last output lines:
+
+    ```text
+    - [ ] Every load-bearing sentence is marked OBSERVED, DERIVED, or INFERRED.
+    - [ ] I read the output and exit status of every command I am citing.
+    - [ ] Checked the green run against the four failure modes in §3.
+    - [ ] A before-number exists for every "no regressions" and performance claim.
+    - [ ] The close-out says what failed and what is inferred, not only what worked.
+    - [ ] The close-out names any known residual risk the operator must weigh. It says "none known" when there is none.
+    - [ ] Every claim about behavior came from the code or a command, not from memory or a doc.
+    - [ ] Where a document and the code disagreed, I said so rather than trusting the document.
+    - [ ] Every receipt I cite could have come out differently if the claim were false, or it is marked inferred.
+    - [ ] I reproduced the failure with the same check that now proves the fix, or said why I could not.
+    - [ ] A filter enumerated its variants first, a computed answer was derived twice, an exact artifact was checked by name and shape.
+    - [ ] The proof plan existed before the first edit, and it passed from the final state with the scoped diff clean of residue.
+    - [ ] I reread the request, and every outcome it asks for is met or named as not done.
+    ```
+
+14. `rg -n -F -C 3 -- 'sets that together wrote' .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`  
+    Exit status: 0. Output:
+
+    ```text
+    1234-  assert.deepEqual(JSON.parse(restored).arr, [{ n: 'a' }, { n: 'b' }]);
+    1235-});
+    1236-
+    1237:test('sets that together wrote every key of an item restore only while every other item is the pin\'s', () => {
+    1238-  const live = JSON.stringify({ rows: [{ id: 'A', top: 'a' }, { id: 'Z', top: 'v' }] }, null, 2) + '\n';
+    1239-  const records = [
+    ```
+
+15. `cat .skilled/repo-rules/communication.md`  
+    Exit status: 0. Last output lines are the same as item 11.
+
+3. OPEN QUESTIONS: The requested check reports the expected three failures before the engine change. The first invocation yielded without a status; the repeat returned the expected counts. Branch and pre-existing working-tree status were not checked because the brief forbade git commands.

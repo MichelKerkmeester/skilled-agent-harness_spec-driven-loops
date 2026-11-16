@@ -1,0 +1,33 @@
+Read-only task. Do not edit, create or delete any file. Answer from the files you read.
+
+The operator asks: what should be hardened in the Skilled overlay engine, and how can its UX improve? The overlay engine lets a project vendor a copy of the Skilled tree, keep its own changes ("overlays") in a separate folder, and re-pin to a new upstream commit without losing them.
+
+Your working directory is the repository. Read these first:
+- .skilled/skills/system-skilled-doctor/references/overlays.md: the reference, its state table and the json-entry `sets` paragraph.
+- .skilled/commands/doctor/assets/doctor-overlay-presentation.txt: what the operator sees and the fix each line names.
+- .skilled/commands/doctor/scripts/overlay-engine.cjs (about 5,600 lines): read only the parts your questions need.
+- .skilled/commands/doctor/overlay.md and .skilled/commands/doctor/assets/doctor-overlay-*.yaml.
+
+Evidence from two review rounds, all reproduced and now fixed in the uncommitted working tree:
+- A json-entry restore checked only array lengths, so a re-pin wrote one item's value into another and printed RESULT: PASSED.
+- A re-pin refused after it had already written.
+- Nested dropped sets were refused as edited.
+- `1` and `"1"` were treated as different paths.
+- The no-checkout refusal never cleared and did not name the fix.
+- One refusal's advice did not clear it.
+- Every json-entry plan problem was labeled both-changed. There is now a `cannot-apply` state.
+- A set that replaced a whole array item made the item check vacuous.
+- Values written by setKeyOnItem or a nested appendItems caused false refusals.
+
+Known silent cases that remain: setKeyOnItem and insertObjectKeys keep no record, and a kept indexed set shifts when an insertItems on its array leaves.
+
+This is the third pass of fixes on the same restore code. Do not re-propose these fixes. Look for what the pattern says about the design, and for UX gaps a vendoring project would hit.
+
+Return at most 12 items, ranked by how much each matters to a vendoring project. For each item give:
+- Hardening or UX.
+- The concrete problem, with file:line evidence.
+- The smallest change that fixes it.
+- A cost: small, medium or large.
+- CONFIRMED (read in the code) or INFERRED.
+
+Leave out generic advice that names no failure in this code. End with `FILES READ:` and the list of files.

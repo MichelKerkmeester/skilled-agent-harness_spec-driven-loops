@@ -1,0 +1,22 @@
+    ...operations.filter((operation) => operation.op === 'set').map((operation) => operation.path),
+  ];
+  const readItem = (document, item) => JSON.parse(document.text.slice(item.start, item.end));
+  // Every location inside one item that this overlay writes, relative to the item.
+  const writtenInside = (itemPath) => {
+    const inside = (written) => samePath(written, itemPath) || isInsidePath(written, itemPath);
+    const relative = (written) => written.slice(itemPath.length);
+    const locations = writtenPaths.filter(inside).map(relative);
+    for (const operation of operations) {
+      if (operation.op === 'setKeyOnItem' && samePath(operation.path, itemPath.slice(0, -1))) {
+        locations.push([operation.key]);
+      } else if (operation.op === 'insertObjectKeys' && inside(operation.path)) {
+        for (const entry of operation.entries || []) locations.push([...relative(operation.path), entry.key]);
+      } else if ((operation.op === 'insertItems' || operation.op === 'appendItems') && isInsidePath(operation.path, itemPath)) {
+        locations.push(relative(operation.path));
+      }
+    }
+    for (const item of recordedItems) if (item && isInsidePath(item.path, itemPath)) locations.push(relative(item.path));
+    return locations;
+  };
+  for (let depth = 0; depth < path.length; depth += 1) {
+    const container = path.slice(0, depth);

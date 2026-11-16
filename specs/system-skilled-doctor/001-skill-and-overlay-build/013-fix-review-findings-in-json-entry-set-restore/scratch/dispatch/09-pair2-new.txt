@@ -1,0 +1,5 @@
+  assert.equal(parsed.counts['both-changed'], 0);
+  assert.equal(parsed.destinations[0].state, 'cannot-apply');
+  assert.match(parsed.destinations[0].fix, /^cannot restore the dropped set at rows\.1\.top: .*put the array at rows back to the pinned copy by hand and run apply; change the entry set or the live file, then run /);
+
+  const live = readJson(fixture.livePath);

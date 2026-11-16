@@ -1,0 +1,84 @@
+## 1. FILES CHANGED
+
+- [overlay-engine.cjs](/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs)
+
+## 2. COMMANDS
+
+**Preflight commands**
+
+1. Trigger-index lookup. Exit **0**. Last output lines:
+
+   ```text
+     "schemaVersion": 2,
+     "specFolder": null,
+     "tokens": [
+       "add",
+       "the",
+       "cannot",
+       "apply",
+       "state",
+       "overlay",
+       "engine",
+       "using"
+     ],
+     "totalCandidates": 1,
+     "truncated": false
+   }
+   ```
+
+2. `cat 'REPO RULES.md'`. Exit **0**. Its output ended with the repository’s ask-surface routing rule.
+
+3. `cat .skilled/repo-rules/scope-discipline.md .skilled/repo-rules/evidence-and-proof.md .skilled/repo-rules/blast-radius.md .skilled/repo-rules/uncertainty-and-honesty.md .skilled/repo-rules/communication.md .skilled/repo-rules/communication-handoff.md`. Exit **0**. The tool marked the output truncated; its visible ending was the communication handoff checklist.
+
+4. Read the packet’s `goal.md`, `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` with `cat`. Exit **1** because `acceptance-criteria.md` does not exist. The packet marks itself Level 1. The visible output ended with the tasks cross-reference section.
+
+5. Read the three supplied `05-pair*-old.txt` files with `cat`. Exit **0**. Output:
+
+   ```text
+   const STATUS_NAMES = ['in-sync', 'overlay-edited', 'live-edited', 'both-changed', 'upstream-moved'];
+   const BLOCKING_STATES = new Set(['live-edited', 'both-changed', 'upstream-moved']);
+   const ENGINE_COMMAND = 'node .skilled/commands/doctor/scripts/overlay-engine.cjs';
+   const EXIT_OK = 0;
+   const EXIT_CONFLICT = 1;
+   const EXIT_ERROR = 2;
+   const VENDOR_ROOT = '.skilled';
+   const DEFAULT_RUNTIME_FOLDERS = ['.claude', '.codex', '.cursor', '.devin', '.dsh', '.opencode', '.pi', '.vibe'];
+   const RUNS_FOLDER = 'repin-runs';
+   const RELAYOUT_RUNS_FOLDER = 'relayout-runs';
+   const RUN_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
+   const GIT_MAX_BUFFER = 512 * 1024 * 1024;
+   const REPIN_VALUE_FLAGS = ['upstream', 'to', 'stage', 'rollback'];
+   const COMMAND_WORDS = ['status', 'apply', 'repin', 'pre-commit'];
+   // A token-named file is adopted only when its extension marks it as source or
+   // prose. Any other token-named file may hold a credential, so it is refused.
+   const TOKEN_NAME_ADOPT_EXTENSIONS = new Set(['.md', '.css', '.ts', '.js', '.cjs', '.mjs', '.svelte']);      if (plan.problems.length > 0 && stateName === 'overlay-edited') stateName = 'both-changed';
+     if (record.state === 'live-edited') return ENGINE_COMMAND + ' apply --capture ' + record.key;
+   ```
+
+6. Read the three target anchors with `rg -n -F -C 2`. Exit **0**. The matches were at lines 80, 2618 and 2636.
+
+**Replacements and final inspection**
+
+7. The Step 1 Python replacement command, using `05-pair1-old.txt` and `05-pair1-new.txt`. Exit **0**. No output.
+
+8. The Step 2 Python replacement command, using `05-pair2-old.txt` and `05-pair2-new.txt`. Exit **0**. No output.
+
+9. The Step 3 Python replacement command, using `05-pair3-old.txt` and `05-pair3-new.txt`. Exit **0**. No output.
+
+10. Final target inspection with `rg -n -C 2` for the state names, classification and recovery advice. Exit **0**. Its output confirmed `cannot-apply` in all three areas.
+
+**Requested check**
+
+11. First invocation of the requested test command returned no captured output or exit status.
+
+12. Reran the same command. Exit **0**. Output:
+
+   ```text
+   ℹ tests 79
+   ℹ pass 79
+   ℹ fail 0
+   ```
+
+## 3. OPEN QUESTIONS
+
+The first test invocation’s result was not captured; the rerun passed with the expected counts. The packet’s Level 1 status explains the absent acceptance-criteria file. Git branch and worktree status were not checked.

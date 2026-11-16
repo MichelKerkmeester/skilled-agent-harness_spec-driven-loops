@@ -1,0 +1,17 @@
+const STATUS_NAMES = ['in-sync', 'overlay-edited', 'live-edited', 'both-changed', 'upstream-moved', 'cannot-apply'];
+const BLOCKING_STATES = new Set(['live-edited', 'both-changed', 'upstream-moved', 'cannot-apply']);
+const ENGINE_COMMAND = 'node .skilled/commands/doctor/scripts/overlay-engine.cjs';
+const EXIT_OK = 0;
+const EXIT_CONFLICT = 1;
+const EXIT_ERROR = 2;
+const VENDOR_ROOT = '.skilled';
+const DEFAULT_RUNTIME_FOLDERS = ['.claude', '.codex', '.cursor', '.devin', '.dsh', '.opencode', '.pi', '.vibe'];
+const RUNS_FOLDER = 'repin-runs';
+const RELAYOUT_RUNS_FOLDER = 'relayout-runs';
+const RUN_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
+const GIT_MAX_BUFFER = 512 * 1024 * 1024;
+const REPIN_VALUE_FLAGS = ['upstream', 'to', 'stage', 'rollback'];
+const COMMAND_WORDS = ['status', 'apply', 'repin', 'pre-commit'];
+// A token-named file is adopted only when its extension marks it as source or
+// prose. Any other token-named file may hold a credential, so it is refused.
+const TOKEN_NAME_ADOPT_EXTENSIONS = new Set(['.md', '.css', '.ts', '.js', '.cjs', '.mjs', '.svelte']);

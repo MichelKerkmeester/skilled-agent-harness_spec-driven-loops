@@ -1,0 +1,1 @@
+The restore reads the pinned copy the run was given. For `apply` that is the checkout the manifest's pin names, and for a re-pin it is the new commit's tree. Without that copy the overlay is refused.

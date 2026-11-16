@@ -1,0 +1,16 @@
+## 1. FILES CHANGED
+
+[`.skilled/skills/system-skilled-doctor/references/overlays.md`](/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skilled-doctor/references/overlays.md)
+
+## 2. COMMANDS
+
+- The eight Python replacement commands, using `06-pair1` through `06-pair8` old/new files, each exited **0** with no output. Every assertion found exactly one match.
+- Final check, `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -c "cannot-apply" .skilled/skills/system-skilled-doctor/references/overlays.md`, exited **0**. Last output line: `2`.
+- Final content read, `rg -n -F ... overlays.md`, exited **0**. Its three output lines showed the updated paragraph, the `cannot-apply` row and the updated three-state sentence.
+- Read-only context lookup exited **1** with no results. The skill-advisor command exited **0** and recommended `system-skilled-doctor` at confidence `0.95`.
+- Read-only rule and source-fragment reads succeeded, except the initial unquoted `cat REPO RULES.md` attempt, which exited **1** because the filename contains a space. The quoted retry exited **0**. The anchor reads and final target reads exited **0**.
+- The `sk-doc` router read exited **0**. Its output was truncated; a follow-up `sed -n '568,582p' .skilled/skills/sk-doc/ROUTER.md` exited **0** and returned the final 15 lines.
+
+## 3. OPEN QUESTIONS
+
+None. The eight replacements and specified count check passed.

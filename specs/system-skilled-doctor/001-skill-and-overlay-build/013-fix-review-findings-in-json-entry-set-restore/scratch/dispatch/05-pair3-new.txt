@@ -1,0 +1,5 @@
+  if (record.state === 'live-edited') return ENGINE_COMMAND + ' apply --capture ' + record.key;
+  if (record.state === 'cannot-apply') {
+    const reasons = record.plan.problems.map((problem) => problem.replace(/^cannot apply the entry set to [^:]+: /, ''));
+    return reasons.join('; ') + '; change the entry set or the live file, then run ' + ENGINE_COMMAND + ' status';
+  }

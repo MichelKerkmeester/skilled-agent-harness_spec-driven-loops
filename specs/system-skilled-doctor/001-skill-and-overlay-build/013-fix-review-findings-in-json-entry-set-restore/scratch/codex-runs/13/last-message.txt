@@ -1,0 +1,13 @@
+1. FILES CHANGED:
+   - `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skilled-doctor/references/overlays.md`
+
+2. COMMANDS:
+   - `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Update two sentences in the overlay reference by exact replacement and verify with rg."` — exit 1. Last 15 output lines ended with `"overlay"`, `"reference"`, `"exact"`, `"replacement"`, then `totalCandidates: 0` and `staleFallback.matches: 0`.
+   - `cat "REPO RULES.md"` — exit 0. Output: repository rule routing and scope guidance.
+   - `cat .skilled/repo-rules/evidence-and-proof.md .skilled/repo-rules/blast-radius.md .skilled/repo-rules/communication.md .skilled/repo-rules/communication-handoff.md` — exit 0. The captured output was truncated; it reported 859 lines.
+   - `cat "specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch/dispatch/13-pair1-old.txt" "specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch/dispatch/13-pair1-new.txt"` — exit 0. Output was the two source paragraphs; each is a long line.
+   - `rg -n -F 'A \`set\` the entry set still lists inside a dropped outer one' .skilled/skills/system-skilled-doctor/references/overlays.md` — exit 0. Output was line 62, containing the target paragraph.
+   - `python3 -c "import sys;f,o,n=sys.argv[1:];t=open(f).read();a=open(o).read();assert t.count(a)==1,t.count(a);open(f,'w').write(t.replace(a,open(n).read()))" .skilled/skills/system-skilled-doctor/references/overlays.md specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch/dispatch/13-pair1-old.txt specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch/dispatch/13-pair1-new.txt` — exit 0. No output.
+   - `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -c "through several that cover every key" .skilled/skills/system-skilled-doctor/references/overlays.md` — exit 0. Output: `1`.
+
+3. OPEN QUESTIONS: none.

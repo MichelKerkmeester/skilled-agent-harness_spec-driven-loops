@@ -1,0 +1,159 @@
+1. FILES CHANGED:
+   - /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs
+
+2. COMMANDS:
+
+- `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "replace restore helpers in overlay engine"` — exit 0. Last 15 output lines:
+  ```json
+        "score": 0.88
+      }
+    ],
+    "schemaVersion": 2,
+    "specFolder": null,
+    "tokens": [
+      "replace",
+      "restore",
+      "helpers",
+      "overlay",
+      "engine"
+    ],
+    "totalCandidates": 1,
+    "truncated": false
+  }
+  ```
+
+- `cat 'REPO RULES.md'` — exit 0. Last output lines:
+  ```text
+  is the one rule on this side of that line, and it carries no route-selection guidance:
+  the mechanics stay in the skills, and the rule points at them. A fourth widening that
+  admits selection itself would dissolve the boundary; this one does not.
+
+  **The ask-surface carve-out, added as the fourth widening, on an operator decision that
+  overrode a research refusal.** A four-iteration decision-test run returned *refuse* here:
+  naming a question tool per runtime reads as the "which command" family, and the paragraph
+  above pre-refuses a fourth widening that admits selection. The operator widened it anyway,
+  and what follows is the narrowing that keeps the boundary standing. *Choosing between runtimes, agents, commands, models or flags* stays Out, unchanged. *Naming the surface that
+  asks the operator a question, in the runtime you are already running in*, is In. That is not
+  a selection, because nothing is being selected: the runtime is a given, and the rule records
+  which of its surfaces carries an obligation the rule already imposes. `communication-handoff.md`
+  is the one rule on this side of that line, its §5 is the only place a tool name appears, and
+  it names only what this repository confirms. A fifth widening that let a rule pick between
+  runtimes would be the dissolution this one avoids.
+  ```
+
+- `cat '.skilled/repo-rules/communication.md'` — exit 0. Last 15 output lines:
+  ```text
+  ## 11. SELF-CHECK
+
+  - [ ] The first line carries the answer or the action, not a label, an announcement or a setup, and the outcome is complete by the second line.
+  - [ ] I reached the verdict by analysis, recommended one path with its trade-off and stated the assumptions I made.
+  - [ ] Where the request was ambiguous or I delivered a different version of the ask, the first lines say which reading I took and why.
+  - [ ] Each paragraph stands alone and carries the reader forward, and multi-step work reads as a numbered list.
+  - [ ] No group runs past five items, nothing was dropped to keep it under, and a tangent appears once at the end or not at all.
+  - [ ] Every sentence carries information, each fact appears once, and no runtime instruction to plan privately was copied into the reply.
+  - [ ] Length matches what the reader asked, no table stands in a reply, and nothing was compressed past the point where the reader has to re-expand it.
+  - [ ] Every sentence carries one idea in plain words and says how it attaches to the one before.
+  - [ ] Arrows, bare IDs, counts and fragments were turned into sentences, and every path, hash or flag is one the reader will act on.
+  - [ ] No em dash, no semicolon, no serial comma.
+  - [ ] Before a long stretch I said where I was going, with a concrete time estimate when it was long, and no estimate argued against starting.
+  - [ ] A synthesis I reported carries its findings, not just its path and its counts.
+  - [ ] When the reader did not follow, I changed modality, and a plain re-render kept every claim, number and caveat at the same strength.
+  ```
+
+- `cat '.skilled/repo-rules/communication-handoff.md'` — exit 0. Last output lines:
+  ```text
+  ---
+  ## 8. SELF-CHECK
+
+  - [ ] The status names what ran, what is inferred, what only the operator can verify, the state of the work and any known residual risk. It says "none known" when there is none.
+  - [ ] The turn ends by naming what is the operator's to do, or by saying nothing is.
+  - [ ] Every item on that list is theirs, not mine reframed.
+  - [ ] The handback is last, and survives a reader who stops halfway.
+  - [ ] Anything asked as a structured choice passes all three conditions in §4.
+  - [ ] Any choice I offered carries a recommendation and a reason.
+  - [ ] Nothing was handed back that I could have decided or done myself.
+  - [ ] No question-tool name appears that I did not confirm for the runtime I am in.
+  - [ ] Where the direction changed, two fixes failed or the work resumed after a gap, I restated what is done, what is open and what changed.
+  - [ ] Anything I started that is still running is named with the state it is in, and nothing appears there that has already finished.
+  - [ ] A claim that I will continue on my own names the event that resumes me, and no such claim stands on a turn that needs an operator decision.
+  ```
+
+- `cat '.skilled/repo-rules/blast-radius.md'` — exit 0. Last output lines:
+  ```text
+  ## 7. SELF-CHECK
+
+  - [ ] Placed the action on the reversibility ladder and said so.
+  - [ ] Looked at the target before deleting or overwriting it.
+  - [ ] The rollback sentence is written and concrete.
+  - [ ] For tier 3, I have an explicit, in-the-moment yes for *this* action.
+  - [ ] Enumerated what still speaks the old contract, by searching rather than assuming.
+  - [ ] Removal is scoped to the requested surface; nothing wider happened silently.
+  - [ ] Cheap, reversible forks were decided rather than deliberated.
+  - [ ] Any installation went through the same scope, approval and verification as any other mutation.
+  ```
+
+- `cat '.skilled/repo-rules/evidence-and-proof.md'` — exit 0. Last 15 output lines:
+  ```text
+  - [ ] Every load-bearing sentence is marked OBSERVED, DERIVED, or INFERRED.
+  - [ ] I read the output and exit status of every command I am citing.
+  - [ ] Checked the green run against the four failure modes in §3.
+  - [ ] A before-number exists for every "no regressions" and performance claim.
+  - [ ] The close-out says what failed and what is inferred, not only what worked.
+  - [ ] The close-out names any known residual risk the operator must weigh. It says "none known" when there is none.
+  - [ ] Every claim about behavior came from the code or a command, not from memory or a doc.
+  - [ ] Where a document and the code disagreed, I said so rather than trusting the document.
+  - [ ] Every receipt I cite could have come out differently if the claim were false, or it is marked inferred.
+  - [ ] I reproduced the failure with the same check that now proves the fix, or said why I could not.
+  - [ ] A filter enumerated its variants first, a computed answer was derived twice, an exact artifact was checked by name and shape.
+  - [ ] Every sub-agent, reviewer or tool finding I acted on was confirmed against the real symptom first.
+  - [ ] The proof plan existed before the first edit, and it passed from the final state with the scoped diff clean of residue.
+  - [ ] I reread the request, and every outcome it asks for is met or named as not done.
+  ```
+
+- `cat 'specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch/dispatch/03-pair1-old.txt'` — exit 0. Last output lines:
+  ```text
+      }
+      output = applyEdits(output, [memberRemovalEdit(parent.members, index)]);
+    }
+    return output;
+  }
+  ```
+
+- `cat 'specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch/dispatch/03-pair1-new.txt'` — exit 0. Last output lines:
+  ```text
+      }
+      output = applyEdits(output, [memberRemovalEdit(parent.members, index)]);
+    }
+    return output;
+  }
+  ```
+
+- `rg -n -C 3 -F 'function lastRecordPerPath(records)' .skilled/commands/doctor/scripts/overlay-engine.cjs` — exit 0. Output:
+  ```text
+  1256- * @param {object[]} records Recorded sets of one destination.
+  1257- * @returns {object[]} The records with earlier duplicates of a path left out.
+  1258- */
+  1259:function lastRecordPerPath(records) {
+  1260-  return records.filter((record, index) =>
+  1261-    !records.slice(index + 1).some((later) => deepEqual(later.path, record.path)));
+  1262-}
+  ```
+
+- `sed -n '1240,1380p' .skilled/commands/doctor/scripts/overlay-engine.cjs` — exit 0. Output ended at the `applyJsonOperations` region following the old restore helper.
+
+- `python3 -c "import sys;f,o,n=sys.argv[1:];t=open(f).read();a=open(o).read();assert t.count(a)==1,t.count(a);open(f,'w').write(t.replace(a,open(n).read()))" .skilled/commands/doctor/scripts/overlay-engine.cjs specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch/dispatch/03-pair1-old.txt specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch/dispatch/03-pair1-new.txt` — exit 0. No output.
+
+- `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node --check .skilled/commands/doctor/scripts/overlay-engine.cjs && echo SYNTAX-OK` — exit 0. Output:
+  ```text
+  SYNTAX-OK
+  ```
+
+- `rg -n -F -e 'function samePath(left, right)' -e 'function restoreDroppedSets(text, operations, recordedSets' .skilled/commands/doctor/scripts/overlay-engine.cjs` — exit 0. Output:
+  ```text
+  1259:function samePath(left, right) {
+  1414:function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = () => null, recordedItems = []) {
+  ```
+
+- `sed -n '1250,1525p' .skilled/commands/doctor/scripts/overlay-engine.cjs` — exit 0. Output ended after the `applyJsonOperations` function.
+
+3. OPEN QUESTIONS: none

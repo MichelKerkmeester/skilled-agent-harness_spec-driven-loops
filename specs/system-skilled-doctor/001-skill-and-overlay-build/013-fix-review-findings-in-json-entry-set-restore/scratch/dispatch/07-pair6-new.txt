@@ -1,0 +1,1 @@
+| A destination is `live-edited`, `both-changed`, `upstream-moved` or `cannot-apply` | Settle it first: `/doctor:overlay apply --capture <path>` for a live edit, or resolve the overlay by hand for the other three,

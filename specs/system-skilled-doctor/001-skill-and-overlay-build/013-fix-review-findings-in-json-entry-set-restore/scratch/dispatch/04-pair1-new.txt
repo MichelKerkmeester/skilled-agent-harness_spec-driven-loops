@@ -1,0 +1,9 @@
+  const readUpstreamText = () => {
+    if (upstreamText !== undefined) return upstreamText;
+    const bytes = upstreamBytes ? upstreamBytes(relativeKey(ctx.root, destinationPath)) : null;
+    // Live bytes that hash to the entry's pinned hash are the pinned copy itself,
+    // so they stand in when no checkout can be read.
+    if (bytes !== null) upstreamText = bytes.toString('utf8');
+    else upstreamText = entry.pinnedSha256 && sha256(current) === entry.pinnedSha256 ? currentText : null;
+    return upstreamText;
+  };

@@ -1,0 +1,5 @@
+    if (pinned && deepEqual(live, JSON.parse(upstreamText.slice(pinned.start, pinned.end)))) continue;
+    const { expected, masks } = valueLeftBySets(record, records, keptPaths);
+    if (!deepEqual(maskedValue(live, masks), maskedValue(expected, masks))) {
+      throw new Error('dropped set at ' + where +
+        ' was edited after it was applied; restore the value by hand or put the set back in the entry set');

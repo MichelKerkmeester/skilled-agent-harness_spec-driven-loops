@@ -1,0 +1,12 @@
+      // One record per path: a later set on the same path is the value the file
+      // ends with, and a key stays marked as added once either set added it. The
+      // record moves to the end, so the records keep the order the values were written.
+      onSet: (record) => {
+        const index = listedSets.findIndex((listed) => samePath(listed.path, record.path));
+        if (index < 0) {
+          listedSets.push(record);
+          return;
+        }
+        const [earlier] = listedSets.splice(index, 1);
+        listedSets.push({ ...record, added: earlier.added === true || record.added === true });
+      },

@@ -1,0 +1,1 @@
+Three cases stay silent. `setKeyOnItem` and `insertObjectKeys` keep no record, so a value either one wrote stays in the live file after the operation leaves the entry set. A `set` through an array index that stays listed while an `insertItems` on that array leaves moves to the next item, and the value it wrote on the item before stays behind with no record.

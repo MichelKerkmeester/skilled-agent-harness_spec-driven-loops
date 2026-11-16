@@ -1,0 +1,1 @@
+      if (plan.problems.length > 0 && stateName === 'overlay-edited') stateName = 'both-changed';

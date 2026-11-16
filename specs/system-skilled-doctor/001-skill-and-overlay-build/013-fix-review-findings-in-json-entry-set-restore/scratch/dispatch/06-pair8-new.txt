@@ -1,0 +1,1 @@
+`cannot-apply` means the entry set itself cannot be applied. `apply` writes nothing at all while any of the three is present,

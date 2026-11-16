@@ -1,0 +1,70 @@
+
+test('a live repin restores a dropped set in a json-entry file at the tree root from the new commit', (t) => {
+  const fixture = createRepinFixture(t, {
+    oldEntries: { 'baseline.json': setDocument('sk-code', 'old') },
+    newEntries: { 'baseline.json': setDocument('sk-review', 'old') },
+  });
+  const dropped = { op: 'set', path: ['rows', 'a', 'top'], value: 'sk-doc' };
+  writeFile(fixture.overlayDir, SET_SOURCE, JSON.stringify({
+    target: 'baseline.json',
+    style: { indent: 2, primitiveArrays: 'inline' },
+    operations: [dropped],
+  }, null, 2) + '\n');
+  fixture.manifest.overlays.push({
+    id: 'baseline-set',
+    scope: 'json-entry',
+    source: SET_SOURCE,
+    destination: 'baseline.json',
+    pinnedSha256: sha256(Buffer.from(setDocument('sk-code', 'old'))),
+  });
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+
+  writeFile(fixture.overlayDir, SET_SOURCE, JSON.stringify({
+    target: 'baseline.json',
+    style: { indent: 2, primitiveArrays: 'inline' },
+    operations: [],
+  }, null, 2) + '\n');
+  const result = fixture.repin();
+
+  // The copy leaves a root file alone, so the restore reads the new commit itself.
+  assert.equal(result.code, 0, result.output);
+  assert.match(result.output, /^RESULT: PASSED$/m);
+  assert.equal(read(fixture.tree, 'baseline.json'), setDocument('sk-review', 'old'));
+});
+
+test('a re-pin stops before the backup when a json-entry file it leaves in place cannot be restored at the new pin', (t) => {
+  const listDestination = '.codex/list.json';
+  const list = (rows) => JSON.stringify({ rows }, null, 2) + '\n';
+  const fixture = createRepinFixture(t, {
+    oldEntries: { [listDestination]: list([{ id: 'A', top: 'a' }, { id: 'B', top: 'b' }]) },
+    newEntries: { [listDestination]: list([{ id: 'B', top: 'b' }, { id: 'A', top: 'a' }]) },
+  });
+  const writeList = (operations) => writeFile(fixture.overlayDir, 'json/list.json', JSON.stringify({
+    target: listDestination,
+    style: { indent: 2, primitiveArrays: 'inline' },
+    operations,
+  }, null, 2) + '\n');
+  writeList([{ op: 'set', path: ['rows', 1, 'top'], value: 'v' }]);
+  fixture.manifest.overlays.push({
+    id: 'list-set',
+    scope: 'json-entry',
+    source: 'json/list.json',
+    destination: listDestination,
+    pinnedSha256: sha256(Buffer.from(list([{ id: 'A', top: 'a' }, { id: 'B', top: 'b' }]))),
+  });
+  fixture.manifest.repin = { exclude: [listDestination] };
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+
+  writeList([]);
+  const before = treeDigest(fixture.tree);
+  const result = fixture.repin();
+
+  // Index 1 is B in the live file and A at the new pin, so neither value is right.
+  assert.equal(result.code, 2, result.output);
+  assert.match(result.output, /^blocked list-set: refused cannot apply the entry set to \.codex\/list\.json: cannot restore the dropped set at rows\.1\.top: its path goes through an array whose items differ from the pinned copy/m);
+  assert.match(result.output, /^refuse: 1 json-entry overlay\(s\) the copy leaves in place cannot be applied at the new pin; fix them before a re-pin$/m);
+  assert.equal(treeDigest(fixture.tree), before);
+  assert.equal(fs.existsSync(fixture.runsDir), false);
+});
