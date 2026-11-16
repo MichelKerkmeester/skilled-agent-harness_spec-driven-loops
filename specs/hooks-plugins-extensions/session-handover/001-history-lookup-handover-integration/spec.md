@@ -127,6 +127,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 10 | 010-history-secret-redaction/ | Redact secret-shaped values (API keys, tokens, private keys, auth headers, URL passwords) from every history lookup reply. The stored transcript stays untouched. | Complete |
 | 11 | 011-opencode-pi-handover-parity/ | [Phase 11 scope] | Pending |
 | 12 | 012-opencode-model-carry/ | [Phase 12 scope] | Pending |
+| 13 | 013-devin-compaction-fallback-budget/ | Keep the Devin post-compaction notice within 4096 bytes with the recovery pointer whole when the history engine is not built, which turned Spec-Kit Check red on main. | Complete |
 
 ### Phase Transition Rules
 
@@ -150,6 +151,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 009-deep-review-p2-remediation | 010-history-secret-redaction | None: phase 10 is a new operator request and does not depend on phase 9's fixes. | Phase 10 started after phase 9 merged, by the operator's decision. |
 | 010-history-secret-redaction | 011-opencode-pi-handover-parity | [Criteria TBD] | [Verification TBD] |
 | 011-opencode-pi-handover-parity | 012-opencode-model-carry | [Criteria TBD] | [Verification TBD] |
+| 012-opencode-model-carry | 013-devin-compaction-fallback-budget | None: phase 13 fixes a CI failure and does not depend on phase 12. | The compaction test file passes with and without the history engine build. |
 <!-- /ANCHOR:phase-map -->
 
 ---
