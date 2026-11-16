@@ -1,5 +1,5 @@
 {
-  "corpusHash": "bb902c5873c2c77984a79412fee7e0c8015ce0662b663a148670a57fd6b25e69",
+  "corpusHash": "71e6f6f4ad96205cdcb263279ad537eb70347e530dbd6eabcb3234472b70c1fb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27807,
+  "includedPathCount": 27811,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12165,6 +12165,10 @@
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/fanout-attribution.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/review-report.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/deep-review-dashboard.md",
@@ -27839,7 +27843,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "01bfb7ceb4ee4dea4d886da142983c45eb6183877f702b4273485ff86d70f2ee",
+  "manifestHash": "4d3a7eec2919d4572235e6548cfa232895f84e6226b7c5373f828fc5d7762027",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31691,6 +31695,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget/scratch",
       "reason": "excluded directory"
     },
     {
