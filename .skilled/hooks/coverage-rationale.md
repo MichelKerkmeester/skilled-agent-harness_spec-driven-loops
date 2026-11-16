@@ -110,7 +110,7 @@ Claude, Codex, Cursor and Devin each hold a relative symlink per script and wire
 
 ### `session-handover` on **dsh**: command trigger only
 **DSH gets the `/speckit:handoff` prompt but no automatic hop, because `skilled-loop` launches no DSH session.**
-The wrapper's runtime list in `.skilled/bin/skilled-loop` names Claude, Pi, OpenCode, Codex, Devin and Cursor, and the per-runtime enable switch list in `shared/hook-flags.cjs` has no DSH entry, so no relaunch could be armed. The handoff command reaches DSH as `.dsh/prompts/speckit-handoff.md`. A fan-out leaf is one-shot, and the outer deep-loop runner owns its restarts.
+The wrapper's runtime list in `.skilled/bin/skilled-loop` names Claude, Pi, OpenCode, Codex, Devin, Cursor and Vibe, and the per-runtime enable switch list in `shared/hook-flags.cjs` has no DSH entry, so no relaunch could be armed. The handoff command reaches DSH as `.dsh/prompts/speckit-handoff.md`. A fan-out leaf is one-shot, and the outer deep-loop runner owns its restarts.
 
 ---
 

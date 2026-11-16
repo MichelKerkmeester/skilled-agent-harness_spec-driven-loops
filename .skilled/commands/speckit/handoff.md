@@ -29,7 +29,7 @@ Section 5 covers a session seeded with `[session-handover] claim and continue ha
 
 **Inputs:** nothing through `$ARGUMENTS`.
 Both `prepare` and `claim` require `--session <id>`.
-Claude Code can omit it and use `$CLAUDE_CODE_SESSION_ID`, and so can a Vibe session started through `skilled-loop`, which uses the id its turn-start hook recorded.
+Claude Code can omit it and use `$CLAUDE_CODE_SESSION_ID`. `prepare` on a Vibe session started through `skilled-loop` can use the id its turn-start hook recorded; `claim` there must pass `--session`.
 On Claude, `CLAUDE_PID` supplies the runtime process id for the shell-child check and the killer's target, both only while it descends from the loop.
 Other runtimes must pass the session id.
 A Vibe session started through `skilled-loop` gets its id from `node .skilled/hooks/session-handover/bin/session-handover.cjs session-id --runtime vibe`. When that command fails, run `uuidgen` instead. If a runtime has no session-id variable, such as Devin, Cursor or a Vibe session outside the loop, run `uuidgen` once and reuse that id for the session.

@@ -71,7 +71,7 @@ Then add one line to `~/.zshrc` or `~/.bashrc`, with the absolute path of the ch
 source /path/to/repo/.skilled/bin/skilled-loop-shell.sh
 ```
 
-The shim defines `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent` and `skilled-loop` as shell functions. Its rules, the trusted-checkout list and the wrapper checksum note are in `runtime-behavior.md`.
+The shim defines `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent`, `vibe` and `skilled-loop` as shell functions. Its rules, the trusted-checkout list and the wrapper checksum note are in `runtime-behavior.md`.
 
 ---
 
@@ -217,7 +217,7 @@ The killer CLI requires `--loop-id` and `--target-pid`. `--transcript` is option
 
 The loop id must be greater than 1 and match `SKILLED_LOOP_ID`. The defaults are `--idle-ms 3000` and `--timeout-ms 30000`. The killer polls every 100 ms. `--no-notify` defaults to off, so a timeout attempts a notification. The Stop hook starts the killer without `--no-notify`.
 
-`prepare` receives the note through `--handoff <path>`, while `claim` and `complete` receive it positionally. Both `prepare` and `claim` require `--session <id>`. Only Claude Code can omit the flag and use `CLAUDE_CODE_SESSION_ID`. A successful prepare exits 0 and leaves the record pending for Stop to arm. Outside `skilled-loop`, prepare prints the manual claim command and exits 3. Inside the loop it does the same at the hop cap. A refused prepare exits 2.
+`prepare` receives the note through `--handoff <path>`, while `claim` and `complete` receive it positionally. Both `prepare` and `claim` require `--session <id>`. Claude Code can omit the flag and use `CLAUDE_CODE_SESSION_ID`. On a Vibe session under `skilled-loop`, `prepare` can also omit it and use the id the turn-start hook recorded, while `claim` there must pass `--session`. A successful prepare exits 0 and leaves the record pending for Stop to arm. Outside `skilled-loop`, prepare prints the manual claim command and exits 3. Inside the loop it does the same at the hop cap. A refused prepare exits 2.
 
 `keep --handoff <path>` takes the same `--session` and `--runtime` options. It exits 0 outside the loop and exits 2 inside it.
 

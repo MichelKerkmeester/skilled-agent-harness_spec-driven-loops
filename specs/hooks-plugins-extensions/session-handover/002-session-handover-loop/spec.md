@@ -152,6 +152,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 46 | 046-vibe-history-locator/ | A claim of a note a Vibe session wrote prints the History Lookup section: the locator mint finds the Vibe session folder and the working folder its `meta.json` records, and the printed command redeems | Complete |
 | 47 | 047-vibe-handover-hardening/ | Vibe hand-over hardening: the turn-start withdraw, the session-id record, the deferred mark and a killer that watches the whole journal folder | Complete |
 | 48 | 048-cross-runtime-handover-parity-fixes/ | Pi and OpenCode senders get History Lookup, a failed arm is deferred on Codex, Pi and OpenCode, one shared nudge claim, and readable history previews | Complete |
+| 49 | 049-handover-doc-alignment/ | Every hand-over doc checked against the code: the findings of a doc alignment run fixed, the ones in worktree 411's rewritten READMEs handed to that rewrite, and `vibe` added to the loop shell shim | Complete |
 
 ### Phase Transition Rules
 
@@ -211,6 +212,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 045-vibe-automatic-handover | 046-vibe-history-locator | Phase 45 is Complete and pushed, and the history lookup phase 007 put the recorded-folder check into the mint | `validate.sh 045-vibe-automatic-handover --strict` RESULT: PASSED |
 | 046-vibe-history-locator | 047-vibe-handover-hardening | Phase 46 is Complete and pushed | `validate.sh 046-vibe-history-locator --strict` RESULT: PASSED |
 | 047-vibe-handover-hardening | 048-cross-runtime-handover-parity-fixes | Phase 47 is Complete and pushed | `validate.sh 047-vibe-handover-hardening --strict` RESULT: PASSED |
+| 048-cross-runtime-handover-parity-fixes | 049-handover-doc-alignment | Phase 48 is Complete and pushed, so the doc check reads the shipped parity code | `validate.sh 048-cross-runtime-handover-parity-fixes --recursive --strict` RESULT: PASSED |
 <!-- /ANCHOR:phase-map -->
 
 ---

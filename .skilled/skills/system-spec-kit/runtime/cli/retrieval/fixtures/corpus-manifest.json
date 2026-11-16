@@ -1,5 +1,5 @@
 {
-  "corpusHash": "81135fcd4f3737a24fc25fdccba17c15f2495875519d04f489f503bfcdea1f1d",
+  "corpusHash": "616de3819b233937aadd1809b6bf7798562a64e5f950239bb268a7bbefa69604",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27760,
+  "includedPathCount": 27766,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12842,6 +12842,12 @@
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/research.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
@@ -27792,7 +27798,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ff2d925ad36a81a528c0cd99d83f009203b798ccd2e5fd47dbf42495eb0c864e",
+  "manifestHash": "318c259accd32e88eb5e10fec0346fb66dfa85f22ae3c65efc96a004c2e897a6",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32140,6 +32146,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/scratch",
       "reason": "excluded directory"
     },
     {

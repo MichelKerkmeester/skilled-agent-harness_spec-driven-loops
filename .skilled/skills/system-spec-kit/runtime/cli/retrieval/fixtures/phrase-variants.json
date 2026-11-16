@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ff2d925ad36a81a528c0cd99d83f009203b798ccd2e5fd47dbf42495eb0c864e",
+  "manifestHash": "318c259accd32e88eb5e10fec0346fb66dfa85f22ae3c65efc96a004c2e897a6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7129,6 +7129,9 @@
     ],
     "049 deep research finding remediation": [
       "049 deep research finding remediation"
+    ],
+    "049 handover doc alignment operator decisions": [
+      "049-handover-doc-alignment operator decisions"
     ],
     "049 implementation summary": [
       "049 implementation summary"
@@ -57687,6 +57690,9 @@
     "hand drawn diagram variant": [
       "hand drawn diagram variant"
     ],
+    "hand over doc alignment fixes": [
+      "hand-over doc alignment fixes"
+    ],
     "hand over gap report verification": [
       "hand-over gap report verification"
     ],
@@ -57803,6 +57809,21 @@
     ],
     "handover bound freshness": [
       "handover bound freshness"
+    ],
+    "handover doc alignment": [
+      "handover doc alignment"
+    ],
+    "handover doc alignment acceptance criteria": [
+      "handover doc alignment acceptance criteria"
+    ],
+    "handover doc alignment implementation summary": [
+      "handover doc alignment implementation summary"
+    ],
+    "handover doc alignment plan": [
+      "handover doc alignment plan"
+    ],
+    "handover doc alignment tasks": [
+      "handover doc alignment tasks"
     ],
     "handover docs and harness": [
       "handover docs and harness"
@@ -131676,6 +131697,9 @@
     ],
     "vibe skill mirror": [
       "vibe skill mirror"
+    ],
+    "vibe skilled loop shell shim": [
+      "vibe skilled-loop shell shim"
     ],
     "vibe stop arm": [
       "vibe stop arm"

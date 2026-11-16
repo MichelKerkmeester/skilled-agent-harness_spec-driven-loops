@@ -8,7 +8,7 @@
 #
 # Usage: source /abs/path/.skilled/bin/skilled-loop-shell.sh
 #
-# Defines claude, pi, opencode, codex, devin and cursor-agent, plus the `skilled-loop`
+# Defines claude, pi, opencode, codex, devin, cursor-agent and vibe, plus the `skilled-loop`
 # command the wrapper prints for a manual claim. Each runtime function runs
 # `bash <repo>/.skilled/bin/skilled-loop <arm> "$@"` when stdin and stdout are a
 # terminal, no loop is running yet, the arguments open an interactive session, and a
@@ -83,7 +83,7 @@ skilled_loop_resolve() (
     shift
   fi
   case "$runtime" in
-    claude|pi|opencode|codex|devin|cursor) ;;
+    claude|pi|opencode|codex|devin|cursor|vibe) ;;
     *) exit 0 ;;
   esac
   # A session the loop started already relaunches through its own wrapper.
@@ -148,6 +148,10 @@ skilled_loop_first_word_passes() {
       cursor:generate-rule|cursor:rule|cursor:help)
       return 0
       ;;
+    # Vibe's mcp, config, help and update commands manage settings without a session.
+    vibe:mcp|vibe:config|vibe:help|vibe:update)
+      return 0
+      ;;
   esac
   return 1
 }
@@ -178,6 +182,10 @@ skilled_loop_flag_passes() {
       ;;
     cursor:-p|cursor:--print|cursor:-v|cursor:--version|cursor:-h|cursor:--help|\
       cursor:--list-models)
+      return 0
+      ;;
+    vibe:-p|vibe:--prompt|vibe:--prompt=*|vibe:--prompt-file|vibe:--prompt-file=*|\
+      vibe:-v|vibe:--version|vibe:-h|vibe:--help|vibe:--setup|vibe:--check-upgrade)
       return 0
       ;;
   esac
@@ -315,6 +323,7 @@ function opencode { skilled_loop_launch opencode opencode "$@"; }
 function codex { skilled_loop_launch codex codex "$@"; }
 function devin { skilled_loop_launch devin devin "$@"; }
 function cursor-agent { skilled_loop_launch cursor cursor-agent "$@"; }
+function vibe { skilled_loop_launch vibe vibe "$@"; }
 
 # A manual claim is pasted as `skilled-loop <runtime>`, so the shim answers to that name.
 # The wrapper comes from the checkout that owns this shim, never from the current directory,
