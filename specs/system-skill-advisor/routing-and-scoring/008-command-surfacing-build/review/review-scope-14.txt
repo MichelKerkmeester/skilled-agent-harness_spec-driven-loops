@@ -1,0 +1,5 @@
+# review pass fourteen: diff each path with git -c core.fsmonitor=false diff 932aff4e437 e626653ce79 -- <path>, then read the whole file at e626653ce79
+mention	.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+mention	.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts
+data	.skilled/skills/system-skill-advisor/graph-metadata.json
+data	specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/decision-record.md
