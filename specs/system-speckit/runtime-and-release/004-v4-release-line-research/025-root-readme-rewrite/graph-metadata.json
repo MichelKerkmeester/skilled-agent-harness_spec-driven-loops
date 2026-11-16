@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The root `README.md` is 1,773 lines long and was written before the v4.0.1.0, v4.0.2.0 and v4.0.2.1 releases and the commits on main after the v4.0.2.1 tag",
     "created_at": "2026-11-16T09:02:18.037Z",
-    "last_save_at": "2026-11-16T12:41:09.171Z",
+    "last_save_at": "2026-11-16T15:03:32.849Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b945eb7cb2da84464ff3da15e26e07b70b5278b9034686c4c732cd51ec3fabcb",
+    "source_fingerprint": "sha256:05de1911cdf8b14180198db5e85c11b57dfaa061234f2fd400dfad57c173173a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ca5dd4cf371958e4e4dd64379fef4c77266ed3791988deba37074c504d0c9bbe",
       "plan.md": "ffaae0e3428a7167ce1cce3cbb01e8dc9f71b342690fd8a12e87d538f254ec5f",
       "tasks.md": "88d4af59075067bbafeb2a3b7c3746304be0724a6196af351e6bb9a61a0f2510",
-      "implementation-summary.md": "bd2e77a0ad8d4d00cf6027e6131d9217e855900037c5cab4f5bfbda7118ad168",
+      "implementation-summary.md": "947a11c8117fce61a9e1cbaedfd300be94fc92f42d1e945f90abb5d99e77fab1",
       "research/research.md": "7846035831f953b0fa9d0179c002c2bdd53d47c5b34c7cc334d299d68f852047"
     },
     "last_active_child_id": null,

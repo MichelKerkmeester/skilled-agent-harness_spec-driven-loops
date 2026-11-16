@@ -334,6 +334,8 @@ The note carries what the next session needs. It holds the goal and what is left
 
 Handover is on by default for Claude Code only. You can turn it on for every runtime at once or for one runtime at a time, and a runtime's own setting wins. Only Claude Code, Codex, Pi, OpenCode and Mistral Vibe nudge and hop on their own. On Cursor and Devin, `/speckit:handoff` writes the note and you start the next session with the printed claim command. One off switch beats every on setting. While handover is off for a runtime, `/speckit:handoff` refuses there and the runtime's own compaction handles a full window.
 
+When the sender ran one of those five runtimes, the session that claims the note can also read the sender's earlier turns back through a printed lookup command, as the [handoff protocol](.skilled/hooks/session-handover/handoff-protocol.md#3-history-lookup-after-a-claim) explains.
+
 Read more in the [session handover README](.skilled/hooks/session-handover/README.md).
 
 #### Goal

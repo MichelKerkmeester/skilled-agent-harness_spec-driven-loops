@@ -83,6 +83,7 @@ The research ran first and its load-bearing claims were re-read at their source 
 | Follow the code over the hook coverage matrix for the Vibe dispatch audit | Vibe ships only the preflight adapter, so the audit trail runs on seven runtimes |
 | Drop unsourced figures such as the context-saving percentage and the token counts | No source file read for this task states them |
 | Keep the `#git-hooks` and `#off-switches` headings | Other docs link to those anchors |
+| Bring back one history lookup sentence in the session handover section, after completion | The operator asked for it once the rewrite had dropped it. The sentence names only the five runtimes that hop, because the claim prints the lookup only for a sender on one of them |
 <!-- /ANCHOR:decisions -->
 
 ---
