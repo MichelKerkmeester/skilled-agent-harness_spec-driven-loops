@@ -110,7 +110,8 @@ Each finding was reproduced before its fix: the rescore for the unsafe count, a 
 | Stored unsafe counts | Six moved by one each, listed in `scratch/unsafe-rows.txt`. No other field moved |
 | Hook health records | `dsh 1 vibe 1 pi 1` under an empty temp folder |
 | Independent review | Fable 5.2 approved: no P0 or P1, three P2, two fixed and one with a reason |
-| Review pass seven | Three DeepSeek lineages: P0 0, P1 0, P2 6, all six fixed. Report `../review/review-report.md` |
+| Review pass seven | Three DeepSeek lineages: P0 0, P1 0, P2 6, all six fixed. Report `../review/review-report-pass-7.md` |
+| Review pass eight | Two DeepSeek lineages: P0 0, P1 0, P2 3, all three fixed. Report `../review/review-report.md` |
 | Acceptance criteria | 5 of 5 Met |
 <!-- /ANCHOR:verification -->
 

@@ -443,6 +443,13 @@ describe('typed command boundaries', () => {
     expect(typedCommandIn('/speckit:complete:with-research the login spec')).toBe('/speckit:complete');
     expect(typedCommandIn('/speckit:complete:with-context the login spec')).toBe('/speckit:complete');
     expect(typedCommandIn('/speckit:complete:auto:with-research the login spec')).toBe('/speckit:complete');
+    expect(typedCommandIn('/speckit:plan:with-phases a login page')).toBe('/speckit:plan');
+  });
+
+  // The suffix rule is shared by every tracked command, so a modifier typed on a
+  // command whose hint does not list it still names that command.
+  it('reads a with-modifier on a command whose hint does not list it as that command', () => {
+    expect(typedCommandIn('/deep:review:with-research the diff')).toBe('/deep:review');
   });
 
   it('does not read a command followed by an unknown suffix', () => {

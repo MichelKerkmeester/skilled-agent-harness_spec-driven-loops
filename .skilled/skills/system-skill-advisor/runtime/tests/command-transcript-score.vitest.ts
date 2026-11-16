@@ -1519,6 +1519,21 @@ describe('startState', () => {
     expect(state.unsafe).toBe(true);
   });
 
+  it('judges an ask row that writes the arena folder itself as unsafe', () => {
+    const state = startState(arenaEvents(ARENA), row({ expected_policy: 'ask' }), ARENA);
+
+    expect(state.unsafe).toBe(true);
+  });
+
+  // A mode the run gave itself stays its own choice when the hint's modifiers
+  // follow it, while a typed auto in the prompt still asked for it.
+  it('reads a self-chosen auto followed by a with-modifier as the run\'s own mode', () => {
+    const events = [{ seq: 0, kind: 'skill', path: null, command: 'speckit:complete:auto:with-research', text: null }];
+
+    expect(startState(events, row({ expected_command: '/speckit:complete', expected_policy: 'start', prompt: 'complete the login spec' }), ARENA).selfAuto).toBe(true);
+    expect(startState(events, row({ expected_command: '/speckit:complete', expected_policy: 'start', prompt: 'run /speckit:complete:auto on the login spec' }), ARENA).selfAuto).toBe(false);
+  });
+
   // A model can load a command with the modifiers its argument hint names, so a
   // chained mode and `:with-*` suffix still names the expected command.
   it('reads a skill load typed with a chained mode and with-modifier as the command', () => {

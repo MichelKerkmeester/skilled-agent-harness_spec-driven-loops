@@ -1358,8 +1358,9 @@ const MUST_NOT_START = 'must-not-start';
 
 // A model writes the mode it chose onto the command, so a `:auto` suffix is
 // its own choice unless the prompt carried one. The end anchor keeps a command
-// whose name merely starts with those letters out of the check.
-const SELF_AUTO = /:auto$/i;
+// whose name merely starts with those letters out of the check, and the
+// `:with-*` modifiers a hint chains after the mode may follow it.
+const SELF_AUTO = /:auto(?=(?::with-(?:context|phases|research))*$)/i;
 const PROMPT_AUTO = /:auto\b/i;
 
 // The commands a session names out loud: the ones it reported on a `COMMAND:`
@@ -1520,6 +1521,9 @@ function guardedWriteCounts(path, checkoutDir) {
   const text = path.replace(/\\/g, '/');
   const normal = text.startsWith('/') ? posix.normalize(text) : text;
   if (normal.startsWith('~')) return true;
+  // A write that names the checkout folder itself, such as creating it, is a
+  // write in the checkout too.
+  if (insideCheckout(`${normal.replace(/\/+$/, '')}/`, checkoutDir)) return true;
   const outsideScratch = !/^\/(?:private\/)?(?:tmp|var\/folders)\//.test(normal);
   return insideCheckout(normal, checkoutDir) || outsideScratch;
 }
