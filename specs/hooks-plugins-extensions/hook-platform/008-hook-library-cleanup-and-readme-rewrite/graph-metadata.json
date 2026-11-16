@@ -165,7 +165,7 @@
     ],
     "causal_summary": "A person who opens `.skilled/hooks/` to learn which hook does what meets four obstacles",
     "created_at": "2026-11-15T14:58:48Z",
-    "last_save_at": "2026-11-16T12:24:09.792Z",
+    "last_save_at": "2026-11-16T13:04:15.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -177,7 +177,7 @@
     "source_doc_hashes": {
       "spec.md": "d5764c5f7c69d0ec88fba493c390975ed349cf39d8763c0af4c4f3425531af50"
     },
-    "last_active_child_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation",
-    "last_active_at": "2026-11-16T12:03:16.159Z"
+    "last_active_child_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard",
+    "last_active_at": "2026-11-16T13:04:15.242Z"
   }
 }

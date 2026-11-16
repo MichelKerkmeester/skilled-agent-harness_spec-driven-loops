@@ -204,7 +204,7 @@
     ],
     "causal_summary": "`install-codex-hooks.mjs --check` refuses to run in a linked worktree and exits 1, so Claude, Cursor, Devin, OpenCode, Pi and DSH report Codex hook drift at the start of every worktree session while the target file is clean",
     "created_at": "2026-11-16T09:16:21Z",
-    "last_save_at": "2026-11-16T11:04:21.814Z",
+    "last_save_at": "2026-11-16T13:05:13.144Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e56097ec761574c6f916564e1a712338eeb7eec73e01ef96a8a3f8f986b20c6",
+    "source_fingerprint": "sha256:c1b52d972299eb49614127ecef40d6d42c0ed5383f2d3f3254e8ab31c254504d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7ab7be701ce5d47203a004c38a6dde7b2a63f4413ffc9ee35f51835463245d2e",
       "plan.md": "4251bd0bd47110d68510c4325a062fa223ac36328edff793e95f68482c169f1e",
       "tasks.md": "ed64358bea76cc0191b05aadb2f5d13ba8d4fa628b93c8adf8f620e6a8c2b302",
       "decision-record.md": "ea2020782858771389cf7303bd1ca0f6b65c5fb38ed6897b85c22166b2287941",
-      "implementation-summary.md": "0b74bbf2ff89bb393569f3f314e1b4958ce258f998db7a062c315ec72ba2114a"
+      "implementation-summary.md": "7f0e2d02e2b71827acfa16a62900a0277627c6891e4a13f93fa8d6cb311f1118"
     },
     "last_active_at": null
   }

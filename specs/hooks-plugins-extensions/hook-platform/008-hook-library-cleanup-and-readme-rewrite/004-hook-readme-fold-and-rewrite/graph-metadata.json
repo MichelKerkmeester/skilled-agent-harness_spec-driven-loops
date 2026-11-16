@@ -206,7 +206,7 @@
     ],
     "causal_summary": "A reader who opens a runtime folder such as `.skilled/hooks/git-live-follow/claude/` finds a README of about 300 words for one symlink",
     "created_at": "2026-11-15T14:58:52Z",
-    "last_save_at": "2026-11-16T11:14:53.732Z",
+    "last_save_at": "2026-11-16T13:05:06.641Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1ba21032b2e78cf3f92861bd22f971c4243c9ba49d103c9c1d46a1996d06967a",
+    "source_fingerprint": "sha256:9958bc459d13f8c3db1578cbe681bafa27accae653edbd7fa59bc39d91549b36",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "36ce2b40af7ef948e538245cbec3d177d267f5a52ca21df53bba467f34bafb71",
       "plan.md": "64f461290de6cee6fb8408e9315a21a25997e11c80222fd3396cba38bcef6471",
       "tasks.md": "f40100f8ee4e5ef402695b85edd18f7bc5a6fb883f946dd94971e95ff56a7a6a",
       "decision-record.md": "df622a1d954739c13703f7cd3b879f3eb3b4cb0ba86db1a4d523f2b577ab1e5d",
-      "implementation-summary.md": "19c2aa14e48110208a6c0837c4454db34de935419cf93f7442cb3ae1a9aef382"
+      "implementation-summary.md": "026745beb7caecaa134afac8c85be926463772f517752c4e328f2f5bf169f24f"
     },
     "last_active_at": null
   }
