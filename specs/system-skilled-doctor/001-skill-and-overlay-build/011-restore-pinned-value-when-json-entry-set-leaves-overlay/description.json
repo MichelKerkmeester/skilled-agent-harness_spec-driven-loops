@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay",
+  "description": "Phase 11: restore-pinned-value-when-json-entry-set-leaves-overlay",
+  "keywords": [
+    "phase",
+    "restore-pinned-value-when-json-entry-set-leaves-overlay"
+  ],
+  "lastUpdated": "2026-11-16T09:33:06.150Z",
+  "specId": "011",
+  "folderSlug": "restore-pinned-value-when-json-entry-set-leaves-overlay",
+  "parentChain": [
+    "system-skilled-doctor",
+    "001-skill-and-overlay-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
