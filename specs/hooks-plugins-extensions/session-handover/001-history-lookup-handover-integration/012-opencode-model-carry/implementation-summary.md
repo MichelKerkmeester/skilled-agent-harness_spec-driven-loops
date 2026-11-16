@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "An OpenCode 2 hand-over hop now starts the next session on the model the sender was using instead of the model the project config pins."
 trigger_phrases:
   - "opencode model carry implementation summary"
 importance_tier: "normal"
@@ -8,23 +8,23 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry"
-    last_updated_at: "2026-11-16T08:25:07Z"
+    last_updated_at: "2026-11-16T11:31:57Z"
     last_updated_by: "generate-context"
-    recent_action: "Corrected the variant claim and confirmed OpenCode 1 is unchanged"
-    next_safe_action: "Commit, merge and push worktree 426 once the operator approves"
+    recent_action: "Recorded the operator decision that started this phase"
+    next_safe_action: "None; phase 012 is merged and complete"
     packet_purpose: "Purpose: An OpenCode 2 hand-over hop starts the next session on the model the sender last answered on."
     blockers: []
     key_files:
       - ".skilled/bin/skilled-loop"
     session_dedup:
-      fingerprint: "sha256:21d0503434aaca8a65579c9e3e6df96cb3322043e31bb0628112fe8dd267e168"
+      fingerprint: "sha256:d706060dfa58c59296efa26b817bdbc6689d913eae0d5ad89379ad7da5bab0d6"
       session_id: "scaffold-012-opencode-model-carry"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "87e90d42-7a99-4147-b5e1-353501784430"
-      workspace: "/Users/michelkerkmeester/worktrees/public/426-opencode-model-carry"
-      savedAt: "2026-11-16T08:25:07Z"
+      sessionId: "ab672873-2f89-4541-9659-73a60e125e14"
+      workspace: "/Users/michelkerkmeester/worktrees/public/430-history-lookup-leftovers"
+      savedAt: "2026-11-16T11:31:57Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

@@ -1,0 +1,114 @@
+TASK: add seven tests for the restore of a dropped `set` operation.
+One file changes.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 1. File: R/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Append the block below at the END of the file, after one blank line. Change nothing else in the file.
+
+BLOCK TO APPEND:
+test('apply deletes a key its set added once the set leaves the entry set', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: ['rows', 'a', 'extra'], value: 1 }]);
+  seedState(fixture);
+  assert.deepEqual(readJson(fixture.livePath).rows.a, { top: 'sk-code', extra: 1 });
+  // A second apply finds the key in place and must keep it marked as added.
+  assert.equal(fixture.run(['apply']).output.trim(), '0 changed');
+  assert.deepEqual(fixture.recordedSets(), [{ path: ['rows', 'a', 'extra'], value: 1, added: true }]);
+
+  fixture.writeOperations([]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+});
+
+test('apply refuses to restore a set value that was edited after it was applied', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  seedState(fixture);
+
+  writeFile(fixture.tree, 'baseline.json', fixture.readLive().replace('"sk-doc"', '"sk-git"'));
+  const liveBefore = fixture.readLive();
+  fixture.writeOperations([]);
+
+  const refused = fixture.run(['apply']);
+  assert.equal(refused.code, 1, refused.output);
+  assert.match(refused.output, /dropped set at rows\.a\.top was edited after it was applied/);
+  assert.equal(fixture.readLive(), liveBefore);
+  const status = fixture.run(['status']);
+  assert.notEqual(status.code, 0, status.output);
+  assert.doesNotMatch(status.output, /RESULT: PASSED/);
+});
+
+test('apply refuses to restore a dropped set when the pinned copy cannot be read', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS, { checkout: false });
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  seedState(fixture);
+  const liveBefore = fixture.readLive();
+  fixture.writeOperations([]);
+
+  const refused = fixture.run(['apply']);
+  assert.equal(refused.code, 1, refused.output);
+  assert.match(refused.output, /cannot restore the dropped set at rows\.a\.top: the pinned copy of the file cannot be read/);
+  assert.equal(fixture.readLive(), liveBefore);
+});
+
+test('a set whose value changes in the source is rewritten and recorded, not restored', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  seedState(fixture);
+
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-git' }]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(readJson(fixture.livePath).rows.a.top, 'sk-git');
+  assert.deepEqual(fixture.recordedSets(), [{ path: TOP_PATH, value: 'sk-git', added: false }]);
+});
+
+test('a state file without set records loads, restores nothing and keeps its bytes', (t) => {
+  const fixture = createFixture(t);
+  seedState(fixture);
+  const stateBefore = fs.readFileSync(fixture.statePath, 'utf8');
+  assert.equal(Object.hasOwn(JSON.parse(stateBefore), 'sets'), false);
+
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(applied.output.trim(), '0 changed');
+  assert.equal(fs.readFileSync(fixture.statePath, 'utf8'), stateBefore);
+});
+
+test('a set applied before sets were recorded is recorded by the next apply and then restored', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  seedState(fixture);
+  // An older engine wrote the value and kept no record of it.
+  const older = readJson(fixture.statePath);
+  delete older.sets;
+  writeFile(fixture.overlayDir, 'sync-state.json', JSON.stringify(older, null, 2) + '\n');
+
+  assert.equal(fixture.run(['apply']).code, 0);
+  assert.deepEqual(fixture.recordedSets(), [{ path: TOP_PATH, value: 'sk-doc', added: false }]);
+
+  fixture.writeOperations([]);
+  assert.equal(fixture.run(['apply']).code, 0);
+  assert.equal(fixture.readLive(), fixture.seed);
+});
+
+test('a dropped set is restored from the pinned copy the run was given', () => {
+  const live = JSON.stringify({ rows: { a: { top: 'sk-doc' } } }, null, 2) + '\n';
+  const newPin = JSON.stringify({ rows: { a: { top: 'sk-review' } } }, null, 2) + '\n';
+
+  const restored = engine.applyJsonOperations(live, { operations: [] }, {
+    canReplaceExisting: true,
+    recordedSets: [{ path: TOP_PATH, value: 'sk-doc', added: false }],
+    readUpstreamText: () => newPin,
+  });
+
+  assert.equal(restored, newPin);
+});
+
+CHECK. Run:
+cd R && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Expected: the summary shows "fail 0" and "pass 29". Report the pass and fail counts. If a test fails, do not change the test and do not change the engine: report its name and output.

@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes",
+  "description": "Add the Mistral Vibe and DSH runtimes to the doctor link manifest and its runtime lists",
+  "keywords": [
+    "mistral",
+    "vibe",
+    "dsh",
+    "runtimes",
+    "doctor",
+    "link",
+    "manifest",
+    "runtime",
+    "lists"
+  ],
+  "lastUpdated": "2026-11-16T10:25:16.727Z",
+  "specId": "004",
+  "folderSlug": "symlink-vibe-and-dsh-runtimes",
+  "parentChain": [
+    "system-skilled-doctor"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_11-25__planned-the-vibe-and-dsh-link-runtimes.md"
+  ]
+}

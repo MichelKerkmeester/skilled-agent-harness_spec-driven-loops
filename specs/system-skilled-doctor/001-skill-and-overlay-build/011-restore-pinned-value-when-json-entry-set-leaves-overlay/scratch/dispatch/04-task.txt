@@ -1,0 +1,162 @@
+TASK: read and write a `sets` record in the sync state file, beside `items`.
+One file changes. Do the 9 steps below in order. Each step replaces one block of text with another.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 9. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (14 lines, this exact text appears once in the file):
+
+function emptyState(pin) {
+  return { schemaVersion: STATE_SCHEMA_VERSION, pin, files: {}, links: {}, items: {}, exists: false };
+}
+
+/**
+ * Load the hashes of what each destination last received from its overlay, the
+ * layout link targets this engine itself put there, and the array items it added.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {{schemaVersion: number, pin: string, files: Record<string, string>,
+ *   links: Record<string, string>, items: Record<string, object[]>, exists: boolean}}
+ */
+function loadState(ctx, manifest) {
+NEW (replace those lines with these 16 lines, same indentation):
+
+function emptyState(pin) {
+  return { schemaVersion: STATE_SCHEMA_VERSION, pin, files: {}, links: {}, items: {}, sets: {}, exists: false };
+}
+
+/**
+ * Load the hashes of what each destination last received from its overlay, the
+ * layout link targets this engine itself put there, the array items it added and
+ * the values its `set` operations wrote.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {{schemaVersion: number, pin: string, files: Record<string, string>,
+ *   links: Record<string, string>, items: Record<string, object[]>,
+ *   sets: Record<string, object[]>, exists: boolean}}
+ */
+function loadState(ctx, manifest) {
+
+STEP 2 of 9. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (4 lines, this exact text appears once in the file):
+    throw new Error(STATE_FILE + ' has an unsupported shape');
+  }
+  for (const [destination, hash] of Object.entries(parsed.files)) {
+    if (path.isAbsolute(destination) || destination.includes('\\') ||
+NEW (replace those lines with these 11 lines, same indentation):
+    throw new Error(STATE_FILE + ' has an unsupported shape');
+  }
+  // A state file written before a `set` was recorded says the engine wrote none,
+  // so a missing key means no value may ever be returned to the pin's.
+  const sets = parsed.sets === undefined ? {} : parsed.sets;
+  if (!sets || typeof sets !== 'object' || Array.isArray(sets) ||
+      Object.values(sets).some((records) => !Array.isArray(records))) {
+    throw new Error(STATE_FILE + ' has an unsupported shape');
+  }
+  for (const [destination, hash] of Object.entries(parsed.files)) {
+    if (path.isAbsolute(destination) || destination.includes('\\') ||
+
+STEP 3 of 9. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (4 lines, this exact text appears once in the file):
+    links,
+    items,
+    exists: true,
+  };
+NEW (replace those lines with these 5 lines, same indentation):
+    links,
+    items,
+    sets,
+    exists: true,
+  };
+
+STEP 4 of 9. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (5 lines, this exact text appears once in the file):
+ * @param {object} ctx Engine context.
+ * @param {{pin: string, files: Record<string, string>, links?: Record<string, string>,
+ *   items?: Record<string, object[]>}} state State to record.
+ * @returns {boolean} Whether the file was written.
+ */
+NEW (replace those lines with these 6 lines, same indentation):
+ * @param {object} ctx Engine context.
+ * @param {{pin: string, files: Record<string, string>, links?: Record<string, string>,
+ *   items?: Record<string, object[]>, sets?: Record<string, object[]>}} state
+ *   State to record.
+ * @returns {boolean} Whether the file was written.
+ */
+
+STEP 5 of 9. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (4 lines, this exact text appears once in the file):
+  const sortedItems = {};
+  for (const key of Object.keys(state.items || {}).sort()) sortedItems[key] = state.items[key];
+  const body = {
+    schemaVersion: STATE_SCHEMA_VERSION,
+NEW (replace those lines with these 6 lines, same indentation):
+  const sortedItems = {};
+  for (const key of Object.keys(state.items || {}).sort()) sortedItems[key] = state.items[key];
+  const sortedSets = {};
+  for (const key of Object.keys(state.sets || {}).sort()) sortedSets[key] = state.sets[key];
+  const body = {
+    schemaVersion: STATE_SCHEMA_VERSION,
+
+STEP 6 of 9. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (4 lines, this exact text appears once in the file):
+  // the state file bytes it already had.
+  if (Object.keys(sortedItems).length > 0) body.items = sortedItems;
+  const content = JSON.stringify(body, null, 2) + '\n';
+  const current = readBufferOrNull(ctx.statePath);
+NEW (replace those lines with these 6 lines, same indentation):
+  // the state file bytes it already had.
+  if (Object.keys(sortedItems).length > 0) body.items = sortedItems;
+  // So do the recorded sets: a tree whose overlays hold no `set` writes no key.
+  if (Object.keys(sortedSets).length > 0) body.sets = sortedSets;
+  const content = JSON.stringify(body, null, 2) + '\n';
+  const current = readBufferOrNull(ctx.statePath);
+
+STEP 7 of 9. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (4 lines, this exact text appears once in the file):
+    items[plan.entry.destination] = plan.listedItems;
+  }
+  const links = {};
+  for (const link of manifest.layoutLinks || []) {
+NEW (replace those lines with these 10 lines, same indentation):
+    items[plan.entry.destination] = plan.listedItems;
+  }
+  // The sets follow the same rule: only one the entry set still names is kept.
+  const sets = {};
+  for (const plan of analysis.plans) {
+    if (!plan.listedSets || plan.listedSets.length === 0) continue;
+    sets[plan.entry.destination] = plan.listedSets;
+  }
+  const links = {};
+  for (const link of manifest.layoutLinks || []) {
+
+STEP 8 of 9. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (5 lines, this exact text appears once in the file):
+    }
+  }
+  writeStateIfChanged(ctx, { pin: manifest.pin.commit, files, links, items });
+
+  // The applied hashes are recorded first: they describe the destinations, which
+NEW (replace those lines with these 5 lines, same indentation):
+    }
+  }
+  writeStateIfChanged(ctx, { pin: manifest.pin.commit, files, links, items, sets });
+
+  // The applied hashes are recorded first: they describe the destinations, which
+
+STEP 9 of 9. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (4 lines, this exact text appears once in the file):
+    links: state.links,
+    items: state.items,
+  });
+  console.log('captured ' + record.key);
+NEW (replace those lines with these 5 lines, same indentation):
+    links: state.links,
+    items: state.items,
+    sets: state.sets,
+  });
+  console.log('captured ' + record.key);
+
+CHECK. Run:
+cd R && node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')" && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Expected: the first command prints nothing, and the test summary shows "fail 1". The one failing test is "apply returns a value to the pin once its set leaves the entry set". It fails until a later brief, so do not try to fix it. Report the pass and fail counts. If any other test fails, do not change it: report its name and output.

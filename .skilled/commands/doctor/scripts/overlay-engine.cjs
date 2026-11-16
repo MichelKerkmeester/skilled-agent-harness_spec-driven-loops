@@ -461,16 +461,18 @@ function loadManifest(ctx) {
 }
 
 function emptyState(pin) {
-  return { schemaVersion: STATE_SCHEMA_VERSION, pin, files: {}, links: {}, items: {}, exists: false };
+  return { schemaVersion: STATE_SCHEMA_VERSION, pin, files: {}, links: {}, items: {}, sets: {}, exists: false };
 }
 
 /**
  * Load the hashes of what each destination last received from its overlay, the
- * layout link targets this engine itself put there, and the array items it added.
+ * layout link targets this engine itself put there, the array items it added and
+ * the values its `set` operations wrote.
  * @param {object} ctx Engine context.
  * @param {object} manifest Loaded overlay manifest.
  * @returns {{schemaVersion: number, pin: string, files: Record<string, string>,
- *   links: Record<string, string>, items: Record<string, object[]>, exists: boolean}}
+ *   links: Record<string, string>, items: Record<string, object[]>,
+ *   sets: Record<string, object[]>, exists: boolean}}
  */
 function loadState(ctx, manifest) {
   const buffer = readBufferOrNull(ctx.statePath);
@@ -499,6 +501,13 @@ function loadState(ctx, manifest) {
       Object.values(items).some((records) => !Array.isArray(records))) {
     throw new Error(STATE_FILE + ' has an unsupported shape');
   }
+  // A state file written before a `set` was recorded says the engine wrote none,
+  // so a missing key means no value may ever be returned to the pin's.
+  const sets = parsed.sets === undefined ? {} : parsed.sets;
+  if (!sets || typeof sets !== 'object' || Array.isArray(sets) ||
+      Object.values(sets).some((records) => !Array.isArray(records))) {
+    throw new Error(STATE_FILE + ' has an unsupported shape');
+  }
   for (const [destination, hash] of Object.entries(parsed.files)) {
     if (path.isAbsolute(destination) || destination.includes('\\') ||
         destination.split('/').some((part) => part === '..' || part === '.' || part === '') ||
@@ -512,6 +521,7 @@ function loadState(ctx, manifest) {
     files: parsed.files,
     links,
     items,
+    sets,
     exists: true,
   };
 }
@@ -520,7 +530,8 @@ function loadState(ctx, manifest) {
  * Write the applied-hash state, sorted, only when its bytes would change.
  * @param {object} ctx Engine context.
  * @param {{pin: string, files: Record<string, string>, links?: Record<string, string>,
- *   items?: Record<string, object[]>}} state State to record.
+ *   items?: Record<string, object[]>, sets?: Record<string, object[]>}} state
+ *   State to record.
  * @returns {boolean} Whether the file was written.
  */
 function writeStateIfChanged(ctx, state) {
@@ -530,6 +541,8 @@ function writeStateIfChanged(ctx, state) {
   for (const key of Object.keys(state.links || {}).sort()) sortedLinks[key] = state.links[key];
   const sortedItems = {};
   for (const key of Object.keys(state.items || {}).sort()) sortedItems[key] = state.items[key];
+  const sortedSets = {};
+  for (const key of Object.keys(state.sets || {}).sort()) sortedSets[key] = state.sets[key];
   const body = {
     schemaVersion: STATE_SCHEMA_VERSION,
     pin: state.pin,
@@ -541,6 +554,8 @@ function writeStateIfChanged(ctx, state) {
   // The added items follow the same rule: a tree whose overlays add none keeps
   // the state file bytes it already had.
   if (Object.keys(sortedItems).length > 0) body.items = sortedItems;
+  // So do the recorded sets: a tree whose overlays hold no `set` writes no key.
+  if (Object.keys(sortedSets).length > 0) body.sets = sortedSets;
   const content = JSON.stringify(body, null, 2) + '\n';
   const current = readBufferOrNull(ctx.statePath);
   if (current && current.toString('utf8') === content) return false;
@@ -832,9 +847,11 @@ function isRecordedItem(record, path, identityKey, item) {
  * @param {object} style Entry-set style.
  * @param {object[]} edits Collects the text edits.
  * @param {{canReplaceExisting: boolean, recordedItems?: object[],
- *   onListed?: function}} options Whether a differing entry may be rewritten, the
- *   items this overlay already added to the array, and where each listed item is
- *   reported so a later pass can recognise it as the engine's own work.
+ *   onListed?: function, recordedSets?: object[], onSet?: function}} options
+ *   Whether a differing entry may be rewritten, the items this overlay already
+ *   added to the array, where each listed item is reported so a later pass can
+ *   recognise it as the engine's own work, the sets this overlay applied last
+ *   time, and where each `set` is reported so a later pass can take it back.
  * @returns {string} 'changed' or 'unchanged'.
  */
 function planOperation(operation, root, text, style, edits, options) {
@@ -842,6 +859,15 @@ function planOperation(operation, root, text, style, edits, options) {
     const parentPath = operation.path.slice(0, -1);
     const lastKey = operation.path[operation.path.length - 1];
     const parent = operation.path.length > 0 ? nodeAtPath(root, parentPath) : null;
+    // Every set is reported, changed or not, so a value an older engine wrote is
+    // recorded by the first apply that still names it. A key stays marked as
+    // added for as long as the record says this overlay put it there.
+    const reportSet = (added) => {
+      if (!options.onSet) return;
+      options.onSet({ path: [...operation.path], value: operation.value, added });
+    };
+    const wasAdded = (options.recordedSets || [])
+      .some((record) => record.added === true && deepEqual(record.path, operation.path));
     // A key the object does not hold yet is added after its last member, so one
     // entry set fits the file before and after upstream starts shipping the key.
     if (parent && parent.type === 'object' && typeof lastKey === 'string' && !findMember(parent, lastKey)) {
@@ -853,10 +879,12 @@ function planOperation(operation, root, text, style, edits, options) {
         end: reference.value.end,
         text: `,\n${indent}${JSON.stringify(lastKey)}: ${serializeValue(operation.value, indent, style)}`,
       });
+      reportSet(true);
       return 'changed';
     }
     const target = nodeAtPath(root, operation.path);
     const current = JSON.parse(text.slice(target.start, target.end));
+    reportSet(wasAdded);
     if (deepEqual(current, operation.value)) return 'unchanged';
     const indent = indentBefore(text, target.start);
     edits.push({
@@ -1177,15 +1205,104 @@ function removeDroppedItems(text, operations, recordedItems, readUpstreamText = 
 }
 
 /**
+ * Read the node a recorded set wrote to.
+ * @param {object} root Root node of a parsed document.
+ * @param {Array<string|number>} path Path the set wrote.
+ * @returns {object|null} The node, or null when the document holds nothing there.
+ */
+function recordedNodeAt(root, path) {
+  try {
+    return nodeAtPath(root, path);
+  } catch (error) {
+    return null;
+  }
+}
+
+/**
+ * The edit that deletes one object member together with the comma that
+ * separated it, so the document keeps no dangling separator.
+ * @param {object[]} members Parsed members of the object.
+ * @param {number} index Member to delete.
+ * @returns {{start: number, end: number, text: string}} The text edit.
+ */
+function memberRemovalEdit(members, index) {
+  if (index > 0) return { start: members[index - 1].value.end, end: members[index].value.end, text: '' };
+  if (members.length > 1) return { start: members[index].keyStart, end: members[1].keyStart, text: '' };
+  return { start: members[index].keyStart, end: members[index].value.end, text: '' };
+}
+
+/**
+ * Return every value a `set` wrote to what the pin holds once the entry set no
+ * longer names its path, so a dropped `set` leaves the live file instead of
+ * staying behind as a value nothing explains. A key the overlay added is deleted
+ * when the pin does not hold it. A value that changed after it was applied is
+ * refused rather than overwritten: that edit belongs to a person. Without a
+ * readable pinned copy there is no value to return to, so the overlay is
+ * refused rather than given a guess.
+ * @param {string} text Live document text.
+ * @param {object[]} operations Operations of one entry set, in order.
+ * @param {object[]} recordedSets Sets this overlay applied to the destination.
+ * @param {() => (string|null)} [readUpstreamText] Reads the destination as the
+ *   pin holds it, or null when there is no upstream copy to read.
+ * @returns {string} The text with every dropped set taken back.
+ */
+function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = () => null) {
+  let output = text;
+  for (const record of recordedSets) {
+    if (operations.some((operation) => operation.op === 'set' && deepEqual(operation.path, record.path))) continue;
+    const where = record.path.join('.');
+    const root = parseJsonSource(output);
+    // The key, or the object that held it, may be gone already: nothing is left
+    // for this record to take back.
+    const node = recordedNodeAt(root, record.path);
+    if (!node) continue;
+    const upstreamText = readUpstreamText();
+    if (upstreamText === null) {
+      throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy of the file cannot be read');
+    }
+    let upstreamRoot;
+    try {
+      upstreamRoot = parseJsonSource(upstreamText);
+    } catch (error) {
+      throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy of the file is not valid JSON');
+    }
+    const pinned = recordedNodeAt(upstreamRoot, record.path);
+    const live = JSON.parse(output.slice(node.start, node.end));
+    // A live value that already equals the pin's needs no write, which is also
+    // what the analysis after an apply sees for the set it just took back.
+    if (pinned && deepEqual(live, JSON.parse(upstreamText.slice(pinned.start, pinned.end)))) continue;
+    if (!deepEqual(live, record.value)) {
+      throw new Error('dropped set at ' + where +
+        ' was edited after it was applied; restore the value by hand or put the set back in the entry set');
+    }
+    if (pinned) {
+      // The pin's own text is written back, so the file returns to upstream's bytes.
+      output = applyEdits(output, [{ start: node.start, end: node.end, text: upstreamText.slice(pinned.start, pinned.end) }]);
+      continue;
+    }
+    const parent = recordedNodeAt(root, record.path.slice(0, -1));
+    const index = parent && parent.type === 'object'
+      ? parent.members.findIndex((member) => member.key === record.path[record.path.length - 1])
+      : -1;
+    if (record.added !== true || index < 0) {
+      throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy holds no value there');
+    }
+    output = applyEdits(output, [memberRemovalEdit(parent.members, index)]);
+  }
+  return output;
+}
+
+/**
  * Return the document text with every declared entry in place, and with the
  * items the entry set no longer lists gone.
  * @param {string} text Live document text.
  * @param {{style?: object, operations: object[]}} spec Entry set.
  * @param {{canReplaceExisting: boolean, recordedItems?: object[],
- *   onListed?: function, readUpstreamText?: () => (string|null)}} options Whether
- *   a differing entry may be rewritten, the items this overlay added to the file
- *   last time, where a listed item is reported, and how the destination reads in
- *   the pinned upstream copy.
+ *   onListed?: function, recordedSets?: object[], onSet?: function,
+ *   readUpstreamText?: () => (string|null)}} options Whether a differing entry
+ *   may be rewritten, the items this overlay added to the file last time, where
+ *   a listed item is reported, the sets it applied last time, where an applied
+ *   set is reported, and how the destination reads in the pinned upstream copy.
  * @returns {string} The edited document text.
  */
 function applyJsonOperations(text, spec, options) {
@@ -1194,6 +1311,8 @@ function applyJsonOperations(text, spec, options) {
   // A dropped entry is retracted before the entry set runs, so every operation
   // addresses the array the set describes rather than the one it left behind.
   let output = removeDroppedItems(text, operations, options.recordedItems || [], options.readUpstreamText);
+  // A dropped set is taken back first for the same reason.
+  output = restoreDroppedSets(output, operations, options.recordedSets || [], options.readUpstreamText);
   // Each operation sees the document the operations before it produced, so a
   // later operation can address an item an earlier one in the same set added.
   for (const operation of operations) {
@@ -1377,16 +1496,18 @@ function planMarkedSectionOverlay(entry, ctx, problems, acceptedSha256) {
  * @param {object} ctx Engine context.
  * @param {string[]} problems Collects reasons the overlay cannot be applied.
  * @param {Record<string, string>} [acceptedSha256] Hashes the engine last applied.
- * @param {{recordedItems?: object[],
+ * @param {{recordedItems?: object[], recordedSets?: object[],
  *   upstreamBytes?: ((key: string) => Buffer|null)|null}} [options] Items this
  *   overlay added to the destination last time, so a dropped entry leaves the live
- *   file, and the reader for the pinned upstream copy that tells an item this
- *   overlay added from one upstream ships itself.
- * @returns {{writes: object[], deletes: string[], outputs: object[], listedItems: object[]}}
+ *   file, the sets it applied there, so a dropped set returns to the pin's value,
+ *   and the reader for the pinned upstream copy both are checked against.
+ * @returns {{writes: object[], deletes: string[], outputs: object[],
+ *   listedItems: object[], listedSets: object[]}}
  *   `listedItems` holds the items the entry set still lists and this overlay
- *   added, which is what a later pass may retract.
+ *   added, which is what a later pass may retract. `listedSets` holds the sets
+ *   the entry set still names.
  */
-function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, upstreamBytes } = {}) {
+function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, recordedSets, upstreamBytes } = {}) {
   const specPath = path.join(ctx.overlayRoot, entry.source);
   const destinationPath = path.join(ctx.root, entry.destination);
   const specBuffer = readBufferOrNull(specPath);
@@ -1416,12 +1537,15 @@ function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, 
   };
   let expected;
   const listedItems = [];
+  const listedSets = [];
   try {
     expected = applyJsonOperations(currentText, spec, {
       canReplaceExisting,
       recordedItems,
+      recordedSets,
       readUpstreamText,
       onListed: (record) => listedItems.push(record),
+      onSet: (record) => listedSets.push(record),
     });
   } catch (error) {
     problems.push(`cannot apply the entry set to ${entry.destination}: ${error.message}`);
@@ -1435,8 +1559,8 @@ function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, 
     };
   }
   const output = { filePath: destinationPath, buffer: Buffer.from(expected, 'utf8'), mode: entry.mode, sourcePath: specPath };
-  if (expected === currentText) return { writes: [], deletes: [], outputs: [output], listedItems };
-  return { writes: [output], deletes: [], outputs: [output], listedItems };
+  if (expected === currentText) return { writes: [], deletes: [], outputs: [output], listedItems, listedSets };
+  return { writes: [output], deletes: [], outputs: [output], listedItems, listedSets };
 }
 
 /**
@@ -1629,22 +1753,25 @@ const PLANNERS = {
  * @param {object} entry Manifest overlay entry.
  * @param {object} ctx Engine context.
  * @param {{acceptedSha256?: Map<string, string>|Record<string, string>,
- *   recordedItems?: object[], upstreamBytes?: ((key: string) => Buffer|null)|null}}
+ *   recordedItems?: object[], recordedSets?: object[],
+ *   upstreamBytes?: ((key: string) => Buffer|null)|null}}
  *   [options] Hashes of what this overlay wrote last, which authorize rewriting a
  *   destination that changed only because the canonical copy did, the items it
- *   added there, which a dropped entry takes back, and the reader for the pinned
- *   upstream copy those items are told apart from.
+ *   added there, which a dropped entry takes back, the sets it applied there,
+ *   which a dropped set returns to the pin's value, and the reader for the
+ *   pinned upstream copy both are checked against.
  * @returns {{entry: object, problems: string[], writes: object[], deletes: string[],
- *   outputs: object[], listedItems: object[]}}
- *   `listedItems` names the added items an entry set still lists, for the state write.
+ *   outputs: object[], listedItems: object[], listedSets: object[]}}
+ *   `listedItems` names the added items an entry set still lists and `listedSets`
+ *   the sets it still names, both for the state write.
  */
-function planOverlay(entry, ctx, { acceptedSha256, recordedItems, upstreamBytes } = {}) {
+function planOverlay(entry, ctx, { acceptedSha256, recordedItems, recordedSets, upstreamBytes } = {}) {
   const problems = [];
   const planner = PLANNERS[entry.scope];
   if (!planner) {
-    return { entry, problems: [`unknown scope "${entry.scope}"`], writes: [], deletes: [], outputs: [], listedItems: [] };
+    return { entry, problems: [`unknown scope "${entry.scope}"`], writes: [], deletes: [], outputs: [], listedItems: [], listedSets: [] };
   }
-  const plan = planner(entry, ctx, problems, acceptedSha256, { recordedItems, upstreamBytes });
+  const plan = planner(entry, ctx, problems, acceptedSha256, { recordedItems, recordedSets, upstreamBytes });
   return {
     entry,
     problems,
@@ -1652,6 +1779,7 @@ function planOverlay(entry, ctx, { acceptedSha256, recordedItems, upstreamBytes 
     deletes: plan.deletes,
     outputs: plan.outputs || [],
     listedItems: plan.listedItems || [],
+    listedSets: plan.listedSets || [],
   };
 }
 
@@ -2216,6 +2344,7 @@ function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manif
     : planOverlay(entry, ctx, {
       acceptedSha256: state.files,
       recordedItems: (state.items || {})[entry.destination] || [],
+      recordedSets: (state.sets || {})[entry.destination] || [],
       upstreamBytes,
     })));
   const records = [];
@@ -2792,6 +2921,12 @@ function applyUnderLock(ctx, manifest, options = {}) {
     if (!plan.listedItems || plan.listedItems.length === 0) continue;
     items[plan.entry.destination] = plan.listedItems;
   }
+  // The sets follow the same rule: only one the entry set still names is kept.
+  const sets = {};
+  for (const plan of analysis.plans) {
+    if (!plan.listedSets || plan.listedSets.length === 0) continue;
+    sets[plan.entry.destination] = plan.listedSets;
+  }
   const links = {};
   for (const link of manifest.layoutLinks || []) {
     const linkPath = path.join(root, link.path);
@@ -2807,7 +2942,7 @@ function applyUnderLock(ctx, manifest, options = {}) {
       links[link.path] = link.target;
     }
   }
-  writeStateIfChanged(ctx, { pin: manifest.pin.commit, files, links, items });
+  writeStateIfChanged(ctx, { pin: manifest.pin.commit, files, links, items, sets });
 
   // The applied hashes are recorded first: they describe the destinations, which
   // are in sync, whatever the generators' own checks say next.
@@ -2990,6 +3125,7 @@ function captureUnderLock(ctx, manifest, inputPath) {
     files,
     links: state.links,
     items: state.items,
+    sets: state.sets,
   });
   console.log('captured ' + record.key);
   return EXIT_OK;

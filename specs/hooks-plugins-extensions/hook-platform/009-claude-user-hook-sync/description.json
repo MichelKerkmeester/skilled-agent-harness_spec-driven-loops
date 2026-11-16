@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync",
+  "description": "Opt-in sync of Skilled's Claude hooks into the user-level Claude settings",
+  "keywords": [
+    "opt-in",
+    "sync",
+    "skilled",
+    "claude",
+    "hooks",
+    "user-level",
+    "settings"
+  ],
+  "lastUpdated": "2026-11-16T12:01:59.366Z",
+  "specId": "009",
+  "folderSlug": "claude-user-hook-sync",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "hook-platform"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_13-01__built-the-opt-in-sessionstart-sync-that-keeps.md"
+  ]
+}

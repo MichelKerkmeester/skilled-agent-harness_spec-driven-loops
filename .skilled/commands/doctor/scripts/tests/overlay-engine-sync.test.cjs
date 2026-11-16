@@ -11,10 +11,13 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
+const { spawnSync } = require('node:child_process');
 
 const {
   createSyncFixture: createFixture,
+  createWorkspace,
   readJson,
+  runEngine,
   sha256,
   writeFile,
   writeManifest,
@@ -606,10 +609,10 @@ test('a json-entry set adds a key the document does not hold yet, and still refu
   const fixture = createFixture(t);
   const routerPath = path.join(fixture.tree, 'router.json');
   const routerSeed = '{\n  "classes": {\n    "base": {\n      "keywords": ["one"]\n    }\n  }\n}\n';
-  const editEntrySet = (operationPath) => writeFile(fixture.overlayDir, 'json/router.json', JSON.stringify({
+  const editEntrySet = (...operationPaths) => writeFile(fixture.overlayDir, 'json/router.json', JSON.stringify({
     target: 'router.json',
     style: { indent: 2, primitiveArrays: 'inline' },
-    operations: [{ op: 'set', path: operationPath, value: ['alpha'] }],
+    operations: operationPaths.map((operationPath) => ({ op: 'set', path: operationPath, value: ['alpha'] })),
   }, null, 2) + '\n');
 
   writeFile(fixture.tree, 'router.json', routerSeed);
@@ -630,9 +633,196 @@ test('a json-entry set adds a key the document does not hold yet, and still refu
   );
   assert.equal(fixture.run(['apply']).output.trim(), '0 changed');
 
-  // Only the last key is added. A path through an object that is not there is a mistake.
-  editEntrySet(['absent', 'mirrors']);
+  // Only the last key is added. A path through an object that is not there is a
+  // mistake. The first set stays listed, so the refusal is about the missing
+  // parent and not about a set that left the entry set.
+  editEntrySet(['mirrors'], ['absent', 'mirrors']);
   const refused = fixture.run(['status']);
   assert.notEqual(refused.code, 0, refused.output);
   assert.match(refused.output, /missing key "absent"/);
+});
+
+// A `set` writes one value into an upstream file. Once the entry set stops
+// naming it, the value has to return to what the pin holds, which the engine
+// reads from the upstream checkout the manifest names.
+const GIT_CONFIG = [
+  '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid',
+  '-c', 'commit.gpgsign=false', '-c', 'core.hooksPath=/dev/null', '-c', 'init.defaultBranch=main',
+  '-c', 'core.excludesFile=/dev/null',
+];
+
+function git(cwd, args) {
+  const result = spawnSync('git', [...GIT_CONFIG, '-C', cwd, ...args], { encoding: 'utf8' });
+  if (result.status !== 0) throw new Error('git ' + args.join(' ') + ': ' + result.stderr);
+  return result.stdout.trim();
+}
+
+/**
+ * Build a tree whose entry set writes into a file an upstream checkout holds at
+ * the pin.
+ * @param {object} t The node:test context.
+ * @param {object} pinned Document the pin and the live file both start with.
+ * @param {{checkout?: boolean}} [options] Whether the manifest names the checkout.
+ * @returns {object} Fixture paths, its manifest and helpers to rewrite the entry
+ *   set and read the recorded sets.
+ */
+function createPinnedSetFixture(t, pinned, { checkout = true } = {}) {
+  const fixture = createWorkspace(t, 'overlay-engine-sets-');
+  const seed = JSON.stringify(pinned, null, 2) + '\n';
+  const upstream = path.join(fixture.workspace, 'upstream');
+  fs.mkdirSync(upstream);
+  git(upstream, ['init', '-q']);
+  writeFile(upstream, 'baseline.json', seed);
+  git(upstream, ['add', '-A']);
+  git(upstream, ['commit', '-q', '-m', 'pinned copy']);
+  const commit = git(upstream, ['rev-parse', 'HEAD']);
+  writeFile(fixture.tree, 'baseline.json', seed);
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: checkout ? { upstream: 'fixture', checkout: upstream, commit } : { upstream: 'fixture', commit },
+    layoutLinks: [],
+    overlays: [{
+      id: 'baseline-set',
+      scope: 'json-entry',
+      source: 'json/baseline.json',
+      destination: 'baseline.json',
+      pinnedSha256: sha256(Buffer.from(seed)),
+    }],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  fixture.seed = seed;
+  fixture.run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+  fixture.writeOperations = (operations) => writeFile(fixture.overlayDir, 'json/baseline.json', JSON.stringify({
+    target: 'baseline.json',
+    style: { indent: 2, primitiveArrays: 'inline' },
+    operations,
+  }, null, 2) + '\n');
+  fixture.livePath = path.join(fixture.tree, 'baseline.json');
+  fixture.readLive = () => fs.readFileSync(fixture.livePath, 'utf8');
+  fixture.recordedSets = () => (readJson(fixture.statePath).sets || {})['baseline.json'] || [];
+  return fixture;
+}
+
+const TOP_PATH = ['rows', 'a', 'top'];
+const PINNED_ROWS = { rows: { a: { top: 'sk-code' } } };
+
+test('apply returns a value to the pin once its set leaves the entry set', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  seedState(fixture);
+  assert.equal(readJson(fixture.livePath).rows.a.top, 'sk-doc');
+
+  fixture.writeOperations([]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+  assert.deepEqual(fixture.recordedSets(), []);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.match(status.output, /RESULT: PASSED/);
+});
+
+test('apply deletes a key its set added once the set leaves the entry set', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: ['rows', 'a', 'extra'], value: 1 }]);
+  seedState(fixture);
+  assert.deepEqual(readJson(fixture.livePath).rows.a, { top: 'sk-code', extra: 1 });
+  // A second apply finds the key in place and must keep it marked as added.
+  assert.equal(fixture.run(['apply']).output.trim(), '0 changed');
+  assert.deepEqual(fixture.recordedSets(), [{ path: ['rows', 'a', 'extra'], value: 1, added: true }]);
+
+  fixture.writeOperations([]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+});
+
+test('apply refuses to restore a set value that was edited after it was applied', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  seedState(fixture);
+
+  writeFile(fixture.tree, 'baseline.json', fixture.readLive().replace('"sk-doc"', '"sk-git"'));
+  const liveBefore = fixture.readLive();
+  fixture.writeOperations([]);
+
+  const refused = fixture.run(['apply']);
+  assert.equal(refused.code, 1, refused.output);
+  assert.match(refused.output, /dropped set at rows\.a\.top was edited after it was applied/);
+  assert.equal(fixture.readLive(), liveBefore);
+  const status = fixture.run(['status']);
+  assert.notEqual(status.code, 0, status.output);
+  assert.doesNotMatch(status.output, /RESULT: PASSED/);
+});
+
+test('apply refuses to restore a dropped set when the pinned copy cannot be read', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS, { checkout: false });
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  seedState(fixture);
+  const liveBefore = fixture.readLive();
+  fixture.writeOperations([]);
+
+  const refused = fixture.run(['apply']);
+  assert.equal(refused.code, 1, refused.output);
+  assert.match(refused.output, /cannot restore the dropped set at rows\.a\.top: the pinned copy of the file cannot be read/);
+  assert.equal(fixture.readLive(), liveBefore);
+});
+
+test('a set whose value changes in the source is rewritten and recorded, not restored', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  seedState(fixture);
+
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-git' }]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(readJson(fixture.livePath).rows.a.top, 'sk-git');
+  assert.deepEqual(fixture.recordedSets(), [{ path: TOP_PATH, value: 'sk-git', added: false }]);
+});
+
+test('a state file without set records loads, restores nothing and keeps its bytes', (t) => {
+  const fixture = createFixture(t);
+  seedState(fixture);
+  const stateBefore = fs.readFileSync(fixture.statePath, 'utf8');
+  assert.equal(Object.hasOwn(JSON.parse(stateBefore), 'sets'), false);
+
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(applied.output.trim(), '0 changed');
+  assert.equal(fs.readFileSync(fixture.statePath, 'utf8'), stateBefore);
+});
+
+test('a set applied before sets were recorded is recorded by the next apply and then restored', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  seedState(fixture);
+  // An older engine wrote the value and kept no record of it.
+  const older = readJson(fixture.statePath);
+  delete older.sets;
+  writeFile(fixture.overlayDir, 'sync-state.json', JSON.stringify(older, null, 2) + '\n');
+
+  assert.equal(fixture.run(['apply']).code, 0);
+  assert.deepEqual(fixture.recordedSets(), [{ path: TOP_PATH, value: 'sk-doc', added: false }]);
+
+  fixture.writeOperations([]);
+  assert.equal(fixture.run(['apply']).code, 0);
+  assert.equal(fixture.readLive(), fixture.seed);
+});
+
+test('a dropped set is restored from the pinned copy the run was given', () => {
+  const live = JSON.stringify({ rows: { a: { top: 'sk-doc' } } }, null, 2) + '\n';
+  const newPin = JSON.stringify({ rows: { a: { top: 'sk-review' } } }, null, 2) + '\n';
+
+  const restored = engine.applyJsonOperations(live, { operations: [] }, {
+    canReplaceExisting: true,
+    recordedSets: [{ path: TOP_PATH, value: 'sk-doc', added: false }],
+    readUpstreamText: () => newPin,
+  });
+
+  assert.equal(restored, newPin);
 });

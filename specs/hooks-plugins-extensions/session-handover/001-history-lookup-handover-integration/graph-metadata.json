@@ -15,7 +15,8 @@
     "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation",
     "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction",
     "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity",
-    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry"
+    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry",
+    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget"
   ],
   "manual": {
     "depends_on": [],
@@ -129,18 +130,18 @@
     ],
     "causal_summary": "A model can search and load its own earlier turns through the history lookup, but the lookup is offered only after a compaction",
     "created_at": "2026-11-15T06:24:14Z",
-    "last_save_at": "2026-11-16T08:25:07.311Z",
+    "last_save_at": "2026-11-16T11:34:39.385Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5625780d51b450ef6418110d832b6937547ada7cec500f5dc5fbb21ab4794fe0",
+    "source_fingerprint": "sha256:bbaf654e86f2ac54067b470bdd06f0d660808e9979e62a8ce4735b685f2a4508",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ca4ad89cc7649fb9616f3e6ba4a7448ae351a3cfefd6f1e2b66d9469ceebe4d0"
+      "spec.md": "c01358a1afc19d750dbbc44dadd26f303dcb268a34478984ba57be4dfed7a371"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry",
-    "last_active_at": "2026-11-16T08:25:07.311Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity",
+    "last_active_at": "2026-11-16T11:34:39.385Z"
   }
 }

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan",
+  "parent_id": "system-skill-advisor/routing-and-scoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "baseline capture after graph scan",
+      "find why a command routing baseline capture run",
+      "baseline capture after graph scan plan",
+      "baseline capture after graph scan tasks",
+      "baseline capture after graph scan goal",
+      "010-baseline-capture-after-graph-scan operator decisions",
+      "baseline capture after graph scan implementation summary"
+    ],
+    "key_topics": [
+      "baseline",
+      "capture",
+      "graph",
+      "scan",
+      "find",
+      "command",
+      "routing",
+      "run",
+      "plan",
+      "tasks",
+      "goal",
+      "010-baseline-capture-after-graph-scan"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/handover-from-barter-024.md",
+      "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/handover-from-barter-022.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover-from-barter-024.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/handover-from-barter-024.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover-from-barter-022.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/handover-from-barter-022.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-routing-slice.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "local-native-divergence-ratchet.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "capture-command-routing-baseline.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "scan.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reproduce",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A vendoring project reported, as item 10 of its second handover, that `capture-command-routing-baseline.mjs` run in the same command as `skill-advisor.cjs skillgraphscan --trusted` returned the value from before the scan for one row",
+    "created_at": "2026-11-16T09:33:10Z",
+    "last_save_at": "2026-11-16T10:25:10.712Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a2cc82c9f9cf27f50f5f72eee1293d2ad493e46b0af52e95e59010af7fee9e7b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2a3e66180b3ea200613de91b4e60afb633a2a587096ece568ce97869244e8598",
+      "plan.md": "ca22f463f8d9fe19ce9f729021cb79ea81d5697f9d0d3ab7af4df0aee203cc2f",
+      "tasks.md": "bd834e8c1aed14aebb63a0dfba9d72c2da5552994f4a1a01148d980c0b271d54",
+      "decision-record.md": "0a683a0557a452315978a178a8a1782c9f3d4f33f40578da605ebdc1025fb4e7",
+      "implementation-summary.md": "73b7ec9347a327dbad500bf899ce75f5b2ec06f7c0bef95ebc3610c25cc72fb3"
+    },
+    "last_active_at": null
+  }
+}

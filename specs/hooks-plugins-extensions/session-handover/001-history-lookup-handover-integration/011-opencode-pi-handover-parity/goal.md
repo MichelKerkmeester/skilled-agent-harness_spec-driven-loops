@@ -60,7 +60,7 @@ Frozen choices. Changing one is an amendment.
 - [x] Three consecutive `live-hop.sh opencode` runs score 5/5 with `sideWordStated: true` and `sideWordInNote: false`.
 - [x] On one Pi hop and one OpenCode hop with a planted fake token in the sender's turn, the receiver's lookup reply shows a `[REDACTED:` marker and never the token.
 - [x] `env -u AI_SESSION_CHILD` runs of the history engine, hooks vitest, session readers and handover suites exit 0 with no fewer passing tests than before.
-- [ ] `validate.sh <this packet> --strict --quiet` prints `RESULT: PASSED`.
+- [x] `validate.sh <this packet> --strict --quiet` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -79,6 +79,7 @@ and findings belong here.
 |------|-------|----------|
 | Baseline OpenCode hop `base1` | Done | Scorecard 5/5; the receiver loaded the sender's first turn through the lookup and stated the side word |
 | Baseline Pi hop `base1` (DeepSeek, max) | Done | Scorecard 4/5; note left `claimed`. The lookup was offered and works, but the sender's note said the side word could not be recovered and the receiver asked the operator instead of running it |
+| Strict validation criterion | Done | validate.sh --strict --quiet printed RESULT: PASSED (errors=0 warnings=1) on 2026-11-16 |
 
 | Research fan-out | Done | Vibe 10 iterations, OpenCode Go 8 (converged); `research/research.md` |
 | Fixes and suites | Done | engine 148, hooks 503, readers 103, hand-over 1115, all passing |

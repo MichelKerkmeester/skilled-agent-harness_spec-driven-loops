@@ -1,0 +1,71 @@
+TASK: report each `set` operation the overlay engine applies through an `onSet` callback.
+One file changes. Do the 3 steps below in order. Each step replaces one block of text with another.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 3. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (7 lines, this exact text appears once in the file):
+ * @param {object[]} edits Collects the text edits.
+ * @param {{canReplaceExisting: boolean, recordedItems?: object[],
+ *   onListed?: function}} options Whether a differing entry may be rewritten, the
+ *   items this overlay already added to the array, and where each listed item is
+ *   reported so a later pass can recognise it as the engine's own work.
+ * @returns {string} 'changed' or 'unchanged'.
+ */
+NEW (replace those lines with these 9 lines, same indentation):
+ * @param {object[]} edits Collects the text edits.
+ * @param {{canReplaceExisting: boolean, recordedItems?: object[],
+ *   onListed?: function, recordedSets?: object[], onSet?: function}} options
+ *   Whether a differing entry may be rewritten, the items this overlay already
+ *   added to the array, where each listed item is reported so a later pass can
+ *   recognise it as the engine's own work, the sets this overlay applied last
+ *   time, and where each `set` is reported so a later pass can take it back.
+ * @returns {string} 'changed' or 'unchanged'.
+ */
+
+STEP 2 of 3. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (4 lines, this exact text appears once in the file):
+    const lastKey = operation.path[operation.path.length - 1];
+    const parent = operation.path.length > 0 ? nodeAtPath(root, parentPath) : null;
+    // A key the object does not hold yet is added after its last member, so one
+    // entry set fits the file before and after upstream starts shipping the key.
+NEW (replace those lines with these 13 lines, same indentation):
+    const lastKey = operation.path[operation.path.length - 1];
+    const parent = operation.path.length > 0 ? nodeAtPath(root, parentPath) : null;
+    // Every set is reported, changed or not, so a value an older engine wrote is
+    // recorded by the first apply that still names it. A key stays marked as
+    // added for as long as the record says this overlay put it there.
+    const reportSet = (added) => {
+      if (!options.onSet) return;
+      options.onSet({ path: [...operation.path], value: operation.value, added });
+    };
+    const wasAdded = (options.recordedSets || [])
+      .some((record) => record.added === true && deepEqual(record.path, operation.path));
+    // A key the object does not hold yet is added after its last member, so one
+    // entry set fits the file before and after upstream starts shipping the key.
+
+STEP 3 of 3. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (8 lines, this exact text appears once in the file):
+        text: `,\n${indent}${JSON.stringify(lastKey)}: ${serializeValue(operation.value, indent, style)}`,
+      });
+      return 'changed';
+    }
+    const target = nodeAtPath(root, operation.path);
+    const current = JSON.parse(text.slice(target.start, target.end));
+    if (deepEqual(current, operation.value)) return 'unchanged';
+    const indent = indentBefore(text, target.start);
+NEW (replace those lines with these 10 lines, same indentation):
+        text: `,\n${indent}${JSON.stringify(lastKey)}: ${serializeValue(operation.value, indent, style)}`,
+      });
+      reportSet(true);
+      return 'changed';
+    }
+    const target = nodeAtPath(root, operation.path);
+    const current = JSON.parse(text.slice(target.start, target.end));
+    reportSet(wasAdded);
+    if (deepEqual(current, operation.value)) return 'unchanged';
+    const indent = indentBefore(text, target.start);
+
+CHECK. Run:
+cd R && node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')" && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Expected: the first command prints nothing, and the test summary shows "fail 1". The one failing test is "apply returns a value to the pin once its set leaves the entry set". It fails until a later brief, so do not try to fix it. Report the pass and fail counts. If any other test fails, do not change it: report its name and output.

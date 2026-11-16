@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "The docs now place the history lookup at the handover claim, and a live hop rerun showed receivers moving from never running the lookup to running it every time and answering correctly."
 trigger_phrases:
   - "docs and live hop proof implementation summary"
 importance_tier: "normal"

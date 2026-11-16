@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.15.0
+version: 1.0.16.0
 ---
 
 # Vendored Skilled Overlays
@@ -53,13 +53,13 @@ The value is a path relative to the tree root. With no setting file the folder i
 | File | What it holds |
 |------|---------------|
 | `overlay-manifest.json` | The pinned upstream commit and one entry per overlay |
-| `sync-state.json` | The hashes it last applied to each destination, the layout link targets it made and the array items it added |
+| `sync-state.json` | The hashes it last applied to each destination, the layout link targets it made, the array items it added and the values its `set` operations wrote |
 | `.build-lock` | Present only while one of the engine's writing runs holds it: an `apply`, a capture, an adopt, a relayout, a live re-pin or a rollback |
 | Everything else | The overlay sources the manifest entries name |
 
 The setting lives outside `.skilled` because a re-copy overwrites that folder, and outside the manifest because the manifest sits inside the folder the setting finds.
 
-`sync-state.json` carries two optional records beside its hashes. `links` maps each layout link path to the target the engine confirmed there, so when the manifest moves a link target the engine retargets its own link instead of refusing a stranger at that path. `items` holds the array items each `json-entry` overlay added, so an item the overlay drops is removed from the live file while it still equals what the engine wrote. An item recorded there but edited since is refused rather than deleted, because the entry set no longer describes what it should be. A link the state has no record of is refused and reported, and an item it has no record of is left in place. A state file from an older engine holds neither key, so nothing is retargeted or removed until the first apply records them.
+`sync-state.json` carries three optional records beside its hashes. `links` maps each layout link path to the target the engine confirmed there, so when the manifest moves a link target the engine retargets its own link instead of refusing a stranger at that path. `items` holds the array items each `json-entry` overlay added, so an item the overlay drops is removed from the live file while it still equals what the engine wrote. An item recorded there but edited since is refused rather than deleted, because the entry set no longer describes what it should be. `sets` holds each `set` a `json-entry` overlay applied: its path, the value written and whether the engine added the key. When the entry set stops naming that path, `apply` writes back the value the pin holds, and deletes a key the engine added that the pin does not hold. A value edited since it was recorded is refused rather than overwritten. The restore reads the pinned copy from the checkout the manifest's pin names, and without that copy the overlay is refused. `setKeyOnItem` keeps no record, so a value it wrote stays in the live file after the operation leaves the entry set. A link the state has no record of is refused and reported, and an item or a value it has no record of is left in place. A state file from an older engine holds none of these keys, so nothing is retargeted, removed or restored until the first apply records them.
 
 ---
 

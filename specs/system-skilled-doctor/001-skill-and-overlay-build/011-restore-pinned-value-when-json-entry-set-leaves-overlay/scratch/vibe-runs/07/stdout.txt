@@ -1,0 +1,22 @@
+Both edits landed and the check passes.
+
+1. FILES CHANGED:
+- /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skilled-doctor/references/overlays.md
+
+2. COMMANDS:
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -n 'sync-state.json' .skilled/skills/system-skilled-doctor/references/overlays.md` — exit 0
+```
+56:| `sync-state.json` | The hashes it last applied to each destination, the layout link targets it made and the array items it added |
+62:`sync-state.json` carries two optional records beside its hashes. `links` maps each layout link path to the target the engine confirmed there, so when the manifest moves a link target the engine retargets its own link instead of refusing a stranger at that path. `items` holds the array items each `json-entry` overlay added, so an item the overlay drops is removed from the live file while it still equals what the engine wrote. An item recorded there but edited since is refused rather than deleted, because the entry set no longer describes what it should be. A link the state has no record of is refused and reported, and an item it has no record of is left in place. A state file from an older engine holds neither key, so nothing is retargeted or removed until the first apply records them.
+222:A project that already keeps its own overlay folder and replay script moves onto the engine without moving a file. The engine reads the same manifest shape and the same `sync-state.json` shape, `{ "schemaVersion": 1, "pin", "files" }`, so the folder stays where it is.
+```
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -c 'sets' .skilled/skills/system-skilled-doctor/references/overlays.md && git diff --stat -- .skilled/skills/system-skilled-doctor/references/overlays.md` — exit 0
+```
+4
+ .skilled/skills/system-skilled-doctor/references/overlays.md | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+```
+
+3. OPEN QUESTIONS: none. Both anchors matched on the first attempt, and the diff stat is exactly the expected 2 insertions / 2 deletions in the one named file.

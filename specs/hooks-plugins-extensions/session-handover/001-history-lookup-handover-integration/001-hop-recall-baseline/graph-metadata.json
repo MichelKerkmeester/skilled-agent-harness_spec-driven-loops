@@ -33,7 +33,7 @@
       "fresh"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,7 +42,9 @@
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-baseline-conversation.md",
-      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md"
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      "scratch/harness/hop-recall.sh",
+      "scratch/harness/analyze.py"
     ],
     "entities": [
       {
@@ -91,6 +93,18 @@
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "hop-recall.sh",
+        "kind": "script",
+        "path": "scratch/harness/hop-recall.sh",
+        "source": "derived"
+      },
+      {
+        "name": "analyze.py",
+        "kind": "file",
+        "path": "scratch/harness/analyze.py",
         "source": "derived"
       },
       {
@@ -176,24 +190,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Record Pi",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The handover starts a fresh session near the context limit, so the receiver holds only the four sections of the handoff note",
     "created_at": "2026-11-15T06:24:15Z",
-    "last_save_at": "2026-11-15T11:24:12.637Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-16T11:34:50.243Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -202,13 +204,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e9cc4e6436318ea58e61129441265b515d284314fa1dc3ee4d87e57c3be9351",
+    "source_fingerprint": "sha256:46a8205877fe769f4721fa1c539bba5a7c02e91fcfc4fb53558897e9ee0fefb2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c1eeacd6644097a5f13af00db6620a14bfdabeedbd324b5e6abfb2c5b6e96137",
+      "spec.md": "cdc9d41f72bc561432b8eccddd080fcaca2a8f4bf4ce3f7db3a927adcbfe82fb",
       "plan.md": "22f31b1e98adf574a493e5e4492fdb457f1276828d1e6cad9a5dc2ef82c372b5",
-      "tasks.md": "0204cb52fec656c4a029fd13c1c31dda622d473dfcf24638d80d85aaa79b1f6a",
-      "implementation-summary.md": "20c3ec68a0cb2464a7659c61a1ca2bf4e3f7c3d34ca604dd66e460145ba4d13d"
+      "tasks.md": "f2534a71e4342689ce6536cefc072b737ff068ba9298de655788199ce33274e7",
+      "implementation-summary.md": "1cf14dee7e978c8d495e0b3744cc90471a601810e80c4d40ddee2a62c60f33bc"
     },
     "last_active_at": null
   }

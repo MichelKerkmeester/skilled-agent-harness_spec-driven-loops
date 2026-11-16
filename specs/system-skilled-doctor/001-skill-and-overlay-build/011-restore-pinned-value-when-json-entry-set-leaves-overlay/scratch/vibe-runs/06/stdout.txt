@@ -1,0 +1,122 @@
+FILES CHANGED:
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`
+
+COMMANDS:
+
+1. `cd R && wc -l .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs && tail -n 40 ...` — exit 0
+```
+     726 .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+---TAIL---
+      source: 'json/baseline.json',
+      destination: 'baseline.json',
+      pinnedSha256: sha256(Buffer.from(seed)),
+    }],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  fixture.seed = seed;
+  fixture.run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+  fixture.writeOperations = (operations) => writeFile(fixture.overlayDir, 'json/baseline.json', JSON.stringify({
+    target: 'baseline.json',
+    style: { indent: 2, primitiveArrays: 'inline' },
+    operations,
+  }, null, 2) + '\n');
+  fixture.livePath = path.join(fixture.tree, 'baseline.json');
+  fixture.readLive = () => fs.readFileSync(fixture.livePath, 'utf8');
+  fixture.recordedSets = () => (readJson(fixture.statePath).sets || {})['baseline.json'] || [];
+  return fixture;
+}
+
+const TOP_PATH = ['rows', 'a', 'top'];
+const PINNED_ROWS = { rows: { a: { top: 'sk-code' } } };
+
+test('apply returns a value to the pin once its set leaves the entry set', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  seedState(fixture);
+  assert.equal(readJson(fixture.livePath).rows.a.top, 'sk-doc');
+
+  fixture.writeOperations([]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+  assert.deepEqual(fixture.recordedSets(), []);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.match(status.output, /RESULT: PASSED/);
+});
+```
+
+2. `cd R && grep -n "function createPinnedSetFixture\|function createFixture\|function seedState\|function writeFile\|function readJson\|applyJsonOperations\|overlayDir =\|statePath =" ...` — exit 0
+```
+28:function seedState(fixture) {
+669:function createPinnedSetFixture(t, pinned, { checkout = true } = {}) {
+```
+Confirmed `createPinnedSetFixture` already accepts the `{ checkout: false }` option the third new test uses.
+
+3. `cd R && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs` — exit 0
+```
+✔ apply deletes a key its set added once the set leaves the entry set (230.63175ms)
+✔ apply refuses to restore a set value that was edited after it was applied (271.904542ms)
+✔ apply refuses to restore a dropped set when the pinned copy cannot be read (158.72625ms)
+✔ a set whose value changes in the source is rewritten and recorded, not restored (159.370209ms)
+✔ a state file without set records loads, restores nothing and keeps its bytes (95.905875ms)
+✔ a set applied before sets were recorded is recorded by the next apply and then restored (245.85575ms)
+✔ a dropped set is restored from the pinned copy the run was given (0.674958ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5440.105125
+```
+`pass 29`, `fail 0`, exit 0 — matches the expected counts.
+
+4. `cd R && git diff -U0 -- .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs | grep -E '^@@|^-'` — exit 0
+```
+@@ -13,0 +14 @@ const test = require('node:test');
+@@ -16,0 +18 @@ const {
+@@ -17,0 +20 @@ const {
+@@ -609 +612 @@ test('a json-entry set adds a key the document does not hold yet, and still refu
+-  const editEntrySet = (operationPath) => writeFile(fixture.overlayDir, 'json/router.json', JSON.stringify({
+@@ -612 +615 @@ test('a json-entry set adds a key the document does not hold yet, and still refu
+-    operations: [{ op: 'set', path: operationPath, value: ['alpha'] }],
+@@ -633,2 +636,4 @@ test('a json-entry set adds a key the document does not hold yet, and still refu
+-  // Only the last key is added. A path through an object that is not there is a mistake.
+-  editEntrySet(['absent', 'mirrors']);
+@@ -638,0 +644,185 @@ test('a json-entry set adds a key the document does not hold yet, and still refu
+```
+My edit is the final hunk only: a pure insertion at the end of the file. The earlier hunks are pre-existing uncommitted changes from prior steps in this packet, not mine.
+
+5. `cd R && wc -l ... && sed -n '720,735p' ... && grep -c "^test(" ...` — exit 0
+```
+     828 .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+---SEAM (lines 720-735)---
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+  assert.deepEqual(fixture.recordedSets(), []);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.match(status.output, /RESULT: PASSED/);
+});
+
+test('apply deletes a key its set added once the set leaves the entry set', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: ['rows', 'a', 'extra'], value: 1 }]);
+  seedState(fixture);
+  assert.deepEqual(readJson(fixture.livePath).rows.a, { top: 'sk-code', extra: 1 });
+  // A second apply finds the key in place and must keep it marked as added.
+  assert.equal(fixture.run(['apply']).output.trim(), '0 changed');
+  assert.deepEqual(fixture.recordedSets(), [{ path: ['rows', 'a', 'extra'], value: 1, added: true }]);
+---TEST COUNT---
+29
+```
+726 → 828 lines: exactly one blank line plus the 101-line block appended, nothing else changed.
+
+OPEN QUESTIONS:
+- `git status` also shows `.skilled/commands/doctor/scripts/tests/../overlay-engine.cjs` as modified. That is not my edit — it was already dirty when I started, from earlier steps in this packet. I did not touch it.
+- The brief's expected `pass 29` matched, so the engine already implements the restore behaviour these seven tests assert. No engine change was needed or made.

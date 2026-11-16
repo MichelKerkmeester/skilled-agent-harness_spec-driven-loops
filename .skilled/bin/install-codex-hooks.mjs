@@ -20,10 +20,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
-import { execFileSync } from 'node:child_process';
 import { isDeepStrictEqual } from 'node:util';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
+
+import {
+  assertSafeRepoAnchor,
+  atomicWrite,
+  hookIdentity,
+  isRepoOrphan,
+  ownershipKey,
+  readHooksFile,
+} from './lib/user-hook-file.mjs';
 
 const __req = createRequire(import.meta.url);
 const { isHookEnabled } = __req('../hooks/shared/hook-flags.cjs');
@@ -61,43 +69,6 @@ function parseArgs(argv) {
 // 3. HOOK RECONCILIATION
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Match the first adapter passed to a supported runner; later fallback text is irrelevant.
-function hookIdentity(command) {
-  const match = String(command).match(
-    /(?:^|[\s;&|])(?:[\w./~-]*\/)?(?:node|bash|python(?:3(?:\.\d+)?)?)\s+(?:"([^"]+\.(?:js|mjs|cjs|sh))"|'([^']+\.(?:js|mjs|cjs|sh))'|([^\s"';&|<>]+\.(?:js|mjs|cjs|sh)))/,
-  );
-  return match?.[1] || match?.[2] || match?.[3] || String(command).trim();
-}
-
-function validateHooksDocument(document, label) {
-  if (!document || Array.isArray(document) || typeof document !== 'object') {
-    throw new Error(`${label} hooks file must contain a JSON object`);
-  }
-  if (document.hooks === undefined) return;
-  if (!document.hooks || Array.isArray(document.hooks) || typeof document.hooks !== 'object') {
-    throw new Error(`${label} hooks property must contain an object`);
-  }
-  for (const [event, groups] of Object.entries(document.hooks)) {
-    if (!Array.isArray(groups)) throw new Error(`${label} hook event ${event} must contain an array`);
-  }
-}
-
-// The source tree sits under .skilled or .opencode, and a checkout may link one name to
-// the other, so an adapter path spelled under either name is the same hook. An installed
-// entry spelled under either name is the project's own and is removed.
-const SOURCE_ROOT_NAMES = ['.skilled', '.opencode'];
-
-function sourceRootRelative(identity) {
-  const name = SOURCE_ROOT_NAMES.find((candidate) => identity.startsWith(`${candidate}/`));
-  return name ? identity.slice(name.length + 1) : null;
-}
-
-// Keys spell the source tree one way so both names compare equal.
-function ownershipKey(identity) {
-  const relative = sourceRootRelative(identity);
-  return relative === null ? identity : `.opencode/${relative}`;
-}
-
 function collectSourceIdentities(source) {
   const identities = new Map();
   for (const [event, groups] of Object.entries(source.hooks || {})) {
@@ -114,16 +85,6 @@ function collectSourceIdentities(source) {
     }
   }
   return identities;
-}
-
-// Ownership follows the source-root namespace, not the exact path. Identity is the
-// adapter path, so renaming a script orphans its installed entry: it no longer
-// matches source, and the preserve-third-party rule would keep a command that can
-// never run. Anything under .skilled or .opencode that is missing on disk is our own
-// orphan.
-function isRepoOrphan(identity, repoAbs) {
-  if (typeof identity !== 'string' || sourceRootRelative(identity) === null) return false;
-  return !fs.existsSync(path.join(repoAbs, identity));
 }
 
 function hookLabel(event, hook) {
@@ -229,89 +190,7 @@ function printCheckDrift(targetPath, drift) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. REPOSITORY ANCHOR SAFETY
-// ─────────────────────────────────────────────────────────────────────────────
-
-function canonicalPath(filePath) {
-  try {
-    return fs.realpathSync.native(filePath);
-  } catch {
-    return path.resolve(filePath);
-  }
-}
-
-function assertSafeRepoAnchor(repoAbs, allowWorktree) {
-  let commonDirOutput;
-  let topLevelOutput;
-  const options = { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] };
-  try {
-    commonDirOutput = execFileSync(
-      'git',
-      ['-C', repoAbs, 'rev-parse', '--git-common-dir'],
-      options,
-    ).trim();
-    topLevelOutput = execFileSync(
-      'git',
-      ['-C', repoAbs, 'rev-parse', '--show-toplevel'],
-      options,
-    ).trim();
-  } catch (error) {
-    if (error?.code === 'ENOENT') return;
-    const detail = String(error?.stderr || '').trim();
-    throw new Error(
-      `Could not inspect Git checkout at ${repoAbs}${detail ? `: ${detail}` : ''}`,
-    );
-  }
-
-  const topLevel = canonicalPath(topLevelOutput);
-  const commonDir = canonicalPath(path.resolve(repoAbs, commonDirOutput));
-  const primaryGitDir = canonicalPath(path.join(topLevel, '.git'));
-  if (commonDir === primaryGitDir || allowWorktree) return;
-
-  throw new Error(
-    `Refusing to anchor hooks at linked worktree ${topLevel}. `
-      + `Primary checkout: ${path.dirname(commonDir)}. Pass --allow-worktree to override.`,
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 5. FILE OPERATIONS
-// ─────────────────────────────────────────────────────────────────────────────
-
-function atomicWrite(targetPath, content, existingMode) {
-  const targetDirectory = path.dirname(targetPath);
-  fs.mkdirSync(targetDirectory, { recursive: true });
-  const temporaryPath = path.join(
-    targetDirectory,
-    `.${path.basename(targetPath)}.tmp-${process.pid}-${Date.now()}`,
-  );
-
-  try {
-    fs.writeFileSync(temporaryPath, content, {
-      encoding: 'utf8',
-      flag: 'wx',
-      mode: existingMode ?? 0o666,
-    });
-    if (existingMode !== null) fs.chmodSync(temporaryPath, existingMode);
-    fs.renameSync(temporaryPath, targetPath);
-  } finally {
-    if (fs.existsSync(temporaryPath)) fs.unlinkSync(temporaryPath);
-  }
-}
-
-function readHooksFile(filePath, label) {
-  let parsed;
-  try {
-    parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-  } catch (error) {
-    throw new Error(`Could not read ${label} hooks file ${filePath}: ${error.message}`);
-  }
-  validateHooksDocument(parsed, label);
-  return parsed;
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 6. MAIN
+// 4. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
 function main() {

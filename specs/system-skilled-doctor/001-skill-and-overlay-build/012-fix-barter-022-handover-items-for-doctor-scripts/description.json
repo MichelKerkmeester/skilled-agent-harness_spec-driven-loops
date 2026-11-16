@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts",
+  "description": "Phase 12: fix-barter-022-handover-items-for-doctor-scripts",
+  "keywords": [
+    "phase",
+    "fix-barter-022-handover-items-for-doctor-scripts"
+  ],
+  "lastUpdated": "2026-11-16T10:24:58.608Z",
+  "specId": "012",
+  "folderSlug": "fix-barter-022-handover-items-for-doctor-scripts",
+  "parentChain": [
+    "system-skilled-doctor",
+    "001-skill-and-overlay-build"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_11-24__planned-three-doctor-script-limits-and-recorded.md"
+  ]
+}

@@ -1,0 +1,144 @@
+All four steps applied and verified.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs`
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`
+
+## 2. COMMANDS
+
+**Anchor reads (before editing)**
+
+`grep -n "Return the document text with every declared entry in place" overlay-engine.cjs` — exit 0
+```
+1208: * Return the document text with every declared entry in place, and with the
+```
+
+`grep -n "editEntrySet" overlay-engine-sync.test.cjs` — exit 0
+```
+432:  const editEntrySet = (slot) => writeFile(fixture.overlayDir, 'json/registry.json', ...
+436:  editEntrySet(0);
+456:  editEntrySet(5);
+473:  editEntrySet(7);
+503:  const editEntrySet = (keywords) => writeFile(fixture.overlayDir, 'json/router.json', ...
+507:  editEntrySet(['alpha']);
+519:  editEntrySet(['alpha', 'beta']);
+529:  editEntrySet(['alpha', 'delta']);
+612:  const editEntrySet = (operationPath) => writeFile(fixture.overlayDir, 'json/router.json', ...
+619:  editEntrySet(['mirrors']);
+637:  editEntrySet(['absent', 'mirrors']);
+```
+
+`grep -n "^function nodeAtPath\|^function applyEdits\|^function deepEqual\|^function parseJsonSource\|^function memberRemovalEdit\|^function recordedNodeAt\|^function restoreDroppedSets\|^function removalEdit\|^function removeDroppedItems" overlay-engine.cjs` — exit 0
+```
+590:function parseJsonSource(text) {
+727:function nodeAtPath(root, keys) {
+780:function deepEqual(left, right) {
+1050:function applyEdits(text, edits) {
+1127:function removalEdit(items, index) {
+1185:function removeDroppedItems(text, operations, recordedItems, readUpstreamText = () => null) {
+```
+No pre-existing `recordedNodeAt`, `memberRemovalEdit` or `restoreDroppedSets`, so no name collision.
+
+`grep -n "keyStart" overlay-engine.cjs` — exit 0
+```
+668:      const keyStart = index;
+674:      members.push({ key, keyStart, value });
+876:      const indent = indentBefore(text, reference.keyStart) || '';
+916:      const indent = indentBefore(text, last.keyStart) || '';
+1013:          const indent = indentBefore(text, existing.keyStart);
+1029:      const indent = indentBefore(text, reference.keyStart) || '';
+1033:        start: reference.keyStart,
+1034:        end: reference.keyStart,
+```
+Confirms `members[]` carries `{ key, keyStart, value }`, which `memberRemovalEdit` relies on.
+
+**CHECK — the brief's command**
+
+`cd R && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs` — exit 0
+```
+✔ an edited json-entry item re-applies over the applied bytes and refuses once the live file moved (325.50225ms)
+✔ an edited json-entry object key re-applies over the applied bytes and refuses once the live file moved (341.279375ms)
+✔ token-named paths pass only when a manifest entry names them exactly, and .env never does (6.293208ms)
+✔ status --json reports each out-of-sync destination with its fix, and an error as JSON (166.016541ms)
+✔ a misused command line prints the usage and exits 2 (171.795208ms)
+✔ a json-entry set adds a key the document does not hold yet, and still refuses a missing parent (143.186025ms)
+✔ apply returns a value to the pin once its set leaves the entry set (240.287125ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4042.240083
+```
+**pass 22, fail 0** — matches the expected summary.
+
+**Syntax and symbol check**
+
+`node --check overlay-engine.cjs && grep -n "restoreDroppedSets\|recordedNodeAt\|memberRemovalEdit" overlay-engine.cjs` — exit 0
+```
+SYNTAX_OK
+1213:function recordedNodeAt(root, path) {
+1228:function memberRemovalEdit(members, index) {
+1249:function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = () => null) {
+1257:    const node = recordedNodeAt(root, record.path);
+1269:    const pinned = recordedNodeAt(upstreamRoot, record.path);
+1283:    const parent = recordedNodeAt(root, record.path.slice(0, -1));
+1290:    output = applyEdits(output, [memberRemovalEdit(parent.members, index)]);
+1315:  output = restoreDroppedSets(output, operations, options.recordedSets || [], options.readUpstreamText);
+```
+
+**Scope check**
+
+`git status --porcelain && git diff --stat` — exit 0
+```
+ M .skilled/commands/doctor/scripts/overlay-engine.cjs
+ M .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+?? specs/.../011-restore-pinned-value-when-json-entry-set-leaves-overlay/scratch/dispatch/
+?? specs/.../011-restore-pinned-value-when-json-entry-set-leaves-overlay/scratch/vibe-runs/
+---DIFFSTAT---
+ .../commands/doctor/scripts/overlay-engine.cjs     | 192 ++++++++++++++++++---
+ .../scripts/tests/overlay-engine-sync.test.cjs     |  96 ++++++++++-
+ 2 files changed, 256 insertions(+), 32 deletions(-)
+```
+
+`git diff -U0 overlay-engine-sync.test.cjs | grep -E "^[-+].*assert"` — exit 0
+```
++  assert.equal(readJson(fixture.livePath).rows.a.top, 'sk-doc');
++  assert.equal(applied.code, 0, applied.output);
++  assert.equal(fixture.readLive(), fixture.seed);
++  assert.deepEqual(fixture.recordedSets(), []);
++  assert.equal(status.code, 0, status.output);
++  assert.match(status.output, /RESULT: PASSED/);
+```
+Only `+` lines, all from the pre-existing new test. No `-` assert line, so no assertion was changed.
+
+**Whole test directory (regression check on the engine change)**
+
+`node --test .skilled/commands/doctor/scripts/tests` — exit 0
+```
+✔ a project-owned file reports its status and survives link and unlink byte-for-byte (531.938125ms)
+✔ a missing project-owned destination keeps the existing source-link behavior (418.036167ms)
+✔ setup omits a dangling specs alias when the host has no specs folder (680.071541ms)
+✔ setup keeps the specs alias pointed at a host specs folder (437.762834ms)
+✔ a first link creates a runtime alias whose target the same plan creates (1353.179584ms)
+✔ a second plan after a first link adds nothing (1252.811625ms)
+✔ setup keeps a host-relative specs alias out of the ignore list (405.888333ms)
+ℹ tests 1176
+ℹ suites 0
+ℹ pass 1176
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 208643.405625
+```
+
+## 3. OPEN QUESTIONS
+
+- **The working tree already carried uncommitted changes to both files before my edits.** The diffstat (192 insertions in the engine, 96 in the test) is larger than the 107 and 9 lines I added. I confirmed this by reading the test file before editing: it already held the `apply returns a value to the pin once its set leaves the entry set` test and the `GIT_CONFIG`/`git()` helpers. My four edits are additive on top of that prior work; I did not revert or touch it.
+- **The `recordedSets` wiring was already in place, so Step 3's call site was the missing link.** `overlay-engine.cjs:2347` passes `state.sets[entry.destination]` as `recordedSets`, and `:1548` collects `onSet` records into `listedSets`. Before Step 3, `applyJsonOperations` accepted the option but never called `restoreDroppedSets`, so the restore could not fire. It now does, which is why the pin-restore test passes.
+- **`memberRemovalEdit`'s first-member branch assumes `members[1].keyStart` is the right cut point.** That is correct for the parsed shape at `:668-674` and the test suite exercises it, but it is the one branch no test in this file targets directly — the added-key deletion path is covered only via the pin-restore test's `recordedSets` assertion. Worth a dedicated case if this branch matters later.
+- Nothing else in the brief failed to match. All four OLD anchors matched exactly on the first attempt.

@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget",
+  "spec_folder": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget",
+  "parent_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "devin compaction fallback budget",
+      "phase 13 devin compaction fallback budget",
+      "devin compaction fallback budget plan",
+      "devin compaction fallback budget tasks",
+      "devin compaction fallback budget implementation summary"
+    ],
+    "key_topics": [
+      "devin",
+      "compaction",
+      "fallback",
+      "budget",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "skilled",
+      "skills",
+      "system-spec-kit"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/compaction-adapters.vitest.ts",
+      ".skilled/hooks/session-handover/history/lib/lookup-offer.ts",
+      "tests/compaction-adapters.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "post-compaction.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-adapters.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/compaction-adapters.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lookup-offer.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/session-handover/history/lib/lookup-offer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Devin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The Devin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs` loaded its section fitter from the history engine's build output, `history/dist/lookup-offer.js`, which is gitignored",
+    "created_at": "2026-11-16T10:09:54Z",
+    "last_save_at": "2026-11-16T10:23:25.570Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2b3813a7aafe003c70ef8ec0ff529c8542e7f9e0b52bb0485964707b683b6f4f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ebd6acedd38baec402498895cd8bca46be2484c6aa98a698f6eaf7de04bf7ae0",
+      "plan.md": "dbe23eaecdbd134e1d4b8eede4e4b10c63dcdac757bff3d10e1dd0cfc0e9ea6a",
+      "tasks.md": "f8ecc422777ca59cd370bfb8097871660187e06dd2d1716a251cd3de4387f59a",
+      "implementation-summary.md": "1d45357c5630ab66c451b51ec96415c30a59f3078d98ad92415102be4c9d3bd3"
+    },
+    "last_active_at": null
+  }
+}
