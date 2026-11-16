@@ -4,7 +4,7 @@ description: "Author current-state folder READMEs from real files, for anyone wr
 trigger_phrases:
   - "create readme"
   - "write a readme"
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # create-readme
@@ -21,8 +21,8 @@ version: 1.1.4.0
 |---|---|
 | **Use it for** | Current-state `README.md` authoring, sourced from real files, never from memory |
 | **Invoke with** | `/create:readme`, "create readme", "write a readme" |
-| **Works on** | Project, skill, feature, component and source-code folders, plus a repository's install, contributing and security guides |
-| **Produces** | A `README.md` in the target folder, or a skill package's `ARCHITECTURE.md` |
+| **Works on** | Project, skill, feature, component, source-code, hook and runtime folders, plus a repository's install, contributing and security guides |
+| **Produces** | A `README.md` in the target folder, a runtime folder's `SYNC.md` or a skill package's `ARCHITECTURE.md` |
 
 ### What It Does
 
@@ -55,6 +55,8 @@ Skip it when the folder is self-explanatory and a parent README or inline commen
 | **Code-folder README** | a source-code folder's topology, boundaries and allowed dependency direction, in technical reference voice |
 
 The general shape has its own scaffolds for three readers. A skill README starts from `assets/skill-readme-template.md`. A repository's front page starts from the front-page scaffold in `assets/readme-template.md`. The guides beside it start from `assets/install-template.md`, `assets/contributing-template.md` and `assets/security-policy-template.md`.
+
+The code-folder shape has its own scaffolds for the hook code. A shared hook folder and its runtime adapter folders start from `assets/hook-readme-template.md`. A folder a runtime loads its hooks from, such as `.pi/extensions/`, starts from `assets/runtime-plugin-readme-template.md`. The top of a runtime folder, such as `.pi/`, writes its README and its `SYNC.md` from `assets/runtime-folder-template.md`.
 
 The packet also writes a skill package's `ARCHITECTURE.md` from `assets/architecture-template.md`, a system document for a maintainer rather than a third README shape.
 
@@ -176,6 +178,9 @@ A: create-readme. `create-skill` scaffolds the package and hands the README step
 | [`assets/contributing-template.md`](./assets/contributing-template.md) | Fillable scaffold for a repository contributing guide |
 | [`assets/security-policy-template.md`](./assets/security-policy-template.md) | Fillable scaffold for a repository security policy |
 | [`assets/readme-code-template.md`](./assets/readme-code-template.md) | Fillable scaffold for source-code folder READMEs, with diagram examples |
+| [`assets/hook-readme-template.md`](./assets/hook-readme-template.md) | Fillable scaffolds for a shared hook folder README and its runtime adapter folders |
+| [`assets/runtime-plugin-readme-template.md`](./assets/runtime-plugin-readme-template.md) | Fillable scaffold for a runtime plugin, extension or hook mirror folder README |
+| [`assets/runtime-folder-template.md`](./assets/runtime-folder-template.md) | Fillable scaffolds for a runtime folder's README and its `SYNC.md` |
 | [`assets/architecture-template.md`](./assets/architecture-template.md) | Fillable scaffold for a skill package's `ARCHITECTURE.md` |
 | [`references/README.md`](./references/README.md) | Route map into the `readme/` reference group |
 | [`scripts/audit_readmes.py`](./scripts/audit_readmes.py) | Repo-wide template alignment and freshness audit |

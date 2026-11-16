@@ -7,7 +7,7 @@ trigger_phrases:
   - "create-readme references"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # create-readme Reference Map
@@ -47,6 +47,9 @@ Load the file that matches the current task.
 - [readme-template.md](../assets/readme-template.md) - Selection guide, plus scaffolds for a repository front page and for feature and component READMEs
 - [skill-readme-template.md](../assets/skill-readme-template.md) - Skill package README scaffold, used for the README step `create-skill` hands over
 - [readme-code-template.md](../assets/readme-code-template.md) - Code-folder README scaffold with diagram examples
+- [hook-readme-template.md](../assets/hook-readme-template.md) - Hook folder README scaffold, with the runtime adapter folder variant
+- [runtime-plugin-readme-template.md](../assets/runtime-plugin-readme-template.md) - Runtime plugin, extension and hook mirror folder README scaffold
+- [runtime-folder-template.md](../assets/runtime-folder-template.md) - Runtime folder README and `SYNC.md` scaffolds
 - [install-template.md](../assets/install-template.md) - Repository install guide scaffold
 - [contributing-template.md](../assets/contributing-template.md) - Repository contributing guide scaffold
 - [security-policy-template.md](../assets/security-policy-template.md) - Repository security policy scaffold

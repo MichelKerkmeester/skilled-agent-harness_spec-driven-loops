@@ -515,6 +515,45 @@ test('a path under repin.exclude needs no overlay, so the guard and the commit c
   assert.equal(commitCheck.stdout, 'allow\n');
 });
 
+// A project may still want an overlay entry for a path under repin.exclude, so
+// its own copy in the overlay folder is carried and checked like any other.
+function excludeLocalFolder(fixture) {
+  const manifest = readJson(fixture.manifestPath);
+  manifest.repin.exclude = ['.skilled/local'];
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+}
+
+test('adopt takes a path under repin.exclude when the overlay folder holds its copy', (t) => {
+  const fixture = createStrictFixture(t);
+  excludeLocalFolder(fixture);
+  writeFile(fixture.overlayDir, 'skilled/local/hook.sh', '#!/bin/sh\nexit 0\n');
+
+  const adopted = fixture.run(['apply', '--adopt', '.skilled/local/hook.sh']);
+  assert.equal(adopted.code, 0, adopted.output);
+  assert.ok(adopted.stdout.includes('adopted .skilled/local/hook.sh as skilled-overlays/skilled/local/hook.sh ' +
+    '(file entry adopted-skilled-local-hook-sh)'), adopted.stdout);
+  const entry = entryFor(fixture, '.skilled/local/hook.sh');
+  assert.deepEqual({ scope: entry.scope, source: entry.source }, { scope: 'file', source: 'skilled/local/hook.sh' });
+  assert.equal(entry.pinnedSha256, undefined);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, '.skilled/local/hook.sh'), 'utf8'), '#!/bin/sh\nexit 0\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+});
+
+test('adopt still refuses a path under repin.exclude with no copy in the overlay folder', (t) => {
+  const fixture = createStrictFixture(t);
+  excludeLocalFolder(fixture);
+  writeFile(fixture.tree, '.skilled/local/hook.sh', '#!/bin/sh\nexit 0\n');
+  const before = fs.readFileSync(fixture.manifestPath, 'utf8');
+
+  const refused = fixture.run(['apply', '--adopt', '.skilled/local/hook.sh']);
+  assert.equal(refused.code, 2, refused.output);
+  assert.match(refused.stdout, /^refuse: \.skilled\/local\/hook\.sh is under repin\.exclude/);
+  assert.ok(refused.stdout.includes('skilled-overlays/skilled/local/hook.sh'), refused.stdout);
+  assert.equal(fs.readFileSync(fixture.manifestPath, 'utf8'), before);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'skilled/local')), false);
+});
+
 test('the commit check reports a staged change under a vendored tree that sits below the git top level', (t) => {
   const fixture = createNestedFixture(t);
   writeFile(fixture.tree, '.skilled/skills/hub/stable.md', 'edited in place\n');

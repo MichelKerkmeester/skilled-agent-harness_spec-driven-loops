@@ -96,14 +96,20 @@ function normalizeTargets(route) {
 
 // Route `taskText` through hub `hubId`'s compiled contract. Returns a normalized,
 // serializable decision; `action` is one of route/clarify/defer/reject.
-// `options.surfaceHint` names the surface the caller's session works in. It is
-// applied after the decision is validated and only reorders surfaces the prompt
-// matched, so a call without it serves exactly the compiled order.
+// `options.surfaceHint` names the surface the caller's session works in. The
+// evaluation receives it, because a surface it adds changes the route's kind and
+// the route must be validated with that surface in it. The validated targets are
+// then reordered so the hinted surface leads. A call without it serves exactly
+// the compiled order.
 function compiledRoute(hubId, taskText, options = {}) {
   const { snapshot, evaluate, applySurfaceHint } = loadHubEngine(hubId);
-  const evaluated = evaluate(snapshot, { prompt: taskText });
+  // Only a router that knows its hub's surface packets takes the hint.
+  const hinted = Boolean(applySurfaceHint) && typeof options.surfaceHint === 'string';
+  const evaluated = evaluate(snapshot, hinted
+    ? { prompt: taskText, surfaceHint: options.surfaceHint }
+    : { prompt: taskText });
   let route = evaluated.decision.route || null;
-  if (route && applySurfaceHint && typeof options.surfaceHint === 'string') {
+  if (route && hinted) {
     route = { ...route, targets: applySurfaceHint(snapshot, route.targets, options.surfaceHint) };
   }
   return {

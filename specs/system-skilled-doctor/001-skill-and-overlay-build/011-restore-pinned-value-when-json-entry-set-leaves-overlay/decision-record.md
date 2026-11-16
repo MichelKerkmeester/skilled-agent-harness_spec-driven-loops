@@ -40,6 +40,13 @@ _memory:
 | Q004 | Phase 011, the removed set restore, is built first. | It is reproduced, fully decided and the smallest. | None | tasks.md T001 to T011 |
 | Q005 | The build runs through DeepSeek v4.1 flash at max thinking on the Mistral Vibe CLI, in short one-change briefs. | The six earlier fixes were built that way and each run finished in a few minutes. | None | scratch/dispatch |
 | Q006 | The session's operator answers are written to a decision record in each packet they belong to. | Not stated. | None | decision-record.md |
+| Q007 | All four planned packets are built in parallel through DeepSeek flash at max thinking. | Not stated. | None | packets 004, 008, 010 and 012, each scratch/dispatch |
+| Q008 | The packets are built through DeepSeek on the Mistral Vibe CLI. | Not stated. | None | scratch/dispatch, scratch/vibe-runs |
+| Q009 | A built and verified packet is committed and pushed to main. | Not stated. | None | the commit that carries this record |
+| Q010 | The SKILLED BARTER CODER session is told that the phase 011 handover is on main. | Not stated. | None | handover-to-barter.md |
+| Q011 | The fresh Fable 5.2 review of the engine change runs through the claude2 shell function. | Not stated. | None | tasks.md T012 |
+| Q012 | A dropped set whose path holds an array index is restored only when the arrays line up with the pin, and refused otherwise. | Not stated. | None | tasks.md T014, overlay-engine.cjs indexesMatchPin |
+| Q013 | The fix also covers two sets on one path and a key whose added record was lost, and the other review findings are documented as limits. | Not stated. | None | tasks.md T015 and T016, implementation-summary.md Known Limitations |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -166,6 +173,145 @@ Skip the save
 Answer:
 ```text
 Save now (Recommended)
+```
+
+### Q007
+<!-- source: claude:8dafc84b-d965-4347-8887-f936e5033e76:toolu_01YXiz4QXabjxXZcnD4isqiM:0 -->
+
+Question:
+```text
+Four packets are planned and not built. Which one should I build next?
+```
+
+Options:
+```text
+Symlink Vibe + DSH (Recommended)
+Doctor script fixes (022)
+sk-code router hint + score
+Advisor baseline capture
+```
+
+Answer:
+```text
+all 4 in parallel use deepseek flash max
+```
+
+### Q008
+<!-- source: claude:8dafc84b-d965-4347-8887-f936e5033e76:toolu_01YXiz4QXabjxXZcnD4isqiM:1 -->
+
+Question:
+```text
+How should the next packet be built?
+```
+
+Options:
+```text
+DeepSeek on Vibe (Recommended)
+I build it directly
+```
+
+Answer:
+```text
+DeepSeek on Vibe (Recommended)
+```
+
+### Q009
+<!-- source: claude:8dafc84b-d965-4347-8887-f936e5033e76:toolu_01YXiz4QXabjxXZcnD4isqiM:2 -->
+
+Question:
+```text
+When the next packet is built and verified, what should I do with it?
+```
+
+Options:
+```text
+Commit and push to main (Recommended)
+Commit only
+Ask me again then
+```
+
+Answer:
+```text
+Commit and push to main (Recommended)
+```
+
+### Q010
+<!-- source: claude:8dafc84b-d965-4347-8887-f936e5033e76:toolu_01YXiz4QXabjxXZcnD4isqiM:3 -->
+
+Question:
+```text
+Should I tell the SKILLED BARTER CODER session that the phase 011 handover (handover-to-barter.md) is on main at 6eee83d833a?
+```
+
+Options:
+```text
+Yes, tell it now (Recommended)
+No, not yet
+```
+
+Answer:
+```text
+Yes, tell it now (Recommended)
+```
+
+### Q011
+<!-- source: claude:8dafc84b-d965-4347-8887-f936e5033e76:toolu_013zyEGAqBPyK3UK2Hgsk4Hu:0 -->
+
+Question:
+```text
+I cannot start a fresh Fable 5.2 reviewer from this session: the repository's fable-subagent-guard hook refuses any subagent that is not opus or sonnet while Fable runs the main loop, and the cli-claude-code skill refuses to launch Claude from inside Claude Code. How should the overlay engine review (commit cb31e584730) run instead?
+```
+
+Options:
+```text
+Fresh Opus at medium (Recommended)
+I open a Fable session
+Both
+```
+
+Answer:
+```text
+claude2
+```
+
+### Q012
+<!-- source: claude:8dafc84b-d965-4347-8887-f936e5033e76:toolu_01MqWrVjeskwBsVXynzqDXMz:0 -->
+
+Question:
+```text
+The Fable review found a confirmed defect in the phase 011 engine change that is already on main (cb31e584730): when a dropped set's path goes through an array index and the overlay also inserted or removed an item in that array, apply restores the value from the wrong pinned item (wrong data written), or skips the restore. Object-key paths work. I reran it myself and it reproduces. How should the engine handle a dropped set whose path contains an array index?
+```
+
+Options:
+```text
+Refuse when arrays differ (Recommended)
+Refuse every index path
+Revert the change on main
+```
+
+Answer:
+```text
+Refuse when arrays differ (Recommended)
+```
+
+### Q013
+<!-- source: claude:8dafc84b-d965-4347-8887-f936e5033e76:toolu_01MqWrVjeskwBsVXynzqDXMz:1 -->
+
+Question:
+```text
+The same review confirmed three more behaviours, none of which writes wrong data: (a) the same path listed in two set operations, or a set whose value a later operation in the same entry set changes, is refused as 'edited after it was applied' when dropped. (b) a key the engine added is refused on removal once its record was lost, for example a state file from the older engine. (c) a set on an item the overlay itself appended cannot be dropped. Which should the fix also cover?
+```
+
+Options:
+```text
+Same path twice (a)
+Lost added-key record (b)
+Document the rest as limits
+```
+
+Answer:
+```text
+Same path twice (a), Lost added-key record (b), Document the rest as limits
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

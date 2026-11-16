@@ -1,0 +1,68 @@
+TASK: add two sk-code canary cases for a hinted route.
+Two files change. Do the three steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 3. File: R/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json
+OLD (4 lines, this exact text appears once in the file):
+        "expectedResources": []
+      }
+    }
+  ],
+NEW (replace those lines with these 42 lines, same indentation):
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "hinted-surface-joins-route",
+      "prompt": "review this function for bugs",
+      "surfaceHint": "FRONTEND",
+      "riskSlice": "actor:mutating:composite",
+      "expectedAction": "route",
+      "expectedSelectionKind": "surfaceBundle",
+      "expectedModes": [
+        "sk-code-review",
+        "sk-code-frontend",
+        "sk-code-skilled"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-code-review",
+          "sk-code-frontend",
+          "sk-code-skilled"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "hinted-surface-routes-unscored",
+      "prompt": "add a filter to the table",
+      "surfaceHint": "FRONTEND",
+      "riskSlice": "evidence:nonmutating:single",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-code-frontend"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-code-frontend"
+        ],
+        "expectedResources": []
+      }
+    }
+  ],
+
+STEP 2 of 3. The file you just edited has an authored twin that must hold the same bytes. Run exactly:
+cp R/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json R/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json
+Then run: cmp R/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json R/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json && echo twin-same
+Expected: it prints twin-same.
+
+STEP 3 of 3. Run:
+cd R && node -e "JSON.parse(require('fs').readFileSync('.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json','utf8'))" && echo json-ok
+cd R && node specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/scratch/measure-candidates.cjs . routes-only
+cd R && node .skilled/bin/compiled-route-sync.cjs --check
+Expected: the first command prints json-ok. The second prints 14 lines and its last two are
+hinted-surface-joins-route	surfaceBundle:sk-code-review,sk-code-frontend,sk-code-skilled
+hinted-surface-routes-unscored	single:sk-code-frontend
+The third ends with "all 55 served copies match their authored files". Report all three outputs.

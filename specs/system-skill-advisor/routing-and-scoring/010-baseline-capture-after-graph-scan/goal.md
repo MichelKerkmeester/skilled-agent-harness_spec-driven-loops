@@ -78,7 +78,7 @@ and findings belong here.
 | Item 10 read against the capture and the scan handler | Done | The capture sets an empty `SYSTEM_SKILL_ADVISOR_DB_DIR` at line 361. The scan handler awaits its index and embedding steps before it returns |
 | Spec, plan and tasks | Done | This folder |
 | Packet validation | Done | `validate.sh --strict --quiet` printed `RESULT: PASSED (errors=0 warnings=0)` on 2026-11-16 |
-| Reproduction | Pending | None yet |
+| Reproduction | Done | Not reproduced: ten runs of `scratch/repro-capture-after-scan.sh` on a private copy of the tree printed `result=same` (`scratch/repro-results.txt`). Five flipped `"the stylesheet"` and regenerated, five started a fresh daemon. No input the capture reads changed between its two captures (`scratch/inputs-at-capture.txt`) |
 | Captured fixtures item added | Done | Item 4 of the vendoring project's first handover, added on 2026-11-16 at the operator's choice. The two tests that read the fixtures are named in `spec.md` |
 
 ### Deviations and findings

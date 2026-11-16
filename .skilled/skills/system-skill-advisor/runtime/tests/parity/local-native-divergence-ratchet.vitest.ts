@@ -113,10 +113,18 @@ const SKILL_ADVISOR_PY = resolve(
   WORKSPACE_ROOT,
   '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py',
 );
-const LEDGER_PATH = resolve(
+// A host with its own hub vocabulary gets other divergences than upstream. It
+// keeps its own ledger in a `.host.json` file beside the upstream one, and the
+// ratchet reads that file whenever it exists, so every entry stays guarded.
+function capturePath(upstreamPath: string): string {
+  const hostPath = upstreamPath.replace(/\.json$/, '.host.json');
+  return existsSync(hostPath) ? hostPath : upstreamPath;
+}
+
+const LEDGER_PATH = capturePath(resolve(
   dirname(fileURLToPath(import.meta.url)),
   'fixtures/local-native-approved-divergences.json',
-);
+));
 
 function sha256(value: string): string {
   return createHash('sha256').update(value, 'utf8').digest('hex');

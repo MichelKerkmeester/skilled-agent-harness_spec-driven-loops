@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2d64b347fb0c8c5f8753ac08271ef2587495b1b4ed33b90b8f8dea7ed06508d4",
+  "corpusHash": "b0dd2d430b3e5dfed588162590e237e06ee66bd82b8a2bc9e613a28bfaabb680",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27872,
+  "includedPathCount": 27877,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7032,9 +7032,12 @@
     ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/architecture-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/contributing-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/install-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-folder-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/security-policy-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.0.0.0.md",
@@ -19129,6 +19132,7 @@
     "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/handover-to-barter.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/implementation-summary.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/spec.md",
@@ -19276,6 +19280,7 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/decision-record.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/goal.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/handover-from-barter-022.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/handover-to-barter.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/implementation-summary.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/spec.md",
@@ -27904,7 +27909,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "cdc5039b416e8bf2f400134136e5e07fc3fa5eb8170ec6df01a18aaad2658c39",
+  "manifestHash": "c1d62010a88eb18a9d858a18cb1bea2cdea8939274f18fb6499f4b1bf3c3f580",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

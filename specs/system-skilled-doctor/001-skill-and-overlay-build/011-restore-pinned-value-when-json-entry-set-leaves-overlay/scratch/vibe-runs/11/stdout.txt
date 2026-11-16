@@ -1,0 +1,62 @@
+The edit is exactly the specified block, and the check passes.
+
+1. FILES CHANGED:
+   - `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs`
+
+2. COMMANDS:
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && grep -n "onSet: (record) => listedSets.push(record)" .skilled/commands/doctor/scripts/overlay-engine.cjs`
+   - exit status: 0
+   - last lines:
+     ```
+     1586:      onSet: (record) => listedSets.push(record),
+     ```
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && grep -n "deepEqual" .skilled/commands/doctor/scripts/overlay-engine.cjs | head -20`
+   - exit status: 0
+   - last lines:
+     ```
+     1307:    if (pinned && deepEqual(live, JSON.parse(upstreamText.slice(pinned.start, pinned.end)))) continue;
+     1308:    if (!deepEqual(live, record.value)) {
+     ```
+     (definition at line 780, same module — in scope for the new callback)
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')" && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs 2>&1 | tail -25; echo "EXIT_STATUS=$?"`
+   - exit status: 0
+   - last 15 lines:
+     ```
+     ✔ apply restores a dropped set through an array index while the arrays line up (181.731ms)
+     ✔ apply refuses a dropped set through an array the overlay added an item to (293.061291ms)
+     ✔ two sets on one path keep one record and both leave together (190.694417ms)
+     ✔ apply deletes a key the pin does not hold even when its record never marked it as added (205.701041ms)
+     ✔ apply refuses to delete a key the pin does not hold once its value was edited (164.581125ms)
+     ✔ a dropped set is restored while the operations that stay are still applied (171.857541ms)
+     ℹ tests 35
+     ℹ suites 0
+     ℹ pass 35
+     ℹ fail 0
+     ℹ cancelled 0
+     ℹ skipped 0
+     ℹ todo 0
+     ℹ duration_ms 7122.619917
+     EXIT_STATUS=0
+     ```
+   - The first command printed nothing, as expected. Pass count: **35**. Fail count: **0**.
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && git diff -U2 -- .skilled/commands/doctor/scripts/overlay-engine.cjs | grep -n -A14 "onSet: (record) => listedSets.push(record)"`
+   - exit status: 0
+   - last lines:
+     ```
+     92:-      onSet: (record) => listedSets.push(record),
+     93-+      // One record per path: a later set on the same path is the value the file
+     94-+      // ends with, and a key stays marked as added once either set added it.
+     95-+      onSet: (record) => {
+     96-+        const index = listedSets.findIndex((listed) => deepEqual(listed.path, record.path));
+     97-+        if (index < 0) listedSets.push(record);
+     98-+        else listedSets[index] = { ...record, added: listedSets[index].added === true || record.added === true };
+     99-+      },
+     100-     });
+     101-   } catch (error) {
+     ```
+
+3. OPEN QUESTIONS: none. The anchor matched once at line 1586, `deepEqual` was already defined in the same module (line 780), and the working tree carried many pre-existing modifications from earlier phases in this worktree — I made only the one edit above.

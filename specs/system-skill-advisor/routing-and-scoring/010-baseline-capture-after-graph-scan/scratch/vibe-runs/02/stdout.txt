@@ -1,0 +1,74 @@
+Both edits applied and the check passes: 6 passed, 0 failed, exit 0.
+
+1. FILES CHANGED:
+- /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts
+
+2. COMMANDS:
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && grep -n "BASELINE_PATH\|RECAPTURE\|existsSync\|readFileSync" .skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts` — exit 0
+```
+11:import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+22:const BASELINE_PATH = join(ROUTING, 'command-routing-baseline.json');
+23:const RECAPTURE = 'node scripts/routing-accuracy/capture-command-routing-baseline.mjs --write';
+69:  return readFileSync(path, 'utf8').trim().split('\n').filter(Boolean).map((line) => JSON.parse(line) as T);
+84:    baseline = JSON.parse(readFileSync(BASELINE_PATH, 'utf8')) as CommandRoutingBaseline;
+107:      `command routing rows drifted from the committed baseline; re-capture with \`${RECAPTURE}\` when the change is intended`,
+122:      `command routing attached reach drifted from the committed baseline; re-capture with \`${RECAPTURE}\` when the change is intended`,
+```
+
+`cd .../runtime && npx vitest run tests/command-routing-slice.vitest.ts` (first run, piped through `tail`) — exit 0
+```
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skill-advisor/runtime
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  13:25:32
+   Duration  6.94s (transform 252ms, setup 18ms, import 24ms, tests 6.82s, environment 0ms)
+```
+
+`cd .../runtime && npx vitest run tests/command-routing-slice.vitest.ts > /tmp/vitest-slice.log 2>&1; echo "EXIT_STATUS=$?"` — exit 0
+```
+EXIT_STATUS=0
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skill-advisor/runtime
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  13:25:42
+   Duration  6.83s (transform 197ms, setup 17ms, import 24ms, tests 6.71s, environment 0ms)
+```
+
+`cd .../runtime && npx vitest run tests/command-routing-slice.vitest.ts --reporter=verbose > /tmp/vitest-slice-verbose.log 2>&1; echo "EXIT_STATUS=$?"` — exit 0
+```
+EXIT_STATUS=0
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skill-advisor/runtime
+
+ ✓ tests/command-routing-slice.vitest.ts > command routing slice > matches the captured baseline row by row 1ms
+ ✓ tests/command-routing-slice.vitest.ts > command routing slice > matches the captured totals 1ms
+ ✓ tests/command-routing-slice.vitest.ts > command routing slice > pins the corpus the baseline was captured against 0ms
+ ✓ tests/command-routing-slice.vitest.ts > command routing slice > has a typed row and both plain splits for every command file 0ms
+ ✓ tests/command-routing-slice.vitest.ts > host capture selection > reads the upstream capture when no host capture sits beside it 1ms
+ ✓ tests/command-routing-slice.vitest.ts > host capture selection > reads the host capture when one sits beside the upstream one 1ms
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  13:25:57
+   Duration  7.46s (transform 329ms, setup 20ms, import 26ms, tests 7.31s, environment 0ms)
+```
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && git status --porcelain && git diff --stat && ls -la .../scripts/routing-accuracy/ | grep -i baseline` — exit 0
+```
+ M .skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts
+ ... (other pre-existing modified/untracked files, none touched by me)
+---DIFFSTAT---
+ .../runtime/tests/command-routing-slice.vitest.ts  | 49 ++++++++++++++++++--
+---HOSTFILE---
+-rw-r--r--@ 1 michelkerkmeester  staff  61089 Nov 16 08:10 command-routing-baseline.json
+```
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && git diff -- .skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts` — exit 0 (confirmed my two hunks are present verbatim; the third hunk is pre-existing, see below)
+
+3. OPEN QUESTIONS:
+- The file already carried uncommitted changes before I touched it: the widened `node:fs`/`node:os`/`vitest` imports and a `describe('host capture selection')` block with two tests. That is why the suite reports 6 tests, not 4. I did not author those and left them alone; my diff is exactly the two named blocks.
+- No `command-routing-baseline.host.json` exists in `scripts/routing-accuracy/`, so `capturePath` currently resolves to the upstream path and the ratchet still reads the upstream capture. The host branch is exercised only by the two unit tests, not by a real host capture.

@@ -1,6 +1,6 @@
 ---
 title: README Template and Selection Guide
-description: Selection guide and fillable scaffolds for README files, from a repository front page to feature and component READMEs, with routing to the skill, code-folder, install, contributing and security templates.
+description: Selection guide and fillable scaffolds for README files, from a repository front page to feature and component READMEs, with routing to the skill, code-folder, hook, runtime, install, contributing and security templates.
 trigger_phrases:
   - "readme selection guide"
   - "project readme template"
@@ -9,12 +9,12 @@ trigger_phrases:
   - "narrative readme structure"
 importance_tier: normal
 contextType: general
-version: 1.2.4.0
+version: 1.3.0.0
 ---
 
 # README Template and Selection Guide
 
-Use this file to pick the right README template, then to write a repository front page or a feature or component README. The other templates in this folder cover skills, source-code folders, install guides, contributing guides and security policies.
+Use this file to pick the right README template, then to write a repository front page or a feature or component README. The other templates in this folder cover skills, source-code folders, hook folders, runtime folders, install guides, contributing guides and security policies.
 
 ---
 
@@ -30,8 +30,11 @@ A README answers two questions: what is this, and how does someone use it or fin
 | Security policy | People need a private way to report a flaw | [`security-policy-template.md`](./security-policy-template.md) |
 | Skill | A skill needs human-facing context beyond `SKILL.md` | [`skill-readme-template.md`](./skill-readme-template.md) |
 | Feature | A user-facing feature needs setup, usage or behavior notes | Section 6 of this file |
-| Component | A reusable module has an API, examples or configuration | Section 6 of this file, trimmed |
+| Component | A reusable module or a self-contained extension package has an API, examples or configuration | Section 6 of this file, trimmed |
 | Code Folder | A source directory needs developer orientation | [`readme-code-template.md`](./readme-code-template.md) |
+| Hook Folder | A shared hook concern under `.skilled/hooks/` needs its runtimes and switches explained | [`hook-readme-template.md`](./hook-readme-template.md) |
+| Plugin Or Extension Folder | A runtime loads its hooks from the folder, or the folder mirrors them | [`runtime-plugin-readme-template.md`](./runtime-plugin-readme-template.md) |
+| Runtime Folder | The top of a runtime folder, such as `.pi/`, needs its README and its `SYNC.md` | [`runtime-folder-template.md`](./runtime-folder-template.md) |
 
 Create a README when someone can land in the folder and needs orientation. Skip it when inline comments or a nearby parent README already explain the folder.
 
@@ -40,9 +43,15 @@ Is this the repository root?
 +-- Yes: write the front page. Add an install, contributing or security guide only when readers need one.
 `-- No: is this a skill package?
     +-- Yes: use skill-readme-template.md.
-    `-- No: is this source-code orientation?
-        +-- Yes: use readme-code-template.md.
-        `-- No: write a focused README only if readers need setup, usage or navigation help.
+    `-- No: is this the top of a runtime folder, such as .pi/ or .claude/?
+        +-- Yes: use runtime-folder-template.md for README.md and SYNC.md.
+        `-- No: is this a hook folder under .skilled/hooks/?
+            +-- Yes: use hook-readme-template.md.
+            `-- No: does a runtime load its hooks from this folder?
+                +-- Yes: use runtime-plugin-readme-template.md.
+                `-- No: is this source-code orientation?
+                    +-- Yes: use readme-code-template.md.
+                    `-- No: write a focused README only if readers need setup, usage or navigation help.
 ```
 
 Keep READMEs current-state only. Do not cite spec packet numbers or phase IDs. Use feature names, file paths, commands and stable source links.
@@ -151,6 +160,7 @@ The validator skips the `---` rule only for `README.md`, `CONTRIBUTING.md`, `SEC
 | Install, contributing and security guides | Plain steps. Name each command where the reader runs it |
 | Component | Technical and concise |
 | Code Folder | Technical and concise, via `readme-code-template.md` |
+| Hook, plugin and runtime folders | Technical and concise, via their own templates |
 
 The front page may put a decorative emoji on each numbered H2. Every other README uses semantic emoji only (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers.
 
@@ -451,7 +461,7 @@ Give every major area its own H2 when a front page covers four or more, so each 
 
 ## 8. VALIDATION CHECKLIST
 
-- [ ] README type is correct. Skills use `skill-readme-template.md` and code folders use `readme-code-template.md`.
+- [ ] README type is correct. Skills, code folders, hook folders and runtime folders each use their own template from Section 1.
 - [ ] Included sections match the audience and task.
 - [ ] No empty sections remain.
 - [ ] Commands were tested or marked as examples.
@@ -469,6 +479,9 @@ Give every major area its own H2 when a front page covers four or more, so each 
 
 - [`skill-readme-template.md`](./skill-readme-template.md) - Skill package README scaffold.
 - [`readme-code-template.md`](./readme-code-template.md) - Code-folder README scaffold.
+- [`hook-readme-template.md`](./hook-readme-template.md) - Hook folder README scaffold, with the runtime adapter folder variant.
+- [`runtime-plugin-readme-template.md`](./runtime-plugin-readme-template.md) - Runtime plugin, extension and hook mirror folder README scaffold.
+- [`runtime-folder-template.md`](./runtime-folder-template.md) - Runtime folder README and `SYNC.md` scaffolds.
 - [`install-template.md`](./install-template.md) - Repository install guide scaffold.
 - [`contributing-template.md`](./contributing-template.md) - Repository contributing guide scaffold.
 - [`security-policy-template.md`](./security-policy-template.md) - Repository security policy scaffold.

@@ -1232,21 +1232,51 @@ function memberRemovalEdit(members, index) {
 }
 
 /**
+ * Whether every array index on a recorded path names the same item in the live
+ * file and in the pinned copy. An index is a position, so it is trusted only
+ * while the two arrays hold the same number of items and this overlay neither
+ * added an item to that array nor is about to.
+ * @param {object} root Root node of the live document.
+ * @param {object} upstreamRoot Root node of the pinned document.
+ * @param {Array<string|number>} path Path the set wrote.
+ * @param {object[]} operations Operations of one entry set, in order.
+ * @param {object[]} recordedItems Items this overlay added to the destination.
+ * @returns {boolean} Whether the path's indexes can be read against the pin.
+ */
+function indexesMatchPin(root, upstreamRoot, path, operations, recordedItems) {
+  for (let depth = 0; depth < path.length; depth += 1) {
+    if (typeof path[depth] !== 'number') continue;
+    const container = path.slice(0, depth);
+    const live = recordedNodeAt(root, container);
+    const pinned = recordedNodeAt(upstreamRoot, container);
+    if (!live || !pinned || live.type !== 'array' || pinned.type !== 'array') return false;
+    if (live.items.length !== pinned.items.length) return false;
+    if (recordedItems.some((item) => item && deepEqual(item.path, container))) return false;
+    const addsItems = operations.some((operation) =>
+      (operation.op === 'insertItems' || operation.op === 'appendItems') && deepEqual(operation.path, container));
+    if (addsItems) return false;
+  }
+  return true;
+}
+
+/**
  * Return every value a `set` wrote to what the pin holds once the entry set no
  * longer names its path, so a dropped `set` leaves the live file instead of
- * staying behind as a value nothing explains. A key the overlay added is deleted
- * when the pin does not hold it. A value that changed after it was applied is
- * refused rather than overwritten: that edit belongs to a person. Without a
- * readable pinned copy there is no value to return to, so the overlay is
- * refused rather than given a guess.
+ * staying behind as a value nothing explains. A key the pin does not hold is
+ * deleted while it still carries the recorded value. A value that changed after
+ * it was applied is refused rather than overwritten: that edit belongs to a
+ * person. Without a readable pinned copy there is no value to return to, so the
+ * overlay is refused rather than given a guess. The same holds for a path
+ * through an array whose items no longer line up with the pin's.
  * @param {string} text Live document text.
  * @param {object[]} operations Operations of one entry set, in order.
  * @param {object[]} recordedSets Sets this overlay applied to the destination.
  * @param {() => (string|null)} [readUpstreamText] Reads the destination as the
  *   pin holds it, or null when there is no upstream copy to read.
+ * @param {object[]} [recordedItems] Items this overlay added to the destination.
  * @returns {string} The text with every dropped set taken back.
  */
-function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = () => null) {
+function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = () => null, recordedItems = []) {
   let output = text;
   for (const record of recordedSets) {
     if (operations.some((operation) => operation.op === 'set' && deepEqual(operation.path, record.path))) continue;
@@ -1266,6 +1296,10 @@ function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = (
     } catch (error) {
       throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy of the file is not valid JSON');
     }
+    if (!indexesMatchPin(root, upstreamRoot, record.path, operations, recordedItems)) {
+      throw new Error('cannot restore the dropped set at ' + where +
+        ': its path goes through an array whose items differ from the pinned copy; restore the value by hand');
+    }
     const pinned = recordedNodeAt(upstreamRoot, record.path);
     const live = JSON.parse(output.slice(node.start, node.end));
     // A live value that already equals the pin's needs no write, which is also
@@ -1284,7 +1318,10 @@ function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = (
     const index = parent && parent.type === 'object'
       ? parent.members.findIndex((member) => member.key === record.path[record.path.length - 1])
       : -1;
-    if (record.added !== true || index < 0) {
+    // The live value equals the recorded one here, so the key carries nothing a
+    // person wrote. Whether this engine or an older one added it, the pin does
+    // not hold it and the entry set no longer asks for it.
+    if (index < 0) {
       throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy holds no value there');
     }
     output = applyEdits(output, [memberRemovalEdit(parent.members, index)]);
@@ -1312,7 +1349,8 @@ function applyJsonOperations(text, spec, options) {
   // addresses the array the set describes rather than the one it left behind.
   let output = removeDroppedItems(text, operations, options.recordedItems || [], options.readUpstreamText);
   // A dropped set is taken back first for the same reason.
-  output = restoreDroppedSets(output, operations, options.recordedSets || [], options.readUpstreamText);
+  output = restoreDroppedSets(output, operations, options.recordedSets || [], options.readUpstreamText,
+    options.recordedItems || []);
   // Each operation sees the document the operations before it produced, so a
   // later operation can address an item an earlier one in the same set added.
   for (const operation of operations) {
@@ -1545,7 +1583,13 @@ function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, 
       recordedSets,
       readUpstreamText,
       onListed: (record) => listedItems.push(record),
-      onSet: (record) => listedSets.push(record),
+      // One record per path: a later set on the same path is the value the file
+      // ends with, and a key stays marked as added once either set added it.
+      onSet: (record) => {
+        const index = listedSets.findIndex((listed) => deepEqual(listed.path, record.path));
+        if (index < 0) listedSets.push(record);
+        else listedSets[index] = { ...record, added: listedSets[index].added === true || record.added === true };
+      },
     });
   } catch (error) {
     problems.push(`cannot apply the entry set to ${entry.destination}: ${error.message}`);
@@ -2003,21 +2047,42 @@ function snapshotOutputs(manifest, root) {
 
 /**
  * Run the manifest regeneration steps and report failed steps and changed outputs.
+ * Each watched path is hashed around every step, so a file an overlay owns that a
+ * step rewrote is traced to that step whether or not the step lists it under
+ * `outputs`. Once the steps have run, no other record says which one wrote it.
  * @param {object} manifest Loaded overlay manifest.
  * @param {string} root Destination tree root.
- * @returns {{results: object[], failed: object[], changedOutputs: string[]}}
+ * @param {string[]} [watched] Tree-relative paths to trace, such as overlay destinations.
+ * @returns {{results: object[], failed: object[], changedOutputs: string[],
+ *   rewrittenBy: Map<string, string[]>}} `rewrittenBy` maps each watched path a
+ *   step changed to the ids of the steps that changed it, in run order.
  */
-function regenerate(manifest, root) {
+function regenerate(manifest, root, watched = []) {
   const before = snapshotOutputs(manifest, root);
+  const digestOf = (key) => {
+    const buffer = readBufferOrNull(path.join(root, key));
+    return buffer ? sha256(buffer) : null;
+  };
+  let digests = new Map(watched.map((key) => [key, digestOf(key)]));
+  const rewrittenBy = new Map();
   const results = [];
-  for (const step of manifest.regenerate || []) results.push({ step, result: runCommand(root, step.argv) });
+  for (const step of manifest.regenerate || []) {
+    results.push({ step, result: runCommand(root, step.argv) });
+    const next = new Map(watched.map((key) => [key, digestOf(key)]));
+    for (const [key, digest] of next) {
+      if (digests.get(key) === digest) continue;
+      if (!rewrittenBy.has(key)) rewrittenBy.set(key, []);
+      rewrittenBy.get(key).push(step.id);
+    }
+    digests = next;
+  }
   const failed = results.filter(({ result }) => result.status !== 0);
   const after = snapshotOutputs(manifest, root);
   const changedOutputs = [];
   for (const [output, digest] of after) {
     if (before.get(output) !== digest) changedOutputs.push(output);
   }
-  return { results, failed, changedOutputs };
+  return { results, failed, changedOutputs, rewrittenBy };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -2415,6 +2480,16 @@ function stateLine(ctx, record) {
 
 function problemLine(ctx, record) {
   return stateLine(ctx, record) + '  fix: ' + fixFor(ctx, record);
+}
+
+// A file a regenerate step rewrote after the overlay was applied would read as an
+// upstream move or a live edit, which sends the reader to a diff that does not
+// hold the change. The line names the step instead.
+function regeneratedLine(ctx, record, stepIds) {
+  const source = ctx.overlayLabel + '/' + record.source;
+  return 'regenerated ' + record.key + '  (overlay: ' + source + ')  step: ' + stepIds.join(', ') +
+    '  fix: carry the step\'s change into ' + source + ', or change the step so it leaves ' + record.key +
+    ' alone, then run ' + ENGINE_COMMAND + ' apply';
 }
 
 function printProblems(ctx, records) {
@@ -2890,8 +2965,11 @@ function applyUnderLock(ctx, manifest, options = {}) {
   }
 
   const isRegenerated = written > 0 || options.isRegenerateForced === true;
+  let rewrittenBy = new Map();
   if (isRegenerated) {
-    const regeneration = regenerate(manifest, root);
+    const owned = analysis.records.filter((record) => !record.layout && !record.removal).map((record) => record.key);
+    const regeneration = regenerate(manifest, root, owned);
+    rewrittenBy = regeneration.rewrittenBy;
     for (const { step, result } of regeneration.failed) {
       const output = ((result.stdout || '') + (result.stderr || '')).trim().split('\n').slice(-3).join(' | ');
       console.log('regen ' + step.id + ': FAILED exit=' + result.status + ' ' + output);
@@ -2905,7 +2983,10 @@ function applyUnderLock(ctx, manifest, options = {}) {
   const updated = analyze(ctx, manifest, state, options.upstreamBytes);
   const unresolved = updated.records.filter((record) => record.state !== 'in-sync');
   if (unresolved.length > 0) {
-    printProblems(ctx, unresolved);
+    for (const record of unresolved) {
+      const stepIds = record.layout ? undefined : rewrittenBy.get(record.key);
+      console.log(stepIds ? regeneratedLine(ctx, record, stepIds) : problemLine(ctx, record));
+    }
     return EXIT_CONFLICT;
   }
   const files = {};
@@ -4507,10 +4588,25 @@ function adoptUnderLock(ctx, manifest, inputPath) {
   };
   const root = canonicalPath(ctx.root);
   const settings = writeCheckSettings(manifest);
-  const destinationPath = captureCandidates(root, inputPath)
+  // A path under repin.exclude would be vendored but for that list. A re-pin never
+  // copies it, so it needs no overlay, yet a project may keep its copy in the
+  // overlay folder to carry it. Adopt takes such a path only from that copy.
+  const isExcludedVendoredKey = (key) => isUnderAny(key, settings.exclude) &&
+    isVendoredKey(key, { ...settings, exclude: [] });
+  const hasOverlayCopy = (key) => pathExists(path.join(ctx.overlayRoot, ...adoptSource(key).split('/')));
+  const candidates = captureCandidates(root, inputPath)
     .map((candidate) => canonicalPathWithoutLeaf(candidate))
-    .find((candidate) => isWithin(root, candidate) && candidate !== root &&
-      isVendoredKey(relativeKey(root, candidate), settings));
+    .filter((candidate) => isWithin(root, candidate) && candidate !== root);
+  const destinationPath = candidates.find((candidate) => {
+    const key = relativeKey(root, candidate);
+    return isVendoredKey(key, settings) || (isExcludedVendoredKey(key) && hasOverlayCopy(key));
+  });
+  const excludedPath = candidates.find((candidate) => isExcludedVendoredKey(relativeKey(root, candidate)));
+  if (!destinationPath && excludedPath) {
+    const key = relativeKey(root, excludedPath);
+    return refuse(`${key} is under repin.exclude, so adopt takes it only from its overlay copy at ` +
+      `${ctx.overlayLabel}/${adoptSource(key)}, which does not exist; move or create the file there, then adopt again`);
+  }
   if (!destinationPath) {
     return refuse(`${inputPath} is not under a vendored root (${settings.roots.join(', ')}) and is not a file ` +
       'named in repin.rootFiles');

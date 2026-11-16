@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.47.0
+version: 2.2.48.0
 ---
 
 # sk-code
@@ -150,6 +150,8 @@ Repeat these steps for each surface you drop. `<mode>` is the folder name of the
 3. Add the packet's paths to the `ROUTER.md` maps and section 8, and its `surfaceDetection` block to its `mode-registry.json` entry (`stack-detection.md` section 2 reads it). Update any surface-count wording that `verify-doc-claims.cjs` checks in the hub's `README.md` and `SKILL.md`. `phase-detection.md` names the surfaces without a count. A packet copied from an existing surface has the same leaf set as that surface, so `generate-leaf-manifest.cjs --write` stops with `MODE_LEAF_SET_COLLISION`. Give each of the two modes its own `leafScopes` in a new `leaf-scopes.json` at the hub root, in the array format `.skilled/skills/sk-doc/leaf-scopes.json` uses, or change the copy until its files differ.
 4. Add a canary case that routes to the new surface in the canary fixture above, and copy the fixture over its authored twin. The completion report of the update command names both follow-ups.
 5. Commit with the hooks installed, or refresh and copy the manifest by hand.
+
+A surface that matches several phrases of one prompt can push a workflow mode out of the route. Each matched phrase adds the surface's `weight` to its score, and the router keeps only the modes within `routerPolicy.ambiguityDelta` of the top score. Until the hub changes how it scores a surface, a host may lower its surface's `weight` or raise `routerPolicy.ambiguityDelta` in `hub-router.json`. Then refresh the manifest as in step 5.
 
 ### Add a Private Surface Outside the Hub
 

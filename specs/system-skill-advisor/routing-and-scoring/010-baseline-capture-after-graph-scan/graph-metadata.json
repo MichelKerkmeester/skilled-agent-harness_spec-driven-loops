@@ -34,7 +34,7 @@
       "010-baseline-capture-after-graph-scan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,10 +42,17 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/handover-from-barter-024.md",
-      "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/handover-from-barter-022.md",
       ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+      "scratch/repro-capture-after-scan.sh",
+      "scratch/trace-reads.mjs",
+      "scratch/summarize-inputs.sh",
+      "scratch/repro-results.txt",
+      "scratch/inputs-at-capture.txt",
+      "scratch/host-capture-check.sh",
+      "runtime/tests/README.md",
+      "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/handover-from-barter-024.md",
+      "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/handover-from-barter-022.md",
       ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs",
       ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts"
     ],
@@ -87,18 +94,6 @@
         "source": "derived"
       },
       {
-        "name": "handover-from-barter-024.md",
-        "kind": "doc",
-        "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/handover-from-barter-024.md",
-        "source": "derived"
-      },
-      {
-        "name": "handover-from-barter-022.md",
-        "kind": "doc",
-        "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/handover-from-barter-022.md",
-        "source": "derived"
-      },
-      {
         "name": "command-routing-slice.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts",
@@ -108,6 +103,60 @@
         "name": "local-native-divergence-ratchet.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "repro-capture-after-scan.sh",
+        "kind": "script",
+        "path": "scratch/repro-capture-after-scan.sh",
+        "source": "derived"
+      },
+      {
+        "name": "trace-reads.mjs",
+        "kind": "file",
+        "path": "scratch/trace-reads.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "summarize-inputs.sh",
+        "kind": "script",
+        "path": "scratch/summarize-inputs.sh",
+        "source": "derived"
+      },
+      {
+        "name": "repro-results.txt",
+        "kind": "file",
+        "path": "scratch/repro-results.txt",
+        "source": "derived"
+      },
+      {
+        "name": "inputs-at-capture.txt",
+        "kind": "file",
+        "path": "scratch/inputs-at-capture.txt",
+        "source": "derived"
+      },
+      {
+        "name": "host-capture-check.sh",
+        "kind": "script",
+        "path": "scratch/host-capture-check.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover-from-barter-024.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/handover-from-barter-024.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover-from-barter-022.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/handover-from-barter-022.md",
         "source": "derived"
       },
       {
@@ -151,53 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Reproduce",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A vendoring project reported, as item 10 of its second handover, that `capture-command-routing-baseline.mjs` run in the same command as `skill-advisor.cjs skillgraphscan --trusted` returned the value from before the scan for one row",
     "created_at": "2026-11-16T09:33:10Z",
-    "last_save_at": "2026-11-16T10:25:10.712Z",
+    "last_save_at": "2026-11-16T13:22:25.186Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a2cc82c9f9cf27f50f5f72eee1293d2ad493e46b0af52e95e59010af7fee9e7b",
+    "source_fingerprint": "sha256:1fe0b24746da4650076f81243ef99d84c1e6b981bbd5c8c2b6f46df6cece1813",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2a3e66180b3ea200613de91b4e60afb633a2a587096ece568ce97869244e8598",
+      "spec.md": "255463c5b10ec5ae5f89eef142060e3e60be270646fb8ab13c6d0a298d3bddb8",
       "plan.md": "ca22f463f8d9fe19ce9f729021cb79ea81d5697f9d0d3ab7af4df0aee203cc2f",
-      "tasks.md": "bd834e8c1aed14aebb63a0dfba9d72c2da5552994f4a1a01148d980c0b271d54",
+      "tasks.md": "6c205af10bb7cc54c06e78a6a600ae20419c853fa0ffa84fd54fb041f4570430",
       "decision-record.md": "0a683a0557a452315978a178a8a1782c9f3d4f33f40578da605ebdc1025fb4e7",
-      "implementation-summary.md": "73b7ec9347a327dbad500bf899ce75f5b2ec06f7c0bef95ebc3610c25cc72fb3"
+      "implementation-summary.md": "caff6bdd0f5199970380f302500b70f6d848286e4f41822aee67b3c7c5b09f0c"
     },
     "last_active_at": null
   }

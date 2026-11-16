@@ -1,0 +1,89 @@
+TASK: let the git setup check pass an installed hook that the local git config lists under `skilled.hostHook`.
+One file changes. Do the 4 steps below in order, then run the check.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 4. File: R/.skilled/commands/doctor/scripts/git-setup-check.cjs
+OLD (5 lines, this exact text appears once in the file):
+// cloned.
+function omittedHooks(repoRoot) {
+  const result = git(repoRoot, ['config', '--local', '--get-all', 'skilled.omitHook']);
+  if (result.status !== 0) return new Set();
+  return new Set(result.stdout.split(/\r?\n/).map((value) => value.trim()).filter(Boolean));
+NEW (replace those lines with these 17 lines, same indentation):
+// cloned.
+function omittedHooks(repoRoot) {
+  return localHookNames(repoRoot, 'skilled.omitHook');
+}
+
+// A host may also replace a shipped hook with a script of its own that runs its
+// own checks. It lists each such hook under skilled.hostHook in its local config,
+// one value per hook. The hook then passes as the host's, and the row names it,
+// because nothing here can tell whether that script runs the shipped gates.
+function hostHooks(repoRoot) {
+  return localHookNames(repoRoot, 'skilled.hostHook');
+}
+
+function localHookNames(repoRoot, key) {
+  const result = git(repoRoot, ['config', '--local', '--get-all', key]);
+  if (result.status !== 0) return new Set();
+  return new Set(result.stdout.split(/\r?\n/).map((value) => value.trim()).filter(Boolean));
+
+STEP 2 of 4. File: R/.skilled/commands/doctor/scripts/git-setup-check.cjs
+OLD (6 lines, this exact text appears once in the file):
+// shares. A missing target and a foreign target both surface as one detail line.
+// A host hook whose marker line hands over to a hook source counts as that source,
+// and a hook the local config lists under skilled.omitHook may be absent. A
+// passing row names both, so the operator can see why it passed.
+function checkHooks(ctx) {
+  const source = 'git rev-parse --git-path hooks + hook links';
+NEW (replace those lines with these 7 lines, same indentation):
+// shares. A missing target and a foreign target both surface as one detail line.
+// A host hook whose marker line hands over to a hook source counts as that source,
+// a hook the local config lists under skilled.omitHook may be absent, and an
+// installed hook it lists under skilled.hostHook is the host's own. A passing row
+// names all three, so the operator can see why it passed.
+function checkHooks(ctx) {
+  const source = 'git rev-parse --git-path hooks + hook links';
+
+STEP 3 of 4. File: R/.skilled/commands/doctor/scripts/git-setup-check.cjs
+OLD (4 lines, this exact text appears once in the file):
+    .sort();
+  const omitted = omittedHooks(ctx.repoRoot);
+  const details = [];
+  const notes = [];
+NEW (replace those lines with these 5 lines, same indentation):
+    .sort();
+  const omitted = omittedHooks(ctx.repoRoot);
+  const hosted = hostHooks(ctx.repoRoot);
+  const details = [];
+  const notes = [];
+
+STEP 4 of 4. File: R/.skilled/commands/doctor/scripts/git-setup-check.cjs
+OLD (9 lines, this exact text appears once in the file):
+    if (!accepted.includes(installedReal)) {
+      const target = handoverTarget(installedReal, name, accepted);
+      if (target === null) {
+        details.push(`${name}: resolves to ${installedReal}, not a hook source`);
+        continue;
+      }
+      notes.push(`${name}: hands over to ${target}`);
+    }
+    // Git skips a hook it cannot execute, so a hook without the execute bit gates
+NEW (replace those lines with these 12 lines, same indentation):
+    if (!accepted.includes(installedReal)) {
+      const target = handoverTarget(installedReal, name, accepted);
+      if (target !== null) {
+        notes.push(`${name}: hands over to ${target}`);
+      } else if (hosted.has(name)) {
+        notes.push(`${name}: host hook by skilled.hostHook`);
+      } else {
+        details.push(`${name}: resolves to ${installedReal}, not a hook source`);
+        continue;
+      }
+    }
+    // Git skips a hook it cannot execute, so a hook without the execute bit gates
+
+CHECK. Run:
+cd R && node --test .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs
+Expected: the summary shows "tests 86", "pass 86" and "fail 0". Report the pass and fail counts. If a test fails, do not change it: report its name and output.

@@ -1,0 +1,79 @@
+TASK: add five tests for a session surface hint that joins an sk-code route.
+One file changes. Do the three steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 3. File: R/.skilled/bin/tests/compiled-route-surface-hint.test.cjs
+OLD (5 lines, this exact text appears once in the file):
+const SK_CODE_ROOT = path.join(__dirname, '..', '..', 'skills', 'sk-code');
+const FRONT_DOOR = path.join(__dirname, '..', 'compiled-route.cjs');
+const { compiledRoute } = require(path.join(ENGINE_DIR, 'compiled-route.cjs'));
+const { compileRegistry } = require(path.join(SK_CODE_LIB, 'registry-compiler.cjs'));
+const { applySurfaceHint, evaluateCanary } = require(path.join(SK_CODE_LIB, 'canary-router.cjs'));
+NEW (replace those lines with these 5 lines, same indentation):
+const SK_CODE_ROOT = path.join(__dirname, '..', '..', 'skills', 'sk-code');
+const FRONT_DOOR = path.join(__dirname, '..', 'compiled-route.cjs');
+const { compiledRoute, loadHubEngine } = require(path.join(ENGINE_DIR, 'compiled-route.cjs'));
+const { compileRegistry } = require(path.join(SK_CODE_LIB, 'registry-compiler.cjs'));
+const { applySurfaceHint, evaluateCanary } = require(path.join(SK_CODE_LIB, 'canary-router.cjs'));
+
+STEP 2 of 3. File: R/.skilled/bin/tests/compiled-route-surface-hint.test.cjs
+OLD (4 lines, this exact text appears once in the file):
+});
+
+test('a hub without surface packets ignores the hint', () => {
+  for (const hubId of ['sk-doc', 'mcp-tooling']) {
+NEW (replace those lines with these 49 lines, same indentation):
+});
+
+// A session that names a specific surface gets that surface in a scored route,
+// after the workflow modes and ahead of the fallback.
+test('a specific surface hint joins a route the prompt scored', () => {
+  const route = resolveRoute('sk-code', 'review this function for bugs', { surfaceHint: 'FRONTEND' });
+  assert.equal(route.action, 'route');
+  assert.equal(route.selectionKind, 'surfaceBundle');
+  assert.deepEqual(modes(route), ['sk-code-review', 'sk-code-frontend', 'sk-code-skilled']);
+});
+
+test('a specific surface hint routes a prompt that scores nothing', () => {
+  const prompt = 'add a filter to the table';
+  assert.equal(resolveRoute('sk-code', prompt).action, 'defer');
+  const route = resolveRoute('sk-code', prompt, { surfaceHint: 'FRONTEND' });
+  assert.equal(route.action, 'route');
+  assert.equal(route.selectionKind, 'single');
+  assert.deepEqual(modes(route), ['sk-code-frontend']);
+});
+
+// CI is a surface the hub does not declare as specific, so it joins nothing.
+test('a hint naming a workflow mode or a surface that is not specific adds nothing', () => {
+  const prompt = 'review this function for bugs';
+  const plain = resolveRoute('sk-code', prompt);
+  for (const surfaceHint of ['sk-code-review', 'quality', 'CI', 'sk-code-ci']) {
+    assert.deepEqual(resolveRoute('sk-code', prompt, { surfaceHint }), plain, surfaceHint);
+  }
+  assert.equal(resolveRoute('sk-code', 'add a filter to the table', { surfaceHint: 'CI' }).action, 'defer');
+});
+
+test('the hint is a request fact', () => {
+  const { snapshot } = loadHubEngine('sk-code');
+  const hash = (surfaceHint) => evaluateCanary(snapshot, { prompt: SKILLED_TESTING, surfaceHint }).request.requestFactsHash;
+  assert.notEqual(hash('FRONTEND'), hash(undefined));
+  assert.notEqual(hash('FRONTEND'), hash('SKILLED'));
+});
+
+test('a hinted host surface joins as the first surface after the workflow modes', () => {
+  const snapshot = compileHub(hubWithAddedSurface());
+  const { decision } = evaluateCanary(snapshot, { prompt: 'review my css cascade layers change', surfaceHint: 'WEBFLOW' });
+  assert.equal(decision.action, 'route');
+  assert.deepEqual(
+    targetModes(applySurfaceHint(snapshot, decision.route.targets, 'WEBFLOW')),
+    ['sk-code-review', 'sk-code-webflow', 'sk-code-frontend'],
+  );
+});
+
+test('a hub without surface packets ignores the hint', () => {
+  for (const hubId of ['sk-doc', 'mcp-tooling']) {
+
+STEP 3 of 3. Run:
+cd R && node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs
+Expected: the summary shows "tests 20", "pass 16" and "fail 4". The four failing tests are "a specific surface hint joins a route the prompt scored", "a specific surface hint routes a prompt that scores nothing", "the hint is a request fact" and "a hinted host surface joins as the first surface after the workflow modes". Those failures are wanted: the router change comes in a later brief. Do not edit any other file and do not change a test to make it pass. Report the pass and fail counts and the names of the failing tests. If any other test fails, report its name and output.

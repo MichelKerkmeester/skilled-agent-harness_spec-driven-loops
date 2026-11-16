@@ -1,0 +1,24 @@
+TASK: describe the adopt rule for a path under `repin.exclude` and the `regenerated` problem line.
+One file changes. Do the 2 steps below in order, then run the check.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 2. File: R/.skilled/skills/system-skilled-doctor/references/overlays.md
+OLD (this exact text appears once in the file; it may sit inside a longer line):
+Adopt refuses a generated path, a path an overlay already owns, a `.env` file, a token-named file that is not source or prose, and a folder that holds upstream files.
+NEW (replace only that text with this, change nothing else on the line):
+Adopt refuses a generated path, a path an overlay already owns, a `.env` file, a token-named file that is not source or prose, and a folder that holds upstream files.
+
+Adopt takes a path under `repin.exclude` only from its copy in the overlay folder. A re-pin never copies such a path, so it needs no overlay, but a project may still want its own file there carried and checked by an entry. Put the copy at the overlay path first, with the live file moved there or absent, then run `apply --adopt <path>`. The entry is a project addition with no `pinnedSha256`, and the apply writes the file back to the tree. Without that copy, adopt refuses and names the overlay path it looked for.
+
+STEP 2 of 2. File: R/.skilled/skills/system-skilled-doctor/references/overlays.md
+OLD (this exact text appears once in the file; it may sit inside a longer line):
+so a file seen through that link does not count as a copy at the new path.
+NEW (replace only that text with this, change nothing else on the line):
+so a file seen through that link does not count as a copy at the new path.
+
+A `regenerate` step can also rewrite a file an overlay owns. The live run then fails and prints a `regenerated <path>` line in place of `upstream-moved`. It names the overlay and the step, because the upstream diff for that path holds none of the change. A plain `apply` prints the same line. If the step's output is right, carry it into the overlay copy and run `apply`. Otherwise change the step so it leaves the file alone. A stage skips the steps, so only the live run can print this line.
+
+CHECK. Run:
+cd R && rg -n 'only from its copy in the overlay folder|regenerated <path>' .skilled/skills/system-skilled-doctor/references/overlays.md
+Expected: two lines print, one for each new paragraph. Report them.

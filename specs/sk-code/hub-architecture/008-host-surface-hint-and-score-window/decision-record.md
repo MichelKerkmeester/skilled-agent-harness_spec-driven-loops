@@ -36,6 +36,8 @@ _memory:
 |----|---------|-----|------------|------------|
 | Q001 | A surface hint may add its surface to a scored route, for a surface the hub declares as specific. | The caller has already detected where the session works. | None | goal.md D4, REQ-001 |
 | Q002 | A hinted prompt that scores no mode routes to the hinted specific surface, in this packet. | It is the same code path as the join and removes one reason for the vendoring project's router overlay. | None | goal.md D5, REQ-007, T014 |
+| Q003 | The hint change also updates the three authored twins under the archived router unification program. | Not stated. | None | implementation-summary.md Files Changed |
+| Q004 | The surface score is deferred. | Not stated. | None | tasks.md T005, spec.md REQ-002 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -81,6 +83,45 @@ No, keep deferring
 Answer:
 ```text
 Yes, in this packet (Recommended)
+```
+
+### Q003
+<!-- source: claude:8dafc84b-d965-4347-8887-f936e5033e76:toolu_01Hbiqn6Fn4embXwxabfw5ba:0 -->
+
+Question:
+```text
+sk-code router packet (008): the served router files each have an authored twin under specs/sk-doc/z_archive/.../015-router-unification-program that must hold the same bytes, or the /doctor:sk-code sync check fails. The packet's file list does not name those three twins. May the hint change also copy over them?
+```
+
+Options:
+```text
+Yes, update the twins (Recommended)
+No, hold the hint change
+```
+
+Answer:
+```text
+Yes, update the twins (Recommended)
+```
+
+### Q004
+<!-- source: claude:8dafc84b-d965-4347-8887-f936e5033e76:toolu_01Hbiqn6Fn4embXwxabfw5ba:1 -->
+
+Question:
+```text
+sk-code router packet (008): which surface score should stop a multi-phrase surface from dropping a workflow mode? Measured on 32 prompts, neither candidate meets every requirement. Legacy parity is no longer a gate, so that does not block either.
+```
+
+Options:
+```text
+Defer the score (Recommended)
+Count a surface once
+Two windows
+```
+
+Answer:
+```text
+Defer the score (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

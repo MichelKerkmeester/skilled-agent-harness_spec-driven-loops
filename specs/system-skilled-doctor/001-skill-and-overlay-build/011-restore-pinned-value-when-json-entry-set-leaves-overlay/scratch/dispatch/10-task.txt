@@ -1,0 +1,25 @@
+TASK: delete a key the pinned copy does not hold when its dropped `set` still carries the recorded value, whatever the record says about who added it.
+One file changes. Do the 1 step below in order. Each step replaces one block of text with another.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 1. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (5 lines, this exact text appears once in the file):
+      ? parent.members.findIndex((member) => member.key === record.path[record.path.length - 1])
+      : -1;
+    if (record.added !== true || index < 0) {
+      throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy holds no value there');
+    }
+NEW (replace those lines with these 8 lines, same indentation):
+      ? parent.members.findIndex((member) => member.key === record.path[record.path.length - 1])
+      : -1;
+    // The live value equals the recorded one here, so the key carries nothing a
+    // person wrote. Whether this engine or an older one added it, the pin does
+    // not hold it and the entry set no longer asks for it.
+    if (index < 0) {
+      throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy holds no value there');
+    }
+
+CHECK. Run:
+cd R && node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')" && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Expected: the first command prints nothing, and the test summary shows "pass 34" and "fail 1". The one failing test is "two sets on one path keep one record and both leave together". It fails until a later brief, so do not try to fix it. Report the pass and fail counts. If any other test fails, do not change it: report its name and output.

@@ -1,0 +1,101 @@
+TASK: let a surface hint join a scored sk-code route inside the router, and record the hint as a request fact.
+Two files change. Do the 6 steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 6. File: R/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs
+OLD (4 lines, this exact text appears once in the file):
+  }];
+  if (disposition.evidence) evidence.push(disposition.evidence);
+  const request = {
+    evidence,
+NEW (replace those lines with these 18 lines, same indentation):
+  }];
+  if (disposition.evidence) evidence.push(disposition.evidence);
+  // A surface hint can change the route, so it is a request fact. It is kept as
+  // given, so two requests that differ only in the hint never share a hash.
+  if (typeof input.surfaceHint === 'string' && input.surfaceHint.trim()) {
+    evidence.push({
+      id: 'runtime:surface-hint',
+      kind: 'runtime',
+      provenance: {
+        capturedAtEpoch: snapshot.policy.activationGeneration,
+        source: 'caller-session',
+      },
+      trust: 'live',
+      value: canonicalize({ surfaceHint: normalize(input.surfaceHint) }),
+    });
+  }
+  const request = {
+    evidence,
+
+STEP 2 of 6. File: R/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs
+OLD (8 lines, this exact text appears once in the file):
+
+// Serve-time reorder of a validated route's targets. The compiled composition
+// rules fix one order per surface set, so the hint is applied after validation
+// and never inside evaluateCanary. The hinted surface takes the first surface
+// slot, workflow modes keep their slots and no target is added or dropped, so a
+// hint the prompt did not match returns the targets unchanged. The fallback
+// surface ranks after every other surface, so a hint naming it changes nothing:
+// the tie-break order already places it where it belongs.
+NEW (replace those lines with these 8 lines, same indentation):
+
+// Serve-time reorder of a validated route's targets. The compiled composition
+// rules fix one order per surface set, so the reorder runs after validation.
+// The hinted surface takes the first surface slot, workflow modes keep their
+// slots and no target is added or dropped here. A hinted specific surface joins
+// the route earlier, inside evaluateCanary, where the route is validated. The fallback
+// surface ranks after every other surface, so a hint naming it changes nothing:
+// the tie-break order already places it where it belongs.
+
+STEP 3 of 6. File: R/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs
+OLD (4 lines, this exact text appears once in the file):
+}
+
+function evaluateCanary(snapshot, input) {
+  const built = buildRequest(snapshot, input);
+NEW (replace those lines with these 15 lines, same indentation):
+}
+
+// The caller already knows the surface its session works in, so a hint naming a
+// surface the hub declares as specific adds that surface to the selected modes.
+// A prompt that scored nothing then routes to it. The fallback surface, a
+// workflow mode or an unknown name adds nothing.
+function joinHintedSurface(snapshot, selected, surfaceHint) {
+  const hinted = hintedSurface(snapshot, surfaceHint);
+  const specific = (snapshot.routingModel.surfaceDetection || {}).specific || [];
+  if (!hinted || !specific.includes(hinted) || selected.includes(hinted)) return selected;
+  return [...selected, hinted];
+}
+
+function evaluateCanary(snapshot, input) {
+  const built = buildRequest(snapshot, input);
+
+STEP 4 of 6. File: R/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs
+OLD (5 lines, this exact text appears once in the file):
+      right.score - left.score || order.get(left.mode) - order.get(right.mode)
+    ));
+    const selected = selectNearTiedModes(scores, snapshot.routingModel.ambiguityDelta);
+    if (constraints.has('clarify')) {
+      decision = clarify(snapshot, built.request, selected.length ? selected : scores.map((entry) => entry.mode));
+NEW (replace those lines with these 9 lines, same indentation):
+      right.score - left.score || order.get(left.mode) - order.get(right.mode)
+    ));
+    const selected = joinHintedSurface(
+      snapshot,
+      selectNearTiedModes(scores, snapshot.routingModel.ambiguityDelta),
+      input.surfaceHint,
+    );
+    if (constraints.has('clarify')) {
+      decision = clarify(snapshot, built.request, selected.length ? selected : scores.map((entry) => entry.mode));
+
+STEP 5 of 6. The file you just edited has an authored twin that must hold the same bytes. Run exactly:
+cp R/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs R/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs
+Then run: cmp R/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs R/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs && echo twin-same
+Expected: it prints twin-same.
+
+STEP 6 of 6. Run:
+cd R && node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs
+cd R && node .skilled/bin/compiled-route-sync.cjs --check
+Expected: the test summary shows "pass 18" and "fail 2". The two failing tests are "a specific surface hint joins a route the prompt scored" and "a specific surface hint routes a prompt that scores nothing". They fail until a later brief, so do not try to fix them. The second command ends with "all 55 served copies match their authored files". Report both outputs.

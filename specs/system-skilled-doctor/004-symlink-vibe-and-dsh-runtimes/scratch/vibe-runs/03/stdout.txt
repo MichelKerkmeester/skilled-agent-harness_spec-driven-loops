@@ -1,0 +1,88 @@
+Both edits verified in place, check passes.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/symlink.md` (line 57)
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/install.md` (line 37)
+
+## 2. COMMANDS
+
+**Command 1** — anchor location (read-only)
+```
+cd R && rg -n 'from `claude,opencode,codex,cursor,devin,pi`' .skilled/commands/doctor/symlink.md; echo "---"; rg -n 'is a comma list drawn from' .skilled/commands/doctor/install.md
+```
+Exit status: `0`
+```
+57:| `--runtimes <list>` | `check`, `link` | Link only these runtimes, from `claude,opencode,codex,cursor,devin,pi`. `.skilled` is always included |
+---
+37:- `--root <dir>` is the target repo's absolute path. `--runtimes <list>` is a comma list drawn from `claude`, `opencode`, `codex`, `cursor`, `devin` and `pi`; without it the engine keeps the runtimes its own detection finds in the root. `--json` prints one JSON object and nothing else.
+```
+
+**Command 2** — the brief's CHECK
+```
+cd R && rg -c 'devin,pi,vibe,dsh' .skilled/commands/doctor/symlink.md .skilled/commands/doctor/install.md && node --test .skilled/commands/doctor/scripts/tests/doctor-symlink-contract.test.cjs
+```
+Exit status: `0`
+```
+.skilled/commands/doctor/symlink.md:1
+.skilled/commands/doctor/install.md:1
+✔ the unlink workflow lets an explicit dry run end before its approval question (0.099333ms)
+✔ the doctor family contract carries every schema-required field and no unknown field (0.159333ms)
+✔ the doctor family contract names the symlink router and generic route assets (0.159916ms)
+✔ the doctor family contract owns the symlink engine and entry manifest (0.074708ms)
+✔ the doctor family loader requirements preserve the symlink route contract (0.051ms)
+✔ the doctor family destructive policy names the gated symlink writes (0.036833ms)
+✔ the doctor family invocation aliases include the symlink command form (0.059042ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 134.903292
+```
+
+**Command 3** — re-run of the test alone to capture its own exit status (the `PIPESTATUS` read in command 2 came back empty)
+```
+cd R && node --test .skilled/commands/doctor/scripts/tests/doctor-symlink-contract.test.cjs > /tmp/dsc.out 2>&1; echo "NODE_EXIT=$?"; tail -15 /tmp/dsc.out
+```
+Exit status: `0` (`NODE_EXIT=0`)
+```
+✔ the unlink workflow lets an explicit dry run end before its approval question (0.034916ms)
+✔ the doctor family contract carries every schema-required field and no unknown field (0.094125ms)
+✔ the doctor family contract names the symlink router and generic route assets (0.107125ms)
+✔ the doctor family contract owns the symlink engine and entry manifest (0.10375ms)
+✔ the doctor family loader requirements preserve the symlink route contract (0.061167ms)
+✔ the doctor family destructive policy names the gated symlink writes (0.06875ms)
+✔ the doctor family invocation aliases include the symlink command form (0.044625ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 107.247458
+```
+
+**Command 4** — final-state read of both edited lines plus scoped status
+```
+cd R && sed -n '57p' .skilled/commands/doctor/symlink.md; echo "---"; sed -n '37p' .skilled/commands/doctor/install.md; echo "---"; git status --porcelain .skilled/commands/doctor/
+```
+Exit status: `0`
+```
+| `--runtimes <list>` | `check`, `link` | Link only these runtimes, from `claude,opencode,codex,cursor,devin,pi,vibe,dsh`. `.skilled` is always included |
+---
+- `--root <dir>` is the target repo's absolute path. `--runtimes <list>` is a comma list drawn from `claude,opencode,codex,cursor,devin,pi,vibe,dsh`; without it the engine keeps the runtimes its own detection finds in the root. `--json` prints one JSON object and nothing else.
+---
+ M .skilled/commands/doctor/assets/symlink-manifest.json
+ M .skilled/commands/doctor/install.md
+ M .skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs
+ M .skilled/commands/doctor/symlink.md
+```
+
+## 3. OPEN QUESTIONS
+
+- `git status` shows two further modified files under the same directory that I did not touch: `.skilled/commands/doctor/assets/symlink-manifest.json` and `.skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs`. They were already dirty when I started; my only writes were the two `edit` calls on `symlink.md` and `install.md`. Flagging so the diff is not misread as mine.
+- The brief's CHECK expected `rg -c` to print a count of 1 per file and the summary to show `fail 0`. Both held. The test count is 34, not 34 plus two new tests — the packet's completion criteria mention "the two new tests in the count", but this brief scoped me to the two doc lines only, so I did not add tests.

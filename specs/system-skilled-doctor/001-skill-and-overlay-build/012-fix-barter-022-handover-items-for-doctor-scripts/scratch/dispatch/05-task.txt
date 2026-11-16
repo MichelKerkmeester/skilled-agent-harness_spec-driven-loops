@@ -1,0 +1,37 @@
+TASK: add one test where a regenerate step rewrites a file an overlay owns during a live re-pin.
+One file changes. Do the 1 step below in order, then run the check.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 1. File: R/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs
+OLD (2 lines, this exact text appears once in the file):
+  assert.equal(read(fixture.tree, '.skilled/skills/owned/keep.md'), 'overlay keep\n');
+});
+NEW (replace those lines with these 23 lines, same indentation):
+  assert.equal(read(fixture.tree, '.skilled/skills/owned/keep.md'), 'overlay keep\n');
+});
+
+// A regenerate step can rewrite a file an overlay owns. The engine has to name
+// the step, because the upstream diff for that file holds nothing.
+test('a live repin names the regenerate step that rewrote a file an overlay owns, not upstream-moved', (t) => {
+  const fixture = createRepinFixture(t);
+  // The step rewrites the owned file only once the re-pin has copied the new commit in.
+  fixture.manifest.regenerate.push({
+    id: 'rewrites-owned',
+    argv: ['node', '-e', "const fs = require('fs'); if (fs.existsSync('.skilled/skills/hub/added.md')) " +
+      "fs.writeFileSync('.skilled/skills/hub/SKILL.md', 'regenerated skill\\n')"],
+  });
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+
+  const failed = fixture.repin();
+  assert.equal(failed.code, 1, failed.output);
+  assert.match(failed.output, /^RESULT: FAILED$/m);
+  assert.match(failed.output,
+    /^regenerated \.skilled\/skills\/hub\/SKILL\.md {2}\(overlay: skilled-overlays\/files\/SKILL\.md\) {2}step: rewrites-owned {2}fix: /m);
+  assert.doesNotMatch(failed.output, /^upstream-moved \.skilled\/skills\/hub\/SKILL\.md/m);
+});
+
+CHECK. Run:
+cd R && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs
+Expected: the summary shows "tests 27", "pass 26" and "fail 1". The one failing test is "a live repin names the regenerate step that rewrote a file an overlay owns, not upstream-moved". That failure is wanted: the code change comes in a later brief. Do not edit any other file and do not change the test to make it pass. Report the pass and fail counts. If any other test fails, report its name and output.

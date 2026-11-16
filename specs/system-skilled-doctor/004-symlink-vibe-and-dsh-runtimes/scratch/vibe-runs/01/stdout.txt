@@ -1,0 +1,72 @@
+Both steps are done and the run matches the expected shape exactly.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs`
+
+One file, 32 inserted lines, appended after a single blank line at EOF. `git diff --stat` confirms `1 file changed, 32 insertions(+)` and no other tracked file is modified.
+
+## 2. COMMANDS
+
+**Command 1** — locate the append anchor and confirm the helpers the block calls exist
+```
+cd R && wc -l .skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs && tail -n 40 ... && rg -n "^(function|const|async function) (buildFixture|writeFile|runEngine|assertStatus|assertPlanAction|assertLinkResolvesTo)" ...
+```
+Exit status: `0`. Last 15 lines:
+```
+function writeFile(filePath, contents) {
+function buildFixture({ git = false, excludeContents } = {}) {
+function runEngine(source, command, args = []) {
+function assertStatus(result, expected, label) {
+function assertPlanAction(plan, operation, entryPath) {
+function assertLinkResolvesTo(linkPath, targetPath) {
+```
+All six helpers the block uses are defined in the file, so the block needs no new imports.
+
+**Command 2** — the verification run
+```
+cd R && node --test .skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs
+```
+Exit status: `1` (expected — two failing tests). Summary:
+```
+ℹ tests 25
+ℹ pass 23
+ℹ fail 2
+```
+Last 15 lines:
+```
+      at assertStatus (/Users/.../symlink-engine.test.cjs:76:10)
+      at TestContext.<anonymous> (/Users/.../symlink-engine.test.cjs:648:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+```
+
+The two failures are exactly the two new tests, and each carries the wanted `ERROR: unknown runtime` line:
+
+| Failing test | Assertion message | Engine output |
+|---|---|---|
+| `--runtimes vibe links .vibe, and a link without --runtimes leaves it out` | `a plan with --runtimes vibe should run` | `ERROR: unknown runtime: vibe` |
+| `--runtimes dsh links .dsh, and a link without --runtimes leaves it out` | `a plan with --runtimes dsh should run` | `ERROR: unknown runtime: dsh` |
+
+No other test failed. Both failures land at line 648, the `assertStatus(planned, 0, ...)` call — the first point where the block asks the engine to accept the new runtime name. The earlier half of each test (plan and apply with no `--runtimes`, asserting the folder is *not* linked) passed, so the "leave it out" half of the contract already holds.
+
+**Command 3** — scope check
+```
+cd R && git status --porcelain --untracked-files=all && git diff --stat
+```
+Exit status: `0`. Only `M .skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs` among tracked files. The untracked entries are pre-existing orchestrator scratch artifacts under `specs/`, not mine.
+
+## 3. OPEN QUESTIONS
+
+None. The block appended verbatim, the counts are `tests 25 / pass 23 / fail 2`, and both failures are the intended `unknown runtime` ones. I did not touch the manifest, the engine, or any assertion.

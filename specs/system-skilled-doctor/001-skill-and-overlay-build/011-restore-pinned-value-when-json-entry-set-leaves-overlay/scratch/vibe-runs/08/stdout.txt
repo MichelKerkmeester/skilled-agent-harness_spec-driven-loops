@@ -1,0 +1,125 @@
+RETURN: PASS | escalation=NONE | confidence=HIGH
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`
+
+Appended only: `git diff --numstat` reports `105 0` for that file, hunk header `@@ -828,0 +829,105 @@`, so one blank line after line 828 then the block. No other line in the file changed.
+
+## 2. COMMANDS
+
+**a. `wc -l <file> && tail -n 40 <file>`** — exit 0. Last 15 lines:
+```
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  seedState(fixture);
+  // An older engine wrote the value and kept no record of it.
+  const older = readJson(fixture.statePath);
+  delete older.sets;
+  writeFile(fixture.overlayDir, 'sync-state.json', JSON.stringify(older, null, 2) + '\n');
+
+  assert.equal(fixture.run(['apply']).code, 0);
+  assert.deepEqual(fixture.recordedSets(), [{ path: TOP_PATH, value: 'sk-doc', added: false }]);
+
+  fixture.writeOperations([]);
+  assert.equal(fixture.run(['apply']).code, 0);
+  assert.equal(fixture.readLive(), fixture.seed);
+});
+```
+
+**b. `grep -n "<helper names>" <file> | head -n 60`** — exit 0. Last 15 lines:
+```
+669:function createPinnedSetFixture(t, pinned, { checkout = true } = {}) {
+697:  fixture.writeOperations = (operations) => writeFile(fixture.overlayDir, 'json/baseline.json', JSON.stringify({
+702:  fixture.livePath = path.join(fixture.tree, 'baseline.json');
+703:  fixture.readLive = () => fs.readFileSync(fixture.livePath, 'utf8');
+704:  fixture.recordedSets = () => (readJson(fixture.statePath).sets || {})['baseline.json'] || [];
+708:const TOP_PATH = ['rows', 'a', 'top'];
+709:const PINNED_ROWS = { rows: { a: { top: 'sk-code' } } };
+712:  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+713:  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+715:  assert.equal(readJson(fixture.livePath).rows.a.top, 'sk-doc');
+717:  fixture.writeOperations([]);
+721:  assert.equal(fixture.readLive(), fixture.seed);
+722:  assert.deepEqual(fixture.recordedSets(), []);
+729:  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+730:  fixture.writeOperations([{ op: 'set', path: ['rows', 'a', 'extra'], value: 1 }]);
+```
+
+**c. `grep -c "assert.equal(restored, newPin);" <file> && tail -c 60 <file> | od -c`** — exit 0. Output: `1` (anchor unique), file ends `... n e w P i n ) ; \n } ) ; \n`.
+
+**d. `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`** — exit 1. Last 15 lines:
+```
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:887:1
+✖ apply deletes a key the pin does not hold even when its record never marked it as added (184.934584ms)
+  AssertionError [ERR_ASSERTION]: both-changed baseline.json  (overlay: skilled-overlays/json/baseline.json)  fix: resolve skilled-overlays/json/baseline.json and baseline.json, then run node .skilled/commands/doctor/scripts/overlay-engine.cjs status
+  BLOCKED  baseline-set: cannot apply the entry set to baseline.json: cannot restore the dropped set at rows.a.extra: the pinned copy holds no value there
+  1 !== 0
+```
+
+**e. `node --test <file>` (captured, grepped for `^✖`)** — exit 1. Failing tests:
+```
+✖ apply refuses a dropped set through an array the overlay added an item to (167.921583ms)
+✖ two sets on one path keep one record and both leave together (103.664416ms)
+✖ apply deletes a key the pin does not hold even when its record never marked it as added (180.553959ms)
+✖ failing tests:
+✖ apply refuses a dropped set through an array the overlay added an item to (167.921583ms)
+✖ two sets on one path keep one record and both leave together (103.664416ms)
+✖ apply deletes a key the pin does not hold even when its record never marked it as added (180.553959ms)
+```
+
+**f. `node --test <file>` (captured, grepped for counts)** — exit 1. Last 6 lines:
+```
+ℹ tests 35
+ℹ pass 32
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+```
+
+**g. `git status --porcelain && git diff --stat`** — exit 0. Last 15 lines:
+```
+ .../010-baseline-capture-after-graph-scan/implementation-summary.md |  44 +++++++--
+ .../010-baseline-capture-after-graph-scan/tasks.md |  28 +++----
+ .../implementation-summary.md                      |  44 +++++++--
+ .../tasks.md                                       |  32 +++----
+ .../implementation-summary.md                      |  53 +++++++++--
+ .../004-symlink-vibe-and-dsh-runtimes/spec.md      |   4 +-
+ .../004-symlink-vibe-and-dsh-runtimes/tasks.md     |  27 ++++--
+ 38 files changed, 834 insertions(+), 150 deletions(-)
+```
+
+**h. `git diff --numstat -- <file> && git diff -U0 -- <file> | head -n 12`** — exit 0. Last 12 lines:
+```
+105	0	.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+---FIRST 12 DIFF LINES---
+diff --git a/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs b/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+index 62b5c4da395..d05a5faac0b 100644
+--- a/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
++++ b/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+@@ -828,0 +829,105 @@ test('a dropped set is restored from the pinned copy the run was given', () => {
+
++// An array index is a position, so a restore through one is trusted only while
++// the live array and the pin's still line up.
++const PINNED_LIST = { rows: [{ id: 'A', top: 'a' }, { id: 'B', top: 'b' }] };
++const INSERT_X = { op: 'insertItems', path: ['rows'], identityKey: 'id', before: { id: 'A' }, items: [{ id: 'X', top: 'x' }] };
++
++test('apply restores a dropped set through an array index while the arrays line up', (t) => {
+```
+
+Counts match the brief: `pass 32`, `fail 3`, and the three failures are exactly the three named. No other test failed.
+
+## 3. OPEN QUESTIONS
+
+- `git status` shows 37 other modified files and many untracked scratch paths in the tree. None were touched by this brief; they predate it. I did not run `git add`, `commit`, `push`, `checkout`, `switch`, `branch`, `reset` or `stash`.
+- The brief's expected failure for "apply deletes a key the pin does not hold even when its record never marked it as added" currently fails at line 902 on the *first* apply (`1 !== 0`, engine message `cannot restore the dropped set at rows.a.extra: the pinned copy holds no value there`), not on the second. That is still the wanted pre-engine-change failure, but the later brief that adds the delete path will need to satisfy the first apply too.
+- The "two sets on one path" failure is at line 878: the engine records two entries (`sk-doc` and `sk-git`) where the test expects one. Also the wanted pre-change state.

@@ -253,7 +253,9 @@
         "contributing guide",
         "contributing.md",
         "security policy",
-        "security.md"
+        "security.md",
+        "sync.md",
+        "sync doc for the"
       ]
     },
     "create-agent-aliases": {

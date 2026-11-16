@@ -1,0 +1,17 @@
+TASK: correct four sentences about the `sets` record in the overlay reference.
+One file changes. Do the one step below.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 1. File: R/.skilled/skills/system-skilled-doctor/references/overlays.md
+The OLD text is three sentences inside one long paragraph, on one line. Replace only those three sentences. Keep the rest of the line and the rest of the file byte for byte. Do not wrap the line.
+
+OLD (this exact text appears once in the file):
+When the entry set stops naming that path, `apply` writes back the value the pin holds, and deletes a key the engine added that the pin does not hold. A value edited since it was recorded is refused rather than overwritten. The restore reads the pinned copy from the checkout the manifest's pin names, and without that copy the overlay is refused.
+
+NEW (replace it with this text, on the same line):
+Two `set` operations on one path share one record. When the entry set stops naming that path, `apply` writes back the value the pin holds. A key the pin does not hold is deleted while it still carries the recorded value. A value edited since it was recorded is refused rather than overwritten. The same refusal meets a dropped `set` whose value another operation of the same entry set wrote inside or over, because the live value no longer equals the record. Put the `set` back or restore the value by hand. A path through an array index is restored only while that array holds the same number of items in the live file and in the pin and the overlay adds no item to it. Otherwise `apply` refuses and says to restore the value by hand. The restore reads the pinned copy the run was given. For `apply` that is the checkout the manifest's pin names, and for a re-pin it is the new commit's tree. Without that copy the overlay is refused.
+
+CHECK. Run:
+cd R && rg -c 'restore the value by hand' .skilled/skills/system-skilled-doctor/references/overlays.md && rg -c 'deletes a key the engine added' .skilled/skills/system-skilled-doctor/references/overlays.md ; git diff --numstat -- .skilled/skills/system-skilled-doctor/references/overlays.md
+Expected: the first count is 1. The second search prints nothing, because the old sentence is gone. The numstat line shows 5 added and 1 deleted. Report what each command printed.

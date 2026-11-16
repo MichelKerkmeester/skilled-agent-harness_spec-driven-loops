@@ -1,0 +1,25 @@
+Both steps are done and the region reads correctly.
+
+1. FILES CHANGED:
+- /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/sk-code/README.md
+
+2. COMMANDS:
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -n 'Commit with the hooks installed|Add a Private Surface Outside the Hub|ambiguityDelta' .skilled/skills/sk-code/README.md`
+Exit status: 0
+```
+144:9. Commit with the hooks installed, or refresh and copy the manifest by hand as above.
+152:5. Commit with the hooks installed, or refresh and copy the manifest by hand.
+154:### Add a Private Surface Outside the Hub
+```
+(Anchor located; the OLD 4-line block matched exactly once at 152-154. Line 144 is a different sentence and was not touched.)
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -n 'ambiguityDelta' .skilled/skills/sk-code/README.md; echo "EXIT=$?"`
+Exit status: 0
+```
+154:A surface that matches several phrases of one prompt can push a workflow mode out of the route. Each matched phrase adds the surface's `weight` to its score, and the router keeps only the modes within `routerPolicy.ambiguityDelta` of the top score. Until the hub changes how it scores a surface, a host may lower its surface's `weight` or raise `routerPolicy.ambiguityDelta` in `hub-router.json`. Then refresh the manifest as in step 5.
+EXIT=0
+```
+Exactly one line, starting with "A surface that matches several phrases" — as expected.
+
+3. OPEN QUESTIONS: none. The new paragraph sits between the "Add Your Own Surface" step 5 and the "Add a Private Surface Outside the Hub" heading, so its "refresh the manifest as in step 5" refers to the step 5 immediately above it.

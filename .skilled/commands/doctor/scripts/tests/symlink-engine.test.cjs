@@ -622,3 +622,35 @@ test('setup keeps a host-relative specs alias out of the ignore list', () => {
     `the host-relative alias should stay visible to git\n${plan.output}`
   );
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MISTRAL VIBE AND DSH RUNTIMES
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Both folders are linked whole like every other runtime folder. A link that
+// names no runtime keeps only the ones the project already has, so a project
+// without the folder must not be handed one.
+for (const [runtime, folder] of [['vibe', '.vibe'], ['dsh', '.dsh']]) {
+  test(`--runtimes ${runtime} links ${folder}, and a link without --runtimes leaves it out`, () => {
+    const { source, root } = buildFixture();
+    writeFile(path.join(source, folder, 'fixture.txt'), `${runtime} fixture\n`);
+
+    const detected = runEngine(source, 'plan', ['--root', root]);
+    assertStatus(detected, 0, 'a plan without --runtimes should run');
+    const detectedDigest = detected.stdout.match(/^PLAN DIGEST: ([a-f0-9]{64})\s*$/m);
+    assert.ok(detectedDigest, `plan should print its digest\n${detected.output}`);
+    const plain = runEngine(source, 'apply', ['--root', root, '--plan-digest', detectedDigest[1]]);
+    assertStatus(plain, 0, 'an apply without --runtimes should run');
+    assert.equal(fs.lstatSync(path.join(root, folder), { throwIfNoEntry: false }), undefined);
+
+    const args = ['--root', root, '--runtimes', runtime];
+    const planned = runEngine(source, 'plan', args);
+    assertStatus(planned, 0, `a plan with --runtimes ${runtime} should run`);
+    assertPlanAction(planned, 'link', folder);
+    const digest = planned.stdout.match(/^PLAN DIGEST: ([a-f0-9]{64})\s*$/m);
+    assert.ok(digest, `plan should print its digest\n${planned.output}`);
+    const applied = runEngine(source, 'apply', [...args, '--plan-digest', digest[1]]);
+    assertStatus(applied, 0, `apply should link ${folder}`);
+    assertLinkResolvesTo(path.join(root, folder), path.join(source, folder));
+  });
+}

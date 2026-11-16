@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-11-16 |
 | **Branch** | `worktrees/425-repin-engine-limits-intake` |
 <!-- /ANCHOR:metadata -->
@@ -100,6 +100,9 @@ Line 3 is item 9: the review mode scored 4, the frontend surface 12, and the rou
 | `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` | Modify | Tests for the join and for the hints that still change nothing |
 | `.skilled/bin/README.md` | Modify | What `--surface-hint` does |
 | `.skilled/skills/sk-code/README.md` | Modify | What a host may change in `hub-router.json` |
+| `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs` | Modify | Authored twin of the served router. `compiled-route-sync.cjs --check` fails when the two differ, so it takes the same bytes. Added with the operator's approval on 2026-11-16 |
+| `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs` | Modify | Authored twin of the served engine, for the same reason |
+| `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json` | Modify | Authored twin of the served case file, for the same reason |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -159,8 +162,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - May a hint add a target at all? `.skilled/bin/README.md` says today that it only leads a tie. Decided by the operator on 2026-11-16: yes, for a surface the hub declares as specific.
 - Should a hinted prompt that scores nothing route to the hinted surface, as the vendoring project's overlay does? Decided by the operator on 2026-11-16: yes, in this packet.
-- Which surface score wins: count a surface once however many phrases match, or keep the count and select workflow modes and surfaces in separate windows? T003 decides by measurement. The first is the smaller change and also keeps a host's surface beside a hub surface.
-- Is parity with the legacy replay still a gate? UNKNOWN. T002 answers it.
+- Which surface score wins: count a surface once however many phrases match, or keep the count and select workflow modes and surfaces in separate windows? T003 decides by measurement. The first is the smaller change and also keeps a host's surface beside a hub surface. Deferred by the operator on 2026-11-16 after T003. Count once fails an existing hint test and one case. Two windows still drops a second surface. REQ-002 stays open, and the numbers are in `scratch/score-candidates.md`.
+- Is parity with the legacy replay still a gate? No. T002 found the replay deleted and its harness failing, and no workflow runs it. See `scratch/parity-gate.md`.
 - Should the routing model say which surfaces are shared evidence? The vendoring project asked for such a field on 2026-11-16. Its own overlay joins a hinted surface only when the matched surfaces score at a lower weight, because the model lists `sk-code-frontend` under `surfaceDetection.specific` beside a repository surface and carries nothing else that tells them apart. T003 looks at this with the score candidates. A new field needs a caller that fails without it, and upstream has one specific surface today.
 <!-- /ANCHOR:questions -->
 

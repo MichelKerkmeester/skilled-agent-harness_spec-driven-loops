@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.16.0
+version: 1.0.17.0
 ---
 
 # Vendored Skilled Overlays
@@ -59,7 +59,7 @@ The value is a path relative to the tree root. With no setting file the folder i
 
 The setting lives outside `.skilled` because a re-copy overwrites that folder, and outside the manifest because the manifest sits inside the folder the setting finds.
 
-`sync-state.json` carries three optional records beside its hashes. `links` maps each layout link path to the target the engine confirmed there, so when the manifest moves a link target the engine retargets its own link instead of refusing a stranger at that path. `items` holds the array items each `json-entry` overlay added, so an item the overlay drops is removed from the live file while it still equals what the engine wrote. An item recorded there but edited since is refused rather than deleted, because the entry set no longer describes what it should be. `sets` holds each `set` a `json-entry` overlay applied: its path, the value written and whether the engine added the key. When the entry set stops naming that path, `apply` writes back the value the pin holds, and deletes a key the engine added that the pin does not hold. A value edited since it was recorded is refused rather than overwritten. The restore reads the pinned copy from the checkout the manifest's pin names, and without that copy the overlay is refused. `setKeyOnItem` keeps no record, so a value it wrote stays in the live file after the operation leaves the entry set. A link the state has no record of is refused and reported, and an item or a value it has no record of is left in place. A state file from an older engine holds none of these keys, so nothing is retargeted, removed or restored until the first apply records them.
+`sync-state.json` carries three optional records beside its hashes. `links` maps each layout link path to the target the engine confirmed there, so when the manifest moves a link target the engine retargets its own link instead of refusing a stranger at that path. `items` holds the array items each `json-entry` overlay added, so an item the overlay drops is removed from the live file while it still equals what the engine wrote. An item recorded there but edited since is refused rather than deleted, because the entry set no longer describes what it should be. `sets` holds each `set` a `json-entry` overlay applied: its path, the value written and whether the engine added the key. Two `set` operations on one path share one record. When the entry set stops naming that path, `apply` writes back the value the pin holds. A key the pin does not hold is deleted while it still carries the recorded value. A value edited since it was recorded is refused rather than overwritten. The same refusal meets a dropped `set` whose value another operation of the same entry set wrote inside or over, because the live value no longer equals the record. Put the `set` back or restore the value by hand. A path through an array index is restored only while that array holds the same number of items in the live file and in the pin and the overlay adds no item to it. Otherwise `apply` refuses and says to restore the value by hand. The restore reads the pinned copy the run was given. For `apply` that is the checkout the manifest's pin names, and for a re-pin it is the new commit's tree. Without that copy the overlay is refused. `setKeyOnItem` keeps no record, so a value it wrote stays in the live file after the operation leaves the entry set. A link the state has no record of is refused and reported, and an item or a value it has no record of is left in place. A state file from an older engine holds none of these keys, so nothing is retargeted, removed or restored until the first apply records them.
 
 ---
 
@@ -152,6 +152,8 @@ A path under a `repin.exclude` folder is never copied by a re-pin, so a write th
 
 `/doctor:overlay apply --adopt <path>` turns the path into a manifest entry. It copies the file or folder into the overlay folder, at the same path without its leading dot, appends a `file` or `directory` entry and applies. An upstream file is pinned to upstream's bytes at the manifest's pin, read from the checkout `pin.checkout` names, so a later re-pin reports it as `upstream-moved`. A folder's token-named source files go into the entry's `protectedPaths`. Adopt refuses a generated path, a path an overlay already owns, a `.env` file, a token-named file that is not source or prose, and a folder that holds upstream files.
 
+Adopt takes a path under `repin.exclude` only from its copy in the overlay folder. A re-pin never copies such a path, so it needs no overlay, but a project may still want its own file there carried and checked by an entry. Put the copy at the overlay path first, with the live file moved there or absent, then run `apply --adopt <path>`. The entry is a project addition with no `pinnedSha256`, and the apply writes the file back to the tree. Without that copy, adopt refuses and names the overlay path it looked for.
+
 A write hook sees only an agent's write tools. For everything else, a project calls the same check from its commit hook:
 
 ```bash
@@ -204,6 +206,8 @@ What a re-pin leaves out, it lists. Each upstream change under `repin.exclude`, 
 The run refuses before any write when a file no overlay owns differs from the pinned commit. That file holds an edit made in place, which the copy would revert. Move the edit into an overlay or upstream first.
 
 Two cases are not edits made in place. A file a `regenerate` step writes is the project's own output once the step lists it under `outputs`, so list there every file a generator writes, including a field it adds to an upstream file. A link the new commit replaces with a folder is deleted before the folder's files are written, so a file seen through that link does not count as a copy at the new path.
+
+A `regenerate` step can also rewrite a file an overlay owns. The live run then fails and prints a `regenerated <path>` line in place of `upstream-moved`. It names the overlay and the step, because the upstream diff for that path holds none of the change. A plain `apply` prints the same line. If the step's output is right, carry it into the overlay copy and run `apply`. Otherwise change the step so it leaves the file alone. A stage skips the steps, so only the live run can print this line.
 
 ### Rolling Back
 

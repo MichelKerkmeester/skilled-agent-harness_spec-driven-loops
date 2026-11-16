@@ -1,0 +1,80 @@
+RETURN: PASS | escalation=NONE | confidence=HIGH
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/git-setup-check.cjs`
+
+That is the only file I edited. Two test files under the same tree were already modified in the working tree before I started (pre-existing failing-first tests from an earlier step of this packet) — see OPEN QUESTIONS.
+
+## 2. COMMANDS
+
+**`grep -n "omittedHooks\|function checkHooks\|const omitted = omittedHooks\|accepted.includes(installedReal)" .skilled/commands/doctor/scripts/git-setup-check.cjs`** — exit 0
+```
+374:function omittedHooks(repoRoot) {
+395:function checkHooks(ctx) {
+417:  const omitted = omittedHooks(ctx.repoRoot);
+434:    if (!accepted.includes(installedReal)) {
+```
+
+**`node --test .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs 2>&1 | tail -n 15`** — exit 0 (pipeline status; `PIPESTATUS` was unavailable in that shell, so I reran with a direct capture below)
+```
+✔ an adapter config that is not JSON is reported without printing its text (2664.667125ms)
+✔ round trip: the gates repair, run as the script /doctor:git hooks runs, turns gates PASS (2658.719667ms)
+✔ round trip: the worktrees repair turns a broken base PASS, from git config and from the environment (3567.331583ms)
+✔ round trip: the commit-id repair turns a missing allocator PASS (470.661125ms)
+✔ round trip: the advisory-rules repair turns an unknown check name PASS (3342.764375ms)
+✔ round trip: the suppression repairs turn the row PASS, from the environment and from hook-flags.env (3573.915833ms)
+✔ round trip: registering the advisory as README section 3 shows turns ai-tool-hooks PASS for every runtime (12850.923666ms)
+ℹ tests 86
+ℹ suites 0
+ℹ pass 86
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 170720.585625
+```
+
+**`node --test .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs > /tmp/git-setup-check.out 2>&1; echo "EXIT_STATUS=$?"; tail -n 15 /tmp/git-setup-check.out`** — exit 0, `EXIT_STATUS=0`
+```
+EXIT_STATUS=0
+✔ an adapter config that is not JSON is reported without printing its text (2078.641641ms)
+✔ round trip: the gates repair, run as the script /doctor:git hooks runs, turns gates PASS (2434.035333ms)
+✔ round trip: the worktrees repair turns a broken base PASS, from git config and from the environment (4104.172375ms)
+✔ round trip: the commit-id repair turns a missing allocator PASS (500.104458ms)
+✔ round trip: the advisory-rules repair turns an unknown check name PASS (3763.606125ms)
+✔ round trip: the suppression repairs turn the row PASS, from the environment and from hook-flags.env (3542.232833ms)
+✔ round trip: registering the advisory as README section 3 shows turns ai-tool-hooks PASS for every runtime (12906.148208ms)
+ℹ tests 86
+ℹ suites 0
+ℹ pass 86
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 164623.320917
+```
+
+**`git status --porcelain -- .skilled/commands/doctor/scripts && git diff --stat -- .skilled/commands/doctor/scripts`** — exit 0
+```
+ M .skilled/commands/doctor/scripts/git-setup-check.cjs
+ M .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs
+ M .skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs
+---DIFFSTAT---
+ .../commands/doctor/scripts/git-setup-check.cjs    | 27 +++++++++++++---
+ .../doctor/scripts/tests/git-setup-check.test.cjs  | 37 ++++++++++++++++++++++
+ .../doctor/scripts/tests/symlink-engine.test.cjs   | 32 +++++++++++++++++
+ 3 files changed, 91 insertions(+), 5 deletions(-)
+```
+
+**`git diff -- .skilled/commands/doctor/scripts/git-setup-check.cjs`** — exit 0. Diff is exactly the four specified hunks: `omittedHooks` delegating to `localHookNames`, the new `hostHooks`, the reworded `checkHooks` comment, `const hosted = hostHooks(ctx.repoRoot);`, and the `target !== null` / `hosted.has(name)` / else branch. No other lines touched.
+
+**`git diff -- .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs | head -n 60`** — exit 0. Confirms the pre-existing test additions are the three `skilled.hostHook` cases (pass, refusal when unlisted, local-scope-only).
+
+Counts: **pass 86, fail 0**, exit 0, on two consecutive runs.
+
+## 3. OPEN QUESTIONS
+
+- The brief said "One file changes", but the working tree already carried modifications to `tests/git-setup-check.test.cjs` and `tests/symlink-engine.test.cjs` before I touched anything. I did not edit either; the `skilled.hostHook` tests were already present and are what the 86 count includes. Flagging so the diff is not misread as mine.
+- The startup banner reports invalid git hook symlinks in this checkout (`commit-msg`, `post-commit`, `post-merge`, `post-rewrite`, `pre-commit`, `pre-push`, `prepare-commit-msg` all "mismatched"). Unrelated to this change and I left it alone, but it is the same surface this check inspects, so it may matter to whoever runs the full doctor next.
+- Nothing else diverged from the brief.

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "A project that vendors Skilled changes one value in an upstream JSON file with a `set` operation in a `json-entry` overlay",
     "created_at": "2026-11-16T09:33:04Z",
-    "last_save_at": "2026-11-16T10:58:43.358Z",
+    "last_save_at": "2026-11-16T13:22:15.505Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9cfba9e322bcec851a54ddfdd4e78e11646bfd136f987b30c18c4e01a16c5838",
+    "source_fingerprint": "sha256:f6c69739b76579b321623203ec5c3a6682c81b9606eefea03f5105ef9ffe43f0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6434d6482abcd829f4a2c88238712271dfcc9e9f4a839300146ed541eab38495",
       "plan.md": "aa91cc0fe2be84cb8521f70a6b8f9e83de94562ed2c37c74db58de7dc1704e46",
-      "tasks.md": "fbee752eae84414b0d3d20fc78fc464c0dd50fe736927fa1f92e3d2a18bfd89f",
-      "decision-record.md": "dfad397d1f0a2571823f5e6cec3b3aaa59fa949625bc342bd01a8ea0d04e40ae",
-      "implementation-summary.md": "96d6e93ef2c2887ac7128bea0f7fede1a7d3f450377e55c52021c53fb1fc5020"
+      "tasks.md": "5bf46539b148ab149848527aefc89dbe094248026e9a0b23717a62884f9b07de",
+      "decision-record.md": "3db3ead7a580e504719b0e64966116528f390d6cb5016019a1e84304d6c3857e",
+      "implementation-summary.md": "b16f7efa0b8cad4024b5ceb585b31a08ec276b33e666d92c896eb026229e1d88"
     },
     "last_active_at": null
   }

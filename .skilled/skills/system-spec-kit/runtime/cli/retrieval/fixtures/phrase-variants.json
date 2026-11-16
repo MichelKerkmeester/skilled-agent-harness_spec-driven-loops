@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cdc5039b416e8bf2f400134136e5e07fc3fa5eb8170ec6df01a18aaad2658c39",
+  "manifestHash": "c1d62010a88eb18a9d858a18cb1bea2cdea8939274f18fb6499f4b1bf3c3f580",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8456,6 +8456,9 @@
     "adopt parser glm lane": [
       "adopt parser GLM lane"
     ],
+    "adopt path under repin exclude": [
+      "adopt path under repin exclude"
+    ],
     "adopt spec kit modules": [
       "adopt spec-kit modules"
     ],
@@ -14352,6 +14355,9 @@
     ],
     "barter handover items": [
       "barter handover items"
+    ],
+    "barter host capture file command routing baseline": [
+      "barter host capture file command routing baseline"
     ],
     "barter overlay mechanics research": [
       "barter overlay mechanics research"
@@ -48752,6 +48758,9 @@
     "extension floors sk code review": [
       "extension floors sk-code-review"
     ],
+    "extension folder readme template": [
+      "extension folder readme template"
+    ],
     "extension guide ac traceability": [
       "extension guide ac traceability"
     ],
@@ -58068,6 +58077,9 @@
     "handover to barter repin limits": [
       "handover to barter repin limits"
     ],
+    "handover to barter stale capture after scan": [
+      "handover to barter stale capture after scan"
+    ],
     "handover trigger review": [
       "handover trigger review"
     ],
@@ -59231,6 +59243,9 @@
     "hook adapter port": [
       "hook adapter port"
     ],
+    "hook adapter readme": [
+      "hook adapter readme"
+    ],
     "hook adapter shared": [
       "hook adapter shared"
     ],
@@ -59378,6 +59393,9 @@
     "hook flags trailing comment": [
       "hook flags trailing comment"
     ],
+    "hook folder readme": [
+      "hook folder readme"
+    ],
     "hook gate settings": [
       "hook gate settings"
     ],
@@ -59474,6 +59492,9 @@
     "hook markers improvement family": [
       "hook markers improvement family"
     ],
+    "hook mirror readme": [
+      "hook mirror readme"
+    ],
     "hook off switch broken": [
       "hook off-switch broken"
     ],
@@ -59545,6 +59566,9 @@
     ],
     "hook readme rewrite": [
       "hook readme rewrite"
+    ],
+    "hook readme template": [
+      "hook readme template"
     ],
     "hook references as routed leaves": [
       "hook references as routed leaves"
@@ -87602,6 +87626,9 @@
     "plugin documentation removal": [
       "plugin documentation removal"
     ],
+    "plugin folder readme template": [
+      "plugin folder readme template"
+    ],
     "plugin hook standards alignment": [
       "plugin hook standards alignment"
     ],
@@ -93413,6 +93440,9 @@
     ],
     "regenerate runtime mirrors after move": [
       "regenerate runtime mirrors after move"
+    ],
+    "regenerated line regenerate step overlay": [
+      "regenerated line regenerate step overlay"
     ],
     "regeneration and verification": [
       "regeneration and verification"
@@ -101989,6 +102019,9 @@
     "runtime council tests": [
       "runtime council tests"
     ],
+    "runtime coverage table": [
+      "runtime coverage table"
+    ],
     "runtime data": [
       "runtime data"
     ],
@@ -102123,6 +102156,9 @@
     ],
     "runtime file path inventory": [
       "runtime file path inventory"
+    ],
+    "runtime folder readme template": [
+      "runtime folder readme template"
     ],
     "runtime fork drift guard gap": [
       "runtime fork drift guard gap"
@@ -102325,6 +102361,9 @@
     "runtime playbook fail cleanup": [
       "runtime playbook fail cleanup"
     ],
+    "runtime plugin readme": [
+      "runtime plugin readme"
+    ],
     "runtime process lifecycle closure": [
       "runtime process lifecycle closure"
     ],
@@ -102345,6 +102384,9 @@
     ],
     "runtime readme folder map": [
       "runtime readme folder map"
+    ],
+    "runtime readme template": [
+      "runtime readme template"
     ],
     "runtime remediation matrix": [
       "runtime remediation matrix"
@@ -102420,6 +102462,9 @@
     ],
     "runtime symlink retarget research": [
       "runtime symlink retarget research"
+    ],
+    "runtime sync doc template": [
+      "runtime sync doc template"
     ],
     "runtime sync manifest template": [
       "runtime sync manifest template"
@@ -116026,6 +116071,9 @@
     "skilled hook handover": [
       "skilled-hook-handover"
     ],
+    "skilled hosthook host pre commit": [
+      "skilled hostHook host pre-commit"
+    ],
     "skilled house checklist": [
       "skilled house checklist"
     ],
@@ -122514,6 +122562,9 @@
     ],
     "sync derived block": [
       "sync derived block"
+    ],
+    "sync manifest template": [
+      "sync manifest template"
     ],
     "sync md template": [
       "sync md template"

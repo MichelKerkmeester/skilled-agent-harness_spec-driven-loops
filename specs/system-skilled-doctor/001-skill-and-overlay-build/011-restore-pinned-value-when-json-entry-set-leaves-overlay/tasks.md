@@ -62,6 +62,12 @@ contextType: "general"
 - [x] T009 Run the sk-code setup check (`.skilled/skills/sk-code`). Verify: `sk-code-setup-check.cjs` ends `STATUS=OK legs=9`. Evidence: `STATUS=OK legs=9`, exit 0.
 - [x] T010 Write what the vendoring project removes, and after which `apply` (`handover-to-barter.md`). Verify: `rg -c 'set' handover-to-barter.md` prints a number above 0. Evidence: `handover-to-barter.md` is in this folder.
 - [x] T011 Validate the packet (`spec.md`). Verify: `validate.sh <this folder> --strict --quiet` prints `RESULT: PASSED`. Evidence: `RESULT: PASSED (errors=0 warnings=2)`. Both warnings are about `decision-record.md` and were there before the build.
+- [x] T012 Review the engine change with a fresh session and reproduce what it finds (`E`). Verify: the review file lists its findings and a script reproduces each one acted on. Evidence: a Fable 5.2 review of `cb31e584730` listed nine findings. Findings 1 to 5 were reproduced on the function.
+- [x] T013 Add six tests for the review fix (`T/overlay-engine-sync.test.cjs`). Verify: `node --test T/overlay-engine-sync.test.cjs` prints `fail 3`, on three of the new tests. Evidence: run 08, `pass 32`, `fail 3`.
+- [x] T014 Refuse a restore through an array index when the arrays do not line up with the pin (`E`). Verify: the same file prints `fail 2`. Evidence: run 09, `pass 33`, `fail 2`.
+- [x] T015 Delete a key the pin does not hold while it carries the recorded value, whatever the `added` flag says (`E`). Verify: the same file prints `fail 1`. Evidence: run 10, `pass 34`, `fail 1`.
+- [x] T016 Keep one record per path when two `set` operations name it (`E`). Verify: the same file prints `fail 0`. Evidence: run 11, `pass 35`, `fail 0`.
+- [x] T017 Correct the `sets` sentences in the reference (`.skilled/skills/system-skilled-doctor/references/overlays.md`). Verify: `rg -c 'restore the value by hand'` on that file prints 1. Evidence: run 12, the count is 1 and the file equals the text the brief gave.
 <!-- /ANCHOR:phase-3 -->
 
 ---
