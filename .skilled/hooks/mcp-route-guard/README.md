@@ -77,7 +77,7 @@ The core never writes stdout or stderr. Each adapter owns its own transport and 
 | Pi | `tool_call` | `pi/mcp-route-guard.ts` | `.skilled/hooks/mcp-route-guard/pi/mcp-route-guard.ts` | The advisory as the tool call's `reason`. |
 | DSH | `tools/pre-execute` | `dsh/mcp-route-guard.mjs` | `.skilled/hooks/mcp-route-guard/dsh/mcp-route-guard.mjs` | A deny, with the advisory as the reason. |
 | OpenCode | `tool.execute.before` | `opencode/mcp-route-guard.js` | `.opencode/plugins/mcp-route-guard.js` | One line in `mcp-route-guard.log`, never console output. |
-| Vibe | `pre_tool` | None | `.vibe/plugins/repo-guards/mcp-route-guard.mjs` | A deny, with the advisory as the reason. |
+| Vibe | `pre_tool` | `vibe/mcp-route-guard.mjs` | `.vibe/plugins/repo-guards/mcp-route-guard.mjs` | A deny, with the advisory as the reason. |
 
 Claude registers `PreToolUse` with the matcher `mcp__claude_ai_.*` in `.claude/settings.json`, at a 5-second timeout. Codex registers `PreToolUse` with the matcher `mcp__.*` in `.codex/hooks.json`, at 5 seconds. Devin registers `PreToolUse` with the matcher `^mcp__.*$` in `.devin/hooks.v1.json`, at 5 seconds. Cursor registers `beforeMCPExecution` with no matcher and a 10-second timeout.
 
@@ -111,7 +111,8 @@ mcp-route-guard/
 +-- pi/       mcp-route-guard.ts   # tool_call extension
 +-- dsh/      mcp-route-guard.mjs  # tools/pre-execute adapter
 +-- opencode/ mcp-route-guard.js   # browsability symlink -> .opencode/plugins/mcp-route-guard.js
-`-- tests/    dsh-mcp-route-guard.test.mjs  # node --test suite for the DSH adapter
++-- tests/    dsh-mcp-route-guard.test.mjs  # node --test suite for the DSH adapter
+`-- vibe/     mcp-route-guard.mjs  # browsability symlink -> .vibe/plugins/repo-guards/mcp-route-guard.mjs
 ```
 
 ---

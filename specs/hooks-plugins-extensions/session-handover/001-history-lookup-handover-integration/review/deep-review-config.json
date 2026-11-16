@@ -1,0 +1,182 @@
+{
+  "topic": "Review: files changed in commits 169da2e8cba..1c7bc3d9d63: the history lookup engine move into .skilled/hooks/session-handover/history and everything that followed it",
+  "sessionId": "2026-11-15T17:33:23.837Z",
+  "parentSessionId": null,
+  "lineageMode": "restart",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 200,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration",
+  "createdAt": "2026-11-15T17:33:23.837Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-deepseek-harness",
+    "model": "deepseek-v4.1-flash-1017",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "files changed in commits 169da2e8cba..1c7bc3d9d63: the history lookup engine move into .skilled/hooks/session-handover/history and everything that followed it",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewFocus": "Known residuals to check: (1) a repo-wide sweep for any live reference to the old engine path .skilled/skills/system-spec-kit/runtime/hooks/lib/history/ in code, tests, CI, docs and provisioning; (2) .github/workflows/spec-kit-check.yml engine step has never run on GitHub, so check it would pass as written; (3) .skilled/hooks/shared/tests/session-readers/project.test.mjs turns a missing schema file into a silent skip; (4) the pinned 66-character quoted session-id bound in hook-state.ts must equal the engine bound. The phase 1 harness hop-recall.sh line 18 still naming the old path is already known and owned by phase 008 task T002, so record it as known, not as a new finding.",
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".github/workflows/spec-kit-check.yml",
+    ".skilled/hooks/injection-contract.md",
+    ".skilled/hooks/session-handover/README.md",
+    ".skilled/hooks/session-handover/bin/README.md",
+    ".skilled/hooks/session-handover/bin/history-lookup.mjs",
+    ".skilled/hooks/session-handover/history/README.md",
+    ".skilled/hooks/session-handover/history/lib/cli.ts",
+    ".skilled/hooks/session-handover/history/lib/core.ts",
+    ".skilled/hooks/session-handover/history/lib/history-entry.schema.json",
+    ".skilled/hooks/session-handover/history/lib/history.ts",
+    ".skilled/hooks/session-handover/history/lib/index.ts",
+    ".skilled/hooks/session-handover/history/lib/loads.ts",
+    ".skilled/hooks/session-handover/history/lib/locator-digest.ts",
+    ".skilled/hooks/session-handover/history/lib/lookup-offer.ts",
+    ".skilled/hooks/session-handover/history/lib/navigator.ts",
+    ".skilled/hooks/session-handover/history/lib/pages.ts",
+    ".skilled/hooks/session-handover/history/lib/projection.ts",
+    ".skilled/hooks/session-handover/history/lib/response.ts",
+    ".skilled/hooks/session-handover/history/package.json",
+    ".skilled/hooks/session-handover/history/tests/_support/history-fixtures.ts",
+    ".skilled/hooks/session-handover/history/tests/history-byte-bound.vitest.ts",
+    ".skilled/hooks/session-handover/history/tests/history-cursor-reconstruction.vitest.ts",
+    ".skilled/hooks/session-handover/history/tests/history-entry-contract.vitest.ts",
+    ".skilled/hooks/session-handover/history/tests/history-locator.vitest.ts",
+    ".skilled/hooks/session-handover/history/tests/history-lookup-cli.vitest.ts",
+    ".skilled/hooks/session-handover/history/tests/history-projection.vitest.ts",
+    ".skilled/hooks/session-handover/history/tests/history-search-analyzer.vitest.ts",
+    ".skilled/hooks/session-handover/history/tests/history-search-browse.vitest.ts",
+    ".skilled/hooks/session-handover/history/tests/history-vocabulary-drift.vitest.ts",
+    ".skilled/hooks/session-handover/history/tsconfig.json",
+    ".skilled/hooks/session-handover/history/vitest.config.ts",
+    ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+    ".skilled/hooks/session-handover/tests/history-lookup-entry.test.cjs",
+    ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs",
+    ".skilled/hooks/shared/session-readers/README.md",
+    ".skilled/hooks/shared/tests/session-readers/project.test.mjs",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/compaction-post-tool.md",
+    ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+    ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+    ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
+    ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-baseline-conversation.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md",
+    ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+    ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+    ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+    ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+    ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts",
+    ".skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs",
+    ".skilled/skills/system-spec-kit/runtime/hooks/lib/README.md",
+    ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts",
+    ".skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts",
+    ".skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/description.json",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/graph-metadata.json",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/scratch/.gitkeep",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/graph-metadata.json",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/spec.md"
+  ],
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  }
+}

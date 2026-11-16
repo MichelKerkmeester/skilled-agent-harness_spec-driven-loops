@@ -18,6 +18,7 @@ import {
   armableRecord,
   findLoopChildPid,
   isEntrypoint,
+  markDeferred,
   payloadEventName,
   readRelaunchFile,
 } from '../lib/relaunch-core.cjs';
@@ -43,6 +44,28 @@ function logEvent(event, fields, env) {
   try {
     appendLog(event, fields, env);
   } catch {}
+}
+
+// A Stop that cannot arm this session's pending record marks it, so the operator's next prompt
+// withdraws it. Left unmarked, the record would wait for a later Stop and relaunch from a note
+// that predates the work done since.
+function markParked(loopId, env) {
+  try {
+    markDeferred({ loopId, env });
+  } catch (error) {
+    logEvent('stop-arm-error', { stage: 'defer', loopId, message: error.message }, env);
+  }
+}
+
+// Codex shows a Stop hook's `systemMessage` and still ends the turn. The cause is known only
+// here, because the prompt that withdraws the record cannot tell one failure from another.
+function writeNotice(text, loopId, env, write) {
+  try {
+    const writeLine = write || ((line) => process.stdout.write(line));
+    writeLine(`${JSON.stringify({ systemMessage: text })}\n`);
+  } catch (error) {
+    logEvent('stop-arm-error', { stage: 'notice', loopId, message: error.message }, env);
+  }
 }
 
 async function spawnKiller(loopId, targetPid, transcriptPath, env, spawnProcess) {
@@ -82,6 +105,7 @@ async function spawnKiller(loopId, targetPid, transcriptPath, env, spawnProcess)
  * @param {number} [dependencies.pid=process.pid] - Pid the loop-child walk climbs from.
  * @param {string} [dependencies.processTable] - `pid ppid` pairs; the live table when omitted.
  * @param {Function} [dependencies.spawn] - Spawns the killer; child_process.spawn when omitted.
+ * @param {Function} [dependencies.write] - Writes an operator notice; process.stdout.write when omitted.
  * @returns {Promise<Object|null>} The armed record, or null when nothing was armed.
  */
 async function armPendingRecord(payload, dependencies = {}) {
@@ -103,6 +127,14 @@ async function armPendingRecord(payload, dependencies = {}) {
 
   if (typeof payload.transcript_path !== 'string' || !payload.transcript_path) {
     logEvent('missing-transcript-path', { loopId, sessionId: record.sessionId }, env);
+    markParked(loopId, env);
+    writeNotice(
+      'Session handover could not arm the hop because this Stop carried no transcript path. '
+        + 'Your next prompt withdraws the hand-over, and a later nudge asks for a new one.',
+      loopId,
+      env,
+      dependencies.write,
+    );
     return null;
   }
 
@@ -113,6 +145,15 @@ async function armPendingRecord(payload, dependencies = {}) {
   });
   if (targetPid === null) {
     logEvent('stop-arm-error', { stage: 'target-pid', loopId }, env);
+    markParked(loopId, env);
+    writeNotice(
+      'Session handover could not arm the hop because this Stop found no session process '
+        + 'below the loop. Your next prompt withdraws the hand-over, and a later nudge asks for a '
+        + 'new one.',
+      loopId,
+      env,
+      dependencies.write,
+    );
     return null;
   }
 
@@ -121,6 +162,14 @@ async function armPendingRecord(payload, dependencies = {}) {
     armed = arm({ loopId, cwd: payload.cwd || process.cwd(), env });
   } catch (error) {
     logEvent('stop-arm-error', { stage: 'arm', loopId, message: error.message }, env);
+    markParked(loopId, env);
+    writeNotice(
+      'Session handover could not arm the hop because arming the record failed. '
+        + 'Your next prompt withdraws the hand-over, and a later nudge asks for a new one.',
+      loopId,
+      env,
+      dependencies.write,
+    );
     return null;
   }
   if (armed === null || armed.status !== 'armed') return null;

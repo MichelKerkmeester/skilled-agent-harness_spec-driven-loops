@@ -6,7 +6,7 @@ trigger_phrases:
   - "Pi compaction purpose section"
   - "session_compact packet purpose"
 id: plugins-and-hooks-packet-purpose-pi-compaction
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Packet purpose after a Pi compaction
@@ -103,6 +103,8 @@ Capture the build command, the suite command, their full output and their exit s
 - Purpose reader: `runtime/lib/spec/packet-purpose.ts`
 - Pi compaction adapter: `runtime/hooks/pi/session-compact-context.ts`
 - Adapter suite: `runtime/tests/compaction-adapters.vitest.ts`
+
+Provenance: .skilled/skills/system-spec-kit/runtime/tests/compaction-adapters.vitest.ts
 
 ---
 

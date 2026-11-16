@@ -59,7 +59,7 @@ The advisory names the strongest flagged section by its position in the checked 
 | OpenCode | `experimental.chat.system.transform, tool.execute.after` | `opencode/classifier-injection-screen.js` | `.opencode/plugins/classifier-injection-screen.js` | The advisory in `output.system` on the next transform. |
 | Pi | `tool_result` | `pi/classifier-injection-screen.ts` | `.skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.ts` | One extra text block on the tool result. |
 | DSH | `tools/post-execute` | `dsh/classifier-injection-screen.mjs` | `.dsh/plugins/repo-guards/adapters/classifier-injection-screen.mjs` | An `additionalContexts` notice on an accepted result. |
-| Vibe | `post_tool` | None | `.vibe/plugins/repo-guards/classifier-injection-screen.mjs` | One advisory line as `additional_context`. |
+| Vibe | `post_tool` | `vibe/classifier-injection-screen.mjs` | `.vibe/plugins/repo-guards/classifier-injection-screen.mjs` | One advisory line as `additional_context`. |
 | Cursor | None | None | None | Nothing. Its `Fetch` payload carries no page text. |
 | Codex | None | None | None | Nothing. Its only web tool runs on the model provider's side. |
 
@@ -90,7 +90,8 @@ classifier-injection-screen/
 +-- dsh/      classifier-injection-screen.mjs
 +-- opencode/ classifier-injection-screen.js -> ../../../../.opencode/plugins/classifier-injection-screen.js
 +-- pi/       classifier-injection-screen.ts (+ test)
-`-- tests/    dsh-classifier-injection-screen.test.mjs
++-- tests/    dsh-classifier-injection-screen.test.mjs
+`-- vibe/     classifier-injection-screen.mjs -> ../../../../.vibe/plugins/repo-guards/classifier-injection-screen.mjs
 ```
 
 ---

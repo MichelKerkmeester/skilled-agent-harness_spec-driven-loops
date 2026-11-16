@@ -1,0 +1,34 @@
+{
+  "runtime": "vibe",
+  "label": "hard2",
+  "trustDialogs": 0,
+  "steps": {
+    "notePrepared": true,
+    "signalled": true,
+    "relaunched": true,
+    "noteClosed": true,
+    "receiverAnswered": true
+  },
+  "answer": {
+    "lineCount": true,
+    "heading": true,
+    "codeWord": true
+  },
+  "noteStatus": "done",
+  "carry": {
+    "model": "not-set",
+    "effort": "not-set",
+    "name": "not-set",
+    "provider": "not-set"
+  },
+  "seconds": {
+    "startToPrepare": 20.7,
+    "prepareToSignal": 5.2,
+    "signalToRelaunch": 0.5,
+    "startToClosed": 47.1
+  },
+  "problems": [],
+  "firstLaunch": "/Users/michelkerkmeester/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs --trust --agent auto-approve Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-handover/README.md, name its first heading and repeat the code word ORCHID-6576. Start by reading the README. One more fact for later: the side word is LAGOON-14042. Do not write the side word in the handoff note. The new session must report it too. Gate 3: D) Skip, no spec folder.",
+  "relaunchArgs": "/Users/michelkerkmeester/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs [session-handover] claim and continue handoff /Users/michelkerkmeester/worktrees/public/418-vibe-handover-hardening/.skilled/skills/.state/session-handover/handoffs/20261115T184736Z-b9b475a6-6e51-1128-a5e1-a06e0000cd28.md | Spec folder: none (Gate 3 answered D, Skip, in the sending session) --trust --agent auto-approve",
+  "score": "5/5"
+}

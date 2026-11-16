@@ -66,7 +66,7 @@ The core defaults its tree root to its own location, four levels above `lib/`. T
 | Pi | `tool_call` | `pi/overlay-guard.ts` | `.skilled/hooks/overlay-guard/pi/overlay-guard.ts` | `{ block: true, reason }`. |
 | DSH | `tools/pre-execute` | `dsh/overlay-guard.mjs` | `.skilled/hooks/overlay-guard/dsh/overlay-guard.mjs` | `{ kind: 'deny', reason }`. |
 | OpenCode | `tool.execute.before` | `opencode/overlay-guard.js` | `.opencode/plugins/overlay-guard.js` | A thrown error carrying the engine's `refuse:` line. |
-| Vibe | `pre_tool` | None | `.vibe/plugins/repo-guards/overlay-guard.mjs` | A `{"decision":"deny","reason":...}` object on stdout, with exit 0. |
+| Vibe | `pre_tool` | `vibe/overlay-guard.mjs` | `.vibe/plugins/repo-guards/overlay-guard.mjs` | A `{"decision":"deny","reason":...}` object on stdout, with exit 0. |
 
 Claude matches `Write\|Edit\|MultiEdit` and reads `tool_input.file_path`. Codex matches `apply_patch\|edit` and reads a path field or every `*** Add/Update/Delete File:` header and `*** Move to:` target in the patch. Cursor matches `Write` and reads `tool_input.file_path`, with the workspace root from `workspace_roots[0]`. Devin matches `^(edit\|write)$` and reads `tool_input.file_path`.
 
@@ -119,6 +119,8 @@ overlay-guard/
 +-- pi/
 |   +-- README.md
 |   `-- overlay-guard.ts         # Pi tool_call extension
++-- vibe/
+|   `-- overlay-guard.mjs        # pre_tool guard, a link to .vibe/plugins/repo-guards/overlay-guard.mjs
 `-- tests/
     +-- README.md
     +-- dsh-overlay-guard.test.mjs

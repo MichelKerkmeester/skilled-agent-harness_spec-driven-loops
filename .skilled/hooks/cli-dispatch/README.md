@@ -129,7 +129,7 @@ Every runtime evaluates the same `lib/` cores. What differs is the event each ru
 | Pi | `input`, `tool_call`, `tool_result` | `pi/dispatch-preflight-lint.ts`, `pi/dispatch-audit.ts` | The same pair. | A block reason, an advisory or nothing. |
 | OpenCode | `tool.execute.after`, `tool.execute.before` | `opencode/cli-dispatch-audit.js` | `.opencode/plugins/cli-dispatch-audit.js` | A thrown error or nothing. |
 | DeepSeek Harness | `tools/pre-execute`, `tools/post-execute` on `bash` | `dsh/dispatch-preflight-lint.mjs`, `dsh/dispatch-audit.mjs` | The same pair. | A deny reason or nothing. |
-| Vibe | `pre_tool` on `bash` and `process_start` | None | `.vibe/plugins/repo-guards/dispatch-preflight.mjs` | A refusal or nothing. No audit line. |
+| Vibe | `pre_tool` on `bash` and `process_start` | `vibe/dispatch-preflight.mjs` | `.vibe/plugins/repo-guards/dispatch-preflight.mjs` | A refusal or nothing. No audit line. |
 
 **Claude.** The preflight reads only `tool_name: 'Bash'` and `tool_input.command`. The audit reads `tool_response.stdout`/`stderr`. A block emits `permissionDecision: 'deny'` with the reason. A warn emits `additionalContext`. The audit emits nothing and exits 0.
 

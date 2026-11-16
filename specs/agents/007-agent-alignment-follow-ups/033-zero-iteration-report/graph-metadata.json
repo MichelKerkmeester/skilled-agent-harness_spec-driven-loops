@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/033-zero-iteration-report",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/033-zero-iteration-report",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "zero iteration report",
+      "phase 33 zero iteration report",
+      "zero iteration report plan",
+      "zero iteration report tasks",
+      "zero iteration report implementation summary"
+    ],
+    "key_topics": [
+      "zero",
+      "iteration",
+      "report",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "stepcompilereviewreport",
+      "skilled",
+      "commands",
+      "deep"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/commands/deep/assets/deep-review.yaml",
+      ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/zero-iteration-review-report.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+      "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/review/review-report.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "review-mode-contract.yaml",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "zero-iteration-review-report.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/zero-iteration-review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-contract-snapshot.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Workflow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow State",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`stepcompilereviewreport` (.skilled/commands/deep/assets/deep-review.yaml) has one shape for every stop",
+    "created_at": "2026-11-15T20:25:13Z",
+    "last_save_at": "2026-11-16T05:25:27.675Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:05d956fdb9c685e8d2f7b02f966478024313f89552a702d98a75adcb4e50df8d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1b3506cda3db2d93e1b177e74be07f609cf82f235934418f29843269e75d5774",
+      "plan.md": "42c5c3c7569033a5fdaa4f793a3caa286e0fda85062e2b1adb0cddd845dfa996",
+      "tasks.md": "56717c2b05f0e8af207d465f1efa96159f4b4101df74f5e53480ea07e054dbee",
+      "implementation-summary.md": "b8358b9dc5386bd7005fea6dee497adda6f3c0f8d848bffa7eb1da4187833130"
+    },
+    "last_active_at": null
+  }
+}

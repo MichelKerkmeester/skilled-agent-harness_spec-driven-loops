@@ -150,11 +150,20 @@ async function main() {
   if (!decision.nudge || withdrawn) return quiet();
 
   const notePath = nudge.plannedNotePath({ cwd: payload.cwd, sessionId });
+  // A hook running beside this one may be delivering the same nudge, so only the hook that
+  // holds the session's nudge claim delivers it, after deciding again under that claim.
+  let committed;
   try {
-    nudge.writeState(sessionId, decision.level);
+    committed = nudge.commitNudge({
+      ratio,
+      threshold: nudge.relaunchThreshold(config),
+      sessionId,
+    });
   } catch (error) {
     logEvent('context-nudge-error', { stage: 'state', message: error.message });
+    committed = decision;
   }
+  if (committed === null) return quiet();
   return emit(eventName, nudge.handoffText({
     notePath,
     sessionId,

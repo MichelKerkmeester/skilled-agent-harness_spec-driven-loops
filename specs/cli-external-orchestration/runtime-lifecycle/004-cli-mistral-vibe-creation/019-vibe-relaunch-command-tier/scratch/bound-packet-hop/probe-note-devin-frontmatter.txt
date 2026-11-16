@@ -1,0 +1,9 @@
+---
+status: open
+session_id: 09973D95-F278-42D7-9156-DF593D7A6EC3
+runtime: devin
+cwd: /Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime
+spec_folder: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios
+created_at: 2026-11-15T17:11:44Z
+goal_packet: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios
+---

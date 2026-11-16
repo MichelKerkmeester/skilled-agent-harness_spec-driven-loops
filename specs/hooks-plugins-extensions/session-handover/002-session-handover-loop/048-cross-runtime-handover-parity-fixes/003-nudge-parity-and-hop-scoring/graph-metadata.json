@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared nudge claim",
+      "duplicate nudge race",
+      "hop scorecard side word",
+      "nudge parity and hop scoring plan",
+      "nudge parity and hop scoring tasks",
+      "nudge parity and hop scoring acceptance criteria",
+      "nudge parity decision record",
+      "nudge parity implementation summary"
+    ],
+    "key_topics": [
+      "shared",
+      "nudge",
+      "claim",
+      "duplicate",
+      "race",
+      "hop",
+      "scorecard",
+      "side",
+      "word",
+      "parity",
+      "scoring",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-handover/lib/nudge.cjs",
+      ".skilled/hooks/session-handover/claude/context-nudge.mjs",
+      ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
+      ".skilled/hooks/session-handover/README.md",
+      ".skilled/hooks/session-handover/codex/shared.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/lib/nudge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-nudge.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/claude/context-nudge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "handover-parts.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-handover/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/codex/shared.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Claude and Codex read the nudge level, decide and write it with no claim, so two hooks that run at once both deliver",
+    "created_at": "2026-11-15T19:49:26Z",
+    "last_save_at": "2026-11-15T21:23:44.837Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4666232c904ad38f8dd7181e9de523ec62edfefc28473b63dd796864ac9edbaa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e8d445d208f210455c95aaca138863bfbc135b73c15219d08ffd04ab5567a72b",
+      "plan.md": "fbc249f69694bdd391248a18ad11d5b2ee6b6319f986ede77aad8e7f735449e9",
+      "tasks.md": "df751edef12d9a251c28ba0c906756601809f46150432c388794e7eb24642279",
+      "decision-record.md": "49a9299ea12dc2e132ce53c1a007d509b4d4fc443e7869bbbcf4ebb5b2092f26",
+      "implementation-summary.md": "860753eb115733093817455b1fa466e1e4a292f80d852bc8efec4cb97d54badb"
+    },
+    "last_active_at": null
+  }
+}

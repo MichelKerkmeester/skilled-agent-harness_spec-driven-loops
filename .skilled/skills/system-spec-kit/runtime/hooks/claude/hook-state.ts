@@ -22,7 +22,6 @@ import {
 
 import { hookLog } from './shared.js';
 import { assertNever } from '../../lib/utils/exhaustiveness.js';
-import { fitsHistoryLookupOffer } from '../lib/history/lookup-offer.js';
 import { RECOVERED_TRANSCRIPT_STRIP_PATTERNS } from '../shared-provenance.js';
 
 import type { SharedPayloadEnvelope } from '../../lib/context/shared-payload.js';
@@ -267,6 +266,21 @@ function isSafeLocatorSessionId(value: string): boolean {
  */
 function isSafeLocatorWorkspace(value: string): boolean {
   return isAbsolute(value) && !/[\u0000-\u001f\u007f]/.test(value);
+}
+
+/**
+ * The longest shell-quoted session id the lookup offer can carry.
+ *
+ * The history engine owns the offer and builds after this package, because its
+ * CLI reads this schema, so the bound cannot be imported from it without a
+ * build cycle. The engine's tests hold this copy equal to its own.
+ */
+const LOOKUP_OFFER_MAX_QUOTED_SESSION_ID = 66;
+
+/** Whether a session id fits the lookup offer once it is quoted for a POSIX shell. */
+function fitsHistoryLookupOffer(sessionId: string): boolean {
+  const quoted = `'${sessionId.replace(/'/g, "'\\''")}'`;
+  return quoted.length <= LOOKUP_OFFER_MAX_QUOTED_SESSION_ID;
 }
 
 function isStrictlyInside(child: string, parent: string): boolean {

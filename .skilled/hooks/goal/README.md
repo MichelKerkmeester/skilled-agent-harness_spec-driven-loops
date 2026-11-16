@@ -136,7 +136,7 @@ Cursor registers `sessionStart` in `.cursor/hooks.json` and fires it only. It re
 
 Devin registers `SessionStart` and `UserPromptSubmit` in `.devin/hooks.v1.json`. It reads `session_id` and `cwd` or `DEVIN_PROJECT_DIR` for the workspace. It returns `{hookSpecificOutput: {hookEventName, additionalContext: brief + reminder}}`. The repository exposes no Devin prompt-command surface, so this runtime is injection-only.
 
-Vibe fires `session_start` through `.vibe/hooks.toml`. `renderVibeGoalSlice` reads the packet path from `VIBE_SPEC_FOLDER` and uses no session identity. It returns no envelope of its own, because the session-start hook puts the slice in `hook_specific_output.additional_context`. There is no goal object, no `/goal` command, no goal tool and no per-turn refresh.
+Vibe fires `session_start` through `.vibe/hooks.toml`. `renderVibeGoalSlice` reads the packet path from `VIBE_SPEC_FOLDER` and uses no session identity. When that is unset, it reads `SESSION_HANDOVER_GOAL_PACKET`, the packet `skilled-loop` exported from a claimed hand-over note. An operator-named `VIBE_SPEC_FOLDER` always wins. It returns no envelope of its own, because the session-start hook puts the slice in `hook_specific_output.additional_context`. There is no goal object, no `/goal` command, no goal tool and no per-turn refresh.
 
 After a compaction the `pre_agent` turn-start hook re-injects the slice once, through `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs`. The `pre_agent` entry `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs` calls it.
 
@@ -185,7 +185,7 @@ goal/
 | `devin/goal-inject.mjs` | Devin `SessionStart` and `UserPromptSubmit` injection. Same brief and reminder, returned as `additionalContext` in Devin's `hookSpecificOutput` envelope. Fails open to `{}`. |
 | `dsh/goal-context.mjs` | DSH `agent/created` injection. Reads `DSH_SPEC_FOLDER`, renders the packet `chat_slice` and injects it as a notice. Fails open and logs one warning. |
 | `dsh/goal-manage.mjs` | DSH management surface. Registers the `/goal-dsh` command and the `dsh_goal` tool over the shared manage CLI, appends the brief before an operator turn, records the turn and queues the verify note. A fan-out leaf gets none of it. |
-| `vibe/goal-inject.mjs` | Vibe `session_start` slice. Reads the packet path from `VIBE_SPEC_FOLDER` and returns exactly the `chat_slice` that `goal.cjs packet` prints. No variable means no goal text. |
+| `vibe/goal-inject.mjs` | Vibe `session_start` slice. Reads the packet path from `VIBE_SPEC_FOLDER`, or `SESSION_HANDOVER_GOAL_PACKET` when that is unset, and returns exactly the `chat_slice` that `goal.cjs packet` prints. Neither variable means no goal text. |
 | `lib/goal-core.test.cjs`, `bin/goal.test.cjs` | Core, lifecycle, concurrency, legacy, hardening, CLI binding, privacy and legacy action coverage. |
 
 `.opencode/plugins/opencode-goal.js` is the OpenCode-native plugin. It is a separate implementation that shares the kill switch, the state directory and `lib/goal-slice.cjs`. From the core it takes `appendPacketLog` and the hand-over switch and packet check only.

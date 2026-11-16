@@ -165,13 +165,15 @@ hooks/
 |   +-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (real file; `.pi/extensions/` re-exports them)
 |   +-- dsh/      dispatch-preflight-lint.mjs, dispatch-audit.mjs (real file; `.dsh/plugins/repo-guards/adapters/` symlinks to it)
 |   +-- opencode/ cli-dispatch-audit.js (browsability symlink -> .opencode/plugins/)
-|   `-- tests/    dsh-dispatch.test.mjs
+|   +-- tests/    dsh-dispatch.test.mjs
+|   `-- vibe/     dispatch-preflight.mjs (browsability symlink -> .vibe/plugins/repo-guards/)
 +-- decision-capture/                # operator answers queued per project for the next full-auto save
 |   +-- lib/capture-core.mjs, chat-questions.mjs (the chat-candidate detector every sweep shares), their tests
 |   +-- claude/   decision-capture-posttooluse.mjs (PostToolUse on AskUserQuestion), fixtures/
 |   +-- devin/    decision-capture-posttooluse.mjs (PostToolUse on ask_user_question), its test, fixtures/
 |   +-- pi/       decision-capture.ts (tool_result on ask_user_question and question; `.pi/extensions/` re-exports it), its test
 |   +-- dsh/      decision-capture.mjs (tools/result on ask_user_question plus a late timed reply; the DSH adapters folder symlinks to it)
+|   +-- opencode/ decision-capture.js (browsability symlink -> .opencode/plugins/)
 |   +-- vibe/     decision-capture-post-tool.mjs (post_tool), its test
 |   +-- bin/      sweep-transcript.mjs (Claude), sweep-opencode.mjs, sweep-devin.mjs, sweep-codex.mjs, sweep-pi.mjs, sweep-dsh.mjs, sweep-vibe.mjs, their tests, fixtures/
 |   `-- tests/    dsh-decision-capture.test.mjs
@@ -182,6 +184,7 @@ hooks/
 |   +-- pi/       env-secret-guard.ts (real file; `.pi/extensions/` re-exports it)
 |   +-- dsh/      env-secret-guard.mjs (real file; the DSH adapters folder symlinks to it)
 |   +-- opencode/ env-secret-guard.js (browsability symlink -> .opencode/plugins/)
+|   +-- vibe/     env-secret-guard.mjs (browsability symlink -> .vibe/plugins/repo-guards/)
 |   `-- tests/    dsh-env-secret-guard.test.mjs
 +-- mcp-route-guard/                 # native mcp_* call -> Code Mode routing advisory
 |   +-- lib/mcp-route-guard.cjs, mcp-route-guard.test.cjs
@@ -190,7 +193,8 @@ hooks/
 |   +-- pi/       mcp-route-guard.ts (real file; `.pi/extensions/` re-exports it)
 |   +-- dsh/      mcp-route-guard.mjs (real file; the DSH adapters folder symlinks to it)
 |   +-- opencode/ mcp-route-guard.js (browsability symlink -> .opencode/plugins/)
-|   `-- tests/    dsh-mcp-route-guard.test.mjs
+|   +-- tests/    dsh-mcp-route-guard.test.mjs
+|   `-- vibe/     mcp-route-guard.mjs (browsability symlink -> .vibe/plugins/repo-guards/)
 +-- overlay-guard/                   # refuse an edit to a file a vendored copy's overlay owns
 |   +-- lib/overlay-guard.cjs, overlay-guard.test.cjs
 |   +-- claude/, devin/, codex/      overlay-guard.cjs
@@ -198,7 +202,8 @@ hooks/
 |   +-- pi/       overlay-guard.ts (real file; `.pi/extensions/` re-exports it)
 |   +-- dsh/      overlay-guard.mjs (real file; the DSH adapters folder symlinks to it)
 |   +-- opencode/ overlay-guard.js (browsability symlink -> .opencode/plugins/)
-|   `-- tests/    dsh-overlay-guard.test.mjs, opencode-overlay-guard.test.mjs
+|   +-- tests/    dsh-overlay-guard.test.mjs, opencode-overlay-guard.test.mjs
+|   `-- vibe/     overlay-guard.mjs (browsability symlink -> .vibe/plugins/repo-guards/)
 +-- post-edit-quality/               # comment-hygiene + dist-staleness findings on edit/write
 |   +-- lib/post-edit-router.cjs
 |   +-- claude/   post-edit-quality.cjs
@@ -208,7 +213,8 @@ hooks/
 |   +-- pi/       post-edit-quality.ts (real file; `.pi/extensions/` re-exports it)
 |   +-- dsh/      post-edit-quality.mjs (real file; the DSH adapters folder symlinks to it)
 |   +-- opencode/ sk-code-post-edit-quality.js (browsability symlink -> .opencode/plugins/)
-|   `-- tests/    codex-post-edit-quality.test.cjs, devin-post-edit-quality.test.cjs, dsh-post-edit-quality.test.mjs, post-edit-router.test.cjs
+|   +-- tests/    codex-post-edit-quality.test.cjs, devin-post-edit-quality.test.cjs, dsh-post-edit-quality.test.mjs, post-edit-router.test.cjs
+|   `-- vibe/     post-edit-quality.mjs (browsability symlink -> .vibe/plugins/repo-guards/)
 +-- ask-surface-guard/                          # Sends a turn ending in a prose option menu back to the question tool
 |   +-- lib/      ask-surface-core.cjs (detector, verdict, per-turn marker), advisory-stop.cjs (+ tests)
 |   +-- fixtures/ the verdict fixtures the detector test reads
@@ -217,6 +223,7 @@ hooks/
 |   +-- devin/    ask-surface-stop.cjs (advisory)
 |   +-- pi/       ask-surface-guard.ts (+ test; `.pi/extensions/` re-exports it)
 |   +-- dsh/      ask-surface-guard.mjs (+ test; the DSH adapters folder symlinks to it)
+|   +-- opencode/ ask-surface-guard.js (browsability symlink -> .opencode/plugins/)
 |   +-- vibe/     ask-surface-post-agent.mjs (post_agent)
 |   `-- tests/    dsh-ask-surface-guard.test.mjs
 +-- classifier-injection-screen/                # Jev screen of fetched web text for instructions aimed at an agent
@@ -227,7 +234,8 @@ hooks/
 |   +-- opencode/ classifier-injection-screen.js (browsability symlink -> .opencode/plugins/)
 |   +-- pi/       classifier-injection-screen.ts (+ test; `.pi/extensions/` re-exports it)
 |   +-- dsh/      classifier-injection-screen.mjs (real file; the DSH adapters folder symlinks to it)
-|   `-- tests/    dsh-classifier-injection-screen.test.mjs
+|   +-- tests/    dsh-classifier-injection-screen.test.mjs
+|   `-- vibe/     classifier-injection-screen.mjs (browsability symlink -> .vibe/plugins/repo-guards/)
 +-- subagent-dispatch-guard/         # Task/subagent dispatch guard + Fable-subagent policy
 |   +-- lib/subagent-dispatch-guard.cjs
 |   +-- claude/   task-dispatch-guard.cjs, fable-subagent-guard.mjs
@@ -236,7 +244,8 @@ hooks/
 |   +-- pi/       task-dispatch-guard.ts (real file; `.pi/extensions/` re-exports it)
 |   +-- dsh/      task-dispatch-guard.mjs (real file; the DSH adapters folder symlinks to it)
 |   +-- opencode/ system-deep-loop-guard.js (browsability symlink -> .opencode/plugins/)
-|   `-- tests/    dsh-task-dispatch-guard.test.mjs
+|   +-- tests/    dsh-task-dispatch-guard.test.mjs
+|   `-- vibe/     deep-loop-guard.mjs (browsability symlink -> .vibe/plugins/repo-guards/)
 +-- session-lifecycle/              # skill-owned session-start adapters, plus the real Vibe adapters here
 |   `-- vibe/     session-start.mjs, turn-start.mjs, turn-end.mjs, compaction-context.mjs, compaction-post-tool.mjs, their tests, fixtures/
 +-- session-handover/              # Claude, Pi, OpenCode, Codex and Vibe context nudge and relaunch adapters
@@ -265,6 +274,8 @@ hooks/
 The tree above shows only the concerns whose real code lives in this hub. Every skill-owned concern is also present as per-runtime symlinks under `<concern>/<runtime>/`, with the real code in the owning skill. `session-lifecycle/` is one of those for Claude, Codex, Cursor, Devin, Pi and DSH, but its `vibe/` folder holds real adapters here.
 
 Most link-only folders point into a skill: `completion-evidence/`, `directive-lifecycle/`, `dist-freshness/`, `git-message-gate/`, `git-preflight/`, `permission-policy/`, `session-lifecycle/`, `skill-advisor/` and `spec-gate/`. `codex-global-hooks-check/`, `git-hooks-check/`, `git-live-follow/`, `git-primary-reconcile/` and `git-worktree-guard/` point into `.skilled/bin/`. `session-cleanup/` points into `.skilled/scripts/`. Most folders also hold an `opencode/` link into `.opencode/plugins/`.
+
+Vibe's guard scripts take the OpenCode direction too. `.vibe/hooks.toml` runs each one from `.vibe/plugins/repo-guards/`. So a concern's `vibe/` folder holds a relative symlink back to it, beside any real Vibe adapter that lives here. Among the skill-owned concerns, `spec-gate/vibe/`, `dist-freshness/vibe/`, `git-message-gate/vibe/` and `session-cleanup/vibe/` hold those links.
 
 The bin-backed concerns follow the same pattern. `git-live-follow/` and `git-primary-reconcile/` hold one symlink per runtime into `.skilled/bin/`, and the additional-hooks table below indexes them. `codex-global-hooks-check/` holds three links into `.skilled/bin/` and one into `.opencode/plugins/`. DSH's skill-owned adapters follow it too. `skill-advisor/dsh/`, `spec-gate/dsh/`, `session-lifecycle/dsh/`, `completion-evidence/dsh/`, `git-preflight/dsh/` and `git-message-gate/dsh/` hold index links to the real files in `system-skill-advisor/hooks/dsh/`, `system-spec-kit/runtime/hooks/dsh/` and `sk-git/scripts/hooks/dsh/`.
 
@@ -295,7 +306,7 @@ Node is not Pi's loader. It resolves a link to its real path before it resolves 
 | `task-dispatch` | claude, cursor, devin, pi (re-exported), dsh (symlinked) | `system-deep-loop-guard.js` |
 | `goal` | cursor, devin, pi (re-exported), dsh (`goal-context.mjs` and `goal-manage.mjs`, symlinked), plus `lib/` core and slice module + `bin/` manage CLI | `opencode-goal.js` |
 | `ask-surface` | claude (blocking Stop), codex and devin (advisory Stop), pi (re-exported from `.pi/extensions/`), dsh (symlinked from `.dsh/plugins/repo-guards/adapters/`), vibe (`post_agent`, loaded by `session-lifecycle/vibe/turn-end.mjs`), plus the `lib/` detector and its fixtures | `ask-surface-guard.js` |
-| `decision-capture` | claude and devin (PostToolUse), vibe (`post_tool` on `ask_user_question`), pi (re-exported from `.pi/extensions/`), dsh (symlinked from `.dsh/plugins/repo-guards/adapters/`), plus save-time sweeps in `bin/` that read the Claude, Devin, Pi and DSH sessions, Codex rollouts and OpenCode's SQLite store | `decision-capture.js` (no `opencode/` mirror in this tree) |
+| `decision-capture` | claude and devin (PostToolUse), vibe (`post_tool` on `ask_user_question`), pi (re-exported from `.pi/extensions/`), dsh (symlinked from `.dsh/plugins/repo-guards/adapters/`), plus save-time sweeps in `bin/` that read the Claude, Devin, Pi and DSH sessions, Codex rollouts and OpenCode's SQLite store | `decision-capture.js` |
 | session-handover | Claude: context-nudge on PostToolUse / UserPromptSubmit, stop-arm on Stop, compact-pointer on SessionStart after a compaction, and subagent-guard on PreToolUse (Bash and AskUserQuestion), which denies relaunch lifecycle commands run from a sub-agent and a question dialog over a pending hand-over. Pi: `message_end` / `before_agent_start` / `agent_end`. Codex: `handover-prompt-seed.mjs` on UserPromptSubmit, `handover-context-nudge.mjs` on PostToolUse, `handover-stop-arm.mjs` on Stop. Cursor, Devin and DSH run the `/speckit:handoff` command trigger only | `session-handover.js` (real OpenCode adapter) |
 
 `sk-git-preflight-advisory.js` and `cli-dispatch-audit.js` are OpenCode plugins owned by `sk-git` and `cli-opencode`. Both also import `cli-dispatch/lib/dispatch-rule-checks.mjs` and `cli-dispatch/lib/dispatch-audit.mjs` from here.

@@ -8,7 +8,7 @@ trigger_phrases:
   - "review release readiness validation"
 importance_tier: important
 contextType: implementation
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # Deep Review Completion Criteria
@@ -72,7 +72,7 @@ Each gate is binary: pass or block. STOP cannot be legal until every gate passes
 The release-readiness handoff is valid when:
 
 - The final report records stop reason, iteration count, dimension coverage, severity counts (P0/P1/P2), verdict (PASS / CONDITIONAL / FAIL), and release-readiness state (`in-progress`, `converged`, `release-blocking`).
-- Verdict logic matches: PASS = no P0/P1 findings (P2 advisories permitted with `hasAdvisories: true`). CONDITIONAL = P1 findings present with remediation plan. FAIL = any P0 confirmed after adversarial self-check, or a required quality gate (evidence, scope, coverage) still failing at the terminal stop.
+- Verdict logic matches: PASS = no P0/P1 findings and no open search debt (P2 advisories permitted with `hasAdvisories: true`). CONDITIONAL = P1 findings present with remediation plan, or open search debt as the only cause. FAIL = any P0 confirmed after adversarial self-check, or a required quality gate (evidence, scope, coverage) still failing at the terminal stop.
 - `resource-map.md` Phase-5 Augmentation section (if present) lists novel logic gaps with iteration source links, or explicitly records the empty-result case.
 - `skill_advisor.py "run a deep review loop" --threshold 0.8` still surfaces the skill after any graph-metadata edits.
 - `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict` exits 0 on the target spec folder.

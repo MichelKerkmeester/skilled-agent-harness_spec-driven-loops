@@ -34,6 +34,10 @@ The nudge reports the fill as `[session-handover] Context is about N% full.`. Ab
 
 A session with more work left does the handoff steps now, before any other work. A fresh session then continues before auto-compaction has to. The nudge gives the operator the last word. If the operator has told the session not to hand off, it skips the note, continuity save and prepare steps. It keeps working and leaves auto-compaction as the fallback.
 
+Two hooks can decide on one nudge at once. Claude Code and Codex run a hook per tool call in a parallel batch, and a prompt hook beside a tool hook. Vibe runs tool calls side by side. So the Claude, Codex and Vibe nudges deliver through `commitNudge` in `lib/nudge.cjs`.
+
+Only the hook that creates the session's claim file in the state directory delivers. It decides again under that claim before it writes the level, because a hook that delivered first has already written its own. A hook that finds the claim held stays quiet. A claim older than 10 seconds was left by a hook that died and is taken over.
+
 ### The Handoff Note
 
 The nudge names a handoff note under `.skilled/skills/.state/session-handover/handoffs/` and a prepare command. The path resolves under the repository that holds the concern. A runtime started in a subdirectory still writes under the repo root.
@@ -76,7 +80,7 @@ Inside the loop, a live child of the runtime process exits 2. That holds when it
 
 Any other child program is not detected. That includes a single simple command a tool shell replaces itself with. OpenCode runs `zsh -c 'sleep 45'` as a `sleep` child, so prepare goes ahead. `sleep 45; echo done` keeps the shell and is refused.
 
-Prepare does not walk every descendant of the runtime, because a background worker has left the runtime's process tree by the time `prepare` runs. The note's `Running workers:` line covers work the session started itself. On Claude, Codex, Pi and OpenCode, the arm withdrawal and the killer's idle wait keep such a turn from being cut off.
+Prepare does not walk every descendant of the runtime, because a background worker has left the runtime's process tree by the time `prepare` runs. The note's `Running workers:` line covers work the session started itself. On Claude, Codex, Pi, OpenCode and Vibe, the arm withdrawal and the killer's idle wait keep such a turn from being cut off.
 
 The runtime pid comes from `CLAUDE_PID` while that process descends from the loop. Otherwise the check resolves the runtime as the direct child of the loop on prepare's ancestor chain. Runtimes without the variable resolve the same way. When no runtime resolves, it logs `running-work-check-skipped` and skips. A shell that is prepare's own ancestor does not count.
 
@@ -152,13 +156,25 @@ OpenCode adds its active nudge to the system prompt on every request. It does so
 
 Codex reads the latest `token_count` record in the rollout named by the payload's `transcript_path`. It nudges through `additionalContext` on `PostToolUse`. Its `UserPromptSubmit` entry point handles seed prompts and runs the same nudge check, because Codex binds each script to one event. Its `Stop` adapter accepts only `hook_event_name: Stop` and passes `transcript_path` to the killer.
 
+Vibe reads fill from its journal. It nudges from `turn-start` on `pre_agent` and from `compaction-post-tool` on every `post_tool`, through the shared nudge claim. The `pre_agent` and `post_agent` hooks are registered for the `main` alias, which Vibe gives root sessions and forks, so a forked or rewound session keeps its hand-over. Only the unscoped `post_tool` path skips a payload with a `parent_session_id`.
+
+The first `turn-start` part withdraws an armed record before the slower parts run. It also records the session id for the loop, so `session-id --runtime vibe` can print it.
+
+`turn-end` on `post_agent` arms the record and hands the killer the session's whole `journal/` folder, because Vibe starts a new segment at the fold that ends the turn. The killer treats a folder as active while the folder or any numbered segment in it changes.
+
+A turn end that finds this session's pending record but cannot arm it marks the record deferred, so the next operator prompt withdraws it. After a compaction the Vibe part resets the nudge level, prints no claim pointer while a hop is pending, and sends the stale-note text for a withdrawn one.
+
 Codex runs its `SessionStart` hooks again with `source: compact` after it compacts a root session. That happens before the next model request. `codex/handover-compact-pointer.mjs` then resets the nudge level and points the session at its open note. For a withdrawn one it sends the stale-note text, as Claude's pointer does.
 
 ### A New Turn On An Armed Session
 
 Pi and OpenCode both withdraw an arm when the session they armed starts a new turn. The OpenCode killer runs without `--transcript`, so it only waits its idle time. The Pi killer watches the session file. Pi writes an assistant message only once it completes, so a turn that is still thinking looks idle. A turn the operator starts just after the arm would otherwise be signalled mid-turn.
 
-OpenCode disarms on a new user message and Pi on `agent_start`. Each goes through the shared withdraw helper, and only for an armed record whose `sessionId` is its own. The record ends `disarmed` with reason `user-message`. The session gets the extra nudge and the hop history lists the note as withdrawn. The plugin logs `arm-cancelled`, and the killer logs `killer-no-armed-record` and stands down.
+OpenCode disarms on a new user message and Pi on `agent_start`. Each goes through the shared withdraw helper, and only for a record whose `sessionId` is its own.
+
+That record is an armed one, or a pending one an arm event could not arm. When arming throws at `session.idle` or `agent_settled`, the plugin logs `session-idle-arm-error` or `agent-settled-arm-error` with `stage=arm` and stamps `deferredAt` on the record. A pending record no arm event has reached yet is left alone.
+
+The record ends `disarmed` with reason `user-message`. The session gets the extra nudge and the hop history lists the note as withdrawn. The plugin logs `arm-cancelled`, and the killer logs `killer-no-armed-record` and stands down.
 
 Both then tell the model, with the same withdrawn notice Claude and Codex send. A model that asked for the hand-over otherwise still expects to end and goes idle with nothing armed. Pi steers it into the run from `agent_start`, which Pi awaits before the run's first model call. OpenCode adds it to the system prompt of every request in that turn. That lasts until the next operator prompt or a compaction, whose stale-note text replaces it.
 
@@ -190,20 +206,57 @@ Inside the loop, no adapter nudges once `SKILLED_LOOP_HOPS` reaches `SESSION_HAN
 
 ## 3. HISTORY LOOKUP AFTER A CLAIM
 
-`claim` mints a history locator for the sending session with provenance source `handover`. It prints a `## History Lookup` section after the note body. It then prints the sentence `Use it for a detail this note does not spell out, before you guess.`
+A handoff note holds what the sender chose to write down. The history lookup lets the receiver read the sender's own earlier turns for a detail the note left out. That detail can be an exact code, a path or a figure, which the receiver would otherwise guess.
 
-The section names one read-only command, `node .skilled/hooks/session-handover/bin/history-lookup.mjs --session <id> --handle <hl1_...> <operation> <json>`. That command searches, browses, loads and pages the sender's earlier turns. Replies are capped and read-only.
+### What The Claim Prints
 
-Only Claude Code and Codex senders get a locator. The section is withheld in these cases, among others:
+`claim` mints a history locator for the sending session with provenance source `handover`. It prints a `## History Lookup` section after the note body, then the sentence `Use it for a detail this note does not spell out, before you guess.`
 
-- The sender has no transcript.
-- The note names another runtime.
-- The sender ran in another checkout.
-- The runtime is not built.
+The section names one read-only command, `node .skilled/hooks/session-handover/bin/history-lookup.mjs --session <id> --handle <hl1_...> <operation> <json>`. That command searches, browses, loads and pages the sender's earlier turns. It runs in a subshell that first moves to the checkout root, so it works from any subfolder. A locator from any sender other than Claude Code adds its runtime in front of the command, such as `SPECKIT_RUNTIME=codex` or `SPECKIT_RUNTIME=pi`.
 
-The claim then prints the note body, the `complete` line and any `Goal packet:` line, without the section.
+### When The Section Is Printed
 
-A locator is fresh for 30 minutes from the claim. Search matches whole identifier parts, split on `-`, `.`, `/`, `:` and `_` and on case changes. A query matches whole word parts, so 'live' does not match 'delivery'.
+The claim mints a locator and prints the section only when all of these hold:
+
+1. The sender ran Claude Code, Codex, Vibe, Pi or OpenCode. The other runtimes have no handover locator. Pi and OpenCode keep no transcript file a handle could name. So the claim asks the same session reader the lookup uses, with the folder the note names, and mints only when that reader finds the session there. A session the store records for another folder is refused, as the lookup would refuse it.
+2. The sender's transcript exists in the runtime's own store. The claim finds it by session id and never takes a path from the note.
+3. The note's folder sits in the receiver's checkout, and so does the first folder the transcript records. This stops a note from pointing the lookup at another project's session.
+4. That checkout root holds the runnable entry and the engine's build. Without them the printed command could not run.
+5. The locator write persisted. A locator the state schema refuses, for example a session id too long to print, prints nothing.
+
+When any condition fails, the claim prints exactly what it printed before the lookup existed. A failed mint never fails the claim.
+
+### How The Locator Is Proven
+
+The locator is saved in the sender's hook state, keyed by the checkout root. Its handle, `hl1_` plus 32 hex characters, is a digest of the locator's fields and the transcript's path, so a model cannot write a handle that works. On every call the engine re-reads the saved locator. It checks the session, the handle, the runtime and the working folder against it. It then finds the transcript and re-derives the digest from it before it answers.
+
+A locator is fresh for 30 minutes from the claim. A note may be claimed hours after it was prepared, so the claim mints a fresh locator every time rather than reusing an old one. A timestamp in the future counts as clock skew and is stale.
+
+### When The Command Refuses
+
+Every refusal prints one `{"ok":false,"code":"<code>"}` line and exits 2. The codes a receiver is most likely to meet:
+
+- `locator_stale`: more than 30 minutes passed since the claim.
+- `workspace_mismatch`: the command ran outside the checkout that minted the locator.
+- `store_unreadable`: the runtime's transcript store is missing or could not be read.
+- `core_unavailable`: the entry could not load the engine's build, so the engine needs a build, as the README's VALIDATION section shows.
+
+The history engine's README lists all 22 codes.
+
+### Why Only The Claim Offers It
+
+The lookup used to be offered after a compaction, and the locator used to be minted at `prepare`. Both are gone:
+
+- Receivers never ran the lookup when only a compaction offered it: 0 of 6 counted runs tried it, and none recovered the detail. With the section printed at the claim, 6 of 6 ran it.
+- A locator minted at `prepare` is often stale by the time the note is claimed, and the claim mints a fresh one anyway. The operator chose to drop the `prepare` mint for that reason.
+
+In a hop-recall test the sender saw a code the note did not hold, and the receiver was asked for it. Before the change, 0 of 6 receivers recovered it. After the claim offer, and after a fix to the shared Claude transcript reader, 3 of 3 answered correctly. That is six counted runs per side, on one runtime, one model and one kind of detail. A wider measurement on Claude Code, Codex and Vibe is planned, not yet run.
+
+### Where The Engine Lives
+
+The engine is the [`history/`](./history/README.md) package in this folder: TypeScript source in `history/lib/`, its build in `history/dist/` and its suites in `history/tests/`. It reads the hook state that the spec-kit runtime compiles, so the runtime builds first. Its README covers the four operations, the reply budgets, the search rules and every refusal code.
+
+Search matches whole identifier parts, split on `-`, `.`, `/`, `:` and `_` and on case changes. A query matches whole word parts, so 'live' does not match 'delivery'.
 
 ---
 

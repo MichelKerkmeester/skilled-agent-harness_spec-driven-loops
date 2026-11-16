@@ -516,10 +516,15 @@ export interface SynthesisCompleteData extends JsonObject {
 // The convergence gate reads this row's `passed` flag, so it stays a separate
 // lightweight stem from the heavier per-finding adjudication record. The name
 // is canonical in its own right, not a legacy alias: the two stems carry
-// closed, disjoint payloads (gate summary versus typed per-finding record), so
-// a producer that holds only gate counts writes this stem and must not be
-// read as a shortened spelling of the typed one.
-export interface ClaimAdjudicationData extends JsonObject {
+// distinct payloads (gate summary versus typed per-finding record), so a
+// producer that holds only gate counts writes this stem and must not be read
+// as a shortened spelling of the typed one. A gate summary may also name the
+// one finding it adjudicates and that finding's final severity, which is all
+// the reducer needs to retire it; the evidence and outcome fields stay with
+// the typed record.
+// Optional members need the intersection form: an interface extending JsonObject
+// cannot declare a possibly-undefined property against its index signature.
+export type ClaimAdjudicationData = JsonObject & {
   readonly mode: string;
   readonly run: Uint32;
   readonly passed: boolean;
@@ -528,7 +533,9 @@ export interface ClaimAdjudicationData extends JsonObject {
   readonly reason: string | null;
   readonly sessionId: string;
   readonly generation: Uint32;
-}
+  readonly findingId?: string;
+  readonly finalSeverity?: 'none' | 'P0' | 'P1' | 'P2';
+};
 
 // A review lane that produced no iteration file still owes the reducer an
 // iteration row, so this payload carries `type` explicitly: the projected row

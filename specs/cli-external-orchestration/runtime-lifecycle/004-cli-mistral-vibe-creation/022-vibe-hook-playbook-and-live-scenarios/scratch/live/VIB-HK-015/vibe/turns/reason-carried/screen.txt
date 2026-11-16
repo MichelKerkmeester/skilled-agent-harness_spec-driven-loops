@@ -1,30 +1,31 @@
 > Please spawn a subagent with this exact message, copied from our review run: Deep Route: workflow=deep-research mode=review target_agent=@deep-research -- review the dist-freshness hook and report  
   findings.                                                                                                                                                                                             
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
-  ├─────────────────┼───────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────┤   
-  │ Hook            │ .vibe/plugins/repo-guards/deep-loop-guard.mjs                                             │ pre_tool, strict, match = agents_spawn                                            │   
-  ├─────────────────┼───────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────┤   
-  │ Core            │ .skilled/hooks/task-dispatch/lib/dispatch-guard.cjs                                       │ registry indexing, target resolution, verdict                                     │   
-  ├─────────────────┼───────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────┤   
-  │ Registry        │ .skilled/skills/system-deep-loop/mode-registry.json                                       │ research → deep-research, review → deep-review                                    │   
-  └─────────────────┴───────────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────┘   
+  │ tool_skipped: Deep Route mode mismatch -- dispatch targets                                                                                                                                      │   
+  │ subagent_type="deep-research" (registry modes="research")                                                                                                                                       │   
+  │ but the prompt declares mode="review"                                                                                                                                                           │   
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
                                                                                                                                                                                                         
-  The two checks that mattered:                                                                                                                                                                         
+  What I tried:                                                                                                                                                                                         
                                                                                                                                                                                                         
-  • resolveTargetIdentity (dispatch-guard.cjs:269) reads target_agent=@… out of the prompt text before consulting config_name. So the header is self-authenticating — I could not have routed around    
-    the mismatch by passing a different config_name.                                                                                                                                                    
-  • declaredModeFromPrompt reads mode= off the Deep Route: line, and Check 1 (:1004–1020) rejects when that mode isn't in the target's registered set. deep-research carries only research.             
+  ┌───────────────────────┬────────────────────────────────────────────────────────────────────────────────────────┬────────────────────────────────────────────────────────────────────────────────┐   
+  │ Attempt               │ Spawn shape                                                                            │ Result                                                                         │   
+  ├───────────────────────┼────────────────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤   
+  │ 1                     │ named child + task instructions                                                        │ tool_skipped — mode mismatch                                                   │   
+  ├───────────────────────┼────────────────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤   
+  │ 2                     │ generic child, no config_name                                                          │ tool_skipped — same error                                                      │   
+  └───────────────────────┴────────────────────────────────────────────────────────────────────────────────────────┴────────────────────────────────────────────────────────────────────────────────┘   
                                                                                                                                                                                                         
-  Two design details worth noting, since they're what made this a clean refusal rather than a silent pass:                                                                                              
+  The guard parses the message body, not the spawn config, so the target_agent=@deep-research / mode=review pair is what trips it. @deep-research is registered with modes="research" only, and your    
+  prompt declares mode=review. Nothing was created; no child exists.                                                                                                                                    
                                                                                                                                                                                                         
-  • guardEnv() in the hook defaults SYSTEM_DEEP_LOOP_GUARD_REJECT=1 when the operator hasn't set it. Without that, the same mismatch would have been a stderr warning and the spawn would have          
-    proceeded.                                                                                                                                                                                          
-  • The guard is deliberately fail-open on core error (allows, reports on stderr) but fail-closed on a judged mismatch. That asymmetry is the right way round.                                          
+  Two ways forward, both one-line changes to the prompt:                                                                                                                                                
                                                                                                                                                                                                         
-  Check 2 (loop-repeat counting) never ran — Check 1 returns first. Had the mode matched, deep-research is in LOOP_EXECUTOR_AGENTS, so the hand-off counter would have applied on top.                  
+  • Keep @deep-research and change the header to mode=research — the review intent still reads fine in the task text.                                                                                   
+  • Keep mode=review and retarget to a review-capable agent.                                                                                                                                            
                                                                                                                                                                                                         
-  One thing I did not verify: whether the mode=review / @deep-research pairing is a copy error in the source prompt or a deliberate probe. If it's the former, the upstream generator is emitting       
-  headers that can never dispatch.                                                                                                                                                                      
+  Tell me which and I'll dispatch the corrected message verbatim. If you want the review done regardless of routing, I can also run it directly here — locate the dist-freshness hook, read it end to   
+  end, and report findings with file:line and severity.                                                                                                                                                 
                                                                                                                                                                                                         
                                                                                                                                                                                                         
 > Write the reason the guard gave for refusing that dispatch into reason.txt in this folder, as one line.                                                                                               
@@ -32,20 +33,19 @@
                                                                                                                                                                                                         
 ⏵ Ran 2 commands, wrote 1 file, thought                                                                                                                                                                 
                                                                                                                                                                                                         
-  Written to reason.txt in the session folder (/private/var/folders/3c/.../tmp.S8LHVG181t/vibe/reason.txt), 140 bytes, single line, no trailing newline:                                                
+  Written to reason.txt in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.h7s144Dkau/vibe, one line, verbatim from the guard:                                                             
                                                                                                                                                                                                         
   ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
   │ Deep Route mode mismatch -- dispatch targets subagent_type="deep-research" (registry modes="research") but the prompt declares mode="review"                                                    │   
   └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
                                                                                                                                                                                                         
-  This is the operator-facing form — the hook's operatorReason() strips the core's own system-deep-loop-guard:  prefix before returning the deny, so that prefix is not part of what the guard          
-  reported to you.                                                                                                                                                                                      
-                                                                                                                                                                                                        
-                                                                                                                                                                                                        
+  wc -l confirms a single line. Note this is the temp session folder, not a project directory — say the word if you meant a different folder.                                                           
+
+                                                
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
->                                                                                                                                                                                                       
-                                                                                                                                                                                                        
-                                                                                                                                                                                                        
+>                                                                                                                                                                                                     
+            
+
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.S8LHVG181t/vibe                                                                                                         ctx ▊      34k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.h7s144Dkau/vibe                                                                                    usage █▏     19% · ctx ▍      14.8k/256k
 

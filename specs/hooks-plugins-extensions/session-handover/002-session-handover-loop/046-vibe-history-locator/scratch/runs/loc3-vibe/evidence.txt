@@ -1,0 +1,14 @@
+run loc3-vibe
+session 718d496c-08fc-e746-c781-12d7d975b3aa title: Session handover README task
+   7 history-lookup.mjs --session '718d496c-08fc-e746-c781-12d7d975b3aa' --handle 'hl1_9d1ef8c40a45303d7144a86b6d54f796' browse
+  18 history-lookup.mjs --session '718d496c-08fc-e746-c781-12d7d975b3aa' --handle 'hl1_9d1ef8c40a45303d7144a86b6d54f796' load
+  18 history-lookup.mjs --session '718d496c-08fc-e746-c781-12d7d975b3aa' --handle 'hl1_9d1ef8c40a45303d7144a86b6d54f796' search
+  11 history-lookup.mjs --session <id> --handle <hl1_...> 
+History Lookup mentions: 33
+lookup refusals: 12
+session fdde88d6-8695-6966-a72f-ba832028f0c8 title: Session handover claim and verification
+   7 history-lookup.mjs --session '718d496c-08fc-e746-c781-12d7d975b3aa' --handle 'hl1_9d1ef8c40a45303d7144a86b6d54f796' browse
+  18 history-lookup.mjs --session '718d496c-08fc-e746-c781-12d7d975b3aa' --handle 'hl1_9d1ef8c40a45303d7144a86b6d54f796' load
+  18 history-lookup.mjs --session '718d496c-08fc-e746-c781-12d7d975b3aa' --handle 'hl1_9d1ef8c40a45303d7144a86b6d54f796' search
+History Lookup mentions: 7
+lookup refusals: 0

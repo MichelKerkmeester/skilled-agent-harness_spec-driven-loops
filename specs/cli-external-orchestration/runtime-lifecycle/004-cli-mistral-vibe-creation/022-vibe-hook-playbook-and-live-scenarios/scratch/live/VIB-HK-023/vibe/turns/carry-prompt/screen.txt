@@ -1,51 +1,51 @@
 > Use the sk-prompt skill to turn this rough request into a structured prompt for a coding agent: make the build faster.                                                                                
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
-  │ 6 Output format                      │ present               │ Seven ordered sections, tables named                                                                                             │   
-  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 7 Examples                           │ not needed            │ No format ambiguity to demonstrate                                                                                               │   
-  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 8 Success criteria                   │ present               │ Same-method delta, clean-cache parity, checks still pass                                                                         │   
-  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 9 Assumptions                        │ present               │ Moved to open items, not embedded in the prompt                                                                                  │   
-  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 10 Wording                           │ present               │ Reasons given instead of capitals; no CRITICAL/MUST                                                                              │   
-  └──────────────────────────────────────┴───────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+  • The primary build command is measurably faster, and someone else can reproduce the measurement.                                                                                                     
+  • Tests pass and build outputs are unchanged.                                                                                                                                                         
+  • Every change is revertible on its own.                                                                                                                                                              
+  • No comment contains a ticket ID or spec path.                                                                                                                                                       
                                                                                                                                                                                                         
-  CLEAR: 44/50 (C:9 L:9 E:13 A:9 R:4) — passes 40 and every per-dimension floor. Correctness and logic hold because the measure-profile-remeasure loop closes and the cold/warm and install-dominated   
-  cases are handled. Expression loses points for length; reusability loses one because the build target is described rather than parameterized.                                                         
+  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────   
+                                                                                                                                                                                                        
+  CLEAR: 44/50 (C:9 L:9 E:13 A:9 R:4) — passes the 40 threshold and every dimension floor. Correctness and logic score high because the priority order resolves the speed-versus-output conflict        
+  explicitly; reusability is capped at 4 because the prompt is repo-bound with no marked parameters. Quick test: NOT RUN — no target model available to compare old against new.                        
+                                                                                                                                                                                                        
+  Open items                                                                                                                                                                                            
+                                                                                                                                                                                                        
+   1. Build system left unnamed on purpose; the prompt makes discovery step one rather than assuming npm, cargo or gradle.                                                                              
+   2. No numeric target. If you have one ("under 2 minutes", "30% faster"), add it — it changes when the agent stops.                                                                                   
+   3. Assumed the local developer build is the target. If CI is the target, say so: the levers differ (caching, parallelism, runner size).                                                              
+   4. Assumed output-preserving optimization is acceptable. If you would trade a small output change for speed, the priority order needs editing.                                                       
+   5. Assumed the comment-hygiene directive applies to this repo's pre-commit gate as stated in the session directives.                                                                                 
+   6. Growth is roughly 5 words to 430. That is inherent — the source named no outcome — but if you want a shorter dispatch, drop Process and Output and keep Task, Constraints and Success criteria.   
                                                                                                                                                                                                         
   Change report                                                                                                                                                                                         
                                                                                                                                                                                                         
-  • Added — task outcome, read-first context, five-step process, seven constraints with a stated priority order, seven-section output contract, success criteria, three edge cases.                     
-  • Changed — "make the build faster" became a measured, evidence-gated loop rather than an open-ended optimization request.                                                                            
-  • Removed — nothing; the original carried no content to remove.                                                                                                                                       
-  • Skipped — examples (row 7), since no output format needed demonstrating.                                                                                                                            
-  • Quick test: NOT RUN — no target model available to run representative inputs old versus new.                                                                                                        
-                                                                                                                                                                                                        
-  The prompt is roughly 40x the original four words. That growth is inherent: the original carried no task detail, so every component had to be supplied rather than expanded.                          
+  • Added — measurable outcome, priority order, baseline-first rule, one-change-per-commit rule, stop condition, output schema, success criteria, and the comment-hygiene hard block.                   
+  • Changed — "make the build faster" became a measured reduction with a discovery step in front of it.                                                                                                ▄
+  • Removed — nothing; the source carried no material to contradict.                                                                                                                                    
+  • Skipped — examples (row 7): no representative build to show, and a fabricated one would teach the wrong shape. TIDD-EC preset: the default skeleton already carries the do's and don'ts without     
+    the extra scaffolding.                                                                                                                                                                              
                                                                                                                                                                                                         
                                                                                                                                                                                                         
 > Write the structured prompt you just produced into prompt.md in this folder.                                                                                                                          
-───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────▃
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
                                                                                                                                                                                                         
 ⏵ Ran 2 commands, wrote 1 file, thought                                                                                                                                                                 
                                                                                                                                                                                                         
-  Written to prompt.md in the session folder:                                                                                                                                                           
+  Written to prompt.md in the session folder (/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ksi9kslcBU/vibe/prompt.md) — 38 lines, 418 words.                                            
                                                                                                                                                                                                         
-  ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
-  │ /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.tQVPx0MZ1Q/vibe/prompt.md                                                                                                          │   
-  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+  It holds the prompt body only, ready to dispatch: no CLEAR score, no open items, no change report. Those stay in the conversation, since they describe the prompt rather than instruct the agent      
+  that receives it.                                                                                                                                                                                     
                                                                                                                                                                                                         
-  46 lines, 3520 bytes, seven sections (Task, Context, Process, Constraints, Output, Success criteria, Edge cases). It holds the prompt body only — no fence, no commentary — so it can be handed to    
-  a coding agent as-is.                                                                                                                                                                                 
-                                                                                                                                                                                                        
-  One thing to check: that folder is this session's temp directory, not your project. If you meant prompt.md in the repo you're working in, give me the path and I'll move it there.                    
+  Two things to settle before you hand it off, both from the open items: whether the target is the local developer build or CI, and whether you have a numeric goal. Without a number the agent stops   
+  when gains flatten, which may be later or earlier than you want.                                                                                                                                      
 
-                                                
+                                                 
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
 >   
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.tQVPx0MZ1Q/vibe                                                                                                       ctx ▉      36.1k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ksi9kslcBU/vibe                                                                                    usage █▌     24% · ctx ▊      32.8k/256k
 

@@ -4,7 +4,7 @@ description: "This scenario records whether a session that claims a handoff note
 trigger_phrases:
   - "hop recall baseline conversation"
   - "handoff recall baseline"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # hop-recall-baseline-conversation -- Hop recall baseline conversation
@@ -52,7 +52,7 @@ Operators run this scenario and [hop-recall-conversation](hop-recall-conversatio
 
 The conversation runner cannot drive a hop: its only turn actions are `restart` and `compact` (`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md` §3), and `restart` resumes the same session. This page is therefore an operator procedure built on the harness script, not a `json conversation` block.
 
-1. Confirm `tmux`, `node` and a logged-in Claude Code are available. The history CLI must exist before the run, because the harness moves it aside; if it is missing, build it with `cd .skilled/skills/system-spec-kit/runtime && npm run build`.
+1. Confirm `tmux`, `node` and a logged-in Claude Code are available. The history CLI must exist before the run, because the harness moves it aside; if it is missing, build it with `npm --prefix .skilled/hooks/session-handover/history run build`.
 2. Run the arm from the repository root with a label that names the runtime and the attempt, for example `baseline claude-1`. The harness captures the pane every 5 seconds, answers the folder-trust and hook-review dialogs itself, and prints nothing until the run ends.
 3. Wait for the observed line. The default bound is 540 seconds; pass a third argument to change it.
 4. Read `result.json` and `pane.txt` under `scratch/runs/<arm>-<label>/` before writing a row. `result.json` holds the sender and receiver session ids, the note name and status, `sender_saw_code`, the answer, the three signals, `cliReappeared` and the receiver's last reply.
@@ -73,7 +73,7 @@ The conversation runner cannot drive a hop: its only turn actions are `restart` 
 4. The harness leaves its run under `scratch/runs/<arm>-<label>/`. It starts the sender with `--model sonnet --effort medium` and the tmux session name `hoprecall-<arm>-<label>`.
 5. After an interrupted baseline run, restore the CLI by hand. The harness restores it on exit, but a SIGKILL skips the trap:
    ```bash
-   mv specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/runs/baseline-<label>/cli.js.hidden .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js
+   mv specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/runs/baseline-<label>/cli.js.hidden .skilled/hooks/session-handover/history/dist/cli.js
    ```
 
 ### Expected
@@ -91,7 +91,7 @@ The harness leaves `scratch/runs/<arm>-<label>/` holding `pane.txt` (the capture
 
 ### Failure Triage
 
-1. **The CLI reappeared in the baseline arm.** `cliReappeared=1` in `result.json`, or the observed line reads `counted=0` with the CLI back on disk. The harness moves `cli.js` to `cli.js.hidden` before launch and restores it on exit; a build, another arm or a hook that rebuilds the runtime can put it back. Confirm with `test -f .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js`; the run is not counted, and the pair must be rerun one arm at a time.
+1. **The CLI reappeared in the baseline arm.** `cliReappeared=1` in `result.json`, or the observed line reads `counted=0` with the CLI back on disk. The harness moves `cli.js` to `cli.js.hidden` before launch and restores it on exit; a build, another arm or a hook that rebuilds the history engine can put it back. Confirm with `test -f .skilled/hooks/session-handover/history/dist/cli.js`; the run is not counted, and the pair must be rerun one arm at a time.
 2. **The hop never happened.** `result.json` has no `receiver`, or `note_status` stays `open` or `pending`. Read `relaunch.log` for `prepare-declined`, `killer-timeout`, `killer-hop-cap` or `should-relaunch`; confirm the sender ran under `skilled-loop` and that `SYSTEM_SESSION_HANDOVER_ENABLED=1` reached it. The harness sets the flag, so a missing hop is usually a hook that did not fire or a note that never armed.
 3. **The note leaked the code.** `note_leaked=1` means the note holds `PDSNMMBW`; the run is not counted. Read `note.md` and the sender's `pane.txt` to see whether the sender wrote the code into Goal, Done, Remaining work or In-flight state. Rerun with a fresh label.
 4. **The question was never asked.** `asked=0` in `result.json` means the note never reached `claimed` before the timeout. Inspect the receiver's pane and the note status; a receiver that never claims leaves the question unasked, and the run is not counted.
@@ -145,7 +145,7 @@ Pi, OpenCode and Codex are optional follow-ups after Claude Code. They need `SYS
 | `specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/hop-recall.sh` | Runs one arm: hides the CLI, generates the codes, starts the sender, waits for the claim, asks the question, prints the observed line |
 | `specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/analyze.py` | Scores one run from the Claude transcripts and the handoff note |
 | `.skilled/hooks/session-handover/handoff-protocol.md` | The handoff protocol, the claim seed and the four note sections |
-| `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/README.md` | The lookup CLI, its locator and its refusal codes |
+| `.skilled/hooks/session-handover/history/README.md` | The lookup CLI, its locator and its refusal codes |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md` | The runner's turn actions, which exclude a hop |
 
 Provenance: manual only - a live hop in tmux, driven by the harness script, with the observed line written by hand into the table

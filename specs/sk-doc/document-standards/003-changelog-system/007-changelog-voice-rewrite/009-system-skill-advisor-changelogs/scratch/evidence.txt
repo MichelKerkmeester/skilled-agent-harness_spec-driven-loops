@@ -1,0 +1,29 @@
+## list
+lists/009.txt lines: 74
+## measure before (HEAD text of the 73 queued files)
+files=73 sentences=1341 avg_words=13.4
+sentences_over_15=432 sentences_over_22=193
+files_with_a_sentence_over_22=54 files_with_hvr_hard_blockers=4
+## measure after
+files=73 sentences=2086 avg_words=8.8
+sentences_over_15=67 sentences_over_22=0
+files_with_a_sentence_over_22=0 files_with_hvr_hard_blockers=0
+## wave 009 driver
+2026-11-15T17:57:48.695Z finished pass=64 restored=1 unchanged=8
+driver exit=0
+## wave 009 restored file
+.skilled/skills/system-skill-advisor/changelog/v0.17.11.0.md
+## wave 009-retry driver
+2026-11-15T17:58:31.933Z finished pass=1 restored=0 unchanged=0
+driver exit=0
+## wave-verify
+{"listed":74,"keep":65,"restored":8,"missing":0,"problems":1}
+PROBLEM .skilled/skills/system-skill-advisor/changelog/v0.17.17.0.md: the saved original is not the file at HEAD
+## pilot file against HEAD
+git diff --quiet exit=0
+## changed notes in worktree
+65
+## tokens
+waves 009 and 009-retry worker plus verifier input and output: 3092918
+## first-wave findings of the restored file
+fact check changed (correct it): The original says the numbers moved *through* the age discount, and the fixed date prevents that. The rewrite says they do not m || fact check changed (correct it): “It skipped the workflow it asked for” makes the actor ambiguous; the original clearly says the caller skipped the workflow. || fact check changed (correct it): The original links the CLI hub routing to both outcomes: the caller “ran the executor and skipped the workflow.” In the rewrite,

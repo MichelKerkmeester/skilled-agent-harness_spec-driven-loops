@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/030-review-count-source",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/030-review-count-source",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review count source",
+      "phase 30 review count source",
+      "review count source plan",
+      "review count source tasks",
+      "review count source implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "count",
+      "source",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "stepderiveverdict",
+      "skilled",
+      "commands",
+      "deep"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/commands/deep/assets/deep-review.yaml",
+      ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/synthesis-closeout-counts.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/synthesis-closeout-latest-record.vitest.ts",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-closeout.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-closeout-counts.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/synthesis-closeout-counts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-closeout-latest-record.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/synthesis-closeout-latest-record.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`stepderiveverdict` (.skilled/commands/deep/assets/deep-review.yaml) computes the verdict from the registry, but the report and the closeout use `activep0`, `activep1` and `activep2` from `stepbuildfindingregistry`, which the agent counts by hand and may lower in `stepadversarialselfcheck`",
+    "created_at": "2026-11-15T20:25:10Z",
+    "last_save_at": "2026-11-16T05:46:16.926Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:83a55fc562f8a95c7ca948f2bd4197ecf08b66ef1885110a8f56a2597f65d271",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "299713e8698a86a38c3d722f0cb9953a08aa9bb6d6dc3446f12fee57d946e58c",
+      "plan.md": "3bb696bcfcffa03236ba5b65d7875b6c19497cc12bb43a938c784cd8e45ea0dc",
+      "tasks.md": "2929fe130287b4b63e6b5d29c8b3cb1da296d6f3aaa0ad4e1aa59455bee52e46",
+      "implementation-summary.md": "064b466da3c34bcbd7dbd8be894ad4e80bc910d4ee5ea1bb9ef1031836a71dc1"
+    },
+    "last_active_at": null
+  }
+}

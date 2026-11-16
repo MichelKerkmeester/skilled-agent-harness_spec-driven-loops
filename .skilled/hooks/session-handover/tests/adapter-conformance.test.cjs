@@ -237,6 +237,7 @@ const ADAPTERS = {
       root,
     )),
     killerTarget: '60',
+    stampsDeferred: true,
     arm: async ({ env, root }, { cwd, processTable }) => {
       const spawns = [];
       const { armPendingRecord } = await importAdapter('codex', 'handover-stop-arm.mjs');
@@ -410,8 +411,8 @@ function assertUntouched({ record, before, spawns }) {
   assert.deepEqual(spawns, []);
 }
 
-// A Stop that cannot arm leaves the record pending. Claude stamps the record it parked so a
-// prompt can withdraw it, and Codex does not stamp yet, so the table says which to expect.
+// A Stop that cannot arm leaves the record pending. Claude and Codex stamp the record they
+// parked so a prompt can withdraw it, and the table says which runtimes stamp.
 // Every other field must still match the record before.
 function assertStillPending({ record, before, spawns }, adapter) {
   const { deferredAt, ...unmarked } = record;

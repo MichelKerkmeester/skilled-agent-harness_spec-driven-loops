@@ -4,34 +4,35 @@ One row per hook scenario this phase owns. `Runner row` is the `vibe` row of the
 
 | Scenario | Title | Verdict | Runner row | Evidence |
 |---|---|---|---|---|
-| VIB-HK-001 | Spec gate classify opens the gate for an unbound write request | PASS | PASS 2/2 | `scratch/live/VIB-HK-001/matrix.md` |
-| VIB-HK-002 | Strict spec gate refuses the first write while the gate is open | PASS | PASS 3/3 | `scratch/live/VIB-HK-002/matrix.md` |
-| VIB-HK-003 | Turn-start advisor adds the skill advisor brief once | PASS | PASS 2/2 | `scratch/live/VIB-HK-003/matrix.md` |
-| VIB-HK-004 | Turn-start delivers the turn-end completion advisory once | PASS | PASS 2/2 | `scratch/live/VIB-HK-004/matrix.md` |
-| VIB-HK-005 | Turn start raises the save nudge for a captured answer | PASS | PASS 2/2 | `scratch/live/VIB-HK-005/matrix.md` |
-| VIB-HK-006 | Turn start re-injects the goal slice after a compaction | PASS | PASS 4/4 | `scratch/live/VIB-HK-006/matrix.md` |
-| VIB-HK-007 | A mid-turn compaction re-injects at the next tool call | PASS | PASS 3/3 | `scratch/live/VIB-HK-007/matrix.md` |
-| VIB-HK-008 | Turn end sends a prose option menu back once | PASS | PASS 2/2 | `scratch/live/VIB-HK-008/matrix.md` |
-| VIB-HK-009 | Turn-end leaves a completion advisory and never blocks | PASS | PASS 3/3 | `scratch/live/VIB-HK-009/matrix.md` |
-| VIB-HK-010 | Env secret guard refuses a dotenv read | PASS | PASS 3/3 | `scratch/live/VIB-HK-010/matrix.md` |
-| VIB-HK-011 | Dispatch preflight refuses a dispatch that breaks a hard rule | PASS | PASS 3/3 | `scratch/live/VIB-HK-011/matrix.md` |
-| VIB-HK-012 | Overlay guard refuses a write an overlay owns | PASS | PASS 2/2 | `scratch/live/VIB-HK-012/matrix.md` |
-| VIB-HK-013 | MCP route guard refuses a native call with a Code Mode manual | PASS | PASS 3/3 | `scratch/live/VIB-HK-013/matrix.md` |
-| VIB-HK-014 | Git message gate refuses a bad commit message | PASS | PASS 3/3 | `scratch/live/VIB-HK-014/matrix.md` |
-| VIB-HK-015 | Deep-loop guard refuses a dispatch whose mode disagrees with the registry | PASS | PASS 3/3 | `scratch/live/VIB-HK-015/matrix.md` |
-| VIB-HK-016 | Post-edit quality returns a comment-hygiene finding in the tool result | PASS | PASS 3/3 | `scratch/live/VIB-HK-016/matrix.md` |
-| VIB-HK-017 | Dist freshness warns when an edit leaves a watched package's build behind | PASS | PASS 3/3 | `scratch/live/VIB-HK-017/matrix.md` |
-| VIB-HK-018 | Dist freshness warns when a spec validation command trusts a stale build | PASS | PASS 2/2 | `scratch/live/VIB-HK-018/matrix.md` |
-| VIB-HK-019 | Injection screen appends its advisory to a fetched page that reads as instructions | PASS | PASS 2/2 | `scratch/live/VIB-HK-019/matrix.md` |
-| VIB-HK-020 | An answered question becomes one decision record | PASS | PASS 2/2 | `scratch/live/VIB-HK-020/matrix.md` |
-| VIB-HK-021 | Session cleanup writes its log line when the session closes | PASS | PASS 3/3 | `scratch/live/VIB-HK-021/matrix.md` |
-| VIB-HK-022 | Rendered home hooks bind every repository hook | PASS | PASS 3/3 | `scratch/live/VIB-HK-022/matrix.md` |
-| VIB-HK-023 | A request that needs a repository skill loads it from the .vibe/skills mirror | PASS | PASS 3/3 | `scratch/live/VIB-HK-023/matrix.md` |
-| VIB-HK-024 | A request that needs a repository agent spawns it from the .vibe/agents mirror | PASS | PASS 3/3 | `scratch/live/VIB-HK-024/matrix.md` |
-| VIB-HK-025 | A mirrored prompt from .vibe/prompts runs by name | PASS | PASS 2/2 | `scratch/live/VIB-HK-025/matrix.md` |
+| VIB-HK-001 | Spec gate classify opens the gate for an unbound write request | PASS (`deepseek-flash`, 21:21 UTC) | PASS 2/2 | `scratch/live/VIB-HK-001/matrix.md` |
+| VIB-HK-002 | Strict spec gate refuses the first write while the gate is open | PASS (`deepseek-flash`, 20:34 UTC) | PASS 3/3 | `scratch/live/VIB-HK-002/matrix.md` |
+| VIB-HK-003 | Turn-start advisor adds the skill advisor brief once | PASS (`deepseek-flash`, 19:40 UTC) | PASS 2/2 | `scratch/live/VIB-HK-003/matrix.md` |
+| VIB-HK-004 | Turn-start delivers the turn-end completion advisory once | PASS (`deepseek-flash`, 19:42 UTC) | PASS 2/2 | `scratch/live/VIB-HK-004/matrix.md` |
+| VIB-HK-005 | Turn start raises the save nudge for a captured answer | PASS (`deepseek-flash`, 19:43 UTC) | PASS 2/2 | `scratch/live/VIB-HK-005/matrix.md` |
+| VIB-HK-006 | Turn start re-injects the goal slice after a compaction | PASS (`deepseek-flash`, 19:54 UTC) | PASS 3/3 | `scratch/live/VIB-HK-006/matrix.md` |
+| VIB-HK-007 | A mid-turn compaction re-injects at the next tool call | PASS (`compaction-probe`, 19:52 UTC) | PASS 3/3 | `scratch/live/VIB-HK-007/matrix.md` |
+| VIB-HK-008 | Turn end sends a prose option menu back once | PASS (`deepseek-flash`, 20:37 UTC) | PASS 2/2 | `scratch/live/VIB-HK-008/matrix.md` |
+| VIB-HK-009 | Turn-end leaves a completion advisory and never blocks | PASS (`deepseek-flash`, 20:38 UTC) | PASS 3/3 | `scratch/live/VIB-HK-009/matrix.md` |
+| VIB-HK-010 | Env secret guard refuses a dotenv read | PASS (`deepseek-flash`, 20:40 UTC) | PASS 3/3 | `scratch/live/VIB-HK-010/matrix.md` |
+| VIB-HK-011 | Dispatch preflight refuses a dispatch that breaks a hard rule | PASS (`deepseek-flash`, 20:43 UTC) | PASS 3/3 | `scratch/live/VIB-HK-011/matrix.md` |
+| VIB-HK-012 | Overlay guard refuses a write an overlay owns | PASS (`deepseek-flash`, 21:23 UTC) | PASS 2/2 | `scratch/live/VIB-HK-012/matrix.md` |
+| VIB-HK-013 | MCP route guard refuses a native call with a Code Mode manual | PASS (`deepseek-flash`, 20:53 UTC) | PASS 3/3 | `scratch/live/VIB-HK-013/matrix.md` |
+| VIB-HK-014 | Git message gate refuses a bad commit message | PASS (`deepseek-flash`, 20:55 UTC) | PASS 3/3 | `scratch/live/VIB-HK-014/matrix.md` |
+| VIB-HK-015 | Deep-loop guard refuses a dispatch whose mode disagrees with the registry | PASS (`deepseek-flash`, 20:57 UTC) | PASS 3/3 | `scratch/live/VIB-HK-015/matrix.md` |
+| VIB-HK-016 | Post-edit quality returns a comment-hygiene finding in the tool result | PASS (`deepseek-flash`, 20:58 UTC) | PASS 3/3 | `scratch/live/VIB-HK-016/matrix.md` |
+| VIB-HK-017 | Dist freshness warns when an edit leaves a watched package's build behind | PASS (`deepseek-flash`, 21:00 UTC) | PASS 3/3 | `scratch/live/VIB-HK-017/matrix.md` |
+| VIB-HK-018 | Dist freshness warns when a spec validation command trusts a stale build | PASS (`deepseek-flash`, 21:02 UTC) | PASS 2/2 | `scratch/live/VIB-HK-018/matrix.md` |
+| VIB-HK-019 | Injection screen appends its advisory to a fetched page that reads as instructions | PASS (`deepseek-flash`, 21:03 UTC) | PASS 2/2 | `scratch/live/VIB-HK-019/matrix.md` |
+| VIB-HK-020 | An answered question becomes one decision record | PASS (`deepseek-flash`, 21:05 UTC) | PASS 2/2 | `scratch/live/VIB-HK-020/matrix.md` |
+| VIB-HK-021 | Session cleanup writes its log line when the session closes | PASS (`deepseek-flash`, 21:07 UTC) | PASS 3/3 | `scratch/live/VIB-HK-021/matrix.md` |
+| VIB-HK-022 | Rendered home hooks bind every repository hook | PASS (`deepseek-flash`, 21:25 UTC) | PASS 3/3 | `scratch/live/VIB-HK-022/matrix.md` |
+| VIB-HK-023 | A request that needs a repository skill loads it from the .vibe/skills mirror | PASS (`deepseek-flash`, 21:11 UTC) | PASS 3/3 | `scratch/live/VIB-HK-023/matrix.md` |
+| VIB-HK-024 | A request that needs a repository agent spawns it from the .vibe/agents mirror | PASS (`deepseek-flash`, 21:14 UTC) | PASS 3/3 | `scratch/live/VIB-HK-024/matrix.md` |
+| VIB-HK-025 | A mirrored prompt from .vibe/prompts runs by name | PASS (`deepseek-flash`, 21:16 UTC) | PASS 2/2 | `scratch/live/VIB-HK-025/matrix.md` |
 | VIB-HK-026 | The manual relaunch tier hands off and a fresh session claims it | PASS | hand-driven hop | `scratch/live/VIB-HK-026/hop-record.md` |
+| VIB-HK-028 | The model loads the skill the turn-start advisor brief names | PASS (`deepseek-flash`, 21:17 UTC) | PASS 3/3 | `../023-vibe-review-remediation/scratch/live/VIB-HK-028/matrix.md` |
 
-Counts: 26 PASS, 0 OPERATOR-ONLY, 0 FAIL. 25 come from runner rows and 1 from the hand-driven hop.
+Counts: 27 PASS, 0 OPERATOR-ONLY, 0 FAIL. 26 come from runner rows and 1 from the hand-driven hop. Every runner row ran on 2026-11-15 after the merge of the Vibe hand-over hardening (`c96ff28ef4e`), with the model pinned and recorded in its `result.json`. VIB-HK-028 belongs to phase 023 and keeps its evidence there.
 
 Every runner scenario sends two or more user messages, and VIB-HK-026 spans two sessions. VIB-HK-021 and VIB-HK-022 also restart the session between their messages.
 
@@ -44,3 +45,9 @@ Every runner scenario sends two or more user messages, and VIB-HK-026 spans two 
 - VIB-HK-009, 010, 011, 014, 015, 016, 017, 021, 022 and 023 each gained a second sent turn on 2026-11-15. These are a second completion claim accepted with the advisory rewritten, a plain file read allowed after a dotenv refusal, an ordinary shell call allowed after a dispatch refusal, a `git status` that finds only a compliant commit, the refusal reason carried into a file, the hygiene finding cleared by the fix, no dist warning for an edit outside the package, the resumed session holding the earlier question, a dotenv refusal logged after the restart, and the skill's prompt carried into a file.
 - VIB-HK-014 and VIB-HK-017 failed their new turn on the first run, and both causes were in the scenario, not the hook. In VIB-HK-014 the model committed `a.txt` with a compliant message after the refusal, which the gate allows, so the check now accepts that branch. In VIB-HK-017 the model read "this folder" as the package's `src/`, so the prompt now names the project root. Both reruns passed 3/3.
 - VIB-HK-027, the automatic handover tier, came in with the merge of origin/main as `2d4fb4d0f92`. It belongs to the automatic handover work, not this phase, so it has no row here. The same merge cut VIB-HK-006 from four turns to three by dropping its history-offer turn. Its 4/4 row is from the four-turn version, which covered every turn the three-turn version checks.
+- After the 2026-11-15 review, the checks of VIB-HK-003, 009, 021, 022 and 024 were tightened. The first rerun stopped on `402 API budget exhausted` from Mistral. Once the shell exported the key the Vibe browser sign-in keeps in the keychain, which Mistral bills to the Vibe budget, VIB-HK-003's second turn needed the same optional question as its first, because the model asked which answer a repeated message meant. All five then passed live with the hardened checks, and the evidence in their folders is from that rerun (T104).
+- After the automatic hand-over tier changed `turn-start.mjs`, `turn-end.mjs` and `compaction-post-tool.mjs`, a rerun of VIB-HK-005, 006 and 007 failed, each for a cause in the scenario or the runner: HK-006 sent its next message while Vibe was still compacting, HK-005's model asked where the uploader lived in an empty project, and HK-007's model batched both reads before the compaction and made no later tool call. The runner also pinned no model, so those reruns ran on GLM-5.3 Flash. Phase 023 fixed the scenarios, pinned `deepseek-flash` in the runner's Vibe home and recorded the resolved model as `vibe_model` in `result.json`. VIB-HK-004 to 008 then passed live on 2026-11-15 between 19:20 and 19:27 UTC, on `f8dcf4940db` plus the phase 023 changes. VIB-HK-006's 3/3 is the three-turn version.
+- Merging origin/main as `c96ff28ef4e` brought the Vibe hand-over hardening, which changed `turn-start.mjs` (an early withdraw step), `compaction-context.mjs` (a nudge-level reset and the hand-over checks on the handoff pointer) and `handover-parts.mjs`. VIB-HK-003 to 007 were rerun on that merged code between 19:40 and 19:56 UTC. VIB-HK-006 failed the first time: the re-injection landed, but the open question about what to pick up next sent the model searching the machine for the packet until the turn timed out. Its last message now asks for the packet's goal without tools, and the rerun passed 3/3. VIB-HK-008's pass is from the run before the merge; the merge did not change `turn-end.mjs`, and the hand-over parts it changed stay off for Vibe in that scenario.
+- Phase 023 then reran every remaining runner row with the model pinned, so each one names its model. VIB-HK-001, 012 and 022 failed on the first pass, each for a cause in the scenario: in VIB-HK-001 the model obeyed "do not ask me any questions", so the bare `D` that answers the gate question arrived with no question and the model asked what it meant; in VIB-HK-012 the overlay engine the refusal names was missing from the scratch project, so the model wrote its own; in VIB-HK-022 a vague request for "our dotenv file" led the model to list key names through the guard's allowed route, which logs no refusal. VIB-HK-001 gained an optional answer, VIB-HK-012's setup copies the engine in, and VIB-HK-022 names the file and the read. All three then passed.
+- VIB-HK-027, the automatic tier, is driven by hand from the hand-over packet's harness. Phase 023 ran it twice on the merged code: a full hop scored 5/5, and a withdraw probe typed a prompt into an armed session, which logged `withdrawn reason=user-message`, left the killer no armed record and kept the session. A later merge moved the Vibe nudge claim into the shared `nudge.commitNudge`, so both ran again on `ba44c47f68c`: hop 5/5, withdraw as before. The runs are under `../023-vibe-review-remediation/scratch/runs/` (`hop4` and `wd3` on the merged code, `hop3` and `wd2` before it).
+- VIB-HK-026's hand-driven hop predates the merge. The merge changed `relaunch-core.cjs`, which the manual tier shares; the prepare, claim and complete steps it uses passed again in the VIB-HK-027 hop above.

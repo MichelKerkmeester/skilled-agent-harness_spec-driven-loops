@@ -76,7 +76,7 @@ It fails open when the transcript is missing or unreadable.
 | DSH | `tools/pre-execute` | `dsh/task-dispatch-guard.mjs` | `.skilled/hooks/subagent-dispatch-guard/dsh/task-dispatch-guard.mjs` | Nothing. The hand-off always proceeds. |
 | OpenCode | `session.created, tool.execute.before` | `opencode/system-deep-loop-guard.js` | `.opencode/plugins/system-deep-loop-guard.js` | A thrown error on a reject. Warnings stay in the log. |
 | Pi | `tool_call` on `subagent` | `pi/task-dispatch-guard.ts` | `.skilled/hooks/subagent-dispatch-guard/pi/task-dispatch-guard.ts` | A `reason` on the call, never a block. |
-| Vibe | `pre_tool` on `agents_spawn` | None | `.vibe/plugins/repo-guards/deep-loop-guard.mjs` | A deny object with the reason, or nothing. |
+| Vibe | `pre_tool` on `agents_spawn` | `vibe/deep-loop-guard.mjs` | `.vibe/plugins/repo-guards/deep-loop-guard.mjs` | A deny object with the reason, or nothing. |
 | Codex | None | None | None | `n/a`: codex-cli 0.160 fires `PreToolUse` on `spawn_agent` as `collaborationspawn_agent`, but a captured payload carries the spawn `message` encrypted beside `task_name` and `fork_turns`, so the guard's prompt and target checks have nothing to read. No adapter is wired. |
 
 Claude registers both guards in `.claude/settings.json`. The first reads `tool_name: 'Task'` and takes `subagent_type` or `subagentType` plus `prompt`. It resolves the project directory from `payload.cwd` or `CLAUDE_PROJECT_DIR`. A reject becomes `permissionDecision: 'deny'` with the reason. A warn becomes `additionalContext`, with warnings joined with `\n`. Malformed stdin, a missing payload or any internal error approves silently.

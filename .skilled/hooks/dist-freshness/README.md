@@ -86,7 +86,7 @@ The coverage matrix marks the projection OpenCode-owned. The system-context inje
 | OpenCode | `experimental.chat.system.transform, global.disposed, server.instance.disposed, session.created, session.deleted, tool.execute.before` | `opencode/system-dist-freshness-guard.js` | `.opencode/plugins/system-dist-freshness-guard.js` | A bounded brief in the system context, plus one line in the log. |
 | Pi | `session_start` | None | `.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts` | A warning notification, whenever the script prints anything. |
 | DSH | `agent/created` | None | `.skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs` | An injected notice, prefixed with the check's label. |
-| Vibe | `session_start`, `post_tool` | None | `.vibe/plugins/repo-guards/dist-freshness.mjs` | A banner appended to the tool result as `hook_specific_output.additional_context`. |
+| Vibe | `session_start`, `post_tool` | `vibe/dist-freshness.mjs` | `.vibe/plugins/repo-guards/dist-freshness.mjs` | A banner appended to the tool result as `hook_specific_output.additional_context`. |
 
 Claude, Codex, Cursor and Devin run the check with `--all` at session start. The registry id is `check-dist-staleness`. Claude, Codex and Devin give it 5 seconds and Cursor gives it 10. The registered command runs the script with `python3`, as `.claude/settings.json` line 206 shows.
 
@@ -113,7 +113,8 @@ dist-freshness/
 +-- codex/     check-dist-staleness.sh -> ../../../skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh
 +-- cursor/    check-dist-staleness.sh -> ../../../skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh
 +-- devin/     check-dist-staleness.sh -> ../../../skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh
-`-- opencode/  system-dist-freshness-guard.js -> ../../../../.opencode/plugins/system-dist-freshness-guard.js
++-- opencode/  system-dist-freshness-guard.js -> ../../../../.opencode/plugins/system-dist-freshness-guard.js
+`-- vibe/      dist-freshness.mjs -> ../../../../.vibe/plugins/repo-guards/dist-freshness.mjs
 ```
 
 ---

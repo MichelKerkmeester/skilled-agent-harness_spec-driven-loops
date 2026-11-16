@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "traceability reserve iteration",
+      "phase 32 traceability reserve iteration",
+      "traceability reserve iteration plan",
+      "traceability reserve iteration tasks",
+      "traceability reserve iteration implementation summary"
+    ],
+    "key_topics": [
+      "traceability",
+      "reserve",
+      "iteration",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "cap",
+      "check",
+      "skilled",
+      "commands"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/traceability-rollup.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/integration/review-stop-path-replay.vitest.ts",
+      ".skilled/commands/deep/assets/deep-review.yaml",
+      ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "stop-decision.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "traceability-rollup.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/traceability-rollup.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-stop-path-replay.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/integration/review-stop-path-replay.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack-iteration.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Compute",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cap check (`.skilled/commands/deep/assets/deep-review.yaml:1021`) runs before the coverage veto, by design, so a run that reaches it with `speccode` or `checklistevidence` partial or unrecorded fails coverage at the terminal gates",
+    "created_at": "2026-11-15T20:25:12Z",
+    "last_save_at": "2026-11-15T21:22:45.952Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:221862daf1d1b700d85a0efa72f69f1686ff7c4e56ae2d4788d8f42d4a16167c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "43674fde7959073fab5113c010ff170b0c0e96a98227b9e79612814bfd2bd2e5",
+      "plan.md": "70eedd9f44df5e2679d2555cec18dabd399bcb84ddaf4959cd09e97f9a6254f7",
+      "tasks.md": "38c20882ea0c4abeb5f794a6e893aab71e2c04c6b0accf62e86304f4fb14e26b",
+      "implementation-summary.md": "a57280f11c9cba8bdd2727c42f1f1ea44212346683fae2b19154c11c5b3e8c37"
+    },
+    "last_active_at": null
+  }
+}

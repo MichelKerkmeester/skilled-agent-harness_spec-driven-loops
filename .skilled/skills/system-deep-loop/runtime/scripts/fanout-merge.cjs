@@ -26,6 +26,12 @@ const {
   findingKeys,
 } = require('../lib/deep-loop/iteration-findings.cjs');
 const { assertKnownFlags } = require('./lib/cli-guards.cjs');
+const {
+  activeReviewSeverityCounts,
+  deriveReviewVerdict,
+  lineageFailedRequiredGateIds,
+  openSearchDebtCount,
+} = require('./review-verdict.cjs');
 
 const SEVERITY_RANK = { P0: 3, P1: 2, P2: 1 };
 
@@ -933,15 +939,29 @@ function mergeReviewRegistries(lineageData, options = {}) {
 
   const failedRequiredGateIds = [...new Set(lineageData.flatMap((lineage) => lineageFailedRequiredGateIds(lineage)))].sort();
 
-  // Strongest-restriction verdict
-  let mergedVerdict;
-  if (activeP0 > 0 || failedRequiredGateIds.length > 0) {
-    mergedVerdict = 'FAIL';
-  } else if (activeP1 > 0) {
-    mergedVerdict = 'CONDITIONAL';
-  } else {
-    mergedVerdict = 'PASS';
+  // Search debt is one obligation per bug class the search path still owes, so a class
+  // two lineages both owe is one debt rather than two; the first lineage's record of it
+  // is kept and the union is ordered by that key so arrival order cannot move it.
+  const searchDebtByKey = new Map();
+  for (const { registry } of lineageData) {
+    if (!registry || !Array.isArray(registry.searchDebt)) continue;
+    for (const obligation of registry.searchDebt) {
+      if (!obligation || typeof obligation !== 'object') continue;
+      const key = obligation.bugClass || obligation.id;
+      if (!key) continue;
+      if (!searchDebtByKey.has(key)) searchDebtByKey.set(key, obligation);
+    }
   }
+  const mergedSearchDebt = [...searchDebtByKey.keys()].sort().map((key) => searchDebtByKey.get(key));
+
+  // Strongest-restriction verdict
+  const { verdict: mergedVerdict } = deriveReviewVerdict({
+    activeP0,
+    activeP1,
+    activeP2,
+    openSearchDebt: mergedSearchDebt.length,
+    failedRequiredGateIds,
+  });
 
   // Same channel the registry-shape mismatches already use, so an unranked severity reaches
   // both the run's stderr and the merged registry a release decision reads.
@@ -971,6 +991,7 @@ function mergeReviewRegistries(lineageData, options = {}) {
     activeP0,
     activeP1,
     activeP2,
+    searchDebt: mergedSearchDebt,
     ...(schemaWarnings.length > 0 ? { schema_mismatch: schemaWarnings } : {}),
   };
 }
@@ -978,30 +999,6 @@ function mergeReviewRegistries(lineageData, options = {}) {
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. ATTRIBUTION
 // ─────────────────────────────────────────────────────────────────────────────
-
-// Per-lineage attribution verdict must apply the same active-disposition guard
-// mergeReviewRegistries uses, not the registry's raw findingsBySeverity — a raw
-// per-lineage count can include findings that were since resolved, which would
-// let the attribution table's verdict diverge from the merged verdict it reports on.
-function activeReviewSeverityCounts(registry) {
-  const openFindings = Array.isArray(registry?.openFindings) ? registry.openFindings : [];
-  const active = openFindings.filter((finding) => (finding?.disposition ?? finding?.status) === 'active');
-  return {
-    P0: active.filter((finding) => finding.severity === 'P0').length,
-    P1: active.filter((finding) => finding.severity === 'P1').length,
-  };
-}
-
-// The state log is the first source: the reducer can run before the terminal-gates
-// row is written, so a registry can predate it. A required gate the lineage still
-// failed is a stop the merged verdict must not read as a pass.
-function lineageFailedRequiredGateIds({ registry, stateRecords }) {
-  const latest = (Array.isArray(stateRecords) ? stateRecords : [])
-    .filter((record) => record?.type === 'event' && record?.event === 'terminal_gates')
-    .at(-1);
-  const ids = latest ? latest.failedRequiredGateIds : registry?.terminalGates?.failedRequiredGateIds;
-  return Array.isArray(ids) ? ids.map((id) => String(id)).filter(Boolean) : [];
-}
 
 /**
  * Build fanout-attribution.md summarizing per-lineage convergence, iters, salvage, model.
@@ -1028,11 +1025,13 @@ function buildAttributionMd(lineageData, loopType, options = {}) {
     const severityCounts = loopType === 'review' ? activeReviewSeverityCounts(registry) : null;
     const verdict =
       loopType === 'review'
-        ? severityCounts.P0 > 0 || lineageFailedRequiredGateIds({ registry, stateRecords }).length > 0
-          ? 'FAIL'
-          : severityCounts.P1 > 0
-          ? 'CONDITIONAL'
-          : 'PASS'
+        ? deriveReviewVerdict({
+          activeP0: severityCounts.P0,
+          activeP1: severityCounts.P1,
+          activeP2: severityCounts.P2,
+          openSearchDebt: openSearchDebtCount(registry),
+          failedRequiredGateIds: lineageFailedRequiredGateIds({ registry, stateRecords }),
+        }).verdict
         : 'n/a';
     lines.push(`| ${label} | ${kind ?? 'unknown'} | ${model ?? 'unknown'} | ${iters} | ${convergenceScore} | ${salvage} | ${refusedLineages.has(label) ? 'REFUSED' : verdict} |`);
   }
@@ -1570,7 +1569,7 @@ async function main() {
     attribution_path: attributionPath,
     ...(reconstructionWarnings.length > 0 ? { reconstruction_warnings: reconstructionWarnings } : {}),
     ...(loopType === 'review'
-      ? { merged_verdict: mergedRegistry.mergedVerdict, active_p0: mergedRegistry.activeP0, active_p1: mergedRegistry.activeP1, failed_required_gate_ids: mergedRegistry.failedRequiredGateIds }
+      ? { merged_verdict: mergedRegistry.mergedVerdict, active_p0: mergedRegistry.activeP0, active_p1: mergedRegistry.activeP1, active_p2: mergedRegistry.activeP2, search_debt: mergedRegistry.searchDebt.length, failed_required_gate_ids: mergedRegistry.failedRequiredGateIds }
       : { key_findings: mergedRegistry.keyFindings?.length ?? 0 }),
   });
 }

@@ -2,4 +2,3 @@ turn	status	attempts	evidence	observed
 first-turn	PASS	1	turns/first-turn	turn-start-with-no-compaction-context
 compact	PASS	1	turns/compact	compaction-checkpoint-recorded
 reinject	PASS	1	turns/reinject	reinjection-with-goal-slice
-history-offer	PASS	1	turns/history-offer	history-lookup-offer-injected

@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe handover hardening",
+      "phase 47 vibe handover hardening",
+      "vibe prepare nothing ends this session",
+      "vibe killer journal folder watch",
+      "vibe handover hardening plan",
+      "vibe handover hardening tasks",
+      "vibe handover hardening acceptance criteria",
+      "vibe handover hardening decision record",
+      "vibe handover hardening implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "handover",
+      "hardening",
+      "phase",
+      "prepare",
+      "nothing",
+      "ends",
+      "session",
+      "killer",
+      "journal",
+      "folder",
+      "watch"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/analysis.md",
+      ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
+      ".skilled/hooks/session-handover/lib/killer.cjs",
+      ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-handover/bin/session-handover.cjs",
+      ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+      ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/hooks/session-handover/README.md",
+      ".vibe/hooks.toml",
+      "scratch/analysis-verification.md",
+      "scratch/harness/live-hop.sh",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+      ".skilled/changelog/skilled/v4.0.2.1.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "analysis.md",
+        "kind": "doc",
+        "path": "scratch/analysis.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover-parts.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "killer.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/lib/killer.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/bin/session-handover.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "turn-start.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-context.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-handover/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "analysis-verification.md",
+        "kind": "doc",
+        "path": "scratch/analysis-verification.md",
+        "source": "derived"
+      },
+      {
+        "name": "live-hop.sh",
+        "kind": "script",
+        "path": "scratch/harness/live-hop.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.2.1.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.2.1.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After `prepare`, a looped Vibe session is told \"nothing ends this session\" while the nudge told it the loop ends it, and in the recorded deepseek-flash hop the sender spent 76.5 s and about 20 tool calls on that contradiction",
+    "created_at": "2026-11-15T17:27:54Z",
+    "last_save_at": "2026-11-15T19:07:56.387Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6e83c73243592ad4828af03e5a8177e0a4ce2ba1687c55e6d8888011b1c8a2db",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "49209741fc265645489ac64cafc21b46e6ec0ec94a19037a833bc7b18ddce408",
+      "plan.md": "3110b93b2f465011bef17ccd5aed48fea78defae1d8f4179c423c8dad8d134e3",
+      "tasks.md": "2826a93ead13b521cdf28ddcbe00e7c89d0b2f38268a4cac6abddacb0fea3c9e",
+      "decision-record.md": "96e6d19adc25f4e6a34525dd748ae4ab5fae5b1861d97049e393618fbeafcf76",
+      "implementation-summary.md": "53f2ffb2f8a9869ffdb71a555751d102261fba7510bd7ee0acee5b346a24d6fa"
+    },
+    "last_active_at": null
+  }
+}

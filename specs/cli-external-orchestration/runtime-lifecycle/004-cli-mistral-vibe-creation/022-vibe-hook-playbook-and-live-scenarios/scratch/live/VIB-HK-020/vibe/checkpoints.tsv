@@ -1,3 +1,3 @@
 turn	status	attempts	evidence	observed
-answer-question	PASS	1	turns/answer-question	one-record keyed on chatcmpl-tool-b3b7bb68bb136021
+answer-question	PASS	1	turns/answer-question	one-record keyed on chatcmpl-tool-a2375719edbb5cb4
 second-question	PASS	1	turns/second-question	two-records-one-per-answer

@@ -14,7 +14,9 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`.skilled/hooks/goal/vibe/` holds the Vibe goal adapter for the packet slice. `goal-inject.mjs` exports `renderVibeGoalSlice`, which reads the packet path from `VIBE_SPEC_FOLDER`. It returns exactly the `chat_slice` that `node .skilled/hooks/goal/bin/goal.cjs packet <folder>` prints, and no variable means no goal text.
+`.skilled/hooks/goal/vibe/` holds the Vibe goal adapter for the packet slice. `goal-inject.mjs` exports `renderVibeGoalSlice`, which reads the packet path from `VIBE_SPEC_FOLDER`. It returns exactly the `chat_slice` that `node .skilled/hooks/goal/bin/goal.cjs packet <folder>` prints.
+
+A session started from a manual hand-over claim has no `VIBE_SPEC_FOLDER`. The adapter then reads `SESSION_HANDOVER_GOAL_PACKET`, the packet `skilled-loop` exported from the claimed note. An operator-named `VIBE_SPEC_FOLDER` always wins, and neither variable means no goal text.
 
 The adapter has no hook entry of its own in `.vibe/hooks.toml`. `.skilled/hooks/session-lifecycle/vibe/session-start.mjs` imports it and puts the returned text in the one `session_start` reply. The goal arrives in the first turn without a second registration. `session_start` fires for a main session, not a subagent.
 
@@ -28,8 +30,8 @@ Vibe has no compaction hook, so the compaction detector reads the session journa
 
 | File | Responsibility |
 |---|---|
-| `goal-inject.mjs` | Exports `renderVibeGoalSlice`. Reads `VIBE_SPEC_FOLDER`, resolves the packet through `../lib/goal-core.cjs` and returns its `chat_slice`. |
-| `goal-vibe.test.mjs` | Runs the `node --test` cases: a bound packet, no packet and malformed input. |
+| `goal-inject.mjs` | Exports `renderVibeGoalSlice`. Reads `VIBE_SPEC_FOLDER`, or `SESSION_HANDOVER_GOAL_PACKET` when that is unset, resolves the packet through `../lib/goal-core.cjs` and returns its `chat_slice`. |
+| `goal-vibe.test.mjs` | Runs the `node --test` cases: a bound packet, a hand-over-claimed packet, a named packet winning over a claimed one, no packet and malformed input. |
 
 `renderVibeGoalSlice` takes an optional environment, workspace and goal core, each with a default. The defaults are `process.env`, `process.cwd()` and the goal core at `../lib/goal-core.cjs`. A blank or non-string `VIBE_SPEC_FOLDER` returns an empty string, never an error. So does a packet whose `chat_slice` is missing, and so does any thrown error. The session-start hook skips a failing part and still emits the rest of its context.
 

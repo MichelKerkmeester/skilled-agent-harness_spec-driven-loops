@@ -59,10 +59,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook` prints `PASS` with `scenarios=51` and `violations=0`.
-- [ ] `scratch/verdicts.md` has 26 `VIB-HK` rows and `rg -c '\| FAIL \|' scratch/verdicts.md` exits 1.
-- [ ] The alignment recheck's `recheck.md` lists no confirmed in-scope finding as still open.
-- [ ] `node --test .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs` prints `fail 0`.
+- [x] `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook` prints `PASS` with `scenarios=51` and `violations=0`.
+- [x] `scratch/verdicts.md` has 26 `VIB-HK` rows and `rg -c '\| FAIL \|' scratch/verdicts.md` exits 1.
+- [x] The alignment recheck's `recheck.md` lists no confirmed in-scope finding as still open.
+- [x] `node --test .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs` prints `fail 0`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -85,6 +85,7 @@ and findings belong here.
 | Multi-turn conversions | Done | Every runner scenario sends two or more user messages; the last ten each passed 3/3 on 2026-11-15 |
 | Criterion 1 | Met at `af1a00789b8` | `scenarios=51 violations=0`. The merge of origin/main as `2d4fb4d0f92` brought VIB-HK-027, the automatic handover tier, from separate work, so the merged tree prints `scenarios=52 violations=0`; this phase owns 26 scenarios and does not run VIB-HK-027 |
 | Criteria 2 to 4 | Met | 26 `VIB-HK` rows with no FAIL; recheck lists no in-scope finding still open; runner suite 27 PASS, 0 FAIL |
+| Review fixes, 2026-11-15 | Done | A fresh review found one P1, the manual claim command dropping launch flags, now fixed. Its P2 items were applied as T097 to T103. The five hardened scenarios passed live on the rerun (T104), after the first attempt stopped on Mistral's `402 API budget exhausted`; runner suite 29 PASS, 0 FAIL |
 
 ### Deviations and findings
 

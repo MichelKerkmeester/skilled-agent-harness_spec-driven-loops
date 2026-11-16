@@ -20,21 +20,27 @@ version: 1.3.0.0
 
 The session-start context is composed in a fixed order. It starts with the bound packet's goal `chat_slice`, then the session-prime context. The startup-guard warnings from `.vibe/plugins/repo-guards/session-cleanup.mjs` come next, then the `check-dist-staleness.sh --all` warning. Each part is skipped when it is empty or when it fails. The hook never blocks and always exits 0.
 
-The turn-start context is composed the same way, over a shared part list. A new concern adds a part here instead of registering its own `pre_agent` entry. A failing part contributes nothing and the rest still land. The pending completion advisory from the previous turn runs first. It deletes its file, so the advisory reaches the model exactly once.
+The turn-start context is composed the same way, over a shared part list. A new concern adds a part here instead of registering its own `pre_agent` entry. A failing part contributes nothing and the rest still land.
 
-The compaction detector runs second and re-injects the goal slice and the open handoff pointer. Then comes the skill advisor brief, then the save reminder. The hand-over context runs last, so its claim seed, withdrawal notice or nudge text ends the context.
+A step that adds no text runs before every part. It withdraws an armed hand-over when the operator typed a prompt, so a slow part cannot hold the withdraw past the moment the killer ends the session. A blank prompt withdraws nothing.
+
+The pending completion advisory from the previous turn is the first text part. It deletes its file, so the advisory reaches the model exactly once. The compaction detector runs second and re-injects the goal slice and the open handoff pointer. Then comes the skill advisor brief, then the save reminder. The hand-over context runs last, so its claim seed, withdrawal notice or nudge text ends the context.
 
 The advisor brief is built by `.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs` under the `vibe` runtime label. A blank prompt, a dispatched child (`AI_SESSION_CHILD=1`) and a subagent (`parent_session_id` set) get no brief. The shared handler's file-backed directive store sends the constant `Directives:` block once. A per-session head receipt sends the routing head only when it changed.
 
 At a turn start the hand-over part expands a claim seed, or withdraws an armed hand-over when the operator types. Otherwise it nudges once the fill passes the threshold. The entry stays separate from `spec-gate-classify`, so a composer failure cannot open the spec gate.
 
-Vibe has no compaction event, so `compaction-context.mjs` reads the compaction from the session journal. `compactionsSince` lists the entries after a per-session watermark under the session folder's `.skilled/skills/.state/vibe-compaction/`. The checkout's folder is used when the payload names no absolute folder.
+Vibe has no compaction event, so `compaction-context.mjs` reads the compaction from the session journal. `compactionsSince` lists the entries after a per-session watermark under the session folder's `.skilled/skills/.state/vibe-compaction/`. The checkout's folder is used when the payload names no absolute folder that exists.
 
-A compaction id already injected is skipped, even when a later snapshot generation re-reads it under a higher sequence. On a new one the detector writes the watermark first. It then advances the advisor directive receipt, so the next brief carries the `Directives:` block again.
+A compaction id already injected is skipped, even when a later snapshot generation re-reads it under a higher sequence. Every id in one catch-up joins that seen list, and the newest 64 are kept.
 
-It returns the goal slice and the open handoff note pointer. A session with no open note gets no handoff line. A missing journal or a malformed entry yields no text. An unreadable watermark counts as none, so the latest compaction is injected again. A watermark that cannot be written withholds the text.
+On a new one the detector writes the watermark first, even when it will have nothing to inject. Otherwise a session with no goal and no open note would detect the same compaction and re-arm the advisor on every turn.
 
-`compaction-post-tool.mjs` is the non-strict `post_tool` binding. It sums the journal files' sizes and returns nothing when the size is unchanged. Otherwise it runs the same detector, so a compaction inside one long headless turn is caught at the next tool call. The binding also runs the hand-over context on every call. A failing part contributes nothing and the hook exits 0. A long headless turn hears the nudge without a turn boundary.
+It then advances the advisor directive receipt, so the next brief carries the `Directives:` block again. It also resets the session's hand-over nudge level, because the freed context fills from the start again.
+
+It returns the goal slice and the open handoff note pointer. A session with no open note gets no handoff line, and neither does a session whose prepared hop owns the note. A note written before the operator withdrew the hand-over is pointed at as stale. A missing journal or a malformed entry yields no text. An unreadable watermark counts as none, so the latest compaction is injected again. A watermark that cannot be written withholds the text.
+
+`compaction-post-tool.mjs` is the non-strict `post_tool` binding. It sums the journal files' sizes, an empty journal folder counting as 0, and returns nothing when the size is unchanged. Otherwise it runs the same detector, so a compaction inside one long headless turn is caught at the next tool call. The binding also runs the hand-over context on every call. A failing part contributes nothing and the hook exits 0. A long headless turn hears the nudge without a turn boundary.
 
 The turn-end composer is the only `post_agent` entry, because Vibe skips every later `post_agent` hook once one denies. It runs the completion part first, so its advisory is recorded even when the ask-surface part denies. The ask-surface part runs second and the hand-over part last.
 
@@ -42,7 +48,9 @@ The hand-over part arms a pending record and starts the killer, and it never den
 
 Vibe injects the deny reason as a retry user message. Malformed input, a missing journal and a throwing part all exit 0 with no output.
 
-Seven switches turn parts off. `SYSTEM_SESSION_LIFECYCLE_DISABLED` turns off the session-prime part and `SYSTEM_DIST_FRESHNESS_DISABLED` the dist part. `SYSTEM_SESSION_CLEANUP_DISABLED` turns off the startup guards. `SYSTEM_SKILL_ADVISOR_DISABLED` turns off the advisor part and `SYSTEM_COMPLETION_DISABLED` the pending completion advisory. `SYSTEM_ASK_SURFACE_DISABLED` turns off the turn-end reprompt. `SYSTEM_DECISION_CAPTURE_DISABLED` turns off the save reminder.
+Seven switches turn parts off. `SYSTEM_SESSION_LIFECYCLE_DISABLED` turns off the session-prime part and `SYSTEM_DIST_FRESHNESS_DISABLED` the dist part. `SYSTEM_SESSION_CLEANUP_DISABLED` turns off the startup guards. `SYSTEM_SKILL_ADVISOR_DISABLED` turns off the advisor part and `SYSTEM_COMPLETION_DISABLED` the pending completion advisory. `SYSTEM_ASK_SURFACE_DISABLED` turns off the turn-end reprompt. `SYSTEM_DECISION_CAPTURE_DISABLED` turns off the save reminder. The compaction parts have no switch of their own.
+
+The hand-over parts stay off for Vibe unless `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1` or the master switch `SYSTEM_SESSION_HANDOVER_ENABLED=1` is set.
 
 The three lifecycle hooks plus the `post_tool` compaction binding are the whole surface. The `session_end` entry `session-cleanup-end` runs `session-cleanup.mjs`.
 

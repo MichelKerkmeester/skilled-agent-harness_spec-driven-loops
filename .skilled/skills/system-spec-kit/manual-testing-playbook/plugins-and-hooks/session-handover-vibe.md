@@ -7,7 +7,7 @@ trigger_phrases:
   - "skilled-loop vibe handover"
   - "Vibe automatic relaunch tier"
   - "Vibe handover withdraw"
-version: 1.0.1.0
+version: 1.0.2.0
 id: session-handover-vibe
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -213,7 +213,7 @@ Evidence: the filtered log, the pane text, the wrapper line and the note status.
 | `manual-testing-playbook.md` | Root index and execution verdict rules. |
 | `../../feature-catalog/context-preservation/session-handover-loop.md` | Shared handoff implementation and runtime coverage. |
 | `../../../../hooks/session-handover/runtime-behavior.md` | Runtime adapter matrix, launch syntax and the automatic tier. |
-| `../../../cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-automatic-tier-conversation.md` | The Vibe package scenario for the same tier. |
+| `../../../cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-automatic-tier.md` | The Vibe package scenario for the same tier. |
 
 ### Implementation And Test Anchors
 
@@ -229,6 +229,8 @@ Evidence: the filtered log, the pane text, the wrapper line and the note status.
 | `.vibe/hooks.toml` | The hook bindings a Vibe session runs. |
 | `.skilled/hooks/session-handover/tests/vibe-adapters.test.cjs` | The adapter suite for this scenario. |
 
+Provenance: .skilled/hooks/session-handover/tests/vibe-adapters.test.cjs
+
 ---
 
 ## 5. SOURCE METADATA
@@ -241,4 +243,4 @@ Evidence: the filtered log, the pane text, the wrapper line and the note status.
 Related references:
 - [Session handover feature entry](../../feature-catalog/context-preservation/session-handover-loop.md)
 - [Codex, Cursor and Devin session handover scenarios](session-handover-command-runtimes.md)
-- [Vibe automatic tier conversation](../../../cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-automatic-tier-conversation.md)
+- [Vibe automatic tier conversation](../../../cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-automatic-tier.md)

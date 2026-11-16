@@ -81,7 +81,8 @@ subagent-dispatch-guard/
 +-- devin/    task-dispatch-guard.cjs
 +-- cursor/   task-dispatch-guard.mjs
 +-- pi/       task-dispatch-guard.ts (advisory tool_call adapter)
-`-- opencode/ system-deep-loop-guard.js (browsability symlink -> ../../../plugins/; real file loaded from .opencode/plugins/)
++-- opencode/ system-deep-loop-guard.js (browsability symlink -> ../../../plugins/; real file loaded from .opencode/plugins/)
+`-- vibe/     deep-loop-guard.mjs (browsability symlink -> .vibe/plugins/repo-guards/)
 ```
 
 ---

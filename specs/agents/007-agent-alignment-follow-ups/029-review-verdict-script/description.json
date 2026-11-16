@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/029-review-verdict-script",
+  "description": "Phase 29: review-verdict-script",
+  "keywords": [
+    "phase",
+    "review-verdict-script"
+  ],
+  "lastUpdated": "2026-11-15T19:35:57.971Z",
+  "specId": "029",
+  "folderSlug": "review-verdict-script",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_20-35__the-final-review-verdict-comes-from-review.md"
+  ]
+}

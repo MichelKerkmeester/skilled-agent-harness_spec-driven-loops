@@ -87,7 +87,7 @@ Every runtime evaluates the same `lib/post-edit-router.cjs` core. What differs i
 | Pi | `tool_result` | `pi/post-edit-quality.ts` | `.skilled/hooks/post-edit-quality/pi/post-edit-quality.ts` | Findings appended as `{type: "text", text}` content on the tool result. |
 | OpenCode | `experimental.chat.system.transform, tool.execute.after, tool.execute.before` | `opencode/sk-code-post-edit-quality.js` | `.opencode/plugins/sk-code-post-edit-quality.js` | A brief in the next turn's system context, plus a line in a log file. |
 | DSH | `tools/post-execute` | `dsh/post-edit-quality.mjs` | `.skilled/hooks/post-edit-quality/dsh/post-edit-quality.mjs` | An extra context notice on an accepted tool result. |
-| Vibe | `post_tool` | None | `.vibe/plugins/repo-guards/post-edit-quality.mjs` | `hook_specific_output.additional_context` on stdout. |
+| Vibe | `post_tool` | `vibe/post-edit-quality.mjs` | `.vibe/plugins/repo-guards/post-edit-quality.mjs` | `hook_specific_output.additional_context` on stdout. |
 
 Claude, Codex and Devin share one structure. Each reads stdin JSON, exits fast on a non-edit tool name, resolves the file, runs the router, then delivers findings. Claude and Devin write a `hookSpecificOutput.additionalContext` JSON envelope on stdout. Codex prints plain text on stdout. All three use the Claude budget constants, a 9s budget with 8s per checker.
 
@@ -130,7 +130,8 @@ post-edit-quality/
 +-- devin/    post-edit-quality.cjs
 +-- dsh/      post-edit-quality.mjs
 +-- opencode/ sk-code-post-edit-quality.js  # link to .opencode/plugins/
-`-- pi/       post-edit-quality.ts
++-- pi/       post-edit-quality.ts
+`-- vibe/     post-edit-quality.mjs -> ../../../../.vibe/plugins/repo-guards/post-edit-quality.mjs
 ```
 
 ---

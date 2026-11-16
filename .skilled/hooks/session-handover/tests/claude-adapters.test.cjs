@@ -51,7 +51,8 @@ function createSandbox(t) {
     'SESSION_HANDOVER_MAX_HOPS',
     'SYSTEM_SPEC_FOLDER',
   ]) delete env[key];
-  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  // A detached killer the adapter starts can still be writing here, so the removal retries.
+  t.after(() => fs.rmSync(root, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }));
   return { root, repoRoot, xdgRuntimeDir, home, env };
 }
 
@@ -217,6 +218,35 @@ test('context-nudge fires at 0.80, suppresses the same level, and fires again at
   assert.match(
     nextOutput.hookSpecificOutput.additionalContext,
     /prepare --handoff.*--runtime 'claude'/,
+  );
+});
+
+test('context-nudge stays quiet while another hook holds the session nudge claim', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-nudge-loop-0001';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  const payload = {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 800),
+    cwd: sandbox.repoRoot,
+  };
+  const stateDir = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch');
+  fs.mkdirSync(stateDir, { recursive: true, mode: 0o700 });
+  const claimPath = path.join(stateDir, `nudge-${SESSION_ID}.claim`);
+  fs.writeFileSync(claimPath, '');
+
+  const held = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(held.code, 0, held.stderr);
+  assert.equal(held.stdout, '');
+
+  fs.rmSync(claimPath);
+  const delivered = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(delivered.code, 0, delivered.stderr);
+  assert.match(
+    JSON.parse(delivered.stdout.trim()).hookSpecificOutput.additionalContext,
+    /prepare --handoff/,
   );
 });
 

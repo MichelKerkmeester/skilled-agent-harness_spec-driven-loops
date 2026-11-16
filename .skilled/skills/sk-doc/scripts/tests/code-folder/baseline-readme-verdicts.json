@@ -1,5 +1,5 @@
 {
-  "count": 1062,
+  "count": 1244,
   "mode": "readme",
   "results": [
     {
@@ -1235,6 +1235,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/hooks/session-handover/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/hooks/session-handover/history/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -8966,16 +8976,6 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
       "file": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -9545,16 +9545,6 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "unknown",
-      "file": ".skilled/skills/system-spec-kit/templates/changelog/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "unknown",
       "file": ".skilled/skills/system-spec-kit/templates/examples/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -9839,6 +9829,1845 @@
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/README.md",
+      "return_code": 0,
+      "total_issues": 1,
+      "valid": true,
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "line": 301,
+          "line_number": 301,
+          "message": "\"RELATED\" must be the last H2; it is followed by \"COVERAGE MATRIX\".",
+          "severity": "warning",
+          "type": "render_section_order"
+        }
+      ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/classifier-injection-screen/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/classifier-injection-screen/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/classifier-injection-screen/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/classifier-injection-screen/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/classifier-injection-screen/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/classifier-injection-screen/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/classifier-injection-screen/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/classifier-injection-screen/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/cli-dispatch/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/cli-dispatch/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/cli-dispatch/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/cli-dispatch/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/cli-dispatch/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/cli-dispatch/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/cli-dispatch/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/cli-dispatch/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/cli-dispatch/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/cli-dispatch/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/codex-global-hooks-check/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/codex-global-hooks-check/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/codex-global-hooks-check/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/codex-global-hooks-check/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/codex-global-hooks-check/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/completion-evidence/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/completion-evidence/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/completion-evidence/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/completion-evidence/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/completion-evidence/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/completion-evidence/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/completion-evidence/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/completion-evidence/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/completion-evidence/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/decision-capture/bin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/decision-capture/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/decision-capture/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/decision-capture/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/decision-capture/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/decision-capture/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/decision-capture/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/decision-capture/vibe/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/directive-lifecycle/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/directive-lifecycle/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/dist-freshness/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/dist-freshness/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/dist-freshness/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/dist-freshness/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/dist-freshness/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/dist-freshness/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/env-secret-guard/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-hooks-check/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-hooks-check/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-hooks-check/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-hooks-check/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-hooks-check/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-live-follow/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-live-follow/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-live-follow/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-live-follow/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-live-follow/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-live-follow/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-live-follow/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-message-gate/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-message-gate/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-message-gate/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-message-gate/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-message-gate/shared/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-message-gate/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-preflight/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-preflight/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-preflight/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-preflight/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-preflight/shared/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-preflight/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-primary-reconcile/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-primary-reconcile/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-primary-reconcile/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-primary-reconcile/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-primary-reconcile/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-primary-reconcile/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-primary-reconcile/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-worktree-guard/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-worktree-guard/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-worktree-guard/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-worktree-guard/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/git-worktree-guard/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/goal/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/goal/bin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/goal/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/goal/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/goal/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/goal/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/goal/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/goal/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/goal/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/goal/vibe/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/mcp-route-guard/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/mcp-route-guard/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/mcp-route-guard/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/mcp-route-guard/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/mcp-route-guard/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/mcp-route-guard/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/mcp-route-guard/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/mcp-route-guard/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/mcp-route-guard/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/mcp-route-guard/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/overlay-guard/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/overlay-guard/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/overlay-guard/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/overlay-guard/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/overlay-guard/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/overlay-guard/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/overlay-guard/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/overlay-guard/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/overlay-guard/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/overlay-guard/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/permission-policy/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/permission-policy/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/post-edit-quality/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/post-edit-quality/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/post-edit-quality/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/post-edit-quality/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/post-edit-quality/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/post-edit-quality/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/post-edit-quality/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/post-edit-quality/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/post-edit-quality/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/post-edit-quality/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-cleanup/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-cleanup/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-cleanup/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-cleanup/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-cleanup/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-cleanup/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-handover/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-handover/bin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-handover/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-handover/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-handover/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-handover/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-handover/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-handover/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "unknown",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-handover/tests/fixtures/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-lifecycle/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-lifecycle/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-lifecycle/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-lifecycle/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-lifecycle/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-lifecycle/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-lifecycle/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-lifecycle/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/session-lifecycle/vibe/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/shared/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/shared/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/shared/session-readers/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/shared/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/skill-advisor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/skill-advisor/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/skill-advisor/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/skill-advisor/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/skill-advisor/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/skill-advisor/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/skill-advisor/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/skill-advisor/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/skill-advisor/vibe/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/spec-gate/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/spec-gate/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/spec-gate/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/spec-gate/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/spec-gate/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/spec-gate/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/spec-gate/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/spec-gate/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/spec-gate/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/subagent-dispatch-guard/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/subagent-dispatch-guard/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/subagent-dispatch-guard/cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/subagent-dispatch-guard/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/subagent-dispatch-guard/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/subagent-dispatch-guard/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/subagent-dispatch-guard/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/subagent-dispatch-guard/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/before/subagent-dispatch-guard/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {

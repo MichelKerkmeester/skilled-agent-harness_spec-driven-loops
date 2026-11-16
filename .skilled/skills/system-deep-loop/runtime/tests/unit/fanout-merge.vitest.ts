@@ -739,6 +739,65 @@ describe('mergeReviewRegistries — strongest-restriction', () => {
     expect(result.mergedVerdict).toBe('CONDITIONAL');
   });
 
+  it('merges a search-debt bug class two lineages both owe into one entry', () => {
+    // Debt is one obligation per bug class, so a class two lineages still owe must not
+    // count twice against the verdict; the union stays ordered by that key, falling back
+    // to the obligation id when the class is missing.
+    const result = mergeReviewRegistries([
+      {
+        label: 'a',
+        registry: {
+          openFindings: [],
+          searchDebt: [
+            { bugClass: 'input-validation', id: 'debt-b' },
+            { bugClass: 'concurrency', id: 'debt-a' },
+          ],
+        },
+      },
+      {
+        label: 'b',
+        registry: {
+          openFindings: [],
+          searchDebt: [{ bugClass: 'input-validation', id: 'debt-c' }, { id: 'debt-id-only' }],
+        },
+      },
+    ]);
+
+    const debt = result.searchDebt as Array<{ bugClass?: string; id: string }>;
+    expect(debt.map((entry) => entry.bugClass ?? entry.id)).toEqual([
+      'concurrency',
+      'debt-id-only',
+      'input-validation',
+    ]);
+    // The first lineage's record of a shared class is the one kept.
+    expect(debt.find((entry) => entry.bugClass === 'input-validation')?.id).toBe('debt-b');
+  });
+
+  it('merges CONDITIONAL when a lineage owes search debt but no P0 or P1 remains', () => {
+    // A bug class the search never exercised leaves the review unfinished even with no
+    // finding still open, so reading only the findings would report PASS.
+    const result = mergeReviewRegistries([
+      { label: 'a', registry: { openFindings: [], searchDebt: [{ bugClass: 'error-handling', id: 'debt-1' }] } },
+      { label: 'b', registry: { openFindings: [{ findingId: 'F1', severity: 'P2', status: 'active', title: 'Advisory' }] } },
+    ]);
+
+    expect(result.mergedVerdict).toBe('CONDITIONAL');
+    expect(result.activeP0).toBe(0);
+    expect(result.activeP1).toBe(0);
+  });
+
+  it('keeps the merged verdict when no lineage carries search debt', () => {
+    // A registry written before the debt ledger existed owes nothing, so an empty union
+    // must leave the verdict the findings alone decide.
+    const result = mergeReviewRegistries([
+      { label: 'a', registry: { openFindings: [{ findingId: 'F1', severity: 'P2', status: 'active', title: 'Advisory' }] } },
+      { label: 'b', registry: { openFindings: [] } },
+    ]);
+
+    expect(result.searchDebt).toEqual([]);
+    expect(result.mergedVerdict).toBe('PASS');
+  });
+
   it('escalates to highest severity for duplicate findingId across lineages', () => {
     const data = [
       { label: 'a', registry: { openFindings: [{ findingId: 'F1', severity: 'P2', status: 'active', title: 'X' }] } },
@@ -1202,6 +1261,48 @@ describe('fanout-merge.cjs — script', () => {
 
     // Attribution md should exist
     expect(existsSync(join(baseDir, 'fanout-attribution.md'))).toBe(true);
+  });
+
+  it('prints every verdict count a two-lineage review merge binds', async () => {
+    // The workflow binds these fields from the printed payload and hands them to the
+    // verdict script, which refuses a caller that omits one.
+    const baseDir = makeTempDir('fanout-merge-review-counts-');
+    const lineagesDir = join(baseDir, 'lineages');
+
+    const linADir = join(lineagesDir, 'lina');
+    mkdirSync(linADir, { recursive: true });
+    writeFileSync(
+      join(linADir, 'deep-review-findings-registry.json'),
+      JSON.stringify({
+        openFindings: [{ findingId: 'F1', severity: 'P2', disposition: 'active', title: 'Advisory' }],
+        searchDebt: [{ bugClass: 'concurrency', id: 'debt-1' }],
+      }),
+      'utf8',
+    );
+
+    const linBDir = join(lineagesDir, 'linb');
+    mkdirSync(linBDir, { recursive: true });
+    writeFileSync(
+      join(linBDir, 'deep-review-findings-registry.json'),
+      JSON.stringify({ openFindings: [{ findingId: 'F2', severity: 'P1', disposition: 'active', title: 'Missing guard' }] }),
+      'utf8',
+    );
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'review',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as Record<string, unknown>;
+    expect(payload).toMatchObject({
+      merged_verdict: 'CONDITIONAL',
+      active_p0: 0,
+      active_p1: 1,
+      active_p2: 1,
+      search_debt: 1,
+      failed_required_gate_ids: [],
+    });
   });
 
   it('enables near-duplicate research dedup through the CLI flag', () => {

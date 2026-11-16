@@ -29,7 +29,7 @@ trigger_phrases:
   - "sk-git advisory plugin"
   - "SKGIT_ADVISORY_SKIP"
   - "tool result advisory"
-version: 1.0.10.0
+version: 1.0.11.0
 ---
 
 # Git Message Gate and Preflight Advisory: sk-git Command Hooks
@@ -151,7 +151,7 @@ Pi loads in the other direction. The real `pi/git-message-gate.ts` and `pi/git-p
 
 DSH registers both through the `repo-guards` bundle. `.dsh/plugins/repo-guards/index.mjs` imports `registerGitMessageGate` and `registerGitPreflightAdvisory`. `.dsh/plugins/repo-guards/adapters/git-preflight-advisory.mjs` and `.dsh/plugins/repo-guards/adapters/git-message-gate.mjs` symlink to the real adapters.
 
-Vibe runs the message gate only. A `pre_tool` hook named `git-message-gate` in `.vibe/hooks.toml` runs `.vibe/plugins/repo-guards/git-message-gate.mjs`. No Vibe hook runs the preflight advisory.
+Vibe runs the message gate only. A `pre_tool` hook named `git-message-gate` in `.vibe/hooks.toml` runs `.vibe/plugins/repo-guards/git-message-gate.mjs`. The hooks hub keeps a browse link to it at `.skilled/hooks/git-message-gate/vibe/git-message-gate.mjs`. No Vibe hook runs the preflight advisory.
 
 The OpenCode advisory plugin resolves the repo root with `findRepoRoot` and falls back to the host directory. It buffers at most 20 events and drains them on the next `experimental.chat.system.transform`. OpenCode drops the oldest event when its buffer is full. It never prints, because OpenCode paints plugin output onto the prompt line.
 

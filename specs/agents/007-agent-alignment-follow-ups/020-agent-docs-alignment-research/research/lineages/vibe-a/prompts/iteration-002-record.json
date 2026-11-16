@@ -1,0 +1,56 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "runId": "fanout-vibe-a-1794754623609-z9i1mt",
+  "sessionId": "fanout-vibe-a-1794754623609-z9i1mt",
+  "lineageId": "fanout-vibe-a-1794754623609-z9i1mt",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "run": 2,
+  "status": "complete",
+  "focus": "Skill and command docs vs each agent declared role, tools, status values and routing",
+  "findingsCount": 7,
+  "newInfoRatio": 0.86,
+  "noveltyJustification": "5 of 7 findings were fully new and 2 partially new, since the runtime-tree omission repeats an iteration-1 theme on a different surface.",
+  "keyQuestions": [
+    "Do the skill and command docs (`.skilled/skills/**`, `.skilled/commands/**`) describe each agent's role, allowed tools, status values and routing correctly?",
+    "Which specific doc lines misdescribe an agent's role, tools, status values, routing, file location, model pin or sync mechanism, and which agent or generator file contradicts each one?"
+  ],
+  "answeredQuestions": [
+    "Do the skill and command docs (`.skilled/skills/**`, `.skilled/commands/**`) describe each agent's role, allowed tools, status values and routing correctly?",
+    "Which specific doc lines misdescribe an agent's role, tools, status values, routing, file location, model pin or sync mechanism, and which agent or generator file contradicts each one?"
+  ],
+  "ruledOut": [
+    "Treating ai-council task: allow as a LEAF violation",
+    "Treating review bash: allow as contradicting its read-only claim",
+    "Treating the deep-research status enum as wrong"
+  ],
+  "focusTrack": "skill-docs",
+  "edgeCase": "contradictory-evidence",
+  "toolsUsed": ["Read", "Grep", "Glob", "Bash"],
+  "sourcesQueried": [
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md:15",
+    ".skilled/skills/system-deep-loop/deep-research/README.md:28",
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md:262",
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md:76",
+    ".skilled/skills/system-deep-loop/SKILL.md:33",
+    ".skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md:247",
+    ".skilled/agents/agent-registry.json",
+    ".skilled/agents/deep-review.md:236",
+    ".skilled/agents/orchestrate.md:76",
+    ".skilled/commands/deep/research.md:13"
+  ],
+  "graphEvents": [
+    {"type": "node", "id": "q-skill-docs", "kind": "QUESTION", "label": "Do skill and command docs describe agent role, tools, status and routing correctly?"},
+    {"type": "node", "id": "f-status-enum", "kind": "FINDING", "label": "deep-review status enum omits thought"},
+    {"type": "node", "id": "f-agent-classes", "kind": "FINDING", "label": "claude-tools agent classification omits code and design"},
+    {"type": "node", "id": "src-deep-review-skill", "kind": "SOURCE", "label": "deep-review SKILL.md", "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md"},
+    {"type": "node", "id": "src-claude-tools", "kind": "SOURCE", "label": "claude-tools reference", "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md"},
+    {"type": "edge", "id": "e-iter002-001", "source": "f-status-enum", "target": "q-skill-docs", "relation": "ANSWERS"},
+    {"type": "edge", "id": "e-iter002-002", "source": "f-agent-classes", "target": "q-skill-docs", "relation": "ANSWERS"},
+    {"type": "edge", "id": "e-iter002-003", "source": "f-status-enum", "target": "src-deep-review-skill", "relation": "CITES"},
+    {"type": "edge", "id": "e-iter002-004", "source": "f-agent-classes", "target": "src-claude-tools", "relation": "CITES"}
+  ]
+}

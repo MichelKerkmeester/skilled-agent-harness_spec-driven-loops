@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 845,
+  "derived_count": 846,
   "directories": [
     ".",
     ".claude",
@@ -120,6 +120,9 @@
     ".skilled/hooks/session-handover/bin",
     ".skilled/hooks/session-handover/claude",
     ".skilled/hooks/session-handover/codex",
+    ".skilled/hooks/session-handover/history",
+    ".skilled/hooks/session-handover/history/lib",
+    ".skilled/hooks/session-handover/history/tests",
     ".skilled/hooks/session-handover/lib",
     ".skilled/hooks/session-handover/pi",
     ".skilled/hooks/session-handover/tests",
@@ -794,7 +797,6 @@
     ".skilled/skills/system-spec-kit/runtime/hooks/cursor",
     ".skilled/skills/system-spec-kit/runtime/hooks/devin",
     ".skilled/skills/system-spec-kit/runtime/hooks/dsh",
-    ".skilled/skills/system-spec-kit/runtime/hooks/lib/history",
     ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate",
     ".skilled/skills/system-spec-kit/runtime/hooks/lib/workspace",
     ".skilled/skills/system-spec-kit/runtime/hooks/opencode",
@@ -844,7 +846,6 @@
     ".skilled/skills/system-spec-kit/shared/utils",
     ".skilled/skills/system-spec-kit/shared/workspace",
     ".skilled/skills/system-spec-kit/templates",
-    ".skilled/skills/system-spec-kit/templates/changelog",
     ".skilled/skills/system-spec-kit/templates/examples",
     ".skilled/skills/system-spec-kit/templates/scratch"
   ],

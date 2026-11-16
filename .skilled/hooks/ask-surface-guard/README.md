@@ -76,7 +76,7 @@ Numbered lines can be steps rather than a list of choices. So a numeric menu als
 | DSH | `agent/turn-stopping` | `dsh/ask-surface-guard.mjs` | `.skilled/hooks/ask-surface-guard/dsh/ask-surface-guard.mjs` | A steered user message. |
 | Pi | `agent_end` | `pi/ask-surface-guard.ts` | `.skilled/hooks/ask-surface-guard/pi/ask-surface-guard.ts` | A hidden follow-up message. |
 | Vibe | `post_agent` | `vibe/ask-surface-post-agent.mjs` | `.skilled/hooks/ask-surface-guard/vibe/ask-surface-post-agent.mjs` | A deny, injected as a retry. |
-| OpenCode | `session.idle` | None | `.opencode/plugins/ask-surface-guard.js` | A new turn from `promptAsync`. |
+| OpenCode | `session.idle` | `opencode/ask-surface-guard.js` | `.opencode/plugins/ask-surface-guard.js` | A new turn from `promptAsync`. |
 | Cursor | None | None | None | Nothing. |
 
 `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` lists Claude, Codex and Devin at `Stop` with a 5-second timeout, plus the Pi extension. The entry id is `ask-surface-guard`.

@@ -7,7 +7,7 @@ trigger_phrases:
   - "disprove P0 finding"
   - "blocker validation"
   - "overcalling prevention"
-version: 1.11.0.6
+version: 1.11.1.0
 ---
 
 # Adversarial self-check
@@ -24,7 +24,7 @@ This control keeps the review loop from overcalling blockers. Before a P0 is tre
 
 The skill contract requires an adversarial self-check on every P0 finding. The guidance is simple but strict: re-read the cited code, actively try to disprove the blocker, and only keep the P0 label when the evidence still holds. This guard appears both in the loop rules and in the success criteria for final review completion.
 
-The adversarial re-check is separate from the typed claim-adjudication packet. Self-check focuses on whether the blocker is genuine at all, while adjudication records the evidence trail and the final accepted severity. Together they keep FAIL verdicts from depending on inference-only or weakly supported blockers.
+The adversarial re-check is separate from the typed claim-adjudication packet. Self-check focuses on whether the blocker is genuine at all, while adjudication records the evidence trail and the final accepted severity. Together they keep FAIL verdicts from depending on inference-only or weakly supported blockers. At synthesis on a single-executor run, each self-check call is written as a `claim_adjudication` row carrying `findingId` and `finalSeverity`, with `none` for a false positive. The reducer applies it before the verdict is derived, so a downgrade or a false positive lowers the counts the verdict, the report and the closeout use.
 
 ---
 

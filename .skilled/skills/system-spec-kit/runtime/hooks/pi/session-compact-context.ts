@@ -14,7 +14,7 @@ import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import * as hookFlags from "../../../../../hooks/shared/hook-flags.mjs";
-import { fitRecoverySections } from "../lib/history/lookup-offer.ts";
+import { fitRecoverySections } from "../../../../../hooks/session-handover/history/lib/lookup-offer.ts";
 
 const MAX_CONTEXT_BYTES = 4_096;
 

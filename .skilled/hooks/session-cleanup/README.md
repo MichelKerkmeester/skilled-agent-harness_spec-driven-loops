@@ -85,7 +85,7 @@ The shell script uses bash only and sources `hook-flags.sh` fail-open. The plugi
 | Cursor | `sessionEnd [id session-cleanup, timeout 10]` | `cursor/session-cleanup.sh` | `.skilled/scripts/session-cleanup.sh` | The script's log lines on stdout. The registration does not silence them. |
 | Devin | `SessionEnd [id session-cleanup, timeout 10]` | `devin/session-cleanup.sh` | `.skilled/scripts/session-cleanup.sh` | The script's log lines on stdout. The registration does not silence them. |
 | OpenCode | `experimental.chat.system.transform, session.created, session.deleted` | `opencode/session-cleanup.js` | `.opencode/plugins/session-cleanup.js` | Nothing on the prompt line. Guard warnings arrive once in the system context. |
-| Vibe | `session_start` (through the session-start hook), `session_end [id session-cleanup-end]` | None | `.vibe/plugins/repo-guards/session-cleanup.mjs` | Startup warnings arrive as `additional_context`. `session_end` shows nothing, because the kill path has no session PID and the sweep signals nothing. |
+| Vibe | `session_start` (through the session-start hook), `session_end [id session-cleanup-end]` | `vibe/session-cleanup.mjs` | `.vibe/plugins/repo-guards/session-cleanup.mjs` | Startup warnings arrive as `additional_context`. `session_end` shows nothing, because the kill path has no session PID and the sweep signals nothing. |
 | Pi | None | None | None | Nothing. No registration runs the script. |
 
 Claude, Codex, Cursor and Devin register the script in `hook-registry.json` under the id `session-cleanup`, each with 10 seconds. Claude, Codex and Cursor answer a non-zero exit with a drift line on stderr and an envelope on stdout. Codex carries the message as a plain `systemMessage`, because `Stop` rejects `hookSpecificOutput`. Devin names no fallback, so a failed run prints nothing extra.
@@ -109,7 +109,8 @@ session-cleanup/
 +-- codex/    session-cleanup.sh -> ../../../scripts/session-cleanup.sh
 +-- cursor/   session-cleanup.sh -> ../../../scripts/session-cleanup.sh
 +-- devin/    session-cleanup.sh -> ../../../scripts/session-cleanup.sh
-`-- opencode/ session-cleanup.js -> ../../../../.opencode/plugins/session-cleanup.js
++-- opencode/ session-cleanup.js -> ../../../../.opencode/plugins/session-cleanup.js
+`-- vibe/     session-cleanup.mjs -> ../../../../.vibe/plugins/repo-guards/session-cleanup.mjs
 ```
 
 Each runtime folder holds one relative link. The link survives a move of the checkout.

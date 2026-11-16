@@ -86,6 +86,43 @@ Two facts the offline record did not have:
 What this hop decides:
 
 1. **Turn-start claim part: confirmed not needed.** The receiver claimed from the seed alone.
-2. **`VIBE_SPEC_FOLDER` export: still open.** This hop bound no packet, so it could not show
-   whether a relaunched session misses its goal slice at start. A hop with a bound packet
-   decides it.
+2. **`VIBE_SPEC_FOLDER` export: not needed; decided in code.** This hop bound no packet. The
+   gap it left open is closed in the Vibe goal adapter instead: `renderVibeGoalSlice` in
+   `.skilled/hooks/goal/vibe/goal-inject.mjs` now falls back to `SESSION_HANDOVER_GOAL_PACKET`,
+   the packet `skilled-loop` exports from the claimed note, when `VIBE_SPEC_FOLDER` is unset, and
+   an operator-named `VIBE_SPEC_FOLDER` still wins. The wrapper therefore needs no new export.
+   `goal-vibe.test.mjs` proves it through the real `session_start` hook: with only
+   `SESSION_HANDOVER_GOAL_PACKET` set, the hook returns the packet's chat slice (5 pass, 0 fail;
+   the claimed-packet case fails without the fallback). A live hop with a bound packet was not
+   run then, because Mistral's API answered `402 API budget exhausted` on 2026-11-15.
+
+   That proof was too narrow. The fallback only helps when the claimed note carries a
+   `goal_packet`, and `prepare` wrote none for a Vibe sender: the session-handover core
+   resolved a packet only for runtimes with a goal record or for Devin and Cursor. The core
+   now resolves a Vibe sender's packet in the order the goal hook renders it,
+   `VIBE_SPEC_FOLDER` first and then `SESSION_HANDOVER_GOAL_PACKET`. See "Bound-packet hop"
+   below.
+
+## Bound-packet hop (2026-11-15)
+
+Driven by hand in a tmux pane in the 383 worktree, `vibe 3.1.2`, `GLM-5.3 Flash`, on the Vibe
+sign-in key, with the Claude loop variables cleared, `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1`, and
+`VIBE_SPEC_FOLDER` naming phase 022, whose packet holds a `goal.md`. Evidence is in
+`scratch/bound-packet-hop/`.
+
+- **Sender.** `skilled-loop vibe --trust`. The session followed `/speckit:handoff` with the
+  continuity save skipped and wrote `20261115T171955Z-FC8D874F-….md`. `prepare` printed
+  `STATUS=OK RESULT=prepared`, and the note gained
+  `goal_packet: specs/…/022-vibe-hook-playbook-and-live-scenarios`.
+- **Exit.** `/exit` ended the sender, and the wrapper printed
+  `skilled-loop vibe "[session-handover] claim and continue handoff <note>" '--trust'`.
+- **Receiver.** In the same pane, `VIBE_SPEC_FOLDER` and `SESSION_HANDOVER_GOAL_PACKET` were
+  unset, then the printed command ran. The receiver's first input carried a `vibe.hookContext`
+  block that opens with `# Goal: Phase 22: vibe-hook-playbook-and-live-scenarios`, so the goal
+  came from the claimed note alone. The session claimed and completed the note.
+- **History.** One `claimed` line and one `done` line, both with runtime `vibe`.
+
+Before the core change, a Vibe note prepared with both variables set carried no `goal_packet`,
+while a Devin note from the same environment did (`probe-note-frontmatter.txt`,
+`probe-note-devin-frontmatter.txt`). After it, the Vibe note carries one
+(`probe-note-vibe2-frontmatter.txt`).

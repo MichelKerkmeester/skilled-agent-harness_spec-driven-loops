@@ -9,7 +9,7 @@ trigger_phrases:
   - "conversation script schema"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Manual Testing Playbook Conversation Scenarios
@@ -164,7 +164,7 @@ Each runtime folder contains `result.json`, `actions.jsonl`, `raw-pane.log`, `se
 - The runner sets `CONVERSATION_REPO_ROOT` and `CONVERSATION_RUNTIME` for every `setup` command too, so setup can copy project files from the repository without any variable set by hand.
 - `CONVERSATION_REPO_ROOT` is the repository the run snapshots, which `--repo-root` can point at a worktree.
 
-Use `--seed N` to replay random delays declared as `[min, max]`. The runner records the seed in `result.json`. Use `--overwrite` to replace existing per-runtime evidence folders. Without it, the runner refuses a non-empty runtime folder.
+Use `--seed N` to replay random delays declared as `[min, max]`. The runner records the seed in `result.json`. Use `--overwrite` to replace existing per-runtime evidence folders. Without it, the runner refuses a non-empty runtime folder. A Vibe run leaves its private home beside the scratch project, because the session journal in it is the only copy, and `result.json` records that path as `vibe_home`. Use `--remove-home` to delete the home once the subject has stopped, including the read-only plugin files Vibe extracts; `vibe_home_removed` then reads `true`.
 
 Before and after each runtime run, the runner hashes the repository's `specs/` folder and its watched `.skilled/skills/.state/` subfolders by path, size and SHA-256. The watched subfolder is `decision-capture` by default. Set `CONVERSATION_WATCH` to a comma-separated list of subfolder names to watch others. A difference fails that runtime as `REPO_CHANGED` and keeps both snapshots in its evidence folder.
 

@@ -601,7 +601,7 @@ workflow:
             3. Fail before dispatch with line-numbered validation errors when any manifest entry is invalid; otherwise set scope = the validated manifest paths in declared order
             4. When no manifest exists, discover implementation files referenced in the canonical spec artifacts
             5. Discover test files associated with the implementation files
-            6. Set scope = all discovered implementation and test files
+            6. Set scope = the packet's own canonical docs plus all discovered implementation and test files
           skill: |
             1. Read SKILL.md from .skilled/skills/{skill_name}/
             2. Discover references/, assets/, scripts/ contents
@@ -901,7 +901,7 @@ workflow:
           - last_focus: "Extract focus/dimension from latest iteration record, else 'none yet'"
           - ratio_prev: "Extract newFindingsRatio from second-latest iteration record, else 'N/A'"
           - ratio_latest: "Extract newFindingsRatio from latest iteration record, else 'N/A'"
-          - next_dimension: "Next uncovered dimension from dimension_queue in strategy.md"
+          - next_dimension: "When max_iterations >= 2, current_iteration == max_iterations and unfinished_core_protocols is non-empty, 'traceability': the last iteration under the cap finishes those core protocols. Otherwise the next uncovered dimension from dimension_queue in strategy.md."
           - dimensions_covered: "List of dimensions already reviewed"
           - dimensions_remaining: "List of dimensions not yet reviewed"
           - dimension_coverage: "covered / total dimensions"
@@ -909,6 +909,7 @@ workflow:
           - p0_count: "findingsBySeverity.P0 from {state_paths.findings_registry}, the reducer's deduplicated count of open findings, else 0"
           - p1_count: "findingsBySeverity.P1 from {state_paths.findings_registry}, else 0"
           - p2_count: "findingsBySeverity.P2 from {state_paths.findings_registry}, else 0"
+          - unfinished_core_protocols: "registry.traceability.unfinishedCoreProtocols from {state_paths.findings_registry} as a JSON array, else []"
           - resource_map_present: "Extract boolean from deep-review-config.json, default false"
           - resource_map_prompt_line: "If resource_map_present is true, return 'Resource Map Coverage: cross-check target_files from {spec_folder}/applied/T-*.md against {spec_folder}/resource-map.md and classify only missed coverage as gaps.' Else return 'Resource Map Coverage: resource-map.md not present; skipping coverage gate.'"
           - session_id: "Extract sessionId from deep-review-config.json"
@@ -926,6 +927,7 @@ workflow:
           - pivot_lineage: "Summarize registry.divergence.completed and registry.divergence.overrides with pivot ids, source iterations, and selected review direction; else 'none yet'"
           - saturated_directions: "List registry.divergence.saturatedDirections; else 'none yet'"
           - review_focus_block: "When deep-review-config.json reviewFocus is a non-empty string, return 'Operator review focus (cover it in addition to the dimension of this iteration, and say in the narrative how you addressed it): <reviewFocus>'. Else return an empty string."
+          - unfinished_core_protocols_block: "Under the same condition as next_dimension's traceability case, return 'This is the last iteration under the cap. Finish these core traceability protocols: <ids, comma-separated>. Record one traceabilityChecks.results[] entry for each. A result raised from partial to pass needs a file:line reference in evidenceRefs, or it stays partial.' Else return an empty string."
 
       step_check_max_duration:
         action: "Stop the loop when the run has used its wall-clock budget, and still synthesize"
@@ -1059,7 +1061,7 @@ workflow:
             graphless_fallback_missing_json = the I.requiredBugClasses entries that are not in I.fallbackCoveredBugClasses
             graphless_fallback_unavailability_reason = the explicit reason when I.graphCoverageMode == "unavailable_blocked", else empty string
             graph_blocker_detail_json = graph_blockers_json
-            recovery_strategy = one line naming the next review action for the gates in stop_decision.blockedBy. When claimAdjudicationGate is listed: "Reviewer must add typed claim-adjudication packets (claim, evidenceRefs, counterevidenceSought, alternativeExplanation, finalSeverity, confidence, downgradeTrigger) for every active P0/P1 finding before STOP is allowed." When stop_decision.reasonDetail == "graphStopBlocked": "Resolve review coverage-graph blockers before stopping." When candidateCoverageGate and graphlessFallbackGate both fail, combine their guidance.
+            recovery_strategy = one line naming the next review action for the gates in stop_decision.blockedBy. When claimAdjudicationGate is listed: "Reviewer must add typed claim-adjudication packets (claim, evidenceRefs, counterevidenceSought, alternativeExplanation, finalSeverity, confidence, downgradeTrigger) for every active P0/P1 finding before STOP is allowed." When stop_decision.reasonDetail == "graphStopBlocked": "Resolve review coverage-graph blockers before stopping." When candidateCoverageGate and graphlessFallbackGate both fail, combine their guidance. When I.unfinishedCoreProtocols is non-empty, name them and say the last iteration under the cap is reserved for them, each needing file:line evidence.
           If stop_decision is missing from the step_graph_convergence output, do not decide by hand: halt and report the script output.
         outputs:
           - decision: "STOP | BLOCKED | STUCK_RECOVERY | CONTINUE"
@@ -1134,14 +1136,15 @@ workflow:
         if_stop:
           record_terminal_gates:
             when: "Run once, immediately before control jumps to phase_synthesis: in if_existing_terminal_path, in the divergent pivot's if_failed and on_error branches, and in every confirm-mode manualStop exit (on_C) into phase_synthesis: both divergent pivot gates, gate_pre_iteration and the post-iteration gate. The auto three-errors stop (reason error) reaches it through if_existing_terminal_path. The duration stop in step_check_max_duration runs it, once, before its jump to phase_synthesis. Never run it when the pivot continues the loop."
+            bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/terminal-gates.cjs --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.findings_registry}"'
+            note: "The script computes all three gates from the config, state log and registry: evidence by the evidenceDensityGate rule, coverage by the dimensionCoverageGate rule, and scope by matching every open finding's file against reviewScopeFiles. Never judge a gate from the findings yourself. Run it fresh at this stop, even when an earlier blocked stop recorded failures."
+            on_error: "When the script exits non-zero or prints status error, fail closed: bind terminal_gate_results_json to three rows, evidence, scope and coverage, each with status fail, reasonCode gate-script-error and evidenceDigest the sha256 of the script's error text, and bind failed_required_gate_ids to [\"evidence\",\"scope\",\"coverage\"]."
             evaluate: |
-              evidence: pass when every active P0/P1 finding has concrete file:line evidence and none relies only on inference (the evidenceDensityGate rule).
-              scope: pass when every active finding's file lies inside the review target.
-              coverage: pass when configured dimensions and required traceability coverage are complete and coverage_age >= 1 (the dimensionCoverageGate rule).
-              Evaluate all three fresh at this stop, even when an earlier blocked stop recorded failures.
-              terminal_gate_results_json = JSON array of exactly three rows {"gateId":"evidence"|"scope"|"coverage","status":"pass"|"fail","reasonCode":"<short code such as all-findings-cited or missing-dimensions>","evidenceDigest":"<64 lowercase hex sha256 of the evidence summary for that gate>"}
-              failed_required_gate_ids = JSON array of the gateIds whose status is fail, in the order evidence, scope, coverage; [] when all pass
               terminal_stop_reason = reason when it is maxIterationsReached, maxDurationReached, manualStop or error, else "converged". Read reason, never stopReason: every manual stop sets reason to manualStop while stopReason may still hold blockedStop or stuckRecovery
+            outputs:
+              - terminal_gate_results_json: "Tool terminal_gate_results_json: three rows {gateId, status, reasonCode, evidenceDigest} in the order evidence, scope, coverage"
+              - failed_required_gate_ids: "Tool failed_required_gate_ids: the gateIds whose status is fail, in that order; [] when all pass"
+              - terminal_stop_reason: "From evaluate"
             append_jsonl: '{"stem":"deep_review.terminal_gates_recorded","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"stopReason":"{terminal_stop_reason}","gateResults":{terminal_gate_results_json},"failedRequiredGateIds":{failed_required_gate_ids},"appendPosition":{current_iteration}}}'
             log: "Terminal gates recorded at stop {terminal_stop_reason}. Failed required gates: {failed_required_gate_ids}"
           branch_on: "convergence_mode == 'divergent' AND stop_decision.reasonDetail == 'all_dimensions_clean'"
@@ -1463,6 +1466,7 @@ workflow:
               pivot_lineage: "{pivot_lineage}"
               saturated_directions: "{saturated_directions}"
               review_focus_block: "{review_focus_block}"
+              unfinished_core_protocols_block: "{unfinished_core_protocols_block}"
               state_paths_config: "{state_paths.config}"
               state_paths_state_log: "{state_paths.state_log}"
               state_paths_findings_registry: "{state_paths.findings_registry}"
@@ -1828,6 +1832,7 @@ workflow:
           p1_count: "active_p1"
           p2_count: "active_p2"
           failed_required_gate_ids: "failed_required_gate_ids"
+          search_debt_count: "search_debt"
 
       step_hydrate_summary_metrics:
         action: "Hydrate summary metrics before synthesis"
@@ -1842,39 +1847,15 @@ workflow:
           - iteration_count: "When direct lineage state logs exist, count distinct run values (the integer iteration, else a numeric run) across those logs in stable lineage order; otherwise count distinct run values (the integer iteration, else a numeric run) across the root state log. Never add root compatibility records to lineage records."
           - highest_run: "When direct lineage state logs exist, take the highest run value (the integer iteration, else a numeric run) across lines where type === 'iteration' in those logs in stable lineage order, else 0; otherwise take the highest run value (the integer iteration, else a numeric run) across lines where type === 'iteration' in the root state log, else 0. Never add root compatibility records to lineage records."
           - current_iteration: "max(highest_run, iteration_count) + 1"
-          - p0_count: "Total P0 findings across all iterations (deduped)"
-          - p1_count: "Total P1 findings across all iterations (deduped)"
-          - p2_count: "Total P2 findings across all iterations (deduped)"
+          - p0_count: "When step_fanout_merge bound it, keep the merged value; the fan-out verdict reads it. Otherwise the count of open findings in {state_paths.findings_registry} with status active and severity P0, for the pre-synthesis display only."
+          - p1_count: "Same rule as p0_count, for severity P1."
+          - p2_count: "Same rule as p0_count, for severity P2."
           - failed_required_gate_ids: "When step_fanout_merge bound it, keep the merged value. Otherwise take failedRequiredGateIds from the last line of {state_paths.state_log} with type === 'event' and event === 'terminal_gates', else []. Read the state log, not the registry: the reducer last ran before the stop wrote that row."
           - dimensions_covered: "List of reviewed dimensions"
           - dimension_coverage: "covered / total"
           - ac_coverage_signal: "For spec-folder targets only: if level is 2+ and acceptance-criteria.md exists and implementation-summary.md is in-progress or later, surface the AC_COVERAGE advisory status; otherwise mark exempt."
           - last_3_summaries: "Summarize the latest 3 iteration records"
           - reason: "Use the latest stop reason if present: read stopReason from the last line of {state_paths.state_log} with type === 'event' and event === 'terminal_gates' when it is newer than the latest stop event, since a manual stop is stored only there; else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached.)"
-
-      # H-1 verdict derivation: parse findings JSONL, map highest severity to verdict
-      # - PASS: no P0 or P1 findings (P2-only or clean)
-      # - CONDITIONAL: any P1 findings (no P0)
-      # - FAIL: any P0 finding, or a required quality gate (evidence, scope, coverage) still failing at the terminal stop
-      # Final line of iteration-NNN.md MUST be exactly: "Review verdict: PASS" / "Review verdict: CONDITIONAL" / "Review verdict: FAIL"
-      step_derive_verdict:
-        action: "Derive review verdict from accumulated findings"
-        algorithm: |
-          if p0_count > 0 or len(failed_required_gate_ids) > 0:
-            verdict = "FAIL"
-          elif p1_count > 0:
-            verdict = "CONDITIONAL"
-          else:
-            verdict = "PASS"
-          has_advisories = (verdict == "PASS" and p2_count > 0)
-          ac_coverage_signal is advisory while the validation rule is INFO/default-off; include it in synthesis traceability, but do not change the exact verdict enum from this signal alone.
-        outputs:
-          - verdict: "PASS | CONDITIONAL | FAIL"
-          - has_advisories: "Boolean true when verdict is PASS and any active P2 findings exist"
-          - ac_coverage_signal: "exempt | disabled | pass | advisory-shortfall"
-        contract: |
-          Every iteration-NNN.md must end with exactly: "Review verdict: PASS" (or CONDITIONAL or FAIL).
-          Downstream automation parses this final line via exact string match — do not vary the format.
 
       # ─── APPROVAL GATE: Pre-Synthesis ───
       gate_pre_synthesis:
@@ -1928,21 +1909,120 @@ workflow:
           5. Resolve contradictions:
              - Findings marked contested across iterations → referee pass
              - Determine final severity and status
-          6. Count only 'active' findings for totals
+          6. Count only 'active' findings for totals. These totals are narrative only: step_derive_verdict reads the registry file after the self-check refreshes it, and the report and the closeout state its counts as the counts the verdict used.
         outputs:
           - finding_registry: "Deduplicated list of all findings with metadata"
-          - active_p0: "Count of active P0 findings"
-          - active_p1: "Count of active P1 findings"
-          - active_p2: "Count of active P2 findings"
 
+      # Adjudication persistence: the Referee's call becomes a claim_adjudication row per
+      # finding, so the registry the verdict reads carries the final severity. A false
+      # positive is recorded as `none`, the scale value for a claim that is not a finding.
       step_adversarial_selfcheck:
         action: "Final adversarial self-check on all P0 and P1 findings"
+        dry_run_boundary: "state-mutation"
         algorithm: |
           For each active P0/P1 finding:
             1. Hunter: Re-verify finding against source code (re-read file:line)
             2. Skeptic: Challenge severity — is this really P0/P1? Could it be P2?
             3. Referee: Final call — confirm, downgrade, or mark false_positive
-          Update finding_registry with adjudicated results.
+          Record one `<findingId> <finalSeverity>` pair for every call the Referee made
+          here: the severity it settled on, or `none` when it called the finding a false
+          positive. An empty list means the Referee changed nothing.
+          On a single-executor run, append one deep_review.claim_adjudication row per pair
+          through the gateway, then refresh the registry once. The verdict step that
+          follows reads the refreshed registry, so a downgrade or a false positive changes
+          the counts the verdict, the report and the closeout all use.
+          On a fan-out root, record the pairs for the report only: the root has no state
+          log before closeout, and the merged lineage counts are what that verdict reads.
+        extract:
+          - selfcheck_adjudications: "One `<findingId> <finalSeverity>` pair per line, using the findingId exactly as it appears in openFindings of {state_paths.findings_registry}, empty when the Referee changed nothing"
+          - adjudication_mode: "`mode` of the latest claim_adjudication gate row (the newest one without a findingId), else \"review\""
+          - adjudication_run: "`run` of that gate row, else {highest_run}"
+          - adjudication_passed: "`passed` of that gate row, else true"
+          - adjudication_active_p0_p1: "`activeP0P1` of that gate row, else {p0_count} plus {p1_count}"
+          - adjudication_missing_packets: "`missingPackets` of that gate row as a JSON array, else []"
+          - adjudication_reason: "`reason` of that gate row as a JSON value, else \"adversarial self-check\""
+        branch_on: "config.fanout"
+        if_present:
+          action: "Record the pairs in the Executive Summary for reference. Do not append: a fan-out root has no root state log before closeout, and each lineage already adjudicated its own findings, so the merged counts are the authority here."
+        if_absent:
+          # The row is staged for the append gateway: the state log is a projection of the
+          # ledger, so a row written beside it is dropped by the next refresh.
+          command: |
+            GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+            [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+            RUN_DIR="$(dirname "{state_paths.state_log}")"
+            while read -r FINDING_ID FINAL_SEVERITY; do
+            [ -n "$FINDING_ID" ] || continue
+            EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-claim-adjudication.XXXXXX")"
+            cat <<DEEP_LOOP_STATE_RECORD > "$EVENT_FILE"
+            {"stem":"deep_review.claim_adjudication","scope":{"runId":"{session_id}","sessionId":"{session_id}"},"data":{"mode":"{adjudication_mode}","run":{adjudication_run},"passed":{adjudication_passed},"activeP0P1":{adjudication_active_p0_p1},"missingPackets":{adjudication_missing_packets},"reason":{adjudication_reason},"sessionId":"{session_id}","generation":{generation},"findingId":"$FINDING_ID","finalSeverity":"$FINAL_SEVERITY"}}
+            DEEP_LOOP_STATE_RECORD
+            node "$GATEWAY" --mode review --run-directory "$RUN_DIR" --event-json "$EVENT_FILE"
+            RECORD_STATUS=$?
+            rm -f "$EVENT_FILE"
+            [ "$RECORD_STATUS" -eq 0 ] || exit "$RECORD_STATUS"
+            done <<'DEEP_LOOP_SELFCHECK_ADJUDICATIONS'
+            {selfcheck_adjudications}
+            DEEP_LOOP_SELFCHECK_ADJUDICATIONS
+            node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors
+          on_fail:
+            action: "Halt with STATUS=FAIL through step_release_lock. An append the gateway rejected leaves the ledger and the registry disagreeing, so the verdict that follows would read a stale count."
+            halt: true
+            release_lock: step_release_lock
+          log: "Adversarial self-check adjudicated {selfcheck_adjudications}; the verdict reads the refreshed registry."
+
+      # H-1 verdict derivation: parse findings JSONL, map highest severity to verdict
+      # - PASS: no P0 or P1 findings (P2-only or clean)
+      # - CONDITIONAL: any P1 finding or open search debt (no P0, no failed gate)
+      # - FAIL: any P0 finding, or a required quality gate (evidence, scope, coverage) still failing at the terminal stop
+      # Final line of iteration-NNN.md MUST be exactly: "Review verdict: PASS" / "Review verdict: CONDITIONAL" / "Review verdict: FAIL"
+      step_derive_verdict:
+        action: "Derive review verdict from accumulated findings"
+        note: "ac_coverage_signal is advisory while the validation rule is INFO/default-off; include it in synthesis traceability, but do not change the exact verdict enum from this signal alone."
+        branch_on: "config.fanout"
+        if_present:
+          command: |
+            node .skilled/skills/system-deep-loop/runtime/scripts/review-verdict.cjs \
+              --active-p0 {p0_count} \
+              --active-p1 {p1_count} \
+              --active-p2 {p2_count} \
+              --search-debt {search_debt_count} \
+              --failed-gate-ids '{failed_required_gate_ids}'
+          working_directory: "{repo_root}"
+          wait_for_completion: true
+          bind_from_output:
+            verdict: "verdict"
+            has_advisories: "has_advisories"
+            active_p0: "active_p0"
+            active_p1: "active_p1"
+            active_p2: "active_p2"
+            search_debt_count: "search_debt"
+          on_fail: "Halt with STATUS=FAIL through step_release_lock. The values the merge bound are the authority on a fan-out root, so an unreadable bound value must stop the run rather than let a verdict be guessed."
+        if_absent:
+          command: |
+            node .skilled/skills/system-deep-loop/runtime/scripts/review-verdict.cjs \
+              --registry-path "{state_paths.findings_registry}" \
+              --state-log "{state_paths.state_log}"
+          working_directory: "{repo_root}"
+          wait_for_completion: true
+          bind_from_output:
+            verdict: "verdict"
+            has_advisories: "has_advisories"
+            active_p0: "active_p0"
+            active_p1: "active_p1"
+            active_p2: "active_p2"
+            search_debt_count: "search_debt"
+          on_fail: "Halt with STATUS=FAIL through step_release_lock. A non-zero exit means the registry or the state log could not be read, so this stop has no verdict yet and none may be assumed."
+        outputs:
+          - verdict: "PASS | CONDITIONAL | FAIL"
+          - has_advisories: "Boolean true when verdict is PASS and any active P2 findings exist"
+          - active_p0: "Active P0 count the verdict used"
+          - active_p1: "Active P1 count the verdict used"
+          - active_p2: "Active P2 count the verdict used"
+          - ac_coverage_signal: "exempt | disabled | pass | advisory-shortfall"
+        contract: |
+          Every iteration-NNN.md must end with exactly: "Review verdict: PASS" (or CONDITIONAL or FAIL).
+          Downstream automation parses this final line via exact string match — do not vary the format.
 
       step_emit_resource_map:
         skip_when: "config.fanout is present"
@@ -1965,12 +2045,19 @@ workflow:
         action: "Compile review/review-report.md with 9 core sections, a conditional Resource Map Coverage Gate section, and an embedded Planning Packet"
         dry_run_boundary: "state-mutation"
         instructions: |
+          **Zero-iteration stop:** When {state_paths.state_log} holds no line with type "iteration" (on a fan-out root, when none of the lineage state logs under {state_paths.packet_dir}/lineages/ holds one), the review did not run, and the report says so instead of reporting on work that never happened:
+             - Executive Summary: open with `Review did not run`, state the stop reason and `0 iterations dispatched`, keep the verdict and hasAdvisories bound by step_derive_verdict unchanged, and state that the P0/P1/P2 counts mean not examined rather than clean.
+             - Planning Trigger: state that `/speckit:plan` is not required, and set the Planning Packet to `triggered: false` and `reviewDidNotRun: true` with `remediationWorkstreams: []`, keeping every other required key from section 2 at an empty value.
+             - Next step: name `/deep:review` again with a duration budget or iteration cap that allows at least one pass.
+             - Sections 3 to 8: give each a single line saying the review did not run.
+
           Create review/review-report.md with the following sections:
 
           1. **Executive Summary**
              - Overall verdict: PASS | CONDITIONAL | FAIL
              - hasAdvisories: true when PASS carries active P2 items
-             - P0/P1/P2 counts (active only)
+             - P0/P1/P2 counts: {active_p0}, {active_p1}, {active_p2}, the counts the verdict used, stated as such
+             - Self-check outcomes: each finding the adversarial self-check confirmed, downgraded or called a false positive. On a single-executor run the counts above already reflect them, so list them for reference
              - Review scope summary
              - Operator review focus: config.reviewFocus verbatim, or omit this line when it is null
 
@@ -2015,7 +2102,7 @@ workflow:
              - Always include this section before the appendix.
              - Render reducer-owned `searchCoverage`, `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, and `cleanSearchProof`.
              - If all arrays are empty or absent, include: `*No search-depth state captured (legacy v1 record)*`.
-             - When `searchDebt` is non-empty, state `hasSearchDebt: true` and carry the dashboard verdict as CONDITIONAL unless active P0 findings make it FAIL.
+             - When `searchDebt` is non-empty, state hasSearchDebt: true. The verdict already counts it: CONDITIONAL unless an active P0 or a failed gate makes it FAIL. When debt is the only reason for CONDITIONAL, the next step is another /deep:review over the deferred or blocked bug classes, not /speckit:plan.
 
           10. **Audit Appendix**
              - Convergence summary, coverage summary, ruled-out claims, sources reviewed

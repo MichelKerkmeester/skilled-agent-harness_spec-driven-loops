@@ -1,0 +1,50 @@
+> [session-handover] claim and continue handoff
+  /Users/michelkerkmeester/worktrees/public/418-vibe-handover-hardening/.skilled/skills/.state/session-handover/handoffs/20261115T184736Z-b9b475a6-6e51-1128-a5e1-a06e0000cd28.md | Spec folder: none
+  (Gate 3 answered D, Skip, in the sending session)
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+⏵ Ran 1 command, thought
+
+  Side word recovered: LAGOON-14042. Now verifying the other three facts independently rather than trusting the note.
+
+⏵ Ran 1 command, thought
+
+  All four facts confirmed independently. The note contains zero occurrences of the side word, so the sender's design held. Closing the note.
+
+⏵ Ran 2 commands, thought                                                                                                                                                                              ▄
+
+  Handoff claimed, worked, and closed. status: done, completed_at stamped.
+
+
+  The four facts
+
+  ┌──────────────────────────────────────┬───────────────────────────────────────────────────┬──────────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Fact                                 │ Value                                             │ How confirmed                                                                                        │
+  ├──────────────────────────────────────┼───────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Line count                           │ 439                                               │ wc -l on the file                                                                                    │
+  ├──────────────────────────────────────┼───────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ First heading                        │ # Session Handover                                │ line 9, after the YAML frontmatter                                                                   │
+  ├──────────────────────────────────────┼───────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Code word                            │ ORCHID-6576                                       │ carried in the note                                                                                  │
+  ├──────────────────────────────────────┼───────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Side word                            │ LAGOON-14042                                      │ recovered from the sender's transcript                                                               │
+  └──────────────────────────────────────┴───────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  The side word came from the history lookup, not from any file: browse walked back to the original user turn rs-18e84c6520684598, and load returned the brief that named it. I also checked the note
+  itself — zero occurrences of LAGOON-14042, so the sender's deliberate omission held and the recovery path was genuinely exercised rather than short-circuited.
+
+  I re-measured the line count and heading myself instead of trusting the note's Done section; both matched.
+
+  Nothing to recreate after the hop: Scheduled: none, Added directories: none, Active command: none, Running workers: none. No spec folder is bound (Gate 3 answered D, Skip), and this turn wrote
+  nothing outside the note's own status.
+
+  One thing for you, unrelated to the handoff: the startup check reported invalid git hook symlinks (commit-msg, post-commit, post-merge, post-rewrite, pre-commit, pre-push, prepare-commit-msg all
+  mismatched). Fix is bash .opencode/scripts/install-git-hooks.sh — I have not run it, since it rewrites hook wiring and that is your call.
+
+
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+~/worktrees/public/418-vibe-handover-hardening                                                                                                                   usage ▍      5% · ctx ▋      25.7k/256k

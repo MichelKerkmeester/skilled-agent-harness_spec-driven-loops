@@ -10,7 +10,10 @@
     "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim",
     "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/005-deprecate-compaction-offer",
     "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof",
-    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation"
+    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation",
+    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement",
+    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation",
+    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction"
   ],
   "manual": {
     "depends_on": [],
@@ -92,12 +95,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -120,22 +117,28 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A model can search and load its own earlier turns through the history lookup, but the lookup is offered only after a compaction",
     "created_at": "2026-11-15T06:24:14Z",
-    "last_save_at": "2026-11-15T14:38:46.432Z",
+    "last_save_at": "2026-11-15T20:47:50.578Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:142694377cc5ca612d1cdb0bfe2318f430049f84a2f340f928553b992ca3943a",
+    "source_fingerprint": "sha256:e83e12a822cd0d4a2bd41f3b715c2e408964d09eb8a1c60b8e8d579bdce378bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0b655bc4f296710e07267516727e8cf15f4647e716b2c9e6ee5a699b5c8ae4c6"
+      "spec.md": "7b756aa1d6aa9c5ad9effb0e2145ad86595e5203cf6c652765c126e51c59b228"
     },
-    "last_active_at": "2026-11-15T14:38:46.432Z",
-    "last_active_child_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation"
+    "last_active_child_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction",
+    "last_active_at": "2026-11-15T20:47:50.578Z"
   }
 }

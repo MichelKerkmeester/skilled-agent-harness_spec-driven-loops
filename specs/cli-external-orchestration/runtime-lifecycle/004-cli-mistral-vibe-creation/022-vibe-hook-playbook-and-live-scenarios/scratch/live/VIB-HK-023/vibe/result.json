@@ -2,12 +2,15 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 222696374,
-  "socket": "conv-96028-vibe",
-  "session_id": "952ca621-1465-45af-a4ef-f1740aa0ed31",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.tQVPx0MZ1Q/vibe",
-  "started_at": "2026-11-15T13:21:18.093Z",
-  "finished_at": "2026-11-15T13:22:41.527Z",
+  "seed": 518833110,
+  "socket": "conv-57292-vibe",
+  "session_id": "a5d7f4e7-4bfa-41f4-a2ad-6a90e0de344f",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ksi9kslcBU/vibe",
+  "vibe_home": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ksi9kslcBU/vibe-home-4fedTU",
+  "vibe_model": "deepseek-flash",
+  "vibe_home_removed": false,
+  "started_at": "2026-11-15T21:11:57.997Z",
+  "finished_at": "2026-11-15T21:13:40.344Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -55,7 +58,7 @@
       "attempts": 1,
       "reason": null,
       "blocker": null,
-      "observed": "prompt-carried lines=46",
+      "observed": "prompt-carried lines=38",
       "evidence": "turns/carry-prompt"
     }
   ]

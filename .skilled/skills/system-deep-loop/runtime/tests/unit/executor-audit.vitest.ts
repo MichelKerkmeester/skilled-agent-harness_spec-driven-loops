@@ -81,6 +81,7 @@ describe('executor-audit', () => {
     ['', 'Daily usage limit reached', 'usage limit'],
     ['', 'Quota exceeded', 'Quota'],
     ['', 'insufficient credits', 'insufficient credits'],
+    ['', 'API error occurred: Status 402. Body: {"message":"API budget exhausted."}', 'budget exhausted'],
     ['', 'HTTP 429: too many requests', 'too many requests'],
     ['', 'Not authenticated', 'Not authenticated'],
     ['', 'Not logged in', 'Not logged in'],
@@ -1116,13 +1117,17 @@ describe('executor-audit: cli-mistral-vibe environment filter', () => {
   };
 
   it('passes the provider key and Vibe variables but never an inherited VIBE_HOME', () => {
-    const nextEnv = buildExecutorDispatchEnv(executor, {
-      PATH: '/usr/bin',
-      MISTRAL_API_KEY: 'mistral-secret',
-      VIBE_PROBE: 'probe-value',
-      VIBE_HOME: 'must-drop',
-      OPENAI_API_KEY: 'wrong-provider',
-    });
+    const nextEnv = buildExecutorDispatchEnv(
+      executor,
+      {
+        PATH: '/usr/bin',
+        MISTRAL_API_KEY: 'mistral-secret',
+        VIBE_PROBE: 'probe-value',
+        VIBE_HOME: 'must-drop',
+        OPENAI_API_KEY: 'wrong-provider',
+      },
+      { mistralSignInKey: () => null },
+    );
 
     expect(nextEnv).toMatchObject({
       PATH: '/usr/bin',
@@ -1132,5 +1137,46 @@ describe('executor-audit: cli-mistral-vibe environment filter', () => {
     });
     expect(nextEnv).not.toHaveProperty('OPENAI_API_KEY');
     expect(nextEnv).not.toHaveProperty('VIBE_HOME');
+  });
+
+  it('prefers the sign-in key over an API key inherited from the parent', () => {
+    const nextEnv = buildExecutorDispatchEnv(
+      executor,
+      { PATH: '/usr/bin', MISTRAL_API_KEY: 'api-key' },
+      { mistralSignInKey: () => 'signin-key' },
+    );
+
+    expect(nextEnv.MISTRAL_API_KEY).toBe('signin-key');
+    expect(nextEnv[CLI_DISPATCH_STACK_ENV]).toBe('cli-mistral-vibe');
+  });
+
+  it('supplies the sign-in key when the parent carries no provider key', () => {
+    const nextEnv = buildExecutorDispatchEnv(
+      executor,
+      { PATH: '/usr/bin' },
+      { mistralSignInKey: () => 'signin-key' },
+    );
+
+    expect(nextEnv.MISTRAL_API_KEY).toBe('signin-key');
+  });
+
+  it('leaves the sign-in key off every other executor kind', () => {
+    const piExecutor: ExecutorConfig = {
+      kind: 'cli-pi',
+      model: null,
+      configDir: null,
+      reasoningEffort: null,
+      serviceTier: null,
+      sandboxMode: null,
+      timeoutSeconds: 900,
+    };
+
+    const nextEnv = buildExecutorDispatchEnv(
+      piExecutor,
+      { PATH: '/usr/bin' },
+      { mistralSignInKey: () => 'signin-key' },
+    );
+
+    expect(nextEnv).not.toHaveProperty('MISTRAL_API_KEY');
   });
 });

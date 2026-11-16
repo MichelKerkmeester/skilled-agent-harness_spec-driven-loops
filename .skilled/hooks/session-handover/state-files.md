@@ -36,11 +36,11 @@ The directory must be a real directory owned by the current user. A symlink, a p
 | armed | The runtime's arm event armed the record and started the killer. |
 | disarmed | The record ended without a relaunch. |
 
-The arm event is `Stop` on Claude and Codex, `agent_settled` on Pi and `session.idle` on OpenCode. A disarmed record carries one reason. A session that never went idle before the deadline ends with reason `killer-timeout`. A transcript unreadable for 1 s ends the same way. So does a session still running after the SIGTERM grace period.
+The arm event is `Stop` on Claude and Codex, `agent_settled` on Pi and `session.idle` on OpenCode and `post_agent` on Vibe. A disarmed record carries one reason. A session that never went idle before the deadline ends with reason `killer-timeout`. A transcript unreadable for 1 s ends the same way. So does a session still running after the SIGTERM grace period.
 
 A record whose hop count already reached `SESSION_HANDOVER_MAX_HOPS` ends with reason `hop-cap`. A record past its age limit ends with reason `stale`. The killer sends no signal for either of those two reasons.
 
-A new turn in the arming session ends the record with reason `user-message` on Pi and OpenCode. An operator prompt over an armed record ends it the same way on Claude and Codex. A prompt over a deferred record on Claude does the same.
+A new turn in the arming session ends an armed or deferred record with reason `user-message` on Pi and OpenCode. An operator prompt over an armed or deferred record ends it the same way on Claude and Codex.
 
 `cancel` ends a pending or armed record with reason `cancelled`. `should-relaunch` reports both of those reasons as `withdrawn` and every other record that is not armed as `not-armed`.
 
@@ -97,7 +97,7 @@ The killer lock file stores the owner pid, the creation timestamp and the expiry
 
 `should-relaunch` writes nothing for `handed-over`, because the wrapper can still decline after it approves. The `handed-over` line carries the hop number. A `claimed` line ends with the first eight characters of the claiming session's id. `history` prints them as `by <id>`. The note's file name names the session that wrote it, so a session that claimed its own note shows the same id in both.
 
-A `withdrawn` line covers `cancel` and an operator prompt over a deferred or armed Claude record. It also covers a prompt over an armed Codex record or a new turn over an armed Pi or OpenCode record. The note stays open with that session. A `note-kept` line means the session continues in place and claims the note after auto-compaction.
+A `withdrawn` line covers `cancel` and an operator prompt over a deferred or armed Claude or Codex record. It also covers a new turn over a deferred or armed Pi or OpenCode record. The note stays open with that session. A `note-kept` line means the session continues in place and claims the note after auto-compaction.
 
 Each line holds the time, the event, the runtime, the hop number, the session folder, the first line of the note's Goal and the note's filename, separated by tabs. A failed write never fails the hop. Read the latest lines with `node .skilled/hooks/session-handover/bin/session-handover.cjs history` or `history --last <count>`. `/doctor:setup` shows the last one.
 

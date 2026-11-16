@@ -6,18 +6,19 @@
 
 // Read-only /doctor diagnostic for agent-roster coverage across runtimes.
 //
-// WHY THIS EXISTS: the same agent roster is exposed to five runtimes, but each
-// discovers agents from its own path with its own file shape. Cursor and Devin
-// are served by symlinks into the canonical Claude tree, while OpenCode and Codex
-// keep independently-authored files in their own dialects. Nothing in the
-// runtimes themselves notices when a newly-added agent reaches only some of
-// them -- it simply goes missing where it was never mirrored, silently, with no
-// error at dispatch time. This check makes that omission loud.
+// WHY THIS EXISTS: the same agent roster is exposed to eight runtime trees, but
+// each discovers agents from its own path with its own file shape. `.skilled/agents`
+// is the source: Cursor and Devin are served by symlinks into the hand-carried
+// Claude fork, OpenCode by a directory symlink to the source itself, and Codex, Pi,
+// DSH and Vibe by generated files in their own dialects. Nothing in the runtimes
+// themselves notices when a newly-added agent reaches only some of them -- it
+// simply goes missing where it was never mirrored, silently, with no error at
+// dispatch time. This check makes that omission loud.
 //
 // Never writes; a /doctor run is read-only by contract.
-// Exit 0 when every runtime covers the canonical roster, 1 on drift, 2 on
-// checker error (bad arguments, a missing canonical dir, or any unexpected
-// throw), always with a STATUS= line.
+// Exit 0 when every runtime covers the source roster, 1 on drift, 2 on checker
+// error (bad arguments, a missing source dir, or any unexpected throw), always
+// with a STATUS= line.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -40,18 +41,24 @@ const USAGE = [
   '          the sibling mirror checkers take the flag.',
 ].join('\n');
 
-// The Claude tree is canonical: it holds the full agent bodies that the Cursor
-// and Devin mirrors symlink back to.
-const CANONICAL_REL = '.claude/agents';
+// The source of truth for the roster. Every runtime tree is exposed from here and
+// none of them is authored directly, so a new agent starts life in this directory.
+const CANONICAL_REL = '.skilled/agents';
+
+// Claude Code keeps a hand-carried fork of the roster, because its subagent files
+// carry a different frontmatter. The Cursor and Devin mirrors symlink into the fork
+// rather than into the source.
+const CLAUDE_FORK_REL = '.claude/agents';
 
 // Agents that exist only because Claude Code resolves a subagent by exact name and
 // lets a user or project file replace its built-in. No other runtime has that
-// built-in, so they are not part of the roster the other surfaces must cover.
+// built-in, so they are not roster members, and the Claude fork is left holding them
+// without that counting as an orphan there.
 // Keep in step with the same list in sync-runtime-mirrors.cjs.
 const CLAUDE_ONLY_AGENTS = new Set(['Explore']);
 
-// Symlink mirrors must resolve to the canonical file, not merely exist -- a real
-// file here would be a silent fork that drifts on the next canonical edit.
+// Symlink mirrors must resolve to the file they stand in for, not merely exist -- a
+// real file here would be a silent fork that drifts on the next edit of its target.
 // Each surface names its directory once; `entry` is the agent's path inside it.
 const LINKED = [
   { id: 'cursor', dir: '.cursor/agents', entry: (n) => `${n}.md`, ext: '.md' },
@@ -59,13 +66,19 @@ const LINKED = [
   { id: 'devin', dir: '.devin/agents', entry: (n) => `${n}/AGENT.md`, ext: null },
 ];
 
-// Independently-authored surfaces: a different frontmatter dialect is expected,
-// so only presence is checked, never content equality.
-const AUTHORED = [
-  { id: 'opencode', dir: '.skilled/agents', entry: (n) => `${n}.md`, ext: '.md' },
+// Surfaces that hold their own copy of every agent in their own dialect, so only
+// presence is checked, never content equality.
+const PRESENT = [
+  // The hand-carried Claude fork; the only tree that may hold a Claude-only agent.
+  { id: 'claude', dir: CLAUDE_FORK_REL, entry: (n) => `${n}.md`, ext: '.md' },
+  // OpenCode reads the source directory through one directory symlink, so its
+  // entries are the source files themselves, not copies of them.
+  { id: 'opencode', dir: '.opencode/agents', entry: (n) => `${n}.md`, ext: '.md' },
   { id: 'codex', dir: '.codex/agents', entry: (n) => `${n}.toml`, ext: '.toml' },
   // Pi agents are generated real files (sync-agents-pi.cjs), not symlinks.
   { id: 'pi', dir: '.pi/agents', entry: (n) => `${n}.md`, ext: '.md' },
+  { id: 'dsh', dir: '.dsh/agents', entry: (n) => `${n}.patch.yml`, ext: '.patch.yml' },
+  { id: 'vibe', dir: '.vibe/agents', entry: (n) => `${n}.toml`, ext: '.toml' },
 ];
 
 // Width of the surface-id column in the report.
@@ -126,7 +139,7 @@ function checkLinked(repo, surface, name) {
   }
   if (!st.isSymbolicLink()) return { ok: false, why: 'not a symlink (silent fork risk)' };
   if (!fs.existsSync(abs)) return { ok: false, why: 'broken symlink' };
-  const want = path.join(repo, CANONICAL_REL, `${name}.md`);
+  const want = path.join(repo, CLAUDE_FORK_REL, `${name}.md`);
   if (fs.realpathSync(abs) !== fs.realpathSync(want)) {
     return { ok: false, why: 'resolves elsewhere' };
   }
@@ -153,6 +166,12 @@ function scanSurface(repo, surface, roster) {
   const result = { orphans: [], broken: [] };
   if (!fs.existsSync(dir)) return result;
   const known = new Set(roster);
+  // The Claude fork owns the Claude-only agents, so they are not orphans there.
+  if (surface.dir === CLAUDE_FORK_REL) {
+    for (const name of CLAUDE_ONLY_AGENTS) {
+      known.add(name);
+    }
+  }
   const names = [];
   for (const e of fs.readdirSync(dir).sort()) {
     if (e.startsWith('.') || isReadme(e)) continue;
@@ -175,7 +194,7 @@ function scanSurface(repo, surface, roster) {
 function main() {
   const { root } = parseArgs(process.argv.slice(2));
   const canonicalDir = path.join(root, CANONICAL_REL);
-  if (!fs.existsSync(canonicalDir)) fail(`canonical dir not found: ${canonicalDir}`);
+  if (!fs.existsSync(canonicalDir)) fail(`canonical source dir not found: ${canonicalDir}`);
 
   const roster = canonicalRoster(canonicalDir);
   const problems = [];
@@ -183,7 +202,7 @@ function main() {
   console.log('\n/doctor agent-roster-mirror — read-only coverage check');
   console.log(`canonical: ${CANONICAL_REL} (${roster.length} agents)\n`);
 
-  for (const s of [...LINKED, ...AUTHORED]) {
+  for (const s of [...PRESENT, ...LINKED]) {
     const linked = LINKED.includes(s);
     const bad = [];
     for (const name of roster) {
@@ -216,8 +235,8 @@ function main() {
 
   if (problems.length > 0) {
     console.log(`\nSTATUS=DRIFT agent-roster-mirror: ${problems.length} issue(s)`);
-    console.log('Repair: symlink surfaces mirror .claude/agents/<name>.md; '
-      + 'authored surfaces need a native file per dialect.\n');
+    console.log(`Repair: add the agent to ${CANONICAL_REL}, then regenerate the runtime `
+      + `trees; the cursor and devin symlinks point at ${CLAUDE_FORK_REL}/<name>.md.\n`);
     process.exit(1);
   }
   console.log('\nSTATUS=OK agent-roster-mirror: every runtime covers the canonical roster\n');

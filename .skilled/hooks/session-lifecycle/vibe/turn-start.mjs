@@ -5,12 +5,13 @@
 // Vibe delivers one JSON payload on stdin at pre_agent and reads one optional
 // additional_context line back. This hook composes the turn-start parts in a
 // fixed order, each in its own try/catch, so one failing part contributes
-// nothing and the rest still land. The pending completion advisory is delivered
-// first, then the compaction context a new journal entry re-arms, then the
-// advisor brief, then the save reminder a new operator answer raises; later
-// turn-start concerns join this list rather than registering their own pre_agent
-// entry, which keeps the order fixed here instead of by hook registration order.
-// It never blocks and never exits
+// nothing and the rest still land. A step that adds no text runs first and
+// withdraws an armed hand-over when the operator typed. Five text parts follow
+// in order: the pending completion advisory, the compaction context a new
+// journal entry re-arms, the advisor brief, the save reminder a new operator
+// answer raises, and the hand-over context last. Later turn-start concerns join this list rather than
+// registering their own pre_agent entry, which keeps the order fixed here
+// instead of by hook registration order. It never blocks and never exits
 // non-zero: malformed input or a failing part contributes nothing, and an
 // empty result prints nothing at all.
 
@@ -89,7 +90,16 @@ async function handoverPart(payload) {
   return buildHandoverContextPart(payload);
 }
 
-const PARTS = [
+// An armed hand-over is withdrawn before any other part runs, so a slow part cannot hold the
+// withdraw past the moment the killer ends the session. It adds no text of its own.
+export async function handoverWithdrawPart(payload) {
+  const { withdrawBeforeTurnStart } = await import(HANDOVER_PART_URL);
+  withdrawBeforeTurnStart(payload);
+  return '';
+}
+
+export const PARTS = [
+  handoverWithdrawPart,
   (payload) => pendingCompletionAdvisoryPart(payload),
   // The compaction part runs before the advisor part, so the receipt it
   // re-arms is already advanced when the advisor decides what to deliver.

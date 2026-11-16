@@ -29,15 +29,17 @@ This document covers how each runtime adapter starts a handover. It lists the se
 | Codex | automatic | `codex --no-daemon [-m <model>] "<seed>"` | `-m`, `--model`, `--model=` | [.codex/hooks.json](../../../.codex/hooks.json) hook entries plus `.codex/hooks/` symlinks | AUTO |
 | Cursor | `/speckit-handoff` | `cursor-agent [--model <model>] "<seed>"` | `--model`, `--model=` | [.cursor/commands/speckit-handoff.md](../../../.cursor/commands/speckit-handoff.md) symlink | COMMAND-ONLY |
 | Devin | `/speckit:handoff` | `devin [--model <model>] -- "<seed>"` | `--model`, `--model=` | none, [.devin/SYNC.md](../../../.devin/SYNC.md) carries no command surface | COMMAND-ONLY |
-| Vibe | automatic from a context nudge | `vibe "<seed>"` | none, because `--model` is headless-only | [.vibe/hooks.toml](../../../.vibe/hooks.toml) entries for `turn-start`, `turn-end` and `compaction-post-tool`, plus [.vibe/prompts/speckit-handoff.md](../../../.vibe/prompts/speckit-handoff.md) for the manual start | AUTO |
+| Vibe | automatic from a context nudge, and under `skilled-loop` a typed `/speckit-handoff` arms too | `vibe "<seed>"` | none, because `--model` is headless-only | [.vibe/hooks.toml](../../../.vibe/hooks.toml) entries for `turn-start`, `turn-end` and `compaction-post-tool`, plus [.vibe/prompts/speckit-handoff.md](../../../.vibe/prompts/speckit-handoff.md) for the manual start | AUTO |
 
 The OpenCode 2 root command has no model flag. So `-m`, `--model` and `--model=` apply on OpenCode 1 only.
 
-On Vibe, `/speckit-handoff` still prepares a manual start with a `uuidgen` id. That id is never armed, so the route prints the claim command.
+On Vibe under `skilled-loop`, a typed `/speckit-handoff` arms, because the session reads its id from the `session-id` command. Outside the loop it prepares a manual start with a `uuidgen` id. That id is never armed, so the route prints the claim command.
 
 `skilled-loop` exports `SKILLED_LOOP_RUNTIME` with the selected runtime. It carries the first launch's model for every runtime except Vibe, whose `--model` is headless-only, and OpenCode 2, whose root command has no model flag. Pi also carries its provider. Claude and Pi carry their name. Pi carries its extension flags. Relative Pi extension paths resolve against the wrapper's starting directory.
 
-`prepare` and `claim` require `--session <id>`. Only Claude can omit it and use `CLAUDE_CODE_SESSION_ID`. Other runtimes pass the id directly. Runtimes with no session-id variable, such as Devin, Cursor or Vibe, run `uuidgen` once and reuse the value. `CLAUDE_PID` supplies Claude's process id for the shell-child check, and Stop keeps it as the killer target while it descends from the loop. `complete` requires only the note path.
+`prepare` and `claim` require `--session <id>`. Claude can omit it and use `CLAUDE_CODE_SESSION_ID`. Vibe under `skilled-loop` can omit it too.
+
+Vibe gives its tools no session id, so the turn-start hook records the id it sees for the loop, and `session-id --runtime vibe` prints it. Other runtimes pass the id directly. Runtimes with no session-id variable, such as Devin, Cursor or Vibe outside the loop, run `uuidgen` once and reuse the value. `CLAUDE_PID` supplies Claude's process id for the shell-child check, and Stop keeps it as the killer target while it descends from the loop. `complete` requires only the note path.
 
 ---
 
@@ -78,13 +80,15 @@ A level outside the runtime's list is dropped with a `warning:` line on stderr. 
 
 ## 4. AUTOMATIC TRIGGERS ON CODEX
 
-Codex binds four repo hooks rendered from `hook-registry.json` into [.codex/hooks.json](../../../.codex/hooks.json). `handover-prompt-seed.mjs` binds `UserPromptSubmit`. A `[session-handover]` prompt receives the claim-seed instructions. A non-seed prompt first withdraws a record this session armed, then runs the same threshold check as `handover-context-nudge.mjs`, which binds `PostToolUse`.
+Codex binds four repo hooks rendered from `hook-registry.json` into [.codex/hooks.json](../../../.codex/hooks.json). `handover-prompt-seed.mjs` binds `UserPromptSubmit`. A `[session-handover]` prompt receives the claim-seed instructions. A non-seed prompt first withdraws a record this session armed or a failed Stop deferred, then runs the same threshold check as `handover-context-nudge.mjs`, which binds `PostToolUse`.
 
 The Codex prompt payload carries only the prompt text, so any prompt other than a seed counts as the operator's. The Codex hook installer allows each script under one event only, so seed detection and the mid-session nudge are separate entry points over `shared.mjs`.
 
 The fill comes from the transcript rollout's latest `token_count` event. `last_token_usage.input_tokens` is the numerator and `cached_input_tokens` stays out because it is already inside that count. The window is `SESSION_HANDOVER_WINDOW_TOKENS`, then the event's `model_context_window`. The nudge reaches the model as `hookSpecificOutput.additionalContext`, the envelope the repo's other Codex adapters emit.
 
-`handover-stop-arm.mjs` accepts only payloads whose `hook_event_name` is `Stop`. It resolves the target, arms a matching pending record, then spawns the killer with `--transcript <transcript_path>`. A spawn failure leaves the record armed until the next Stop restarts its killer. `handover-compact-pointer.mjs` binds `SessionStart` and acts only on `source: compact`.
+`handover-stop-arm.mjs` accepts only payloads whose `hook_event_name` is `Stop`. It resolves the target, arms a matching pending record, then spawns the killer with `--transcript <transcript_path>`. A spawn failure leaves the record armed until the next Stop restarts its killer.
+
+A Stop that cannot arm stamps `deferredAt` on the pending record. It cannot arm when it carried no transcript path, found no session process below the loop or the arm threw. It then prints one `systemMessage` that names the cause and ends with `Your next prompt withdraws the hand-over, and a later nudge asks for a new one.` `handover-compact-pointer.mjs` binds `SessionStart` and acts only on `source: compact`.
 
 Codex exports no pid variable, so the killer target resolves through the same ancestor rule the CLI's running-work check uses. `skilled-loop codex` always starts Codex with `--no-daemon` because its shared app-server daemon keeps the environment of the session that started it. In a git worktree, Codex reads its `hooks.json` from the main checkout, not the worktree. The automatic hop needs the session-handover rows in the main checkout's file.
 

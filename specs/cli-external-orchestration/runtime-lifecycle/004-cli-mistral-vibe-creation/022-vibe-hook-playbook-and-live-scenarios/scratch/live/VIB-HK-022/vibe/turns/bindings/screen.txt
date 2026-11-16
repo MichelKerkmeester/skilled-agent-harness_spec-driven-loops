@@ -1,7 +1,7 @@
 
-⢔⡢⡀    ⡔⢄⠔⡄   Mistral Vibe v3.1.2
- ⢸⠸⣀⡔⢉⠱⣃⡐⣔⡣   deepseek-flash[max] · Free
-  ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+ ⢠⢢    ⡠⡀⡠⡀   Mistral Vibe v3.1.2
+ ⢸⢸⣀⡔⢉⢑⠇⠨⡠⢇   deepseek-flash[max] · Pro
+ ⠈⠒⠒⠣⠤⠵⠭⠭⠯⠇   Type /help for more information
 
 Hello Michel, how can I help you?
 
@@ -10,28 +10,26 @@ Hello Michel, how can I help you?
 > Give me a one-line summary of what this project contains.
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-⏵ Ran 7 commands, thought                                                                                                     
+⚠ [turn-start] Added context for the model: "Advisor: no skill matched. Directives: - Comment hygiene [HARD BLOCK]: NEVER em…"
 
-  Skilled — a spec-driven agent harness: a markdown-only framework of specs, skills, agents, hooks and commands that installs into Claude Code, Codex, OpenCode, Pi, Devin and Cursor CLI to give an
-  AI coding agent persistent memory, an auditable paper trail, and specialized sub-agents.
+  I'll look at the project structure to summarize it.
 
+⏵ Ran 6 commands, thought                   
 
+  There's no project here to summarize. The working directory is a fresh Vibe session temp dir, not a repo:
 
+  ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ /private/var/folders/.../tmp.xmexVjhwRD/vibe                                                                                                                                                     │
+  │ ├── .env                    (dotenv, values guarded)                                                                                                                                             │
+  │ ├── .conversation-scratch   (env-secret-guard note)                                                                                                                                              │
+  │ ├── .cleanup-lines-before                                                                                                                                                                        │
+  │ └── .skilled/skills/.state/ (hook state: vibe-compaction, env-secret-guard)                                                                                                                      │
+  └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 
+  No source files, no README, no specs/, and git rev-parse reports "not a git repository". The specs/ and .opencode/scripts references in the session context come from your global config, not from
+  anything on disk here.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  Point me at the project path (or cd the session into it) and I'll give you the one-liner.
 
 
 
@@ -41,11 +39,13 @@ Hello Michel, how can I help you?
 
 
 
-                                                
+
+
+                                                 
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
->                                                           
+>   
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.4Ns41Cd3ss/vibe                                                                                                       ctx ▍      16.3k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.xmexVjhwRD/vibe                                                                                    usage █▊     28% · ctx ▍      14.6k/256k
 

@@ -1,0 +1,33 @@
+## list
+lists/004.txt lines: 167
+## measure before (HEAD text of the 165 queued files)
+files=165 sentences=3910 avg_words=11.9
+sentences_over_15=992 sentences_over_22=374
+files_with_a_sentence_over_22=106 files_with_hvr_hard_blockers=5
+## measure after
+files=165 sentences=5552 avg_words=8.6
+sentences_over_15=195 sentences_over_22=0
+files_with_a_sentence_over_22=0 files_with_hvr_hard_blockers=0
+## wave 004 driver
+2026-11-15T13:21:39.975Z finished pass=126 restored=2 unchanged=37
+driver exit=0
+## wave 004-retry driver (no sanctioned swap)
+2026-11-15T13:22:25.711Z finished pass=0 restored=2 unchanged=0
+driver exit=0
+## wave 004-retry2 driver (sanctioned swap for hard-blocker fix rows)
+2026-11-15T13:25:02.391Z finished pass=2 restored=0 unchanged=0
+driver exit=0
+## wave-verify
+{"listed":167,"keep":128,"restored":37,"missing":0,"problems":2}
+PROBLEM .skilled/skills/system-spec-kit/changelog/v2.12.43.0.md: the saved original is not the file at HEAD
+PROBLEM .skilled/skills/system-spec-kit/changelog/v2.8.4.0.md: the saved original is not the file at HEAD
+## pilot files against HEAD
+git diff --quiet exit=0
+## changed notes in worktree
+128
+## harness count in v2.12.25.0.md after
+0
+## hard-blocker fix rows by token
+47 semicolon, 7 harness, 1 harness self-reference
+## tokens
+waves 004, 004-retry and 004-retry2 worker plus verifier input and output: 6212961

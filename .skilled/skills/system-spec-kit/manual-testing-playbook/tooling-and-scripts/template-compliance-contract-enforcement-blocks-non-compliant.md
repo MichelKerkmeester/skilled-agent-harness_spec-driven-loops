@@ -1,7 +1,7 @@
 ---
 title: "208 -- Template Compliance Contract Enforcement"
 description: "This scenario validates Template Compliance Contract Enforcement for `208`. It focuses on confirming the 3-layer contract prevents non-compliant spec documents from passing strict validation."
-version: 1.6.0.12
+version: 1.6.1.0
 id: tooling-and-scripts-template-compliance-contract-enforcement-blocks-non-compliant
 expected_workflow_mode: system-spec-kit
 expected_leaf_resources:
@@ -181,7 +181,7 @@ EXIT_CODE=0
 
 ### Failure Triage
 
-Inspect `references/validation/template-compliance-contract.md`, `.skilled/agents/speckit.toml`, `runtime/cli/spec/validate.sh`, and `runtime/cli/tests/test-validation-extended.sh` if strict validation passes broken fixtures or misses contract drift
+Inspect `references/validation/template-compliance-contract.md`, `runtime/cli/spec/validate.sh`, and `runtime/cli/tests/test-validation-extended.sh` if strict validation passes broken fixtures or misses contract drift
 
 ---
 

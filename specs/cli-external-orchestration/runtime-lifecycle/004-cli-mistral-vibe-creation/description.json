@@ -1,28 +1,37 @@
 {
   "level": "2",
   "specFolder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
-  "description": "Mistral as a provider across the CLI runtimes and Mistral Vibe as a cli-external-orchestration runtime mode",
+  "description": "The operator subscribed to Mistral, whose plan serves DeepSeek V4.1 Flash 1017 and GLM-5.3-Flash beside Mistral's own models and its Vibe coding agent",
   "keywords": [
+    "operator",
+    "subscribed",
     "mistral",
-    "provider",
-    "across",
-    "cli",
-    "runtimes",
+    "whose",
+    "plan",
+    "serves",
+    "deepseek",
+    "flash",
+    "glm-5",
+    "3-flash",
+    "beside",
+    "own",
+    "models",
     "vibe",
-    "cli-external-orchestration",
-    "runtime",
-    "mode"
+    "coding",
+    "agent"
   ],
-  "lastUpdated": "2026-11-15T13:31:21.061Z",
+  "lastUpdated": "2026-11-15T17:25:53.171Z",
   "specId": "004",
   "folderSlug": "cli-mistral-vibe-creation",
   "parentChain": [
     "cli-external-orchestration",
     "runtime-lifecycle"
   ],
-  "memorySequence": 2,
+  "memorySequence": 4,
   "memoryNameHistory": [
     "14-11-26_23-33__planned-reviewed-and-built-children-013-020-of.md",
-    "15-11-26_14-31__phases-016-017-and-022-closed-with-live-multi.md"
+    "15-11-26_14-31__phases-016-017-and-022-closed-with-live-multi.md",
+    "15-11-26_16-01__review-fixes-applied-across-the-packet-manual.md",
+    "15-11-26_17-27__all-22-phases-complete-phase-022-closed-after-the.md"
   ]
 }

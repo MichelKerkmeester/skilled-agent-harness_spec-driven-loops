@@ -42,6 +42,10 @@ on:
       # workflow's runtime suite, so a change to them has to run it.
       - '.opencode/scripts/**'
       - '.skilled/scripts/**'
+      # The history lookup engine's suites run only in this workflow's runtime
+      # job, so an engine-only change has to trigger it. The hooks vitest tree
+      # does not collect the engine's suites.
+      - '.skilled/hooks/**'
   pull_request:
     branches: [main]
     paths:
@@ -83,6 +87,10 @@ on:
       # workflow's runtime suite, so a change to them has to run it.
       - '.opencode/scripts/**'
       - '.skilled/scripts/**'
+      # The history lookup engine's suites run only in this workflow's runtime
+      # job, so an engine-only change has to trigger it. The hooks vitest tree
+      # does not collect the engine's suites.
+      - '.skilled/hooks/**'
 
 permissions:
   contents: read
@@ -292,6 +300,14 @@ jobs:
           set -euo pipefail
           cd .opencode/skills/system-spec-kit/runtime
           npx vitest run --config ../vitest.config.ts --project root
+
+      - name: History lookup engine build and suites
+        # The engine lives in the session handover hook folder and reads the hook
+        # state the runtime build above compiles, so it builds and tests here.
+        run: |
+          set -euo pipefail
+          npm --prefix .skilled/hooks/session-handover/history run build
+          npm --prefix .skilled/hooks/session-handover/history test
 
   mirrors:
     name: Runtime mirrors agree with their sources

@@ -91,8 +91,11 @@ Where the goal is found depends on the sender's runtime.
 | Sender | Where the goal is read |
 |---|---|
 | OpenCode, Pi, Devin, Cursor | The active goal record under `.skilled/skills/.state/goal/` |
+| Vibe | No goal record. The packet the Vibe goal hook renders from |
 | Claude | The newest goal entry in the session log |
 | Codex | Nowhere, so no field is written |
+
+Vibe keeps no goal record. Its sender reads the packet the Vibe goal hook renders from: `VIBE_SPEC_FOLDER` when it is set, otherwise the `SESSION_HANDOVER_GOAL_PACKET` a claim exported. Either one counts only when it names a real packet.
 
 OpenCode, Pi, Devin and Cursor read the session's active goal record under `.skilled/skills/.state/goal/`. That record names the bound packet. A paused, completed or cleared goal counts as none. Devin and Cursor have no record under the fresh native id a manual claim starts. They also keep the packet the claim exported in `SESSION_HANDOVER_GOAL_PACKET` when it names a real packet.
 

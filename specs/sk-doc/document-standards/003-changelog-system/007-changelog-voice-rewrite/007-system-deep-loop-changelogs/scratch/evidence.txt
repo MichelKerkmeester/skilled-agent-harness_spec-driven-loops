@@ -1,0 +1,30 @@
+## list
+lists/007.txt lines: 160
+## measure before (HEAD text of the 158 queued files)
+files=158 sentences=2773 avg_words=12.7
+sentences_over_15=816 sentences_over_22=307
+files_with_a_sentence_over_22=120 files_with_hvr_hard_blockers=2
+## measure after
+files=158 sentences=4281 avg_words=8.5
+sentences_over_15=132 sentences_over_22=0
+files_with_a_sentence_over_22=0 files_with_hvr_hard_blockers=0
+## wave 007 driver
+2026-11-15T16:32:49.818Z finished pass=141 restored=1 unchanged=16
+driver exit=0
+## wave 007 restored file
+.skilled/skills/system-deep-loop/deep-research/changelog/v1.6.1.0.md
+## wave 007-retry driver
+2026-11-15T16:34:28.563Z finished pass=1 restored=0 unchanged=0
+driver exit=0
+## wave-verify
+{"listed":160,"keep":142,"restored":16,"missing":0,"problems":2}
+PROBLEM .skilled/skills/system-deep-loop/deep-research/changelog/v1.15.5.0.md: the saved original is not the file at HEAD
+PROBLEM .skilled/skills/system-deep-loop/deep-research/changelog/v1.6.3.0.md: the saved original is not the file at HEAD
+## pilot files against HEAD
+git diff --quiet exit=0
+## changed notes in worktree
+142
+## tokens
+waves 007 and 007-retry worker plus verifier input and output: 6806345
+## first-wave findings of the restored file
+gates [sentence-mean] 10.0 words a sentence on average, ceiling 10. Use more, shorter sentences || fact check changed (correct it): “`fork` branched into a sibling run history” changes the original description of an offered choice into a claim that it actually || fact check changed (correct it): “They can also choose `restart`” changes the original recommendation to archive manually or choose `restart` into a recommendati

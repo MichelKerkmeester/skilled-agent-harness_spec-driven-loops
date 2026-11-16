@@ -602,6 +602,14 @@ test('runtime first launch preserves argv except the Codex daemon default', (t) 
   }
 });
 
+// The shared harness stubs the runtimes the wrapper shipped before Vibe, so a Vibe case
+// copies the Claude stub, which records its argv the same way.
+function installVibeStub(sandbox) {
+  const target = path.join(sandbox.binDir, 'vibe');
+  fs.copyFileSync(path.join(sandbox.binDir, 'claude'), target);
+  fs.chmodSync(target, 0o755);
+}
+
 test('manual commands preserve carried flags and match automatic relaunch argv', (t) => {
   const cases = [
     {
@@ -619,6 +627,10 @@ test('manual commands preserve carried flags and match automatic relaunch argv',
     { runtime: 'codex', arguments: ['--model', 'codex-model', 'initial prompt'] },
     { runtime: 'cursor', arguments: ['--model', 'cursor-model', 'initial prompt'] },
     { runtime: 'devin', arguments: ['--model', 'devin-model', '--', 'initial prompt'] },
+    // A launch flag the wrapper does not record by name, such as Vibe's --trust, rides in
+    // the replayed extras; the manual command must carry it as the automatic hop does.
+    { runtime: 'vibe', arguments: ['--trust', 'initial prompt'] },
+    { runtime: 'cursor', arguments: ['--trust', 'initial prompt'] },
   ];
 
   for (const { runtime, arguments: runtimeArguments } of cases) {
@@ -627,6 +639,7 @@ test('manual commands preserve carried flags and match automatic relaunch argv',
       automaticSandbox,
       { markers: '1' },
     );
+    if (runtime === 'vibe') installVibeStub(automaticSandbox);
     const automaticResult = runWrapper(automaticSandbox, [runtime, ...runtimeArguments]);
     const automaticRecords = readRecords(automaticRecordPath);
     assert.equal(automaticResult.status, 0, automaticResult.stderr);
@@ -639,6 +652,7 @@ test('manual commands preserve carried flags and match automatic relaunch argv',
       STUB_EXIT_CODES: '7',
       HANDOFF_PATH: handoffPath,
     });
+    if (runtime === 'vibe') installVibeStub(manualSandbox);
     const pendingResult = runWrapper(manualSandbox, [runtime, ...runtimeArguments]);
     const manualCommand = pendingResult.stdout
       .split('\n')

@@ -88,6 +88,7 @@ function renderReviewIteration(reviewFocusBlock: string): string {
     pivot_lineage: 'none yet',
     saturated_directions: 'none yet',
     review_focus_block: reviewFocusBlock,
+    unfinished_core_protocols_block: '',
     state_paths_config: 'review/deep-review-config.json',
     state_paths_state_log: 'review/deep-review-state.jsonl',
     state_paths_findings_registry: 'review/deep-review-findings-registry.json',

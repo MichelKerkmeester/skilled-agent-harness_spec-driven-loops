@@ -104,6 +104,10 @@ copy_dir "${REPO_ROOT}/.skilled/skills/sk-code" "${SANDBOX_DIR}/.skilled/skills/
 copy_file "${REPO_ROOT}/.skilled/agents/deep-review.md" "${SANDBOX_DIR}/.skilled/agents/deep-review.md"
 copy_file "${REPO_ROOT}/.claude/agents/deep-review.md" "${SANDBOX_DIR}/.claude/agents/deep-review.md"
 
+# OpenCode reads agents through .opencode/agents, a link to the source tree, as in the repo.
+mkdir -p "${SANDBOX_DIR}/.opencode"
+ln -s ../.skilled/agents "${SANDBOX_DIR}/.opencode/agents"
+
 mkdir -p "${SANDBOX_DIR}/targets"
 cat > "${SANDBOX_DIR}/targets/review-target.js" <<'TARGET'
 export function normalizeUser(user) {

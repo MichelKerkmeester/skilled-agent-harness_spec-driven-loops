@@ -1,0 +1,23 @@
+## list
+lists/011.txt lines: 54
+## measure before (HEAD text of the 53 queued files)
+files=53 sentences=783 avg_words=12.9
+sentences_over_15=250 sentences_over_22=97
+files_with_a_sentence_over_22=40 files_with_hvr_hard_blockers=1
+## measure after
+files=53 sentences=1235 avg_words=8.5
+sentences_over_15=49 sentences_over_22=0
+files_with_a_sentence_over_22=0 files_with_hvr_hard_blockers=0
+## wave 011 driver
+2026-11-15T18:42:06.634Z wave=011 listed=54 queued=53 refused=0 slots=2
+2026-11-15T18:53:16.995Z finished pass=44 restored=0 unchanged=9
+driver exit=0
+## wave-verify
+{"listed":54,"keep":44,"restored":9,"missing":0,"problems":1}
+PROBLEM .skilled/skills/sk-git/changelog/v1.3.2.0.md: the saved original is not the file at HEAD
+## pilot file against HEAD
+git diff --quiet exit=0
+## changed notes in worktree
+44
+## tokens
+wave 011 worker plus verifier input and output: 1832914

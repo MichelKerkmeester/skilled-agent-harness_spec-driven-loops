@@ -34,6 +34,12 @@
 .skilled/skills/system-spec-kit/runtime  dist/api/index.js  .skilled/skills/system-spec-kit/shared
 .skilled/skills/system-spec-kit/runtime/cli  dist/continuity/generate-context.js  .skilled/skills/system-spec-kit/shared  .skilled/skills/system-spec-kit/runtime
 
+# The history lookup engine behind the session handover's History Lookup section.
+# Its CLI reads the hook state the runtime compiles, so it builds after the
+# runtime. Without its output a handover prints no lookup section, and the
+# printed command refuses with core_unavailable.
+.skilled/hooks/session-handover/history  dist/cli.js  .skilled/skills/system-spec-kit/runtime
+
 # The advisor daemon and CLI front door. The spec-gate hook core imports its
 # built policy plan directly.
 .skilled/skills/system-skill-advisor/runtime  dist/runtime/lib/policy-plan.js  .skilled/skills/system-skill-advisor/hooks  .skilled/skills/system-spec-kit/shared

@@ -18,7 +18,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`session-handover/` holds the shared handoff logic and one adapter per automatic runtime. It also holds the CLI, the tests and `bin/history-lookup.mjs`. That file is the runnable entry for the printed history lookup command.
+`session-handover/` holds the shared handoff logic and one adapter per automatic runtime. It also holds the CLI, the tests and the history lookup. `bin/history-lookup.mjs` is the runnable entry for the printed lookup command, and `history/` is the engine that reads the sender's earlier turns back. `handoff-protocol.md` explains the lookup end to end.
 
 Each adapter asks for a handoff near its context threshold. The sender prepares a note and the adapter arms a matching record. After the runtime exits, `skilled-loop` relaunches it with a claim seed. That happens when the record is armed, fresh and below the hop cap. A record still pending at exit makes the wrapper print a manual claim command and consume the record.
 
@@ -87,7 +87,7 @@ The table folds every runtime entry into one place. A row names the event and th
 | Claude | `PreToolUse` | `claude/handover-subagent-guard.mjs` | This folder. | `permissionDecision: deny` with the reason, for a sub-agent call or a question dialog. |
 | Codex | `UserPromptSubmit` | `codex/handover-prompt-seed.mjs` | This folder. | `hookSpecificOutput.additionalContext` with the claim seed or the nudge. |
 | Codex | `PostToolUse` | `codex/handover-context-nudge.mjs` | This folder. | `hookSpecificOutput.additionalContext` with the nudge text. |
-| Codex | `Stop` | `codex/handover-stop-arm.mjs` | This folder. | Nothing. The hook logs to `relaunch.log`. The drift fallback prints a `systemMessage` only when the adapter file is missing. |
+| Codex | `Stop` | `codex/handover-stop-arm.mjs` | This folder. | `systemMessage` naming the cause, for a Stop that could not arm. A successful arm prints nothing and logs to `relaunch.log`. |
 | Codex | `SessionStart` | `codex/handover-compact-pointer.mjs` | This folder. | `hookSpecificOutput.additionalContext` with the claim instructions or the stale-note text. |
 | Pi | `before_agent_start`, `message_end`, `turn_end`, `agent_end`, `agent_start`, `agent_settled`, `session_compact`, `tool_call` | `pi/session-handover.ts` | This folder. | The claim instructions appended to the system prompt, a steered message, a follow-up message, a hidden compaction message and a blocked `question` tool. |
 | OpenCode | `experimental.chat.system.transform`, `message.part.updated`, `message.updated`, `session.compacted`, `session.created`, `session.deleted`, `session.idle`, `session.updated`, `tool.execute.before` | `opencode/session-handover.js` | `.opencode/plugins/session-handover.js` | The nudge, the claim seed and the withdrawn notice in the system prompt. A thrown error on the `question` tool. |
@@ -101,7 +101,7 @@ OpenCode loads `.opencode/plugins/session-handover.js` as a plugin. The `opencod
 
 Cursor and Devin have no entry here. Their handoff runs from `/speckit-handoff` in Cursor and `/speckit:handoff` in Devin.
 
-Each adapter catches its own errors. Claude and Codex exit 0 with no envelope, except that Claude's Stop prints a `systemMessage` when it cannot arm. Pi and OpenCode return from the handler. Vibe logs the error and returns an empty context part, or null from the turn-end arm.
+Each adapter catches its own errors. Claude and Codex exit 0 with no envelope, except that each Stop hook prints a `systemMessage` when it cannot arm. Pi and OpenCode return from the handler. Vibe logs the error and returns an empty context part, or null from the turn-end arm.
 
 The suppression rules and the delivery order are in `handoff-protocol.md`. The seed syntax and the model carry are in `runtime-behavior.md`.
 
@@ -121,6 +121,10 @@ session-handover/
 |   +-- README.md
 |   +-- history-lookup.mjs
 |   `-- session-handover.cjs
++-- history/
+|   +-- README.md
+|   +-- lib/
+|   `-- tests/
 +-- claude/
 |   +-- README.md
 |   +-- handover-compact-pointer.mjs
@@ -160,8 +164,9 @@ session-handover/
 
 | File | Responsibility |
 |---|---|
-| `bin/session-handover.cjs` | The CLI. It runs `prepare`, `keep`, `claim`, `complete`, `cancel`, `consume`, `should-relaunch`, `hand-over`, `history` and `window`. |
+| `bin/session-handover.cjs` | The CLI. It runs `prepare`, `keep`, `claim`, `complete`, `cancel`, `consume`, `should-relaunch`, `hand-over`, `history`, `window` and `session-id`. |
 | `bin/history-lookup.mjs` | The runnable entry for the printed history lookup command. |
+| `history/` | The history lookup engine: TypeScript source in `lib/`, its gitignored build in `dist/` and its Vitest suites in `tests/`. |
 | `lib/relaunch-core.cjs` | The handoff note, the relaunch record, the arm rules and the locks. |
 | `lib/nudge.cjs` | The nudge text, the suppression rules and `questionHoldReason`. |
 | `lib/killer.cjs` | The idle wait, the SIGTERM and the timeout path. |
@@ -248,6 +253,16 @@ node .skilled/hooks/session-handover/bin/session-handover.cjs --help
 
 Expected result: the usage listing and exit 0.
 
+The history engine builds and tests on its own. Build the spec-kit runtime first, because the engine reads the hook state the runtime compiles. The handover suite's claim tests import the engine's build, so build it before running them too.
+
+```bash
+npm --prefix .skilled/skills/system-spec-kit/runtime run build
+npm --prefix .skilled/hooks/session-handover/history run build
+npm --prefix .skilled/hooks/session-handover/history test
+```
+
+Expected result: both builds exit 0 and every history suite passes. A provisioned worktree builds the engine for you. The dist-freshness check reports it when its build is missing or older than its source.
+
 ---
 
 ## 8. RELATED
@@ -257,6 +272,7 @@ Expected result: the usage listing and exit 0.
 - [`runtime-behavior.md`](./runtime-behavior.md): the adapter matrix, the model carry and the shell shim.
 - [`state-files.md`](./state-files.md): the relaunch record, the note status and the hop history.
 - [`troubleshooting.md`](./troubleshooting.md): the exit codes, the killer log lines and the wrapper warnings.
+- [`history/README.md`](./history/README.md): the history lookup engine, its operations and its refusal codes.
 - [`../README.md`](../README.md): the hooks tree and the switch index.
 - [`../injection-contract.md`](../injection-contract.md): what these hooks inject and how visible it is.
 - [`../../bin/README.md`](../../bin/README.md): the `skilled-loop` wrapper.

@@ -29,15 +29,17 @@ A malformed invocation prints the syntax it missed to stderr and exits 2. An unk
 | File | Responsibility |
 |---|---|
 | `session-handover.cjs` | The CLI. It parses arguments, validates the note and writes or removes the relaunch record. |
-| `history-lookup.mjs` | The runnable entry for the printed history lookup command. It loads the compiled history core and passes the arguments through. |
+| `history-lookup.mjs` | The runnable entry for the printed history lookup command. It loads the history engine's build, `../history/dist/cli.js`, and passes the arguments through. |
 
-`session-handover.cjs` exposes `prepare`, `should-relaunch`, `keep`, `claim`, `complete`, `consume`, `cancel`, `hand-over`, `history` and `window`. `claim` prints the note body, then the history lookup section and the goal packet when the note carries them. `consume` prints one JSON line and removes the record.
+`session-handover.cjs` exposes `prepare`, `should-relaunch`, `keep`, `claim`, `complete`, `consume`, `cancel`, `hand-over`, `history`, `window` and `session-id`. `claim` prints the note body, then the history lookup section and the goal packet when the note carries them. `consume` prints one JSON line and removes the record.
 
-`should-relaunch` exits 0 to relaunch and 1 to stay. `cancel` prints `no prepared hand-over to cancel` and exits 1 when no record is waiting. `history` prints the latest hops and takes `--last <count>` to set how many. `window` prints the configured Claude context window or the settings that configure it.
+A malformed invocation prints the missing syntax to stderr and exits 2. A `prepare` outside a loop, or at the hop cap, prints the claim command and exits 3.
+
+`should-relaunch` exits 0 to relaunch and 1 to stay. `cancel` prints `no prepared hand-over to cancel` and exits 1 when no record is waiting. `history` prints the latest hops and takes `--last <count>` to set how many. `window` prints the configured Claude context window or the settings that configure it. `session-id` prints the id `prepare` and `claim` use when `--session` is omitted: the Claude Code session, or with `--runtime vibe` the Vibe session `skilled-loop` last saw.
 
 `prepare` refuses a note that leaves the `Running workers:` line unanswered. Inside a loop it also refuses while the runtime still has a live shell child. `prepare` refuses when the `session-handover` concern is off and names the switch that turned it off.
 
-`history-lookup.mjs` imports `runHistoryLookupCli` from the compiled history core. A core that cannot load prints `{"ok":false,"code":"core_unavailable"}` and exits 2. A call that throws prints `{"ok":false,"code":"operation_invalid"}` and exits 2.
+`history-lookup.mjs` imports `runHistoryLookupCli` from `../history/dist/cli.js`. A core that cannot load prints `{"ok":false,"code":"core_unavailable"}` and exits 2. A call that throws prints `{"ok":false,"code":"operation_invalid"}` and exits 2.
 
 ---
 
@@ -57,4 +59,5 @@ Expected result: the usage listing with every subcommand, then `exit: 0`.
 
 - [`../README.md`](../README.md): the concern README with the handoff protocol and the runtime matrix.
 - [`../lib/relaunch-core.cjs`](../lib/relaunch-core.cjs): the shared state layer the CLI drives.
+- [`../history/README.md`](../history/README.md): the history lookup engine `history-lookup.mjs` runs.
 - [`../../../bin/skilled-loop`](../../../bin/skilled-loop): the wrapper that calls `consume` and starts the next session.

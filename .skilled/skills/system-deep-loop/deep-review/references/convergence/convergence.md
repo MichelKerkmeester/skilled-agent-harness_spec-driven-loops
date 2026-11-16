@@ -9,7 +9,7 @@ trigger_phrases:
   - "composite convergence vote"
 importance_tier: important
 contextType: implementation
-version: 1.11.5.0
+version: 1.11.6.0
 ---
 
 # Deep Review Convergence
@@ -106,7 +106,7 @@ Review has one eligible reason: the exact internal reason `all_dimensions_clean`
 
 Each eligible pivot runs one native, in-process Council round with exactly three distinct seats: analytical, critical, and pragmatic. It does not use an external CLI. The transaction requires all three seat returns to be parse-valid and at least two seats to materially endorse the same candidate without a high-severity blocker. Candidate sources are persisted unswept dimensions, search debt, producer-consumer gaps, negative-test gaps, and traceability gaps. Candidate generation rejects directions without in-scope evidence and directions that imply implementation, a fix, mutation, writing, or target expansion.
 
-The guarantees are absolute: divergent mode never changes the PASS/CONDITIONAL/FAIL mapping, never authorizes a fix, and never makes the review target writable. A successful pivot returns to the loop before `phase_synthesis`; verdict computation exists only inside `phase_synthesis`, where an active P0 or a required quality gate still failing at the terminal stop yields FAIL, active P1 yields CONDITIONAL, and no active P0/P1 yields PASS. A failed pivot fails closed to that existing synthesis path.
+The guarantees are absolute: divergent mode never changes the PASS/CONDITIONAL/FAIL mapping, never authorizes a fix, and never makes the review target writable. A successful pivot returns to the loop before `phase_synthesis`; verdict computation exists only inside `phase_synthesis`, where an active P0 or a required quality gate still failing at the terminal stop yields FAIL, active P1 or open search debt yields CONDITIONAL, and no active P0, active P1 or open search debt yields PASS. A failed pivot fails closed to that existing synthesis path.
 
 Every pivot dispatches three seats, so a run that pivots has proportionally higher model cost and duration than the same run under `default`, `off`, or `sliding-window`. Pivot evidence is isolated under `<artifactRoot>/divergent/pivots/<pivotId>/council/**`, including config, append-only state, three seat artifacts, deliberation, and report. This path is distinct from ordinary planning Council artifacts under a spec packet's `ai-council/**` tree.
 
@@ -541,8 +541,8 @@ The provisional verdict is determined from active findings at the time the loop 
 | Verdict | Condition | Meaning |
 |---------|-----------|---------|
 | **FAIL** | `activeP0 > 0` OR a required quality gate (evidence, scope, coverage) still fails at terminal stop time, as the `deep_review.terminal_gates_recorded` event records | Does not meet quality standards. Blocks release. |
-| **CONDITIONAL** | `activeP0 == 0` AND `activeP1 > 0` | Meets threshold but has required fixes before release. |
-| **PASS** | `activeP0 == 0` AND `activeP1 == 0` | Shippable. Set `hasAdvisories: true` when `activeP2 > 0`. |
+| **CONDITIONAL** | `activeP0 == 0` AND (`activeP1 > 0` OR open search debt remains) | Meets threshold but has required fixes before release. |
+| **PASS** | `activeP0 == 0` AND `activeP1 == 0` AND no open search debt | Shippable. Set `hasAdvisories: true` when `activeP2 > 0`. |
 
 ### Determination
 
@@ -566,7 +566,7 @@ function determineVerdict(state, gateResult):
 | Verdict | Next Step |
 |---------|-----------|
 | FAIL | `/speckit:plan` -- create remediation plan from findings |
-| CONDITIONAL | `/speckit:plan` -- create fix plan for P1 findings |
+| CONDITIONAL | `/speckit:plan` -- create fix plan for P1 findings, or re-run `/deep:review` over the deferred or blocked bug classes when search debt is the only cause |
 | PASS | `/create:changelog` -- record the clean audit |
 
 ---

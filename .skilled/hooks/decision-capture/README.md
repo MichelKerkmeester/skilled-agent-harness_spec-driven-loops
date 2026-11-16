@@ -54,7 +54,7 @@ A holder that dies mid-append never removes its lock. The next writer reclaims a
 | Pi | `tool_result` and `turn_end` | `pi/decision-capture.ts` | `.skilled/hooks/decision-capture/pi/decision-capture.ts` | One info notice at turn end. |
 | DSH | `tools/result`, `session/event` and `agent/status` | `dsh/decision-capture.mjs` | `.skilled/hooks/decision-capture/dsh/decision-capture.mjs` | One injected notice at idle. |
 | Vibe | `post_tool` on `ask_user_question` | `vibe/decision-capture-post-tool.mjs` | `.skilled/hooks/decision-capture/vibe/decision-capture-post-tool.mjs` | Nothing. It exits 0 with no output. |
-| OpenCode | `tool.execute.after` and `experimental.chat.system.transform` | None | `.opencode/plugins/decision-capture.js` | One system-text line naming the pending count and `/speckit:save --full-auto`. |
+| OpenCode | `tool.execute.after` and `experimental.chat.system.transform` | `opencode/decision-capture.js` | `.opencode/plugins/decision-capture.js` | One system-text line naming the pending count and `/speckit:save --full-auto`. |
 | Codex | None | None | `bin/sweep-codex.mjs` | Nothing live. The sweep prints a JSON report. |
 | Cursor | None | None | None | Nothing. No adapter and no sweep. |
 

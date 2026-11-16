@@ -212,6 +212,7 @@ const QUOTA_EXHAUSTION_PATTERNS = Object.freeze([
   /quota[^\n]{0,60}(?:exhausted|exceeded|reached)/i,
   /(?:exceeded|exhausted|reached)[^\n]{0,60}quota/i,
   /insufficient[\s_-]+(?:credits?|quota|balance)/i,
+  /budget[\s_-]+exhausted/i,
   /too\s+many\s+requests/i,
 ]);
 const QUOTA_STDOUT_TAIL_LINES = 40;

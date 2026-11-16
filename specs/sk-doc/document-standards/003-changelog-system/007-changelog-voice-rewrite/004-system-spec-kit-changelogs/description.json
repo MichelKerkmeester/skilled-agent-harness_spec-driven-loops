@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/004-system-spec-kit-changelogs",
+  "description": "Phase 4: system-spec-kit-changelogs",
+  "keywords": [
+    "phase",
+    "system-spec-kit-changelogs"
+  ],
+  "lastUpdated": "2026-11-15T13:30:14.632Z",
+  "specId": "004",
+  "folderSlug": "system-spec-kit-changelogs",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system",
+    "007-changelog-voice-rewrite"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_14-30__phase-004-rewrote-128-system-spec-kit-changelogs.md"
+  ]
+}

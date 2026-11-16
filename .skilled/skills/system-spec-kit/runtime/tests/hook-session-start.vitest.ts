@@ -8,7 +8,7 @@ import { tmpdir } from 'node:os';
 import { join, relative, resolve } from 'node:path';
 import { ensureStateDir, saveState, getStatePath, type HookState } from '../hooks/claude/hook-state.js';
 import { createSharedPayloadEnvelope } from '../lib/context/shared-payload.js';
-import { checkoutRoot } from './_support/history-fixtures.js';
+import { checkoutRoot } from '../../../../hooks/session-handover/history/tests/_support/history-fixtures.js';
 import { buildPacketPurposeSection, folderNamedInBrief, runSessionStartHook } from '../hooks/claude/session-prime.js';
 import { buildMergedCompactResult } from '../hooks/claude/compact-inject.js';
 import {

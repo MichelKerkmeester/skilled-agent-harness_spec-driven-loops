@@ -1252,6 +1252,29 @@ function piAnswerKeys(question, answer) {
 const VIBE_HOME_PREFIX = 'vibe-home-';
 
 /**
+ * Model alias every Vibe subject runs on unless a scenario's launch setup pins another.
+ *
+ * The repository config names the allowed models but no active one, so an unpinned home falls
+ * back to Vibe's routed default, which can change between runs without notice.
+ */
+const VIBE_DEFAULT_MODEL = 'deepseek-flash';
+
+/**
+ * Return a Vibe config with exactly one active model, the given alias, as its first line.
+ *
+ * A top-level key must precede the first table, so the pin is prepended, and any earlier pin is
+ * removed so the file never holds the key twice.
+ *
+ * @param {string} text - Config file text.
+ * @param {string} alias - Model alias to pin.
+ * @returns {string} Pinned config text.
+ */
+function pinVibeModel(text, alias) {
+  const rest = text.split('\n').filter((line) => !/^\s*active_model\s*=/.test(line)).join('\n');
+  return `active_model = ${JSON.stringify(alias)}\n${rest}`;
+}
+
+/**
  * Create the disposable home a Vibe subject reads its config and hooks from.
  *
  * A scratch project is not a trusted folder, so Vibe ignores its `.vibe/config.toml` and
@@ -1268,7 +1291,10 @@ function prepareVibeHome(ctx) {
   const home = fs.mkdtempSync(path.join(parent, VIBE_HOME_PREFIX));
 
   const config = path.join(ctx.repoRoot, '.vibe', 'config.toml');
-  if (fs.existsSync(config)) fs.copyFileSync(config, path.join(home, 'config.toml'));
+  if (fs.existsSync(config)) {
+    const pinned = pinVibeModel(fs.readFileSync(config, 'utf8'), VIBE_DEFAULT_MODEL);
+    fs.writeFileSync(path.join(home, 'config.toml'), pinned);
+  }
 
   const hooks = path.join(ctx.repoRoot, '.vibe', 'hooks.toml');
   if (fs.existsSync(hooks)) {
@@ -1276,6 +1302,43 @@ function prepareVibeHome(ctx) {
     require(renderer).renderHomeHooks({ vibeHome: home, repoRoot: ctx.repoRoot });
   }
   return home;
+}
+
+/**
+ * Delete a Vibe home and everything under it.
+ *
+ * Vibe extracts its bundled plugin files read-only, so a plain recursive delete fails on them;
+ * every folder and file is made owner-writable first. A link is left as a link, never followed.
+ *
+ * @param {string} home - Absolute home path.
+ * @returns {boolean} True when the home no longer exists.
+ */
+function removeVibeHome(home) {
+  if (!home) return false;
+  const makeWritable = (target) => {
+    let stat;
+    try {
+      stat = fs.lstatSync(target);
+    } catch {
+      return;
+    }
+    if (stat.isSymbolicLink()) return;
+    try {
+      fs.chmodSync(target, stat.mode | 0o200);
+    } catch {
+      // A file that cannot be made writable surfaces as a failed delete below.
+    }
+    if (stat.isDirectory()) {
+      for (const name of fs.readdirSync(target)) makeWritable(path.join(target, name));
+    }
+  };
+  try {
+    makeWritable(home);
+    fs.rmSync(home, { recursive: true, force: true });
+  } catch {
+    // The existence check below reports the outcome.
+  }
+  return !fs.existsSync(home);
 }
 
 /**
@@ -1300,6 +1363,40 @@ function vibeSessionId(home) {
     .map((entry) => entry.name)
     .sort();
   return names.length > 0 ? names[names.length - 1] : null;
+}
+
+/**
+ * Read the model alias each session in a Vibe home ran on, from the session's own metadata.
+ *
+ * The value is what Vibe resolved at start, not what the runner wrote, so a pin that did not take
+ * shows up in the result.
+ *
+ * @param {string} home - Absolute home path.
+ * @returns {string|null} The aliases joined with commas, or null when no session recorded one.
+ */
+function vibeSessionModels(home) {
+  if (!home) return null;
+  const root = path.join(home, 'logs', 'session', 'unified');
+  let names;
+  try {
+    names = fs.readdirSync(root, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+      .sort();
+  } catch {
+    return null;
+  }
+  const models = [];
+  for (const name of names) {
+    try {
+      const meta = JSON.parse(fs.readFileSync(path.join(root, name, 'meta.json'), 'utf8'));
+      const model = meta && meta.config && meta.config.active_model;
+      if (typeof model === 'string' && model && !models.includes(model)) models.push(model);
+    } catch {
+      // A session without readable metadata names no model.
+    }
+  }
+  return models.length > 0 ? models.join(',') : null;
 }
 
 // A Vibe question is a bordered box: a tab row when several questions are queued, the question
@@ -3017,6 +3114,7 @@ function createContext(options) {
     adapter: options.adapter,
     trustHooks: Boolean(options.script && options.script.trust_hooks === true),
     launchSetup: options.script && Array.isArray(options.script.launch_setup) ? options.script.launch_setup : [],
+    removeHome: Boolean(options.removeHome),
     project: options.project,
     outDir,
     outRoot: options.out,
@@ -3182,6 +3280,10 @@ async function runRuntime(options) {
   }
 
   const cleanup = cleanupContext(ctx);
+  // The home is removed only after the subject has stopped, so nothing writes into it again.
+  const vibeHome = ctx.vibeHome || null;
+  const vibeModel = vibeSessionModels(vibeHome);
+  const vibeHomeRemoved = Boolean(vibeHome && ctx.removeHome && removeVibeHome(vibeHome));
 
   const after = snapshotRepo(ctx.repoRoot, ctx.watched, ctx.outRoot);
   fs.writeFileSync(path.join(ctx.outDir, 'repo-after.txt'), after.join('\n'));
@@ -3230,6 +3332,9 @@ async function runRuntime(options) {
     socket: ctx.socket,
     session_id: ctx.sessionId,
     project: ctx.project,
+    vibe_home: vibeHome,
+    vibe_model: vibeModel,
+    vibe_home_removed: vibeHomeRemoved,
     started_at: startedAt,
     finished_at: new Date().toISOString(),
     adapter: { bin: adapter.bin, probed: adapter.probed },
@@ -3299,7 +3404,7 @@ function skipRuntime(runtime, out, blocker, total, noSandbox) {
 function usage() {
   return [
     'Usage: node run-conversation-scenario.cjs --scenario <file.md> --runtime <id[,id...]>',
-    '       --scratch <dir> --out <dir> [--seed N] [--overwrite] [--repo-root <dir>]',
+    '       --scratch <dir> --out <dir> [--seed N] [--overwrite] [--repo-root <dir>] [--remove-home]',
     '',
     'Plays a scenario\'s json conversation block into each runtime\'s interactive CLI inside a',
     'marked scratch project, then writes screens, checks and a matrix as evidence.',
@@ -3313,6 +3418,7 @@ function usage() {
     '  --overwrite         Replace existing evidence for a runtime',
     '  --repo-root DIR     Repository to snapshot (default: git top level)',
     '  --no-sandbox        Disable the macOS write sandbox wrapper',
+    '  --remove-home       Delete the Vibe home after the run; its journal is then gone',
     '  --help              Show this message',
     '',
     'Exit: 0 every runtime PASS or SKIP, 1 any FAIL, 2 usage error or refusal.',
@@ -3335,6 +3441,7 @@ function parseArgs(argv) {
     overwrite: false,
     repoRoot: null,
     noSandbox: false,
+    removeHome: false,
     help: false,
     errors: [],
   };
@@ -3350,6 +3457,7 @@ function parseArgs(argv) {
     if (arg === '--help' || arg === '-h') opts.help = true;
     else if (arg === '--overwrite') opts.overwrite = true;
     else if (arg === '--no-sandbox') opts.noSandbox = true;
+    else if (arg === '--remove-home') opts.removeHome = true;
     else if (arg === '--scenario') {
       opts.scenario = take(index, arg);
       index += 1;
@@ -3651,6 +3759,7 @@ async function main(argv) {
       seed,
       overwrite: opts.overwrite,
       noSandbox: opts.noSandbox,
+      removeHome: opts.removeHome,
     });
     process.stdout.write(
       `runtime ${entry.runtime}: ${row.verdict} ${row.passed}/${row.total}${row.blocker ? ` ${row.blocker}` : ''}\n`,
@@ -3685,6 +3794,10 @@ module.exports = {
   parseOpenCodeQuestion,
   parseCodexQuestion,
   findOptionIndex,
+  removeVibeHome,
+  pinVibeModel,
+  vibeSessionModels,
+  VIBE_DEFAULT_MODEL,
 };
 
 if (require.main === module) {

@@ -193,7 +193,7 @@ test('the Cursor preflight, MCP route and Task guards still answer a normal payl
     {
       tool_name: 'Task',
       workspace_roots: [REPO_ROOT],
-      tool_input: { subagent_type: 'ai-council', prompt: 'mode=research do the thing' },
+      tool_input: { subagent_type: 'deep-review', prompt: 'mode=research do the thing' },
     },
     { SYSTEM_DEEP_LOOP_GUARD_REJECT: '1' },
   );
