@@ -45,11 +45,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Bare git prompts, the runtime mirror doctor and two scorer gates route as they did before the merge again. The sk-doc README intents main added had given sk-doc words that other skills own. Those phrases are now narrower, and README requests still reach their templates.
+Bare git prompts, the runtime mirror doctor and two scorer gates route as they did before the merge again. The sk-doc README intents main added had given sk-doc words that other skills own. Those phrases are now narrower, and README requests still reach sk-doc.
 
 ### Phase 39: main-sk-doc-routing-repair
 
-You can ask for "git hooks", "git rules" or "git standards" and reach sk-git again, and "runtime mirror drift" reaches `/doctor:runtime-mirrors`. A request for a named hook's README, a runtime or plugins folder README or a `SECURITY.md` still lands on sk-doc. The compiled skill graph matches its sources again, so the strict freshness check passes.
+You can ask for "git hooks", "git rules" or "git standards" and reach sk-git again, and "runtime mirror drift" reaches `/doctor:runtime-mirrors`. A request for a named hook's README, a runtime or plugins folder README or a `SECURITY.md` still lands on sk-doc, though a dropped hook name loads the generic README template. The compiled skill graph matches its sources again, so the strict freshness check passes.
 
 ### Files Changed
 
@@ -59,7 +59,7 @@ You can ask for "git hooks", "git rules" or "git standards" and reach sk-git aga
 | `.skilled/skills/sk-doc/graph-metadata.json` | Modified | Intent signals regenerated from the router |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` | Modified | Recompiled graph |
 | `scratch/try-variant.py`, `scratch/try-variant.sh` | Created | Measure one keyword variant against the failing tests |
-| `runtime/lib/command-attach.ts` and its guards test | Modified | A single quote that opens a command name is dropped before the lead reading, from review pass ten |
+| `runtime/lib/command-attach.ts` and its guards test | Modified | A single quote that opens or closes a command name is dropped before the lead reading, and a retired name reads beside its replacement, from review passes ten and eleven. One test pins that every mention fixture reads the same wrapped or retired as plain |
 | Doctor install presentation, workflow and contract test | Modified | Name the eight manifest runtimes and drop the stale DSH sentence, from review pass ten |
 <!-- /ANCHOR:what-built -->
 
@@ -104,7 +104,8 @@ Each candidate change was applied to a clean router, regenerated and measured ag
 ## Known Limitations
 
 1. **A plain "security policy" request no longer loads the security policy template.** It has to name `SECURITY.md`. A future phrase needs to clear the holdout gate first.
-2. **This edits files main's README-template work owns.** The next merge from main may conflict in `sk-doc/ROUTER.md`, and the merge has to keep these narrowings.
+2. **A README request for a `git-*` or `spec-gate` hook or for a hook mirror folder loads the generic README template.** sk-doc still owns the request, but the hook and runtime plugin templates no longer load for those names. Asking for "a README for this hook" still loads the hook template.
+3. **This edits files main's README-template work owns.** The next merge from main may conflict in `sk-doc/ROUTER.md`, and the merge has to keep these narrowings.
 <!-- /ANCHOR:limitations -->
 
 ---

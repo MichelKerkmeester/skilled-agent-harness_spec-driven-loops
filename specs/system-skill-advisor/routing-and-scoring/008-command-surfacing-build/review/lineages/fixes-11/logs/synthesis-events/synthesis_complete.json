@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"fanout-fixes-11-1794851543294-mlt3r6","sessionId":"fanout-fixes-11-1794851543294-mlt3r6"},"data":{"mode":"review","totalIterations":8,"activeP0":0,"activeP1":2,"activeP2":5,"dimensionCoverage":1,"verdict":"FAIL","releaseReadinessState":"in-progress","stopReason":"maxIterationsReached"}}

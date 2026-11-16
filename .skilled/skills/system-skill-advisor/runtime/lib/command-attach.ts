@@ -413,8 +413,10 @@ const COMMAND_ASKED_BY_PRONOUN = new RegExp(`(?:^|[,.;!?\\n]) *(?:(?:and|then|so
 // code, bold and quote marks around a name are dropped for the same reason, so a
 // refusal of a backticked command reads as the plain refusal does. An underscore
 // stays, because a command name may hold one. A single quote goes only where it
-// opens a command name, because the same mark is the apostrophe of a lead such
-// as "don't" or "what's". The
+// opens or closes a command name, because the same mark is the apostrophe of a
+// lead such as "don't" or "what's". A retired name is read beside the current
+// one, because a reader who refuses the old spelling refuses the command it now
+// maps to. The
 // boundary before the lead keeps a command name from matching inside a word or a
 // path, and the boundary after it keeps a longer command name from reading as the
 // shorter one. Every occurrence has to carry a lead, because one led naming does
@@ -425,9 +427,13 @@ export function commandOnlyMentioned(prompt: string, command: string): boolean {
     .replace(/[`*"\u201c\u201d]/g, '')
     .replace(/[\u2018\u2019]/g, "'")
     .replace(/(^|[^a-z0-9])'(?=\/[a-z])/g, '$1')
+    .replace(/(\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)*(?: [a-z][a-z0-9_-]*)?)'(?![a-z0-9])/g, '$1')
     .replace(/[^\S\n]+/g, ' ')
     .replace(/ *\n\s*/g, '\n');
-  const name = escapePhrase(command.toLowerCase());
+  const current = command.toLowerCase();
+  const spellings = [current, ...Object.keys(RETIRED_COMMANDS).filter((retired) => RETIRED_COMMANDS[retired] === current)]
+    .sort((left, right) => right.length - left.length);
+  const name = `(?:${spellings.map(escapePhrase).join('|')})`;
   const occurrences = [...text.matchAll(new RegExp(`(?:^|[^a-z0-9_/])${name}(?![a-z0-9_-])`, 'g'))];
   if (occurrences.length === 0) return false;
   return occurrences.every((occurrence) => {

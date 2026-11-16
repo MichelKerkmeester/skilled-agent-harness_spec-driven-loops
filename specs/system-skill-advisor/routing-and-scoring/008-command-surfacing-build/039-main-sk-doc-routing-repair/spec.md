@@ -39,7 +39,7 @@ contextType: "general"
 
 This is **Phase 39** of the command surfacing build. Merging origin/main as `e91faf28b8c` brought seven failing advisor tests. Each fails the same way on a clean origin/main `2005499d504`, and the branch suite was 2347 passed 0 failed before the merge. The operator chose, through the ask tool on 2026-11-16, to fix the regression on this branch, to recompile the skill graph here and to add `TEMP` and `TMP` to the operator-local surface map, which is done.
 
-**Scope Boundary**: the README intents main added to `sk-doc/ROUTER.md` and `sk-doc/sk-create-readme/ROUTER.md`, the `intent_signals_generated` list derived from them, the compiled `skill-graph.json` and the sk-doc route manifest the commit hook re-mints. No advisor scorer, threshold, corpus row, baseline or ledger change.
+**Scope Boundary**: the README intents main added to `sk-doc/ROUTER.md`, the `intent_signals_generated` list derived from them, the compiled `skill-graph.json` and the sk-doc route manifest the commit hook re-mints. No advisor scorer, threshold, corpus row, baseline or ledger change.
 
 **Dependencies**:
 - Main's commits `fad83abd791` (root guide and skill README intents), `f6f242c1392` (hook, plugin and runtime folder README intents) and `3dc90eb8e01` (named hook README phrases)
@@ -58,7 +58,7 @@ This is **Phase 39** of the command surfacing build. Merging origin/main as `e91
 Main's README intents gave sk-doc words that other skills own. The named hook phrases, such as `git-hooks-check hook readme`, give sk-doc the words `git` and `hooks`, so "git hooks", "git rules" and "git standards" route nowhere. `hook mirror readme` and `runtime folder readme` give it `runtime` and `mirror`, so "runtime mirror drift" tops sk-doc instead of `/doctor:runtime-mirrors`. One ratchet row's native top moved from mcp-tooling to sk-doc, and the independent holdout fell to 48 of 63 against a baseline of 49. Main also changed the sk-doc metadata without recompiling the skill graph, so the strict freshness check reports signal drift.
 
 ### Purpose
-README requests keep reaching their templates, the prompts that routed before main's change route as they did, and the compiled graph matches its sources.
+README requests keep reaching sk-doc, the prompts that routed before main's change route as they did, and the compiled graph matches its sources. A README request for a dropped named hook or a hook mirror folder loads the generic README template, not the hook or plugin one.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
@@ -90,6 +90,7 @@ bisect on origin/main: green before fad83abd791; fad83abd791 fails the holdout; 
 - Regenerate `intent_signals_generated`, recompile `skill-graph.json` and let the commit hook re-mint the sk-doc manifest
 - Record each step in the goal log
 - Fix review pass ten's two P1: single-quoted command names, and the doctor install wording the merge left out of step with its test
+- Fix review pass eleven's two P1, closing quotes and retired names, and pin the whole wrapper class in one test
 
 ### Out of Scope
 - Any advisor scorer, weight or threshold change
@@ -102,11 +103,10 @@ bisect on origin/main: green before fad83abd791; fad83abd791 fails the holdout; 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.skilled/skills/sk-doc/ROUTER.md` | Modify | Narrow the README intent keywords |
-| `.skilled/skills/sk-doc/sk-create-readme/ROUTER.md` | Modify | The same where the mode router repeats them |
 | `.skilled/skills/sk-doc/graph-metadata.json` | Modify | Regenerated intent signals |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` | Modify | Recompiled graph |
-| `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` | Modify | Drop a single quote that opens a command name |
-| `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts` | Modify | Quote cases |
+| `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` | Modify | Drop a single quote that opens or closes a command name, and read a retired name beside its replacement |
+| `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts` | Modify | Quote and retired-name cases and the wrapper invariance test |
 | `.skilled/commands/doctor/assets/doctor-install-presentation.txt`, `doctor-install.yaml`, `scripts/tests/doctor-install-contract.test.cjs` | Modify | Name the eight manifest runtimes and drop the stale DSH sentence |
 | `../goal.md` | Modify | Rows through the goal log command only |
 <!-- /ANCHOR:scope -->
@@ -128,10 +128,11 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-003 | A request for a named hook's README, such as "README for the session-handover hook", and one for a runtime folder's README still top sk-doc |
+| REQ-003 | A request for a named hook's README, such as "README for the session-handover hook", and one for a runtime folder's README still top sk-doc. The probe checks the top skill only, not which template loads |
 | REQ-004 | The holdout returns to 49 of 63 or more and `rr-iter3-069` returns to its ledger top, both by narrowing a phrase main added |
 | REQ-005 | `skill-graph-freshness.cjs --strict` exits 0 and `generate-router-intent-signals.cjs --check` passes |
 | REQ-006 | Review pass ten's two P1 are fixed: a single-quoted command name reads like a plain one before its refusal or question lead, and the doctor install presentation, workflow and contract test agree on the runtimes the link manifest offers |
+| REQ-007 | Review pass eleven's two P1 are fixed: a closing single quote and a retired command name no longer hide a refusal or question lead, and one test pins that every mention fixture reads the same wrapped in code, quote or bold marks, or under a retired name, as plain |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

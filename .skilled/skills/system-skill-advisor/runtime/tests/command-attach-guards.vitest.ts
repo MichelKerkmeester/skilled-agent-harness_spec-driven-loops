@@ -169,6 +169,33 @@ describe('a command the prompt only mentions', () => {
     expect(commandOnlyMentioned(prompt, command)).toBe(true);
   });
 
+  // Chat wraps a command name in code, quote or bold marks, and a renamed command
+  // is still typed under its old name. Neither may change what the naming reads
+  // as, so every fixture must read the same wrapped or retired as it does plain.
+  const WRAPPERS: ReadonlyArray<readonly [string, string]> = [
+    ['`', '`'], ["'", "'"], ['"', '"'], ['\u201c', '\u201d'], ['\u2018', '\u2019'], ['**', '**'],
+  ];
+  const PLAIN_ROWS = [...REFUSE8, ...QUESTION2, ...REQUEST6, ...CONTROL5,
+    ['do not run /create:agent or /create:readme', '/create:readme'],
+    ['skip /create:agent or the /create:readme command', '/create:readme'],
+  ] as const;
+
+  it.each(WRAPPERS)('reads every fixture wrapped in %s the same as plain', (open, close) => {
+    for (const [prompt, command] of PLAIN_ROWS) {
+      const wrapped = prompt.replace(/\/[a-z][a-z-]*:[a-z][a-z-]*/g, (name) => `${open}${name}${close}`);
+      expect(commandOnlyMentioned(wrapped, command), wrapped).toBe(commandOnlyMentioned(prompt, command));
+    }
+  });
+
+  it('reads every fixture under the retired name the same as under the current one', () => {
+    for (const [prompt, command] of PLAIN_ROWS) {
+      const plain = prompt.split(command).join('/create:sk-skill');
+      const retired = prompt.split(command).join('/create:skill');
+      expect(commandOnlyMentioned(retired, '/create:sk-skill'), retired)
+        .toBe(commandOnlyMentioned(plain, '/create:sk-skill'));
+    }
+  });
+
   // Markup around the name must not hide the lead before it.
   it.each([
     ['do not run `/create:readme`, just tell me what it covers', '/create:readme'],
@@ -187,6 +214,21 @@ describe('a command the prompt only mentions', () => {
     expect(commandOnlyMentioned('run `/create:readme` for the advisor skill', '/create:readme')).toBe(false);
     expect(commandOnlyMentioned("run '/create:readme' for the advisor skill", '/create:readme')).toBe(false);
     expect(commandOnlyMentioned("don't skip '/create:readme', run it", '/create:readme')).toBe(false);
+  });
+
+  it.each([
+    ["do not run '/create:agent' or '/create:readme'", '/create:readme'],
+    ["do not run '/doctor:ci report' or '/create:readme'", '/create:readme'],
+  ])('reads the quoted or-list %s as a refusal of %s', (prompt, command) => {
+    expect(commandOnlyMentioned(prompt, command)).toBe(true);
+  });
+
+  // A retired name maps to the command that replaced it, so refusing the old
+  // spelling refuses the new command too.
+  it('reads a refusal of a retired name as a refusal of its replacement', () => {
+    expect(commandOnlyMentioned('do not run /create:skill', '/create:sk-skill')).toBe(true);
+    expect(commandOnlyMentioned('what does /create:skill do?', '/create:sk-skill')).toBe(true);
+    expect(commandOnlyMentioned('run /create:skill for my new helper', '/create:sk-skill')).toBe(false);
   });
 
   it.each([

@@ -1,0 +1,408 @@
+{
+  "sessionId": "fanout-routing-11-1794851543294-mlt3r6",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 3,
+    "timestamp": "2026-11-16T18:21:04.472Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "title": "The accepted probe proves hub reach only, while two dropped phrase families now load the generic README leaves",
+      "file": ".skilled/skills/sk-doc/ROUTER.md",
+      "line": 136,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "title": "The named skill-advisor hook phrase ties the skill README and hook README intents",
+      "file": ".skilled/skills/sk-doc/ROUTER.md",
+      "line": 219,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "The 039 spec still lists the packet router as a file to change, but the delivered work left it untouched",
+      "file": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/spec.md",
+      "line": 105,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "The narrowing removes the git and gate words but leaves the same cross-hub token class from the other named hooks",
+      "file": ".skilled/skills/sk-doc/ROUTER.md",
+      "line": 219,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "The generator's carry rule and its --check gate share a blind spot for dotted phrases",
+      "file": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs",
+      "line": 57,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 5
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0.7,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "graphSignals": {
+    "blockedBy": [],
+    "decision": "STOP",
+    "gates": {
+      "candidateCoverageGate": {
+        "pass": true,
+        "skipped": true
+      },
+      "claimAdjudicationGate": {
+        "pass": true,
+        "skipped": false
+      },
+      "convergenceGate": {
+        "hardStop": true,
+        "pass": true,
+        "score": 0.7,
+        "skipped": false
+      },
+      "dimensionCoverageGate": {
+        "missing": [],
+        "pass": true,
+        "skipped": false
+      },
+      "evidenceDensityGate": {
+        "pass": true,
+        "skipped": false
+      },
+      "fixCompletenessReplayGate": {
+        "pass": true,
+        "skipped": false
+      },
+      "graphlessFallbackGate": {
+        "pass": true,
+        "skipped": true
+      },
+      "hotspotSaturationGate": {
+        "pass": true,
+        "skipped": false
+      },
+      "p0ResolutionGate": {
+        "activeP0": 0,
+        "pass": true,
+        "skipped": false
+      }
+    },
+    "graphDecision": "STOP_ALLOWED",
+    "inputs": {
+      "config": {
+        "convergenceMode": "default",
+        "convergenceThreshold": 0.1,
+        "maxIterations": 8,
+        "minIterations": 2,
+        "stopPolicy": "convergence",
+        "stuckThreshold": 2
+      },
+      "consecutiveFailureCount": 0,
+      "graphBlockers": [],
+      "graphDecision": "STOP_ALLOWED",
+      "iterationCount": 3,
+      "loopType": "review",
+      "ratios": [
+        1,
+        0.4,
+        0
+      ],
+      "research": null,
+      "review": {
+        "activeP0": 0,
+        "activeP1": 0,
+        "candidateCovered": [],
+        "coverageAge": 1,
+        "evidenceBackedP0P1": 0,
+        "fallbackCoveredBugClasses": [],
+        "fixReplayPassingRows": 0,
+        "fixReplayRequiredRows": 0,
+        "graphCoverageMode": null,
+        "hotspotSaturated": true,
+        "lastClaimAdjudicationPassed": null,
+        "missingDimensions": [],
+        "requiredBugClasses": [],
+        "reviewDepthApplicability": null,
+        "reviewDepthSchemaVersion": null,
+        "searchDebt": [],
+        "securitySensitiveFixScope": false,
+        "totalDimensions": 4,
+        "traceabilityCovered": true,
+        "unfinishedCoreProtocols": []
+      },
+      "stuckCount": 1
+    },
+    "reasonDetail": "all_dimensions_clean",
+    "signals": {
+      "dimensionCoverage": {
+        "available": true,
+        "stop": true,
+        "value": 1,
+        "weight": 0.45
+      },
+      "madNoiseFloor": {
+        "available": true,
+        "stop": true,
+        "value": 0.59304,
+        "weight": 0.25
+      },
+      "rollingAverage": {
+        "available": true,
+        "stop": false,
+        "value": 0.2,
+        "weight": 0.3
+      }
+    },
+    "stopReason": "converged",
+    "weightedStopScore": 0.7
+  },
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 4,
+      "executed": 4,
+      "pass": 2,
+      "partial": 2,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 2,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/sk-doc/ROUTER.md:218-220",
+          "039-main-sk-doc-routing-repair/spec.md:100-111"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "The changed files match the phase scope; F003 records the only table-level mismatch."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          "039-main-sk-doc-routing-repair/acceptance-criteria.md:56-58"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "summary": "No packet checklist belongs to this review pass."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/sk-doc/ROUTER.md:1-14"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "summary": "Change stays inside the sk-doc skill and its advisor projection."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          "git diff --name-only 6d50afe6f39 2f3f893c153 -- .skilled/skills/sk-doc/ROUTER.md"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "summary": "No agent definition is in the diff."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:124-195",
+          ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json:1"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "summary": "Signal parity holds for multi-word phrases; F005 records the dotted-phrase blind spot."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "039-main-sk-doc-routing-repair/scratch/readme-probes.txt:2-11"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "summary": "Committed probes read; no playbook scenario executed."
+      }
+    ],
+    "unfinishedCoreProtocols": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

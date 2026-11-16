@@ -57,6 +57,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-004 | REQ-004 | Given the independent holdout and the ratchet ledger, When their tests run, Then the holdout prints 49 of 63 or more and `rr-iter3-069` matches its ledger top, with no baseline or ledger edit | both test files pass; no baseline or ledger file changed | Met | - |
 | AC-005 | REQ-005 | Given the regenerated intent signals and the recompiled graph, When `generate-router-intent-signals.cjs --check` and `skill-graph-freshness.cjs --strict` run, Then both exit 0 | `scratch/after.txt`: RESULT: PASSED and graph freshness exit 0 | Met | - |
 | AC-006 | REQ-006 | Given `do not run '/create:readme' yet` and the doctor install files, When the guards test and `doctor-install-contract.test.cjs` run, Then the quoted refusal reads as a mention and the contract passes, and both fail without the fix | three quote cases fail without the fix and 167 pass with it; the contract passes 17/17 and fails with main's text; doctor tests 1266/0 | Met | - |
+| AC-007 | REQ-007 | Given every REFUSE8, QUESTION2, REQUEST6, CONTROL5 and or-list fixture, When each command name is wrapped in a backtick, straight or curly quote or bold, or swapped for the retired name, Then the mention check returns what it returns for the plain form, and the test fails on the code before the fix | the invariance test passes on the fixed code and fails three cases on both `2f3f893c153` and `5b2b062baef`; guards file 167 passed | Met | - |
 
 ### Status values
 

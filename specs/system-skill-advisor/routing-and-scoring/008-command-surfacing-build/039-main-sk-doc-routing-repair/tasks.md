@@ -60,6 +60,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 - [x] T010 [C] Fix review pass ten's single-quoted command P1 (`$ADV/lib/command-attach.ts`, `$ADV/tests/command-attach-guards.vitest.ts`). Verify: the quote cases fail without the fix. Evidence: a single quote is dropped only where it opens a command name; three cases fail without it, 167 pass with it; contractions keep their apostrophe
 - [x] T011 [C] Fix review pass ten's doctor install P1 (`.skilled/commands/doctor/assets/doctor-install-presentation.txt`, `doctor-install.yaml`, `scripts/tests/doctor-install-contract.test.cjs`). Verify: the contract passes and fails with main's wording. Evidence: the presentation names claude, codex, cursor, devin, dsh, opencode, pi and vibe from the manifest; the stale DSH sentence is gone from the workflow; the test reads the manifest; 17/17, and 16/1 with main's text; doctor tests 1266/0
 - [x] T012 [C] Rerun the gates after the pass ten fixes (`$SP/after-pass-ten.txt`). Verify: 0 failed both ways. Evidence: 2353 passed 0 failed with the flag unset and set, FLOOR 24/44 0/35 2/44, EVAL [160,49,21,5], stored sets unchanged; one doctor case failed only while the advisor dist rebuilt in parallel and passes 1266/0 on rerun
+- [x] T013 [C] Fix review pass eleven's two P1 (`$ADV/lib/command-attach.ts`). Verify: the new cases fail without the fix. Evidence: a single quote that closes a command name is dropped and a retired name is read beside its replacement; three cases fail on the previous code, 170 pass with it
+- [x] T014 [C] Pin the wrapper class in one test (`$ADV/tests/command-attach-guards.vitest.ts`). Verify: it fails on the code before passes ten and eleven. Evidence: every mention fixture reads the same wrapped in six marks or under the retired name; three cases fail on `2f3f893c153` and on `5b2b062baef`, all pass now
+- [x] T015 [C] Fix the cheap pass eleven P2 and correct the two 039 claims routing-11 contradicted (`spec.md`, `implementation-summary.md`, the doctor contract test). Verify: doctor tests and the gate. Evidence: README template fallback named in purpose, REQ-003 and Known Limitations; the untouched router row removed; the contract test checks the workflow and drops a subsumed line; doctor tests 1266/0; gate in `$SP/after-pass-eleven-invariance.txt`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -166,7 +169,7 @@ Every command runs from the repository root. Set the names once with `export ADV
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | 8/8 |
+| P0 Items | 11 | 11/11 |
 | P1 Items | 7 | 7/7 |
 | P2 Items | 0 | 0/0 |
 

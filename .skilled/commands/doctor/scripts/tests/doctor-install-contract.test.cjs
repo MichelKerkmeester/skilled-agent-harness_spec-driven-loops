@@ -236,11 +236,10 @@ test('the presentation prints writing commands for the operator and closes on th
 });
 
 test('the presentation and the workflow name the accepted runtimes instead of a count', () => {
-  assert.doesNotMatch(PRESENTATION, /outside the seven/);
-  assert.doesNotMatch(PRESENTATION, /outside the (?:seven|eight|nine)/);
   const named = Object.keys(JSON.parse(read(path.join(ASSETS, 'symlink-manifest.json'))).runtimes).sort();
   const list = `${named.slice(0, -1).join(', ')} and ${named[named.length - 1]}`;
   assert.ok(PRESENTATION.includes(`outside ${list} or the ones already there`), list);
+  assert.doesNotMatch(WORKFLOW.inputs.runtimes, /is not offered/);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

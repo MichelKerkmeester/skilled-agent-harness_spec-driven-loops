@@ -49,7 +49,6 @@
       "scratch/try-variant.sh",
       "scratch/after-pass-ten.txt",
       "scratch/readme-probes.txt",
-      ".skilled/skills/sk-doc/sk-create-readme/ROUTER.md",
       ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
       ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
@@ -203,7 +202,7 @@
     ],
     "causal_summary": "Main's README intents gave sk-doc words that other skills own",
     "created_at": "2026-11-16T16:54:08Z",
-    "last_save_at": "2026-11-16T17:50:20.735Z",
+    "last_save_at": "2026-11-16T18:52:02.417Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:65b0c1e2a308579748811714bfda7c691b1b4c101bc8989c4747291ebfc126fd",
+    "source_fingerprint": "sha256:ba46992f9e52c52de131d9105195ac963e278d16ddb55ff82a602c05e5b2af76",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "54a4deb9cfc5a4b4492c6e68702f430235402786be349c6a5644bfe322a85d22",
+      "spec.md": "459cca3dc592596527111660b7607ea39a8fb69c6993c6000093e1aa8283f95c",
       "plan.md": "5a6f13606b0c9299ad3355d979b520ca1cf6f47dd2313a10eb34d0d33f5b21f4",
-      "tasks.md": "b139ea59e840f9e3ab6c2f7d8e451e8aaeb68868ef9f02330eec4ca22d0fd850",
-      "implementation-summary.md": "3a99539b33181b58dbf2214ca8e33d58ccf9d63d549ccdfd7331b2e97cbc8dd6"
+      "tasks.md": "a0b683f257828524b814c4d2917e1573779d57d9ea8923c3e8214013d0b98da8",
+      "implementation-summary.md": "9605ac2d6023efb0a9507b5469295a6e0f757a679efb9d244ade85c1743299c2"
     },
     "last_active_at": null
   }
