@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/008-host-surface-hint-and-score-window",
+  "spec_folder": "sk-code/hub-architecture/008-host-surface-hint-and-score-window",
+  "parent_id": "sk-code/hub-architecture",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "host surface hint and score window",
+      "let a session surface hint join a scored",
+      "host surface hint and score window plan",
+      "host surface hint and score window tasks",
+      "host surface hint and score window goal",
+      "host surface hint and score window implementation summary"
+    ],
+    "key_topics": [
+      "host",
+      "surface",
+      "hint",
+      "score",
+      "window",
+      "let",
+      "session",
+      "join",
+      "scored",
+      "plan",
+      "tasks",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/probe-routes.cjs",
+      "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/handover-from-barter-024.md",
+      ".skilled/bin/README.md",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+      ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
+      ".skilled/skills/sk-code/README.md",
+      ".skilled/repo-rules/skill-hub-routing.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe-routes.cjs",
+        "kind": "file",
+        "path": "scratch/probe-routes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "handover-from-barter-024.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/handover-from-barter-024.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "canary-router.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-surface-hint.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-hub-routing.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/skill-hub-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Score",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A vendoring project reported two limits of the sk-code hub router as items 8 and 9 of its second handover, copied as `specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/handover-from-barter-024.md`",
+    "created_at": "2026-11-16T09:33:08Z",
+    "last_save_at": "2026-11-16T10:13:46.385Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9c1829b04b83f5bf8c9e52abf68b84d0a4b6c2aa21e4ac1ff4a416c9d8edf2d6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "538f1b853f774df6d1118652433259cb0041e5e67acee2f1449aee8d35381a4d",
+      "plan.md": "84ad6829eeec45c3ddd179ad5d1243760c3260732ad891b13774cd04e8823711",
+      "tasks.md": "1d14af4290ea38831d349f7964d832e5e179d6752c5cecd5759cda2364f4d45d",
+      "implementation-summary.md": "e6e3bccaef619bd2a27b6b1f085efd3a6c427cbc4583454ed7e7d78da8c1e5c6"
+    },
+    "last_active_at": null
+  }
+}

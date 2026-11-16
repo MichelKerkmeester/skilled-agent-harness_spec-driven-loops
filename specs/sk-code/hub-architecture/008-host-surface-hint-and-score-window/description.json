@@ -1,0 +1,32 @@
+{
+  "specFolder": "sk-code/hub-architecture/008-host-surface-hint-and-score-window",
+  "description": "Let a session surface hint join a scored sk-code route and keep a second matched mode when one surface scores several phrases",
+  "keywords": [
+    "let",
+    "session",
+    "surface",
+    "hint",
+    "join",
+    "scored",
+    "sk-code",
+    "route",
+    "keep",
+    "second",
+    "matched",
+    "mode",
+    "one",
+    "scores",
+    "several",
+    "phrases"
+  ],
+  "lastUpdated": "2026-11-16T09:33:08.539Z",
+  "specId": "008",
+  "folderSlug": "host-surface-hint-and-score-window",
+  "parentChain": [
+    "sk-code",
+    "hub-architecture"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
