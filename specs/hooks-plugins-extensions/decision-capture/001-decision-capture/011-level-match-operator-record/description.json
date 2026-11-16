@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record",
+  "description": "Phase 11: level-match-operator-record",
+  "keywords": [
+    "phase",
+    "level-match-operator-record"
+  ],
+  "lastUpdated": "2026-11-16T12:37:18.140Z",
+  "specId": "011",
+  "folderSlug": "level-match-operator-record",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "decision-capture",
+    "001-decision-capture"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "16-11-26_13-12__scaffolded-the-child-for-the-level-match-false.md",
+    "16-11-26_13-37__manual-context-save.md"
+  ]
+}

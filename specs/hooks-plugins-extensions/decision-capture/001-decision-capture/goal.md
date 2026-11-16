@@ -41,12 +41,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Every child changes the decision-capture pipeline: `.skilled/hooks/decision-capture/`, the decision-record writer or the save step. Other work gets its own packet. Exception (2026-11-03): 010 may change `system-spec-kit` routing metadata. |
+| D1 | Every child changes the decision-capture pipeline: `.skilled/hooks/decision-capture/`, the decision-record writer or the save step. Other work gets its own packet. Exceptions: 010 may change `system-spec-kit` routing metadata, 011 its level-match validator. |
 | D2 | Children 002 to 005 close only once the 006 conversation scenario re-proves them. |
-| D3 | 006 runs on the shared conversation runner from `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios` with no runner of its own. |
+| D3 | 006 runs on the shared conversation runner from `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios` and builds no runner. |
 | D4 | Live tests run in a scratch project and never write this repository's packets or decision-capture state. |
 | D5 | A runtime adapter is registered only after a live probe shows the answers. A runtime with no answer surface is recorded with evidence, never skipped. |
-| D6 | Implementation workers run `gpt-6-luna` xhigh, tier fast, via cli-codex. When its quota runs out they use `llmgateway/deepseek-v4.1-flash-1017` max via cli-pi. Luna never runs through a gateway. |
+| D6 | Implementation workers run `gpt-6-luna` xhigh, tier fast, via cli-codex. On quota exhaustion they use `llmgateway/deepseek-v4.1-flash-1017` max via cli-pi. Luna never runs through a gateway. |
 
 <!-- /ANCHOR:directive -->
 
@@ -114,6 +114,7 @@ and findings belong here.
 | Children closed after 006 | 004, 005 Complete | 004 and 005 validate --strict PASSED; 002 waits on two operator answers; 003 waits on the Codex run; lib+bin 93/93 |
 | All six children Complete | done | Codex ran 2026-11-02; save sufficiency gate fixed; next: deep review, alignment, second live pass, commit list (Q010) |
 | Children 008 to 010 Complete | done | 2026-11-03: per-project state, chat-answer evidence and decision routing built and verified; hooks 122/122, writer, matcher and session-stop 52/52; recursive strict 11/11 PASSED; not committed |
+| 011 LEVEL_MATCH writer-only record fix; D1 exception added at operator answer | done | extended 87/87, upgrade-level 16/16, session-handover 001 LEVEL_MATCH warnings 4 to 0 |
 
 ### Deviations and findings
 

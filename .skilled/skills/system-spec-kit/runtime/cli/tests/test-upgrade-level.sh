@@ -186,6 +186,45 @@ else
     fail "Expected 'Already at Level 3'; got exit=$exit_code, output: $output"
 fi
 
+# An undeclared level falls back to the files present. The save step writes
+# Operator answers into decision-record.md at any level, so that record alone
+# Must not imply Level 3, while a hand-written ADR record still does.
+tmp_dir3=$(make_temp_dir)
+mkdir -p "$tmp_dir3/writer-record" "$tmp_dir3/adr-record"
+printf '# Test Spec\n\n## 1. PROBLEM STATEMENT\nTest problem.\n' > "$tmp_dir3/writer-record/spec.md"
+cp "$tmp_dir3/writer-record/spec.md" "$tmp_dir3/adr-record/spec.md"
+cat > "$tmp_dir3/writer-record/decision-record.md" <<'DRMD'
+<!-- ANCHOR:operator-decisions -->
+| ID | Decided |
+|----|---------|
+| Q001 | Keep it small. |
+<!-- /ANCHOR:operator-decisions -->
+<!-- ANCHOR:operator-answers-verbatim -->
+Q001 answer: keep it small.
+<!-- /ANCHOR:operator-answers-verbatim -->
+DRMD
+cat > "$tmp_dir3/adr-record/decision-record.md" <<'DRMD'
+<!-- ANCHOR:adr-001 -->
+## ADR-001: Keep it small
+<!-- /ANCHOR:adr-001 -->
+DRMD
+
+exit_code=0
+output=$(bash "$UPGRADE_SCRIPT" "$tmp_dir3/writer-record" --to 3 --dry-run 2>&1) || exit_code=$?
+if [[ "$exit_code" -eq 0 ]] && echo "$output" | grep -qi "detected level: 1 (inferred)"; then
+    pass "Writer-only decision record infers Level 1 (exit=$exit_code)"
+else
+    fail "Expected inferred Level 1; got exit=$exit_code, output: $output"
+fi
+
+exit_code=0
+output=$(bash "$UPGRADE_SCRIPT" "$tmp_dir3/adr-record" --to 3 2>&1) || exit_code=$?
+if [[ "$exit_code" -ne 0 ]] && echo "$output" | grep -qi "already at level 3"; then
+    pass "Hand-written ADR record still infers Level 3 (exit=$exit_code)"
+else
+    fail "Expected 'Already at Level 3'; got exit=$exit_code, output: $output"
+fi
+
 # ── Test 5: Already at target ────────────────────────────────
 begin_category "Already At Target"
 

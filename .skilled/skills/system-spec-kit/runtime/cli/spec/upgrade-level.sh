@@ -402,8 +402,11 @@ detect_level() {
         [[ -n "$level" ]] && { CURRENT_LEVEL="$level"; LEVEL_METHOD="explicit"; return; }
     fi
 
-    # Fallback: infer from existing files
-    [[ -f "$folder/decision-record.md" ]] && { CURRENT_LEVEL=3; LEVEL_METHOD="inferred"; return; }
+    # Fallback: infer from existing files. A save-written record holds operator
+    # Answers at any level, so only a record with other anchors implies Level 3.
+    if [[ -f "$folder/decision-record.md" ]] && ! decision_record_is_writer_only "$folder/decision-record.md"; then
+        CURRENT_LEVEL=3; LEVEL_METHOD="inferred"; return
+    fi
     CURRENT_LEVEL=1; LEVEL_METHOD="inferred"
 }
 

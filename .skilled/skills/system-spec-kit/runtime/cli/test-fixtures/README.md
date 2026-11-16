@@ -44,9 +44,9 @@ Not owned here:
 
 ## 3. PACKAGE TOPOLOGY
 
-As of this revision, the tree contains 74 fixture directories numbered 001 through 080.
+As of this revision, the tree contains 77 fixture directories numbered 001 through 083.
 Numbers 027, 029, 049, 052, 059, 060 and 067 have no directory, and 073 has two.
-The highest-numbered fixture is `080-anchors-duplicate-closer`.
+The highest-numbered fixture is `083-level-match-mixed-record`.
 
 ```text
 runtime/cli/test-fixtures/
@@ -124,6 +124,9 @@ runtime/cli/test-fixtures/
 +-- 078-anchors-nested-questions/
 +-- 079-anchors-adr-allowance/
 +-- 080-anchors-duplicate-closer/
++-- 081-level-match-writer-record/  # Level 1 with a save-written decision record
++-- 082-level-match-adr-record/     # Level 1 with a hand-written ADR record
++-- 083-level-match-mixed-record/   # Level 1 with writer anchors plus an ADR
 `-- README.md
 ```
 

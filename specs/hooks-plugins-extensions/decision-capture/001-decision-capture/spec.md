@@ -118,6 +118,7 @@ Close the four gaps and prove the whole pipeline in a live, multi-turn conversat
 | 8 | 008-project-scoped-state/ | Give each project its own hashed state subfolder so linked projects stop sharing pending answers, the orphan list and the consumed log | Complete |
 | 9 | 009-chat-answer-evidence/ | Attach a deterministic evidence block to each chat candidate so the save model judges from structured signals, and prove the outcome on the labelled fixture | Complete |
 | 10 | 010-decision-routing-vocabulary/ | Add decision-request vocabulary to system-spec-kit's routing metadata and ROUTER tables so "record this as a decision" routes, proven on the native advisor | Complete |
+| 11 | 011-level-match-operator-record/ | Stop the level check, and the upgrade-level fallback, from reading a decision record the save step wrote as a Level 3 signal, while a hand-written ADR record still counts | Complete |
 
 ### Phase Transition Rules
 
@@ -141,6 +142,7 @@ Close the four gaps and prove the whole pipeline in a live, multi-turn conversat
 | 007-gap-closure | 008-project-scoped-state | The gap research and its synthesis review are in `research/` | `research/research.md` and `research/synthesis-review.md` exist |
 | 008-project-scoped-state | 009-chat-answer-evidence | Queue rows live in the project subfolder and old rows still read | 008's acceptance criteria are Met |
 | 009-chat-answer-evidence | 010-decision-routing-vocabulary | The save step reads the evidence block and the fixture outcome test passes | 009's acceptance criteria are Met |
+| 010-decision-routing-vocabulary | 011-level-match-operator-record | A writer-only record on a Level 1 packet passes LEVEL_MATCH and an ADR record still warns | The extended suite rows for fixtures 081 to 083 pass |
 <!-- /ANCHOR:phase-map -->
 
 ---
