@@ -103,7 +103,10 @@ function renderProjectDirCommand(runtime, runtimeConfig, binding) {
   // A runtime whose hooks may also be copied into its user-level settings names
   // the tree they need. The copy then exits quietly in a project without that
   // tree, and because the project file carries the same guard, the two strings
-  // stay identical and the host still runs each hook once.
+  // stay identical and the host still runs each hook once. The tree has to be
+  // one only a Skilled checkout holds: a home folder can keep an unrelated
+  // .skilled data directory, and a guard on that name alone lets every copied
+  // hook run there and fail.
   const guard = runtimeConfig.requireTree ? `{ [ -e ${runtimeConfig.requireTree} ] || exit 0; } && ` : '';
   return `bash -c 'cd "\${${runtimeConfig.projectDirEnv}:-$PWD}" && ${guard}${inner}'`;
 }

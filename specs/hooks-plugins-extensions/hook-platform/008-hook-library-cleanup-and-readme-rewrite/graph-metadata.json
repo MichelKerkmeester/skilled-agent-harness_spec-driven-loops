@@ -9,7 +9,8 @@
     "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames",
     "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite",
     "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes",
-    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes"
+    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes",
+    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard"
   ],
   "manual": {
     "depends_on": [],
@@ -163,19 +164,19 @@
     ],
     "causal_summary": "A person who opens `.skilled/hooks/` to learn which hook does what meets four obstacles",
     "created_at": "2026-11-15T14:58:48Z",
-    "last_save_at": "2026-11-16T10:05:53.131Z",
+    "last_save_at": "2026-11-16T11:44:22.465Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:b297a4450498ea863812457dcd0b2925f1fa2b13087994e7cc948ca1e429d2f7",
+    "source_fingerprint": "sha256:1ae7481b8e2e5ba3bc9202f600e5a6d39dbb5c68e360068f04f4e8f2f0c2652a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "88f55ac45458d798dd0e4802e300f9f093d0e925a7744dc1db7d40e25d4865f4"
+      "spec.md": "b6b3584e5150c3d3618433482c49424c328e02cd5b70aed563c0d110cf070c96"
     },
-    "last_active_child_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes",
-    "last_active_at": "2026-11-16T09:52:16.360Z"
+    "last_active_child_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard",
+    "last_active_at": "2026-11-16T11:44:18.905Z"
   }
 }

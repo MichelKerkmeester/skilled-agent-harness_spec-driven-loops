@@ -29,7 +29,7 @@ const BASE_ENV = Object.fromEntries(
 );
 
 function guarded(script) {
-  return `bash -c 'cd "\${CLAUDE_PROJECT_DIR:-$PWD}" && { [ -e .skilled ] || exit 0; } && node ${script}'`;
+  return `bash -c 'cd "\${CLAUDE_PROJECT_DIR:-$PWD}" && { [ -e .skilled/hooks ] || exit 0; } && node ${script}'`;
 }
 
 const PROJECT_HOOKS = {
