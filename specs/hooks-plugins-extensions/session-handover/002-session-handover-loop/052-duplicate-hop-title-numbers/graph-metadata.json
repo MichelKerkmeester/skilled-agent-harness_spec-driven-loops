@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/052-duplicate-hop-title-numbers",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/052-duplicate-hop-title-numbers",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "duplicate hop title numbers",
+      "phase 52 duplicate hop title numbers",
+      "stacked hop number in session name",
+      "name_stem hop suffix",
+      "duplicate hop title numbers plan",
+      "duplicate hop title numbers tasks",
+      "052-duplicate-hop-title-numbers operator decisions",
+      "duplicate hop title numbers implementation summary"
+    ],
+    "key_topics": [
+      "duplicate",
+      "hop",
+      "title",
+      "numbers",
+      "phase",
+      "stacked",
+      "number",
+      "session",
+      "name",
+      "suffix",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-handover/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
+      ".skilled/hooks/session-handover/runtime-behavior.md",
+      ".skilled/hooks/session-handover/README.md",
+      ".skilled/hooks/session-handover/bin/session-handover.cjs",
+      ".skilled/hooks/session-handover/lib/context-usage.cjs",
+      ".skilled/hooks/vitest.config.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-launch-arguments.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-behavior.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-handover/runtime-behavior.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-handover/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/bin/session-handover.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-usage.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/lib/context-usage.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "wrapper",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After several hops the operator saw a session titled `ENGINE LIMITS (2) (4)`",
+    "created_at": "2026-11-16T19:52:32Z",
+    "last_save_at": "2026-11-16T20:46:45.585Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8d6bf902ee9854410fb8dcffd94734e49f8deec645de7db63add1dc32323d01d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ebbd3d176c480e6947a2bd27ffab95cf1fd6bc5c5f26c5213a59084fe89da7b4",
+      "plan.md": "f477b2c7c66a265a9726499d6c977446c4ee917d7c8345d6f98a2a3d6e0130a1",
+      "tasks.md": "2dc47b9457b78d31661aa6519e9300dd1f785b45d812e1e39874f9f5bf121c6c",
+      "decision-record.md": "314e120c595cd86d46c334349067cb5a60cc9e27999d5f2a25b784751c8c99c3",
+      "implementation-summary.md": "ee3cfd4b273f01bf929e73865d6da22b7f65dca304ecad5888db4abc4a534c0c"
+    },
+    "last_active_at": null
+  }
+}

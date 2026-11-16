@@ -70,7 +70,7 @@ On a hop, any other live mode the wrapper cannot replay keeps the launch mode wi
 
 Claude and Pi carry the session name across a hop. On Claude, `prepare` records the last `custom-title` entry's `customTitle` from the session log as `name` ahead of `SKILLED_LOOP_NAME`, so a `/rename` reaches the receiver. A session with no rename and no launch name records the last `ai-title` entry's `aiTitle`, the title Claude generated. The receiver keeps that title with a number and is not given a new one.
 
-Pi carries the name from its launch line. The wrapper strips the number it wrote for the sender, exports the stem and relaunches with `--name` set to the stem plus the next number. So the first receiver is `<stem> (2)` and every later receiver counts up without the suffixes stacking.
+Pi carries the name from its launch line. On both runtimes the wrapper strips every trailing ` (<digits>)` from the sender's name, exports the stem and relaunches with `--name` set to the stem plus the next number. So the first receiver is `<stem> (2)` and every later receiver counts up with one number. A launch name such as `ENGINE LIMITS (2)` gives `ENGINE LIMITS (2)`, then `(3)`, never `(2) (2)`. Text in brackets that is not all digits, such as `Fix (auth)`, stays part of the stem.
 
 On a hop, a record name that starts with `-` or holds a control character is ignored with a `warning:` line on stderr and the launch name stands. A manual claim prints the stem with no number.
 
