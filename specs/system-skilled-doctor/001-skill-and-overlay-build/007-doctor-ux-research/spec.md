@@ -21,7 +21,7 @@ contextType: "research"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-08 |
 | **Branch** | `worktrees/330-doctor-ux-research` |
 | **Parent Spec** | ../spec.md |

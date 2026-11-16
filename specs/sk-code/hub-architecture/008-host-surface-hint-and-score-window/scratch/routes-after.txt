@@ -12,3 +12,4 @@ visual-review-bundle	surfaceBundle:sk-code-review,sk-code-frontend
 visual-motion-frontend	single:sk-code-frontend
 hinted-surface-joins-route	surfaceBundle:sk-code-review,sk-code-frontend,sk-code-skilled
 hinted-surface-routes-unscored	single:sk-code-frontend
+review-kept-beside-surface-phrases	surfaceBundle:sk-code-review,sk-code-frontend

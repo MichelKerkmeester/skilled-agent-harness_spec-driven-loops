@@ -1,0 +1,14 @@
+TASK: say in the sk-code README how the router selects workflow modes and surfaces, and what a host may change.
+One file changes. Do the 2 steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 2. File: R/.skilled/skills/sk-code/README.md
+OLD (1 line, this exact text appears once in the file):
+A surface that matches several phrases of one prompt can push a workflow mode out of the route. Each matched phrase adds the surface's `weight` to its score, and the router keeps only the modes within `routerPolicy.ambiguityDelta` of the top score. Until the hub changes how it scores a surface, a host may lower its surface's `weight` or raise `routerPolicy.ambiguityDelta` in `hub-router.json`. Then refresh the manifest as in step 5.
+NEW (replace that line with this 1 line, same indentation):
+Each phrase a mode matches adds the mode's `weight` to its score. The router selects workflow modes and surfaces in two separate windows. A workflow mode stays in the route when it scores within `routerPolicy.ambiguityDelta` of the top workflow mode. A surface stays when it scores within that delta of the top surface. So a surface that matches several phrases no longer pushes a workflow mode out. It can still push out a second surface that matched fewer phrases. To keep both surfaces, a host may lower a surface's `weight` or raise `routerPolicy.ambiguityDelta` in `hub-router.json`. Then refresh the manifest as in step 5.
+
+STEP 2 of 2. Run:
+cd R && rg -n "ambiguityDelta" .skilled/skills/sk-code/README.md
+Expected: it prints exactly one line, numbered 154, which starts with "154:Each phrase a mode matches". Report the output.

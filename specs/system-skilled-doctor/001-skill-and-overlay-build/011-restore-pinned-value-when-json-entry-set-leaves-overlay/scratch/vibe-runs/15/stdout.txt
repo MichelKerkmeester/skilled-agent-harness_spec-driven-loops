@@ -1,0 +1,57 @@
+All 7 steps applied and the check passes.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs`
+
+Only that file. `git diff --stat` on it: `48 insertions(+), 6 deletions(-)`. No test file was touched.
+
+## 2. COMMANDS
+
+| # | Command | Exit |
+|---|---|---|
+| 1 | `grep -n "Whether every array index on a recorded path names the same item in the live" .skilled/commands/doctor/scripts/overlay-engine.cjs` | 0 |
+| 2 | `wc -l .skilled/commands/doctor/scripts/overlay-engine.cjs` | 0 |
+| 3 | `grep -n "^function recordedNodeAt\|^function deepEqual\|^function parseJsonSource" ...overlay-engine.cjs` | 0 |
+| 4 | `grep -n "recordedNodeAt\b" ...overlay-engine.cjs` | 0 |
+| 5 | `grep -n "function nodeAtPath" ...overlay-engine.cjs` | 0 |
+| 6 | `git diff -- ...overlay-engine.cjs` | 0 |
+| 7 | `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs` | 0 |
+| 8 | `node --test ...overlay-engine-sync.test.cjs > /tmp/oe-sync.log 2>&1` | 0 |
+| 9 | `git diff --stat -- ...overlay-engine.cjs && git status --porcelain` | 0 |
+| 10 | `node --check ...overlay-engine.cjs` | 0 |
+
+Commands 1–5 were anchor lookups; their output was the line numbers cited below. Command 6 confirmed steps 1–5 landed with the comment's first line unchanged (it appears as context, not a `-`/`+` pair).
+
+Command 8, last 15 lines:
+
+```
+✔ two sets on one path keep one record and both leave together (162.603833ms)
+✔ apply deletes a key the pin does not hold even when its record never marked it as added (198.603708ms)
+✔ apply refuses to delete a key the pin does not hold once its value was edited (156.45125ms)
+✔ a dropped set is restored while the operations that stay are still applied (178.705291ms)
+✔ apply refuses a dropped set whose array index is written as a string (178.699375ms)
+✔ a dropped set whose index fell off the array is refused until the array matches the pin (287.516375ms)
+✔ two records for one path in an older state file restore from the last one (175.993875ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6934.323167
+```
+
+The three numbers: **tests 38, pass 38, fail 0**. Exit status 0.
+
+Command 10 output: `EXIT_STATUS=0` (no diagnostics).
+
+## 3. OPEN QUESTIONS
+
+None on the edits — every anchor matched on the first attempt and the expected counts came out exactly.
+
+Two things worth flagging, neither a deviation:
+
+- `git status` shows other modified files (`overlay-engine-repin.test.cjs`, `overlay-engine-sync.test.cjs`, several packet docs, `.skilled/bin/tests/compiled-route-admission.test.cjs`). Those were already dirty before this dispatch; I did not write to any of them. The sync test file's pre-existing edits are what carry the four new cases the run above exercises.
+- The brief's step 7 guard is now `if (!node || !indexesMatchPin(...))`, so a record whose node is gone but whose array is still on the path reaches the array comparison and then refuses rather than silently continuing. That is the intended "refuse when the index no longer exists" behaviour, and the test `a dropped set whose index fell off the array is refused until the array matches the pin` covers it.

@@ -1,0 +1,14 @@
+TASK: say in stack-detection.md that a surface hint adds a specific surface to the route.
+One file changes. Do the 2 steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 2. File: R/.skilled/skills/sk-code/shared/references/stack-detection.md
+OLD (1 line, this exact text appears once in the file):
+The registry compiler enforces the order on every compile. It fails with `SURFACE_FALLBACK_INVALID` unless the hub declares exactly one fallback and ranks it last in `routerPolicy.tieBreak` in `hub-router.json`, so a keyword tie between specific surfaces also ranks SKILLED last. The compiled router ignores `--surface-hint SKILLED` for the same reason. A hinted specific surface takes the first surface slot only when the prompt matched it.
+NEW (replace that line with this 1 line, same indentation):
+The registry compiler enforces the order on every compile. It fails with `SURFACE_FALLBACK_INVALID` unless the hub declares exactly one fallback and ranks it last in `routerPolicy.tieBreak` in `hub-router.json`, so a keyword tie between specific surfaces also ranks SKILLED last. The compiled router ignores `--surface-hint SKILLED` for the same reason. A hint that names a specific surface adds that surface to the route when the prompt did not match it. The router then orders it first among the surfaces.
+
+STEP 2 of 2. Run:
+cd R && rg -n "orders it first among the surfaces" .skilled/skills/sk-code/shared/references/stack-detection.md
+Expected: it prints exactly one line, numbered 66. Report the output.

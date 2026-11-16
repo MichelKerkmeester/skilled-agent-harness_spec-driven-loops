@@ -2,17 +2,17 @@
 id: CB-CR-007
 category: compiled_routing
 stage: routing
-title: "sk-code quality gate on a CI workflow edit routes the quality mode at stage one and adds the CI standards at stage two"
-description: "This scenario validates that the compiled sk-code route for one prompt is a single route to `sk-code-quality`, and that the stage-two surface replay adds the four CI references under the intent `CI_WORKFLOW`."
-route_shape: single
+title: "sk-code quality gate on a CI workflow edit routes the quality mode with the CI surface at stage one and adds the CI standards at stage two"
+description: "This scenario validates two things. The compiled sk-code route for one prompt is a surface bundle of `sk-code-quality` and `sk-code-ci`. The stage-two surface replay adds the four CI references under the intent `CI_WORKFLOW`."
+route_shape: surfaceBundle
 expected_intent: sk-code-quality
-expected_bundle: [sk-code-quality]
+expected_bundle: [sk-code-quality, sk-code-ci]
 expected_resources:
   - sk-code-ci/references/ci-workflow-standards.md
   - sk-code-ci/references/trigger-and-filter-rules.md
   - sk-code-ci/references/job-shape-rules.md
   - sk-code-ci/references/protected-set.md
-expected_workflow_mode: sk-code-quality
+expected_workflow_mode: sk-code-quality+sk-code-ci
 expected_leaf_resources:
   - workflow_mode: sk-code-quality
     leaf_resource_id: references/code-style-guide.md
@@ -23,22 +23,22 @@ evidence_compiled_route: sk-code/sk-code-quality
 evidence_serving_authority: compiled
 evidence_flag_state: unset
 evidence_fallback_cause: compiled-serving
-evidence_manifest_digest: a59b57286f96f3bbf170e8f52b7818a58d89555a611a946f5e4f54f63e3236d4
+evidence_manifest_digest: bd6a260d924087e1665c06c8159905343224c00874532078d33ab149a74d856c
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
 created: 2026-10-26
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
-# sk-code quality gate on a CI workflow edit routes the quality mode at stage one and adds the CI standards at stage two
+# sk-code quality gate on a CI workflow edit routes the quality mode with the CI surface at stage one and adds the CI standards at stage two
 
 ## 1. OVERVIEW
 
-A quality gate request names an edited GitHub Actions workflow file. The words `quality gate` score the quality mode, so stage one returns a single route to `sk-code-quality`. The workflow path adds no second stage-one target. Stage two reads the same prompt against the surface vocabulary and adds the CI standards as read-only evidence, so the quality mode carries them without a second route. The scenario proves both halves: the compiled engine serves `single` with one target on stage one, and the surface replay serves `["CI_WORKFLOW"]` with the four CI references on stage two.
+A quality gate request names an edited GitHub Actions workflow file. The words `quality gate` score the quality mode. The workflow path scores the CI surface. The router keeps workflow modes and surfaces in two separate windows. So the CI surface stays beside the quality mode, though the quality mode scores 8 and the CI surface 4. Stage one returns a surface bundle with `sk-code-quality` first and `sk-code-ci` second. Stage two reads the same prompt against the surface vocabulary and adds the CI standards as read-only evidence. The scenario proves both halves. On stage one the compiled engine serves `surfaceBundle` with those two targets. On stage two the surface replay serves `["CI_WORKFLOW"]` with the four CI references.
 
 ### Why This Matters
 
-The two stages answer different questions. Stage one picks the one mode that acts, and stage two attaches the standards that edit must satisfy. Recording both keeps the process mode primary, so a later change that returns a second stage-one target, or a stage-two replay that drops the CI intent or one of its references, shows up as a failed scenario. The stage-one waiver recorded in the consumers phase accepts a single route there and puts the CI proof on stage two.
+The two stages answer different questions. Stage one picks the mode that acts and the surface whose standards apply. Stage two attaches the standards that edit must satisfy. Recording both keeps the process mode first and the CI surface beside it. A later change that drops either stage-one target shows up as a failed scenario. So does a stage-two replay that drops the CI intent or one of its references.
 
 ---
 
@@ -50,8 +50,8 @@ run the quality gate on my edited .github/workflows/ci.yml
 ```
 
 **Expected route**:
-- Stage one: a single route whose one target is `sk-code-quality`, with `selectionKind` set to `single`.
-- Route shape: `single`.
+- Stage one: a surface bundle whose targets are `sk-code-quality` and then `sk-code-ci`, with `selectionKind` set to `surfaceBundle`.
+- Route shape: `surfaceBundle`.
 - Stage two: surface intent `CI_WORKFLOW` with the four CI references under `sk-code-ci`.
 
 ---
@@ -84,21 +84,21 @@ run the quality gate on my edited .github/workflows/ci.yml
 | Step | Signal |
 |---|---|
 | 1 | The status line carries `servingAuthority` set to `compiled`. |
-| 2 | The decision carries `"selectionKind":"single"`. |
-| 2 | The decision carries exactly one target, with `packetId` set to `sk-code-quality` and `packetKind` set to `workflow`. |
+| 2 | The decision carries `"selectionKind":"surfaceBundle"`. |
+| 2 | The decision carries exactly two targets. The first has `packetId` set to `sk-code-quality` and `packetKind` set to `workflow`. The second has `packetId` set to `sk-code-ci` and `packetKind` set to `surface`. |
 | 3 | The stage-two replay prints `["CI_WORKFLOW"]` for `surfaceIntents`. |
 | 3 | The stage-two `resources` list holds all four CI references: `sk-code-ci/references/ci-workflow-standards.md`, `sk-code-ci/references/trigger-and-filter-rules.md`, `sk-code-ci/references/job-shape-rules.md` and `sk-code-ci/references/protected-set.md`. |
 
 ### Pass/Fail Criteria
 
-- **PASS** iff the status shows `servingAuthority: compiled`, the stage-one decision prints `"selectionKind":"single"` with one target whose `packetId` is `sk-code-quality`, and the stage-two replay prints `["CI_WORKFLOW"]` with all four CI references present in `resources`.
-- **FAIL** iff the serving authority is not `compiled`, the stage-one decision is not a `single` route to `sk-code-quality` (a `defer`, a second target or a different packet), the stage-two replay omits `CI_WORKFLOW`, the stage-two `resources` list misses any of the four CI references, or the compiled path is structurally broken (`resolver-missing`).
+- **PASS** iff all three hold. The status shows `servingAuthority: compiled`. The stage-one decision prints `"selectionKind":"surfaceBundle"` with exactly two targets, `sk-code-quality` first and `sk-code-ci` second. The stage-two replay prints `["CI_WORKFLOW"]` with all four CI references present in `resources`.
+- **FAIL** iff the serving authority is not `compiled`, the stage-one decision is not a `surfaceBundle` of `sk-code-quality` then `sk-code-ci` (a `defer`, a `single`, a missing or extra target or a different packet), the stage-two replay omits `CI_WORKFLOW`, the stage-two `resources` list misses any of the four CI references or the compiled path is structurally broken (`resolver-missing`).
 - **SKIP** iff the hub is outside the compiled serving closure (parity status `n/a`).
 
 ### Failure Triage
 
-1. If the stage-one decision is not a `single`, confirm that the quality words score the quality mode alone and that no CI surface rule attaches a second stage-one target.
-2. If the stage-one target is a different packet, confirm the quality vocabulary in `hub-router.json` and the mode registry.
+1. If the stage-one decision is not a `surfaceBundle`, confirm that the quality words score the quality mode and that the workflow path scores the CI surface. Then confirm that the router selects workflow modes and surfaces in separate windows.
+2. If a stage-one target is a different packet, confirm the quality and CI vocabularies in `hub-router.json` and the mode registry.
 3. If the stage-two replay prints an empty or different `surfaceIntents`, confirm the `CI_WORKFLOW` keyword row in the `ROUTER.md` intent signals covers a `.github/workflows/` path.
 4. If a CI reference is missing from `resources`, confirm the `CI_WORKFLOW` entry in the `ROUTER.md` resource map still names all four files.
 5. If the compiled path is structurally broken, run the status command and read its `causeCode`.
@@ -113,7 +113,8 @@ run the quality gate on my edited .github/workflows/ci.yml
 - `.skilled/skills/sk-code/ROUTER.md` - Surface intent signals and the four-reference CI resource map.
 - `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs` - Stage-two surface replay used by step 3.
 - `.skilled/bin/compiled-route.cjs` - Compiled route front door.
-- `specs/sk-code/quality-and-review-modes/002-quality-agnostic-gate/005-consumers-and-routing/decision-record.md` - ADR-006, which records the stage-one single-route decision and the CI waiver.
+- `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs` - Stage-one router, which selects workflow modes and surfaces in separate windows.
+- `specs/sk-code/quality-and-review-modes/002-quality-agnostic-gate/005-consumers-and-routing/decision-record.md` - ADR-006, which waived the stage-one CI bundle while stage one returned a single route. Stage one now returns that bundle.
 
 ---
 
@@ -128,4 +129,4 @@ run the quality gate on my edited .github/workflows/ci.yml
 - **Destructive**: No
 - **Sandbox**: not needed
 - **Concurrent-safe**: Yes
-- **Last validated**: 2026-10-26
+- **Last validated**: 2026-11-16

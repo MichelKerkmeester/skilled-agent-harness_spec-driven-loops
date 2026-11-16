@@ -1,0 +1,70 @@
+TASK: make the check that `apply` runs after its write read the set records this run keeps, not the ones it started with, and drop one condition that this makes unnecessary.
+One file changes. Do the 4 steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 4. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (10 lines, this exact text appears once in the file):
+    // wrote, so the record has nothing left to take back. This is also how a
+    // refusal below clears once the array was put right by hand. It holds only
+    // while the entry set adds no item there: the check after the write reads
+    // the same record against the array with that item in it and would refuse
+    // a file already written.
+    const addsBelow = liveArray && operations.some((operation) =>
+      (operation.op === 'insertItems' || operation.op === 'appendItems')
+      && deepEqual(operation.path.slice(0, liveArray.path.length), liveArray.path));
+    if (liveArray && pinnedArray && !addsBelow && deepEqual(
+      JSON.parse(output.slice(liveArray.node.start, liveArray.node.end)),
+NEW (replace those lines with these 4 lines, same indentation):
+    // wrote, so the record has nothing left to take back. This is also how a
+    // refusal below clears once the array was put right by hand.
+    if (liveArray && pinnedArray && deepEqual(
+      JSON.parse(output.slice(liveArray.node.start, liveArray.node.end)),
+
+STEP 2 of 4. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (4 lines, this exact text appears once in the file):
+    const live = JSON.parse(output.slice(node.start, node.end));
+    // A live value that already equals the pin's needs no write, which is also
+    // what the analysis after an apply sees for the set it just took back.
+    if (pinned && deepEqual(live, JSON.parse(upstreamText.slice(pinned.start, pinned.end)))) continue;
+NEW (replace those lines with these 3 lines, same indentation):
+    const live = JSON.parse(output.slice(node.start, node.end));
+    // A live value that already equals the pin's needs no write.
+    if (pinned && deepEqual(live, JSON.parse(upstreamText.slice(pinned.start, pinned.end)))) continue;
+
+STEP 3 of 4. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (3 lines, this exact text appears once in the file):
+
+  const updated = analyze(ctx, manifest, state, options.upstreamBytes);
+  const unresolved = updated.records.filter((record) => record.state !== 'in-sync');
+NEW (replace those lines with these 12 lines, same indentation):
+
+  // Only a set the entry set still names is kept. The check after the write
+  // reads these records and not the ones the run started with: a set this run
+  // took back has left the file, and reading its old record against the
+  // written file would judge the run's own work as a stranger's edit.
+  const sets = {};
+  for (const plan of analysis.plans) {
+    if (!plan.listedSets || plan.listedSets.length === 0) continue;
+    sets[plan.entry.destination] = plan.listedSets;
+  }
+  const updated = analyze(ctx, manifest, { ...state, sets }, options.upstreamBytes);
+  const unresolved = updated.records.filter((record) => record.state !== 'in-sync');
+
+STEP 4 of 4. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (8 lines, this exact text appears once in the file):
+    items[plan.entry.destination] = plan.listedItems;
+  }
+  // The sets follow the same rule: only one the entry set still names is kept.
+  const sets = {};
+  for (const plan of analysis.plans) {
+    if (!plan.listedSets || plan.listedSets.length === 0) continue;
+    sets[plan.entry.destination] = plan.listedSets;
+  }
+NEW (replace those lines with these 2 lines, same indentation):
+    items[plan.entry.destination] = plan.listedItems;
+  }
+
+CHECK. Run:
+cd R && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Expected: the summary shows "tests 41", "pass 41" and "fail 0". Report the three numbers. If a test fails, report its name and output. Do not change a test.

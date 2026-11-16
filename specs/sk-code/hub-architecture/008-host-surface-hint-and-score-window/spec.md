@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-16 |
 | **Branch** | `worktrees/425-repin-engine-limits-intake` |
 <!-- /ANCHOR:metadata -->
@@ -79,7 +79,7 @@ Line 3 is item 9: the review mode scored 4, the frontend surface 12, and the rou
 
 ### In Scope
 - Add the hinted surface to a scored route that lacks it, as the first surface after the workflow modes, when the hint names a surface the hub declares as specific.
-- Score a surface so that its phrase count cannot drop a workflow mode or a second surface the prompt matched. T003 measures two candidates against the hub's case file before one is chosen.
+- Score a surface so that its phrase count cannot drop a workflow mode the prompt matched. T003 measures two candidates against the hub's case file before one is chosen. The chosen score, two windows, does not keep a second surface beside a surface with more phrases. That part stays a known limit.
 - Route a hinted prompt that scores no mode to the hinted surface, when the hint names a surface the hub declares as specific. The operator added this on 2026-11-16.
 - Make the hint a request fact, so two requests that differ only in the hint do not share a request hash.
 - Say in the sk-code README what a host may change in `hub-router.json` in the meantime, a surface's `weight` and `routerPolicy.ambiguityDelta`.
@@ -103,6 +103,10 @@ Line 3 is item 9: the review mode scored 4, the frontend surface 12, and the rou
 | `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs` | Modify | Authored twin of the served router. `compiled-route-sync.cjs --check` fails when the two differ, so it takes the same bytes. Added with the operator's approval on 2026-11-16 |
 | `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs` | Modify | Authored twin of the served engine, for the same reason |
 | `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json` | Modify | Authored twin of the served case file, for the same reason |
+| `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` and its authored twin | Modify | Added on 2026-11-16. The `resolveRoute` comment described the hint as a reorder only |
+| `.skilled/skills/sk-code/SKILL.md`, `.skilled/skills/sk-code/ROUTER.md`, `.skilled/skills/sk-code/shared/references/stack-detection.md` | Modify | Added on 2026-11-16. Each described the hint as a reorder only |
+| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json` and its authored twin | Modify | Added on 2026-11-16. Re-minted, because `SKILL.md` and `ROUTER.md` feed the policy hash |
+| `.skilled/skills/sk-code/manual-testing-playbook/compiled-routing/quality-ci-surface-evidence-compiled-routing.md` | Modify | Added on 2026-11-16. Scenario CB-CR-007 routes a bundle under two windows |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -162,7 +166,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - May a hint add a target at all? `.skilled/bin/README.md` says today that it only leads a tie. Decided by the operator on 2026-11-16: yes, for a surface the hub declares as specific.
 - Should a hinted prompt that scores nothing route to the hinted surface, as the vendoring project's overlay does? Decided by the operator on 2026-11-16: yes, in this packet.
-- Which surface score wins: count a surface once however many phrases match, or keep the count and select workflow modes and surfaces in separate windows? T003 decides by measurement. The first is the smaller change and also keeps a host's surface beside a hub surface. Deferred by the operator on 2026-11-16 after T003. Count once fails an existing hint test and one case. Two windows still drops a second surface. REQ-002 stays open, and the numbers are in `scratch/score-candidates.md`.
+- Which surface score wins: count a surface once however many phrases match, or keep the count and select workflow modes and surfaces in separate windows? T003 measured both. Decided by the operator on 2026-11-16: two windows. Workflow modes and surfaces are each kept within the ambiguity delta of their own top score. The operator accepted its cost. A surface with three phrases still drops a one-phrase second surface. Playbook scenario CB-CR-007 becomes a bundle of `sk-code-quality` and `sk-code-ci`. The numbers are in `scratch/score-candidates.md`.
 - Is parity with the legacy replay still a gate? No. T002 found the replay deleted and its harness failing, and no workflow runs it. See `scratch/parity-gate.md`.
 - Should the routing model say which surfaces are shared evidence? The vendoring project asked for such a field on 2026-11-16. Its own overlay joins a hinted surface only when the matched surfaces score at a lower weight, because the model lists `sk-code-frontend` under `surfaceDetection.specific` beside a repository surface and carries nothing else that tells them apart. T003 looks at this with the score candidates. A new field needs a caller that fails without it, and upstream has one specific surface today.
 <!-- /ANCHOR:questions -->

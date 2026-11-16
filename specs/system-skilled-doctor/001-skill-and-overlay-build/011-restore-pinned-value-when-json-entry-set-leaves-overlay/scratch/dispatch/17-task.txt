@@ -1,0 +1,43 @@
+TASK: add two tests for the restore of a dropped `set` operation. Both fail until the next brief changes the engine.
+One file changes.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 1. File: R/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Append the block below at the END of the file, after one blank line. Change nothing else in the file.
+
+BLOCK TO APPEND:
+test('a dropped set is refused before any write when the same apply adds an item to its array', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  // The value equals the pin's, as when upstream took the value over.
+  fixture.writeOperations([{ op: 'set', path: ['rows', 1, 'top'], value: 'b' }]);
+  seedState(fixture);
+  assert.equal(fixture.readLive(), fixture.seed);
+
+  fixture.writeOperations([INSERT_X]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 1, applied.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+});
+
+test('a dropped set whose key was deleted by hand leaves quietly while the arrays line up', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  const kept = { op: 'set', path: ['rows', 1, 'top'], value: 'w' };
+  fixture.writeOperations([{ op: 'set', path: ['rows', 0, 'extra'], value: 1 }, kept]);
+  seedState(fixture);
+  const live = readJson(fixture.livePath);
+  delete live.rows[0].extra;
+  fs.writeFileSync(fixture.livePath, JSON.stringify(live, null, 2) + '\n');
+
+  fixture.writeOperations([kept]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.deepEqual(fixture.recordedSets().map((record) => record.path), [kept.path]);
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+CHECK. Run:
+cd R && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Expected: the summary shows "pass 38" and "fail 2". The two failing tests are the two new ones. Those failures are wanted: the engine change comes in the next brief. Do not edit the engine and do not change a test to make it pass. Report the pass and fail counts. If any other test fails, report its name and output.

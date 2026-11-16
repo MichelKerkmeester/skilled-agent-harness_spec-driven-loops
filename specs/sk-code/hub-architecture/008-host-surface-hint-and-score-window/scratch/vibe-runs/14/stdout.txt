@@ -1,0 +1,27 @@
+1. FILES CHANGED:
+- /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/sk-code/SKILL.md
+
+2. COMMANDS:
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -n "surface-hint" .skilled/skills/sk-code/SKILL.md` — exit 0
+```
+94:- **`--surface-hint`**: the front-door flag that carries the detected surface into the compiled route, so a hinted surface leads a keyword tie.
+```
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -n "comes first among the surfaces" .skilled/skills/sk-code/SKILL.md` — exit 0
+```
+94:- **`--surface-hint`**: the front-door flag that carries the detected surface into the compiled route. A hinted specific surface joins the route and comes first among the surfaces.
+```
+Exactly one line, numbered 94, as expected.
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && git status --porcelain` — exit 0 (scope check only; no git mutation)
+```
+ M .skilled/skills/sk-code/SKILL.md
+ M .skilled/skills/sk-code/README.md
+ M .skilled/skills/sk-code/shared/references/stack-detection.md
+ M .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs
+ ... (plus other pre-existing modifications and untracked scratch/dispatch files from earlier dispatches)
+```
+The tree was already dirty before this dispatch; my edit added only the `SKILL.md` line change.
+
+3. OPEN QUESTIONS: none. The anchor matched exactly once at line 94, the replacement kept the same indentation and single-line shape, and no other file was touched.

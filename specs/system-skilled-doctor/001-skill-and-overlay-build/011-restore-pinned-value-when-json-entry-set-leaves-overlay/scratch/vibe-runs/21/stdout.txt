@@ -1,0 +1,41 @@
+All four edits are in place, `sets` is built once and now feeds the post-write `analyze`, and the check passes.
+
+1. FILES CHANGED:
+   - `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs`
+
+2. COMMANDS:
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && grep -n "addsBelow\|listedSets\|const updated = analyze\|const live = JSON.parse(output.slice(node.start" .skilled/commands/doctor/scripts/overlay-engine.cjs`
+   - exit 0. Last lines: anchors at 1196, 1341, 1344, 1355, 1594, 1596, 1629, 1640-1642, 1657-1658, 1859-1860, 1867, 1877, 3034, 3059, 3060.
+
+   `cd R && sed -n '1330,1365p' .skilled/commands/doctor/scripts/overlay-engine.cjs` (and `sed -n '3010,3075p'`, `sed -n '3075,3130p'`, `grep -n "function applyUnderLock" -A 40`)
+   - exit 0. Confirmed all four OLD blocks verbatim, and that `state` is a `const` at line 2980 and `sets` is consumed by `writeStateIfChanged` at line 3078.
+
+   `cd R && node --check .skilled/commands/doctor/scripts/overlay-engine.cjs`
+   - exit 0, no output.
+
+   `cd R && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`
+   - exit 0. Last 15 lines:
+     ```
+     ✔ a dropped set is restored while the operations that stay are still applied (153.793083ms)
+     ✔ apply refuses a dropped set whose array index is written as a string (153.588083ms)
+     ✔ a dropped set whose index fell off the array is refused until the array matches the pin (240.566ms)
+     ✔ two records for one path in an older state file restore from the last one (167.159292ms)
+     ✔ a dropped set leaves in the same apply that adds an item to its array, and the run ends clean (245.853708ms)
+     ✔ a dropped set whose key was deleted by hand leaves quietly while the arrays line up (204.446625ms)
+     ✔ a dropped set leaves in the same apply whose kept set shortens its array (232.944834ms)
+     ℹ tests 41
+     ℹ suites 0
+     ℹ pass 41
+     ℹ fail 0
+     ℹ cancelled 0
+     ℹ skipped 0
+     ℹ todo 0
+     ℹ duration_ms 6933.5115
+     ```
+   - The three numbers: **tests 41, pass 41, fail 0**.
+
+   `cd R && grep -n "const sets = {}" .skilled/commands/doctor/scripts/overlay-engine.cjs` and `grep -n "addsBelow" ...`
+   - `const sets = {}` appears once, at line 3031. `addsBelow` returns no matches (grep exit 1), so the dropped condition is fully gone.
+
+3. OPEN QUESTIONS: none. The four anchors matched exactly on the first attempt, and no test was modified. Note that `git status` shows many other modified files in this checkout from earlier phases of this packet; my edits touched only `overlay-engine.cjs`.

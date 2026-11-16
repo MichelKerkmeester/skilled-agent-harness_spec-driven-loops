@@ -1,0 +1,60 @@
+Done. The word-diff confirms only the intended span changed: `array index` → `array`, plus the three added sentences. The rest of line 62 is byte-identical and the file is still 241 lines.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skilled-doctor/references/overlays.md`
+
+## 2. COMMANDS
+
+**Pre-edit anchor confirmation** — exit 0
+```
+$ rg -c 'A path through an array index is restored only while that array holds the same number of items' .skilled/skills/system-skilled-doctor/references/overlays.md
+1
+```
+
+**Anchor location** — exit 0
+```
+$ rg -n 'A path through an array index is restored only while that array holds the same number of items' .skilled/skills/system-skilled-doctor/references/overlays.md | cut -c1-200
+62:`sync-state.json` carries three optional records beside its hashes. `links` maps each layout link path to the target the engine confirmed there, so when the manifest moves a link target the engine
+```
+
+**Line length** — exit 0
+```
+$ awk 'NR==62' .skilled/skills/system-skilled-doctor/references/overlays.md | wc -c
+    2002
+```
+
+**Full line read** — exit 0 (2002-char line, read in full to copy the anchor exactly)
+
+**THE CHECK** — exit 0
+```
+$ cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -c 'however the entry set spells it' .skilled/skills/system-skilled-doctor/references/overlays.md
+1
+```
+Expected 1, got 1.
+
+**Post-edit line + diffstat** — exit 0
+```
+$ awk 'NR==62' .skilled/skills/system-skilled-doctor/references/overlays.md; git diff --stat -- .skilled/skills/system-skilled-doctor/references/overlays.md
+ .skilled/skills/system-skilled-doctor/references/overlays.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+```
+
+**Old text gone / line count / word-diff** — exit 0 (embedded `rg` exit 1 = no match, the desired result)
+```
+$ rg -c 'A path through an array index is restored' .skilled/skills/system-skilled-doctor/references/overlays.md
+old_exit=1
+$ wc -l < .skilled/skills/system-skilled-doctor/references/overlays.md
+     241
+$ git diff --word-diff=plain -- .skilled/skills/system-skilled-doctor/references/overlays.md | tail -20
+... A path through an array[-index-] is restored only while that array holds the same number of items in the live file and in the pin and the overlay adds no item to it. {+A step into an array counts as an index however the entry set spells it.+} Otherwise `apply` refuses and says to restore the value by hand. {+That refusal clears once the whole array reads the same as the pin's, so the overlay's own items must leave that array for the one `apply` that clears it. A key the pin does not hold is deleted even when a person added it by hand before a `set` named it, because the record cannot tell the two apart.+} The restore reads the pinned copy the run was given. ...
+```
+
+## 3. OPEN QUESTIONS
+
+Two observations, neither a deviation — I made exactly the edit the brief specified:
+
+- The new closing sentence ("A key the pin does not hold is deleted even when a person added it by hand…") now sits in the same paragraph as the pre-existing "A key the pin does not hold is deleted while it still carries the recorded value." They are compatible (one governs provenance, the other the value check), but a reader meets the same subject twice with different qualifiers. If that reads as redundant, the fix is a merge of the two, which is outside this brief's literal edit.
+- The new sentence lands immediately before "The restore reads the pinned copy the run was given," so the paragraph now ends on the key-deletion rule rather than the restore mechanism. Again a consequence of replacing only the named span, as instructed.
+
+No other file was touched; no git write commands were run.

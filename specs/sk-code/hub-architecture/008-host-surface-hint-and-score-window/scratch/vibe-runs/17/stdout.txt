@@ -1,0 +1,55 @@
+**1. FILES CHANGED**
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/sk-code/manual-testing-playbook/compiled-routing/quality-ci-surface-evidence-compiled-routing.md`
+
+All 14 steps applied. `git status` scoped to the playbook directory shows only that one file modified (20 insertions, 19 deletions).
+
+**2. COMMANDS**
+
+Command 1 — exit status 0:
+```
+cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node .skilled/skills/sk-doc/sk-create-skill/scripts/validate-compiled-routing-scenarios.cjs --dir .skilled/skills/sk-code/manual-testing-playbook/compiled-routing --strict
+```
+Last 15 lines of output:
+```
+PASS  CB-CR-007  quality-ci-surface-evidence-compiled-routing.md  stage=routing  shape=surfaceBundle
+PASS  CB-CR-005  surface-alone-bug-fix-compiled-routing.md  stage=routing  shape=single
+PASS  CB-CR-003  surface-alone-ci-compiled-routing.md  stage=routing  shape=single
+PASS  CB-CR-009  surface-alone-frontend-compiled-routing.md  stage=routing  shape=single
+PASS  CB-CR-002  surface-alone-skilled-compiled-routing.md  stage=routing  shape=single
+PASS  CB-CR-001  surface-bundle-compiled-routing.md  stage=routing  shape=surfaceBundle
+PASS  CB-CR-006  workflow-alone-quality-agent-compiled-routing.md  stage=routing  shape=single
+PASS  CB-CR-008  workflow-alone-quality-rails-compiled-routing.md  stage=routing  shape=single
+PASS  CB-CR-004  workflow-alone-review-compiled-routing.md  stage=routing  shape=single
+
+pass=9 fail=0 skip=0 total=9
+EXIT=0
+```
+
+Command 2 — exit status 0:
+```
+cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node .skilled/bin/compiled-route-admission.cjs --hub sk-code
+```
+Last 15 lines of output (whole output):
+```
+  sk-code                     pass                    9 pass, 0 drift, 0 stale, 0 n/a
+
+Every hub passes the admission check.
+EXIT=0
+```
+
+Command 3 — exit status 0, scope confirmation:
+```
+cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && git status --porcelain -- .skilled/skills/sk-code/manual-testing-playbook/compiled-routing/ && echo "---" && git diff --stat -- .skilled/skills/sk-code/manual-testing-playbook/compiled-routing/
+```
+Last 15 lines of output (whole output):
+```
+ M .skilled/skills/sk-code/manual-testing-playbook/compiled-routing/quality-ci-surface-evidence-compiled-routing.md
+---
+ ...quality-ci-surface-evidence-compiled-routing.md | 39 +++++++++++-----------
+ 1 file changed, 20 insertions(+), 19 deletions(-)
+```
+
+**3. OPEN QUESTIONS**
+
+None. Every anchor matched on the first attempt, and both expected outputs appeared exactly as the brief predicted.

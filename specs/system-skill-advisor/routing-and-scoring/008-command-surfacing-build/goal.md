@@ -399,6 +399,7 @@ and findings belong here.
 | Review pass ten | CONDITIONAL, both P1 fixed | two DeepSeek lineages over 05f776202e0..5b2b062baef and the merge; P0 0, P1 2, P2 7; AC10-P1-001 single-quoted command and F001 doctor install wording fixed in 039 T010 and T011 with three P2; four P2 open; attach-scorer-10 converged, docs-merge-10 stopped on stuckRecovery, so pass eleven follows; gate after-pass-ten.txt 2353/0 both ways |
 | Review pass eleven | CONDITIONAL, both P1 fixed | routing-11 converged with 5 P2, fixes-11 stopped on maxIterationsReached with 2 P1 and 5 P2; closing single quote and retired name fixed in 039 T013, wrapper invariance test T014 fails 3 cases on the two earlier versions; 5 P2 fixed, 5 recorded; pass twelve follows |
 | Criterion 2 recheck after phase 039 | Met | after-pass-eleven-invariance.txt: suite 2363 passed 0 failed with AI_SESSION_CHILD unset and set, FLOOR 24/44 0/35 2/44, EVAL [160,49,21,5], stored sets unchanged |
+| Merge origin/main 35d49e8f638 | Done | 11 commits; ROUTER and SKILL conflicts kept 039's narrowings and main's install-guide removal; manifests, graph and trigger index regenerated, all fresh; doctor 1273/0, bin 198/0, FLOOR and EVAL unchanged; python-compat failed only on stale local advisor state and passes 3/3 after advisor_rebuild (after-merge-2.txt); operator chose finish capped: one narrow review pass, one alignment run, a rep... |
 
 ### Deviations and findings
 

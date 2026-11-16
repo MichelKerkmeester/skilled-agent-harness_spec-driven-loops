@@ -1,0 +1,16 @@
+TASK: say in the sk-code ROUTER.md that a surface hint adds a specific surface to the route.
+One file changes. Do the 2 steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+These hub docs are inputs of the compiled sk-code route. Until a later brief re-mints the activation manifest, `compiled-route-guard.cjs` reports sk-code stale and the front door serves legacy. That is expected. Do not run route probes, do not re-mint anything and do not edit any other file.
+
+STEP 1 of 2. File: R/.skilled/skills/sk-code/ROUTER.md
+OLD (1 line, this exact text appears once in the file):
+Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family: a declared specific surface first, then the SKILLED fallback, then UNKNOWN. Intent narrows the specific files within that family. The detected surface also goes to the compiled front door as `--surface-hint`. When a prompt ties between surfaces, a hinted specific surface leads the bundle. SKILLED already ranks last, so a SKILLED hint changes nothing (`SKILL.md` §3).
+NEW (replace that line with this 1 line, same indentation):
+Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family: a declared specific surface first, then the SKILLED fallback, then UNKNOWN. Intent narrows the specific files within that family. The detected surface also goes to the compiled front door as `--surface-hint`. A hinted specific surface joins the route and comes first among the surfaces. SKILLED already ranks last, so a SKILLED hint changes nothing (`SKILL.md` §3).
+
+STEP 2 of 2. Run:
+cd R && rg -n "comes first among the surfaces" .skilled/skills/sk-code/ROUTER.md
+Expected: it prints exactly one line, numbered 37. Report the output.

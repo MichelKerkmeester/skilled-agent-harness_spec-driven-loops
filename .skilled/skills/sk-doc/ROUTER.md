@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 2.4.13.0
+version: 2.4.14.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -123,12 +123,11 @@ emits leaf paths, and this router never re-decides the mode.
   which score the readme-creation intent up to four times. At the base weight
   the skill template would never load. At this weight the skill intent ties or
   beats the readme-creation intent, so the skill template always loads.
-- **root-guide leaves.** The install guide, contributing guide and security
-  policy templates, one intent each, for the guides that sit beside a
-  repository's front page. Fired by "install guide", "contributing guide /
-  contributing.md" and "security.md" requests. A bare "security policy" phrase
-  is left out, because it pulled a request that was not a README into this
-  skill.
+- **root-guide leaves.** The contributing guide and security policy templates,
+  one intent each, for the guides that sit beside a repository's front page.
+  Fired by "contributing guide / contributing.md" and "security.md" requests. A
+  bare "security policy" phrase is left out, because it pulled a request that was
+  not a README into this skill.
 - **hook-readme leaves.** The readme README and the hook folder template a
   request to write the README of a shared hook folder loads. Fired by "readme
   for a new hook / readme for this hook" requests and by the named shared
@@ -213,7 +212,6 @@ INTENT_SIGNALS = {
     "FEATURE_CATALOG": {"weight": 4, "keywords": ["feature catalog", "feature inventory", "catalog of features", "features overview", "capabilities", "catalog package", "per-feature files", "source anchors", "root catalog", "capability inventory", "/create:feature-catalog"]},
     "README_CREATION": {"weight": 4, "keywords": ["create a readme", "readme for", "a readme", "front-page overview", "project overview", "getting started doc", "intro doc", "overview doc", "landing doc", "create readme", "readme", "folder readme", "write readme", "readme.md", "code folder readme", "/create:readme"]},
     "SKILL_README": {"weight": 16, "keywords": ["skill readme", "readme for my new skill", "readme for a new skill", "readme for my skill", "readme for a skill", "readme for the skill", "readme for this skill", "skill's readme"]},
-    "INSTALL_GUIDE": {"weight": 4, "keywords": ["install guide"]},
     "CONTRIBUTING_GUIDE": {"weight": 4, "keywords": ["contributing guide", "contributing.md"]},
     "SECURITY_POLICY": {"weight": 4, "keywords": ["security.md"]},
     "HOOK_README": {"weight": 16, "keywords": ["readme for a new hook", "readme for a hook", "readme for the hook", "readme for this hook", "readme for my hook", "hook's readme", "readme for the ask-surface-guard hook", "ask-surface-guard hook readme", "readme for the classifier-injection-screen hook", "classifier-injection-screen hook readme", "readme for the cli-dispatch hook", "cli-dispatch hook readme", "readme for the codex-global-hooks-check hook", "codex-global-hooks-check hook readme", "readme for the completion-evidence hook", "completion-evidence hook readme", "readme for the decision-capture hook", "decision-capture hook readme", "readme for the directive-lifecycle hook", "directive-lifecycle hook readme", "readme for the dist-freshness hook", "dist-freshness hook readme", "readme for the env-secret-guard hook", "env-secret-guard hook readme", "readme for the goal hook", "goal hook readme", "readme for the mcp-route-guard hook", "mcp-route-guard hook readme", "readme for the overlay-guard hook", "overlay-guard hook readme", "readme for the permission-policy hook", "permission-policy hook readme", "readme for the post-edit-quality hook", "post-edit-quality hook readme", "readme for the session-cleanup hook", "session-cleanup hook readme", "readme for the session-handover hook", "session-handover hook readme", "readme for the session-lifecycle hook", "session-lifecycle hook readme", "readme for the skill-advisor hook", "skill-advisor hook readme", "readme for the subagent-dispatch-guard hook", "subagent-dispatch-guard hook readme"]},
@@ -293,9 +291,6 @@ RESOURCE_MAP = {
     "SKILL_README": [
         "sk-create-readme/references/README.md",
         "sk-create-readme/assets/skill-readme-template.md"
-    ],
-    "INSTALL_GUIDE": [
-        "sk-create-readme/assets/install-template.md"
     ],
     "CONTRIBUTING_GUIDE": [
         "sk-create-readme/assets/contributing-template.md"

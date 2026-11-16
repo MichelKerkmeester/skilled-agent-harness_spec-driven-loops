@@ -34,7 +34,7 @@
       "repo"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The doctor overlay engine and the external-repo onboarding path grew over six phases",
     "created_at": "2026-11-08T16:24:02Z",
-    "last_save_at": "2026-11-08T16:39:25.977Z",
+    "last_save_at": "2026-11-16T16:27:25.497Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:21098dd9827b245d4e6c2a492fa048ebf5df848abb6d57e8d7d872f19f260222",
+    "source_fingerprint": "sha256:ae17e6143f1c87d5f8ae7cde643fcdb5d686385abd476b910eed358f03f153b0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b704205548ed0789d341970af9d95ef29d43ea32db6595569b63cb2c3727df71",
+      "spec.md": "dc13d292d541d2a6d1de9b3ff19570310e88bb6f0bdf0e8bc28757d06fe7c916",
       "plan.md": "81dd65706ab925e85de8736b01ecb7628442bc8f99a01522981bd48864a4985c",
       "tasks.md": "475506157abc4a1a520376e80a26af6bc995a6220fabc4bb58f2b00a6d422393",
       "implementation-summary.md": "e081af0ce5994a2b27c537a262c32b273cbba31889f6b4e29f2109af65f6ed46",

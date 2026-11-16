@@ -1,0 +1,15 @@
+TASK: rename one sk-code surface hint test so its title says what its body checks.
+One file changes. Do the 2 steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 2. File: R/.skilled/bin/tests/compiled-route-surface-hint.test.cjs
+OLD (1 line, this exact text appears once in the file):
+test('a hint the prompt did not match, UNKNOWN or an unknown name changes nothing', () => {
+NEW (replace that line with this 1 line, same indentation):
+test('an empty hint, UNKNOWN or an unknown name changes nothing', () => {
+
+STEP 2 of 2. Run:
+cd R && node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs
+cd R && rg -n "an empty hint, UNKNOWN or an unknown name changes nothing" .skilled/bin/tests/compiled-route-surface-hint.test.cjs
+Expected: the test summary shows "tests 22", "pass 22" and "fail 0". The rg command prints one line, numbered 136. Report both outputs.

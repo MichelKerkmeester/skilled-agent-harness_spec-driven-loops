@@ -7,7 +7,7 @@
 
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, realpathSync, rmSync, utimesSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
@@ -201,5 +201,38 @@ test('the CLI finds a session under the unified folder', () => {
     });
     assert.equal(run.status, 0, run.stderr);
     assert.equal(JSON.parse(run.stdout).session_id, SESSION_ID);
+  });
+});
+
+test('the session whose lease a calling process holds wins over a newer one', () => {
+  withSandbox(({ rootDir, projectDir }) => {
+    const sessionsRoot = join(rootDir, 'sessions');
+    for (const id of [SESSION_ID, 'newer-session']) {
+      const sessionDir = join(sessionsRoot, 'unified', id);
+      mkdirSync(join(sessionDir, 'journal'), { recursive: true });
+      writeFileSync(
+        join(sessionDir, 'meta.json'),
+        JSON.stringify({ session_id: id, environment: { working_directory: projectDir } }),
+      );
+      writeFileSync(
+        join(sessionDir, 'journal', '0000000000000001.jsonl'),
+        journalRecords().map((record) => JSON.stringify(record)).join('\n') + '\n',
+      );
+    }
+    const older = new Date('2026-11-01T00:00:00Z');
+    utimesSync(join(sessionsRoot, 'unified', SESSION_ID, 'journal'), older, older);
+    mkdirSync(join(sessionsRoot, 'active'), { recursive: true });
+    writeFileSync(
+      join(sessionsRoot, 'active', `${SESSION_ID}.lock.json`),
+      JSON.stringify({ lease_version: 1, session_id: SESSION_ID, process_id: process.pid }),
+    );
+    const run = spawnSync(process.execPath, [fileURLToPath(new URL('./sweep-vibe.mjs', import.meta.url))], {
+      cwd: projectDir,
+      encoding: 'utf8',
+      env: { ...process.env, HOME: rootDir, MISTRAL_VIBE_SESSION_ROOT: sessionsRoot },
+      timeout: 20000,
+    });
+    assert.equal(run.status, 0, run.stderr);
+    assert.equal(JSON.parse(run.stdout).session, join(sessionsRoot, 'unified', SESSION_ID));
   });
 });

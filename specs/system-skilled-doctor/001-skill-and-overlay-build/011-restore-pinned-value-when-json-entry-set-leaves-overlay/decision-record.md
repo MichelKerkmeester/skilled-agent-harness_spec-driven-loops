@@ -47,6 +47,7 @@ _memory:
 | Q011 | The fresh Fable 5.2 review of the engine change runs through the claude2 shell function. | Not stated. | None | tasks.md T012 |
 | Q012 | A dropped set whose path holds an array index is restored only when the arrays line up with the pin, and refused otherwise. | Not stated. | None | tasks.md T014, overlay-engine.cjs indexesMatchPin |
 | Q013 | The fix also covers two sets on one path and a key whose added record was lost, and the other review findings are documented as limits. | Not stated. | None | tasks.md T015 and T016, implementation-summary.md Known Limitations |
+| Q014 | No build of the three engine limits was approved. The operator asked whether they are worthwhile, and they stay documented until the operator says otherwise. | Not stated. | None | implementation-summary.md Known Limitations, handover-to-barter.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -312,6 +313,26 @@ Document the rest as limits
 Answer:
 ```text
 Same path twice (a), Lost added-key record (b), Document the rest as limits
+```
+
+### Q014
+<!-- source: claude:3912763e-4a15-47d7-994e-71d31bbf339f:toolu_01QjEciinLMnyGakHR9bUYaf:1 -->
+
+Question:
+```text
+Phase 11 left three engine limits you earlier chose to document, not build: `setKeyOnItem` keeps no record, a `set` on an item the overlay itself added cannot be dropped, and a `set` that another operation writes inside or over cannot be dropped alone. The engine refuses safely in each case and no vendoring project has reported one. Does "fix all open" include building them?
+```
+
+Options:
+```text
+Leave documented (Recommended)
+Build all three
+Build setKeyOnItem only
+```
+
+Answer:
+```text
+are they worthwhile?
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

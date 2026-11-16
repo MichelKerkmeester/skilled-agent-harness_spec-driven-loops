@@ -1,0 +1,82 @@
+Diff is exactly the 26-line insertion, nothing else touched.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/bin/tests/compiled-route-surface-hint.test.cjs`
+
+## 2. COMMANDS
+
+**Command 1** — `grep -n "A session that names a specific surface gets that surface in a scored route" .skilled/bin/tests/compiled-route-surface-hint.test.cjs`
+Exit status: `0`
+```
+256:// A session that names a specific surface gets that surface in a scored route,
+```
+
+**Command 2** — `wc -l .skilled/bin/tests/compiled-route-surface-hint.test.cjs`
+Exit status: `0`
+```
+     323 .skilled/bin/tests/compiled-route-surface-hint.test.cjs
+```
+
+**Command 3** — `node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs`
+Exit status: `1`
+```
+✔ a frontend review prompt bundles the frontend surface (1.485667ms)
+✔ non-frontend prompts that share frontend words do not select the frontend surface (2.039041ms)
+✖ a workflow mode stays beside a surface that matched several phrases (2.089416ms)
+✔ a prompt that matches only workflow modes or only surfaces keeps one window (2.659791ms)
+✔ a specific surface hint joins a route the prompt scored (1.869083ms)
+✔ a specific surface hint routes a prompt that scores nothing (1.9315ms)
+✔ a hint naming a workflow mode or a surface that is not specific adds nothing (7.028125ms)
+✔ the hint is a request fact (5.368584ms)
+✔ a hinted host surface joins as the first surface after the workflow modes (4.342709ms)
+✔ a hub without surface packets ignores the hint (41.53925ms)
+✔ the front door passes --surface-hint through and keeps stdout to one route line (142.301917ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 21
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 341.748875
+```
+
+**Command 4** — `git diff -- .skilled/bin/tests/compiled-route-surface-hint.test.cjs`
+Exit status: `0`
+```
+@@ -253,6 +253,29 @@ test('non-frontend prompts that share frontend words do not select the frontend
+   }
+ });
+ 
++// A surface scores every phrase it matches, so it can outscore a workflow mode
++// the prompt named once. Each kind keeps its own window, so the mode stays.
++test('a workflow mode stays beside a surface that matched several phrases', () => {
++  const route = resolveRoute('sk-code', 'review the dark mode toggle and focus trap');
++  assert.equal(route.action, 'route');
++  assert.equal(route.selectionKind, 'surfaceBundle');
++  assert.deepEqual(modes(route), ['sk-code-review', 'sk-code-frontend']);
++});
++
++// Within one kind a lower score still drops out, so a second workflow mode or a
++// second surface that matched fewer phrases is not kept.
++test('a prompt that matches only workflow modes or only surfaces keeps one window', () => {
++  for (const [prompt, expected] of [
++    ['run the quality gate and the review', ['sk-code-quality']],
++    ['fix the typescript dark mode toggle and focus trap', ['sk-code-frontend']],
++  ]) {
++    const route = resolveRoute('sk-code', prompt);
++    assert.equal(route.action, 'route', prompt);
++    assert.equal(route.selectionKind, 'single', prompt);
++    assert.deepEqual(modes(route), expected, prompt);
++  }
++});
++
+ // A session that names a specific surface gets that surface in a scored route,
+```
+
+Counts match the brief exactly: `tests 22`, `pass 21`, `fail 1`. The single failure is the wanted one, `a workflow mode stays beside a surface that matched several phrases`, failing at line 261 on `selectionKind` — actual `'single'`, expected `'surfaceBundle'`. The second new test passes. No other test failed.
+
+## 3. OPEN QUESTIONS
+
+none

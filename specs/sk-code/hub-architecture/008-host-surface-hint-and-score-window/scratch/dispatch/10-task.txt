@@ -1,0 +1,23 @@
+TASK: correct the comment on resolveRoute so it says what the surface hint does.
+Two files change. Do the 3 steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 3. File: R/.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs
+OLD (2 lines, this exact text appears once in the file):
+// a routing hot path. `options.surfaceHint` passes through to the engine, which
+// uses it only to reorder surfaces the prompt already matched.
+NEW (replace those lines with these 3 lines, same indentation):
+// a routing hot path. `options.surfaceHint` passes through to the engine. A hint
+// that names a surface the hub declares as specific adds that surface to the
+// route. The engine then orders it first among the surfaces.
+
+STEP 2 of 3. The file you just edited has an authored twin that must hold the same bytes. Run exactly:
+cp R/.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs R/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs
+Then run: cmp R/.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs R/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs && echo twin-same
+Expected: it prints twin-same.
+
+STEP 3 of 3. Run:
+cd R && node -e "require('./.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs')" && echo loads
+cd R && node .skilled/bin/compiled-route-sync.cjs --check
+Expected: the first command prints loads. The second ends with "all 55 served copies match their authored files". Report both outputs.

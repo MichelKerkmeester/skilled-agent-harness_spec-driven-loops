@@ -1232,6 +1232,36 @@ function memberRemovalEdit(members, index) {
 }
 
 /**
+ * The outermost array a recorded path goes through in one document. A path
+ * step is an index when the node it steps into is an array, however the entry
+ * set spelled the step, so the document decides and not the step's type.
+ * @param {object} root Root node of a parsed document.
+ * @param {Array<string|number>} path Path the set wrote.
+ * @returns {{node: object, path: Array<string|number>}|null} The array node
+ *   and the path that reaches it, or null when the path meets no array.
+ */
+function arrayOnPath(root, path) {
+  for (let depth = 0; depth < path.length; depth += 1) {
+    const container = recordedNodeAt(root, path.slice(0, depth));
+    if (!container) return null;
+    if (container.type === 'array') return { node: container, path: path.slice(0, depth) };
+  }
+  return null;
+}
+
+/**
+ * Keep one record per path, the last one written. A state file from an engine
+ * that recorded every `set` can hold two for one path, and only the last value
+ * is the one the live file carries.
+ * @param {object[]} records Recorded sets of one destination.
+ * @returns {object[]} The records with earlier duplicates of a path left out.
+ */
+function lastRecordPerPath(records) {
+  return records.filter((record, index) =>
+    !records.slice(index + 1).some((later) => deepEqual(later.path, record.path)));
+}
+
+/**
  * Whether every array index on a recorded path names the same item in the live
  * file and in the pinned copy. An index is a position, so it is trusted only
  * while the two arrays hold the same number of items and this overlay neither
@@ -1245,11 +1275,13 @@ function memberRemovalEdit(members, index) {
  */
 function indexesMatchPin(root, upstreamRoot, path, operations, recordedItems) {
   for (let depth = 0; depth < path.length; depth += 1) {
-    if (typeof path[depth] !== 'number') continue;
     const container = path.slice(0, depth);
     const live = recordedNodeAt(root, container);
     const pinned = recordedNodeAt(upstreamRoot, container);
-    if (!live || !pinned || live.type !== 'array' || pinned.type !== 'array') return false;
+    const liveIsArray = Boolean(live) && live.type === 'array';
+    const pinnedIsArray = Boolean(pinned) && pinned.type === 'array';
+    if (!liveIsArray && !pinnedIsArray) continue;
+    if (!liveIsArray || !pinnedIsArray) return false;
     if (live.items.length !== pinned.items.length) return false;
     if (recordedItems.some((item) => item && deepEqual(item.path, container))) return false;
     const addsItems = operations.some((operation) =>
@@ -1278,14 +1310,17 @@ function indexesMatchPin(root, upstreamRoot, path, operations, recordedItems) {
  */
 function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = () => null, recordedItems = []) {
   let output = text;
-  for (const record of recordedSets) {
+  for (const record of lastRecordPerPath(recordedSets)) {
     if (operations.some((operation) => operation.op === 'set' && deepEqual(operation.path, record.path))) continue;
     const where = record.path.join('.');
     const root = parseJsonSource(output);
     // The key, or the object that held it, may be gone already: nothing is left
-    // for this record to take back.
+    // for this record to take back. Through an array that reading waits for the
+    // index check below, because a removed item moves every index after it and
+    // the value may sit one place along.
     const node = recordedNodeAt(root, record.path);
-    if (!node) continue;
+    const liveArray = arrayOnPath(root, record.path);
+    if (!node && !liveArray) continue;
     const upstreamText = readUpstreamText();
     if (upstreamText === null) {
       throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy of the file cannot be read');
@@ -1296,14 +1331,23 @@ function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = (
     } catch (error) {
       throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy of the file is not valid JSON');
     }
+    const pinnedArray = arrayOnPath(upstreamRoot, record.path);
+    // An array that reads the same as the pin's holds nothing this overlay
+    // wrote, so the record has nothing left to take back. This is also how a
+    // refusal below clears once the array was put right by hand.
+    if (liveArray && pinnedArray && deepEqual(
+      JSON.parse(output.slice(liveArray.node.start, liveArray.node.end)),
+      JSON.parse(upstreamText.slice(pinnedArray.node.start, pinnedArray.node.end)),
+    )) continue;
     if (!indexesMatchPin(root, upstreamRoot, record.path, operations, recordedItems)) {
       throw new Error('cannot restore the dropped set at ' + where +
         ': its path goes through an array whose items differ from the pinned copy; restore the value by hand');
     }
+    // The arrays line up, so a key that is missing is gone and not one place along.
+    if (!node) continue;
     const pinned = recordedNodeAt(upstreamRoot, record.path);
     const live = JSON.parse(output.slice(node.start, node.end));
-    // A live value that already equals the pin's needs no write, which is also
-    // what the analysis after an apply sees for the set it just took back.
+    // A live value that already equals the pin's needs no write.
     if (pinned && deepEqual(live, JSON.parse(upstreamText.slice(pinned.start, pinned.end)))) continue;
     if (!deepEqual(live, record.value)) {
       throw new Error('dropped set at ' + where +
@@ -2980,7 +3024,16 @@ function applyUnderLock(ctx, manifest, options = {}) {
     }
   }
 
-  const updated = analyze(ctx, manifest, state, options.upstreamBytes);
+  // Only a set the entry set still names is kept. The check after the write
+  // reads these records and not the ones the run started with: a set this run
+  // took back has left the file, and reading its old record against the
+  // written file would judge the run's own work as a stranger's edit.
+  const sets = {};
+  for (const plan of analysis.plans) {
+    if (!plan.listedSets || plan.listedSets.length === 0) continue;
+    sets[plan.entry.destination] = plan.listedSets;
+  }
+  const updated = analyze(ctx, manifest, { ...state, sets }, options.upstreamBytes);
   const unresolved = updated.records.filter((record) => record.state !== 'in-sync');
   if (unresolved.length > 0) {
     for (const record of unresolved) {
@@ -3001,12 +3054,6 @@ function applyUnderLock(ctx, manifest, options = {}) {
   for (const plan of analysis.plans) {
     if (!plan.listedItems || plan.listedItems.length === 0) continue;
     items[plan.entry.destination] = plan.listedItems;
-  }
-  // The sets follow the same rule: only one the entry set still names is kept.
-  const sets = {};
-  for (const plan of analysis.plans) {
-    if (!plan.listedSets || plan.listedSets.length === 0) continue;
-    sets[plan.entry.destination] = plan.listedSets;
   }
   const links = {};
   for (const link of manifest.layoutLinks || []) {

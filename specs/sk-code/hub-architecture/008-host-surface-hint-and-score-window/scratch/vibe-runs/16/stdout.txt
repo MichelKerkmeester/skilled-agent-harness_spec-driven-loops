@@ -1,0 +1,53 @@
+All three steps passed on the first run.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json` (rewritten by the refresh command)
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json` (copied twin)
+
+No file was edited by hand. `git status` over both trees also lists four other modified files (`canary-cases.v1.json`, `canary-router.cjs`, `resolve.cjs` in both the live and archived trees); their mtimes are 17:05–17:07, before my first command at 17:09, so they are pre-existing work on this branch, not mine.
+
+## 2. COMMANDS
+
+**Step 1** — `cd R && node .skilled/bin/compiled-route-manifest.cjs refresh --hub sk-code --skill-root .skilled/skills/sk-code` — exit 0
+
+```
+{"hubId":"sk-code","manifestPath":".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json","manifestValid":true,"fresh":true,"causeCode":"fresh","selectedPolicy":{"effectivePolicyHash":"51a8c9a838372995cae735cdeef015f94c740a93cd61a968e42064c46c936f33","generation":2},"currentPolicyHash":"51a8c9a838372995cae735cdeef015f94c740a93cd61a968e42064c46c936f33","manifestFingerprint":"19544bb1d6125b36914780b226c3f367381aa1046dbd26b925eca731c8f6c0fb","refreshed":true}
+```
+
+`refreshed:true`, `fresh:true`, fingerprint `19544bb1…c8f6c0fb` — all three expected values present.
+
+**Step 2** — `cp …/013-live-activation/activation/sk-code/manifest.json …/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json` — exit 0 (no output)
+
+**Step 2b** — `cmp <live> <twin> && echo twin-same` — exit 0
+
+```
+twin-same
+```
+
+**Step 3a** — `cd R && node .skilled/bin/compiled-route-guard.cjs; echo "guard exit=$?"` — exit 0
+
+```
+  cli-classifier              fresh
+  cli-external-orchestration  fresh
+  mcp-tooling                 fresh
+  sk-code                     fresh
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+guard exit=0
+```
+
+**Step 3b** — `cd R && node .skilled/bin/compiled-route-status.cjs --hub sk-code` — exit 0
+
+```
+{"hubId":"sk-code","servingAuthority":"compiled","shadowOnly":false,"selectedPolicy":{"generation":2},"effectivePolicyHash":"51a8c9a838372995cae735cdeef015f94c740a93cd61a968e42064c46c936f33","fenceEpoch":4,"manifestFingerprint":"19544bb1d6125b36914780b226c3f367381aa1046dbd26b925eca731c8f6c0fb","causeCode":"compiled-serving","manifestFreshness":{"manifestValid":true,"fresh":true,"causeCode":"fresh","currentPolicyHash":"51a8c9a838372995cae735cdeef015f94c740a93cd61a968e42064c46c936f33"}}
+```
+
+`servingAuthority":"compiled"` and the expected fingerprint both present.
+
+## 3. OPEN QUESTIONS
+
+None. Every expected string in the brief appeared verbatim, and the guard's closing line and `guard exit=0` matched exactly.

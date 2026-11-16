@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ae82d8105b3e20e1f28035599b8f7496fdfbe7b270f980dea24345ced783ea78",
+  "manifestHash": "fb8d83c29edbcb8d10376da8884257212e81ac45095e67cd7e53ec751f059f13",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -3301,6 +3301,9 @@
     ],
     "014 deep review 30 surfaces": [
       "014 deep review 30 surfaces"
+    ],
+    "014 devin vibe lock probe operator decisions": [
+      "014-devin-vibe-lock-probe operator decisions"
     ],
     "014 docs stress refresh rollup": [
       "014 docs stress refresh rollup"
@@ -41371,6 +41374,9 @@
     "devin tool surface": [
       "devin tool surface"
     ],
+    "devin transcript missing": [
+      "devin transcript missing"
+    ],
     "devin transcript sweep": [
       "devin transcript sweep"
     ],
@@ -41379,6 +41385,18 @@
     ],
     "devin userpromptsubmit goal inject": [
       "devin userpromptsubmit goal inject"
+    ],
+    "devin vibe lock probe": [
+      "devin vibe lock probe"
+    ],
+    "devin vibe lock probe implementation summary": [
+      "devin vibe lock probe implementation summary"
+    ],
+    "devin vibe lock probe plan": [
+      "devin vibe lock probe plan"
+    ],
+    "devin vibe lock probe tasks": [
+      "devin vibe lock probe tasks"
     ],
     "devin vm offload": [
       "devin vm offload"
@@ -59858,6 +59876,9 @@
     "hook readme fold and rewrite tasks": [
       "hook readme fold and rewrite tasks"
     ],
+    "hook readme phrases git hooks": [
+      "hook readme phrases git hooks"
+    ],
     "hook readme rewrite": [
       "hook readme rewrite"
     ],
@@ -67182,6 +67203,21 @@
     ],
     "main readme wording": [
       "main readme wording"
+    ],
+    "main sk doc routing repair": [
+      "main sk doc routing repair"
+    ],
+    "main sk doc routing repair acceptance criteria": [
+      "main sk doc routing repair acceptance criteria"
+    ],
+    "main sk doc routing repair implementation summary": [
+      "main sk doc routing repair implementation summary"
+    ],
+    "main sk doc routing repair plan": [
+      "main sk doc routing repair plan"
+    ],
+    "main sk doc routing repair tasks": [
+      "main sk doc routing repair tasks"
     ],
     "main skill guide source of truth": [
       "main skill guide source of truth"
@@ -83088,6 +83124,9 @@
     "phase 14 dead runner and step cleanup": [
       "phase 14 dead runner and step cleanup"
     ],
+    "phase 14 devin vibe lock probe": [
+      "phase 14 devin vibe lock probe"
+    ],
     "phase 14 doctor and ci gate honesty": [
       "phase 14 doctor and ci gate honesty"
     ],
@@ -84290,6 +84329,9 @@
     ],
     "phase 38 plugin scanner follow ups": [
       "phase 38 plugin scanner follow ups"
+    ],
+    "phase 39 main sk doc routing repair": [
+      "phase 39 main sk doc routing repair"
     ],
     "phase 39 sk code opencode alignment audit": [
       "phase 39 sk code opencode alignment audit"
@@ -116190,6 +116232,9 @@
     "skill graph scan vs advisor rebuild": [
       "skill_graph_scan vs advisor_rebuild"
     ],
+    "skill graph signal drift sk doc": [
+      "skill graph signal drift sk-doc"
+    ],
     "skill graph sqlite": [
       "skill graph sqlite"
     ],
@@ -123065,6 +123110,9 @@
     ],
     "sweep rrf sh sweep rrf py": [
       "sweep-rrf.sh sweep-rrf.py"
+    ],
+    "sweep session lock ancestry": [
+      "sweep session lock ancestry"
     ],
     "sweep stale mcp processes": [
       "sweep stale mcp processes"

@@ -38,6 +38,9 @@ _memory:
 | Q002 | A hinted prompt that scores no mode routes to the hinted specific surface, in this packet. | It is the same code path as the join and removes one reason for the vendoring project's router overlay. | None | goal.md D5, REQ-007, T014 |
 | Q003 | The hint change also updates the three authored twins under the archived router unification program. | Not stated. | None | implementation-summary.md Files Changed |
 | Q004 | The surface score is deferred. | Not stated. | None | tasks.md T005, spec.md REQ-002 |
+| Q005 | The surface score is two windows: workflow modes and surfaces are each kept within the ambiguity delta of their own top score. | Not stated. | None | tasks.md T005, canary-router.cjs, scratch/score-candidates.md |
+| Q006 | The operator first asked for the missing five-mode bundle rule to be added. | Not stated. | None | implementation-summary.md Known Limitations, scratch/score-candidates.md |
+| Q007 | The cap of four modes per compiled bundle stays, so a prompt that matches all five sk-code modes keeps its legacy fallback and no rule is added. | The cap was chosen on 2026-11-13 in specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth, and that packet names the five-mode fallback as the accepted trade-off. | The same-day answer to add the bundle rule, given before the cap decision was on the table. | implementation-summary.md Known Limitations, scratch/score-candidates.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -122,6 +125,65 @@ Two windows
 Answer:
 ```text
 Defer the score (Recommended)
+```
+
+### Q005
+<!-- source: claude:3912763e-4a15-47d7-994e-71d31bbf339f:toolu_01QjEciinLMnyGakHR9bUYaf:0 -->
+
+Question:
+```text
+Packet sk-code 008 is blocked on the surface score in `scoreModes`. Both candidates keep the review mode for `review the dark mode toggle and focus trap`, and each breaks something else. Which score do I build?
+```
+
+Options:
+```text
+Two windows (Recommended)
+Count once
+Keep it deferred
+```
+
+Answer:
+```text
+Two windows (Recommended)
+```
+
+### Q006
+<!-- source: claude:3912763e-4a15-47d7-994e-71d31bbf339f:toolu_01Xi2vXwMUidmCUrKZuaJ1LU:0 -->
+
+Question:
+```text
+My last question had two halves, so "yes" can read either way. For a prompt that matches all five sk-code modes at once, which do you want?
+```
+
+Options:
+```text
+Add the bundle rule
+Keep the fallback
+```
+
+Answer:
+```text
+Add the bundle rule
+```
+
+### Q007
+<!-- source: claude:3912763e-4a15-47d7-994e-71d31bbf339f:toolu_01FrV5yamZQBExMrRh4U8Mzt:0 -->
+
+Question:
+```text
+I found that the missing five-mode rule is not an oversight. On 2026-11-13 you chose to cap compiled bundles at four modes (packet sk-doc 006-compiled-route-rule-growth), and its spec names the five-mode legacy fallback as the accepted trade-off. I was wrong to call it a cost nobody priced in. Adding the rule means raising that cap. Which do you want?
+```
+
+Options:
+```text
+Keep the cap of four (Recommended)
+Raise sk-code's cap to five
+Full-set rule for small hubs only
+```
+
+Answer:
+```text
+Keep the cap of four (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

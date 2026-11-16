@@ -16,7 +16,8 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { readFileSync, realpathSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { existsSync, readFileSync, readdirSync, realpathSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { homedir } from 'node:os';
 import { basename, join } from 'node:path';
@@ -240,6 +241,52 @@ function transcriptFromArgs(argv) {
   return null;
 }
 
+// The ids of this process and every process above it. A runtime that holds a
+// session's lock is an ancestor of the shell it runs the save in.
+function ancestorPids() {
+  const parents = new Map();
+  try {
+    const table = execFileSync('ps', ['-A', '-o', 'pid=,ppid='], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+      timeout: 5000,
+    });
+    for (const line of table.split('\n')) {
+      const [pid, ppid] = line.trim().split(/\s+/).map(Number);
+      if (pid) parents.set(pid, ppid);
+    }
+  } catch {
+    return new Set();
+  }
+  const ancestors = new Set();
+  for (let pid = process.pid; pid > 1 && !ancestors.has(pid); pid = parents.get(pid)) ancestors.add(pid);
+  return ancestors;
+}
+
+// Devin writes each live session's process id into `session_locks/<id>.lock`. A
+// lock whose process this command descends from names the calling session.
+function callerSessionIds(dataDir) {
+  const ancestors = ancestorPids();
+  const lockDir = join(dataDir, 'session_locks');
+  let fileNames;
+  try {
+    fileNames = readdirSync(lockDir);
+  } catch {
+    return [];
+  }
+  const ids = [];
+  for (const fileName of fileNames) {
+    if (!fileName.endsWith('.lock')) continue;
+    try {
+      const pid = Number.parseInt(readFileSync(join(lockDir, fileName), 'utf8').trim(), 10);
+      if (ancestors.has(pid)) ids.push(fileName.slice(0, -'.lock'.length));
+    } catch {
+      // A lock removed mid-scan names no session.
+    }
+  }
+  return ids;
+}
+
 // Devin keys a session by the directory it ran in, and only the newest matching
 // row can be the session a save is resuming. The database is opened read-only
 // because a sweep must never write to Devin's own state.
@@ -279,7 +326,17 @@ function latestTranscript(projectDir) {
 
   try {
     const spellings = projectSpellings(projectDir);
-    const row = database
+    // A stale lock can carry a reused process id, so a caller's session must
+    // also have run in this project. Without one, the newest session stands.
+    const callerIds = callerSessionIds(dataDir);
+    const callerRow = callerIds.length > 0
+      ? database
+        .prepare(
+          `SELECT id FROM sessions WHERE id IN (${callerIds.map(() => '?').join(', ')}) AND working_directory IN (${spellings.map(() => '?').join(', ')}) ORDER BY last_activity_at DESC LIMIT 1`,
+        )
+        .get(...callerIds, ...spellings)
+      : undefined;
+    const row = callerRow ?? database
       .prepare(
         `SELECT id FROM sessions WHERE working_directory IN (${spellings.map(() => '?').join(', ')}) ORDER BY last_activity_at DESC LIMIT 1`,
       )
@@ -294,9 +351,11 @@ function latestTranscript(projectDir) {
 function main() {
   const projectDir = process.cwd();
 
+  let explicitPath;
   let transcriptPath;
   try {
-    transcriptPath = transcriptFromArgs(process.argv.slice(2)) || latestTranscript(projectDir);
+    explicitPath = transcriptFromArgs(process.argv.slice(2));
+    transcriptPath = explicitPath || latestTranscript(projectDir);
   } catch (error) {
     process.stdout.write(
       `${JSON.stringify({ error: error?.message || 'cannot read devin sessions' }, null, 2)}\n`,
@@ -309,6 +368,22 @@ function main() {
       `${JSON.stringify({ error: `no transcript found for ${projectDir}` }, null, 2)}\n`,
     );
     return 1;
+  }
+
+  // Devin 3000.12 keeps messages in its database and writes no transcript file,
+  // so the save still gets the answers the live hook queued for the session.
+  if (!explicitPath && !existsSync(transcriptPath)) {
+    const sessionId = basename(transcriptPath, TRANSCRIPT_EXT);
+    process.stdout.write(`${JSON.stringify({
+      transcript: null,
+      transcript_missing: true,
+      session_id: sessionId,
+      recovered: 0,
+      pending: pendingRecords(projectDir, sessionId),
+      chat_candidates: [],
+      chat_candidates_dropped: 0,
+    }, null, 2)}\n`);
+    return 0;
   }
 
   try {

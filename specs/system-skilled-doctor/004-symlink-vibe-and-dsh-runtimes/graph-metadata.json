@@ -34,7 +34,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -52,7 +52,8 @@
       ".skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs",
       ".vibe/config.toml",
       ".vibe/hooks.toml",
-      ".claude/settings.json"
+      ".claude/settings.json",
+      "scratch/session-check/prompt.txt"
     ],
     "entities": [
       {
@@ -158,6 +159,12 @@
         "source": "derived"
       },
       {
+        "name": "prompt.txt",
+        "kind": "file",
+        "path": "scratch/session-check/prompt.txt",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -176,12 +183,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -194,15 +195,15 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "In Scope",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`.skilled/commands/doctor/assets/symlink-manifest.json` lists the runtimes `claude`, `opencode`, `codex`, `cursor`, `devin` and `pi`",
     "created_at": "2026-11-16T10:15:56Z",
-    "last_save_at": "2026-11-16T13:22:20.450Z",
+    "last_save_at": "2026-11-16T16:25:38.779Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e61fe6a74b34a0887f43ea5bcd6ec702af078a68395fe76a94e9f22591ea569",
+    "source_fingerprint": "sha256:cf2297876a0beb1bdaa4075ee8324338e68c3f20a52e2618a8da179f536f7bde",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1ad09ba06f029defbcc75ec20eaf93671cb1538d78ccf920e6ca5b99b766d96d",
+      "spec.md": "c58434e0227d29086effdbf7a156c0988e3ecbe35e971ad6ca78a08567cfb0fa",
       "plan.md": "98fa1c4124291aeded74adf77bac8e8321b9bfee77c1ed62552dfd69c1d0e2d5",
-      "tasks.md": "36eb64a161c974ffd16689fc07df3a1412aea5c28acb7537ed2fe786cde492b0",
+      "tasks.md": "c3e445de6789c7ea6b6bf446bf070ce5aa29ab9c4559134bedfb683c56550e42",
       "decision-record.md": "69d4b424a0962a9507dd0e7f3ef126341d5bf5b4779bd26262882f7c4bdfd944",
-      "implementation-summary.md": "1ea192b5ad701cfffb33ef8b841fdb0c33653af096c3f70413b692b3390bf636"
+      "implementation-summary.md": "dacb166bc05007e2c449a67f10375e85304449dadfd8d8ad230bc3a62c98f81c"
     },
     "last_active_at": null
   }

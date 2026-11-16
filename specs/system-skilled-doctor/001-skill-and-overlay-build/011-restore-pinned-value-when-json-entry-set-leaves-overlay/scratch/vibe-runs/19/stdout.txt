@@ -1,0 +1,14 @@
+The sentence is replaced in place, the rest of the line is byte-identical, and the check returns 1.
+
+1. FILES CHANGED:
+- /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skilled-doctor/references/overlays.md
+
+2. COMMANDS:
+- `rg -n "That refusal clears once the whole array reads the same as the pin's" .skilled/skills/system-skilled-doctor/references/overlays.md | cut -c1-400` — exit 0. Last lines: `62:`sync-state.json` carries three optional records beside its hashes. `links` maps each layout link path to the target the engine confirmed there, so when the manifest moves a link target the engine retargets its own link instead of refusing a stranger at that path. `items` holds the array items each `json-entry` overlay added, so an item the overlay drops is removed from the live file while it s`
+- `sed -n '62p' ... | grep -o "That refusal clears once ... that clears it."` — exit 0. Output: `That refusal clears once the whole array reads the same as the pin's, so the overlay's own items must leave that array for the one `apply` that clears it.` (confirmed the OLD text appears exactly once)
+- `awk 'NR==62{print length($0)}' ... && wc -l ...` — exit 0. Output: `2369` / `241 .skilled/skills/system-skilled-doctor/references/overlays.md`
+- `rg -c 'then add the operations back' .skilled/skills/system-skilled-doctor/references/overlays.md; echo "EXIT=$?"` — exit 0. Output: `1` / `EXIT=0` (matches expected 1)
+- `git diff --stat -- .skilled/skills/system-skilled-doctor/references/overlays.md` — exit 0. Output: ` .skilled/skills/system-skilled-doctor/references/overlays.md | 2 +-` / ` 1 file changed, 1 insertion(+), 1 deletion(-)`
+- `sed -n '62p' ... | grep -o "Otherwise `apply` refuses ... A key the pin does not hold is deleted even when"` — exit 0. Output: `Otherwise `apply` refuses and says to restore the value by hand. That refusal clears once the whole array reads the same as the pin's and the entry set adds no item to it. To clear it, take the entry set's operations on that array out, put the whole array back to the pin's by hand, run `apply`, then add the operations back. A key the pin does not hold is deleted even when` (neighbouring sentences intact)
+
+3. OPEN QUESTIONS: none. The OLD text matched once on line 62 as stated; the diff is one line changed, one insertion and one deletion, so no other part of the line moved.
