@@ -33,20 +33,20 @@
       "written"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
       "research/research.md",
+      ".skilled/CROSS-CLI.md",
       ".skilled/bin/check-git-hooks.sh",
       ".codex/hooks/README.md",
       ".vibe/plugins/README.md",
       "specs/system-speckit/runtime-and-release/004-v4-release-line-research/spec.md",
       "specs/system-speckit/runtime-and-release/004-v4-release-line-research/graph-metadata.json",
       "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/spec.md",
-      ".skilled/CROSS-CLI.md",
       "research/resource-map.md",
       ".skilled/changelog/skilled/v4.0.1.0.md",
       ".opencode/commands/goal-opencode.md",
@@ -88,6 +88,12 @@
         "source": "derived"
       },
       {
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
         "name": "check-git-hooks.sh",
         "kind": "script",
         "path": ".skilled/bin/check-git-hooks.sh",
@@ -103,12 +109,6 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "CROSS-CLI.md",
-        "kind": "doc",
-        "path": ".skilled/CROSS-CLI.md",
         "source": "derived"
       },
       {
@@ -160,12 +160,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -190,6 +184,12 @@
         "source": "derived"
       },
       {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The root `README.md` is 1,773 lines long and was written before the v4.0.1.0, v4.0.2.0 and v4.0.2.1 releases and the commits on main after the v4.0.2.1 tag",
     "created_at": "2026-11-16T09:02:18.037Z",
-    "last_save_at": "2026-11-16T12:03:31.907Z",
+    "last_save_at": "2026-11-16T12:41:09.171Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:33510e6be59ddb76447cdca8c800dc9d69e5c29f38a4d9bf180fb1c9e5f9aefa",
+    "source_fingerprint": "sha256:b945eb7cb2da84464ff3da15e26e07b70b5278b9034686c4c732cd51ec3fabcb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "16812d3476525cad1ad18ae6a7b20a54d9e6442ca336de83487bdbc2dfd87d50",
+      "spec.md": "ca5dd4cf371958e4e4dd64379fef4c77266ed3791988deba37074c504d0c9bbe",
       "plan.md": "ffaae0e3428a7167ce1cce3cbb01e8dc9f71b342690fd8a12e87d538f254ec5f",
-      "tasks.md": "a9b2cb71bb96e3f7ed93a9bac2c67b300579cc47327523ce56de7c5d105884a8",
-      "implementation-summary.md": "7cc1fed17adb04f351f964b8f4a308890e25fc1fc411eb7cd1568e16adea833e",
+      "tasks.md": "88d4af59075067bbafeb2a3b7c3746304be0724a6196af351e6bb9a61a0f2510",
+      "implementation-summary.md": "bd2e77a0ad8d4d00cf6027e6131d9217e855900037c5cab4f5bfbda7118ad168",
       "research/research.md": "7846035831f953b0fa9d0179c002c2bdd53d47c5b34c7cc334d299d68f852047"
     },
     "last_active_child_id": null,

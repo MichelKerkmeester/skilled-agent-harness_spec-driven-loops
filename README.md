@@ -25,7 +25,7 @@ Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor CLI, DeepSeek Ha
 - **Gate System** - six gates check every request before the agent acts: prior context, the right skill, a spec folder and the repository rules
 - **Skill Advisor** - routes every prompt to the right skill and workflow using 5-lane fusion and a live skill graph, so you never need to remember a command
 - **Spec Kit Framework** - spec folders with plans, tasks and a 42-rule validator, grouped into tracks, sub-tracks and phases, with progress saved into each folder and found again by keyword search after any reset or compaction
-- **Session Handover** - endless sessions: near the context limit, the work moves to a fresh session in the same terminal, which keeps the goal, the session name, the running command and the model, effort and launch flags
+- **Session Handover** - endless sessions: near the context limit, the work moves to a fresh session in the same terminal, which keeps the goal, the session name, the running command, the launch flags and, except on Vibe, the model and effort
 - **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
 - **CLI Orchestration** - hand work to another AI CLI on its own subscription, with any provider and model you have set up
 - **14 On-Demand Skills** - seven parent hubs with 42 modes, plus standalone skills for specs, git, prompts and Orca
@@ -224,7 +224,7 @@ After a compaction, a session can read back its own earlier turns with one read-
 
 ### Handing Over A Long Session
 
-A long session can hand its work to a fresh one before the context window fills. Near the limit, the session writes a handoff note and saves its spec folder. A small wrapper then starts the same runtime in the same terminal, and the new session claims the note. The running command, the goal, the model and the session name all carry over.
+A long session can hand its work to a fresh one before the context window fills. Near the limit, the session writes a handoff note and saves its spec folder. A small wrapper then starts the same runtime in the same terminal, and the new session claims the note. The running command, the goal and the session name carry over, and so does the model on every runtime except Vibe.
 
 Handover is on by default for Claude Code. The [Session Handover](#session-handover) hook below shows how to turn it on for the others.
 
