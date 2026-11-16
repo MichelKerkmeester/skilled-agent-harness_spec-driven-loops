@@ -6,7 +6,7 @@
     "phase",
     "claude-hook-tree-guard"
   ],
-  "lastUpdated": "2026-11-16T11:44:18.883Z",
+  "lastUpdated": "2026-11-16T13:04:15.210Z",
   "specId": "007",
   "folderSlug": "claude-hook-tree-guard",
   "parentChain": [
@@ -14,8 +14,9 @@
     "hook-platform",
     "008-hook-library-cleanup-and-readme-rewrite"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "16-11-26_12-44__claude-hook-guard-now-tests-for-skilled-hooks.md"
+    "16-11-26_12-44__claude-hook-guard-now-tests-for-skilled-hooks.md",
+    "16-11-26_14-04__recorded-1-operator-decision-s-from-the-hook.md"
   ]
 }

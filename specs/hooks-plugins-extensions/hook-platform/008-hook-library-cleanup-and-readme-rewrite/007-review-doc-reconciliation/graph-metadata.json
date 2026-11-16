@@ -16,6 +16,7 @@
       "hook cleanup deep review fixes",
       "review doc reconciliation plan",
       "review doc reconciliation tasks",
+      "007-review-doc-reconciliation operator decisions",
       "review doc reconciliation implementation summary"
     ],
     "key_topics": [
@@ -28,9 +29,9 @@
       "deep",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
-      "reader"
+      "007-review-doc-reconciliation",
+      "operator",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -38,6 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/hooks/README.md",
       ".skilled/hooks/cli-dispatch/README.md",
@@ -47,7 +49,8 @@
       ".skilled/hooks/session-lifecycle/README.md",
       ".skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs",
       ".skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs",
-      ".skilled/hooks/subagent-dispatch-guard/pi/README.md"
+      ".skilled/hooks/subagent-dispatch-guard/pi/README.md",
+      ".skilled/hooks/vitest.config.ts"
     ],
     "entities": [
       {
@@ -66,6 +69,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -90,6 +99,12 @@
         "name": "dispatch-audit.test.mjs",
         "kind": "file",
         "path": ".skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/vitest.config.ts",
         "source": "derived"
       },
       {
@@ -181,38 +196,28 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A reader of the parent spec counts four children where seven exist, and phase 4 still reports an open README sign-off and unticked completion boxes after it closed",
     "created_at": "2026-11-16T11:10:24Z",
-    "last_save_at": "2026-11-16T12:03:16.118Z",
+    "last_save_at": "2026-11-16T13:04:12.711Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5fb3f9b3a6edb6fffde217380ca105d87982c9eb6b8ff76d16186456dc973c66",
+    "source_fingerprint": "sha256:72a9ac36a00d1189417ee1ddeeb2c5b9093eea54aace4ba418bc22d5ab38d315",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0cd6650e31c66bf568d80790a1b873bb2e94d706fb4d63d405b6d34b26761f9b",
       "plan.md": "69a087baa0c704bc1012e112201ee597f0c17292534c111ab6c74a4f664405c4",
       "tasks.md": "a5666debeca6072bf7575a3bd094d490415c33579ace9399c6d5f24ad6b5f7e7",
-      "implementation-summary.md": "70d77549c3e26bbc75749ccce95a655adb82b3e0c5f20d5aed14d4874986d466"
+      "decision-record.md": "62d4be015f99f01a18a20162ef893670c7acbc279ffd17d884d92c023b546ba0",
+      "implementation-summary.md": "171d2e0ebcdee960d971637ef18e48f321a4e5f9aba108ea473941ee9e646b0b"
     },
     "last_active_at": null
   }

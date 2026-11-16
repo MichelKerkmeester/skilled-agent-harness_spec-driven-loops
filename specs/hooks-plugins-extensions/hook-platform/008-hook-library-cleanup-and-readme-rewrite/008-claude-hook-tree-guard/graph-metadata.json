@@ -16,6 +16,7 @@
       "mk claude hook could not resolve home folder",
       "claude hook tree guard plan",
       "claude hook tree guard tasks",
+      "008-claude-hook-tree-guard operator decisions",
       "claude hook tree guard implementation summary"
     ],
     "key_topics": [
@@ -29,8 +30,8 @@
       "folder",
       "plan",
       "tasks",
-      "implementation",
-      "summary"
+      "008-claude-hook-tree-guard",
+      "operator"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -38,6 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
       ".claude/settings.json",
@@ -64,6 +66,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -185,32 +193,28 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every rendered Claude hook starts with `{ [ -e .skilled ] || exit 0; }`, and the user-level copy of the hooks runs in every folder a Claude session starts in",
     "created_at": "2026-11-16T11:36:44Z",
-    "last_save_at": "2026-11-16T11:44:18.883Z",
+    "last_save_at": "2026-11-16T13:04:15.210Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96b10a7815449da218f2baf8ce08c5769f31e9b3959f5db141ae090c28aa363a",
+    "source_fingerprint": "sha256:f26ef59cc5e12a4a78a8765ad0c279804d545ba5421fade6347920784a18fb0c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1a0e1578150b790d228cd3d8ddb90d4c5c50ae908ef09948104986b79448273f",
       "plan.md": "60dac422857d187848e1658c1c62656cb663edffba1f0dc16ddc9d7db140a14e",
       "tasks.md": "e3f4204b24495415574c906e9f24e47dc616967babd81478ef815374bd1bc666",
-      "implementation-summary.md": "590afbd8914f4de3919a532f586f3f9667ab3ce6c1ea18690fc9df79fd6140b7"
+      "decision-record.md": "8345012544c583f5d51cd27593dfd02e1b1070cdaca3a1018e8892fd6006b19f",
+      "implementation-summary.md": "274f6ac4b017fc4f27b5a8e8a56c9e3aca16ad205edf59662912904d7f602195"
     },
     "last_active_at": null
   }
