@@ -463,3 +463,65 @@ test('a deny ahead of the hand-over part keeps the record pending', async (t) =>
   assert.ok(partsLine, 'turn-end.mjs declares the part list');
   assert.match(partsLine, /handoverPart\];\s*$/);
 });
+
+// The two turn-end parts write under the payload's cwd, so a payload that names
+// a folder that does not exist must not make either part create one.
+const { buildCompletionPart } = require(
+  '../../../skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs',
+);
+const { buildAskSurfacePart } = await import('../../ask-surface-guard/vibe/ask-surface-post-agent.mjs');
+
+function completionDependencies() {
+  return {
+    evidence: {
+      evaluateCompletionEvidence: () => ({ decision: 'advise', detail: ADVISORY_DETAIL }),
+      appendAdvisoryLog: () => {},
+    },
+    readClaim: async () => 'Done: the change is complete.',
+    enabled: () => true,
+    env: { VIBE_SPEC_FOLDER: 'specs/example' },
+  };
+}
+
+test('the completion part writes its pending advisory under an existing payload folder', async (t) => {
+  const project = makeTempDir(t, 'vibe-turn-end-project-');
+  const result = await buildCompletionPart(
+    { hook_event_name: 'post_agent', cwd: project },
+    completionDependencies(),
+  );
+  assert.equal(result.advisory, ADVISORY_DETAIL);
+  assert.match(readFileSync(pendingAdvisoryPath(project), 'utf8'), /claimed done/);
+});
+
+test('the completion part creates nothing under a payload folder that does not exist', async (t) => {
+  const missing = join(makeTempDir(t, 'vibe-turn-end-project-'), 'missing');
+  const result = await buildCompletionPart(
+    { hook_event_name: 'post_agent', cwd: missing },
+    completionDependencies(),
+  );
+  assert.equal(result.advisory, ADVISORY_DETAIL);
+  assert.equal(existsSync(missing), false);
+});
+
+test('the ask-surface part still denies but logs no fire under a payload folder that does not exist', (t) => {
+  const missing = join(makeTempDir(t, 'vibe-turn-end-project-'), 'missing');
+  const fires = [];
+  const result = buildAskSurfacePart(
+    { hook_event_name: 'post_agent', cwd: missing, session_id: SESSION_ID },
+    {
+      askCore: {
+        CONCERN: core.CONCERN,
+        evaluateTurn: () => ({ verdict: 'fire' }),
+        markTurn: () => true,
+        recordFire: (projectDir) => { fires.push(projectDir); return true; },
+        repromptFor: core.repromptFor,
+      },
+      load: () => ({ ok: true, entries: [], journalRecords: [], turn: 'turn-1', source: { sessionId: SESSION_ID } }),
+      enabled: () => true,
+      env: {},
+    },
+  );
+  assert.equal(result.decision, 'deny');
+  assert.deepEqual(fires, []);
+  assert.equal(existsSync(missing), false);
+});

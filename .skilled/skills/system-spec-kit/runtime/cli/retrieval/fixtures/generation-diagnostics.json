@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6850,
-    "ok": 19308,
+    "missing-frontmatter": 6851,
+    "ok": 19313,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27785,
+  "documentsScanned": 27791,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "2650b7faca1890a3a9fe5f5ca416aedcee6fdcfde0cbc93f393126d741b873f2",
+  "manifestHash": "497dbcff2e2246ee54997e2befd4820411ffe75416625c4b5ab0d21e6c7a957d",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44283,
+      "ok": 44291,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -5007,6 +5007,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/post-edit-quality.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/process-start-shell-guard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -55278,6 +55284,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation/scratch",
       "reason": "excluded directory"
     },
     {

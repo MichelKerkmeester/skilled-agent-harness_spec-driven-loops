@@ -10,4 +10,4 @@ Captured by a record-only `pre_tool` hook with `match = "*"` while the model rea
 | `file_system.edit` | `file_path`, `old_string`, `new_string` |
 | `connector_web_search.web_search` | `query`, `limit` |
 
-Background shell commands go through `process_start`, so shell guards match `re:bash|process_start`. Subagents spawn through `agents_spawn`.
+Background shell commands go through the builtin `process.start`, which is the `tool_name` a payload carries. A `match` selector also accepts the alias `process_start`, so shell guards match `re:bash|process_start` and their tool-name map reads `process.start`. Subagents spawn through `agents.spawn`, which a selector matches as `agents_spawn`.

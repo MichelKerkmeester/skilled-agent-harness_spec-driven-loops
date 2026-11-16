@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2650b7faca1890a3a9fe5f5ca416aedcee6fdcfde0cbc93f393126d741b873f2",
+  "manifestHash": "497dbcff2e2246ee54997e2befd4820411ffe75416625c4b5ab0d21e6c7a957d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -82967,6 +82967,9 @@
     "phase 24 typed command ambiguity": [
       "phase 24 typed command ambiguity"
     ],
+    "phase 24 vibe hook review 2 remediation": [
+      "phase 24 vibe hook review 2 remediation"
+    ],
     "phase 25 alignment open findings": [
       "phase 25 alignment open findings"
     ],
@@ -130925,6 +130928,9 @@
     "vibe automatic relaunch tier": [
       "Vibe automatic relaunch tier"
     ],
+    "vibe background shell guard bypass": [
+      "vibe background shell guard bypass"
+    ],
     "vibe budget default": [
       "vibe budget default"
     ],
@@ -131171,6 +131177,21 @@
     "vibe hook playbook coverage": [
       "vibe hook playbook coverage"
     ],
+    "vibe hook review 2 remediation": [
+      "vibe hook review 2 remediation"
+    ],
+    "vibe hook review 2 remediation acceptance criteria": [
+      "vibe hook review 2 remediation acceptance criteria"
+    ],
+    "vibe hook review 2 remediation implementation summary": [
+      "vibe hook review 2 remediation implementation summary"
+    ],
+    "vibe hook review 2 remediation plan": [
+      "vibe hook review 2 remediation plan"
+    ],
+    "vibe hook review 2 remediation tasks": [
+      "vibe hook review 2 remediation tasks"
+    ],
     "vibe hooks": [
       "vibe hooks"
     ],
@@ -131257,6 +131278,9 @@
     ],
     "vibe print mode prompt": [
       "vibe print mode prompt"
+    ],
+    "vibe process start shell guard": [
+      "vibe process.start shell guard"
     ],
     "vibe prompt advisor": [
       "vibe prompt advisor"

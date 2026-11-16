@@ -31,8 +31,9 @@ One row per hook scenario this phase owns. `Runner row` is the `vibe` row of the
 | VIB-HK-025 | A mirrored prompt from .vibe/prompts runs by name | PASS (`deepseek-flash`, 21:16 UTC) | PASS 2/2 | `scratch/live/VIB-HK-025/matrix.md` |
 | VIB-HK-026 | The manual relaunch tier hands off and a fresh session claims it | PASS | hand-driven hop | `scratch/live/VIB-HK-026/hop-record.md` |
 | VIB-HK-028 | The model loads the skill the turn-start advisor brief names | PASS (`deepseek-flash`, 21:17 UTC) | PASS 3/3 | `../023-vibe-review-remediation/scratch/live/VIB-HK-028/matrix.md` |
+| VIB-HK-029 | A background shell command meets the same guards as a foreground one | PASS (`deepseek-flash`, 2026-11-16 07:20 UTC) | PASS 2/2 | `../024-vibe-hook-review-2-remediation/scratch/live/VIB-HK-029/matrix.md` |
 
-Counts: 27 PASS, 0 OPERATOR-ONLY, 0 FAIL. 26 come from runner rows and 1 from the hand-driven hop. Every runner row ran on 2026-11-15 after the merge of the Vibe hand-over hardening (`c96ff28ef4e`), with the model pinned and recorded in its `result.json`. VIB-HK-028 belongs to phase 023 and keeps its evidence there.
+Counts: 28 PASS, 0 OPERATOR-ONLY, 0 FAIL. 27 come from runner rows and 1 from the hand-driven hop. Every runner row ran on 2026-11-15 after the merge of the Vibe hand-over hardening (`c96ff28ef4e`), with the model pinned and recorded in its `result.json`. VIB-HK-028 belongs to phase 023 and keeps its evidence there. VIB-HK-029 belongs to phase 024, ran on 2026-11-16 after the second review's fixes, and keeps its evidence there.
 
 Every runner scenario sends two or more user messages, and VIB-HK-026 spans two sessions. VIB-HK-021 and VIB-HK-022 also restart the session between their messages.
 

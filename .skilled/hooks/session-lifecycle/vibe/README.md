@@ -7,7 +7,7 @@ trigger_phrases:
   - "vibe session_start hook"
   - "vibe turn start composer"
   - "vibe turn end composer"
-version: 1.3.0.0
+version: 1.3.1.0
 ---
 
 # Session Lifecycle: Vibe Adapters
@@ -26,7 +26,7 @@ Vibe has no compaction event, so `compaction-context.mjs` reads the compaction f
 
 The turn-end composer is the only `post_agent` entry, because Vibe skips every later `post_agent` hook once one denies. It runs the completion part first, so its advisory is recorded even when the ask-surface part denies, then the ask-surface part, then the hand-over part last. The hand-over part arms a pending record and starts the killer, and it never denies. The ask-surface part reads the finished turn through the phase 014 journal reader, passes a child session, a subagent and a session whose catalog lacks `ask_user_question`, and denies at most once per turn id with `repromptFor('vibe')`. Vibe injects the deny reason as a retry user message. Malformed input, a missing journal and a throwing part all exit 0 with no output.
 
-Six environment switches turn parts off. `SYSTEM_SESSION_LIFECYCLE_DISABLED` turns off the session-prime part, `SYSTEM_DIST_FRESHNESS_DISABLED` the dist part, and `SYSTEM_SESSION_CLEANUP_DISABLED` the startup guards. `SYSTEM_SKILL_ADVISOR_DISABLED` turns off the advisor part, `SYSTEM_COMPLETION_DISABLED` the pending completion advisory, and `SYSTEM_ASK_SURFACE_DISABLED` the turn-end reprompt. The save reminder follows the `decision-capture` hook flag. The hand-over parts stay off for Vibe unless `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1` or the master switch `SYSTEM_SESSION_HANDOVER_ENABLED=1` is set. The compaction parts have no switch of their own.
+Seven environment switches turn parts off. `OPENCODE_GOAL_DISABLED` turns off the session-start goal slice: the goal core refuses with `PLUGIN_DISABLED` and the part adds nothing. `SYSTEM_SESSION_LIFECYCLE_DISABLED` turns off the session-prime part, `SYSTEM_DIST_FRESHNESS_DISABLED` the dist part, and `SYSTEM_SESSION_CLEANUP_DISABLED` the startup guards. `SYSTEM_SKILL_ADVISOR_DISABLED` turns off the advisor part, `SYSTEM_COMPLETION_DISABLED` the pending completion advisory, and `SYSTEM_ASK_SURFACE_DISABLED` the turn-end reprompt. The save reminder follows the `decision-capture` hook flag. The hand-over parts stay off for Vibe unless `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1` or the master switch `SYSTEM_SESSION_HANDOVER_ENABLED=1` is set. The compaction parts have no switch of their own.
 
 Vibe has no compaction event and no idle event, so the three lifecycle hooks plus the `post_tool` compaction binding are the whole surface. The `session_end` entry `session-cleanup-end` still runs `session-cleanup.mjs`.
 

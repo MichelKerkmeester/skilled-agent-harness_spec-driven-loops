@@ -82,6 +82,39 @@ test('refuses a command that keeps any substitution form', () => {
   }
 });
 
+/**
+ * Renders a hooks file whose command value is written verbatim, so a case can
+ * use a multi-line string.
+ * @param {string} value - The TOML value after `command = `.
+ * @returns {string} The rendered hooks path, when the renderer accepts it.
+ */
+function renderWithCommandValue(value) {
+  const scratch = mkdtempSync(join(tmpdir(), 'vibe-home-hooks-'));
+  try {
+    mkdirSync(join(scratch, '.vibe'), { recursive: true });
+    writeFileSync(
+      join(scratch, '.vibe', 'hooks.toml'),
+      `[[hooks]]\nname = "g"\ntype = "pre_tool"\ncommand = ${value}\n`,
+    );
+    return renderHomeHooks({ vibeHome: join(scratch, 'home'), repoRoot: scratch });
+  } finally {
+    rmSync(scratch, { recursive: true, force: true });
+  }
+}
+
+test('refuses a substitution on a continuation line of a multi-line command', () => {
+  for (const value of [
+    '"""\nnode $(whoami)/guard.mjs\n"""',
+    "'''\nnode `whoami`/guard.mjs\n'''",
+  ]) {
+    assert.throws(() => renderWithCommandValue(value), /shell substitution/, value);
+  }
+});
+
+test('accepts a multi-line command that holds no substitution', () => {
+  assert.doesNotThrow(() => renderWithCommandValue('"""\nnode /opt/guard.mjs\n"""'));
+});
+
 test('refuses a checkout path with a newline or a carriage return', () => {
   const scratch = mkdtempSync(join(tmpdir(), 'vibe-home-hooks-'));
   try {

@@ -10,7 +10,7 @@ trigger_phrases:
   - "vibe guard porting"
 importance_tier: normal
 contextType: implementation
-version: 1.3.6.0
+version: 1.3.7.0
 ---
 
 # Mistral Vibe - Guards and Hooks
@@ -34,7 +34,7 @@ Records the seven hook types, which accept `strict`, where a project declares on
 
 ### Status
 
-`.vibe/hooks.toml` declares 18 bindings: two on `pre_agent` (`spec-gate-classify` and the `turn-start` composer), seven strict guards on `pre_tool`, six non-strict checks on `post_tool`, the `turn-end` composer on `post_agent`, and one entry each on `session_start` and `session_end`. The guard scripts live under `.vibe/plugins/repo-guards/`. The project file loads only from a trusted project root (section 3), so it reaches a Vibe session opened in the trusted checkout. A dispatch from a scratch cwd and a fan-out lineage get the same hooks another way: `render-home-hooks.cjs` writes them into the run's disposable `VIBE_HOME` with every script anchored to the checkout by absolute path, and Vibe loads the home file whatever the cwd. A keyed scratch-cwd run proved the home copy: the journal's `pre_tool_call` and `post_tool_call` requests name the `user:` guard bindings, the first turn carried the goal slice, and a child write went through. The wire-format fixture under `.vibe/plugins/repo-guards/fixtures/wire-format/` has run keyed sessions on 3.1.2: one hook captured its `pre_tool` input and denied a shell call, and an allow-only hook gave `NOT-DENIED`. Phases 014 to 019 replaced the rest of the seam map with recorded runs: the turn-start composer and its advisor, dist, completion, save and compaction parts; the turn-end composer and its ask-surface reprompt; the decision-capture adapter and its save-time sweep; the compaction re-injection; and the command-only relaunch tier. Each row in section 4 names the run that proved it when it was written. A run proves only the code it ran on: the live verdict for each binding is the playbook's hook-scenario verdict table, and a row there counts only when its run postdates the last change to that hook. The strict rules below remain source readings from the validator and the harness runner, except the `pre_tool` deny the wire fixture observed and the `post_agent` retry cap phase 014 recorded.
+`.vibe/hooks.toml` declares 18 bindings: two on `pre_agent` (`spec-gate-classify` and the `turn-start` composer), seven strict guards on `pre_tool`, six checks on `post_tool`, one of them strict, the `turn-end` composer on `post_agent`, and one entry each on `session_start` and `session_end`. The guard scripts live under `.vibe/plugins/repo-guards/`. The project file loads only from a trusted project root (section 3), so it reaches a Vibe session opened in the trusted checkout. A dispatch from a scratch cwd and a fan-out lineage get the same hooks another way: `render-home-hooks.cjs` writes them into the run's disposable `VIBE_HOME` with every script anchored to the checkout by absolute path, and Vibe loads the home file whatever the cwd. A keyed scratch-cwd run proved the home copy: the journal's `pre_tool_call` and `post_tool_call` requests name the `user:` guard bindings, the first turn carried the goal slice, and a child write went through. The wire-format fixture under `.vibe/plugins/repo-guards/fixtures/wire-format/` has run keyed sessions on 3.1.2: one hook captured its `pre_tool` input and denied a shell call, and an allow-only hook gave `NOT-DENIED`. Phases 014 to 019 replaced the rest of the seam map with recorded runs: the turn-start composer and its advisor, dist, completion, save and compaction parts; the turn-end composer and its ask-surface reprompt; the decision-capture adapter and its save-time sweep; the compaction re-injection; and the command-only relaunch tier. Each row in section 4 names the run that proved it when it was written. A run proves only the code it ran on: the live verdict for each binding is the playbook's hook-scenario verdict table, and a row there counts only when its run postdates the last change to that hook. The strict rules below remain source readings from the validator and the harness runner, except the `pre_tool` deny the wire fixture observed and the `post_agent` retry cap phase 014 recorded.
 
 ### Evidence Base
 
@@ -119,7 +119,7 @@ Vibe never imports or evaluates OpenCode's JavaScript or TypeScript plugins (`vi
 |---|---|---|---|
 | `system-spec-gate.js` | Classifies the operator prompt for file-mutation intent and denies a Write/Edit while the session gate is open and unanswered. | hook — a `pre_tool` hook never sees the prompt, so a `pre_agent` hook classifies it and persists the gate state the strict `pre_tool` half reads. A child session, marked by the inherited `AI_SESSION_CHILD=1` or a parent id in the payload, is never denied | `pre_agent`, `pre_tool` (strict) |
 | `cli-dispatch-audit.js` | Denies a Bash dispatch that breaks a skill's hard rules, then appends one redacted audit line per completed dispatch. | hook | `pre_tool` (strict) |
-| `env-secret-guard.js` | Denies a call that would read or write a dotenv file, and registers three value-free dotenv inspection tools. | hook | `pre_tool` (strict) |
+| `env-secret-guard.js` | Denies a call that would read or write a dotenv file, and registers three value-free dotenv inspection tools. | hook for the deny. The three inspection tools are not ported, because Vibe has no plugin tool registry; the CLI the guard's deny reason names, `node .skilled/hooks/env-secret-guard/cli/env-secret.cjs keys\|validate\|fingerprint`, gives the same value-free checks | `pre_tool` (strict) |
 | `overlay-guard.js` | Denies a write to a file a vendored tree's overlay owns and names the overlay file to edit instead. | hook | `pre_tool` (strict) |
 | `mcp-route-guard.js` | Logs a routing advisory when a native external MCP call has a Code Mode manual registered for its family; the port refuses the call instead of logging it. | hook | `pre_tool` (strict) |
 | `sk-git-message-gate.js` | Refuses a `git commit` message, `gh pr` description or branch name that breaks the repository's sk-git templates. | hook | `pre_tool` (strict) |
@@ -128,7 +128,7 @@ Vibe never imports or evaluates OpenCode's JavaScript or TypeScript plugins (`vi
 | `opencode-goal.js` | Keeps a session goal record, refreshes it on idle and injects the packet's goal slice into the system prompt. | hook | `session_start` |
 | `session-cleanup.js` | Runs the startup guards on session create and the cleanup script and process sweep on dispose. | hook — both lifecycle moments exist as host hooks | `session_start`, `session_end` |
 | `system-dist-freshness-guard.js` | Warns when a session or a risky Bash command is about to trust stale local dist outputs. | hook — `session_start` injects the warning as `additional_context`, and a non-strict `post_tool` entry adds the mid-session `STALE DIST WARNING` to the tool result after a write, edit or matched shell command (phase 015's keyed child run) | `session_start`, `post_tool` |
-| `system-skill-advisor.js` | Injects the skill advisor brief into each request's system text and exposes the advisor status tool. | hook — the `pre_agent` turn-start composer routes each main-session prompt through the shared advisor handler under the `vibe` label, so the brief arrives as `additional_context` (phase 015's keyed main-session run recorded `Advisor: no skill matched.`) | `pre_agent` |
+| `system-skill-advisor.js` | Injects the skill advisor brief into each request's system text and exposes the advisor status tool. | hook: the `pre_agent` turn-start composer routes each main-session prompt through the shared advisor handler under the `vibe` label, so the brief arrives as `additional_context` (phase 015's keyed main-session run recorded `Advisor: no skill matched.`). The advisor status tool is not ported, because Vibe has no plugin tool registry | `pre_agent` |
 | `ask-surface-guard.js` | Reopens a finished turn when it closed with a prose option menu instead of the `question` tool. | hook — a non-strict `post_agent` part reads the finished turn through the journal reader and returns the prose menu once with the `ask_user_question` reprompt (phase 016's ten fixture cases; a live TUI retry stays operator-only) | `post_agent` |
 | `system-completion-sentinel.js` | Checks a turn's closing text for a completion claim and sends the evidence gap back to the model. | hook — a `post_agent` part records the gap as a pending advisory and the next turn's `pre_agent` composer delivers it once; the part never denies (phase 016's fixture suite and print-mode smoke run) | `post_agent`, `pre_agent` |
 | `session-handover.js` | Arms a relaunch near the context limit, writes a hand-off note and restarts the session under a supervisor. | hook, because Vibe's turn boundaries reach it: the `pre_agent` turn-start composer runs the context part last and the `post_tool` compaction binding runs it too, so at a turn start it expands a claim seed or withdraws an armed hand-over when the operator types, and at either event it nudges once the fill passes the threshold. The fill is the newest measured `input_tokens` in the session journal and the window is Vibe's `compaction_threshold`, which `SESSION_HANDOVER_WINDOW_TOKENS` overrides. The `post_agent` turn-end composer runs the arm part last, which arms a pending record and starts the killer and never denies. It ships off by default and `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED` turns it on, and an interactive Vibe exits 0 on the killer's SIGTERM. A hand-over the operator starts by typing `/speckit-handoff` prepares with a `uuidgen` id, is not armed and prints the claim command, while a nudged hand-over carries the real id and arms | `pre_agent`, `post_tool`, `post_agent` |
@@ -203,9 +203,20 @@ A hook answers with its exit code and stdout; stderr carries diagnostics and is 
 | Exit | Stdout | Result |
 |---|---|---|
 | `0` | empty | Pass. The call proceeds. |
-| `0` | a conforming JSON object | Act on its fields. `{"decision": "deny", "reason": "..."}` refuses the call, and the reason becomes the tool error the model sees. |
-| `0` | anything else | Failure path: free-form text, broken JSON, a scalar, an array or a schema mismatch. |
+| `0` | a JSON object | Act on its fields, listed in the next table. An object that sets none of them passes. |
+| `0` | anything else | Failure path: free-form text, broken JSON, a scalar or an array. Only a reply that is not JSON or not an object fails (`_foreign_hooks.py:340-355`). |
 | non-zero, timeout or spawn failure | — | Failure path. |
+
+The fields a `0`-exit object may set, by hook type, in the installed 3.1.2 runner:
+
+| Type | Field | Effect |
+|---|---|---|
+| `pre_tool` | `{"decision": "deny", "reason": "..."}` | Refuses the call, and the reason becomes the tool error the model sees (`_foreign_hooks.py:357-362`). |
+| `pre_tool` | `hook_specific_output.tool_input` | Rewrites the call's arguments, and the call runs with them (`_foreign_hooks.py:368-377`). |
+| `pre_tool` | `system_message` | Shows a notice to the operator, never the model, and the call runs unchanged (`_foreign_hooks.py:364,378-379`). `spec-gate.mjs` uses it for its shell-call note. |
+| `post_tool` | `hook_specific_output.additional_context` | Appended to the tool result the model reads (`_foreign_hooks.py:682-724`). |
+| `post_tool` | `{"decision": "deny", "reason": "..."}` | Replaces the tool result the model reads with the reason; the tool has already run (`_foreign_hooks.py:685-704`). |
+| `session_start` | `additional_context`, `system_message` | Covered under What the Runs Pinned Beyond the Payload, below. |
 
 The fixture's hook printed this on stdout and exited `0`:
 
@@ -231,7 +242,7 @@ The deny is in the session journal under the run's `--output-dir`: `<output-dir>
 
 | Fact | Evidence |
 |---|---|
-| Shell guards must match `re:bash\|process_start` | A background command goes through `process_start`, which `match = "bash"` does not catch (`SKILL.md:859-861`). The fixture's `hooks.toml` uses that selector. |
+| Shell guards must match `re:bash\|process_start`, and map the payload name `process.start` | A background command goes through the builtin `process.start` (`mistralai_vibe_local_harness/protocol.py:40`). A `match` selector accepts its alias `process_start` (`_hook_matcher.py:68`), which `match = "bash"` does not catch (`SKILL.md:859-861`), while the payload's `tool_name` is the dotted `process.start` (`_foreign_hooks.py:187`), so the guards' tool-name map must carry that spelling. The fixture's `hooks.toml` uses that selector. |
 | A project hook loads only in a trusted folder, and the trust entry must be the resolved path | `run-fixture.sh` writes the project path from `pwd -P` and notes that `/var/folders` must be spelled `/private/var/folders`. An unresolved entry loaded no hook and gave no error. |
 | `post_tool` fires only when the tool body ran | A `pre_tool` deny, a user denial at the approval prompt, permission `NEVER` or a cancellation before the body starts leaves it unfired (`SKILL.md:824`). |
 | `post_agent` cannot be strict | The validator rejects `strict` on it (`models.py:31-35,94-98`), and its deny injects a retry message instead of holding the turn, capped at three retries per turn before force-accept (phase 014's `deny-always` fixture recorded `retry, retry, retry, accept`; `SKILL.md:987`). |

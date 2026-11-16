@@ -1,5 +1,5 @@
 {
-  "corpusHash": "625bce78b2a64d3c4983a75f22fc3205774d319fdbee56a2d30b2687ed725158",
+  "corpusHash": "74ea8699d942728d567187bb7b7cb6264a65bfee48b38183ceca6e27332cf0dd",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27785,
+  "includedPathCount": 27791,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1376,6 +1376,7 @@
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/mcp-route-guard.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/overlay-guard.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/post-edit-quality.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/process-start-shell-guard.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/prompts-mirror.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-automatic-tier.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-manual-tier.md",
@@ -10942,6 +10943,11 @@
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation/acceptance-criteria.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/decision-record.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/fanout-attribution.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/review-report.md",
@@ -27817,7 +27823,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2650b7faca1890a3a9fe5f5ca416aedcee6fdcfde0cbc93f393126d741b873f2",
+  "manifestHash": "497dbcff2e2246ee54997e2befd4820411ffe75416625c4b5ab0d21e6c7a957d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30561,6 +30567,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation/scratch",
       "reason": "excluded directory"
     },
     {

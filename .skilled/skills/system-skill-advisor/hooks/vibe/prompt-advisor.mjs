@@ -61,20 +61,20 @@ function isChildSession(payload, env) {
   return typeof parent === 'string' && parent.trim() !== '';
 }
 
-function headReceiptDir() {
-  const configured = process.env[STATE_DIR_ENV]?.trim();
+function headReceiptDir(env = process.env) {
+  const configured = env[STATE_DIR_ENV]?.trim();
   const base = configured ? resolve(configured) : join(tmpdir(), 'speckit-advisor');
   return join(base, HEAD_RECEIPT_SUBDIR);
 }
 
-function headReceiptPath(sessionId) {
+function headReceiptPath(sessionId, env = process.env) {
   const digest = createHash('sha256').update(sessionId).digest('hex').slice(0, 16);
-  return join(headReceiptDir(), `${digest}.head`);
+  return join(headReceiptDir(env), `${digest}.head`);
 }
 
-function readHeadReceipt(sessionId) {
+function readHeadReceipt(sessionId, env = process.env) {
   try {
-    return readFileSync(headReceiptPath(sessionId), 'utf8');
+    return readFileSync(headReceiptPath(sessionId, env), 'utf8');
   } catch {
     return '';
   }
@@ -92,11 +92,11 @@ function evictOldestReceipts(directory) {
   for (const entry of oldest) unlinkSync(join(directory, entry.name));
 }
 
-function writeHeadReceipt(sessionId, head) {
+function writeHeadReceipt(sessionId, head, env = process.env) {
   try {
-    const directory = headReceiptDir();
+    const directory = headReceiptDir(env);
     mkdirSync(directory, { recursive: true, mode: 0o700 });
-    const target = headReceiptPath(sessionId);
+    const target = headReceiptPath(sessionId, env);
     if (!existsSync(target)) evictOldestReceipts(directory);
     writeFileSync(target, head, { mode: 0o600 });
   } catch {
@@ -161,8 +161,10 @@ export async function buildAdvisorPart(payload, {
   run = runAdvisor,
   env = process.env,
   isEnabled = isHookEnabled,
-  read = readHeadReceipt,
-  write = writeHeadReceipt,
+  // The receipt folder follows the injected environment, so a caller that
+  // isolates the state directory isolates the receipts with it.
+  read = (sessionId) => readHeadReceipt(sessionId, env),
+  write = (sessionId, head) => writeHeadReceipt(sessionId, head, env),
 } = {}) {
   try {
     if (!payload || payload.hook_event_name !== 'pre_agent') return '';

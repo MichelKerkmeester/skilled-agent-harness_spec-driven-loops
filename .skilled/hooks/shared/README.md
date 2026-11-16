@@ -64,6 +64,7 @@ shared/
 +-- hook-adapter-shared.cjs     # readStdin() + parseJsonFailOpen() for CommonJS and ESM adapters
 +-- hook-adapter-shared.test.cjs   # node --test suite: stdin deadline and whole-input read
 +-- hook-stdin-deadline.test.mjs   # node --test suite: every ESM adapter exits at the stdin deadline
++-- payload-dir.mjs             # sessionDirFor() + existingDirectory(): where a payload cwd points, and whether a hook may write there
 +-- session-reader-declarations.mjs   # rebuilds or checks the session readers' .d.mts declarations
 `-- session-readers/               # read-only per-runtime session readers (see session-readers/index.mjs)
 ```
@@ -79,6 +80,7 @@ shared/
 | `hook-flags.sh` | POSIX sh mirror. `hook_enabled <concern>` returns 0 (enabled) unless the master or default-shape per-concern switch is truthy, and `hook_flag_on <name>` returns 0 when one named switch is truthy. Resolves config file at source time. Does not carry canonical-name overrides or legacy aliases. |
 | `env-aliases.cjs` | Back-compat bridge. `applyEnvAliases(env?)` copies every legacy `MK_*` value forward to its new name when the new name is unset. `PREFIX_RULES` maps specific prefixes (`MK_GOAL_` → `OPENCODE_GOAL_`, `MK_CLI_DISPATCH_AUDIT_` → `CLI_DISPATCH_AUDIT_`, etc.); the catch-all `MK_` → `SYSTEM_` rule handles the rest. |
 | `hook-adapter-shared.cjs` | `readStdin({ timeoutMs })` + `parseJsonFailOpen()`. The reader resolves at a 3000 ms deadline with the bytes read so far, and the JSON parser returns `null` on bad JSON. Byte-identical behavior for every consumer, CommonJS or ESM. |
+| `payload-dir.mjs` | `sessionDirFor(cwd)` resolves a payload's relative cwd against the checkout and falls back to the checkout when none is given; `existingDirectory(path)` is true only for an absolute path that already exists as a directory, so a payload cannot make a hook create a tree wherever it names. The Vibe session-lifecycle, decision-capture and ask-surface adapters import it, and `.vibe/plugins/repo-guards/lib/hook-io.mjs` re-exports it for the Vibe guards. |
 | `hook-flags.test.cjs` | `node --test` suite: default-on, master switch, per-concern switch, `concernFlag` derivation, config-file merge, legacy-alias parity, named-switch precedence in both resolvers, trailing comments in all four readers of the file. |
 | `hook-adapter-shared.test.cjs` | `node --test` suite: a never-closed stdin resolves at the deadline and its process exits; complete input comes back whole. |
 | `hook-stdin-deadline.test.mjs` | `node --test` suite: with stdin left open and never written, each of the seventeen ESM adapters that import `readStdin` exits 0 at the deadline with its fail-open output, and the seven adapters no other suite spawns still answer a normal payload. |
@@ -120,7 +122,7 @@ Each concern also honors a set of legacy aliases (`MK_`/`SPECKIT_`/plugin-owned 
 
 | Boundary | Rule |
 |---|---|
-| Imports | Node builtins only. `hook-flags.cjs` imports `node:fs`, `node:path`, and `./env-aliases.cjs`. `hook-adapter-shared.cjs` imports nothing. The ESM/TS facades import `node:module` only. |
+| Imports | Node builtins only. `hook-flags.cjs` imports `node:fs`, `node:path`, and `./env-aliases.cjs`. `hook-adapter-shared.cjs` imports nothing. `payload-dir.mjs` imports `node:fs`, `node:path` and `node:url`. The ESM/TS facades import `node:module` only. |
 | Growth | Only helpers genuinely shared by multiple concerns belong here; a concern-specific helper goes in that concern's `lib/`. |
 | Failure | The resolver is default-on: a missing or unreadable config file, a missing env var, or any parse failure resolves to enabled. A default-off concern (`session-handover`) resolves to off in the same cases, because its enable flag is not set, except on a runtime `DEFAULT_ON_RUNTIMES` lists, which is `claude`. `parseJsonFailOpen` returns `null` instead of throwing. |
 | Drift | The ESM/TS facades are zero-drift by construction (they re-export the `.cjs` implementation). The `.sh` mirror is a manual port and intentionally narrower (default-shape flags only). |

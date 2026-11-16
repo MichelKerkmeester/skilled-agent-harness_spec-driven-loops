@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "status_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe hook review 2 remediation",
+      "phase 24 vibe hook review 2 remediation",
+      "vibe process.start shell guard",
+      "vibe background shell guard bypass",
+      "vibe hook review 2 remediation plan",
+      "vibe hook review 2 remediation tasks",
+      "vibe hook review 2 remediation acceptance criteria",
+      "vibe hook review 2 remediation implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "hook",
+      "review",
+      "remediation",
+      "phase",
+      "process",
+      "start",
+      "shell",
+      "guard",
+      "background",
+      "bypass",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".vibe/plugins/repo-guards/lib/hook-io.mjs",
+      ".skilled/hooks/shared/payload-dir.mjs",
+      ".skilled/hooks/shared/README.md",
+      ".vibe/plugins/repo-guards/tests/env-secret-guard.test.mjs",
+      ".vibe/plugins/repo-guards/tests/git-message-gate.test.mjs",
+      ".vibe/plugins/repo-guards/spec-gate.mjs",
+      ".vibe/hooks.toml",
+      ".vibe/plugins/repo-guards/fixtures/overlay-guard/hooks.toml",
+      ".vibe/plugins/repo-guards/dist-freshness.mjs",
+      ".vibe/plugins/repo-guards/dispatch-preflight.mjs",
+      ".vibe/plugins/repo-guards/session-cleanup.mjs",
+      ".vibe/plugins/repo-guards/render-home-hooks.cjs",
+      ".vibe/plugins/repo-guards/fixtures/wire-format/tool-names.md",
+      ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+      ".skilled/hooks/session-lifecycle/vibe/session-start.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-io.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/lib/hook-io.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "payload-dir.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/payload-dir.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "env-secret-guard.test.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/tests/env-secret-guard.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-message-gate.test.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/tests/git-message-gate.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/spec-gate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/dist-freshness.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/dispatch-preflight.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/session-cleanup.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "render-home-hooks.cjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/render-home-hooks.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "tool-names.md",
+        "kind": "doc",
+        "path": ".vibe/plugins/repo-guards/fixtures/wire-format/tool-names.md",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-context.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/session-start.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Vibe 3.1.2 puts `\"toolname\": \"process.start\"` in the payload of a background shell command, while the repo guards' tool-name map keyed only `processstart`, the alias a `match` selector accepts",
+    "created_at": "2026-11-16T06:43:46Z",
+    "last_save_at": "2026-11-16T07:23:41.905Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:26c4555fd5d462e7c080b59ab2e41fc6a0009e9ce448b07fbd192ff45f93558e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b12a7e1e6d810c1a3a3030ed5b94dff0494aeb5bc26affca2d7da675f51a9662",
+      "plan.md": "aba33717084f684ce50a5e78d3eb3ad93ad4053964e4f3c359ff3284b7cff254",
+      "tasks.md": "a1a5e2838acc77b3bcf0fde8820f7189403636b22d40b6df352f8f24d19ce944",
+      "implementation-summary.md": "619f5b3e60331e8c46e1216e5892005a92f2d4ea5ea5f818ea849c6a3f1380a1"
+    },
+    "last_active_at": null
+  }
+}

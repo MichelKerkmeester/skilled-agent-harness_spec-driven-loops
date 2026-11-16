@@ -15,25 +15,21 @@ import { fileURLToPath } from 'node:url';
 // lib -> repo-guards -> plugins -> .vibe -> checkout root.
 export const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..');
 
-/**
- * The directory a relative path in the payload resolves against. A relative
- * cwd is resolved against the checkout, so the same payload names the same
- * tree on any machine, while a live absolute cwd names the session folder.
- * @param {unknown} cwd - The payload's working directory.
- * @returns {string} An absolute directory.
- */
-export function sessionDirFor(cwd) {
-  return typeof cwd === 'string' && cwd.trim() ? resolve(REPO_ROOT, cwd) : REPO_ROOT;
-}
+// The payload-directory rules are shared with the session-lifecycle and
+// guard adapters under .skilled/hooks, which must not import from this tree.
+export { existingDirectory, sessionDirFor } from '../../../../.skilled/hooks/shared/payload-dir.mjs';
 
 // Vibe names its tools with a namespace, while the cores compare the short
 // names every runtime shares. A write_file is a write, and a background
-// process_start runs a shell command just like bash.
+// process.start runs a shell command just like bash. The payload carries the
+// dotted builtin name; process_start is only the alias a match selector
+// accepts, kept so a payload that spells it that way is still judged.
 const CORE_TOOL_NAMES = new Map([
   ['file_system.read_file', 'read_file'],
   ['file_system.write_file', 'write'],
   ['file_system.edit', 'edit'],
   ['file_system.bash', 'bash'],
+  ['process.start', 'bash'],
   ['process_start', 'bash'],
 ]);
 

@@ -3,5 +3,5 @@
 name = "overlay-guard"
 type = "pre_tool"
 strict = true
-match = "re:bash|process_start|write_file|edit"
+match = "re:write_file|edit"
 command = "node @REPO@/.vibe/plugins/repo-guards/overlay-guard.mjs"

@@ -34,6 +34,10 @@ const UNSAFE_PATH_CHARACTERS = /["\\$`\r\n]/;
 // cwd at hook time and silently skip its guard. The forms are a named variable,
 // a braced expansion, a command substitution and a backtick command.
 const LEFTOVER_SUBSTITUTION = /\$(?:[A-Za-z_][A-Za-z0-9_]*|\{|\()|`/;
+// Each command value is checked whole: a multi-line basic or literal string runs
+// to its closing delimiter, so a substitution on a continuation line is caught
+// too. A single-line value ends at the line break.
+const COMMAND_VALUE = /^[ \t]*command[ \t]*=[ \t]*("""[\s\S]*?"""|'''[\s\S]*?'''|[^\n]*)/gm;
 
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -91,9 +95,9 @@ function renderHomeHooks({ vibeHome, repoRoot = DEFAULT_REPO_ROOT } = {}) {
 
   const source = fs.readFileSync(path.join(root, '.vibe', 'hooks.toml'), 'utf8');
   const rendered = source.split(TOPLEVEL_EXPRESSION).join(root);
-  const leftover = rendered
-    .split('\n')
-    .find((line) => /^\s*command\s*=/.test(line) && LEFTOVER_SUBSTITUTION.test(line));
+  const leftover = [...rendered.matchAll(COMMAND_VALUE)]
+    .map((match) => match[1])
+    .find((value) => LEFTOVER_SUBSTITUTION.test(value));
   if (leftover) {
     throw new Error(`hooks.toml command still holds a shell substitution: ${leftover.trim()}`);
   }

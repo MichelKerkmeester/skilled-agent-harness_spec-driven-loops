@@ -19,6 +19,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const require = createRequire(import.meta.url);
+const { readStdin } = require('../../shared/hook-adapter-shared.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -62,18 +63,7 @@ async function handoverPart(payload) {
 const PARTS = [completionPart, askSurfacePart, handoverPart];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. HELPERS
-// ─────────────────────────────────────────────────────────────────────────────
-
-async function readStdin() {
-  process.stdin.setEncoding('utf8');
-  let text = '';
-  for await (const chunk of process.stdin) text += chunk;
-  return text;
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 4. MAIN
+// 3. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**

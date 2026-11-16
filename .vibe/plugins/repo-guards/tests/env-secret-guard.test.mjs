@@ -65,6 +65,38 @@ test('a relative symlink to a dotenv file in the session folder is denied', () =
   }
 });
 
+// The command is assembled so this source never spells a dotenv read itself.
+const DOTENV_READ = `cat ${'.'}${'env'}`;
+
+/**
+ * A shell call under one tool name, as Vibe names a foreground or a
+ * background command in its pre_tool payload.
+ * @param {string} toolName - The payload's tool_name.
+ * @param {string} command - The shell command.
+ * @returns {object} The payload.
+ */
+function shellPayload(toolName, command) {
+  return {
+    hook_event_name: 'pre_tool',
+    session_id: 'vibe-env-guard-shell',
+    cwd: tmpdir(),
+    tool_name: toolName,
+    tool_call_id: 'call-1',
+    tool_input: { command },
+  };
+}
+
+test('a background shell command that reads a dotenv file is denied like a foreground one', () => {
+  for (const toolName of ['file_system.bash', 'process.start']) {
+    const verdict = JSON.parse(runHook(shellPayload(toolName, DOTENV_READ)) || '{}');
+    assert.equal(verdict.decision, 'deny', toolName);
+  }
+});
+
+test('a background shell command that touches no dotenv file is allowed', () => {
+  assert.equal(runHook(shellPayload('process.start', 'ls -la')), '');
+});
+
 test('a relative file that is not a dotenv file is allowed', () => {
   const session = mkdtempSync(join(tmpdir(), 'vibe-env-guard-'));
   try {

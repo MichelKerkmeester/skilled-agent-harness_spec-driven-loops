@@ -297,6 +297,22 @@ test('the binding runs the detector when the journal grew', () => {
   assert.equal(seen.length, 1);
 });
 
+test('the binding re-injects nothing inside a subagent', () => {
+  let detected = 0;
+  const text = buildPostToolPart(
+    payloadFor({ hook_event_name: 'post_tool', parent_session_id: 'parent-session' }),
+    {
+      journalSize: () => 200,
+      readSize: () => 100,
+      detect: () => { detected += 1; return 'context restored'; },
+      writeSize: () => true,
+    },
+  );
+
+  assert.equal(text, '');
+  assert.equal(detected, 0);
+});
+
 test('a new compaction clears the advisor directive receipt', (t) => {
   const stateDir = tempStateDir(t);
   const seen = [];
