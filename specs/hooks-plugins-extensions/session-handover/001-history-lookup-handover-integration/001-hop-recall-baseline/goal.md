@@ -56,10 +56,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] Both arm pages pass `validate-playbook-package.cjs` with `scenarios=126 violations=0`.
-- [ ] Each arm's `### Recorded Results` table holds one row per counted Claude Code run, each row carrying `answer`, `lookup_attempted`, `native_recall`, `transcript_read` and `note_leaked`.
+- [x] Both arm pages pass `validate-playbook-package.cjs` with `scenarios=126 violations=0`.
+- [x] Each arm's `### Recorded Results` table holds one row per counted Claude Code run, each row carrying `answer`, `lookup_attempted`, `native_recall`, `transcript_read` and `note_leaked`.
 - [ ] `goal.md` §4 holds one `Threshold:` line with a number and one `Decision:` line naming GO or NO-GO.
-- [ ] `git status --porcelain -- .skilled/hooks .skilled/skills/system-spec-kit/runtime` prints nothing.
+- [x] `git status --porcelain -- .skilled/hooks .skilled/skills/system-spec-kit/runtime` prints nothing.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -87,6 +87,8 @@ The operator sets the threshold before phase 002. The decision line is written a
 | Arm B page written | Pending | `hop-recall-baseline-conversation.md` does not exist yet. |
 | Claude Code runs recorded | Pending | No row recorded yet. |
 | Threshold and answer recorded | Pending | Both fields above read UNKNOWN. |
+| Completion criteria 1, 2 and 4 | Done | Validator scenarios=124 violations=0 now (126 when written, before phase 006 deleted two pages); both result tables hold 5-signal rows; commit 8bfd0a55071 touched 0 of 37 files under .skilled/hooks or the runtime |
+| Completion criterion 3 | Not met as written | No numeric Threshold line: the operator chose on 2026-11-15 to set no threshold and decided GO after seeing the results, as the Decision line records |
 
 ### Deviations and findings
 

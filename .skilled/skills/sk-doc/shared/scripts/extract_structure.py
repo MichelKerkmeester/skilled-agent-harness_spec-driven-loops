@@ -946,13 +946,12 @@ CONTENT_THRESHOLDS = {
 }
 
 
-def is_repo_root_readme(path: Path) -> bool:
-    """Whether the file is the README at a repository root, the directory that holds
-    `.git` (a folder in a checkout, a file in a linked worktree). That README separates
-    its sections with `&nbsp;` lines instead of `---` rules, so it keeps the full
-    divider score."""
-    resolved = path.resolve()
-    return resolved.name.lower() == 'readme.md' and (resolved.parent / '.git').exists()
+def is_repo_root_guide(path: Path) -> bool:
+    """Whether the file is a front-door guide of a repository root, as the validator
+    defines it. These guides separate their sections with `&nbsp;` lines instead of
+    `---` rules, so they keep the full divider score."""
+    from validate_document import is_repo_root_guide as _is_root_guide
+    return _is_root_guide(str(path))
 
 
 def calculate_dqi(
@@ -1233,7 +1232,7 @@ def extract_structure(filepath: str) -> Dict[str, Any]:
         content=content,
         style_issues=style_issues,
         content_issues=content_issues,
-        dividers_exempt=is_repo_root_readme(path)
+        dividers_exempt=is_repo_root_guide(path)
     )
 
     return {

@@ -216,6 +216,22 @@ def test_repo_root_readme_is_exempt_from_the_divider_rule(monkeypatch, tmp_path:
     assert "general_h2_separator" in issue_types(validate(nested, "readme"))
 
 
+def test_repo_root_guides_are_exempt_from_the_divider_rule(monkeypatch, tmp_path: Path) -> None:
+    monkeypatch.setenv("SKDOC_ENFORCE_STRUCTURE", "1")
+    (tmp_path / ".git").mkdir()
+    guide = tmp_path / "INSTALL-SKILLED.md"
+    guide.write_text(SPACED_README, encoding="utf-8")
+    cross_cli = tmp_path / ".skilled" / "CROSS-CLI.md"
+    cross_cli.parent.mkdir()
+    cross_cli.write_text(SPACED_README, encoding="utf-8")
+    other = tmp_path / "NOTES.md"
+    other.write_text(SPACED_README, encoding="utf-8")
+
+    assert "general_h2_separator" not in issue_types(validate(guide, "readme"))
+    assert "general_h2_separator" not in issue_types(validate(cross_cli, "readme"))
+    assert "general_h2_separator" in issue_types(validate(other, "readme"))
+
+
 def test_repo_root_readme_keeps_the_full_divider_score(tmp_path: Path) -> None:
     from extract_structure import extract_structure  # type: ignore
 
