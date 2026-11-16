@@ -8,11 +8,11 @@
 
 &nbsp;
 
-&nbsp;
-
 ## 1. 📝 SUMMARY
 
 **[Quick Start](#2--quick-start)** · [Overview](#overview) · [How It Works](#4--how-it-works) · [Workflows](#5--everyday-workflows) · [Skills](#6--skills) · [Hooks](#7--hooks-plugins-and-extensions) · [Agents](#8--agents) · [Commands](#9--commands) · [Runtimes](#10--runtimes-and-cli-bridges) · [Doctor](#11--doctor-commands) · [FAQ](#16--faq)
+
+---
 
 An assistant framework that gives your AI coding agent a memory, a paper trail and a team of specialists.
 
