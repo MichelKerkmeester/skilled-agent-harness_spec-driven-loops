@@ -1,5 +1,5 @@
 {
-  "corpusHash": "616de3819b233937aadd1809b6bf7798562a64e5f950239bb268a7bbefa69604",
+  "corpusHash": "cd75123fda7c6544ea5f382af8aa1fbfd5d52279712af78fa597744f174b3a94",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27766,
+  "includedPathCount": 27771,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -26789,6 +26789,11 @@
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/024-root-release-docs-alignment/plan.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/024-root-release-docs-alignment/spec.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/024-root-release-docs-alignment/tasks.md",
+    "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/plan.md",
+    "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/research.md",
+    "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/spec.md",
+    "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/tasks.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/goal.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/research/research.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/spec.md",
@@ -27798,7 +27803,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "318c259accd32e88eb5e10fec0346fb66dfa85f22ae3c65efc96a004c2e897a6",
+  "manifestHash": "8e6a730c61115d12fc370fa18fa88c141a881fa36876758c65fea32f48f7fb45",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -39446,6 +39451,34 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/024-root-release-docs-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/prompts",
       "reason": "excluded directory"
     },
     {

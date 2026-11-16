@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6851,
-    "ok": 19288,
+    "ok": 19293,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27766,
+  "documentsScanned": 27771,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "318c259accd32e88eb5e10fec0346fb66dfa85f22ae3c65efc96a004c2e897a6",
+  "manifestHash": "8e6a730c61115d12fc370fa18fa88c141a881fa36876758c65fea32f48f7fb45",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44392,
+      "ok": 44398,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -64188,6 +64188,34 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/024-root-release-docs-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/prompts",
       "reason": "excluded directory"
     },
     {

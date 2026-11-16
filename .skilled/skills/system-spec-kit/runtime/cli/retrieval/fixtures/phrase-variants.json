@@ -1,5 +1,5 @@
 {
-  "manifestHash": "318c259accd32e88eb5e10fec0346fb66dfa85f22ae3c65efc96a004c2e897a6",
+  "manifestHash": "8e6a730c61115d12fc370fa18fa88c141a881fa36876758c65fea32f48f7fb45",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -100058,6 +100058,24 @@
     ],
     "root readme refresh": [
       "root readme refresh"
+    ],
+    "root readme rewrite": [
+      "root readme rewrite"
+    ],
+    "root readme rewrite implementation summary": [
+      "root readme rewrite implementation summary"
+    ],
+    "root readme rewrite plan": [
+      "root readme rewrite plan"
+    ],
+    "root readme rewrite research": [
+      "root readme rewrite research"
+    ],
+    "root readme rewrite research synthesis": [
+      "root readme rewrite research synthesis"
+    ],
+    "root readme rewrite tasks": [
+      "root readme rewrite tasks"
     ],
     "root readme section spacing": [
       "root readme section spacing"
