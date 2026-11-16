@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "handover doc alignment",
+      "hand-over doc alignment fixes",
+      "vibe skilled-loop shell shim",
+      "handover doc alignment plan",
+      "handover doc alignment tasks",
+      "handover doc alignment acceptance criteria",
+      "handover doc alignment implementation summary"
+    ],
+    "key_topics": [
+      "handover",
+      "doc",
+      "alignment",
+      "hand-over",
+      "vibe",
+      "skilled-loop",
+      "shell",
+      "shim",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/bin/skilled-loop-shell.sh",
+      ".skilled/hooks/session-handover/tests/skilled-loop-shell.test.cjs",
+      "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/hop-recall.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-shell.sh",
+        "kind": "script",
+        "path": ".skilled/bin/skilled-loop-shell.sh",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-shell.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/tests/skilled-loop-shell.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hop-recall.sh",
+        "kind": "script",
+        "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/hop-recall.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator asked for every doc, md file and README on the session hand-over to match the current logic",
+    "created_at": "2026-11-16T07:07:40Z",
+    "last_save_at": "2026-11-16T07:14:53.860Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eb0c2b3a7e7c90fda23dd55931d45d094fffcf893dc0ae378f67f0967b5e126c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0f6f71a2b95ffe98e49523fa74a83ccc2a10156e145c953aa2e0698063d4590b",
+      "plan.md": "d230ca2cab9d64596ad5185116b92aea87dee54d222c3f199d8574870c9edcac",
+      "tasks.md": "2446952b0da7c83fa8b59ff91b22775f61f61b8d57be2d07f5e3892a19c6f94e",
+      "implementation-summary.md": "049d786092a7fa522050e58561635f27964646c6f9613dde3e9826381f19ab11"
+    },
+    "last_active_at": null
+  }
+}
