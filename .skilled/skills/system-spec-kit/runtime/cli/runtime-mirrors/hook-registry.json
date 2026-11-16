@@ -5,6 +5,7 @@
       "file": ".claude/settings.json",
       "shape": "claude-settings",
       "projectDirEnv": "CLAUDE_PROJECT_DIR",
+      "requireTree": ".skilled",
       "defaultMessage": "mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter",
       "eventOrder": [
         "PreToolUse",
@@ -1792,6 +1793,27 @@
       },
       "pi": {
         "extension": "env-secret-guard.ts"
+      }
+    },
+    {
+      "id": "claude-user-hook-sync",
+      "concern": "Copy this checkout's Claude hooks into the user-level Claude settings when the operator opts in",
+      "bindings": {
+        "claude": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 8,
+            "matcher": "",
+            "runner": "node",
+            "script": ".skilled/bin/sync-claude-user-hooks.mjs",
+            "args": "--session-start",
+            "timeout": 5,
+            "fallback": "envelope",
+            "silence": true,
+            "message": "[claude-user-hooks] sync failed - run: node .skilled/bin/sync-claude-user-hooks.mjs --check"
+          }
+        ]
       }
     }
   ]

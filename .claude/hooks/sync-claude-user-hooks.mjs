@@ -1,0 +1,1 @@
+../../.skilled/bin/sync-claude-user-hooks.mjs

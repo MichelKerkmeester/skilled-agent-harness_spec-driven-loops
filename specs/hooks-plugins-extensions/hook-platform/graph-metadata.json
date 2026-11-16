@@ -11,7 +11,8 @@
     "hooks-plugins-extensions/hook-platform/005-smart-rule-injection",
     "hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports",
     "hooks-plugins-extensions/hook-platform/007-hub-index-gap-links",
-    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite"
+    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite",
+    "hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync"
   ],
   "manual": {
     "depends_on": [],
