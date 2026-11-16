@@ -387,6 +387,9 @@ and findings belong here.
 | Env docs: SKILL_ADVISOR_FRESH_PROMPTS_PATH | Fixed | listed in .env.example as a test-only path |
 | Deviation: corpus read in-process for lead diagnosis | Recorded | 038/scratch/lead-diag.mjs parsed command-prompts.jsonl rows sv-06 and sv-08 in-process to print lead indices only; no prompt text was printed or read, but the jq del(.prompt)-only rule was not kept to the letter; the script is committed so the numbers come from a committed script |
 | Open P2 from the final alignment run | Recorded for follow-up | B6, B7, C-02, F3 and D-03 (playbook cross-links and a Workflow Measure scenario, the doctor changelog Vibe line, the inert OpenCode status field and the retired-name map in the transcript scorer); detail in 038/scratch/alignment-final-dispositions.md |
+| Criterion 2 check, advisor suite | Not met, blocked on origin/main | merged HEAD e91faf28b8c fails 7 routing tests that fail the same way on clean origin/main 2005499d504; pre-merge branch suite was 2347/0, so the branch adds none; fad83abd791 (root guide README templates) drops holdout-independent to 48/63 against 49; 3dc90eb8e01 (hook README routing) breaks four doctor-bridge-isolation cases (git hooks, git rules, git standards, git hooks broken now route nowh... |
+| Operator item: sk-doc hook README routing regression on main | Waiting | fix belongs in sk-doc ROUTER.md and graph-metadata.json, owned by main's README-template workstream; in a throwaway origin/main tree, dropping the 24 git-* hook phrases (12 per file) cleared the four isolation cases, while the slice, ratchet and holdout failures need main's other phrase changes revisited; once main is fixed, merge and rerun the gate |
+| Pre-existing: S15-ci-divergence-ratchet | Fails on origin/main | the CI-gated ratchet row fails on clean origin/main 2005499d504 the same way it fails on the merged HEAD, so an alignment P0 on that row is inherited, not branch-caused |
 
 ### Deviations and findings
 

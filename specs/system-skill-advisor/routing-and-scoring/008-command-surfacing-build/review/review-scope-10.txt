@@ -1,0 +1,17 @@
+# review pass ten: for an area attach-scorer or docs path, diff with git -c core.fsmonitor=false diff 05f776202e0 5b2b062baef -- <path>; for a merge path, diff with git -c core.fsmonitor=false diff e91faf28b8c^2 e91faf28b8c -- <path> (what the branch keeps over main); then read the whole file at HEAD
+attach-scorer	.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+attach-scorer	.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts
+attach-scorer	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+attach-scorer	.skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts
+attach-scorer	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json
+attach-scorer	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+attach-scorer	.skilled/skills/system-skill-advisor/runtime/bench/hook-brief-signal-noise.bench.ts
+docs-merge	.skilled/skills/system-skill-advisor/README.md
+docs-merge	.skilled/skills/system-skill-advisor/SKILL.md
+docs-merge	.skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+docs-merge	.env.example
+docs-merge	merge .skilled/skills/sk-doc/SKILL.md
+docs-merge	merge .skilled/skills/sk-doc/sk-create-skill/ROUTER.md
+docs-merge	merge .skilled/commands/doctor/assets/doctor-install-presentation.txt
+docs-merge	merge .skilled/changelog/skilled/v4.0.2.1.md
+docs-merge	merge .skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts
