@@ -1,0 +1,14 @@
+# CB-CR-007 command sequence, run 2026-11-16 from the final state of this checkout
+
+$ node .skilled/bin/compiled-route-status.cjs --hub sk-code
+{"hubId":"sk-code","servingAuthority":"compiled","shadowOnly":false,"selectedPolicy":{"generation":2},"effectivePolicyHash":"51a8c9a838372995cae735cdeef015f94c740a93cd61a968e42064c46c936f33","fenceEpoch":4,"manifestFingerprint":"19544bb1d6125b36914780b226c3f367381aa1046dbd26b925eca731c8f6c0fb","causeCode":"compiled-serving","manifestFreshness":{"manifestValid":true,"fresh":true,"causeCode":"fresh","currentPolicyHash":"51a8c9a838372995cae735cdeef015f94c740a93cd61a968e42064c46c936f33"}}
+exit status: 0
+
+$ node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "run the quality gate on my edited .github/workflows/ci.yml"
+{"hubId":"sk-code","action":"route","selectionKind":"surfaceBundle","targets":[{"backendKind":"surface-router","packetId":"sk-code-quality","packetKind":"workflow","skillId":"sk-code","workflowMode":"sk-code-quality"},{"backendKind":"evidence-base","packetId":"sk-code-ci","packetKind":"surface","skillId":"sk-code","workflowMode":"sk-code-ci"}],"effectivePolicyHash":"51a8c9a838372995cae735cdeef015f94c740a93cd61a968e42064c46c936f33","generation":2}
+exit status: 0
+
+$ node -e "<stage-two replay from step 3>"
+["CI_WORKFLOW"]
+["shared/references/stack-detection.md","shared/references/phase-detection.md","shared/references/universal/code-quality-standards.md","sk-code-ci/references/ci-workflow-standards.md","sk-code-ci/references/trigger-and-filter-rules.md","sk-code-ci/references/job-shape-rules.md","sk-code-ci/references/protected-set.md"]
+exit status: 0

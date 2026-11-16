@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.22.0
+version: 2.3.23.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -34,7 +34,7 @@ The smart router maps a detected surface (a declared specific surface, then the 
 
 ### Core Principle
 
-Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family: a declared specific surface first, then the SKILLED fallback, then UNKNOWN. Intent narrows the specific files within that family. The detected surface also goes to the compiled front door as `--surface-hint`. When a prompt ties between surfaces, a hinted specific surface leads the bundle. SKILLED already ranks last, so a SKILLED hint changes nothing (`SKILL.md` §3).
+Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family: a declared specific surface first, then the SKILLED fallback, then UNKNOWN. Intent narrows the specific files within that family. The detected surface also goes to the compiled front door as `--surface-hint`. A hinted specific surface joins the route and comes first among the surfaces. SKILLED already ranks last, so a SKILLED hint changes nothing (`SKILL.md` §3).
 
 ### Key Sources
 

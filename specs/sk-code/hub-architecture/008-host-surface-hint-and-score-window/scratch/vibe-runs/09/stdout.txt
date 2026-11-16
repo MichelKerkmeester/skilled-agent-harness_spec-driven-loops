@@ -1,0 +1,72 @@
+All three steps done and verified.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`
+
+Both carry the same 18 net inserted lines (`git diff --stat`: 18 insertions each, 0 deletions).
+
+## 2. COMMANDS
+
+**Anchor uniqueness probe** — exit 0
+```
+count: 1
+```
+
+**`cp` authored → twin** — exit 0, no output
+
+**`cmp` authored vs twin** — exit 0
+```
+twin-same
+```
+
+**`node -e "JSON.parse(...)" && echo json-ok`** — exit 0
+```
+json-ok
+```
+
+**`node specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/scratch/measure-candidates.cjs . routes-only`** — exit 0, 15 lines
+```
+single-quality	single:sk-code-quality
+single-quality-restraint	single:sk-code-quality
+single-review	single:sk-code-review
+single-opencode	single:sk-code-skilled
+ambiguous-leaf	orderedBundle:sk-code-quality,sk-code-review
+zero-leaf-signal	defer
+forbidden-request	reject
+surface-bundle-ci	surfaceBundle:sk-code-review,sk-code-ci
+surface-bundle-frontend	surfaceBundle:sk-code-review,sk-code-frontend
+visual-values-frontend	single:sk-code-frontend
+visual-review-bundle	surfaceBundle:sk-code-review,sk-code-frontend
+visual-motion-frontend	single:sk-code-frontend
+hinted-surface-joins-route	surfaceBundle:sk-code-review,sk-code-frontend,sk-code-skilled
+hinted-surface-routes-unscored	single:sk-code-frontend
+review-kept-beside-surface-phrases	surfaceBundle:sk-code-review,sk-code-frontend
+```
+
+**`node .skilled/bin/compiled-route-sync.cjs --check`** — exit 0 (last 15 lines)
+```
+  009-parent-hub-rollout/009-sk-design/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/009-sk-design/lib/canary-router.cjs
+  009-parent-hub-rollout/009-sk-design/lib/policy-card.cjs
+  009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs
+  013-live-activation/activation/cli-classifier/manifest.json
+  013-live-activation/activation/cli-external-orchestration/manifest.json
+  013-live-activation/activation/mcp-tooling/manifest.json
+  013-live-activation/activation/sk-code/manifest.json
+  013-live-activation/activation/sk-design/manifest.json
+  013-live-activation/activation/sk-doc/manifest.json
+  013-live-activation/activation/system-deep-loop/manifest.json
+  014-runtime-engine/lib/compiled-route.cjs
+  014-runtime-engine/lib/resolve.cjs
+all 7 hubs resolve
+all 55 served copies match their authored files
+```
+
+**`git diff --stat` / `git diff` on the two files** — exit 0, confirmed the change is exactly the new `review-kept-beside-surface-phrases` case appended after `hinted-surface-routes-unscored`, nothing else.
+
+## 3. OPEN QUESTIONS
+
+- The worktree already carried unrelated modifications before this dispatch (other packets under `specs/system-skilled-doctor/`, `.skilled/commands/doctor/`, `.skilled/bin/tests/`, plus untracked `scratch/dispatch/` and `scratch/vibe-runs/` dirs). I touched none of them; `git status` shows them because they were dirty on arrival.
+- The brief described step 1 as "5 lines replaced by 23"; the applied diff is 18 net insertions, which is the same edit (23 new − 5 old). No mismatch in outcome.

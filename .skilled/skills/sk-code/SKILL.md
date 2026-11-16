@@ -91,7 +91,7 @@ Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selectin
 - **shared control**: a hub-level resource declared in `SHARED_CONTROL_RESOURCES`, which resolves on disk and never projects as a leaf.
 - **leaf**: a typed `(workflowMode, leafResourceId)` pair from `leaf-manifest.json` that a `RESOURCE_MAP` path converts to.
 - **surface detection**: the shared detection order over the declared surfaces, which tries each specific surface first, then the `SKILLED` fallback, then `UNKNOWN`.
-- **`--surface-hint`**: the front-door flag that carries the detected surface into the compiled route, so a hinted surface leads a keyword tie.
+- **`--surface-hint`**: the front-door flag that carries the detected surface into the compiled route. A hinted specific surface joins the route and comes first among the surfaces.
 - **`UNKNOWN_FALLBACK`**: the load level the router returns, with a disambiguation checklist, when no mode resolves.
 
 ### Layout

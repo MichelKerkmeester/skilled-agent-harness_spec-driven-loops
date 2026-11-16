@@ -47,7 +47,7 @@ contextType: "general"
 <!-- FILL: Write one implementation task per file change. Add a `Verify:` line with the command and its expected output. GOOD: T002 Add the `--keep <n>` branch. Verify: `--keep 3` leaves 3 archives. WEAK: T002 Implement the feature. -->
 
 - [x] T004 Add failing tests for the join and for the kept workflow mode (`B/tests/compiled-route-surface-hint.test.cjs`). Verify: `node --test B/tests/compiled-route-surface-hint.test.cjs` prints `fail 2`, on the new tests. Evidence: brief 01, Vibe `exit_code= 0 outcome= finished`, bytes matched. My rerun printed `tests 20`, `pass 16`, `fail 4`, on the four new behavior tests. No kept-mode test, since the score is deferred.
-- [B] T005 Apply the chosen surface score in `scoreModes` (`R/lib/canary-router.cjs`). Verify: `scratch/probe-routes.cjs` prints `sk-code-review` and `sk-code-frontend` for `review the dark mode toggle and focus trap`. Deferred by the operator on 2026-11-16. Neither candidate meets every requirement. REQ-002 stays open. See `scratch/score-candidates.md`.
+- [x] T005 Apply the chosen surface score in `scoreModes` (`R/lib/canary-router.cjs`). Verify: `scratch/probe-routes.cjs` prints `sk-code-review` and `sk-code-frontend` for `review the dark mode toggle and focus trap`. Evidence: the operator chose two windows on 2026-11-16. It is applied in the selection inside `evaluateCanary`. `scoreModes` is unchanged because other code reads it. Briefs 07 to 17, each Vibe `exit_code= 0 outcome= finished` with bytes matched, added the kept-mode test and case, the router change and the doc fixes. `probe-routes.cjs` printed `targets: sk-code-review, sk-code-frontend` for that prompt.
 - [x] T006 Add the hinted specific surface inside `evaluateCanary` and record the hint as a request fact (`R/lib/canary-router.cjs`). Verify: `scratch/probe-routes.cjs` prints `sk-code-frontend` in the targets of the hinted `review this function for bugs`. Evidence: brief 02, Vibe `exit_code= 0 outcome= finished`, bytes matched for the router and its authored twin. My rerun printed `pass 18`, `fail 2`, and `probe-routes.cjs` printed `sk-code-review, sk-code-frontend, sk-code-skilled` for the hinted prompt.
 - [x] T014 Route a hinted prompt that scores no mode to the hinted specific surface (`R/lib/canary-router.cjs`). Verify: `scratch/probe-routes.cjs` prints `sk-code-frontend` for the hinted `add a filter to the table`, and the same prompt with no hint prints `defer`. Evidence: `probe-routes.cjs` printed `action: route, targets: sk-code-frontend` for the hinted prompt. Without the hint `compiled-route.cjs` printed `action: defer`. Same code path as T006.
 - [x] T007 Pass the hint into the evaluation (`B/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`). Verify: `node --test B/tests/compiled-route-surface-hint.test.cjs` prints `fail 0`. Evidence: brief 03, Vibe `exit_code= 0 outcome= finished`, bytes matched for the engine and its twin. My rerun printed `tests 20`, `pass 20`, `fail 0`.
@@ -73,10 +73,10 @@ contextType: "general"
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`. T005 stays blocked on the deferred score
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-- [ ] `scratch/routes-after.txt` differs from `scratch/routes-before.txt` only in the routes `scratch/score-candidates.md` lists
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed. The CB-CR-007 command sequence printed `surfaceBundle` with `sk-code-quality` then `sk-code-ci`. Its replay printed `["CI_WORKFLOW"]` with the four CI references. See `scratch/cb-cr-007-run.txt`
+- [x] `scratch/routes-after.txt` differs from `scratch/routes-before.txt` only in the routes `scratch/score-candidates.md` lists. `diff` printed only the three added cases. The 12 existing routes are unchanged, as the two-windows column predicts
 <!-- /ANCHOR:completion -->
 
 ---

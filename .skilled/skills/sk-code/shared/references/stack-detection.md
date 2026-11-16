@@ -8,7 +8,7 @@ trigger_phrases:
   - "declare an sk-code surface"
 importance_tier: important
 contextType: general
-version: 2.2.16.0
+version: 2.2.17.0
 ---
 
 # Router Reference - Code Surface Detection
@@ -63,7 +63,7 @@ When a specific surface and SKILLED both match, the specific surface leads and S
 
 A specific surface names one stack exactly. SKILLED is the hub's own code and the broadest surface, and one task can touch hub files beside another stack. If the broad surface came first, it would hide the narrow one. Keeping SKILLED as second evidence still loads its standards for the hub files the task touches.
 
-The registry compiler enforces the order on every compile. It fails with `SURFACE_FALLBACK_INVALID` unless the hub declares exactly one fallback and ranks it last in `routerPolicy.tieBreak` in `hub-router.json`, so a keyword tie between specific surfaces also ranks SKILLED last. The compiled router ignores `--surface-hint SKILLED` for the same reason. A hinted specific surface takes the first surface slot only when the prompt matched it.
+The registry compiler enforces the order on every compile. It fails with `SURFACE_FALLBACK_INVALID` unless the hub declares exactly one fallback and ranks it last in `routerPolicy.tieBreak` in `hub-router.json`, so a keyword tie between specific surfaces also ranks SKILLED last. The compiled router ignores `--surface-hint SKILLED` for the same reason. A hint that names a specific surface adds that surface to the route when the prompt did not match it. The router then orders it first among the surfaces.
 
 ### Declaring a Hub Surface
 

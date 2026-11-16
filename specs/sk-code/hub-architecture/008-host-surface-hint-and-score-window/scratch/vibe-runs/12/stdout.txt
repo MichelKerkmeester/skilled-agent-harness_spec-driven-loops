@@ -1,0 +1,38 @@
+RETURN: PASS | escalation=NONE | confidence=HIGH
+
+## Code Implementation Result
+
+**Mode:** Surgical Fix (documentation line replacement)
+**Files:** `.skilled/skills/sk-code/README.md`
+**Verification:** PASS
+**Quality Gate:** N/A (single prose line, no code artifact; quality runner not in the brief's scope)
+**Command:** `rg -n "ambiguityDelta" .skilled/skills/sk-code/README.md`
+**Exit Code:** 0
+**First Failing Assertion:** N/A
+**Escalation:** NONE
+**Confidence:** HIGH
+**Not checked:** the hub's doc-claim verifier (`verify-doc-claims.cjs`) and the manifest refresh — the brief scoped this to the one line and the one `rg` check.
+
+### Summary
+Replaced the single line at `.skilled/skills/sk-code/README.md:154` with the supplied text describing the two separate scoring windows (workflow modes and surfaces), and the host-side levers (`weight`, `routerPolicy.ambiguityDelta`). Diff is exactly 1 insertion, 1 deletion; no other file touched.
+
+---
+
+1. FILES CHANGED:
+   - `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/sk-code/README.md`
+
+2. COMMANDS:
+   - `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && sed -n '145,165p' .skilled/skills/sk-code/README.md` — exit 0. Last lines of output confirmed the OLD text sat alone on line 154, preceded by step 5 and followed by the blank line before `### Add a Private Surface Outside the Hub`.
+   - `edit` on the file (old_string = the exact OLD line, new_string = the exact NEW line) — succeeded, `lines_changed: 1`, no warnings.
+   - `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -n "ambiguityDelta" .skilled/skills/sk-code/README.md` — exit 0. Output, exactly one line, numbered 154:
+     ```
+     154:Each phrase a mode matches adds the mode's `weight` to its score. The router selects workflow modes and surfaces in two separate windows. A workflow mode stays in the route when it scores within `routerPolicy.ambiguityDelta` of the top workflow mode. A surface stays when it scores within that delta of the top surface. So a surface that matches several phrases no longer pushes a workflow mode out. It can still push out a second surface that matched fewer phrases. To keep both surfaces, a host may lower a surface's `weight` or raise `routerPolicy.ambiguityDelta` in `hub-router.json`. Then refresh the manifest as in step 5.
+     ```
+   - `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && git diff --stat -- .skilled/skills/sk-code/README.md && git status --porcelain -- .skilled/skills/sk-code/README.md` — exit 0. Output:
+     ```
+      .skilled/skills/sk-code/README.md | 2 +-
+      1 file changed, 1 insertion(+), 1 deletion(-)
+      M .skilled/skills/sk-code/README.md
+     ```
+
+3. OPEN QUESTIONS: none. The anchor matched exactly once, the replacement landed on line 154 as expected, and the diff is confined to that one line.

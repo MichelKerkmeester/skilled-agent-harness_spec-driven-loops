@@ -38,6 +38,7 @@ _memory:
 | Q002 | A hinted prompt that scores no mode routes to the hinted specific surface, in this packet. | It is the same code path as the join and removes one reason for the vendoring project's router overlay. | None | goal.md D5, REQ-007, T014 |
 | Q003 | The hint change also updates the three authored twins under the archived router unification program. | Not stated. | None | implementation-summary.md Files Changed |
 | Q004 | The surface score is deferred. | Not stated. | None | tasks.md T005, spec.md REQ-002 |
+| Q005 | The surface score is two windows: workflow modes and surfaces are each kept within the ambiguity delta of their own top score. | Not stated. | None | tasks.md T005, canary-router.cjs, scratch/score-candidates.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -122,6 +123,26 @@ Two windows
 Answer:
 ```text
 Defer the score (Recommended)
+```
+
+### Q005
+<!-- source: claude:3912763e-4a15-47d7-994e-71d31bbf339f:toolu_01QjEciinLMnyGakHR9bUYaf:0 -->
+
+Question:
+```text
+Packet sk-code 008 is blocked on the surface score in `scoreModes`. Both candidates keep the review mode for `review the dark mode toggle and focus trap`, and each breaks something else. Which score do I build?
+```
+
+Options:
+```text
+Two windows (Recommended)
+Count once
+Keep it deferred
+```
+
+Answer:
+```text
+Two windows (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

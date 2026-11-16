@@ -1,0 +1,41 @@
+TASK: add two tests for how the sk-code router keeps a workflow mode beside a surface that matched several phrases.
+One file changes. Do the 2 steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 2. File: R/.skilled/bin/tests/compiled-route-surface-hint.test.cjs
+OLD (3 lines, this exact text appears once in the file):
+});
+
+// A session that names a specific surface gets that surface in a scored route,
+NEW (replace those lines with these 26 lines, same indentation):
+});
+
+// A surface scores every phrase it matches, so it can outscore a workflow mode
+// the prompt named once. Each kind keeps its own window, so the mode stays.
+test('a workflow mode stays beside a surface that matched several phrases', () => {
+  const route = resolveRoute('sk-code', 'review the dark mode toggle and focus trap');
+  assert.equal(route.action, 'route');
+  assert.equal(route.selectionKind, 'surfaceBundle');
+  assert.deepEqual(modes(route), ['sk-code-review', 'sk-code-frontend']);
+});
+
+// Within one kind a lower score still drops out, so a second workflow mode or a
+// second surface that matched fewer phrases is not kept.
+test('a prompt that matches only workflow modes or only surfaces keeps one window', () => {
+  for (const [prompt, expected] of [
+    ['run the quality gate and the review', ['sk-code-quality']],
+    ['fix the typescript dark mode toggle and focus trap', ['sk-code-frontend']],
+  ]) {
+    const route = resolveRoute('sk-code', prompt);
+    assert.equal(route.action, 'route', prompt);
+    assert.equal(route.selectionKind, 'single', prompt);
+    assert.deepEqual(modes(route), expected, prompt);
+  }
+});
+
+// A session that names a specific surface gets that surface in a scored route,
+
+STEP 2 of 2. Run:
+cd R && node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs
+Expected: the summary shows "tests 22", "pass 21" and "fail 1". The one failing test is "a workflow mode stays beside a surface that matched several phrases". That failure is wanted: the router change comes in a later brief. Do not edit the router and do not change a test to make it pass. Report the pass and fail counts and the name of the failing test. If any other test fails, report its name and output.

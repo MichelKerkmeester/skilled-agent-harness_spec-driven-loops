@@ -1,0 +1,40 @@
+Both files carry the identical three-line comment and nothing else changed.
+
+1. FILES CHANGED:
+- /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs
+- /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs
+
+2. COMMANDS:
+
+`grep -n "surfaceHint" .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` — exit 0
+```
+105:// a routing hot path. `options.surfaceHint` passes through to the engine, which
+```
+
+`cp .../014-runtime-engine/lib/resolve.cjs .../015-router-unification-program/014-runtime-engine/lib/resolve.cjs; cmp ... && echo twin-same` — exit 0
+```
+cp exit=0
+twin-same
+```
+
+`node -e "require('./.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs')" && echo loads` — exit 0
+```
+loads
+loads-exit=0
+```
+
+`node .skilled/bin/compiled-route-sync.cjs --check` — exit 0
+```
+  013-live-activation/activation/sk-design/manifest.json
+  013-live-activation/activation/sk-doc/manifest.json
+  013-live-activation/activation/system-deep-loop/manifest.json
+  014-runtime-engine/lib/compiled-route.cjs
+  014-runtime-engine/lib/resolve.cjs
+all 7 hubs resolve
+all 55 served copies match their authored files
+sync-exit=0
+```
+
+`git diff -- <the two files>` — exit 0, showed only the 2-line → 3-line comment replacement in each, identical hunks.
+
+3. OPEN QUESTIONS: none. The working tree already carried unrelated modifications from earlier dispatches (canary fixtures, doctor overlay scripts, other spec packets); I did not touch them, and `git status` confirms my only edits are the two files above.

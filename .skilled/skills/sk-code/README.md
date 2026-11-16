@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.48.0
+version: 2.2.49.0
 ---
 
 # sk-code
@@ -151,7 +151,7 @@ Repeat these steps for each surface you drop. `<mode>` is the folder name of the
 4. Add a canary case that routes to the new surface in the canary fixture above, and copy the fixture over its authored twin. The completion report of the update command names both follow-ups.
 5. Commit with the hooks installed, or refresh and copy the manifest by hand.
 
-A surface that matches several phrases of one prompt can push a workflow mode out of the route. Each matched phrase adds the surface's `weight` to its score, and the router keeps only the modes within `routerPolicy.ambiguityDelta` of the top score. Until the hub changes how it scores a surface, a host may lower its surface's `weight` or raise `routerPolicy.ambiguityDelta` in `hub-router.json`. Then refresh the manifest as in step 5.
+Each phrase a mode matches adds the mode's `weight` to its score. The router selects workflow modes and surfaces in two separate windows. A workflow mode stays in the route when it scores within `routerPolicy.ambiguityDelta` of the top workflow mode. A surface stays when it scores within that delta of the top surface. So a surface that matches several phrases no longer pushes a workflow mode out. It can still push out a second surface that matched fewer phrases. To keep both surfaces, a host may lower a surface's `weight` or raise `routerPolicy.ambiguityDelta` in `hub-router.json`. Then refresh the manifest as in step 5.
 
 ### Add a Private Surface Outside the Hub
 

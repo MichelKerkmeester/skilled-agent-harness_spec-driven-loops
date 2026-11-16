@@ -20,17 +20,18 @@
     "several",
     "phrases"
   ],
-  "lastUpdated": "2026-11-16T13:22:22.837Z",
+  "lastUpdated": "2026-11-16T16:25:42.009Z",
   "specId": "008",
   "folderSlug": "host-surface-hint-and-score-window",
   "parentChain": [
     "sk-code",
     "hub-architecture"
   ],
-  "memorySequence": 3,
+  "memorySequence": 4,
   "memoryNameHistory": [
     "16-11-26_11-25__planned-the-surface-hint-join-and-the-surface.md",
     "16-11-26_14-21__built-the-surface-hint-join-for-the-sk-code.md",
-    "16-11-26_14-22__built-the-surface-hint-join-for-the-sk-code.md"
+    "16-11-26_14-22__built-the-surface-hint-join-for-the-sk-code.md",
+    "16-11-26_17-25__the-operator-chose-two-windows-for-the-surface.md"
   ]
 }

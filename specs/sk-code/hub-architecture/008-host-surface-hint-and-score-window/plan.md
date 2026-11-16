@@ -41,13 +41,13 @@ The hint moves from a reorder after validation into the router's evaluation, whe
 - [x] Success criteria measurable
 - [x] Dependencies identified
 - [x] The operator answered open questions 1 and 2 in `spec.md` on 2026-11-16
-- [ ] The operator has said to start the build
-- [ ] T002 has said whether legacy parity is still a gate
+- [x] The operator has said to start the build
+- [x] T002 has said whether legacy parity is still a gate
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs` prints `fail 0`, and `compiled-route-guard.cjs` passes for `sk-code`
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs` prints `fail 0`, and `compiled-route-guard.cjs` passes for `sk-code`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

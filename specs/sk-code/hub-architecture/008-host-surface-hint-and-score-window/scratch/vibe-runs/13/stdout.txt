@@ -1,0 +1,44 @@
+Both steps are done. The diff is one line, one insertion, one deletion.
+
+1. FILES CHANGED:
+   - `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/sk-code/shared/references/stack-detection.md`
+
+2. COMMANDS:
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -n "The registry compiler enforces the order on every compile" .skilled/skills/sk-code/shared/references/stack-detection.md`
+   - exit status: 0
+   - last 15 lines:
+   ```
+   66:The registry compiler enforces the order on every compile. It fails with `SURFACE_FALLBACK_INVALID` unless the hub declares exactly one fallback and ranks it last in `routerPolicy.tieBreak` in `hub-router.json`, so a keyword tie between specific surfaces also ranks SKILLED last. The compiled router ignores `--surface-hint SKILLED` for the same reason. A hinted specific surface takes the first surface slot only when the prompt matched it.
+   ```
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -n "orders it first among the surfaces" .skilled/skills/sk-code/shared/references/stack-detection.md`
+   - exit status: 0
+   - last 15 lines:
+   ```
+   66:The registry compiler enforces the order on every compile. It fails with `SURFACE_FALLBACK_INVALID` unless the hub declares exactly one fallback and ranks it last in `routerPolicy.tieBreak` in `hub-router.json`, so a keyword tie between specific surfaces also ranks SKILLED last. The compiled router ignores `--surface-hint SKILLED` for the same reason. A hint that names a specific surface adds that surface to the route when the prompt did not match it. The router then orders it first among the surfaces.
+   ```
+   - matches the expected result: exactly one line, numbered 66.
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && git diff --stat -- .skilled/skills/sk-code/shared/references/stack-detection.md && git diff -- .skilled/skills/sk-code/shared/references/stack-detection.md | tail -15`
+   - exit status: 0
+   - last 15 lines:
+   ```
+    .skilled/skills/sk-code/shared/references/stack-detection.md | 2 +-
+    1 file changed, 1 insertion(+), 1 deletion(-)
+   diff --git a/.skilled/skills/sk-code/shared/references/stack-detection.md b/.skilled/skills/sk-code/shared/references/stack-detection.md
+   index 41708f01519..a29ada76054 100644
+   --- a/.skilled/skills/sk-code/shared/references/stack-detection.md
+   +++ b/.skilled/skills/sk-code/shared/references/stack-detection.md
+   @@ -63,7 +63,7 @@ When a specific surface and SKILLED both match, the specific surface leads and S
+     
+    A specific surface names one stack exactly. SKILLED is the hub's own code and the broadest surface, and one task can touch hub files beside another stack. If the broad surface came first, it would hide the narrow one. Keeping SKILLED as second evidence still loads its standards for the hub files the task touches.
+     
+   -The registry compiler enforces the order on every compile. It fails with `SURFACE_FALLBACK_INVALID` unless the hub declares exactly one fallback and ranks it last in `routerPolicy.tieBreak` in `hub-router.json`, so a keyword tie between specific surfaces also ranks SKILLED last. The compiled router ignores `--surface-hint SKILLED` for the same reason. A hinted specific surface takes the first surface slot only when the prompt matched it.
+   +The registry compiler enforces the order on every compile. It fails with `SURFACE_FALLBACK_INVALID` unless the hub declares exactly one fallback and ranks it last in `routerPolicy.tieBreak` in `hub-router.json`, so a keyword tie between specific surfaces also ranks SKILLED last. The compiled router ignores `--surface-hint SKILLED` for the same reason. A hint that names a specific surface adds that surface to the route when the prompt did not match it. The router then orders it first among the surfaces.
+     
+    ### Declaring a Hub Surface
+     
+   ```
+
+3. OPEN QUESTIONS: none. The anchor matched once at line 66 with no indentation, and the replacement kept the line count at one.

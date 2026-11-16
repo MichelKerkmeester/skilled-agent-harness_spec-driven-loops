@@ -1,0 +1,48 @@
+TASK: keep sk-code workflow modes and surfaces each within the ambiguity delta of their own top score.
+Two files change. Do the 4 steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 4. File: R/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs
+OLD (3 lines, this exact text appears once in the file):
+}
+
+// The caller may name the surface its session is working in, as a declared
+NEW (replace those lines with these 21 lines, same indentation):
+}
+
+// Workflow modes and surface packets are each kept within ambiguityDelta of
+// their own top score. The two sets are then joined. A surface scores every
+// phrase it matches, so in one shared window a surface that matched several
+// phrases would push out a workflow mode the prompt named once. The mode says
+// what to do and the surface says which standards apply, so neither may crowd
+// out the other. Surfaces still share one window, so a surface that matched
+// fewer phrases than another surface still drops out.
+function selectNearTiedByKind(snapshot, scores) {
+  const surfaces = new Set(snapshot.policy.destinations
+    .filter((destination) => destination.id.packetKind === 'surface')
+    .map((destination) => destination.id.workflowMode));
+  const delta = snapshot.routingModel.ambiguityDelta;
+  return [
+    ...selectNearTiedModes(scores.filter((entry) => !surfaces.has(entry.mode)), delta),
+    ...selectNearTiedModes(scores.filter((entry) => surfaces.has(entry.mode)), delta),
+  ];
+}
+
+// The caller may name the surface its session is working in, as a declared
+
+STEP 2 of 4. File: R/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs
+OLD (1 line, this exact text appears once in the file):
+      selectNearTiedModes(scores, snapshot.routingModel.ambiguityDelta),
+NEW (replace that line with this 1 line, same indentation):
+      selectNearTiedByKind(snapshot, scores),
+
+STEP 3 of 4. The file you just edited has an authored twin that must hold the same bytes. Run exactly:
+cp R/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs R/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs
+Then run: cmp R/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs R/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs && echo twin-same
+Expected: it prints twin-same.
+
+STEP 4 of 4. Run:
+cd R && node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs
+cd R && node .skilled/bin/compiled-route-sync.cjs --check
+Expected: the test summary shows "tests 22", "pass 22" and "fail 0". The second command ends with "all 55 served copies match their authored files". Report both outputs. If a test fails, do not change it: report its name and output.

@@ -254,6 +254,24 @@ function selectNearTiedModes(scores, ambiguityDelta) {
   return scores.filter((entry) => top - entry.score <= ambiguityDelta).map((entry) => entry.mode);
 }
 
+// Workflow modes and surface packets are each kept within ambiguityDelta of
+// their own top score. The two sets are then joined. A surface scores every
+// phrase it matches, so in one shared window a surface that matched several
+// phrases would push out a workflow mode the prompt named once. The mode says
+// what to do and the surface says which standards apply, so neither may crowd
+// out the other. Surfaces still share one window, so a surface that matched
+// fewer phrases than another surface still drops out.
+function selectNearTiedByKind(snapshot, scores) {
+  const surfaces = new Set(snapshot.policy.destinations
+    .filter((destination) => destination.id.packetKind === 'surface')
+    .map((destination) => destination.id.workflowMode));
+  const delta = snapshot.routingModel.ambiguityDelta;
+  return [
+    ...selectNearTiedModes(scores.filter((entry) => !surfaces.has(entry.mode)), delta),
+    ...selectNearTiedModes(scores.filter((entry) => surfaces.has(entry.mode)), delta),
+  ];
+}
+
 // The caller may name the surface its session is working in, as a declared
 // detection label such as SKILLED or as a workflowMode. Only a declared surface
 // packet counts, so UNKNOWN, a workflow mode or an unknown name resolves to null.
@@ -334,7 +352,7 @@ function evaluateCanary(snapshot, input) {
     ));
     const selected = joinHintedSurface(
       snapshot,
-      selectNearTiedModes(scores, snapshot.routingModel.ambiguityDelta),
+      selectNearTiedByKind(snapshot, scores),
       input.surfaceHint,
     );
     if (constraints.has('clarify')) {

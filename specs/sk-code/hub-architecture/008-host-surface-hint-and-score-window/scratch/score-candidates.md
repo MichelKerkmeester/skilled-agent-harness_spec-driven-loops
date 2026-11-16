@@ -7,7 +7,7 @@ Measured on 2026-11-16 against the HEAD router with `node scratch/measure-candid
 
 ## Chosen candidate
 
-None. The packet gives no rule that picks one, and each candidate breaks a different requirement. The score part stops here for the operator.
+Two windows. The measurement gave no rule that picks one, so the operator chose on 2026-11-16, knowing the costs in the table below. A later probe found one more cost: a prompt that matches all five modes builds a route the policy has no rule for, and serving falls back to legacy routing for it.
 
 | Candidate | What it fixes | What it breaks |
 |-----------|---------------|----------------|

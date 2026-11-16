@@ -56,10 +56,10 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs` prints `fail 0` with the new tests in the count.
-- [ ] `scratch/probe-routes.cjs` prints `sk-code-review` and `sk-code-frontend` for `review the dark mode toggle and focus trap`.
-- [ ] `diff scratch/routes-before.txt scratch/routes-after.txt` prints only the routes `scratch/score-candidates.md` lists.
-- [ ] `node .skilled/bin/compiled-route-guard.cjs` passes for `sk-code`.
+- [x] `node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs` prints `fail 0` with the new tests in the count.
+- [x] `scratch/probe-routes.cjs` prints `sk-code-review` and `sk-code-frontend` for `review the dark mode toggle and focus trap`.
+- [x] `diff scratch/routes-before.txt scratch/routes-after.txt` prints only the routes `scratch/score-candidates.md` lists.
+- [x] `node .skilled/bin/compiled-route-guard.cjs` passes for `sk-code`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -81,6 +81,7 @@ and findings belong here.
 | Packet validation | Done | `validate.sh --strict --quiet` printed `RESULT: PASSED (errors=0 warnings=0)` on 2026-11-16 |
 | Operator review of the plan | Pending | None yet |
 | Build | Pending | None yet |
+| Surface score, two windows | Done | The operator chose two windows on 2026-11-16. Vibe runs 07 to 17, each exit_code 0, outcome finished, bytes matched. The bin tests printed tests 198, pass 197, fail 0, skipped 1. The probe routes sk-code-review and sk-code-frontend. A prompt that matches all five modes falls back to legacy routing |
 
 ### Deviations and findings
 

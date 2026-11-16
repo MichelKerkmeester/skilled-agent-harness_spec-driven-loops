@@ -1,0 +1,53 @@
+All four steps are done and both gates pass.
+
+**1. FILES CHANGED**
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs`
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs`
+
+**2. COMMANDS**
+
+`grep -n "selectNearTiedModes\|The caller may name the surface" .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs` — exit 0
+```
+251:function selectNearTiedModes(scores, ambiguityDelta) {
+257:// The caller may name the surface its session is working in, as a declared
+337:      selectNearTiedModes(scores, snapshot.routingModel.ambiguityDelta),
+```
+
+`cp .../001-sk-code/lib/canary-router.cjs .../015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs` — exit 0, no output.
+
+`cmp <authored> <twin> && echo twin-same` — exit 0
+```
+twin-same
+```
+
+`node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs` — exit 0
+```
+✔ a specific surface hint joins a route the prompt scored (1.127958ms)
+✔ a specific surface hint routes a prompt that scores nothing (1.498792ms)
+✔ a hint naming a workflow mode or a surface that is not specific adds nothing (6.551959ms)
+✔ the hint is a request fact (5.336542ms)
+✔ a hinted host surface joins as the first surface after the workflow modes (4.50175ms)
+✔ a hub without surface packets ignores the hint (32.6655ms)
+✔ the front door passes --surface-hint through and keeps stdout to one route line (133.790375ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 300.785291
+```
+
+`node .skilled/bin/compiled-route-sync.cjs --check` — exit 0
+```
+  013-live-activation/activation/sk-doc/manifest.json
+  013-live-activation/activation/system-deep-loop/manifest.json
+  014-runtime-engine/lib/compiled-route.cjs
+  014-runtime-engine/lib/resolve.cjs
+all 7 hubs resolve
+all 55 served copies match their authored files
+```
+
+**3. OPEN QUESTIONS**
+None. Both anchors matched on the first attempt, the twin is byte-identical, and the test count is 22/22 with `fail 0` as the brief expected. Note that `git status` shows other modified files in this worktree (doctor overlay scripts, several spec packets) — those predate this dispatch and I did not touch them; my diff is confined to the two `canary-router.cjs` files, 38 insertions and 2 deletions total.

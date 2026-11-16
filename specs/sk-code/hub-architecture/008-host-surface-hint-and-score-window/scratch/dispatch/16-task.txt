@@ -1,0 +1,19 @@
+TASK: re-mint the sk-code activation manifest after its hub docs changed, and copy it to its authored path.
+Two files change. Do the 3 steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 3. Run exactly:
+cd R && node .skilled/bin/compiled-route-manifest.cjs refresh --hub sk-code --skill-root .skilled/skills/sk-code
+Expected: it prints one JSON line that contains "refreshed":true, "fresh":true and
+"manifestFingerprint":"19544bb1d6125b36914780b226c3f367381aa1046dbd26b925eca731c8f6c0fb"
+
+STEP 2 of 3. Run exactly:
+cp R/.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json R/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json
+Then run: cmp R/.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json R/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json && echo twin-same
+Expected: it prints twin-same.
+
+STEP 3 of 3. Run:
+cd R && node .skilled/bin/compiled-route-guard.cjs; echo "guard exit=$?"
+cd R && node .skilled/bin/compiled-route-status.cjs --hub sk-code
+Expected: the guard ends with "All hubs fresh or excused: serving matches inputs, and the runtime matches its source." and prints "guard exit=0". The status line contains "servingAuthority":"compiled" and "manifestFingerprint":"19544bb1d6125b36914780b226c3f367381aa1046dbd26b925eca731c8f6c0fb". Report both outputs. Do not edit any file by hand.

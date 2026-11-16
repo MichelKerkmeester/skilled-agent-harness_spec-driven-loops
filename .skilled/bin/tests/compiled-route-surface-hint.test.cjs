@@ -133,7 +133,7 @@ test('a matching surface hint preserves the single-surface route', () => {
   }
 });
 
-test('a hint the prompt did not match, UNKNOWN or an unknown name changes nothing', () => {
+test('an empty hint, UNKNOWN or an unknown name changes nothing', () => {
   const plain = resolveRoute('sk-code', SKILLED_TESTING);
   for (const surfaceHint of ['UNKNOWN', 'not-a-surface', '']) {
     assert.deepEqual(resolveRoute('sk-code', SKILLED_TESTING, { surfaceHint }), plain);
@@ -250,6 +250,29 @@ test('non-frontend prompts that share frontend words do not select the frontend 
     const route = resolveRoute('sk-code', prompt);
     assert.ok(route, prompt);
     assert.ok(!modes(route).includes('sk-code-frontend'), prompt);
+  }
+});
+
+// A surface scores every phrase it matches, so it can outscore a workflow mode
+// the prompt named once. Each kind keeps its own window, so the mode stays.
+test('a workflow mode stays beside a surface that matched several phrases', () => {
+  const route = resolveRoute('sk-code', 'review the dark mode toggle and focus trap');
+  assert.equal(route.action, 'route');
+  assert.equal(route.selectionKind, 'surfaceBundle');
+  assert.deepEqual(modes(route), ['sk-code-review', 'sk-code-frontend']);
+});
+
+// Within one kind a lower score still drops out, so a second workflow mode or a
+// second surface that matched fewer phrases is not kept.
+test('a prompt that matches only workflow modes or only surfaces keeps one window', () => {
+  for (const [prompt, expected] of [
+    ['run the quality gate and the review', ['sk-code-quality']],
+    ['fix the typescript dark mode toggle and focus trap', ['sk-code-frontend']],
+  ]) {
+    const route = resolveRoute('sk-code', prompt);
+    assert.equal(route.action, 'route', prompt);
+    assert.equal(route.selectionKind, 'single', prompt);
+    assert.deepEqual(modes(route), expected, prompt);
   }
 });
 

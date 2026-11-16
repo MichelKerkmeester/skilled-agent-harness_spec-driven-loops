@@ -1,0 +1,60 @@
+1. FILES CHANGED:
+- /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/bin/tests/compiled-route-surface-hint.test.cjs
+
+2. COMMANDS:
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && sed -n '130,142p' .skilled/bin/tests/compiled-route-surface-hint.test.cjs` — exit 0
+```
+    const route = resolveRoute('sk-code', prompt, { surfaceHint: 'SKILLED' });
+    assert.equal(route.selectionKind, 'single');
+    assert.deepEqual(modes(route), ['sk-code-skilled']);
+  }
+});
+
+test('a hint the prompt did not match, UNKNOWN or an unknown name changes nothing', () => {
+  const plain = resolveRoute('sk-code', SKILLED_TESTING);
+  for (const surfaceHint of ['UNKNOWN', 'not-a-surface', '']) {
+    assert.deepEqual(resolveRoute('sk-code', SKILLED_TESTING, { surfaceHint }), plain);
+  }
+});
+```
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs` — exit 0
+```
+✔ a specific surface hint joins a route the prompt scored (1.785ms)
+✔ a specific surface hint routes a prompt that scores nothing (2.312ms)
+✔ a hint naming a workflow mode or a surface that is not specific adds nothing (8.521458ms)
+✔ the hint is a request fact (6.056167ms)
+✔ a hinted host surface joins as the first surface after the workflow modes (4.336542ms)
+✔ a hub without surface packets ignores the hint (34.644208ms)
+✔ the front door passes --surface-hint through and keeps stdout to one route line (160.43925ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 349.623959
+```
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -n "an empty hint, UNKNOWN or an unknown name changes nothing" .skilled/bin/tests/compiled-route-surface-hint.test.cjs` — exit 0
+```
+136:test('an empty hint, UNKNOWN or an unknown name changes nothing', () => {
+```
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && git status --porcelain && echo "---DIFF---" && git diff -- .skilled/bin/tests/compiled-route-surface-hint.test.cjs` — exit 0
+```
+---DIFF---
+@@ -133,7 +133,7 @@ test('a matching surface hint preserves the single-surface route', () => {
+   }
+ });
+ 
+-test('a hint the prompt did not match, UNKNOWN or an unknown name changes nothing', () => {
++test('an empty hint, UNKNOWN or an unknown name changes nothing', () => {
+   const plain = resolveRoute('sk-code', SKILLED_TESTING);
+   for (const surfaceHint of ['UNKNOWN', 'not-a-surface', '']) {
+     assert.deepEqual(resolveRoute('sk-code', SKILLED_TESTING, { surfaceHint }), plain);
+```
+
+3. OPEN QUESTIONS: none on the brief itself. Two observations: the target file already carried uncommitted changes from earlier dispatches in this session (two new tests at lines 256+), so `git diff` on it shows more than my one line — my edit is only the title line at 136. The working tree also holds unrelated modified files from other packets; I touched none of them.
