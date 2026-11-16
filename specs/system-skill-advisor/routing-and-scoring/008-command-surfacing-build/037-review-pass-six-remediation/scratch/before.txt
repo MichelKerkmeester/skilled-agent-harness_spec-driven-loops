@@ -1,0 +1,10 @@
+## before: phase 036 after.txt, measured on the code at 85550ee946e (HEAD before this phase)
+      Tests  2326 passed | 6 skipped (2332)
+exit 0
+$ npm run typecheck -> exit 0
+$ FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+$ EVAL
+[160,49,21,5]

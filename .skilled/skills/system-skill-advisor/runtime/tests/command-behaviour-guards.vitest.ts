@@ -779,6 +779,11 @@ describe('arena builder', () => {
         'init',
       ]);
       expect(committed.status).toBe(0);
+      // The fixture only guards the overflow while its listing passes the buffer a
+      // spawnSync call starts with, so the premise is checked, not assumed.
+      const listing = spawnSync('git', ['ls-files', '-z'], { cwd: source, maxBuffer: 64 * 1024 * 1024 });
+      expect(listing.status).toBe(0);
+      expect(listing.stdout.length).toBeGreaterThan(1024 * 1024);
       mkdirSync(join(source, 'dist'));
       writeFileSync(join(source, 'dist', 'out.js'), 'built from v1\n');
       const arena = join(root, 'arena');

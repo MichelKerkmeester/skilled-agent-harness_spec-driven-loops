@@ -28,7 +28,7 @@ contextType: "general"
 | **Parent Spec** | ../spec.md |
 | **Phase** | 36 of 36 |
 | **Predecessor** | 035-suite-metrics-and-start-shape |
-| **Successor** | None |
+| **Successor** | 037-review-pass-six-remediation |
 | **Handoff Criteria** | The goal log restates the 007 before and after start rates and the 033 arm start rates under the fixed rule, each from a printed line |
 <!-- /ANCHOR:metadata -->
 

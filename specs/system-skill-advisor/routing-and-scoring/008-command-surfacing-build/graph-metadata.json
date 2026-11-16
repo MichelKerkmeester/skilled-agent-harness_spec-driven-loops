@@ -39,7 +39,8 @@
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape",
-    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/036-start-rate-fixed-rule"
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/036-start-rate-fixed-rule",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/037-review-pass-six-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -241,7 +242,7 @@
     ],
     "causal_summary": "A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-16T07:45:36.045Z",
+    "last_save_at": "2026-11-16T08:38:57.202Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -249,13 +250,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:0f7f0c39bd1f045a0474a7581780accf1627c490e8f34da996974ba67a42c745",
+    "source_fingerprint": "sha256:719203e967200415482a4be3e66acfeadf4e4c267d5a91d4ae89808dd25b5c5e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "baf018183b9c1df22a3996b247f28e39540edac265a4e3f43de21db15a70b50a",
+      "spec.md": "39f66548b23501c4d346ad0e872737ceec064dd7a1662df88b30b4f749f9f948",
       "decision-record.md": "dd3ebcc862aa12f6052594907e5647d424cae4f528b725f6e0e589e6186c40e6"
     },
-    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/036-start-rate-fixed-rule",
-    "last_active_at": "2026-11-16T07:43:44.336Z"
+    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/037-review-pass-six-remediation",
+    "last_active_at": "2026-11-16T08:38:53.236Z"
   }
 }

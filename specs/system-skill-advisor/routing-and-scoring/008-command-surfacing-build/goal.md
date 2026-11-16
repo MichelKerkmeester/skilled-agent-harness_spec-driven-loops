@@ -357,6 +357,8 @@ and findings belong here.
 | Correction to the Start rates, fixed rule, 007 set row | Restated (Q080) | its started of offered figures come from 036 scratch/fields-check.txt line 6, not restate.txt, which holds start rates only |
 | Start figures before Q080 | Old rule, superseded | Every start rate and started-of-offered figure logged before the Start rates, fixed rule rows counts a document read alone as a start. Read the fixed rule rows for the 007 start, pre and final sets and the 033 arm |
 | Phase 036 start rate fixed rule | Complete (Q080) | 99aef1e794f plus review fixes: read alone is a lookup, readOnly printed beside the rate. Four stored sets restated, each moved by exactly its lookups, other fields equal. Suite 2326/0, floors and eval unchanged. Gate review APPROVED 93/100, five P2s fixed, strict PASSED |
+| Review pass six | Converged, 0 P0 and 0 P1 | three DeepSeek v4.1 flash max lineages, 3 iterations each, last ratios scorer 0.25, arena-config 0.40, merge-docs 0, above 0.10 on P2 only as pass five allowed. 11 P2. Fixed in phase 037: cat-start README clause, shell-step comment, scoreRun startShape type, TEMP and TMP plus the signal limit, buffer test premise, hook health record runtimes in README.md. Reasons: second heredoc on one line (no... |
+| Phase 037 review pass six remediation | Complete | six P2 fixes (docs, comments, scoreRun type, TEMP and TMP, buffer test premise), five reasons. Suite 2326/0, floors and eval unchanged, 033 rescore byte-identical. Pass five report kept as review-report-pass-5.md, review-report.md is pass six |
 
 ### Deviations and findings
 

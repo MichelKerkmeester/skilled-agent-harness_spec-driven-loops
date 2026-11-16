@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7b804dc6fbb91899e9bd1f521df0fcae2edc0b16102e9d57abbaad0662d75f0c",
+  "manifestHash": "84ea5e56b98c7b9859a23b85f4d771447221a19c1163d42e098880549ffebb21",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -80674,6 +80674,9 @@
     "pascalcase types check": [
       "pascalcase types check"
     ],
+    "pass six p2 findings": [
+      "pass six p2 findings"
+    ],
     "past due tasks": [
       "past-due tasks"
     ],
@@ -83623,6 +83626,9 @@
     ],
     "phase 37 relaunch test speed": [
       "phase 37 relaunch test speed"
+    ],
+    "phase 37 review pass six": [
+      "phase 37 review pass six"
     ],
     "phase 38 plugin scanner follow ups": [
       "phase 38 plugin scanner follow ups"
@@ -99240,6 +99246,21 @@
     ],
     "review pass four remediation tasks": [
       "review pass four remediation tasks"
+    ],
+    "review pass six remediation": [
+      "review pass six remediation"
+    ],
+    "review pass six remediation acceptance criteria": [
+      "review pass six remediation acceptance criteria"
+    ],
+    "review pass six remediation implementation summary": [
+      "review pass six remediation implementation summary"
+    ],
+    "review pass six remediation plan": [
+      "review pass six remediation plan"
+    ],
+    "review pass six remediation tasks": [
+      "review pass six remediation tasks"
     ],
     "review pass tasks": [
       "review pass tasks"

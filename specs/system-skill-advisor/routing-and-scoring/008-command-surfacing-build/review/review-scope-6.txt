@@ -1,0 +1,19 @@
+# review pass six: code areas diff with git -c core.fsmonitor=false diff ddb12a6852c 85550ee946e -- <path>; the merge-docs area diffs with git -c core.fsmonitor=false diff 695f4191d36620b42b5f76a28c25e460fccdd0f7 85550ee946e -- <path>
+scorer	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+scorer	.skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts
+scorer	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+arena-config	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs
+arena-config	.skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts
+arena-config	.skilled/skills/system-skill-advisor/runtime/vitest.config.ts
+merge-docs	.github/workflows/spec-kit-check.yml
+merge-docs	.skilled/agents/markdown.md
+merge-docs	.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json
+merge-docs	.skilled/changelog/skilled/v4.0.2.1.md
+merge-docs	.skilled/commands/doctor/scripts/README.markdown
+merge-docs	.skilled/hooks/shared/session-readers/README.md
+merge-docs	.skilled/skills/system-spec-kit/SKILL.md
+merge-docs	.skilled/skills/system-spec-kit/changelog/v2.13.4.0.md
+merge-docs	.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+merge-docs	.vibe/agents/markdown.toml
+merge-docs	CONTRIBUTING.md
+merge-docs	README.md

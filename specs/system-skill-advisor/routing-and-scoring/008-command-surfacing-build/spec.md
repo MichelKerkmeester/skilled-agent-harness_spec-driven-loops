@@ -153,6 +153,7 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are
 | 34 | 034-scorer-heredoc-redirect-fix/ | The transcript scorer stops reading a `>` inside a heredoc body as a redirect, and the phase 033 lines are rescored so the arm verdict and B-5 trigger are restated from the fixed scorer | Complete |
 | 35 | 035-suite-metrics-and-start-shape/ | The advisor suite writes its health records under its own temp folder, and the scorer prints the shape of every start beside the start rate | Complete |
 | 36 | 036-start-rate-fixed-rule/ | The printed start rate follows the fixed arm start rule, a read alone counts as a lookup beside it, and the 007 and 033 start rates are restated | Complete |
+| 37 | 037-review-pass-six-remediation/ | Review pass six closed with 0 P0 and 0 P1. Six cheap P2 fixes land and the other five carry a reason | Complete |
 
 ### Phase Transition Rules
 
@@ -197,6 +198,7 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are
 | 033-untuned-arm-arena-run | 034-scorer-heredoc-redirect-fix | Phase 033 is Complete and committed with its run lines and summary, because phase 034 rescores exactly those lines | Phase 034 task T002 shows the unfixed scorer reproduces `summary-arm.json` byte for byte |
 | 034-scorer-heredoc-redirect-fix | 035-suite-metrics-and-start-shape | Phase 034 is Complete and committed, because the start rates this phase must leave unchanged are its rescore | Phase 035 task T007 compares every rate with 034 `summary-rescore.json` |
 | 035-suite-metrics-and-start-shape | 036-start-rate-fixed-rule | Phase 035 is committed with `startShapes`, because this phase reads the shape to apply the rule | Phase 036 task T001 records both before summaries at the 035 commit |
+| 036-start-rate-fixed-rule | 037-review-pass-six-remediation | Phase 036 is committed, because pass six reviewed its code | Pass six lineages read `85550ee946e` |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -1563,8 +1563,9 @@ describe('startState', () => {
   });
 
   // A runtime may read the command's document through the shell, so a reader that
-  // opens the document is the same start a read tool records. A search, an in-place
-  // edit and a heredoc line name the document without opening it as a workflow.
+  // opens the document is the same read a read tool records, and the table's write
+  // inside the checkout makes that read a start. A search, an in-place edit and a
+  // heredoc line name the document without opening it as a workflow.
   it.each([
     { command: 'cat .skilled/commands/create/readme.md', started: true },
     { command: 'rg -n step .skilled/commands/create/readme.md', started: false },

@@ -8,6 +8,7 @@
     "accuracy-runner-confirm-4b",
     "accuracy-runner-confirm-5b",
     "advisor-runtime-3",
+    "arena-config-6",
     "docs-metadata-5",
     "docs-metadata-confirm-5b",
     "doctor-docs-3",
@@ -18,11 +19,13 @@
     "hook-confirm-3b",
     "kill-switch-cli-5",
     "kill-switch-cli-confirm-5b",
+    "merge-docs-6",
     "noedit-close-3c",
     "noedit-confirm-3b",
     "render-hooks-plugin",
     "render-hooks-plugin-2",
     "render-hooks-plugin-4",
+    "scorer-6",
     "scorer-attach",
     "scorer-attach-2",
     "scorer-attach-4",
@@ -68,6 +71,11 @@
       "reasoningEffort": "max"
     },
     "advisor-runtime-3": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "arena-config-6": {
       "kind": "cli-opencode",
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
@@ -122,6 +130,11 @@
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
     },
+    "merge-docs-6": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
     "noedit-close-3c": {
       "kind": "cli-opencode",
       "model": "opencode-go/deepseek-v4.1-flash",
@@ -143,6 +156,11 @@
       "reasoningEffort": "max"
     },
     "render-hooks-plugin-4": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "scorer-6": {
       "kind": "cli-opencode",
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
@@ -827,6 +845,39 @@
       ]
     },
     {
+      "findingId": "AC6-P2-005",
+      "severity": "P2",
+      "title": "A listing above the cap is still reported as a spawn failure",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs",
+      "line": 150,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "arena-config-6"
+      ]
+    },
+    {
       "findingId": "NE3-P2-003",
       "severity": "P2",
       "title": "A long flag whose value is attached by shell quoting still reports ok for a command node refuses to run",
@@ -1156,6 +1207,39 @@
       ]
     },
     {
+      "findingId": "iter1-P2-second-heredoc-body-write",
+      "severity": "P2",
+      "title": "A second heredoc on one opening line is not stripped, so its body comparison becomes a write",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 752,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-6"
+      ]
+    },
+    {
       "findingId": "NC3-P2-003",
       "severity": "P2",
       "title": "A separated value for a valid node flag is read as the hook script",
@@ -1346,6 +1430,39 @@
       "mergedFindingIds": [],
       "_lineages": [
         "accuracy-runner-confirm-5b"
+      ]
+    },
+    {
+      "findingId": "iter1-P2-unnamed-write-is-inside-checkout",
+      "severity": "P2",
+      "title": "A write whose target is never named counts as inside the checkout, so a lookup plus an unnamed write scores as a readWrite start",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 327,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-6"
       ]
     },
     {
@@ -2875,6 +2992,39 @@
       ]
     },
     {
+      "findingId": "iter3-P2-score-run-return-omits-start-shape",
+      "severity": "P2",
+      "title": "scoreRun declared return type omits startShape, the field addScored reads",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 2035,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-6"
+      ]
+    },
+    {
       "findingId": "DMC5B-P2-003",
       "severity": "P2",
       "title": "Section 18.5 still names numbered category slots that the playbook no longer has",
@@ -3183,6 +3333,39 @@
       "mergedFindingIds": [],
       "_lineages": [
         "render-hooks-plugin-2"
+      ]
+    },
+    {
+      "findingId": "AC6-P2-004",
+      "severity": "P2",
+      "title": "The buffer regression test never asserts the premise it guards",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts",
+      "line": 755,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "arena-config-6"
       ]
     },
     {
@@ -4193,6 +4376,39 @@
       ]
     },
     {
+      "findingId": "AC6-P2-003",
+      "severity": "P2",
+      "title": "The isolation lever reaches one of the two suite configs",
+      "file": ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+      "line": 14,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "arena-config-6"
+      ]
+    },
+    {
       "findingId": "HC3B-P2-002",
       "severity": "P2",
       "title": "The lookahead word list is too narrow: an adverb or a different preposition keeps the old false no-edit reading",
@@ -4846,6 +5062,39 @@
       ]
     },
     {
+      "findingId": "AC6-P2-001",
+      "severity": "P2",
+      "title": "The per-run temp folder is removed on a clean exit only",
+      "file": ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+      "line": 16,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "arena-config-6"
+      ]
+    },
+    {
       "findingId": "SA4-P2-004",
       "severity": "P2",
       "title": "The phase 020 requirement still states a weak-cue bar of 10 while the accepted implementation uses 9",
@@ -4971,6 +5220,72 @@
       "mergedFindingIds": [],
       "_lineages": [
         "doctor-install"
+      ]
+    },
+    {
+      "findingId": "iter2-P2-old-start-rule-still-stated",
+      "severity": "P2",
+      "title": "The README and the shell-step test still say a bare document read is a start",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 135,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-6"
+      ]
+    },
+    {
+      "findingId": "MD6-P2-002",
+      "severity": "P2",
+      "title": "The README promises a health record on every prompt hook without the OpenCode exception",
+      "file": "README.md",
+      "line": 682,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "merge-docs-6"
       ]
     },
     {
@@ -5196,6 +5511,39 @@
       "mergedFindingIds": [],
       "_lineages": [
         "accuracy-runner-4"
+      ]
+    },
+    {
+      "findingId": "MD6-P2-001",
+      "severity": "P2",
+      "title": "The release note system-spec-kit range stops one version short",
+      "file": ".skilled/changelog/skilled/v4.0.2.1.md",
+      "line": 480,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "merge-docs-6"
       ]
     },
     {
@@ -5633,6 +5981,39 @@
           ],
           "basis": "same-id-different-content"
         }
+      ]
+    },
+    {
+      "findingId": "AC6-P2-002",
+      "severity": "P2",
+      "title": "The suite isolation sets only the variable POSIX reads",
+      "file": ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+      "line": 14,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "arena-config-6"
       ]
     },
     {
@@ -6310,11 +6691,76 @@
   "findingsBySeverity": {
     "P0": 0,
     "P1": 15,
-    "P2": 149
+    "P2": 160
   },
-  "openFindingsCount": 164,
+  "openFindingsCount": 175,
   "resolvedFindingsCount": 5,
   "activeP0": 0,
   "activeP1": 15,
-  "activeP2": 149
+  "activeP2": 160,
+  "searchDebt": [
+    {
+      "iteration": 3,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        "020-command-offer-fit-guards/tasks.md"
+      ],
+      "bugClass": "checklist_evidence",
+      "disposition": "deferred",
+      "rationale": "No new finding here.",
+      "evidenceRefs": [
+        "tests/command-attach-guards.vitest.ts:181",
+        "020-command-offer-fit-guards/tasks.md:200"
+      ],
+      "reason": "The maintainability iteration records the test-gap finding."
+    },
+    {
+      "iteration": 2,
+      "id": "ARC4C-SL-009",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/report.md"
+      ],
+      "bugClass": "deferred_scope",
+      "disposition": "deferred",
+      "rationale": "The closing round records them as deferred, not as new findings.",
+      "evidenceRefs": [
+        "027-review-pass-four-remediation/spec.md:214"
+      ],
+      "reason": "The 027 remediation spec assigns these three items to phase 026; re-reporting them here would duplicate a deferred workstream."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "020-command-offer-fit-guards/tasks.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "deferred",
+      "rationale": "No separate finding.",
+      "evidenceRefs": [
+        "tests/command-attach-guards.vitest.ts:181",
+        "020-command-offer-fit-guards/tasks.md:200"
+      ],
+      "reason": "Recorded as a traceability note in iteration 3 and as part of the coverage gap here."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "deferred",
+      "rationale": "No finding yet.",
+      "evidenceRefs": [
+        "fusion.ts:1223",
+        "command-attach.ts:472"
+      ],
+      "reason": "The security iteration reviews the path split and needs a compiled-hub read-only route to prove reach."
+    }
+  ]
 }

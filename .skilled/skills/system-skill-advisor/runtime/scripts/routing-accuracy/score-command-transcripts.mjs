@@ -2034,6 +2034,7 @@ function offerOf(line, label) {
  *   command to skill table and the set of known skills.
  * @returns {Promise<{scored: false, reason: string}
  *   | {scored: true, capped: boolean, startRow: boolean, started: boolean,
+ *      startShape: 'skill'|'reported'|'expanded'|'readWrite'|'readOnly'|null,
  *      offered: boolean, offerFieldAbsent: boolean, offeredAsPartner: boolean,
  *      offerSeen: boolean,
  *      commandState: string|null, briefDelivered: boolean|'unknown',

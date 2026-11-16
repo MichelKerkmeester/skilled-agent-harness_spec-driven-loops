@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/037-review-pass-six-remediation",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/037-review-pass-six-remediation",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review pass six remediation",
+      "phase 37 review pass six",
+      "pass six p2 findings",
+      "review pass six remediation plan",
+      "review pass six remediation tasks",
+      "review pass six remediation acceptance criteria",
+      "review pass six remediation implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "pass",
+      "six",
+      "remediation",
+      "phase",
+      "findings",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts",
+      "scratch/after.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-command-transcripts.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-transcript-score.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-behaviour-guards.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Pass",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Doc",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Unchanged",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Pass six left docs and comments that no longer match the code: the scorer README and a test comment still call a bare `cat` of the document a start, the `scoreRun` return type omits `startShape`, the vitest config comment claims removal on every exit and a move on every platform, the arena buffer test never checks the listing it guards, and the root README says every prompt hook writes a health record while four runtimes write none",
+    "created_at": "2026-11-16T08:31:45Z",
+    "last_save_at": "2026-11-16T08:38:53.215Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9398615495521b9afd9fda1777d814a1798dade2cf4ed19fc026922819cf2eec",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a5e8cb4706c395479b80039bcbe0a6b1cc63c809ebb38a52a47a69d467a66433",
+      "plan.md": "1f0092953fa071ed7cdf602b61c08b32b44f564dea6248cb34c6bd34d133831e",
+      "tasks.md": "c48a7b52a699524eb49422abea1be6ea4db96f953656c0a7e9d5b4e673399bc0",
+      "implementation-summary.md": "05ad1eeb6a07e3d6ea3fc0789e98da0f974bc4d57501952dff23670e7de9e287"
+    },
+    "last_active_at": null
+  }
+}

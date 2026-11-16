@@ -1,0 +1,594 @@
+{
+  "sessionId": "fanout-arena-config-6-1794815529929-dybl7p",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "timestamp": "2026-11-16T08:20:56.980Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "AC6-P2-001",
+      "severity": "P2",
+      "title": "The per-run temp folder is removed on a clean exit only",
+      "file": ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+      "line": 16,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "AC6-P2-002",
+      "severity": "P2",
+      "title": "The suite isolation sets only the variable POSIX reads",
+      "file": ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+      "line": 14,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "AC6-P2-003",
+      "severity": "P2",
+      "title": "The isolation lever reaches one of the two suite configs",
+      "file": ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+      "line": 14,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "AC6-P2-004",
+      "severity": "P2",
+      "title": "The buffer regression test never asserts the premise it guards",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts",
+      "line": 755,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "AC6-P2-005",
+      "severity": "P2",
+      "title": "A listing above the cap is still reported as a spawn failure",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs",
+      "line": 150,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 5
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.6,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "claim_scope_drift",
+      "failure_code_diagnosis",
+      "platform_env_variable",
+      "resource_lifecycle",
+      "test_premise_not_asserted"
+    ],
+    "ruledOut": [
+      "checklist_evidence_gap",
+      "dotenv_copy_filter",
+      "input_size_overflow",
+      "private_temp_mode",
+      "second_entry_point",
+      "socket_path_length"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "resource_lifecycle": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "platform_env_variable": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "input_size_overflow": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "socket_path_length": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "claim_scope_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "second_entry_point": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "checklist_evidence_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "test_premise_not_asserted": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "failure_code_diagnosis": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "private_temp_mode": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "dotenv_copy_filter": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "buffer_ceiling_reproduction": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs"
+      ],
+      "bugClass": "input_size_overflow",
+      "disposition": "ruled_out",
+      "rationale": "the raised cap reads the fixture listing that the default cap truncates, and this checkout's own listing is 20,432,037 bytes",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:148"
+      ],
+      "reason": "reproduced the overflow at the default cap and its absence at 512 MiB"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/launcher-ipc-bridge.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts"
+      ],
+      "bugClass": "socket_path_length",
+      "disposition": "ruled_out",
+      "rationale": "the socket directory is not derived from tmpdir(), and the limit has its own relocation path",
+      "evidenceRefs": [
+        ".skilled/bin/lib/launcher-ipc-bridge.cjs:31"
+      ],
+      "reason": "no socket path in this runtime resolves under tmpdir()"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts"
+      ],
+      "bugClass": "second_entry_point",
+      "disposition": "ruled_out",
+      "rationale": "the default-suite entry point in the same workflow is the changed config, so only the stress config is outside",
+      "evidenceRefs": [
+        ".github/workflows/skill-advisor-stress.yml:95"
+      ],
+      "reason": "the workflow's default step reads vitest.config.ts, which carries the block"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation/tasks.md"
+      ],
+      "bugClass": "checklist_evidence_gap",
+      "disposition": "ruled_out",
+      "rationale": "a stronger row supplies the build evidence, so the weaker clause does not leave the fix unproven",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation/tasks.md:164"
+      ],
+      "reason": "T043 records the ok:true build and the marker contents"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts"
+      ],
+      "bugClass": "private_temp_mode",
+      "disposition": "ruled_out",
+      "rationale": "the folder and the records stay user-private",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts:14",
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:456"
+      ],
+      "reason": "observed mode 0700 and unchanged writer modes"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs"
+      ],
+      "bugClass": "dotenv_copy_filter",
+      "disposition": "ruled_out",
+      "rationale": "the cap bounds reads, and the copy filter is a separate walk the diff does not touch",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:484"
+      ],
+      "reason": "unchanged filter on a path the diff does not modify"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs"
+      ],
+      "bugClass": "input_size_overflow",
+      "disposition": "ruled_out",
+      "rationale": "the raised cap reads the fixture listing that the default cap truncates, and this checkout's own listing is 20,432,037 bytes",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:148"
+      ],
+      "proof": "reproduced the overflow at the default cap and its absence at 512 MiB"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/launcher-ipc-bridge.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts"
+      ],
+      "bugClass": "socket_path_length",
+      "disposition": "ruled_out",
+      "rationale": "the socket directory is not derived from tmpdir(), and the limit has its own relocation path",
+      "evidenceRefs": [
+        ".skilled/bin/lib/launcher-ipc-bridge.cjs:31"
+      ],
+      "proof": "no socket path in this runtime resolves under tmpdir()"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts"
+      ],
+      "bugClass": "second_entry_point",
+      "disposition": "ruled_out",
+      "rationale": "the default-suite entry point in the same workflow is the changed config, so only the stress config is outside",
+      "evidenceRefs": [
+        ".github/workflows/skill-advisor-stress.yml:95"
+      ],
+      "proof": "the workflow's default step reads vitest.config.ts, which carries the block"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation/tasks.md"
+      ],
+      "bugClass": "checklist_evidence_gap",
+      "disposition": "ruled_out",
+      "rationale": "a stronger row supplies the build evidence, so the weaker clause does not leave the fix unproven",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation/tasks.md:164"
+      ],
+      "proof": "T043 records the ok:true build and the marker contents"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts"
+      ],
+      "bugClass": "private_temp_mode",
+      "disposition": "ruled_out",
+      "rationale": "the folder and the records stay user-private",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts:14",
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:456"
+      ],
+      "proof": "observed mode 0700 and unchanged writer modes"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs"
+      ],
+      "bugClass": "dotenv_copy_filter",
+      "disposition": "ruled_out",
+      "rationale": "the cap bounds reads, and the copy filter is a separate walk the diff does not touch",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:484"
+      ],
+      "proof": "unchanged filter on a path the diff does not modify"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "test_premise_not_asserted",
+      "failure_code_diagnosis",
+      "private_temp_mode",
+      "dotenv_copy_filter"
+    ],
+    "covered": [
+      "test_premise_not_asserted",
+      "failure_code_diagnosis"
+    ],
+    "ruledOut": [
+      "private_temp_mode",
+      "dotenv_copy_filter"
+    ],
+    "deferred": [],
+    "blocked": [
+      "buffer_ceiling_reproduction"
+    ],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 2,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 1,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape/spec.md:64",
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation/tasks.md:116"
+        ],
+        "gateClass": "hard",
+        "level": "core",
+        "protocol": "spec_code",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "re-checked: both new advisories sit inside the delivered behaviour and contradict no stated requirement."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape/acceptance-criteria.md:48",
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation/tasks.md:164"
+        ],
+        "gateClass": "hard",
+        "level": "core",
+        "protocol": "checklist_evidence",
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "summary": "carried from iteration 2; no checklist row changed state this pass."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md:104"
+        ],
+        "gateClass": "advisory",
+        "level": "overlay",
+        "protocol": "playbook_capability",
+        "protocolId": "playbook_capability",
+        "status": "notApplicable",
+        "summary": "the playbook inspects the metrics folder after a manual hook run, which no suite config changes."
+      }
+    ],
+    "unfinishedCoreProtocols": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
