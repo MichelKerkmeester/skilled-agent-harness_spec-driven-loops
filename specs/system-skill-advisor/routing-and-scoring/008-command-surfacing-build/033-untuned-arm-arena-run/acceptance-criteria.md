@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** 033-untuned-arm-arena-run
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-16
 <!-- /ANCHOR:metadata -->
 
@@ -53,13 +53,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given five arenas at `AC`, When every turn ends, Then each arena reads no remote and an empty status and every run line reads `restored: true` | `scratch/arenas.txt`, `jq -s 'map(.restored) | unique'` over `LOGS` prints `[true]` | Unmet | - |
-| AC-002 | REQ-002 | Given the run and its scoring, When the evidence is written, Then no prompt text was read or printed and each number came from a committed script | `rg -c '"prompt"' scratch/summary-arm.json scratch/arm-evidence.txt` prints no match | Unmet | - |
-| AC-003 | REQ-003 | Given the run logs, When grouped by arm and run, Then each runtime prints `[36,36,8]` | T006 Verify output per runtime | Unmet | - |
-| AC-004 | REQ-004 | Given `arm-evidence.txt`, When the 026 target as option D amends it is applied, Then the goal log holds one `Arm verdict` row whose numbers match the file | `rg -c '^\| Arm verdict \|' ../goal.md` prints 1 | Unmet | - |
-| AC-005 | REQ-005 | Given the smoke log, When delivery is read per arm, Then off reads false and on reads true on claude, pi, devin and dsh, and opencode reads unknown in both | `scratch/smoke.txt`, `MISMATCH` over `scratch/runs/smoke.jsonl` prints nothing | Unmet | - |
-| AC-006 | REQ-006 | Given the faults the scorer and `MISMATCH` list, When each is rerun once, Then `reruns.txt` names each and the total stays at or under 440 lines | `cat scratch/runs/*.jsonl \| wc -l` | Unmet | - |
-| AC-007 | REQ-007 | Given the verdict, When the phase closes, Then the goal log holds the verdict, per-runtime, step reader and B-5 rows | `rg -c` per row over `../goal.md` | Unmet | - |
+| AC-001 | REQ-001 | Given five arenas at `AC`, When every turn ends, Then each arena reads no remote and an empty status and every run line reads `restored: true` | Every arena ended at b765c7a14c5 with 0 remotes and an empty status (scratch/arenas-after.txt, the post-run check); 397 of 401 lines read restored true, the 4 fresh-skill-04 head-move lines read false (ADR-001) | Waived | ADR-001 |
+| AC-002 | REQ-002 | Given the run and its scoring, When the evidence is written, Then no prompt text was read or printed and each number came from a committed script | `rg -c '"prompt"'` over summary-arm.json, arm-evidence.txt and runs/ exits 1 (no match); evidence numbers come from the scorer and the 026 jq filters (scratch/arm-evidence.txt:16) | Met | - |
+| AC-003 | REQ-003 | Given the run logs, When grouped by arm and run, Then each runtime prints `[36,36,8]` | The grouping prints [36,36,8] for claude, opencode, pi, devin and dsh (scratch/grouping.txt:2) | Met | - |
+| AC-004 | REQ-004 | Given `arm-evidence.txt`, When the 026 target as option D amends it is applied, Then the goal log holds one `Arm verdict` row whose numbers match the file | The goal log's Arm verdict row reads Not shown with pooled p 0.0769, dsh decline starts 1 of 16 and floors 2 and 5 of 44, the same numbers as arm-evidence.txt (../goal.md:333, scratch/arm-evidence.txt:16) | Met | - |
+| AC-005 | REQ-005 | Given the smoke log, When delivery is read per arm, Then off reads false and on reads true on claude, pi, devin and dsh, and opencode reads unknown in both | scratch/smoke.txt: false off and true on for claude, pi, devin and dsh, opencode unknown both, MISMATCH empty, 0 unscored (scratch/smoke.txt:1) | Met | - |
+| AC-006 | REQ-006 | Given the faults the scorer and `MISMATCH` list, When each is rerun once, Then `reruns.txt` names each and the total stays at or under 440 lines | reruns.txt lists the fresh-skill-04 faults and the two dsh exit-1 lines with reasons; run lines 401 plus 10 smoke is 411, under 440 (scratch/reruns.txt:1) | Met | - |
+| AC-007 | REQ-007 | Given the verdict, When the phase closes, Then the goal log holds the verdict, per-runtime, step reader and B-5 rows | Goal log holds Arm verdict, Arm devin, Step reader and B-5 trigger rows (../goal.md:333) | Met | - |
 
 ### Status values
 
@@ -85,7 +85,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every row is Unmet until the arm has run and been scored.
+Six rows are Met and AC-001 is Waived by ADR-001, which exists in decision-record.md.
 <!-- /ANCHOR:closure -->

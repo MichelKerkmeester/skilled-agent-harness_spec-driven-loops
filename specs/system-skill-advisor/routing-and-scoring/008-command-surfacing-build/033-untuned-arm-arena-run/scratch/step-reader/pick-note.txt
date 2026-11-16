@@ -1,0 +1,1 @@
+sessions: the 20 exported sessions hold each row's opening prompt, so they stay out of git (kept in the session scratchpad); pick.txt names each runtime, row and locator

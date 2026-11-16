@@ -3,6 +3,7 @@
   "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run",
   "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run",
   "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -18,6 +19,7 @@
       "untuned arm arena run plan",
       "untuned arm arena run tasks",
       "untuned arm arena run acceptance criteria",
+      "033-untuned-arm-arena-run decisions",
       "untuned arm arena run implementation summary"
     ],
     "key_topics": [
@@ -35,17 +37,23 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
+      "scratch/summary-arm.json",
       "scratch/arm-evidence.txt",
-      "scratch/arenas.txt",
       "scratch/smoke.txt",
-      "scratch/runs/smoke.jsonl"
+      "scratch/reruns.txt",
+      "scratch/arenas.txt",
+      "scratch/arenas-after.txt",
+      "scratch/devin-rebase-evidence.txt",
+      "scratch/dsh-head-move-evidence.txt",
+      "scratch/devin-rows.txt"
     ],
     "entities": [
       {
@@ -73,9 +81,21 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "summary-arm.json",
+        "kind": "config",
+        "path": "scratch/summary-arm.json",
         "source": "derived"
       },
       {
@@ -85,21 +105,45 @@
         "source": "derived"
       },
       {
-        "name": "arenas.txt",
-        "kind": "file",
-        "path": "scratch/arenas.txt",
-        "source": "derived"
-      },
-      {
         "name": "smoke.txt",
         "kind": "file",
         "path": "scratch/smoke.txt",
         "source": "derived"
       },
       {
-        "name": "smoke.jsonl",
+        "name": "reruns.txt",
         "kind": "file",
-        "path": "scratch/runs/smoke.jsonl",
+        "path": "scratch/reruns.txt",
+        "source": "derived"
+      },
+      {
+        "name": "arenas.txt",
+        "kind": "file",
+        "path": "scratch/arenas.txt",
+        "source": "derived"
+      },
+      {
+        "name": "arenas-after.txt",
+        "kind": "file",
+        "path": "scratch/arenas-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "devin-rebase-evidence.txt",
+        "kind": "file",
+        "path": "scratch/devin-rebase-evidence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-head-move-evidence.txt",
+        "kind": "file",
+        "path": "scratch/dsh-head-move-evidence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "devin-rows.txt",
+        "kind": "file",
+        "path": "scratch/devin-rows.txt",
         "source": "derived"
       },
       {
@@ -155,47 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Paired",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The behaviour summary over the tuned 007 rows prints a before and an after start rate on six runtimes, but those rows were tuned while the advisor was built, so they cannot show that the brief helps on prompts nobody saw",
     "created_at": "2026-11-15T23:21:04Z",
-    "last_save_at": "2026-11-16T03:53:17.076Z",
+    "last_save_at": "2026-11-16T04:12:07.496Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +211,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f58cafc145646bfca44a565abf826d5e04426d33596a601e6e8233c2d1bef441",
+    "source_fingerprint": "sha256:4a0e20eb08ebb1839cf4e9d442547808e395c96a3c0899595c06055adc25aece",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "30eeda9120e55973ac261f4363161c9974c783ba56a13c8033ec4d995fb33b19",
-      "plan.md": "2a08b66c40eee38fa07397fb389a4a58badf0680d14d6fa195127b1bdc3b3a50",
-      "tasks.md": "436981812293eabf6cc71149423cdf0a3dd3d167daacaa802eda97ce588f0892",
-      "implementation-summary.md": "27f72dc4ed4c6fb8d2b9762c495186767180082d1fcef648a876fe07401fbad4"
+      "spec.md": "fe3cc0fb8dc35753f4fc32d6593d7a6bc1ab06eb78dc7948713aa8a33f4de277",
+      "plan.md": "f2864a9c12ba9f6028a303952dde6e3defcf86f6a64b921b190c02100440550a",
+      "tasks.md": "58a310d5df8757780dbb47fb8853b8826589df7d17c3b6c33b922f56d5c7bc12",
+      "decision-record.md": "6c7e9e8c38be394015a7d1484da9e7a053be7f955701a2c21d45e93fb4b3c712",
+      "implementation-summary.md": "0bec46b51c7efdbd38aed31979156b4fbf32ecec1e2b58f85fca9b852d0a56c1"
     },
     "last_active_at": null
   }

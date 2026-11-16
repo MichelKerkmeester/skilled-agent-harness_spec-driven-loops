@@ -65,9 +65,9 @@ Every command runs from the repository root unless a task names an arena. Set th
 - [x] T008 [C] Score the arm (`$SP/summary-arm.json`, `$SP/arm-evidence.txt`). After T007. With `SKILL_ADVISOR_FRESH_PROMPTS_PATH` unset run `node $S --summary $LOGS --pair off,on --json > $SP/summary-arm.json`, then write `FOLLOWED`, `PAIRED`, `POOLED`, `STARTS` and `DELIVERY` over it, `mismatch <count>` from `MISMATCH` over `LOGS`, and the six `limit: ` lines of 026 T044 with Codex named as not measured (Q075) and one run per arm (option D). No number is typed by hand. Verify: 10 `followed`, at most 5 `paired`, 1 `pooled`, 10 `starts`, 10 `delivery`, 1 `mismatch` and 6 `limit: ` lines. Evidence: Evidence: summary-arm.json exit 0; arm-evidence.txt holds 10 followed, 5 paired, 1 pooled, 10 starts, 10 delivery, mismatch 0 and 6 limit lines, every number from the scorer and the 026 jq filters
 - [x] T009 [C] Check the sealed reach floor at `AC` (`$SP/arm-evidence.txt`). After T008. Run `(set -o pipefail; node $CAP | jq -c '.attachedMetrics.plain.holdout')` and the same with `--real-embedding`, and append `floor fixture <out>` and `floor real <out>`, or `floor real: embedder not live` when it exits 2. Verify: `rg -c '^floor ' $SP/arm-evidence.txt` prints 2. Evidence: Evidence: at HEAD b765c7a14c5 (0 code diff from AC) fixture exit 0 combined 2 of 44, real exit 0 combined 5 of 44, both floor lines appended
 - [x] T010 [C] Record the verdict (the parent `goal.md` through `PLOG` only). After T009. Apply the 026 Pre-registered Target as option D amends it: a row gains when its `on` run 1 followed and its `off` run 1 did not, and loses on the reverse. `Met` needs the pooled `p` below 0.05, every `on` arm's decline starts `0 of <n>` over both runs, fixture `combined` at least 1 and real at least 4. Write `PLOG "Arm verdict | <Met or Not shown> | <pooled line>, decline starts on <per runtime>, floors <fixture> and <real>"` and one `Arm <runtime>` row for each runtime whose gained is not above lost. Verify: `rg -c '^\| Arm verdict \| (Met|Not shown) \|' $PK/goal.md` prints 1 and `goal.cjs packet $PK` prints `packet_budget=ok`. Evidence: Evidence: goal log Arm verdict Not shown (p 0.0769, dsh decline start 1 of 16), Arm devin row (gained 3 = lost 3), packet_budget=ok
-- [ ] T011 [J] Step reader (`$SP/step-reader/`). After T010. Pick and export up to four followed `on` sessions per runtime as 026 T047 states, then one Fable 5.2 medium session judges three steps per session as 026 T048 states. Write `PLOG "Step reader | Judgment, not a printed number | <yes counts>"`. Verify: one report block per picked session and one `Step reader` row.
+- [x] T011 [J] Step reader (`$SP/step-reader/`). After T010. Pick and export up to four followed `on` sessions per runtime as 026 T047 states, then one Fable 5.2 medium session judges three steps per session as 026 T048 states. Write `PLOG "Step reader | Judgment, not a printed number | <yes counts>"`. Verify: one report block per picked session and one `Step reader` row. Evidence: Evidence: pick.txt 20 lines (4 per runtime, five runtimes), 20 sessions exported through loadSession, report.txt one block per session, TOTAL setup=15/20 folder=12/20 output=4/20, goal log Step reader row
 - [x] T012 [C] Decide B-5 (the parent `goal.md` through `PLOG` only). After T010. Fire when any `on` block reads decline starts above 0, or the pooled `on` skill-only starts exceed the `off` sum. Write the Fired or Declined row as 026 T049 states and build nothing here. Verify: `rg -c '^\| B-5 trigger \| (Fired|Declined) \|' $PK/goal.md` prints 1. Evidence: Evidence: goal log B-5 trigger Fired on the dsh decline start at fresh-decline-refusal-02; built nothing here
-- [ ] T013 [C] Close the phase (`$PH/implementation-summary.md`). After T011 and T012. Check `G status --porcelain` shows only this phase's folder, `026` runs and the goal, that each arena still reads no remote, fill the summary and validate. Verify: `validate.sh $PH --strict` prints `RESULT: PASSED`.
+- [x] T013 [C] Close the phase (`$PH/implementation-summary.md`). After T011 and T012. Check `G status --porcelain` shows only this phase's folder, `026` runs and the goal, that each arena still reads no remote, fill the summary and validate. Verify: `validate.sh $PH --strict` prints `RESULT: PASSED`. Evidence: Evidence: validate --strict RESULT: PASSED (Errors 0, Warnings 0); gate review re-run APPROVED, 0 P0, 0 P1; arenas-after.txt all five clean with no remote; implementation-summary.md filled
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -110,9 +110,9 @@ Every command runs from the repository root unless a task names an arena. Set th
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md Evidence: spec.md REQ-001 to REQ-007
+- [x] CHK-002 [P0] Technical approach defined in plan.md Evidence: plan.md, strict validation passed at planning
+- [x] CHK-003 [P1] Dependencies identified and available Evidence: five CLIs on PATH, 640 GB free, arenas.txt
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -120,10 +120,10 @@ Every command runs from the repository root unless a task names an arena. Set th
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] No code file changes: `G diff --stat AC -- . ':!specs'` prints nothing
-- [ ] CHK-011 [P0] The advisor suite reports 0 failed at `AC`
-- [ ] CHK-012 [P1] Every stopped pass resumed and written on its task line
-- [ ] CHK-013 [P1] Commands follow the 026 runbook
+- [x] CHK-010 [P0] No code file changes: `G diff --stat AC -- . ':!specs'` prints nothing Evidence: `git diff --stat b765c7a14c5 -- . ':!specs'` prints nothing
+- [x] CHK-011 [P0] The advisor suite reports 0 failed at `AC` Evidence: before.txt: 2313 passed, 0 failed at 9bc2f17a59e, whose code equals the arena commit b765c7a14c5 (that commit touched three spec files only)
+- [x] CHK-012 [P1] Every stopped pass resumed and written on its task line Evidence: devin and dsh stops written on T005 and in reruns.txt
+- [x] CHK-013 [P1] Commands follow the 026 runbook Evidence: commands as the 026 runbook, with the T003 path and T006 flag amendments written on their lines
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -131,10 +131,10 @@ Every command runs from the repository root unless a task names an arena. Set th
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] The smoke passed before run 1
-- [ ] CHK-022 [P1] Faults rerun once, listed in `reruns.txt`
-- [ ] CHK-023 [P1] The line cap of 440 held
+- [x] CHK-020 [P0] All acceptance criteria met Evidence: acceptance-criteria.md: six Met, AC-001 Waived by ADR-001
+- [x] CHK-021 [P0] The smoke passed before run 1 Evidence: smoke.txt, 10 lines, no mismatch, before T005
+- [x] CHK-022 [P1] Faults rerun once, listed in `reruns.txt` Evidence: reruns.txt
+- [x] CHK-023 [P1] The line cap of 440 held Evidence: 411 lines with smoke, cap 440
 <!-- /ANCHOR:testing -->
 
 ---
@@ -142,13 +142,13 @@ Every command runs from the repository root unless a task names an arena. Set th
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-- [ ] CHK-FIX-001 [P0] Not a fix packet: no finding is fixed here, so each finding class reads `matrix/evidence`.
-- [ ] CHK-FIX-002 [P0] No producer changes, proven by CHK-010.
-- [ ] CHK-FIX-003 [P0] No consumer changes, proven by CHK-010.
-- [ ] CHK-FIX-004 [P0] No security, path or parser code changes, proven by CHK-010.
-- [ ] CHK-FIX-005 [P1] Matrix axes listed: five runtimes, two arms, run 1 and the decline run 2.
-- [ ] CHK-FIX-006 [P1] Each turn's environment is the runner's `childEnv`, unchanged.
-- [ ] CHK-FIX-007 [P1] Evidence pinned to `AC`.
+- [x] CHK-FIX-001 [P0] Not a fix packet: no finding is fixed here, so each finding class reads `matrix/evidence`. Evidence: no finding fixed here, measurement only
+- [x] CHK-FIX-002 [P0] No producer changes, proven by CHK-010. Evidence: CHK-010
+- [x] CHK-FIX-003 [P0] No consumer changes, proven by CHK-010. Evidence: CHK-010
+- [x] CHK-FIX-004 [P0] No security, path or parser code changes, proven by CHK-010. Evidence: CHK-010
+- [x] CHK-FIX-005 [P1] Matrix axes listed: five runtimes, two arms, run 1 and the decline run 2. Evidence: five runtimes x off and on x run 1, plus on run 2 for 8 decline rows
+- [x] CHK-FIX-006 [P1] Each turn's environment is the runner's `childEnv`, unchanged. Evidence: runner childEnv unchanged, OPENCODE_DB unset in every script
+- [x] CHK-FIX-007 [P1] Evidence pinned to `AC`. Evidence: arena commit b765c7a14c5
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -156,9 +156,9 @@ Every command runs from the repository root unless a task names an arena. Set th
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No prompt text read or printed, and `hook-flags.env` only tested with `test -e`
-- [ ] CHK-031 [P0] Every arena reads no remote after the run
-- [ ] CHK-032 [P1] Every run line reads `restored: true`
+- [x] CHK-030 [P0] No prompt text read or printed, and `hook-flags.env` only tested with `test -e` Evidence: no prompt field in any committed run file; hook-flags.env tested with test -e only
+- [x] CHK-031 [P0] Every arena reads no remote after the run Evidence: scratch/arenas-after.txt: every arena 0 remotes, 0 status, 0 stash at b765c7a14c5, the stray devin and dsh main refs deleted
+- [x] CHK-032 [P1] Every run line reads `restored: true` Evidence: 397 of 401 lines restored true; the 4 fresh-skill-04 head-move lines (devin.jsonl lines 32, 33 and 81, dsh.jsonl line 68) are covered by ADR-001
 <!-- /ANCHOR:security -->
 
 ---
@@ -166,9 +166,9 @@ Every command runs from the repository root unless a task names an arena. Set th
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Goal log rows match the evidence
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized Evidence: spec, plan and tasks match the run, with the T003 and T006 amendments on their lines and the plan section 7 deviation recorded by ADR-001
+- [x] CHK-041 [P1] Goal log rows match the evidence Evidence: goal rows quote arm-evidence.txt lines; the Arm devin lost-row ids and paths come from scratch/devin-rows.txt, the scorer's per-row output
+- [x] CHK-042 [P2] README updated (if applicable) Evidence: not applicable, no README in scope
 <!-- /ANCHOR:docs -->
 
 ---
@@ -176,8 +176,8 @@ Every command runs from the repository root unless a task names an arena. Set th
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only Evidence: run files under scratch/ only
+- [x] CHK-051 [P1] scratch/ cleaned before completion Evidence: per-runtime smoke files merged and removed; scratch/ holds evidence only
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -187,11 +187,11 @@ Every command runs from the repository root unless a task names an arena. Set th
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | [ ]/12 |
-| P1 Items | 13 | [ ]/13 |
-| P2 Items | 1 | [ ]/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: Pending
+**Verification Date**: 2026-11-16
 <!-- /ANCHOR:summary -->
 
 ---

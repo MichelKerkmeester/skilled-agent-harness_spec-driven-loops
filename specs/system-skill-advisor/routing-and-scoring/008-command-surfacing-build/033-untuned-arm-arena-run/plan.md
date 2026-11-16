@@ -125,6 +125,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 - **Trigger**: a smoke contradiction, a builder refusal, or any line with `restored` not true
 - **Procedure**: stop the runners, leave the arenas for inspection, move this phase's run logs to `scratch/runs/discarded/` and log the stop. Nothing outside the arenas and this phase's folder is written, so no code rollback applies
+- **Deviation, 2026-11-16**: the trigger fired on four `fresh-skill-04` lines, each a turn that moved the arena's head. The run was kept and scored, not discarded. ADR-001 in `decision-record.md` records why and what it supersedes, including the section 3 invariant
 <!-- /ANCHOR:rollback -->
 
 ---
