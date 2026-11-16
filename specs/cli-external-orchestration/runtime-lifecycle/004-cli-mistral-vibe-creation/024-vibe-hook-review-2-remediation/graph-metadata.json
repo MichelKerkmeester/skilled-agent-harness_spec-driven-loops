@@ -3,7 +3,6 @@
   "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation",
   "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation",
   "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -207,7 +206,7 @@
     ],
     "causal_summary": "Vibe 3.1.2 puts `\"toolname\": \"process.start\"` in the payload of a background shell command, while the repo guards' tool-name map keyed only `processstart`, the alias a `match` selector accepts",
     "created_at": "2026-11-16T06:43:46Z",
-    "last_save_at": "2026-11-16T09:19:11.626Z",
+    "last_save_at": "2026-11-16T11:39:21.892Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ace46f795bca213ff7843dfcb65deb3366fd35f74f4178cff950519b5f065146",
+    "source_fingerprint": "sha256:5acba3935f6072338ad4c528a204396558aeb9f92cda6e069272b33bc980db6c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "09c78dc9358f7c0cceb18d75ec06e8564eca8cda6352563f82b6762c58776f04",
+      "spec.md": "eb55fbe7d8f22a39015e36c06a98d01bd014157d9f3275518a1b45fc32c31238",
       "plan.md": "aba33717084f684ce50a5e78d3eb3ad93ad4053964e4f3c359ff3284b7cff254",
-      "tasks.md": "bc415a88d54f9d37d8787780f807327dc216f3882cc1351b9286da344b1be5cf",
-      "implementation-summary.md": "542c353f2ef1fc9025423ac7e3baf01aed193082ac0a141b779da5a2994c774f"
+      "tasks.md": "17009975f75a86827b82da5789fa6f5d44573414e32d8c18db5a7fa76cb46a70",
+      "implementation-summary.md": "33229980384bdab5b5ce93ac25e85f36b85b7a66f0b852054147c17ada8bce6f"
     },
     "last_active_at": null
   }

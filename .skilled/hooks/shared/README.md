@@ -60,7 +60,7 @@ It checks the master switch and the default-shape `SYSTEM_<CONCERN>_DISABLED`. I
 
 `hook_flag_on <name>` checks one named switch with the same precedence. It refuses any name that is not a plain variable name before the resolver's `eval` sees it. Shell entrypoints load the file with `source` and then call `hook_enabled <concern>`. `.skilled/bin/worktree-guard.sh` sources it, as do the git hooks and `validate.sh`.
 
-**Boundaries.** Imports are Node builtins only. `hook-flags.cjs` imports `node:fs`, `node:path` and `./env-aliases.cjs`. `hook-adapter-shared.cjs` imports nothing. `payload-dir.mjs` imports `node:fs`, `node:path` and `node:url`. The ESM facade imports `node:module` only.
+**Boundaries.** Imports are Node builtins only. `hook-flags.cjs` imports `node:fs`, `node:path` and `./env-aliases.cjs`. `hook-adapter-shared.cjs` imports nothing. `payload-dir.mjs` and `cli-entry.mjs` import `node:fs`, `node:path` and `node:url`. The ESM facade imports `node:module` only.
 
 Only helpers genuinely shared by multiple concerns belong here. A concern-specific helper goes in that concern's `lib/`.
 
@@ -83,10 +83,11 @@ shared/
 +-- hook-adapter-shared.test.cjs     # node --test suite for the reader
 +-- hook-stdin-deadline.test.mjs     # node --test suite for the deadline
 +-- payload-dir.mjs                  # where a payload cwd points, and whether a hook may write there
++-- cli-entry.mjs                    # whether a hook module is the script node was started with, symlinks resolved
 +-- session-reader-declarations.mjs  # rebuilds or checks the .d.mts files
 +-- dsh/                             # DSH loader and fan-out leaf marker
 +-- session-readers/                 # one reader per runtime, plus identity, index and project
-`-- tests/                           # DSH loader test and plugin test helpers
+`-- tests/                           # DSH loader and launch-check tests, plugin test helpers
 ```
 
 `dsh/` holds `dsh-llm.mjs`, which resolves the dsh packages from the running dsh binary. It also holds `session-role.mjs`, which marks a fan-out leaf.
@@ -110,6 +111,7 @@ shared/
 | `hook-adapter-shared.test.cjs` | `node --test` suite. A never-closed stdin resolves at the deadline and its process exits. Complete input comes back whole. |
 | `hook-stdin-deadline.test.mjs` | `node --test` suite. With stdin left open and never written, each ESM adapter in its list exits 0 at the deadline with its fail-open output. The adapters no other suite spawns still answer a normal payload. |
 | `payload-dir.mjs` | `sessionDirFor(cwd)` resolves a payload's relative cwd against the checkout and falls back to the checkout when none is given. `existingDirectory(path)` is true only for an absolute path that already exists as a directory, so a payload cannot make a hook create a tree wherever it names. The Vibe session-lifecycle, decision-capture and ask-surface adapters import it, and `.vibe/plugins/repo-guards/lib/hook-io.mjs` re-exports it for the Vibe guards. |
+| `cli-entry.mjs` | `isCliEntry(import.meta.url)` is true when the calling module is the script node was started with. Both paths are compared after resolving symlinks, because Node reports the entry module under its real path while `process.argv[1]` keeps the path as typed, so a hook reached through a linked `.skilled` tree would otherwise skip its main step. The four Vibe session-lifecycle entry points and `.vibe/plugins/repo-guards/dist-freshness.mjs` use it. |
 | `session-readers/` | Read-only reader package. `readSession()` resolves one exact session id per runtime and projects it into the shared `HistoryEntry` list. It writes nothing. Claude, Codex, Pi, OpenCode, Devin, DSH and Vibe are `ready`. Cursor is `gated`. See [`session-readers/index.mjs`](./session-readers/index.mjs). |
 | `session-reader-declarations.mjs` | Rebuilds the committed `session-readers/*.d.mts` declarations that TypeScript callers read. With `--check` it reports any that no longer match their source. The compiler will not overwrite a declaration in place, so a plain build never refreshes them. It builds in a temporary copy and borrows the TypeScript compiler that the system-spec-kit skill installs. No hook loads it. |
 | `dsh/` | Loader and leaf marker for the DSH adapters. `dsh-llm.mjs` resolves the dsh packages from the running dsh binary. `session-role.mjs` marks a fan-out leaf. |
