@@ -9,7 +9,7 @@ trigger_phrases:
   - "readme review checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # README Quality and Pre-Publish Checklist
@@ -59,7 +59,7 @@ Apply these checks only to sections that fit the README audience and purpose.
 | **Configuration** | File path, all options table, environment variables |
 | **Usage Examples** | 3+ examples (simple to advanced), common patterns table |
 | **Troubleshooting** | 3+ issues, "What you see / Causes / Fix" format, diagnostic commands |
-| **FAQ** | 2+ questions per category, bold Q:/A: format |
+| **FAQ** | 2+ questions per category, each question its own heading |
 | **Related Documents** | Internal links table, external links table |
 
 ---
@@ -68,12 +68,12 @@ Apply these checks only to sections that fit the README audience and purpose.
 
 ### Structure
 
-- [ ] Title with one-line blockquote tagline for normal READMEs. Code-folder READMEs use the code-folder scaffold and do not require the tagline.
+- [ ] Title with one-line blockquote tagline for normal READMEs. Code-folder READMEs use the code-folder scaffold and do not require the tagline. A repository front page may carry its pitch under the nav line instead.
 - [ ] No Table of Contents and no `<!-- ANCHOR -->` navigation comments
 - [ ] All included sections have content (no empty sections)
 - [ ] Section numbers are sequential and H2 headings are ALL CAPS. These general format rules bind code-folder READMEs through the cross-reference in `SKILL.md` §6.
 - [ ] Section headings name the feature or artifact they introduce, not a generic label like "Powered by"
-- [ ] Horizontal rules between H2 sections
+- [ ] Horizontal rules between H2 sections, or one `&nbsp;` line above each H2 in a root guide the validator exempts
 - [ ] A fenced Directory Tree is present when the target folder has immediate subdirectories. A flat folder instead has a complete `CONTENTS`, `FILES` or `KEY FILES` table naming every direct file other than the README.
 
 ### Content

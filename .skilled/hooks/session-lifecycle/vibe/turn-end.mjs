@@ -17,6 +17,7 @@
 import { createRequire } from 'node:module';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isCliEntry } from '../../shared/cli-entry.mjs';
 
 const require = createRequire(import.meta.url);
 const { readStdin } = require('../../shared/hook-adapter-shared.cjs');
@@ -26,7 +27,7 @@ const { readStdin } = require('../../shared/hook-adapter-shared.cjs');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const HOOK_DIR = dirname(fileURLToPath(import.meta.url));
-const IS_CLI_ENTRY = process.argv[1] ? resolve(process.argv[1]) === fileURLToPath(import.meta.url) : false;
+const IS_CLI_ENTRY = isCliEntry(import.meta.url);
 
 const COMPLETION_PART_PATH = resolve(
   HOOK_DIR,

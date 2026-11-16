@@ -7,7 +7,7 @@ trigger_phrases:
   - "skilled-loop vibe handover"
   - "Vibe automatic relaunch tier"
   - "Vibe handover withdraw"
-version: 1.0.4.0
+version: 1.0.5.0
 id: session-handover-vibe
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -23,7 +23,7 @@ This scenario covers the Vibe automatic relaunch tier. One automatable check cov
 
 ### Why This Matters
 
-Vibe writes its context usage to a numbered journal segment and keeps its own `compaction_threshold` in the runtime state of the session's current generation. A reader that opens the wrong segment or the wrong generation either never nudges or nudges late, and neither shows in a reply. The turn end is the only arm event Vibe offers. A missing arm leaves the note open with the session still running, and a withdraw that never fires ends a turn the operator just started. Only the relaunch log and the note's own status separate those cases.
+Vibe writes its context usage to a numbered journal segment and keeps its own `compaction_threshold` in the runtime state of the session's current generation. A reader that opens the wrong segment or the wrong generation either never nudges or nudges late, and neither shows in a reply. The turn end is the only arm event Vibe offers. A missing arm leaves the note open with the session still running, and a withdraw that never fires ends a turn the operator just started. The relaunch log, the hop history and the note's own status separate those cases.
 
 ---
 

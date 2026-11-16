@@ -8,6 +8,7 @@
 # Functions:
 # _json_escape()    - Escape strings for safe JSON embedding
 # Find_repo_root()  - Walk parent directories to find repository root
+# Decision_record_is_writer_only() - Tell a save-written decision record from an ADR
 #
 # Compatibility: Bash 3.2+ (macOS default)
 # ───────────────────────────────────────────────────────────────
@@ -88,6 +89,32 @@ find_repo_root() {
         dir="$(dirname "$dir")"
     done
     return 1
+}
+
+# ───────────────────────────────────────────────────────────────
+# Writer-only decision record — the save step records operator answers
+# In decision-record.md at any level, so presence alone does not signal
+# Level 3. Only a record whose anchors are all the writer's own stays neutral.
+# Usage: decision_record_is_writer_only "/path/to/decision-record.md"
+# Returns: 0 if every anchor is operator-decisions or operator-answers-verbatim,
+# 1 if the file is missing, has no anchors, or has any other anchor
+# ───────────────────────────────────────────────────────────────
+decision_record_is_writer_only() {
+    local record="$1"
+    [[ -f "$record" ]] || return 1
+
+    local anchor_ids
+    anchor_ids=$(grep -oE '<!-- */?ANCHOR:[A-Za-z0-9_-]+' "$record" 2>/dev/null | sed -E 's/.*ANCHOR://' | sort -u || true)
+    [[ -n "$anchor_ids" ]] || return 1
+
+    local anchor_id
+    while IFS= read -r anchor_id; do
+        case "$anchor_id" in
+            operator-decisions|operator-answers-verbatim) ;;
+            *) return 1 ;;
+        esac
+    done <<< "$anchor_ids"
+    return 0
 }
 
 # Exit codes:

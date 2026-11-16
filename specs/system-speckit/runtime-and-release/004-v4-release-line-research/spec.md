@@ -124,7 +124,7 @@ Every write stays inside this packet.
 | 22 | 022-linked-project-host-index/ | Barter follow-up: Gate 1 from a linked project checkout reads the owning host index | Complete |
 | 23 | 023-configurable-host-index-folder/ | Barter follow-up: a host names its trigger index folder in `.skilled-host.json` | Complete |
 | 24 | 024-root-release-docs-alignment/ | Root docs: `PUBLIC-RELEASE.md`, `CONTRIBUTING.md` and `SECURITY.md` match the current repository | Complete |
-| 25 | 025-root-readme-rewrite/ | Root `README.md`: research the current repository, then rewrite it shorter and correct | Complete |
+| 25 | 025-root-readme-rewrite/ | Root `README.md` and root docs rewrite, plus the sk-doc README templates | Complete |
 
 ### Phase Transition Rules
 

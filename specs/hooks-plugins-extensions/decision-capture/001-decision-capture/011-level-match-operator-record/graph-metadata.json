@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record",
+  "spec_folder": "hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record",
+  "parent_id": "hooks-plugins-extensions/decision-capture/001-decision-capture",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "level match operator record",
+      "phase 11 level match operator record",
+      "writer-only decision record level warning",
+      "level match operator record plan",
+      "level match operator record tasks",
+      "011-level-match-operator-record operator decisions",
+      "level match operator record implementation summary"
+    ],
+    "key_topics": [
+      "level",
+      "match",
+      "operator",
+      "record",
+      "phase",
+      "writer-only",
+      "decision",
+      "warning",
+      "plan",
+      "tasks",
+      "011-level-match-operator-record",
+      "decisions"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/shell-common.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/rules/check-level-match.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-extended.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-upgrade-level.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/test-fixtures/README.md",
+      ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+      "lib/shell-common.sh",
+      "rules/check-level-match.sh",
+      "spec/upgrade-level.sh",
+      "references/validation/validation-rules.md",
+      "test-fixtures/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "shell-common.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/shell-common.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-level-match.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-level-match.sh",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-level.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test-validation-extended.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-extended.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test-upgrade-level.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-upgrade-level.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/test-fixtures/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "validation-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`check-level-match.sh` warns \"decision-record.md present but Level 1 declared\" whenever a Level 1 packet holds that file",
+    "created_at": "2026-11-16T12:09:38Z",
+    "last_save_at": "2026-11-16T12:37:18.140Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3701f2b658694f8311d835ccfd22e0076c1e33aba3359fcb35f01f9078cb6528",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e01004a28f89e474fa05f276bf886b88c8f4bbbb933e0552327bb5b5f36e3692",
+      "plan.md": "c0fa1a350c126b7379cb4bff33ae4be6f37c906eec43745a9f2682018ad51d37",
+      "tasks.md": "37b905e865822da1f073ac9bf98b0b7704f5e3280830783ba8d0451bc0bbdc3a",
+      "decision-record.md": "a4adc390016d97af876ea4cca4f34f9ac6dc540769b5166a5c36ae1ec2cc3df0",
+      "implementation-summary.md": "2c59a8c6308deaa1cff034be061c173f9b62ca8af7938201f354261791488203"
+    },
+    "last_active_at": null
+  }
+}

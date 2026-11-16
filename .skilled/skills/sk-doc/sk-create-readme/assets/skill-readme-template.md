@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill readme scaffold"
 importance_tier: normal
 contextType: general
-version: 1.3.4.0
+version: 1.3.5.0
 ---
 
 # Skill README Template
@@ -26,6 +26,8 @@ Give a person a fast, honest orientation to a skill before they open `SKILL.md`.
 ### Usage
 
 Copy the fillable scaffold in Section 6 into `.skilled/skills/[skill-name]/README.md`, then replace every placeholder with current behavior taken from the skill's real files. Keep the numbered ALL-CAPS section headers, the house style and the validator both require them. Drop any section that does not earn its place and renumber the rest.
+
+The `sk-create-readme` mode owns this template. `sk-create-skill` scaffolds the rest of a skill package and hands the README step to this mode, so a first README and a later refresh follow the same scaffold. A skill README sits below the repository root, so it separates its sections with `---` rules, never with the `&nbsp;` spacers of a root guide.
 
 ### Identity Guidance (Purpose First)
 
@@ -94,7 +96,7 @@ Avoid marketing claims. The prose explains why the capability matters. The table
 
 ## 3. WRITING RULES
 
-- Apply the [Prose Clarity Checklist](../../references/skill/creation-workflow.md#prose-clarity-checklist) to README prose.
+- Apply the [Prose Clarity Checklist](../../sk-create-skill/references/skill/creation-workflow.md#prose-clarity-checklist) to README prose.
 - State the outcome before the tooling. The pitch and the identity guidance name what the reader gets. The tool names follow as the means.
 - Open OVERVIEW with what the skill is and what the reader gets.
 - Use `### Why This Skill Exists` only to explain a current reader problem.
@@ -117,7 +119,7 @@ Avoid marketing claims. The prose explains why the capability matters. The table
 
 ## 4. HVR ENFORCEMENT
 
-Every README this template produces must pass the Human Voice Rules. The full ruleset lives at [`hvr-rules.md`](../../../sk-create-with-human-voice/references/hvr-rules.md).
+Every README this template produces must pass the Human Voice Rules. The full ruleset lives at [`hvr-rules.md`](../../sk-create-with-human-voice/references/hvr-rules.md).
 
 ### Banned Forms
 
@@ -151,7 +153,7 @@ Forced three-item groups are the fifth banned form. No exactly-three inline enum
 
 Every skill README carries a version in its frontmatter: `version: X.Y.Z.W`, the same 4-part scheme `SKILL.md` uses. Bump the README version on every release, whether the change touched the README text or the skill it documents. The README states the current state, so a behavior change is a README change even when the prose barely moves.
 
-Every release gets a per-skill changelog entry at `changelog/<version>.md`. The entry follows the shared [changelog template](../../../sk-create-changelog/assets/changelog-template.md) and its message-release shape: NEW covers what arrived, CHANGED covers what moved, NOT CHANGED covers what stayed untouched.
+Every release gets a per-skill changelog entry at `changelog/<version>.md`. The entry follows the shared [changelog template](../../sk-create-changelog/assets/changelog-template.md) and its message-release shape: NEW covers what arrived, CHANGED covers what moved, NOT CHANGED covers what stayed untouched.
 
 `SKILL.md` and the README carry versions that move together. A skill release bumps both files. The changelog entry records the new version.
 
@@ -281,9 +283,9 @@ flowchart TD
 
 ## 6. FAQ
 
-**Q: [The question a reader actually asks, including "why this instead of X".]**
+### [The question a reader actually asks, including "why this instead of X"?]
 
-A: [A short, direct answer. Link a stable file when it helps.]
+[A short, direct answer. Link a stable file when it helps.]
 
 ---
 
@@ -367,9 +369,9 @@ The pilot README work distilled eight writing directives. Every directive has a 
 
 ## 9. RELATED RESOURCES
 
-- [`readme-template.md`](../../../sk-create-readme/assets/readme-template.md) - General README scaffold this skill template narrows.
-- [`creation-workflow.md`](../../references/skill/creation-workflow.md) - Skill creation workflow and lifecycle guidance.
-- [`skill-md-template.md`](./skill-md-template.md) - Runtime `SKILL.md` scaffold.
-- [`skill-reference-template.md`](./skill-reference-template.md) - Reference-file scaffold.
-- [`hvr-rules.md`](../../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules, the voice this template writes in.
-- [`changelog-template.md`](../../../sk-create-changelog/assets/changelog-template.md) - Changelog entry format every skill release follows.
+- [`readme-template.md`](./readme-template.md) - General README scaffold this skill template narrows.
+- [`creation-workflow.md`](../../sk-create-skill/references/skill/creation-workflow.md) - Skill creation workflow and lifecycle guidance.
+- [`skill-md-template.md`](../../sk-create-skill/assets/skill/skill-md-template.md) - Runtime `SKILL.md` scaffold.
+- [`skill-reference-template.md`](../../sk-create-skill/assets/skill/skill-reference-template.md) - Reference-file scaffold.
+- [`hvr-rules.md`](../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules, the voice this template writes in.
+- [`changelog-template.md`](../../sk-create-changelog/assets/changelog-template.md) - Changelog entry format every skill release follows.

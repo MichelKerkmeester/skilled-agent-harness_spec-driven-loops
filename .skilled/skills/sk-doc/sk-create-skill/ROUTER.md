@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-skill routing"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -30,7 +30,7 @@ Requests reach this packet when they ask to create or rebuild an OpenCode skill 
 
 ## 2. INTENT MODEL
 
-- **`SKILL_PACKAGE`** fires on `create skill`, `/create:skill`, `new skill`, `skill scaffold`, `SKILL.md scaffold`, `OpenCode skill`, `sk-skill`, `create sk-`, `reusable capability`, `reusable helper`, `starter reference docs`, `package skill`, `doc rewrite guard`, `doc-rewrite-guard.py`, `render ledger`, `render-known-debt.json`, `exempt from the render checks`, `render exempt map`, `kept every claim` and `kept every original claim` at weight 4. It loads the five shared docs — `references/shared/overview.md`, `references/shared/common-pitfalls.md`, `references/shared/validation-and-packaging.md`, `references/shared/advisor-index-handoff.md`, `references/shared/skill-root-metadata-contract.md` — then `references/skill/creation-workflow.md`, `references/skill/examples-and-maintenance.md`, `references/skill/upgrading-a-skill-to-v4.md`, and the nine `assets/skill/` templates: `assets/skill/skill-md-template.md`, `assets/skill/skill-readme-template.md`, `assets/skill/skill-reference-template.md`, `assets/skill/skill-asset-template.md`, `assets/skill/skill-procedure-template.md`, `assets/skill/skill-scaffold-template.md`, `assets/skill/skill-smart-router.md`, `assets/skill/skill-router-template.md`, `assets/skill/skill-sync-manifest-template.md`.
+- **`SKILL_PACKAGE`** fires on `create skill`, `/create:skill`, `new skill`, `skill scaffold`, `SKILL.md scaffold`, `OpenCode skill`, `sk-skill`, `create sk-`, `reusable capability`, `reusable helper`, `starter reference docs`, `package skill`, `doc rewrite guard`, `doc-rewrite-guard.py`, `render ledger`, `render-known-debt.json`, `exempt from the render checks`, `render exempt map`, `kept every claim` and `kept every original claim` at weight 4. It loads the five shared docs — `references/shared/overview.md`, `references/shared/common-pitfalls.md`, `references/shared/validation-and-packaging.md`, `references/shared/advisor-index-handoff.md`, `references/shared/skill-root-metadata-contract.md` — then `references/skill/creation-workflow.md`, `references/skill/examples-and-maintenance.md`, `references/skill/upgrading-a-skill-to-v4.md`, and the eight `assets/skill/` templates: `assets/skill/skill-md-template.md`, `assets/skill/skill-reference-template.md`, `assets/skill/skill-asset-template.md`, `assets/skill/skill-procedure-template.md`, `assets/skill/skill-scaffold-template.md`, `assets/skill/skill-smart-router.md`, `assets/skill/skill-router-template.md`, `assets/skill/skill-sync-manifest-template.md`. The skill README template is not in this set: the `sk-create-readme` mode owns it and writes the README step.
 - **`PARENT_HUB`** fires on `/create:skill-parent`, `parent skill`, `parent hub`, `mode packet`, `nested workflow packet`, `mode-registry.json` and `hub-router.json` at weight 4. It loads the same five shared docs, then `references/parent-skill/parent-skills-nested-packets.md`, `references/parent-skill/parent-hub-router-schema.md`, `references/parent-skill/compiled-routing-architecture.md`, and the five `assets/parent-skill/` templates: `assets/parent-skill/parent-skill-hub-template.md`, `assets/parent-skill/parent-skill-readme-template.md`, `assets/parent-skill/parent-skill-root-router-template.md`, `assets/parent-skill/scaffold/hub-skill-scaffold.md`, `assets/parent-skill/scaffold/packet-skill-scaffold.md`.
 
 ---
@@ -50,7 +50,7 @@ SKILL AUTHORING REQUEST
     +- Standalone skill -> workflowMode: sk-create-skill
     |   +- scripts/init_skill.py
     |   +- assets/skill/skill-md-template.md
-    |   +- assets/skill/skill-readme-template.md
+    |   +- README.md step -> the sk-create-readme mode
     |   +- assets/skill/skill-sync-manifest-template.md
     |
     +- Parent hub -> workflowMode: sk-create-skill-parent
@@ -71,7 +71,7 @@ Ask one focused clarification before authoring if it is unclear whether the user
 
 | Domain | Core Resources | Use |
 | --- | --- | --- |
-| Scaffolding | `scripts/init_skill.py`, `assets/skill/skill-md-template.md`, `assets/skill/skill-readme-template.md`, `assets/skill/skill-router-template.md` | Create or normalize standalone skill files. |
+| Scaffolding | `scripts/init_skill.py`, `assets/skill/skill-md-template.md`, `assets/skill/skill-router-template.md` | Create or normalize standalone skill files. The README step goes to the `sk-create-readme` mode. |
 | Resource templates | `assets/skill/skill-reference-template.md`, `assets/skill/skill-asset-template.md`, `assets/skill/skill-smart-router.md` | Create routed references, assets, and resilient smart-router pseudocode. |
 | Runtime sync manifests | `assets/skill/skill-sync-manifest-template.md` | Document how a runtime config dir derives from the canonical `.skilled` tree (SYNC manifest). |
 | Procedure cards | `assets/skill/skill-procedure-template.md` | Add a private, triggerable internal procedure to a skill or mode without a new public identity. |
@@ -113,7 +113,6 @@ RESOURCE_MAP = {
         "references/skill/examples-and-maintenance.md",
         "references/skill/upgrading-a-skill-to-v4.md",
         "assets/skill/skill-md-template.md",
-        "assets/skill/skill-readme-template.md",
         "assets/skill/skill-reference-template.md",
         "assets/skill/skill-asset-template.md",
         "assets/skill/skill-procedure-template.md",

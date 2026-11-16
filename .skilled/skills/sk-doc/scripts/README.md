@@ -4,7 +4,7 @@ description: "Code-facing README for .skilled/skills/sk-doc/scripts."
 trigger_phrases:
   - "sk-doc scripts"
   - "code README"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # sk doc scripts
@@ -116,4 +116,4 @@ Expected output: Findings list current README template alignment and freshness d
 |---|---|
 | [`sk-doc/SKILL.md`](../SKILL.md) | Runtime instructions for the owning skill. |
 | [`sk-code/SKILL.md`](../../sk-code/SKILL.md) | OpenCode coding standards and verification routing. |
-| [`sk-doc skill-readme-template.md`](../sk-create-skill/assets/skill/skill-readme-template.md) | README structure used for this code README. |
+| [`sk-doc skill-readme-template.md`](../sk-create-readme/assets/skill-readme-template.md) | README structure used for this code README. |

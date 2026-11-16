@@ -11,14 +11,14 @@ _memory:
     last_updated_at: "2026-11-16T10:18:26Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet AC-008 after the push by enabling the switch in the primary checkout"
+    next_safe_action: "None; the packet is complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-009-claude-user-hook-sync"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** `009-claude-user-hook-sync`
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-11-16
 <!-- /ANCHOR:metadata -->
 
@@ -58,7 +58,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-005 | REQ-005 | Given a first write, When the sync writes, Then `<target>.pre-skilled-hook-sync` holds the old file and a later sync keeps it; every write goes through a temp file and a rename | `.skilled/bin/tests/sync-claude-user-hooks.test.cjs:135` passes, and removing the backup-once rule at `.skilled/bin/sync-claude-user-hooks.mjs:198` makes it fail; `atomicWrite` is `.skilled/bin/lib/user-hook-file.mjs:154` | Met | - |
 | AC-006 | REQ-006 | Given the moved helpers, When the Codex suite and check run, Then both match the baseline | `install-codex-hooks-source-root.test.cjs` 20/0 before and after; the import is `.skilled/bin/install-codex-hooks.mjs:34`; `--check` OK on main and worktree | Met | - |
 | AC-007 | REQ-007 | Given the env catalogue, When it is checked, Then `SYSTEM_CLAUDE_USER_HOOK_SYNC_ENABLED` is listed in `ENV-REFERENCE.md`, `doctor-env.yaml`, `.env.example` and `hook-flags.env.example` | `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:112` lists it; `env-reference-drift.vitest.ts` 5/5; `rg -l 'SYSTEM_CLAUDE_USER_HOOK_SYNC_ENABLED'` over the four files prints 4 | Met | - |
-| AC-008 | REQ-002 | Given the change is pushed and the operator approves, When the switch is enabled in the primary checkout and one session starts, Then no Skilled hook in `~/.claude/settings.json` differs from `.claude/settings.json` | `node .skilled/bin/sync-claude-user-hooks.mjs --check` in the primary checkout prints OK. Owner: orchestrator. Session step registered at `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:1799` | Pending | - |
+| AC-008 | REQ-002 | Given the change is pushed and the operator approves, When the switch is enabled in the primary checkout and one session starts, Then no Skilled hook in `~/.claude/settings.json` differs from `.claude/settings.json` | `node .skilled/bin/sync-claude-user-hooks.mjs --check` in the primary checkout prints OK. Live in the primary checkout on `c459501a3fb`: `SYSTEM_CLAUDE_USER_HOOK_SYNC_ENABLED=1` in `.skilled/hooks/hook-flags.env`, one `--session-start` run exited 0, `--check` printed `OK /Users/michelkerkmeester/.claude/settings.json`, the backup `settings.json.pre-skilled-hook-sync` was written, and the 36 Skilled hooks equal the project's with every other key and hook unchanged. A headless `claude -p` debug log then showed each of six Skilled hooks, the sync step included, run once, and no drift fallback fired. Session step registered at `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:1799` | Met | - |
 
 ### Status values
 
@@ -83,7 +83,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-008 stays pending until the switch is enabled in the primary checkout after the push.
+Every criterion is Met. AC-008 was met live after the push, in the primary checkout.
 <!-- /ANCHOR:closure -->

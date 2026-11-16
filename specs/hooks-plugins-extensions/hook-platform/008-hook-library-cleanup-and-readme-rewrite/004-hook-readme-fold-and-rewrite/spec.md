@@ -181,7 +181,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `find .skilled/hooks -name README.md | wc -l` prints 104. It prints 183 today, and the phase deletes 81 and creates 2.
+- **SC-001**: `find .skilled/hooks -name README.md | wc -l` prints 104. It prints 183 today, and the phase deletes 81 and creates 2. It printed 104 when the phase closed. A later merge of origin/main added `session-handover/history/README.md` from another packet, so it prints 105 on main.
 - **SC-002**: The `SUMMARY` line of `readme-metrics.py .skilled/hooks` shows `fail=1`. It shows `fail=53` today.
 - **SC-003**: Every gate in the `plan.md` baseline table passes from the final state, and each count differs from the phase 3 final count only where the table says it will.
 <!-- /ANCHOR:success-criteria -->

@@ -7,7 +7,7 @@ trigger_phrases:
   - "Devin session handover"
   - "session-handover-command-runtimes"
   - "skilled-loop codex"
-version: 1.0.26.0
+version: 1.0.27.0
 id: session-handover-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -322,7 +322,7 @@ state="$XDG_RUNTIME_DIR/skilled-relaunch"
 record="$state/relaunch-$SKILLED_LOOP_ID.json"
 sid=probe-codex-0001
 note="$SESSION_HANDOVER_REPO_ROOT/.skilled/skills/.state/session-handover/handoffs/20260101T000000Z-$sid.md"
-printf -- '---\nstatus: open\nsession_id: %s\nloop_id: %s\nruntime: codex\ncwd: %s\nspec_folder: \ncreated_at: 2026-01-01T00:00:00Z\n---\n## Goal\nProbe the withdraw path\n## Done\nNothing.\n## Remaining work\nNothing.\n## In-flight state\nNothing.\n' "$sid" "$SKILLED_LOOP_ID" "$sandbox" > "$note"
+printf -- '---\nstatus: open\nsession_id: %s\nloop_id: %s\nruntime: codex\ncwd: %s\nspec_folder: \ncreated_at: 2026-01-01T00:00:00Z\n---\n## Goal\nProbe the withdraw path\n## Done\nNothing.\n## Remaining work\nNothing.\n## In-flight state\nRunning workers: none\nNothing.\n' "$sid" "$SKILLED_LOOP_ID" "$sandbox" > "$note"
 
 check() { if eval "$2"; then echo "PASS: $1"; else echo "FAIL: $1"; exit 1; fi; }
 prompt() { printf '{"hook_event_name":"UserPromptSubmit","session_id":"%s","cwd":"%s","prompt":"%s"}' "$sid" "$sandbox" "$1" | node "$hooks/codex/handover-prompt-seed.mjs"; }

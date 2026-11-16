@@ -18,7 +18,7 @@
     "one",
     "symlink"
   ],
-  "lastUpdated": "2026-11-16T09:43:09.834Z",
+  "lastUpdated": "2026-11-16T13:04:06.605Z",
   "specId": "004",
   "folderSlug": "hook-readme-fold-and-rewrite",
   "parentChain": [
@@ -26,7 +26,7 @@
     "hook-platform",
     "008-hook-library-cleanup-and-readme-rewrite"
   ],
-  "memorySequence": 7,
+  "memorySequence": 8,
   "memoryNameHistory": [
     "15-11-26_20-01__planned-phase-4-of-the-hook-library-cleanup-up-to.md",
     "15-11-26_20-10__finished-the-planning-of-phase-4-of-the-hook.md",
@@ -34,6 +34,7 @@
     "16-11-26_00-15__closed-the-verification-tasks-of-phase-004-the.md",
     "16-11-26_06-26__recorded-the-operator-s-choice-for-closing-t021.md",
     "16-11-26_07-52__merged-origin-main-1a8ee2e5087-folded-its-vibe.md",
-    "16-11-26_10-43__manual-context-save.md"
+    "16-11-26_10-43__manual-context-save.md",
+    "16-11-26_14-04__recorded-1-operator-decision-s-from-the-hook.md"
   ]
 }

@@ -52,7 +52,8 @@
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/046-vibe-history-locator",
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening",
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes",
-    "hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment"
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment",
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2"
   ],
   "manual": {
     "depends_on": [],
@@ -255,7 +256,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-16T09:25:41.528Z",
+    "last_save_at": "2026-11-16T12:16:12.461Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -263,13 +264,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:24aca1d38915649658aad856c1c34c9a85cd5ea6718d201e0e9be7e6bf4c84c4",
+    "source_fingerprint": "sha256:757a34d8c6b13166d3d10a7277dcf8a160fdb8f020a08f85a38f99919a0d7dc6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "71ae97dcd8fcddc7ae5b52c1a2096d90aec94b4fb82750659472d000325808d5",
+      "spec.md": "cd7997cf35bd72d3be4e9d1338408ce2d72e7101caf647597a314bf352eb5800",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment",
-    "last_active_at": "2026-11-16T09:23:10.406Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2",
+    "last_active_at": "2026-11-16T12:10:31.544Z"
   }
 }

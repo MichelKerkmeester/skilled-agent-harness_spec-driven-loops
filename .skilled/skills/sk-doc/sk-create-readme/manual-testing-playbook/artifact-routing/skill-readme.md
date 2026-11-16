@@ -1,18 +1,18 @@
 ---
 title: "RMR-001 -- Skill README"
-description: "This scenario validates routing a skill folder to a general README with orientation first and evidence-backed reference detail."
-version: 1.1.3.0
+description: "This scenario validates routing a skill folder to the skill README template with orientation first and evidence-backed reference detail."
+version: 1.1.4.0
 ---
 
 # RMR-001 -- Skill README
 
-This document captures the general skill README routing contract.
+This document captures the skill README routing contract.
 
 ---
 
 ## 1. OVERVIEW
 
-This scenario validates README artifact routing for `RMR-001`. It focuses on a skill folder, its audience and its general README shape.
+This scenario validates README artifact routing for `RMR-001`. It focuses on a skill folder, its audience and the skill README shape.
 
 ### Why This Matters
 
@@ -24,13 +24,13 @@ A skill README serves people who need to understand the skill. The mode requires
 
 Operators run the exact prompt and command sequence for `RMR-001`.
 
-- Objective: choose a general skill README and place orientation before reference detail.
+- Objective: choose the skill README template and place orientation before reference detail.
 - Realistic user request: `Write a README for this skill folder so a new contributor can understand what it does and how to use it.`
 - Prompt: `Write a README for this skill folder so a new contributor can understand what it does and how to use it.`
-- Expected execution process: inspect the skill folder, identify the audience and use `assets/readme-template.md` as the scaffold.
+- Expected execution process: inspect the skill folder, identify the audience and use `assets/skill-readme-template.md` as the scaffold.
 - Expected signals: the artifact is `README.md`, the H1 has a tagline, the overview explains purpose and audience and no unconfirmed feature is added.
 - Desired user-visible outcome: a new contributor can decide relevance and find the first useful action.
-- Pass/fail: PASS if a general skill README is selected from local evidence. FAIL if a code-folder shape is used without evidence.
+- Pass/fail: PASS if the skill README template is selected and the draft rests on local evidence. FAIL if the general or code-folder template is used for a skill package.
 
 ---
 
@@ -42,18 +42,18 @@ Operators run the exact prompt and command sequence for `RMR-001`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| RMR-001 | Skill README | Route a skill folder to a general README with orientation first | `Write a README for this skill folder so a new contributor can understand what it does and how to use it.` | 1. `agent: Read ROUTER.md Section 3 and identify the README artifact type` -> 2. `agent: Inspect the target skill folder and nearby documentation` -> 3. `agent: Draft from assets/readme-template.md with a tagline and overview` -> 4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-readme/SKILL.md` | Step 1: a general skill README is selected. Step 2: local files and audience are recorded. Step 3: orientation appears before detail. Step 4: validator output and exit status are captured | The prompt, target inventory, selected template, draft shape and validator transcript | PASS if the artifact type and evidence-first structure match the skill folder. FAIL if a code-folder shape is chosen without evidence | 1. Confirm the target is a skill folder. 2. Check the audience before reviewing sections. 3. Remove any claim not supported by the target files |
+| RMR-001 | Skill README | Route a skill folder to the skill README template with orientation first | `Write a README for this skill folder so a new contributor can understand what it does and how to use it.` | 1. `agent: Read ROUTER.md Section 3 and identify the README artifact type` -> 2. `agent: Inspect the target skill folder and nearby documentation` -> 3. `agent: Draft from assets/skill-readme-template.md with a pitch and the At a Glance table` -> 4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-readme/SKILL.md` | Step 1: the skill README template is selected. Step 2: local files and audience are recorded. Step 3: orientation appears before detail. Step 4: validator output and exit status are captured | The prompt, target inventory, selected template, draft shape and validator transcript | PASS if the skill README template and evidence-first structure match the skill folder. FAIL if the general or code-folder template is chosen for a skill package | 1. Confirm the target is a skill folder. 2. Check the audience before reviewing sections. 3. Remove any claim not supported by the target files |
 
 ### Commands
 
 1. `agent: Read ROUTER.md Section 3 and identify the README artifact type`
 2. `agent: Inspect the target skill folder and nearby documentation`
-3. `agent: Draft from assets/readme-template.md with a tagline and overview`
+3. `agent: Draft from assets/skill-readme-template.md with a pitch and the At a Glance table`
 4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-readme/SKILL.md`
 
 ### Expected
 
-Step 1 chooses a general README for a skill. Step 2 records local evidence. Step 3 puts the reader's orientation first. Step 4 records a structural check on the mode contract.
+Step 1 chooses the skill README template. Step 2 records local evidence. Step 3 puts the reader's orientation first. Step 4 records a structural check on the mode contract.
 
 ### Evidence
 
@@ -61,8 +61,8 @@ Capture the prompt, target inventory, audience, selected template, draft outline
 
 ### Pass / Fail
 
-- **Pass**: the target receives a general skill README shape grounded in local evidence.
-- **Fail**: the mode selects a code-folder shape without a matching target or invents commands.
+- **Pass**: the target receives the skill README shape, grounded in local evidence.
+- **Fail**: the mode selects the general or code-folder template for a skill package, or invents commands.
 
 ### Failure Triage
 
@@ -87,7 +87,7 @@ Capture the prompt, target inventory, audience, selected template, draft outline
 |---|---|
 | [`../../SKILL.md`](../../SKILL.md) | README authoring workflow |
 | [`../../ROUTER.md#3-machine-router`](../../ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
-| [`../../assets/readme-template.md`](../../assets/readme-template.md) | General README scaffold |
+| [`../../assets/skill-readme-template.md`](../../assets/skill-readme-template.md) | Skill README scaffold |
 | [`../../references/readme/types-and-voice.md`](../../references/readme/types-and-voice.md) | Skill README audience and voice |
 
 ---

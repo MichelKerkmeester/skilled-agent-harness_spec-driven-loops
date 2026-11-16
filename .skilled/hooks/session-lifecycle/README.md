@@ -202,7 +202,7 @@ session-lifecycle/
               pi-session-start-advisories.test.ts
 `-- vibe/      README.md, compaction-context.mjs, compaction-context.test.mjs,
               compaction-post-tool.mjs, compaction-post-tool.test.mjs,
-              session-start.mjs, turn-end.mjs, turn-end.test.mjs,
+              session-start.mjs, session-start.test.mjs, turn-end.mjs, turn-end.test.mjs,
               turn-start.mjs, turn-start.test.mjs, fixtures/
 ```
 

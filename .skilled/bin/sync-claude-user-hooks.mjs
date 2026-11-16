@@ -14,7 +14,7 @@
 // <repo>/.claude/settings.json; target = ~/.claude/settings.json.
 //
 // An operator who keeps the hooks in their user settings as well gets them in
-// any project that carries a .skilled tree, and a hand-kept copy goes stale the
+// any project that carries a .skilled/hooks tree, and a hand-kept copy goes stale the
 // moment a hook folder is renamed. Claude Code runs a command once when both
 // files register the same string, so an exact copy adds no second run.
 //

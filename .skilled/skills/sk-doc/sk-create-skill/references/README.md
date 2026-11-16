@@ -9,7 +9,7 @@ trigger_phrases:
   - "progressive disclosure skills"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Skill Creation Workflow - Complete Development Guide
@@ -71,7 +71,7 @@ Load the file that matches the current task:
 
 ### Templates
 - [skill-md-template.md](../assets/skill/skill-md-template.md) - SKILL.md file templates
-- [skill-readme-template.md](../assets/skill/skill-readme-template.md) - Skill README file template
+- [skill-readme-template.md](../../sk-create-readme/assets/skill-readme-template.md) - Skill README file template, owned by the `sk-create-readme` mode
 - [skill-reference-template.md](../assets/skill/skill-reference-template.md) - Reference file templates
 - [skill-asset-template.md](../assets/skill/skill-asset-template.md) - Asset file templates
 - [skill-procedure-template.md](../assets/skill/skill-procedure-template.md) - Private procedure card templates and guidelines

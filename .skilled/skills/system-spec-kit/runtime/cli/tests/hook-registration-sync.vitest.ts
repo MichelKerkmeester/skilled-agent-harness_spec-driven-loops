@@ -133,23 +133,31 @@ describe('sync-hook-registrations.cjs', () => {
 
   it('guards a runtime that names a required tree, so its user-level copy is quiet elsewhere', () => {
     const registry = JSON.parse(fs.readFileSync(REGISTRY, 'utf8')) as { runtimes: Record<string, Record<string, unknown>> };
-    expect(registry.runtimes.claude.requireTree).toBe('.skilled');
+    expect(registry.runtimes.claude.requireTree).toBe('.skilled/hooks');
     expect(registry.runtimes.codex.requireTree).toBeUndefined();
 
     const binding = { event: 'PreToolUse', runner: 'node', script: '.skilled/hooks/missing/claude/guard.mjs', fallback: 'envelope' };
     const guarded = renderProjectDirCommand('claude', registry.runtimes.claude, binding);
     const unguarded = renderProjectDirCommand('codex', registry.runtimes.codex, binding);
-    expect(guarded).toContain('{ [ -e .skilled ] || exit 0; } && node .skilled/hooks/missing/claude/guard.mjs');
-    expect(unguarded).not.toContain('[ -e .skilled ]');
+    expect(guarded).toContain('{ [ -e .skilled/hooks ] || exit 0; } && node .skilled/hooks/missing/claude/guard.mjs');
+    expect(unguarded).not.toContain('[ -e .skilled');
 
     const empty = fs.mkdtempSync(path.join(tmpdir(), 'hook-guard-'));
+    const runGuarded = () => spawnSync('/bin/sh', ['-c', guarded], { encoding: 'utf8', env: { ...process.env, CLAUDE_PROJECT_DIR: empty } });
     try {
-      const quiet = spawnSync('/bin/sh', ['-c', guarded], { encoding: 'utf8', env: { ...process.env, CLAUDE_PROJECT_DIR: empty } });
+      const quiet = runGuarded();
       expect(quiet.status).toBe(0);
       expect(quiet.stdout + quiet.stderr).toBe('');
 
-      fs.mkdirSync(path.join(empty, '.skilled'));
-      const drift = spawnSync('/bin/sh', ['-c', guarded], { encoding: 'utf8', env: { ...process.env, CLAUDE_PROJECT_DIR: empty } });
+      // A home folder can hold a .skilled data directory that is not a Skilled
+      // checkout, and the user-level copy of these hooks runs there too.
+      fs.mkdirSync(path.join(empty, '.skilled', '.labels'), { recursive: true });
+      const dataOnly = runGuarded();
+      expect(dataOnly.status).toBe(0);
+      expect(dataOnly.stdout + dataOnly.stderr).toBe('');
+
+      fs.mkdirSync(path.join(empty, '.skilled', 'hooks'));
+      const drift = runGuarded();
       expect(drift.stdout).toContain('mkHookDrift');
     } finally {
       fs.rmSync(empty, { recursive: true, force: true });

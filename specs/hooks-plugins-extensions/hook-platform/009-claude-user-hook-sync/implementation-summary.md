@@ -8,20 +8,28 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync"
-    last_updated_at: "2026-11-16T10:18:26Z"
-    last_updated_by: "claude-opus"
+    last_updated_at: "2026-11-16T12:01:59Z"
+    last_updated_by: "generate-context"
     recent_action: "Implemented and unit-verified the opt-in Claude user hook sync"
-    next_safe_action: "Commit, merge main, ask before pushing, then enable the switch in the primary checkout"
+    next_safe_action: "None; the packet is complete"
+    packet_purpose: "Purpose: An operator who opts in gets a user-level copy of Skilled's Claude hooks that each session refreshes from the checkout, and nobody who installs Skilled gets their user settings touched unless they turn it on."
     blockers: []
     key_files:
       - ".skilled/bin/sync-claude-user-hooks.mjs"
       - ".skilled/bin/lib/user-hook-file.mjs"
       - ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a66ce0fa7a0baf8f969db4554f367ebf72c0cf433549f1cc6d5197bd26025c84"
       session_id: "scaffold-009-claude-user-hook-sync"
       parent_session_id: null
-    completion_pct: 90
+    session_ref:
+      runtime: "claude"
+      sessionId: "425e79e1-c5de-4edb-b8bb-77ee620d2538"
+      workspace: "/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime"
+      savedAt: "2026-11-16T12:01:59Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -118,7 +126,7 @@ The stale paths and the Claude dedupe were measured first, then the Codex suite 
 | `sync-hook-registrations.cjs --check` and `sync-runtime-mirrors.cjs --check` | PASS on the 36-hook registry; exit 0 |
 | Rendered Claude commands in an empty folder | PASS, 36 of 36 exit 0 with no output; PreToolUse Bash hooks still run in the repo; env-secret-guard denies a dotenv read the same on main and worktree |
 | Sync of a copy of the real `~/.claude/settings.json` | PASS: 20 owned removed, 36 added, 16 non-owned kept; non-hook keys and Orca hooks equal; second `--check` OK |
-| Live enable in the primary checkout | Pending, waits for the push |
+| Live enable in the primary checkout | Live in the primary checkout on `c459501a3fb`: `SYSTEM_CLAUDE_USER_HOOK_SYNC_ENABLED=1` in `.skilled/hooks/hook-flags.env`, one `--session-start` run exited 0, `--check` printed `OK /Users/michelkerkmeester/.claude/settings.json`, the backup `settings.json.pre-skilled-hook-sync` was written, and the 36 Skilled hooks equal the project's with every other key and hook unchanged. A headless `claude -p` debug log then showed each of six Skilled hooks, the sync step included, run once, and no drift fallback fired |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -129,7 +137,6 @@ The stale paths and the Claude dedupe were measured first, then the Codex suite 
 1. **Turning the switch off leaves the copy in place.** Delete the Skilled entries by hand or restore `~/.claude/settings.json.pre-skilled-hook-sync`.
 2. **An environment-wide enable reaches every checkout.** Every primary checkout that can read the switch then syncs, so two of them would overwrite each other. Set the switch in one checkout's `hook-flags.env` instead.
 3. **A vendored Skilled copy stays off.** It has its own `hook-flags.env`; enable it there if you want it.
-4. **The current copy still holds the old unguarded strings.** Until the first sync after this lands, those strings differ from the project file and would run hooks twice. One sync fixes it.
 <!-- /ANCHOR:limitations -->
 
 ---

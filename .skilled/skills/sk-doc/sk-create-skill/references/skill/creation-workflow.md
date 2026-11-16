@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill frontmatter completion"
 importance_tier: normal
 contextType: implementation
-version: 1.2.11.0
+version: 1.2.12.0
 ---
 
 # Skill Creation Process
@@ -213,7 +213,7 @@ Choose the README template before writing the file.
 
 **Template choice rule**:
 
-- **Standalone skill**: use [skill-readme-template.md](../../assets/skill/skill-readme-template.md). Keep its purpose-first identity, numbered narrative sections and the required `OVERVIEW` that opens with the At a Glance table, plus `title`, `description` and `version` frontmatter.
+- **Standalone skill**: hand the README to the `sk-create-readme` mode, which writes it from [skill-readme-template.md](../../../sk-create-readme/assets/skill-readme-template.md). Keep its purpose-first identity, numbered narrative sections and the required `OVERVIEW` that opens with the At a Glance table, plus `title`, `description` and `version` frontmatter.
 - **Parent hub**: use [parent-skill-readme-template.md](../../assets/parent-skill/parent-skill-readme-template.md). Include the hub pitch, purpose, modes and packets, registry and manifest navigation, changelog, scripts and commands and verification.
 - **Child mode**: use the standalone template for the child README unless the child phase contract names a more specific README template. The child mode remains responsible for its own README and changelog.
 
@@ -319,7 +319,7 @@ version: 1.0.0.0
 - **`references/*.md` and `assets/*.md`** carry the five required fields plus a four-part `version`: `title`, `description`, `trigger_phrases` (3 to 8), `importance_tier` and `contextType`.
   Seed each file from [skill-reference-template.md](../../assets/skill/skill-reference-template.md) or [skill-asset-template.md](../../assets/skill/skill-asset-template.md).
   Use kebab-case filenames and directory slugs. Python filenames, import-package directories and tool-mandated names remain exempt.
-- **`README.md`** is exempt from the 5-field reference block but still carries `title`, `description` and `version` per [skill-readme-template.md](../../assets/skill/skill-readme-template.md).
+- **`README.md`** is exempt from the 5-field reference block but still carries `title`, `description` and `version` per [skill-readme-template.md](../../../sk-create-readme/assets/skill-readme-template.md).
 
 > **Complete Reference**: For validation rules, format specifications and all document types, see [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md)
 

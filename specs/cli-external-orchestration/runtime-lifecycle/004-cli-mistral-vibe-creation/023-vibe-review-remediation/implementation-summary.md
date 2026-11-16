@@ -174,7 +174,7 @@ A second round closed what the first left uncovered. The hand-over packet's live
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **VIB-HK-026's hand-driven hop predates the merge.** The manual tier shares `relaunch-core.cjs` with the automatic one, and the prepare, claim and complete steps passed again in the VIB-HK-027 hop on the merged code, but the manual hop itself was not repeated.
+1. **Resolved: VIB-HK-026 was run again on current main.** On 2026-11-16 the hand-driven hop passed again, with the sender started outside `skilled-loop`. The note was claimed and completed (`../022-vibe-hook-playbook-and-live-scenarios/scratch/live/VIB-HK-026/hop-record.md`).
 2. **The live runs judge one model.** Every row ran on `deepseek-flash`, VIB-HK-007 on its probe model; a different model may need its own pass.
 <!-- /ANCHOR:limitations -->
 

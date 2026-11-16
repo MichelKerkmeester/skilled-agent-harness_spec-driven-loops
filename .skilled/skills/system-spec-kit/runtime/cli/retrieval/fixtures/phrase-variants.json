@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b6adc0806e33da71fded43116a32161e414ac070d78f6d2ff7944e1100d01381",
+  "manifestHash": "cdc5039b416e8bf2f400134136e5e07fc3fa5eb8170ec6df01a18aaad2658c39",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1930,6 +1930,9 @@
     "007 plan voyage cleanup": [
       "007 plan voyage cleanup"
     ],
+    "007 review doc reconciliation operator decisions": [
+      "007-review-doc-reconciliation operator decisions"
+    ],
     "007 review remediation operator decisions": [
       "007-review-remediation operator decisions"
     ],
@@ -2031,6 +2034,9 @@
     ],
     "008 changelog backfill rollup": [
       "008 changelog backfill rollup"
+    ],
+    "008 claude hook tree guard operator decisions": [
+      "008-claude-hook-tree-guard operator decisions"
     ],
     "008 command surfacing build operator decisions": [
       "008-command-surfacing-build operator decisions"
@@ -2332,6 +2338,9 @@
     ],
     "009 changelogs constitutional and templates implementation summary": [
       "009-changelogs-constitutional-and-templates implementation summary"
+    ],
+    "009 claude user hook sync operator decisions": [
+      "009-claude-user-hook-sync operator decisions"
     ],
     "009 cocoindex ipc fix": [
       "009 cocoindex IPC fix"
@@ -2726,8 +2735,14 @@
     "011 implementation summary": [
       "011 implementation summary"
     ],
+    "011 level match operator record operator decisions": [
+      "011-level-match-operator-record operator decisions"
+    ],
     "011 migration bridge": [
       "011 migration bridge"
+    ],
+    "011 opencode pi handover parity operator decisions": [
+      "011-opencode-pi-handover-parity operator decisions"
     ],
     "011 pi fast mode w subagent support": [
       "011-pi-fast-mode-w-subagent-support"
@@ -2929,6 +2944,9 @@
     ],
     "012 memory trust display": [
       "012 memory trust display"
+    ],
+    "012 opencode model carry operator decisions": [
+      "012-opencode-model-carry operator decisions"
     ],
     "012 outcome": [
       "012 outcome"
@@ -7168,6 +7186,9 @@
     ],
     "049 supersession": [
       "049 supersession"
+    ],
+    "050 handover doc alignment 2 operator decisions": [
+      "050-handover-doc-alignment-2 operator decisions"
     ],
     "050 review remediation": [
       "050 review remediation"
@@ -20802,6 +20823,18 @@
     "claude hook settings schema normalization": [
       "claude hook settings schema normalization"
     ],
+    "claude hook tree guard": [
+      "claude hook tree guard"
+    ],
+    "claude hook tree guard implementation summary": [
+      "claude hook tree guard implementation summary"
+    ],
+    "claude hook tree guard plan": [
+      "claude hook tree guard plan"
+    ],
+    "claude hook tree guard tasks": [
+      "claude hook tree guard tasks"
+    ],
     "claude injection screen": [
       "claude injection screen"
     ],
@@ -31067,6 +31100,12 @@
     ],
     "contributing clone url": [
       "contributing clone url"
+    ],
+    "contributing guide template": [
+      "contributing guide template"
+    ],
+    "contributing md template": [
+      "contributing.md template"
     ],
     "convention audit tasks": [
       "convention audit tasks"
@@ -53216,6 +53255,9 @@
     "fromscan recheck bypass": [
       "fromScan recheck bypass"
     ],
+    "front page readme template": [
+      "front page readme template"
+    ],
     "front proxy buffer then decode": [
       "front-proxy buffer then decode"
     ],
@@ -57792,6 +57834,9 @@
     "hand drawn diagram variant": [
       "hand drawn diagram variant"
     ],
+    "hand over doc alignment 050": [
+      "hand-over doc alignment 050"
+    ],
     "hand over doc alignment fixes": [
       "hand-over doc alignment fixes"
     ],
@@ -57915,6 +57960,18 @@
     "handover doc alignment": [
       "handover doc alignment"
     ],
+    "handover doc alignment 2 acceptance criteria": [
+      "handover doc alignment 2 acceptance criteria"
+    ],
+    "handover doc alignment 2 implementation summary": [
+      "handover doc alignment 2 implementation summary"
+    ],
+    "handover doc alignment 2 plan": [
+      "handover doc alignment 2 plan"
+    ],
+    "handover doc alignment 2 tasks": [
+      "handover doc alignment 2 tasks"
+    ],
     "handover doc alignment acceptance criteria": [
       "handover doc alignment acceptance criteria"
     ],
@@ -57923,6 +57980,9 @@
     ],
     "handover doc alignment plan": [
       "handover doc alignment plan"
+    ],
+    "handover doc alignment second pass": [
+      "handover doc alignment second pass"
     ],
     "handover doc alignment tasks": [
       "handover doc alignment tasks"
@@ -59195,6 +59255,9 @@
     "hook bridge window": [
       "hook bridge window"
     ],
+    "hook cleanup deep review fixes": [
+      "hook cleanup deep review fixes"
+    ],
     "hook compatibility consumer cutover": [
       "hook compatibility consumer cutover"
     ],
@@ -59380,6 +59443,15 @@
     ],
     "hook library cleanup and readme rewrite": [
       "hook library cleanup and readme rewrite"
+    ],
+    "hook library cleanup deep review iteration 2 security": [
+      "hook library cleanup deep review iteration 2 security"
+    ],
+    "hook library cleanup deep review report": [
+      "hook library cleanup deep review report"
+    ],
+    "hook library cleanup deep review strategy": [
+      "hook library cleanup deep review strategy"
     ],
     "hook library cleanup phase parent spec": [
       "hook library cleanup phase parent spec"
@@ -59884,6 +59956,9 @@
     ],
     "how to author a chart template": [
       "how to author a chart template"
+    ],
+    "how to contribute guide": [
+      "how to contribute guide"
     ],
     "how to phrase a jev question": [
       "how to phrase a jev question"
@@ -61772,6 +61847,9 @@
     "install guide sweep": [
       "install guide sweep"
     ],
+    "install guide template": [
+      "install guide template"
+    ],
     "install guides coverage question": [
       "install guides coverage question"
     ],
@@ -61780,6 +61858,9 @@
     ],
     "install guides trigger index corpus": [
       "install guides trigger index corpus"
+    ],
+    "install md template": [
+      "install.md template"
     ],
     "install obsidian theme": [
       "install obsidian theme"
@@ -61807,6 +61888,9 @@
     ],
     "install transition tasks": [
       "install-transition tasks"
+    ],
+    "installation guide scaffold": [
+      "installation guide scaffold"
     ],
     "installation verification": [
       "installation verification"
@@ -65076,6 +65160,18 @@
     ],
     "level mapping thresholds": [
       "level mapping thresholds"
+    ],
+    "level match operator record": [
+      "level match operator record"
+    ],
+    "level match operator record implementation summary": [
+      "level match operator record implementation summary"
+    ],
+    "level match operator record plan": [
+      "level match operator record plan"
+    ],
+    "level match operator record tasks": [
+      "level match operator record tasks"
     ],
     "level one docs authoring": [
       "level one docs authoring"
@@ -73096,6 +73192,9 @@
     "mistral vibe research angles": [
       "mistral vibe research angles"
     ],
+    "mistral vibe runtime hooks": [
+      "mistral vibe runtime hooks"
+    ],
     "mistral vibe session handover docs": [
       "mistral vibe session handover docs"
     ],
@@ -73149,6 +73248,9 @@
     ],
     "mixed version oracle handoff": [
       "mixed-version oracle handoff"
+    ],
+    "mk claude hook could not resolve home folder": [
+      "mk claude hook could not resolve home folder"
     ],
     "mk code index 32000 fix": [
       "mk-code-index -32000 fix"
@@ -82353,6 +82455,9 @@
     "phase 11 hub registration and routing": [
       "phase 11 hub registration and routing"
     ],
+    "phase 11 level match operator record": [
+      "phase 11 level match operator record"
+    ],
     "phase 11 opencode pi handover parity": [
       "phase 11 opencode pi handover parity"
     ],
@@ -84564,6 +84669,9 @@
     "phase 7 remediation review fixes": [
       "phase 7 remediation review fixes"
     ],
+    "phase 7 review doc reconciliation": [
+      "phase 7 review doc reconciliation"
+    ],
     "phase 7 review packet fixes": [
       "phase 7 review packet fixes"
     ],
@@ -84644,6 +84752,9 @@
     ],
     "phase 8 claim error per state": [
       "phase 8 claim error per state"
+    ],
+    "phase 8 claude hook tree guard": [
+      "phase 8 claude hook tree guard"
     ],
     "phase 8 cli pi": [
       "phase 8 cli pi"
@@ -90022,6 +90133,9 @@
     ],
     "pull request commit hygiene": [
       "pull request commit hygiene"
+    ],
+    "pull request guide scaffold": [
+      "pull request guide scaffold"
     ],
     "pull request packet resolution": [
       "pull request packet resolution"
@@ -96256,6 +96370,9 @@
     "repoint the clickup official code mode manual": [
       "repoint the clickup official code mode manual"
     ],
+    "report a vulnerability guide": [
+      "report a vulnerability guide"
+    ],
     "report gen ts tokens json": [
       "report-gen.ts tokens.json"
     ],
@@ -96309,6 +96426,9 @@
     ],
     "repository field on the config": [
       "repository field on the config"
+    ],
+    "repository install guide": [
+      "repository install guide"
     ],
     "repository quality config": [
       "repository quality config"
@@ -98985,6 +99105,18 @@
     ],
     "review divergent convergence": [
       "review divergent convergence"
+    ],
+    "review doc reconciliation": [
+      "review doc reconciliation"
+    ],
+    "review doc reconciliation implementation summary": [
+      "review doc reconciliation implementation summary"
+    ],
+    "review doc reconciliation plan": [
+      "review doc reconciliation plan"
+    ],
+    "review doc reconciliation tasks": [
+      "review doc reconciliation tasks"
     ],
     "review docs floor and lens": [
       "review docs floor and lens"
@@ -104350,6 +104482,9 @@
     "security md sk doc": [
       "security.md sk-doc"
     ],
+    "security md template": [
+      "security.md template"
+    ],
     "security md verification": [
       "security.md verification"
     ],
@@ -104370,6 +104505,9 @@
     ],
     "security policy tasks": [
       "security policy tasks"
+    ],
+    "security policy template": [
+      "security policy template"
     ],
     "security policy validation": [
       "security policy validation"
@@ -134049,6 +134187,9 @@
     ],
     "writer lock stale reclaim race tasks": [
       "writer lock stale reclaim race tasks"
+    ],
+    "writer only decision record level warning": [
+      "writer-only decision record level warning"
     ],
     "writer regex widen task": [
       "writer regex widen task"

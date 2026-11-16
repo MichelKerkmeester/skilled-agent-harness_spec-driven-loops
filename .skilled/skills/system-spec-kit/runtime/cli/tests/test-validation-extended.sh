@@ -934,6 +934,9 @@ if begin_category "Individual Rule: LEVEL_MATCH (check-level-match.sh)"; then
     run_isolated_rule_test "L1 (level declared)" "check-level-match.sh" "002-valid-level1" "pass" 1
     run_isolated_rule_test "L2 (level consistency)" "check-level-match.sh" "003-valid-level2" "pass" 2
     run_isolated_rule_test "L3 (level consistency)" "check-level-match.sh" "004-valid-level3" "pass" 3
+    run_isolated_rule_test "L1 with writer-only decision record" "check-level-match.sh" "081-level-match-writer-record" "pass" 1
+    run_isolated_rule_test "L1 with hand-written ADR record (warn)" "check-level-match.sh" "082-level-match-adr-record" "warn" 1
+    run_isolated_rule_test "L1 with writer anchors plus an ADR (warn)" "check-level-match.sh" "083-level-match-mixed-record" "warn" 1
 fi
 
 if begin_category "Individual Rule: COMPLEXITY_MATCH (check-complexity.sh)"; then

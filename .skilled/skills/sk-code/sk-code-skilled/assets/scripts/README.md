@@ -7,7 +7,7 @@ trigger_phrases:
   - "opencode script maintenance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # sk code assets scripts
@@ -117,4 +117,4 @@ Expected output: Findings recorded in the current refinement and release-alignme
 |---|---|
 | [`sk-code-skilled/SKILL.md`](../../SKILL.md) | Runtime instructions for the owning skill. |
 | [`sk-code-skilled/ROUTER.md`](../../ROUTER.md) | Machine router: intent map, resource map and routing. |
-| [`sk-doc skill-readme-template.md`](../../../../sk-doc/sk-create-skill/assets/skill/skill-readme-template.md) | README structure used for this code README. |
+| [`sk-doc skill-readme-template.md`](../../../../sk-doc/sk-create-readme/assets/skill-readme-template.md) | README structure used for this code README. |

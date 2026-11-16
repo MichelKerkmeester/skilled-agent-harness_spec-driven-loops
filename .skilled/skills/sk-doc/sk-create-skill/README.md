@@ -4,7 +4,7 @@ description: "Scaffold, validate and package standalone OpenCode skills and two-
 trigger_phrases:
   - "create skill"
   - "parent hub"
-version: 1.2.8.0
+version: 1.2.9.0
 ---
 
 # create-skill
@@ -106,7 +106,7 @@ Reach for create-skill when creating a brand-new OpenCode skill, rebuilding an e
 
 | Skill | Relationship |
 |---|---|
-| `create-readme` | Writes or refreshes a skill's README once the skill already exists. create-skill writes the first one while scaffolding. |
+| `create-readme` | Writes every skill README, the first one and each refresh. create-skill hands it the README step while scaffolding. |
 | `create-quality-control` | Audits, scores or optimizes an existing skill document without rebuilding the package. |
 | `create-agent` | Owns agent scaffolding, a separate artifact family from skills. |
 | `sk-code` | Owns application code implementation. create-skill only authors the skill package that may describe that work. |
@@ -165,7 +165,7 @@ Run every command in this table from the repository root.
 | [`SKILL.md`](./SKILL.md) | Runtime workflow and the full standalone and parent-hub contract |
 | [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`assets/skill/skill-md-template.md`](./assets/skill/skill-md-template.md) | Standalone `SKILL.md` scaffold |
-| [`assets/skill/skill-readme-template.md`](./assets/skill/skill-readme-template.md) | Standalone skill README scaffold, the template this file was written from |
+| [`skill-readme-template.md`](../sk-create-readme/assets/skill-readme-template.md) | Standalone skill README scaffold, the template this file was written from. The `sk-create-readme` mode owns it and writes the README step |
 | [`assets/skill/skill-router-template.md`](./assets/skill/skill-router-template.md) | Sibling `ROUTER.md` scaffold for a standalone skill or mode packet |
 | [`assets/parent-skill/parent-skill-hub-template.md`](./assets/parent-skill/parent-skill-hub-template.md) | Parent hub `SKILL.md` scaffold |
 | [`references/README.md`](./references/README.md) | Route map into the `shared/`, `skill/` and `parent-skill/` reference groups |

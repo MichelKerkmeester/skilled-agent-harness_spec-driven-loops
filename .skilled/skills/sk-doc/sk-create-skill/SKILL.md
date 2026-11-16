@@ -75,7 +75,7 @@ Follow these steps in order, skipping only when the target skill already exists 
 15. Create asset markdown from `assets/skill/skill-asset-template.md`.
 16. When work creates or reshapes a runtime config dir (`.claude/`, `.codex/`, `.cursor/`, `.devin/`, `.pi/`, or a new runtime), author or update that dir's `SYNC.md` from `assets/skill/skill-sync-manifest-template.md` and cross-link it from every sibling manifest.
 17. Use kebab-case for generated filesystem names in `references/`, `assets/`, and other authored resource trees. Keep Python filenames, Python import-package directories, and tool-mandated names such as `SKILL.md` and `README.md` unchanged.
-18. Create `README.md` from `assets/skill/skill-readme-template.md` when operators need quick start, examples, troubleshooting, or a package map.
+18. Hand the `README.md` step to the `sk-create-readme` mode when operators need quick start, examples, troubleshooting, or a package map. That mode owns the skill README template (`../sk-create-readme/assets/skill-readme-template.md`) and writes the first README from the package this workflow scaffolded.
 19. Author `SKILL.md` as the executable runtime contract, not as a link farm.
 20. Keep `WHEN TO USE` limited to activation triggers, use cases, keyword triggers, and when-not-to-use boundaries.
 21. Summarize resource selection in `SMART ROUTING`, and put the detection signals, resource domains, loading levels and smart-router pseudocode in the sibling `ROUTER.md`.
@@ -334,7 +334,7 @@ Use these only for overflow detail, exhaustive examples, or schema checks beyond
 - `references/parent-skill/parent-hub-router-schema.md` - full router and registry schema.
 - `references/parent-skill/compiled-routing-architecture.md` - which hubs the compiled router serves, the shadow-child-to-cohort chain, and why `--compiled-routing ready` mints onboarding evidence, not compiled-serving.
 - `assets/skill/skill-md-template.md` - standalone skill SKILL.md template.
-- `assets/skill/skill-readme-template.md` - skill README template.
+- `../sk-create-readme/assets/skill-readme-template.md` - skill README template, owned by the `sk-create-readme` mode that writes the README step.
 - `assets/skill/skill-reference-template.md` - reference markdown template.
 - `assets/skill/skill-asset-template.md` - asset markdown template.
 - `assets/skill/skill-smart-router.md` - resilient smart-router pattern.

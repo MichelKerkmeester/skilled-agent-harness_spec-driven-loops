@@ -89,7 +89,7 @@ Cursor registers the guard in `.cursor/hooks.json` under `preToolUse` with the m
 
 OpenCode loads the plugin from `.opencode/plugins/`. It reads `input.tool: 'task'` and takes `args.subagent_type` or `args.subagentType` plus `args.prompt`. A reject throws `Error(result.detail)`, which OpenCode treats as a denial from a `before` hook. A warn only reaches the state log, never stdout or stderr. Any other error inside the plugin is swallowed. OpenCode alone runs the state-directory sweep, on `session.created`, through `sweepStaleLoopGuardStates`.
 
-Pi registers the guard through `.pi/extensions/task-dispatch-guard.ts`, a one-line re-export. It loads the core from `../lib/`. The longer fallback specifier beside it resolves only through the test alias. It reads `event.toolName: 'subagent'` and returns a `reason` for a reject or a warning. It never blocks. A throw returns nothing. `~ partial`: workflow-nested (`runs.run`) dispatches are not yet covered.
+Pi registers the guard through `.pi/extensions/task-dispatch-guard.ts`, a one-line re-export. It loads the core from `../lib/`. It reads `event.toolName: 'subagent'` and returns a `reason` for a reject or a warning. It never blocks. A throw returns nothing. `~ partial`: workflow-nested (`runs.run`) dispatches are not yet covered.
 
 DSH registers the guard in `.dsh/plugins/repo-guards/index.mjs`, which imports `.dsh/plugins/repo-guards/adapters/task-dispatch-guard.mjs`. That file is a link to `dsh/task-dispatch-guard.mjs`. It listens on `tools/pre-execute` for `subagent` and `subagent_fork`. It skips a call that carries an `action` or `resume` string and a call with no prompt. It records warnings and audits, then always calls `next()`. A throw is logged through `ctx.logger.warn` and the hand-off still proceeds.
 
@@ -125,12 +125,14 @@ subagent-dispatch-guard/
 +-- pi/
 |   +-- README.md
 |   `-- task-dispatch-guard.ts
-`-- tests/
-    +-- README.md
-    `-- dsh-task-dispatch-guard.test.mjs
++-- tests/
+|   +-- README.md
+|   `-- dsh-task-dispatch-guard.test.mjs
+`-- vibe/
+    `-- deep-loop-guard.mjs -> ../../../../.vibe/plugins/repo-guards/deep-loop-guard.mjs
 ```
 
-The `opencode/` folder holds one link. Every other entry is a real file.
+The `opencode/` and `vibe/` folders each hold one link. Every other entry is a real file.
 
 ---
 

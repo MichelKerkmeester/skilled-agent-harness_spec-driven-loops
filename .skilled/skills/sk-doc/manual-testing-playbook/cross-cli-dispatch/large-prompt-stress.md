@@ -7,7 +7,6 @@ expected_intent: sk-create-skill
 expected_resources:
   - sk-create-skill/references/skill/creation-workflow.md
   - sk-create-skill/assets/skill/skill-md-template.md
-  - sk-create-skill/assets/skill/skill-readme-template.md
   - sk-create-skill/assets/skill/skill-reference-template.md
 expected_workflow_mode: sk-create-skill
 expected_leaf_resources:
@@ -16,10 +15,8 @@ expected_leaf_resources:
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-md-template.md
   - workflow_mode: sk-create-skill
-    leaf_resource_id: assets/skill/skill-readme-template.md
-  - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-reference-template.md
-version: 2.1.2.0
+version: 2.1.3.0
 ---
 
 # SD-011: Large-Prompt Stress (cli-opencode stall mitigation)
@@ -93,7 +90,7 @@ Re-read `ROUTER.md` section 3 `INTENT_SIGNALS` / `RESOURCE_MAP` and intent keywo
 **Expected Behavior**
 
 - **Intent picked**: `SKILL_CREATION` (resolves correctly even at scale)
-- **Resources loaded**: skill-creation reference + SKILL.md, skill README and reference templates
+- **Resources loaded**: skill-creation reference + SKILL.md and reference templates. The README step goes to the `sk-create-readme` mode
 - **Outcome**: CLI emits the full skill scaffold without truncation or stall. cli-opencode MUST complete via `echo "$prompt" | opencode run -` (foreground + stdin), NOT inline arg.
 
 **Cross-CLI Variants**

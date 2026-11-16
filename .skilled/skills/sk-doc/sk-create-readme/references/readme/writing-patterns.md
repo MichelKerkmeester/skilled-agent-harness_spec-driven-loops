@@ -9,7 +9,7 @@ trigger_phrases:
   - "readme heading hierarchy"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # README Writing Patterns
@@ -76,7 +76,7 @@ Self-service problem resolution. Lead with what the user sees in their own words
 
 ### FAQ
 
-Answer frequently asked questions. Bold **Q:** with A: format, 2-3 sentence answers.
+Answer frequently asked questions. Give each question its own H3 heading, phrased as the reader would ask it, with a 2-3 sentence answer under it.
 
 ### Related Documents
 
@@ -109,7 +109,7 @@ Explain in short paragraphs of short sentences, about 10-15 words each and about
 
 ### Blockquote Tagline
 
-Place a one-sentence description in a blockquote immediately after the H1 title, before the first `---`.
+Place a one-sentence description in a blockquote immediately after the H1 title, before the first `---`. A repository front page may carry its pitch under the nav line of its first section instead.
 
 ```markdown
 # Skill Advisor - MCP Server
@@ -119,7 +119,9 @@ Place a one-sentence description in a blockquote immediately after the H1 title,
 ---
 ```
 
-Do not add a Table of Contents and do not add `<!-- ANCHOR -->` navigation comments. READMEs rely on the numbered H2 hierarchy for navigation. Use `---` horizontal rules between H2 sections.
+Do not add a Table of Contents and do not add `<!-- ANCHOR -->` navigation comments. READMEs rely on the numbered H2 hierarchy for navigation. A front page adds one nav line of links under its first H2.
+
+Use `---` horizontal rules between H2 sections. A repository's root guides are the exception: they put one `&nbsp;` line above each H2 instead, and the validator accepts that only for the guides it exempts by name. The selection guide in [readme-template.md](../../assets/readme-template.md) lists them.
 
 ---
 

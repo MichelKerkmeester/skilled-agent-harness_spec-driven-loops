@@ -15,6 +15,7 @@
       "phase 12 opencode model carry",
       "opencode model carry plan",
       "opencode model carry tasks",
+      "012-opencode-model-carry operator decisions",
       "opencode model carry implementation summary"
     ],
     "key_topics": [
@@ -24,12 +25,12 @@
       "phase",
       "plan",
       "tasks",
+      "012-opencode-model-carry",
+      "operator",
+      "decisions",
       "implementation",
       "summary",
-      "hop",
-      "relaunched",
-      "next",
-      "session"
+      "hop"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -37,6 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/hooks/session-handover/lib/context-usage.cjs",
       ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
@@ -62,6 +64,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -183,32 +191,28 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "An OpenCode 2 hop relaunched the next session without the sender's model",
     "created_at": "2026-11-16T07:39:55Z",
-    "last_save_at": "2026-11-16T08:25:07.286Z",
+    "last_save_at": "2026-11-16T11:31:57.868Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9bb4b2ce93cfd1ba026316dd54e34945b740ad7aa95680f40a9640ffdee72a05",
+    "source_fingerprint": "sha256:c372b7dea0efd6cf6d72e0c6758a59808439a9d759abffbb8bf6b499cfe1a497",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fdf81e2a40715864cb5654935144683b264ed8cc5bc73f4e01491389b56caa35",
       "plan.md": "674077fe76af8faf105297b944fce89b65a289ce0fbe481db2854caf8ac07676",
       "tasks.md": "fe184965f6145bd4ae7b82b0b5f32a8aea4af5adcc2c5d7f3dc373ff5177d2af",
-      "implementation-summary.md": "d02ee8f2d0668e440aa4828ad66fa2cae1512805227cdd34dd4954ad7518ef3f"
+      "decision-record.md": "1185ee4704c52319f325d601ffe4f2b2af74e11daac0c39916aa62840f5208fc",
+      "implementation-summary.md": "18c731a8833c08ce4d57379f403cdc0a623f07c8ad7e72065606615e6d761230"
     },
     "last_active_at": null
   }

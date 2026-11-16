@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 2.4.9.0
+version: 2.4.10.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -55,10 +55,11 @@ emits leaf paths, and this router never re-decides the mode.
   a request to compress, trim, or token-optimize a doc, or emit a machine-readable
   index loads. Fired by "optimize / token efficiency / llms.txt / reduce tokens /
   slim down" requests.
-- **skill-creation leaves** — the skill creation workflow and the skill.md /
-  readme / reference templates a request to scaffold or author a new skill loads.
+- **skill-creation leaves** — the skill creation workflow and the skill.md and
+  reference templates a request to scaffold or author a new skill loads.
   Fired by "create a skill / skill.md scaffold / resource_map wiring / package a
-  capability" requests.
+  capability" requests. The skill README template is not in this set: the
+  `sk-create-readme` mode owns it, and skill creation hands its README step there.
 - **parent-hub leaves.** The nested-packet contract, the hub-router schema and
   the four parent-hub templates a request to build or rewire a parent hub loads.
   Fired by "parent hub / parent skill / mode packet / nested workflow packet /
@@ -114,6 +115,18 @@ emits leaf paths, and this router never re-decides the mode.
 - **readme-creation leaves** — the readme README and readme template a request to
   author a project README / front-page overview loads. Fired by "create a readme /
   readme for / project overview / landing doc" requests.
+- **skill-readme leaves.** The readme README and the skill README template a
+  request to write a skill package's README loads, including the README step a
+  new skill hands over. Fired by "skill readme / readme for my new skill / readme
+  for this skill" requests. This intent scores four times the base weight,
+  because every such request also says "readme", "a readme" and "readme for",
+  which score the readme-creation intent up to four times. At the base weight
+  the skill template would never load. At this weight the skill intent ties or
+  beats the readme-creation intent, so the skill template always loads.
+- **root-guide leaves.** The install guide, contributing guide and security
+  policy templates, one intent each, for the guides that sit beside a
+  repository's front page. Fired by "install guide", "contributing guide /
+  contributing.md" and "security policy / security.md" requests.
 - **changelog leaves** — the changelog template a request to author release notes
   / version notes loads. Fired by "changelog / release notes / what shipped /
   since the last version" requests.
@@ -180,6 +193,10 @@ INTENT_SIGNALS = {
     "PLAYBOOK_CONVERSATION": {"weight": 8, "keywords": ["playbook conversation", "multi-turn conversation script", "json conversation", "conversation runner", "run-conversation-scenario"]},
     "FEATURE_CATALOG": {"weight": 4, "keywords": ["feature catalog", "feature inventory", "catalog of features", "features overview", "capabilities", "catalog package", "per-feature files", "source anchors", "root catalog", "capability inventory", "/create:feature-catalog"]},
     "README_CREATION": {"weight": 4, "keywords": ["create a readme", "readme for", "a readme", "front-page overview", "project overview", "getting started doc", "intro doc", "overview doc", "landing doc", "create readme", "readme", "folder readme", "write readme", "readme.md", "code folder readme", "/create:readme"]},
+    "SKILL_README": {"weight": 16, "keywords": ["skill readme", "readme for my new skill", "readme for a new skill", "readme for my skill", "readme for a skill", "readme for the skill", "readme for this skill", "skill's readme"]},
+    "INSTALL_GUIDE": {"weight": 4, "keywords": ["install guide"]},
+    "CONTRIBUTING_GUIDE": {"weight": 4, "keywords": ["contributing guide", "contributing.md"]},
+    "SECURITY_POLICY": {"weight": 4, "keywords": ["security policy", "security.md"]},
     "CHANGELOG": {"weight": 4, "keywords": ["changelog", "release notes", "version notes", "release summary", "what shipped", "since the last version", "changelog entry", "nested changelog", "packet changelog", "packet-local changelog", "create changelog", "global changelog", "vx.y.z.b", "/create:changelog"]},
     "BENCHMARK": {"weight": 4, "keywords": ["create a benchmark", "author a benchmark", "benchmark suite", "benchmark authoring", "behavior benchmark", "benchmark-report.md", "source.md", "mcp-server/benchmarks", "behavior-benchmark.md", "scenario contract", "claude-baseline", "benchmark/readme.md", "run-label folder", "benchmark package", "benchmark fixture", "benchmark profile", "reviewer-prompt fixture", "agent quality dimensions", "new benchmark", "promote benchmark folder", "create benchmark", "behavior_benchmark"]},
     "DIFF": {"weight": 4, "keywords": ["document diff", "doc diff", "diff document", "before and after diff", "before/after diff", "visual document diff", "create diff report", "document before after review", "before after document diff", "document change report", "before and after document", "document before/after review", "before/after document diff", "review document edits", "docx diff", "pdf diff", "before and after my rewrite"]},
@@ -203,7 +220,6 @@ RESOURCE_MAP = {
     "SKILL_CREATION": [
         "sk-create-skill/references/skill/creation-workflow.md",
         "sk-create-skill/assets/skill/skill-md-template.md",
-        "sk-create-skill/assets/skill/skill-readme-template.md",
         "sk-create-skill/assets/skill/skill-reference-template.md"
     ],
     "RENDER_LEDGER": [
@@ -251,6 +267,19 @@ RESOURCE_MAP = {
     "README_CREATION": [
         "sk-create-readme/references/README.md",
         "sk-create-readme/assets/readme-template.md"
+    ],
+    "SKILL_README": [
+        "sk-create-readme/references/README.md",
+        "sk-create-readme/assets/skill-readme-template.md"
+    ],
+    "INSTALL_GUIDE": [
+        "sk-create-readme/assets/install-template.md"
+    ],
+    "CONTRIBUTING_GUIDE": [
+        "sk-create-readme/assets/contributing-template.md"
+    ],
+    "SECURITY_POLICY": [
+        "sk-create-readme/assets/security-policy-template.md"
     ],
     "CHANGELOG": [
         "sk-create-changelog/assets/changelog-template.md"
@@ -365,8 +394,12 @@ RESOURCE_MAP = {
         "sk-create-quality-control/references/workflow-examples.md",
         "sk-create-quality-control/references/workflows.md",
         "sk-create-readme/assets/architecture-template.md",
+        "sk-create-readme/assets/contributing-template.md",
+        "sk-create-readme/assets/install-template.md",
         "sk-create-readme/assets/readme-code-template.md",
         "sk-create-readme/assets/readme-template.md",
+        "sk-create-readme/assets/security-policy-template.md",
+        "sk-create-readme/assets/skill-readme-template.md",
         "sk-create-readme/references/README.md",
         "sk-create-readme/references/readme/quality-and-checklist.md",
         "sk-create-readme/references/readme/types-and-voice.md",
@@ -399,7 +432,6 @@ RESOURCE_MAP = {
         "sk-create-skill/assets/skill/skill-leaf-manifest-config-template.json",
         "sk-create-skill/assets/skill/skill-md-template.md",
         "sk-create-skill/assets/skill/skill-procedure-template.md",
-        "sk-create-skill/assets/skill/skill-readme-template.md",
         "sk-create-skill/assets/skill/skill-reference-template.md",
         "sk-create-skill/assets/skill/skill-scaffold-template.md",
         "sk-create-skill/assets/skill/skill-smart-router.md",
@@ -449,7 +481,7 @@ The hub's detailed routing prose, moved here from `SKILL.md` so the skill body k
 
 Stage 2 of routing lives in section 3 of this file.
 It defines three things:
-- The per-intent leaf model: document quality, optimization, skill creation, parent-hub creation, agent creation, command creation, the paired agent-plus-command lane, the human-voice pass, playbooks, playbook conversations, feature catalogs, READMEs, changelogs, benchmarks, diffs, frontmatter, packet goals, repo rules, and the explicit full-toolkit intent.
+- The per-intent leaf model: document quality, optimization, skill creation, parent-hub creation, agent creation, command creation, the paired agent-plus-command lane, the human-voice pass, playbooks, playbook conversations, feature catalogs, READMEs, skill READMEs, root guides, changelogs, benchmarks, diffs, frontmatter, packet goals, repo rules, and the explicit full-toolkit intent.
 - The machine-readable `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse.
 - The how-to-read rules: a dominant intent gives one leaf set, near-tied intents give a deduped union, and no keyword match gives the hub UNKNOWN fallback, never a silent default.
 

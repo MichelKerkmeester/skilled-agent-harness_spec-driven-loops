@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation",
+  "description": "Phase 7: review-doc-reconciliation",
+  "keywords": [
+    "phase",
+    "review-doc-reconciliation"
+  ],
+  "lastUpdated": "2026-11-16T13:04:12.711Z",
+  "specId": "007",
+  "folderSlug": "review-doc-reconciliation",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "hook-platform",
+    "008-hook-library-cleanup-and-readme-rewrite"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "16-11-26_13-03__phase-7-closed-both-deep-review-runs-generation-1.md",
+    "16-11-26_14-04__recorded-7-operator-decision-s-from-the-hook.md"
+  ]
+}

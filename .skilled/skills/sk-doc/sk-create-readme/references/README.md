@@ -7,7 +7,7 @@ trigger_phrases:
   - "create-readme references"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.7
+version: 1.1.1.0
 ---
 
 # create-readme Reference Map
@@ -44,8 +44,12 @@ Load the file that matches the current task.
 - [readme/quality-and-checklist.md](readme/quality-and-checklist.md) - README quality criteria and pre-publish checklist
 
 ### Templates
-- [readme-template.md](../assets/readme-template.md) - Fillable scaffold for project, skill, feature and component READMEs
+- [readme-template.md](../assets/readme-template.md) - Selection guide, plus scaffolds for a repository front page and for feature and component READMEs
+- [skill-readme-template.md](../assets/skill-readme-template.md) - Skill package README scaffold, used for the README step `create-skill` hands over
 - [readme-code-template.md](../assets/readme-code-template.md) - Code-folder README scaffold with diagram examples
+- [install-template.md](../assets/install-template.md) - Repository install guide scaffold
+- [contributing-template.md](../assets/contributing-template.md) - Repository contributing guide scaffold
+- [security-policy-template.md](../assets/security-policy-template.md) - Repository security policy scaffold
 
 ### Shared Standards
 - [core-standards.md](../../shared/references/core-standards.md) - Document formatting rules

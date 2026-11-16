@@ -62,7 +62,7 @@ The receiver then wrote: "A fresh session has no path to it — not through the 
 
 ### 4.4 The OpenCode run shows what the text gap costs (F7)
 
-The OpenCode note told the receiver to recover the side word "from the sender's earlier turn through the claim's History Lookup section". Its receiver ran the lookup, loaded the sender's first user turn, quoted the side word and completed the note. Both senders received the same prepare text; only the OpenCode sender had read far enough to know the lookup existed. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/note-20261116T052759Z-ses_e1d2c7c81ffeJTAeWEY1UQO3wn.md:22] [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22]
+The OpenCode note told the receiver to recover the side word "from the sender's earlier turn through the claim's History Lookup section". Its receiver ran the lookup, loaded the sender's first user turn, quoted the side word and completed the note. Both senders received the same prepare text; only the OpenCode sender had read far enough to know the lookup existed. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/note-20261116T052759Z-ses-e1d2c7c81ffeJTAeWEY1UQO3wn.md:25] [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22]
 
 ### 4.5 Reader limits that survive a willing receiver (F4, F5, F6, F7)
 

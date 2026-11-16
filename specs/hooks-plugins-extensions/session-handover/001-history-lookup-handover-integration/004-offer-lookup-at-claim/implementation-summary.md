@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "claim now mints a fresh locator for the sender and prints a History Lookup section after the note body, so a receiving session can look up a detail the note left out instead of guessing."
 trigger_phrases:
   - "offer lookup at claim implementation summary"
 importance_tier: "normal"

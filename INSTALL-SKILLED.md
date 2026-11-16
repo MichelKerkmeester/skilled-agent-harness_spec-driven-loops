@@ -1,34 +1,34 @@
 # Install Skilled
 
+This guide installs a Skilled checkout and then brings it into your own projects. Section 2 builds and checks the checkout. Sections 3 and 4 bring it into a project, by linking it or by copying it in.
+
+From section 3 on, each step is a doctor command. A command that writes shows its plan first and waits for your yes.
+
+&nbsp;
+
 ## 1. OVERVIEW
 
-This guide installs Skilled and then sets it up in your own project repositories. Section 2 installs and checks a Skilled checkout. Sections 3 and 4 bring that checkout into a project, by linking it or by copying it in.
-
-From section 3 on, you run each step as a `/doctor` command from the `system-skilled-doctor` skill. A command that writes shows you a plan first and waits for your yes.
-
-### Link or Copy
-
-You can set up a project in one of two ways. Pick one per project.
+You can bring Skilled into a project in one of two ways. Pick one per project.
 
 | | Link | Copy |
 | --- | --- | --- |
-| **How it works** | Your project links to your Skilled checkout | Your project commits its own copy of Skilled |
-| **Updates** | One `git pull` in the checkout updates every linked project | You re-pin the copy: move it from the commit it came from to a newer one |
-| **Your changes** | Live in your project's own files, next to the links | Live in an overlay folder that goes back on the copy after each update |
-| **Teammates** | Each one keeps their own Skilled checkout | Everyone gets Skilled from the project repo |
+| **How it works** | The project links to your Skilled checkout | The project commits its own copy of Skilled |
+| **Updates** | One `git pull` in the checkout updates every linked project | You re-pin the copy to a newer Skilled commit |
+| **Your changes** | Live in the project's own files, next to the links | Live in an overlay folder that goes back on the copy after each update |
+| **Teammates** | Each one keeps a Skilled checkout | Everyone gets Skilled from the project repository |
 | **Choose it when** | You work alone, or every teammate keeps a checkout | The team needs one pinned version, or you change Skilled's own files |
 
 Linking is simpler. Choose a copy only when you need one of its two reasons.
 
----
+&nbsp;
 
 ## 2. INSTALL A SKILLED CHECKOUT
 
 ### Prerequisites
 
-You need Node.js 24, `npm`, `git` and a POSIX shell. Node 24 is the one version every part of the framework accepts.
+You need Node.js, npm, git and a POSIX shell. Use Node 24.22.1 or a newer 24.x release, because Code Mode runs only on Node 24. Everything else also runs on 22.23.4 or 26.12.1 and newer releases on those lines.
 
-### Clone and Build
+### Clone And Build
 
 Clone the repository and step into it:
 
@@ -37,14 +37,14 @@ git clone https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven
 cd skilled-agent-harness_spec-driven-loops
 ```
 
-Build the Spec Kit first. The runtimes' session hooks load this build.
+Build the Spec Kit first. The session hooks load this build, and the other two builds use its TypeScript compiler.
 
 ```bash
 npm --prefix .skilled/skills/system-spec-kit install
 npm --prefix .skilled/skills/system-spec-kit run build
 ```
 
-Then build the Skill Advisor. Its build uses the Spec Kit's TypeScript compiler, so it comes second. The last command checks the advisor's CLI. `list-tools` answers offline, with no daemon running.
+Then build the Skill Advisor. The last command checks its CLI, and it answers with no daemon running.
 
 ```bash
 npm --prefix .skilled/skills/system-skill-advisor/runtime install
@@ -52,35 +52,40 @@ npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 node .skilled/bin/skill-advisor.cjs list-tools --format json
 ```
 
-Last, build the history lookup behind the session handover. It also uses the Spec Kit's TypeScript compiler and needs no install of its own. Without its output a handover prints no lookup section.
+Last, build the history lookup. A session handover uses it to read an earlier session's turns back. It needs no install of its own.
 
 ```bash
 npm --prefix .skilled/hooks/session-handover/history run build
 ```
 
-### Check the Install
+### Check The Install
 
-Open the repository in any of the eight runtimes: OpenCode, Claude Code, Codex, Cursor, Devin, Pi, DeepSeek Harness (DSH) or Mistral Vibe. Then run:
+Open the repository in any of the eight runtimes and run:
 
 ```
 /doctor:setup
 ```
 
-It checks the install without changing anything. It names one repair command for each failure.
+It checks the install without changing anything. Each failing check names one repair command. It also reports whether each runtime's prompt hook is wired, and names the repair when one is missing.
 
-Codex, Cursor, Pi and DSH spell commands with a hyphen, as in `/doctor-setup`. Devin reaches the spec-kit workflows through its `/system-spec-kit` skill.
+A few runtimes need one step of their own:
 
-DSH loads the repository's guards and the skill advisor only from the patches a run names, so start it with `--patch .dsh/patches/guards.patch.yml`.
+- **Spelling.** Codex, Cursor, Pi, DeepSeek Harness and Mistral Vibe write commands with a hyphen, as in `/doctor-setup`. Devin reaches the Spec Kit workflows through its `/system-spec-kit` skill.
+- **Codex.** Codex runs a project hook only after you approve it. Open `/hooks` in a Codex session at the repository root and approve each entry it lists. A changed entry needs approving again.
+- **DeepSeek Harness.** It loads the repository's guards only from the patches a run names, so start it with `--patch .dsh/patches/guards.patch.yml`.
+- **Mistral Vibe.** It loads the repository's config and hooks only when you trust the checkout root.
 
-Codex runs a project hook only after you approve it, so open `/hooks` in a Codex session at the repository root and approve each entry it lists. Codex keeps each approval as a `trusted_hash` in `~/.codex/config.toml`, so a changed entry needs approving again, and `/doctor:runtime-mirrors` prints `PASS codex-hooks-approved` once the advisor's entry is approved.
+To see the advisor route a prompt, run this. It needs `jq`.
 
-`/doctor:setup` also reports a delivery leg, which reads DEGRADED with the repair step when a runtime's prompt hook is missing or Codex has not approved it.
+```bash
+node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"create a readme for the utils folder"}' --format json | jq -r '.data.recommendations[0].skillId'
+```
 
-To see the advisor answer a prompt, run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"create a readme for the utils folder"}' --format json | jq -r '.data.recommendations[0].skillId'`, which prints one skill id such as `sk-doc`, and when it prints nothing or `null`, run `/doctor:skill-advisor rebuild`.
+It prints one skill id, such as `sk-doc`. When it prints nothing or `null`, run `/doctor:skill-advisor rebuild`.
 
-### Meaning Matching for Commands
+### Meaning Matching For Commands
 
-Until a local embedder model runs, the advisor matches a typed request to a command by phrase alone. With the model loaded, a command can also match by meaning, even when your request uses none of its words. The model is `nomic-embed-text:v1.5`, served by Ollama on your machine, and the advisor calls it once per recommendation.
+Out of the box, the advisor matches a request to a command by its phrases. With a local embedding model running, it can also match by meaning, even when your request uses none of the command's words. The model runs on your own machine through Ollama.
 
 Run the setup from the repository you are setting up:
 
@@ -88,44 +93,39 @@ Run the setup from the repository you are setting up:
 /doctor:skill-advisor embedder
 ```
 
-It probes Ollama, the server and the model first, and changes nothing. It then lists each missing step with its cost and its undo, and asks before it acts. Only `approve` proceeds. From the approved plan it pulls the model, starts `ollama serve` in the background and runs `skill_graph_scan` to write a vector for every command entry. It never installs or upgrades Ollama. When Ollama is missing, the plan prints the install command for you to run.
+It first checks Ollama, its server and the model without changing anything. It then lists each missing step with its cost and its undo, and asks once before it acts. After your yes it pulls the model, starts the server and indexes every command. It never installs Ollama itself. When Ollama is missing, the plan prints the install command for you to run.
 
-Measured on 2026-11-13 with Ollama 0.40.15:
-
-| What it costs | Measured |
-| --- | --- |
-| Disk for `nomic-embed-text:v1.5` | 274302450 bytes, about 262 MB |
-| Memory while `ollama serve` is idle | 25776 KB resident, about 25 MB |
-| Memory while the model is loaded | 32208 KB for the server plus 279520 KB for the model runner, about 304 MB together |
-| Unload when idle | after five idle minutes without a request |
-| Warm embedding latency | 4.8 ms median and 8.9 ms p95 over 30 calls |
-| Cold embedding latency | 538.53 ms for the first call |
-
-Meaning matching is optional. A no at the prompt changes nothing. The install keeps working on phrases alone, and each recommendation that ran without a prompt vector carries `semantic_lane_off:<reason>` in its `warnings`.
+The model takes about 262 MB on disk and unloads after five idle minutes. The Skill Advisor install guide lists the [measured costs](.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md#127-setup-route-and-cost). Meaning matching is optional. Without it, everything still works on phrases alone.
 
 ### Add Code Mode
 
-Code Mode is the bridge your runtime uses to call external MCP tools. It builds separately from the two builds above. Run:
+Code Mode is the bridge your runtime uses to call external MCP tools. It builds apart from the builds above. Run:
 
 ```
 /doctor:mcp install
 ```
 
-It installs the dependencies and builds Code Mode when its `dist` is missing or stale. It configures the `.utcp_config.json` manuals. It registers Code Mode in the seven project config files, two of them for Claude. Each write waits for its own approval. Add `--runtime <name>` to register one runtime only: `opencode`, `claude`, `codex`, `cursor`, `pi` or `devin`.
+It builds Code Mode when its build is missing or stale, sets up its tool manuals and registers it in seven project config files for six runtimes. Each write waits for its own approval. Add `--runtime <name>` to register one runtime only: `opencode`, `claude`, `codex`, `cursor`, `pi` or `devin`.
 
-To check Code Mode later, run `/doctor:mcp debug`. It reports PASS, WARN or FAIL per check, and `--fix` adds guided repair. Provider keys live in `.env`, which only Code Mode reads. Section 1 of [`.env.example`](.env.example) lists them. An agent cannot read that file: the [dotenv guard](.skilled/hooks/env-secret-guard/README.md) refuses it on every runtime and offers key names or a fingerprint instead. The [Code Mode install guide](.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md) covers the manual steps.
+To check Code Mode later, run `/doctor:mcp debug`. It reports PASS, WARN or FAIL per check, and `--fix` adds guided repair. Provider keys live in `.env`, which only Code Mode reads. Section 1 of the [environment example](.env.example) lists them. An agent cannot read that file, because the [dotenv guard](.skilled/hooks/env-secret-guard/README.md) refuses it. The [Code Mode install guide](.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md) covers the manual steps.
 
 ### Git Hooks
 
-The first AI session installs the repository's git hooks. The root README's [Git Hooks](README.md#git-hooks) section says what each hook blocks. `/doctor:git setup` checks the hooks and the sk-git settings.
+Your first AI session in the checkout installs the repository's git hooks. To install them by hand, run:
 
-Your checkout is ready once `/doctor:setup` passes. Run `/doctor:setup` again whenever something looks wrong. To use Skilled in a project of your own, pick a way in below.
+```bash
+bash .skilled/scripts/install-git-hooks.sh
+```
 
----
+The [Git Hooks](README.md#git-hooks) section of the README says what each hook blocks. `/doctor:git setup` checks the hooks and the sk-git settings.
+
+Your checkout is ready once `/doctor:setup` passes. Run it again whenever something looks wrong.
+
+&nbsp;
 
 ## 3. LINK IT INTO YOUR PROJECT
 
-### Step 1: Run the Install Guide
+### Step 1: Print Your Steps
 
 Open your Skilled checkout in your runtime and run:
 
@@ -136,30 +136,32 @@ Open your Skilled checkout in your runtime and run:
 It asks four questions in one prompt:
 
 1. **Target repo:** the absolute path of your project.
-2. **Runtimes:** the AI coding tools you use. Pick any of `claude`, `opencode`, `codex`, `cursor`, `devin` and `pi`.
+2. **Runtimes:** the AI tools you use, from `claude`, `opencode`, `codex`, `cursor`, `devin` and `pi`.
 3. **Link shape:** choose `auto`. [What Gets Linked](#what-gets-linked) explains the shapes.
-4. **Instruction file:** `embed` adds the shipped sections to your project's own `AGENTS.md` and leaves a one-line `CLAUDE.md` reading `@AGENTS.md`, because Claude Code reads only `CLAUDE.md`. `link` points `AGENTS.md`, `CLAUDE.md` and `REPO RULES.md` at the checkout's copies.
+4. **Instruction file:** `embed` adds the shipped sections to your project's own `AGENTS.md` and leaves a one-line `CLAUDE.md` that points to it, because Claude Code reads only `CLAUDE.md`. `link` points `AGENTS.md`, `CLAUDE.md` and `REPO RULES.md` at the checkout's copies.
 
 <!-- readme-check
 allow-ref CLAUDE.md | the instruction file in the operator's target repo, which this checkout does not ship
 -->
 
-The guide writes nothing. It prints the steps below with your paths filled in.
+The command writes nothing. It prints the steps below with your paths filled in.
 
-### Step 2: Run the Printed Steps
+### Step 2: Run The Printed Steps
 
 | Step | Command | Run it from | What it does |
 | --- | --- | --- | --- |
 | 1 | `/doctor:symlink link --root <dir> --runtimes <list> --mode auto` | the checkout | Links `.skilled` and your runtime folders into the project |
-| 2 | `/doctor:agents-md embed --root <dir>` | the checkout | Adds the shipped sections to your `AGENTS.md` and leaves the CLAUDE.md pointer. Skip it if you chose `link` |
-| 3 | `/doctor:mcp install` | the checkout | Builds and registers Code Mode, the bridge your runtime uses to call MCP tools |
-| 4 | `/doctor:git setup` | your project | Checks the git hooks and sk-git settings. Run `/doctor:git standards` afterwards to write repo-owned commit, PR and branch rules; until then the shipped defaults apply |
-| 5 | `/doctor:skill-advisor embedder` | your project | Sets up meaning matching for commands. It shows the cost and asks before it pulls the model or starts the server |
+| 2 | `/doctor:agents-md embed --root <dir>` | the checkout | Adds the shipped sections to your `AGENTS.md`. Skip it if you chose `link` |
+| 3 | `/doctor:mcp install` | the checkout | Builds and registers Code Mode |
+| 4 | `/doctor:git setup` | your project | Checks the git hooks and sk-git settings |
+| 5 | `/doctor:skill-advisor embedder` | your project | Sets up meaning matching for commands |
 | 6 | `/doctor:setup` | your project | Confirms the whole setup works |
 
-If you chose `link` for the instruction file, step 1 also carries `--link-instructions` and step 2 drops out.
+If you chose `link` for the instruction file, step 1 also carries `--link-instructions` and step 2 drops out. After step 4, `/doctor:git standards` writes your project's own commit, PR and branch rules. Until you run it, the shipped rules apply.
 
-### Step 3: Check the Links
+Run `/doctor:setup` and every `/speckit:save` from your project, not from the checkout. A save records progress in the `specs/` folder of the repository it runs in.
+
+### Step 3: Check The Links
 
 ```
 /doctor:symlink check --root <dir>
@@ -169,28 +171,17 @@ Each folder should read `linked-whole` or `linked-merge`. A folder that reads `p
 
 ### What Gets Linked
 
-- **Always:** `.skilled`.
-- **Per runtime:** `.claude` with `.mcp.json`, `.opencode`, `.codex`, `.cursor`, `.devin` or `.pi`.
-- **On request:** `--include` takes `repo-rules`, `github`, `utcp` or `env`. They add the `repo-rules` folder, `.github`, `.utcp_config.json` and `.env`.
-- **Secrets:** linking `.env` shares the checkout's secrets with every tool in the project. The plan warns you before you approve it.
+`.skilled` is always linked. Each runtime you pick adds its own folder, and `claude` also adds `.mcp.json`. `--include` adds extras on request: `repo-rules`, `github`, `utcp` or `env`, for the repo rules folder, `.github`, `.utcp_config.json` and `.env`. Linking `.env` shares the checkout's secrets with every tool in the project, and the plan warns you before you approve it.
 
-The link shape decides how each folder is linked:
+The link shape decides how each folder is linked. `whole` makes each folder one link to the checkout. `merge` keeps a real folder and links each entry inside it. `auto` picks per folder. A folder your project already has stays real, and your own files in it stay untouched. A folder your project lacks becomes one link, unless it holds a link to a sibling folder, such as the `specs` link inside `.skilled`. That folder is built entry by entry instead.
 
-- **`whole`:** each folder becomes one link to the checkout where it can.
-- **`merge`:** the folder stays a real folder, and each entry inside it becomes its own link.
-- **`auto`:** picks per folder, as described below.
+### Keep The Links Out Of Git
 
-With `auto`, a folder your project already has stays a real folder. Each entry inside it becomes its own link, and your own files there stay untouched.
+Most links point at your machine's checkout, so never commit them. `link` writes an ignore line for each one to `.git/info/exclude`, which git reads but never commits. Pass `--ignore gitignore` to write `.gitignore` instead.
 
-A folder your project lacks becomes one link. The exception is a folder that holds a link to a sibling folder, such as `.skilled` (its `specs` link) or `.claude` (its `skills` link). The engine builds that folder entry by entry instead.
+One link is different. When your project has its own `specs/` folder, `.skilled/specs` links to it with a relative path. That link works on any machine, so it gets no ignore line and you can commit it.
 
-### Keep the Links Out of Git
-
-Most links point at your machine's checkout, so never commit them. `link` writes an ignore line for each of those to `.git/info/exclude`. Git reads that file but never commits it. Pass `--ignore gitignore` to write `.gitignore` instead.
-
-One link is different. When your project has its own `specs/` folder, `.skilled/specs` links to it with a relative path. That link works on any machine, so it receives no ignore line and you can commit it.
-
-### Undo a Link
+### Undo A Link
 
 Each `link` run ends by printing its undo command:
 
@@ -198,24 +189,20 @@ Each `link` run ends by printing its undo command:
 node .skilled/commands/doctor/scripts/symlink-engine.cjs unlink --run <run dir> --dry-run
 ```
 
-`/doctor:symlink unlink --run <run dir>` does the same. Drop `--dry-run` to run it for real. Unlink removes only what that run created. It restores only what that run replaced, and it removes the run's ignore lines. After several `link` runs, undo the newest first.
+It shows what the undo would remove and writes nothing. To run it, use `/doctor:symlink unlink --run <run dir>`, which shows the same plan and asks before it writes. Unlink removes only what that run created, restores only what it replaced and removes its ignore lines. A path that changed since the run is skipped and reported.
 
-> **Context saves.** `/speckit:save` records your session's progress in the `specs/` folder of the repo you run it from. Run `/doctor:setup` and every save from your project, not from the checkout.
-
----
+&nbsp;
 
 ## 4. COPY IT INTO YOUR PROJECT
 
-A re-pin replaces your copy whole with a newer commit. A change you made to the copy would be lost, so each change lives in an overlay instead. An overlay is a file in your project's overlay folder. `/doctor:overlay` applies it on top of the copy.
+A re-pin replaces your copy whole with a newer commit, so a change made in the copy would be lost. Each change lives in an overlay instead. An overlay is a file in your project's overlay folder, and `/doctor:overlay` applies it on top of the copy.
 
 <!-- readme-check
-allow-ref overlay-manifest.json | the manifest inside the overlay folder of a project that copies Skilled in
 allow-ref skilled-overlays/overlay-manifest.json | the manifest path the engine names in its error, in a project that copies Skilled in
-allow-ref skilled-overlays/ | the overlay folder in a project that copies Skilled in, which this checkout does not ship
 allow-ref .skilled-overlays.json | the optional overlay folder setting in a project that copies Skilled in, which this checkout does not ship
 -->
 
-### Step 1: Create the Copy
+### Step 1: Create The Copy
 
 Export `.skilled` and the runtime folders you use from one commit of your checkout:
 
@@ -224,19 +211,17 @@ cd /path/to/skilled
 git archive <commit> .skilled .claude .opencode | tar -x -C /path/to/your-project
 ```
 
-Commit the result in your project. Note the commit you exported. That commit is your pin.
+Commit the result in your project. The commit you exported is your pin.
 
-### Step 2: Create the Overlay Folder
+### Step 2: Create The Overlay Folder
 
 The engine looks for `skilled-overlays/` at the root of your project. To use another folder, add `.skilled-overlays.json` at the root, for example `{ "overlayDir": "my-overlays" }`.
 
-The folder holds `overlay-manifest.json` and your overlay files. This manifest replaces one upstream file and adds a folder of team commands:
+The folder holds `overlay-manifest.json` and your overlay files. This manifest replaces one Skilled file and adds a folder of team commands:
 
 ```json
 {
-  "schemaVersion": 1,
-  "pin": { "upstream": "skilled", "commit": "<the commit you exported>" },
-  "layoutLinks": [],
+  "pin": { "commit": "<the commit you exported>", "checkout": "/path/to/skilled" },
   "overlays": [
     {
       "id": "commit-template",
@@ -250,16 +235,11 @@ The folder holds `overlay-manifest.json` and your overlay files. This manifest r
       "source": "team-commands",
       "destination": ".skilled/commands/team"
     }
-  ],
-  "regenerate": [],
-  "verifyGenerated": []
+  ]
 }
 ```
 
-- **`source`:** where your version lives, inside the overlay folder.
-- **`destination`:** the path in the copy that the overlay owns.
-
-Save your version of each file at its `source` path.
+`source` is where your version lives, inside the overlay folder. `destination` is the path in the copy that the overlay owns. The pin's `checkout` names your local Skilled checkout, so the engine can read the pinned files. Save your version of each file at its `source` path.
 
 ### Overlay Types
 
@@ -267,14 +247,14 @@ Save your version of each file at its `source` path.
 | --- | --- |
 | `file` | Replaces one file with your version |
 | `directory` | Keeps a folder equal to your folder |
-| `marked-section` | Keeps your block between two marker lines in an upstream file |
-| `json-entry` | Changes named keys in an upstream JSON file |
+| `marked-section` | Keeps your block between two marker lines in a Skilled file |
+| `json-entry` | Changes named keys in a Skilled JSON file |
 | `skill-root` | Replaces a whole skill folder with yours |
-| `remove-root` | Removes named upstream paths from the copy |
+| `remove-root` | Removes named Skilled paths from the copy |
 
-Most projects need only `file` and `directory`. The [overlays reference](.skilled/skills/system-skilled-doctor/references/overlays.md) covers the rest, plus the optional `regenerate`, `verifyGenerated` and `repin` blocks.
+Most projects need only `file` and `directory`. The [overlay guide](.skilled/skills/system-skilled-doctor/references/overlays.md) covers the rest, along with the optional `regenerate`, `verifyGenerated` and `repin` blocks.
 
-### Step 3: Apply the Overlays
+### Step 3: Apply The Overlays
 
 Check what is out of sync:
 
@@ -288,23 +268,21 @@ A new overlay reads `overlay-edited`, because the copy does not have it yet. App
 /doctor:overlay apply
 ```
 
-`apply` shows the status report as its plan and writes after your yes. Run `status` again. It now ends with `RESULT: PASSED`. Commit the overlay folder and the copy together.
+`apply` shows the status report as its plan and writes after your yes. Run `status` again, and it ends with `RESULT: PASSED`. Commit the overlay folder and the copy together. A second `apply` changes nothing.
 
-Running `apply` a second time changes nothing.
-
-### Change an Overlay
+### Change An Overlay
 
 Edit the file in the overlay folder, never in the copy. Then run `apply`.
 
-Someone may still edit the copy directly. `status` then reports the file as `live-edited`, and `apply` refuses to write. Move the edit into its overlay:
+When someone edits the copy directly, `status` reports the file as `live-edited` and `apply` refuses to write. Move the edit into its overlay:
 
 ```
 /doctor:overlay apply --capture <path>
 ```
 
-An AI agent is stopped sooner. The `overlay-guard` hook refuses an agent's edit to a file an overlay owns. It names the overlay file to edit instead.
+An AI agent is stopped sooner. The [overlay guard](.skilled/hooks/overlay-guard/README.md) refuses an agent's edit to a file an overlay owns and names the overlay file to edit instead.
 
-### Step 4: Re-Pin to a Newer Commit
+### Step 4: Re-Pin To A Newer Commit
 
 A re-pin moves your copy to a newer commit and applies your overlays again. It reads from your Skilled checkout, which must hold both your pin and the new commit:
 
@@ -312,63 +290,64 @@ A re-pin moves your copy to a newer commit and applies your overlays again. It r
 /doctor:overlay repin --upstream /path/to/skilled --to <new commit>
 ```
 
-1. **It stages first.** It builds the result in a temporary folder and leaves your project alone. The report lists the paths it will copy and delete, any blocked overlays and any overlays that now equal upstream.
-2. **You fix the report.** Update each blocked overlay to match the new upstream file. Remove each overlay that now equals upstream. Run the command again.
-3. **You approve.** The live run backs up every path it touches. Then it copies, moves the pin and applies the overlays.
-4. **It checks the result.** The run ends with `RESULT: PASSED` and the new pin in your manifest.
+1. **It stages first.** It builds the result in a temporary folder and leaves your project alone. The report lists the paths it will copy and delete, any blocked overlays and any overlays that now equal Skilled's own file.
+2. **You fix the report.** Update each blocked overlay to fit the new Skilled file, and remove each overlay that now equals it. Run the command again.
+3. **You approve.** The live run backs up every path it touches, copies the new files, moves the pin and applies the overlays.
+4. **It checks the result.** The run ends with `RESULT: PASSED` and the new pin in your manifest. The command then names `/doctor:update record-base` as the next step, because the update base still names the old pin.
 
-A re-pin copies `.skilled` and the runtime folders. It never copies a root file such as `AGENTS.md`, so your project's version survives. Each upstream change it skips prints as a `not-copied` line. Copy those over by hand if you want them. A top-level link, such as `specs`, is skipped without a line.
+A re-pin copies `.skilled` and the runtime folders. It never copies a root file such as `AGENTS.md`, so your project's version survives. Each Skilled change it skips prints as a `not-copied` line, and you copy those over by hand when you want them.
 
-A re-pin refuses to start when someone edited a file in place that no overlay owns, because the new copy would erase that edit. The refusal names the file. Move the edit into an overlay or add the path to the manifest's `repin.exclude` list. You can also restore the file from your pin.
+A re-pin refuses to start when someone edited a file in place that no overlay owns, because the new copy would erase that edit. The refusal names the file. Move the edit into an overlay, add the path to the manifest's `repin.exclude` list or restore the file from your pin.
 
-### Undo a Re-Pin
+### Undo A Re-Pin
 
-Each live run saves a backup in `skilled-overlays/repin-runs/<run-id>/` and prints the run id. Undo it with:
+Each live run saves a backup in a `repin-runs` folder inside your overlay folder and prints the run id. Undo it with:
 
 ```
 /doctor:overlay repin --rollback <run-id>
 ```
 
-Rollback restores every backed-up file byte for byte. It removes the files the run added and sets the old pin back. Run `/doctor:overlay status` afterwards to confirm.
+Rollback restores every backed-up file byte for byte, removes the files the run added and sets the old pin back. Run `/doctor:overlay status` afterwards to confirm.
 
-### Bring an Existing Overlay Folder
+### Bring An Existing Overlay Folder
 
-Already keep overlays with a script of your own? The engine reads the same manifest and state files, so the folder stays where it is. Name it in `.skilled-overlays.json` and run `status`. Each line names its fix. The overlays reference has the full [adoption steps](.skilled/skills/system-skilled-doctor/references/overlays.md#6-adopting-the-engine-with-existing-overlays).
+If you already keep overlays with a script of your own, the engine reads the same manifest and state files, so the folder stays where it is. Name it in `.skilled-overlays.json` and run `status`. Each line names its fix. The overlay guide has the full [adoption steps](.skilled/skills/system-skilled-doctor/references/overlays.md#6-adopting-the-engine-with-existing-overlays).
 
----
+&nbsp;
 
 ## 5. KEEP IT HEALTHY
 
 | When | Linked project | Copied project |
 | --- | --- | --- |
-| **After a `git pull` in the checkout** | Run `/doctor:symlink check --root <dir>`. Run `link` again if it lists missing entries | No action until you re-pin |
-| **To adopt a new Skilled release** | The `git pull` already adopted it | Run `/doctor:overlay repin` |
+| **After a `git pull` in the checkout** | Run `/doctor:symlink check --root <dir>`, and run `link` again if it lists missing entries | Nothing until you re-pin |
+| **To adopt a new Skilled release** | The `git pull` already did | Run `/doctor:overlay repin` |
 | **When something looks wrong** | Run `/doctor:setup` in your project | Run `/doctor:overlay status`, then `/doctor:setup` |
 | **To find the right command** | Run `/doctor:helper` and describe the problem | Same as linked |
 
----
+&nbsp;
 
 ## 6. TROUBLESHOOTING
 
 | You see | Cause | Fix |
 | --- | --- | --- |
 | `partial-merge` in `/doctor:symlink check` | The checkout gained entries since your last `link` | Run `link` again |
-| `no overlay manifest at skilled-overlays/overlay-manifest.json` | The engine found no overlay folder | Create one (section 4, step 2), or name yours in `.skilled-overlays.json` |
+| `no overlay manifest at skilled-overlays/overlay-manifest.json` | The engine found no overlay folder | Create one, as in section 4 step 2, or name yours in `.skilled-overlays.json` |
 | `overlay-edited` | An overlay changed and the copy lags behind | Run `/doctor:overlay apply` |
 | `live-edited` | Someone edited the copy directly | Run `/doctor:overlay apply --capture <path>` |
 | `both-changed` | The overlay and the copy both changed since the last apply | Read both, update the overlay by hand and run `status` again |
-| `upstream-moved` | The pin moved, and the file matches neither the old copy nor your overlay | Update the overlay to fit the new upstream file and run `status` again |
+| `upstream-moved` | The pin moved, and the file matches neither the old copy nor your overlay | Update the overlay to fit the new Skilled file and run `status` again |
 | `refusing to inspect a protected path` | An overlay walks a file with `token` in its name | Add that file to the overlay's `protectedPaths`, as the line says |
 | `refuse: unowned <path> differs from the old pin` | Someone edited a file in place that no overlay owns | Move the edit into an overlay, or restore the file from your pin |
-| A held `.build-lock` | Another `apply` is running, or one crashed | Once no run is active, delete the lock file the message names |
-| `semantic_lane_off` in a recommendation's `warnings` | The advisor answered on phrases alone. The reason after the colon names why, such as `prompt_embedding_unreachable` when Ollama is not answering or `prompt_embedding_model_missing` when the model is not loaded | Run `/doctor:skill-advisor embedder` from the project. If the warning stays, restart the advisor daemon, which resolves its embedder at startup |
+| `refuse: the overlay lock is held` | Another run still holds the lock, or a run on another machine left it | Wait for the other run. If it ended elsewhere, delete the lock file the message names. A lock left by an ended run on this machine is taken over on its own |
+| `semantic_lane_off` in a recommendation's `warnings` | The advisor answered on phrases alone. The reason after the colon says why, such as `prompt_embedding_unreachable` when Ollama is not answering | Run `/doctor:skill-advisor embedder` from the project. If the warning stays, restart the advisor daemon, which picks its embedder at startup |
 
----
+&nbsp;
 
 ## 7. RELATED DOCUMENTS
 
-- [system-skilled-doctor README](.skilled/skills/system-skilled-doctor/README.md): every doctor command in this guide.
-- [Overlays reference](.skilled/skills/system-skilled-doctor/references/overlays.md): sync states, refusals, re-pins and adoption in full.
-- [overlay-guard README](.skilled/hooks/overlay-guard/README.md): the hook that protects overlay-owned files.
-- [Root README](README.md): what Skilled is and what each part does.
+- [Doctor README](.skilled/skills/system-skilled-doctor/README.md): every doctor command in this guide.
+- [Overlay guide](.skilled/skills/system-skilled-doctor/references/overlays.md): sync states, refusals, re-pins and adoption in full.
+- [Overlay guard README](.skilled/hooks/overlay-guard/README.md): the hook that protects overlay-owned files.
+- [Skill Advisor install guide](.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md): the advisor build, its embedder and its tuning.
 - [Code Mode install guide](.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md): the manual Code Mode setup.
+- [Root README](README.md): what Skilled is and what each part does.

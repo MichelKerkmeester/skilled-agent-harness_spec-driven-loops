@@ -43,8 +43,6 @@
       "runtime/hooks/claude/compact-inject.ts",
       "runtime/hooks/pi/session-compact-context.ts",
       ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
-      "runtime/tests/_support/history-fixtures.ts",
-      "runtime/tests/history-lookup-cli.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
@@ -52,9 +50,7 @@
       ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-compact-context.mjs",
       ".skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs",
       ".skilled/skills/system-spec-kit/runtime/hooks/devin/user-prompt-submit.ts",
-      ".skilled/skills/system-spec-kit/runtime/tests/_support/history-fixtures.ts",
-      ".skilled/skills/system-spec-kit/runtime/tests/history-lookup-cli.vitest.ts",
-      ".skilled/skills/system-spec-kit/runtime/tests/history-locator.vitest.ts"
+      ".skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts"
     ],
     "entities": [
       {
@@ -106,18 +102,6 @@
         "source": "derived"
       },
       {
-        "name": "history-fixtures.ts",
-        "kind": "code",
-        "path": "runtime/tests/_support/history-fixtures.ts",
-        "source": "derived"
-      },
-      {
-        "name": "history-lookup-cli.vitest.ts",
-        "kind": "test",
-        "path": "runtime/tests/history-lookup-cli.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "hook-state.ts",
         "kind": "code",
         "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts",
@@ -148,9 +132,9 @@
         "source": "derived"
       },
       {
-        "name": "history-locator.vitest.ts",
+        "name": "hook-precompact.vitest.ts",
         "kind": "test",
-        "path": ".skilled/skills/system-spec-kit/runtime/tests/history-locator.vitest.ts",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts",
         "source": "derived"
       },
       {
@@ -200,11 +184,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "History Lookup",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The in-session handover starts a fresh session near the context limit, so compaction rarely happens",
     "created_at": "2026-11-15T06:24:26Z",
-    "last_save_at": "2026-11-15T14:30:53.268Z",
+    "last_save_at": "2026-11-16T11:15:09.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f57ad1f013561da5f802a26f1e583e338cb6f6723993cc4215bd44c8cd13e549",
+    "source_fingerprint": "sha256:c6d6df33f79e0185538a842500cf27433a11e5275b0fb356e923c76b208e9d26",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eeb2b001ba0339d51b8532f57430510f1e7ab39f72f15d816e4f9be430d46d6c",
       "plan.md": "30e0e0c8358d81124299b9a4d6a2eae62f52010e13e944ce0466a510423e2986",
       "tasks.md": "36d2172e74bfdac6b8a0e29f3a7e26b640647508cc2b820d7929462b551c3f17",
-      "implementation-summary.md": "ce49cec45666a753db281dbdd4d86bbcd5e6fdfc3d987e141b8d15f6d1346f71"
+      "implementation-summary.md": "d1566ed598f5462dadecd2feaa45c335268c950a8619e4ed6ba05dedd5d9fa9c"
     },
     "last_active_at": null
   }

@@ -7,7 +7,6 @@ expected_intent: sk-create-skill → sk-create-quality-control → sk-create-cha
 expected_resources:
   - sk-create-skill/references/skill/creation-workflow.md
   - sk-create-skill/assets/skill/skill-md-template.md
-  - sk-create-skill/assets/skill/skill-readme-template.md
   - sk-create-skill/assets/skill/skill-reference-template.md
   - shared/references/validation.md
   - sk-create-quality-control/references/workflows.md
@@ -20,8 +19,6 @@ expected_leaf_resources:
     leaf_resource_id: references/skill/creation-workflow.md
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-md-template.md
-  - workflow_mode: sk-create-skill
-    leaf_resource_id: assets/skill/skill-readme-template.md
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-reference-template.md
   - workflow_mode: sk-create-quality-control

@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-readme routing"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,13 +20,17 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when they name a README, a folder readme, a code-folder readme or `/create:readme`, and when they ask for developer orientation on a project, skill, feature, component or source-code directory.
+Requests reach this skill when they name a README, a folder readme, a code-folder readme or `/create:readme`, when they ask for developer orientation on a project, skill, feature, component or source-code directory, and when they ask for a repository's install guide, contributing guide or security policy. `create-skill` also hands its README step here.
 
-It routes to three artifact templates under `assets/`:
+It routes to seven artifact templates under `assets/`:
 
-- `readme-template.md` for a general README.
+- `readme-template.md` for a repository front page or a general README.
+- `skill-readme-template.md` for a skill package README.
 - `readme-code-template.md` for a source-code folder.
 - `architecture-template.md` for a skill package's `ARCHITECTURE.md`.
+- `install-template.md` for a repository install guide.
+- `contributing-template.md` for a repository contributing guide.
+- `security-policy-template.md` for a repository security policy.
 
 It falls back to `references/README.md` and the `references/readme/` overflow group when the artifact type or folder purpose is unclear.
 
@@ -38,7 +42,7 @@ loads before an intent selects it.
 
 ## 2. INTENT MODEL
 
-- **`readme`** fires on `readme`, `folder readme`, `create readme`, `write readme`, `project readme` and `skill readme` at weight 4. It selects `assets/readme-template.md`, and `assets/architecture-template.md` when the target is a skill package's `ARCHITECTURE.md`, then loads the flat markdown inventory under `references/` and `assets/`.
+- **`readme`** fires on `readme`, `readme for`, `folder readme`, `create readme`, `write readme`, `project readme`, `skill readme`, `install guide`, `contributing guide` and `security policy` at weight 4. It selects the template the target names: `assets/skill-readme-template.md` for a skill package, `assets/architecture-template.md` for a skill package's `ARCHITECTURE.md`, a root-guide template for an install guide, contributing guide or security policy, and `assets/readme-template.md` for everything else. It then loads the flat markdown inventory under `references/` and `assets/`.
 - **`code_readme`** fires on `code folder readme`, `source-code folder readme` and `source code readme` at weight 4. It selects `assets/readme-code-template.md` and loads the same flat inventory, with `references/readme/` carrying the extended code-folder voice and pattern detail.
 
 ---
@@ -52,7 +56,11 @@ Route by artifact type first, then by folder purpose.
 
 | Request | Output | Primary Template |
 | --- | --- | --- |
-| Project, skill, feature or component README | `README.md` in the target folder | `assets/readme-template.md` |
+| Repository front page, feature or component README | `README.md` in the target folder | `assets/readme-template.md` |
+| Skill package README | `README.md` at the skill package root | `assets/skill-readme-template.md` |
+| Repository install guide | `INSTALL.md` at the repository root | `assets/install-template.md` |
+| Repository contributing guide | `CONTRIBUTING.md` at the repository root | `assets/contributing-template.md` |
+| Repository security policy | `SECURITY.md` at the repository root | `assets/security-policy-template.md` |
 | Source-code folder README | `README.md` in the source folder | `assets/readme-code-template.md` |
 | Skill package architecture document | `ARCHITECTURE.md` at the skill package root | `assets/architecture-template.md` |
 
@@ -92,7 +100,7 @@ DEFAULT_RESOURCE = "references/README.md"
 
 # Two output artifacts; keywords come from this packet's activation triggers.
 INTENT_MODEL = {
-    "readme": {"weight": 4, "keywords": ["readme", "folder readme", "create readme", "write readme", "project readme", "skill readme"]},
+    "readme": {"weight": 4, "keywords": ["readme", "readme for", "folder readme", "create readme", "write readme", "project readme", "skill readme", "install guide", "contributing guide", "security policy"]},
     "code_readme": {"weight": 4, "keywords": ["code folder readme", "source-code folder readme", "source code readme"]},
 }
 UNKNOWN_FALLBACK_CHECKLIST = [

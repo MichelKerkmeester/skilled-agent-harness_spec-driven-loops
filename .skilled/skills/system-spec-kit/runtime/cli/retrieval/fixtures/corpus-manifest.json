@@ -1,5 +1,5 @@
 {
-  "corpusHash": "92912f3c0eec7ea0801c5a1f3da3e2b018020eabb8a23858df291ba4661d8b3d",
+  "corpusHash": "2d64b347fb0c8c5f8753ac08271ef2587495b1b4ed33b90b8f8dea7ed06508d4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27817,
+  "includedPathCount": 27872,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7031,8 +7031,12 @@
     ".skilled/skills/sk-doc/sk-create-readme/ROUTER.md",
     ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/architecture-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/contributing-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/install-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/security-policy-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.2.0.0.md",
@@ -7118,7 +7122,6 @@
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md",
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md",
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-procedure-template.md",
-    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md",
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md",
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-scaffold-template.md",
@@ -11367,6 +11370,11 @@
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary/plan.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary/spec.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary/tasks.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/decision-record.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/implementation-summary.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/plan.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/spec.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/tasks.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/decision-record.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/goal.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/handover.md",
@@ -11808,9 +11816,48 @@
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/decision-record.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/decision-record.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/tasks.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/goal.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/deep-review-dashboard.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/deep-review-strategy.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/iterations/iteration-001.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/iterations/iteration-002.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/iterations/iteration-003.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/iterations/iteration-004.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/iterations/iteration-005.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/prompts/iteration-1.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/prompts/iteration-2.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/prompts/iteration-3.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/prompts/iteration-4.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/prompts/iteration-5.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/resource-map.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/review-report.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/deep-review-dashboard.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/deep-review-strategy.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/iterations/iteration-001.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/iterations/iteration-002.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/iterations/iteration-003.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/iterations/iteration-004.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/iterations/iteration-005.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/prompts/iteration-1.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/prompts/iteration-2.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/prompts/iteration-3.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/prompts/iteration-4.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/prompts/iteration-5.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/resource-map.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/review-report.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/decision-record.md",
     "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/implementation-summary.md",
     "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/spec.md",
@@ -12160,12 +12207,14 @@
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/goal.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/research.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/spec.md",
@@ -12862,6 +12911,12 @@
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/plan.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/research.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
@@ -27849,7 +27904,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "b6adc0806e33da71fded43116a32161e414ac070d78f6d2ff7944e1100d01381",
+  "manifestHash": "cdc5039b416e8bf2f400134136e5e07fc3fa5eb8170ec6df01a18aaad2658c39",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31072,6 +31127,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/research/lineages",
       "reason": "excluded directory"
     },
@@ -31325,6 +31384,14 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/scratch",
       "reason": "excluded directory"
     },
     {
@@ -32213,6 +32280,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/scratch",
       "reason": "excluded directory"
     },
     {
