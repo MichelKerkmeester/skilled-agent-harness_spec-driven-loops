@@ -1,5 +1,5 @@
 {
-  "corpusHash": "0495baa1c23a36a9f467361a1e2e4427ec7f1ab1fa4ebc8d9db943a8d81b6441",
+  "corpusHash": "71e6f6f4ad96205cdcb263279ad537eb70347e530dbd6eabcb3234472b70c1fb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27776,
+  "includedPathCount": 27811,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12165,6 +12165,10 @@
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/fanout-attribution.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/review-report.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/deep-review-dashboard.md",
@@ -14417,6 +14421,12 @@
     "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/plan.md",
     "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/spec.md",
     "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/tasks.md",
+    "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/decision-record.md",
+    "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/goal.md",
+    "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/implementation-summary.md",
+    "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/plan.md",
+    "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/spec.md",
+    "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/tasks.md",
     "specs/sk-code/quality-and-review-modes/001-code-modes-research/001-quality-mode-research/acceptance-criteria.md",
     "specs/sk-code/quality-and-review-modes/001-code-modes-research/001-quality-mode-research/decision-record.md",
     "specs/sk-code/quality-and-review-modes/001-code-modes-research/001-quality-mode-research/goal.md",
@@ -19057,6 +19067,12 @@
     "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/decision-record.md",
+    "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/tasks.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/implementation-summary.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/plan.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/spec.md",
@@ -19190,6 +19206,19 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/decision-record.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/decision-record.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/handover-from-barter-022.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/research.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/spec.md",
     "specs/system-skilled-doctor/002-symlink-first-link/implementation-summary.md",
@@ -19200,6 +19229,12 @@
     "specs/system-skilled-doctor/003-removed-folder-classification/plan.md",
     "specs/system-skilled-doctor/003-removed-folder-classification/spec.md",
     "specs/system-skilled-doctor/003-removed-folder-classification/tasks.md",
+    "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/decision-record.md",
+    "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/goal.md",
+    "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/implementation-summary.md",
+    "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/plan.md",
+    "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/spec.md",
+    "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/tasks.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -27808,7 +27843,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ce36b38c9fcfe6fa8136b9b0c629a031820a5926ac091474014d696b97c2f1a7",
+  "manifestHash": "4d3a7eec2919d4572235e6548cfa232895f84e6226b7c5373f828fc5d7762027",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31663,6 +31698,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/lineages",
       "reason": "excluded directory"
     },
@@ -33192,6 +33231,10 @@
     },
     {
       "path": "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/scratch",
       "reason": "excluded directory"
     },
     {
@@ -36131,6 +36174,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/routing-and-scoring/z_archive",
       "reason": "excluded directory"
     },
@@ -36263,11 +36310,23 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skilled-doctor/002-symlink-first-link/scratch",
       "reason": "excluded directory"
     },
     {
       "path": "specs/system-skilled-doctor/003-removed-folder-classification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/scratch",
       "reason": "excluded directory"
     },
     {

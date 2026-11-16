@@ -26,13 +26,6 @@ const { existsSync, readFileSync } = require('node:fs');
 const { dirname, join } = require('node:path');
 const { tmpdir } = require('node:os');
 
-let lookupOffer = null;
-try {
-  lookupOffer = require('../../../../../hooks/session-handover/history/dist/lookup-offer.js');
-} catch (_) {
-  lookupOffer = null;
-}
-
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
@@ -40,6 +33,9 @@ try {
 const MAX_CONTEXT_BYTES = 4096;
 const SUMMARY_HEADING = '## Post-Compaction Summary';
 const BOUNDARY_TIMEOUT_MS = 750;
+const SECTION_SEPARATOR = '\n\n';
+const TRUNCATION_MARK = '...';
+const TRUNCATION_MARK_BYTES = Buffer.byteLength(TRUNCATION_MARK, 'utf8');
 
 function sessionLifecycleHookEnabled() {
   try {
@@ -82,12 +78,18 @@ function stripControlCharacters(text) {
   return text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '').trim();
 }
 
-function sanitizeForInjection(text) {
-  if (typeof text !== 'string') return '';
-  const stripped = stripControlCharacters(text);
-  if (stripped.length === 0) return '';
-  const buf = Buffer.from(stripped, 'utf8');
-  return buf.length <= MAX_CONTEXT_BYTES ? stripped : `${buf.subarray(0, MAX_CONTEXT_BYTES).toString('utf8')}...`;
+function utf8Prefix(text, maxBytes) {
+  if (maxBytes <= 0) return '';
+  const bytes = Buffer.from(text, 'utf8');
+  if (bytes.length <= maxBytes) return text;
+  // A cut inside a multi-byte character decodes to U+FFFD, so drop that tail.
+  return bytes.subarray(0, maxBytes).toString('utf8').replace(/�+$/u, '');
+}
+
+function cutToBudget(text, maxBytes) {
+  if (Buffer.byteLength(text, 'utf8') <= maxBytes) return text;
+  if (maxBytes < TRUNCATION_MARK_BYTES) return utf8Prefix(text, maxBytes);
+  return `${utf8Prefix(text, maxBytes - TRUNCATION_MARK_BYTES)}${TRUNCATION_MARK}`;
 }
 
 // Step 2: same lastSpecFolder state the Stop/completion-evidence hooks read,
@@ -145,17 +147,34 @@ function notifyLifecycleBoundary(startDir, sessionId) {
   }
 }
 
+/**
+ * Join the recovery sections inside the byte budget, shortening only the summary.
+ *
+ * The recovery pointer comes after the summary, so cutting the joined text from
+ * the end would drop the command the model must run first. This mirrors the
+ * history engine's section fitter, kept here because that engine ships as a
+ * build output a fresh checkout does not have, and a hook that only fits right
+ * when the build exists drops the pointer everywhere else.
+ *
+ * @param {string[]} sections - Composed sections, the summary first when present.
+ * @returns {string} The joined text, at most MAX_CONTEXT_BYTES bytes.
+ */
 function fitSections(sections) {
-  if (!lookupOffer || typeof lookupOffer.fitRecoverySections !== 'function') {
-    return sanitizeForInjection(sections.join('\n\n'));
-  }
   const cleaned = sections.map((section) => stripControlCharacters(section)).filter(Boolean);
   const hasSummary = cleaned.length > 0 && cleaned[0].startsWith(SUMMARY_HEADING);
-  return lookupOffer.fitRecoverySections(
-    hasSummary ? cleaned[0] : null,
-    hasSummary ? cleaned.slice(1) : cleaned,
-    MAX_CONTEXT_BYTES,
-  );
+  const summary = hasSummary ? cleaned[0] : null;
+  const kept = (hasSummary ? cleaned.slice(1) : cleaned).join(SECTION_SEPARATOR);
+  if (summary === null) return cutToBudget(kept, MAX_CONTEXT_BYTES);
+
+  const whole = kept ? `${summary}${SECTION_SEPARATOR}${kept}` : summary;
+  if (Buffer.byteLength(whole, 'utf8') <= MAX_CONTEXT_BYTES) return whole;
+
+  const keptBytes = kept ? Buffer.byteLength(SECTION_SEPARATOR + kept, 'utf8') : 0;
+  const summaryRoom = MAX_CONTEXT_BYTES - keptBytes - TRUNCATION_MARK_BYTES;
+  if (summaryRoom <= 0) return cutToBudget(whole, MAX_CONTEXT_BYTES);
+
+  const shortened = `${utf8Prefix(summary, summaryRoom)}${TRUNCATION_MARK}`;
+  return kept ? `${shortened}${SECTION_SEPARATOR}${kept}` : shortened;
 }
 
 function buildRecoveryPointer() {

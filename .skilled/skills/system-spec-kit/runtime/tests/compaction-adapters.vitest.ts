@@ -13,6 +13,7 @@ import { dirname, join, relative } from 'node:path';
 
 import { afterAll, afterEach, describe, expect, it, vi } from 'vitest';
 
+import { fitRecoverySections } from '../../../../hooks/session-handover/history/lib/lookup-offer.ts';
 import sessionCompactContext from '../hooks/pi/session-compact-context.js';
 import {
   composeCompactionContext,
@@ -26,6 +27,7 @@ afterAll(() => rmSync(WORKSPACE, { recursive: true, force: true }));
 interface DevinAdapter {
   composeRecoverySections(summary: string, sessionId: string | null, projectDir: string): string[];
   fitSections(sections: string[]): string;
+  buildRecoveryPointer(): string;
 }
 
 const devin = require('../hooks/devin/post-compaction.cjs') as DevinAdapter;
@@ -191,6 +193,34 @@ describe('Devin post-compaction context', () => {
     expect(text.startsWith('## Post-Compaction Summary')).toBe(true);
     expect(text).toContain('## Recovery');
     expect(text).toContain('Run `/speckit:resume` against the active packet to recover session state.');
+  });
+
+  it('cuts a multi-byte summary on a character boundary inside the budget', () => {
+    const sections = devin.composeRecoverySections('é🙂'.repeat(2_000), uniqueSession('devin-utf8'), WORKSPACE);
+    const text = devin.fitSections(sections);
+
+    expect(Buffer.byteLength(text, 'utf8')).toBeLessThanOrEqual(4_096);
+    expect(text).not.toContain('�');
+    expect(text.endsWith(devin.buildRecoveryPointer())).toBe(true);
+  });
+
+  // The hook carries its own copy of the history engine's fitter, so the two
+  // must give the same text for every budget branch.
+  it.each([
+    ['a long ASCII summary', ['## Post-Compaction Summary\n' + 'y'.repeat(5_000), '## Recovery\npointer']],
+    ['a long multi-byte summary', ['## Post-Compaction Summary\n' + 'é🙂'.repeat(2_000), '## Recovery\npointer']],
+    ['no summary', ['## Active Spec Folder\nspecs/a', '## Recovery\npointer']],
+    ['kept sections over the budget', ['## Post-Compaction Summary\nshort', '## Recovery\n' + 'k'.repeat(5_000)]],
+    ['text inside the budget', ['## Post-Compaction Summary\nshort', '## Recovery\npointer']],
+  ])('fits %s the same way the history engine does', (_label, sections) => {
+    const hasSummary = sections[0].startsWith('## Post-Compaction Summary');
+    const expected = fitRecoverySections(
+      hasSummary ? sections[0] : null,
+      hasSummary ? sections.slice(1) : sections,
+      4_096,
+    );
+
+    expect(devin.fitSections(sections)).toBe(expected);
   });
 
   it('emits no history lookup section', () => {

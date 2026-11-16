@@ -10,7 +10,8 @@
     "sk-code/hub-architecture/004-sk-code-skilled-rename",
     "sk-code/hub-architecture/005-private-surface-skills",
     "sk-code/hub-architecture/006-sk-code-audit-remediation",
-    "sk-code/hub-architecture/007-ci-vocabulary-single-source"
+    "sk-code/hub-architecture/007-ci-vocabulary-single-source",
+    "sk-code/hub-architecture/008-host-surface-hint-and-score-window"
   ],
   "manual": {
     "depends_on": [],
