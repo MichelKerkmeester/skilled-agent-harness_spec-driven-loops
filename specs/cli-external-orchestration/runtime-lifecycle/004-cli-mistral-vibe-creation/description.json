@@ -20,19 +20,20 @@
     "coding",
     "agent"
   ],
-  "lastUpdated": "2026-11-16T06:33:14.733Z",
+  "lastUpdated": "2026-11-16T12:01:32.821Z",
   "specId": "004",
   "folderSlug": "cli-mistral-vibe-creation",
   "parentChain": [
     "cli-external-orchestration",
     "runtime-lifecycle"
   ],
-  "memorySequence": 5,
+  "memorySequence": 6,
   "memoryNameHistory": [
     "14-11-26_23-33__planned-reviewed-and-built-children-013-020-of.md",
     "15-11-26_14-31__phases-016-017-and-022-closed-with-live-multi.md",
     "15-11-26_16-01__review-fixes-applied-across-the-packet-manual.md",
     "15-11-26_17-27__all-22-phases-complete-phase-022-closed-after-the.md",
-    "16-11-26_07-33__second-deep-review-over-every-vibe-hook-and.md"
+    "16-11-26_07-33__second-deep-review-over-every-vibe-hook-and.md",
+    "16-11-26_13-01__mistral-vibe-cli-runtime-fixed-the-vibe-hook-kill.md"
   ]
 }

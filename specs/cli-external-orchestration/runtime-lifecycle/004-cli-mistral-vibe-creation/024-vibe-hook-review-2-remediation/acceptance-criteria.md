@@ -70,7 +70,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
 Every criterion is Met. The unit suites prove each fix, and the live VIB-HK-029 run showed a background `cat` of a dotenv file denied in a real Vibe session, with the payload name `process.start` read from the session journal.
 <!-- /ANCHOR:closure -->
