@@ -1,0 +1,50 @@
+> Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-handover/README.md, name its first heading and repeat
+  the code word ORCHID-8509. Start by reading the README. Gate 3: D) Skip, no spec folder.
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+⚠ [turn-start] Added context for the model: "Advisor: live; ambiguous: system-spec-kit 0.95/0.16 vs sk-doc 0.92/0.16 pass. D…"
+
+  I'll start by reading the README, then carry the task through a context handoff.
+                                                                                                                                                                                                       ▅
+⏵ Ran 2 commands, thought
+
+  Answers captured: 442 lines, first heading # Session Handover, code word ORCHID-8509. Now writing the handoff note so a fresh session finishes the report.
+
+⏵ Wrote 1 file, ran 2 commands, thought
+
+  Handoff prepared, exit 0. The note is at .skilled/skills/.state/session-handover/handoffs/20261115T213502Z-89b37427-cc09-2aba-1bcc-021b22bee67a.md, and the loop ends this session when it goes
+  idle.
+
+  What the note carries into the fresh session:
+
+  ┌──────────────────────────────────────────────────────────────────────────────────┬──────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Fact                                                                             │ Value                                                                                                        │
+  ├──────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Line count                                                                       │ 442                                                                                                          │
+  ├──────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ First heading                                                                    │ # Session Handover                                                                                           │
+  ├──────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Code word                                                                        │ ORCHID-8509                                                                                                  │
+  └──────────────────────────────────────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  The first heading sits after the YAML frontmatter, so # Session Handover is the first Markdown heading in the file, not the title: field. Gate 3 D) Skip is recorded as spec_folder: none, so no
+  continuity save ran. The receiving session reports these three facts; nothing else is outstanding.
+
+
+> Actually stay in this session. Do not hand over. Just repeat the code word once.
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+⏵ Thought
+
+  ORCHID-8509
+
+  Staying in this session. The prepared handover was withdrawn, so the note at .skilled/skills/.state/session-handover/handoffs/20261115T213502Z-89b37427-cc09-2aba-1bcc-021b22bee67a.md is now
+  stale; I'll rewrite it when the next context nudge arrives rather than touching it now.
+
+
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+~/worktrees/public/383-mistral-vibe-runtime                                                                                                                     usage █▉     31% · ctx ▋      25.9k/256k

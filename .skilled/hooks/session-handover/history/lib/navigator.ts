@@ -7,7 +7,11 @@
 // ───────────────────────────────────────────────────────────────────
 
 import type { HistoryItem } from './history.js';
-import { recoveryHistoryItem, type RecoveryHistoryItem } from './projection.js';
+import {
+  recoveryHistoryItem,
+  type RecoveryHistoryItem,
+  type RecoveryModelTurnHistoryItem,
+} from './projection.js';
 import { isRecoveryImage } from './pages.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -234,17 +238,24 @@ function contentText(content: unknown): string {
     .join(' ');
 }
 
+// A tool call reads as its name and its arguments, never as the block object, whose id and
+// type field tell a reader nothing about what the turn did. Search and previews share this.
+function turnText(item: RecoveryModelTurnHistoryItem): string {
+  return item.assistantMessage.content
+    .flatMap((block) => {
+      if (block === null) return [];
+      if (block.type === 'text') return [block.text];
+      return [`${block.name} ${serialized(block.arguments)}`];
+    })
+    .join(' ');
+}
+
 function itemText(item: RecoveryHistoryItem): string {
   if (item.kind === 'user') return contentText(item.userMessage.content);
 
-  const toolCalls = item.assistantMessage.content.flatMap((block) => {
-    if (block === null || block.type !== 'toolCall') return [];
-    return [{ name: block.name, arguments: block.arguments }];
-  });
   const fileSegments = item.metadata.files.flatMap((file) => file.split(/[\\/]/));
   return [
-    contentText(item.assistantMessage.content),
-    ...toolCalls.flatMap((call) => [call.name, serialized(call.arguments)]),
+    turnText(item),
     ...item.toolResults.map((result) => contentText(result.content)),
     ...item.metadata.files,
     ...fileSegments,
@@ -252,8 +263,8 @@ function itemText(item: RecoveryHistoryItem): string {
 }
 
 function previewFor(item: RecoveryHistoryItem): string {
-  const content = item.kind === 'user' ? item.userMessage.content : item.assistantMessage.content;
-  return contentText(content).replace(/\s+/g, ' ').trim().slice(0, 160);
+  const text = item.kind === 'user' ? contentText(item.userMessage.content) : turnText(item);
+  return text.replace(/\s+/g, ' ').trim().slice(0, 160).replace(/[\uD800-\uDBFF]$/u, '');
 }
 
 function excerptAround(text: string, matchStart: number, matchEnd: number): string {

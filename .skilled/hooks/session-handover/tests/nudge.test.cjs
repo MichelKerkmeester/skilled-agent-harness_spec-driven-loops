@@ -24,6 +24,7 @@ const {
   validSessionId,
   readState,
   writeState,
+  commitNudge,
   markWindowUnknown,
   handoffPending,
   hopLimitReached,
@@ -996,6 +997,47 @@ test('nudge state round-trips in the isolated runtime directory', (t) => {
 
   writeState(SESSION_ID, 2, env);
   assert.equal(readState(SESSION_ID, env), 2);
+});
+
+test('commitNudge stays quiet while another hook holds the claim and takes over a stale one', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-handover-nudge-'));
+  // The suite also runs from inside a looped session, whose hop cap and child flag would
+  // silence the nudge before the claim is ever consulted.
+  const env = {
+    ...withoutRelaunchSwitches(process.env), XDG_RUNTIME_DIR: root, SKILLED_LOOP_ID: '',
+  };
+  delete env.AI_SESSION_CHILD;
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const options = { ratio: 0.81, threshold: 0.8, sessionId: SESSION_ID, env };
+  core.ensureStateDir(env);
+  const claimPath = path.join(core.stateDir(env), `nudge-${SESSION_ID}.claim`);
+
+  fs.writeFileSync(claimPath, '');
+  assert.equal(commitNudge(options), null);
+  assert.equal(readState(SESSION_ID, env), 0);
+
+  const old = new Date(Date.now() - 60000);
+  fs.utimesSync(claimPath, old, old);
+  assert.equal(commitNudge(options)?.nudge, true);
+  assert.equal(readState(SESSION_ID, env), 1);
+  assert.equal(fs.existsSync(claimPath), false);
+});
+
+test('commitNudge delivers a level once when a second hook decided before the first wrote it', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-handover-nudge-'));
+  const env = {
+    ...withoutRelaunchSwitches(process.env), XDG_RUNTIME_DIR: root, SKILLED_LOOP_ID: '',
+  };
+  delete env.AI_SESSION_CHILD;
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const options = { ratio: 0.81, threshold: 0.8, sessionId: SESSION_ID, env };
+
+  // Both hooks saw a nudge before either wrote its level, then each commits in turn.
+  assert.equal(nudgeModule.nudgeDecision(options).nudge, true);
+  assert.equal(nudgeModule.nudgeDecision(options).nudge, true);
+  assert.equal(commitNudge(options)?.level, 1);
+  assert.equal(commitNudge(options), null);
+  assert.equal(readState(SESSION_ID, env), 1);
 });
 
 test('markWindowUnknown marks a session once', (t) => {

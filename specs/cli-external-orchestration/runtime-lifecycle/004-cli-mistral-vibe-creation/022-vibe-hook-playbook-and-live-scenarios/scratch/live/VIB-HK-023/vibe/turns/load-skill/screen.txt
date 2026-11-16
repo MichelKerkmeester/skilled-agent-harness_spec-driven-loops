@@ -1,45 +1,45 @@
 > Use the sk-prompt skill to turn this rough request into a structured prompt for a coding agent: make the build faster.                                                                                
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
-   4. The comment-hygiene rule is stated as a durable-why rule, with no ids or spec paths, per the session directive.                                                                                   
+   1. Inventory the build: tooling, entry points, targets, and where time goes.                                                                                                                         
+   2. Record a baseline with a repeatable command, covering cold and warm cache.                                                                                                                        
+   3. Profile the build and name the top three costs with numbers.                                                                                                                                      
+   4. Rank candidate fixes by expected gain against risk of changing output.                                                                                                                            
+   5. Implement the best gain-to-risk candidate first, then re-measure.                                                                                                                                 
+   6. Repeat until the remaining candidates are high-risk or the gain flattens.                                                                                                                         
                                                                                                                                                                                                         
-  Checklist pass (standard effort)                                                                                                                                                                      
+  Stop and report instead of proceeding when the next win requires changing build outputs, adding infrastructure, or touching more than five files.                                                     
                                                                                                                                                                                                         
-  ┌──────────────────────────────────────┬───────────────────────┬──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
-  │ Row                                  │ Mark                  │ Reason                                                                                                                           │   
-  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 1 Task                               │ present               │ Reduce build wall-clock time, proven by re-measurement                                                                           │   
-  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 2 Role                               │ present               │ Build-performance engineer; changes the method, not the tone                                                                     │   
-  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 3 Context                            │ present               │ Toolchain unknown, so read-first plus cold/warm and noise caveats                                                                │   
-  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 4 Constraints                        │ present               │ Output equivalence outranks speed; priority order stated                                                                         │   
-  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 5 Process                            │ present               │ Measure → profile → rank → implement → re-measure                                                                                │   
-  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 6 Output format                      │ present               │ Seven ordered sections, tables named                                                                                             │   
-  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 7 Examples                           │ not needed            │ No format ambiguity to demonstrate                                                                                               │   
-  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 8 Success criteria                   │ present               │ Same-method delta, clean-cache parity, checks still pass                                                                         │   
-  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 9 Assumptions                        │ present               │ Moved to open items, not embedded in the prompt                                                                                  │   
-  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤  ▂
-  │ 10 Wording                           │ present               │ Reasons given instead of capitals; no CRITICAL/MUST                                                                              │   
-  └──────────────────────────────────────┴───────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+  Output A report containing: baseline table (command, runs, median, spread); changes table (change, before, after, delta, risk); rejected candidates with the reason each was rejected; verification   
+  evidence (tests run, output comparison); open questions.                                                                                                                                              
                                                                                                                                                                                                         
-  CLEAR: 44/50 (C:9 L:9 E:13 A:9 R:4) — passes 40 and every per-dimension floor. Correctness and logic hold because the measure-profile-remeasure loop closes and the cold/warm and install-dominated   
-  cases are handled. Expression loses points for length; reusability loses one because the build target is described rather than parameterized.                                                         
+  Success criteria                                                                                                                                                                                      
+                                                                                                                                                                                                        
+  • The primary build command is measurably faster, and someone else can reproduce the measurement.                                                                                                     
+  • Tests pass and build outputs are unchanged.                                                                                                                                                         
+  • Every change is revertible on its own.                                                                                                                                                              
+  • No comment contains a ticket ID or spec path.                                                                                                                                                       
+                                                                                                                                                                                                        
+  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  ▃
+                                                                                                                                                                                                        
+  CLEAR: 44/50 (C:9 L:9 E:13 A:9 R:4) — passes the 40 threshold and every dimension floor. Correctness and logic score high because the priority order resolves the speed-versus-output conflict        
+  explicitly; reusability is capped at 4 because the prompt is repo-bound with no marked parameters. Quick test: NOT RUN — no target model available to compare old against new.                        
+                                                                                                                                                                                                        
+  Open items                                                                                                                                                                                            
+                                                                                                                                                                                                        
+   1. Build system left unnamed on purpose; the prompt makes discovery step one rather than assuming npm, cargo or gradle.                                                                              
+   2. No numeric target. If you have one ("under 2 minutes", "30% faster"), add it — it changes when the agent stops.                                                                                   
+   3. Assumed the local developer build is the target. If CI is the target, say so: the levers differ (caching, parallelism, runner size).                                                              
+   4. Assumed output-preserving optimization is acceptable. If you would trade a small output change for speed, the priority order needs editing.                                                       
+   5. Assumed the comment-hygiene directive applies to this repo's pre-commit gate as stated in the session directives.                                                                                 
+   6. Growth is roughly 5 words to 430. That is inherent — the source named no outcome — but if you want a shorter dispatch, drop Process and Output and keep Task, Constraints and Success criteria.   
                                                                                                                                                                                                         
   Change report                                                                                                                                                                                         
                                                                                                                                                                                                         
-  • Added — task outcome, read-first context, five-step process, seven constraints with a stated priority order, seven-section output contract, success criteria, three edge cases.                     
-  • Changed — "make the build faster" became a measured, evidence-gated loop rather than an open-ended optimization request.                                                                            
-  • Removed — nothing; the original carried no content to remove.                                                                                                                                       
-  • Skipped — examples (row 7), since no output format needed demonstrating.                                                                                                                            
-  • Quick test: NOT RUN — no target model available to run representative inputs old versus new.                                                                                                        
-                                                                                                                                                                                                        
-  The prompt is roughly 40x the original four words. That growth is inherent: the original carried no task detail, so every component had to be supplied rather than expanded.                          
+  • Added — measurable outcome, priority order, baseline-first rule, one-change-per-commit rule, stop condition, output schema, success criteria, and the comment-hygiene hard block.                   
+  • Changed — "make the build faster" became a measured reduction with a discovery step in front of it.                                                                                                 
+  • Removed — nothing; the source carried no material to contradict.                                                                                                                                    
+  • Skipped — examples (row 7): no representative build to show, and a fabricated one would teach the wrong shape. TIDD-EC preset: the default skeleton already carries the do's and don'ts without     
+    the extra scaffolding.                                                                                                                                                                              
 
                                                 
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
@@ -47,5 +47,5 @@
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.tQVPx0MZ1Q/vibe                                                                                                       ctx ▊      32.7k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ksi9kslcBU/vibe                                                                                    usage █▌     24% · ctx ▊      31.1k/256k
 

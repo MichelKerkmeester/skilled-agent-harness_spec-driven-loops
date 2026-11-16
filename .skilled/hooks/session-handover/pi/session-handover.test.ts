@@ -1132,6 +1132,60 @@ describe('session-handover Pi extension', () => {
     expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'pending' });
   });
 
+  it('agent_settled marks the pending record deferred when arming throws', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-arm-throws';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: '/workspace/pi/handoff.md',
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    const { api, handlers } = makeExtensionApi();
+    sessionHandover(api);
+
+    // A cwd that cannot be written as JSON makes the arm throw after it read the record.
+    await emit(
+      handlers,
+      'agent_settled',
+      { aborted: false },
+      makeContext('pi-session-0001', 1n as unknown as string),
+    );
+
+    const record = readRelaunchFile(loopId, process.env) as { status?: string; deferredAt?: unknown };
+    expect(record).toMatchObject({ status: 'pending' });
+    expect(typeof record.deferredAt).toBe('string');
+    const logPath = path.join(process.env.XDG_RUNTIME_DIR!, 'skilled-relaunch', 'relaunch.log');
+    expect(readFileSync(logPath, 'utf8')).toMatch(/agent-settled-arm-error stage=arm/);
+  });
+
+  it('agent_start withdraws a pending record a failed arm deferred', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-deferred-0001';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: '/workspace/pi/handoff.md',
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    relaunchCore.markDeferred({ loopId, env: process.env });
+    const { api, handlers } = makeExtensionApi();
+    sessionHandover(api);
+
+    await emit(handlers, 'agent_start', {}, makeContext());
+
+    expect(readRelaunchFile(loopId, process.env)).toMatchObject({
+      status: 'disarmed',
+      disarmReason: 'user-message',
+    });
+  });
+
   // The turn that withdraws an arm makes the same withdrawal the cancel command does, so the
   // note is listed as still with its session and the session is granted one more nudge.
   it('agent_start lists the withdrawn note in the hop history', async () => {

@@ -1,0 +1,24 @@
+{
+  "runtime": "pi",
+  "label": "live3",
+  "codeWord": "ORCHID-17918",
+  "sideWord": "LAGOON-5719",
+  "name": "hoptest-live3-pi",
+  "startMs": 1794777239152,
+  "logOffset": 4317,
+  "stateDir": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//skilled-relaunch-501",
+  "notesDir": "/Users/michelkerkmeester/worktrees/public/420-cross-runtime-handover-parity-fixes/.skilled/skills/.state/session-handover/handoffs",
+  "launch": [
+    "--provider",
+    "llmgateway",
+    "--model",
+    "deepseek-v4.1-flash-1017",
+    "--thinking",
+    "max",
+    "--name",
+    "hoptest-live3-pi",
+    "Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-handover/README.md, name its first heading and repeat the code word ORCHID-17918. Start by reading the README. One more fact for later: the side word is LAGOON-5719. Do not write the side word in the handoff note. The new session must report it too. Gate 3: D) Skip, no spec folder."
+  ],
+  "endMs": 1794777344760,
+  "trustDialogs": 0
+}

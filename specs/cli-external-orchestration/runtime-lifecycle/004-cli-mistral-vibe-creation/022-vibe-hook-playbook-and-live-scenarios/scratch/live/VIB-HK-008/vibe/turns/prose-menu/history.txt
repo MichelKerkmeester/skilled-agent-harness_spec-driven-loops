@@ -11,26 +11,25 @@ Hello Michel, how can I help you?
   prose without opening the question box, and end by asking me which one I want.
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-⏵ Thought                                                                                                                     
+⏵ Thought                                                                                                                    
 
-  A) A small LRU inside the reader keeps the cache on the same side of the boundary as the read logic, so it can key on the reader's real granularity (page, offset, record) and invalidate itself
-  when a write goes through the same object — callers see nothing new. The trade-off is that it makes the reader stateful and instance-bound: the cache dies with the reader, can't be shared across
-  readers, and every test that constructs a reader now has to reason about warm state.
+  A) A small LRU inside the reader keeps the cache next to the data it caches, so invalidation stays local and you can reason about correctness from one file. The trade-off is coupling: every reader
+  instance carries its own cache, so you can't share entries across readers or tune the policy centrally, and the reader's tests now have to account for cache state.
 
-  B) A memoized wrapper keeps the reader pure and stateless, which makes it trivially composable, easy to disable in tests, and swappable for a different policy later. The trade-off is that the
-  wrapper only sees the public call signature, so it caches at whatever granularity callers happen to use — coarser keys, more misses — and invalidation has to be plumbed in from outside, since the
-  wrapper has no idea when the journal actually changed.
+  B) A memoized wrapper around the reader keeps the reader pure and lets each call site opt in, disable, or swap the cache. The trade-off is staleness risk: the wrapper keys on arguments, so any
+  journal mutation that bypasses it will leave callers reading entries that no longer reflect the file.
 
   Which one do you want?
 
 ⏵ Thought                           
 
-  A) Small LRU inside the reader. The cache sits where the read semantics live, so it can key on what actually determines a hit — offset, range, journal version — and evict with real knowledge of
-  what a miss costs. The trade-off: each reader instance carries its own cache, so two readers over the same journal duplicate the work, and invalidation has to be threaded through the reader
-  itself.
+  Two options, as asked:
 
-  B) Memoized wrapper around it. The reader stays a plain function and a single cache can be shared across every call site, which is usually where the duplicate reads actually originate. The
-  trade-off: the wrapper only sees arguments, so it can't do range-aware hits or notice the journal changed underneath it — stale entries become a correctness problem rather than a performance one.
+  A) Small LRU inside the reader. The cache sits on the read path itself, so every caller gets it for free and there's no way to accidentally bypass it. The trade-off is that the reader becomes
+  stateful: eviction policy is now welded to the read logic, which makes the reader harder to test in isolation and means you can't opt out for a caller that genuinely needs a fresh read.
+
+  B) Memoized wrapper around it. The reader stays pure and the cache becomes a composable layer you can apply, swap, or skip per call site. The trade-off is that correctness now depends on every
+  caller remembering to go through the wrapper, and memoization keyed on arguments needs explicit invalidation or it will serve stale journal entries after a write.
 
   Which one do you want?
 
@@ -41,10 +40,11 @@ Hello Michel, how can I help you?
 
 
 
-                                            
+
+                                           
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
 >                                                                                                                                                                                                    
                                                                 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.aIxEiVRjmj/vibe                                                                                     usage ▍      6% · ctx ▎      10.7k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.TnwmGZyg00/vibe                                                                                    usage ▊      12% · ctx ▎      10.5k/256k

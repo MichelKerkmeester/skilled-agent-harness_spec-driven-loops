@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation"
-    last_updated_at: "2026-11-15T19:30:46Z"
+    last_updated_at: "2026-11-15T21:30:19Z"
     last_updated_by: "generate-context"
-    recent_action: "Reran VIB-HK-004 to 008 live, all PASS"
-    next_safe_action: "Await operator go-ahead to push phase 023"
+    recent_action: "Closed the uncovered gaps; all scenarios PASS live"
+    next_safe_action: "Await operator go-ahead to push the second round"
     packet_purpose: "Purpose: The Vibe playbook's live evidence holds for the code on the branch, names the model each run used, and the detector and docs match what the code does."
     blockers: []
     key_files: []
@@ -19,7 +19,7 @@ _memory:
       runtime: "claude"
       sessionId: "425e79e1-c5de-4edb-b8bb-77ee620d2538"
       workspace: "/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime"
-      savedAt: "2026-11-15T19:30:46Z"
+      savedAt: "2026-11-15T21:30:19Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -72,6 +72,9 @@ Every Vibe run from the conversation runner now starts on `deepseek-flash`, and 
 | `.skilled/hooks/session-handover/vibe/handover-parts.mjs` | Modified | Withdraw only on a typed prompt |
 | `.skilled/hooks/session-handover/tests/vibe-adapters.test.cjs` | Modified | Blank-prompt case |
 | `.skilled/hooks/session-handover/lib/relaunch-core.cjs` | Modified | Reflow one over-width comment |
+| `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-advisor-uptake.md` | Created | VIB-HK-028, advisor brief uptake |
+| `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/spec-gate-classify.md`, `overlay-guard.md`, `render-home-hooks.md` | Modified | Gaps the full rerun found |
+| `.gitignore` | Modified | Lineage `vibe-home/` and `vibe-output/` |
 | `.skilled/hooks/goal/README.md`, `.skilled/hooks/goal/vibe/README.md` | Modified | Vibe's compaction re-injection and the hand-over packet variable |
 | `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md` | Modified | The 18 bindings by event; a run proves only the code it ran on |
 | `.skilled/skills/cli-external-orchestration/feature-catalog/mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md` | Modified | The hand-over parts in the composers |
@@ -87,6 +90,7 @@ Every Vibe run from the conversation runner now starts on `deepseek-flash`, and 
 Every code change came with a test that fails on the old file and passes on the new one, except the empty-restore case, which pins behavior that was already right. The scenario edits were checked by parsing each conversation script, running HK-005's setup in an empty folder and the playbook validator. All edits landed before the live batch, because the runner fails a run whose checkout changes under it. The batch then ran VIB-HK-004 to 008 one after another on `deepseek-flash`.
 
 All five passed on the first run, on `f8dcf4940db` plus this phase's changes. Merging origin/main as `c96ff28ef4e` then brought the Vibe hand-over hardening, which changed `turn-start.mjs`, `compaction-context.mjs` and `handover-parts.mjs`, so VIB-HK-003 to 007 ran again on the merged code. VIB-HK-006 timed out once: the re-injection landed, but an open question about what to pick up next sent the model searching the machine for the packet. Its last message now asks for the goal without tools, and it passed 3/3. Each `result.json` under 022's `scratch/live/` names the model Vibe resolved.
+A second round closed what the first left uncovered. The hand-over packet's live-hop harness, copied into `scratch/harness/` with its Vibe home moved outside the checkout and the model pin made the config's first line, ran VIB-HK-027 on the merged code: a full hop scored 5/5, and a withdraw probe typed a prompt into an armed session, which logged `withdrawn reason=user-message` and kept the session. A later merge moved the Vibe nudge claim into the shared `nudge.commitNudge`, so the pair ran again on `ba44c47f68c` with the same result (`hop4`, `wd3`). Every other runner scenario ran again with the pin. VIB-HK-001, 012 and 022 failed on the first pass, each on a scenario gap, and passed once fixed. The new VIB-HK-028 passed 3/3: the brief named `sk-prompt` and the model loaded `sk-prompt` from the mirror. `.gitignore` now keeps lineage Vibe homes and exports out of Git.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -103,6 +107,9 @@ All five passed on the first run, on `f8dcf4940db` plus this phase's changes. Me
 | Rerun VIB-HK-004 and 008 although they passed at 17:42 and 17:50 | Those reruns ran unpinned on GLM-5.3 Flash; the record now names the model. |
 | Add the typed-prompt check to the merged `withdrawBeforeTurnStart` as well | The merge brought a second withdraw path from the hand-over hardening. Guarding only one path would leave the finding open, so the merge resolution guards both, and the blank-prompt test covers both. |
 | Rerun VIB-HK-003 to 007 after the merge | The merge changed the hooks they judge, and a verdict holds only for the code it ran on. |
+| Rerun every other runner scenario, not only those whose hooks changed | Each row then names its model, and the rerun found three scenario gaps a pass on older code had hidden. |
+| Judge advisor uptake by comparing the brief's skill with the loaded skill | A fixed expected skill would break on a router change; the property under test is that the model follows the brief, whatever it names. |
+| Copy the overlay engine into VIB-HK-012's scratch project, not link it | The engine applies to the tree it sits in, so a link resolves to the checkout. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -156,6 +163,7 @@ All five passed on the first run, on `f8dcf4940db` plus this phase's changes. Me
 | Playbook validator on the Vibe package | `scenarios=52 violations=0 warnings=0` |
 | Live, before the merge (`f8dcf4940db` plus this phase) | VIB-HK-004 to 008 PASS: 2/2, 2/2, 3/3, 3/3 (`compaction-probe`, re-injection in a `post_tool_call` at sequence 74 after the compaction at 50), 2/2; 19:20 to 19:27 UTC |
 | Live, after the merge (`c96ff28ef4e` plus the doc fixes) | VIB-HK-003 PASS 2/2, 004 PASS 2/2, 005 PASS 2/2, 007 PASS 3/3 (`compaction-probe`), 19:40 to 19:53 UTC; 006 FAIL 2/3 on a turn timeout, then PASS 3/3 at 19:54 UTC with the bounded prompt; all others `deepseek-flash` |
+| Second round, live | VIB-HK-001 to 025 all PASS with `deepseek-flash` (007 on `compaction-probe`), 19:40 to 21:26 UTC; VIB-HK-028 PASS 3/3; VIB-HK-027 hop 5/5 and withdraw probe as expected |
 | Merged tree unit gates | hand-over 1027 pass, lifecycle 41 pass, repo-guards and goal 17 pass, runner suite PASS, playbook `violations=0` |
 <!-- /ANCHOR:verification -->
 
@@ -164,9 +172,8 @@ All five passed on the first run, on `f8dcf4940db` plus this phase's changes. Me
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **VIB-HK-027 was not rerun.** Both withdraw paths changed, and VIB-HK-027 covers the automatic hand-over tier another lane owns. The hand-over suite covers both paths with and without a prompt.
-2. **Rows other than 004 to 008 carry no recorded model.** They ran before the pin and after the last change to their hooks, so their verdicts stand, but the model they ran on is not recorded.
-3. **Skill-advisor uptake inside Vibe is untested.** The review deferred it; it needs its own scenario.
+1. **VIB-HK-026's hand-driven hop predates the merge.** The manual tier shares `relaunch-core.cjs` with the automatic one, and the prepare, claim and complete steps passed again in the VIB-HK-027 hop on the merged code, but the manual hop itself was not repeated.
+2. **The live runs judge one model.** Every row ran on `deepseek-flash`, VIB-HK-007 on its probe model; a different model may need its own pass.
 <!-- /ANCHOR:limitations -->
 
 ---

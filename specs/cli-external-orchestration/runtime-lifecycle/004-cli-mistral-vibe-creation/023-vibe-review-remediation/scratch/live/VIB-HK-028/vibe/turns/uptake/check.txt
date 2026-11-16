@@ -1,0 +1,4 @@
+$ s=$(grep -rhoE 'Advisor: [a-z]+; use [a-z0-9-]+' "$VIBE_HOME/logs/session/unified" | head -1 | sed 's/.* use //'); [ -n "$s" ] || { echo no-brief-names-a-skill; exit 1; }; echo "advised=$s"; grep -rqs '"name":"skill"' "$VIBE_HOME/logs/session/unified" || { echo no-skill-call; exit 1; }; grep -rqsF "skills/$s/" "$VIBE_HOME/logs/session/unified" || { echo "advised-skill-not-loaded loaded=$(grep -rhoE 'skills/[a-z0-9-]+/SKILL' "$VIBE_HOME/logs/session/unified" | sort -u | tr '\n' ' ')"; exit 1; }; echo advised-skill-loaded
+advised=sk-prompt
+advised-skill-loaded
+[exit 0]

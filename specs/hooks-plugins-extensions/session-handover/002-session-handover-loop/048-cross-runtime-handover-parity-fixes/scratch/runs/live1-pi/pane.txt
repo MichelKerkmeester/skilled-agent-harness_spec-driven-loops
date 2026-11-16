@@ -1,0 +1,183 @@
+
+added 2 packages in 670ms
+
+added 1 package in 544ms
+
+added 48 packages in 2s
+npm warn install-scripts 2 packages have install scripts not yet covered by allowScripts:
+npm warn install-scripts   pi-blackhole@0.5.18 (postinstall: node scripts/prepare.mjs)
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+
+added 2 packages in 350ms
+npm warn install-scripts 3 packages have install scripts not yet covered by allowScripts:
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts   fsevents@2.3.3 (install: (install scripts present))
+npm warn install-scripts   pi-blackhole@0.5.18 (postinstall: node scripts/prepare.mjs)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+
+added 210 packages in 3s
+npm warn install-scripts 3 packages have install scripts not yet covered by allowScripts:
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts   fsevents@2.3.3 (install: (install scripts present))
+npm warn install-scripts   pi-blackhole@0.5.18 (postinstall: node scripts/prepare.mjs)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+Cloning into '/Users/michelkerkmeester/worktrees/public/420-cross-runtime-handover-parity-fixes/.pi/git/github.com/dbachelder/pi-btw'...
+remote: Enumerating objects: 537, done.
+remote: Counting objects: 100% (242/242), done.
+remote: Compressing objects: 100% (87/87), done.
+remote: Total 537 (delta 196), reused 164 (delta 155), pack-reused 295 (from 2)
+Receiving objects: 100% (537/537), 809.33 KiB | 13.95 MiB/s, done.
+Resolving deltas: 100% (275/275), done.
+
+up to date in 100ms
+Cloning into '/Users/michelkerkmeester/worktrees/public/420-cross-runtime-handover-parity-fixes/.pi/git/github.com/janvitos/pi-plan-build'...
+remote: Enumerating objects: 1103, done.
+remote: Counting objects: 100% (143/143), done.
+remote: Compressing objects: 100% (42/42), done.
+remote: Total 1103 (delta 118), reused 114 (delta 101), pack-reused 960 (from 1)
+Receiving objects: 100% (1103/1103), 1.47 MiB | 6.16 MiB/s, done.
+Resolving deltas: 100% (817/817), done.
+Already on 'main'
+Your branch is up to date with 'origin/main'.
+
+up to date in 76ms
+
+added 49 packages in 2s
+npm warn install-scripts 3 packages have install scripts not yet covered by allowScripts:
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts   fsevents@2.3.3 (install: (install scripts present))
+npm warn install-scripts   pi-blackhole@0.5.18 (postinstall: node scripts/prepare.mjs)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+
+ ▀▀█  v1.5.2
+ █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+ Press ctrl+o to show full startup help and loaded resources.
+
+ Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.
+
+ Model scope: deepseek-v4.1-flash-1017, gpt-6-luna, deepseek-v4.1-flash, glm-5.3-flash, glm-5.3-flash, deepseek-v4-1-flash-1017, zai-glm-5-3-flash (Ctrl+P to cycle)
+
+
+[Context]
+  AGENTS.md
+
+[Skills]
+  btw, cli-classifier, cli-external-orchestration, cli-orca, mcp-code-mode, mcp-tooling, sk-code, sk-design, sk-doc, sk-git, sk-prompt, system-deep-loop, system-skill-advisor, system-skilled-doctor,
+system-spec-kit
+
+[Prompts]
+  /create-agent, /create-benchmark, /create-changelog, /create-command, /create-diff, /create-feature-catalog, /create-goal, /create-manual-testing-playbook, /create-readme, /create-repo-rule,
+/create-skill, /create-skill-parent, /create-with-human-voice, /deep-research, /deep-review, /design-chart, /design-diagram, /design-extract, /doctor-agents-md, /doctor-ci, /doctor-deep-loop,
+/doctor-env, /doctor-git, /doctor-helper, /doctor-install, /doctor-mcp, /doctor-overlay, /doctor-runtime-mirrors, /doctor-setup, /doctor-sk-code, /doctor-sk-skill, /doctor-skill-advisor,
+/doctor-speckit, /doctor-symlink, /doctor-update, /goal-pi, /local-skilled-alignment, /prompt-improve, /speckit-ai-council, /speckit-complete, /speckit-handoff, /speckit-implement, /speckit-plan,
+/speckit-resume, /speckit-save, /speckit-search
+
+[Extensions]
+  .pi/extensions/pi-cache-optimizer, .pi/extensions/pi-fast-mode-w-subagent-support/src, @juicesharp/rpiv-ask-user-question, @juicesharp/rpiv-todo, agent/extensions/pi-cache-optimizer,
+agent/extensions/pi-fast-mode-w-subagent-support/src, ask-surface-guard.ts, classifier-injection-screen.ts, completion-evidence.ts, dbachelder/pi-btw:btw.ts, decision-capture.ts, dispatch-audit.ts,
+dispatch-preflight-lint.ts, env-secret-guard.ts, git-message-gate.ts, git-preflight-advisory.ts, goal-context.ts, janvitos/pi-plan-build, mcp-route-guard.ts, orca-agent-status.ts, orca-prefill.ts,
+orca-titlebar-spinner.ts, overlay-guard.ts, pi-blackhole:dist, pi-claude-code-ui, pi-claude-code-ui:spinner.ts, pi-statusline:src, pi-web-access:dist, post-edit-quality.ts, prompt-advisor.ts,
+session-compact-context.ts, session-handover.ts, session-start-advisories.ts, session-start-context.ts, session-stop-context.ts, spec-gate-classify.ts, spec-gate-enforce.ts, task-dispatch-guard.ts
+
+
+ Observational memory: dropper running (~35,733 tokens accumulated, ~16,709-token input)
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ Extension Updates
+
+ pi-web-access [0.48.0] - 2026-11-12
+
+ ### Highlights
+
+ - Three new search options, each used only when you pick it: SpecStream (which can also fetch pages), Autom, and cloro, which can return Google or Bing AI Mode answers with sources.
+ - Ask questions about a video with any model that can see images, without a Gemini key.
+ - Fetched pages come back more complete when the first pass keeps only one section of the page.
+ - DuckDuckGo search no longer gets your IP address blocked after a handful of searches.
+ - A search provider that times out now hands off to your next provider instead of stopping the search.
+
+ ### Added
+
+ - Search the web and fetch pages through SpecStream (https://specstream.ai) with provider: "specstream" for web_search and "specstream" in fetchRouting.providers for fetch_content, configured with
+   specstreamApiKey or SPECSTREAM_API_KEY (and an optional specstreamBaseUrl gateway). It is explicit-only: never chosen by auto or provider: "all". Thanks to @Specstreamai
+   (https://github.com/Specstreamai) for PR #669 (https://github.com/nicobailon/pi-web-access/pull/669).
+ - fetch_content answer mode now sends video frames and fetched images to the answer model as images, so any Pi model that accepts image input (OpenRouter, OpenAI, a local gateway) can describe a
+   video without a Gemini credential, and the agent gets back only the text answer. Before, answer mode rejected frames and images. Thanks to @MaksimZinovev (https://github.com/MaksimZinovev) for the
+   request in #663 (https://github.com/nicobailon/pi-web-access/issues/663).
+ - Search Google through Autom (https://www.autom.dev) with provider: "autom", configured with automApiKey or AUTOM_API_KEY (and an optional automBaseUrl gateway). It is explicit-only: never chosen
+   by auto or provider: "all", but it can be the named provider or part of searchRouting. Domain filters become site: clauses and are reapplied locally, and recencyFilter is sent as Google's tbs.
+   Each search returns at most one Google results page. Thanks to @josselinlbe (https://github.com/josselinlbe) for PR #675 (https://github.com/nicobailon/pi-web-access/pull/675).
+ - Search Google through cloro (https://cloro.dev) with provider: "cloro", configured with cloroApiKey or CLORO_API_KEY (and an optional cloroBaseUrl gateway). It is explicit-only: never chosen by
+   auto or provider: "all", but it can be the named provider or part of searchRouting. Domain filters become site: clauses and are reapplied locally; recency is not applied. Each search returns at
+   most one Google results page. Set cloroMode: "aimode" or cloroMode: "bing_aimode" to get a Google AI Mode or Bing AI Mode answer and its sources instead. Thanks to @rbatista191
+   (https://github.com/rbatista191) for PR #662 (https://github.com/nicobailon/pi-web-access/pull/662) and PR #668 (https://github.com/nicobailon/pi-web-access/pull/668).
+
+ ### Changed
+
+ - The search curator's code (its local server and page, about 150 KB of source) now loads the first time the curator opens instead of when Pi loads the extension, so sessions that never open it,
+   such as print and json modes or a host with no browser, don't load it at all. Thanks to @lodgekeeper (https://github.com/lodgekeeper) for issue #670
+   (https://github.com/nicobailon/pi-web-access/issues/670).
+
+ ### Fixed
+
+ - With the default toolActivation: "auto", switching models in a new session before sending the first message now picks eager or on-demand web tools for the model you switched to. Before, the choice
+   stayed with the model the session started on, so a model that can't add tools mid-conversation could start with only web_enable and lose its prompt cache when the tools loaded later. Sessions that
+   have already sent a request keep their tools. Thanks to @IdrisGit (https://github.com/IdrisGit) for PR #674 (https://github.com/nicobailon/pi-web-access/pull/674) and @XEric7
+   (https://github.com/XEric7) for issue #671 (https://github.com/nicobailon/pi-web-access/issues/671).
+ - fetch_content now recovers more of a page when the main extractor keeps only one part of it, such as one section of a guide, a docs catalogue, or a product page's cart drawer. When the extracted
+   text is under half of the page's visible text, the built-in Defuddle extractor gets a try and its result is used when it has at least 1.5 times the text. Before, Defuddle only ran when extraction
+   returned under 500 characters. Thanks to @inaridiy (https://github.com/inaridiy) for the measurements in #673 (https://github.com/nicobailon/pi-web-access/issues/673).
+   text is under half of the page's visible text, the built-in Defuddle extractor gets a try and its result is used when it has at least 1.5 times the text. Before, Defuddle only ran when extraction
+   returned under 500 characters. Thanks to @inaridiy (https://github.com/inaridiy) for the measurements in #673 (https://github.com/nicobailon/pi-web-access/issues/673).
+ - A search provider whose request times out no longer stops searchRouting or the auto chain as if you had cancelled the search. The timeout now counts as a network error, so a route with fallbackOn:
+   ["network"] moves on to the next provider. Cancelling a search still stops it at once (#676 (https://github.com/nicobailon/pi-web-access/issues/676)).
+ - DuckDuckGo search no longer gets the IP address blocked after a few searches. Spacing searches 2 seconds apart was not enough: in testing, DuckDuckGo showed its bot check after 3 to 34 searches at
+   that pace, and after 22 searches in 10 minutes even at 5 seconds apart. Searches in one Pi process now start at least 10 seconds apart, with at most 10 in any 10 minutes, and a search that would
+   have to wait more than 20 seconds to start fails at once with a quota error so routing moves on. After a bot check the provider pauses for 30 minutes, doubling up to 2 hours, since the block lasts
+   7 to 30 minutes and comes back after a few searches when it is retried too soon. Parallel subagents and other Pi processes now share that pause through a duckduckgo-cooldown.json file next to
+   web-search.json, so one bot check stops them all instead of each retrying on its own timer. Thanks to @kestermcullough (https://github.com/kestermcullough) for PR #661
+   (https://github.com/nicobailon/pi-web-access/pull/661).
+ - AnySearch now applies domainFilter locally instead of returning off-domain results, and clamps max_results to the API's maximum of 10. A numResults above 10 used to come back with 10 results and
+   no warning. Results removed by the local filter read as an empty response, so searchRouting.fallbackOn: ["empty"] can move to the next provider, and an include domain that matches nothing also
+   counts as ["domain-miss"]. Thanks to @Arcobalneo (https://github.com/Arcobalneo) for PR #665 (https://github.com/nicobailon/pi-web-access/pull/665).
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Warning: tmux extended-keys is off. Modified Enter keys may not work. Add `set -g extended-keys on` to ~/.tmux.conf and restart tmux.
+
+
+   [session-handover] claim and continue handoff
+   /Users/michelkerkmeester/worktrees/public/420-cross-runtime-handover-parity-fixes/.skilled/skills/.state/session-handover/handoffs/20261115T201715Z-01a1e0db-011b-7131-a282-d34bcb40cdc6.md | Spec
+   folder: none (Gate 3 answered D, Skip, in the sending session)
+
+   Advisor: live; use system-spec-kit 0.95/0.12 pass.
+   Directives:
+   - Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks
+     violations.
+
+
+ Warning: MCP servers need attention:
+   code_mode: failed: MCP connection closed
+ Run /mcp to fix.
+
+ ● Bash Claiming the handoff and retrieving its note                                                                                                                                                <1s
+   └ Done (18 lines) (ctrl+o to toggle)
+
+ Observational memory: observer running on ~763-token chunk (of 18,818 accumulated)
+
+ ● Ran 2 shell commands, searched 1 pattern (ctrl+o to toggle)
+
+ ● Handoff complete. The README has 442 lines; its first heading is “Session Handover”. Requested code words: ORCHID-20284 and LAGOON-20154.
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · gpt-6-luna [openai] · low ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+                                                                                                                                                                                                    fast
+worktrees/420-cross-runtime-handover-parity-fixes | GPT-6 Luna | ctx: 94% left | used: 17.1k tok | $0.00

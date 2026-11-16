@@ -89,6 +89,7 @@ Every file in `lib/`:
 - One query token needs all of its parts, and separate query tokens are alternatives. An exact mention of the whole identifier ranks above a turn that holds only its parts.
 - A Han word is matched by its adjacent character pairs, so `検索` does not match a turn that holds only `検`.
 - The preview centers on the matched identifier, so a fragment match shows what it matched.
+- A model turn is indexed and previewed as its blocks in order: text as written, and each tool call as its name and arguments, such as `read_file {"path":"docs/design.md"}`. A tool call's id is not searchable.
 - A query with no terms returns nothing unless it carries a `files`, `tools` or `failed` filter, which then lists the matching turns.
 
 ---
