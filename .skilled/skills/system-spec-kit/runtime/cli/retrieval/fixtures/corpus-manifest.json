@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d8289fc5784a0ed6e400e75841fde8a584e4124b1136cbb547ce26da84f4384d",
+  "corpusHash": "bb902c5873c2c77984a79412fee7e0c8015ce0662b663a148670a57fd6b25e69",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27802,
+  "includedPathCount": 27807,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -14417,6 +14417,7 @@
     "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/plan.md",
     "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/spec.md",
     "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/tasks.md",
+    "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/decision-record.md",
     "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/goal.md",
     "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/implementation-summary.md",
     "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/plan.md",
@@ -19062,6 +19063,7 @@
     "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/goal.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/implementation-summary.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/plan.md",
@@ -19200,11 +19202,13 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/decision-record.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/goal.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/implementation-summary.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/decision-record.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/goal.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/handover-from-barter-022.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/implementation-summary.md",
@@ -19221,6 +19225,7 @@
     "specs/system-skilled-doctor/003-removed-folder-classification/plan.md",
     "specs/system-skilled-doctor/003-removed-folder-classification/spec.md",
     "specs/system-skilled-doctor/003-removed-folder-classification/tasks.md",
+    "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/decision-record.md",
     "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/goal.md",
     "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/implementation-summary.md",
     "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/plan.md",
@@ -27834,7 +27839,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "668d3947a363a54bc47a00bbba8318b3d1f15d773ab5269979d698528740ff0a",
+  "manifestHash": "01bfb7ceb4ee4dea4d886da142983c45eb6183877f702b4273485ff86d70f2ee",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

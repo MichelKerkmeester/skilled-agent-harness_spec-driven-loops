@@ -1,5 +1,5 @@
 {
-  "manifestHash": "668d3947a363a54bc47a00bbba8318b3d1f15d773ab5269979d698528740ff0a",
+  "manifestHash": "01bfb7ceb4ee4dea4d886da142983c45eb6183877f702b4273485ff86d70f2ee",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1213,6 +1213,9 @@
     "004 stress test folder completion resource map": [
       "004-stress-test-folder-completion resource map"
     ],
+    "004 symlink vibe and dsh runtimes operator decisions": [
+      "004-symlink-vibe-and-dsh-runtimes operator decisions"
+    ],
     "004 tasks rerank benchmark": [
       "004 tasks rerank benchmark"
     ],
@@ -2074,6 +2077,9 @@
     "008 handover": [
       "008 handover"
     ],
+    "008 host surface hint and score window operator decisions": [
+      "008-host-surface-hint-and-score-window operator decisions"
+    ],
     "008 implementation plan": [
       "008 implementation plan"
     ],
@@ -2492,6 +2498,9 @@
     "010 007 remediation": [
       "010/007 remediation"
     ],
+    "010 baseline capture after graph scan operator decisions": [
+      "010-baseline-capture-after-graph-scan operator decisions"
+    ],
     "010 bridge": [
       "010 bridge"
     ],
@@ -2738,6 +2747,9 @@
     "011 resource map template": [
       "011-resource-map-template"
     ],
+    "011 restore pinned value when json entry set leaves overlay operator decisions": [
+      "011-restore-pinned-value-when-json-entry-set-leaves-overlay operator decisions"
+    ],
     "011 review p2 advisory closure": [
       "011 review P2 advisory closure"
     ],
@@ -2896,6 +2908,9 @@
     ],
     "012 files touched": [
       "012 files touched"
+    ],
+    "012 fix barter 022 handover items for doctor scripts operator decisions": [
+      "012-fix-barter-022-handover-items-for-doctor-scripts operator decisions"
     ],
     "012 handover": [
       "012 handover"
