@@ -89,7 +89,7 @@ describe('doctor command brief', () => {
       { skill: 'sk-code', kind: 'skill', confidence: 0.82, uncertainty: 0.2 },
       { skill: 'sk-git', kind: 'skill', confidence: 0.82, uncertainty: 0.2 },
       { skill: 'command-doctor-update', kind: 'command', confidence: 0.82, uncertainty: 0.22 },
-    ])) ?? '';
+    ]), { childSession: false }) ?? '';
 
     expect(rendered).toContain('\nAlso: /doctor:update (ask)');
     expect(rendered.startsWith('Advisor: live; use sk-code 0.82/0.20 pass.')).toBe(true);
