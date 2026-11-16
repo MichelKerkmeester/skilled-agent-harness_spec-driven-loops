@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6874,
-    "ok": 19448,
+    "ok": 19453,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27949,
+  "documentsScanned": 27954,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "7730a4ebdae4e8d8ea198445b2ecf76e421c282b5c01db0edb0f817da13ca952",
+  "manifestHash": "90ce18630dbaa9f30aae840bfba7b4e0cae7faffa88fb821a160435730d8af7c",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44624,
+      "ok": 44632,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -55914,6 +55914,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/014-devin-vibe-lock-probe/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b7eb972dabd89d04e896cfb4130846c60ecbaa5778673d718531c99cad438680",
+  "corpusHash": "703029546f31fbb166626fd228f6b2499ca749e3f34397ad3f67c7ff59f17247",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27949,
+  "includedPathCount": 27954,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11393,6 +11393,11 @@
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/014-devin-vibe-lock-probe/plan.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/014-devin-vibe-lock-probe/spec.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/014-devin-vibe-lock-probe/tasks.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader/decision-record.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader/implementation-summary.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader/plan.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader/spec.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader/tasks.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/decision-record.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/goal.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/handover.md",
@@ -27981,7 +27986,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7730a4ebdae4e8d8ea198445b2ecf76e421c282b5c01db0edb0f817da13ca952",
+  "manifestHash": "90ce18630dbaa9f30aae840bfba7b4e0cae7faffa88fb821a160435730d8af7c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31217,6 +31222,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/014-devin-vibe-lock-probe/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader/scratch",
       "reason": "excluded directory"
     },
     {

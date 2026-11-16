@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7730a4ebdae4e8d8ea198445b2ecf76e421c282b5c01db0edb0f817da13ca952",
+  "manifestHash": "90ce18630dbaa9f30aae840bfba7b4e0cae7faffa88fb821a160435730d8af7c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -3391,6 +3391,9 @@
     ],
     "015 deep research loop and phase 5": [
       "015 deep-research loop and phase 5"
+    ],
+    "015 devin database reader operator decisions": [
+      "015-devin-database-reader operator decisions"
     ],
     "015 docs drift review": [
       "015 docs drift review"
@@ -40921,6 +40924,18 @@
     "devin dangerous mode approval": [
       "devin dangerous mode approval"
     ],
+    "devin database reader": [
+      "devin database reader"
+    ],
+    "devin database reader implementation summary": [
+      "devin database reader implementation summary"
+    ],
+    "devin database reader plan": [
+      "devin database reader plan"
+    ],
+    "devin database reader tasks": [
+      "devin database reader tasks"
+    ],
     "devin decision capture": [
       "devin decision capture"
     ],
@@ -41061,6 +41076,9 @@
     ],
     "devin mcp route guard": [
       "devin mcp route guard"
+    ],
+    "devin message nodes": [
+      "devin message nodes"
     ],
     "devin model alias reference": [
       "devin model alias reference"
@@ -41244,6 +41262,9 @@
     ],
     "devin swe default model": [
       "devin swe default model"
+    ],
+    "devin sweep sessions db": [
+      "devin sweep sessions.db"
     ],
     "devin task dispatch guard": [
       "devin task dispatch guard"
@@ -82946,6 +82967,9 @@
     ],
     "phase 15 closure gate": [
       "phase 15 closure gate"
+    ],
+    "phase 15 devin database reader": [
+      "phase 15 devin database reader"
     ],
     "phase 15 dsh hook parity": [
       "phase 15 dsh hook parity"
