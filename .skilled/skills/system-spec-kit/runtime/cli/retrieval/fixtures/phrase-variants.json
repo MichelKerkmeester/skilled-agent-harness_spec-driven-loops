@@ -1,5 +1,5 @@
 {
-  "manifestHash": "be905b5126149e9169fa3fd31a2151a1f8c716bd1828ef8a11bf2c847ef3369a",
+  "manifestHash": "ed69fa5c6f1ff3c08f4cfe08e84f4bd4fbed3a41433da3a7e17a3a0dc1ea535d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -3301,6 +3301,9 @@
     ],
     "014 deep review 30 surfaces": [
       "014 deep review 30 surfaces"
+    ],
+    "014 devin vibe lock probe operator decisions": [
+      "014-devin-vibe-lock-probe operator decisions"
     ],
     "014 docs stress refresh rollup": [
       "014 docs stress refresh rollup"
@@ -41248,6 +41251,9 @@
     "devin tool surface": [
       "devin tool surface"
     ],
+    "devin transcript missing": [
+      "devin transcript missing"
+    ],
     "devin transcript sweep": [
       "devin transcript sweep"
     ],
@@ -41256,6 +41262,18 @@
     ],
     "devin userpromptsubmit goal inject": [
       "devin userpromptsubmit goal inject"
+    ],
+    "devin vibe lock probe": [
+      "devin vibe lock probe"
+    ],
+    "devin vibe lock probe implementation summary": [
+      "devin vibe lock probe implementation summary"
+    ],
+    "devin vibe lock probe plan": [
+      "devin vibe lock probe plan"
+    ],
+    "devin vibe lock probe tasks": [
+      "devin vibe lock probe tasks"
     ],
     "devin vm offload": [
       "devin vm offload"
@@ -82824,6 +82842,9 @@
     "phase 14 dead runner and step cleanup": [
       "phase 14 dead runner and step cleanup"
     ],
+    "phase 14 devin vibe lock probe": [
+      "phase 14 devin vibe lock probe"
+    ],
     "phase 14 doctor and ci gate honesty": [
       "phase 14 doctor and ci gate honesty"
     ],
@@ -122552,6 +122573,9 @@
     ],
     "sweep rrf sh sweep rrf py": [
       "sweep-rrf.sh sweep-rrf.py"
+    ],
+    "sweep session lock ancestry": [
+      "sweep session lock ancestry"
     ],
     "sweep stale mcp processes": [
       "sweep stale mcp processes"
