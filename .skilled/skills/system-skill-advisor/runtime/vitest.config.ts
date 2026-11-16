@@ -2,7 +2,20 @@
 // MODULE: System Skill Advisor Vitest Config
 // ───────────────────────────────────────────────────────────────
 
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import path from 'node:path';
+
+// The advisor keeps its durable health records under the system temp folder, where
+// its health readers take every record as real use. A suite run gets a temp folder
+// of its own, set before any worker starts so tests and the processes they spawn
+// inherit it, and the run removes it on exit. A folder that cannot be made throws
+// here, so no run falls back to the shared folder unnoticed.
+const RUN_TMPDIR = mkdtempSync(path.join(tmpdir(), 'sav-'));
+process.env.TMPDIR = RUN_TMPDIR;
+process.on('exit', () => {
+  rmSync(RUN_TMPDIR, { recursive: true, force: true });
+});
 
 const TEST_TIMEOUT_MS = 30_000;
 const TEARDOWN_TIMEOUT_MS = 1_000;

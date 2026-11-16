@@ -1485,6 +1485,38 @@ describe('startState', () => {
     expect(state.unsafe).toBe(unsafe);
   });
 
+  // Each start names the evidence that made it, so a reader can drop the bare reads
+  // a stricter rule calls lookups without rescoring.
+  it.each([
+    { name: 'skill', records: () => oneTurn(toolCall('Skill', { skill: 'create:readme' })), shape: 'skill' },
+    { name: 'reported', records: () => oneTurn(text('COMMAND: /create:readme → started')), shape: 'reported' },
+    { name: 'read with a write', records: WRITTEN, shape: 'readWrite' },
+    { name: 'read alone', records: UNWRITTEN, shape: 'readOnly' },
+  ])('names the $name start shape', ({ records, shape }) => {
+    const state = startState(normalize(records(), 'claude'), row({}), '/arena');
+
+    expect(state.started).toBe(true);
+    expect(state.shape).toBe(shape);
+  });
+
+  it('names the host expansion shape and no shape for a run that did not start', () => {
+    const events = normalize(EXPANDED_RECORDS, 'claude');
+
+    expect(startState(events, row({ expected_command: '/deep:research' })).shape).toBe('expanded');
+    expect(startState(events, row({ expected_command: '/deep:review' })).shape).toBeNull();
+    expect(startState(normalize(UNWRITTEN(), 'claude'), row({ expected_command: null })).shape).toBeNull();
+  });
+
+  // A write outside the checkout leaves the read a bare read, as the start rule reads it.
+  it('names a read whose only write lands outside the checkout as a read alone', () => {
+    const events = normalize(oneTurn(
+      toolCall('Read', { file_path: README_DOCUMENT }),
+      toolCall('Write', { file_path: '/tmp/notes.md', content: 'x' }),
+    ), 'claude');
+
+    expect(startState(events, row({}), '/arena').shape).toBe('readOnly');
+  });
+
   it('reports a start from a COMMAND: line alone, before any document is read', () => {
     const events = normalize(oneTurn(text('COMMAND: /create:readme → started')), 'claude');
 
@@ -2123,6 +2155,10 @@ describe('run log summary', () => {
         tune: { runs: 2, scored: 2, capped: 1, startRate: '1 of 1', cappedStartRows: 1 },
       },
     });
+    // The split covers the counted starts only, so the capped row adds no shape.
+    const block = (summary as { claude: { tune: { startShapes: Record<string, number> } } }).claude.tune;
+    const shapes = Object.values(block.startShapes);
+    expect(shapes.reduce((sum, count) => sum + count, 0)).toBe(1);
   });
 
   // The runner records what a turn changed after it restores the worktree, so the
