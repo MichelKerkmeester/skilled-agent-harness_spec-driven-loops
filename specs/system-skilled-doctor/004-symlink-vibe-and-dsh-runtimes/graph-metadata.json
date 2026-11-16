@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes",
+  "spec_folder": "system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "symlink vibe and dsh runtimes",
+      "add the mistral vibe and dsh runtimes",
+      "symlink vibe and dsh runtimes plan",
+      "symlink vibe and dsh runtimes tasks",
+      "symlink vibe and dsh runtimes goal",
+      "symlink vibe and dsh runtimes implementation summary"
+    ],
+    "key_topics": [
+      "symlink",
+      "vibe",
+      "dsh",
+      "runtimes",
+      "mistral",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "skilled",
+      "commands"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/assets/symlink-manifest.json",
+      ".skilled/commands/doctor/symlink.md",
+      ".skilled/commands/doctor/install.md",
+      ".skilled/commands/doctor/assets/doctor-symlink-link.yaml",
+      ".skilled/commands/doctor/assets/doctor-symlink-check.yaml",
+      ".skilled/commands/doctor/assets/doctor-install.yaml",
+      ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+      ".skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "symlink-manifest.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/symlink-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "symlink.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/symlink.md",
+        "source": "derived"
+      },
+      {
+        "name": "install.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/install.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-symlink-link.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-symlink-link.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-symlink-check.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-symlink-check.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-install.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-install.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-install-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "symlink-engine.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.skilled/commands/doctor/assets/symlink-manifest.json` lists the runtimes `claude`, `opencode`, `codex`, `cursor`, `devin` and `pi`",
+    "created_at": "2026-11-16T10:15:56Z",
+    "last_save_at": "2026-11-16T10:16:49.647Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:335b1cb028d083264e0776d0ce3c000d6ee6ad4972ab825c5b21b1a3eaa1fb62",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e6b6c92d172f05aee0dc12c9f8aff0080d614ae4f8d6b873bd9d2ace9933eb0b",
+      "plan.md": "98fa1c4124291aeded74adf77bac8e8321b9bfee77c1ed62552dfd69c1d0e2d5",
+      "tasks.md": "9b33b81d95145ccb3b6f0adcec82f9cd64b7d95ed072aa575ace02db77a2be96",
+      "implementation-summary.md": "5a3d3e3daf3112e3ebd14a780805e05db0ee43e606a5e40192d2d95ba290db91"
+    },
+    "last_active_at": null
+  }
+}
