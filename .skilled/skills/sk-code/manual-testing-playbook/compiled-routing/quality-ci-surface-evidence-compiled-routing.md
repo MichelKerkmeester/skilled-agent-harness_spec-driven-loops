@@ -23,7 +23,7 @@ evidence_compiled_route: sk-code/sk-code-quality
 evidence_serving_authority: compiled
 evidence_flag_state: unset
 evidence_fallback_cause: compiled-serving
-evidence_manifest_digest: 19544bb1d6125b36914780b226c3f367381aa1046dbd26b925eca731c8f6c0fb
+evidence_manifest_digest: bd6a260d924087e1665c06c8159905343224c00874532078d33ab149a74d856c
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
 created: 2026-10-26
