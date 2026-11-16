@@ -4,7 +4,7 @@
 
 &nbsp;
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 This file is for the maintainer who cuts a release. It maps the repository, says which files a project owns and walks through a release from the first commit to the GitHub release page.
 
@@ -14,7 +14,7 @@ Setting Skilled up in a project is a separate job. The [install guide](INSTALL-S
 
 &nbsp;
 
-## 2. 📁 REPOSITORY LAYOUT
+## 2. REPOSITORY LAYOUT
 
 The authored tree sits under `.skilled/`. The runtime folders and root files sit around it:
 
@@ -46,7 +46,7 @@ The root also holds the four guides a reader meets first: the README, the instal
 
 &nbsp;
 
-## 3. 🧩 PROJECTS THAT USE SKILLED
+## 3. PROJECTS THAT USE SKILLED
 
 A project takes Skilled in one of two ways. Each way decides when a release reaches it.
 
@@ -58,13 +58,13 @@ Either way, the project owns its own `specs/` folder, its `AGENTS.md`, the optio
 
 &nbsp;
 
-## 4. 🚀 RELEASE WORKFLOW
+## 4. RELEASE WORKFLOW
 
 A release moves through five steps. A typo fix or a small doc change needs none of them. It ships as a plain commit with no release entry.
 
 ### Classify The Change
 
-Pick the release type from what changed. [Version Numbers](#5--version-numbers) maps each type to a version part and a `--bump` value.
+Pick the release type from what changed. [Version Numbers](#5-version-numbers) maps each type to a version part and a `--bump` value.
 
 ### Write The Entry
 
@@ -76,7 +76,7 @@ Write the release entry with the changelog workflow:
 
 Pass `--bump` every time. Without it the workflow guesses from the spec folder and the commit subjects. With no clear signal it falls back to a series bump. When an untagged entry is already open, the workflow extends it and keeps its version instead of starting a new one.
 
-Then run `/create:changelog <skill>` once for each skill the release changed. Each component changelog lands in that skill's own `changelog/` folder and carries the skill's own version, which never becomes a repository tag. [Release Notes](#7--release-notes) covers the format of the entry.
+Then run `/create:changelog <skill>` once for each skill the release changed. Each component changelog lands in that skill's own `changelog/` folder and carries the skill's own version, which never becomes a repository tag. [Release Notes](#7-release-notes) covers the format of the entry.
 
 ### Review
 
@@ -129,7 +129,7 @@ git tag -d vX.X.X.X
 
 &nbsp;
 
-## 5. 🔢 VERSION NUMBERS
+## 5. VERSION NUMBERS
 
 A version has four parts, `MAJOR.MINOR.SERIES.PATCH`. The version is also the release's git tag, `vX.X.X.X`. The `--bump` names follow the changelog workflow, not the part names, so `patch` bumps SERIES and `build` bumps PATCH.
 
@@ -142,7 +142,7 @@ A version has four parts, `MAJOR.MINOR.SERIES.PATCH`. The version is also the re
 
 &nbsp;
 
-## 6. 📦 RELEASES
+## 6. RELEASES
 
 The latest release is v4.0.2.1, Improved Chat Automation, Search & Session Handover. Its entry is [v4.0.2.1.md](.skilled/changelog/skilled/v4.0.2.1.md). The [latest release page](https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/releases/latest) always shows the newest one.
 
@@ -158,7 +158,7 @@ The [GitHub releases page](https://github.com/MichelKerkmeester/skilled-agent-ha
 
 &nbsp;
 
-## 7. 📝 RELEASE NOTES
+## 7. RELEASE NOTES
 
 Each release has one entry, `.skilled/changelog/skilled/vX.X.X.X.md`. The 4.x entries sit at the top of that folder. Older entries are grouped by generation in `v1+/`, `v2+/` and `v3+/`. The folder does not hold one for every old tag.
 
@@ -168,7 +168,7 @@ An entry opens with why the release matters, in plain words. It groups the chang
 
 &nbsp;
 
-## 8. 📚 RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 - **[Install Guide](INSTALL-SKILLED.md)** - link or copy Skilled into your own project
 - **[Contributing](CONTRIBUTING.md)** - how to propose a change
