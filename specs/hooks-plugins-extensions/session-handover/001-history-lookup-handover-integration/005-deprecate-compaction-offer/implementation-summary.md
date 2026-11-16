@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "No compaction hook mints a history locator or prints the lookup section any more, so the handover claim is the one place the lookup is offered."
 trigger_phrases:
   - "deprecate compaction offer implementation summary"
 importance_tier: "normal"

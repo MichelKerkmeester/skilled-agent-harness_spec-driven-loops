@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b7a3c3b503fc95041238546ebcd7a97815fc478aceb6f36f956cba77a10485cd",
+  "corpusHash": "bef9179eb62dad83148e96da7495ad10b07ae4f4f34a81a71290ab8a7b96b193",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27970,
+  "includedPathCount": 27971,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -19367,6 +19367,7 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/decision-record.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/handover-to-barter.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/implementation-summary.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/spec.md",
@@ -28002,7 +28003,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ba422186f361c66614737cf7c1e4a902ace88138897ab7ec89cc0a577ff92d29",
+  "manifestHash": "f59bce1900d362268be0f3d1374015ad18b5035a4f3fa146a61f7eade1f24483",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

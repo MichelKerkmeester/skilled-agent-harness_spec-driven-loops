@@ -44,20 +44,20 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/hooks/session-handover/README.md",
-      "runtime/hooks/lib/history/README.md",
       ".opencode/plugins/README.md",
       ".skilled/hooks/shared/session-readers/claude.mjs",
       "runtime/tests/compaction-adapters.vitest.ts",
       "scratch/live-hop.md",
       "scratch/measurement.md",
-      ".skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js",
       ".skilled/changelog/skilled/v4.0.2.0.md",
       ".skilled/skills/system-spec-kit/changelog/v2.12.37.0.md",
       ".skilled/hooks/shared/session-readers/index.mjs",
       ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md",
       ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
       ".skilled/skills/system-spec-kit/feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
-      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md"
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
       {
@@ -121,12 +121,6 @@
         "source": "derived"
       },
       {
-        "name": "cli.js",
-        "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js",
-        "source": "derived"
-      },
-      {
         "name": "v4.0.2.0.md",
         "kind": "doc",
         "path": ".skilled/changelog/skilled/v4.0.2.0.md",
@@ -160,6 +154,18 @@
         "name": "session-recovery-spec-kit-resume.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
@@ -197,17 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Seventeen Markdown files outside `specs/` mention the lookup, and the ones that describe where it is offered all place it after a compaction",
     "created_at": "2026-11-15T06:24:29Z",
-    "last_save_at": "2026-11-15T14:30:55.233Z",
+    "last_save_at": "2026-11-16T11:15:09.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b49b83a7060d23436cf327a5b72919fc23216028899b85af4b7b30d22fee0ef0",
+    "source_fingerprint": "sha256:e9bc11c1cf9a6ba59af6a236880cf06956527a39eb7cf4765637687c48749d60",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3b37b3c68efc2366a41242570b7cc43ec795b85bc16de6339f5b466a04d05c38",
       "plan.md": "2638444083fa78c0ec2dc3a86556b0950456d8d7f7d807165277ed9ba04bff78",
       "tasks.md": "41cfdb0dfdb74d233bdd5e9114efc791722121f6d5ee1e277272dc97497a4f40",
-      "implementation-summary.md": "04806a9ce81d5e73a477c30653c421a2921c51397260aa4e183cacc97d45d9b0"
+      "implementation-summary.md": "3a91e48e86a27ee1c5d41a6cf992bcc6d6fbc6a3b43c0dd0e1efa694cf50205c"
     },
     "last_active_at": null
   }

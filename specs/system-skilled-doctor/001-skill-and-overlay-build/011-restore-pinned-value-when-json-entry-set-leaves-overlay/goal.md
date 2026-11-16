@@ -57,10 +57,10 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `node --test .skilled/commands/doctor/scripts/tests` prints `fail 0` with the new tests in the count.
-- [ ] A test applies a `set`, applies again without it and reads the pin's value from the live file.
-- [ ] `rg -n 'sets' .skilled/skills/system-skilled-doctor/references/overlays.md` prints at least one line.
-- [ ] `handover-to-barter.md` exists in this folder.
+- [x] `node --test .skilled/commands/doctor/scripts/tests` prints `fail 0` with the new tests in the count.
+- [x] A test applies a `set`, applies again without it and reads the pin's value from the live file.
+- [x] `rg -n 'sets' .skilled/skills/system-skilled-doctor/references/overlays.md` prints at least one line.
+- [x] `handover-to-barter.md` exists in this folder.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,8 +80,10 @@ and findings belong here.
 | Item 7 checked against the engine | Done | `scratch/repro-removed-set.cjs` printed `after apply with the set removed: sk-doc (text unchanged: true)`, exit 0 |
 | Spec, plan and tasks | Done | This folder |
 | Packet validation | Done | `validate.sh --strict --quiet` printed `RESULT: PASSED (errors=0 warnings=0)` on 2026-11-16 |
-| Operator review of the plan | Pending | None yet |
-| Build | Pending | None yet |
+| Operator review of the plan | Done | The operator chose to build this phase first, through DeepSeek v4.1 flash on the Vibe CLI, on 2026-11-16 |
+| Build | Done | Seven Vibe runs, each `scratch/vibe-runs/<number>/export.json` records `exit_code` 0 and `outcome` `finished`. Each edited file was compared byte for byte with the text the brief gave |
+| Final gate | Done | `node --test .skilled/commands/doctor/scripts/tests` printed `tests 1183`, `pass 1183`, `fail 0`, exit 0. `sk-code-setup-check.cjs` ended `STATUS=OK legs=9` |
+| Packet validation after the build | Done | validate.sh --strict printed RESULT: PASSED (errors=0 warnings=2) on 2026-11-16, and the parent tree printed 13 of 13 PASSED |
 
 ### Deviations and findings
 
@@ -90,4 +92,8 @@ and findings belong here.
 | The handover asked whether the sync state already records enough to restore a value | It does not. `sync-state.json` holds `files`, `links` and `items`, and `items` is written only from `onListed`, which the array operations call. |
 | A key the `set` branch inserts is left behind too | Reproduced in the same script. It is in scope as REQ-002. |
 | `setKeyOnItem` has the same shape | Read in the code, not reproduced and not reported. It is open question 1 in `spec.md`. |
+| An older test had to change its setup | `a json-entry set adds a key the document does not hold yet` replaced one `set` with another on a fixture with no pinned copy. Under D6 that is a dropped `set` with nothing to restore from, so the refusal named the restore and not the missing parent. The test now keeps the first `set` listed. No assert line changed. |
+| The restore across a changed pin is tested on the function, not through a re-pin | The test calls `applyJsonOperations` with a reader that returns the new pin's text. No test runs a whole `repin` over a dropped `set`. |
+| Every `set` is recorded, changed or not | A `set` whose value the live file already holds is recorded too. That is what lets the first `apply` under the new engine record a value an older engine wrote. |
+| Two of the eight new tests pass without the restore step | The changed-value test needs the record only. The older-state test guards that a tree with no `set` keeps its state bytes, and passes on every engine. |
 <!-- /ANCHOR:log -->

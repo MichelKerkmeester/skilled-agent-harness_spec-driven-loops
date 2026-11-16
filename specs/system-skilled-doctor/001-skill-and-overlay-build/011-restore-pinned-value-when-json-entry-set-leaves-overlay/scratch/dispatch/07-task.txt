@@ -1,0 +1,20 @@
+TASK: describe the `sets` record of the sync state file in the overlay reference.
+One file changes. Do the two steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 2. File: R/.skilled/skills/system-skilled-doctor/references/overlays.md
+OLD (one table row, it appears once in the file):
+| `sync-state.json` | The hashes it last applied to each destination, the layout link targets it made and the array items it added |
+NEW (replace that row with this one row):
+| `sync-state.json` | The hashes it last applied to each destination, the layout link targets it made, the array items it added and the values its `set` operations wrote |
+
+STEP 2 of 2. Same file.
+OLD (one paragraph on one line, it appears once in the file and starts with these words):
+`sync-state.json` carries two optional records beside its hashes. `links` maps each layout link path to the target the engine confirmed there, so when the manifest moves a link target the engine retargets its own link instead of refusing a stranger at that path. `items` holds the array items each `json-entry` overlay added, so an item the overlay drops is removed from the live file while it still equals what the engine wrote. An item recorded there but edited since is refused rather than deleted, because the entry set no longer describes what it should be. A link the state has no record of is refused and reported, and an item it has no record of is left in place. A state file from an older engine holds neither key, so nothing is retargeted or removed until the first apply records them.
+NEW (replace that whole line with this one line):
+`sync-state.json` carries three optional records beside its hashes. `links` maps each layout link path to the target the engine confirmed there, so when the manifest moves a link target the engine retargets its own link instead of refusing a stranger at that path. `items` holds the array items each `json-entry` overlay added, so an item the overlay drops is removed from the live file while it still equals what the engine wrote. An item recorded there but edited since is refused rather than deleted, because the entry set no longer describes what it should be. `sets` holds each `set` a `json-entry` overlay applied: its path, the value written and whether the engine added the key. When the entry set stops naming that path, `apply` writes back the value the pin holds, and deletes a key the engine added that the pin does not hold. A value edited since it was recorded is refused rather than overwritten. The restore reads the pinned copy from the checkout the manifest's pin names, and without that copy the overlay is refused. `setKeyOnItem` keeps no record, so a value it wrote stays in the live file after the operation leaves the entry set. A link the state has no record of is refused and reported, and an item or a value it has no record of is left in place. A state file from an older engine holds none of these keys, so nothing is retargeted, removed or restored until the first apply records them.
+
+CHECK. Run:
+cd R && rg -c 'sets' .skilled/skills/system-skilled-doctor/references/overlays.md && git diff --stat -- .skilled/skills/system-skilled-doctor/references/overlays.md
+Expected: the first command prints 1 or more, and the diff stat shows 2 insertions and 2 deletions in that one file. Report both outputs.

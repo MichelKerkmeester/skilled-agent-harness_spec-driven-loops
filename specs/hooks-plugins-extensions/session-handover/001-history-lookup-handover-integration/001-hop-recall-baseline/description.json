@@ -18,7 +18,7 @@
     "handoff",
     "note"
   ],
-  "lastUpdated": "2026-11-15T11:24:12.388Z",
+  "lastUpdated": "2026-11-16T11:14:12.166Z",
   "specId": "001",
   "folderSlug": "hop-recall-baseline",
   "parentChain": [
@@ -26,6 +26,8 @@
     "session-handover",
     "001-history-lookup-handover-integration"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_12-14__brought-the-phase-001-packet-docs-in-line-with.md"
+  ]
 }

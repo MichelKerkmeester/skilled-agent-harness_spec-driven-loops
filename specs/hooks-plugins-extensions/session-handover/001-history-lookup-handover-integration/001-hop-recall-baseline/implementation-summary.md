@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Before any runtime code was built, six counted Claude Code hops showed that a receiver always lost a detail the handoff note left out and never ran the history lookup, which gave the operator the go for the phases that follow."
 trigger_phrases:
   - "hop recall baseline implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline"
-    last_updated_at: "2026-11-15T06:24:18Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-11-16T11:14:12Z"
+    last_updated_by: "generate-context"
+    recent_action: "Recorded the measured results and closed the completion criteria"
+    next_safe_action: "None; phase 001 is complete"
+    packet_purpose: "Purpose: Record, per runtime, whether a receiving session recovers a code the handoff note left out, and whether it reads the sender's transcript on its own, so the operator can answer go or no-go before any code is written."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md"
+      - ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-baseline-conversation.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:291a2f9d6d450e3d493a72fe10659270df9e1c01ba5569b955a392e08c01b8f9"
       session_id: "scaffold-001-hop-recall-baseline"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "ab672873-2f89-4541-9659-73a60e125e14"
+      workspace: "/Users/michelkerkmeester/worktrees/public/429-history-lookup-doc-sync"
+      savedAt: "2026-11-16T11:14:12Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,60 +55,62 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Before any runtime code changed, this phase measured how often a session that claims a handoff recovers a detail the note left out. On six counted Claude Code hops it never did: every receiver replied UNKNOWN, and none ran the history lookup or read the sender's transcript. That result was the go or no-go gate for the rest of the packet, and the operator answered go on 2026-11-15.
 
 ### Phase 1: hop-recall-baseline
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+You get two playbook pages that run the same hop twice: once with the lookup CLI on disk and once with it hidden. A harness plants a code in the sender's conversation, keeps it out of the note, hops, and asks the receiver for it. Each run records five signals: the answer, whether the receiver tried the lookup, recalled the code on its own, read the transcript, or found the code leaked into the note. Phase 6 reused the same pages to record the after numbers.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md` | Created | The hop with the lookup CLI on disk, with its recorded results |
+| `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-baseline-conversation.md` | Created | The same hop with the CLI hidden, with its recorded results |
+| `.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md` | Modified | One index row per page |
+| `scratch/harness/hop-recall.sh`, `scratch/harness/analyze.py` | Created | Drive one hop and score the receiver's answer |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+The conversation runner can only restart or compact a session, not drive a hop, so both pages are operator procedures run through the harness. The two arms ran one after the other, never in parallel, because the baseline arm moves a file the lookup arm needs. Three counted runs per arm were recorded on Claude Code (Sonnet, medium effort). One further run was not counted because its sender, told a follow-up question would come, copied the code into the note.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Measure before building | The five phases after this one were only worth building if receivers actually lost details on a hop. |
+| No threshold set in advance | The operator chose to see the raw numbers and decide go or no-go from them. |
+| Claude Code only | Pi, OpenCode and Codex are recorded as optional follow-ups, so one runtime gave the answer quickly. |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| Baseline arm, CLI hidden | 3 counted runs, all `missing`, `lookup_attempted=0`, `transcript_read=0` |
+| Lookup arm, CLI on disk, before the claim offer | 3 counted runs, all `missing`, `lookup_attempted=0`, `transcript_read=0` |
+| Playbook validator | `scenarios=124 violations=0` when rerun on 2026-11-16; the page count dropped from 126 when phase 6 deleted two compaction pages |
+| Operator decision | `goal.md` §4 records GO on 2026-11-15 |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **Small sample.** One model at one effort level, one kind of detail and Claude Code only. Phase 8 plans the wider rerun on Claude Code, Codex and Vibe.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -77,10 +77,10 @@ export PKT=specs/hooks-plugins-extensions/session-handover/001-history-lookup-ha
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-- [ ] `goal.md` §4 holds the `Threshold:` line, the `Decision:` line and the two `Open question:` lines
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed: both pages carry their `### Recorded Results` tables, and the playbook validator prints `violations=0`
+- [x] `goal.md` §4 holds the `Threshold:` line and the `Decision:` line. One `Open question:` line remains, because the threshold question was answered and rewritten as an `Answered` line
 <!-- /ANCHOR:completion -->
 
 ---

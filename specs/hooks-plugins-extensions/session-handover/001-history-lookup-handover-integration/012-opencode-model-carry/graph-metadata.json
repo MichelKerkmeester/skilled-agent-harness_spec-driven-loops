@@ -193,7 +193,7 @@
     ],
     "causal_summary": "An OpenCode 2 hop relaunched the next session without the sender's model",
     "created_at": "2026-11-16T07:39:55Z",
-    "last_save_at": "2026-11-16T08:25:07.286Z",
+    "last_save_at": "2026-11-16T11:15:09.311Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9bb4b2ce93cfd1ba026316dd54e34945b740ad7aa95680f40a9640ffdee72a05",
+    "source_fingerprint": "sha256:7cbbdbd8ba0afd208ab610ff6753103268ddc44a67c0c59fdb401a2a9409cbca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fdf81e2a40715864cb5654935144683b264ed8cc5bc73f4e01491389b56caa35",
       "plan.md": "674077fe76af8faf105297b944fce89b65a289ce0fbe481db2854caf8ac07676",
       "tasks.md": "fe184965f6145bd4ae7b82b0b5f32a8aea4af5adcc2c5d7f3dc373ff5177d2af",
-      "implementation-summary.md": "d02ee8f2d0668e440aa4828ad66fa2cae1512805227cdd34dd4954ad7518ef3f"
+      "implementation-summary.md": "d45cac0705d39bebfe7725e1d0588c71bd9b08fe8048d1bd11699c34e96d8799"
     },
     "last_active_at": null
   }

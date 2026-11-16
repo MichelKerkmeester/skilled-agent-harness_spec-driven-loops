@@ -43,8 +43,7 @@
       ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
       ".skilled/hooks/session-handover/bin/session-handover.cjs",
       ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs",
-      ".skilled/commands/speckit/handoff.md",
-      "tests/history-locator.vitest.ts"
+      ".skilled/commands/speckit/handoff.md"
     ],
     "entities": [
       {
@@ -99,12 +98,6 @@
         "name": "handoff.md",
         "kind": "doc",
         "path": ".skilled/commands/speckit/handoff.md",
-        "source": "derived"
-      },
-      {
-        "name": "history-locator.vitest.ts",
-        "kind": "test",
-        "path": "tests/history-locator.vitest.ts",
         "source": "derived"
       },
       {
@@ -190,11 +183,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A session that claims a handoff receives the note's four sections, the complete command and the goal packet, and nothing else (`session-handover.cjs:706-720`)",
     "created_at": "2026-11-15T06:24:23Z",
-    "last_save_at": "2026-11-15T14:30:50.661Z",
+    "last_save_at": "2026-11-16T11:15:09.320Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:44139c25426d881d5942f067f1f5c41a974c186a15ff68934c585313432ebeba",
+    "source_fingerprint": "sha256:ffe06f86be85a4aa3275fc022741868849fda5cea8f95f667258aad734c1c458",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ae714133271c6a78b56ef8d75a70684eea3fe82419e7e84ba8a0b5cdcdb8e79c",
       "plan.md": "1e5924d62792d3d5a9af46695323db0b5179b66d54493e858a7475d09a3bea9d",
       "tasks.md": "fce47e0cc05338196caa5e0ef170ee6f2e22a199d6cd175e3639338796e9a7d0",
-      "implementation-summary.md": "bbbbcb8220b42b912700105bd880ac3fd524c6bd9092c5d1effbfbbbdff27ddc"
+      "implementation-summary.md": "aba807ab18f55cac7134173cd16ab8ed2007e69d56c15f3093e8dac9ffbb9bff"
     },
     "last_active_at": null
   }

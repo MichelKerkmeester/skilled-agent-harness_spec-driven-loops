@@ -1,0 +1,57 @@
+All six edits are in place and the check ran as the brief predicted.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs`
+
+## 2. COMMANDS
+
+**`grep -n "planJsonOverlay\|planOverlay\|listedItems\|recordedItems\|upstreamBytes" .skilled/commands/doctor/scripts/overlay-engine.cjs`** — exit 0. Anchor listing; confirmed all six OLD blocks present at lines 1393, 1431, 1451, 1645, 1667, 2231.
+
+**`node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')"`** — exit 0, no output (only the `EXIT_LOAD=0` echo I appended).
+
+**`node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`** — exit 1. Last 15 lines:
+
+```
+✖ apply returns a value to the pin once its set leaves the entry set (335.392333ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 21
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4502.726916
+
+✖ failing tests:
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:709:1
+✖ apply returns a value to the pin once its set leaves the entry set (335.392333ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+```
+
+Pass 21, fail 1. The single failure is the named test, and no other test fails. Its assertion is the expected one: live file still holds `"top": "sk-doc"` where the pin says `"top": "sk-code"`.
+
+**`git status --porcelain` and `git diff --stat`** — exit 0. Last 15 lines:
+
+```
+ M .skilled/commands/doctor/scripts/overlay-engine.cjs
+ M .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+?? specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/scratch/dispatch/
+?? specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/scratch/vibe-runs/
+---DIFFSTAT---
+ .../commands/doctor/scripts/overlay-engine.cjs     | 61 ++++++++++-----
+ .../scripts/tests/overlay-engine-sync.test.cjs     | 86 ++++++++++++++++++++++
+ 2 files changed, 128 insertions(+), 19 deletions(-)
+```
+
+**`git diff -- .skilled/commands/doctor/scripts/overlay-engine.cjs`** — exit 0. Eight hunks; six are mine (at 1390, 1431, 1453, 1647, 1673, 2238), two were already in the working tree (832, 844).
+
+## 3. OPEN QUESTIONS
+
+- The test file is already modified in the working tree (+86 lines) before this brief. I did not touch it; the failing test at line 709 is that pre-existing addition.
+- The engine file also carries two pre-existing hunks I did not author: `reportSet`/`wasAdded` inside `planOperation` (lines 832-870). My six edits are the ones the brief named.
+- `analyze` now reads `state.sets`, but nothing writes it yet, so `recordedSets` is always `[]` until the state-write brief lands. That is why the named test still fails.
+- `planJsonOverlay`'s three early-return paths (missing spec, missing destination, catch block) omit `listedSets`; `planOverlay` defaults it with `|| []`, matching how `listedItems` was already handled. Left as-is.
+- My first test run piped through `tail`, so `PIPESTATUS` printed empty (not bash). I re-ran without the pipe to capture exit status 1 directly.

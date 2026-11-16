@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "prepare saved a handover-sourced history locator for the sending session without ever blocking the handover; phase 7 later removed this mint because the claim overwrote it."
 trigger_phrases:
   - "mint locator at prepare implementation summary"
 importance_tier: "normal"

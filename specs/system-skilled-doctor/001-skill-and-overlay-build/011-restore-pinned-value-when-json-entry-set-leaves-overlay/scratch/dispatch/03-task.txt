@@ -1,0 +1,158 @@
+TASK: collect the reported `set` operations in the json-entry planner and pass the recorded ones down to it.
+One file changes. Do the 6 steps below in order. Each step replaces one block of text with another.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 6. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (14 lines, this exact text appears once in the file):
+ * @param {string[]} problems Collects reasons the overlay cannot be applied.
+ * @param {Record<string, string>} [acceptedSha256] Hashes the engine last applied.
+ * @param {{recordedItems?: object[],
+ *   upstreamBytes?: ((key: string) => Buffer|null)|null}} [options] Items this
+ *   overlay added to the destination last time, so a dropped entry leaves the live
+ *   file, and the reader for the pinned upstream copy that tells an item this
+ *   overlay added from one upstream ships itself.
+ * @returns {{writes: object[], deletes: string[], outputs: object[], listedItems: object[]}}
+ *   `listedItems` holds the items the entry set still lists and this overlay
+ *   added, which is what a later pass may retract.
+ */
+function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, upstreamBytes } = {}) {
+  const specPath = path.join(ctx.overlayRoot, entry.source);
+  const destinationPath = path.join(ctx.root, entry.destination);
+NEW (replace those lines with these 16 lines, same indentation):
+ * @param {string[]} problems Collects reasons the overlay cannot be applied.
+ * @param {Record<string, string>} [acceptedSha256] Hashes the engine last applied.
+ * @param {{recordedItems?: object[], recordedSets?: object[],
+ *   upstreamBytes?: ((key: string) => Buffer|null)|null}} [options] Items this
+ *   overlay added to the destination last time, so a dropped entry leaves the live
+ *   file, the sets it applied there, so a dropped set returns to the pin's value,
+ *   and the reader for the pinned upstream copy both are checked against.
+ * @returns {{writes: object[], deletes: string[], outputs: object[],
+ *   listedItems: object[], listedSets: object[]}}
+ *   `listedItems` holds the items the entry set still lists and this overlay
+ *   added, which is what a later pass may retract. `listedSets` holds the sets
+ *   the entry set still names.
+ */
+function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, recordedSets, upstreamBytes } = {}) {
+  const specPath = path.join(ctx.overlayRoot, entry.source);
+  const destinationPath = path.join(ctx.root, entry.destination);
+
+STEP 2 of 6. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (10 lines, this exact text appears once in the file):
+  let expected;
+  const listedItems = [];
+  try {
+    expected = applyJsonOperations(currentText, spec, {
+      canReplaceExisting,
+      recordedItems,
+      readUpstreamText,
+      onListed: (record) => listedItems.push(record),
+    });
+  } catch (error) {
+NEW (replace those lines with these 13 lines, same indentation):
+  let expected;
+  const listedItems = [];
+  const listedSets = [];
+  try {
+    expected = applyJsonOperations(currentText, spec, {
+      canReplaceExisting,
+      recordedItems,
+      recordedSets,
+      readUpstreamText,
+      onListed: (record) => listedItems.push(record),
+      onSet: (record) => listedSets.push(record),
+    });
+  } catch (error) {
+
+STEP 3 of 6. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (6 lines, this exact text appears once in the file):
+  }
+  const output = { filePath: destinationPath, buffer: Buffer.from(expected, 'utf8'), mode: entry.mode, sourcePath: specPath };
+  if (expected === currentText) return { writes: [], deletes: [], outputs: [output], listedItems };
+  return { writes: [output], deletes: [], outputs: [output], listedItems };
+}
+
+NEW (replace those lines with these 6 lines, same indentation):
+  }
+  const output = { filePath: destinationPath, buffer: Buffer.from(expected, 'utf8'), mode: entry.mode, sourcePath: specPath };
+  if (expected === currentText) return { writes: [], deletes: [], outputs: [output], listedItems, listedSets };
+  return { writes: [output], deletes: [], outputs: [output], listedItems, listedSets };
+}
+
+
+STEP 4 of 6. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (20 lines, this exact text appears once in the file):
+ * @param {object} ctx Engine context.
+ * @param {{acceptedSha256?: Map<string, string>|Record<string, string>,
+ *   recordedItems?: object[], upstreamBytes?: ((key: string) => Buffer|null)|null}}
+ *   [options] Hashes of what this overlay wrote last, which authorize rewriting a
+ *   destination that changed only because the canonical copy did, the items it
+ *   added there, which a dropped entry takes back, and the reader for the pinned
+ *   upstream copy those items are told apart from.
+ * @returns {{entry: object, problems: string[], writes: object[], deletes: string[],
+ *   outputs: object[], listedItems: object[]}}
+ *   `listedItems` names the added items an entry set still lists, for the state write.
+ */
+function planOverlay(entry, ctx, { acceptedSha256, recordedItems, upstreamBytes } = {}) {
+  const problems = [];
+  const planner = PLANNERS[entry.scope];
+  if (!planner) {
+    return { entry, problems: [`unknown scope "${entry.scope}"`], writes: [], deletes: [], outputs: [], listedItems: [] };
+  }
+  const plan = planner(entry, ctx, problems, acceptedSha256, { recordedItems, upstreamBytes });
+  return {
+    entry,
+NEW (replace those lines with these 23 lines, same indentation):
+ * @param {object} ctx Engine context.
+ * @param {{acceptedSha256?: Map<string, string>|Record<string, string>,
+ *   recordedItems?: object[], recordedSets?: object[],
+ *   upstreamBytes?: ((key: string) => Buffer|null)|null}}
+ *   [options] Hashes of what this overlay wrote last, which authorize rewriting a
+ *   destination that changed only because the canonical copy did, the items it
+ *   added there, which a dropped entry takes back, the sets it applied there,
+ *   which a dropped set returns to the pin's value, and the reader for the
+ *   pinned upstream copy both are checked against.
+ * @returns {{entry: object, problems: string[], writes: object[], deletes: string[],
+ *   outputs: object[], listedItems: object[], listedSets: object[]}}
+ *   `listedItems` names the added items an entry set still lists and `listedSets`
+ *   the sets it still names, both for the state write.
+ */
+function planOverlay(entry, ctx, { acceptedSha256, recordedItems, recordedSets, upstreamBytes } = {}) {
+  const problems = [];
+  const planner = PLANNERS[entry.scope];
+  if (!planner) {
+    return { entry, problems: [`unknown scope "${entry.scope}"`], writes: [], deletes: [], outputs: [], listedItems: [], listedSets: [] };
+  }
+  const plan = planner(entry, ctx, problems, acceptedSha256, { recordedItems, recordedSets, upstreamBytes });
+  return {
+    entry,
+
+STEP 5 of 6. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (4 lines, this exact text appears once in the file):
+    outputs: plan.outputs || [],
+    listedItems: plan.listedItems || [],
+  };
+}
+NEW (replace those lines with these 5 lines, same indentation):
+    outputs: plan.outputs || [],
+    listedItems: plan.listedItems || [],
+    listedSets: plan.listedSets || [],
+  };
+}
+
+STEP 6 of 6. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (4 lines, this exact text appears once in the file):
+      acceptedSha256: state.files,
+      recordedItems: (state.items || {})[entry.destination] || [],
+      upstreamBytes,
+    })));
+NEW (replace those lines with these 5 lines, same indentation):
+      acceptedSha256: state.files,
+      recordedItems: (state.items || {})[entry.destination] || [],
+      recordedSets: (state.sets || {})[entry.destination] || [],
+      upstreamBytes,
+    })));
+
+CHECK. Run:
+cd R && node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')" && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Expected: the first command prints nothing, and the test summary shows "fail 1". The one failing test is "apply returns a value to the pin once its set leaves the entry set". It fails until a later brief, so do not try to fix it. Report the pass and fail counts. If any other test fails, do not change it: report its name and output.
