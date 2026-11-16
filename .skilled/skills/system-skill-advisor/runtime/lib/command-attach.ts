@@ -409,7 +409,10 @@ const COMMAND_ASKED_BY_PRONOUN = new RegExp(`(?:^|[,.;!?\\n]) *(?:(?:and|then|so
 // A prompt names a command to refuse it or to ask about it as often as it names
 // one to run it, so an offer must read the naming before it trusts the name. The
 // text is folded first, because a keyed apostrophe or a run of spaces must not
-// hide the lead, while a line break survives as the sentence end it is. The
+// hide the lead, while a line break survives as the sentence end it is. Inline
+// code, bold and quote marks around a name are dropped for the same reason, so a
+// refusal of a backticked command reads as the plain refusal does. An underscore
+// stays, because a command name may hold one. The
 // boundary before the lead keeps a command name from matching inside a word or a
 // path, and the boundary after it keeps a longer command name from reading as the
 // shorter one. Every occurrence has to carry a lead, because one led naming does
@@ -417,6 +420,7 @@ const COMMAND_ASKED_BY_PRONOUN = new RegExp(`(?:^|[,.;!?\\n]) *(?:(?:and|then|so
 export function commandOnlyMentioned(prompt: string, command: string): boolean {
   const text = prompt
     .toLowerCase()
+    .replace(/[`*"\u201c\u201d]/g, '')
     .replace(/[\u2018\u2019]/g, "'")
     .replace(/[^\S\n]+/g, ' ')
     .replace(/ *\n\s*/g, '\n');

@@ -32,6 +32,7 @@ const SEVEN_AXIS_MATRIX: Record<typeof ADVISOR_RUNTIME_VALUES[number], Record<ty
   cursor:   { inputFieldNames: 'not-recorded', cwdResolution: 'not-recorded', inputSource: 'not-recorded', outputShape: 'not-recorded', timeoutHandling: 'not-recorded', renderThresholdOverride: 'not-recorded', sideEffectsBeyondReturn: 'not-recorded' },
   devin:    { inputFieldNames: 'not-recorded', cwdResolution: 'not-recorded', inputSource: 'not-recorded', outputShape: 'not-recorded', timeoutHandling: 'not-recorded', renderThresholdOverride: 'not-recorded', sideEffectsBeyondReturn: 'not-recorded' },
   dsh:      { inputFieldNames: 'not-recorded', cwdResolution: 'not-recorded', inputSource: 'not-recorded', outputShape: 'not-recorded', timeoutHandling: 'not-recorded', renderThresholdOverride: 'not-recorded', sideEffectsBeyondReturn: 'not-recorded' },
+  vibe:     { inputFieldNames: 'not-recorded', cwdResolution: 'not-recorded', inputSource: 'not-recorded', outputShape: 'not-recorded', timeoutHandling: 'not-recorded', renderThresholdOverride: 'not-recorded', sideEffectsBeyondReturn: 'not-recorded' },
 };
 
 function buildRecommendations(runtime: string): readonly AdvisorRecommendation[] {

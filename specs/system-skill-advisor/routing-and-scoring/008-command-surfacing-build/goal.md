@@ -380,6 +380,11 @@ and findings belong here.
 | Note: pass eight graph rows | Recorded | 038 scratch/review-graph-project.mjs wrote dimension, file and COVERS rows for the scorer-8 and attach-docs-8 sessions into the deep-loop graph database after the run ended; those rows are this session's projection, not data the lineages wrote |
 | Review pass nine | Converged, 0 P0 and 0 P1, six P2 fixed | two DeepSeek lineages over phase 038's net change ran the workflow's graph and stop steps; scorer-9 stopped converged at iteration 5 and attach-config-9 at iteration 4, both all_dimensions_clean, and convergence.cjs re-run on copies of their final state returns STOP converged for both. Six P2 fixed in 038 T015: route split before the suffix chain, linear suffix parse (100000 suffixes 12055 ms t... |
 | Criterion 4 check, review loop | Met | review pass nine is a /deep:review loop over the packet code that stopped on convergence, not the cap, in both lineages, confirmed by the evaluator on their final state, with 0 open P0 and P1; its six P2 are fixed. The clean-review convergence defect stays an operator item |
+| Alignment final, run 20261116T141322Z | Fixed on branch | 0 P0, 1 P1, 30 P2 over 118 commits; P1 D-01 (backticked refusal or question still attached the command) fixed in command-attach with 6 cases failing on the previous code; 8 P2 fixed, rest open with reasons in 038/scratch/alignment-final-dispositions.md |
+| Baseline shift, slash-variant rows | Recaptured | sv-06 and sv-08 ask about a backticked command (lead indices only, no prompt text) and now withhold it as the plain question does; reached_top3 2 to 0, agreement 6/10 to 5/9; typed recall 24/44, false offers 0/35 and holdout 2/44 unchanged |
+| Pre-existing: S5 derived counts | Not branch-caused | README seven project config files and spec-kit references count fail on a clean origin/main checkout with the same lines |
+| Operator item: surface-map platform tokens | Waiting | add TEMP and TMP to env_check.platform_tokens in the operator-local surface map; they are platform temp variables written by vitest.config.ts |
+| Env docs: SKILL_ADVISOR_FRESH_PROMPTS_PATH | Fixed | listed in .env.example as a test-only path |
 
 ### Deviations and findings
 

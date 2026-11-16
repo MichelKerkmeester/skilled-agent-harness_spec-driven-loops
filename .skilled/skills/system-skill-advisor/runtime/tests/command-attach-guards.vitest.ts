@@ -169,6 +169,20 @@ describe('a command the prompt only mentions', () => {
     expect(commandOnlyMentioned(prompt, command)).toBe(true);
   });
 
+  // Markup around the name must not hide the lead before it.
+  it.each([
+    ['do not run `/create:readme`, just tell me what it covers', '/create:readme'],
+    ['what does `/create:readme` do?', '/create:readme'],
+    ['never use **/deep:review** here', '/deep:review'],
+    ['do not run "/create:readme" yet', '/create:readme'],
+  ])('reads the marked-up %s as a mention of %s', (prompt, command) => {
+    expect(commandOnlyMentioned(prompt, command)).toBe(true);
+  });
+
+  it('still reads a marked-up request as a request', () => {
+    expect(commandOnlyMentioned('run `/create:readme` for the advisor skill', '/create:readme')).toBe(false);
+  });
+
   it.each([
     ['use /create:agent or /create:readme', '/create:agent'],
     ['use /create:agent or /create:readme', '/create:readme'],

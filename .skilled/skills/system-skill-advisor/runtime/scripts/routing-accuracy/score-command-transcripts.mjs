@@ -716,6 +716,8 @@ function positionOf(event, index) {
 // through a `/private` prefix as well as without it, so both spellings of one folder
 // compare equal. A line that names no checkout falls back to the folders a scratch
 // note lives in.
+const SCRATCH_FOLDER = /^\/(?:private\/)?(?:tmp|var\/tmp|var\/folders)(?:\/|$)/;
+
 export function insideCheckout(path, checkoutDir) {
   const text = typeof path === 'string' ? path.replace(/\\/g, '/') : '';
   if (!text.startsWith('/') && !text.startsWith('~')) return true;
@@ -727,11 +729,7 @@ export function insideCheckout(path, checkoutDir) {
     return stripPrivate(text).startsWith(`${folder}/`);
   }
 
-  return !(/^\/tmp\//.test(text)
-    || /^\/private\/tmp\//.test(text)
-    || /^\/var\/folders\//.test(text)
-    || /^\/private\/var\/folders\//.test(text)
-    || text.startsWith('~'));
+  return !(SCRATCH_FOLDER.test(text) || text.startsWith('~'));
 }
 
 function firstWritePosition(events, checkoutDir) {
@@ -1531,7 +1529,7 @@ function guardedWriteCounts(path, checkoutDir) {
   // A write that names the checkout folder itself, such as creating it, is a
   // write in the checkout too.
   if (insideCheckout(`${normal.replace(/\/+$/, '')}/`, checkoutDir)) return true;
-  const outsideScratch = !/^\/(?:private\/)?(?:tmp|var\/tmp|var\/folders)(?:\/|$)/.test(normal);
+  const outsideScratch = !SCRATCH_FOLDER.test(normal);
   return insideCheckout(normal, checkoutDir) || outsideScratch;
 }
 

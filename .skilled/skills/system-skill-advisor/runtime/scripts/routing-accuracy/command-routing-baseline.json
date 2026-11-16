@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "b5b8e699a97",
+  "capturedAtSha": "dae6d02810e",
   "corpusSha256": "sha256:e08017b5d8face375de4b51e0768fbc451e9b4d7f474e41d4ea25703ea8dcbff",
   "bridgeCounts": {
     "commandMetadata": 27,
@@ -44,14 +44,14 @@
       "total": 35
     },
     "slash_variant": {
-      "reached_top3": 2,
+      "reached_top3": 0,
       "named_total": 8,
       "offered_on_partial": 0,
       "partial_total": 4
     },
     "agreement": {
-      "correct": 6,
-      "total": 10
+      "correct": 5,
+      "total": 9
     }
   },
   "unreachable": [
@@ -1788,10 +1788,10 @@
     },
     "sv-06": {
       "expected_command": "/speckit:plan",
-      "top": "command-speckit-plan",
-      "top1": true,
-      "top3": true,
-      "offered": true
+      "top": "system-spec-kit",
+      "top1": false,
+      "top3": false,
+      "offered": false
     },
     "sv-07": {
       "expected_command": "/create:sk-skill",
@@ -1804,8 +1804,8 @@
       "expected_command": "/doctor:setup",
       "top": "system-skilled-doctor",
       "top1": false,
-      "top3": true,
-      "offered": true
+      "top3": false,
+      "offered": false
     },
     "sv-09": {
       "expected_command": "/speckit:resume",
