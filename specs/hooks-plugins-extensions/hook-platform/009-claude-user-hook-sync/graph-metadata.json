@@ -3,6 +3,7 @@
   "packet_id": "hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync",
   "spec_folder": "hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync",
   "parent_id": "hooks-plugins-extensions/hook-platform",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,7 +35,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -179,12 +180,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -201,11 +196,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The operator's `~/.claude/settings.json` carries a hand-made copy of Skilled's Claude hooks",
     "created_at": "2026-11-16T10:18:26Z",
-    "last_save_at": "2026-11-16T10:41:30.503Z",
+    "last_save_at": "2026-11-16T11:03:51.668Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9e04de7d5f667a14a89962e5afd523f3113adc4a9a72b70c33392395b99c4a7",
+    "source_fingerprint": "sha256:24a4ecbb39694359d016990fa6ed0d03a8043502230ae1e082c84e354748ac2a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eee068f145f3fe8c34f00108c26b604dd85205283fda97d6604874113f0dd05b",
+      "spec.md": "384dcb0c3c37806268dd9cb4b5b472401968386c1735d168b9f8d77d9bf7e189",
       "plan.md": "b9395ccad37fa98ba87ab91f1d0c475d7ff3674b621d3f1c9c9addc299e52021",
-      "tasks.md": "f38bafcea57711410e8bf81580c3fb2547c431f6431bb0e992d5b9c53cceb6a6",
-      "implementation-summary.md": "b42cb9076f139aae66fbb8c4e22e38574e6883f2b1dc2a1f5d5ae14d3b440e21"
+      "tasks.md": "737d8655ada6c40c3efb48a604c7b22eeb6e37fe223ae119e287b09b839a5cfa",
+      "implementation-summary.md": "bf6d8490f969ffb0faa590b231254249d6faeee40c69fe6e7f0ed69fde5136a6"
     },
     "last_active_at": null
   }

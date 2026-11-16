@@ -74,7 +74,7 @@ export K=.skilled/skills/system-spec-kit
 - [x] T020 Run every rendered Claude command in an empty folder (`.claude/settings.json`). Verify: each exits 0 with no output. Evidence: 36 of 36; PreToolUse Bash hooks still run in the repo; env-secret-guard denies a dotenv read the same on main and worktree.
 - [x] T021 Sync a copy of the real user file (`~/.claude/settings.json` copy). Verify: `node $S --target <copy>` then `node $S --check --target <copy>` prints OK. Evidence: 20 owned removed, 36 added, 16 non-owned kept; non-hook keys and Orca hooks equal; Skilled hooks equal the project file.
 - [x] T022 Validate this packet (`specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync`). Verify: `bash $K/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync --strict` prints `RESULT: PASSED`.
-- [ ] T023 Enable the switch in the primary checkout and run one sync after the push (operator-approved step) (`hook-flags.env`, `~/.claude/settings.json`). Verify: `node $S --check` in the primary checkout prints OK.
+- [x] T023 Enable the switch in the primary checkout and run one sync after the push (operator-approved step) (`hook-flags.env`, `~/.claude/settings.json`). Verify: `node $S --check` in the primary checkout prints OK.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -85,7 +85,7 @@ export K=.skilled/skills/system-spec-kit
 - [ ] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
-- [ ] `node $S --check` prints OK in the primary checkout after T023
+- [x] `node $S --check` prints OK in the primary checkout after T023
 <!-- /ANCHOR:completion -->
 
 ---
@@ -140,7 +140,7 @@ A blocked task stays `[B]` with its reason on the line. A P0 item blocks close.
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met: every row in `acceptance-criteria.md` is `Met` except the live enable, which waits for T023.
+- [x] CHK-020 [P0] All acceptance criteria met: every row in `acceptance-criteria.md` is `Met`, the live enable included.
 - [x] CHK-021 [P0] Manual testing complete: T020 and T021 evidence recorded.
 - [x] CHK-022 [P1] Edge cases tested: missing user file, mixed owned and non-owned group, linked worktree; T014 passes.
 - [x] CHK-023 [P1] Error scenarios validated: `--check` drift exits 1 and a malformed file exits 1; T014 passes.
@@ -182,7 +182,7 @@ A blocked task stays `[B]` with its reason on the line. A P0 item blocks close.
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | 7/8 |
+| P0 Items | 8 | 8/8 |
 | P1 Items | 10 | 10/10 |
 | P2 Items | 1 | 1/1 |
 
