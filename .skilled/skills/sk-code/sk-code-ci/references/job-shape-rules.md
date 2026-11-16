@@ -9,7 +9,7 @@ trigger_phrases:
   - "ci switch condition"
 importance_tier: normal
 contextType: general
-version: 1.1.11.0
+version: 1.1.12.0
 ---
 
 # Job Shape Rules
@@ -114,9 +114,9 @@ The action is `.github/actions/setup/action.yml`. The rules it follows:
 - **The provisioning walk runs on a hit.** The repository's own `provision_worktree` still runs after a restore and checks that each tree and each build output exists, so a hit shortens the install and is never a version check.
 - **The cache is saved only on a miss**, and an input named `cache` set to `false` forces a cold provision so the install path stays exercised.
 - **Bun comes from a SHA-pinned setup action**, never from an `npm install` of bun in the workflow.
-- **The scan reads it.** `.github/scripts/check-gate-inputs.sh:499-503` (the `if [[ -d "$ROOT/.github/actions" ]]` block) scans `.github/actions/**` with the workflow parser, so a path in an action is held to the twin rule.
+- **The scan reads it.** `.github/scripts/check-gate-inputs.sh:507-512` (the `if [[ -d "$ROOT/.github/actions" ]]` block) scans `.github/actions/**` with the workflow parser, so a path in an action is held to the twin rule.
 
-Today five jobs in three workflows call the action: `opencode-dual-version.yml` at `:121` and `:203`, `opencode-plugin-tests.yml` at `:106` and `routing-registry-drift.yml` at `:150` and `:272`. A new provisioning workflow calls the action and does not copy its steps.
+Today five jobs in three workflows call the action: `opencode-dual-version.yml` at `:121` and `:203`, `opencode-plugin-tests.yml` at `:108` and `routing-registry-drift.yml` at `:150` and `:271`. A new provisioning workflow calls the action and does not copy its steps.
 
 ---
 

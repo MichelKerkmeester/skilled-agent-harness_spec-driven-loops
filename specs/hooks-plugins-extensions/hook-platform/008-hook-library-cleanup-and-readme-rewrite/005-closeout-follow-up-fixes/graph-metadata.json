@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes",
+  "spec_folder": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes",
+  "parent_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "closeout follow up fixes",
+      "phase 5 closeout follow up fixes",
+      "dead pi import fallbacks",
+      "actionlint path filter",
+      "closeout follow up fixes plan",
+      "closeout follow up fixes tasks",
+      "closeout follow up fixes implementation summary"
+    ],
+    "key_topics": [
+      "closeout",
+      "follow",
+      "phase",
+      "dead",
+      "import",
+      "fallbacks",
+      "actionlint",
+      "path",
+      "filter",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/plugins/codex-hooks-watchdog.js",
+      ".skilled/hooks/coverage-rationale.md",
+      ".github/workflows/README.md",
+      ".skilled/hooks/vitest.config.ts",
+      ".skilled/skills/sk-code/sk-code-quality/repository/quality.json",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config-discovery.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md",
+      ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/comment-hygiene-opencode-plugin.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "codex-hooks-watchdog.js",
+        "kind": "code",
+        "path": ".opencode/plugins/codex-hooks-watchdog.js",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-rationale.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/coverage-rationale.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "quality.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-quality/repository/quality.json",
+        "source": "derived"
+      },
+      {
+        "name": "quality-config-discovery.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config-discovery.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-config.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md",
+        "source": "derived"
+      },
+      {
+        "name": "job-shape-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "comment-hygiene-opencode-plugin.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/comment-hygiene-opencode-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The quality gate hands `.github/workflows/README.md` to actionlint, which fails on it",
+    "created_at": "2026-11-16T07:17:16Z",
+    "last_save_at": "2026-11-16T07:29:33.157Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5af7d412203a4d4b503541790602d4c7b5c68562c38921b0027c10b74237d00e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cb5bfd3f07b293b873f49b176ca050274563587ef32dfbd130525e5bd31bc4d6",
+      "plan.md": "9c892478eb2169e8809fe91c023394e44a7d6409c26adca9737674b7b9bd6122",
+      "tasks.md": "f5fb35cc388c80bea2ed5c6a5730ae76aa9001746eab2d9244ec81007c555fe6",
+      "implementation-summary.md": "d97561a1861395b822bc463bd15245dfe93bc93ca5838288456979bf2d5d7fd6"
+    },
+    "last_active_at": null
+  }
+}

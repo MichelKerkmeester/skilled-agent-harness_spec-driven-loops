@@ -44,7 +44,7 @@ Almost every asymmetry falls out of which of these a runtime uses:
 
 ## 3. PER-CONCERN RATIONALE
 
-Only concerns whose coverage or wiring needs explaining appear. The six covered everywhere (`completion-evidence`, `cli-dispatch`, `mcp-route-guard`, `post-edit-quality`, `skill-advisor`, `spec-gate`) need no explanation. The sections below cover either a real gap or a factoring difference worth naming.
+Only concerns whose coverage or wiring needs explaining appear. The eight covered everywhere with no section of their own (`completion`, `dispatch`, `env-secret-guard`, `mcp-route-guard`, `overlay-guard`, `post-edit-quality`, `skill-advisor`, `spec-gate`) need no explanation. The sections below cover either a real gap or a factoring difference worth naming.
 
 ### `session-lifecycle`: folder on **all but opencode**
 **OpenCode has no per-event files. Its session events are already consumed by the concern plugins, so nothing is left to centralize.**
@@ -90,7 +90,7 @@ Claude Code's synchronous `Stop` hook returns `decision: "block"`. DSH's `agent/
 
 ### `injection-screen`: folders on **claude, devin, opencode, pi, dsh**
 **Only Cursor and Codex cannot carry it, because no hook on either ever sees the fetched page text.**
-Cursor's `postToolUse` payload for its `Fetch` tool carries only `url`, `status_code` and `content_length` (probed on the cursor-agent 2026.09.28 build), so there is no text to screen. Codex's only web tool is the provider-hosted `web_search`, which runs on the model provider's side, so no local hook ever sees a page. The five wired runtimes share `lib/classifier-injection-advisory.mjs`: Claude Code screens `WebFetch` at `PostToolUse`, Devin screens `webfetch` at `PostToolUse`, OpenCode screens `webfetch` in its plugin and drains the advisory through the next `experimental.chat.system.transform`, and Pi screens `fetch_content` at `tool_result`. DSH screens `web_fetch`, `web_search` and `mcp__*` results at `tools/post-execute`.
+Cursor's `postToolUse` payload for its `Fetch` tool carries only `url`, `status_code` and `content_length` (probed on the cursor-agent 2026.09.28 build), so there is no text to screen. Codex's only web tool is the provider-hosted `web_search`, which runs on the model provider's side, so no local hook ever sees a page. The five wired runtimes share `classifier-injection-screen/lib/classifier-injection-advisory.mjs`: Claude Code screens `WebFetch` at `PostToolUse`, Devin screens `webfetch` at `PostToolUse`, OpenCode screens `webfetch` in its plugin and drains the advisory through the next `experimental.chat.system.transform`, and Pi screens `fetch_content` at `tool_result`. DSH screens `web_fetch`, `web_search` and `mcp__*` results at `tools/post-execute`.
 
 ### `decision-capture`: live on **claude, devin, opencode, pi, dsh**, save-time on **codex**, **cursor** unverified
 **Codex captures at save time by choice, and Cursor has never shown an answered question to capture.**
@@ -98,11 +98,11 @@ Codex's rollout holds the same answered `request_user_input` calls a `PostToolUs
 
 ### `git-preflight`: covered on **all seven** (not a gap)
 **The four editors share one `shared/` adapter instead of a copy each. Only opencode, pi and dsh carry runtime-native subfolders.**
-A folder scan shows just `opencode/`, `pi/` and `dsh/` because the editor adapter is centralized in `shared/git-preflight-advisory.mjs`.
+A folder scan shows just `opencode/`, `pi/` and `dsh/` because the editor adapter is centralized in `git-preflight/shared/git-preflight-advisory.mjs`.
 
 ### `git-message-gate`: covered on **all seven**
 **Same shape as `git-preflight`: the four editors share the `shared/` gate, and only opencode, pi and dsh carry runtime-native subfolders.**
-Claude, Codex, Cursor and Devin run `shared/git-message-gate.mjs` through the hook registry. The OpenCode plugin, the Pi extension and the DSH adapter import its `evaluateCommand`.
+Claude, Codex, Cursor and Devin run `git-message-gate/shared/git-message-gate.mjs` through the hook registry. The OpenCode plugin, the Pi extension and the DSH adapter import its `evaluateCommand`.
 
 ### `live-sync` (`git-live-follow` and `git-primary-reconcile`): covered on **all seven**, folders on all but opencode
 **OpenCode and Pi run both `.sh` scripts too, one bundled into a session-start extension and one launched by a plugin, instead of a discrete folder per runtime.**
@@ -118,3 +118,8 @@ The wrapper's runtime list in `.skilled/bin/skilled-loop` names Claude, Pi, Open
 
 - [`README.md`](./README.md): the coverage matrix (per-cell authority) and the directory tree.
 - [`injection-contract.md`](./injection-contract.md): what each hook injects, per event and channel.
+
+<!-- readme-check
+allow-ref pipeline.js | a file in the installed dsh-tools package, not in this repository
+allow-count two scripts | the sentence names both scripts
+-->

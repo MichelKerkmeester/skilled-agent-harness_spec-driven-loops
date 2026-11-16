@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6849,
-    "ok": 19261,
+    "ok": 19265,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27737,
+  "documentsScanned": 27741,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "509760cf6428679049f5520ef72743ab18976cff927ea6da8c82b7d541eb72f4",
+  "manifestHash": "1c0a75769db024d498fb04079a386149aa29eb4bf977d003871b9d2cee11a9fd",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44351,
+      "ok": 44358,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -55992,6 +55992,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes/scratch",
       "reason": "excluded directory"
     },
     {
