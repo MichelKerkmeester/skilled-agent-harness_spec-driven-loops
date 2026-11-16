@@ -21,6 +21,11 @@ process.on('exit', () => {
   rmSync(RUN_TMPDIR, { recursive: true, force: true });
 });
 
+// A dispatched worker carries AI_SESSION_CHILD=1, and the brief renderer reads it
+// when a caller names no child state, so an inherited flag would change what the
+// tests expect. Each test that needs a child session sets the flag itself.
+delete process.env.AI_SESSION_CHILD;
+
 const TEST_TIMEOUT_MS = 30_000;
 const TEARDOWN_TIMEOUT_MS = 1_000;
 const INCLUDE_BENCHES = process.env.SPECKIT_RUN_BENCHES === 'true';

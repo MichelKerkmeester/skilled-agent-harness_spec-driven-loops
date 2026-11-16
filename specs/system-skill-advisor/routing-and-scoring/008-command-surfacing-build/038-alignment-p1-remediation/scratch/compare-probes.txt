@@ -1,0 +1,12 @@
+P01 fail want sk-doc/sk-create-readme head sk-doc base sk-doc same
+P02 pass want sk-doc/sk-create-skill head sk-doc base sk-doc same
+P03 fail want sk-doc/sk-create-skill head sk-doc base sk-doc same
+P04 fail want system-deep-loop/review head sk-code base sk-code same
+P05 fail want system-deep-loop/research head none base none same
+P06 pass want sk-git head sk-git base sk-git same
+P07 pass want system-skill-advisor head system-skill-advisor base sk-prompt moved
+P08 fail want sk-code head sk-doc base sk-doc same
+P09 fail want system-skill-advisor head none base none same
+P10 pass want system-skill-advisor head system-skill-advisor base system-skill-advisor same
+P11 fail want sk-doc/sk-create-skill head sk-doc base sk-doc same
+P12 fail want system-skilled-doctor head system-spec-kit base sk-code moved

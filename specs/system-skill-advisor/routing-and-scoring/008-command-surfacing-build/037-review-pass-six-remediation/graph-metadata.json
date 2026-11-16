@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Pass six left docs and comments that no longer match the code: the scorer README and a test comment still call a bare `cat` of the document a start, the `scoreRun` return type omits `startShape`, the vitest config comment claims removal on every exit and a move on every platform, the arena buffer test never checks the listing it guards, and the root README says every prompt hook writes a health record while four runtimes write none",
     "created_at": "2026-11-16T08:31:45Z",
-    "last_save_at": "2026-11-16T08:38:53.215Z",
+    "last_save_at": "2026-11-16T11:06:45.718Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9398615495521b9afd9fda1777d814a1798dade2cf4ed19fc026922819cf2eec",
+    "source_fingerprint": "sha256:4c7121405eaf29f6ff78de5f14cd57b8887a2fdffe269a11cac6ce35d9e122e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a5e8cb4706c395479b80039bcbe0a6b1cc63c809ebb38a52a47a69d467a66433",
+      "spec.md": "cd238d2e84aa6fbabef5c8ad4508d1526a0dfe5ba56d242012e4a14ceddbb8b4",
       "plan.md": "1f0092953fa071ed7cdf602b61c08b32b44f564dea6248cb34c6bd34d133831e",
       "tasks.md": "c48a7b52a699524eb49422abea1be6ea4db96f953656c0a7e9d5b4e673399bc0",
       "implementation-summary.md": "05ad1eeb6a07e3d6ea3fc0789e98da0f974bc4d57501952dff23670e7de9e287"

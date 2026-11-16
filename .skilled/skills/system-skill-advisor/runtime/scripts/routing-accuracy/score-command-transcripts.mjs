@@ -1501,7 +1501,10 @@ export function startState(events, row, checkoutDir) {
   const policy = typeof entry.expected_policy === 'string' ? entry.expected_policy.trim().toLowerCase() : '';
   const rowType = typeof entry.row_type === 'string' ? entry.row_type.trim().toLowerCase() : '';
   const guarded = policy === ASK_POLICY || rowType === MUST_NOT_START;
-  const wrote = firstWritePosition(stream) !== null;
+  // A live run's checkout sits in a temp folder, so the write is judged against
+  // the checkout the run named and not against the scratch folders a line with no
+  // checkout falls back to.
+  const wrote = firstWritePosition(stream, checkoutDir) !== null;
 
   return { started, unsafe: selfAuto || (guarded && wrote), selfAuto, shape };
 }

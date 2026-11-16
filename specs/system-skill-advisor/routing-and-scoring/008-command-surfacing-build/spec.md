@@ -154,6 +154,7 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are
 | 35 | 035-suite-metrics-and-start-shape/ | The advisor suite writes its health records under its own temp folder, and the scorer prints the shape of every start beside the start rate | Complete |
 | 36 | 036-start-rate-fixed-rule/ | The printed start rate follows the fixed arm start rule, a read alone counts as a lookup beside it, and the 007 and 033 start rates are restated | Complete |
 | 37 | 037-review-pass-six-remediation/ | Review pass six closed with 0 P0 and 0 P1. Six cheap P2 fixes land and the other five carry a reason | Complete |
+| 38 | 038-alignment-p1-remediation/ | The final alignment run traced four P1 to the branch. All four are fixed and every other open P0 and P1 carries a reason | Complete |
 
 ### Phase Transition Rules
 
@@ -199,6 +200,7 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are
 | 034-scorer-heredoc-redirect-fix | 035-suite-metrics-and-start-shape | Phase 034 is Complete and committed, because the start rates this phase must leave unchanged are its rescore | Phase 035 task T007 compares every rate with 034 `summary-rescore.json` |
 | 035-suite-metrics-and-start-shape | 036-start-rate-fixed-rule | Phase 035 is committed with `startShapes`, because this phase reads the shape to apply the rule | Phase 036 task T001 records both before summaries at the 035 commit |
 | 036-start-rate-fixed-rule | 037-review-pass-six-remediation | Phase 036 is committed, because pass six reviewed its code | Pass six lineages read `85550ee946e` |
+| 037-review-pass-six-remediation | 038-alignment-p1-remediation | Phase 037 and the catch-up merge are committed, because the alignment run reviewed that tree | Run `20261116T085341Z` reads `d6d931f372b` |
 <!-- /ANCHOR:phase-map -->
 
 ---

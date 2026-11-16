@@ -27,7 +27,7 @@ contextType: "general"
 | **Parent Spec** | ../spec.md |
 | **Phase** | 37 of 37 |
 | **Predecessor** | 036-start-rate-fixed-rule |
-| **Successor** | None |
+| **Successor** | 038-alignment-p1-remediation |
 | **Handoff Criteria** | Each of the 11 pass-six findings has a fix commit or a reason in the goal log |
 <!-- /ANCHOR:metadata -->
 

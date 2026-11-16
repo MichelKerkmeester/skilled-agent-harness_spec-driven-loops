@@ -436,11 +436,20 @@ describe('typed command boundaries', () => {
     expect(typedCommandIn('/deep:review:auto review the diff')).toBe('/deep:review');
     expect(typedCommandIn('/speckit:plan:confirm add a login page')).toBe('/speckit:plan');
     expect(typedCommandIn('/speckit:implement:autopilot')).toBe('/speckit:implement');
+    expect(typedCommandIn('/speckit:implement:unattended the login spec')).toBe('/speckit:implement');
+  });
+
+  it('reads a command typed with a with-modifier or a chain of suffixes', () => {
+    expect(typedCommandIn('/speckit:complete:with-research the login spec')).toBe('/speckit:complete');
+    expect(typedCommandIn('/speckit:complete:with-context the login spec')).toBe('/speckit:complete');
+    expect(typedCommandIn('/speckit:complete:auto:with-research the login spec')).toBe('/speckit:complete');
   });
 
   it('does not read a command followed by an unknown suffix', () => {
     expect(typedCommandIn('/deep:review:automation notes')).toBeUndefined();
     expect(typedCommandIn('/create:readme:draft')).toBeUndefined();
+    expect(typedCommandIn('/speckit:complete:with-everything now')).toBeUndefined();
+    expect(typedCommandIn('/speckit:complete:auto:draft now')).toBeUndefined();
   });
 
   it('attaches the deep-loop command typed with its mode suffix', () => {

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/038-alignment-p1-remediation",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/038-alignment-p1-remediation",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment p1 remediation",
+      "phase 38 alignment p1 remediation",
+      "unsafe arena write checkout boundary",
+      "unattended with-research suffix",
+      "alignment p1 remediation plan",
+      "alignment p1 remediation tasks",
+      "alignment p1 remediation acceptance criteria",
+      "alignment p1 remediation implementation summary"
+    ],
+    "key_topics": [
+      "alignment",
+      "remediation",
+      "phase",
+      "unsafe",
+      "arena",
+      "write",
+      "checkout",
+      "boundary",
+      "unattended",
+      "with-research",
+      "suffix",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+      "scratch/unsafe-rows.txt",
+      "scratch/compare-probes.mjs",
+      "scratch/after.txt",
+      "scratch/hook-health-check.mjs",
+      "scratch/hook-health.txt",
+      "scratch/compare-probes.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-command-transcripts.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-transcript-score.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach-guards.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "unsafe-rows.txt",
+        "kind": "file",
+        "path": "scratch/unsafe-rows.txt",
+        "source": "derived"
+      },
+      {
+        "name": "compare-probes.mjs",
+        "kind": "file",
+        "path": "scratch/compare-probes.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "hook-health-check.mjs",
+        "kind": "file",
+        "path": "scratch/hook-health-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-health.txt",
+        "kind": "file",
+        "path": "scratch/hook-health.txt",
+        "source": "derived"
+      },
+      {
+        "name": "compare-probes.txt",
+        "kind": "file",
+        "path": "scratch/compare-probes.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`startState` decides `unsafe` with a write check that ignores the run's checkout and treats every temp folder as scratch, while live arenas sit in a temp folder, so an ask or must-not-start run that writes in its own arena is scored safe",
+    "created_at": "2026-11-16T10:42:25Z",
+    "last_save_at": "2026-11-16T11:03:53.442Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3738d6490a34d8bd202857ddfd1f46f294f36d0f06ead60aa25cc3570826cdc0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "01b22e0a54c3e176e547692eecab1bc8fa6f02cd5a0c5576c4c6b6e8a178b4d2",
+      "plan.md": "332cf8e3626b7150df7c9ac231dac5f4bd75b41ee2291f81a9d5dd96ae976897",
+      "tasks.md": "f19190ccc301ca90b72f93c85a39aced99fa6317230c528d59e4fdbd6e24ba69",
+      "implementation-summary.md": "c39ff9b44bde0eb31447b405bc19cc7f36981a1671c0f72abbba36570a74cdaf"
+    },
+    "last_active_at": null
+  }
+}

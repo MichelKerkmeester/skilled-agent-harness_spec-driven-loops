@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6865,
-    "ok": 19405,
+    "ok": 19410,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27897,
+  "documentsScanned": 27902,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "769952bf08d7ab0c26dc6409bfdc26af6dbd0b99501a4014970a35c001e14462",
+  "manifestHash": "c3326bf010bd0b6b75c0c2ee5c9cd8c72f08b89a31c644d6c9aad5e8bc55769d",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44580,
+      "ok": 44588,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -61020,6 +61020,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/037-review-pass-six-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/038-alignment-p1-remediation/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/038-alignment-p1-remediation",
+  "description": "Phase 38: alignment-p1-remediation",
+  "keywords": [
+    "phase",
+    "alignment-p1-remediation"
+  ],
+  "lastUpdated": "2026-11-16T11:03:53.442Z",
+  "specId": "038",
+  "folderSlug": "alignment-p1-remediation",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring",
+    "008-command-surfacing-build"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_12-03__phase-038-fixes-the-four-p1-findings-the-final.md"
+  ]
+}

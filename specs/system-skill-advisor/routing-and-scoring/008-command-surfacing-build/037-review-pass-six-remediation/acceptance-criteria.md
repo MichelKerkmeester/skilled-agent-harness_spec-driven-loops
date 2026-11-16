@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/037-review-pass-six-remediation"
+    packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/037-review-pass-six-remediation"
     last_updated_at: "2026-11-16T08:31:46Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"

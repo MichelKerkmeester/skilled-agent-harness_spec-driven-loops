@@ -1,0 +1,13 @@
+HEAD d6d931f372b, before any 038 edit
+suite with AI_SESSION_CHILD unset: phase 037 after.txt and the merge gates, 2326 passed 0 failed
+suite with AI_SESSION_CHILD=1:
+ Test Files  2 failed | 183 passed (185)
+      Tests  2 failed | 2322 passed | 8 skipped (2332)
+ FAIL  tests/doctor-brief-render.vitest.ts > doctor command brief > uses the first doctor bridge after the top pick, past other skills
+ FAIL  tests/system-skill-advisor-plugin.vitest.ts > system-skill-advisor OpenCode plugin > 'a skill row keeps the command and pol…'
+FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+EVAL
+[160,49,21,5]

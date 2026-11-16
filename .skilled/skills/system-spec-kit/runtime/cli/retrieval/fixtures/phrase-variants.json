@@ -1,5 +1,5 @@
 {
-  "manifestHash": "769952bf08d7ab0c26dc6409bfdc26af6dbd0b99501a4014970a35c001e14462",
+  "manifestHash": "c3326bf010bd0b6b75c0c2ee5c9cd8c72f08b89a31c644d6c9aad5e8bc55769d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11607,6 +11607,21 @@
     ],
     "alignment open findings tasks": [
       "alignment open findings tasks"
+    ],
+    "alignment p1 remediation": [
+      "alignment p1 remediation"
+    ],
+    "alignment p1 remediation acceptance criteria": [
+      "alignment p1 remediation acceptance criteria"
+    ],
+    "alignment p1 remediation implementation summary": [
+      "alignment p1 remediation implementation summary"
+    ],
+    "alignment p1 remediation plan": [
+      "alignment p1 remediation plan"
+    ],
+    "alignment p1 remediation tasks": [
+      "alignment p1 remediation tasks"
     ],
     "alignment phase status": [
       "alignment phase status"
@@ -83838,6 +83853,9 @@
     "phase 37 review pass six": [
       "phase 37 review pass six"
     ],
+    "phase 38 alignment p1 remediation": [
+      "phase 38 alignment p1 remediation"
+    ],
     "phase 38 plugin scanner follow ups": [
       "phase 38 plugin scanner follow ups"
     ],
@@ -128930,6 +128948,9 @@
     "unattended task metadata": [
       "unattended task metadata"
     ],
+    "unattended with research suffix": [
+      "unattended with-research suffix"
+    ],
     "unattributabledirs implementation summary": [
       "unattributableDirs implementation summary"
     ],
@@ -129241,6 +129262,9 @@
     ],
     "unrun tests ci coverage tasks": [
       "unrun tests ci coverage tasks"
+    ],
+    "unsafe arena write checkout boundary": [
+      "unsafe arena write checkout boundary"
     ],
     "unsafe type casts reduced": [
       "unsafe type casts reduced"

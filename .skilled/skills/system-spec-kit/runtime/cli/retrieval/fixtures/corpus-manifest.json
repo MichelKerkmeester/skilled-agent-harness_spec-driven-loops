@@ -1,5 +1,5 @@
 {
-  "corpusHash": "544df1277a7d84a66087b0ceb31ae3c441d49823cc91bbd016139ce86dbc8dca",
+  "corpusHash": "26dd581cb9667322652f397f1afef833656d8ec01dcf905df5cac3d5a458a1b1",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27897,
+  "includedPathCount": 27902,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -19172,6 +19172,11 @@
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/037-review-pass-six-remediation/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/037-review-pass-six-remediation/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/037-review-pass-six-remediation/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/038-alignment-p1-remediation/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/038-alignment-p1-remediation/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/038-alignment-p1-remediation/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/038-alignment-p1-remediation/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/038-alignment-p1-remediation/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/fanout-attribution-pass-1.md",
@@ -27929,7 +27934,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "769952bf08d7ab0c26dc6409bfdc26af6dbd0b99501a4014970a35c001e14462",
+  "manifestHash": "c3326bf010bd0b6b75c0c2ee5c9cd8c72f08b89a31c644d6c9aad5e8bc55769d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36325,6 +36330,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/037-review-pass-six-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/038-alignment-p1-remediation/scratch",
       "reason": "excluded directory"
     },
     {
