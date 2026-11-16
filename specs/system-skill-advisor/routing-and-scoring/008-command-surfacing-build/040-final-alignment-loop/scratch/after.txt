@@ -1,0 +1,26 @@
+after the phase 040 fixes, document rule needs a determiner
+rescore exit 0
+start-007 unchanged from 038
+pre-set unchanged from 038
+final-set unchanged from 038
+arm-033 unchanged from 038
+graph freshness exit 0
+build exit 0
+typecheck exit 0
+generation: 501 -> 502
+ Test Files  185 passed (185)
+      Tests  2381 passed | 8 skipped (2389)
+suite exit 0
+ Test Files  185 passed (185)
+      Tests  2381 passed | 8 skipped (2389)
+suite child exit 0
+FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+EVAL
+[160,49,21,5]
+PROBES
+fail       P04    want=system-skilled-doctor                    got=system-spec-kit
+fail       P05    want=system-skill-advisor                     got=command-doctor-helper
+STATUS=FINDINGS run-probes: pass=13 fail=2 cannot_run=0

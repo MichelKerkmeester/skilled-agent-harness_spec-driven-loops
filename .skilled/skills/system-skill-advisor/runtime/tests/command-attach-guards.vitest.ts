@@ -174,6 +174,7 @@ describe('a command the prompt only mentions', () => {
   // as, so every fixture must read the same wrapped or retired as it does plain.
   const WRAPPERS: ReadonlyArray<readonly [string, string]> = [
     ['`', '`'], ["'", "'"], ['"', '"'], ['\u201c', '\u201d'], ['\u2018', '\u2019'], ['**', '**'],
+    ['[', ']'], ['(', ')'], ['~~', '~~'], ['<code>', '</code>'], ['\u00ab', '\u00bb'], ['\u2032', '\u2032'],
   ];
   const PLAIN_ROWS = [...REFUSE8, ...QUESTION2, ...REQUEST6, ...CONTROL5,
     ['do not run /create:agent or /create:readme', '/create:readme'],
@@ -194,6 +195,38 @@ describe('a command the prompt only mentions', () => {
       expect(commandOnlyMentioned(retired, '/create:sk-skill'), retired)
         .toBe(commandOnlyMentioned(plain, '/create:sk-skill'));
     }
+  });
+
+  // A refusal can follow the name it refuses, so the words after a naming are
+  // read for a refusal of "it" as well as for a request.
+  it.each([
+    ['/create:readme is not what I want, do not run it', '/create:readme'],
+    ['run /doctor:git setup but do not actually run it', '/doctor:git setup'],
+    ["/speckit:complete came up, but please don't start it", '/speckit:complete'],
+  ])('reads the later refusal in %s as a mention of %s', (prompt, command) => {
+    expect(commandOnlyMentioned(prompt, command)).toBe(true);
+  });
+
+  it('still reads a later request of the same command as a request', () => {
+    expect(commandOnlyMentioned("run /speckit:save and don't skip it", '/speckit:save')).toBe(false);
+  });
+
+  // A command named as a document is being read about, not run.
+  it.each([
+    ['read the /create:readme document and tell me what it does', '/create:readme'],
+    ['open the /deep:review command file and summarize it', '/deep:review'],
+  ])('reads %s as a mention of %s', (prompt, command) => {
+    expect(commandOnlyMentioned(prompt, command)).toBe(true);
+  });
+
+  it('still reads a typed command whose argument is a file as a request', () => {
+    expect(commandOnlyMentioned('/create:diff file a.md b.md', '/create:diff')).toBe(false);
+  });
+
+  // A doc path that holds the name is a file, not a naming, so it cannot undo the
+  // refusal of the command itself.
+  it('reads a led refusal beside a doc path of the same command as a mention', () => {
+    expect(commandOnlyMentioned('do not run /create:readme, read /create:readme.md', '/create:readme')).toBe(true);
   });
 
   // Markup around the name must not hide the lead before it.
@@ -480,6 +513,15 @@ describe('typed command boundaries', () => {
 
   it('does not read a path segment as a typed command', () => {
     expect(typedCommandIn('open /create:readme/notes.txt')).toBeUndefined();
+  });
+
+  it.each([
+    ['run **/deep:review** now', '/deep:review'],
+    ['run [/deep:review] now', '/deep:review'],
+    ['run \u201c/deep:review\u201d now', '/deep:review'],
+    ['run <code>/deep:review</code> now', '/deep:review'],
+  ])('finds the command wrapped in %s', (prompt, command) => {
+    expect(typedCommandIn(prompt)).toBe(command);
   });
 
   it('reads a command that ends a sentence', () => {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3632a3b6616d2e1b31720ebdcbf8b63f7e334d5809d1473dbdf8ee451d0c292c",
+  "manifestHash": "598d8f7fc8fd3162fdaebb4476b4d64c1f02fadacbd51eb3593d4820f924366b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6980,6 +6980,9 @@
     "040 embedding row reset": [
       "040 embedding row reset"
     ],
+    "040 final alignment loop operator decisions": [
+      "040-final-alignment-loop operator decisions"
+    ],
     "040 implementation summary": [
       "040 implementation summary"
     ],
@@ -9456,6 +9459,9 @@
     ],
     "advisor preserve set": [
       "advisor preserve set"
+    ],
+    "advisor probe intent signals arena": [
+      "advisor probe intent signals arena"
     ],
     "advisor probes 3 of 3 correct": [
       "advisor probes 3 of 3 correct"
@@ -28426,6 +28432,9 @@
     ],
     "command meaning matching tasks": [
       "command meaning matching tasks"
+    ],
+    "command mention refusal after name": [
+      "command mention refusal after name"
     ],
     "command metadata census pin": [
       "command metadata census pin"
@@ -51431,6 +51440,21 @@
     ],
     "filters jsonc": [
       "filters.jsonc"
+    ],
+    "final alignment loop": [
+      "final alignment loop"
+    ],
+    "final alignment loop acceptance criteria": [
+      "final alignment loop acceptance criteria"
+    ],
+    "final alignment loop implementation summary": [
+      "final alignment loop implementation summary"
+    ],
+    "final alignment loop plan": [
+      "final alignment loop plan"
+    ],
+    "final alignment loop tasks": [
+      "final alignment loop tasks"
     ],
     "final baseline run tasks": [
       "final baseline run tasks"
@@ -84563,6 +84587,9 @@
     ],
     "phase 40 dispatch lint held fixes": [
       "phase 40 dispatch lint held fixes"
+    ],
+    "phase 40 final alignment loop": [
+      "phase 40 final alignment loop"
     ],
     "phase 41 goal held fixes": [
       "phase 41 goal held fixes"

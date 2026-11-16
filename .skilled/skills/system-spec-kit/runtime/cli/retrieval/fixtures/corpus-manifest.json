@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ff10713e06fe8b7abc4061694d146ecf5b2f158ff68887e80ac86706ea14050d",
+  "corpusHash": "18f65cc8f28353427449b7dbdea18180435648492684f613d0226905781c5104",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28101,
+  "includedPathCount": 28108,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -19330,6 +19330,12 @@
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/decision-record.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/fanout-attribution-pass-1.md",
@@ -19337,6 +19343,7 @@
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/fanout-attribution.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-1.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-10.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-11.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-2.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-3.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-4.md",
@@ -28133,7 +28140,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3632a3b6616d2e1b31720ebdcbf8b63f7e334d5809d1473dbdf8ee451d0c292c",
+  "manifestHash": "598d8f7fc8fd3162fdaebb4476b4d64c1f02fadacbd51eb3593d4820f924366b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36621,6 +36628,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/scratch",
       "reason": "excluded directory"
     },
     {

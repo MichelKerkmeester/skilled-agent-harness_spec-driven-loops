@@ -95,7 +95,14 @@
     "local fallback scorer",
     "prompt hook health",
     "command transcripts",
-    "workflow measure"
+    "workflow measure",
+    "skill graph is stale",
+    "rebuild the skill graph",
+    "vibe prompt hook",
+    "advisor briefs",
+    "behaviour arena",
+    "clean arena",
+    "routing arm"
   ],
   "derived": {
     "trigger_phrases": [

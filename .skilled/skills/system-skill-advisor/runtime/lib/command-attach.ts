@@ -205,7 +205,7 @@ export function commandRowFor(id: string): CommandRow | undefined {
 // which, but a modifier typed on a command that does not take it still names
 // that command. The hints chain them, as in `:auto:with-research`, so a run of
 // them counts as one suffix.
-const COMMAND_START_BOUNDARY = /[\s`'"(]/;
+const COMMAND_START_BOUNDARY = /[\s`'"(*[~>\u201c\u2018\u00ab\u2032\u2039]/;
 const COMMAND_CONTINUATION = /[a-z0-9_:-]/;
 const WORD_CHARACTER = /[a-z0-9_]/;
 const MODE_SUFFIX = /^(?::(?:auto|confirm|autopilot|unattended|with-(?:context|phases|research)))+(?![a-z0-9_:-])/;
@@ -406,12 +406,25 @@ export const COMMAND_BARE_ASK_LEAD = '(?:is|does|can|will|would) (?:the )?';
 // statement.
 const COMMAND_ASKED_BY_PRONOUN = new RegExp(`(?:^|[,.;!?\\n]) *(?:(?:and|then|so|please|now|just|go ahead and) )*${COMMAND_USE_VERB} it\\b`);
 
+// A refusal can come after the name, as in "/create:readme is not what I want, do
+// not run it" or "run /doctor:git setup but do not actually run it". The clause
+// opens a new sentence or follows "but", "and" or "so", and refuses "it" with a
+// use verb, so "run /speckit:save and don't skip it" stays a request.
+const COMMAND_DECLINED_BY_PRONOUN = new RegExp(`(?:^|[,.;!?\\n]|\\b(?:but|and|so|though)\\b) *(?:(?:please|just|then|still) )*(?:do not|don't|dont|never)(?: (?:actually|really|yet|ever|even))? ${COMMAND_USE_VERB} it\\b`);
+
+// A command named as a document is read about, not run: "read the /create:readme
+// document", "open the /deep:review command file". The name needs a determiner
+// before it, because a typed request puts its argument there instead, as in
+// "/create:diff file a.md b.md".
+const COMMAND_AS_DOCUMENT = /^(?: command)?(?:'s)? (?:doc|docs|document|documentation|file|page|source|definition|markdown)\b/;
+
 // A prompt names a command to refuse it or to ask about it as often as it names
 // one to run it, so an offer must read the naming before it trusts the name. The
 // text is folded first, because a keyed apostrophe or a run of spaces must not
 // hide the lead, while a line break survives as the sentence end it is. Inline
-// code, bold and quote marks around a name are dropped for the same reason, so a
-// refusal of a backticked command reads as the plain refusal does. An underscore
+// code, bold, strike, brackets, parentheses, guillemets, primes and quote marks
+// around a name are dropped for the same reason, so a refusal of a wrapped
+// command reads as the plain refusal does. An underscore
 // stays, because a command name may hold one. A single quote goes only where it
 // opens or closes a command name, because the same mark is the apostrophe of a
 // lead such as "don't" or "what's". A retired name is read beside the current
@@ -419,12 +432,13 @@ const COMMAND_ASKED_BY_PRONOUN = new RegExp(`(?:^|[,.;!?\\n]) *(?:(?:and|then|so
 // maps to. The
 // boundary before the lead keeps a command name from matching inside a word or a
 // path, and the boundary after it keeps a longer command name from reading as the
-// shorter one. Every occurrence has to carry a lead, because one led naming does
+// shorter one or a doc path such as `/create:readme.md` from reading as a naming. Every occurrence has to carry a lead, because one led naming does
 // not turn a later unled naming into a request.
 export function commandOnlyMentioned(prompt: string, command: string): boolean {
   const text = prompt
     .toLowerCase()
-    .replace(/[`*"\u201c\u201d]/g, '')
+    .replace(/<\/?(?:code|kbd|samp|tt)>/g, '')
+    .replace(/[`*"\u201c\u201d[\]()~\u00ab\u00bb\u2032\u2039\u203a]/g, '')
     .replace(/[\u2018\u2019]/g, "'")
     .replace(/(^|[^a-z0-9])'(?=\/[a-z])/g, '$1')
     .replace(/(\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)*(?: [a-z][a-z0-9_-]*)?)'(?![a-z0-9])/g, '$1')
@@ -434,13 +448,16 @@ export function commandOnlyMentioned(prompt: string, command: string): boolean {
   const spellings = [current, ...Object.keys(RETIRED_COMMANDS).filter((retired) => RETIRED_COMMANDS[retired] === current)]
     .sort((left, right) => right.length - left.length);
   const name = `(?:${spellings.map(escapePhrase).join('|')})`;
-  const occurrences = [...text.matchAll(new RegExp(`(?:^|[^a-z0-9_/])${name}(?![a-z0-9_-])`, 'g'))];
+  const occurrences = [...text.matchAll(new RegExp(`(?:^|[^a-z0-9_/])${name}(?![a-z0-9_-]|[./][a-z0-9])`, 'g'))];
   if (occurrences.length === 0) return false;
   return occurrences.every((occurrence) => {
     const nameEnd = (occurrence.index ?? 0) + occurrence[0].length;
     const before = text.slice(0, nameEnd);
     const tail = text.slice(nameEnd);
-    if (COMMAND_ASKED_BY_PRONOUN.test(tail.split(/(?:^|[\s,;(])\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?![a-z0-9_\/-]|\.[a-z0-9])/)[0])) return false;
+    const clause = tail.split(/(?:^|[\s,;(])\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?![a-z0-9_\/-]|\.[a-z0-9])/)[0];
+    if (COMMAND_AS_DOCUMENT.test(tail) && new RegExp(`\\b(?:the|this|that) ${name}$`).test(before)) return true;
+    if (COMMAND_DECLINED_BY_PRONOUN.test(clause)) return true;
+    if (COMMAND_ASKED_BY_PRONOUN.test(clause)) return false;
     const led = COMMAND_DECLINE_LEADS.some((lead) => (
       new RegExp(`(?:^|[^a-z0-9_/])${lead}${COMMAND_OR_LIST}${name}$`).test(before)
     )) || COMMAND_ASK_LEADS.some((lead) => (
