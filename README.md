@@ -76,9 +76,13 @@ Skilled does not have to live inside each project. You can bring it into a proje
 
 **Link it.** Keep one Skilled checkout and link it into each project. One `git pull` in the checkout then updates every linked project. Your own changes live in the project's files, next to the links. This is the simpler choice. See [Link It Into Your Project](INSTALL-SKILLED.md#3-link-it-into-your-project).
 
-**Copy it.** Commit a copy of Skilled into the project, so the whole team shares one pinned version. Your changes to the copy live in an overlay folder, and `/doctor:overlay` puts them back after each update. See [Copy It Into Your Project](INSTALL-SKILLED.md#4-copy-it-into-your-project).
+**Copy it.** Commit a copy of Skilled into the project, so the whole team shares one pinned version. See [Copy It Into Your Project](INSTALL-SKILLED.md#4-copy-it-into-your-project).
 
-`/doctor:install` prints the ordered steps for your project. Each step shows a plan before it writes, and each one prints how to undo it.
+A copy needs the overlay system. An update replaces the whole copy, so a change made straight in it would be lost. Instead, each of your changes lives in an overlay folder next to the copy, and the overlay engine applies it back after every update. The [overlay guard](#overlay-guard) refuses an edit to a file an overlay owns and names the overlay to edit instead.
+
+Three commands run the overlays. `/doctor:overlay status` shows every overlay that is out of sync and how to fix it. `/doctor:overlay apply` puts the overlays back after showing what will change. `/doctor:overlay repin` moves the copy to a newer Skilled commit, with a backup it can roll back. The [overlay guide](.skilled/skills/system-skilled-doctor/references/overlays.md) explains each state.
+
+The [system-skilled-doctor](#11--doctor-commands) skill runs all of this. Say "put Skilled into my project repo", or run `/doctor:install` for the ordered steps. Each step shows a plan before it writes and prints how to undo it.
 
 ### First Task
 
@@ -294,7 +298,7 @@ Fourteen skills ship with Skilled. Gate 2 loads one when the advisor matches it 
 
 **[system-skill-advisor](.skilled/skills/system-skill-advisor/README.md)** routes each prompt to the skill that fits, through a daemon-backed CLI.
 
-**[system-skilled-doctor](.skilled/skills/system-skilled-doctor/README.md)** holds the doctor commands that install Skilled in a project and keep it current, overlays included.
+**[system-skilled-doctor](.skilled/skills/system-skilled-doctor/README.md)** gets Skilled into your own project and keeps it working there. It owns eleven doctor commands for installing, linking, updating and checking a project, including the overlays that carry a copied project's own changes through each update.
 
 **[sk-git](.skilled/skills/sk-git/README.md)** handles worktrees, conventional commits, pull requests and finishing a branch.
 
@@ -629,7 +633,7 @@ Six bridges refuse to dispatch the runtime they run in. The Pi and DeepSeek Harn
 
 ## 11. 🩺 DOCTOR COMMANDS
 
-Seventeen doctor commands check and repair the setup, one area each. Every target that writes shows its plan and waits for your yes. `/doctor:helper` names the command that fits a problem you describe. The [system-skilled-doctor README](.skilled/skills/system-skilled-doctor/README.md) has the details.
+Seventeen doctor commands check and repair the setup, one area each. Eleven belong to the `system-skilled-doctor` skill, which owns everything about Skilled inside a project. The rest sit with the skill they check, such as `/doctor:git` with sk-git. Every target that writes shows its plan and waits for your yes. `/doctor:helper` names the command that fits a problem you describe, and you can also just describe the problem in chat. The [system-skilled-doctor README](.skilled/skills/system-skilled-doctor/README.md) has the details.
 
 | Command | What it does |
 | --- | --- |
@@ -760,7 +764,7 @@ Run `/create:skill` for a skill. The advisor finds it from its own metadata, wit
 
 ### How can I keep Skilled current after a new release?
 
-Run `/doctor:update check` to see what a release changes, then `/doctor:update apply` to bring it in after your yes. It can roll the update back. Afterwards, `/doctor:runtime-mirrors` checks that every runtime folder still matches the shared source, and `/doctor:setup` runs the full health check.
+Run `/doctor:update check` to see what a release changes, then `/doctor:update apply` to bring it in after your yes. It can roll the update back. A project that commits a copy of Skilled moves it with `/doctor:overlay repin` instead, which puts your overlays back on the new copy. Afterwards, `/doctor:runtime-mirrors` checks that every runtime folder still matches the shared source, and `/doctor:setup` runs the full health check.
 
 ### Why is the skill advisor not an MCP server?
 
