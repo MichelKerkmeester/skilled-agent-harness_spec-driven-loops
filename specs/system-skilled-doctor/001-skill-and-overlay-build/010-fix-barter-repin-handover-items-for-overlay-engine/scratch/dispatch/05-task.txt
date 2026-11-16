@@ -1,0 +1,75 @@
+TASK: a json-entry `set` adds its key when the document does not hold it yet, so one entry set fits a file before and after upstream starts shipping that key.
+Two files change. Do the three steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 3. File: R/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Append the block below at the END of the file, after one blank line. Change nothing else in the file.
+
+BLOCK TO APPEND:
+test('a json-entry set adds a key the document does not hold yet, and still refuses a missing parent', (t) => {
+  const fixture = createFixture(t);
+  const routerPath = path.join(fixture.tree, 'router.json');
+  const routerSeed = '{\n  "classes": {\n    "base": {\n      "keywords": ["one"]\n    }\n  }\n}\n';
+  const editEntrySet = (operationPath) => writeFile(fixture.overlayDir, 'json/router.json', JSON.stringify({
+    target: 'router.json',
+    style: { indent: 2, primitiveArrays: 'inline' },
+    operations: [{ op: 'set', path: operationPath, value: ['alpha'] }],
+  }, null, 2) + '\n');
+
+  writeFile(fixture.tree, 'router.json', routerSeed);
+  editEntrySet(['mirrors']);
+  fixture.manifest.overlays.push({
+    id: 'router-set',
+    scope: 'json-entry',
+    source: 'json/router.json',
+    destination: 'router.json',
+    pinnedSha256: sha256(Buffer.from(routerSeed)),
+  });
+  writeManifest(fixture);
+  seedState(fixture);
+  assert.deepEqual(readJson(routerPath), { classes: { base: { keywords: ['one'] } }, mirrors: ['alpha'] });
+  assert.equal(
+    fs.readFileSync(routerPath, 'utf8'),
+    '{\n  "classes": {\n    "base": {\n      "keywords": ["one"]\n    }\n  },\n  "mirrors": ["alpha"]\n}\n',
+  );
+  assert.equal(fixture.run(['apply']).output.trim(), '0 changed');
+
+  // Only the last key is added. A path through an object that is not there is a mistake.
+  editEntrySet(['absent', 'mirrors']);
+  const refused = fixture.run(['status']);
+  assert.notEqual(refused.code, 0, refused.output);
+  assert.match(refused.output, /missing key "absent"/);
+});
+
+STEP 2 of 3. Run this now, before the engine change, and report what it printed:
+cd R && node --test --test-name-pattern='json-entry set adds a key' .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Expected now: "fail 1", and the failure output contains: missing key "mirrors". Whatever it prints, continue.
+
+STEP 3 of 3. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs, inside function planOperation.
+OLD (these two lines appear once in the file, together):
+  if (operation.op === 'set') {
+    const target = nodeAtPath(root, operation.path);
+NEW (replace those two lines with these lines, same indentation):
+  if (operation.op === 'set') {
+    const parentPath = operation.path.slice(0, -1);
+    const lastKey = operation.path[operation.path.length - 1];
+    const parent = operation.path.length > 0 ? nodeAtPath(root, parentPath) : null;
+    // A key the object does not hold yet is added after its last member, so one
+    // entry set fits the file before and after upstream starts shipping the key.
+    if (parent && parent.type === 'object' && typeof lastKey === 'string' && !findMember(parent, lastKey)) {
+      const reference = parent.members[parent.members.length - 1];
+      if (!reference) throw new Error(`cannot insert into the empty object at ${parentPath.join('.')}`);
+      const indent = indentBefore(text, reference.keyStart) || '';
+      edits.push({
+        start: reference.value.end,
+        end: reference.value.end,
+        text: `,\n${indent}${JSON.stringify(lastKey)}: ${serializeValue(operation.value, indent, style)}`,
+      });
+      return 'changed';
+    }
+    const target = nodeAtPath(root, operation.path);
+
+CHECK. Run:
+cd R && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs
+Expected: the summary shows "fail 0". Report the pass and fail counts. If the new test fails after the edit, do not change its assertions or the engine further: report the full failure output. If a test other than the new one fails, do not change it: report its name and output.

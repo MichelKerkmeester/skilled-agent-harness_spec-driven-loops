@@ -1,0 +1,67 @@
+TASK: a file upstream adds inside a `directory` overlay, which the overlay's copy lacks, is the overlay's to delete.
+Two files change. Do the three steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 3. File: R/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs
+Append the block below at the END of the file, after one blank line. Change nothing else in the file.
+
+BLOCK TO APPEND:
+test('repin --stage treats an upstream addition inside a directory overlay as overlay-owned, and a hand-added file as live-edited', (t) => {
+  const fixture = createRepinFixture(t, {
+    oldEntries: { '.skilled/skills/owned/keep.md': 'upstream keep\n' },
+    newEntries: { '.skilled/skills/owned/sub/f.md': 'upstream addition\n' },
+  });
+  writeFile(fixture.overlayDir, 'owned/keep.md', 'overlay keep\n');
+  fixture.manifest.overlays.push({
+    id: 'owned-dir',
+    scope: 'directory',
+    source: 'owned',
+    destination: '.skilled/skills/owned',
+  });
+  writeManifest(fixture);
+  const seeded = fixture.run(['apply']);
+  assert.equal(seeded.code, 0, seeded.output);
+  assert.equal(fixture.run(['status']).code, 0);
+
+  const stageDir = path.join(fixture.workspace, 'stage');
+  const staged = fixture.repin(['--stage', stageDir]);
+  assert.equal(staged.code, 0, staged.output);
+  assert.match(staged.output, /^RESULT: STAGED$/m);
+  assert.doesNotMatch(staged.output, /^blocked owned-dir:/m);
+  assert.equal(fs.existsSync(path.join(stageDir, '.skilled/skills/owned/sub/f.md')), false);
+  assert.equal(read(stageDir, '.skilled/skills/owned/keep.md'), 'overlay keep\n');
+
+  writeFile(fixture.tree, '.skilled/skills/owned/other.md', 'hand added\n');
+  const handStage = path.join(fixture.workspace, 'stage-hand');
+  const handAdded = fixture.repin(['--stage', handStage]);
+  assert.equal(handAdded.code, 2, handAdded.output);
+  assert.match(handAdded.output, /live-edited \.skilled\/skills\/owned\/other\.md/);
+  assert.equal(read(fixture.tree, '.skilled/skills/owned/other.md'), 'hand added\n');
+});
+
+STEP 2 of 3. Run this now, before the engine changes, and report what it printed:
+cd R && node --test --test-name-pattern='upstream addition inside a directory overlay' .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs
+Expected now: "fail 1", and the failure output contains "blocked owned-dir: live-edited".
+Whatever it prints, continue to STEP 3 and include the counts in your handback.
+
+STEP 3 of 3. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs, inside function planDirectoryOverlay.
+OLD (these three lines appear once in the file):
+      if (current.get(rel).kind === 'file') {
+        outputs.push({ filePath: destinationPath, buffer: null, sourcePath: path.join(sourceDir, rel) });
+      }
+NEW (replace them with these lines, same indentation):
+      if (current.get(rel).kind === 'file') {
+        // The overlay's copy is the whole folder, so a file it lacks is its own
+        // delete while that file still holds upstream's bytes.
+        outputs.push({
+          filePath: destinationPath,
+          buffer: null,
+          sourcePath: path.join(sourceDir, rel),
+          replacedSubtree: true,
+        });
+      }
+
+CHECK. Run:
+cd R && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs
+Expected: the summary shows "fail 0". Report the pass and fail counts. If a test other than the new one fails, do not change it: report its name and output.

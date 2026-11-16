@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.14.0
+version: 1.0.15.0
 ---
 
 # Vendored Skilled Overlays
@@ -71,7 +71,7 @@ The setting lives outside `.skilled` because a re-copy overwrites that folder, a
 |-------|---------------|------------------|
 | `in-sync` | The destination matches the overlay copy | Nothing |
 | `overlay-edited` | The overlay moved and the tree has not caught up | `/doctor:overlay apply` |
-| `live-edited` | Someone edited the live copy. A path under a skill-root entry's `remove` list never reaches this state: the overlay owns its removal, so `apply` deletes it | `/doctor:overlay apply --capture <path>`, which moves the edit into the overlay |
+| `live-edited` | Someone edited the live copy. A path under a skill-root entry's `remove` list never reaches this state: the overlay owns its removal, so `apply` deletes it. A file upstream added inside a `directory` entry's folder, which the overlay's copy lacks, does not reach it either while it holds upstream's bytes: the overlay's copy is the whole folder, so `apply` deletes that file | `/doctor:overlay apply --capture <path>`, which moves the edit into the overlay |
 | `both-changed` | The overlay and the live copy both moved, or a guarded destination matches neither its pinned hash nor the new copy | A person. Capture refuses and apply writes nothing |
 | `upstream-moved` | The pin moved, and the destination matches neither the recorded hash nor the overlay copy | A person, who rebases the overlay onto the new upstream file |
 
@@ -197,11 +197,13 @@ What a re-pin leaves out, it lists. Each upstream change under `repin.exclude`, 
 
 ### The Two Runs
 
-1. Run `/doctor:overlay repin --upstream <checkout> --to <commit>`. It first builds the re-pinned tree in a temporary copy and reports how many paths it will copy and delete. The report also lists the blocked overlays, the overlays that now equal upstream and the `not-copied` changes. The copy has no project install behind it, so it skips the manifest's `regenerate` and `verifyGenerated` steps and prints how many it skipped. A clean stage proves the copy and the overlays, not the generators.
-2. Rebase each blocked overlay onto the new upstream file, and drop each entry that now equals upstream. Then run the command again.
+1. Run `/doctor:overlay repin --upstream <checkout> --to <commit>`. It first builds the re-pinned tree in a temporary copy and reports how many paths it will copy and delete. The report also lists the blocked overlays, the overlays that now equal upstream and the `not-copied` changes. The copy has no project install behind it, so it skips the manifest's `regenerate` and `verifyGenerated` steps and prints how many it skipped. A clean stage proves the copy and the overlays, not the generators. It ends `RESULT: STAGED` and exits 0. A stage that lists a blocked overlay or a failed check ends `RESULT: BLOCKED` and exits 1, so `STAGED` always means the copy re-pinned clean.
+2. Rebase each blocked overlay onto the new upstream file, and drop each entry that now equals upstream. A `file` entry records the rebase in `pinnedSha256`. A `directory` or `skill-root` entry has no hash per file, so once you have read upstream's changes under it, set its `rebasedOnto` to the commit you are re-pinning to. The value holds for that one commit, so the next re-pin asks again. Then run the command again.
 3. When the report lists nothing blocked, approve it. The live run backs up every path it will touch, copies, sets the pin, applies the overlays twice and runs the full check.
 
 The run refuses before any write when a file no overlay owns differs from the pinned commit. That file holds an edit made in place, which the copy would revert. Move the edit into an overlay or upstream first.
+
+Two cases are not edits made in place. A file a `regenerate` step writes is the project's own output once the step lists it under `outputs`, so list there every file a generator writes, including a field it adds to an upstream file. A link the new commit replaces with a folder is deleted before the folder's files are written, so a file seen through that link does not count as a copy at the new path.
 
 ### Rolling Back
 

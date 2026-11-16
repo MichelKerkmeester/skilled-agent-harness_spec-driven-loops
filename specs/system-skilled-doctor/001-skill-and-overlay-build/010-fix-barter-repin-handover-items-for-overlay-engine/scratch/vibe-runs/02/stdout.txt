@@ -1,0 +1,78 @@
+RETURN: PASS | escalation=NONE | confidence=HIGH
+
+## Code Implementation Result
+
+**Mode:** 1: Full Implementation (test-first, per the brief's three ordered steps)
+**Files:** `.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs`, `.skilled/commands/doctor/scripts/overlay-engine.cjs`
+**Verification:** PASS
+**Quality Gate:** N/A (not run — brief named the exact check and forbade loading skills)
+**Command:** `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs`
+**Exit Code:** 0
+**First Failing Assertion:** N/A
+**Escalation:** NONE
+**Confidence:** HIGH
+**Not checked:** The full `tests/` directory was not run; the brief scoped the check to the three named files.
+
+### Summary
+`planDirectoryOverlay` now marks a deleted file's output with `replacedSubtree: true` when the overlay's copy lacks it, so the re-pin treats an upstream addition inside a directory overlay as the overlay's own delete rather than a live edit. The flag is the existing mechanism already consumed at `overlay-engine.cjs:2124` and set by `planRemoveRootOverlay` at `:1547`, so no new plumbing was added. The new test also asserts the nearest person-edit case still refuses: a hand-added `other.md` yields exit 2 with `live-edited`.
+
+---
+
+1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs`
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs`
+
+2. COMMANDS
+
+**Command 1** — `node --test --test-name-pattern='upstream addition inside a directory overlay' .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs`
+Exit status: **1** (derived from `fail 1`; the shell pipeline masked the raw code — `PIPESTATUS` is unavailable in this shell). Counts: `tests 1 / pass 0 / fail 1`. Matched the brief's expectation exactly, including `blocked owned-dir: live-edited`.
+
+```
+✖ repin --stage treats an upstream addition inside a directory overlay as overlay-owned, and a hand-added file as live-edited (1356.572708ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1487.539416
+
+✖ failing tests:
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:736:1
+✖ repin --stage treats an upstream addition inside a directory overlay as overlay-owned, and a hand-added file as live-edited (1356.572708ms)
+  AssertionError [ERR_ASSERTION]: staged a copy of the tree in /var/folders/.../stage
+  ...
+  blocked owned-dir: live-edited .skilled/skills/owned/sub/f.md
+  ...
+  1 !== 0
+      at TestContext.<anonymous> (.../overlay-engine-repin.test.cjs:755:10)
+```
+
+**Command 2** — `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs`
+Exit status: **0**. Counts: `tests 63 / pass 63 / fail 0`.
+
+```
+✔ guard resolves cwd-relative paths and capture refuses unknown, protected, and json-entry destinations (252.084792ms)
+✔ a missing layout link is reported as overlay-edited and created by apply (239.137ms)
+✔ an edited json-entry item re-applies over the applied bytes and refuses once the live file moved (240.471375ms)
+✔ an edited json-entry object key re-applies over the applied bytes and refuses once the live file moved (289.288166ms)
+✔ token-named paths pass only when a manifest entry names them exactly, and .env never does (17.197042ms)
+✔ status --json reports each out-of-sync destination with its fix, and an error as JSON (187.074875ms)
+✔ a misused command line prints the usage and exits 2 (137.864625ms)
+ℹ tests 63
+ℹ suites 0
+ℹ pass 63
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13393.168958
+```
+
+3. OPEN QUESTIONS
+
+- `git status` also shows pre-existing modifications I did not make and did not touch: `specs/system-skilled-doctor/001-skill-and-overlay-build/graph-metadata.json`, `specs/system-skilled-doctor/001-skill-and-overlay-build/spec.md`, and the untracked packet folder `010-fix-barter-repin-handover-items-for-overlay-engine/`. Only the two files above are mine.
+- The new test's `createRepinFixture` already runs `apply` and `status` internally (lines 221-224), so the block's own `seeded`/`status` calls are a second pass after the manifest gains the `owned-dir` entry. That is what the brief specified and it is load-bearing, not redundant — the fixture's internal seed predates the directory overlay.

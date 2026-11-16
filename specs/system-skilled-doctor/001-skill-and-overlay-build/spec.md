@@ -107,6 +107,7 @@ The decided design, its research and the operator's eight rulings are in `resear
 | 7 | 007-doctor-ux-research/ | [Phase 7 scope] | Pending |
 | 8 | 008-overlay-first-write-checks/ | Opt-in write checks for a vendoring project: a strict `--guard` behind the manifest's `strictWrites`, `apply --adopt`, a `generated` list, a `pre-commit` check and a `root-file` line in the re-pin report | Complete |
 | 9 | 009-overlay-write-checks-follow-up/ | Follow-up from a vendoring project and a fresh review: lock takeover, link and item records, `apply --relayout`, `status --audit`, the stale root-file line, an OpenCode guard adapter and four strict-write corrections | Complete |
+| 10 | 010-fix-barter-repin-handover-items-for-overlay-engine/ | Six items from a vendoring project's re-pin: a link that became a folder, a rebased folder overlay, the stage result, a `set` on a key the new pin adds, generator-written files, the `vocabularyMirrors` host question and the history lookup package's build step | Complete |
 
 ### Phase Transition Rules
 
@@ -127,6 +128,7 @@ The decided design, its research and the operator's eight rulings are in `resear
 | 006-setup-guide | 007-doctor-ux-research | [Criteria TBD] | [Verification TBD] |
 | 007-doctor-ux-research | 008-overlay-first-write-checks | None. Phase 8 builds on phases 2 to 4 and does not wait on the research | `node --test` on the overlay engine tests |
 | 008-overlay-first-write-checks | 009-overlay-write-checks-follow-up | Phase 8 is released and a vendoring project has reported on it | `node --test` on the overlay engine tests |
+| 009-overlay-write-checks-follow-up | 010-fix-barter-repin-handover-items-for-overlay-engine | A vendoring project has re-pinned past phase 9 and reported on it | `node --test` on the overlay engine tests |
 <!-- /ANCHOR:phase-map -->
 
 ---

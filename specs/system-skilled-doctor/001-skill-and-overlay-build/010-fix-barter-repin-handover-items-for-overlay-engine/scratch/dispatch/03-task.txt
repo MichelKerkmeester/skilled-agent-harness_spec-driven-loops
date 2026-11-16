@@ -1,0 +1,33 @@
+TASK: a stage that is not clean ends `RESULT: BLOCKED`, so `RESULT: STAGED` always means a clean stage.
+Two files change. Do the three steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 3. File: R/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs
+Inside the existing test named
+'repin --stage builds the re-pinned tree in a copy, reports both groups and leaves the live tree untouched'
+there is exactly one line:
+  assert.match(staged.output, /^RESULT: STAGED$/m);
+That test already expects exit code 1 and a `blocked hub-skill: upstream-moved` line.
+Replace that one line, in that test only, with these two lines:
+  assert.match(staged.output, /^RESULT: BLOCKED$/m);
+  assert.doesNotMatch(staged.output, /^RESULT: STAGED$/m);
+The same assertion text appears in other tests. Leave every other occurrence unchanged.
+
+STEP 2 of 3. Run this now, before the engine change, and report what it printed:
+cd R && node --test --test-name-pattern='reports both groups and leaves the live tree untouched' .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs
+Expected now: "fail 1". Whatever it prints, continue to STEP 3 and include the counts in your handback.
+
+STEP 3 of 3. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (one line, it appears once in the file):
+    report.result = job.isStage ? 'STAGED' : (isClean ? 'PASSED' : 'FAILED');
+NEW (replace that one line with these five lines, same indentation):
+    // A stage that printed a blocked line or a miss is not a rehearsal that
+    // passed, so it gets its own word instead of the clean stage's.
+    report.result = job.isStage
+      ? (isClean ? 'STAGED' : 'BLOCKED')
+      : (isClean ? 'PASSED' : 'FAILED');
+
+CHECK. Run:
+cd R && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs
+Expected: the summary shows "fail 0". Report the pass and fail counts. If a test other than the edited one fails, do not change it: report its name and output.
