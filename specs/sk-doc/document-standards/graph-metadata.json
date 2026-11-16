@@ -8,7 +8,8 @@
     "sk-doc/document-standards/002-sk-create-readme-writing-style",
     "sk-doc/document-standards/003-changelog-system",
     "sk-doc/document-standards/004-security-policy-alignment",
-    "sk-doc/document-standards/005-root-readme-section-spacing"
+    "sk-doc/document-standards/005-root-readme-section-spacing",
+    "sk-doc/document-standards/006-readme-template-conformance"
   ],
   "manual": {
     "depends_on": [],

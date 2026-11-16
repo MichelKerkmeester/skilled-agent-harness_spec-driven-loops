@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/document-standards/006-readme-template-conformance",
+  "description": "README template conformance",
+  "keywords": [
+    "readme",
+    "template",
+    "conformance"
+  ],
+  "lastUpdated": "2026-11-16T15:20:12.132Z",
+  "specId": "006",
+  "folderSlug": "readme-template-conformance",
+  "parentChain": [
+    "sk-doc",
+    "document-standards"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

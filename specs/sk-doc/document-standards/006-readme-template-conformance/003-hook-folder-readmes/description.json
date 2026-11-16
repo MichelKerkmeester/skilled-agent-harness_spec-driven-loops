@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes",
+  "description": "Phase 3: hook-folder-readmes",
+  "keywords": [
+    "phase",
+    "hook-folder-readmes"
+  ],
+  "lastUpdated": "2026-11-16T15:20:15.077Z",
+  "specId": "003",
+  "folderSlug": "hook-folder-readmes",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "006-readme-template-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

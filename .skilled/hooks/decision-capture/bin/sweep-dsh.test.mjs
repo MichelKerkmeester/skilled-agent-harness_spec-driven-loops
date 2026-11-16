@@ -87,11 +87,11 @@ function writeSession(dshHome, cwd, content, fileName = 'session.v4.jsonl.zstd',
   return filePath;
 }
 
-function runSweep(projectDir, homeDir, dshHome, args = []) {
+function runSweep(projectDir, homeDir, dshHome, args = [], extraEnv = {}) {
   return spawnSync(process.execPath, [SCRIPT, ...args], {
     cwd: projectDir,
     encoding: 'utf8',
-    env: { ...process.env, HOME: homeDir, DSH_HOME: dshHome },
+    env: { ...process.env, HOME: homeDir, DSH_HOME: dshHome, DSH_SESSION_ID: '', ...extraEnv },
     timeout: CLI_TIMEOUT_MS,
   });
 }
@@ -175,6 +175,19 @@ test('the CLI finds the newest session of this project and queues its answer onc
     assert.equal(second.status, 0, second.stderr);
     assert.equal(JSON.parse(second.stdout).recovered, 0);
     assert.equal(readQueue(projectDir, SESSION_ID).length, 1);
+  });
+});
+
+test('the signalled session is read, and an unknown one never falls back', () => {
+  withSandbox(({ projectDir, homeDir, dshHome }) => {
+    writeSession(dshHome, projectDir, framedLog(sessionEvents(projectDir)));
+    const own = runSweep(projectDir, homeDir, dshHome, [], { DSH_SESSION_ID: SESSION_ID });
+    assert.equal(own.status, 0, own.stderr);
+    assert.equal(JSON.parse(own.stdout).session_id, SESSION_ID);
+
+    const unknown = runSweep(projectDir, homeDir, dshHome, [], { DSH_SESSION_ID: 'session-not-on-disk' });
+    assert.equal(unknown.status, 0, unknown.stderr);
+    assert.equal(unknown.stdout, '');
   });
 });
 

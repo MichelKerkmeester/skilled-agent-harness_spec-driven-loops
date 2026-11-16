@@ -331,8 +331,12 @@ function latestTranscript(projectDir) {
 
 function main() {
   const projectDir = process.cwd();
+  // Pi names the calling session's file in PI_SESSION_FILE. With a session id but
+  // no file yet there is nothing to read, and a newer session must not stand in.
   const transcriptPath = transcriptFromArgs(process.argv.slice(2))
-    || latestTranscript(projectDir);
+    || (process.env.PI_SESSION_ID
+      ? process.env.PI_SESSION_FILE || null
+      : latestTranscript(projectDir));
   if (!transcriptPath) return 0;
 
   try {

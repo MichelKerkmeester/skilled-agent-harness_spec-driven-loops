@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes",
+  "description": "Phase 1: skill-readmes",
+  "keywords": [
+    "phase",
+    "skill-readmes"
+  ],
+  "lastUpdated": "2026-11-16T15:48:53.902Z",
+  "specId": "001",
+  "folderSlug": "skill-readmes",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "006-readme-template-conformance"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "16-11-26_16-44__plan-the-readme-template-conformance-program-and.md",
+    "16-11-26_16-45__plan-the-readme-template-conformance-program-and.md",
+    "16-11-26_16-48__plan-the-readme-template-conformance-program-and.md"
+  ]
+}

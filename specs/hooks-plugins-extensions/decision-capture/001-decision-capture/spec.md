@@ -120,6 +120,7 @@ Close the four gaps and prove the whole pipeline in a live, multi-turn conversat
 | 10 | 010-decision-routing-vocabulary/ | Add decision-request vocabulary to system-spec-kit's routing metadata and ROUTER tables so "record this as a decision" routes, proven on the native advisor | Complete |
 | 11 | 011-level-match-operator-record/ | Stop the level check, and the upgrade-level fallback, from reading a decision record the save step wrote as a Level 3 signal, while a hand-written ADR record still counts | Complete |
 | 12 | 012-session-scoped-sweep-and-consume/ | Make the Claude sweep read only the calling session's transcript, and make a linked worktree share its primary checkout's decision-capture state | Complete |
+| 13 | 013-session-signal-sweeps/ | Make the Codex, DSH, OpenCode and Pi sweeps read the session their runtime names, and make the Vibe sweep read its unified folder | Complete |
 
 ### Phase Transition Rules
 
@@ -145,6 +146,7 @@ Close the four gaps and prove the whole pipeline in a live, multi-turn conversat
 | 009-chat-answer-evidence | 010-decision-routing-vocabulary | The save step reads the evidence block and the fixture outcome test passes | 009's acceptance criteria are Met |
 | 010-decision-routing-vocabulary | 011-level-match-operator-record | A writer-only record on a Level 1 packet passes LEVEL_MATCH and an ADR record still warns | The extended suite rows for fixtures 081 to 083 pass |
 | 011-level-match-operator-record | 012-session-scoped-sweep-and-consume | Fixtures 081 to 083 pass in the extended suite | The sweep picks the calling session and a worktree save clears the primary checkout's pending answer in the scratch probe |
+| 012-session-scoped-sweep-and-consume | 013-session-signal-sweeps | The Claude sweep reads its own session and a worktree save clears the primary checkout's pending answer | A live two-session probe per runtime shows the new sweep reading session A |
 <!-- /ANCHOR:phase-map -->
 
 ---

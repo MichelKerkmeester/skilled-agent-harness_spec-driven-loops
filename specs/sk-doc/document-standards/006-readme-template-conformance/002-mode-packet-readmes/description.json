@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes",
+  "description": "Phase 2: mode-packet-readmes",
+  "keywords": [
+    "phase",
+    "mode-packet-readmes"
+  ],
+  "lastUpdated": "2026-11-16T15:20:14.134Z",
+  "specId": "002",
+  "folderSlug": "mode-packet-readmes",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "006-readme-template-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
