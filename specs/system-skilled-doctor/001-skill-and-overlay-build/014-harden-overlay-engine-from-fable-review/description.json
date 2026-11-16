@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review",
+  "description": "Phase 14: harden-overlay-engine-from-fable-review",
+  "keywords": [
+    "phase",
+    "harden-overlay-engine-from-fable-review"
+  ],
+  "lastUpdated": "2026-11-16T22:20:27.152Z",
+  "specId": "014",
+  "folderSlug": "harden-overlay-engine-from-fable-review",
+  "parentChain": [
+    "system-skilled-doctor",
+    "001-skill-and-overlay-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

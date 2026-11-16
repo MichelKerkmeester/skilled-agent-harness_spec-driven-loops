@@ -26,10 +26,10 @@ contextType: "general"
 | **Created** | 2026-11-16 |
 | **Branch** | `worktrees/425-repin-engine-limits-intake` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 13 of 13 |
+| **Phase** | 13 of 14 |
 | **Predecessor** | 012-fix-barter-022-handover-items-for-doctor-scripts |
-| **Successor** | None |
-| **Handoff Criteria** | `node --test .skilled/commands/doctor/scripts/tests` prints `fail 0` with the ten new tests in the count |
+| **Successor** | 014-harden-overlay-engine-from-fable-review |
+| **Handoff Criteria** | `node --test .skilled/commands/doctor/scripts/tests` prints `fail 0` with the sixteen new tests in the count |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -133,7 +133,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `node --test .skilled/commands/doctor/scripts/tests` prints `fail 0` with 1214 tests, 1204 before plus ten new ones.
+- **SC-001**: `node --test .skilled/commands/doctor/scripts/tests` prints `fail 0` with 1220 tests, 1204 before plus sixteen new ones across the three build rounds.
 - **SC-002**: The review's probes p01 to p06 no longer show their finding on the built engine.
 <!-- /ANCHOR:success-criteria -->
 

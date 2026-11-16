@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The restore checked only that an array held the same number of items in the live file and in the pin",
     "created_at": "2026-11-16T19:46:44Z",
-    "last_save_at": "2026-11-16T22:12:51.358Z",
+    "last_save_at": "2026-11-16T22:24:06.072Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,11 +210,11 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a7258ad04b94686ee2a10f4f65a6728279d55412d260e2799a519d8d22664df5",
+    "source_fingerprint": "sha256:caf6331a8750c1acf1a67107d4a3b605ef1859ba8ae9456a1dc6dbb58e68e382",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e1112d557c85f7a0d54bd5986925d303324a3b5efd9061bbf92572f37f2e840d",
-      "plan.md": "a3c0056139db7c6c591f57420070ff25d6bf1da940c4f8174685ad9a127f1978",
+      "spec.md": "d35bf161dd1b30ad5c4c6406b6859b1986a2553bb3d981c9dd18ad7241a5e118",
+      "plan.md": "9d38638fc95f9da1e83d4774e237cbcf23d5b8fba245afdc919118caa72a1600",
       "tasks.md": "5af2ab1707441b4714850cba8c510c136696aef0dcbc8960d842fe51cfd96863",
       "decision-record.md": "8705d7a263ca92248a3d1d557b41cbd05076f0716a82addaf95458441997cb5f",
       "implementation-summary.md": "10e30336ebc9bb6b42269c2cc2696d9dc5deba2e1bdb6534722e1bb7d13572f3"

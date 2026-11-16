@@ -111,6 +111,7 @@ The decided design, its research and the operator's eight rulings are in `resear
 | 11 | 011-restore-pinned-value-when-json-entry-set-leaves-overlay/ | One item from the same vendoring project's second handover: a `set` operation removed from a `json-entry` overlay source left its value in the live file. `apply` now returns it to the pin's value | Complete |
 | 12 | 012-fix-barter-022-handover-items-for-doctor-scripts/ | Three items still open from the same vendoring project's first handover: a host hook form in the git setup check, `apply --adopt` under `repin.exclude` and a regenerate step named when it rewrites an owned file | Complete |
 | 13 | 013-fix-review-findings-in-json-entry-set-restore/ | Seven findings from a fresh review of phase 11's set restore: an index restore that wrote the wrong item's value during a re-pin, a re-pin that refused after writing, nested and respelled sets, the no-checkout refusal, the array refusal's advice and a new `cannot-apply` state | Complete |
+| 14 | 014-harden-overlay-engine-from-fable-review/ | Nine items from a read-only Fable 5.2 review of the overlay engine: a pinned-copy cross-check, apply-failure state, status honesty and data safety | Pending |
 
 ### Phase Transition Rules
 
@@ -135,6 +136,7 @@ The decided design, its research and the operator's eight rulings are in `resear
 | 010-fix-barter-repin-handover-items-for-overlay-engine | 011-restore-pinned-value-when-json-entry-set-leaves-overlay | Phase 10 is released and the vendoring project has sent a second handover | `node --test` on the overlay engine tests |
 | 011-restore-pinned-value-when-json-entry-set-leaves-overlay | 012-fix-barter-022-handover-items-for-doctor-scripts | None. Phase 12 does not wait on phase 11 | `node --test` on the doctor script tests |
 | 012-fix-barter-022-handover-items-for-doctor-scripts | 013-fix-review-findings-in-json-entry-set-restore | None. Phase 13 fixes a review of phase 11 and does not wait on phase 12 | `node --test` on the doctor script tests |
+| 013-fix-review-findings-in-json-entry-set-restore | 014-harden-overlay-engine-from-fable-review | Phase 13 is on origin/main at `969335a6380` | `node --test` on the doctor script tests |
 <!-- /ANCHOR:phase-map -->
 
 ---

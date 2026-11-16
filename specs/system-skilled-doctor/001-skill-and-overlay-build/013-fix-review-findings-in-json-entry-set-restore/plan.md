@@ -41,7 +41,7 @@ The restore code in `overlay-engine.cjs` gains an item-identity check, outer-fir
 
 ### Definition of Done
 - [ ] Every rebuilt file matches the prototype byte for byte
-- [ ] `node --test .skilled/commands/doctor/scripts/tests` prints tests 1214, fail 0
+- [x] `node --test .skilled/commands/doctor/scripts/tests` prints tests 1220, fail 0
 - [ ] A fresh review of the diff reports no new defect it can reproduce
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
@@ -77,7 +77,7 @@ Follow the ordered tasks in `tasks.md`. Setup writes the prototype and the brief
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-`node --test .skilled/commands/doctor/scripts/tests` must print `fail 0` with 1214 tests. The review's probes p01 to p06 are rerun against the built engine.
+`node --test .skilled/commands/doctor/scripts/tests` must print `fail 0` with 1220 tests. The review's probes p01 to p06 are rerun against the built engine.
 <!-- /ANCHOR:testing -->
 
 ---

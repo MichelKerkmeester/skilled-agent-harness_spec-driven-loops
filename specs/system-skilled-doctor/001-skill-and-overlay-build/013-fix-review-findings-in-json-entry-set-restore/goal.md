@@ -59,7 +59,7 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `node --test .skilled/commands/doctor/scripts/tests` prints tests 1214, fail 0.
+- [ ] `node --test .skilled/commands/doctor/scripts/tests` prints tests 1220, fail 0.
 - [ ] `rg -c 'cannot-apply' .skilled/skills/system-skilled-doctor/references/overlays.md` prints 2.
 - [ ] `validate.sh --strict` on this folder prints `RESULT: PASSED`.
 - [ ] The commit is on origin/main, and the vendoring project is told which commit to re-pin to.
@@ -84,6 +84,7 @@ and findings belong here.
 | Fresh Opus review | Done | 2 P1 and 2 P2, all reproduced. The operator chose to fix all four |
 | Second Opus review | Done | 3 P1 and 2 P2, all reproduced. The operator chose to fix the P1s and document the P2s |
 | Round two, briefs 08 to 10 | Done | All four files matched prototype 2 byte for byte. Doctor tests 1217, pass 1217, fail 0 |
+| Criterion count amended | Done | The test-count criterion said 1214, the count after round one. Rounds two and three added six tests, so it now says 1220, the count printed after the merge of origin/main |
 | Round three and third review | Done | briefs 11-13 matched; doctor tests 1220 pass 0 fail; third Opus review APPROVED |
 
 ### Deviations and findings
