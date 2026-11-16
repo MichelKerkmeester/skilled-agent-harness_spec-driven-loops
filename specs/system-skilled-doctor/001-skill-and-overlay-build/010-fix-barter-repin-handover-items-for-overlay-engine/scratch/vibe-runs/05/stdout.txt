@@ -1,0 +1,87 @@
+All three steps are done and the check is green.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs` — appended the new test after one blank line at end of file; nothing else touched.
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs` — replaced the two anchor lines inside `planOperation` with the given block, same indentation. Only that hunk is mine; the file's other hunks were already in the working tree before this dispatch.
+
+## 2. COMMANDS
+
+**a) STEP 2, before the engine change** — `node --test --test-name-pattern='json-entry set adds a key' .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`
+Exit status: not captured numerically (the wrapper's `PIPESTATUS` expanded empty under the shell used). The runner's own summary printed `fail 1`, which is the expected pre-change state. Last 15 lines:
+
+```
+✖ failing tests:
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:605:1
+✖ a json-entry set adds a key the document does not hold yet, and still refuses a missing parent (42.078958ms)
+  AssertionError [ERR_ASSERTION]: overlay-edited guarded.txt  (overlay: skilled-overlays/files/guarded.txt)  fix: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+  overlay-edited marked.md  (overlay: skilled-overlays/marked/block.md)  fix: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+  overlay-edited settings.json  (overlay: skilled-overlays/json/entries.json)  fix: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+  overlay-edited skill/SKILL.md  (overlay: skilled-overlays/skill-root-source/SKILL.md)  fix: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+  overlay-edited skill/docs/readme.md  (overlay: skilled-overlays/skill-root-source/docs/readme.md)  fix: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+  live-edited router.json  (overlay: skilled-overlays/json/router.json)  fix: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --capture router.json
+  BLOCKED  router-set: cannot apply the entry set to router.json: missing key "mirrors"
+  
+  
+  1 !== 0
+  
+      at seedState (/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:27:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:625:3)
+```
+
+The expected `missing key "mirrors"` line is present.
+
+**b) CHECK** — `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs`
+Exit status: **0**. Pass 81, fail 0. Last 15 lines:
+
+```
+exit=0
+✔ a missing layout link is reported as overlay-edited and created by apply (131.676625ms)
+✔ an edited json-entry item re-applies over the applied bytes and refuses once the live file moved (190.443458ms)
+✔ an edited json-entry object key re-applies over the applied bytes and refuses once the live file moved (187.819958ms)
+✔ token-named paths pass only when a manifest entry names them exactly, and .env never does (5.962958ms)
+✔ status --json reports each out-of-sync destination with its fix, and an error as JSON (112.287542ms)
+✔ a misused command line prints the usage and exits 2 (134.363583ms)
+✔ a json-entry set adds a key the document does not hold yet, and still refuses a missing parent (97.2935ms)
+ℹ tests 81
+ℹ suites 0
+ℹ pass 81
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3696.042584
+```
+
+**c) Extra, beyond the brief** — `node --test .skilled/commands/doctor/scripts/tests/` (whole directory, run in background because it exceeds the 120 s foreground limit)
+Exit status: **0**. Pass 1175, fail 0. Last 15 lines:
+
+```
+✔ relinking the same plan after unlink succeeds and keeps the earlier run record intact (1511.302625ms)
+✔ unlink refuses a run folder whose name does not follow the recorded digest (795.47ms)
+✔ a merge-only folder the root lacks is created, filled and removed again by unlink (748.203333ms)
+✔ --root equal to the source or inside it is refused with exit 2 (63.605042ms)
+✔ git exclude receives only the new ignore lines and unlink removes only those lines (608.796667ms)
+✔ a project-owned file reports its status and survives link and unlink byte-for-byte (337.266625ms)
+✔ a missing project-owned destination keeps the existing source-link behavior (232.788125ms)
+✔ setup omits a dangling specs alias when the host has no specs folder (305.687333ms)
+✔ setup keeps the specs alias pointed at a host specs folder (292.526042ms)
+✔ a first link creates a runtime alias whose target the same plan creates (831.2365ms)
+✔ a second plan after a first link adds nothing (797.844167ms)
+✔ setup keeps a host-relative specs alias out of the ignore list (217.92075ms)
+ℹ tests 1175
+ℹ suites 0
+ℹ pass 1175
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 160012.274542
+```
+
+## 3. OPEN QUESTIONS
+
+- The STEP 2 numeric exit code is missing, not the evidence: the runner printed `fail 1` and the expected `missing key "mirrors"` line, but the shell wrapper's `PIPESTATUS` came back empty so no integer was recorded. It cannot be re-captured now that the engine is fixed.
+- `git status` shows five other modified files from earlier phases of this session (`overlay-engine-repin.test.cjs`, `sk-code/README.md`, `system-skilled-doctor/references/overlays.md`, `INSTALL-SKILLED.md`, `graph-metadata.json`, `spec.md`). I did not touch them; naming them so the diff is not mistaken for this dispatch's work.
+- The new branch's empty-object throw (`cannot insert into the empty object at …`) has no test in the appended block. It is unreachable from the two cases the brief specified, so I left it uncovered rather than adding an assertion the brief did not name.

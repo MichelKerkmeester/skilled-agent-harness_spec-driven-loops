@@ -491,7 +491,8 @@ test('repin --stage builds the re-pinned tree in a copy, reports both groups and
   assert.match(staged.output, /^blocked hub-skill: upstream-moved \.skilled\/skills\/hub\/SKILL\.md$/m);
   assert.match(staged.output, /^equals-upstream hub-fix$/m);
   assert.doesNotMatch(staged.output, /^equals-upstream (settings|hub-skill)$/m);
-  assert.match(staged.output, /^RESULT: STAGED$/m);
+  assert.match(staged.output, /^RESULT: BLOCKED$/m);
+  assert.doesNotMatch(staged.output, /^RESULT: STAGED$/m);
   assert.doesNotMatch(staged.output, /^rollback:/m);
 
   assert.equal(treeDigest(fixture.tree), before);
@@ -694,4 +695,116 @@ test('a re-pin over a refused overlay stops before the backup and writes nothing
   assert.match(result.output, /^refuse: status shows 1 refused overlay\(s\); fix them before a re-pin$/m);
   assert.equal(treeDigest(fixture.tree), before);
   assert.equal(fs.existsSync(fixture.runsDir), false);
+});
+
+test('a re-pin replaces an unowned link with the folder the new pin ships there', (t) => {
+  const fixture = createRepinFixture(t, {
+    oldEntries: {
+      '.skilled/changelog/target/v1.md': 'target v1\n',
+      '.skilled/changelog/alias': { link: 'target' },
+    },
+    newEntries: {
+      '.skilled/changelog/alias': null,
+      '.skilled/changelog/alias/v1.md': 'alias v1\n',
+      '.skilled/changelog/alias/v2.md': 'alias v2\n',
+    },
+  });
+
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  assert.match(result.output, /^RESULT: PASSED$/m);
+  assert.equal(fs.lstatSync(path.join(fixture.tree, '.skilled/changelog/alias')).isDirectory(), true);
+  assert.equal(read(fixture.tree, '.skilled/changelog/alias/v1.md'), 'alias v1\n');
+  assert.equal(read(fixture.tree, '.skilled/changelog/alias/v2.md'), 'alias v2\n');
+  // The link's old target is not the re-pin's to touch.
+  assert.equal(read(fixture.tree, '.skilled/changelog/target/v1.md'), 'target v1\n');
+});
+
+test('a re-pin still refuses a new upstream file that a project link already reaches', (t) => {
+  const fixture = createRepinFixture(t, {
+    newEntries: { '.skilled/changelog/alias/v1.md': 'alias v1\n' },
+  });
+  writeFile(fixture.tree, '.skilled/changelog/target/v1.md', 'project v1\n');
+  fs.symlinkSync('target', path.join(fixture.tree, '.skilled/changelog/alias'));
+  const before = treeDigest(fixture.tree);
+
+  const result = fixture.repin();
+  assert.equal(result.code, 2, result.output);
+  assert.match(result.output, /unowned \.skilled\/changelog\/alias\/v1\.md is not in the old pin, and the tree holds its own copy there/);
+  assert.equal(treeDigest(fixture.tree), before);
+});
+
+test('repin --stage treats an upstream addition inside a directory overlay as overlay-owned, and a hand-added file as live-edited', (t) => {
+  const fixture = createRepinFixture(t, {
+    oldEntries: { '.skilled/skills/owned/keep.md': 'upstream keep\n' },
+    newEntries: { '.skilled/skills/owned/sub/f.md': 'upstream addition\n' },
+  });
+  writeFile(fixture.overlayDir, 'owned/keep.md', 'overlay keep\n');
+  fixture.manifest.overlays.push({
+    id: 'owned-dir',
+    scope: 'directory',
+    source: 'owned',
+    destination: '.skilled/skills/owned',
+  });
+  writeManifest(fixture);
+  const seeded = fixture.run(['apply']);
+  assert.equal(seeded.code, 0, seeded.output);
+  assert.equal(fixture.run(['status']).code, 0);
+
+  const stageDir = path.join(fixture.workspace, 'stage');
+  const staged = fixture.repin(['--stage', stageDir]);
+  assert.equal(staged.code, 0, staged.output);
+  assert.match(staged.output, /^RESULT: STAGED$/m);
+  assert.doesNotMatch(staged.output, /^blocked owned-dir:/m);
+  assert.equal(fs.existsSync(path.join(stageDir, '.skilled/skills/owned/sub/f.md')), false);
+  assert.equal(read(stageDir, '.skilled/skills/owned/keep.md'), 'overlay keep\n');
+
+  writeFile(fixture.tree, '.skilled/skills/owned/other.md', 'hand added\n');
+  const handStage = path.join(fixture.workspace, 'stage-hand');
+  const handAdded = fixture.repin(['--stage', handStage]);
+  assert.equal(handAdded.code, 2, handAdded.output);
+  assert.match(handAdded.output, /live-edited \.skilled\/skills\/owned\/other\.md/);
+  assert.equal(read(fixture.tree, '.skilled/skills/owned/other.md'), 'hand added\n');
+});
+
+test('a folder overlay rebased onto the new pin applies after the copy, and one that is not stays upstream-moved', (t) => {
+  const fixture = createRepinFixture(t, {
+    oldEntries: { '.skilled/skills/owned/keep.md': 'upstream keep v1\n' },
+    newEntries: { '.skilled/skills/owned/keep.md': 'upstream keep v2\n' },
+  });
+  writeFile(fixture.overlayDir, 'owned/keep.md', 'overlay keep\n');
+  const entry = {
+    id: 'owned-dir',
+    scope: 'directory',
+    source: 'owned',
+    destination: '.skilled/skills/owned',
+  };
+  fixture.manifest.overlays.push(entry);
+  writeManifest(fixture);
+  const seeded = fixture.run(['apply']);
+  assert.equal(seeded.code, 0, seeded.output);
+  assert.equal(fixture.run(['status']).code, 0);
+
+  // No record of a rebase: upstream's change still needs a person.
+  const plainStage = path.join(fixture.workspace, 'stage-plain');
+  const plain = fixture.repin(['--stage', plainStage]);
+  assert.equal(plain.code, 1, plain.output);
+  assert.match(plain.output, /^blocked owned-dir: upstream-moved \.skilled\/skills\/owned\/keep\.md$/m);
+  assert.match(plain.output, /^RESULT: BLOCKED$/m);
+
+  // A rebase onto some other commit says nothing about this one.
+  entry.rebasedOnto = fixture.oldCommit.slice(0, 10);
+  writeManifest(fixture);
+  const staleStage = path.join(fixture.workspace, 'stage-stale');
+  const stale = fixture.repin(['--stage', staleStage]);
+  assert.equal(stale.code, 1, stale.output);
+  assert.match(stale.output, /^blocked owned-dir: upstream-moved \.skilled\/skills\/owned\/keep\.md$/m);
+
+  entry.rebasedOnto = fixture.newCommit.slice(0, 10);
+  writeManifest(fixture);
+  const live = fixture.repin();
+  assert.equal(live.code, 0, live.output);
+  assert.doesNotMatch(live.output, /^blocked owned-dir:/m);
+  assert.match(live.output, /^RESULT: PASSED$/m);
+  assert.equal(read(fixture.tree, '.skilled/skills/owned/keep.md'), 'overlay keep\n');
 });

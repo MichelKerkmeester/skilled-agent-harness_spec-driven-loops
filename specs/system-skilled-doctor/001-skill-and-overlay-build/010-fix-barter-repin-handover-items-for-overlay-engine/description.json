@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine",
+  "description": "Phase 10: fix-barter-repin-handover-items-for-overlay-engine",
+  "keywords": [
+    "phase",
+    "fix-barter-repin-handover-items-for-overlay-engine"
+  ],
+  "lastUpdated": "2026-11-16T07:11:41.457Z",
+  "specId": "010",
+  "folderSlug": "fix-barter-repin-handover-items-for-overlay-engine",
+  "parentChain": [
+    "system-skilled-doctor",
+    "001-skill-and-overlay-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

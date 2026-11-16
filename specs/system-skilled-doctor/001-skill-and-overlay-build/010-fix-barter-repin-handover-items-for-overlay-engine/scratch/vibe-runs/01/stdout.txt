@@ -1,0 +1,112 @@
+Both edits are in and verified. Handback below.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs` — appended the two tests after one blank line at EOF (+37 lines, nothing else touched)
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs` — inside `unownedDrift`, replaced the single `if (!pathExists(filePath)) continue;` with the two comment lines plus `if (isUnderAny(relativePath, touched.delete)) continue;` and the original line (+3 lines)
+
+## 2. COMMANDS
+
+| # | Command | Exit |
+|---|---|---|
+| 1 | `wc -l` + `tail -n 20` on the test file | 0 |
+| 2 | `sed -n '1,40p'` + `rg -n 'function (read\|writeFile\|treeDigest\|createRepinFixture)'` | 0 |
+| 3 | `sed -n '120,240p'` (fixture helpers) | 0 |
+| 4 | `sed -n '40,120p'` (OLD_ENTRIES / writeEntries) | 0 |
+| 5 | `rg -n 'existsSync\(fixture\.runsDir\)'` + `tail -n 6 \| cat -A` | 0 (stderr: `cat: illegal option -- A`) |
+| 6 | `sed -n '686,697p' \| od -c \| tail -n 8` | 0 |
+| 7 | `rg -n 'refused overlay'` | 0 |
+| 8 | `rg -n 'function unownedDrift'` | 0 |
+| 9 | `sed -n '3355,3420p'` (unownedDrift body) | 0 |
+| 10 | `rg -n 'function isUnderAny\|isUnderAny\('` | 0 |
+| 11 | `sed -n '3210,3230p'` (isUnderAny definition) | 0 |
+| 12 | `rg -n -F 'if (!pathExists(filePath)) continue;'` | 0 |
+| 13 | **STEP 2** `node --test --test-name-pattern='re-pin (replaces an unowned link\|still refuses a new upstream file)' .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs` | node exited **1** (`fail 1`); the shell's `${PIPESTATUS[0]}` printed empty because this shell is not bash |
+| 14 | **CHECK** `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs` | 0 |
+| 15 | same CHECK with `> /dev/null 2>&1; echo EXIT=$?` | **0** |
+| 16 | `git diff --stat`, `git diff -- overlay-engine.cjs`, `git diff -- overlay-engine-repin.test.cjs` | 0 |
+| 17 | `node --test .skilled/commands/doctor/scripts/tests/` (whole directory) | 0 |
+
+Commands 1–12 were read-only anchor reads; their output is the file excerpts quoted during the work and carries no verification signal.
+
+**Command 13 — last 15 lines (STEP 2, before the engine change):**
+```
+✖ a re-pin replaces an unowned link with the folder the new pin ships there (508.277458ms)
+✔ a re-pin still refuses a new upstream file that a project link already reaches (716.827ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1272.614584
+
+✖ failing tests:
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:699:1
+✖ a re-pin replaces an unowned link with the folder the new pin ships there (508.277458ms)
+  AssertionError [ERR_ASSERTION]: refuse: unowned .skilled/changelog/alias/v1.md is not in the old pin, and the tree holds its own copy there
+```
+Matches the brief's expectation exactly: `pass 1`, `fail 1`, failure text contains "holds its own copy".
+
+**Command 14 — last 15 lines (CHECK, after the engine change):**
+```
+✔ a re-pin copies .dsh with the other runtime folders when the manifest names none (1204.068041ms)
+✔ a re-pin copies .vibe with the other runtime folders when the manifest names none (481.261417ms)
+✔ a re-pin lists upstream changes it does not copy and skips a top-level link (602.5585ms)
+✔ a nested overlay folder hides only its own paths from the not-copied list (727.202917ms)
+✔ a re-pin over a refused overlay stops before the backup and writes nothing (342.71925ms)
+✔ a re-pin replaces an unowned link with the folder the new pin ships there (489.457958ms)
+✔ a re-pin still refuses a new upstream file that a project link already reaches (509.559541ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14650.627583
+```
+`fail 0`, `pass 24`.
+
+**Command 17 — last 15 lines (whole tests directory):**
+```
+✔ a project-owned file reports its status and survives link and unlink byte-for-byte (503.778083ms)
+✔ a missing project-owned destination keeps the existing source-link behavior (269.506125ms)
+✔ setup omits a dangling specs alias when the host has no specs folder (337.318167ms)
+✔ setup keeps the specs alias pointed at a host specs folder (344.131959ms)
+✔ a first link creates a runtime alias whose target the same plan creates (1576.016375ms)
+✔ a second plan after a first link adds nothing (1389.165625ms)
+✔ setup keeps a host-relative specs alias out of the ignore list (268.805375ms)
+ℹ tests 1172
+ℹ suites 0
+ℹ pass 1172
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 194722.338792
+```
+
+**Command 16 — engine diff (whole, 12 lines):**
+```
+@@ -3378,6 +3378,9 @@ function unownedDrift(ctx, manifest, job, touched) {
+       if (reason) lines.push(`refuse: unowned ${relativePath} differs from the old pin (${reason})`);
+       continue;
+     }
++    // The copy deletes a link before it writes below it, so what the tree shows
++    // through that link is the link target's file, never a copy at this path.
++    if (isUnderAny(relativePath, touched.delete)) continue;
+     if (!pathExists(filePath)) continue;
+     if (blobDifference(filePath, job.newBlobs.get(relativePath), format)) {
+       lines.push(`refuse: unowned ${relativePath} is not in the old pin, and the tree holds its own copy there`);
+```
+
+## 3. OPEN QUESTIONS
+
+- **Two other files are dirty in the working tree and are not mine:** `specs/system-skilled-doctor/001-skill-and-overlay-build/spec.md` (phase-map rows for phase 10) and `graph-metadata.json`. I did not read, write or stage them; they were already modified when I started. `git diff --stat` shows them alongside my two files.
+- **STEP 2's exit status could not be read directly.** `${PIPESTATUS[0]}` is bash-only and this shell is not bash, so it printed empty. The `fail 1` in the summary is the evidence that node exited non-zero; I did not re-run STEP 2 to capture a bare `$?` because the engine edit had to follow it in order.
+- **I ran one command beyond the brief:** the whole `tests/` directory (command 17), because the packet's completion criterion names it. It is read-only and passed 1172/1172. I did not capture a pre-change baseline for that directory, so I can only say it is green now, not that it was green before.
+- **`cat -A` does not exist on this macOS `cat`** (command 5, stderr `illegal option -- A`). I used `od -c` instead to confirm the file ends with `});\n` and no trailing blank line. No effect on the edits.
+- **Persona vs brief:** the `@code` persona asks for a `RETURN:` block; the brief says reply with exactly these three parts. I followed the brief.

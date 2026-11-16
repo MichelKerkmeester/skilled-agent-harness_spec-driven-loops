@@ -1,0 +1,44 @@
+TASK: document four re-pin behaviors in the overlay reference. One file changes. Make the four literal edits below and bump the version.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+FILE: R/.skilled/skills/system-skilled-doctor/references/overlays.md
+
+Writing rules for the new text: it is given literally below, so copy it exactly. Do not reword it, do not add a table of contents, and do not touch any other line.
+
+EDIT 1 of 5. In the frontmatter:
+OLD:
+version: 1.0.14.0
+NEW:
+version: 1.0.15.0
+
+EDIT 2 of 5. In the state table of section 3, the `live-edited` row.
+OLD (the end of that row):
+the overlay owns its removal, so `apply` deletes it | `/doctor:overlay apply --capture <path>`, which moves the edit into the overlay |
+NEW:
+the overlay owns its removal, so `apply` deletes it. A file upstream added inside a `directory` entry's folder, which the overlay's copy lacks, does not reach it either while it holds upstream's bytes: the overlay's copy is the whole folder, so `apply` deletes that file | `/doctor:overlay apply --capture <path>`, which moves the edit into the overlay |
+
+EDIT 3 of 5. In "### The Two Runs", step 1.
+OLD (the end of step 1):
+A clean stage proves the copy and the overlays, not the generators.
+NEW:
+A clean stage proves the copy and the overlays, not the generators. It ends `RESULT: STAGED` and exits 0. A stage that lists a blocked overlay or a failed check ends `RESULT: BLOCKED` and exits 1, so `STAGED` always means the copy re-pinned clean.
+
+EDIT 4 of 5. In "### The Two Runs", step 2.
+OLD (the whole step):
+2. Rebase each blocked overlay onto the new upstream file, and drop each entry that now equals upstream. Then run the command again.
+NEW:
+2. Rebase each blocked overlay onto the new upstream file, and drop each entry that now equals upstream. A `file` entry records the rebase in `pinnedSha256`. A `directory` or `skill-root` entry has no hash per file, so once you have read upstream's changes under it, set its `rebasedOnto` to the commit you are re-pinning to. The value holds for that one commit, so the next re-pin asks again. Then run the command again.
+
+EDIT 5 of 5. In "### The Two Runs", the paragraph after the numbered steps.
+OLD (the whole paragraph):
+The run refuses before any write when a file no overlay owns differs from the pinned commit. That file holds an edit made in place, which the copy would revert. Move the edit into an overlay or upstream first.
+NEW (the same paragraph, then one blank line, then a second paragraph):
+The run refuses before any write when a file no overlay owns differs from the pinned commit. That file holds an edit made in place, which the copy would revert. Move the edit into an overlay or upstream first.
+
+Two cases are not edits made in place. A file a `regenerate` step writes is the project's own output once the step lists it under `outputs`, so list there every file a generator writes, including a field it adds to an upstream file. A link the new commit replaces with a folder is deleted before the folder's files are written, so a file seen through that link does not count as a copy at the new path.
+
+CHECK. Run each and report its output and exit status:
+cd R && rg -c 'rebasedOnto|RESULT: BLOCKED|lists it under `outputs`' .skilled/skills/system-skilled-doctor/references/overlays.md
+Expected: 3
+cd R && git diff --stat -- .skilled/skills/system-skilled-doctor/references/overlays.md
+Expected: 1 file changed, 6 insertions, 4 deletions (or 5 and 3 if git pairs lines differently). Report the numbers.

@@ -1,0 +1,37 @@
+TASK: two small documentation edits in two files. Copy the new text exactly and touch no other line.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+EDIT 1 of 3. File: R/.skilled/skills/sk-code/README.md, the frontmatter.
+OLD:
+version: 2.2.46.0
+NEW:
+version: 2.2.47.0
+
+EDIT 2 of 3. Same file, the table row that starts with | [`hub-router.json`](./hub-router.json) |
+OLD (the end of that row):
+the hub `ROUTER.md` rows and the packet's own rows |
+NEW:
+the hub `ROUTER.md` rows and the packet's own rows. A host hub that keeps its own packet for a surface, with its own keyword set, removes that surface from the list, and the check then compares nothing for it |
+
+EDIT 3 of 3. File: R/INSTALL-SKILLED.md
+OLD (these lines, which appear once):
+node .skilled/bin/skill-advisor.cjs list-tools --format json
+```
+NEW (those two lines, then the block below after one blank line):
+node .skilled/bin/skill-advisor.cjs list-tools --format json
+```
+
+Last, build the history lookup behind the session handover. It also uses the Spec Kit's TypeScript compiler and needs no install of its own. Without its output a handover prints no lookup section.
+
+```bash
+npm --prefix .skilled/hooks/session-handover/history run build
+```
+
+CHECK. Run each and report its output and exit status:
+cd R && rg -n 'session-handover/history' INSTALL-SKILLED.md
+Expected: one line.
+cd R && rg -c 'removes that surface from the list' .skilled/skills/sk-code/README.md
+Expected: 1
+cd R && git diff --stat -- INSTALL-SKILLED.md .skilled/skills/sk-code/README.md
+Expected: 2 files changed.

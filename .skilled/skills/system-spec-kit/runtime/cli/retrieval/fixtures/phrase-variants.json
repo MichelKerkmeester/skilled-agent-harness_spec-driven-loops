@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ce053329349496c0273eb3d11537800ab8dc287f1bf448d78a41720334929867",
+  "manifestHash": "18ad405da9a678e4ac1799ff8b2ee0f246ae31576c57449db11722b8e2351826",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14326,6 +14326,9 @@
     "barter re pin after engine fixes": [
       "barter re-pin after engine fixes"
     ],
+    "barter re pin after rebasedonto": [
+      "barter re-pin after rebasedOnto"
+    ],
     "barter symlinks readme": [
       "barter symlinks readme"
     ],
@@ -14373,6 +14376,9 @@
     ],
     "baseline authoring run": [
       "baseline authoring run"
+    ],
+    "baseline capture after graph scan stale": [
+      "baseline capture after graph scan stale"
     ],
     "baseline capture nesting": [
       "baseline capture nesting"
@@ -41566,6 +41572,9 @@
     "directory conventions opencode": [
       "directory conventions opencode"
     ],
+    "directory overlay upstream moved after rebase": [
+      "directory overlay upstream-moved after rebase"
+    ],
     "directory swap case test": [
       "directory swap case test"
     ],
@@ -51621,6 +51630,21 @@
     "fix audit findings": [
       "fix audit findings"
     ],
+    "fix barter repin handover items for overlay engine": [
+      "fix barter repin handover items for overlay engine"
+    ],
+    "fix barter repin handover items for overlay engine goal": [
+      "fix barter repin handover items for overlay engine goal"
+    ],
+    "fix barter repin handover items for overlay engine implementation summary": [
+      "fix barter repin handover items for overlay engine implementation summary"
+    ],
+    "fix barter repin handover items for overlay engine plan": [
+      "fix barter repin handover items for overlay engine plan"
+    ],
+    "fix barter repin handover items for overlay engine tasks": [
+      "fix barter repin handover items for overlay engine tasks"
+    ],
     "fix baseline test failures": [
       "fix baseline test failures"
     ],
@@ -57854,6 +57878,9 @@
     ],
     "handover to barter overlay follow up": [
       "handover to barter overlay follow up"
+    ],
+    "handover to barter repin limits": [
+      "handover to barter repin limits"
     ],
     "handover trigger review": [
       "handover trigger review"
@@ -82062,6 +82089,9 @@
     "phase 10 fix alignment report findings for speckit": [
       "phase 10 fix alignment report findings for speckit"
     ],
+    "phase 10 fix barter repin handover items": [
+      "phase 10 fix barter repin handover items"
+    ],
     "phase 10 goal ending carry": [
       "phase 10 goal ending carry"
     ],
@@ -95255,6 +95285,9 @@
     "removed process derived root source": [
       "removed process-derived root source"
     ],
+    "removed set operation not reverted": [
+      "removed set operation not reverted"
+    ],
     "removed template reality sweep": [
       "removed template reality sweep"
     ],
@@ -95666,6 +95699,9 @@
     ],
     "repin implementation summary": [
       "repin implementation summary"
+    ],
+    "repin link replaced by folder": [
+      "repin link replaced by folder"
     ],
     "repin plan": [
       "repin plan"
@@ -121698,6 +121734,9 @@
     "surface evidence labels": [
       "surface evidence labels"
     ],
+    "surface hint cannot join a scored route": [
+      "surface hint cannot join a scored route"
+    ],
     "surface hint hub root": [
       "surface hint hub root"
     ],
@@ -131889,6 +131928,9 @@
     ],
     "vocabulary mirrors decision": [
       "vocabulary mirrors decision"
+    ],
+    "vocabulary mirrors host opt out": [
+      "vocabulary mirrors host opt out"
     ],
     "vocabulary phase checklist": [
       "vocabulary phase checklist"
