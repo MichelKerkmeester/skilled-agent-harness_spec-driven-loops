@@ -42,6 +42,8 @@ The default is enabled, except `session-handover`, which ships on for Claude Cod
 
 So `SYSTEM_SESSION_HANDOVER_ENABLED=1` with `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED=0` is on for every runtime except Claude Code. The disable switch and the master switch still win over every enable flag. Truthy disable values are `1`, `true`, `yes` and `on`, in any case. The kill-switch index below lists every concern and alias.
 
+### Kill-switch index
+
 This table is the single source of truth for repo-authored hook kill-switch names, apart from the older `MK_*` spellings that `hook-flags.cjs` still honors. All concerns are wired to the shared resolver or its shell equivalent.
 
 | Concern | Canonical flag (`SYSTEM_<CONCERN>_DISABLED`) | Legacy aliases | Default | Effect | Status |
@@ -143,7 +145,7 @@ hooks/
 +-- coverage-rationale.md            # why each runtime lacks a concern
 +-- injection-contract.md            # what each hook injects and who sees it
 +-- hook-flags.env.example           # the switch file template
-+-- vitest.config.ts                 # the hooks vitest config and its long-specifier alias
++-- vitest.config.ts                 # the hooks vitest config
 +-- shared/
 |   +-- hook-adapter-shared.cjs      # stdin collection + fail-open JSON parse, used by the CommonJS and ESM adapters below
 |   +-- hook-flags.cjs, hook-flags.mjs, hook-flags.sh   # the switch resolver in CommonJS, ESM and shell
@@ -256,6 +258,7 @@ hooks/
 |   +-- opencode/session-handover.js (browsability symlink -> .opencode/plugins/session-handover.js)
 |   +-- vibe/handover-parts.mjs
 |   +-- lib/context-usage.cjs, nudge.cjs, relaunch-core.cjs, killer.cjs, goal-handover.cjs, hop-history.cjs, withdraw.cjs
+|   +-- history/ the History Lookup engine behind bin/history-lookup.mjs: lib/, tests/ and its own dist/ build
 |   `-- tests/ nineteen Node test files plus payload fixtures
 `-- goal/                            # cross-runtime passive session-goal tracking (sibling of opencode-goal)
     +-- goal-plugin.md               # the OpenCode plugin contract
@@ -279,7 +282,7 @@ Vibe's guard scripts take the OpenCode direction too. `.vibe/hooks.toml` runs ea
 
 The bin-backed concerns follow the same pattern. `git-live-follow/` and `git-primary-reconcile/` hold one symlink per runtime into `.skilled/bin/`, and the additional-hooks table below indexes them. `codex-global-hooks-check/` holds three links into `.skilled/bin/` and one into `.opencode/plugins/`. DSH's skill-owned adapters follow it too. `skill-advisor/dsh/`, `spec-gate/dsh/`, `session-lifecycle/dsh/`, `completion-evidence/dsh/`, `git-preflight/dsh/` and `git-message-gate/dsh/` hold index links to the real files in `system-skill-advisor/hooks/dsh/`, `system-spec-kit/runtime/hooks/dsh/` and `sk-git/scripts/hooks/dsh/`.
 
-Pi's portable adapters live here too, in per-concern `pi/` subfolders. They are `ask-surface-guard/pi/`, `cli-dispatch/pi/`, `env-secret-guard/pi/`, `mcp-route-guard/pi/`, `overlay-guard/pi/`, `post-edit-quality/pi/`, `subagent-dispatch-guard/pi/`, `classifier-injection-screen/pi/`, `decision-capture/pi/`, `goal/pi/` and `session-handover/pi/`. Pi auto-discovers `.pi/extensions/`, whose one-line entry files re-export these adapters. Each adapter therefore loads from its own folder, and the imports Pi resolves are relative to that folder. A few adapters also carry a long specifier that does not resolve from the adapter's folder, so under Pi that specifier never loads.
+Pi's portable adapters live here too, in per-concern `pi/` subfolders. They are `ask-surface-guard/pi/`, `cli-dispatch/pi/`, `env-secret-guard/pi/`, `mcp-route-guard/pi/`, `overlay-guard/pi/`, `post-edit-quality/pi/`, `subagent-dispatch-guard/pi/`, `classifier-injection-screen/pi/`, `decision-capture/pi/`, `goal/pi/` and `session-handover/pi/`. Pi auto-discovers `.pi/extensions/`, whose one-line entry files re-export these adapters. Each adapter therefore loads from its own folder, and the imports Pi resolves are relative to that folder.
 
 OpenCode (`.opencode/plugins/*.js`) is the runtime whose adapter files cannot live here. Its plugins are real modules in a fixed folder that its loader scans. For browsability, each concern's `opencode/` subfolder holds a relative symlink back into `.opencode/plugins/`. That is the reverse of Pi's direction.
 
@@ -338,7 +341,7 @@ node --test .skilled/hooks/shared/hook-adapter-shared.test.cjs .skilled/hooks/sh
 # dispatch-audit is a vitest suite and cannot run under node --test
 .skilled/node_modules/.bin/vitest run --root .skilled/hooks/cli-dispatch/lib dispatch-audit.test.mjs
 
-# The dispatch adapter suites are vitest files. The hooks config's alias serves the literal long specifiers a few Pi adapters keep. They resolve only through the test alias
+# The dispatch adapter suites are vitest files and run through the hooks config
 .skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/cli-dispatch/codex/codex-shell-tool.test.mjs .skilled/hooks/cli-dispatch/pi/dispatch-preflight-lint.test.ts .skilled/hooks/cli-dispatch/pi/directive-dedup.test.ts
 ```
 

@@ -56,7 +56,7 @@ _memory:
 ## What Was Built
 <!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-`.skilled/hooks/` now holds 104 READMEs instead of 183. Each one describes code that sits in its folder, and none is left for a folder that holds only symlinks. One README is not signed off: `env-secret-guard/README.md` holds a worker draft with one wrong diagram line, and the guard refuses the agent edit that would fix it.
+`.skilled/hooks/` held 104 READMEs instead of 183 when this phase closed. Each one describes code that sits in its folder, and none is left for a folder that holds only symlinks. Every README is signed off: the guard refused the agent edit to the one wrong diagram line in `env-secret-guard/README.md`, so the operator made it and T021 closed. The later merge of origin/main brought in `session-handover/history/README.md` from another packet, so the tree now holds 105.
 
 ### Phase 4: hook-readme-fold-and-rewrite
 

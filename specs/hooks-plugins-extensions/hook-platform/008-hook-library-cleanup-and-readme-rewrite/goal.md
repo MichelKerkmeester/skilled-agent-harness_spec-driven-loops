@@ -88,7 +88,7 @@ string, not these files.
 - [ ] `sync-hook-registrations.cjs --check` and `sync-runtime-mirrors.cjs --check` each print PASS
 - [ ] The hook Vitest tree and the OpenCode plugin tests report 0 failed, and the hook `node --test` suites fail only the `hook-stdin-deadline.test.mjs` case that failed before the first edit
 - [ ] For every `README.md` under `.skilled/hooks/`, `.skilled/skills/sk-doc/shared/scripts/validate_document.py` prints `VALID` and `hvr_scan.py` reports `hard blockers: 0`
-- [ ] `validate.sh --recursive --strict` on this packet prints `RESULT: PASSED` for the parent and all four children
+- [ ] `validate.sh --recursive --strict` on this packet prints `RESULT: PASSED` for the parent and all seven children
 <!-- /ANCHOR:completion -->
 
 ---
@@ -110,11 +110,12 @@ and findings belong here.
 | merge origin/main into the worktree branch | done | 1a8ee2e5087; node --test 1888/1888, 105 READMEs pass, recursive strict PASSED; T021 still waits on the operator |
 | operator fixed env-secret-guard README; packet closed | done | T021 closed, all four phases Complete, check-gate-inputs PASSED, README.md:1166 fixed |
 | phase 6 codex check and advisory fixes | done | installer 20/20, hook node 1892/1892, hook vitest 506/506, spec-kit 1485 and 4075 pass without the alias, recursive strict PASSED |
+| phases 5-7 bound; packet now seven phases, all Complete | done | phase 7 closed both deep review runs (gen 2 gates all pass); audit tests 133/133, hook vitest 509/509, hook node 1898/1898 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | No parent acceptance criteria | The phase parent holds only `spec.md`, so the criteria come from its Purpose, Scope, Handoff Criteria and Phase Documentation Map |
-| Phases 5 and 6 added after close | The operator chose each fix in a question on 2026-11-16. Neither phase has a child goal; each phase's `spec.md` carries its requirements |
+| Phases 5, 6 and 7 added after close | The operator chose each fix in a question on 2026-11-16. None of the three has a child goal, so the binding table lists phases 1 to 4 only; each later phase's `spec.md` carries its requirements |
 <!-- /ANCHOR:log -->

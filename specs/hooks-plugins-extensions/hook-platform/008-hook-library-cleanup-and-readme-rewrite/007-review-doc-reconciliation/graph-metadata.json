@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation",
+  "spec_folder": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation",
+  "parent_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review doc reconciliation",
+      "phase 7 review doc reconciliation",
+      "hook cleanup deep review fixes",
+      "review doc reconciliation plan",
+      "review doc reconciliation tasks",
+      "review doc reconciliation implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "doc",
+      "reconciliation",
+      "phase",
+      "hook",
+      "cleanup",
+      "deep",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "reader"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/hooks/README.md",
+      ".skilled/hooks/cli-dispatch/README.md",
+      ".skilled/hooks/subagent-dispatch-guard/README.md",
+      "pi/README.md",
+      ".skilled/hooks/decision-capture/README.md",
+      ".skilled/hooks/session-lifecycle/README.md",
+      ".skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs",
+      ".skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs",
+      ".skilled/hooks/subagent-dispatch-guard/pi/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Six",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow None",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A reader of the parent spec counts four children where seven exist, and phase 4 still reports an open README sign-off and unticked completion boxes after it closed",
+    "created_at": "2026-11-16T11:10:24Z",
+    "last_save_at": "2026-11-16T12:03:16.118Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5fb3f9b3a6edb6fffde217380ca105d87982c9eb6b8ff76d16186456dc973c66",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0cd6650e31c66bf568d80790a1b873bb2e94d706fb4d63d405b6d34b26761f9b",
+      "plan.md": "69a087baa0c704bc1012e112201ee597f0c17292534c111ab6c74a4f664405c4",
+      "tasks.md": "a5666debeca6072bf7575a3bd094d490415c33579ace9399c6d5f24ad6b5f7e7",
+      "implementation-summary.md": "70d77549c3e26bbc75749ccce95a655adb82b3e0c5f20d5aed14d4874986d466"
+    },
+    "last_active_at": null
+  }
+}

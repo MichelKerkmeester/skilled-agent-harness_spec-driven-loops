@@ -78,6 +78,7 @@ decision-capture/
 +-- devin/     decision-capture-posttooluse.mjs, its test and fixtures/
 +-- dsh/       decision-capture.mjs
 +-- lib/       capture-core.mjs, chat-questions.mjs and their tests
++-- opencode/  decision-capture.js, a link to the plugin in .opencode/plugins/
 +-- pi/        decision-capture.ts and its test
 +-- tests/     dsh-decision-capture.test.mjs
 `-- vibe/      decision-capture-post-tool.mjs and its test
