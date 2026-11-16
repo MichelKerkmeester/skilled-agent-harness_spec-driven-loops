@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e5cfc90c895a12e56a9397bce4af3b332f316f951753176cccf003904e9c63de",
+  "manifestHash": "ce36b38c9fcfe6fa8136b9b0c629a031820a5926ac091474014d696b97c2f1a7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7132,6 +7132,9 @@
     ],
     "049 deep research finding remediation": [
       "049 deep research finding remediation"
+    ],
+    "049 handover doc alignment operator decisions": [
+      "049-handover-doc-alignment operator decisions"
     ],
     "049 implementation summary": [
       "049 implementation summary"
@@ -14329,6 +14332,9 @@
     "barter re pin after engine fixes": [
       "barter re-pin after engine fixes"
     ],
+    "barter re pin after rebasedonto": [
+      "barter re-pin after rebasedOnto"
+    ],
     "barter symlinks readme": [
       "barter symlinks readme"
     ],
@@ -14376,6 +14382,9 @@
     ],
     "baseline authoring run": [
       "baseline authoring run"
+    ],
+    "baseline capture after graph scan stale": [
+      "baseline capture after graph scan stale"
     ],
     "baseline capture nesting": [
       "baseline capture nesting"
@@ -41584,6 +41593,9 @@
     "directory conventions opencode": [
       "directory conventions opencode"
     ],
+    "directory overlay upstream moved after rebase": [
+      "directory overlay upstream-moved after rebase"
+    ],
     "directory swap case test": [
       "directory swap case test"
     ],
@@ -51639,6 +51651,21 @@
     "fix audit findings": [
       "fix audit findings"
     ],
+    "fix barter repin handover items for overlay engine": [
+      "fix barter repin handover items for overlay engine"
+    ],
+    "fix barter repin handover items for overlay engine goal": [
+      "fix barter repin handover items for overlay engine goal"
+    ],
+    "fix barter repin handover items for overlay engine implementation summary": [
+      "fix barter repin handover items for overlay engine implementation summary"
+    ],
+    "fix barter repin handover items for overlay engine plan": [
+      "fix barter repin handover items for overlay engine plan"
+    ],
+    "fix barter repin handover items for overlay engine tasks": [
+      "fix barter repin handover items for overlay engine tasks"
+    ],
     "fix baseline test failures": [
       "fix baseline test failures"
     ],
@@ -57681,6 +57708,9 @@
     "hand drawn diagram variant": [
       "hand drawn diagram variant"
     ],
+    "hand over doc alignment fixes": [
+      "hand-over doc alignment fixes"
+    ],
     "hand over gap report verification": [
       "hand-over gap report verification"
     ],
@@ -57798,6 +57828,21 @@
     "handover bound freshness": [
       "handover bound freshness"
     ],
+    "handover doc alignment": [
+      "handover doc alignment"
+    ],
+    "handover doc alignment acceptance criteria": [
+      "handover doc alignment acceptance criteria"
+    ],
+    "handover doc alignment implementation summary": [
+      "handover doc alignment implementation summary"
+    ],
+    "handover doc alignment plan": [
+      "handover doc alignment plan"
+    ],
+    "handover doc alignment tasks": [
+      "handover doc alignment tasks"
+    ],
     "handover docs and harness": [
       "handover docs and harness"
     ],
@@ -57872,6 +57917,9 @@
     ],
     "handover to barter overlay follow up": [
       "handover to barter overlay follow up"
+    ],
+    "handover to barter repin limits": [
+      "handover to barter repin limits"
     ],
     "handover trigger review": [
       "handover trigger review"
@@ -82080,6 +82128,9 @@
     "phase 10 fix alignment report findings for speckit": [
       "phase 10 fix alignment report findings for speckit"
     ],
+    "phase 10 fix barter repin handover items": [
+      "phase 10 fix barter repin handover items"
+    ],
     "phase 10 goal ending carry": [
       "phase 10 goal ending carry"
     ],
@@ -95276,6 +95327,9 @@
     "removed process derived root source": [
       "removed process-derived root source"
     ],
+    "removed set operation not reverted": [
+      "removed set operation not reverted"
+    ],
     "removed template reality sweep": [
       "removed template reality sweep"
     ],
@@ -95687,6 +95741,9 @@
     ],
     "repin implementation summary": [
       "repin implementation summary"
+    ],
+    "repin link replaced by folder": [
+      "repin link replaced by folder"
     ],
     "repin plan": [
       "repin plan"
@@ -100022,6 +100079,24 @@
     ],
     "root readme refresh": [
       "root readme refresh"
+    ],
+    "root readme rewrite": [
+      "root readme rewrite"
+    ],
+    "root readme rewrite implementation summary": [
+      "root readme rewrite implementation summary"
+    ],
+    "root readme rewrite plan": [
+      "root readme rewrite plan"
+    ],
+    "root readme rewrite research": [
+      "root readme rewrite research"
+    ],
+    "root readme rewrite research synthesis": [
+      "root readme rewrite research synthesis"
+    ],
+    "root readme rewrite tasks": [
+      "root readme rewrite tasks"
     ],
     "root readme section spacing": [
       "root readme section spacing"
@@ -121722,6 +121797,9 @@
     "surface evidence labels": [
       "surface evidence labels"
     ],
+    "surface hint cannot join a scored route": [
+      "surface hint cannot join a scored route"
+    ],
     "surface hint hub root": [
       "surface hint hub root"
     ],
@@ -131662,6 +131740,9 @@
     "vibe skill mirror": [
       "vibe skill mirror"
     ],
+    "vibe skilled loop shell shim": [
+      "vibe skilled-loop shell shim"
+    ],
     "vibe stop arm": [
       "vibe stop arm"
     ],
@@ -131913,6 +131994,9 @@
     ],
     "vocabulary mirrors decision": [
       "vocabulary mirrors decision"
+    ],
+    "vocabulary mirrors host opt out": [
+      "vocabulary mirrors host opt out"
     ],
     "vocabulary phase checklist": [
       "vocabulary phase checklist"

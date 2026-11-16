@@ -1,0 +1,82 @@
+All four steps are done and the check passes.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs`
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs`
+
+## 2. COMMANDS
+
+**Discovery reads** (all exit 0, output was file excerpts, not reproduced): `wc -l` on both files; `tail -c 400 … | od -c | tail -20`; `sed -n '1,60p'`, `sed -n '700,768p'`, `sed -n '155,235p'` on the test file; `sed -n '2085,2175p'` and `sed -n '2098,2106p' | cat -e` on the engine; `grep -n` for fixture fields and for the `classifyDestination` doc line (one hit, line 2103).
+
+**`sed -n '2098,2106p' … | cat -A`** — exit 1. `cat: illegal option -- A` (macOS `cat`). Re-ran with `cat -e`.
+
+**STEP 2 — `node --test --test-name-pattern='folder overlay rebased onto the new pin' .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs`** — node exited 1 (`fail 1`); the shell reported 0 for the pipeline because of `| tail`. Last 15 lines:
+
+```
+✖ a folder overlay rebased onto the new pin applies after the copy, and one that is not stays upstream-moved (1212.735583ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1268.629
+
+✖ failing tests:
+
+test at .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:770:1
+✖ a folder overlay rebased onto the new pin applies after the copy, and one that is not stays upstream-moved (1212.735583ms)
+  AssertionError [ERR_ASSERTION]: not-copied 1 upstream change(s) outside .skilled, .claude, …
+```
+
+The assertion body contained `blocked owned-dir: upstream-moved .skilled/skills/owned/keep.md` and `RESULT: FAILED`, failing at line 806 (`assert.equal(live.code, 0, live.output)`) — so the two "stays blocked" assertions already passed and only the rebased case was missing.
+
+**CHECK — `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`** — exit 0. Last 15 lines:
+
+```
+✔ guard resolves cwd-relative paths and capture refuses unknown, protected, and json-entry destinations (291.920125ms)
+✔ a missing layout link is reported as overlay-edited and created by apply (278.186667ms)
+✔ an edited json-entry item re-applies over the applied bytes and refuses once the live file moved (275.664416ms)
+✔ an edited json-entry object key re-applies over the applied bytes and refuses once the live file moved (340.468042ms)
+✔ token-named paths pass only when a manifest entry names them exactly, and .env never does (14.823791ms)
+✔ status --json reports each out-of-sync destination with its fix, and an error as JSON (204.572834ms)
+✔ a misused command line prints the usage and exits 2 (148.452709ms)
+ℹ tests 46
+ℹ suites 0
+ℹ pass 46
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17318.101375
+```
+
+**Full directory — `node --test .skilled/commands/doctor/scripts/tests/`** — exit 0. Last 15 lines:
+
+```
+✔ a project-owned file reports its status and survives link and unlink byte-for-byte (424.925ms)
+✔ a missing project-owned destination keeps the existing source-link behavior (252.494375ms)
+✔ setup omits a dangling specs alias when the host has no specs folder (308.507083ms)
+✔ setup keeps the specs alias pointed at a host specs folder (327.760958ms)
+✔ a first link creates a runtime alias whose target the same plan creates (1232.016333ms)
+✔ a second plan after a first link adds nothing (858.4055ms)
+✔ setup keeps a host-relative specs alias out of the ignore list (390.49225ms)
+ℹ tests 1174
+ℹ suites 0
+ℹ pass 1174
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 174232.313708
+```
+
+**`git status --porcelain`, `git diff --stat`, `git diff` on each file, `sed` re-reads of both edited regions** — all exit 0. Diff confirms exactly two hunks of mine: the `isRebasedOntoPin` function above the `classifyDestination` doc comment, and the seven-line branch after the `pinnedSha256` line. The test file's final hunk is the appended block, after one blank line.
+
+## 3. OPEN QUESTIONS
+
+- Both files already carried uncommitted changes from earlier phases of this packet (`replacedSubtree` in `planDirectoryOverlay`, the `unownedDrift` delete-skip, `RESULT: BLOCKED` for a dirty stage, and three earlier tests). I left them untouched; `git diff` shows my hunks only.
+- `git status` also lists `specs/.../graph-metadata.json`, `specs/.../spec.md` and the untracked packet folder as modified. Those predate this dispatch and are outside my allowlist, so I did not touch them.
+- The brief's expected `fail 1` for Step 2 was confirmed, but the failing assertion was the final `live.code === 0` rather than the `blocked` match — the two refusal assertions passed first. Behaviour matches the brief's intent; noting it because the expected output named the `blocked` line as the failure text.

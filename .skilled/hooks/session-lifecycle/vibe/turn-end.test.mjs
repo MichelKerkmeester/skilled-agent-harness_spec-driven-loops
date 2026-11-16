@@ -525,3 +525,70 @@ test('the ask-surface part still denies but logs no fire under a payload folder 
   assert.deepEqual(fires, []);
   assert.equal(existsSync(missing), false);
 });
+
+const hookFlags = require('../../shared/hook-flags.cjs');
+
+// Points the flag reader at a scratch hook-flags.env, so these tests never read
+// the operator's own file, and sets live environment keys for one test. Both
+// are restored afterwards.
+function useLiveSwitches(t, flagFileContents, liveEnv = {}) {
+  const dir = makeTempDir(t, 'vibe-turn-end-flags-');
+  const file = join(dir, 'hook-flags.env');
+  writeFileSync(file, flagFileContents);
+  const keys = { HOOK_FLAGS_CONFIG: file, ...liveEnv };
+  const previous = Object.fromEntries(Object.keys(keys).map((key) => [key, process.env[key]]));
+  Object.assign(process.env, keys);
+  hookFlags._resetConfigCache();
+  t.after(() => {
+    for (const [key, value] of Object.entries(previous)) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+    hookFlags._resetConfigCache();
+  });
+  return dir;
+}
+
+// A firing turn with the real switch reader, so the only thing that can stop
+// the deny is a kill switch the reader finds.
+function askSurfaceWithLiveSwitch(t, flagFileContents) {
+  const dir = useLiveSwitches(t, flagFileContents);
+  return buildAskSurfacePart(
+    { hook_event_name: 'post_agent', cwd: dir, session_id: SESSION_ID },
+    {
+      askCore: {
+        CONCERN: core.CONCERN,
+        evaluateTurn: () => ({ verdict: 'fire' }),
+        markTurn: () => true,
+        recordFire: () => true,
+        repromptFor: core.repromptFor,
+      },
+      load: () => ({ ok: true, entries: [], journalRecords: [], turn: 'turn-1', source: { sessionId: SESSION_ID } }),
+      markerDir: dir,
+    },
+  );
+}
+
+test('the live ask-surface part denies when hook-flags.env holds no switch', (t) => {
+  assert.equal(askSurfaceWithLiveSwitch(t, '')?.decision, 'deny');
+});
+
+test('a kill switch saved to hook-flags.env still silences the live ask-surface part', (t) => {
+  assert.equal(askSurfaceWithLiveSwitch(t, `${hookFlags.concernFlag(core.CONCERN)}=1\n`), null);
+});
+
+// A claimed-done turn read through the live environment and the real switch
+// reader, so only a kill switch the reader finds can drop the advisory.
+async function completionWithLiveSwitch(t, flagFileContents) {
+  const project = useLiveSwitches(t, flagFileContents, { VIBE_SPEC_FOLDER: 'specs/example' });
+  const { enabled, env, ...dependencies } = completionDependencies();
+  return buildCompletionPart({ hook_event_name: 'post_agent', cwd: project }, dependencies);
+}
+
+test('the live completion part records its advisory when hook-flags.env holds no switch', async (t) => {
+  assert.equal((await completionWithLiveSwitch(t, ''))?.advisory, ADVISORY_DETAIL);
+});
+
+test('a kill switch saved to hook-flags.env still silences the live completion part', async (t) => {
+  assert.equal(await completionWithLiveSwitch(t, `${hookFlags.concernFlag('completion')}=1\n`), null);
+});

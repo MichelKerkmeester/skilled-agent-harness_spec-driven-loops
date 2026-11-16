@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite",
+  "description": "The root `README.md` is 1,773 lines long and was written before the v4.0.1.0",
+  "keywords": [
+    "root",
+    "readme",
+    "lines",
+    "long",
+    "written"
+  ],
+  "lastUpdated": "2026-11-16T09:02:18.037Z",
+  "specId": "025",
+  "folderSlug": "root-readme-rewrite",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "004-v4-release-line-research"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_10-02__deep-research-20-cli-devin-iterations-stop.md"
+  ],
+  "level": "1"
+}

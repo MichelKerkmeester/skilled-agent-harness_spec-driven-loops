@@ -124,7 +124,7 @@ In the recorded live runs, OpenCode reported about 1M context tokens for `openai
 
 ## 7. LAUNCHING A RUNTIME UNDER THE LOOP
 
-The shim defines `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent` and `skilled-loop` as shell functions. The `skilled-loop` function runs the wrapper from the checkout that owns the sourced shim, so a pasted manual claim works from any directory and without the terminal check. Typing `claude` in a terminal then runs `bash <repo>/.skilled/bin/skilled-loop claude`, and `cursor-agent` runs the wrapper's `cursor` arm. A function hands the launch to the wrapper only when all of these hold:
+The shim defines `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent`, `vibe` and `skilled-loop` as shell functions. The `skilled-loop` function runs the wrapper from the checkout that owns the sourced shim, so a pasted manual claim works from any directory and without the terminal check. Typing `claude` in a terminal then runs `bash <repo>/.skilled/bin/skilled-loop claude`, and `cursor-agent` runs the wrapper's `cursor` arm. A function hands the launch to the wrapper only when all of these hold:
 
 - `SKILLED_LOOP_ID` is unset, so no loop is running yet.
 - Standard input and standard output are both a terminal.
@@ -139,7 +139,7 @@ A wrapper runs the code it read when it started, so a change to `.skilled/bin/sk
 
 It also appends a `wrapper-changed` line with the loop id to `relaunch.log`, so an unattended hop that scrolls the note away still leaves a record. A checksum that comes back empty, because a checkout replaced the file for a moment, is not a change and prints and logs nothing. The hop still goes ahead on the code the loop started with. Exit the session and start the runtime again to pick the change up.
 
-In every other case the function runs `command <binary> "$@"`. `skilled_loop_resolve <runtime> [args...]` prints the wrapper path the shim would use, or nothing. It skips the terminal check, so you can call it from a script to see the decision. Claude then hops on its own near the context threshold, and Pi, OpenCode and Codex do too once their `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` or `SYSTEM_SESSION_HANDOVER_ENABLED` flag is on. Cursor and Devin run under the wrapper too, but they hop only after `/speckit:handoff`.
+In every other case the function runs `command <binary> "$@"`. `skilled_loop_resolve <runtime> [args...]` prints the wrapper path the shim would use, or nothing. It skips the terminal check, so you can call it from a script to see the decision. Claude then hops on its own near the context threshold, and Pi, OpenCode, Codex and Vibe do too once their `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` or `SYSTEM_SESSION_HANDOVER_ENABLED` flag is on. Cursor and Devin run under the wrapper too, but they hop only after `/speckit:handoff`.
 
 An alias with the same name still takes precedence over the function, so remove a `claude` alias before you rely on the shim. Agent tool shells, such as Claude Code's, are rebuilt from a function snapshot that drops names starting with a single underscore. So every helper the shim's functions call keeps a plain `skilled_loop_` name.
 

@@ -839,6 +839,22 @@ function isRecordedItem(record, path, identityKey, item) {
  */
 function planOperation(operation, root, text, style, edits, options) {
   if (operation.op === 'set') {
+    const parentPath = operation.path.slice(0, -1);
+    const lastKey = operation.path[operation.path.length - 1];
+    const parent = operation.path.length > 0 ? nodeAtPath(root, parentPath) : null;
+    // A key the object does not hold yet is added after its last member, so one
+    // entry set fits the file before and after upstream starts shipping the key.
+    if (parent && parent.type === 'object' && typeof lastKey === 'string' && !findMember(parent, lastKey)) {
+      const reference = parent.members[parent.members.length - 1];
+      if (!reference) throw new Error(`cannot insert into the empty object at ${parentPath.join('.')}`);
+      const indent = indentBefore(text, reference.keyStart) || '';
+      edits.push({
+        start: reference.value.end,
+        end: reference.value.end,
+        text: `,\n${indent}${JSON.stringify(lastKey)}: ${serializeValue(operation.value, indent, style)}`,
+      });
+      return 'changed';
+    }
     const target = nodeAtPath(root, operation.path);
     const current = JSON.parse(text.slice(target.start, target.end));
     if (deepEqual(current, operation.value)) return 'unchanged';
@@ -1288,7 +1304,14 @@ function planDirectoryOverlay(entry, ctx, problems) {
       const destinationPath = path.join(destinationDir, rel);
       deletes.push(destinationPath);
       if (current.get(rel).kind === 'file') {
-        outputs.push({ filePath: destinationPath, buffer: null, sourcePath: path.join(sourceDir, rel) });
+        // The overlay's copy is the whole folder, so a file it lacks is its own
+        // delete while that file still holds upstream's bytes.
+        outputs.push({
+          filePath: destinationPath,
+          buffer: null,
+          sourcePath: path.join(sourceDir, rel),
+          replacedSubtree: true,
+        });
       }
     }
   }
@@ -2093,6 +2116,22 @@ function planWouldWrite(plan, filePath) {
 }
 
 /**
+ * Whether an entry says its overlay was rebased onto the commit now pinned.
+ * A folder overlay carries no hash per file, so its owner names the one
+ * upstream commit the whole folder was read against. Pins are stored short or
+ * full, so either may be a prefix of the other.
+ * @param {object} entry Manifest overlay entry.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {boolean}
+ */
+function isRebasedOntoPin(entry, manifest) {
+  const rebased = typeof entry.rebasedOnto === 'string' ? entry.rebasedOnto.toLowerCase() : '';
+  const pinned = manifest.pin && typeof manifest.pin.commit === 'string' ? manifest.pin.commit.toLowerCase() : '';
+  if (rebased.length < 7 || pinned.length < 7) return false;
+  return rebased.startsWith(pinned) || pinned.startsWith(rebased);
+}
+
+/**
  * Name the sync state of one destination.
  * @param {{output: object, plan: object, key: string, live: Buffer|null, state: object,
  *   manifest: object, upstreamBytes: ((key: string) => Buffer|null)|null}} input
@@ -2127,6 +2166,12 @@ function classifyDestination({ output, plan, key, live, state, manifest, upstrea
   // holding exactly those bytes, as it does right after a re-copy, is waiting for
   // the overlay, so a moved pin alone does not make it an upstream move.
   if (plan.entry.pinnedSha256 && hashMatches(live, plan.entry.pinnedSha256)) return 'overlay-edited';
+  // The same holds for a folder overlay rebased onto the pinned commit: a
+  // destination holding upstream's bytes at that commit is what the copy left,
+  // so it waits for the overlay too.
+  if (isRebasedOntoPin(plan.entry, manifest) && upstreamBytes && live !== null && buffersEqual(live, upstreamBytes(key))) {
+    return 'overlay-edited';
+  }
   if (state.exists && state.pin !== manifest.pin.commit &&
       !hashMatches(live, appliedHash) && !buffersEqual(live, desired)) {
     return 'upstream-moved';
@@ -3378,6 +3423,9 @@ function unownedDrift(ctx, manifest, job, touched) {
       if (reason) lines.push(`refuse: unowned ${relativePath} differs from the old pin (${reason})`);
       continue;
     }
+    // The copy deletes a link before it writes below it, so what the tree shows
+    // through that link is the link target's file, never a copy at this path.
+    if (isUnderAny(relativePath, touched.delete)) continue;
     if (!pathExists(filePath)) continue;
     if (blobDifference(filePath, job.newBlobs.get(relativePath), format)) {
       lines.push(`refuse: unowned ${relativePath} is not in the old pin, and the tree holds its own copy there`);
@@ -3842,7 +3890,11 @@ function repinUnderLock(ctx, job, report) {
       console.log('error: ' + error.message);
     }
     if (!job.isStage && !isClean) console.log(rollbackCommand(ctx, runId));
-    report.result = job.isStage ? 'STAGED' : (isClean ? 'PASSED' : 'FAILED');
+    // A stage that printed a blocked line or a miss is not a rehearsal that
+    // passed, so it gets its own word instead of the clean stage's.
+    report.result = job.isStage
+      ? (isClean ? 'STAGED' : 'BLOCKED')
+      : (isClean ? 'PASSED' : 'FAILED');
     console.log('RESULT: ' + report.result);
     fs.writeFileSync(path.join(runDir, 'report.json'), JSON.stringify(report, null, 2) + '\n');
     if (failure) return EXIT_ERROR;

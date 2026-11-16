@@ -1,0 +1,92 @@
+TASK: a folder overlay can name the upstream commit it was rebased onto, so a re-pin to that commit applies it instead of reading `upstream-moved`.
+Two files change. Do the four steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 4. File: R/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs
+Append the block below at the END of the file, after one blank line. Change nothing else in the file.
+
+BLOCK TO APPEND:
+test('a folder overlay rebased onto the new pin applies after the copy, and one that is not stays upstream-moved', (t) => {
+  const fixture = createRepinFixture(t, {
+    oldEntries: { '.skilled/skills/owned/keep.md': 'upstream keep v1\n' },
+    newEntries: { '.skilled/skills/owned/keep.md': 'upstream keep v2\n' },
+  });
+  writeFile(fixture.overlayDir, 'owned/keep.md', 'overlay keep\n');
+  const entry = {
+    id: 'owned-dir',
+    scope: 'directory',
+    source: 'owned',
+    destination: '.skilled/skills/owned',
+  };
+  fixture.manifest.overlays.push(entry);
+  writeManifest(fixture);
+  const seeded = fixture.run(['apply']);
+  assert.equal(seeded.code, 0, seeded.output);
+  assert.equal(fixture.run(['status']).code, 0);
+
+  // No record of a rebase: upstream's change still needs a person.
+  const plainStage = path.join(fixture.workspace, 'stage-plain');
+  const plain = fixture.repin(['--stage', plainStage]);
+  assert.equal(plain.code, 1, plain.output);
+  assert.match(plain.output, /^blocked owned-dir: upstream-moved \.skilled\/skills\/owned\/keep\.md$/m);
+  assert.match(plain.output, /^RESULT: BLOCKED$/m);
+
+  // A rebase onto some other commit says nothing about this one.
+  entry.rebasedOnto = fixture.oldCommit.slice(0, 10);
+  writeManifest(fixture);
+  const staleStage = path.join(fixture.workspace, 'stage-stale');
+  const stale = fixture.repin(['--stage', staleStage]);
+  assert.equal(stale.code, 1, stale.output);
+  assert.match(stale.output, /^blocked owned-dir: upstream-moved \.skilled\/skills\/owned\/keep\.md$/m);
+
+  entry.rebasedOnto = fixture.newCommit.slice(0, 10);
+  writeManifest(fixture);
+  const live = fixture.repin();
+  assert.equal(live.code, 0, live.output);
+  assert.doesNotMatch(live.output, /^blocked owned-dir:/m);
+  assert.match(live.output, /^RESULT: PASSED$/m);
+  assert.equal(read(fixture.tree, '.skilled/skills/owned/keep.md'), 'overlay keep\n');
+});
+
+STEP 2 of 4. Run this now, before the engine changes, and report what it printed:
+cd R && node --test --test-name-pattern='folder overlay rebased onto the new pin' .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs
+Expected now: "fail 1", and the failure output contains "blocked owned-dir: upstream-moved". Whatever it prints, continue.
+
+STEP 3 of 4. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+Insert the block below directly ABOVE this existing comment line, which starts the doc comment of classifyDestination and appears once in the file:
+ * Name the sync state of one destination.
+The line above it is `/**`. Insert the new block above that `/**` line, with one blank line after the new block.
+
+BLOCK TO INSERT:
+/**
+ * Whether an entry says its overlay was rebased onto the commit now pinned.
+ * A folder overlay carries no hash per file, so its owner names the one
+ * upstream commit the whole folder was read against. Pins are stored short or
+ * full, so either may be a prefix of the other.
+ * @param {object} entry Manifest overlay entry.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {boolean}
+ */
+function isRebasedOntoPin(entry, manifest) {
+  const rebased = typeof entry.rebasedOnto === 'string' ? entry.rebasedOnto.toLowerCase() : '';
+  const pinned = manifest.pin && typeof manifest.pin.commit === 'string' ? manifest.pin.commit.toLowerCase() : '';
+  if (rebased.length < 7 || pinned.length < 7) return false;
+  return rebased.startsWith(pinned) || pinned.startsWith(rebased);
+}
+
+STEP 4 of 4. Same file, inside function classifyDestination.
+OLD (one line, it appears once in the file):
+  if (plan.entry.pinnedSha256 && hashMatches(live, plan.entry.pinnedSha256)) return 'overlay-edited';
+NEW (replace that one line with these seven lines, same indentation):
+  if (plan.entry.pinnedSha256 && hashMatches(live, plan.entry.pinnedSha256)) return 'overlay-edited';
+  // The same holds for a folder overlay rebased onto the pinned commit: a
+  // destination holding upstream's bytes at that commit is what the copy left,
+  // so it waits for the overlay too.
+  if (isRebasedOntoPin(plan.entry, manifest) && upstreamBytes && live !== null && buffersEqual(live, upstreamBytes(key))) {
+    return 'overlay-edited';
+  }
+
+CHECK. Run:
+cd R && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Expected: the summary shows "fail 0". Report the pass and fail counts. If a test other than the new one fails, do not change it: report its name and output.

@@ -52,6 +52,12 @@ npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 node .skilled/bin/skill-advisor.cjs list-tools --format json
 ```
 
+Last, build the history lookup behind the session handover. It also uses the Spec Kit's TypeScript compiler and needs no install of its own. Without its output a handover prints no lookup section.
+
+```bash
+npm --prefix .skilled/hooks/session-handover/history run build
+```
+
 ### Check the Install
 
 Open the repository in any of the eight runtimes: OpenCode, Claude Code, Codex, Cursor, Devin, Pi, DeepSeek Harness (DSH) or Mistral Vibe. Then run:

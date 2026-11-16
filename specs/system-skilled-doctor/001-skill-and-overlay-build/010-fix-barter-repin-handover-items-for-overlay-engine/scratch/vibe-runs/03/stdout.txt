@@ -1,0 +1,62 @@
+Both edits are in place and the full check is green. Handback below.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs`
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs`
+
+## 2. COMMANDS
+
+**Anchor greps** (exit 0 each): `grep -n "RESULT: STAGED"` on the test file returned 5 hits at lines 494, 527, 555, 589, 756; `grep -n "report.result = job.isStage"` on the engine returned 1 hit at line 3855; `grep -n 'equals-upstream (settings|hub-skill)'` returned 1 hit at line 493, confirming a unique anchor for the edit.
+
+**STEP 2** — `node --test --test-name-pattern='reports both groups and leaves the live tree untouched' .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs`
+
+Exit status: not captured numerically (`PIPESTATUS` did not expand under the shell used). The runner summary and the assertion error are the evidence:
+
+```
+ℹ tests 1
+ℹ pass 0
+ℹ fail 1
+✖ repin --stage builds the re-pinned tree in a copy, reports both groups and leaves the live tree untouched (407.245875ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /^RESULT: BLOCKED$/m.
+  ...
+    'BLOCKED  hub-skill: upstream changed .skilled/skills/hub/SKILL.md; rebase the overlay\n' +
+    'RESULT: STAGED\n'
+  expected: /^RESULT: BLOCKED$/m,
+  operator: 'match',
+  at TestContext.<anonymous> (.../overlay-engine-repin.test.cjs:494:10)
+```
+
+This is the expected pre-change failure: `fail 1`, and the captured output shows the engine still emitting `RESULT: STAGED` on a stage that printed a `BLOCKED` line.
+
+**CHECK** — `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs`
+
+Exit status: **0**
+
+```
+✔ pre-commit refuses a staged vendored change no overlay owns, and passes owned, generated and upstream-equal ones (909.970958ms)
+✔ pre-commit treats a staged file as upstream's own when only its line endings differ (662.04725ms)
+✔ a path under repin.exclude needs no overlay, so the guard and the commit check leave it alone (368.306375ms)
+✔ the commit check reports a staged change under a vendored tree that sits below the git top level (164.139667ms)
+✔ the commit check names an unowned vendored change when the checkout its pin names is gone (616.132375ms)
+✔ a staged re-pin names each listed root file upstream changed, owned or not (396.169541ms)
+✔ --adopt and pre-commit reject a misused command line (617.600917ms)
+ℹ tests 84
+ℹ suites 0
+ℹ pass 84
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16259.538917
+```
+
+`pass 84`, `fail 0`. No test other than the edited one failed.
+
+**Post-edit verification** (exit 0): `grep -n "RESULT: STAGED"` now shows line 495 as the new `doesNotMatch` plus the four untouched `assert.match` lines at 528, 556, 590, 757; `grep -n "RESULT: BLOCKED"` shows only line 494; `sed -n '3852,3862p'` on the engine shows the five replacement lines at the original indentation.
+
+## 3. OPEN QUESTIONS
+
+- **The working tree already carried changes in both files before I started.** `git diff` shows two hunks in `overlay-engine.cjs` I did not author (`planDirectoryOverlay` at ~1288 adding `replacedSubtree: true`, and `unownedDrift` at ~3385 adding the `isUnderAny(relativePath, touched.delete)` skip) plus three tests appended to the end of the test file. My edits are only the `@@ -3842,7 +3852,11 @@` hunk in the engine and the `@@ -491,7 +491,8 @@` hunk in the test. `spec.md` and `graph-metadata.json` are also modified and the packet folder is untracked. I left all of it alone; flagging it so the wider diff is not read as mine.
+- **The four remaining `RESULT: STAGED` assertions are clean-stage cases.** Lines 528, 556, 590 and 757 all assert exit 0, so under the new engine they still resolve to `STAGED` and pass. That is consistent with the brief's premise, not a gap.
+- Nothing else diverged from the brief.

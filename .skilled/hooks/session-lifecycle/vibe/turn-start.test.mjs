@@ -12,7 +12,8 @@
 
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, readdirSync, rmSync } from 'node:fs';
+import { mkdtempSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import test from 'node:test';
@@ -21,6 +22,8 @@ import { fileURLToPath } from 'node:url';
 import { appendRecords, toolSourceKey } from '../../decision-capture/lib/capture-core.mjs';
 import { ADVISOR_RUNTIME, buildAdvisorPart } from '../../../skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs';
 import { PARTS, buildSaveNudgePart, composeTurnStart, handoverWithdrawPart } from './turn-start.mjs';
+
+const hookFlags = createRequire(import.meta.url)('../../shared/hook-flags.cjs');
 
 const HOOK = join(dirname(fileURLToPath(import.meta.url)), 'turn-start.mjs');
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..');
@@ -102,6 +105,44 @@ test('the head receipt lands in the state folder the injected environment names'
   } finally {
     rmSync(stateDir, { recursive: true, force: true });
   }
+});
+
+// Points the flag reader at a scratch hook-flags.env, so these tests never read
+// the operator's own file, and restores the reader afterwards.
+function useFlagFile(t, contents) {
+  const dir = mkdtempSync(join(tmpdir(), 'vibe-advisor-flags-'));
+  const file = join(dir, 'hook-flags.env');
+  writeFileSync(file, contents);
+  const previous = process.env.HOOK_FLAGS_CONFIG;
+  process.env.HOOK_FLAGS_CONFIG = file;
+  hookFlags._resetConfigCache();
+  t.after(() => {
+    if (previous === undefined) delete process.env.HOOK_FLAGS_CONFIG;
+    else process.env.HOOK_FLAGS_CONFIG = previous;
+    hookFlags._resetConfigCache();
+    rmSync(dir, { recursive: true, force: true });
+  });
+}
+
+test('an injected environment that kills the advisor gets nothing', async (t) => {
+  useFlagFile(t, '');
+  let calls = 0;
+  const text = await buildAdvisorPart(payloadFor({ session_id: 'session-injected-kill' }), {
+    run: async () => { calls += 1; return { hookSpecificOutput: { additionalContext: 'Advisor: route sk-code' } }; },
+    env: { [hookFlags.concernFlag('skill-advisor')]: '1' },
+  });
+  assert.equal(text, '');
+  assert.equal(calls, 0);
+});
+
+test('a kill switch saved to hook-flags.env still silences the live advisor', async (t) => {
+  useFlagFile(t, `${hookFlags.concernFlag('skill-advisor')}=1\n`);
+  let calls = 0;
+  const text = await buildAdvisorPart(payloadFor({ session_id: 'session-file-kill' }), {
+    run: async () => { calls += 1; return { hookSpecificOutput: { additionalContext: 'Advisor: route sk-code' } }; },
+  });
+  assert.equal(text, '');
+  assert.equal(calls, 0);
 });
 
 test('a blank prompt gets nothing', () => {
