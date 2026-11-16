@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e5fde0e915cc95a4a859a59ad366a3e50fad15fe3c042f2df168591312bdd2d6",
+  "manifestHash": "b6adc0806e33da71fded43116a32161e414ac070d78f6d2ff7944e1100d01381",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20979,6 +20979,21 @@
     ],
     "claude task dispatch guard": [
       "claude task dispatch guard"
+    ],
+    "claude user hook sync": [
+      "claude user hook sync"
+    ],
+    "claude user hook sync acceptance criteria": [
+      "claude user hook sync acceptance criteria"
+    ],
+    "claude user hook sync implementation summary": [
+      "claude user hook sync implementation summary"
+    ],
+    "claude user hook sync plan": [
+      "claude user hook sync plan"
+    ],
+    "claude user hook sync tasks": [
+      "claude user hook sync tasks"
     ],
     "claude user prompt submit": [
       "claude user prompt submit",
@@ -122356,6 +122371,9 @@
     "symmetric damping invariant future reducer": [
       "symmetric damping invariant future reducer"
     ],
+    "sync claude user hooks": [
+      "sync claude user hooks"
+    ],
     "sync derived block": [
       "sync derived block"
     ],
@@ -129355,6 +129373,9 @@
     ],
     "user id for me": [
       "user id for me"
+    ],
+    "user level claude settings hooks": [
+      "user level claude settings hooks"
     ],
     "user onboarding flowchart": [
       "user onboarding flowchart"

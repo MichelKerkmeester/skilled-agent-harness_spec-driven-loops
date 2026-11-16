@@ -1,5 +1,5 @@
 {
-  "corpusHash": "75ce145b156e96c2680c47f27227d750fb5b1d9cf3fcfc164de88cf18c527ca0",
+  "corpusHash": "92912f3c0eec7ea0801c5a1f3da3e2b018020eabb8a23858df291ba4661d8b3d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27812,
+  "includedPathCount": 27817,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11810,6 +11810,11 @@
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/tasks.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/goal.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/tasks.md",
     "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research/implementation-summary.md",
     "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research/plan.md",
     "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research/research/research.md",
@@ -27844,7 +27849,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e5fde0e915cc95a4a859a59ad366a3e50fad15fe3c042f2df168591312bdd2d6",
+  "manifestHash": "b6adc0806e33da71fded43116a32161e414ac070d78f6d2ff7944e1100d01381",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31324,6 +31329,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/scratch",
       "reason": "excluded directory"
     },
     {
