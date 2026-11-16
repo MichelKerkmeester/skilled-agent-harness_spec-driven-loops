@@ -734,6 +734,37 @@ skilled_loop_replay_recorded() {
   return 1
 }
 
+# OpenCode 2 has no model flag, but it reads config text from OPENCODE_CONFIG_CONTENT above the
+# project config, so the carried model rides there. A project may pin a model on the build and
+# plan agents as well, and an agent's model wins over the top-level one, so all three are set.
+# The operator's own config text stays the base. When that text is not plain JSON it cannot be
+# merged safely, so it is left as it was and the hop starts on the configured model instead.
+carry_opencode_model() {
+  local merged
+  if [[ -z "${SKILLED_LOOP_MODEL:-}" ]] || ! model_is_valid "$SKILLED_LOOP_MODEL"; then
+    if [[ -n "$opencode_config_content_set" ]]; then
+      export OPENCODE_CONFIG_CONTENT="$opencode_config_content_base"
+    else
+      unset OPENCODE_CONFIG_CONTENT
+    fi
+    return 0
+  fi
+  merged=$(node -e '
+    const [base, model] = process.argv.slice(1);
+    const config = base.trim() === "" ? {} : JSON.parse(base);
+    if (config === null || typeof config !== "object" || Array.isArray(config)) process.exit(1);
+    config.model = model;
+    const agents = config.agent !== null && typeof config.agent === "object" ? config.agent : {};
+    for (const name of ["build", "plan"]) {
+      const agent = agents[name] !== null && typeof agents[name] === "object" ? agents[name] : {};
+      agents[name] = { ...agent, model };
+    }
+    config.agent = agents;
+    process.stdout.write(JSON.stringify(config));
+  ' "$opencode_config_content_base" "$SKILLED_LOOP_MODEL" 2>/dev/null) || return 0
+  export OPENCODE_CONFIG_CONTENT="$merged"
+}
+
 build_relaunch_arguments() {
   local seed="$1"
   local mode="${2:-hop}"
@@ -774,10 +805,14 @@ build_relaunch_arguments() {
       ;;
     opencode)
       # OpenCode 2 starts on a private server only with --standalone, and its root command
-      # has no model flag, so a replayed -m would end the launch with a usage error.
+      # has no model flag, so a replayed -m would end the launch with a usage error. A printed
+      # manual command never runs here, so only a hop sets the carried model.
       if ((opencode_two == 1)); then
         if ((opencode_server_seen == 0)); then
           launch_arguments+=(--standalone)
+        fi
+        if [[ "$mode" != 'manual' ]]; then
+          carry_opencode_model
         fi
       elif [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
         launch_arguments+=(-m "$SKILLED_LOOP_MODEL")
@@ -906,6 +941,10 @@ codex_config_model=''
 opencode_two=0
 opencode_standalone_seen=0
 opencode_server_seen=0
+# The operator's own OpenCode config text, kept so each hop rebuilds the carried model on top
+# of it instead of on the previous hop's.
+opencode_config_content_base="${OPENCODE_CONFIG_CONTENT-}"
+opencode_config_content_set="${OPENCODE_CONFIG_CONTENT+1}"
 # The packet and the claim belong to one hop, so a value from an outer session never reaches a
 # first launch.
 unset SKILLED_LOOP_NAME SKILLED_LOOP_MODEL SKILLED_LOOP_PROVIDER SKILLED_LOOP_EFFORT \
