@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4d3a7eec2919d4572235e6548cfa232895f84e6226b7c5373f828fc5d7762027",
+  "manifestHash": "e5fde0e915cc95a4a859a59ad366a3e50fad15fe3c042f2df168591312bdd2d6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14355,6 +14355,9 @@
     ],
     "barter re pin after rebasedonto": [
       "barter re-pin after rebasedOnto"
+    ],
+    "barter remove set operations after sets record": [
+      "barter remove set operations after sets record"
     ],
     "barter symlinks readme": [
       "barter symlinks readme"
@@ -57983,6 +57986,9 @@
     ],
     "handover to barter overlay follow up": [
       "handover to barter overlay follow up"
+    ],
+    "handover to barter removed set restore": [
+      "handover to barter removed set restore"
     ],
     "handover to barter repin limits": [
       "handover to barter repin limits"
