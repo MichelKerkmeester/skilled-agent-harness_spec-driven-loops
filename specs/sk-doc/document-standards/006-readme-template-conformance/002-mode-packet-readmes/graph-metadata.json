@@ -13,24 +13,30 @@
     "trigger_phrases": [
       "mode packet readmes",
       "phase 2 mode packet readmes",
+      "mode packet readme template conformance",
+      "rewrite mode packet readmes",
       "mode packet readmes plan",
+      "mode packet readmes rewrite waves",
       "mode packet readmes tasks",
       "mode packet readmes acceptance criteria",
-      "mode packet readmes implementation summary"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "mode",
       "packet",
       "readmes",
       "phase",
+      "readme",
+      "template",
+      "conformance",
+      "rewrite",
       "plan",
+      "waves",
       "tasks",
-      "acceptance",
-      "criteria",
-      "implementation",
-      "summary",
-      "yourvaluehere",
-      "broken"
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -39,8 +45,15 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md"
+      ".skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md",
+      ".skilled/skills/cli-classifier/cli-jev/README.md",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+      ".skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs"
     ],
     "entities": [
       {
@@ -68,6 +81,12 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -80,13 +99,43 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/cli-jev/README.md",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+        "source": "derived"
+      },
+      {
+        "name": "check-documentation-drift.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -116,6 +165,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -128,85 +183,44 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Human Voice Rules",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Pattern Template",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "A mode packet README is what a reader opens after the hub routes them to one mode, such as `cli-codex` or `sk-create-readme`",
     "created_at": "2026-11-16T15:20:13Z",
-    "last_save_at": "2026-11-16T15:49:01.920Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-16T19:27:03.349Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c944052052d4d0e5ed42e9b4aac7da1f85d62a8a9bcb947607b02052d873f05",
+    "source_fingerprint": "sha256:8007d4019a7ca33eeff31fc05d69b6b58ef2a595d90707f0939603109bb27db8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3df69a8cecf80fd18b8e5d52fac9b37b4fdda26bc275cd7fe0f014fb07c990a7",
-      "plan.md": "b9265cc4d7798d098e940a46ec7e999651f89c9bfb093f3df27367e1fa946fa9",
-      "tasks.md": "033756c3d78884ffd6eb69c515aa61a16e490dc88a8c0fcff6f16982db0725e0",
-      "implementation-summary.md": "67de27dab27db572128c4d92f9e66aa66be35c5b51e46420e9257a54af5c4193"
+      "spec.md": "edeb0d86fc1587d0294bed135c2b6cd439022096352542157a861623cf682cc9",
+      "plan.md": "649c5d4d60cda7f603e86df93008b016b8e958e271d4422f9d4e9a488b446857",
+      "tasks.md": "96330954487c817878bb8969867547fc5d0b4e774eb24f64eba8ce95285f8072",
+      "implementation-summary.md": "6758b8cd50d6ab484a5a4505322e094ab68b8c6d5d5917674530c294990331f1"
     },
     "last_active_at": null
   }

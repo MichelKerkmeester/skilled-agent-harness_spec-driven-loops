@@ -13,24 +13,30 @@
     "trigger_phrases": [
       "hook folder readmes",
       "phase 3 hook folder readmes",
+      "hook readme runtime coverage",
+      "rewrite hook folder readmes",
       "hook folder readmes plan",
+      "hook folder readmes rewrite waves",
       "hook folder readmes tasks",
       "hook folder readmes acceptance criteria",
-      "hook folder readmes implementation summary"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "hook",
       "folder",
       "readmes",
       "phase",
+      "readme",
+      "runtime",
+      "coverage",
+      "rewrite",
       "plan",
+      "waves",
       "tasks",
-      "acceptance",
-      "criteria",
-      "implementation",
-      "summary",
-      "yourvaluehere",
-      "broken"
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -39,9 +45,22 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
+      ".skilled/hooks/shared/README.md",
       ".skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md",
-      ".skilled/hooks/session-handover/README.md"
+      ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      ".skilled/skills/sk-git/scripts/hooks/README.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".claude/settings.json",
+      ".codex/hooks.json",
+      ".cursor/hooks.json",
+      ".devin/hooks.v1.json",
+      ".vibe/hooks.toml",
+      ".opencode/plugins/tests/goal-doc-contract.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/completion-evidence-sentinel.vitest.ts"
     ],
     "entities": [
       {
@@ -69,9 +88,21 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/shared/README.md",
         "source": "derived"
       },
       {
@@ -81,19 +112,61 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "skill-advisor-hook.md",
         "kind": "doc",
-        "path": ".skilled/hooks/session-handover/README.md",
+        "path": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "goal-doc-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/goal-doc-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-sentinel.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/completion-evidence-sentinel.vitest.ts",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Status Draft",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -123,91 +196,38 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "A hook folder README tells a maintainer which runtimes run a concern and where each adapter really lives",
     "created_at": "2026-11-16T15:20:14Z",
-    "last_save_at": "2026-11-16T15:49:07.930Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-16T19:27:04.846Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98fb78bf03b0cec7afc6f12f0e66078e7d72becd13dc809544e93ed48fdb8167",
+    "source_fingerprint": "sha256:1cf049627ae8972f0b27ab8fbf66ea88a0f6263cd4ec2bd38f4a80f69210de76",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3b0ade18585f935a096c6c18101200fd0fada3e88aa9d7f643b338bc1c0a7765",
-      "plan.md": "5737970937df449223288dc93937e6ab38d9b030c9d2dc494e4e30a0f497858d",
-      "tasks.md": "eb0d71c5297a9a20814a8c5885d0470a754f90f306c5b43e337a8b8878ae587a",
-      "implementation-summary.md": "0d3db691d644ef41bccab5f789a1e0730a422971f773ed0c96d2f9ec3cd6563c"
+      "spec.md": "2f3b5a59f6334cbc10b7acdf4336246dfe20fa494004879f718153addf8dea29",
+      "plan.md": "eb9d73979d0fb983730692ef6440e4e10d492cf711b837dd27b795313e7b9a03",
+      "tasks.md": "992104aced89700f69cb532f7a870b26fffa7c308b951ca9c0d2aa15a220a550",
+      "implementation-summary.md": "1af97023ba527d93ba8ab5d9194f65712d6ebe90570b568a6ad75080ef817adc"
     },
     "last_active_at": null
   }

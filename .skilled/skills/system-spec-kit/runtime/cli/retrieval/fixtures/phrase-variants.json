@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4cdd9db1fc45895146e54671d15de797f60c4bc127b18bda4e4c6972f246cdbf",
+  "manifestHash": "03f97a7d2c682365866d73db306eadd4dc4535f859a7d91037a70ca3167a20d7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -59330,6 +59330,9 @@
     "hook code folder readmes plan": [
       "hook code folder readmes plan"
     ],
+    "hook code folder readmes rewrite waves": [
+      "hook code folder readmes rewrite waves"
+    ],
     "hook code folder readmes tasks": [
       "hook code folder readmes tasks"
     ],
@@ -59467,6 +59470,9 @@
     ],
     "hook folder readmes plan": [
       "hook folder readmes plan"
+    ],
+    "hook folder readmes rewrite waves": [
+      "hook folder readmes rewrite waves"
     ],
     "hook folder readmes tasks": [
       "hook folder readmes tasks"
@@ -59642,6 +59648,9 @@
     "hook readme rewrite": [
       "hook readme rewrite"
     ],
+    "hook readme runtime coverage": [
+      "hook readme runtime coverage"
+    ],
     "hook readme template": [
       "hook readme template"
     ],
@@ -59704,6 +59713,9 @@
     ],
     "hook runtime readmes plan": [
       "hook runtime readmes plan"
+    ],
+    "hook runtime readmes rewrite waves": [
+      "hook runtime readmes rewrite waves"
     ],
     "hook runtime readmes tasks": [
       "hook runtime readmes tasks"
@@ -59803,6 +59815,9 @@
     ],
     "hooks lib": [
       "hooks lib"
+    ],
+    "hooks library readme": [
+      "hooks library readme"
     ],
     "hooks node test ci": [
       "hooks node test ci"
@@ -73930,6 +73945,9 @@
     "mode packet packetkind": [
       "mode packet packetKind"
     ],
+    "mode packet readme template conformance": [
+      "mode packet readme template conformance"
+    ],
     "mode packet readmes": [
       "mode packet readmes"
     ],
@@ -73941,6 +73959,9 @@
     ],
     "mode packet readmes plan": [
       "mode packet readmes plan"
+    ],
+    "mode packet readmes rewrite waves": [
+      "mode packet readmes rewrite waves"
     ],
     "mode packet readmes tasks": [
       "mode packet readmes tasks"
@@ -87761,6 +87782,9 @@
     "plugin documentation removal": [
       "plugin documentation removal"
     ],
+    "plugin extension readme": [
+      "plugin extension readme"
+    ],
     "plugin folder readme template": [
       "plugin folder readme template"
     ],
@@ -100112,11 +100136,20 @@
     "rewrite every readme to its template": [
       "rewrite every readme to its template"
     ],
+    "rewrite hook folder readmes": [
+      "rewrite hook folder readmes"
+    ],
     "rewrite main skilled v4 0 0 0": [
       "rewrite main skilled v4 0 0 0"
     ],
+    "rewrite mode packet readmes": [
+      "rewrite mode packet readmes"
+    ],
     "rewrite references same commit": [
       "rewrite references same commit"
+    ],
+    "rewrite runtime adapter readmes": [
+      "rewrite runtime adapter readmes"
     ],
     "rewrite skill changelogs": [
       "rewrite skill changelogs"
@@ -101998,6 +102031,9 @@
     "runtime adapter goal tasks": [
       "runtime adapter goal tasks"
     ],
+    "runtime adapter readme": [
+      "runtime adapter readme"
+    ],
     "runtime agent directory": [
       "runtime agent directory"
     ],
@@ -102316,6 +102352,9 @@
     "runtime folder readmes plan": [
       "runtime folder readmes plan"
     ],
+    "runtime folder readmes rewrite waves": [
+      "runtime folder readmes rewrite waves"
+    ],
     "runtime folder readmes tasks": [
       "runtime folder readmes tasks"
     ],
@@ -102534,6 +102573,9 @@
     ],
     "runtime plugin readmes plan": [
       "runtime plugin readmes plan"
+    ],
+    "runtime plugin readmes rewrite waves": [
+      "runtime plugin readmes rewrite waves"
     ],
     "runtime plugin readmes tasks": [
       "runtime plugin readmes tasks"
@@ -132218,6 +132260,9 @@
     ],
     "vibe provider row": [
       "vibe provider row"
+    ],
+    "vibe readme": [
+      "vibe readme"
     ],
     "vibe relaunch command tier": [
       "vibe relaunch command tier"

@@ -1,11 +1,12 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes",
   "description": "Phase 6: runtime-folder-readmes",
   "keywords": [
     "phase",
     "runtime-folder-readmes"
   ],
-  "lastUpdated": "2026-11-16T15:20:18.298Z",
+  "lastUpdated": "2026-11-16T19:27:09.216Z",
   "specId": "006",
   "folderSlug": "runtime-folder-readmes",
   "parentChain": [
@@ -13,7 +14,8 @@
     "document-standards",
     "006-readme-template-conformance"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_20-27__phase-planned.md"
+  ]
 }

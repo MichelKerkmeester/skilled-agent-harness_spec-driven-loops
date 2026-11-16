@@ -1,0 +1,119 @@
+---
+title: "Goal: README template conformance"
+description: "The durable directive this packet executes against and the criteria that decide when it is done."
+trigger_phrases:
+  - "packet goal"
+  - "durable directive"
+  - "completion criteria"
+  - "goal binding"
+importance_tier: "important"
+contextType: "planning"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/document-standards/006-readme-template-conformance"
+    last_updated_at: "2026-11-16T19:30:00Z"
+    last_updated_by: "scaffold"
+    recent_action: "Authored the durable directive"
+    next_safe_action: "Execute against the completion criteria"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "f7735347-b0b1-4b4f-a0cd-c44e70a362ab"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Goal: README template conformance
+
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+<!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
+
+---
+
+<!-- ANCHOR:directive -->
+## 1. DURABLE DIRECTIVE
+<!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Keep only the newest n archives on request. WEAK: Improve the script. -->
+
+**Objective:** Bring all 184 READMEs and SYNC docs that a `sk-create-readme` template covers into line with that template and the Human Voice Rules, stating only facts checked against the code they describe.
+
+### Decisions
+
+Frozen choices. Changing one is an amendment.
+
+| ID | Decision |
+|----|----------|
+| D1 | Each file follows its template's section model, keeps `---` before every numbered H2 and carries no emoji in a heading. |
+| D2 | A session that did not write a README checks every path, command and count in it against the code before it is committed. |
+| D3 | Out of scope: the root README and root guides, `local-webflow`, code-folder READMEs outside `.skilled/hooks/`, and any change to the templates, the validator or the voice scanner. README versions and changelogs are never edited by hand. |
+| D4 | Writers and reviewers run as DeepSeek V4.1 Flash at max through cli-opencode, one README per session. The main session reruns every check itself before it trusts a result. |
+| D5 | Phases run in order. Each phase is committed, merged with origin/main and pushed under sk-git before the next one starts, and the operator's own uncommitted files are never staged. |
+
+<!-- /ANCHOR:directive -->
+
+---
+
+<!-- ANCHOR:binding -->
+## 2. BINDING
+<!-- FILL: List each child phase and its goal path. Name the precedence rule. GOOD: 001 and 002. Decisions here outrank child detail. WEAK: Children are bound. -->
+
+**Read the child goal before working a phase.** Each is authoritative for its
+phase and binds as if written here.
+
+| Phase | Goal document |
+|-------|---------------|
+| 001-skill-readmes | `001-skill-readmes/goal.md` |
+| 002-mode-packet-readmes | `002-mode-packet-readmes/goal.md` |
+| 003-hook-folder-readmes | `003-hook-folder-readmes/goal.md` |
+| 004-hook-runtime-readmes | `004-hook-runtime-readmes/goal.md` |
+| 005-runtime-plugin-readmes | `005-runtime-plugin-readmes/goal.md` |
+| 006-runtime-folder-readmes | `006-runtime-folder-readmes/goal.md` |
+| 007-hook-code-folder-readmes | `007-hook-code-folder-readmes/goal.md` |
+
+**Precedence.** Decisions above outrank child detail. Child detail outranks any
+summary of it. Name a conflict rather than resolving it silently.
+
+**Stop.** Only the criteria below decide done. An evaluator sees the objective
+string, not these files.
+<!-- /ANCHOR:binding -->
+
+---
+
+<!-- ANCHOR:completion -->
+## 3. COMPLETION CRITERIA
+<!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
+
+- [ ] `validate.sh specs/sk-doc/document-standards/006-readme-template-conformance --recursive --strict` prints `RESULT: PASSED` for the parent and all 7 phase folders.
+- [ ] `validate_document.py` prints `VALID` and `hvr_scan.py` reports `hard blockers: 0` for each of the 184 files in scope.
+- [ ] `check-markdown-links.cjs` exits 0 and reports 0 broken links across the repository.
+- [ ] `test_readme_verdict_parity.py` prints `PARITY PASS` and the sk-doc `run-script-tests.sh` suite exits 0.
+- [ ] `.skilled/skills/sk-design/README.md` and `.vibe/README.md` both exist on origin/main.
+- [ ] After the last phase is pushed, `git rev-parse HEAD origin/main` prints the same hash twice.
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:log -->
+## 4. LOG
+<!-- FILL: Record each step with its command output. Keep this table current. GOOD: T001 Done. `ls logs/archive | wc -l` printed 3. WEAK: Progress is good. -->
+
+Everything below is VOLATILE. It is not part of the directive, it is not copied
+into the objective, and it is expected to grow. Progress, evidence, deviations
+and findings belong here.
+
+### Progress
+
+| Item | State | Evidence |
+|------|-------|----------|
+| 001-skill-readmes | In Progress | 14 READMEs rewritten, all `✅ VALID` with `hard=0`, fact checks applied |
+| 002 to 007 | Pending | Scaffolded children |
+
+### Deviations and findings
+
+| Item | Note |
+|------|------|
+| Writer model | The 001 plan named Opus writers. The operator chose DeepSeek V4.1 Flash at max, recorded as D4. |
+| Binding rows | Phases 002 to 007 are unplanned scaffolds with placeholder acceptance criteria, so no child goal can be derived yet. `check-goal.cjs` needs every row and strict validation rejects a row whose target is missing, so this file passes both only after all seven child goals exist. Phases 002 to 007 are planned first, their child goals are written, and then this goal is committed and sent. |
+<!-- /ANCHOR:log -->

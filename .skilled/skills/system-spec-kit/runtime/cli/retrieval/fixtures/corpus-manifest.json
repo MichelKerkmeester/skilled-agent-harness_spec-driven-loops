@@ -1,5 +1,5 @@
 {
-  "corpusHash": "254b6e9bc1c892820c464caaed25b34cc3b12666556e8afa2fdc3d82d1eebeb9",
+  "corpusHash": "e23c5e19f0dca534b36d9cf42790c400a096e411f21cab721720a063084392f4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27937,
+  "includedPathCount": 27944,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -16252,36 +16252,43 @@
     "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/spec.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/tasks.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/implementation-summary.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/plan.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/spec.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/tasks.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/implementation-summary.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/plan.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/spec.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/tasks.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/implementation-summary.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/plan.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/spec.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/tasks.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/implementation-summary.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/plan.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/spec.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/tasks.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/implementation-summary.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/plan.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/spec.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/tasks.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/implementation-summary.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/plan.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/spec.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/tasks.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/decision-record.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/spec.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/001-transport-and-baseline/acceptance-criteria.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/001-transport-and-baseline/goal.md",
@@ -27969,7 +27976,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4cdd9db1fc45895146e54671d15de797f60c4bc127b18bda4e4c6972f246cdbf",
+  "manifestHash": "03f97a7d2c682365866d73db306eadd4dc4535f859a7d91037a70ca3167a20d7",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36517,6 +36524,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/review/lineages",
       "reason": "excluded directory"
     },
     {
