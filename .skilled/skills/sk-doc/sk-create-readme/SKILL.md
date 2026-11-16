@@ -20,12 +20,12 @@ Use this packet when the request involves:
 - Creating or refreshing a folder `README.md`.
 - Documenting a project, skill, feature, component or source-code directory.
 - Writing a skill package's README, including the README step `create-skill` hands over while it scaffolds a new skill.
-- Writing a repository's front page, install guide, contributing guide or security policy.
+- Writing a repository's front page, contributing guide or security policy.
 - Writing developer orientation for a code folder, including topology, boundaries, entrypoints and validation.
 - Writing the README of a hook folder, a runtime plugin or extension folder, or a runtime folder and its `SYNC.md`.
 - Running `/create:readme`.
 
-Keyword triggers: `create readme`, `/create:readme`, `readme`, `folder readme`, `write readme`, `README.md`, `front-page overview`, `code folder readme`, `skill readme`, `install guide`, `contributing guide`, `security policy`, `sync.md`, `sync doc for the`.
+Keyword triggers: `create readme`, `/create:readme`, `readme`, `folder readme`, `write readme`, `README.md`, `front-page overview`, `code folder readme`, `skill readme`, `contributing guide`, `security policy`, `sync.md`, `sync doc for the`.
 
 ### When NOT to Use
 
@@ -47,7 +47,7 @@ The hub's mode signal selects this packet.
 The artifact decides the template before the folder decides the sections.
 
 Authoring starts from the matching template: `assets/readme-template.md` for a repository front page or a general README, `assets/skill-readme-template.md` for a skill package README, `assets/readme-code-template.md` for a source-code folder and `assets/architecture-template.md` for a skill package's `ARCHITECTURE.md`.
-A repository's root guides start from `assets/install-template.md`, `assets/contributing-template.md` and `assets/security-policy-template.md`.
+A repository's root guides start from `assets/contributing-template.md` and `assets/security-policy-template.md`.
 Hook code starts from its own scaffolds: `assets/hook-readme-template.md` for a shared hook folder and its runtime adapter folders, `assets/runtime-plugin-readme-template.md` for a folder a runtime loads its hooks from and `assets/runtime-folder-template.md` for a runtime folder's README and `SYNC.md`.
 `references/README.md` is the fallback route map when the artifact type or folder purpose is unclear.
 
@@ -291,7 +291,7 @@ The core workflow lives in this `SKILL.md`. Use these files only for deep overfl
 
 - `assets/readme-template.md` for the selection guide, the general README scaffold and the front-page scaffold.
 - `assets/skill-readme-template.md` for a skill package README, the template `create-skill` hands the README step to.
-- `assets/install-template.md`, `assets/contributing-template.md` and `assets/security-policy-template.md` for a repository's root guides.
+- `assets/contributing-template.md` and `assets/security-policy-template.md` for a repository's root guides.
 - `assets/readme-code-template.md` for the full fillable code-folder scaffold and diagram examples.
 - `assets/hook-readme-template.md`, `assets/runtime-plugin-readme-template.md` and `assets/runtime-folder-template.md` for hook folders, the runtime folders that load them and a runtime folder's README and `SYNC.md`.
 - `assets/architecture-template.md` for a skill package's `ARCHITECTURE.md`: the fixed eight-section system document.
