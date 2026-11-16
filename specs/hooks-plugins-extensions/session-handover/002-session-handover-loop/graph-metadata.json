@@ -53,7 +53,8 @@
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening",
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes",
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment",
-    "hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2"
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2",
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/051-handover-doc-alignment-3"
   ],
   "manual": {
     "depends_on": [],
@@ -256,7 +257,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-16T12:16:12.461Z",
+    "last_save_at": "2026-11-16T14:13:32.895Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -264,13 +265,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:757a34d8c6b13166d3d10a7277dcf8a160fdb8f020a08f85a38f99919a0d7dc6",
+    "source_fingerprint": "sha256:4aeb7a45263333f8c6fab5683cb655692e341e2ccd32a5cd5f93cc866ed79dcf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cd7997cf35bd72d3be4e9d1338408ce2d72e7101caf647597a314bf352eb5800",
+      "spec.md": "192ade85671189e695ed0fa29ef0ccaeab9ba966ab68e22a669fa165b6f4a2df",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2",
-    "last_active_at": "2026-11-16T12:10:31.544Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/051-handover-doc-alignment-3",
+    "last_active_at": "2026-11-16T14:12:40.719Z"
   }
 }

@@ -88,7 +88,7 @@ This document is a routing and reference surface only. Run the command entrypoin
 | **complete** | `/speckit:complete <feature-description> [:auto\|:confirm\|:autopilot\|:unattended\|--unattended] [:with-research] [:with-context] [:with-phases]` | 13 | Full end-to-end workflow combining all phases. `:with-phases` adds phase decomposition pre-workflow |
 | **search** | `/speckit:search <query> [--packet <specFolder>] [--triggers] [--paths] [--count] [--limit <n>] [--include-archive]` | direct-dispatch | Lexical retrieval: trigger-index lookup and the ripgrep recipes over spec docs and skill docs |
 | **save** | `/speckit:save <spec-folder>` | direct-dispatch | Write session context into the packet's continuity surfaces |
-| **handoff** | `/speckit:handoff` | 5 | Manual session-handover trigger: write the handoff note and arm the loop |
+| **handoff** | `/speckit:handoff` | 5 | Manual session-handover trigger: write the handoff note and prepare the pending relaunch record |
 | **ai-council** | `/speckit:ai-council <question-or-task> [:auto\|:confirm] [--spec-folder=PATH]` | 3 | Single-round AI council: bind the spec folder, dispatch `@ai-council` once, report its plan |
 
 ### Search Lanes

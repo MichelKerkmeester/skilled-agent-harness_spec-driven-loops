@@ -133,7 +133,7 @@ The shim defines `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent`, `
 
 The shim resolves only wrappers inside the sourced checkout or a linked worktree registered to it. It also accepts an absolute checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS` as a colon-separated value. An unset or empty variable trusts no extra checkout.
 
-The automatic hop in a linking repository also needs that repository's runtime folders, because each runtime reads its hooks or plugins from the project it starts in. Link `.claude`, `.codex`, `.opencode` and `.pi` from this checkout as well, or give each its own session-handover registration. A repository that links only `.skilled` starts under the wrapper but never receives the nudge, so its sessions hop only through `/speckit:handoff`.
+The automatic hop in a linking repository also needs that repository's runtime folders, because each runtime reads its hooks or plugins from the project it starts in. Link `.claude`, `.codex`, `.opencode`, `.pi` and `.vibe` from this checkout as well, or give each its own session-handover registration. A repository that links only `.skilled` starts under the wrapper but never receives the nudge, so its sessions hop only through `/speckit:handoff`.
 
 A wrapper runs the code it read when it started, so a change to `.skilled/bin/skilled-loop` reaches no hop of a loop that is already running. The wrapper takes a checksum of its own file before the first launch and compares it before each hop. When the file changed, it prints one line on stderr: `note: skilled-loop changed on disk after this loop started, restart the wrapper to run the new code`.
 

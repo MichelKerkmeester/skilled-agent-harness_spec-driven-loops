@@ -330,9 +330,9 @@ Near the context limit, this hook asks the session to write a handoff note and a
 
 To start every runtime under the wrapper, add the wrapper to your shell profile. The session handover README shows the line.
 
-The note carries what the next session needs. It holds the goal and what is left. It also names the running command with its mode and arguments. The model, effort, launch flags and session name carry over too. The hop waits for the session's background tasks, and your next prompt calls off a hop that is still waiting.
+The note carries what the next session needs. It holds the goal and what is left. It also names the running command with its mode and arguments. The model, the launch flags and the session name carry over too, and so does the effort on the runtimes that take one at launch. Vibe is the one runtime that keeps no model. The hop waits for the session's background tasks, and your next prompt calls off a hop that is still waiting.
 
-Handover is on by default for Claude Code only. You can turn it on for every runtime at once or for one runtime at a time, and a runtime's own setting wins. One off switch beats every on setting. While handover is off for a runtime, `/speckit:handoff` refuses there and the runtime's own compaction handles a full window.
+Handover is on by default for Claude Code only. You can turn it on for every runtime at once or for one runtime at a time, and a runtime's own setting wins. Only Claude Code, Codex, Pi, OpenCode and Mistral Vibe nudge and hop on their own. On Cursor and Devin, `/speckit:handoff` writes the note and you start the next session with the printed claim command. One off switch beats every on setting. While handover is off for a runtime, `/speckit:handoff` refuses there and the runtime's own compaction handles a full window.
 
 Read more in the [session handover README](.skilled/hooks/session-handover/README.md).
 

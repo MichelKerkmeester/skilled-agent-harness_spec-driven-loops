@@ -7,7 +7,7 @@ trigger_phrases:
   - "Devin session handover"
   - "session-handover-command-runtimes"
   - "skilled-loop codex"
-version: 1.0.27.0
+version: 1.0.28.0
 id: session-handover-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -126,7 +126,7 @@ tmux new-session -d -s "$session_name" "$tmux_command"
 tmux attach -t "$session_name"
 ~~~
 
-Run `/speckit:handoff` inside the session. Confirm the note is written and prepare records a pending record. Because no Cursor arm event is wired, prepare exits 0 and prints `handoff prepared; nothing ends this session. Exit it and run the claim command the wrapper prints.` End the session, and the wrapper prints the manual command when the runtime exits: `skilled-loop cursor "[session-handover] claim and continue handoff <note-path>"`. If the path contains `!`, keep the printed `"'!'"` quote sequence intact so interactive Bash preserves it when history expansion is on. Confirm the receiving `cursor-agent` session claims the note and continues the task. If `cursor-agent` still fails authentication on this machine, record the run as SKIP with the credential blocker, matching the spike's caveat.
+Run `/speckit-handoff` inside the session. Confirm the note is written and prepare records a pending record. Because no Cursor arm event is wired, prepare exits 0 and prints `handoff prepared; nothing ends this session. Exit it and run the claim command the wrapper prints.` End the session, and the wrapper prints the manual command when the runtime exits: `skilled-loop cursor "[session-handover] claim and continue handoff <note-path>"`. If the path contains `!`, keep the printed `"'!'"` quote sequence intact so interactive Bash preserves it when history expansion is on. Confirm the receiving `cursor-agent` session claims the note and continues the task. If `cursor-agent` still fails authentication on this machine, record the run as SKIP with the credential blocker, matching the spike's caveat.
 
 #### Live Devin hop by command (Live, PASS 2026-10-18)
 
@@ -305,7 +305,7 @@ Evidence: the command output, the log lines and the pane. PASS when both exit co
 
 #### CX-4 Withdraw and cancel probe without a model (Automatable)
 
-This probe feeds real hook payloads to the Codex prompt adapter in a sandbox repository and runtime directory, so it touches neither your relaunch state nor your hop history. It checks the Codex rules for an operator prompt over a pending record, a seed prompt over an armed one, an operator prompt over an armed one and `cancel`. Run it from the main session. The Claude sub-agent guard denies `prepare`, `claim`, `keep` and `complete` commands from a sub-agent.
+This probe feeds real hook payloads to the Codex prompt adapter in a sandbox repository and runtime directory, so it touches neither your relaunch state nor your hop history. It checks the Codex rules for an operator prompt over a pending record, a seed prompt over an armed one, an operator prompt over an armed one and `cancel`. Run it from the main session. The Claude sub-agent guard denies `prepare`, `claim`, `keep`, `complete`, `cancel`, `consume` and `hand-over` commands from a sub-agent.
 
 ~~~bash
 bash <<'BASH'

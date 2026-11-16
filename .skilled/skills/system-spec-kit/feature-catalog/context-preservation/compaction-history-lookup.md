@@ -7,7 +7,7 @@ trigger_phrases:
   - "opaque history handle"
   - "history lookup CLI"
   - "handoff history lookup"
-version: 2.0.4.0
+version: 2.0.5.0
 ---
 
 # Handoff history lookup
@@ -18,7 +18,7 @@ This catalog entry maps the bounded history lookup to its implementation files, 
 
 The history lookup lets a model search, browse and load earlier turns of a session. Every operation is read-only and every reply is capped.
 
-The lookup is offered when a handoff note is claimed. Inside the loop, `claim` mints a locator for the sending session with provenance source `handover` and prints one small `## History Lookup` section after the note body. The section names the handle and one runnable command, then the sentence "Use it for a detail this note does not spell out, before you guess or ask the operator, even when the note says the detail cannot be recovered."
+The lookup is offered when a handoff note is claimed. `claim` mints a locator for the sending session with provenance source `handover` and prints one small `## History Lookup` section after the note body. The section names the handle and one runnable command, then the sentence "Use it for a detail this note does not spell out, before you guess or ask the operator, even when the note says the detail cannot be recovered."
 
 A compaction no longer offers the lookup on any runtime. The Claude, Pi, DSH, Devin and Vibe compaction hooks mint no locator and print no lookup section, and the OpenCode plugin that did is gone. Compaction summaries and the `/speckit:resume` pointer are unchanged.
 

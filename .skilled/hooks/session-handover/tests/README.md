@@ -136,7 +136,7 @@ It also stays silent for an unrelated command, a non-Bash tool and stdin that is
 
 The Vibe turn start nudges past the threshold and stays quiet below it. Post tool nudges and leaves an armed hand-over untouched. A claim seed expands at turn start and beats a nudge.
 
-Turn start withdraws an armed hand-over and answers with the notice alone, and the withdraw prompt still records the re-arm floor. Turn end arms the record and spawns the killer on the newest journal file. It ignores a journal lock and picks the numbered segment. A subagent payload neither nudges nor arms, and the switch silences both parts.
+Turn start withdraws an armed hand-over and answers with the notice alone, and the withdraw prompt still records the re-arm floor. Turn end arms the record and spawns the killer on the journal folder. It ignores a journal lock and picks the numbered segment. A subagent payload neither nudges nor arms, and the switch silences both parts.
 
 The withdraw helper disarms an armed record with a pending extra nudge and a `withdrawn` history line. A pending record counts only as the caller's policy says. Another session's record and an already disarmed one are left alone. A call with no session id withdraws any session's record as `cancel` does. A failing follow-up is reported without undoing the withdrawal.
 

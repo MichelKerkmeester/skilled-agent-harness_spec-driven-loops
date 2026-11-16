@@ -193,7 +193,7 @@ Hook switches resolve from the environment and the optional `.skilled/hooks/hook
 
 | Switch | Default | Behavior |
 |---|---|---|
-| `SYSTEM_SESSION_HANDOVER_ENABLED` | unset, on for Claude Code and off elsewhere | `1` turns on the nudge, Stop-arm and compact-pointer hooks and `prepare`. `0` turns them off on Claude Code too. While off, auto-compaction stays the fallback. |
+| `SYSTEM_SESSION_HANDOVER_ENABLED` | unset, on for Claude Code and off elsewhere | `1` turns on the nudge, Stop-arm and compact-pointer hooks and `prepare`. `0` turns them off on Claude Code too, except the goal-command start claim, which the compact pointer still delivers. While off, auto-compaction stays the fallback. |
 | `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` | unset, falls back to `SYSTEM_SESSION_HANDOVER_ENABLED`, then to the runtime's default | One flag each for `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR`, `DEVIN` and `VIBE`. A non-empty value wins over `SYSTEM_SESSION_HANDOVER_ENABLED` for that runtime. `1` turns them on and `0` turns them off. Each key is read from the environment first, then from `hook-flags.env`. |
 | `SYSTEM_SESSION_HANDOVER_DISABLED` | unset | `1` disables the same hooks. It wins over `SYSTEM_SESSION_HANDOVER_ENABLED` and every per-runtime enable flag. |
 | `SYSTEM_HOOKS_DISABLED` | unset, off | A truthy value disables hooks across the repository. `MK_HOOKS_DISABLED` is a supported alias. |
@@ -203,7 +203,7 @@ Hook switches resolve from the environment and the optional `.skilled/hooks/hook
 | `SESSION_HANDOVER_MAX_AGE_MIN` | `10` | Maximum age in minutes for an armed relaunch record. Zero is accepted and makes any older record stale. Unset, empty, negative or non-numeric values use 10. |
 | `SESSION_HANDOVER_NOTIFY_HOPS` | unset, off | `1` sends a macOS notice titled "Session handed over" on each relaunch. It names the runtime, the session folder and the note's goal. |
 | `SESSION_HANDOVER_GOAL` | unset, on | `0`, `false`, `off` or `no` stops the hand-over from carrying the sender's goal packet. Also read from `.skilled/hooks/hook-flags.env`. |
-| `SESSION_HANDOVER_GOAL_PACKET` | wrapper-managed | Exported by `skilled-loop` when the consumed note carries a usable goal packet. Never set it by hand. |
+| `SESSION_HANDOVER_GOAL_PACKET` | wrapper-managed | Exported by `skilled-loop` when the consumed note carries a usable goal packet, or when a first launch starts from the printed manual claim command's seed and that note carries one. Never set it by hand. |
 | `SKILLED_LOOP_CLAIM_SEED` | wrapper-managed | Exported by `skilled-loop` to a Claude receiver that starts on the goal command. Never set it by hand. |
 | `SESSION_HANDOVER_REPO_ROOT` | unset, the install root | Absolute path to the repository that holds the concern. Planned note paths resolve under it. The generic `REPO_ROOT` is not read. |
 | `SKILLED_LOOP_HOPS` | `0` | Wrapper-managed completed-hop count. It must be a non-negative integer. |
@@ -218,7 +218,7 @@ The killer CLI requires `--loop-id` and `--target-pid`. `--transcript` is option
 
 The loop id must be greater than 1 and match `SKILLED_LOOP_ID`. The defaults are `--idle-ms 3000` and `--timeout-ms 30000`. The killer polls every 100 ms. `--no-notify` defaults to off, so a timeout attempts a notification. The Stop hook starts the killer without `--no-notify`.
 
-`prepare` receives the note through `--handoff <path>`, while `claim` and `complete` receive it positionally. Both `prepare` and `claim` require `--session <id>`. Claude Code can omit the flag and use `CLAUDE_CODE_SESSION_ID`. On a Vibe session under `skilled-loop`, `prepare` can also omit it and use the id the turn-start hook recorded, while `claim` there must pass `--session`. A successful prepare exits 0 and leaves the record pending for Stop to arm. Outside `skilled-loop`, prepare prints the manual claim command and exits 3. Inside the loop it does the same at the hop cap. A refused prepare exits 2.
+`prepare` receives the note through `--handoff <path>`, while `claim` and `complete` receive it positionally. Both `prepare` and `claim` require `--session <id>`. Claude Code can omit the flag and use `CLAUDE_CODE_SESSION_ID`. On a Vibe session under `skilled-loop`, `prepare` can also omit it and use the id the turn-start hook recorded, while `claim` there must pass `--session`. A successful prepare exits 0 and leaves the record pending for the runtime's own arm event. Outside `skilled-loop`, prepare prints the manual claim command and exits 3. Inside the loop it does the same at the hop cap. A refused prepare exits 2.
 
 `keep --handoff <path>` takes the same `--session` and `--runtime` options. It exits 0 outside the loop and exits 2 inside it.
 

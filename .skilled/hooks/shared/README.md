@@ -24,7 +24,7 @@ A second ESM sibling lives in `system-spec-kit/runtime/hooks/lib/`. That copy, `
 
 **The resolver.** `hook-flags.cjs` exports `isHookEnabled(concern, env?, config?)`. It is default-on, so adding the guard changes no behavior until a flag is set. A hook goes silent when the master switch (`SYSTEM_HOOKS_DISABLED`, alias `MK_HOOKS_DISABLED`) or one of the concern's kill-switches is truthy (`1`/`true`/`yes`/`on`, case-insensitive).
 
-A short list of concerns is default-off instead. That list is `DEFAULT_OFF` in `hook-flags.cjs`, and today it holds one entry: `session-handover`. A default-off concern answers enabled only when its enable flag is truthy. That flag is read from the same two sources as the kill-switches.
+A short list of concerns is default-off instead. That list is `DEFAULT_OFF` in `hook-flags.cjs`, and today it holds two entries: `session-handover` and `claude-user-hook-sync`. A default-off concern answers enabled only when its enable flag is truthy. That flag is read from the same two sources as the kill-switches.
 
 For `session-handover` the caller names its runtime through a fourth `options.runtime` argument. The enable flag is that runtime's `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` (`CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR`, `DEVIN` or `VIBE`) when it holds a non-empty value, `1` on and `0` off. Otherwise `SYSTEM_SESSION_HANDOVER_ENABLED` decides when it holds a non-empty value.
 
@@ -143,7 +143,7 @@ The resolver is itself the configuration mechanism for every other concern. Oper
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch. Disables every concern across every runtime. |
 | `MK_HOOKS_DISABLED=1` | Legacy alias of the master switch. |
 | `SYSTEM_<CONCERN>_DISABLED=1` | Default-shape per-concern switch, such as `SYSTEM_TASK_DISPATCH_DISABLED=1`. Derivable via `concernFlag(concern)`. |
-| `SYSTEM_SESSION_HANDOVER_ENABLED=1` | Enable flag for `session-handover`, the one default-off concern. Without it, or a runtime's own flag, the concern stays silent on every runtime but Claude Code. A set value, `1` or `0`, decides for Claude Code too. `SYSTEM_SESSION_HANDOVER_DISABLED=1` and the master switch still win. |
+| `SYSTEM_SESSION_HANDOVER_ENABLED=1` | Enable flag for `session-handover`, one of the two default-off concerns. Without it, or a runtime's own flag, the concern stays silent on every runtime but Claude Code. A set value, `1` or `0`, decides for Claude Code too. `SYSTEM_SESSION_HANDOVER_DISABLED=1` and the master switch still win. |
 | `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED=1` or `=0` | Per-runtime enable flag for `session-handover`, one each for `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR`, `DEVIN` and `VIBE`. A non-empty value wins over `SYSTEM_SESSION_HANDOVER_ENABLED` for that runtime. An empty or unset value falls back to it. `SYSTEM_SESSION_HANDOVER_ENABLED=1` with `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED=0` is on for every runtime except Claude Code. The disable switch and the master switch still win. |
 | `OPENCODE_GOAL_DISABLED=1` | Canonical name for `goal`, which does not follow the default shape. Six concerns have hand-set canonical names in `CONCERN_CANONICAL`. See the table below. |
 | `HOOK_FLAGS_CONFIG` | Override path for the operator config file. The default is `.skilled/hooks/hook-flags.env`. |

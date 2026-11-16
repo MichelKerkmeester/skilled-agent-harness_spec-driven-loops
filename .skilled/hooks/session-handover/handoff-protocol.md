@@ -16,7 +16,7 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-`prepare` writes a handoff note and arms a relaunch record. The killer ends the sending session once it goes idle. A fresh session claims the note and continues the work. This document covers that protocol, its refusals and its exit codes.
+`prepare` validates a handoff note and writes a pending relaunch record that the runtime's arm event arms. The killer ends the sending session once it goes idle. A fresh session claims the note and continues the work. This document covers that protocol, its refusals and its exit codes.
 
 ---
 
