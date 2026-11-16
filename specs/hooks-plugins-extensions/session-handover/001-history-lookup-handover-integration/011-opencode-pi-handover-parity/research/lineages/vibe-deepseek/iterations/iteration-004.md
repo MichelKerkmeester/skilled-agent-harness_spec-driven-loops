@@ -25,7 +25,7 @@ The two remaining known limits. `AI_SESSION_CHILD` decides whether a session is 
 
 5. `commitNudge` is the double-nudge guard: it takes a per-session claim, re-runs `nudgeDecision` under that claim, writes the level, and releases in a `finally`. Two hooks racing therefore produce one delivery, because the loser re-decides against the level the winner wrote. [SOURCE: .skilled/hooks/session-handover/lib/nudge.cjs]
 
-6. Only three adapters use it: `claude/context-nudge.mjs`, `codex/shared.mjs` and `vibe/handover-parts.mjs`. Pi and OpenCode call `nudgeDecision` directly and never take the claim. [SOURCE: .skilled/hooks/session-handover/claude/context-nudge.mjs:157]
+6. Only three adapters use it: `claude/context-nudge.mjs`, `codex/shared.mjs` and `vibe/handover-parts.mjs`. Pi and OpenCode call `nudgeDecision` directly and never take the claim. [SOURCE: .skilled/hooks/session-handover/claude/handover-context-nudge.mjs:157]
 
 7. Pi's substitute guard is the in-process `heldNudges` map, and `deliverHeldNudge` deletes the entry before sending, so `turn_end` followed by `agent_end` cannot deliver the same text twice within one process. [SOURCE: .skilled/hooks/session-handover/pi/session-handover.ts:652]
 

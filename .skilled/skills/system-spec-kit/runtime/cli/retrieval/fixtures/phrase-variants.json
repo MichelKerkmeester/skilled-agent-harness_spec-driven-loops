@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f59bce1900d362268be0f3d1374015ad18b5035a4f3fa146a61f7eade1f24483",
+  "manifestHash": "b2e392a49e832a05e32a9f6e30459a4c008fcf08949b584e09014cf528ea5aac",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2729,6 +2729,9 @@
     "011 migration bridge": [
       "011 migration bridge"
     ],
+    "011 opencode pi handover parity operator decisions": [
+      "011-opencode-pi-handover-parity operator decisions"
+    ],
     "011 pi fast mode w subagent support": [
       "011-pi-fast-mode-w-subagent-support"
     ],
@@ -2929,6 +2932,9 @@
     ],
     "012 memory trust display": [
       "012 memory trust display"
+    ],
+    "012 opencode model carry operator decisions": [
+      "012-opencode-model-carry operator decisions"
     ],
     "012 outcome": [
       "012 outcome"

@@ -16,6 +16,7 @@
       "opencode pi handover parity plan",
       "opencode pi handover parity tasks",
       "opencode pi handover parity goal",
+      "011-opencode-pi-handover-parity operator decisions",
       "opencode pi handover parity implementation summary"
     ],
     "key_topics": [
@@ -26,11 +27,11 @@
       "plan",
       "tasks",
       "goal",
+      "011-opencode-pi-handover-parity",
+      "operator",
+      "decisions",
       "implementation",
-      "summary",
-      "live",
-      "hop",
-      "deepseek"
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,6 +40,7 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
       ".skilled/hooks/session-handover/lib/nudge.cjs",
@@ -74,6 +76,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -189,17 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "On a live Pi hop with DeepSeek V4.1 Flash at max thinking, the sender kept the side word out of its note as told and then wrote that a fresh session could not recover it",
     "created_at": "2026-11-16T05:25:19Z",
-    "last_save_at": "2026-11-16T11:15:10.324Z",
+    "last_save_at": "2026-11-16T11:34:39.334Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,16 +209,18 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d0761d6fcb4f668007135ce583ce9a06af747db2e184d8c7cffd0453ed7aaf9d",
+    "source_fingerprint": "sha256:15ef9f8eed75d06631c8d8738c95478cda8b44a73904f3cb8c224db7fe127ed0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ec4590bb34ce00d0810f9c300cff99ac28c0f4ceae2407f301a9e1147ceefb4a",
       "plan.md": "00015637387945032200e440a8d705ce896ee9932d95266adf06a04e5a567c99",
       "tasks.md": "42de5744581baa029fb013fa1560bdb78fca32ff36f33d07cf99039d88d2fa1d",
-      "implementation-summary.md": "eaa38b560dbc29b29adb9d3460a2328d0e7c438c997026260153656d9d46b208",
+      "decision-record.md": "685f2ab8353fb554186311faef059a79808c7c21f2f406d100884d0e89430640",
+      "implementation-summary.md": "7b2ef633e78f5dc05bd86feb37c00eae52ca6712dc1622d8f21c946a5c7118a1",
       "research/research.md": "9a05ede1e3c3dde4b1ea0d117e315959d801111940c26d37831deeb2bf2248ec"
     },
     "last_active_at": null
