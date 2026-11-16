@@ -1,0 +1,3 @@
+$ if grep -rqs 'placeholder-not-a-secret' "$VIBE_HOME/logs/session/unified"; then echo value-leaked; exit 1; fi; grep -qs 'is a dotenv file' .skilled/skills/.state/env-secret-guard.log && echo guard-logged-and-value-absent
+guard-logged-and-value-absent
+[exit 0]

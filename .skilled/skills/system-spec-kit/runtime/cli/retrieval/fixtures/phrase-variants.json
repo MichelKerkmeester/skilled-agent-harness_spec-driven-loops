@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c5db12966abf5a9ce7a55601bc3c69ee236ab1d19d4fc8947896e2b37716919c",
+  "manifestHash": "ce053329349496c0273eb3d11537800ab8dc287f1bf448d78a41720334929867",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -77551,6 +77551,15 @@
     "opencode model carry": [
       "opencode model carry"
     ],
+    "opencode model carry implementation summary": [
+      "opencode model carry implementation summary"
+    ],
+    "opencode model carry plan": [
+      "opencode model carry plan"
+    ],
+    "opencode model carry tasks": [
+      "opencode model carry tasks"
+    ],
     "opencode model context windows": [
       "opencode model context windows"
     ],
@@ -82254,6 +82263,9 @@
     "phase 12 mcp code mode": [
       "phase 12 mcp code mode"
     ],
+    "phase 12 opencode model carry": [
+      "phase 12 opencode model carry"
+    ],
     "phase 12 plain offer reach": [
       "phase 12 plain offer reach"
     ],
@@ -83147,6 +83159,9 @@
     ],
     "phase 24 typed command ambiguity": [
       "phase 24 typed command ambiguity"
+    ],
+    "phase 24 vibe hook review 2 remediation": [
+      "phase 24 vibe hook review 2 remediation"
     ],
     "phase 25 alignment open findings": [
       "phase 25 alignment open findings"
@@ -131151,6 +131166,9 @@
     "vibe automatic relaunch tier": [
       "Vibe automatic relaunch tier"
     ],
+    "vibe background shell guard bypass": [
+      "vibe background shell guard bypass"
+    ],
     "vibe budget default": [
       "vibe budget default"
     ],
@@ -131397,6 +131415,21 @@
     "vibe hook playbook coverage": [
       "vibe hook playbook coverage"
     ],
+    "vibe hook review 2 remediation": [
+      "vibe hook review 2 remediation"
+    ],
+    "vibe hook review 2 remediation acceptance criteria": [
+      "vibe hook review 2 remediation acceptance criteria"
+    ],
+    "vibe hook review 2 remediation implementation summary": [
+      "vibe hook review 2 remediation implementation summary"
+    ],
+    "vibe hook review 2 remediation plan": [
+      "vibe hook review 2 remediation plan"
+    ],
+    "vibe hook review 2 remediation tasks": [
+      "vibe hook review 2 remediation tasks"
+    ],
     "vibe hooks": [
       "vibe hooks"
     ],
@@ -131483,6 +131516,9 @@
     ],
     "vibe print mode prompt": [
       "vibe print mode prompt"
+    ],
+    "vibe process start shell guard": [
+      "vibe process.start shell guard"
     ],
     "vibe prompt advisor": [
       "vibe prompt advisor"

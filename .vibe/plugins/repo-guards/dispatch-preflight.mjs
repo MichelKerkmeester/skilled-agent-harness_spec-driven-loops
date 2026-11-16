@@ -13,14 +13,16 @@ import { join } from 'node:path';
 
 import { evaluateDispatch } from '../../../.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs';
 import { isHookEnabled } from '../../../.skilled/hooks/shared/hook-flags.mjs';
-import { allow, deny, readPayload, runGuard, toCoreCall, REPO_ROOT } from './lib/hook-io.mjs';
+import { allow, deny, readPayload, runGuard, sessionDirFor, toCoreCall, REPO_ROOT } from './lib/hook-io.mjs';
 
 const SKILLS_ROOT = join(REPO_ROOT, '.skilled', 'skills');
 
 // The rule checks read the folder the command runs in, which the payload carries.
 // toCoreCall anchors file paths to the checkout, so its cwd is not the run folder.
+// A relative cwd resolves the way every other Vibe hook resolves it; a payload
+// with no cwd leaves the rule checks on their own default.
 function ruleContext(payload) {
-  const cwd = typeof payload?.cwd === 'string' && payload.cwd ? payload.cwd : undefined;
+  const cwd = typeof payload?.cwd === 'string' && payload.cwd.trim() ? sessionDirFor(payload.cwd) : undefined;
   return cwd ? { repoRoot: REPO_ROOT, cwd } : { repoRoot: REPO_ROOT };
 }
 

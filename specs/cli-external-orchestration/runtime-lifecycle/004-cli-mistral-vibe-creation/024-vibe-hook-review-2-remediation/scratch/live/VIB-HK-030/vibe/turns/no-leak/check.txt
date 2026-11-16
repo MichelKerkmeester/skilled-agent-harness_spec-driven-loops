@@ -1,0 +1,3 @@
+$ if grep -rqs 'placeholder-not-a-secret' "$VIBE_HOME/logs/session/unified"; then echo value-leaked; exit 1; fi; echo value-absent
+value-absent
+[exit 0]

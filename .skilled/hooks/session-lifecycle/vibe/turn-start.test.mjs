@@ -12,7 +12,7 @@
 
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { mkdtempSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import test from 'node:test';
@@ -83,6 +83,25 @@ test('a main-session prompt carries the advisor brief', async () => {
   assert.equal(seen[0].session_id, 'session-composer');
   assert.equal(seen[0].hook_event_name, 'UserPromptSubmit');
   assert.equal(seen[0].cwd, REPO_ROOT);
+});
+
+test('the head receipt lands in the state folder the injected environment names', async () => {
+  const stateDir = mkdtempSync(join(tmpdir(), 'vibe-advisor-receipts-'));
+  try {
+    const head = 'Advisor: route sk-code';
+    const options = {
+      run: async () => ({ hookSpecificOutput: { additionalContext: head } }),
+      env: { SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR: stateDir },
+      isEnabled: () => true,
+    };
+    const payload = payloadFor({ session_id: 'session-receipt-env' });
+
+    assert.equal(await buildAdvisorPart(payload, options), head);
+    assert.equal(readdirSync(join(stateDir, 'vibe-turn-start')).length, 1);
+    assert.equal(await buildAdvisorPart(payload, options), '');
+  } finally {
+    rmSync(stateDir, { recursive: true, force: true });
+  }
 });
 
 test('a blank prompt gets nothing', () => {

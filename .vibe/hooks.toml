@@ -34,7 +34,7 @@ command = "node \"$(git rev-parse --show-toplevel)/.skilled/hooks/session-lifecy
 name = "spec-gate"
 type = "pre_tool"
 strict = true
-match = "re:bash|process_start|write_file|edit"
+match = "re:bash|process_start|process_write|write_file|edit"
 command = "node \"$(git rev-parse --show-toplevel)/.vibe/plugins/repo-guards/spec-gate.mjs\""
 
 # Refuses a tool call that would read or write a dotenv file.
@@ -42,7 +42,7 @@ command = "node \"$(git rev-parse --show-toplevel)/.vibe/plugins/repo-guards/spe
 name = "env-secret-guard"
 type = "pre_tool"
 strict = true
-match = "re:bash|process_start|read_file|write_file|edit"
+match = "re:bash|process_start|process_write|read_file|write_file|edit"
 command = "node \"$(git rev-parse --show-toplevel)/.vibe/plugins/repo-guards/env-secret-guard.mjs\""
 
 # Refuses a shell dispatch that breaks the target CLI skill's blocking hard rules.
@@ -50,15 +50,17 @@ command = "node \"$(git rev-parse --show-toplevel)/.vibe/plugins/repo-guards/env
 name = "dispatch-preflight"
 type = "pre_tool"
 strict = true
-match = "re:bash|process_start"
+match = "re:bash|process_start|process_write"
 command = "node \"$(git rev-parse --show-toplevel)/.vibe/plugins/repo-guards/dispatch-preflight.mjs\""
 
 # Refuses a write to a file a vendored tree's overlay owns and names the overlay file to edit instead.
+# Bound to the write tools only: the guard judges a write or an edit and allows every other
+# call, so a shell binding would only add a strict spawn per command.
 [[hooks]]
 name = "overlay-guard"
 type = "pre_tool"
 strict = true
-match = "re:bash|process_start|write_file|edit"
+match = "re:write_file|edit"
 command = "node \"$(git rev-parse --show-toplevel)/.vibe/plugins/repo-guards/overlay-guard.mjs\""
 
 # Refuses a native external MCP call whose family has a Code Mode manual registered.
@@ -73,7 +75,7 @@ command = "node \"$(git rev-parse --show-toplevel)/.vibe/plugins/repo-guards/mcp
 name = "git-message-gate"
 type = "pre_tool"
 strict = true
-match = "re:bash|process_start"
+match = "re:bash|process_start|process_write"
 command = "node \"$(git rev-parse --show-toplevel)/.vibe/plugins/repo-guards/git-message-gate.mjs\""
 
 # Blocks a subagent spawn to a deep-loop agent whose declared mode disagrees with the mode registry, or a repeated loop-like hand-off.

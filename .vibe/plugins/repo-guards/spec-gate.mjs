@@ -72,7 +72,13 @@ async function main() {
   if (result.decision === 'advise' && result.detail) {
     // Vibe ignores the context field on pre_tool; system_message is the one
     // field its runner shows, as a UI note to the operator. Nothing here can
-    // reach the model, so the note is not recorded as a delivered question.
+    // reach the model, so result.observe() is deliberately not called: it
+    // writes the same delivery marker the classify deferral reads, and writing
+    // it here would stop the model from ever getting the question. The note
+    // therefore repeats on each shell call while the gate is open, until a
+    // model-facing delivery writes the marker. A normal session never sees the
+    // repeat, because the classify pass writes the marker on the turn that
+    // opens the gate.
     process.stdout.write(`${JSON.stringify({ system_message: result.detail })}\n`);
     return;
   }
