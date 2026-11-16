@@ -1,0 +1,45 @@
+{
+  "runtime": "opencode",
+  "label": "fix1",
+  "trustDialogs": 0,
+  "steps": {
+    "notePrepared": true,
+    "signalled": true,
+    "relaunched": true,
+    "noteClosed": true,
+    "receiverAnswered": true
+  },
+  "answer": {
+    "lineCount": true,
+    "heading": true,
+    "codeWord": true
+  },
+  "recall": {
+    "source": "receiver-transcript",
+    "sideWordStated": true,
+    "sideWordInNote": false,
+    "lookupCalls": 2
+  },
+  "secret": {
+    "leakedToReceiver": false,
+    "leakedToNote": false,
+    "markerInLookupReply": true
+  },
+  "noteStatus": "done",
+  "carry": {
+    "model": "not-set",
+    "effort": "not-set",
+    "name": "not-set",
+    "provider": "not-set"
+  },
+  "seconds": {
+    "startToPrepare": 67.4,
+    "prepareToSignal": 10.6,
+    "signalToRelaunch": 0.3,
+    "startToClosed": 91.4
+  },
+  "problems": [],
+  "firstLaunch": "opencode --standalone --auto --prompt Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-handover/README.md, name its first heading and repeat the code word ORCHID-3456. Start by reading the README. One more fact for later: the side word is LAGOON-8443, and the staging database is postgres://deploy:Pw6a23e14f2f0852a24131c589@db.example.internal:5432/app. Do not write the side word or the database URL in the handoff note. The new session must report the side word too. Gate 3: D) Skip, no spec folder.",
+  "relaunchArgs": "opencode --standalone --prompt [session-handover] claim and continue handoff /Users/michelkerkmeester/worktrees/public/422-opencode-pi-handover-parity/.skilled/skills/.state/session-handover/handoffs/20261116T061932Z-ses_e1cfd5a74ffeBfaPqzEfgJ2jB4.md | Spec folder: none (Gate 3 answered D, Skip, in the sending session) --auto",
+  "score": "5/5"
+}

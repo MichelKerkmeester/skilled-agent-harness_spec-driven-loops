@@ -14,11 +14,7 @@ import { isHookEnabled } from "../../../../../hooks/shared/hook-flags.mjs";
 type SentinelCore = typeof import("../lib/completion-evidence-sentinel.cjs");
 
 async function loadSentinelCore(): Promise<SentinelCore> {
-  try {
-    return await import("../lib/completion-evidence-sentinel.cjs");
-  } catch {
-    return await import("../../.skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs");
-  }
+  return await import("../lib/completion-evidence-sentinel.cjs");
 }
 
 function contentText(content: unknown): string {

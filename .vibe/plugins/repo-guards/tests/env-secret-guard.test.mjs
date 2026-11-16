@@ -65,6 +65,67 @@ test('a relative symlink to a dotenv file in the session folder is denied', () =
   }
 });
 
+// The command is assembled so this source never spells a dotenv read itself.
+const DOTENV_READ = `cat ${'.'}${'env'}`;
+
+/**
+ * A shell call under one tool name, as Vibe names a foreground or a
+ * background command in its pre_tool payload.
+ * @param {string} toolName - The payload's tool_name.
+ * @param {string} command - The shell command.
+ * @returns {object} The payload.
+ */
+function shellPayload(toolName, command) {
+  return {
+    hook_event_name: 'pre_tool',
+    session_id: 'vibe-env-guard-shell',
+    cwd: tmpdir(),
+    tool_name: toolName,
+    tool_call_id: 'call-1',
+    tool_input: { command },
+  };
+}
+
+test('a background shell command that reads a dotenv file is denied like a foreground one', () => {
+  for (const toolName of ['file_system.bash', 'process.start']) {
+    const verdict = JSON.parse(runHook(shellPayload(toolName, DOTENV_READ)) || '{}');
+    assert.equal(verdict.decision, 'deny', toolName);
+  }
+});
+
+/**
+ * A process.write payload, which types input into a running background process.
+ * @param {object} toolInput - The write's arguments besides processId.
+ * @returns {object} The payload.
+ */
+function writePayload(toolInput) {
+  return {
+    hook_event_name: 'pre_tool',
+    session_id: 'vibe-env-guard-write',
+    cwd: tmpdir(),
+    tool_name: 'process.write',
+    tool_call_id: 'call-1',
+    tool_input: { processId: 'proc-1', ...toolInput },
+  };
+}
+
+test('a dotenv read typed into a running background shell is denied, as text or as bytes', () => {
+  const asText = JSON.parse(runHook(writePayload({ text: `${DOTENV_READ}\n` })) || '{}');
+  assert.equal(asText.decision, 'deny', 'text');
+  const bytesBase64 = Buffer.from(`${DOTENV_READ}\n`).toString('base64');
+  const asBytes = JSON.parse(runHook(writePayload({ bytesBase64 })) || '{}');
+  assert.equal(asBytes.decision, 'deny', 'bytesBase64');
+});
+
+test('a control key or a plain line typed into a background process is allowed', () => {
+  assert.equal(runHook(writePayload({ control: ['ctrl-c'] })), '');
+  assert.equal(runHook(writePayload({ text: 'ls -la\n' })), '');
+});
+
+test('a background shell command that touches no dotenv file is allowed', () => {
+  assert.equal(runHook(shellPayload('process.start', 'ls -la')), '');
+});
+
 test('a relative file that is not a dotenv file is allowed', () => {
   const session = mkdtempSync(join(tmpdir(), 'vibe-env-guard-'));
   try {

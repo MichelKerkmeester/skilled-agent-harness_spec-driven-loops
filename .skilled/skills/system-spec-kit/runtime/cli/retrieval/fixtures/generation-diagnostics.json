@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6860,
-    "ok": 19434,
+    "missing-frontmatter": 6865,
+    "ok": 19405,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27921,
+  "documentsScanned": 27897,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "84ea5e56b98c7b9859a23b85f4d771447221a19c1163d42e098880549ffebb21",
+  "manifestHash": "769952bf08d7ab0c26dc6409bfdc26af6dbd0b99501a4014970a35c001e14462",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44486,
+      "ok": 44580,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -5012,6 +5012,18 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/process-start-shell-guard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/process-write-shell-guard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/prompts-mirror.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -5067,6 +5079,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-end-completion.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-advisor-uptake.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -34505,12 +34523,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/system-spec-kit/runtime/tests/adversarial/README.md",
       "reason": "no opening frontmatter delimiter"
@@ -35007,6 +35019,18 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/004-vibe-contract-pin/evidence/stdin.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -35784,6 +35808,12 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/benchmark/summary.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/research.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -52621,43 +52651,67 @@
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/codex-watchdog/opencode/codex-hooks-watchdog.js",
+      "path": ".skilled/hooks/cli-dispatch/cursor/post-tool-use.mjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/claude/completion-evidence-stop.cjs",
+      "path": ".skilled/hooks/cli-dispatch/opencode/cli-dispatch-audit.js",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/codex/completion-evidence-stop.cjs",
+      "path": ".skilled/hooks/cli-dispatch/vibe/dispatch-preflight.mjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/cursor/completion-evidence-response.mjs",
+      "path": ".skilled/hooks/codex-global-hooks-check/claude/install-codex-hooks.mjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/devin/completion-evidence-stop.cjs",
+      "path": ".skilled/hooks/codex-global-hooks-check/cursor/install-codex-hooks.mjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/dsh/completion-evidence.mjs",
+      "path": ".skilled/hooks/codex-global-hooks-check/devin/install-codex-hooks.mjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/opencode/system-completion-sentinel.js",
+      "path": ".skilled/hooks/codex-global-hooks-check/opencode/codex-hooks-watchdog.js",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/opencode/system-speckit-completion.js",
+      "path": ".skilled/hooks/completion-evidence/claude/completion-evidence-stop.cjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/pi/completion-evidence.ts",
+      "path": ".skilled/hooks/completion-evidence/codex/completion-evidence-stop.cjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/vibe/completion-evidence-post-agent.cjs",
+      "path": ".skilled/hooks/completion-evidence/cursor/completion-evidence-response.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/devin/completion-evidence-stop.cjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/dsh/completion-evidence.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/opencode/system-completion-sentinel.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/opencode/system-speckit-completion.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/pi/completion-evidence.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/vibe/completion-evidence-post-agent.cjs",
       "reason": "symlink not followed"
     },
     {
@@ -52682,18 +52736,6 @@
     },
     {
       "path": ".skilled/hooks/directive-lifecycle/claude/speckit-directive-lifecycle-boundary.ts",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/dispatch/cursor/post-tool-use.mjs",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/dispatch/opencode/cli-dispatch-audit.js",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/dispatch/vibe/dispatch-preflight.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -52854,18 +52896,6 @@
     },
     {
       "path": ".skilled/hooks/goal/opencode/opencode-goal.js",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/hook-install/claude/install-codex-hooks.mjs",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/hook-install/cursor/install-codex-hooks.mjs",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/hook-install/devin/install-codex-hooks.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -53189,11 +53219,11 @@
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/task-dispatch/opencode/system-deep-loop-guard.js",
+      "path": ".skilled/hooks/subagent-dispatch-guard/opencode/system-deep-loop-guard.js",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/task-dispatch/vibe/deep-loop-guard.mjs",
+      "path": ".skilled/hooks/subagent-dispatch-guard/vibe/deep-loop-guard.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -53846,6 +53876,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/scratch",
       "reason": "excluded directory"
     },
     {
@@ -55337,6 +55371,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/lineages",
       "reason": "excluded directory"
     },
@@ -55757,6 +55799,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/cli-dispatch/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/001-decision-capture-build/scratch",
       "reason": "excluded directory"
     },
@@ -55882,14 +55932,6 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/directive-lifecycle/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/dispatch/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -56034,6 +56076,30 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/scratch",
       "reason": "excluded directory"
     },
     {
@@ -56382,6 +56448,26 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch",
       "reason": "excluded directory"
     },
     {

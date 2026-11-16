@@ -1,0 +1,2 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: Vibe also runs the check at session start. `.skilled/hooks/session-lifecycle/vibe/session-start.mjs` runs `python3 check-dist-staleness.sh --all` when the `dist-freshness` concern is on, and adds what it prints to the session-start `additional_context`. Add one sentence before the two `post_tool` hooks, and add `session_start` to the Vibe row's event cell.

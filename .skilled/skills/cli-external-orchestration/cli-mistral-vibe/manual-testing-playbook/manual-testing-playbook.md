@@ -1,7 +1,7 @@
 ---
 title: "cli-mistral-vibe: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance and per-scenario validation files for the cli-mistral-vibe skill."
-version: 1.0.7.0
+version: 1.0.11.0
 ---
 
 # cli-mistral-vibe: Manual Testing Playbook
@@ -179,7 +179,7 @@ This section records safe execution waves for the manual-testing package. It doe
 - Wave 1, static suites: `VIB-HR-001`, `VIB-HR-002`, `VIB-GRD-001`, `VIB-MIR-001`, `VIB-GOAL-001`, `VIB-FAN-001`.
 - Wave 2, cite-only keyed evidence: `VIB-CLI-001`, `VIB-MOD-001`, `VIB-GOAL-002`.
 - Wave 3, routing: `VIB-ROUTE-001`, `VIB-ROUTE-002`.
-- Wave 4, live hook conversations: `VIB-HK-001` to `VIB-HK-027`, one runner process at a time, because the runner's repository snapshot treats a sibling run's evidence write as a repository change.
+- Wave 4, live hook conversations: `VIB-HK-001` to `VIB-HK-030`, one runner process at a time, because the runner's repository snapshot treats a sibling run's evidence write as a repository change.
 
 ### What Belongs In Scenario Files
 
@@ -258,7 +258,7 @@ This category covers the routing front door and the decision behind it. The fron
 
 ---
 
-## 15. HOOK AND PLUGIN UTILIZATION (`VIB-HK-001..VIB-HK-027`)
+## 15. HOOK AND PLUGIN UTILIZATION (`VIB-HK-001..VIB-HK-030`)
 
 This category covers every Vibe hook, hook part, generated mirror and the hooks renderer through scripted conversations played by the shared conversation runner's `vibe` adapter. Each turn's check reads a journal record or a file the hook wrote, never the reply text alone, because a Vibe deny leaves the session at exit 0.
 
@@ -291,6 +291,9 @@ The live verdict for each scenario, with the date, commit and model of the run, 
 - `VIB-HK-025`: [A mirrored prompt from .vibe/prompts runs by name](hook-scenarios/prompts-mirror.md)
 - `VIB-HK-026`: [The manual relaunch tier hands off and a fresh session claims it](hook-scenarios/relaunch-manual-tier.md)
 - `VIB-HK-027`: [The automatic relaunch tier nudges, ends and relaunches a Vibe session](hook-scenarios/relaunch-automatic-tier.md)
+- `VIB-HK-028`: [The model loads the skill the turn-start advisor brief names](hook-scenarios/turn-start-advisor-uptake.md)
+- `VIB-HK-029`: [A background shell command meets the same guards as a foreground one](hook-scenarios/process-start-shell-guard.md)
+- `VIB-HK-030`: [A command typed into a running background shell meets the shell guards](hook-scenarios/process-write-shell-guard.md)
 
 ---
 
@@ -333,7 +336,7 @@ The `cli-mistral-vibe` packet owns the dispatch contract around the `vibe` binar
 
 | Test Surface | Coverage | Playbook Overlap |
 |---|---|---|
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | The seven Vibe hard rules, the documented dispatch line and the enforcement guards | `VIB-HR-001` |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs` | The seven Vibe hard rules, the documented dispatch line and the enforcement guards | `VIB-HR-001` |
 | `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/hard-rules.json` | The seven rule ids, messages and severities | `VIB-HR-002` |
 | `.vibe/plugins/repo-guards/tests/spec-gate.test.mjs` | The interactive deny and the two child exemptions | `VIB-GRD-001` |
 | `.skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs` | Generated agent profiles, `--check` drift mode | `VIB-MIR-001` |
@@ -345,7 +348,7 @@ The `cli-mistral-vibe` packet owns the dispatch contract around the `vibe` binar
 | `.skilled/bin/compiled-route.cjs` and `.skilled/bin/lib/compiled-routing/` | The front door, the serving gate and the compiled decision | `VIB-ROUTE-001`, `VIB-ROUTE-002` |
 | `.skilled/skills/cli-external-orchestration/hub-router.json` and `mode-registry.json` | The legacy mode row, the keyword class and the mode registration | `VIB-ROUTE-002` |
 | `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md` | Dispatch shape, hard rules and success criteria | All scenarios |
-| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs` | The `vibe` conversation adapter: launch, resume, compact, exit and the question box | `VIB-HK-001` to `VIB-HK-027` |
+| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs` | The `vibe` conversation adapter: launch, resume, compact, exit and the question box | `VIB-HK-001` to `VIB-HK-030` |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/sync-agents-vibe.test.mjs` | Generated agent profiles, including the subagent type Vibe needs to spawn one | `VIB-HK-024` |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` | Five-section scenario contract, verdicts, index bijection | This root playbook |
 
@@ -423,6 +426,9 @@ The catalog entry for this mode lives under the `cli-external-orchestration` fea
 - VIB-HK-025: [A mirrored prompt from .vibe/prompts runs by name](hook-scenarios/prompts-mirror.md)
 - VIB-HK-026: [The manual relaunch tier hands off and a fresh session claims it](hook-scenarios/relaunch-manual-tier.md)
 - VIB-HK-027: [The automatic relaunch tier nudges, ends and relaunches a Vibe session](hook-scenarios/relaunch-automatic-tier.md)
+- VIB-HK-028: [The model loads the skill the turn-start advisor brief names](hook-scenarios/turn-start-advisor-uptake.md)
+- VIB-HK-029: [A background shell command meets the same guards as a foreground one](hook-scenarios/process-start-shell-guard.md)
+- VIB-HK-030: [A command typed into a running background shell meets the shell guards](hook-scenarios/process-write-shell-guard.md)
 
 ### CLI ADAPTER STRESS MATRIX
 

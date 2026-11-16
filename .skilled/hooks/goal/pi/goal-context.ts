@@ -17,7 +17,6 @@ import type {
 
 const RUNTIME = 'pi';
 const RUNTIME_LABEL = 'Pi';
-const DISCOVERY_CORE_PATH = '../../.skilled/hooks/goal/lib/goal-core.cjs';
 const MANAGE_CLI_RELATIVE_PATH = '.skilled/hooks/goal/bin/goal.cjs';
 
 type GoalRecord = {
@@ -74,13 +73,9 @@ function asGoalCore(module: unknown): GoalCore {
   return candidate.default ?? candidate as GoalCore;
 }
 
-/** Load the core from this folder; the second path is left from the link-based layout. */
+/** Load the core from this folder, where Pi loads the extension through its entry file. */
 async function loadGoalCore(): Promise<GoalCore> {
-  try {
-    return asGoalCore(await import('../lib/goal-core.cjs'));
-  } catch {
-    return asGoalCore(await import(DISCOVERY_CORE_PATH));
-  }
+  return asGoalCore(await import('../lib/goal-core.cjs'));
 }
 
 function goalOptions(ctx: ExtensionContext): GoalOptions {
@@ -205,8 +200,7 @@ function extractTurnEndText(event: TurnEndEvent): string {
  * session), and `turn_end` (heuristic verify -- observe-only, see NOTE).
  * Every handler dynamic-imports the runtime-neutral goal core at call time
  * and fails open on any error so a goal-state bug can never block a Pi turn
- * or session. Core loading tries this folder's `../lib/` path first. A second, longer
- * path is left from the link-based layout and does not resolve from this folder.
+ * or session. The core loads from this folder's `../lib/` path.
  *
  * NOTE: `turn_end`/`agent_end`/`agent_settled` are `void`-returning events
  * in Pi's extension API, so a handler cannot force continuation. The

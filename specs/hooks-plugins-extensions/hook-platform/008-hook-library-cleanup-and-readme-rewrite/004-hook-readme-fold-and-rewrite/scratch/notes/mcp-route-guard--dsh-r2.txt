@@ -1,0 +1,2 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: the root is four levels above the `dsh/` folder, not above the file. Write: "The adapter takes that checkout from its own location, four levels above the `dsh/` folder, which is the repository root."

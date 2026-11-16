@@ -1,7 +1,7 @@
 ---
 title: "JEV-017 -- A jev dispatch resolves to cli-classifier from the command"
 description: "Confirm the dispatch audit resolves a jev judgment command to the cli-classifier hub's cli-jev packet, for `JEV-017`."
-version: 0.1.0.1
+version: 0.1.1.0
 ---
 
 # JEV-017 -- A jev dispatch resolves to cli-classifier from the command
@@ -48,12 +48,12 @@ Operators run the exact prompt and command sequence for `JEV-017` and confirm th
 ### Commands
 
 ```bash
-npx vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+npx vitest run .skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| JEV-017 | Dispatch resolution | Confirm the audit resolves the jev judgment commands and the server binary to `cli-classifier` | `use jev choice to pick a queue` | 1. `npx vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs` | The suite reports every test passing; the shape assertions resolve the four judgment subcommands and `jev-mcp` to `cli-classifier`; `jev --version`, `jev auth status` and `jev install-skills` resolve to no packet | The test file path, the runner command, and the pass and fail counts from the summary line | PASS when the suite reports zero failures and the jev shape assertions ran; FAIL when a judgment command resolves to no packet, or a non-judgment form resolves to the packet; SKIP only when the runner cannot start, naming the missing runner as the blocker | A single failing shape assertion is enough: the audit is the only path by which the packet's rules fire. If the runner cannot start, install dependencies rather than editing the test |
+| JEV-017 | Dispatch resolution | Confirm the audit resolves the jev judgment commands and the server binary to `cli-classifier` | `use jev choice to pick a queue` | 1. `npx vitest run .skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs` | The suite reports every test passing; the shape assertions resolve the four judgment subcommands and `jev-mcp` to `cli-classifier`; `jev --version`, `jev auth status` and `jev install-skills` resolve to no packet | The test file path, the runner command, and the pass and fail counts from the summary line | PASS when the suite reports zero failures and the jev shape assertions ran; FAIL when a judgment command resolves to no packet, or a non-judgment form resolves to the packet; SKIP only when the runner cannot start, naming the missing runner as the blocker | A single failing shape assertion is enough: the audit is the only path by which the packet's rules fire. If the runner cannot start, install dependencies rather than editing the test |
 
 ### Recorded Result
 

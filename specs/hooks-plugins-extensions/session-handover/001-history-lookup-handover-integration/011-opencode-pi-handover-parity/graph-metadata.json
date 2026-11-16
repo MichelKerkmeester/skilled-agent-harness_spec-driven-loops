@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity",
+  "spec_folder": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity",
+  "parent_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode pi handover parity",
+      "phase 11 opencode pi handover parity",
+      "opencode pi handover parity plan",
+      "opencode pi handover parity tasks",
+      "opencode pi handover parity goal",
+      "opencode pi handover parity implementation summary"
+    ],
+    "key_topics": [
+      "opencode",
+      "handover",
+      "parity",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "live",
+      "hop",
+      "deepseek"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".skilled/hooks/session-handover/lib/nudge.cjs",
+      ".skilled/hooks/session-handover/bin/session-handover.cjs",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/hooks/session-handover/history/lib/core.ts",
+      ".skilled/hooks/session-handover/history/lib/navigator.ts",
+      "scratch/harness/live-hop.sh",
+      "scratch/harness/score.cjs",
+      ".opencode/plugins/session-handover.js",
+      ".skilled/hooks/session-handover/pi/session-handover.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/lib/nudge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/bin/session-handover.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "core.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/session-handover/history/lib/core.ts",
+        "source": "derived"
+      },
+      {
+        "name": "navigator.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/session-handover/history/lib/navigator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "live-hop.sh",
+        "kind": "script",
+        "path": "scratch/harness/live-hop.sh",
+        "source": "derived"
+      },
+      {
+        "name": "score.cjs",
+        "kind": "file",
+        "path": "scratch/harness/score.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-handover.js",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/session-handover/pi/session-handover.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "History Lookup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On a live Pi hop with DeepSeek V4.1 Flash at max thinking, the sender kept the side word out of its note as told and then wrote that a fresh session could not recover it",
+    "created_at": "2026-11-16T05:25:19Z",
+    "last_save_at": "2026-11-16T06:31:00.812Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:0bc32983e54ce035a579408f93b2e09abce3de9a513957d6451cb98d403abbfa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "eba2bf0a3ef62e6f7dd021fc8066bdc8e42d90a5375b2f4c97807e2d3b30aac9",
+      "plan.md": "00015637387945032200e440a8d705ce896ee9932d95266adf06a04e5a567c99",
+      "tasks.md": "42de5744581baa029fb013fa1560bdb78fca32ff36f33d07cf99039d88d2fa1d",
+      "implementation-summary.md": "b62e371323545a1fb0a80cea1829ca6fc4e028fc1149c6e9564d8d06b3b0432a",
+      "research/research.md": "9a05ede1e3c3dde4b1ea0d117e315959d801111940c26d37831deeb2bf2248ec"
+    },
+    "last_active_at": null
+  }
+}

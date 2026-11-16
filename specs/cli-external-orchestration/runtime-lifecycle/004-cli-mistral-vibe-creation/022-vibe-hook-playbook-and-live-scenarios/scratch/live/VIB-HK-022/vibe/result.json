@@ -2,14 +2,15 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 474966661,
-  "socket": "conv-38449-vibe",
-  "session_id": "63d609b8-de43-4697-9b5f-5fefd8b053f4",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.GQMqmzSZeq/vibe",
-  "vibe_home": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.GQMqmzSZeq/vibe-home-hKCuuu",
+  "seed": 747033160,
+  "socket": "conv-33344-vibe",
+  "session_id": "0b5b4b20-9c75-4740-a5b6-4d4fda21618d",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.xmexVjhwRD/vibe",
+  "vibe_home": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.xmexVjhwRD/vibe-home-2l06mX",
+  "vibe_model": "deepseek-flash",
   "vibe_home_removed": false,
-  "started_at": "2026-11-15T16:18:59.945Z",
-  "finished_at": "2026-11-15T16:20:30.845Z",
+  "started_at": "2026-11-15T21:25:54.749Z",
+  "finished_at": "2026-11-15T21:27:31.738Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -48,7 +49,7 @@
       "attempts": 1,
       "reason": null,
       "blocker": null,
-      "observed": "2026-11-15T17:19:40+0100 action=skip reason=no-session-pid",
+      "observed": "2026-11-15T22:26:43+0100 action=skip reason=no-session-pid",
       "evidence": "turns/close"
     },
     {
@@ -57,7 +58,7 @@
       "attempts": 1,
       "reason": null,
       "blocker": null,
-      "observed": "rendered-guard-refused-after-resume since=2026-11-15T16:19:46.503Z",
+      "observed": "rendered-guard-refused-after-resume since=2026-11-15T21:26:49.445Z",
       "evidence": "turns/guarded-after-resume"
     }
   ]

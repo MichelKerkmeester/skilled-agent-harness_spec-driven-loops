@@ -5,9 +5,9 @@
   "parent_id": null,
   "children_ids": [
     "hooks-plugins-extensions/ask-surface-guard",
+    "hooks-plugins-extensions/cli-dispatch",
     "hooks-plugins-extensions/decision-capture",
     "hooks-plugins-extensions/directive-lifecycle",
-    "hooks-plugins-extensions/dispatch",
     "hooks-plugins-extensions/dist-freshness",
     "hooks-plugins-extensions/env-secret-guard",
     "hooks-plugins-extensions/git-hooks",

@@ -14,22 +14,42 @@ version: 1.0.1.0
 
 ## 1. OVERVIEW
 
-`tests/` holds the automated checks for the overlay adapters that need more than the core suite beside `lib/`. The DSH suite drives `registerOverlayGuard()` with a fake plugin context and a stubbed core, then asserts the handler result and the arguments the core received. The OpenCode suite runs the real plugin from a copy placed in a vendored fixture tree, with a real manifest and the real engine, so the refusal it matches is the line an agent receives. Both run under `node --test`.
+`tests/` holds the checks for the overlay adapters that need more than the core suite in `lib/`. Both suites run under `node --test`.
+
+The DSH suite drives `registerOverlayGuard()` with a fake plugin context and a stubbed core. It asserts the handler result and the arguments the core received.
+
+The OpenCode suite runs the real plugin from a copy inside a vendored fixture tree. That tree carries a real manifest and the real engine. The refusal it matches is the line an agent receives.
 
 ---
 
-## 2. WHAT EACH FILE DOES
+## 2. FILES
 
-| File | Event or role | What it does | On error |
-|---|---|---|---|
-| [`dsh-overlay-guard.test.mjs`](./dsh-overlay-guard.test.mjs) | `node --test` suite | Asserts a deny for an owned path, that every `*** Add File:` and `*** Update File:` path in an `apply_patch` body is judged, that a non-write tool is ignored, that the kill switch registers nothing, that a core throw fails open with one log line, and that allowed writes log the core's notes. | Not applicable, the suite asserts behavior. |
-| [`opencode-overlay-guard.test.mjs`](./opencode-overlay-guard.test.mjs) | `node --test` suite | Runs the real plugin in a vendored fixture tree, then asserts a refusal for an overlay-owned path, a strict-writes refusal for a new unowned file under `.skilled`, an allow for a path outside every vendored root, an allow for a tool that writes no file, the fast exit for a tree with no overlay manifest, a refusal when an `apply_patch` body names an overlay-owned file, an allow when a patch body names only a path outside every vendored root, an allow when a write's content merely looks like a patch, and one log line when the manifest cannot be read. | Not applicable, the suite asserts behavior. |
+| File | Responsibility |
+|---|---|
+| `dsh-overlay-guard.test.mjs` | Asserts the DSH adapter's decisions against a stubbed core. |
+| `opencode-overlay-guard.test.mjs` | Asserts the real OpenCode plugin's refusals inside a vendored fixture tree. |
+
+The DSH suite asserts a deny for an owned path. It also asserts that every `*** Add File:` and `*** Update File:` path in an `apply_patch` body is judged. A non-write tool is ignored and the kill switch registers nothing. A core throw fails open and logs one line. Allowed writes log the core's notes.
+
+The OpenCode suite asserts a refusal for an overlay-owned path. With `strictWrites` on it asserts a refusal for a new unowned file under `.skilled`. An `apply_patch` body naming an overlay-owned file is refused.
+
+The suite allows a path outside every vendored root and a tool that writes no file. A tree with no overlay manifest takes the fast exit. A patch body naming only a path outside every vendored root is allowed. A write whose content merely looks like a patch is allowed. An unreadable manifest allows the write and logs the reason once.
 
 ---
 
-## 3. RELATED
+## 3. VALIDATION
+
+```bash
+node --test .skilled/hooks/overlay-guard/tests/
+```
+
+Expected result: both suites pass.
+
+---
+
+## 4. RELATED
 
 - [`../README.md`](../README.md): the concern README with the decision table and the per-runtime matrix.
 - [`../dsh/overlay-guard.mjs`](../dsh/overlay-guard.mjs): the DSH adapter under test.
 - [`../opencode/overlay-guard.js`](../opencode/overlay-guard.js): the link to the OpenCode plugin under test.
-- [`../lib/overlay-guard.cjs`](../lib/overlay-guard.cjs): the shared core the suite stubs.
+- [`../lib/overlay-guard.cjs`](../lib/overlay-guard.cjs): the shared core the DSH suite stubs.

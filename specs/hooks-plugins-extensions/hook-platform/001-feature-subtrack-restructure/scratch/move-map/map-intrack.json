@@ -41,7 +41,7 @@
  },
  {
   "from": "hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair",
-  "to": "hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair"
+  "to": "hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair"
  },
  {
   "from": "hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard",

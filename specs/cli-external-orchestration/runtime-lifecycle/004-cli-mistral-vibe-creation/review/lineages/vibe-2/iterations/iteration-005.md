@@ -2,27 +2,28 @@
 
 ## Dispatcher
 
-- Mode: review (fan-out lineage `vibe-2`)
-- Session: `fanout-vibe-2-1794765851303-zrv85l`, generation 1, lineageMode `new`
-- Dimension: cross-reference (no declared dimension remained, so the final iteration runs the cross-reference pass and records that fallback)
-- Review target: `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation` (spec-folder)
-- Operator review focus: phases 013-022 and the 2026-11-15 fixes, with the open lead on VIB-HK-005/006/007. This iteration addresses the focus by closing the last unchecked overlay (`feature_catalog_code`), re-reading the carried P1s against the current files, and testing the lead's own discriminator: the same journal with a fresh state dir returns the text, so the difference has to be the state the live run already wrote.
-- Sources read this iteration: `steer.md` (absent), `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:215-258`, `.skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md:155-171`, `.skilled/skills/cli-external-orchestration/feature-catalog/mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md:1-80`, `.skilled/skills/cli-external-orchestration/{mode-registry.json,hub-router.json,leaf-manifest.json}`, `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/{turn-start-compaction-reinjection.md,compaction-post-tool.md}`, `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:739,985-1090`, `.skilled/hooks/session-handover/vibe/handover-parts.mjs:66-72`, `.skilled/hooks/session-handover/lib/relaunch-core.cjs:1191-1243`, `022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md:46`.
+- Route: `Resolved route: mode=review target_agent=deep-review`
+- Mode: review, execution single_review_iteration, state source externalized files
+- Session: `fanout-vibe-2-1794808672532-65xu0h`, generation 1, lineageMode `new`
+- Iteration: 5 of 5 (stopPolicy `max-iterations`)
+- Dimension: traceability and maintainability
+- Operator review focus: correctness, security and fail-open defects, wire-format and payload edge cases, ordering and kill-switch gaps, and parity gaps against the OpenCode plugins. This iteration addresses the focus directly: it compares each ported guard against its OpenCode original, and it tests the wire-format assumptions the `post_tool` payload rests on.
+- Sources read: `.vibe/hooks.toml`, `.vibe/plugins/repo-guards/post-edit-quality.mjs`, `dist-freshness.mjs`, `classifier-injection-screen.mjs`, `lib/hook-io.mjs`, `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md`, `.opencode/plugins/env-secret-guard.js`, `system-skill-advisor.js`, `sk-code-post-edit-quality.js`, `system-dist-freshness-guard.js`, `classifier-injection-screen.js`, `.vibe/plugins/repo-guards/fixtures/wire-format/tool-names.md`.
 
 ## Files Reviewed
 
-- `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:215-258`
-- `.skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md:155-171`
-- `.skilled/skills/cli-external-orchestration/feature-catalog/mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md:1-80`
-- `.skilled/skills/cli-external-orchestration/mode-registry.json:241-264`
-- `.skilled/skills/cli-external-orchestration/hub-router.json:104-111,272-277`
-- `.skilled/skills/cli-external-orchestration/leaf-manifest.json:82-83`
-- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection.md:1-45`
-- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/compaction-post-tool.md:100-158`
-- `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:739,985-1090`
-- `.skilled/hooks/session-handover/vibe/handover-parts.mjs:66-72`
-- `.skilled/hooks/session-handover/lib/relaunch-core.cjs:1191-1243`
-- `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md:46`
+- `.vibe/plugins/repo-guards/post-edit-quality.mjs:39-70`
+- `.vibe/plugins/repo-guards/dist-freshness.mjs:50-113`
+- `.vibe/plugins/repo-guards/classifier-injection-screen.mjs:35-49`
+- `.vibe/plugins/repo-guards/lib/hook-io.mjs:25-27`
+- `.vibe/hooks.toml:1-140`
+- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:31-40,116-150,186-245`
+- `.opencode/plugins/env-secret-guard.js:1-140`
+- `.opencode/plugins/system-skill-advisor.js:1-130`
+- `.opencode/plugins/sk-code-post-edit-quality.js`
+- `.opencode/plugins/system-dist-freshness-guard.js`
+- `.opencode/plugins/classifier-injection-screen.js`
+- `.vibe/plugins/repo-guards/fixtures/wire-format/tool-names.md:1-13`
 
 ## Findings - New
 
@@ -32,75 +33,74 @@ None.
 
 ### P1 Findings
 
-1. **The detector commits the watermark before it knows it has any text, so a compaction whose goal slice and handoff note are both empty is marked injected and never retried** -- `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:231` -- `writeWatermark` runs at `:231` and `resetReceipt` at `:236`, both before the sections are built at `:241-250` and before the empty check at `:252` returns `''`. The comment at `:233-234` justifies the order for the receipt ("the advisor part that runs later in the same turn already sees the re-armed receipt") but the same order applies to the watermark, which is the durable record that this compaction was handled. This is the refinement of R1-P1-001 that explains the operator's own discriminator: `buildCompactionPart` on the same journal with a fresh state dir returns the text because no watermark exists, while the live run has already written one on a call that produced nothing.
-   Finding class: correctness
-   Scope proof: the detector is a `reviewScopeFiles` entry and the whole path from the watermark read at `:219` to the empty return at `:252` was re-read this iteration.
-   Affected surface hints: `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs`
-   Case: a receiver session starts without `VIBE_SPEC_FOLDER` and with no open handoff note, a compaction lands, the detector writes the watermark and returns nothing, and every later call for that compaction is filtered out at `:223` even after the operator binds a packet.
-   ```json
-   {"type":"claim","claim":"The watermark is written before the sections are built, so a compaction that yields no text is permanently marked as injected.","evidenceRefs":["compaction-context.mjs:219-225","compaction-context.mjs:231","compaction-context.mjs:236","compaction-context.mjs:241-250","compaction-context.mjs:252"],"counterevidenceSought":"Checked whether the empty path restores the watermark (it does not), whether a later call can re-derive the compaction (the filter at :223 drops it by id), and whether the fresh-state-dir behaviour the operator reported is explained by anything else (a fresh dir has no watermark, so the filter passes and the text is built).","alternativeExplanation":"The live failure could also be the two-seam consumption R1-P1-001 describes, where the post_tool seam writes the watermark and the turn_start seam then finds nothing. Both mechanisms share the same ordering defect and the same fix, which is why this is recorded as a refinement rather than a separate root cause.","finalSeverity":"P1","confidence":"high","downgradeTrigger":"Downgrade only if a later read shows the empty path restoring the watermark or the filter keyed on something other than the compaction id."}
-   ```
+None new. R1-P1-001 remains active and is carried forward.
 
 ### P2 Findings
 
-1. **The feature catalog's dispatch-mode page lists three composition points and omits the hand-over part that now runs in all three composers, and the catalog never mentions hand-over at all** -- `.skilled/skills/cli-external-orchestration/feature-catalog/mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md:39` -- the paragraph enumerates the rendered home's entries: `spec-gate-classify` and `turn-start` on `pre_agent`, `turn-end` on `post_agent`, the strict guards on `pre_tool`, the non-strict checks on `post_tool`, and `session-start`/`session-end`. It does not mention that `turn-start`, `compaction-post-tool` and `turn-end` each also run the hand-over part (`handover-parts.mjs:193,294` and the turn-end arm). `grep -rn "handover\|hand-over" .skilled/skills/cli-external-orchestration/feature-catalog/` returns nothing, and `git log` shows the page was last touched by `52be7e1f4db`, before `e5b8611a4fa`.
-   Finding class: traceability
-   Scope proof: the catalog is the `feature_catalog_code` overlay's own surface and the composers it describes are inside the review target.
-   Affected surface hints: `.skilled/skills/cli-external-orchestration/feature-catalog/mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md`, `.skilled/hooks/session-handover/vibe/handover-parts.mjs`
-   Case: an operator reads the catalog to learn what a Vibe dispatch runs, does not see that a dispatch can hand over and relaunch the session, and is surprised by a relaunch when `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1` is set in the shell.
+1. **Three hooks gate on a `post_tool` field value the reference doc records as unobserved** -- `.vibe/plugins/repo-guards/post-edit-quality.mjs:45`, `.vibe/plugins/repo-guards/dist-freshness.mjs:106`, `.vibe/plugins/repo-guards/classifier-injection-screen.mjs:41` -- all three read `if (payload.tool_status && payload.tool_status !== 'success') return allow();`. The reference doc states that only the `pre_tool` and `post_agent` payloads were captured and that the other five, `post_tool` among them, are "documented rather than observed" (`guards-and-hooks.md:196-198`). The only live evidence for the value is VIB-HK-018, a shell command; no scenario exercises a `write_file` or `edit` result. The OpenCode originals have no equivalent gate — they run on a transform after the result is already in the message stream — so the field is a Vibe-only assumption with no cross-runtime precedent.
+   Finding class: matrix/evidence
+   Scope proof: the three reads are inside the declared target; the reference doc and the OpenCode originals are cited as the evidence and the parity reference.
+   Affected surface hints: `.vibe/plugins/repo-guards/post-edit-quality.mjs`, `.vibe/plugins/repo-guards/dist-freshness.mjs`, `.vibe/plugins/repo-guards/classifier-injection-screen.mjs`, the three `post_tool` bindings in `.vibe/hooks.toml`
+   Case: a Vibe build whose `post_tool` payload reports a successful call as `'ok'` or `'completed'` rather than `'success'`. All three hooks return early on every write and edit, so post-edit quality findings, the dist-staleness banner and the injection advisory all stop arriving, with no error and no log line.
 
-2. **Both compaction scenarios require a non-empty goal slice, so the empty-slice path that loses the injection has no coverage** -- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection.md:31` -- VIB-HK-006's expected signal is "a `pre_agent_turn` hook result whose injected text carries `Context restored after a compaction.` and the slice's `# Goal:` heading", and VIB-HK-007's is "a later `post_tool_call` result carries `Context restored after a compaction.`" with the probe model bound through `VIBE_SPEC_FOLDER`. Both therefore bind a packet with a `goal.md`, which is exactly the condition under which `sections` is non-empty and the defect in R5-P1-001 cannot fire. No scenario runs a compaction in a session with no bound packet and no open handoff note.
-   Finding class: traceability
-   Scope proof: the scenarios are the packet's own phase-022 artifacts and the detector they exercise is inside the review target.
-   Affected surface hints: `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection.md`, `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/compaction-post-tool.md`
-   Case: the operator's live session compacts with no packet bound, the detector writes the watermark and returns nothing, and both recorded scenarios would still read PASS because neither one runs that shape.
+2. **`dist-freshness.mjs` re-implements the shared `sessionDirFor` instead of importing it** -- `.vibe/plugins/repo-guards/dist-freshness.mjs:53-55` -- the file defines a local `sessionDirFor` with the same body as the exported one in `lib/hook-io.mjs:25-27`, and imports `toCoreCall` and `REPO_ROOT` from that same module two lines above. The other five guards that need the resolution import it: `env-secret-guard.mjs:12`, `overlay-guard.mjs:14`, `post-edit-quality.mjs:16`, `spec-gate-classify.mjs:20`, `spec-gate.mjs:25`. The local copy is the only one, so a change to the shared rule — the comment at `hook-io.mjs:19-24` explains why a relative cwd resolves against the checkout — reaches five guards and not the sixth.
+   Finding class: instance-only
+   Scope proof: both files are inside the declared target.
+   Affected surface hints: `.vibe/plugins/repo-guards/dist-freshness.mjs`, `.vibe/plugins/repo-guards/lib/hook-io.mjs`
+   Case: a maintainer changes `sessionDirFor` to also normalise a `~`-prefixed cwd. Five guards pick it up; `dist-freshness` keeps the old rule, so the dist banner resolves a path the other guards resolve differently.
+
+3. **The port map records a clean hook verdict for two plugins whose tool registrations the port drops** -- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:122,131` -- the `env-secret-guard.js` row says the plugin "registers three value-free dotenv inspection tools" and gives the verdict `hook` with no note that the port cannot carry them; the `system-skill-advisor.js` row says it "exposes the advisor status tool" and likewise records no loss. The same table records exactly this loss for `system-speckit-completion.js` at line 139: "not needed — Vibe has no plugin tool registry". The three registrations are real: `env-secret-guard.js:121-140` registers `env_secret_list_keys`, `env_secret_validate` and `env_secret_fingerprint`, and `system-skill-advisor.js:24` imports the tool helper.
+   Finding class: matrix/evidence
+   Scope proof: the doc is cited as the traceability surface the review focus names; the OpenCode plugins are read as the parity reference, not reviewed.
+   Affected surface hints: `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md`, `.opencode/plugins/env-secret-guard.js`, `.opencode/plugins/system-skill-advisor.js`
+   Case: an operator reads the port map to decide whether the Vibe guards cover the OpenCode set. The table says `env-secret-guard.js` ports as a hook, so they conclude the dotenv inspection tools are available. They are not, and nothing in the row says so.
 
 ## Traceability Checks
 
-| Protocol | Level | Status | Evidence |
-|---|---|---|---|
-| `spec_code` | core | partial | Carried from iterations 1, 2 and 4. Phase 018's promise is implemented at `compaction-context.mjs:243` and defeated on the empty path at `:231` versus `:252` (R5-P1-001). |
-| `checklist_evidence` | core | notApplicable | No phase in 013-022 carries a `checklist.md`; evidence lives in `tasks.md` checkboxes. |
-| `skill_agent` | overlay | pass | Carried from iteration 2. |
-| `agent_cross_runtime` | overlay | pass | Carried from iteration 2. |
-| `feature_catalog_code` | overlay | partial | Closed this iteration: the seven hard rules at `dispatch-rule-checks.mjs:739,985-1094` match the catalog's list, the mode registry, hub router and leaf manifest all name `cli-mistral-vibe`, and the dispatch-mode page omits the hand-over tier (R5-P2-001). |
-| `playbook_capability` | overlay | partial | Carried from iteration 2, extended by R5-P2-002: 27 scenarios exist, 26 carry a verdict, and neither compaction scenario covers the empty-slice path. |
+| Protocol | Status | Evidence |
+|----------|--------|----------|
+| `spec_code` | partial | The binding count matches the doc exactly: 18 `[[hooks]]` entries in `.vibe/hooks.toml`, and `guards-and-hooks.md:37` records 18 with the same event split. The `post_tool` field assumption and the two dropped tool registrations do not match. |
+| `checklist_evidence` | notApplicable | No checklist document on a hook and plugin surface. |
+| `agent_cross_runtime` | partial | The port map classifies all 21 OpenCode plugins (`guards-and-hooks.md:116-139`), and the four `not needed` verdicts each give a reason. Two `hook` rows omit the tool registrations the port drops, which is the gap finding R5-P2-003 records. |
+| `playbook_capability` | partial | The playbook's verdict table is the live evidence for each binding, and the doc's own rule is that "a row there counts only when its run postdates the last change to that hook" (`guards-and-hooks.md:37`). VIB-HK-018 covers `tool_status` for a shell call only; no row covers a `write_file` or `edit` result, which is the gap finding R5-P2-001 records. |
 
 ## Integration Evidence
 
-- `.skilled/skills/cli-external-orchestration/mode-registry.json:241-264`, `hub-router.json:104-111,272-277` and `leaf-manifest.json:82-83` all name `cli-mistral-vibe` with the same four routing phrases, so the catalog's "eighth workflow mode" claim is registry-backed.
-- `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:739,985,995,1014,1043,1059,1074` holds one check per rule the catalog names, so the "seven hard rules" claim is code-backed.
-- `.skilled/hooks/session-handover/lib/relaunch-core.cjs:1191-1243` holds `vibeGoalPacket`, and `handover-parts.mjs:66-72` routes the enable check through the shared `isHookEnabled` resolver, so the 2026-11-15 goal fallback and the documented switch both exist.
-- `022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md:46` names the merge `2d4fb4d0f92` as the one that brought VIB-HK-027 and cut VIB-HK-006 from four turns to three; `git log -1 2d4fb4d0f92` confirms the commit exists and is that merge.
+- `.vibe/hooks.toml` — 18 `[[hooks]]` entries, matching `guards-and-hooks.md:37`'s count and event split.
+- `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:196-198` — "Only the `pre_tool` and `post_agent` payloads were captured, so the other five are documented rather than observed."
+- `.vibe/plugins/repo-guards/fixtures/wire-format/tool-names.md:3` — "`tool_name` is always the qualified name", the premise behind R1-P2-001.
+- `.opencode/plugins/env-secret-guard.js:121-140` — the three tool registrations finding R5-P2-003 records as dropped.
+- `.opencode/plugins/sk-code-post-edit-quality.js`, `system-dist-freshness-guard.js`, `classifier-injection-screen.js` — none carries a `tool_status` equivalent, so the gate is a Vibe-only assumption.
+- `.vibe/plugins/repo-guards/lib/hook-io.mjs:25-27` — the shared `sessionDirFor` that `dist-freshness.mjs:53-55` duplicates.
 
 ## Edge Cases
 
-- The cross-reference dimension was not in the declared list; it is the documented fallback when no dimension remains, and it is recorded here rather than treated as a fifth dimension.
-- R5-P1-001 overlaps R1-P1-001 by construction. It is recorded as a refinement with its own evidence and its own case because the empty-return path is independently testable, and the delta row carries `refinementOf` so the merge can collapse the two if it prefers.
-- The catalog omission in R5-P2-001 is a missing statement rather than a wrong one, so it is held at P2 even though the catalog is the overlay's canonical surface.
+- **The `post_tool` field names are documented, not observed.** `guards-and-hooks.md:196-198` says so explicitly. Finding R5-P2-001 is therefore a traceability finding about an unverified assumption, not a claim that the value is wrong. Its upgrade trigger: capture one `post_tool` payload from a `write_file` call; if `tool_status` is not `'success'`, the finding becomes P1, because three hooks go silent.
+- **The port map's completeness was checked and holds.** All 21 rows are present, and the four `not needed` verdicts each name a reason. Only the two `hook` rows in R5-P2-003 omit a loss.
+- **The `process_start` and `system_message` upgrade triggers remain open.** Neither was resolved in this iteration; both stay carried forward in the strategy.
+- **Prior-finding overlap checked.** None of the three appears in the 29 dispositions. `R2-P2-001--d5b1ccf53ad4` and `R4-P2-001--e3447f5b13ad` were documentation fixes in other files; R5-P2-003 is a different table with a different omission.
 
 ## Confirmed-Clean Surfaces
 
-- The seven hard rules the catalog names all exist in `dispatch-rule-checks.mjs`, one check each, and the catalog's routing vocabulary matches `mode-registry.json:260-264` exactly.
-- `022/scratch/verdicts.md:46`'s account of the merge is accurate: `2d4fb4d0f92` exists, is the `origin/main` merge, and the VIB-HK-027 note is consistent with the 26-row table.
-- The carried R2-P1-001 is still active and unchanged: `verdicts.md` holds 26 `VIB-HK` rows and VIB-HK-027 has none, while the playbook lists 27 scenarios.
-- The carried R1-P1-001 is still active and unchanged: `writeWatermark` at `:231` still precedes the section build at `:241-250`.
+- `.vibe/hooks.toml` — the binding count and event split match the reference doc exactly.
+- `guards-and-hooks.md:116-139` — all 21 OpenCode plugins are classified, and each `not needed` verdict names a reason.
+- `post-edit-quality.mjs:34-37` and `classifier-injection-screen.mjs:30-33` — both append context rather than denying, so a finding never replaces the tool output the model needs.
+- `post-edit-quality.mjs:55` — a file that does not exist after the write is skipped, so a failed write cannot produce findings about content the edit never made.
+- `dist-freshness.mjs:20-22,115-117` — the CLI-entry guard keeps the module importable by its test.
+- `dist-freshness.mjs:57-66` — the checker runs with a bounded buffer and a 9-second timeout, and a missing `python3` yields an empty string rather than a throw.
+- `dist-freshness.mjs:36-44` — the risky-command pattern covers each headless dispatch form the repository documents.
+- `classifier-injection-screen.mjs:23-26` — the fetch tool is matched by leaf name, so a namespaced call is recognized.
+- `classifier-injection-screen.mjs:41` — a failed fetch is skipped, because its result carries an error message rather than page text.
 
 ## Ruled Out
 
-- **The mode registry, hub router and leaf manifest disagree about the Vibe mode.** Ruled out: all three name `cli-mistral-vibe` with the same routing phrases.
-- **The catalog's seven-hard-rule claim is stale.** Ruled out: each rule has a check at the cited line in `dispatch-rule-checks.mjs`.
-- **The 2026-11-15 goal fallback is missing from the relaunch core.** Ruled out: `vibeGoalPacket` is at `relaunch-core.cjs:1201-1243` and is called at `:1243`.
-- **The hand-over enable switch is undocumented or unimplemented.** Ruled out: `handover-parts.mjs:66-72` routes through the shared resolver and `SKILL.md:197` names both switches.
+- **A missing binding in `.vibe/hooks.toml`.** The count is 18 and the event split matches the doc.
+- **An unclassified OpenCode plugin.** All 21 rows are present.
+- **`post-edit-quality` running on a failed write.** The `tool_status` gate at line 45 covers it, and line 55 covers a file that does not exist.
+- **`dist-freshness` throwing on a missing `python3`.** `runChecker` returns `String(result.stdout ?? '')`, so a spawn error yields an empty banner.
 
 ## Next Focus
 
-- Dimension: none remaining
-- Focus area: synthesis
-- Reason: five iterations are complete, all four declared dimensions and the cross-reference fallback are covered, and the bound stop policy is `max-iterations`.
-- Rotation status: complete.
-- Blocked/productive carry-forward: productive — the cross-reference pass produced the sharpest statement of the open lead's root cause.
-- Required evidence: none; the synthesis reads the registry and the five iteration artifacts.
-- Recovery note: not applicable.
+- None. This is the fifth and final iteration of the lineage; `maxIterations` is reached and the synthesis phase follows.
 
 Review verdict: CONDITIONAL

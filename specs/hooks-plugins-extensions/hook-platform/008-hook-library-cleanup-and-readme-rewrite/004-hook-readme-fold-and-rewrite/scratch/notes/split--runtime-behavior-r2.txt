@@ -1,0 +1,6 @@
+   - Defect 1: write: "It carries the first launch's model for every runtime except Vibe, whose `--model` is headless-only, and OpenCode 2, whose root command has no model flag."
+   - Defect 2: write: "Its evidence is source-only: the bundle's hook dispatch code is inspected, but no live payload is captured, because no Cursor credentials or permitted provider are available for a live run."
+   - Defect 3: write: "The only probe summarizes field names without a raw payload, and `SessionEnd` behavior is unknown, so an automatic arm cannot be proven."
+   - Defect 4: the concern is on by default only for Claude. Write: "Claude then hops on its own near the context threshold, and Pi, OpenCode and Codex do too once their `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` or `SYSTEM_SESSION_HANDOVER_ENABLED` flag is on."
+   - Defect 5: in RELATED write "[`relaunch-core.cjs`](./lib/relaunch-core.cjs) - the relaunch record, arm and `should-relaunch` core." and "[`shared.mjs`](./codex/shared.mjs) - the shared runner the four Codex entry points call."
+   - Defect 6: the handoff protocol and the note format now live in `./handoff-protocol.md`, which exists. In RELATED, link it for those and keep `./README.md` for the overview and the switches.

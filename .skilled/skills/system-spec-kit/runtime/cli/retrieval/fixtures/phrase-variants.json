@@ -1,5 +1,5 @@
 {
-  "manifestHash": "84ea5e56b98c7b9859a23b85f4d771447221a19c1163d42e098880549ffebb21",
+  "manifestHash": "769952bf08d7ab0c26dc6409bfdc26af6dbd0b99501a4014970a35c001e14462",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -100,6 +100,9 @@
     ],
     "001 continuity memory runtime rollup": [
       "001-continuity-memory-runtime rollup"
+    ],
+    "001 dead hook file removal operator decisions": [
+      "001-dead-hook-file-removal operator decisions"
     ],
     "001 deep research operator decisions": [
       "001-deep-research operator decisions"
@@ -1116,6 +1119,9 @@
     ],
     "004 history preview readability operator decisions": [
       "004-history-preview-readability operator decisions"
+    ],
+    "004 hook readme fold and rewrite operator decisions": [
+      "004-hook-readme-fold-and-rewrite operator decisions"
     ],
     "004 implementation summary": [
       "004 implementation summary"
@@ -7958,6 +7964,9 @@
     "action keyed rule nudge": [
       "action keyed rule nudge"
     ],
+    "actionlint path filter": [
+      "actionlint path filter"
+    ],
     "activate authorized ledger": [
       "activate authorized ledger"
     ],
@@ -12053,6 +12062,9 @@
     "annotation sketchy terminal icons": [
       "annotation sketchy terminal icons"
     ],
+    "answer queue for the next save": [
+      "answer queue for the next save"
+    ],
     "answer the actual request": [
       "answer the actual request"
     ],
@@ -13189,6 +13201,9 @@
     "ask question tool": [
       "ask question tool"
     ],
+    "ask surface concern": [
+      "ask-surface concern"
+    ],
     "ask surface disabled live test": [
       "ask surface disabled live test"
     ],
@@ -13224,6 +13239,9 @@
     ],
     "ask surface guard menu detector": [
       "ask surface guard menu detector"
+    ],
+    "ask user question hook": [
+      "ask user question hook"
     ],
     "askuserquestion capture": [
       "askuserquestion capture"
@@ -20877,6 +20895,9 @@
     "claude prompting best practices": [
       "claude prompting best practices"
     ],
+    "claude receiver goal": [
+      "Claude receiver goal"
+    ],
     "claude receiver starts on packet goal": [
       "claude receiver starts on packet goal"
     ],
@@ -25130,6 +25151,18 @@
     "closeout drift reconciliation tasks": [
       "closeout drift reconciliation tasks"
     ],
+    "closeout follow up fixes": [
+      "closeout follow up fixes"
+    ],
+    "closeout follow up fixes implementation summary": [
+      "closeout follow up fixes implementation summary"
+    ],
+    "closeout follow up fixes plan": [
+      "closeout follow up fixes plan"
+    ],
+    "closeout follow up fixes tasks": [
+      "closeout follow up fixes tasks"
+    ],
     "closeout goal": [
       "closeout goal"
     ],
@@ -27474,6 +27507,9 @@
     "codex git hooks check": [
       "codex git hooks check"
     ],
+    "codex global hooks check": [
+      "codex global hooks check"
+    ],
     "codex goal nesting": [
       "codex goal nesting"
     ],
@@ -27498,6 +27534,24 @@
     "codex hook approval operator list": [
       "codex hook approval operator list"
     ],
+    "codex hook check merge": [
+      "codex hook check merge"
+    ],
+    "codex hook check merge acceptance criteria": [
+      "codex hook check merge acceptance criteria"
+    ],
+    "codex hook check merge goal": [
+      "codex hook check merge goal"
+    ],
+    "codex hook check merge implementation summary": [
+      "codex hook check merge implementation summary"
+    ],
+    "codex hook check merge plan": [
+      "codex hook check merge plan"
+    ],
+    "codex hook check merge tasks": [
+      "codex hook check merge tasks"
+    ],
     "codex hook cleanup": [
       "codex hook cleanup"
     ],
@@ -27512,6 +27566,9 @@
     ],
     "codex hook contract": [
       "codex hook contract"
+    ],
+    "codex hook drift": [
+      "codex hook drift"
     ],
     "codex hook drift check": [
       "codex hook drift check"
@@ -27711,6 +27768,9 @@
     "codex session handover": [
       "Codex session handover",
       "codex session handover"
+    ],
+    "codex session handover hooks": [
+      "codex session handover hooks"
     ],
     "codex session lifecycle": [
       "codex session lifecycle"
@@ -28249,6 +28309,9 @@
     ],
     "command offer fit guards tasks": [
       "command offer fit guards tasks"
+    ],
+    "command only handoff cursor devin": [
+      "command-only handoff cursor devin"
     ],
     "command only mentioned": [
       "command only mentioned"
@@ -30610,6 +30673,9 @@
     ],
     "context markdown design fixes tasks": [
       "context markdown design fixes tasks"
+    ],
+    "context nudge": [
+      "context nudge"
     ],
     "context preservation": [
       "context preservation"
@@ -34421,6 +34487,24 @@
     "dead hash file deletion guard": [
       "dead hash file deletion guard"
     ],
+    "dead hook file removal": [
+      "dead hook file removal"
+    ],
+    "dead hook file removal acceptance criteria": [
+      "dead hook file removal acceptance criteria"
+    ],
+    "dead hook file removal goal": [
+      "dead hook file removal goal"
+    ],
+    "dead hook file removal implementation summary": [
+      "dead hook file removal implementation summary"
+    ],
+    "dead hook file removal plan": [
+      "dead hook file removal plan"
+    ],
+    "dead hook file removal tasks": [
+      "dead hook file removal tasks"
+    ],
     "dead man switch ioc scan": [
       "dead-man switch IOC scan"
     ],
@@ -34435,6 +34519,9 @@
     ],
     "dead path rows": [
       "dead path rows"
+    ],
+    "dead pi import fallbacks": [
+      "dead pi import fallbacks"
     ],
     "dead row disposal decision": [
       "dead row disposal decision"
@@ -55024,9 +55111,6 @@
     "git hook verification": [
       "git hook verification"
     ],
-    "git hooks": [
-      "git hooks"
-    ],
     "git hooks presence guard": [
       "git hooks presence guard"
     ],
@@ -55455,6 +55539,9 @@
     ],
     "goal carried across a hop": [
       "goal carried across a hop"
+    ],
+    "goal carry over": [
+      "goal carry-over"
     ],
     "goal chat send rule": [
       "goal chat send rule"
@@ -56122,6 +56209,9 @@
     "goal non utf8 refusal": [
       "goal non-utf8 refusal"
     ],
+    "goal not carried": [
+      "goal not carried"
+    ],
     "goal objective check": [
       "goal objective check"
     ],
@@ -56175,6 +56265,9 @@
     ],
     "goal packet field ownership": [
       "goal packet field ownership"
+    ],
+    "goal packet hand over": [
+      "goal packet hand-over"
     ],
     "goal packet handoff note field": [
       "goal_packet handoff note field"
@@ -57822,8 +57915,20 @@
     "handoff history lookup": [
       "handoff history lookup"
     ],
+    "handoff note": [
+      "handoff note"
+    ],
+    "handoff note not claimed": [
+      "handoff note not claimed"
+    ],
     "handoff note purpose line": [
       "handoff note purpose line"
+    ],
+    "handoff note status": [
+      "handoff note status"
+    ],
+    "handoff protocol": [
+      "handoff protocol"
     ],
     "handoff recall baseline": [
       "handoff recall baseline"
@@ -58936,6 +59041,9 @@
     "history core relocation tasks": [
       "history core relocation tasks"
     ],
+    "history lookup": [
+      "history lookup"
+    ],
     "history lookup after compaction": [
       "history lookup after compaction"
     ],
@@ -59336,6 +59444,12 @@
     "hook level lifecycle flags plan": [
       "hook-level lifecycle flags plan"
     ],
+    "hook library cleanup and readme rewrite": [
+      "hook library cleanup and readme rewrite"
+    ],
+    "hook library cleanup phase parent spec": [
+      "hook library cleanup phase parent spec"
+    ],
     "hook library rename": [
       "hook library rename"
     ],
@@ -59404,6 +59518,27 @@
     ],
     "hook paths from repository root": [
       "hook paths from repository root"
+    ],
+    "hook readme fold and rewrite": [
+      "hook readme fold and rewrite"
+    ],
+    "hook readme fold and rewrite acceptance criteria": [
+      "hook readme fold and rewrite acceptance criteria"
+    ],
+    "hook readme fold and rewrite goal": [
+      "hook readme fold and rewrite goal"
+    ],
+    "hook readme fold and rewrite implementation summary": [
+      "hook readme fold and rewrite implementation summary"
+    ],
+    "hook readme fold and rewrite plan": [
+      "hook readme fold and rewrite plan"
+    ],
+    "hook readme fold and rewrite tasks": [
+      "hook readme fold and rewrite tasks"
+    ],
+    "hook readme rewrite": [
+      "hook readme rewrite"
     ],
     "hook references as routed leaves": [
       "hook references as routed leaves"
@@ -59638,6 +59773,9 @@
     ],
     "hop keeps model": [
       "hop keeps model"
+    ],
+    "hop limit reached": [
+      "hop limit reached"
     ],
     "hop notice": [
       "hop notice"
@@ -61616,17 +61754,11 @@
     "install bdg": [
       "install bdg"
     ],
-    "install codex hooks": [
-      "install codex hooks"
-    ],
     "install codex hooks check": [
       "install codex hooks check"
     ],
     "install cupt": [
       "install cupt"
-    ],
-    "install git hooks": [
-      "install git hooks"
     ],
     "install guidance and setup helper": [
       "install guidance and setup helper"
@@ -63203,6 +63335,15 @@
     "killer grace period test flaky": [
       "killer grace period test flaky"
     ],
+    "killer lock": [
+      "killer lock"
+    ],
+    "killer lock held": [
+      "killer-lock-held"
+    ],
+    "killer lock takeover": [
+      "killer lock takeover"
+    ],
     "killer notice subtitle": [
       "killer notice subtitle"
     ],
@@ -63241,6 +63382,10 @@
     ],
     "killer test spawn race tasks": [
       "killer test spawn race tasks"
+    ],
+    "killer timeout": [
+      "killer timeout",
+      "killer-timeout"
     ],
     "killer timeoutms 450": [
       "killer timeoutMs 450"
@@ -64686,6 +64831,12 @@
     "legacy file cleanup audit": [
       "legacy file cleanup audit"
     ],
+    "legacy git pre commit removal": [
+      "legacy git pre-commit removal"
+    ],
+    "legacy git pre commit removal plan": [
+      "legacy git pre-commit removal plan"
+    ],
     "legacy goal migration": [
       "legacy goal migration"
     ],
@@ -65580,6 +65731,27 @@
     ],
     "litellm ollama routing plan": [
       "litellm ollama routing plan"
+    ],
+    "literal hook folder names": [
+      "literal hook folder names"
+    ],
+    "literal hook renames": [
+      "literal hook renames"
+    ],
+    "literal hook renames acceptance criteria": [
+      "literal hook renames acceptance criteria"
+    ],
+    "literal hook renames goal": [
+      "literal hook renames goal"
+    ],
+    "literal hook renames implementation summary": [
+      "literal hook renames implementation summary"
+    ],
+    "literal hook renames plan": [
+      "literal hook renames plan"
+    ],
+    "literal hook renames tasks": [
+      "literal hook renames tasks"
     ],
     "literal naming": [
       "literal naming"
@@ -73665,6 +73837,9 @@
     "mode write set conflict graph": [
       "mode write-set conflict graph"
     ],
+    "model and effort across a hop": [
+      "model and effort across a hop"
+    ],
     "model benchmark 67 stem registry": [
       "model benchmark 67 stem registry"
     ],
@@ -77675,6 +77850,21 @@
     ],
     "opencode persistent wrapper": [
       "opencode-persistent wrapper"
+    ],
+    "opencode pi handover parity": [
+      "opencode pi handover parity"
+    ],
+    "opencode pi handover parity goal": [
+      "opencode pi handover parity goal"
+    ],
+    "opencode pi handover parity implementation summary": [
+      "opencode pi handover parity implementation summary"
+    ],
+    "opencode pi handover parity plan": [
+      "opencode pi handover parity plan"
+    ],
+    "opencode pi handover parity tasks": [
+      "opencode pi handover parity tasks"
     ],
     "opencode plugin": [
       "opencode plugin"
@@ -81923,6 +82113,9 @@
     "phase 1 create track fixes": [
       "phase 1 create track fixes"
     ],
+    "phase 1 dead hook file removal": [
+      "phase 1 dead hook file removal"
+    ],
     "phase 1 deep research": [
       "phase 1 deep research"
     ],
@@ -82222,6 +82415,9 @@
     ],
     "phase 11 hub registration and routing": [
       "phase 11 hub registration and routing"
+    ],
+    "phase 11 opencode pi handover parity": [
+      "phase 11 opencode pi handover parity"
     ],
     "phase 11 permission mode carry": [
       "phase 11 permission mode carry"
@@ -82829,6 +83025,9 @@
     "phase 2 closure gate": [
       "phase 2 closure gate"
     ],
+    "phase 2 codex hook check merge": [
+      "phase 2 codex hook check merge"
+    ],
     "phase 2 command inventory and risk metadata": [
       "phase 2 command inventory and risk metadata"
     ],
@@ -83231,6 +83430,9 @@
     "phase 24 typed command ambiguity": [
       "phase 24 typed command ambiguity"
     ],
+    "phase 24 vibe hook review 2 remediation": [
+      "phase 24 vibe hook review 2 remediation"
+    ],
     "phase 25 alignment open findings": [
       "phase 25 alignment open findings"
     ],
@@ -83444,6 +83646,9 @@
     "phase 3 lifecycle lock and limits": [
       "phase 3 lifecycle lock and limits"
     ],
+    "phase 3 literal hook renames": [
+      "phase 3 literal hook renames"
+    ],
     "phase 3 manual claim live settings": [
       "phase 3 manual claim live settings"
     ],
@@ -83609,6 +83814,9 @@
     "phase 34 scorer heredoc redirect fix": [
       "phase 34 scorer heredoc redirect fix"
     ],
+    "phase 34 self check adjudication ledger": [
+      "phase 34 self check adjudication ledger"
+    ],
     "phase 35 suite metrics and start shape": [
       "phase 35 suite metrics and start shape"
     ],
@@ -83746,6 +83954,9 @@
     ],
     "phase 4 guard hook": [
       "phase 4 guard hook"
+    ],
+    "phase 4 hook readme fold and rewrite": [
+      "phase 4 hook readme fold and rewrite"
     ],
     "phase 4 hook stdin deadline": [
       "phase 4 hook stdin deadline"
@@ -83935,6 +84146,9 @@
     ],
     "phase 5 cli mistral vibe skill packet": [
       "phase 5 cli mistral vibe skill packet"
+    ],
+    "phase 5 closeout follow up fixes": [
+      "phase 5 closeout follow up fixes"
     ],
     "phase 5 command and skill doc alignment": [
       "phase 5 command and skill doc alignment"
@@ -88243,9 +88457,6 @@
     "pre commit auto remint": [
       "pre-commit auto remint"
     ],
-    "pre commit hook": [
-      "pre-commit hook"
-    ],
     "pre commit mirror gate": [
       "pre-commit mirror gate"
     ],
@@ -88581,6 +88792,9 @@
     ],
     "prepare commit msg stamper": [
       "prepare-commit-msg stamper"
+    ],
+    "prepare exit code 2": [
+      "prepare exit code 2"
     ],
     "prepared authorization matcher relocated": [
       "prepared authorization matcher relocated"
@@ -89624,6 +89838,12 @@
     ],
     "prose lines and bullet lists": [
       "prose lines and bullet lists"
+    ],
+    "prose menu detector": [
+      "prose menu detector"
+    ],
+    "prose option menu": [
+      "prose option menu"
     ],
     "prose option menu guard": [
       "prose option menu guard"
@@ -90771,6 +90991,9 @@
     ],
     "questions anchor un nesting": [
       "questions anchor un-nesting"
+    ],
+    "queued operator answers": [
+      "queued operator answers"
     ],
     "quick check failure unreachable repair": [
       "quick_check failure unreachable repair"
@@ -93690,6 +93913,9 @@
     "relaunch live proof run set": [
       "relaunch live proof run set"
     ],
+    "relaunch log": [
+      "relaunch.log"
+    ],
     "relaunch loop after phase 009": [
       "relaunch loop after phase 009"
     ],
@@ -93728,6 +93954,9 @@
     ],
     "relaunch prepare claim": [
       "relaunch prepare claim"
+    ],
+    "relaunch record": [
+      "relaunch record"
     ],
     "relaunch record no handoff field": [
       "relaunch record no handoff field"
@@ -104409,6 +104638,18 @@
     "self assigned tasks": [
       "self-assigned tasks"
     ],
+    "self check adjudication ledger": [
+      "self check adjudication ledger"
+    ],
+    "self check adjudication ledger implementation summary": [
+      "self check adjudication ledger implementation summary"
+    ],
+    "self check adjudication ledger plan": [
+      "self check adjudication ledger plan"
+    ],
+    "self check adjudication ledger tasks": [
+      "self check adjudication ledger tasks"
+    ],
     "self check template guidance": [
       "self-check template guidance"
     ],
@@ -104931,6 +105172,9 @@
     "session handover fixtures": [
       "session handover fixtures"
     ],
+    "session handover goal packet": [
+      "SESSION_HANDOVER_GOAL_PACKET"
+    ],
     "session handover hook": [
       "session handover hook"
     ],
@@ -104944,6 +105188,9 @@
     "session handover pi opencode codex": [
       "session handover pi opencode codex"
     ],
+    "session handover prepare": [
+      "session-handover prepare"
+    ],
     "session handover rename": [
       "session handover rename"
     ],
@@ -104956,8 +105203,17 @@
     "session handover rename tasks": [
       "session handover rename tasks"
     ],
+    "session handover runtime matrix": [
+      "session handover runtime matrix"
+    ],
+    "session handover state files": [
+      "session handover state files"
+    ],
     "session handover tests": [
       "session handover tests"
+    ],
+    "session handover troubleshooting": [
+      "session handover troubleshooting"
     ],
     "session handover vibe": [
       "session-handover-vibe"
@@ -120775,6 +121031,9 @@
     "stop hook metadata patch": [
       "stop-hook metadata patch"
     ],
+    "stop hook option menu": [
+      "stop hook option menu"
+    ],
     "stop hook producer metadata": [
       "stop hook producer metadata"
     ],
@@ -128548,6 +128807,9 @@
     "typescript formatting standards": [
       "typescript formatting standards"
     ],
+    "typescript hook flags facade removal": [
+      "typescript hook flags facade removal"
+    ],
     "typescript import ordering": [
       "typescript import ordering"
     ],
@@ -131462,6 +131724,9 @@
     "vibe automatic relaunch tier": [
       "Vibe automatic relaunch tier"
     ],
+    "vibe background shell guard bypass": [
+      "vibe background shell guard bypass"
+    ],
     "vibe budget default": [
       "vibe budget default"
     ],
@@ -131714,6 +131979,21 @@
     "vibe hook playbook coverage": [
       "vibe hook playbook coverage"
     ],
+    "vibe hook review 2 remediation": [
+      "vibe hook review 2 remediation"
+    ],
+    "vibe hook review 2 remediation acceptance criteria": [
+      "vibe hook review 2 remediation acceptance criteria"
+    ],
+    "vibe hook review 2 remediation implementation summary": [
+      "vibe hook review 2 remediation implementation summary"
+    ],
+    "vibe hook review 2 remediation plan": [
+      "vibe hook review 2 remediation plan"
+    ],
+    "vibe hook review 2 remediation tasks": [
+      "vibe hook review 2 remediation tasks"
+    ],
     "vibe hooks": [
       "vibe hooks"
     ],
@@ -131803,6 +132083,9 @@
     ],
     "vibe print mode prompt": [
       "vibe print mode prompt"
+    ],
+    "vibe process start shell guard": [
+      "vibe process.start shell guard"
     ],
     "vibe prompt advisor": [
       "vibe prompt advisor"

@@ -15,7 +15,7 @@ import { isAbsolute, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { isHookEnabled } from '../../../.skilled/hooks/shared/hook-flags.mjs';
-import { allow, readPayload, runGuard, toCoreCall, REPO_ROOT } from './lib/hook-io.mjs';
+import { allow, readPayload, runGuard, sessionDirFor, toCoreCall, REPO_ROOT } from './lib/hook-io.mjs';
 
 const IS_CLI_ENTRY = process.argv[1]
   ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
@@ -47,12 +47,6 @@ const MAX_BUFFER_BYTES = 1_048_576;
 // The checker already bounds its own subprocess at 8s; this only catches a
 // python3 that never returns.
 const DIST_TIMEOUT_MS = 9_000;
-
-// A payload cwd is absolute in a live session; a fixture may name a directory
-// relative to the checkout, so resolve it there.
-function sessionDirFor(cwd) {
-  return typeof cwd === 'string' && cwd.trim() ? resolve(REPO_ROOT, cwd) : REPO_ROOT;
-}
 
 function runChecker(args, extraEnv = {}) {
   const result = spawnSync('python3', [DIST_STALENESS_PATH, ...args], {

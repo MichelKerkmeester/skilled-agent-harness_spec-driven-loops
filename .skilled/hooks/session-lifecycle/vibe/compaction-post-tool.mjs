@@ -17,6 +17,7 @@
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 import { buildPostToolPart } from './compaction-context.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -32,18 +33,7 @@ const HANDOVER_PART_URL = new URL(
 ).href;
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. HELPERS
-// ─────────────────────────────────────────────────────────────────────────────
-
-async function readStdin() {
-  process.stdin.setEncoding('utf8');
-  let text = '';
-  for await (const chunk of process.stdin) text += chunk;
-  return text;
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 4. MAIN
+// 3. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {

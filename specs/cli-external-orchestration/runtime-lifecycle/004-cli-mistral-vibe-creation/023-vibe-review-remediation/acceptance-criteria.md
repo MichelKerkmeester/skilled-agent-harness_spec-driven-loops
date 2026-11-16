@@ -41,6 +41,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-004 | REQ-004 | Given the detector, When a catch-up holds two compactions, the journal folder is empty, or the payload folder does not exist, Then the older id is remembered, the size is 0 and the state lands in the checkout | `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:127`, `:74` and `:291`; `.skilled/hooks/session-lifecycle/vibe/compaction-context.test.mjs:163` and the cases after it, 15 pass | Met | - |
 | AC-005 | REQ-005 | Given the docs the review named, When each is read against the code, Then it states what the code does | `.skilled/hooks/goal/vibe/README.md:21` names the compaction re-injection; the `turn-start.mjs` header names the withdraw step and the five text parts that `PARTS` holds | Met | - |
 | AC-006 | REQ-006 | Given the review report, When each finding id is looked up in `implementation-summary.md`, Then it has a disposition | `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/implementation-summary.md:89`: all 29 finding ids in the report's section 3 plus S-1 to S-4 | Met | - |
+| AC-007 | REQ-007 | Given the merged code, When the hop harness runs a Vibe hop and a withdraw probe, Then the hop scores 5/5 and the probe logs a withdraw with no relaunch | `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/scratch/runs/hop4-vibe/scorecard.json:33` and `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/scratch/runs/wd3-vibe/relaunch.log:2`, both on `ba44c47f68c` | Met | - |
+| AC-008 | REQ-008 | Given every runner scenario, When its `result.json` is read, Then it reads PASS with a `vibe_model` and a start after the merge | `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md:7` and the rows below it: 001 to 025 PASS with their model, 19:40 to 21:26 UTC | Met | - |
+| AC-009 | REQ-009 | Given a request that names no skill, When the advisor brief names one, Then the model loads that skill | `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/scratch/live/VIB-HK-028/vibe/turns/uptake/check.txt:2`: `advised=sk-prompt`, then `advised-skill-loaded` | Met | - |
+| AC-010 | REQ-010 | Given a review run with Vibe lineages, When `git status` runs, Then no lineage `vibe-home/` or `vibe-output/` file is listed | `.gitignore:404` and `.gitignore:405` | Met | - |
 <!-- /ANCHOR:criteria -->
 
 ---
@@ -50,5 +54,5 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 **Closeable:** Yes
 
-Every criterion is Met: the reruns passed live and recorded their models, and every review finding has a disposition.
+Every criterion is Met: every runner scenario passed live on the merged code with its model recorded, the automatic hop and the withdraw passed live, the advisor uptake scenario passed, and every review finding has a disposition.
 <!-- /ANCHOR:closure -->

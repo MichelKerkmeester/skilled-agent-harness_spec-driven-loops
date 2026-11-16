@@ -1,6 +1,6 @@
 ---
 title: "Git Message Gate (Tests): DSH Adapter Coverage"
-description: "The node --test suite for the DSH message-gate adapter, covering the shared contract on fixture repositories and the split fail-open and fail-closed error policy."
+description: "The node --test suite for the DSH message-gate adapter. It drives the shared contract on a fixture repository and pins the split error policy."
 trigger_phrases:
   - "dsh git message gate tests"
   - "message contract test"
@@ -14,21 +14,37 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`git-message-gate/tests/` holds the DSH adapter test suite for the message gate. The file runs under `node --test` and drives the adapter through the shared DSH test support module at `.skilled/hooks/shared/tests/dsh-plugin-harness.mjs`. It spawns no real runtime and writes only inside temporary repositories that each test removes when it finishes.
+`dsh-git-message-gate.test.mjs` is the test suite for the DSH message-gate adapter. It runs under `node --test` and imports the shared support module at `.skilled/hooks/shared/tests/dsh-plugin-harness.mjs`. The suite builds a stub context, calls `registerGitMessageGate` and fires `tools/pre-execute`. The suite covers the DSH registration only and starts no runtime process. The first test writes inside a temporary repository and removes it in `finally`.
 
-Two behaviors are covered. The first is the gate itself against fixture repositories, with a nonconforming subject refused and a conforming one allowed. The second is the adapter's split policy: an unexpected core error logs and delegates, while a `ContractError` denies with the rules-unreadable message.
-
----
-
-## 2. WHAT EACH FILE DOES
-
-| File | Event | What it does | On error |
-|---|---|---|---|
-| `dsh-git-message-gate.test.mjs` | `node --test` | Registers `registerGitMessageGate` on a stub context and fires `tools/pre-execute`. The first test asserts the policy string is `fail-open`, that a bad subject is denied with a `subject.format` match and that a conforming subject is allowed. The second asserts one log line and delegated control for an unexpected error, then a deny for a `ContractError`. | A failed assertion fails the test process with a nonzero status. Temporary directories are removed in `finally`. |
+The first test pins the gate against a fixture repository. A nonconforming subject is refused with a `subject.format` match while a conforming one is allowed. The second test pins the adapter's split error policy in two cases. An unexpected core error logs one warning and delegates the call. A `ContractError` denies the call and names the rules it could not read.
 
 ---
 
-## 3. RELATED
+## 2. FILES
 
-- [`../README.md`](../README.md): the concern index, with the per-runtime refusal channels and the contract rules.
-- [`../dsh/git-message-gate.mjs`](../dsh/git-message-gate.mjs): the adapter under test.
+| File | Responsibility |
+|---|---|
+| `dsh-git-message-gate.test.mjs` | The suite for the DSH adapter. It covers the shared contract and the split error policy. |
+
+The suite imports `adapterHarness` from the shared support module. That helper keeps one handler per event and records each log line. The suite also imports `tempDir` and `cleanup` for temporary directories. `tempDir` makes a fresh directory under the system temp root. `cleanup` removes that directory with a recursive, forced `rmSync` call.
+
+The adapter exports `ERROR_POLICY = 'fail-open'` and the first test asserts that string. The second test stubs the core, so no real contract is read.
+
+---
+
+## 3. VALIDATION
+
+Run from the repository root.
+
+```bash
+node --test .skilled/hooks/git-message-gate/tests/dsh-git-message-gate.test.mjs
+```
+
+Expected result: both tests pass and the process exits 0. A failed assertion fails the test process with a nonzero status.
+
+---
+
+## 4. RELATED
+
+- [`../README.md`](../README.md): the feature README, with the per-runtime refusal channels and the contract rules.
+- [`../dsh/git-message-gate.mjs`](../dsh/git-message-gate.mjs): the DSH adapter that the suite registers and drives.

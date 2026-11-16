@@ -485,6 +485,11 @@ const DATA_FIELD_RULES = Object.freeze({
     reason: 'nullable-prose',
     sessionId: 'identifier',
     generation: 'uint32',
+    // A gate summary that also adjudicates one named finding carries that
+    // finding and its final severity, so the reducer can retire it without a
+    // second typed record. `none` marks a claim that is not a finding.
+    findingId: optionalFieldRule('identifier'),
+    finalSeverity: optionalFieldRule(SEVERITY_RULE),
   },
   'deep_review.iteration_error': {
     type: enumRule('iteration'),

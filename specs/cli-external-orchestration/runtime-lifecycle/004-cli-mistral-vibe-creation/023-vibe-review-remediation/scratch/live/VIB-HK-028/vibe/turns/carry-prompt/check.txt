@@ -1,0 +1,3 @@
+$ test -s prompt.md || { echo no-prompt-file; exit 1; }; grep -qi 'build' prompt.md || { echo prompt-lacks-request; exit 1; }; echo "prompt-carried lines=$(wc -l < prompt.md | tr -d ' ')"
+prompt-carried lines=47
+[exit 0]

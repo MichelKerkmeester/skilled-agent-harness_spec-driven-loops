@@ -1,0 +1,4 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: the journal only detects a compaction. Write: "Vibe has no compaction hook, so the compaction detector reads the session journal to spot a compaction and then renders the slice again from the packet."
+   - Defect 2: Vibe does fire a hook every turn. Replace the sentence about no idle event with: "Nothing refreshes the slice on every turn. The turn-start hook adds it back only after a compaction."
+   - Defect 3: restore the dropped sentence: "`session_start` fires for a main session, not a subagent."

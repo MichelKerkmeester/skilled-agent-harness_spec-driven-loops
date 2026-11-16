@@ -1,7 +1,7 @@
 ---
 title: "JEV-019 -- Each declared hard rule refuses its violating command"
 description: "Confirm every rule declared in the packet has an implementation and a refusing fixture, for `JEV-019`."
-version: 0.1.0.1
+version: 0.1.1.0
 ---
 
 # JEV-019 -- Each declared hard rule refuses its violating command
@@ -48,12 +48,12 @@ Operators run the exact prompt and command sequence for `JEV-019` and confirm th
 ### Commands
 
 ```bash
-node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+node --test .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| JEV-019 | Declared hard rules | Confirm every declared check id is implemented, every implementation is declared, and every rule has a fixture pair that flips it | `TYPESAFE_API_KEY=… jev noul -q 'Is it?' -s 'x'` | 1. `node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | The runner reports 20 tests passing with zero failures, including the bijection guard, the every-packet-declares-a-rule guard, and the every-check-has-a-fixture-pair guard | The test file path, the runner command, the pass and fail counts, and the eight rule ids named in the packet's frontmatter | PASS when the suite reports zero failures and the bijection assertion ran; FAIL when any assertion fails, an implemented check is undeclared, or a declared check has no implementation; SKIP only when the runner cannot start, naming the missing runner as the blocker | The bijection guard fails in both directions. A declared id with no implementation means the rule never fires; an implementation no packet declares is dead code. A fixture pair whose commands do not differ is caught by the same guard, not by hand |
+| JEV-019 | Declared hard rules | Confirm every declared check id is implemented, every implementation is declared, and every rule has a fixture pair that flips it | `TYPESAFE_API_KEY=… jev noul -q 'Is it?' -s 'x'` | 1. `node --test .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs` | The runner reports 20 tests passing with zero failures, including the bijection guard, the every-packet-declares-a-rule guard, and the every-check-has-a-fixture-pair guard | The test file path, the runner command, the pass and fail counts, and the eight rule ids named in the packet's frontmatter | PASS when the suite reports zero failures and the bijection assertion ran; FAIL when any assertion fails, an implemented check is undeclared, or a declared check has no implementation; SKIP only when the runner cannot start, naming the missing runner as the blocker | The bijection guard fails in both directions. A declared id with no implementation means the rule never fires; an implementation no packet declares is dead code. A fixture pair whose commands do not differ is caught by the same guard, not by hand |
 
 ### Recorded Result
 

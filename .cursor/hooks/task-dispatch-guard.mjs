@@ -1,1 +1,1 @@
-../../.skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs
+../../.skilled/hooks/subagent-dispatch-guard/cursor/task-dispatch-guard.mjs

@@ -17,8 +17,8 @@ trigger_phrases:
 
 | Entry here | Real file |
 |---|---|
-| `dispatch-preflight-lint.ts`, `dispatch-audit.ts` | `.skilled/hooks/dispatch/pi/` |
-| `task-dispatch-guard.ts` | `.skilled/hooks/task-dispatch/pi/` |
+| `dispatch-preflight-lint.ts`, `dispatch-audit.ts` | `.skilled/hooks/cli-dispatch/pi/` |
+| `task-dispatch-guard.ts` | `.skilled/hooks/subagent-dispatch-guard/pi/` |
 | `mcp-route-guard.ts` | `.skilled/hooks/mcp-route-guard/pi/` |
 | `env-secret-guard.ts` | `.skilled/hooks/env-secret-guard/pi/` |
 | `post-edit-quality.ts` | `.skilled/hooks/post-edit-quality/pi/` |
@@ -76,8 +76,8 @@ extensions/
 |---|---|---|
 | `spec-gate-enforce.ts` | `tool_call` (bash/write/edit) | `system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` `evaluateMutation()` |
 | `spec-gate-classify.ts` | `input` | `system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` `classifyIntent()` |
-| `dispatch-preflight-lint.ts` | `tool_call` (bash) | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` `readHardRules()`/`evaluate()` |
-| `dispatch-audit.ts` | `tool_result` (bash) | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` `recordDispatch()` |
+| `dispatch-preflight-lint.ts` | `tool_call` (bash) | `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` `readHardRules()`/`evaluate()` |
+| `dispatch-audit.ts` | `tool_result` (bash) | `.skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs` `recordDispatch()` |
 | `post-edit-quality.ts` | `tool_result` (edit/write) | `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` `resolveDispatch()`/`runChecks()` |
 | `completion-evidence.ts` | `turn_end` | `system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs` `detectCompletionClaim()`/`resolveSpecFolderFromText()`/`evaluateCompletionEvidence()`; a completion claim the sentinel cannot evidence becomes a `nextTurn` advisory message, never a block |
 | `env-secret-guard.ts` | `tool_call` (read/write/edit/grep/bash/powershell), `tool_result` (a dotenv write after a shell call; a leaked value from any tool) | `.skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs` `evaluateToolCall()`; returns `{ block: true, reason }` on a dotenv file, and `.skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs` `snapshotDotenv()` records dotenv files before a shell call. `reviewToolResult()` then undoes a dotenv write it recorded first and redacts a dotenv value out of the result, appending the reason as a message |
@@ -86,7 +86,7 @@ extensions/
 | `classifier-injection-screen.ts` | `tool_result` (`fetch_content`) | `.skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs` `fetchedText()`/`screenAdvisory()`; appends the advisory to the tool result |
 | `decision-capture.ts` | `tool_result` (`ask_user_question`, `question`), `turn_end` | `.skilled/hooks/decision-capture/bin/sweep-pi.mjs` `recoveredRecords()` and `.skilled/hooks/decision-capture/lib/capture-core.mjs` `appendRecords()`/`takeNudge()`; never changes a tool result |
 | `ask-surface-guard.ts` | `agent_end` | `.skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs` `evaluateTurn()`/`markTurn()`/`repromptFor()`; starts one more turn that asks through the question tool in place of a prose option menu, and only when a UI is attached |
-| `task-dispatch-guard.ts` | `tool_call` (`subagent`) | `.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs` `evaluateDispatch()`; returns the guard's text as an advisory (`~ partial`: direct calls only) |
+| `task-dispatch-guard.ts` | `tool_call` (`subagent`) | `.skilled/hooks/subagent-dispatch-guard/lib/subagent-dispatch-guard.cjs` `evaluateDispatch()`; returns the guard's text as an advisory (`~ partial`: direct calls only) |
 | `session-start-context.ts` | `session_start` | `system-spec-kit/runtime/dist/hooks/claude/session-prime.js` (via `lib/claude-hook-adapter.ts`) |
 | `session-start-advisories.ts` | `session_start` | `worktree-guard.sh`, `check-git-hooks.sh`, `git-primary-reconcile.sh`, `git-live-follow.sh --start`, `check-dist-staleness.sh --all`, `install-codex-hooks.mjs --check` (direct `ctx.exec()`, each gated by its own concern) |
 | `session-stop-context.ts` | `session_shutdown` (reason `quit`) | `system-spec-kit/runtime/dist/hooks/claude/session-stop.js` (via `lib/claude-hook-adapter.ts`) |
@@ -94,7 +94,7 @@ extensions/
 | `session-handover.ts` | `message_end`, `before_agent_start`, `agent_start`, `agent_end`, `agent_settled`, `session_compact` | `.skilled/hooks/session-handover/lib/relaunch-core.cjs` `readRelaunchFile()`/`armableRecord()`/`arm()`, with `context-usage.cjs`, `nudge.cjs` and `withdraw.cjs`; ships off until `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` is truthy |
 | `session-compact-context.ts` | `session_compact` | Native port of `system-spec-kit/runtime/hooks/devin/post-compaction.cjs`'s recovery chain (shared tmpdir state file) |
 | `goal-context.ts` | `input`, `session_start`, `turn_end`, and the `goal-pi` command | `.skilled/hooks/goal/lib/goal-core.cjs` `readGoalRecord()`/`renderGoalBrief()`/`verifyGoalHeuristic()`; the `turn_end` nudge uses `deliverAs: "nextTurn"` and never re-queues, steers or blocks a turn |
-| `git-preflight-advisory.ts` | `tool_call` (bash `git`), `tool_result` (bash) | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` `readHardRules()`/`evaluate()` with `sk-git/scripts/lib/git-rule-checks.mjs` and `git-context.mjs`; the advisory is queued at `tool_call` and appended at `tool_result`, because Pi reads a `tool_call` return only for `.block` |
+| `git-preflight-advisory.ts` | `tool_call` (bash `git`), `tool_result` (bash) | `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` `readHardRules()`/`evaluate()` with `sk-git/scripts/lib/git-rule-checks.mjs` and `git-context.mjs`; the advisory is queued at `tool_call` and appended at `tool_result`, because Pi reads a `tool_call` return only for `.block` |
 | `git-message-gate.ts` | `tool_call` (bash) | `sk-git/scripts/hooks/git-message-gate.mjs` `evaluateCommand()`; returns `{ block: true, reason }` when a commit message, PR description or branch name breaks the templates; no kill switch, by design |
 
 Paths without a leading `.skilled/` are relative to `.skilled/skills/`. The four `.skilled/hooks/` cores are the fully-portable guard cores relocated out of their owning skill; see [`../../.skilled/hooks/README.md`](../../.skilled/hooks/README.md) for why those four moved and the rest did not.

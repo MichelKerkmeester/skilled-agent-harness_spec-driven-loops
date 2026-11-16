@@ -1,0 +1,5 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: write: "`turn-end.mjs` prints nothing, or one `{"decision":"deny","reason":"..."}` when a part denies."
+   - Defect 2: an unreadable watermark re-injects. Write: "A missing journal or a malformed entry yields no text. An unreadable watermark counts as none, so the latest compaction is injected again."
+   - Defect 3: write: "The compaction, binding and turn-end suites keep their state in temporary folders. The turn-start skip cases run against the checkout."
+   - Defect 4: the save reminder part has a switch. Add it to the switch list and fix the count: "`SYSTEM_DECISION_CAPTURE_DISABLED` turns off the save reminder."

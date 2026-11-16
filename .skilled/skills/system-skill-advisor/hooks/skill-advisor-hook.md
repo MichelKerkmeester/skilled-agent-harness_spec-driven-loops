@@ -7,9 +7,33 @@ trigger_phrases:
   - "advisor hook runtime matrix"
   - "opencode plugin bridge"
   - "advisor hook smoke tests"
+  - "skill advisor claude hook"
+  - "claude user prompt submit"
+  - "advisor shim resolution"
+  - "skill advisor codex hook"
+  - "codex user prompt submit"
+  - "codex advisor adapter"
+  - "skill advisor cursor hook"
+  - "cursor before submit prompt"
+  - "cursor advisor adapter"
+  - "skill advisor devin hook"
+  - "devin user prompt submit"
+  - "devin advisor adapter"
+  - "skill advisor dsh hook"
+  - "dsh prompt advisor"
+  - "dsh advisor adapter"
+  - "skill advisor opencode plugin"
+  - "opencode system transform advisor"
+  - "opencode advisor status tool"
+  - "skill advisor pi hook"
+  - "pi prompt advisor"
+  - "pi advisor extension"
+  - "skill advisor vibe hook"
+  - "vibe prompt advisor"
+  - "vibe advisor adapter"
 importance_tier: important
 contextType: implementation
-version: 3.6.20.0
+version: 3.6.21.0
 ---
 
 # Skill Advisor Hook Reference
@@ -85,16 +109,32 @@ Every native runtime, Pi, DSH and Vibe run the same hook handler, which gates th
 
 | Runtime | Adapter | Event / wiring | Payload difference it handles | Delivery |
 |---|---|---|---|---|
-| **Claude** | `system-spec-kit/.../hooks/claude/user-prompt-submit.ts` (shim) → `system-skill-advisor/.../dist/hooks/claude/user-prompt-submit.js` | `UserPromptSubmit` in `.claude/settings.json`, matcher `""`, timeout 3s | Shim resolves the advisor target by walking up to the `.opencode` ancestor (install-anchored, not CWD-relative). Bounded stdin (1 MiB), bounded child stdio, 2.5s child timeout, `SIGKILL` on timeout | `hookSpecificOutput.additionalContext` JSON on stdout. `{}` on any failure |
-| **Codex** | `system-spec-kit/.../hooks/codex/user-prompt-submit.ts` (shim) → `.../dist/hooks/codex/user-prompt-submit.js` | `UserPromptSubmit` in `.codex/hooks.json`, timeout 3s | Same shim dispatch. `cd "${CODEX_PROJECT_DIR:-$PWD}"`. Fallback `printf` envelope on resolution failure | Same `additionalContext` JSON |
-| **Cursor** | `system-spec-kit/.../hooks/cursor/user-prompt-submit.ts` (shim) → `.../dist/hooks/cursor/user-prompt-submit.js` | `beforeSubmitPrompt` in `.cursor/hooks.json`, timeout 10s | Same shim dispatch | Same `additionalContext` JSON |
-| **Devin** | `system-spec-kit/.../hooks/devin/user-prompt-submit.ts` (shim) → `.../dist/hooks/devin/user-prompt-submit.js` | `UserPromptSubmit` in `.devin/hooks.v1.json`, matcher `""`, timeout 10s | Same shim dispatch. `cd "${DEVIN_PROJECT_DIR:-$PWD}"`. Fallback `printf` envelope | Same `additionalContext` JSON |
+| **Claude** | `.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts` (shim) → `system-skill-advisor/.../dist/hooks/claude/user-prompt-submit.js` | `UserPromptSubmit` in `.claude/settings.json`, matcher `""`, timeout 3s | Shim resolves the advisor target by walking up to the `.opencode` ancestor (install-anchored, not CWD-relative). Bounded stdin (1 MiB), bounded child stdio, 2.5s child timeout, `SIGKILL` on timeout | `hookSpecificOutput.additionalContext` JSON on stdout. `{}` on any failure |
+| **Codex** | `.skilled/skills/system-spec-kit/runtime/hooks/codex/user-prompt-submit.ts` (shim) → `.../dist/hooks/codex/user-prompt-submit.js` | `UserPromptSubmit` in `.codex/hooks.json`, timeout 3s | Same shim dispatch. `cd "${CODEX_PROJECT_DIR:-$PWD}"`. Fallback `printf` envelope on resolution failure | Same `additionalContext` JSON |
+| **Cursor** | `.skilled/skills/system-spec-kit/runtime/hooks/cursor/user-prompt-submit.ts` (shim) → `.../dist/hooks/cursor/user-prompt-submit.js` | `beforeSubmitPrompt` in `.cursor/hooks.json`, timeout 10s | Same shim dispatch | Same `additionalContext` JSON |
+| **Devin** | `.skilled/skills/system-spec-kit/runtime/hooks/devin/user-prompt-submit.ts` (shim) → `.../dist/hooks/devin/user-prompt-submit.js` | `UserPromptSubmit` in `.devin/hooks.v1.json`, matcher `""`, timeout 10s | Same shim dispatch. `cd "${DEVIN_PROJECT_DIR:-$PWD}"`. Fallback `printf` envelope | Same `additionalContext` JSON |
 | **Pi** | `system-skill-advisor/hooks/pi/prompt-advisor.ts` (real file, re-exported by its one-line `.pi/extensions/` entry) | `user_input` / prompt event via `.pi/extensions/` | Imports the advisor module **in-process** (not a subprocess). Pi awaits input handlers before agent processing, so the old blocking-spawn bridge stalled every send. In-process calls remove the stall and let the module-level prompt cache work. Captures raw user text (bounded 32 KiB, 64-session LRU). The in-process call passes `runtime: 'pi'` and races a timer of the advisor budget plus 300 ms, delivering the fallback directives if the call hangs | Model-visible message. Delivery-state machine suppresses same-session re-delivery |
 | **OpenCode** | `.opencode/plugins/system-skill-advisor.js` | Plugin, loaded by OpenCode's flat glob over `.opencode/plugins/`. `experimental.chat.system.transform` per prompt, `event` for session lifecycle, `tool` for status | Shells out to the advisor CLI (bounded timeout, stdout cap 256 KiB, grace termination), TTL+LRU prompt cache with in-flight dedup, transform-dedup integration | Brief appended to `output.system`. `spec_kit_skill_advisor_status` tool returns a key=value report (no raw path leakage) |
 | **DSH** | `system-skill-advisor/hooks/dsh/prompt-advisor.mjs` (real file, reached through the `.dsh/plugins/repo-guards/adapters/prompt-advisor.mjs` symlink) | `agent/pre-step` through the `repo-guards` plugin, on unless the `promptAdvisor` row flag is `false` | Proxies the latest operator prompt through the compiled Claude advisor chain under the runtime label `dsh`. A fan-out leaf, marked by the lineage patch, gets no brief | Brief added to the step |
-| **Vibe** | `system-skill-advisor/hooks/vibe/prompt-advisor.mjs`, called by `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs` | `pre_agent` in `.vibe/hooks.toml` (`turn-start`, match `main`), rendered into a dispatch's `VIBE_HOME` | Proxies the operator prompt through the compiled Claude advisor chain under the runtime label `vibe`. A child dispatch and a subagent turn get no brief | `hook_specific_output.additional_context`; the routing head and directives repeat only when they change, because Vibe keeps added context in the conversation. A head that names a command gains one line naming each command's document under `.skilled/commands/`, because Vibe has no command loader and its prompt stubs name the dash form |
+| **Vibe** | `system-skill-advisor/hooks/vibe/prompt-advisor.mjs`, called by `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs` | `pre_agent` in `.vibe/hooks.toml` (`turn-start`, match `main`), rendered into a dispatch's `VIBE_HOME` | Proxies the operator prompt through the compiled Claude advisor chain under the runtime label `vibe`. A child dispatch and a subagent turn get no brief | `hook_specific_output.additional_context`. The routing head and directives repeat only when they change, because Vibe keeps added context in the conversation. A head that names a command gains one line naming each command's document under `.skilled/commands/`, because Vibe has no command loader and its prompt stubs name the dash form |
 
 OpenCode has no source-hook adapter in `system-spec-kit`. Its prompt-time integration is the committed plugin, which shells out to the advisor CLI and inherits the shared render contract. The hooks-tree index at `.skilled/hooks/skill-advisor/` mirrors the per-runtime shims and the OpenCode plugin via relative symlinks. This README is the symlink target.
+
+| Entry in the hooks tree | Real file |
+|---|---|
+| `.skilled/hooks/skill-advisor/claude/speckit-user-prompt-submit.ts` | `.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts` |
+| `.skilled/hooks/skill-advisor/claude/user-prompt-submit.js` | `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js` |
+| `.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts` | `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` |
+| `.skilled/hooks/skill-advisor/codex/user-prompt-submit.js` | `.skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js` |
+| `.skilled/hooks/skill-advisor/codex/user-prompt-submit.ts` | `.skilled/skills/system-spec-kit/runtime/hooks/codex/user-prompt-submit.ts` |
+| `.skilled/hooks/skill-advisor/cursor/user-prompt-submit.js` | `.skilled/skills/system-spec-kit/runtime/dist/hooks/cursor/user-prompt-submit.js` |
+| `.skilled/hooks/skill-advisor/cursor/user-prompt-submit.ts` | `.skilled/skills/system-spec-kit/runtime/hooks/cursor/user-prompt-submit.ts` |
+| `.skilled/hooks/skill-advisor/devin/user-prompt-submit.js` | `.skilled/skills/system-spec-kit/runtime/dist/hooks/devin/user-prompt-submit.js` |
+| `.skilled/hooks/skill-advisor/devin/user-prompt-submit.ts` | `.skilled/skills/system-spec-kit/runtime/hooks/devin/user-prompt-submit.ts` |
+| `.skilled/hooks/skill-advisor/dsh/prompt-advisor.mjs` | `.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs` |
+| `.skilled/hooks/skill-advisor/opencode/system-skill-advisor.js` | `.opencode/plugins/system-skill-advisor.js` |
+| `.skilled/hooks/skill-advisor/pi/prompt-advisor.ts` | `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` |
+| `.skilled/hooks/skill-advisor/vibe/prompt-advisor.mjs` | `.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs` |
 
 ### Starting a surfaced command
 
@@ -103,7 +143,7 @@ The document behind a surfaced command is `.skilled/commands/<group>/<name>.md`.
 | Runtime | Model can start a command itself | Basis |
 |---|---|---|
 | Claude Code | Yes, through the Skill tool, as a shortcut for the names it lists | The Skill tool lists names, not files. A command file named `skill.md` in any capitalisation makes Claude Code read its folder as one skill, an open upstream bug, so no command file carries that name |
-| Codex | No | The mirror is a pointer stub that tells the model to read the command file. There is no `.codex/skills` |
+| Codex | No | The mirror is a pointer stub that tells the model to read the command file. There is no skills folder under `.codex/` |
 | Cursor | No model path found, and the brief is dormant | The mirror is a pointer stub. Public Cursor docs were not fetched |
 | Devin | No command surface at all | Skills are exposed, commands are not |
 | Pi | No model path found | The mirror is a pointer stub. Public Pi docs were not fetched, so this is unverified beyond the repository |
@@ -173,7 +213,7 @@ The advisor is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | `SYSTEM_SKILL_ADVISOR_DISABLED=1` | Canonical kill-switch. Every adapter checks `isHookEnabled('skill-advisor')` and returns empty/skipped prompt-safe output, and the `advisor_recommend` direct call abstains. |
 | `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` | Alias. Disables every adapter and makes the `advisor_recommend` direct call abstain. |
 | `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` | Alias. Disables every adapter and makes the `advisor_recommend` direct call abstain. |
-| `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Legacy alias that disables every adapter and makes the `advisor_recommend` direct call abstain. The standalone Python CLI (`skill_advisor.py`) reads only this name, set to exactly `1`, from `runtime/schemas/compat-contract.json`. |
+| `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Legacy alias that disables every adapter and makes the `advisor_recommend` direct call abstain. The standalone Python CLI (`skill_advisor.py`) reads only this name, set to exactly `1`, from `.skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json`. |
 | `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` | Legacy alias. Disables every adapter and makes the `advisor_recommend` direct call abstain. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 | `MK_HOOKS_DISABLED=1` | Older alias of `SYSTEM_HOOKS_DISABLED`. Master switch that disables this concern along with every other repo hook. |
@@ -183,7 +223,7 @@ The advisor is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 
 The direct call decides in the caller's own process, by the same resolution the adapters use. `node .skilled/bin/skill-advisor.cjs advisor_recommend` asks `hookFlagDecision('skill-advisor')` in `.skilled/hooks/shared/hook-flags.cjs`, with the caller's environment over `.skilled/hooks/hook-flags.env`, before it connects to a daemon or runs the local scorer. Whenever the adapters are off, under any name in this table or its older `MK_` form, any truthy value or a line in the flags file, it prints the empty envelope with `ADVISOR_DISABLED` and names the switch that decided. A daemon reads the same names from its own environment and never reads the flags file, and the launcher passes no switch name and no `HOOK_FLAGS_CONFIG` to a daemon it starts, so a flagged command that happens to start the daemon does not leave it abstaining for every later caller. The standalone Python CLI keeps its own rule: only `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, set to exactly `1`.
 
-Additional controls: `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` (force local Python fallback where supported) and `--force-native` / `--force-local` / `--threshold` / `--stdin` (Python shim flags, default threshold `0.8`). `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` (default 3000) is owned by the `system-skill-advisor` hub: its live consumers are `runtime/lib/subprocess.ts`, `skill-advisor-brief.ts`, the OpenCode bridge and `skill_advisor.py`. On timeout the OpenCode bridge serves prompt-safe stale context with a timeout marker. OpenCode tuning: `SYSTEM_SKILL_ADVISOR_CACHE_TTL_MS` (default 5 min), `SYSTEM_SKILL_ADVISOR_MAX_TOKENS` (default 80), `SYSTEM_SKILL_ADVISOR_MAX_BRIEF_CHARS` (default 2 KiB), `SYSTEM_SKILL_ADVISOR_MAX_PROMPT_BYTES` (default 64 KiB, measured on the whole stdin request after JSON escaping), `SYSTEM_SKILL_ADVISOR_COMPILED_ROUTE_BOUNDING` (kept for existing configs: the transform adds no compiled-route line, so it changes only the `bounded_compiled_route_summary` status field).
+Additional controls: `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` (force local Python fallback where supported) and `--force-native` / `--force-local` / `--threshold` / `--stdin` (Python shim flags, default threshold `0.8`). `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` (default 3000) is owned by the `system-skill-advisor` hub: its live consumers are `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts`, `skill-advisor-brief.ts`, the OpenCode bridge and `skill_advisor.py`. On timeout the OpenCode bridge serves prompt-safe stale context with a timeout marker. OpenCode tuning: `SYSTEM_SKILL_ADVISOR_CACHE_TTL_MS` (default 5 min), `SYSTEM_SKILL_ADVISOR_MAX_TOKENS` (default 80), `SYSTEM_SKILL_ADVISOR_MAX_BRIEF_CHARS` (default 2 KiB), `SYSTEM_SKILL_ADVISOR_MAX_PROMPT_BYTES` (default 64 KiB, measured on the whole stdin request after JSON escaping), `SYSTEM_SKILL_ADVISOR_COMPILED_ROUTE_BOUNDING` (kept for existing configs: the transform adds no compiled-route line, so it changes only the `bounded_compiled_route_summary` status field).
 
 Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 

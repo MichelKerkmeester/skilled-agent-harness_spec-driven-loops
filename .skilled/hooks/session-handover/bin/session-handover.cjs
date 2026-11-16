@@ -730,9 +730,12 @@ function claim(args) {
       frontmatter: claimed.frontmatter,
       cwd: process.cwd(),
     });
+    // The note's writer could not see what the lookup returns, so a note that calls a detail
+    // lost, or tells this session to ask the operator, is no reason to skip the lookup.
     if (lookupSection !== null) {
       process.stdout.write(
-        `\n${lookupSection}\n\nUse it for a detail this note does not spell out, before you guess.\n`,
+        `\n${lookupSection}\n\nUse it for a detail this note does not spell out, before you guess`
+          + ' or ask the operator, even when the note says the detail cannot be recovered.\n',
       );
     }
   } catch {}

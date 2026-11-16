@@ -1,0 +1,3 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: a withdraw error does not end the hook. Write: "A usage error is logged and the hook exits quietly. A withdraw error is logged and the fill check goes on as if nothing was withdrawn."
+   - Defect 2: write: "The nudge, the Stop arm and the compact pointer's start claim drop those variables before they act."

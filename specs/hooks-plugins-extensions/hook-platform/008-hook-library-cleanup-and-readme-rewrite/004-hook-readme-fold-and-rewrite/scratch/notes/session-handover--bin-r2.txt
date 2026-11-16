@@ -1,0 +1,3 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: write: "A `prepare` outside a loop, or at the hop cap inside one, prints a manual claim command and exits 3. Every other refusal prints its reason to stderr and exits 2."
+   - Defect 2: write: "Inside a loop it also refuses while the runtime still has a live shell child."

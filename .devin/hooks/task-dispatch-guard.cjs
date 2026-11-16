@@ -1,1 +1,1 @@
-../../.skilled/hooks/task-dispatch/devin/task-dispatch-guard.cjs
+../../.skilled/hooks/subagent-dispatch-guard/devin/task-dispatch-guard.cjs

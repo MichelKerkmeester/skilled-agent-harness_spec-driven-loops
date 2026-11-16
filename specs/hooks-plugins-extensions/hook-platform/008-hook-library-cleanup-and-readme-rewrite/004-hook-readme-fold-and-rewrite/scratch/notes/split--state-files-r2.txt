@@ -1,0 +1,2 @@
+   - Defect 1: a different lock. Write: "The claim and completion of a note run under a lock beside the note, so two writers cannot both act on the same read."
+   - Defect 2: write: "A lock whose owner is alive and not expired, or a lock younger than five seconds with no readable owner pid, logs `killer-lock-held`."

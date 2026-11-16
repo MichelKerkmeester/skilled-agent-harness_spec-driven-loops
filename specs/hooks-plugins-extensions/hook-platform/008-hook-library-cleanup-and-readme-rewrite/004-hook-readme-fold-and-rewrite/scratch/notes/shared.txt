@@ -1,0 +1,5 @@
+   - This folder has no adapter of its own, so leave RUNTIME COVERAGE out. The old flavor table becomes KEY FILES with the columns `File | Responsibility`, and the consumers move into prose under it.
+   - The old text says the resolver gates 25 concerns. Drop the number. Keep every concern name in backticks. The list lives in `CONCERN_CANONICAL` at `hook-flags.cjs` line 47.
+   - The old tree leaves out `dsh/`, `session-readers/` and `tests/`. Name each with its role. `session-readers/` holds one reader per runtime plus `identity.mjs`, `index.mjs` and `project.mjs`, each with a `.d.mts` type file. Its own README stays.
+   - `hook-flags.sh` is also sourced by `.skilled/bin/worktree-guard.sh`. Keep the three flavors of the resolver: `hook-flags.cjs`, `hook-flags.mjs` and `hook-flags.sh`.
+   - The old sections WHAT IT DOES and BOUNDARIES AND FLOW become HOW IT WORKS.

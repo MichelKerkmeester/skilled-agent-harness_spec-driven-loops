@@ -70,15 +70,12 @@ test("truthy parsing is case/space-insensitive and strict about falsey", () => {
   for (const v of ["0", "false", "", "no", undefined, null, 1]) assert.equal(isTruthy(v), false, String(v));
 });
 
-test(".mjs and .ts facades re-export identical behavior", async () => {
+test("the .mjs facade re-exports identical behavior", async () => {
   const mjs = await import("./hook-flags.mjs");
   assert.equal(mjs.isHookEnabled("goal", { OPENCODE_GOAL_PLUGIN_DISABLED: "1" }), false);
   assert.equal(mjs.isHookEnabled("goal", {}), true);
   assert.equal(mjs.MASTER_FLAG, MASTER_FLAG);
-
-  const ts = await import("./hook-flags.ts");
-  assert.equal(ts.isHookEnabled("goal", { OPENCODE_GOAL_PLUGIN_DISABLED: "1" }), false);
-  assert.equal(ts.concernFlag("mcp-route-guard"), "MCP_ROUTE_GUARD_DISABLED");
+  assert.equal(mjs.concernFlag("mcp-route-guard"), "MCP_ROUTE_GUARD_DISABLED");
 });
 
 test("config file disables a concern (master, canonical, and aliases)", () => {
@@ -225,13 +222,11 @@ test("a kill switch beats the session-handover enable flag", () => {
   assert.equal(isHookEnabled("session-handover", on, { SYSTEM_SESSION_HANDOVER_DISABLED: "1" }), false);
 });
 
-test("the facades carry the session-handover default", async () => {
+test("the .mjs facade carries the session-handover default", async () => {
   const mjs = await import("./hook-flags.mjs");
   assert.equal(mjs.isHookEnabled("session-handover", {}), false);
   assert.equal(mjs.isHookEnabled("session-handover", { SYSTEM_SESSION_HANDOVER_ENABLED: "1" }), true);
-  const ts = await import("./hook-flags.ts");
-  assert.equal(ts.isHookEnabled("session-handover", {}), false);
-  assert.equal(ts.isHookEnabled("session-handover", {}, { SYSTEM_SESSION_HANDOVER_ENABLED: "on" }), true);
+  assert.equal(mjs.isHookEnabled("session-handover", {}, { SYSTEM_SESSION_HANDOVER_ENABLED: "on" }), true);
 });
 
 test("the node and shell resolvers give the same session-handover answers", () => {
@@ -562,7 +557,6 @@ test("an example line uncommented as-is, trailing comment and all, disables its 
 test("a per-runtime enable flag answers before the global one in every reader", async () => {
   const { spawnSync } = require("node:child_process");
   const mjs = await import("./hook-flags.mjs");
-  const ts = await import("./hook-flags.ts");
   const runtimes = ["claude", "pi", "opencode", "codex"];
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "hook-flags-runtime-"));
   try {
@@ -595,7 +589,7 @@ test("a per-runtime enable flag answers before the global one in every reader", 
       fs.writeFileSync(f, fileText);
       const expected = expectedText.split(" ");
       const cfg = loadConfigFile(f);
-      for (const [reader, flags] of [["cjs", { isHookEnabled }], ["mjs", mjs], ["ts", ts]]) {
+      for (const [reader, flags] of [["cjs", { isHookEnabled }], ["mjs", mjs]]) {
         const got = spelled
           .map((runtime) => flags.isHookEnabled("session-handover", envValues, cfg, { runtime }))
           .concat(flags.isHookEnabled("session-handover", envValues, cfg))

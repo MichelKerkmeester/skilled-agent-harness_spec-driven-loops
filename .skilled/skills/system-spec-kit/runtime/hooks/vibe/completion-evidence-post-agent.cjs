@@ -13,8 +13,8 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 
-const { mkdirSync, writeFileSync } = require('node:fs');
-const { dirname, join, resolve } = require('node:path');
+const { mkdirSync, statSync, writeFileSync } = require('node:fs');
+const { dirname, isAbsolute, join, resolve } = require('node:path');
 const { pathToFileURL } = require('node:url');
 
 const { isHookEnabled } = require('../../../../../hooks/shared/hook-flags.cjs');
@@ -59,6 +59,20 @@ function pendingAdvisoryPath(projectDir) {
   return join(projectDir, PENDING_ADVISORY_RELATIVE_PATH);
 }
 
+// The pending file is written only under an absolute folder that already exists
+// as a directory, so a payload cannot make this part create a directory tree
+// anywhere it names; the turn-start reader would delete a file there next turn.
+// This is the rule the compaction state and the repo-guards hook-io helper use;
+// it is restated here because this part is CommonJS and the helper is ESM.
+function existingDirectory(candidate) {
+  if (typeof candidate !== 'string' || !candidate || !isAbsolute(candidate)) return false;
+  try {
+    return statSync(candidate).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
 function writePendingAdvisory(projectDir, detail) {
   const target = pendingAdvisoryPath(projectDir);
   mkdirSync(dirname(target), { recursive: true, mode: 0o700 });
@@ -78,7 +92,8 @@ function writePendingAdvisory(projectDir, detail) {
  * @param {Function} [dependencies.readClaim] - Reads the turn's reply.
  * @param {Function} [dependencies.enabled] - The concern kill switch.
  * @param {Object} [dependencies.env] - The process environment.
- * @param {string} [dependencies.cwd] - Project root when the payload names none.
+ * @param {string} [dependencies.cwd] - Project root when the payload names none; the
+ *   checkout by default, the folder the turn-start reader falls back to.
  * @returns {Promise<{advisory: string}|null>} The advisory that was recorded, or null.
  */
 async function buildCompletionPart(payload, {
@@ -86,11 +101,11 @@ async function buildCompletionPart(payload, {
   readClaim = readClaimText,
   enabled = isHookEnabled,
   env = process.env,
-  cwd = process.cwd(),
+  cwd = REPO_ROOT,
 } = {}) {
   if (!payload || typeof payload !== 'object' || Array.isArray(payload)) return null;
   if (payload.hook_event_name !== 'post_agent') return null;
-  if (enabled(CONCERN) === false) return null;
+  if (enabled(CONCERN, env) === false) return null;
 
   const specFolder = typeof env[SPEC_FOLDER_ENV] === 'string' ? env[SPEC_FOLDER_ENV].trim() : '';
   if (!specFolder) return null;
@@ -108,10 +123,12 @@ async function buildCompletionPart(payload, {
 
   evidence.appendAdvisoryLog(REPO_ROOT, result.detail);
   const projectDir = typeof payload.cwd === 'string' && payload.cwd ? payload.cwd : cwd;
-  try {
-    writePendingAdvisory(projectDir, result.detail);
-  } catch {
-    // The log line still carries the advisory when the pending file cannot be written.
+  if (existingDirectory(projectDir)) {
+    try {
+      writePendingAdvisory(projectDir, result.detail);
+    } catch {
+      // The log line still carries the advisory when the pending file cannot be written.
+    }
   }
   return { advisory: result.detail };
 }

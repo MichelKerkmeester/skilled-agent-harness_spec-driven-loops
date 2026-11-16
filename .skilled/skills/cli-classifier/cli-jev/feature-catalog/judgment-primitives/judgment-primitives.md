@@ -7,7 +7,7 @@ trigger_phrases:
   - "jev answer shapes"
 importance_tier: "important"
 contextType: "reference"
-version: 0.1.0.2
+version: 0.1.1.0
 ---
 
 # Judgment primitives
@@ -46,7 +46,7 @@ the threshold is really the decision, the question was a `choice`.
 | Choose it when | the caller will branch on a category |
 
 Anchors: `SKILL.md` hard rule `jev-choice-option-cardinality`,
-`.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` (`jev-choice-option-cardinality`),
+`.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` (`jev-choice-option-cardinality`),
 `references/integration-patterns.md` §3.
 
 **The trap**: single-option `choice`. The CLI sends it, the MCP tool refuses it, and the answer is a

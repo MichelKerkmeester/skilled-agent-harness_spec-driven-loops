@@ -399,6 +399,10 @@ specs/z-future
 # credential. Regenerable, large, and a credential must never reach history or a
 # cloud-sync client. The artifacts worth keeping sit beside it.
 specs/**/lineages/*/.codex-home/
+# A Vibe lineage keeps its disposable home and its raw session export beside the lineage;
+# both hold the full session journal and the home's cached connector state.
+specs/**/lineages/*/vibe-home/
+specs/**/lineages/*/vibe-output/
 
 # Write-containment captures: the baseline copies a fan-out takes of files outside a lane, and
 # the quarantine copies of a lane's stray writes. Per-run machine output. Tracked, they were

@@ -14,21 +14,45 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`lib/` holds the runtime-neutral policy for the MCP route guard. Every adapter imports `mcp-route-guard.cjs` and passes a tool name, a project directory and an environment. The core parses the Claude `mcp__<server>__<tool>` shape or the OpenCode `<server>_<tool>` shape, normalizes the server token, exempts the repo's own servers, and reads the manual family set from `.utcp_config.json` with an mtime cache. The only decisions are `allow` and `warn`, and the core never writes stdout or stderr.
+`lib/` holds the runtime-neutral policy for the MCP route guard. The core exports `evaluateNativeMcpCall()`, which takes a tool name, a project directory and an environment. It parses the Claude `mcp__<server>__<tool>` shape or the OpenCode `<server>_<tool>` shape. Then it normalizes the server token and exempts the repository's own servers.
+
+The manual family set comes from `.utcp_config.json`, cached by file mtime. An edit widens coverage on the next call. An unchanged file is not parsed again. The only decisions are `allow` and `warn`. The core never writes stdout or stderr.
+
+The core fails open. In the default mode, a missing, oversized or unparsable manifest returns `allow`. An unknown tool name or any internal error returns `allow` in every mode. With `MCP_ROUTE_GUARD_BROAD_MODE=1`, a call the manifest cannot cover returns `warn`. The manifest cap is 1_048_576 bytes.
+
+Two environment switches change the decision. `MCP_ROUTE_GUARD_DISABLED` turns the guard into a no-op on every call. `MCP_ROUTE_GUARD_BROAD_MODE=1` also advises on external families the manifest cannot route yet.
+
+Claude, Codex, Devin, Pi, DSH, OpenCode and Vibe import the core. Cursor reaches it through the Claude adapter instead. The core imports Node builtins and `isTruthy` from `../../shared/hook-flags.cjs`.
 
 ---
 
-## 2. WHAT EACH FILE DOES
+## 2. FILES
 
-| File | Event or role | What it does | On error |
-|---|---|---|---|
-| [`mcp-route-guard.cjs`](./mcp-route-guard.cjs) | Shared core | Exports `evaluateNativeMcpCall()` plus the parsing, normalization and manifest helpers. The manifest family set is cached by file mtime, so an edit widens coverage on the next call. | Fails open. A missing, oversized or unparsable manifest, an unknown tool name or any internal error returns `allow`. |
-| [`mcp-route-guard.test.cjs`](./mcp-route-guard.test.cjs) | `node --test` suite | Covers both tool-name shapes, token normalization, the internal-server exemption, the mtime cache, broad mode and the fail-open paths. | Not applicable, the suite asserts behavior. |
+| File | Responsibility |
+|---|---|
+| `mcp-route-guard.cjs` | The policy core. It parses, normalizes, exempts and decides. |
+| `mcp-route-guard.test.cjs` | The suite for the core, the Claude adapter and the Cursor adapter. |
+
+`mcp-route-guard.cjs` exports `evaluateNativeMcpCall()` plus the parsing, normalization and manifest helpers. It also exports the constants and helpers the suite reads directly.
+
+`mcp-route-guard.test.cjs` covers both tool-name shapes, token normalization, the internal-server exemption, the mtime cache, broad mode and the fail-open paths. It spawns the Claude and Cursor adapters and asserts their output.
 
 ---
 
-## 3. RELATED
+## 3. VALIDATION
 
-- [`../README.md`](../README.md): the concern README with the full decision table and configuration.
-- [`../claude/mcp-route-guard.cjs`](../claude/mcp-route-guard.cjs): one adapter over this core.
-- [`../../shared/hook-flags.cjs`](../../shared/hook-flags.cjs): the kill-switch resolver the core imports for `isTruthy`.
+Run from the repository root.
+
+```bash
+node --test .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs
+```
+
+Expected result: `[mcp-route-guard] 18/18 assertions passed` and exit 0.
+
+---
+
+## 4. RELATED
+
+- [`../README.md`](../README.md): the concern README with the decision table, the runtime coverage and the configuration.
+- [`../claude/mcp-route-guard.cjs`](../claude/mcp-route-guard.cjs): the Claude `PreToolUse` adapter over this core.
+- [`../../shared/hook-flags.cjs`](../../shared/hook-flags.cjs): the switch resolver the core imports for `isTruthy`.

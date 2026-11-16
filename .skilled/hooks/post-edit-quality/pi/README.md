@@ -14,15 +14,25 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`pi/` holds the real Pi extension for post-edit quality. Pi discovers it through the one-line entry file `.pi/extensions/post-edit-quality.ts`, which re-exports it, so it loads from this folder and its imports are relative to this folder. The extension handles `edit` and `write` results, resolves `event.input.path` against `ctx.cwd`, runs `../lib/post-edit-router.cjs` and appends the findings as `{type: 'text', text}` content on the tool result, which makes them model-visible.
+`pi/` holds the real Pi extension for post-edit quality. Pi discovers it through the one-line entry file `.pi/extensions/post-edit-quality.ts`, which re-exports it. The extension loads from this folder, so its imports are relative to this folder.
+
+The extension listens on `tool_result` and handles `edit` and `write` results only. It resolves `event.input.path` against `ctx.cwd` and runs `../lib/post-edit-router.cjs`. Findings come back as `{type: 'text', text}` content on the tool result, so the model sees them.
 
 ---
 
-## 2. WHAT EACH FILE DOES
+## 2. FILES
 
-| File | Event or role | What it does | On error |
-|---|---|---|---|
-| [`post-edit-quality.ts`](./post-edit-quality.ts) | `tool_result` | Filters on `edit` and `write`, checks the file exists and calls `resolveDispatch()`, `runChecks()` and `runDistStalenessCheck()`. Returns the original content plus one text part when anything was found. | Fails open. A missing path, an import error or a core error returns `undefined`, so the tool result is unchanged. |
+| File | Responsibility |
+|---|---|
+| `post-edit-quality.ts` | The Pi `tool_result` extension that appends router findings to an edit or write result. |
+
+The extension registers one handler on `tool_result` and filters on the tool name. It returns early unless that name is `edit` or `write`. It also returns early when `event.input.path` is missing or not a string. A path that does not exist on disk returns early too.
+
+On a match it calls `resolveDispatch()`, `runChecks()` and `runDistStalenessCheck()` from the router. `runChecks()` runs under the shared budget and the checker timeout. When anything was found, it returns the original content plus one text part.
+
+A missing path, an import error or a core error returns `undefined`. The tool result then stays exactly as it was before.
+
+The extension returns early when the `post-edit-quality` concern is off. The `SK_CODE_POST_EDIT_QUALITY_DISABLED=1` switch turns that concern off before the handler registers.
 
 ---
 

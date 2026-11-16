@@ -3,7 +3,6 @@
   "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation",
   "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation",
   "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -56,8 +55,8 @@
       ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
       ".skilled/hooks/session-handover/tests/vibe-adapters.test.cjs",
       ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
-      ".skilled/hooks/goal/README.md",
-      ".skilled/hooks/goal/vibe/README.md"
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-advisor-uptake.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/spec-gate-classify.md"
     ],
     "entities": [
       {
@@ -169,6 +168,18 @@
         "source": "derived"
       },
       {
+        "name": "turn-start-advisor-uptake.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-advisor-uptake.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-classify.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/spec-gate-classify.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -191,23 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Mistral Vibe",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 022 records 26 scenarios as passing live, but three of them last passed before the automatic hand-over tier changed `turn-start.mjs`, `turn-end.mjs` and `compaction-post-tool.mjs`",
     "created_at": "2026-11-15T19:09:48Z",
-    "last_save_at": "2026-11-15T19:56:37.492Z",
+    "last_save_at": "2026-11-16T06:33:14.733Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e28eed43226616cee8ed2de29c0b553c15c8e36c20f3ddf1b88e586b3fec049",
+    "source_fingerprint": "sha256:3c7aeeaa721bd12544b9066597c042a9443eca7965b6466eb9671e29a1c24fbc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5e0ec6a0737f397dc7c829a97e83cf6575051c8f7b5ea343f455c771b54b3dc1",
+      "spec.md": "6f627f8f2442225bf301058c0740b0976302f95881da10de9801080412ca4581",
       "plan.md": "9e964a0ddd948e0ae01df6a00ffccf7fa72b725360c3e7469e87ccd95d583e8d",
-      "tasks.md": "06a48c1150ab0d5b89264d32d7f102325208a367db41725079f9718f080e0829",
-      "implementation-summary.md": "9456e6de83982d9b93f982f24d5b3891fd85d06c4e1a331e4f73ba1a62442747"
+      "tasks.md": "c61e7fbdaa018b653f686de3426c9fe47a55c01b4fdda3d020cd8077e47954f3",
+      "implementation-summary.md": "5dbd29fcc3228d731655a978738b3bf56195a49e4a1ef17fc0a8f145f6de40ae"
     },
     "last_active_at": null
   }

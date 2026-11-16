@@ -83,7 +83,7 @@ const VERSION_SAMPLES = [
 // same answers every other copy is tested against.
 const VERSION_CORPUS = JSON.parse(fs.readFileSync(path.resolve(
   __dirname, '..', '..', '..', '..',
-  'hooks', 'dispatch', 'lib', 'opencode-version-corpus.json',
+  'hooks', 'cli-dispatch', 'lib', 'opencode-version-corpus.json',
 ), 'utf8'));
 
 // ─────────────────────────────────────────────────────────────────────────────

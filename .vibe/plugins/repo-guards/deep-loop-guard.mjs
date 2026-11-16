@@ -24,7 +24,7 @@ import { isHookEnabled } from '../../../.skilled/hooks/shared/hook-flags.mjs';
 import { allow, deny, readPayload, runGuard, REPO_ROOT } from './lib/hook-io.mjs';
 
 const require = createRequire(import.meta.url);
-const guardCore = require('../../../.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs');
+const guardCore = require('../../../.skilled/hooks/subagent-dispatch-guard/lib/subagent-dispatch-guard.cjs');
 
 // Vibe publishes the spawn tool as agents.spawn in the payload and as
 // agents_spawn in a match selector; the deprecated subagent spelling is kept

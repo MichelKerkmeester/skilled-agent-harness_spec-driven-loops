@@ -20,7 +20,7 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
-import { evaluate, readHardRules } from '../../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs';
+import { evaluate, readHardRules } from '../../../../../hooks/cli-dispatch/lib/dispatch-rule-checks.mjs';
 import { readStdin } from '../lib/hook-adapter-shared.mjs';
 
 const require = createRequire(import.meta.url);

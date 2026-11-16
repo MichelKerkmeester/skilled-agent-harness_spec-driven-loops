@@ -7,7 +7,7 @@ trigger_phrases:
   - "Devin session handover"
   - "session-handover-command-runtimes"
   - "skilled-loop codex"
-version: 1.0.24.0
+version: 1.0.25.0
 id: session-handover-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -325,7 +325,7 @@ note="$SESSION_HANDOVER_REPO_ROOT/.skilled/skills/.state/session-handover/handof
 printf -- '---\nstatus: open\nsession_id: %s\nloop_id: %s\nruntime: codex\ncwd: %s\nspec_folder: \ncreated_at: 2026-01-01T00:00:00Z\n---\n## Goal\nProbe the withdraw path\n## Done\nNothing.\n## Remaining work\nNothing.\n## In-flight state\nNothing.\n' "$sid" "$SKILLED_LOOP_ID" "$sandbox" > "$note"
 
 check() { if eval "$2"; then echo "PASS: $1"; else echo "FAIL: $1"; exit 1; fi; }
-prompt() { printf '{"hook_event_name":"UserPromptSubmit","session_id":"%s","cwd":"%s","prompt":"%s"}' "$sid" "$sandbox" "$1" | node "$hooks/codex/prompt-seed.mjs"; }
+prompt() { printf '{"hook_event_name":"UserPromptSubmit","session_id":"%s","cwd":"%s","prompt":"%s"}' "$sid" "$sandbox" "$1" | node "$hooks/codex/handover-prompt-seed.mjs"; }
 arm() { node -e "require('$hooks/lib/relaunch-core.cjs').arm({loopId: process.env.SKILLED_LOOP_ID, cwd: '$sandbox'})"; }
 
 cli prepare --handoff "$note" --session "$sid" --runtime codex > /dev/null
@@ -461,7 +461,7 @@ Codex 0.164.0, Devin 3000.11.205. Evidence lives in `specs/hooks-plugins-extensi
 |---|---|---|
 | `manual-testing-playbook.md` | Root index and execution verdict rules. |
 | `../../feature-catalog/context-preservation/session-handover-loop.md` | Shared handoff implementation and runtime coverage. |
-| `../../../../hooks/session-handover/README.md` | Runtime adapter matrix, launch syntax and command-only reasons. |
+| `../../../../hooks/session-handover/runtime-behavior.md` | Runtime adapter matrix, launch syntax and command-only reasons. |
 | `../../../../../specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/scratch/contracts/interface-contract.md` | Section 12 contract for the four runtimes. |
 | `../../../../../specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/003-command-trigger-runtimes/scratch/spike/SPIKE-codex.md` | Codex spike verdict and captured payloads. |
 | `../../../../../specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/003-command-trigger-runtimes/scratch/spike/SPIKE-devin.md` | Devin spike verdict and unverified items. |
@@ -470,11 +470,11 @@ Codex 0.164.0, Devin 3000.11.205. Evidence lives in `specs/hooks-plugins-extensi
 
 | File | Role |
 |---|---|
-| `.skilled/hooks/session-handover/codex/prompt-seed.mjs` | Codex `UserPromptSubmit` entry point. |
-| `.skilled/hooks/session-handover/codex/context-nudge.mjs` | Codex `PostToolUse` entry point. |
+| `.skilled/hooks/session-handover/codex/handover-prompt-seed.mjs` | Codex `UserPromptSubmit` entry point. |
+| `.skilled/hooks/session-handover/codex/handover-context-nudge.mjs` | Codex `PostToolUse` entry point. |
 | `.skilled/hooks/session-handover/codex/shared.mjs` | Shared Codex payload, threshold and emit logic, and the withdraw of an armed record on an operator prompt. |
 | `.skilled/hooks/session-handover/lib/withdraw.cjs` | Calls off a prepared hand-over for every runtime and `cancel`: a guarded disarm, the extra nudge and the withdrawn history line. |
-| `.skilled/hooks/session-handover/codex/stop-arm.mjs` | Codex `Stop` arm and killer spawn. |
+| `.skilled/hooks/session-handover/codex/handover-stop-arm.mjs` | Codex `Stop` arm and killer spawn. |
 | `.skilled/bin/skilled-loop` | Runtime selection, environment export and relaunch arguments. |
 | `.skilled/bin/skilled-loop-shell.sh` | Starts a plain `codex`, `cursor-agent` or `devin` launch under a trusted wrapper, a symlinked `.skilled` included. Trusted means inside the sourced checkout, a linked worktree registered to it or a checkout in `SKILLED_LOOP_TRUSTED_CHECKOUTS`. |
 | `.skilled/hooks/session-handover/tests/skilled-loop-shell.test.cjs` | Shell shim resolution and terminal hand-off tests. |

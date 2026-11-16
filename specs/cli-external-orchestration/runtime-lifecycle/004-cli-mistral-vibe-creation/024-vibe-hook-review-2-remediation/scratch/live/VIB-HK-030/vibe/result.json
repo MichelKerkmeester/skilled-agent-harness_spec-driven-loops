@@ -1,0 +1,65 @@
+{
+  "runtime": "vibe",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 957035235,
+  "socket": "conv-15093-vibe",
+  "session_id": "fac0d19b-ddd9-42bf-bf7e-7b3bd18b54da",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.Dh6HuWPkY7/vibe",
+  "vibe_home": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.Dh6HuWPkY7/vibe-home-JO3ztl",
+  "vibe_model": "deepseek-flash",
+  "vibe_home_removed": false,
+  "started_at": "2026-11-16T07:33:46.781Z",
+  "finished_at": "2026-11-16T07:35:35.480Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "start-shell",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "shell-started",
+      "evidence": "turns/start-shell"
+    },
+    {
+      "id": "typed-read",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "typed-command-refused",
+      "evidence": "turns/typed-read"
+    },
+    {
+      "id": "no-leak",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "value-absent",
+      "evidence": "turns/no-leak"
+    }
+  ]
+}

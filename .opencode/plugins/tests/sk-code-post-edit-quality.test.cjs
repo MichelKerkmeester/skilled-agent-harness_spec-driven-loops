@@ -21,7 +21,7 @@ const ROUTER_PATH = path.join(
   __dirname, '..', '..', 'hooks', 'post-edit-quality', 'lib', 'post-edit-router.cjs',
 );
 const CLAUDE_HOOK_PATH = path.join(
-  __dirname, '..', '..', 'hooks', 'post-edit-quality', 'claude', 'claude-posttooluse.cjs',
+  __dirname, '..', '..', 'hooks', 'post-edit-quality', 'claude', 'post-edit-quality.cjs',
 );
 const CODEX_HOOK_PATH = path.join(
   __dirname, '..', '..', 'hooks', 'post-edit-quality', 'codex', 'post-edit-quality.cjs',
@@ -74,7 +74,7 @@ const FLAGGED_SOURCE = '// see ADR-12\nexport const ok = 1;\n';
 function isolatedClaudeHook(tmpDir) {
   const hooksRoot = path.join(__dirname, '..', '..', 'hooks');
   for (const rel of [
-    'post-edit-quality/claude/claude-posttooluse.cjs',
+    'post-edit-quality/claude/post-edit-quality.cjs',
     'post-edit-quality/lib/post-edit-router.cjs',
     'shared/hook-flags.cjs',
     'shared/env-aliases.cjs',
@@ -82,7 +82,7 @@ function isolatedClaudeHook(tmpDir) {
   ]) {
     writeFile(path.join(tmpDir, '.skilled', 'hooks', rel), fs.readFileSync(path.join(hooksRoot, rel)));
   }
-  return path.join(tmpDir, '.skilled', 'hooks', 'post-edit-quality', 'claude', 'claude-posttooluse.cjs');
+  return path.join(tmpDir, '.skilled', 'hooks', 'post-edit-quality', 'claude', 'post-edit-quality.cjs');
 }
 
 async function loadPlugin() {

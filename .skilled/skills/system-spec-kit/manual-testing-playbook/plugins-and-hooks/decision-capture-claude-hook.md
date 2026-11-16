@@ -5,7 +5,7 @@ trigger_phrases:
   - "decision capture hook"
   - "askuserquestion capture"
   - "operator answer queue"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # decision-capture-claude-hook -- Decision capture Claude hook
@@ -18,7 +18,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 This scenario validates the Claude PostToolUse decision-capture hook for `decision-capture-claude-hook`. It focuses on one queued record per answered AskUserQuestion, the registry and mirror wiring, and the kill switch.
 
-When the operator answers an AskUserQuestion in Claude Code, `.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs` copies the exact question, options and answer into a gitignored per-session queue in the project's own subfolder under `.skilled/skills/.state/decision-capture/`. A later full-auto `/speckit:save` turns each queued answer into a decision row. The hook only observes: it prints nothing and always exits 0.
+When the operator answers an AskUserQuestion in Claude Code, `.skilled/hooks/decision-capture/claude/decision-capture-posttooluse.mjs` copies the exact question, options and answer into a gitignored per-session queue in the project's own subfolder under `.skilled/skills/.state/decision-capture/`. A later full-auto `/speckit:save` turns each queued answer into a decision row. The hook only observes: it prints nothing and always exits 0.
 
 ### Why This Matters
 
@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `decision-capture-claude
 - Real user request: `I answered a question from Claude a minute ago. Can you check the decision-capture hook actually saved my answer, and that turning it off really stops it?`
 - Prompt: `Check that the decision-capture hook queues my AskUserQuestion answer exactly once, is registered and mirrored, and writes nothing when its kill switch is on.`
 - Expected execution process: Run the commands in section 3 from the repository root. Feed the real payload fixture to the hook with `CLAUDE_PROJECT_DIR` set to a scratch folder, so no queue is written in the repository.
-- Expected signals: the capture-core suite reports `fail 0`; `sync-hook-registrations.cjs --check` and `sync-runtime-mirrors.cjs --check` print `PASS`; `.claude/settings.json` binds `ask-capture-posttooluse.mjs` under the `AskUserQuestion` matcher; `.claude/hooks/ask-capture-posttooluse.mjs` is a symlink to the hook; the scratch queue holds exactly one line whose `answer` is `Probe answer A`; the hook prints nothing and exits 0; with `SYSTEM_DECISION_CAPTURE_DISABLED=1` the second scratch folder has no `.skilled` directory.
+- Expected signals: the capture-core suite reports `fail 0`; `sync-hook-registrations.cjs --check` and `sync-runtime-mirrors.cjs --check` print `PASS`; `.claude/settings.json` binds `decision-capture-posttooluse.mjs` under the `AskUserQuestion` matcher; `.claude/hooks/decision-capture-posttooluse.mjs` is a symlink to the hook; the scratch queue holds exactly one line whose `answer` is `Probe answer A`; the hook prints nothing and exits 0; with `SYSTEM_DECISION_CAPTURE_DISABLED=1` the second scratch folder has no `.skilled` directory.
 - Desired user-visible outcome: A PASS or FAIL verdict naming the queued record and the kill-switch result.
 - Pass/fail: PASS if every expected signal is observed, FAIL if any is missing or the hook writes a queue inside the repository.
 
@@ -51,7 +51,7 @@ Operators run the exact prompt and command sequence for `decision-capture-claude
 1. `node --test .skilled/hooks/decision-capture/lib/capture-core.test.mjs`
 2. `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check`
 3. `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check`
-4. `grep -n -B4 "ask-capture-posttooluse" .claude/settings.json && ls -l .claude/hooks/ask-capture-posttooluse.mjs`
+4. `grep -n -B4 "decision-capture-posttooluse" .claude/settings.json && ls -l .claude/hooks/decision-capture-posttooluse.mjs`
 5. Feed the real payload fixture to the hook in a scratch project:
 
 ```bash
@@ -59,7 +59,7 @@ P="$(mktemp -d)"
 node -e 'const f=require(process.argv[1]); f.cwd=process.argv[2]; process.stdout.write(JSON.stringify(f))' \
   "$PWD/.skilled/hooks/decision-capture/claude/fixtures/claude-posttooluse-askuserquestion.json" "$P" \
   | env -u SYSTEM_HOOKS_DISABLED -u SYSTEM_DECISION_CAPTURE_DISABLED CLAUDE_PROJECT_DIR="$P" \
-    node .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs; echo "exit=$?"
+    node .skilled/hooks/decision-capture/claude/decision-capture-posttooluse.mjs; echo "exit=$?"
 cat "$P"/.skilled/skills/.state/decision-capture/*/*.jsonl
 wc -l "$P"/.skilled/skills/.state/decision-capture/*/*.jsonl
 ```
@@ -71,7 +71,7 @@ Q="$(mktemp -d)"
 node -e 'const f=require(process.argv[1]); f.cwd=process.argv[2]; process.stdout.write(JSON.stringify(f))' \
   "$PWD/.skilled/hooks/decision-capture/claude/fixtures/claude-posttooluse-askuserquestion.json" "$Q" \
   | SYSTEM_DECISION_CAPTURE_DISABLED=1 CLAUDE_PROJECT_DIR="$Q" \
-    node .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs; echo "exit=$?"
+    node .skilled/hooks/decision-capture/claude/decision-capture-posttooluse.mjs; echo "exit=$?"
 ls -A "$Q"
 ```
 
@@ -117,7 +117,7 @@ Feature catalog: [ux-hooks/operator-decision-capture.md](../../feature-catalog/u
 
 | File | Role |
 |---|---|
-| `.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs` | Claude PostToolUse adapter |
+| `.skilled/hooks/decision-capture/claude/decision-capture-posttooluse.mjs` | Claude PostToolUse adapter |
 | `.skilled/hooks/decision-capture/lib/capture-core.mjs` | Normalizer, process filter and locked queue |
 | `.skilled/hooks/decision-capture/claude/fixtures/claude-posttooluse-askuserquestion.json` | Real payload with paths and ids redacted |
 | `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` | Registry entry the sync renders |

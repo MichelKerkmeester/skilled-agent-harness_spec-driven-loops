@@ -7,7 +7,7 @@ trigger_phrases:
   - "SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP"
   - "SPECKIT_PI_DIRECTIVE_DEDUP"
   - "advisor directive repetition"
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # Cross-runtime directive-lifecycle dedup
@@ -73,7 +73,7 @@ Kill switches:
 | `.skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts` | OpenCode cadence, identity rejection, global invalidation, and status tests. |
 | `.skilled/skills/system-spec-kit/runtime/tests/directive-lifecycle-adapter-parity.vitest.ts` | Registered Claude/Codex/Cursor/Devin payload and envelope parity. |
 | `.skilled/skills/system-spec-kit/runtime/tests/directive-lifecycle-boundary-bridge.vitest.ts` | Registered host-boundary coupling. |
-| `.skilled/hooks/dispatch/pi` | Pi dispatch and lifecycle suite. |
+| `.skilled/hooks/cli-dispatch/pi` | Pi dispatch and lifecycle suite. |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md` | Evidence-class-aware operator scenario. |
 | the retired scenario-persistence wrapper | Append-only reports with durable hashes and observed provenance. |
 

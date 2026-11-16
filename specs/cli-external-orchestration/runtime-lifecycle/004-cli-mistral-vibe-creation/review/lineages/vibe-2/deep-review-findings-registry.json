@@ -1,5 +1,5 @@
 {
-  "sessionId": "fanout-vibe-2-1794765851303-zrv85l",
+  "sessionId": "fanout-vibe-2-1794808672532-65xu0h",
   "parentSessionId": null,
   "generation": 1,
   "lineageMode": "new",
@@ -7,54 +7,18 @@
   "terminalStop": {
     "stopReason": "maxIterationsReached",
     "totalIterations": 5,
-    "timestamp": "2026-11-15T18:34:45.105Z"
+    "timestamp": "2026-11-16T06:09:20.356Z"
   },
   "status": "COMPLETE",
   "openFindings": [
     {
       "findingId": "R1-P1-001",
       "severity": "P1",
-      "title": "The detector commits the watermark before it knows it has any text, so a compaction whose goal slice and handoff note are both empty is marked injected and never retried",
-      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
-      "line": 231,
+      "title": "The spec-gate advise path never acknowledges delivery, so the notice repeats on every shell call",
+      "file": ".vibe/plugins/repo-guards/spec-gate.mjs",
+      "line": 72,
       "description": "",
-      "findingClass": "correctness",
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        },
-        {
-          "iteration": 5,
-          "from": "P1",
-          "to": "P1",
-          "reason": "Refinement of an earlier finding"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R1-P1-002",
-      "severity": "P1",
-      "title": "The post_tool size gate watches only journal/*.jsonl, so a snapshot-only compaction never reaches the detector",
-      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
-      "line": 271,
-      "description": "",
-      "findingClass": "correctness",
+      "findingClass": null,
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
@@ -78,73 +42,13 @@
       "mergedFindingIds": []
     },
     {
-      "findingId": "R2-P1-001",
-      "severity": "P1",
-      "title": "The packet live-evidence claim for VIB-HK-005/006/007 is stale after the automatic handover tier merged, and no artifact records the regression",
-      "file": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md",
-      "line": 139,
-      "description": "",
-      "findingClass": "traceability",
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "traceability",
-      "firstSeen": 2,
-      "lastSeen": 2,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R4-P1-001",
-      "severity": "P1",
-      "title": "The goal adapter README states that nothing re-injects the slice after compaction, while the compaction detector calls that adapter on every new compaction",
-      "file": ".skilled/hooks/goal/vibe/README.md",
-      "line": 21,
-      "description": "",
-      "findingClass": "maintainability",
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "maintainability",
-      "firstSeen": 4,
-      "lastSeen": 4,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "maintainability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
       "findingId": "R1-P2-001",
       "severity": "P2",
-      "title": "writeWatermark records only the latest compaction id in seen, so a multi-compaction catch-up re-injects the older ones after a snapshot roll",
-      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
-      "line": 111,
+      "title": "process_start is keyed by its bare name while every other map key is qualified",
+      "file": ".vibe/plugins/repo-guards/lib/hook-io.mjs",
+      "line": 32,
       "description": "",
-      "findingClass": "correctness",
+      "findingClass": null,
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
@@ -170,11 +74,41 @@
     {
       "findingId": "R1-P2-002",
       "severity": "P2",
-      "title": "measureJournal returns null for an empty journal directory, so the binding skips the detector right after a snapshot roll",
-      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
-      "line": 274,
+      "title": "The session-cleanup hook imports another runtime's plugin outside the fail-open wrapper",
+      "file": ".vibe/plugins/repo-guards/session-cleanup.mjs",
+      "line": 16,
       "description": "",
-      "findingClass": "correctness",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "The dispatch preflight passes the raw payload cwd to the rule engine",
+      "file": ".vibe/plugins/repo-guards/dispatch-preflight.mjs",
+      "line": 22,
+      "description": "",
+      "findingClass": null,
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
@@ -200,17 +134,17 @@
     {
       "findingId": "R2-P2-001",
       "severity": "P2",
-      "title": "The recorded VIB-HK-006 evidence is from a four-turn scenario version the playbook no longer contains",
-      "file": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/live/VIB-HK-006/vibe/checkpoints.tsv",
-      "line": 1,
+      "title": "The advise reply uses a field the recorded pre_tool format does not carry, on a strict binding",
+      "file": ".vibe/plugins/repo-guards/spec-gate.mjs",
+      "line": 72,
       "description": "",
-      "findingClass": "traceability",
+      "findingClass": null,
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "traceability",
+      "dimension": "correctness",
       "firstSeen": 2,
       "lastSeen": 2,
       "status": "active",
@@ -223,24 +157,24 @@
         }
       ],
       "dimensions": [
-        "traceability"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
       "findingId": "R2-P2-002",
       "severity": "P2",
-      "title": "The playbook lists 27 scenarios but carries no per-scenario verdict, so the only verdict table lives under a phase scratch folder",
-      "file": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md",
-      "line": 261,
+      "title": "The startup-guard spawn budget equals the inner per-script budget, so the warnings are lost on a slow start",
+      "file": ".skilled/hooks/session-lifecycle/vibe/session-start.mjs:42,82-92",
+      "line": null,
       "description": "",
-      "findingClass": "traceability",
+      "findingClass": null,
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "traceability",
+      "dimension": "correctness",
       "firstSeen": 2,
       "lastSeen": 2,
       "status": "active",
@@ -253,24 +187,54 @@
         }
       ],
       "dimensions": [
-        "traceability"
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-003",
+      "severity": "P2",
+      "title": "The goal part has no kill switch and the switch table does not mention it",
+      "file": ".skilled/hooks/session-lifecycle/vibe/session-start.mjs",
+      "line": 68,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
       "findingId": "R3-P2-001",
       "severity": "P2",
-      "title": "The compaction state directory is derived from payload.cwd with no containment check",
-      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
-      "line": 67,
+      "title": "The hand-over part runs on every tool call with no size gate, so the journal is re-parsed each time",
+      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs",
+      "line": 66,
       "description": "",
-      "findingClass": "security",
+      "findingClass": null,
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "security",
+      "dimension": "correctness",
       "firstSeen": 3,
       "lastSeen": 3,
       "status": "active",
@@ -283,24 +247,24 @@
         }
       ],
       "dimensions": [
-        "security"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
       "findingId": "R3-P2-002",
       "severity": "P2",
-      "title": "The hand-over state directory falls back to a predictable path under os.tmpdir() with no ownership or symlink check",
-      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
-      "line": 291,
+      "title": "The session-start composer has no CLI-entry guard and no test, unlike the other three composers",
+      "file": ".skilled/hooks/session-lifecycle/vibe/session-start.mjs",
+      "line": 145,
       "description": "",
-      "findingClass": "security",
+      "findingClass": null,
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "security",
+      "dimension": "correctness",
       "firstSeen": 3,
       "lastSeen": 3,
       "status": "active",
@@ -313,24 +277,24 @@
         }
       ],
       "dimensions": [
-        "security"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
       "findingId": "R3-P2-003",
       "severity": "P2",
-      "title": "The post_tool binding re-reads the whole session store on every grown-journal tool call inside a 10-second budget",
-      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
-      "line": 314,
+      "title": "The turn-start composer uses the raw payload cwd as the project root while the guard seam resolves it against the checkout",
+      "file": ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs:52,80",
+      "line": null,
       "description": "",
-      "findingClass": "security",
+      "findingClass": null,
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "security",
+      "dimension": "correctness",
       "firstSeen": 3,
       "lastSeen": 3,
       "status": "active",
@@ -343,24 +307,24 @@
         }
       ],
       "dimensions": [
-        "security"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
       "findingId": "R4-P2-001",
       "severity": "P2",
-      "title": "The reference doc Status paragraph still describes .vibe/hooks.toml as the guard bundle plus one session_start entry, while the file declares 18 entries",
-      "file": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
-      "line": 37,
+      "title": "A throwing nudge commit releases the claim and still delivers the nudge",
+      "file": ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
+      "line": 303,
       "description": "",
-      "findingClass": "maintainability",
+      "findingClass": null,
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "maintainability",
+      "dimension": "correctness",
       "firstSeen": 4,
       "lastSeen": 4,
       "status": "active",
@@ -373,24 +337,24 @@
         }
       ],
       "dimensions": [
-        "maintainability"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
       "findingId": "R4-P2-002",
       "severity": "P2",
-      "title": "The same paragraph claims every section-4 row names the run that proved it, while five of the seventeen hook rows name a run",
-      "file": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
-      "line": 37,
+      "title": "The advisor's head receipt reads process.env instead of the env the adapter accepts",
+      "file": ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+      "line": 64,
       "description": "",
-      "findingClass": "maintainability",
+      "findingClass": null,
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "maintainability",
+      "dimension": "correctness",
       "firstSeen": 4,
       "lastSeen": 4,
       "status": "active",
@@ -403,24 +367,24 @@
         }
       ],
       "dimensions": [
-        "maintainability"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
       "findingId": "R4-P2-003",
       "severity": "P2",
-      "title": "The session-lifecycle README counts six kill switches, and the two parts behind the open lead have none",
-      "file": ".skilled/hooks/session-lifecycle/vibe/README.md",
-      "line": 29,
+      "title": "Two adapters accept an env seam and then ignore it for the enable check",
+      "file": ".skilled/hooks/ask-surface-guard/vibe/ask-surface-post-agent.mjs",
+      "line": 86,
       "description": "",
-      "findingClass": "maintainability",
+      "findingClass": null,
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "maintainability",
+      "dimension": "correctness",
       "firstSeen": 4,
       "lastSeen": 4,
       "status": "active",
@@ -433,78 +397,18 @@
         }
       ],
       "dimensions": [
-        "maintainability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R4-P2-004",
-      "severity": "P2",
-      "title": "The session-lifecycle README states the watermark-before-build order and the journal-size-only gate as the contract, so the fixes for R1-P1-001 and R1-P1-002 will read as regressions",
-      "file": ".skilled/hooks/session-lifecycle/vibe/README.md",
-      "line": 25,
-      "description": "",
-      "findingClass": "maintainability",
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "maintainability",
-      "firstSeen": 4,
-      "lastSeen": 4,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "maintainability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R4-P2-005",
-      "severity": "P2",
-      "title": "The goal-fallback comment added by the 2026-11-15 fix is wrapped past the file own width, and one template literal in the turn-start composer is 148 characters",
-      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
-      "line": 747,
-      "description": "",
-      "findingClass": "maintainability",
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "maintainability",
-      "firstSeen": 4,
-      "lastSeen": 4,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "maintainability"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
       "findingId": "R5-P2-001",
       "severity": "P2",
-      "title": "The feature catalog dispatch-mode page lists three composition points and omits the hand-over part that now runs in all three composers, and the catalog never mentions hand-over at all",
-      "file": ".skilled/skills/cli-external-orchestration/feature-catalog/mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md",
-      "line": 39,
+      "title": "Three hooks gate on a post_tool field value the reference doc records as unobserved",
+      "file": ".vibe/plugins/repo-guards/post-edit-quality.mjs",
+      "line": 45,
       "description": "",
-      "findingClass": "traceability",
+      "findingClass": null,
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
@@ -530,11 +434,41 @@
     {
       "findingId": "R5-P2-002",
       "severity": "P2",
-      "title": "Both compaction scenarios require a non-empty goal slice, so the empty-slice path that loses the injection has no coverage",
-      "file": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection.md",
-      "line": 31,
+      "title": "dist-freshness.mjs re-implements the shared sessionDirFor instead of importing it",
+      "file": ".vibe/plugins/repo-guards/dist-freshness.mjs",
+      "line": 53,
       "description": "",
-      "findingClass": "traceability",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-003",
+      "severity": "P2",
+      "title": "The port map records a clean hook verdict for two plugins whose tool registrations the port drops",
+      "file": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
+      "line": 122,
+      "description": "",
+      "findingClass": null,
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
@@ -561,83 +495,9 @@
   "resolvedFindings": [],
   "blockedStopHistory": [],
   "terminalGates": null,
-  "persistentSameSeverity": [
-    {
-      "findingId": "R1-P1-001",
-      "severity": "P1",
-      "title": "The detector commits the watermark before it knows it has any text, so a compaction whose goal slice and handoff note are both empty is marked injected and never retried",
-      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
-      "line": 231,
-      "description": "",
-      "findingClass": "correctness",
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        },
-        {
-          "iteration": 5,
-          "from": "P1",
-          "to": "P1",
-          "reason": "Refinement of an earlier finding"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    }
-  ],
+  "persistentSameSeverity": [],
   "severityChanged": [],
-  "repeatedFindings": [
-    {
-      "findingId": "R1-P1-001",
-      "severity": "P1",
-      "title": "The detector commits the watermark before it knows it has any text, so a compaction whose goal slice and handoff note are both empty is marked injected and never retried",
-      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
-      "line": 231,
-      "description": "",
-      "findingClass": "correctness",
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        },
-        {
-          "iteration": 5,
-          "from": "P1",
-          "to": "P1",
-          "reason": "Refinement of an earlier finding"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    }
-  ],
+  "repeatedFindings": [],
   "dimensionCoverage": {
     "correctness": true,
     "security": true,
@@ -646,10 +506,10 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 4,
-    "P2": 14
+    "P1": 1,
+    "P2": 15
   },
-  "openFindingsCount": 18,
+  "openFindingsCount": 16,
   "resolvedFindingsCount": 0,
   "convergenceScore": 0,
   "graphConvergenceScore": 0,
@@ -676,16 +536,63 @@
   },
   "traceability": {
     "summary": {
-      "required": 0,
-      "executed": 0,
+      "required": 3,
+      "executed": 3,
       "pass": 0,
-      "partial": 0,
+      "partial": 3,
       "fail": 0,
       "blocked": 0,
-      "notApplicable": 0,
-      "gatingFailures": 0
+      "notApplicable": 1,
+      "gatingFailures": 1
     },
-    "results": []
+    "results": [
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          ".vibe/hooks.toml:1-140",
+          ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:37",
+          ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:196-198"
+        ],
+        "notes": "The binding count matches the doc exactly: 18 [[hooks]] entries and the same event split. The post_tool field assumption and the two dropped tool registrations do not match.",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard"
+      },
+      {
+        "applicable": false,
+        "evidenceRefs": [],
+        "notes": "No checklist document on a hook and plugin surface.",
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "gateClass": "hard"
+      },
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:116-139",
+          ".opencode/plugins/env-secret-guard.js:121-140",
+          ".opencode/plugins/system-skill-advisor.js:24"
+        ],
+        "notes": "All 21 OpenCode plugins are classified and each not-needed verdict names a reason. Two hook rows omit the tool registrations the port drops.",
+        "protocolId": "agent_cross_runtime",
+        "status": "partial",
+        "gateClass": "advisory"
+      },
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:37",
+          ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:196-198"
+        ],
+        "notes": "VIB-HK-018 covers tool_status for a shell call only; no row covers a write_file or edit result.",
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "advisory"
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "spec_code"
+    ]
   },
   "divergence": {
     "started": [],

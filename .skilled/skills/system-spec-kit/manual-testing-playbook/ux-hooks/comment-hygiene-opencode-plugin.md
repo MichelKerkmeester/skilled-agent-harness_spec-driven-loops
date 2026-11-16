@@ -1,7 +1,7 @@
 ---
 title: "119-C -- Comment Hygiene — OpenCode Plugin Injection + Pre-Commit Gate"
 description: "This scenario validates comment hygiene enforcement for OpenCode sessions in `119-C`. OpenCode has no write-time hook (ADR-001). Enforcement relies on the comment hygiene rule injected via the spec-kit skill-advisor plugin at session start, backed by the git pre-commit gate as the blocking backstop."
-version: 1.6.1.0
+version: 1.6.3.0
 id: ux-hooks-c-comment-hygiene-opencode-plugin
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -51,7 +51,7 @@ Operators run the exact prompt and command sequence for `119-C` and confirm the 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| 119-C | OpenCode plugin + pre-commit | Verify plugin injects hygiene rule and pre-commit blocks any slipthrough | `In /tmp/hygiene-sandbox/violation.ts, add a comment on line 1 explaining why the lease cleanup path runs unconditionally. The comment must state the reasoning without referencing any spec or requirement document.` | 1. `ls -la .git/hooks/pre-commit && grep HYGIENE_HOOK .skilled/scripts/git-hooks/pre-commit` -> 2. `opencode run --model opencode-go/deepseek-v4-pro --agent general --variant high --format json --dir "$(pwd)" "In /tmp/hygiene-sandbox/violation.ts, add a comment on line 1 explaining why the lease cleanup path runs unconditionally without referencing any spec or requirement." 2>&1 \| tee /tmp/opencode-119C.log` -> 3. `cat /tmp/hygiene-sandbox/violation.ts` -> 4. `python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh /tmp/hygiene-sandbox/violation.ts; echo "Checker:$?"` -> 5. `git add /tmp/hygiene-sandbox/violation.ts && git commit -m "test-119C" 2>&1; echo "Commit:$?"` -> 6. `git log --oneline -3` | Step 1: pre-commit linked + HYGIENE_HOOK present; Step 3: comment is a clean WHY statement OR contains a forbidden ref; Step 4: EXIT:0 (model self-corrected) or EXIT:1 (violation); Step 5: commit allowed (EXIT:0) or the `[gate:comment-hygiene]` refusal line (EXIT:1); Step 6: no forbidden comment in log | `/tmp/opencode-119C.log`; `cat violation.ts`; checker exit code; `git commit` output; `git log --oneline -3` | PASS if `git log` shows no forbidden comment in the committed file; FAIL if a forbidden comment (`// REQ-`, `// ADR-`, `// 026/`) appears in `git log` | If pre-commit not linked: run `bash .skilled/hooks/git/install-hooks.sh`; if plugin not injecting rule: run `opencode run ... "List your comment rules" 2>&1 \| grep -i hygiene`; if bypass var set: `echo $SPECKIT_SKIP_COMMENT_HYGIENE` must be empty |
+| 119-C | OpenCode plugin + pre-commit | Verify plugin injects hygiene rule and pre-commit blocks any slipthrough | `In /tmp/hygiene-sandbox/violation.ts, add a comment on line 1 explaining why the lease cleanup path runs unconditionally. The comment must state the reasoning without referencing any spec or requirement document.` | 1. `ls -la .git/hooks/pre-commit && grep -n 'gate:comment-hygiene' .skilled/scripts/git-hooks/pre-commit` -> 2. `opencode run --model opencode-go/deepseek-v4-pro --agent general --variant high --format json --dir "$(pwd)" "In /tmp/hygiene-sandbox/violation.ts, add a comment on line 1 explaining why the lease cleanup path runs unconditionally without referencing any spec or requirement." 2>&1 \| tee /tmp/opencode-119C.log` -> 3. `cat /tmp/hygiene-sandbox/violation.ts` -> 4. `python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh /tmp/hygiene-sandbox/violation.ts; echo "Checker:$?"` -> 5. `git add /tmp/hygiene-sandbox/violation.ts && git commit -m "test-119C" 2>&1; echo "Commit:$?"` -> 6. `git log --oneline -3` | Step 1: pre-commit linked + `[gate:comment-hygiene]` lines present; Step 3: comment is a clean WHY statement OR contains a forbidden ref; Step 4: EXIT:0 (model self-corrected) or EXIT:1 (violation); Step 5: commit allowed (EXIT:0) or the `[gate:comment-hygiene]` refusal line (EXIT:1); Step 6: no forbidden comment in log | `/tmp/opencode-119C.log`; `cat violation.ts`; checker exit code; `git commit` output; `git log --oneline -3` | PASS if `git log` shows no forbidden comment in the committed file; FAIL if a forbidden comment (`// REQ-`, `// ADR-`, `// 026/`) appears in `git log` | If pre-commit not linked: run `bash .skilled/scripts/install-git-hooks.sh`; if plugin not injecting rule: run `opencode run ... "List your comment rules" 2>&1 \| grep -i hygiene`; if bypass var set: `echo $SPECKIT_SKIP_COMMENT_HYGIENE` must be empty |
 
 ### Optional Supplemental Checks
 
@@ -71,8 +71,7 @@ Operators run the exact prompt and command sequence for `119-C` and confirm the 
 
 | File | Role |
 |---|---|
-| `.skilled/hooks/git/pre-commit` | Primary enforcement anchor for OpenCode sessions |
-| `.skilled/scripts/git-hooks/pre-commit` | Symlink target — integrates hygiene gate with doc-model-ref check |
+| `.skilled/scripts/git-hooks/pre-commit` | Primary enforcement anchor for OpenCode sessions and symlink target. It runs the blocking comment-hygiene gate. The doc-model reference check moved to CI (`.github/workflows/advisory-checks.yml`) |
 | `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` | Shared checker called by the pre-commit gate |
 
 Provenance: manual only - git log

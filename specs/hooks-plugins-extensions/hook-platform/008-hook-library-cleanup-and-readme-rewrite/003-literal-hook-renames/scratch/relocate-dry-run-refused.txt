@@ -1,0 +1,3 @@
+relocate: refused: from specs/hooks-plugins-extensions/dispatch: "dispatch" is not NNN-slug
+relocate: refused: to specs/hooks-plugins-extensions/cli-dispatch: "cli-dispatch" is not NNN-slug
+relocate: nothing was written

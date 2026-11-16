@@ -1,40 +1,96 @@
 ---
-title: "hooks: Git Preflight Advisory Runtime Adapters"
-description: "Advisory-only git command preflight delivery across Claude, Codex, Devin, Cursor, OpenCode, and Pi. One shared stdin hook serves Bash/exec/Shell; OpenCode and Pi adapt their native tool events onto the same hard-rule parser, 17 state-aware checks, and lazy git context."
+title: "Git Message Gate and Preflight Advisory: sk-git Command Hooks"
+description: "One README for two hook folders. The message gate refuses a commit message, PR description or branch name that breaks the sk-git templates. The preflight advisory prints a line about surprising git behavior and never blocks."
 trigger_phrases:
   - "git preflight advisory hook"
   - "git advisory runtime matrix"
   - "SKGIT_ADVISORY"
   - "git hook fail open"
-version: 1.0.9.0
+  - "dsh git message gate"
+  - "repo-guards message contract"
+  - "bash pre-execute deny"
+  - "opencode git message gate"
+  - "sk-git message contract"
+  - "bash tool before hook"
+  - "pi git message gate"
+  - "tool_call block"
+  - "shared git message gate"
+  - "evaluateCommand commit message"
+  - "pretooluse deny envelope"
+  - "buffered system context"
+  - "dsh git preflight advisory"
+  - "opencode git preflight advisory"
+  - "pi git preflight advisory"
+  - "pretooluse additional context"
+  - "repo-guards post execute"
+  - "shared git preflight hook"
+  - "sk-git advisory context"
+  - "sk-git advisory extension"
+  - "sk-git advisory plugin"
+  - "SKGIT_ADVISORY_SKIP"
+  - "tool result advisory"
+version: 1.0.11.0
 ---
 
-# hooks: Git Preflight Advisory Runtime Adapters
+# Git Message Gate and Preflight Advisory: sk-git Command Hooks
 
 ---
 
 ## 1. OVERVIEW
 
-The git preflight advisory evaluates a shell command before it runs and surfaces surprising git behavior without changing the command's permission or exit path. The git rules were already written down in `hard-rules.json` beside `sk-git/SKILL.md` and still did not reach anyone, because they were surfaced by *prompt* routing while the damage happens at *command* time. This hook closes that gap: it reads the same sidecar the dispatch preflight reads, evaluates it against the repository as it stands before the command runs, and prints a line.
+One file serves two hook folders. `.skilled/hooks/git-message-gate/` and `.skilled/hooks/git-preflight/` each hold a `README.md` link to this file. The first folder indexes the message gate, which refuses a bad commit message, PR description or branch name. The second indexes the preflight advisory, which prints a line and never blocks.
 
-The shared stdin hook (`git-preflight-advisory.mjs`) accepts Claude's `Bash` payload, Codex/Devin's `exec` payload, and Cursor's `Shell` payload directly: one file, three tool labels. OpenCode and Pi adapt their native tool events onto the same hard-rule parser, 17 checks, and lazy git context through their own plugin and extension.
+The gate reads the shell command an agent is about to run. It checks the `-m` or `-F` message of `git commit`. It checks the `--body` or `--body-file` of `gh pr create` and `gh pr edit`. It checks the branch name a branch-creating command would create. It refuses only a violation it can see.
 
-This layer is **advisory only and fails open**. Any malformed payload, missing rule file, non-repository directory, subprocess timeout, import error, or adapter failure becomes silence or approval. Enforcement remains the responsibility of git's own behavior and the repository's commit and push hooks. A false positive costs a line of text and nothing more, so every path resolves to silence rather than a block.
+A command it cannot parse, a body it cannot read or a repository without a contract is allowed. The commit-msg hook, the pre-push hook and the CI check still stand behind it. There is no suppression switch.
+
+The advisory reads the same `hard-rules.json` sidecar the dispatch preflight reads. It evaluates that sidecar against the repository, then prints a line. A false positive costs a line of text and nothing more.
+
+The advisory never blocks. A malformed payload, a missing rule file, a non-repository directory or a subprocess timeout becomes silence. Enforcement stays with git's own behavior and the repository's commit and push hooks.
 
 ---
 
-## 2. WHAT IT DOES
+## 2. HOW IT WORKS
 
-The advisory runs on the pre-tool event for a shell command. It:
+### The message gate
 
-1. **Kill-switch + suppression.** Checks `isHookEnabled('git-preflight')` (master `SYSTEM_HOOKS_DISABLED` or `SK_GIT_PREFLIGHT_DISABLED`), then resolves three suppression tiers (see Configuration). Silence is the safe no-op.
-2. **Gate on shape.** Only a directly visible `git ...` invocation matching `GIT_SHAPE` is worth inspecting. Anything else exits before a single git process is spawned, keeping the cost off every unrelated command. Aliases, wrapper scripts, and anything behind a shell variable are left alone.
-3. **Read + filter rules.** `readHardRules` reads `hard-rules.json` beside `sk-git/SKILL.md`, keeps only rules whose `check` exists in `GIT_CHECKS` and whose id is not silenced.
-4. **Collect lazy context.** `createGitContext` builds a lazy repository-state collector. Each accessor runs only when a check asks for it and caches for one invocation. Everything read is state that exists *before* the command runs: where a question can only be answered afterwards, there is deliberately no accessor.
-5. **Evaluate.** `evaluate` runs each rule's check against the parsed command and context. A check returns `true` (fine) or `false` (advise). A check that throws is swallowed by the evaluator.
-6. **Surface.** Caps at 3 findings plus one omitted-count line, names the subcommand the reader just invoked, and emits the advisory through the runtime's channel.
+`evaluateCommand(command, cwd)` is the exported entry. Every adapter calls it. A command without `git` or `gh` returns `null` at once, so unrelated shell work pays nothing.
 
-The injected advisory text (delivered per runtime, see Section 3):
+`inlineHeredocs` rewrites a `$(cat <<'EOF' … EOF)` body into a quoted literal. `tokenize` then splits the line into words and control operators, honouring quotes and backslash escapes. It returns `null` on anything it cannot evaluate. The caller then allows the command.
+
+`simpleCommands` groups the tokens into simple commands. A `cd` updates the working directory for the commands after it.
+
+`readGit` reads `git [-C dir] [-c k=v] <sub> …`. `commitMessage` collects `-m` and `--message` parts. It also reads a `-F` or `--file` path. A file value of `-` means stdin, so the message is not visible. `-C`, `-c`, `--reuse-message`, `--reedit-message`, `--fixup` and `--squash` return `null` for the same reason.
+
+`prBody` reads `gh pr create` and `gh pr edit`. A `-R` or `--repo` flag returns `null`, because another repository's contract is not the one checked out here.
+
+`createdBranches` covers `checkout -b` and `-B`, plus `switch -c`, `-C`, `--create` and `--force-create`. It also covers `branch` and `worktree add -b` or `-B`. A `branch` flag in `BRANCH_NON_CREATE` means the command creates nothing.
+
+`repoRootOf` runs `git rev-parse --show-toplevel` with a 3000 ms timeout. `loadContract` then reads the rules block from `commit-message-template.md`, `pr-template.md` or `worktree-checklist.md`. It looks first at `skgit.contractDir` from a git config file. Then it tries `.sk-git/`, `.skilled/skills/sk-git/assets/` and `.opencode/skills/sk-git/assets/` in that order. A configured folder that does not exist raises a `ContractError`. A `git -c` setting is ignored.
+
+A malformed rules block throws `ContractError`. `validateCommit` runs with stage `pre-stamp`. `validateBranch` also receives the worktree path.
+
+`format` builds the refusal. It names the label, one `[id] message` line per error, the expected shape, the rules file and a closing line that says there is no bypass.
+
+The entrypoint sets `v8.setFlagsFromString('--enable-experimental-regexp-engine-on-excessive-backtracks')`, so a contract pattern cannot backtrack without bound. Without the flag the gate still runs.
+
+`main()` reads stdin and accepts the tool names `bash`, `exec` and `shell`. The shared gate exits 0 on stdin it cannot read, on a tool name outside the three or on a crash. It takes the command from `tool_input.command`. It resolves the project directory from `cwd`, then `workspace_roots[0]`, then `CLAUDE_PROJECT_DIR`, `CODEX_PROJECT_DIR` and `process.cwd()`.
+
+A `ContractError` becomes a refusal that says the rules cannot be read. `deny()` then picks the envelope. A `Shell` tool name or a `workspace_roots` array gets `{ permission: "deny", user_message, agent_message }` and exit 2. Everything else gets `hookSpecificOutput.permissionDecision: "deny"` and exit 0. The `.cursor/hooks.json` registration ends in a `||` fallback. That fallback appends an allow envelope after the deny, so the hook exits 0.
+
+### The preflight advisory
+
+The advisory runs on the pre-tool event for a shell command. It starts with the kill-switch `isHookEnabled('git-preflight')`, which reads the master `SYSTEM_HOOKS_DISABLED` or `SK_GIT_PREFLIGHT_DISABLED`.
+
+Only a directly visible `git ...` invocation matching `GIT_SHAPE` is worth inspecting. Anything else exits before a single git process is spawned. Aliases, wrapper scripts and anything behind a shell variable are left alone.
+
+`readHardRules` reads `hard-rules.json` beside `sk-git/SKILL.md`. It keeps only rules whose `check` exists in `GIT_CHECKS` and whose id is not silenced. A malformed sidecar gives an empty rule set.
+
+`createGitContext` builds a lazy repository-state collector. Each accessor runs only when a check asks for it and caches for one invocation. Each git call is bounded to 1.5s. The shared hook, OpenCode and Pi read the repository before the command runs. DSH runs after it and reads the state the command left.
+
+`evaluate` runs each rule's check against the parsed command and context. A check returns `true` when the command is fine and `false` when it should advise. A check that throws is swallowed by the evaluator.
+
+The surface caps at 3 findings plus one omitted-count line and names the subcommand the reader just invoked. The text reads:
 
 ```text
 ⚠ sk-git advisory — this `git <subcommand>` may not do what it appears to:
@@ -43,200 +99,81 @@ The injected advisory text (delivered per runtime, see Section 3):
   Advisory only — the command still runs. Silence: SKGIT_ADVISORY_SKIP=<rule-id>
 ```
 
-The 17 checks gate on **state, never on the verb**: roughly one in seven operations in this repo is a `reset`, but the overwhelming majority merely unstage. A rule keyed to the word `reset` fires constantly and trains the reader to skim. The same rule keyed to the commit actually moving fires about a hundredth as often and stays worth reading. The rule ids: `commit-scope-drops-untracked`, `commit-pathspec-empty-change`, `add-pathspec-matches-nothing`, `add-pathspec-only-ignored`, `add-update-skips-untracked`, `restore-discards-over-staged`, `checkout-from-ref-stages-silently`, `merge-strategy-resolves-one-sided`, `case-only-pathspec-folds`, `staged-path-rewritten-by-filter`, `reset-hard-discards-changes`, `clean-force-deletes-files`, `branch-force-delete-unmerged`, `stash-clear-drops-entries`, `history-expiry-defeats-recovery`, `push-deletes-remote-ref`, `force-push-without-lease`.
+The 17 checks gate on state, never on the verb. `reset-hard-discards-changes` fires only when `--hard` meets a dirty working tree, not on every unstage. A rule keyed to the word `reset` alone would fire on every unstage and train the reader to skim.
 
-```text
-╭────────────────────────────────────────────────────────────────────╮
-│ Claude Bash · Codex/Devin exec · Cursor Shell · OpenCode/Pi bash   │
-╰────────────────────────────────────────────────────────────────────╯
-                              │
-                  runtime payload normalization
-                              │
-                              ▼
-┌────────────────────────────────────────────────────────────────────┐
-│ readHardRules + evaluate                                           │
-│ GIT_SHAPE + GIT_CHECKS + createGitContext                          │
-└────────────────────────────────────────────────────────────────────┘
-                              │
-             up to 3 findings + omitted-count line
-                              │
-          ┌──────────────────────────┬───────────────┬────────────────┐
-          ▼                          ▼               ▼
-  hook context JSON              Pi reason     OpenCode next-turn
-  Claude/Codex/Devin/Cursor      no block      system context
-```
+The rule ids: `commit-scope-drops-untracked`, `commit-pathspec-empty-change`, `add-pathspec-matches-nothing`, `add-pathspec-only-ignored`, `add-update-skips-untracked`, `restore-discards-over-staged`, `checkout-from-ref-stages-silently`, `merge-strategy-resolves-one-sided`, `case-only-pathspec-folds`, `staged-path-rewritten-by-filter`, `reset-hard-discards-changes`, `clean-force-deletes-files`, `branch-force-delete-unmerged`, `stash-clear-drops-entries`, `history-expiry-defeats-recovery`, `push-deletes-remote-ref`, `force-push-without-lease`.
+
+DSH formats its own text. It writes `⚠ sk-git advisory: this ...`, then `• N more advisories were omitted.`, then `Advisory only. Silence: SKGIT_ADVISORY_SKIP=<rule-id>`.
+
+Each adapter has its own error path. The shared hook ends in `main().catch(approve)`, so a throw exits 0. The OpenCode plugin catches evaluation and transform errors and never throws. The Pi extension catches import and evaluation errors and returns `undefined`. The DSH adapter logs a warning and returns the downstream result.
 
 ---
 
-## 3. PER-RUNTIME DELIVERY
+## 3. RUNTIME COVERAGE
 
-Every runtime evaluates the **same** `GIT_SHAPE` gate, `GIT_CHECKS` rule set, `readHardRules` sidecar reader, and `createGitContext` lazy collector. What differs is the tool event each runtime fires, the payload shape, and the channel the advisory is handed back through.
-
-| Runtime | Adapter | Event / wiring | Payload difference it handles | Delivery |
+| Runtime | Event | Entry in this folder | Real file | What the runtime shows |
 |---|---|---|---|---|
-| **Claude** | `git-preflight-advisory.mjs` | `PreToolUse` in `.claude/settings.json`, matcher `Bash`. Timeout 5s | Reads `tool_input.command` + `cwd`. Project dir from `cwd` then `CLAUDE_PROJECT_DIR` then `process.cwd()` | `hookSpecificOutput.additionalContext` JSON on stdout (PreToolUse) |
-| **Codex** | `git-preflight-advisory.mjs` | `PreToolUse` in `.codex/hooks.json`, matcher `exec\|Bash` (Codex sends `exec` before 0.160 and `Bash` from 0.160). Timeout 5s | Same `exec` payload shape as Devin. `cd "${CODEX_PROJECT_DIR:-$PWD}"` | Same `additionalContext` JSON. A fallback `printf` envelope covers a resolution failure |
-| **Devin** | `git-preflight-advisory.mjs` | `PreToolUse` in `.devin/hooks.v1.json`, matcher `^exec$`. Timeout 5s | Same `exec` shape. `cd "${DEVIN_PROJECT_DIR:-$PWD}"` | Same `additionalContext` JSON. Fallback `printf` envelope |
-| **Cursor** | `git-preflight-advisory.mjs` (registered directly, and `.cursor/hooks/git-preflight-advisory.mjs` is a browsability-only mirror symlink) | `preToolUse` in `.cursor/hooks.json`, matcher `Shell` | Cursor carries the project root in `workspace_roots[0]` instead of `cwd`. The hook falls through to `CLAUDE_PROJECT_DIR`/`CODEX_PROJECT_DIR`/`process.cwd()` when absent | Same `additionalContext` JSON |
-| **OpenCode** | `.opencode/plugins/sk-git-preflight-advisory.js` (mirrored at `opencode/` via browsability symlink) | `tool.execute.before` for `bash`. Advisory buffered and drained on the next `experimental.chat.system.transform` | Resolves repo root via `findRepoRoot` (falls back to host dir). OpenCode plugins cannot print without overlaying the TUI prompt line, so it buffers at most 20 events | Bounded findings injected once as a system block on the next transform. Never stdout/stderr. The command is never delayed or blocked |
-| **Pi** | `pi/git-preflight-advisory.ts` (real file, and a one-line `.pi/extensions/` entry file re-exports it) | `tool_call` for `bash`. Advisory keyed by call id and delivered on the matching `tool_result` | Pi's agent core reads a `tool_call` handler's return only for `.block`: a bare `reason` is discarded before the model sees it, so the advisory is buffered and appended to the `tool_result` content instead | Appended to `tool_result` content. Warn-only, never `block: true` |
-| **DSH** | `dsh/git-preflight-advisory.mjs` (real file, and `.dsh/plugins/repo-guards/adapters/` symlinks here) | `tools/post-execute` for `bash`, registered by the `repo-guards` bundle the guards patch loads | A DSH session can run outside the checkout, so the rules come from the adapter's own location rather than the session cwd | Added to the tool result as an additional context. Never a deny |
+| Claude, message gate | `PreToolUse` | None | `.skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs` | A deny envelope on stdout, exit 0. |
+| Codex, message gate | `PreToolUse` | None | `.skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs` | The same deny envelope. |
+| Devin, message gate | `PreToolUse` | None | `.skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs` | The same deny envelope. |
+| Cursor, message gate | `preToolUse` | None | `.skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs` | The deny envelope, then the registration's allow envelope. Exit 0. |
+| Vibe, message gate | `pre_tool` | None | `.vibe/plugins/repo-guards/git-message-gate.mjs` | A deny carrying the gate's reason. A `ContractError` is refused and any other error allows, with a line on stderr. |
+| DSH, message gate | `tools/pre-execute` | `.skilled/hooks/git-message-gate/dsh/git-message-gate.mjs` | `.skilled/skills/sk-git/scripts/hooks/dsh/git-message-gate.mjs` | `{ kind: 'deny', reason }`. |
+| OpenCode, message gate | `tool.execute.before` | `.skilled/hooks/git-message-gate/opencode/sk-git-message-gate.js` | `.opencode/plugins/sk-git-message-gate.js` | A thrown error as the tool result. A rules block that cannot be read is refused. |
+| Pi, message gate | `tool_call` | `.skilled/hooks/git-message-gate/pi/git-message-gate.ts` | `.skilled/skills/sk-git/scripts/hooks/pi/git-message-gate.ts` | `{ block: true, reason }`. A rules block that cannot be read is refused. |
+| Shared, message gate | None. A core module the adapters import. | `.skilled/hooks/git-message-gate/shared/git-message-gate.mjs` | `.skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs` | Nothing. It returns a reason or `null`. |
+| Claude, preflight | `PreToolUse` | None | `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | `hookSpecificOutput.additionalContext`. |
+| Codex, preflight | `PreToolUse` | None | `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | The same `additionalContext`. |
+| Devin, preflight | `PreToolUse` | None | `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | The same `additionalContext`. |
+| Cursor, preflight | `preToolUse` | None | `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | The same `additionalContext`. |
+| Vibe, preflight | None | None | None | Nothing. No Vibe hook runs the advisory. |
+| DSH, preflight | `tools/post-execute` | `.skilled/hooks/git-preflight/dsh/git-preflight-advisory.mjs` | `.skilled/skills/sk-git/scripts/hooks/dsh/git-preflight-advisory.mjs` | An added context on the tool result. |
+| OpenCode, preflight | `experimental.chat.system.transform, tool.execute.before` | `.skilled/hooks/git-preflight/opencode/sk-git-preflight-advisory.js` | `.opencode/plugins/sk-git-preflight-advisory.js` | One system block on the next turn. |
+| Pi, preflight | `tool_call, tool_result` | `.skilled/hooks/git-preflight/pi/git-preflight-advisory.ts` | `.skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts` | Text appended to the tool result. |
+| Shared, preflight | None. A core module the adapters import. | `.skilled/hooks/git-preflight/shared/git-preflight-advisory.mjs` | `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | Nothing. It writes one JSON line. |
 
-OpenCode discovers plugins solely from `.opencode/plugins/`, so `sk-git-preflight-advisory.js` must live there. `scripts/hooks/opencode/sk-git-preflight-advisory.js` is a relative symlink back into that folder for browsability: nothing loads through it. Pi loads in the other direction: the real `pi/git-preflight-advisory.ts` lives here, and `.pi/extensions/git-preflight-advisory.ts` is the one-line entry file Pi discovers.
+Claude, Codex, Devin and Cursor register the shared hooks in `hook-registry.json` under the ids `git-preflight-advisory` and `git-message-gate`. The generated entries land in `.claude/settings.json`, `.codex/hooks.json`, `.devin/hooks.v1.json` and `.cursor/hooks.json`. No registration names a path in either hook folder, so the runtime folders here hold links for browsing only.
 
-### Registration entries
-
-The setup battery counts a registration only when the advisory file it runs exists, and these are the minimal entries it accepts.
-
-**Claude**: `.claude/settings.json`
-
-```json
-{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
-            "timeout": 5
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-Claude also reads `.claude/settings.local.json` and accepts matcher `*` or no matcher.
-
-**Codex**: `.codex/hooks.json`
-
-```json
-{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "exec|Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
-            "timeout": 5
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-**Devin**: `.devin/hooks.v1.json`
-
-```json
-{
-  "PreToolUse": [
-    {
-      "matcher": "^exec$",
-      "hooks": [
-        {
-          "type": "command",
-          "command": "node .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
-          "timeout": 5
-        }
-      ]
-    }
-  ]
-}
-```
-
-Devin keeps events at the top level.
-
-**Cursor**: `.cursor/hooks.json`
-
-```json
-{
-  "version": 1,
-  "hooks": {
-    "preToolUse": [
-      {
-        "type": "command",
-        "matcher": "Shell",
-        "command": "node .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
-        "timeout": 10
-      }
-    ]
-  }
-}
-```
-
-**OpenCode**: `.opencode/plugins/sk-git-preflight-advisory.js`
-
-```text
-File: .opencode/plugins/sk-git-preflight-advisory.js
-Hook: tool.execute.before
-Import: .skilled/skills/sk-git/scripts/lib/git-rule-checks.mjs (specifier relative to the plugins folder)
-```
-
-**Pi**: `.pi/extensions/git-preflight-advisory.ts`
-
-```text
-File: .pi/extensions/git-preflight-advisory.ts
-Re-exports: ../../.skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts
-```
-
-**DSH**: `.dsh/plugins/repo-guards/adapters/git-preflight-advisory.mjs`
-
-```text
-File: .dsh/plugins/repo-guards/adapters/git-preflight-advisory.mjs
-Symlink target: dsh/git-preflight-advisory.mjs (sync-runtime-mirrors.cjs writes the link)
-Bundle entry: .dsh/plugins/repo-guards/index.mjs imports registerGitPreflightAdvisory and calls it with ctx
-Hook: tools/post-execute
-Import: ../../lib/git-rule-checks.mjs, resolved from the real file because Node follows the link first
-```
-
-### Message gate delivery
-
-`git-message-gate.mjs` is the blocking companion to the advisory. Every runtime hands the shell command to its exported `evaluateCommand`, which refuses a `git commit` message, a `gh pr create`/`edit` description or a new branch name that breaks the repository's own sk-git templates. Only the refusal channel differs. Every adapter allows a command the gate cannot read, blocks when the rules block itself cannot be read, and has no kill switch.
-
-| Runtime | Adapter | Event / wiring | Refusal channel |
+| Runtime | Event | Matcher | Timeout |
 |---|---|---|---|
-| **Claude, Codex, Devin** | `git-message-gate.mjs` | `PreToolUse` from the hook registry, matcher `Bash` / `exec` / `^exec$` | `hookSpecificOutput.permissionDecision: "deny"` with the reason, exit 0 |
-| **Cursor** | `git-message-gate.mjs` | `preToolUse`, matcher `Shell` | `{ permission: "deny", user_message, agent_message }`, exit 2 |
-| **OpenCode** | `.opencode/plugins/sk-git-message-gate.js` (mirrored at `opencode/`) | `tool.execute.before` for `bash` | Throws an error prefixed `sk-git-message-gate:`, which OpenCode returns as the tool result |
-| **Pi** | `pi/git-message-gate.ts` (real file, and a one-line `.pi/extensions/` entry file re-exports it) | `tool_call` for `bash` | Returns `{ block: true, reason }` |
-| **DSH** | `dsh/git-message-gate.mjs` (real file, and `.dsh/plugins/repo-guards/adapters/` symlinks here) | `tools/pre-execute` for `bash` | Returns `{ kind: 'deny', reason }` |
+| Claude | `PreToolUse` | `Bash` | 5 seconds |
+| Codex | `PreToolUse` | `exec\|Bash` | 5 seconds |
+| Devin | `PreToolUse` | `^exec$` | 5 seconds |
+| Cursor | `preToolUse` | `Shell` | 10 seconds |
+
+Codex sends `exec` before 0.160 and `Bash` from 0.160, which is why its matcher names both. Claude also reads `.claude/settings.local.json` and accepts matcher `*` or no matcher. Claude, Codex and Devin change into the project directory first, with `cd "${CLAUDE_PROJECT_DIR:-$PWD}"`, `cd "${CODEX_PROJECT_DIR:-$PWD}"` and `cd "${DEVIN_PROJECT_DIR:-$PWD}"`. A resolution failure falls back to a `printf` envelope.
+
+Cursor also carries browsability-only mirrors of both hooks under `.cursor/hooks/`. They are `.cursor/hooks/git-preflight-advisory.mjs` and `.cursor/hooks/git-message-gate.mjs`. Nothing loads through them.
+
+OpenCode discovers plugins solely from `.opencode/plugins/`, so `sk-git-message-gate.js` and `sk-git-preflight-advisory.js` must live there. The `opencode/` folders here hold relative links back into that folder.
+
+Pi loads in the other direction. The real `pi/git-message-gate.ts` and `pi/git-preflight-advisory.ts` live in the skill. `.pi/extensions/git-message-gate.ts` and `.pi/extensions/git-preflight-advisory.ts` are the one-line entry files Pi discovers.
+
+DSH registers both through the `repo-guards` bundle. `.dsh/plugins/repo-guards/index.mjs` imports `registerGitMessageGate` and `registerGitPreflightAdvisory`. `.dsh/plugins/repo-guards/adapters/git-preflight-advisory.mjs` and `.dsh/plugins/repo-guards/adapters/git-message-gate.mjs` symlink to the real adapters.
+
+Vibe runs the message gate only. A `pre_tool` hook named `git-message-gate` in `.vibe/hooks.toml` runs `.vibe/plugins/repo-guards/git-message-gate.mjs`. The hooks hub keeps a browse link to it at `.skilled/hooks/git-message-gate/vibe/git-message-gate.mjs`. No Vibe hook runs the preflight advisory.
+
+The OpenCode advisory plugin resolves the repo root with `findRepoRoot` and falls back to the host directory. It buffers at most 20 events and drains them on the next `experimental.chat.system.transform`. OpenCode drops the oldest event when its buffer is full. It never prints, because OpenCode paints plugin output onto the prompt line.
+
+Pi reads a `tool_call` handler's return only for `.block`, so a bare `reason` is discarded. The advisory is buffered by call id and appended to the `tool_result` content instead. Pi also swallows errors while delivering the advisory.
+
+A DSH session can run outside the checkout, so the advisory adapter reads the rules from its own location rather than the session `cwd`. Both DSH adapters declare `ERROR_POLICY = 'fail-open'`.
 
 ---
 
 ## 4. DIRECTORY TREE
 
 ```text
-hooks/  (sk-git/scripts/hooks/)
-+-- git-message-gate.mjs              # blocking message-contract gate (Bash/exec/Shell), exports evaluateCommand
-+-- git-preflight-advisory.mjs        # shared stdin hook (Bash/exec/Shell)
-+-- git-preflight-advisory.test.mjs   # node --test suite
-+-- dsh/
-|   +-- README.md
-|   +-- git-message-gate.mjs          # real file; .dsh/plugins/repo-guards/adapters/ symlinks here
-|   `-- git-preflight-advisory.mjs    # real file; .dsh/plugins/repo-guards/adapters/ symlinks here
-+-- opencode/
-|   +-- README.md
-|   +-- sk-git-message-gate.js        # symlink -> .opencode/plugins/sk-git-message-gate.js
-|   `-- sk-git-preflight-advisory.js  # symlink -> ../../../../../plugins/sk-git-preflight-advisory.js
-`-- pi/
-    +-- README.md
-    +-- git-message-gate.ts           # real file; a one-line .pi/extensions/ entry re-exports it
-    +-- git-message-gate.test.ts      # vitest suite, never linked
-    `-- git-preflight-advisory.ts     # real file; a one-line .pi/extensions/ entry re-exports it
-../lib/
-+-- git-rule-checks.mjs               # GIT_SHAPE + parseGitCommand + 17 GIT_CHECKS
-+-- git-rule-checks.test.mjs          # node --test suite
-`-- git-context.mjs                   # lazy repository-state collector (1.5s timeout per git call)
+git-message-gate/  and  git-preflight/   (the two folders that link this file)
++-- README.md                     # this file, the link target of both folders
++-- dsh/     git-message-gate.mjs, git-preflight-advisory.mjs
++-- opencode/  sk-git-message-gate.js, sk-git-preflight-advisory.js
++-- pi/      git-message-gate.ts, git-preflight-advisory.ts
++-- shared/  git-message-gate.mjs, git-preflight-advisory.mjs
+`-- tests/   dsh-git-message-gate.test.mjs, dsh-git-preflight-advisory.test.mjs
 ```
 
-The hooks-tree index at `.skilled/hooks/git-preflight/` mirrors these: `shared/git-preflight-advisory.mjs` (symlink to the shared hook), `opencode/sk-git-preflight-advisory.js` (symlink to the plugin), `pi/git-preflight-advisory.ts` (symlink to the Pi extension), `dsh/git-preflight-advisory.mjs` (symlink to the DSH adapter) and `README.md` (symlink to this file). `.skilled/hooks/git-message-gate/` does the same for the message gate: `shared/git-message-gate.mjs`, `opencode/sk-git-message-gate.js`, `pi/git-message-gate.ts`, `dsh/git-message-gate.mjs` and `README.md`.
+Every runtime folder holds one relative link. The real code stays in `.skilled/skills/sk-git/scripts/hooks/`. The `tests/` folders hold real suites.
 
 ---
 
@@ -244,26 +181,30 @@ The hooks-tree index at `.skilled/hooks/git-preflight/` mirrors these: `shared/g
 
 | File | Responsibility |
 |---|---|
-| `git-message-gate.mjs` | Blocking companion to the advisory. Claude, Codex, Devin and Cursor run it through the hook registry. The OpenCode plugin, the Pi extension and the DSH adapter call it too (see "Message gate delivery" above). Denies a `git commit -m`/`-F`, a `gh pr create`/`edit` body or a branch-creating command whose text breaks the repository's own template rules. Allows what it cannot read, since the commit-msg and pre-push hooks and CI stand behind it. |
-| `.opencode/plugins/sk-git-message-gate.js` | OpenCode plugin. `tool.execute.before` for `bash` throws the gate's refusal. An internal fault is swallowed. |
-| `pi/git-message-gate.ts` | Pi `tool_call` extension. Returns `{ block: true, reason }` on a refusal. A gate that cannot load allows the call. |
-| `git-preflight-advisory.mjs` | Shared stdin hook for `Bash`, `exec`, and Cursor `Shell` payloads. Reads the repo from payload `cwd`, Cursor's `workspace_roots[0]`, or the runtime project-directory env. Kill-switch, suppression tiers, shape gate, rule read/filter, lazy context, evaluate, cap-at-3 surface, `additionalContext` JSON emit. `main().catch(approve)`: the fail-open path is also the exit-0 path. |
-| `../lib/git-rule-checks.mjs` | The `GIT_SHAPE` gate, `parseGitCommand` (subcommand/flags/pathspec split with value-flag and `--` handling), and the 17 `GIT_CHECKS`. Each check gates on state, returns `true` (fine) / `false` (advise), and fails open on uncertainty. |
-| `../lib/git-context.mjs` | Lazy repository-state collector. Each accessor runs only when a check asks, caches for one invocation, and fails soft (returns `null`/safe unknown) on any git failure or 1.5s timeout. Reads only pre-command state. |
-| `.opencode/plugins/sk-git-preflight-advisory.js` | OpenCode plugin. `tool.execute.before` for `bash` evaluates the same engine and buffers at most 20 advisory events. `experimental.chat.system.transform` drains them as one system block on the next turn. Never prints. Never blocks. |
-| `pi/git-preflight-advisory.ts` | Pi `tool_call`/`tool_result` extension. Evaluates on `tool_call`, buffers by call id, appends to `tool_result` content. Warn-only, never `block: true`. |
-| `../../hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared `readHardRules` sidecar reader and `evaluate` runner imported by all adapters. |
-| `../../hooks/shared/hook-flags.mjs` / `.cjs` | Kill-switch resolver (`isHookEnabled('git-preflight')`). |
+| `git-message-gate.mjs` | The blocking gate. It exports `evaluateCommand` and runs as a stdin hook for `Bash`, `exec` and `Shell`. It denies a `git commit -m` or `-F` message. It denies a `gh pr create` or `edit` body. It denies a branch-creating command whose text breaks the repository's own template rules. It allows what it cannot read. |
+| `dsh/git-message-gate.mjs` | The DSH adapter. `tools/pre-execute` for `bash` returns `{ kind: 'deny', reason }`. A `ContractError` is refused. Any other error is logged and allowed. |
+| `.opencode/plugins/sk-git-message-gate.js` | The OpenCode plugin. `tool.execute.before` for `bash` throws a refusal prefixed `sk-git-message-gate:`. An internal fault is swallowed. |
+| `pi/git-message-gate.ts` | The Pi `tool_call` extension. It returns `{ block: true, reason }` on a refusal. A gate that cannot load allows the call. |
+| `git-preflight-advisory.mjs` | The shared advisory stdin hook for `Bash`, `exec` and Cursor `Shell` payloads. It reads the repo from payload `cwd` or Cursor's `workspace_roots[0]`. It falls back to the runtime project-directory env. `main().catch(approve)` makes the fail-open path the exit-0 path. |
+| `dsh/git-preflight-advisory.mjs` | The DSH adapter. `tools/post-execute` for `bash` adds a notice to the tool result. It never denies. |
+| `.opencode/plugins/sk-git-preflight-advisory.js` | The OpenCode plugin. `tool.execute.before` for `bash` evaluates the same engine and buffers at most 20 advisory events. `experimental.chat.system.transform` drains them as one system block. It never prints and never blocks. |
+| `pi/git-preflight-advisory.ts` | The Pi `tool_call` and `tool_result` extension. It evaluates on `tool_call`, buffers by call id and appends to `tool_result` content. Warn-only, never `block: true`. |
+| `../lib/git-rule-checks.mjs` | The `GIT_SHAPE` gate, `parseGitCommand` and the 17 `GIT_CHECKS`. `parseGitCommand` splits the subcommand, flags and pathspec, with value-flag and `--` handling. Each check gates on state and returns `true` or `false`. |
+| `../lib/git-context.mjs` | The lazy repository-state collector. Each accessor runs only when a check asks and caches for one invocation. It fails soft with `null` on any git failure or 1.5s timeout. |
+| `../lib/message-contract.mjs` | `loadContract`, `validateCommit`, `validatePrBody`, `validateBranch` and `ContractError`. It reads the rules block from the sk-git templates. |
+| `../../../../hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` | The shared `readHardRules` sidecar reader and `evaluate` runner imported by every advisory adapter. |
+| `../../../../hooks/shared/hook-flags.mjs` | The kill-switch resolver. `isHookEnabled('git-preflight')` reads it. The `.cjs` twin serves the OpenCode plugin. |
+| `../../../../hooks/shared/hook-adapter-shared.cjs` | `readStdin`, with a 3000 ms stdin deadline. |
 
 ---
 
 ## 6. CONFIGURATION
 
-The advisory is enabled by default. Truthy disable values are `1`, `true`, `yes`, and `on` (case-insensitive) for the shared kill-switch.
+The advisory is enabled by default. Truthy disable values are `1`, `true`, `yes` and `on`, in any case.
 
 | Variable | Effect |
 |---|---|
-| `SK_GIT_PREFLIGHT_DISABLED=1` | Full no-op on every runtime. Each adapter checks `isHookEnabled('git-preflight')` before any work. The shared hook returns `approve()` (exit 0), the OpenCode plugin and Pi extension return before evaluation. |
+| `SK_GIT_PREFLIGHT_DISABLED=1` | Full no-op on every runtime. Each adapter checks `isHookEnabled('git-preflight')` before any work. The shared hook returns `approve()` (exit 0). The OpenCode plugin and Pi extension return before evaluation. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 | `SKGIT_ADVISORY=0` | Silence every git preflight advisory. `false` and `off` are equivalent, case-insensitively. The safety valve. |
 | `SKGIT_ADVISORY_SKIP=commit` | Silence every rule whose id starts with `commit-`. The practical tier. |
@@ -271,35 +212,26 @@ The advisory is enabled by default. Truthy disable values are `1`, `true`, `yes`
 
 `SKGIT_ADVISORY_SKIP` accepts comma-separated tokens. A token matches either a complete rule id or an id prefix followed by `-`.
 
-Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
+Set a flag inline for one command or export it for a session. To keep it, persist it in `.skilled/hooks/hook-flags.env`. That file is a gitignored copy of `hook-flags.env.example`. The environment always wins over the file.
+
+The message gate has no switch. The commit, PR and branch rules carry no bypass on any surface. The place to change them is the rules block in the sk-git templates.
 
 ---
 
-## 7. BOUNDARIES AND FLOW
-
-| Boundary | Rule |
-|---|---|
-| Advisory only | The message gate is the one blocking hook here. This row and the next describe the advisory. Every surfaced result is warning-only and capped at 3 findings plus one omitted-count line. No adapter ever emits a block or deny decision. The command always runs. |
-| Fail-open | Non-git commands stop at `GIT_SHAPE`. Missing/malformed stdin produces no advisory and exits 0. A missing or malformed sidecar produces an empty rule set. A check that throws is swallowed by the evaluator. Git subprocess failures and timeouts return safe unknown values. A Cursor `Shell` payload the hook cannot parse fails open exactly as a `Bash`/`exec` one. Pi catches import and evaluation errors and returns `undefined`. OpenCode catches evaluation and transform errors, never throws, never writes stdout/stderr. `main().catch(approve)` makes the fail-open path the exit-0 path. |
-| State, not verb | Every check gates on repository state, never on the command verb alone. A check that cannot find a discriminator does not belong here. |
-| Pre-command only | `git-context.mjs` reads only state that exists before the command runs. Where a question can only be answered afterwards, there is deliberately no accessor. |
-| Cost | Nothing runs until a check asks for it. Unrelated commands exit at the shape gate before a single git process is spawned. Each git call is bounded to 1.5s. |
-| Output | The shared hook writes one `additionalContext` JSON to stdout. OpenCode buffers and injects via `experimental.chat.system.transform`. Pi appends to `tool_result` content. No adapter writes to the TUI prompt line. |
-| Imports | Adapters import the shared `dispatch-rule-checks.mjs` (`readHardRules`/`evaluate`), `git-context.mjs`, `git-rule-checks.mjs`, `hook-adapter-shared.cjs` (`readStdin`, 3000 ms stdin deadline), and `hook-flags`. Nothing outside the repo. |
-
----
-
-## 8. VALIDATION
+## 7. VALIDATION
 
 Run from the repository root.
 
 ```bash
 node --test .skilled/skills/sk-git/scripts/lib/git-rule-checks.test.mjs
+node --test .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs
 node --test .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.test.mjs
 node --test .skilled/hooks/shared/hook-stdin-deadline.test.mjs
+node --test .skilled/hooks/git-message-gate/tests/dsh-git-message-gate.test.mjs
+node --test .skilled/hooks/git-preflight/tests/dsh-git-preflight-advisory.test.mjs
 ```
 
-Expected result: all tests pass (the 17 checks, the shared hook's parsing/suppression/surface logic and the shared suite proving both hooks exit on their own when stdin stays open).
+Expected result: all tests pass. The suites cover the 17 checks, the message contract, the shared hook's parsing and suppression, both DSH adapters and the shared stdin deadline.
 
 ```bash
 node --test .opencode/plugins/tests/sk-git-message-gate.test.cjs
@@ -320,16 +252,17 @@ Expected result: no syntax errors.
 node -e "JSON.parse(require('node:fs').readFileSync('.cursor/hooks.json', 'utf8')); JSON.parse(require('node:fs').readFileSync('.devin/hooks.v1.json', 'utf8'))"
 ```
 
-Expected result: exit 0 (confirms the runtime configs that register this hook are valid JSON).
+Expected result: exit 0, which confirms the runtime configs that register these hooks are valid JSON.
 
-For stdin smoke tests, create a temporary repository with hooks disabled, then pass `Bash`, `exec`, and Cursor `Shell` payloads containing `git commit --only <dir> -m x`. The dirty scoped repository must advise. A non-git command and an ordinary commit in a clean repository must stay silent.
+For a stdin smoke test, create a temporary repository with hooks disabled. Pass `Bash`, `exec` and Cursor `Shell` payloads containing `git commit --only <dir> -m x`. The dirty scoped repository must advise. A non-git command and an ordinary commit in a clean repository must stay silent.
 
 ---
 
-## 9. RELATED
+## 8. RELATED
 
-- [`../lib/README.md`](../lib/README.md): the rule-engine and context-collector library.
+- [`../../../../hooks/README.md`](../../../../hooks/README.md): the hooks tree, with the switch index and the coverage matrix.
+- [`../../../../hooks/shared/README.md`](../../../../hooks/shared/README.md): the switch resolver the advisory calls.
+- [`../lib/README.md`](../lib/README.md): the rule engine and context collector.
 - [`../../SKILL.md`](../../SKILL.md): the manifest whose sibling `hard-rules.json` the advisory executes.
 - [`pi/README.md`](pi/README.md): the Pi extension bridge.
-- [`../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs`](../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs): the shared `readHardRules`/`evaluate` runner.
-- [`../../../../hooks/README.md`](../../../../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix.
+- [`../../../../hooks/cli-dispatch/lib/dispatch-rule-checks.mjs`](../../../../hooks/cli-dispatch/lib/dispatch-rule-checks.mjs): the shared `readHardRules` and `evaluate` runner.

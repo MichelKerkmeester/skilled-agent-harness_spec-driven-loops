@@ -139,6 +139,7 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 21 | 021-vibe-hook-docs-correction/ | `guards-and-hooks.md` and the mode docs corrected from the runs in 013-020, and recursive strict validation | Complete |
 | 22 | 022-vibe-hook-playbook-and-live-scenarios/ | A manual-testing scenario for every Vibe hook, mirror and plugin surface, each run live as a conversation and recorded, then the local Skilled alignment run over the branch | Complete: 26 PASS live; VIB-HK-005, 006 and 007 failed when first rerun after the automatic hand-over tier for causes in the scenarios, and passed again in phase 23 |
 | 23 | 023-vibe-review-remediation/ | The deep review's findings: the runner's Vibe model pin, VIB-HK-005, 006 and 007 rewritten and rerun live, compaction detector fixes, and the doc drift | Complete: VIB-HK-004 to 008 PASS live with the model recorded; every finding dispositioned |
+| 24 | 024-vibe-hook-review-2-remediation/ | The second deep review's verified findings: background `process.start` shell commands mapped into every shell guard with payload tests, the cwd and existing-directory rules for the Vibe writers, binding scope and budget fixes, testability, and the guard reference drift | Complete: every verified finding fixed with unit tests; VIB-HK-029 and VIB-HK-030 PASS live, a background dotenv read and one typed into a running shell denied by env-secret-guard |
 
 Phases 004 to 012 follow `001-deep-research/research/phase-plan.md`. Phases 013 to 021 close the parity gaps a source reading of Vibe 3.1.2 reopened: a `post_agent` deny sends the turn back for revision, `pre_agent` and `post_tool` can add context, and an `ask_user_question` tool exists. The handoff rows below are linear, and each child's Phase Context names its real dependencies. The ACP supervisor, the automatic session-relaunch tier and sandbox mode stay deferred.
 
@@ -174,7 +175,8 @@ Phases 004 to 012 follow `001-deep-research/research/phase-plan.md`. Phases 013 
 | 019-vibe-relaunch-command-tier | 020-vibe-dispatch-hardening | The relaunch command starts a fresh Vibe session from a handoff note | Command output and the new session's first turn |
 | 020-vibe-dispatch-hardening | 021-vibe-hook-docs-correction | A dispatch without the render step is refused, the lineage posture is decided in a decision record, and the Vibe tests run in CI, and in pre-commit where the hook runs test suites | Dispatch rule test output and the CI run |
 | 021-vibe-hook-docs-correction | 022-vibe-hook-playbook-and-live-scenarios | Every corrected doc line cites a run and the parent validates recursively | Recursive strict validate output |
-| 022-vibe-hook-playbook-and-live-scenarios | 023-vibe-review-remediation | Every scenario has a recorded live verdict, and the deep review has run over the packet | `scratch/verdicts.md` and `review/review-report.md` |
+| 022-vibe-hook-playbook-and-live-scenarios | 023-vibe-review-remediation | Every scenario has a recorded live verdict, and the deep review has run over the packet | `scratch/verdicts.md` and `review-archive/2026-11-16T05-57-42Z/review-report.md` |
+| 023-vibe-review-remediation | 024-vibe-hook-review-2-remediation | Every 023 finding is dispositioned and the second deep review has run over the Vibe hooks and plugins | `review/review-report.md` and 023's `implementation-summary.md` disposition table |
 <!-- /ANCHOR:phase-map -->
 
 ---

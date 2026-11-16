@@ -1,6 +1,6 @@
 
   ⡠⣒⠄  ⡔⢄⠔⡄   Mistral Vibe v3.1.2
- ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Free
+ ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Pro
   ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
 
 Hello Michel, how can I help you?
@@ -12,7 +12,7 @@ Hello Michel, how can I help you?
 
 ⏵ Thought                                                                                                                     
 
-□ Asking For the upload retry policy, how many retries should a failed upload get?
+■ Asking For the upload retry policy: should a failed upload retry three times or five?
 
 
 
@@ -35,17 +35,17 @@ Hello Michel, how can I help you?
 
 
 
- ⠸ User input required… (1s Esc/Ctrl+C to interrupt)
+
+
+⠤⠄ User input required… (1s Esc/Ctrl+C to interrupt)
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│ For the upload retry policy, how many retries should a failed upload get?                                                                                                                            │
+│ For the upload retry policy: should a failed upload retry three times or five?                                                                                                                       │
 │                                                                                                                                                                                                      │
-│   1. Three retries - Four total attempts including the initial one                                                                                                                                   │
-│   2. Five retries - Six total attempts including the initial one                                                                                                                                     │
+│   1. Three retries - Faster failure surfacing, less bandwidth spent on a likely-bad upload.                                                                                                          │
+│   2. Five retries - More tolerance for transient network/server errors, slower to give up.                                                                                                           │
 │   3. Type your answer...                                                                                                                                                                             │
-│                                                                                                                                                                                                      │
-│ Nothing written yet — waiting on your answer before touching the retry policy.                                                                                                                       │
 │                                                                                                                                                                                                      │
 │ ↑↓/jk navigate  Enter select  Esc cancel                                                                                                                                                             │
 └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.6E8m0gDBRu/vibe                                                                                                         ctx ▎      10k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.6PA7ZiwL6E/vibe                                                                                    usage █▍     21% · ctx ▎      9.95k/256k
 

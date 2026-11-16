@@ -2,50 +2,50 @@
   result.                                                                                                                                                                                               
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
                                                                                                                                                                                                         
-  The spawn failed — prompt-improver is not a valid subagent config. I made only the one spawn attempt, as instructed. Let me check what agent types actually exist so the report is actionable.        
+  The spawn call returned success, but the child session then failed. Let me confirm its state.                                                                                                         
                                                                                                                                                                                                         
-⏵ Listed subagents                                                                                                                                                                                      
+⏵ Called 1 tool, ran 3 commands, thought                                                                                                                                                                
                                                                                                                                                                                                         
-  Result: spawn failed.                                                                                                                                                                                 
+  Spawn succeeded this time — the registry now has the type — but the child session died on startup.                                                                                                    
                                                                                                                                                                                                         
-  • Single attempt made: tools.agents.spawn with config_name: "prompt-improver", name prompt-improver, and the task being the rewrite of "make the build faster" into a dispatch-ready prompt.          
-  • Error: subagent_not_found — "Unknown subagent type". The prompt-improver config does not exist in this session.                                                                                     
-  • I did not retry, per the one-attempt constraint. agents.list (read-only, not another attempt) shows zero registered child agents.                                                                  ▁
+  Result                                                                                                                                                                                                
                                                                                                                                                                                                         
-  To proceed, you'd need a prompt-improver subagent config (e.g., defined in ~/.vibe/agents/ or project .vibe/agents/), or I can spawn a generic child with hand-written instructions for the rewrite   
-  instead.                                                                                                                                                                                              
+  ┌──────────────────────────────────────────────┬──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ Field                                        │ Value                                                                                                                                            │   
+  ├──────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ Call                                         │ tools.agents.spawn                                                                                                                               │   
+  ├──────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ config_name                                  │ prompt-improver                                                                                                                                  │   
+  ├──────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ Spawn return                                 │ {"type":"success"} — child created                                                                                                               │   
+  ├──────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ Child status                                 │ failed                                                                                                                                           │   
+  ├──────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ Child error                                  │ child Session does not retain the requested generation                                                                                           │   
+  ├──────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ pending_turn                                 │ false                                                                                                                                            │   
+  ├──────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ Rewritten prompt                             │ Not produced                                                                                                                                     │   
+  └──────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
                                                                                                                                                                                                         
-✓ Resumed session 8a5a51cf.                                                                                                                                                                             
+  agents.list confirms the child exists at /root/prompt-improver in a terminal failed state, so nothing is still running and there is no partial output to collect.                                     
+                                                                                                                                                                                                        
+  What changed since last turn                                                                                                                                                                          
+                                                                                                                                                                                                        
+  The previous subagent_type_not_found is gone — the type resolves now. The failure moved one layer down, to child-session model binding: the generation the prompt-improver config asks for isn't      
+  retained when the child session is constructed. This session's active model is GLM-5.3 Flash (Mistral Hosted)[high]; the mismatch is most likely between that and whatever generation the subagent    
+  definition pins. That's inference from the error text — I didn't find the subagent's model setting on disk (~/.vibe/config.toml still holds only theme, and managed_config_cache.json has empty       
+  payloads).                                                                                                                                                                                            
+                                                                                                                                                                                                        
+  One attempt used, no retry made. Want me to do the rewrite inline, or pin the subagent's model to the active one first?                                                                               
                                                                                                                                                                                                         
                                                                                                                                                                                                         
-> Spawn a child from the prompt-improver agent type (config_name prompt-improver) to rewrite this rough request into a dispatch-ready prompt: make the build faster. One attempt only; report the       
-  result.                                                                                                                                                                                               
-─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
-                                                                                                                                                                                                        
-⏵ Thought                                                                                                                                                                                               
-                                                                                                                                                                                                        
-  One attempt, as instructed — retrying the spawn this turn.                                                                                                                                            
-                                                                                                                                                                                                        
-⏵ Ran 1 subagent, thought                                                                                                                                                                               
-                                                                                                                                                                                                        
-  The spawn call itself returned success, but the runtime reports the child failed. Let me confirm the child's state before reporting.                                                                  
-                                                                                                                                                                                                        
-⏵ Listed subagents                                                                                                                                                                                      
-                                                                                                                                                                                                        
-  Result: spawn succeeded, but the child failed immediately.                                                                                                                                            
-                                                                                                                                                                                                        
-  • Single attempt: tools.agents.spawn with config_name: "prompt-improver" — the call returned success, and the child registered as /root/prompt-improver.                                              
-  • The child then failed before doing any work: child Session does not retain the requested generation. agents.list confirms status failed with no pending turn, so no prompt rewrite was produced.    
-  • I have not retried, per the one-attempt constraint. The child /root/prompt-improver exists (in failed state) and its name can't be reused, but the same config should be spawnable under a fresh    
-    name if you want another go — the generation error looks like a runtime/session issue rather than a bad config.                                                                                     
-                                                                                                                                                                                                        
-                                                                                                                                                                                                        
-────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── GLM-5.3 Flash (Mistral Hosted)[high] · auto approve ─
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
 >                                          
                                                                                                                                                                                                         
-    
+                                                                                                                                                                                                 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
  › Main conversation
-   Prompt Improver (Prompt Improver) [running] · 8.63k tokens                                                                                                                                           
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.6l1bZVmHk8/vibe                                                                                       usage ▏      0% · ctx ▏      12k/400k
+   Prompt Improver (Prompt Improver) [running] · 10.2k tokens                                                                                                                                           
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.xtSbzMDoHr/vibe                                                                                    usage █▌     25% · ctx ▍      17.8k/256k
 

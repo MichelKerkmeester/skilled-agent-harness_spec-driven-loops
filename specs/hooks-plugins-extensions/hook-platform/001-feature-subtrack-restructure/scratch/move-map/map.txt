@@ -8,7 +8,7 @@ hooks-plugins-extensions/hook-injection-pipeline/001-hook-docs-relocation -> hoo
 hooks-plugins-extensions/hook-injection-pipeline/003-hook-library-mk-rename -> hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename
 hooks-plugins-extensions/hook-injection-pipeline/004-hook-feature-flags-and-hub-index -> hooks-plugins-extensions/hook-platform/004-hook-feature-flags-and-hub-index
 hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection -> hooks-plugins-extensions/hook-platform/005-smart-rule-injection
-hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair -> hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair
+hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair -> hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair
 hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard -> hooks-plugins-extensions/env-secret-guard/001-env-secret-guard
 hooks-plugins-extensions/pi-extensions/001-pi-input-hook-latency -> hooks-plugins-extensions/skill-advisor/001-pi-input-hook-latency
 hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix -> hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix

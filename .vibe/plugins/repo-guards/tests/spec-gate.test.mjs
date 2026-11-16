@@ -19,6 +19,7 @@ import { fileURLToPath } from 'node:url';
 
 const GUARDS = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PROMPT = 'Create a file notes.txt with a short summary of this repository.';
+const CORE_PATH = '../../../../.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs';
 
 /**
  * Runs one hook script with a payload, under an environment that carries none
@@ -34,6 +35,7 @@ function runHook(script, payload, extraEnv) {
   if (!('AI_SESSION_CHILD' in extraEnv)) delete env.AI_SESSION_CHILD;
   delete env.SYSTEM_SPEC_GATE_ENFORCE;
   delete env.SYSTEM_SPEC_GATE_DISABLED;
+  delete env.SYSTEM_SPEC_GATE_3_DELIVERY_SUPPRESSION;
   const result = spawnSync(process.execPath, [join(GUARDS, script)], {
     input: JSON.stringify(payload),
     env,
@@ -82,4 +84,28 @@ test('a session whose payload names a parent is never denied', () => {
   const { classify, write } = classifyThenWrite('vibe-test-child-parent', { parent: 'parent-session' });
   assert.equal(classify, '');
   assert.equal(write, '');
+});
+
+// A gate that is open with no delivery marker is the state a classify pass that
+// failed leaves behind. A shell call there is annotated, never denied, and the
+// annotation must reach a background command exactly as it reaches a foreground one.
+test('a background shell command is annotated like a foreground one while the gate is open', async () => {
+  const core = await import(new URL(CORE_PATH, import.meta.url).href);
+  const cwd = mkdtempSync(join(tmpdir(), 'vibe-spec-gate-'));
+  try {
+    for (const toolName of ['file_system.bash', 'process.start']) {
+      const sessionId = `vibe-test-shell-${toolName}`;
+      const { stateDir } = core.resolveGuardPaths(cwd);
+      core.writeGateStateAtomic(stateDir, sessionId, { status: 'open', askedAtMs: Date.now() });
+      const out = runHook('spec-gate.mjs', {
+        session_id: sessionId, cwd, parent_session_id: null, hook_event_name: 'pre_tool',
+        tool_name: toolName, tool_call_id: 'call-1', tool_input: { command: 'touch notes.txt' },
+      }, {});
+      const reply = JSON.parse(out || '{}');
+      assert.equal(typeof reply.system_message, 'string', toolName);
+      assert.equal(reply.decision, undefined, toolName);
+    }
+  } finally {
+    rmSync(cwd, { recursive: true, force: true });
+  }
 });

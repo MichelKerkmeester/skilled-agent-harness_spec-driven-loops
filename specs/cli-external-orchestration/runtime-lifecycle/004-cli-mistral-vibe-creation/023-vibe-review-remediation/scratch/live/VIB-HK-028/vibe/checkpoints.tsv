@@ -1,0 +1,4 @@
+turn	status	attempts	evidence	observed
+mirror-ready	PASS	1	turns/mirror-ready	mirror-linked
+uptake	PASS	1	turns/uptake	advised-skill-loaded
+carry-prompt	PASS	1	turns/carry-prompt	prompt-carried lines=47

@@ -168,7 +168,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - OWNS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/006-dispatch-shape-coverage | Feature Specification: Dispatch-shape coverage for devin/cursor/pi + Codex fold-in
   - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/006-dispatch-authorization-hardening | Pi Dispatch Authorization Boundary Hardening
   - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/007-dispatch-validation-evidence | Dispatch Validation, Evidence, and Corpus Baseline
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair | Feature Specification: Document the owning runner for the dispatch adapter vitest suites
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair | Feature Specification: Document the owning runner for the dispatch adapter vitest suites
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes | Feature Specification: Phase 40: dispatch-lint-held-fixes
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/051-dispatch-lint-nested-quote-gap | Feature Specification: Phase 51: dispatch-lint-nested-quote-gap
   - OWNS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/007-dispatch-recognition-and-stress-adapter | Feature Specification: Phase 7: dispatch-recognition-and-stress-adapter

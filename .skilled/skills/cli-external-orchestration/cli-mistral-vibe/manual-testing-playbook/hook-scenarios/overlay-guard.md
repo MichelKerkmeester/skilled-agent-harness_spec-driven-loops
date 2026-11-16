@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-012 -- Overlay guard refuses a write an overlay owns"
 description: "This scenario validates that the Vibe overlay-guard pre_tool hook refuses a write to a file a vendored overlay owns, names the overlay file to edit instead, and leaves the live file untouched."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # VIB-HK-012 -- Overlay guard refuses a write an overlay owns
@@ -52,7 +52,8 @@ Operators run the conversation script through the shared runner with the `vibe` 
     "vibe"
   ],
   "setup": [
-    "mkdir -p skilled-overlays/files config",
+    "mkdir -p skilled-overlays/files config .skilled/commands/doctor/scripts",
+    "cp \"$CONVERSATION_REPO_ROOT/.skilled/commands/doctor/scripts/overlay-engine.cjs\" .skilled/commands/doctor/scripts/overlay-engine.cjs",
     "printf '{\\n  \"retries\": 1,\\n  \"generatedFrom\": \"overlay\"\\n}\\n' > skilled-overlays/files/settings.json",
     "printf '{\\n  \"retries\": 1\\n}\\n' > config/settings.json",
     "printf '%s\\n' '{\"schemaVersion\": 1, \"pin\": {\"upstream\": \"fixture\", \"commit\": \"pin-one\"}, \"overlays\": [{\"id\": \"settings\", \"scope\": \"file\", \"source\": \"files/settings.json\", \"destination\": \"config/settings.json\"}]}' > skilled-overlays/overlay-manifest.json"
@@ -93,7 +94,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 }
 ```
 
-The overlay tree lives only in the scratch project: the manifest, its source folder and the live destination are all created by setup, so the guard judges the scratch project's own manifest and no write ever targets the checkout. The manifest is written on one line, so a `printf` in setup produces the exact JSON the engine reads. Setup gives the overlay source an extra key, so the two files start different and the second turn's byte comparison can only pass once the change travels through the overlay. The spec gate is switched off for this run, because the scenario judges only the overlay guard. The optional questions let the subject confirm the target and the overlay route once the refusal names the overlay.
+The overlay tree lives only in the scratch project: the manifest, its source folder and the live destination are all created by setup, so the guard judges the scratch project's own manifest and no write ever targets the checkout. The manifest is written on one line, so a `printf` in setup produces the exact JSON the engine reads. Setup also copies the overlay engine to the path the refusal names, `.skilled/commands/doctor/scripts/overlay-engine.cjs`. A copy, not a link: the engine applies to the tree it sits in, so a link would resolve to the checkout. Without it the model once wrote its own engine, which dropped the source's extra key and failed the byte comparison. Setup gives the overlay source an extra key, so the two files start different and the second turn's byte comparison can only pass once the change travels through the overlay. The spec gate is switched off for this run, because the scenario judges only the overlay guard. The optional questions let the subject confirm the target and the overlay route once the refusal names the overlay.
 
 ### Expected
 

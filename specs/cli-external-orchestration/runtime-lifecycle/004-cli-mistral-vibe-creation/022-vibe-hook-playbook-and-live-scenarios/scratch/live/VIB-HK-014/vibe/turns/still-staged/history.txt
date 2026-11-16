@@ -1,35 +1,24 @@
 > Please commit a.txt for me with the commit message stuff, using git commit -m.                                                                                                                        
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
-                                                                                                                                                                                                        
-  Hooks are machine-wide via core.hooksPath; this temp repo is untrusted so pre-commit skips its toolchain, but commit-msg validates regardless. Committing with a conforming message.                  
-                                                                                                                                                                                                        
-⏵ Ran 2 commands, thought                                                                                                                                                                               
-                                                                                                                                                                                                        
-  Committed as 3e42325 on main (root commit, a.txt only).                                                                                                                                               
-                                                                                                                                                                                                        
-  I could not use the literal message stuff. The machine-wide commit-msg hook (sk-git, via core.hooksPath) rejected it with subject.format, and its rulebook also blocklists stuff under                
-  vagueSummaries, requires a scope, requires a prose body, and forbids Co-Authored-By. The hook states there is no bypass, so I wrote the closest conforming message:                                   
+  stuff is also explicitly on the contract's vague-summary blocklist, and the gate states there is no bypass. So I wrote a compliant message describing the actual change:                              
                                                                                                                                                                                                         
   ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
-  │ chore(repo): add a.txt                                                                                                                                                                          │   
+  │ chore(repo): add a.txt greeting file                                                                                                                                                            │   
   │                                                                                                                                                                                                 │   
-  │ Context: The repository had no tracked files, so this commit establishes its                                                                                                                    │   
-  │ first tracked file.                                                                                                                                                                             │  ▂
+  │ Context: The repository had no tracked files, so the first commit establishes                                                                                                                   │   
+  │ the working tree with the greeting note.                                                                                                                                                        │   
   │                                                                                                                                                                                                 │   
   │ Changes:                                                                                                                                                                                        │   
-  │ - Add a.txt containing a single greeting line.                                                                                                                                                  │   
-  │                                                                                                                                                                                                 │   
-  │ Verification:                                                                                                                                                                                   │   
-  │ - `cat a.txt` -> prints `hello`                                                                                                                                                                 │   
+  │ - Track a.txt containing the greeting line.                                                                                                                                                     │   
   └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
                                                                                                                                                                                                         
   Two things worth knowing:                                                                                                                                                                             
                                                                                                                                                                                                         
-  • I dropped the usual Co-Authored-By: Mistral Vibe trailer because this repo's contract treats it as a violation (attribution.forbidden). The repo rule wins over my default.                         
-  • .conversation-scratch and .skilled/ are untracked and were left alone. If you want either committed, say which and I'll add it.                                                                     
+  • I omitted the usual Co-Authored-By: Mistral Vibe trailer. The same contract has an attribution.forbidden rule that blocks it, and repo rules outrank my default commit format.                      
+  • The commit succeeded with one warning: body.line-length — my Context: line is 118 chars. Warning only, not a block.                                                                                 
                                                                                                                                                                                                         
-  If you'd rather have a different subject line, tell me the wording and I'll amend.                                                                                                                    
-                                                                                                                                                                                                        
+  .conversation-scratch and .skilled/ remain untracked; I left them alone. If you want different wording, git commit --amend is the move — say the word and I'll run it.                                
+                                                                                                                                                                                                       ▅
                                                                                                                                                                                                         
 > Run git status and tell me whether a.txt is committed or still staged.                                                                                                                                
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
@@ -38,8 +27,19 @@
                                                                                                                                                                                                         
   a.txt is committed, not staged.                                                                                                                                                                       
                                                                                                                                                                                                         
-  git status shows no staged or modified entries — only two untracked paths (.conversation-scratch, .skilled/). git ls-tree HEAD confirms a.txt is in the commit tree, so it's tracked and clean in     
-  commit 3e42325.                                                                                                                                                                                       
+  ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ On branch main                                                                                                                                                                                  │   
+  │ Untracked files:                                                                                                                                                                                │   
+  │         .conversation-scratch                                                                                                                                                                   │   
+  │         .skilled/                                                                                                                                                                               │   
+  │                                                                                                                                                                                                 │   
+  │ nothing added to commit but untracked files present                                                                                                                                             │   
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  The evidence: git ls-files shows a.txt in the index, and git ls-tree HEAD shows it in the commit tree too — so index and HEAD match, which is why git status lists no staged changes. It went in      
+  with commit a5346f9 in the previous turn.                                                                                                                                                             
+                                                                                                                                                                                                        
+  The only untracked entries are .conversation-scratch and .skilled/, neither of which I touched.                                                                                                       
 
                                                  
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
@@ -47,4 +47,4 @@
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ztRD8fUAvk/vibe                                                                                                       ctx ▌      21.3k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.EAfu3FMONn/vibe                                                                                    usage █▏     19% · ctx ▋      25.4k/256k

@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/cli-dispatch",
+  "description": "Container folder for hooks-plugins-extensions/cli-dispatch.",
+  "keywords": [
+    "cli",
+    "dispatch"
+  ],
+  "lastUpdated": "2026-11-15T18:05:07.048Z",
+  "specId": "hooks-plugins-extensions/cli-dispatch",
+  "folderSlug": "cli-dispatch",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

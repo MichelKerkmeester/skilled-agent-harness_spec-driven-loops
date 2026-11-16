@@ -309,7 +309,10 @@ async function buildHandoverContextPart(payload, dependencies = {}) {
     });
     if (committed === null) return '';
   } catch (error) {
+    // A throw under the claim leaves this hook without proof that it holds the
+    // claim, so it stays quiet rather than risk a second copy of the nudge.
     logEvent('context-nudge-error', { stage: 'state', message: error.message }, env);
+    return '';
   }
 
   try {

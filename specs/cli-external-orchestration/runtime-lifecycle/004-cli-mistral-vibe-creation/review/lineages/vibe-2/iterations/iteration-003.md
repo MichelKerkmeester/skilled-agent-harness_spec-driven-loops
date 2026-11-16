@@ -2,26 +2,25 @@
 
 ## Dispatcher
 
-- Mode: review (fan-out lineage `vibe-2`)
-- Session: `fanout-vibe-2-1794765851303-zrv85l`, generation 1, lineageMode `new`
-- Dimension: security
-- Review target: `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation` (spec-folder)
-- Operator review focus: phases 013-022 and the 2026-11-15 fixes. This iteration addresses the focus by auditing the trust boundary the automatic handover tier widened: the three composers now run a hand-over part that reads the session journal and writes state on every turn start, tool call and turn end.
-- Sources read this iteration: `steer.md` (absent), `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:59-150,199-324`, `.skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs:1-86`, `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs:1-162`, `.skilled/hooks/session-handover/vibe/handover-parts.mjs:1-375`, `.skilled/hooks/session-handover/lib/nudge.cjs:54,433-460,745-752`, `.skilled/hooks/session-handover/lib/relaunch-core.cjs:291-297`, `.skilled/hooks/session-handover/lib/context-usage.cjs:388-428`, `.skilled/hooks/goal/lib/goal-slice.cjs:271-303,443-475`, `.skilled/hooks/goal/vibe/goal-inject.mjs:30-42`, `.vibe/hooks.toml:110-140`, `.skilled/bin/skilled-loop:905-915`.
+- Route: `Resolved route: mode=review target_agent=deep-review`
+- Mode: review, execution single_review_iteration, state source externalized files
+- Session: `fanout-vibe-2-1794808672532-65xu0h`, generation 1, lineageMode `new`
+- Iteration: 3 of 5 (stopPolicy `max-iterations`)
+- Dimension: correctness
+- Operator review focus: correctness, security and fail-open defects, wire-format and payload edge cases, ordering and kill-switch gaps, and parity gaps against the OpenCode plugins. This iteration addresses the focus by auditing the four composers and the session reader for silent no-ops, per-call cost, and path-resolution disagreements between the composers and the shared hook seam.
+- Sources read: `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs`, `turn-end.mjs`, `session-start.mjs`, `compaction-post-tool.mjs`, `compaction-context.mjs`, `.skilled/hooks/shared/session-readers/vibe.mjs`, `.skilled/hooks/session-handover/lib/context-usage.cjs`, `.vibe/plugins/repo-guards/lib/hook-io.mjs`, `.vibe/hooks.toml`.
 
 ## Files Reviewed
 
-- `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:59-150,199-324`
+- `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs:1-172`
+- `.skilled/hooks/session-lifecycle/vibe/turn-end.mjs:1-122`
+- `.skilled/hooks/session-lifecycle/vibe/session-start.mjs:1-147`
 - `.skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs:1-86`
-- `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs:1-162`
-- `.skilled/hooks/session-handover/vibe/handover-parts.mjs:1-375`
-- `.skilled/hooks/session-handover/lib/nudge.cjs:54,433-460,745-752`
-- `.skilled/hooks/session-handover/lib/relaunch-core.cjs:291-297`
+- `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:66-381`
+- `.skilled/hooks/shared/session-readers/vibe.mjs:1-497`
 - `.skilled/hooks/session-handover/lib/context-usage.cjs:388-428`
-- `.skilled/hooks/goal/lib/goal-slice.cjs:271-303,443-475`
-- `.skilled/hooks/goal/vibe/goal-inject.mjs:30-42`
-- `.vibe/hooks.toml:110-140`
-- `.skilled/bin/skilled-loop:905-915`
+- `.vibe/plugins/repo-guards/lib/hook-io.mjs:25-27`
+- `.vibe/hooks.toml:96-108`
 
 ## Findings - New
 
@@ -31,86 +30,82 @@ None.
 
 ### P1 Findings
 
-None.
+None new. R1-P1-001 remains active and is carried forward.
 
 ### P2 Findings
 
-1. **The compaction state directory is derived from `payload.cwd` with no containment check, so the hook creates and writes a state tree at whatever absolute path the payload names** -- `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:67-70` -- `stateDirFor` returns `join(cwd && isAbsolute(cwd) ? cwd : workspace, STATE_RELATIVE_DIR)` and `writeWatermark:116` and `writeJournalSize:143` both `mkdirSync(stateDir, { recursive: true })` there. The comment at `:63-66` states the intent ("the watermark lives under the session's own working folder ... so a session that may not write into the checkout ... can still record what it injected"), but nothing checks that the folder is the session's own.
-   Finding class: security
-   Scope proof: the helper and both writers are in a `reviewScopeFiles` entry; the payload shape is the one the packet's own wire-format reference records.
-   Affected surface hints: `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs`
-   Case: a payload whose `cwd` is a shared directory, a mount root or `/` makes the hook create `<that>/.skilled/skills/.state/vibe-compaction/` and write a watermark and a size file there, outside the session folder the comment says the state belongs to.
-   ```json
-   {"type":"claim","claim":"The state directory follows payload.cwd with no containment check, so the hook writes outside the session folder when the payload names one.","evidenceRefs":["compaction-context.mjs:67-70","compaction-context.mjs:116","compaction-context.mjs:143"],"counterevidenceSought":"Checked whether the payload cwd is validated anywhere (it is not), whether the state key bounds the path (it bounds the filename, not the directory), and whether the writes are mode-restricted (they are 0o700/0o600, which limits disclosure but not location).","alternativeExplanation":"The payload is host-supplied, so the reach is a misconfigured or hostile host rather than the model. That is why this is P2 hardening rather than a blocking finding.","finalSeverity":"P2","confidence":"high","downgradeTrigger":"No downgrade path; the tier is already the lowest."}
-   ```
+1. **The hand-over part runs on every tool call with no size gate, so the journal is re-parsed each time** -- `.skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs:66-73` -- the compaction part beside it is gated by `measureJournal`, and the file's own header says "The journal's size decides whether the detector reads it at all". The hand-over part has no such gate: it calls `buildHandoverContextPart(payload)` unconditionally, which reaches `readVibeUsage(payload.transcript_path)` (`handover-parts.mjs:268`) and then `vibeFillTokens`, which walks every journal segment and parses each one (`context-usage.cjs:388-394`). The binding has no `match` selector (`.vibe/hooks.toml:96-108`), so this runs after every tool call of every kind.
+   Finding class: algorithmic
+   Scope proof: the binding and the composer are inside the declared target; the usage reader is cited as the cost it drives.
+   Affected surface hints: `.skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs`, `.skilled/hooks/session-handover/vibe/handover-parts.mjs`, `.skilled/hooks/session-handover/lib/context-usage.cjs`, the `compaction-post-tool` binding in `.vibe/hooks.toml`
+   Case: a long headless turn that makes fifty tool calls while the journal grows to several megabytes. Each call re-reads and re-parses the whole journal for the hand-over part, so the hook's cost grows with the square of the turn length, against a 10-second binding timeout.
 
-2. **The hand-over state directory falls back to a predictable path under `os.tmpdir()` with no ownership or symlink check** -- `.skilled/hooks/session-handover/lib/relaunch-core.cjs:291-297` -- `stateDir` returns `join(env.XDG_RUNTIME_DIR, STATE_DIRECTORY_NAME)` when the variable is set and otherwise `join(os.tmpdir(), 'session-handover-<uid>')`, and `nudge.cjs:749-752` writes `nudge-<sessionId>.json` there. The directory name is predictable and nothing verifies that an existing directory is owned by the current user or is not a symlink.
-   Finding class: security
-   Scope proof: `relaunch-core.cjs` is a `reviewScopeFiles` entry, and `nudge.cjs` is the writer the Vibe hand-over part calls.
-   Affected surface hints: `.skilled/hooks/session-handover/lib/relaunch-core.cjs`, `.skilled/hooks/session-handover/lib/nudge.cjs`
-   Case: on a host whose `os.tmpdir()` is world-writable, another local user pre-creates `session-handover-<uid>` as a symlink to a directory they own, and the hook's nudge state writes land there.
-   ```json
-   {"type":"claim","claim":"The fallback state directory is a predictable path under the system temp directory with no ownership or symlink check.","evidenceRefs":["relaunch-core.cjs:291-297","nudge.cjs:749-752"],"counterevidenceSought":"Checked whether the directory is created with an exclusive flag or its ownership verified (neither), and whether the session id can escape it (it cannot: `SESSION_ID_PATTERN` at `nudge.cjs:54` is `^[A-Za-z0-9_-]{1,128}$`).","alternativeExplanation":"On macOS `os.tmpdir()` is a per-user folder, so the path is not world-writable there. The finding is host-dependent, which is why it is P2.","finalSeverity":"P2","confidence":"medium","downgradeTrigger":"No downgrade path; the tier is already the lowest."}
-   ```
+2. **The session-start composer has no CLI-entry guard and no test, unlike the other three composers** -- `.skilled/hooks/session-lifecycle/vibe/session-start.mjs:145-147` -- `main().catch(...)` runs at module load with no `IS_CLI_ENTRY` check, while `turn-start.mjs:35-37,168-172`, `turn-end.mjs:28,118-122` and `compaction-post-tool.mjs:26-28,82-86` all compute `IS_CLI_ENTRY` and gate `main()` on it. The consequence is visible in the test set: `compaction-context.test.mjs`, `compaction-post-tool.test.mjs`, `turn-end.test.mjs` and `turn-start.test.mjs` exist, and there is no `session-start.test.mjs`. The one composer that runs the goal slice, the session prime, the startup guards and the dist warning is the one that cannot be imported by a test without blocking on stdin.
+   Finding class: test-isolation
+   Scope proof: inside the declared target; the sibling composers are cited as the pattern the file departs from.
+   Affected surface hints: `.skilled/hooks/session-lifecycle/vibe/session-start.mjs`, the `session-start` binding in `.vibe/hooks.toml:126-129`
+   Case: a contributor adds a unit test for the goal part or the startup-guard part. Importing the module starts `main()`, which awaits stdin and never returns, so the test hangs instead of asserting.
 
-3. **The `post_tool` binding re-reads the whole session store on every tool call whose journal grew, inside a 10-second budget** -- `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:314-319` -- `buildPostToolPart` runs `detect` whenever the measured size differs, and `detect` is `buildCompactionPart`, which calls `loadVibeSession` and therefore reads every `journal/*.jsonl` file plus the committed snapshot's chunks (`session-readers/vibe.mjs:76-107,124-129`). `.vibe/hooks.toml:127` gives the entry `timeout = 10.0`, and the same entry then runs the hand-over part, which reads the journal again through `readVibeUsage` (`context-usage.cjs:388-394`).
-   Finding class: security
-   Scope proof: the binding, the reader and the hook registration are all in the declared review target or its named integration surface.
-   Affected surface hints: `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs`, `.skilled/hooks/shared/session-readers/vibe.mjs`, `.vibe/hooks.toml`
-   Case: a long session whose journal has grown to tens of megabytes pays a full store read on every tool call, and a call that crosses the 10-second budget is killed, so the tool result the model needs is delayed or the binding is skipped.
-   ```json
-   {"type":"claim","claim":"The per-tool-call cost grows with the whole session store, and the entry budget is fixed at 10 seconds.","evidenceRefs":["compaction-context.mjs:314-319","session-readers/vibe.mjs:76-107","session-readers/vibe.mjs:124-129","context-usage.cjs:388-394",".vibe/hooks.toml:127"],"counterevidenceSought":"Checked whether the detector caches a parsed store (it does not), whether the size gate bounds the work (it only skips unchanged journals), and whether the hand-over part reuses the detector's read (it does not).","alternativeExplanation":"Vibe may cap the journal size by rolling it into snapshots, which bounds the read. The snapshot chunks are read too, so the bound is the whole store rather than the journal.","finalSeverity":"P2","confidence":"medium","downgradeTrigger":"No downgrade path; the tier is already the lowest."}
-   ```
+3. **The turn-start composer uses the raw payload cwd as the project root while the guard seam resolves it against the checkout** -- `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs:52,80` -- both `pendingCompletionAdvisoryPart` and `buildSaveNudgePart` take `payload.cwd` verbatim and `join` a relative path onto it. The shared seam does the opposite: `hook-io.mjs:25-27` `sessionDirFor` resolves a relative cwd against the checkout, and its comment says why — "A relative cwd is resolved against the checkout, so the same payload names the same tree on any machine". `dist-freshness.mjs:53-55` repeats the same resolution locally for the same reason. The two turn-start parts are the only readers that do not.
+   Finding class: instance-only
+   Scope proof: inside the declared target; `hook-io.mjs` and `dist-freshness.mjs` are cited as the convention.
+   Affected surface hints: `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs`, `.vibe/plugins/repo-guards/lib/hook-io.mjs`, `.skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs`
+   Case: a fixture or a scratch-cwd run whose payload carries a relative `cwd`. The completion part writes its pending advisory under the absolute path the hook process happens to run in, while the turn-start part reads it under a path resolved from the process cwd — so the advisory is written to one tree and looked for in another, and the model never sees it.
 
 ## Traceability Checks
 
-| Protocol | Level | Status | Evidence |
-|----------|-------|--------|----------|
-| `spec_code` | core | partial | Carried from iterations 1 and 2; this iteration adds no spec-alignment change. |
-| `checklist_evidence` | core | notApplicable | No phase in 013-022 carries a `checklist.md`. |
-| `skill_agent` | overlay | pass | Carried from iteration 2. |
-| `agent_cross_runtime` | overlay | pass | Carried from iteration 2. |
-| `feature_catalog_code` | overlay | pending | Deferred to the cross-reference iteration. |
-| `playbook_capability` | overlay | partial | Carried from iteration 2. |
+| Protocol | Status | Evidence |
+|----------|--------|----------|
+| `spec_code` | partial | The composers' documented part order matches the code: `turn-start.mjs:101-111` lists the withdraw step then five text parts, and `README.md:23` describes the same order. The `compaction-post-tool` binding's documented "the journal's size decides whether it reads at all" (`compaction-post-tool.mjs:7-8`) holds for the compaction part only, not for the hand-over part beside it. |
+| `checklist_evidence` | notApplicable | No checklist document on a hook and plugin surface. |
 
 ## Integration Evidence
 
-- `.vibe/hooks.toml:124-128` registers `compaction-post-tool` as a `post_tool` entry with `timeout = 10.0` and no `strict`, so a failure never blanks the tool result. That is the intended posture and it holds.
-- `.vibe/hooks.toml:19-24` registers `turn-start` with `timeout = 20.0`, which covers five parts including two journal reads.
-- `.skilled/bin/skilled-loop:911-912` unsets `SESSION_HANDOVER_GOAL_PACKET` and `SKILLED_LOOP_CLAIM_SEED` before a first launch but leaves `VIBE_SPEC_FOLDER` alone, so an outer session's packet binding reaches a first launch. `goal-inject.mjs:33` prefers it over the claimed packet, which the goal README documents as intended ("An operator-named `VIBE_SPEC_FOLDER` always wins"), so this is a comment-precision gap in the wrapper rather than a defect.
+- `.vibe/hooks.toml:96-108` — the `compaction-post-tool` binding is `type = "post_tool"` with `timeout = 10.0` and no `match`, so it fires after every tool call.
+- `.skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs:59-73` — the two parts, one gated and one not.
+- `.skilled/hooks/session-handover/lib/context-usage.cjs:388-394,419-428` — `readVibeUsage` → `vibeFillTokens` → `segmentFillTokens` per journal segment, the cost finding R3-P2-001 measures.
+- `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs:35-37,168-172` and `turn-end.mjs:28,118-122` — the `IS_CLI_ENTRY` pattern finding R3-P2-002 compares against.
+- `.vibe/plugins/repo-guards/lib/hook-io.mjs:25-27` — `sessionDirFor`, the resolution convention finding R3-P2-003 compares against.
+- `.skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs:110-112` — the writer of the pending advisory that `turn-start.mjs:50-69` reads.
 
 ## Edge Cases
 
-- **Ambiguity: the payload is host-supplied, not model-supplied.** I kept both path findings at P2 because the reach is a misconfigured or hostile host, not the model, and the packet's own wire-format reference records `cwd` as a host field.
-- **Contradiction: the wrapper comment says an outer packet never reaches a first launch, and `VIBE_SPEC_FOLDER` does.** Both sides are cited; the adjudication is that the goal README makes the operator's choice authoritative, so the comment is imprecise rather than the code being wrong. Recorded as integration evidence, not as a finding.
-- **Missing dependency: no live Vibe session.** The timeout finding is a cost reading, not a measured timeout, so it stays at P2.
-- **Partial success:** the goal path resolution is genuinely hardened, so the security dimension is not empty of clean surfaces.
+- **The reader's journal ordering was re-checked and stays clean.** `session-readers/vibe.mjs:66` sorts with a default `.sort()`, which would misorder `10.jsonl` before `2.jsonl`. The live journal names are zero-padded to 16 digits, so the sort is numeric. This direction is BLOCKED in the strategy and was not re-entered.
+- **`loadVibeSession` compares an untrimmed session id.** `vibe.mjs:375` tests `sessionId.trim()` for truthiness but compares `recordedId !== sessionId` untrimmed, so a padded id fails `session_mismatch`. `compaction-context.mjs` trims before calling, while `ask-surface-post-agent.mjs:90` and `completion-evidence-post-agent.cjs:48` pass the raw payload value. Held as an edge case rather than a finding: no recorded payload carries a padded id, so the trigger is unproven and the severity would be P2 at most.
+- **Prior-finding overlap checked.** None of the three appears in the 29 dispositions. `R3-P2-003` in the prior round was a deferred cost assertion; R3-P2-001 here is a different cost, in a different file, with the reader named.
 
 ## Confirmed-Clean Surfaces
 
-- `goal-slice.cjs:271-303` resolves an absolute or relative packet path and rejects anything outside the workspace on both the lexical and the real path, including a symlinked parent.
-- `goal-slice.cjs:443-462` re-judges the `goal.md` file's real path, so a symlinked goal document that targets a file outside the workspace reads as unbound.
-- `nudge.cjs:54,745-747` validates a session id against `^[A-Za-z0-9_-]{1,128}$` before it reaches any path join, so no session id can traverse.
-- `compaction-context.mjs:92,116-123,144` bounds the watermark read at 4096 bytes and writes both state files with `0o600` inside a `0o700` directory.
-- `compaction-context.mjs:208-256` wraps the whole detector in one `try/catch` and returns `''`, so no malformed payload can throw into a hook.
-- `handover-parts.mjs:186-272` returns `''` for a non-context event, a disabled concern, an invalid session id and a subagent payload, and logs rather than throws on every failure path.
-- `compaction-post-tool.mjs:76-84` keeps the exit code at 0 and prints nothing when both parts are empty.
+- `turn-start.mjs:135-149` — `composeTurnStart` rejects a non-object and a non-`pre_agent` event, and runs each part in its own try/catch so one failure cannot suppress the rest.
+- `turn-start.mjs:61-67` — the pending advisory is deleted before it is returned, so a file that cannot be removed is dropped rather than repeated.
+- `turn-start.mjs:93-99` — the withdraw step runs first, before any slow part, so a slow part cannot hold the withdraw past the killer.
+- `turn-end.mjs:86-99` — the composer stops at the first deny, and the hand-over part is last so a turn another part sends back is never armed.
+- `turn-end.mjs:45-48` — the completion part runs first, so its advisory is written even when the ask-surface part denies.
+- `session-start.mjs:118-119` — a non-object payload and a non-`session_start` event both return before any work.
+- `session-start.mjs:129-136` — every part runs in its own try/catch.
+- `compaction-post-tool.mjs:52-57` — malformed input prints nothing and exits 0.
+- `compaction-context.mjs:326-336` — `measureJournal` sums only the numbered segments and returns 0 for an empty folder rather than unreadable.
+- `compaction-context.mjs:350-381` — `buildPostToolPart` checks `hook_event_name === 'post_tool'`, records the size even when the detector returned no text, and fails open on any throw.
+- `compaction-context.mjs:73-84` — the watermark directory must already exist as an absolute directory, so a payload cannot make the detector create a tree anywhere it names.
+- `compaction-context.mjs:139-160` — the watermark moves before the text is built and every id in a catch-up joins the seen list, so a snapshot roll cannot re-inject an older compaction.
+- `session-readers/vibe.mjs:347-393` — `loadVibeSession` fails with a named code for a missing locator, a missing session, an unreadable store, an unsupported format and a session mismatch, rather than returning an empty success.
+- `session-readers/vibe.mjs:116-124` — `withSnapshot` drops a projection delta at or below the snapshot sequence, so replaying it cannot put an older entry state back.
+- `session-readers/vibe.mjs:474-477` — `compactionsSince` sorts by sequence, so the caller sees compactions in order regardless of segment order.
 
 ## Ruled Out
 
-- **A session id can traverse the state path.** Ruled out by `nudge.cjs:54,745-747` and by `stateKey` hashing the id at `compaction-context.mjs:72-74`.
-- **`VIBE_SPEC_FOLDER` can point the goal slice outside the checkout.** Ruled out by `goal-slice.cjs:271-303,443-462`.
-- **A strict `post_tool` failure can blank the tool result.** Ruled out: the entry carries no `strict` (`.vibe/hooks.toml:124-128`).
-- **The hand-over part can deny a turn.** Ruled out: `armHandoverTurnEnd` returns `null` on every path (`handover-parts.mjs:286-369`).
+- **Journal segment ordering in the session reader.** Zero-padded names make the lexicographic sort correct; BLOCKED in the strategy.
+- **`compaction-post-tool.mjs` judging a non-`post_tool` payload.** `buildPostToolPart` checks `hook_event_name` itself at line 361.
+- **`turn-end.mjs` requiring the completion part by an absolute path.** `createRequire(import.meta.url)` accepts an absolute path, and the path resolves to `.skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs`.
+- **A wrong relative root in any composer.** `turn-start.mjs:44`, `session-start.mjs:29`, `compaction-context.mjs:45`, `prompt-advisor.mjs:30` and `hook-io.mjs:16` each climb the correct number of levels to the checkout.
 
 ## Next Focus
 
-- Dimension: maintainability
-- Focus area: the Vibe hook documentation set (`guards-and-hooks.md`, the session-lifecycle README, the goal README, the playbook) against the code this lineage has now read, plus the duplicated rule sets and line-length conventions phase 013 claims to have fixed.
-- Reason: three iterations have produced seven findings, and the docs are the surface that will carry the fixes.
-- Rotation status: correctness, traceability and security complete; maintainability next.
-- Blocked/productive carry-forward: productive — the security pass confirmed the goal-path hardening and found three hardening gaps.
-- Required evidence: `file:line` in each doc and the code line it describes.
-- Recovery note: not applicable.
+- Dimension: correctness
+- Focus area: the goal, hand-over, ask-surface, decision-capture, completion and skill-advisor adapters
+- Reason: iteration 3 covered the composers and the reader; the remaining adapters are where the claim, the marker and the injected `env` seam decide whether a part delivers once or repeatedly.
+- Rotation status: correctness (guard seam), security and correctness (composers and reader) done; correctness (adapters) next.
+- Blocked/productive carry-forward: the `process_start` and `system_message` upgrade triggers are carried forward; the journal-ordering direction stays BLOCKED; the untrimmed session id is carried as an edge case.
+- Required evidence: the `claimNudge`/`commitNudge` contract in `nudge.cjs`, and the `env` seam each adapter accepts.
 
 Review verdict: CONDITIONAL

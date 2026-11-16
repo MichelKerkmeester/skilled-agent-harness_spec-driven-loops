@@ -1,0 +1,4 @@
+   - This is a second attempt. The file on disk is the first draft, and it passes the check. Keep its shape and fix only the two defects below.
+   - Defect 1: the draft drops the audit kill switch. The old text says the audit checks `isHookEnabled('dispatch')` and the audit kill switch. `recordDispatch` returns early when `CLI_DISPATCH_AUDIT_DISABLED` is set: read `.skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs` lines 31 to 36 and line 1266. Name `CLI_DISPATCH_AUDIT_DISABLED` in the text.
+   - Defect 2: the draft says "Both adapters fail open, so an internal error approves silently". Only the preflight approves. The audit emits no permission decision at all, and on any error it exits 0 with no output. Write one sentence for each adapter.
+   - The audit passes the command, the output, the session id, the tool call id and the tool response to `recordDispatch`. Do not shorten that to "session ids".

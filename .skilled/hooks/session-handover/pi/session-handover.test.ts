@@ -750,7 +750,7 @@ describe('session-handover Pi extension', () => {
   it('retries module loading after a dynamic import failure', async () => {
     setupEnv();
     process.env.SKILLED_LOOP_ID = 'pi-nudge-loop-0001';
-    let failuresRemaining = 2;
+    let failuresRemaining = 1;
     const failOncePerPath = async (specifier: string) => {
       if (failuresRemaining > 0) {
         failuresRemaining -= 1;
@@ -760,8 +760,6 @@ describe('session-handover Pi extension', () => {
     };
     vi.resetModules();
     vi.doMock('../lib/nudge.cjs', () => failOncePerPath('../lib/nudge.cjs'));
-    vi.doMock('../../.skilled/hooks/session-handover/lib/nudge.cjs', () =>
-      failOncePerPath('../../.skilled/hooks/session-handover/lib/nudge.cjs'));
 
     try {
       const retryModule = await import('./session-handover?retry-after-failure');
@@ -779,7 +777,6 @@ describe('session-handover Pi extension', () => {
       expect(api.sendMessage).toHaveBeenCalledOnce();
     } finally {
       vi.doUnmock('../lib/nudge.cjs');
-      vi.doUnmock('../../.skilled/hooks/session-handover/lib/nudge.cjs');
       vi.resetModules();
     }
   });
@@ -792,7 +789,6 @@ describe('session-handover Pi extension', () => {
     const brokenCore = { default: { ...realCore, arm: undefined } };
     vi.resetModules();
     vi.doMock('../lib/relaunch-core.cjs', () => brokenCore);
-    vi.doMock('../../.skilled/hooks/session-handover/lib/relaunch-core.cjs', () => brokenCore);
 
     try {
       const brokenModule = await import('./session-handover?broken-core');
@@ -808,7 +804,6 @@ describe('session-handover Pi extension', () => {
       expect(api.sendMessage).not.toHaveBeenCalled();
     } finally {
       vi.doUnmock('../lib/relaunch-core.cjs');
-      vi.doUnmock('../../.skilled/hooks/session-handover/lib/relaunch-core.cjs');
       vi.resetModules();
     }
   });
@@ -907,14 +902,14 @@ describe('session-handover Pi extension', () => {
     process.env.SKILLED_LOOP_ID = 'pi-nudge-loop-0001';
     delete process.env.SESSION_HANDOVER_THRESHOLD;
     vi.resetModules();
-    vi.doMock('../../.skilled/hooks/shared/hook-flags.mjs', async (importOriginal) => {
+    vi.doMock('../../shared/hook-flags.mjs', async (importOriginal) => {
       const actual = await importOriginal<
-        typeof import('../../.skilled/hooks/shared/hook-flags.mjs')
+        typeof import('../../shared/hook-flags.mjs')
       >();
       return { ...actual, loadConfigFile: vi.fn(actual.loadConfigFile) };
     });
     try {
-      const hookFlags = await import('../../.skilled/hooks/shared/hook-flags.mjs');
+      const hookFlags = await import('../../shared/hook-flags.mjs');
       const countedModule = await import('./session-handover?counted-config');
       const { api, handlers } = makeExtensionApi();
       countedModule.default(api);
@@ -929,7 +924,7 @@ describe('session-handover Pi extension', () => {
       await emit(handlers, 'agent_end', {}, makeContext());
       expect(api.sendMessage).toHaveBeenCalledOnce();
     } finally {
-      vi.doUnmock('../../.skilled/hooks/shared/hook-flags.mjs');
+      vi.doUnmock('../../shared/hook-flags.mjs');
       vi.resetModules();
     }
   });
@@ -977,7 +972,6 @@ describe('session-handover Pi extension', () => {
     const observedCore = { default: { ...relaunchCore, dropNestedLoop } };
     vi.resetModules();
     vi.doMock('../lib/relaunch-core.cjs', () => observedCore);
-    vi.doMock('../../.skilled/hooks/session-handover/lib/relaunch-core.cjs', () => observedCore);
 
     try {
       const nestedModule = await import('./session-handover?nested-drop');
@@ -996,7 +990,6 @@ describe('session-handover Pi extension', () => {
       expect(dropNestedLoop).toHaveBeenCalledOnce();
     } finally {
       vi.doUnmock('../lib/relaunch-core.cjs');
-      vi.doUnmock('../../.skilled/hooks/session-handover/lib/relaunch-core.cjs');
       vi.resetModules();
     }
   });

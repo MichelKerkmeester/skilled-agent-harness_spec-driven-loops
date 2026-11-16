@@ -1,27 +1,18 @@
----
-title: Deep Review Strategy - Mistral Vibe runtime lifecycle (lineage vibe-2)
-description: Session tracking for the fan-out deep review of the cli-mistral-vibe runtime work, phases 013-022.
----
+# Deep Review Strategy - Vibe Hooks and Plugins (lineage vibe-2)
 
-# Deep Review Strategy - Session Tracking
+## 1. REVIEW CHARTER
 
-## 1. OVERVIEW
-
-### Purpose
-
-Persistent brain for this review lineage. Records which dimensions remain, what was found (P0/P1/P2), what review approaches worked or failed, and where to focus next.
-
-### Usage
-
-- **Init:** populated from config and the continuity ladder.
-- **Per iteration:** the reviewer reads Next Focus, reviews the assigned dimension, updates findings, marks dimensions complete, and sets a new Next Focus.
-- **Mutability:** mutable, updated by the reviewer throughout the session.
+- Target: the Mistral Vibe hook and plugin surface — `.vibe/hooks.toml`, the 13 repo-guards scripts plus `lib/hook-io.mjs` and `render-home-hooks.cjs`, the five session-lifecycle composers, and the goal, hand-over, ask-surface, decision-capture, completion and skill-advisor adapters, plus the Vibe session reader.
+- Dimensions: correctness, security, traceability, maintainability.
+- Stop conditions: `maxIterations` = 5 reached (stopPolicy `max-iterations`); convergence is telemetry only for this lineage.
+- Success criteria: every new or still-open defect carries `file:line` evidence; the 29 findings dispositioned in `023-vibe-review-remediation/implementation-summary.md` are not re-reported.
+- Operator review focus (bound as `review_focus`): correctness, security and fail-open defects, wire-format and payload edge cases, ordering and kill-switch gaps, and parity gaps against the OpenCode plugins.
 
 ---
 
 ## 2. TOPIC
 
-Review of `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation` (spec-folder, Level 2 phase parent, 22 child phases). Focus: phases 013-022 and the 2026-11-15 fixes, plus the open lead on the Vibe compaction re-injection after the automatic handover tier.
+Every Mistral Vibe hook and plugin: the bindings in `.vibe/hooks.toml`, the repo-guards plugins and `lib/hook-io.mjs`, `render-home-hooks.cjs`, the session-lifecycle composers (turn-start, turn-end, session-start, compaction), the goal, hand-over, ask-surface, decision-capture, completion and skill-advisor adapters, and the Vibe session reader.
 
 ---
 
@@ -32,17 +23,17 @@ Review of `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vi
 <!-- /ANCHOR:review-dimensions -->
 ## 4. NON-GOALS
 
-- Re-running the live VIB-HK conversation scenarios (they need a keyed Vibe session and a tmux pane).
-- Reviewing the Mistral provider rosters in phases 002 and 003, which are outside the 013-022 focus.
-- Editing any reviewed file: this lineage is observation-only.
+- Re-reporting the 29 findings already dispositioned in `023-vibe-review-remediation/implementation-summary.md`. Only new or still-open defects are in scope.
+- The runtime-neutral guard cores under `.skilled/hooks/*/lib/` and `.skilled/skills/system-spec-kit/runtime/hooks/lib/`, except where a Vibe adapter's use of a core contract is the defect.
+- The OpenCode plugins themselves. They are read as the parity reference, not as review targets.
+- Live re-execution of the manual-testing playbook. Verdicts are read as evidence, not re-run.
 
 ---
 
 ## 5. STOP CONDITIONS
 
-- `config.maxIterations` (5) reached, which is the bound stop policy for this lineage.
-- Three consecutive failed iterations.
-- An active P0 that cannot be adjudicated inside one iteration.
+- `maxIterations` = 5 reached. This lineage runs to the cap by design; convergence before the cap is telemetry only.
+- A hard-block invariant failure before an iteration's writes (packet boundary, writable path, state file) returns `error` instead of a partial artifact.
 
 ---
 
@@ -57,130 +48,134 @@ Review of `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vi
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 4
-- P2 (Suggestions): 14
+- P1 (Required): 1
+- P2 (Suggestions): 15
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
 ## 8. WHAT WORKED
 
-- Reading the detector and both of its bindings side by side: it showed that one watermark serves two seams, which is the root cause the lead asked for (iteration 1).
-- Reading the recorded live evidence before the code: it established that the on-disk VIB-HK rows read PASS, so the lead had to be treated as a latent path rather than a contradiction (iteration 1).
-- Comparing the recorded `result.json` timestamps against the handover commit date: it turned the operator lead into a dated traceability finding instead of a code guess (iteration 2).
-- Reading the writers and the readers of each state directory together: it separated the two containment gaps (caller-supplied `cwd`, predictable temp fallback) from the paths that already validate, so the security pass produced three P2s and four confirmed-clean surfaces instead of a blanket warning (iteration 3).
-- Running `git log` over each doc path before judging it: it turned "the doc is stale" into "this doc was never revised by the commit that changed the behaviour", which is what raised the goal README to P1 and kept the other four at P2 (iteration 4).
-- Counting the file instead of trusting the prose: `grep -c '^\[\[hooks\]\]' .vibe/hooks.toml` returned 18 against a paragraph that says one, which is a one-command proof of drift (iteration 4).
-- Taking the operator's own discriminator literally: "the same journal with a fresh state dir returns it" can only mean the live run had already written state, which pointed straight at the watermark write at `:231` preceding the empty return at `:252` (iteration 5).
-- Reading the two compaction scenarios' pass criteria instead of their titles: both require the `# Goal:` heading, which is exactly the condition under which the defect cannot fire (iteration 5).
+- Reading the runtime-neutral core beside each Vibe adapter: the adapter's contract violation is only visible against the core's own docstring (iteration 1).
+- Grepping the sibling adapters (`claude`, `codex`, `cursor`, `devin`) for the same core call: a missing acknowledgement shows up as a parity gap rather than a style choice (iteration 1).
+- Reading each ported guard beside its OpenCode original: a Vibe-only gate with no cross-runtime precedent stands out immediately, which is how the `tool_status` assumption surfaced (iteration 5).
+- Counting the bindings in `.vibe/hooks.toml` against the port map's own count: the two agree at 18, so the binding set is provably complete and the remaining gap is in the per-plugin verdicts (iteration 5).
 
 ---
 
 ## 9. WHAT FAILED
 
-- Searching for the live failure by grepping the packet: the recorded runs all read PASS, so the failure is not on disk and the search cost calls without an answer (iteration 1).
-- Looking for a `checklist.md` in phases 013-022: none exists, so the core `checklist_evidence` protocol has no target and had to be recorded as notApplicable (iteration 2).
-- Hunting for an injection path through the session id or the goal packet: both are already validated (`nudge.cjs:54,745-747`, `goal-slice.cjs:271-303,443-462`), so the security pass found no P0/P1 and the effort went into the two state-directory gaps instead (iteration 3).
-- Counting raw over-width lines as a style violation: 14 of the 14 over-width lines in `compaction-context.mjs` are box-drawing comment rules, so the count had to be re-run with the box characters excluded before it meant anything (iteration 4).
-- Grepping the feature catalog for the hand-over tier: the catalog has no mention of it at all, so the overlay check could only report an omission rather than a contradiction (iteration 5).
+- Treating the journal segment sort as a defect: the live journal names are zero-padded to 16 digits (`journal/0000000000000234.jsonl`), so the lexicographic sort in `vibe.mjs:66` is numeric order. Ruled out before writing (iteration 1).
+- Treating the port map as incomplete: all 21 OpenCode plugins are classified and each `not needed` verdict names a reason. Only two `hook` rows omit a loss, which is the narrower finding R5-P2-003 records (iteration 5).
+- Reading the `post_tool` field names as a correctness defect: the reference doc records them as documented rather than observed, so the finding is a traceability finding about an unverified assumption, not a claim that the value is wrong (iteration 5).
 
 ---
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### **`VIBE_SPEC_FOLDER` can point the goal slice outside the checkout.** Ruled out by `goal-slice.cjs:271-303,443-462`. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **`VIBE_SPEC_FOLDER` can point the goal slice outside the checkout.** Ruled out by `goal-slice.cjs:271-303,443-462`.
+### **`appendAdvisoryLog` throwing and losing the pending advisory.** The sentinel wraps its whole body and returns `false`. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: **`appendAdvisoryLog` throwing and losing the pending advisory.** The sentinel wraps its whole body and returns `false`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **`VIBE_SPEC_FOLDER` can point the goal slice outside the checkout.** Ruled out by `goal-slice.cjs:271-303,443-462`.
+- Do NOT retry: **`appendAdvisoryLog` throwing and losing the pending advisory.** The sentinel wraps its whole body and returns `false`.
 
-### **A session id can traverse the state path.** Ruled out by `nudge.cjs:54,745-747` and by `stateKey` hashing the id at `compaction-context.mjs:72-74`. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **A session id can traverse the state path.** Ruled out by `nudge.cjs:54,745-747` and by `stateKey` hashing the id at `compaction-context.mjs:72-74`.
+### **`claimNudge` throwing.** It returns a no-op claim on any error. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: **`claimNudge` throwing.** It returns a no-op claim on any error.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A session id can traverse the state path.** Ruled out by `nudge.cjs:54,745-747` and by `stateKey` hashing the id at `compaction-context.mjs:72-74`.
+- Do NOT retry: **`claimNudge` throwing.** It returns a no-op claim on any error.
 
-### **A strict `post_tool` failure can blank the tool result.** Ruled out: the entry carries no `strict` (`.vibe/hooks.toml:124-128`). -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **A strict `post_tool` failure can blank the tool result.** Ruled out: the entry carries no `strict` (`.vibe/hooks.toml:124-128`).
+### **`compaction-post-tool.mjs` judging a non-`post_tool` payload.** `buildPostToolPart` checks `hook_event_name` itself at line 361. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **`compaction-post-tool.mjs` judging a non-`post_tool` payload.** `buildPostToolPart` checks `hook_event_name` itself at line 361.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A strict `post_tool` failure can blank the tool result.** Ruled out: the entry carries no `strict` (`.vibe/hooks.toml:124-128`).
+- Do NOT retry: **`compaction-post-tool.mjs` judging a non-`post_tool` payload.** `buildPostToolPart` checks `hook_event_name` itself at line 361.
 
-### **The `guards-and-hooks.md` plugin table misclassifies a plugin.** Ruled out: the 21 rows match the 21 files in `.opencode/plugins/`, and the three `not needed` verdicts each name the reason. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **The `guards-and-hooks.md` plugin table misclassifies a plugin.** Ruled out: the 21 rows match the 21 files in `.opencode/plugins/`, and the three `not needed` verdicts each name the reason.
+### **`deep-loop-guard.mjs` reading the wrong subagent field.** `tool_input.config_name` is confirmed as the Vibe field by `guards-and-hooks.md:126` and by live scenario VIB-HK-024, which asserts the spawn carries `"config_name":"prompt-improver"`. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **`deep-loop-guard.mjs` reading the wrong subagent field.** `tool_input.config_name` is confirmed as the Vibe field by `guards-and-hooks.md:126` and by live scenario VIB-HK-024, which asserts the spawn carries `"config_name":"prompt-improver"`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The `guards-and-hooks.md` plugin table misclassifies a plugin.** Ruled out: the 21 rows match the 21 files in `.opencode/plugins/`, and the three `not needed` verdicts each name the reason.
+- Do NOT retry: **`deep-loop-guard.mjs` reading the wrong subagent field.** `tool_input.config_name` is confirmed as the Vibe field by `guards-and-hooks.md:126` and by live scenario VIB-HK-024, which asserts the spawn carries `"config_name":"prompt-improver"`.
 
-### **The 2026-11-15 fixes were claimed but not landed.** Ruled out: all four are present at the cited lines. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **The 2026-11-15 fixes were claimed but not landed.** Ruled out: all four are present at the cited lines.
+### **`dist-freshness` throwing on a missing `python3`.** `runChecker` returns `String(result.stdout ?? '')`, so a spawn error yields an empty banner. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: **`dist-freshness` throwing on a missing `python3`.** `runChecker` returns `String(result.stdout ?? '')`, so a spawn error yields an empty banner.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The 2026-11-15 fixes were claimed but not landed.** Ruled out: all four are present at the cited lines.
+- Do NOT retry: **`dist-freshness` throwing on a missing `python3`.** `runChecker` returns `String(result.stdout ?? '')`, so a spawn error yields an empty banner.
 
-### **The 2026-11-15 goal fallback is missing from the relaunch core.** Ruled out: `vibeGoalPacket` is at `relaunch-core.cjs:1201-1243` and is called at `:1243`. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **The 2026-11-15 goal fallback is missing from the relaunch core.** Ruled out: `vibeGoalPacket` is at `relaunch-core.cjs:1201-1243` and is called at `:1243`.
+### **`earlyWithdrawn` growing without bound.** Each hook invocation is a fresh process and the entry is deleted in the same turn. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: **`earlyWithdrawn` growing without bound.** Each hook invocation is a fresh process and the entry is deleted in the same turn.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The 2026-11-15 goal fallback is missing from the relaunch core.** Ruled out: `vibeGoalPacket` is at `relaunch-core.cjs:1201-1243` and is called at `:1243`.
+- Do NOT retry: **`earlyWithdrawn` growing without bound.** Each hook invocation is a fresh process and the entry is deleted in the same turn.
 
-### **The catalog's seven-hard-rule claim is stale.** Ruled out: each rule has a check at the cited line in `dispatch-rule-checks.mjs`. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **The catalog's seven-hard-rule claim is stale.** Ruled out: each rule has a check at the cited line in `dispatch-rule-checks.mjs`.
+### **`git-message-gate.mjs` having no kill switch.** Documented as deliberate at lines 8-9: "The contract has no bypass on any surface, so this hook has no kill switch either." -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **`git-message-gate.mjs` having no kill switch.** Documented as deliberate at lines 8-9: "The contract has no bypass on any surface, so this hook has no kill switch either."
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The catalog's seven-hard-rule claim is stale.** Ruled out: each rule has a check at the cited line in `dispatch-rule-checks.mjs`.
+- Do NOT retry: **`git-message-gate.mjs` having no kill switch.** Documented as deliberate at lines 8-9: "The contract has no bypass on any surface, so this hook has no kill switch either."
 
-### **The doctor's Vibe rows point at missing scripts.** Ruled out: all three scripts exist. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **The doctor's Vibe rows point at missing scripts.** Ruled out: all three scripts exist.
+### **`goal-inject.mjs` defaulting `workspace` to `process.cwd()`.** Both callers pass `REPO_ROOT` explicitly. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: **`goal-inject.mjs` defaulting `workspace` to `process.cwd()`.** Both callers pass `REPO_ROOT` explicitly.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The doctor's Vibe rows point at missing scripts.** Ruled out: all three scripts exist.
+- Do NOT retry: **`goal-inject.mjs` defaulting `workspace` to `process.cwd()`.** Both callers pass `REPO_ROOT` explicitly.
 
-### **The goal adapter README's test command is stale.** Ruled out: `goal-vibe.test.mjs` exists beside the adapter and the command matches the repository convention. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **The goal adapter README's test command is stale.** Ruled out: `goal-vibe.test.mjs` exists beside the adapter and the command matches the repository convention.
+### **`mcp-route-guard` running on every `pre_tool` call.** It has no `match`, but `coreToolNameFor` returns null for any name that does not start with `mcp_`, so a non-MCP call is allowed before the core is consulted. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **`mcp-route-guard` running on every `pre_tool` call.** It has no `match`, but `coreToolNameFor` returns null for any name that does not start with `mcp_`, so a non-MCP call is allowed before the core is consulted.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The goal adapter README's test command is stale.** Ruled out: `goal-vibe.test.mjs` exists beside the adapter and the command matches the repository convention.
+- Do NOT retry: **`mcp-route-guard` running on every `pre_tool` call.** It has no `match`, but `coreToolNameFor` returns null for any name that does not start with `mcp_`, so a non-MCP call is allowed before the core is consulted.
 
-### **The goal slice renderer is broken.** Ruled out: `goal-inject.mjs:30-41` returns the packet's `chatSlice`, and the diagnosis' positive control produced a 2503-character block with the goal slice and the history offer. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **The goal slice renderer is broken.** Ruled out: `goal-inject.mjs:30-41` returns the packet's `chatSlice`, and the diagnosis' positive control produced a 2503-character block with the goal slice and the history offer.
+### **`post-edit-quality` command injection through an edited file's path.** The router spawns without a shell. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **`post-edit-quality` command injection through an edited file's path.** The router spawns without a shell.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The goal slice renderer is broken.** Ruled out: `goal-inject.mjs:30-41` returns the packet's `chatSlice`, and the diagnosis' positive control produced a 2503-character block with the goal slice and the history offer.
+- Do NOT retry: **`post-edit-quality` command injection through an edited file's path.** The router spawns without a shell.
 
-### **The hand-over enable switch is undocumented or unimplemented.** Ruled out: `handover-parts.mjs:66-72` routes through the shared resolver and `SKILL.md:197` names both switches. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **The hand-over enable switch is undocumented or unimplemented.** Ruled out: `handover-parts.mjs:66-72` routes through the shared resolver and `SKILL.md:197` names both switches.
+### **`post-edit-quality` running on a failed write.** The `tool_status` gate at line 45 covers it, and line 55 covers a file that does not exist. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: **`post-edit-quality` running on a failed write.** The `tool_status` gate at line 45 covers it, and line 55 covers a file that does not exist.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The hand-over enable switch is undocumented or unimplemented.** Ruled out: `handover-parts.mjs:66-72` routes through the shared resolver and `SKILL.md:197` names both switches.
+- Do NOT retry: **`post-edit-quality` running on a failed write.** The `tool_status` gate at line 45 covers it, and line 55 covers a file that does not exist.
 
-### **The hand-over part can deny a turn.** Ruled out: `armHandoverTurnEnd` returns `null` on every path (`handover-parts.mjs:286-369`). -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **The hand-over part can deny a turn.** Ruled out: `armHandoverTurnEnd` returns `null` on every path (`handover-parts.mjs:286-369`).
+### **`session-cleanup.mjs` not disposing the plugin at session start.** `dispose()` runs the cleanup script, which is the session-end work; skipping it at start is correct. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **`session-cleanup.mjs` not disposing the plugin at session start.** `dispose()` runs the cleanup script, which is the session-end work; skipping it at start is correct.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The hand-over part can deny a turn.** Ruled out: `armHandoverTurnEnd` returns `null` on every path (`handover-parts.mjs:286-369`).
+- Do NOT retry: **`session-cleanup.mjs` not disposing the plugin at session start.** `dispose()` runs the cleanup script, which is the session-end work; skipping it at start is correct.
 
-### **The hook is not registered.** Ruled out: `.vibe/hooks.toml:19-24` registers `turn-start`, and the recorded runs show the advisor part landing in the same `pre_agent_turn` record. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **The hook is not registered.** Ruled out: `.vibe/hooks.toml:19-24` registers `turn-start`, and the recorded runs show the advisor part landing in the same `pre_agent_turn` record.
+### **`spec-gate-classify` opening the gate for a subagent.** `classifyIntent` returns before any state read when `isChildSession` is true. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **`spec-gate-classify` opening the gate for a subagent.** `classifyIntent` returns before any state read when `isChildSession` is true.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The hook is not registered.** Ruled out: `.vibe/hooks.toml:19-24` registers `turn-start`, and the recorded runs show the advisor part landing in the same `pre_agent_turn` record.
+- Do NOT retry: **`spec-gate-classify` opening the gate for a subagent.** `classifyIntent` returns before any state read when `isChildSession` is true.
 
-### **The line-length convention is violated across the Vibe hook surface.** Ruled out: the 14 to 10 over-width lines per file are box-drawing comment rules (`// ─────`), which phase 013 treats as a separate style item. Only two non-box lines exceed 120, and they are R4-P2-005. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **The line-length convention is violated across the Vibe hook surface.** Ruled out: the 14 to 10 over-width lines per file are box-drawing comment rules (`// ─────`), which phase 013 treats as a separate style item. Only two non-box lines exceed 120, and they are R4-P2-005.
+### **`spec-gate.mjs` and `spec-gate-classify.mjs` keying different state files.** Both resolve to the same key; see Confirmed-Clean Surfaces. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **`spec-gate.mjs` and `spec-gate-classify.mjs` keying different state files.** Both resolve to the same key; see Confirmed-Clean Surfaces.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The line-length convention is violated across the Vibe hook surface.** Ruled out: the 14 to 10 over-width lines per file are box-drawing comment rules (`// ─────`), which phase 013 treats as a separate style item. Only two non-box lines exceed 120, and they are R4-P2-005.
+- Do NOT retry: **`spec-gate.mjs` and `spec-gate-classify.mjs` keying different state files.** Both resolve to the same key; see Confirmed-Clean Surfaces.
 
-### **The mode registry, hub router and leaf manifest disagree about the Vibe mode.** Ruled out: all three name `cli-mistral-vibe` with the same routing phrases. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **The mode registry, hub router and leaf manifest disagree about the Vibe mode.** Ruled out: all three name `cli-mistral-vibe` with the same routing phrases.
+### **`toCoreCall` reading the wrong write path field.** `tool_input.file_path` is confirmed for `file_system.write_file` and `file_system.edit` by `fixtures/wire-format/tool-names.md:8-9`. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **`toCoreCall` reading the wrong write path field.** `tool_input.file_path` is confirmed for `file_system.write_file` and `file_system.edit` by `fixtures/wire-format/tool-names.md:8-9`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The mode registry, hub router and leaf manifest disagree about the Vibe mode.** Ruled out: all three name `cli-mistral-vibe` with the same routing phrases.
+- Do NOT retry: **`toCoreCall` reading the wrong write path field.** `tool_input.file_path` is confirmed for `file_system.write_file` and `file_system.edit` by `fixtures/wire-format/tool-names.md:8-9`.
 
-### **The playbook and the scenario folder disagree on the scenario count.** Ruled out: both are 27. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **The playbook and the scenario folder disagree on the scenario count.** Ruled out: both are 27.
+### **`turn-end.mjs` requiring the completion part by an absolute path.** `createRequire(import.meta.url)` accepts an absolute path, and the path resolves to `.skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs`. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **`turn-end.mjs` requiring the completion part by an absolute path.** `createRequire(import.meta.url)` accepts an absolute path, and the path resolves to `.skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The playbook and the scenario folder disagree on the scenario count.** Ruled out: both are 27.
+- Do NOT retry: **`turn-end.mjs` requiring the completion part by an absolute path.** `createRequire(import.meta.url)` accepts an absolute path, and the path resolves to `.skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs`.
 
-### **The reader cannot see the compaction.** Ruled out: `session-readers/vibe.mjs:76-107` seeds from the committed snapshot generation plus the journal tail, and `VIB-HK-006/diagnosis.md:1-8` records the fix and a 4/4 rerun. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **The reader cannot see the compaction.** Ruled out: `session-readers/vibe.mjs:76-107` seeds from the committed snapshot generation plus the journal tail, and `VIB-HK-006/diagnosis.md:1-8` records the fix and a 4/4 rerun.
+### **A missing binding in `.vibe/hooks.toml`.** The count is 18 and the event split matches the doc. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: **A missing binding in `.vibe/hooks.toml`.** The count is 18 and the event split matches the doc.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The reader cannot see the compaction.** Ruled out: `session-readers/vibe.mjs:76-107` seeds from the committed snapshot generation plus the journal tail, and `VIB-HK-006/diagnosis.md:1-8` records the fix and a 4/4 rerun.
+- Do NOT retry: **A missing binding in `.vibe/hooks.toml`.** The count is 18 and the event split matches the doc.
 
-### **The session-lifecycle README's part order is wrong.** Ruled out: `turn-start.mjs:92-101` composes completion, compaction, advisor, save nudge and hand-over in exactly the order the README states. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **The session-lifecycle README's part order is wrong.** Ruled out: `turn-start.mjs:92-101` composes completion, compaction, advisor, save nudge and hand-over in exactly the order the README states.
+### **A wrong relative root in any composer.** `turn-start.mjs:44`, `session-start.mjs:29`, `compaction-context.mjs:45`, `prompt-advisor.mjs:30` and `hook-io.mjs:16` each climb the correct number of levels to the checkout. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **A wrong relative root in any composer.** `turn-start.mjs:44`, `session-start.mjs:29`, `compaction-context.mjs:45`, `prompt-advisor.mjs:30` and `hook-io.mjs:16` each climb the correct number of levels to the checkout.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The session-lifecycle README's part order is wrong.** Ruled out: `turn-start.mjs:92-101` composes completion, compaction, advisor, save nudge and hand-over in exactly the order the README states.
+- Do NOT retry: **A wrong relative root in any composer.** `turn-start.mjs:44`, `session-start.mjs:29`, `compaction-context.mjs:45`, `prompt-advisor.mjs:30` and `hook-io.mjs:16` each climb the correct number of levels to the checkout.
 
-### **The watermark write is denied by the sandbox.** Ruled out for the current code: `compaction-context.mjs:67-70` puts the state dir under `payload.cwd`, and the captured `pre_tool` payload carries `cwd` (`guards-and-hooks.md:180-195`), so the write lands in the session's own folder. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **The watermark write is denied by the sandbox.** Ruled out for the current code: `compaction-context.mjs:67-70` puts the state dir under `payload.cwd`, and the captured `pre_tool` payload carries `cwd` (`guards-and-hooks.md:180-195`), so the write lands in the session's own folder.
+### **An unclassified OpenCode plugin.** All 21 rows are present. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: **An unclassified OpenCode plugin.** All 21 rows are present.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The watermark write is denied by the sandbox.** Ruled out for the current code: `compaction-context.mjs:67-70` puts the state dir under `payload.cwd`, and the captured `pre_tool` payload carries `cwd` (`guards-and-hooks.md:180-195`), so the write lands in the session's own folder.
+- Do NOT retry: **An unclassified OpenCode plugin.** All 21 rows are present.
+
+### **Journal segment ordering in the session reader.** `session-readers/vibe.mjs:66` sorts journal file names with a default lexicographic `.sort()`, which would misorder `10.jsonl` before `2.jsonl`. Ruled out: the live journal names are zero-padded to 16 digits (`journal/0000000000000234.jsonl`, recorded in `.skilled/logs/cli-dispatch-audit.log:163`), so lexicographic order equals numeric order. Recorded in the strategy as a BLOCKED approach. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **Journal segment ordering in the session reader.** `session-readers/vibe.mjs:66` sorts journal file names with a default lexicographic `.sort()`, which would misorder `10.jsonl` before `2.jsonl`. Ruled out: the live journal names are zero-padded to 16 digits (`journal/0000000000000234.jsonl`, recorded in `.skilled/logs/cli-dispatch-audit.log:163`), so lexicographic order equals numeric order. Recorded in the strategy as a BLOCKED approach.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **Journal segment ordering in the session reader.** `session-readers/vibe.mjs:66` sorts journal file names with a default lexicographic `.sort()`, which would misorder `10.jsonl` before `2.jsonl`. Ruled out: the live journal names are zero-padded to 16 digits (`journal/0000000000000234.jsonl`, recorded in `.skilled/logs/cli-dispatch-audit.log:163`), so lexicographic order equals numeric order. Recorded in the strategy as a BLOCKED approach.
+
+### **Journal segment ordering in the session reader.** Zero-padded names make the lexicographic sort correct; BLOCKED in the strategy. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **Journal segment ordering in the session reader.** Zero-padded names make the lexicographic sort correct; BLOCKED in the strategy.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **Journal segment ordering in the session reader.** Zero-padded names make the lexicographic sort correct; BLOCKED in the strategy.
 
 <!-- /ANCHOR:exhausted-approaches -->
 ## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
@@ -193,57 +188,92 @@ Review of `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vi
 
 ## 11. RULED OUT DIRECTIONS
 
-[Review angles that were investigated and definitively eliminated]
+- Journal segment ordering: zero-padded names make the lexicographic sort correct (iteration 1, evidence: `.skilled/logs/cli-dispatch-audit.log:163` names `journal/0000000000000234.jsonl`).
+- `deep-loop-guard.mjs` reading `tool_input.config_name`: confirmed as the real Vibe field by `references/guards-and-hooks.md:126` and live scenario VIB-HK-024 (iteration 1).
+- `toCoreCall` reading the wrong write path field: `tool_input.file_path` is confirmed for `file_system.write_file` and `file_system.edit` by `fixtures/wire-format/tool-names.md:8-9` (iteration 1).
+- `spec-gate.mjs` and `spec-gate-classify.mjs` keying different state files: both resolve to the same key, since `resolveSessionKey` and `sessionStateKey` share the `UNKNOWN_SESSION_ID` fallback (iteration 1).
+- `git-message-gate.mjs` having no kill switch: documented as deliberate at lines 8-9 (iteration 1).
+- `session-cleanup.mjs` not disposing the plugin at session start: `dispose()` runs the cleanup script, which is the session-end work (iteration 2).
+- `spec-gate-classify` opening the gate for a subagent: `classifyIntent` returns before any state read when `isChildSession` is true (iteration 2).
+- `mcp-route-guard` running on every `pre_tool` call: `coreToolNameFor` returns null for a non-MCP name (iteration 2).
+- `post-edit-quality` command injection through an edited file's path: the router spawns without a shell (iteration 2).
+- `compaction-post-tool` judging a non-`post_tool` payload: `buildPostToolPart` checks `hook_event_name` itself (iteration 3).
+- `turn-end` requiring the completion part by an absolute path: `createRequire` accepts it and the path resolves correctly (iteration 3).
+- A wrong relative root in any composer: each climbs the correct number of levels to the checkout (iteration 3).
+- `appendAdvisoryLog` throwing and losing the pending advisory: the sentinel wraps its whole body and returns `false` (iteration 4).
+- `claimNudge` throwing: it returns a no-op claim on any error (iteration 4).
+- `earlyWithdrawn` growing without bound: each hook invocation is a fresh process and the entry is deleted in the same turn (iteration 4).
+- `goal-inject` defaulting `workspace` to `process.cwd()`: both callers pass `REPO_ROOT` explicitly (iteration 4).
+- A missing binding in `.vibe/hooks.toml`: the count is 18 and the event split matches `guards-and-hooks.md:37` (iteration 5).
+- An unclassified OpenCode plugin: all 21 rows are present in `guards-and-hooks.md:116-139` (iteration 5).
+- `post-edit-quality` running on a failed write: the `tool_status` gate at line 45 covers it and line 55 covers a file that does not exist (iteration 5).
+- `dist-freshness` throwing on a missing `python3`: `runChecker` returns `String(result.stdout ?? '')`, so a spawn error yields an empty banner (iteration 5).
 
 ---
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- Dimension: none remaining - Focus area: synthesis - Reason: five iterations are complete, all four declared dimensions and the cross-reference fallback are covered, and the bound stop policy is `max-iterations`. - Rotation status: complete. - Blocked/productive carry-forward: productive — the cross-reference pass produced the sharpest statement of the open lead's root cause. - Required evidence: none; the synthesis reads the registry and the five iteration artifacts. - Recovery note: not applicable. Review verdict: CONDITIONAL
+- None. This is the fifth and final iteration of the lineage; `maxIterations` is reached and the synthesis phase follows. Review verdict: CONDITIONAL
 
 <!-- /ANCHOR:next-focus -->
 ## 13. KNOWN CONTEXT
 
 ### Bounded Context Snapshot
 
-- **Target pointers:** `.skilled/hooks/session-lifecycle/vibe/{compaction-context,compaction-post-tool,turn-start,turn-end,session-start}.mjs`, `.skilled/hooks/shared/session-readers/vibe.mjs`, `.skilled/hooks/session-handover/vibe/handover-parts.mjs`, `.skilled/hooks/session-handover/lib/relaunch-core.cjs`, `.skilled/hooks/goal/vibe/goal-inject.mjs`, `.vibe/hooks.toml`.
-- **Behavior claims:** phase 018 promises the goal slice and history locator are re-injected after a compaction, detected from the journal; phase 022 records 26 PASS live hook scenarios; the automatic handover tier (`e5b8611a4fa`) added a hand-over part to all three Vibe composers.
-- **Reuse and conventions:** every Vibe hook fails open, prints one `hook_specific_output.additional_context` line, and never exits non-zero. State lives under `<payload.cwd>/.skilled/skills/.state/`.
-- **Review risks and gaps:** the live VIB-HK runs need a keyed Vibe session, so this lineage reasons from the recorded evidence and the code. `resource-map.md` is absent, so the Resource Map Coverage Gate is skipped.
+- Target pointers: `.vibe/hooks.toml` declares 18 bindings (2 `pre_agent`, 7 strict `pre_tool`, 6 `post_tool`, 1 `post_agent`, 1 `session_start`, 1 `session_end`). The guard scripts live under `.vibe/plugins/repo-guards/`; the composers under `.skilled/hooks/session-lifecycle/vibe/`.
+- Behavior claims: the recorded wire format in `references/guards-and-hooks.md` §5 — `tool_name` is always the qualified name; a `pre_tool` reply is either empty or `{"decision":"deny","reason":"..."}`; `strict = true` turns a `pre_tool` failure path into a deny; `session_start` reads `additional_context` and `system_message` only.
+- Reuse and conventions: every adapter is fail-open by construction — `runGuard` catches a thrown error and allows. The runtime-neutral cores own the decisions; the Vibe files own transport only.
+- Review risks and gaps: the `post_tool` and `session_start` payloads are documented rather than observed, so a field-name assumption there is inference. The 29 prior findings are dispositioned, so a re-report is a false positive.
 
 ---
 
 ## 14. CROSS-REFERENCE STATUS
 <!-- MACHINE-OWNED: START -->
-[Alignment checks completed across core and overlay protocols]
 
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
-| `spec_code` | core | partial | 2 | Phase 018 claim single-consumer; phase 22 live claim stale for VIB-HK-005/006/007. |
-| `checklist_evidence` | core | notApplicable | 2 | No phase in 013-022 carries a checklist.md; evidence lives in tasks.md checkboxes. |
-| `skill_agent` | overlay | pass | 2 | Playbook lists 27 scenarios and hook-scenarios/ holds 27 files. |
-| `agent_cross_runtime` | overlay | pass | 2 | .vibe/agents holds 11 profiles and sync-agents-vibe.cjs exists at the doctor path. |
+| `spec_code` | core | partial | 4 | Binding set and part order match the record; the `pre_tool` advise reply field, the compaction size-gate claim and the advisor's isolation-switch claim do not |
+| `checklist_evidence` | core | notApplicable | 1 | No checklist document on a hook and plugin surface |
+| `skill_agent` | overlay | pending | - | - |
+| `agent_cross_runtime` | overlay | pending | - | - |
 | `feature_catalog_code` | overlay | pending | - | - |
-| `playbook_capability` | overlay | partial | 2 | Playbook names the runner and scenario ids but carries no verdicts. |
+| `playbook_capability` | overlay | pending | - | - |
 <!-- MACHINE-OWNED: END -->
 
 ---
 
 ## 15. FILES UNDER REVIEW
 <!-- MACHINE-OWNED: START -->
+
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
-| `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs` | D1 | 1 | 2 P1, 2 P2 | partial |
-| `.skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs` | D1 | 1 | 0 | partial |
-| `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs` | D1 | 1 | 0 | partial |
-| `.skilled/hooks/session-lifecycle/vibe/turn-end.mjs` | D1 | 1 | 0 | partial |
-| `.skilled/hooks/shared/session-readers/vibe.mjs` | D1 | 1 | 0 | partial |
-| `.skilled/hooks/session-handover/vibe/handover-parts.mjs` | D1 | 1 | 0 | partial |
-| `.skilled/hooks/goal/vibe/goal-inject.mjs` | D1 | 1 | 0 | partial |
-| `.skilled/bin/skilled-loop` | D1, D3 | 2 | 0 | partial |
-| `spec.md` | D3 | 2 | 1 P1 | partial |
-| `022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md` | D3 | 2 | 1 P1, 1 P2 | partial |
-| `manual-testing-playbook.md` | D3 | 2 | 1 P2 | partial |
+| `.vibe/plugins/repo-guards/lib/hook-io.mjs` | D1 | 1 | 0 P0, 0 P1, 1 P2 | partial |
+| `.vibe/plugins/repo-guards/spec-gate.mjs` | D1 | 1 | 0 P0, 1 P1, 0 P2 | partial |
+| `.vibe/plugins/repo-guards/session-cleanup.mjs` | D1 | 1 | 0 P0, 0 P1, 1 P2 | partial |
+| `.vibe/plugins/repo-guards/dispatch-preflight.mjs` | D1 | 1 | 0 P0, 0 P1, 1 P2 | partial |
+| `.vibe/plugins/repo-guards/spec-gate-classify.mjs` | D1 | 1 | clean | complete |
+| `.vibe/plugins/repo-guards/env-secret-guard.mjs` | D1 | 1 | clean | complete |
+| `.vibe/plugins/repo-guards/overlay-guard.mjs` | D1 | 1 | clean | complete |
+| `.vibe/plugins/repo-guards/git-message-gate.mjs` | D1 | 1 | clean | complete |
+| `.vibe/plugins/repo-guards/mcp-route-guard.mjs` | D1 | 1 | clean | complete |
+| `.vibe/plugins/repo-guards/deep-loop-guard.mjs` | D1 | 1 | clean | complete |
+| `.vibe/plugins/repo-guards/post-edit-quality.mjs` | D1 | 1 | clean | complete |
+| `.vibe/plugins/repo-guards/dist-freshness.mjs` | D1 | 1 | clean | complete |
+| `.vibe/plugins/repo-guards/classifier-injection-screen.mjs` | D1 | 1 | clean | complete |
+| `.vibe/plugins/repo-guards/render-home-hooks.cjs` | D1 | 1 | clean | complete |
+| `.vibe/hooks.toml` | D1, D2 | 2 | clean | complete |
+| `.skilled/hooks/session-lifecycle/vibe/session-start.mjs` | D2, D1 | 3 | 0 P0, 0 P1, 3 P2 | partial |
+| `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs` | D1 | 3 | 0 P0, 0 P1, 1 P2 | partial |
+| `.skilled/hooks/session-lifecycle/vibe/turn-end.mjs` | D1 | 3 | clean | complete |
+| `.skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs` | D1 | 3 | 0 P0, 0 P1, 1 P2 | partial |
+| `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs` | D1 | 3 | clean | complete |
+| `.skilled/hooks/shared/session-readers/vibe.mjs` | D1 | 3 | clean | complete |
+| `.skilled/hooks/session-handover/vibe/handover-parts.mjs` | D1 | 4 | 0 P0, 0 P1, 1 P2 | partial |
+| `.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs` | D1 | 4 | 0 P0, 0 P1, 1 P2 | partial |
+| `.skilled/hooks/ask-surface-guard/vibe/ask-surface-post-agent.mjs` | D1 | 4 | 0 P0, 0 P1, 1 P2 | partial |
+| `.skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs` | D1 | 4 | 0 P0, 0 P1, 1 P2 | partial |
+| `.skilled/hooks/goal/vibe/goal-inject.mjs` | D1 | 4 | clean | complete |
+| `.skilled/hooks/decision-capture/vibe/ask-capture-post-tool.mjs` | D1 | 4 | clean | complete |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -255,12 +285,12 @@ Review of `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vi
 - Rolling STOP threshold: 0.08
 - No-progress threshold: 0.05
 - Coverage stabilization passes required: 1
-- Session lineage: sessionId=fanout-vibe-2-1794765851303-zrv85l, parentSessionId=null, generation=1, lineageMode=new
+- Session lineage: sessionId=fanout-vibe-2-1794808672532-65xu0h, parentSessionId=null, generation=1, lineageMode=new
 - Findings registry: `deep-review-findings-registry.json`
 - Release-readiness states: in-progress | converged | release-blocking
 - Per-iteration budget: 24 tool calls, 10 minutes
 - Severity threshold: P2
-- Review target type: spec-folder
+- Review target type: files
 - Cross-reference checks: core=[spec_code, checklist_evidence], overlay=[skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability]
-- Started: 2026-11-15T18:11:42.000Z
+- Started: 2026-11-16T06:04:21Z
 <!-- MACHINE-OWNED: END -->

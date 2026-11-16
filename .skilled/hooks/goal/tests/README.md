@@ -14,21 +14,41 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`goal/tests/` holds the DSH adapter test suite for the goal concern. `dsh-goal.test.mjs` runs under `node --test` and drives both adapters through the shared DSH test support module at `.skilled/hooks/shared/tests/dsh-plugin-harness.mjs`. The manage CLI is stubbed in most cases. The packet context test runs the real `bin/goal.cjs` against a fixture repository in a temp directory.
+`.skilled/hooks/goal/tests/` holds the DSH test suite for the goal concern. `dsh-goal.test.mjs` runs under `node --test`. It drives both DSH adapters through the shared support module at `.skilled/hooks/shared/tests/dsh-plugin-harness.mjs`.
 
-The suite covers the command and tool action grammar, the scope flags passed to the CLI, the brief that rides an operator turn, the verify note held for the next idle status, the leaf and disabled gates and the context adapter's exact `chatSlice` injection. It also asserts the throw policy for both adapters.
+Most cases stub the manage CLI. One case spawns the real `../bin/goal.cjs` and the real core against a fixture repository in a temp directory. That case compares the injected `chatSlice` with the CLI `chat_slice=` output.
 
----
+The suite covers the action set, the CLI grammar and the session scope flags. It checks the failed envelope, the brief on an operator turn and the verify note on the next idle status. The leaf gate and the disabled gate get their own cases. Both adapters' throw policy is asserted too.
 
-## 2. WHAT EACH FILE DOES
+Only DSH runs these two adapters. DSH loads both through `.dsh/plugins/repo-guards/index.mjs`. The manage adapter registers the `/goal-dsh` command and the `dsh_goal` tool, then hooks `agent/created`, `agent/pre-step`, `agent/turn-stopping` and `agent/status`. The context adapter hooks `agent/created` alone.
 
-| File | Event | What it does | On error |
-|---|---|---|---|
-| `dsh-goal.test.mjs` | `node --test` | Asserts the `dsh_goal` action set, maps each action onto the CLI grammar, runs `/goal-dsh` under the session scope, checks the failed envelope, the leaf gate and the disabled gate, compares the injected slice with the CLI `chat_slice=` output and asserts one log line on a thrown core. | A failed assertion fails the test process with a nonzero status. Temporary repositories are removed in `finally`. |
+Both adapters declare `fail-open`. On a thrown core in the pre-step hook, the manage adapter logs one warning and returns the downstream result. The context adapter logs one warning and injects nothing.
 
 ---
 
-## 3. RELATED
+## 2. FILES
+
+| File | Responsibility |
+|---|---|
+| `dsh-goal.test.mjs` | The DSH goal suite. It covers both adapters and the manage CLI bridge. |
+
+The suite asserts the `dsh_goal` action set and maps each action onto the CLI grammar. It runs `/goal-dsh` under the session scope and checks the failed envelope. It compares the injected slice with the CLI `chat_slice=` output and asserts one log line on a thrown core. A failed assertion fails the test process with a nonzero status. Temporary repositories are removed in `finally`.
+
+---
+
+## 3. VALIDATION
+
+Run from the repository root.
+
+```bash
+node --test .skilled/hooks/goal/tests/dsh-goal.test.mjs
+```
+
+Expected result: every test passes and the process exits 0.
+
+---
+
+## 4. RELATED
 
 - [`../README.md`](../README.md): the concern index, with the action set and the state layout.
 - [`../dsh/goal-manage.mjs`](../dsh/goal-manage.mjs): the command, tool and per-turn adapter under test.

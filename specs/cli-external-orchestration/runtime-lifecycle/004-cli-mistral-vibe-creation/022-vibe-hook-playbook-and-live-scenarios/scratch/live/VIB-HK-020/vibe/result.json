@@ -2,12 +2,15 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 2108143496,
-  "socket": "conv-40396-vibe",
-  "session_id": "1ec4dcd1-2b6f-4187-94e3-93f702638832",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.6E8m0gDBRu/vibe",
-  "started_at": "2026-11-15T12:22:34.324Z",
-  "finished_at": "2026-11-15T12:23:38.711Z",
+  "seed": 216718509,
+  "socket": "conv-57978-vibe",
+  "session_id": "581e173a-17a6-4795-b3ad-4e23bc29cd8d",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.6PA7ZiwL6E/vibe",
+  "vibe_home": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.6PA7ZiwL6E/vibe-home-03KvSP",
+  "vibe_model": "deepseek-flash",
+  "vibe_home_removed": false,
+  "started_at": "2026-11-15T21:05:17.114Z",
+  "finished_at": "2026-11-15T21:06:29.520Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -37,7 +40,7 @@
       "attempts": 1,
       "reason": null,
       "blocker": null,
-      "observed": "one-record keyed on chatcmpl-tool-b3b7bb68bb136021",
+      "observed": "one-record keyed on chatcmpl-tool-a2375719edbb5cb4",
       "evidence": "turns/answer-question"
     },
     {

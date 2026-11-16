@@ -1,0 +1,51 @@
+> Improve this prompt so a coding agent can act on it: make the build faster.                                                                                                                           
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+                                                                                                                                                                                                        
+  CLEAR: 44/50 — C:9 (target and method defined, no unverified claims, the 20%-or-best branch resolves the only tension) · L:9 (measure-first chain with stop conditions and a conflict order) · E:13   
+  (concrete commands and named evidence sources; placeholders are deliberate) · A:9 (sections follow execution order, report mirrors process) · R:4 (build command, environment and target are          
+  parameterized). All per-dimension floors met.                                                                                                                                                         
+                                                                                                                                                                                                        
+  Change report                                                                                                                                                                                         
+                                                                                                                                                                                                        
+  • Added — measurable target, role line, build/environment context, six ordered constraints with a conflict order, five-step measure-first process, report schema, success criteria, stop              
+    conditions, anti-gaming list.                                                                                                                                                                       
+  • Changed — "make the build faster" became a target with a unit (20% on the warm median) and a verification method.                                                                                   
+  • Removed — nothing; the original had four words.                                                                                                                                                     
+  • Skipped — examples (row 7), judged not needed.                                                                                                                                                      
+  • Quick test: NOT RUN — no target model available to run representative inputs through old versus new.                                                                                                
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+> Write the improved prompt you just produced into prompt.md in this folder.                                                                                                                            
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+                                                                                                                                                                                                        
+⏵ Ran 2 commands, thought                                                                                                                                                                               
+                                                                                                                                                                                                        
+  The session's working folder is /private/var/folders/3c/.../tmp.CEHdCt8QvJ/vibe (it holds .skilled/), so that's where I'm writing prompt.md — the prompt body only, no commentary, so it's            
+  dispatchable as-is.                                                                                                                                                                                   
+                                                                                                                                                                                                        
+⏵ Wrote 1 file, ran 1 command                                                                                                                                                                           
+                                                                                                                                                                                                        
+  Written to prompt.md — 47 lines, 3,324 bytes, verified by reading it back.                                                                                                                            
+                                                                                                                                                                                                        
+  ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.CEHdCt8QvJ/vibe/prompt.md                                                                                                          │  ▇
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  The file holds the prompt body only: role line, then TASK, CONTEXT, CONSTRAINTS AND PRIORITIES, PROCESS, OUTPUT FORMAT, SUCCESS CRITERIA, DO NOT. No fences, no open items, no change report — so     
+  it can be piped straight into a dispatch.                                                                                                                                                             
+                                                                                                                                                                                                        
+  Two things to check before you use it:                                                                                                                                                                
+                                                                                                                                                                                                        
+   1. Location. I wrote to the session folder, which is where the shell is rooted and where .skilled/ lives. Your project repo is at                                                                    
+      /Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime — if that is what you meant by "this folder", say so and I will move it there.                                                 
+   2. Placeholders. <the exact command CI runs> and <OS, CPU cores, toolchain and package-manager versions> are still unfilled. The prompt tells the agent to measure rather than trust numbers, but    
+      it cannot guess the command. Fill those two lines or the first run measures the wrong build.                                                                                                      
+
+                                                 
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>                                                                             
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.CEHdCt8QvJ/vibe                                                                                    usage █▋     26% · ctx ▉      37.7k/256k
+

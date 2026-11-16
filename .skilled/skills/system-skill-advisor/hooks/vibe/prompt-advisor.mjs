@@ -65,13 +65,13 @@ function isChildSession(payload, env) {
   return typeof parent === 'string' && parent.trim() !== '';
 }
 
-function headReceiptDir(env) {
+function headReceiptDir(env = process.env) {
   const configured = env[STATE_DIR_ENV]?.trim();
   const base = configured ? resolve(configured) : join(tmpdir(), 'speckit-advisor');
   return join(base, HEAD_RECEIPT_SUBDIR);
 }
 
-function headReceiptPath(sessionId, env) {
+function headReceiptPath(sessionId, env = process.env) {
   const digest = createHash('sha256').update(sessionId).digest('hex').slice(0, 16);
   return join(headReceiptDir(env), `${digest}.head`);
 }
@@ -210,8 +210,10 @@ export async function buildAdvisorPart(payload, {
   run = runAdvisor,
   env = process.env,
   isEnabled = isHookEnabled,
-  read = readHeadReceipt,
-  write = writeHeadReceipt,
+  // The receipt folder follows the injected environment, so a caller that
+  // isolates the state directory isolates the receipts with it.
+  read = (sessionId) => readHeadReceipt(sessionId, env),
+  write = (sessionId, head) => writeHeadReceipt(sessionId, head, env),
 } = {}) {
   try {
     if (!payload || payload.hook_event_name !== 'pre_agent') return '';

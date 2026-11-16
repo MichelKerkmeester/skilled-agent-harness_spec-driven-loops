@@ -1,7 +1,7 @@
 ---
 title: "457 -- Cross-runtime directive-lifecycle dedup"
 description: "Validate lifecycle-scoped directive delivery through the canonical decision, registered runtime adapters, plugin and Pi seams, and separately classified native-host receipts."
-version: 1.7.5.0
+version: 1.7.7.0
 id: ux-hooks-directive-lifecycle-dedup
 expected_workflow_mode: system-spec-kit
 expected_leaf_resources:
@@ -86,11 +86,11 @@ npx vitest run \
   --sequence.shuffle --sequence.seed=18018
 ```
 
-4. Run the Pi suite from `.skilled`, where vitest is installed, through the hooks vitest config. Pi loads these files from their own folders, because each `.pi/extensions/` entry is a one-line re-export. The long `../../.skilled/` specifiers these hooks still try first are left from the link-based layout, and only the config's alias resolves them from the source tree:
+4. Run the Pi suite from `.skilled`, where vitest is installed, through the hooks vitest config. Pi loads these files from their own folders, because each `.pi/extensions/` entry is a one-line re-export, so every import resolves relative to the adapter's folder:
 
 ```bash
 cd .skilled
-npx --no-install vitest run --config hooks/vitest.config.ts --dir hooks/dispatch/pi
+npx --no-install vitest run --config hooks/vitest.config.ts --dir hooks/cli-dispatch/pi
 ```
 
 5. From the repository root, create a new durable registered-adapter evidence directory. The harness refuses to overwrite an existing directory:

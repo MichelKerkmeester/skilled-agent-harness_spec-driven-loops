@@ -969,6 +969,34 @@ describe('deep-review typed ledger schema', () => {
     } as unknown as DeepReviewEventInput<'deep_review.claim_adjudication_recorded'>, registry)).toThrow();
   });
 
+  it('lets the flat gate summary name the finding it adjudicates', () => {
+    const registry = createDeepReviewEventRegistry();
+    const flat = eventInput('deep_review.claim_adjudication', 13, '0'.repeat(64));
+
+    // A gate summary that retires one finding carries that finding and its
+    // final severity; `none` records a claim that turned out not to be a
+    // finding, and a row that names neither stays valid as it always was.
+    const named = prepareDeepReviewEvent({
+      ...flat,
+      data: { ...flat.data, findingId: 'F001', finalSeverity: 'P2' },
+    }, registry);
+    expect(named.envelope.payload.data).toMatchObject({
+      findingId: 'F001',
+      finalSeverity: 'P2',
+    });
+
+    const outOfRangeSeverity = {
+      ...flat.data,
+      finalSeverity: 'P3',
+    } as unknown as DeepReviewPayloadMap['deep_review.claim_adjudication'];
+    expect(() => prepareDeepReviewEvent({
+      ...flat,
+      data: outOfRangeSeverity,
+    }, registry)).toThrow();
+
+    expect(() => prepareDeepReviewEvent(flat, registry)).not.toThrow();
+  });
+
   it('preserves raw observations separately from derived severity and verdict', () => {
     const registry = createDeepReviewEventRegistry();
     const candidate = prepareDeepReviewEvent(

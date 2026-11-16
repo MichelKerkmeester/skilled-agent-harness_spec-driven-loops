@@ -15,27 +15,44 @@ import { fileURLToPath } from 'node:url';
 // lib -> repo-guards -> plugins -> .vibe -> checkout root.
 export const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..');
 
-/**
- * The directory a relative path in the payload resolves against. A relative
- * cwd is resolved against the checkout, so the same payload names the same
- * tree on any machine, while a live absolute cwd names the session folder.
- * @param {unknown} cwd - The payload's working directory.
- * @returns {string} An absolute directory.
- */
-export function sessionDirFor(cwd) {
-  return typeof cwd === 'string' && cwd.trim() ? resolve(REPO_ROOT, cwd) : REPO_ROOT;
-}
+// The payload-directory rules are shared with the session-lifecycle and
+// guard adapters under .skilled/hooks, which must not import from this tree.
+export { existingDirectory, sessionDirFor } from '../../../../.skilled/hooks/shared/payload-dir.mjs';
 
 // Vibe names its tools with a namespace, while the cores compare the short
 // names every runtime shares. A write_file is a write, and a background
-// process_start runs a shell command just like bash.
+// process.start runs a shell command just like bash. The payload carries the
+// dotted builtin name; process_start is only the alias a match selector
+// accepts, kept so a payload that spells it that way is still judged.
 const CORE_TOOL_NAMES = new Map([
   ['file_system.read_file', 'read_file'],
   ['file_system.write_file', 'write'],
   ['file_system.edit', 'edit'],
   ['file_system.bash', 'bash'],
+  ['process.start', 'bash'],
   ['process_start', 'bash'],
+  ['process.write', 'bash'],
+  ['process_write', 'bash'],
 ]);
+
+// A write hands its text to the stdin of a process a start launched, and an
+// interactive one, a shell or a REPL, runs each line it receives. Vibe's own
+// protected-path check reads that text as shell text for the same reason, so
+// the guards judge it as the command. Raw bytes are decoded the same way; a
+// control key carries no command, so it reaches the guards as an empty one.
+const WRITE_TOOL_NAMES = new Set(['process.write', 'process_write']);
+
+function writtenCommand(input) {
+  if (typeof input.text === 'string') return input.text;
+  if (typeof input.bytesBase64 === 'string') {
+    try {
+      return Buffer.from(input.bytesBase64, 'base64').toString('utf8');
+    } catch {
+      return '';
+    }
+  }
+  return '';
+}
 
 /**
  * Read the hook payload from stdin.
@@ -79,6 +96,7 @@ export function toCoreCall(payload) {
   const name = String(payload?.tool_name ?? '');
   const input = payload?.tool_input && typeof payload.tool_input === 'object' ? payload.tool_input : {};
   const tool = CORE_TOOL_NAMES.get(name) ?? name;
+  if (WRITE_TOOL_NAMES.has(name)) return { tool, input: { command: writtenCommand(input) }, cwd: REPO_ROOT };
   if (tool === 'bash') return { tool, input: { command: input.command }, cwd: REPO_ROOT };
   if (tool === 'read_file' || tool === 'write' || tool === 'edit') {
     return { tool, input: { file_path: input.file_path }, cwd: REPO_ROOT };

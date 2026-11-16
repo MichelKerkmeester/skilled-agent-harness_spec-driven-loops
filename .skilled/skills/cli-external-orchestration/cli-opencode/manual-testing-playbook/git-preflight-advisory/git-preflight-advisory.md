@@ -1,7 +1,7 @@
 ---
 title: "CO-038 -- Git preflight advisory delivery"
 description: "This scenario validates the sk-git preflight advisory delivery under OpenCode for `CO-038`. It focuses on the tool.execute.before plugin surfacing the commit-scope-drops-untracked advisory via the next experimental.chat.system.transform without printing or blocking."
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # CO-038 -- Git preflight advisory delivery
@@ -112,7 +112,7 @@ Plugin source excerpt, captured `output.system` JSON from the unsuppressed run, 
 || `.opencode/plugins/sk-git-preflight-advisory.js` | The OpenCode plugin: `tool.execute.before` on `bash`, bounded next-turn `experimental.chat.system.transform` delivery, no stdout/stderr |
 || `../../../../../skills/sk-git/scripts/lib/git-rule-checks.mjs` | Shared `GIT_SHAPE`, `GIT_CHECKS` the plugin imports |
 || `../../../../../skills/sk-git/scripts/lib/git-context.mjs` | Shared `createGitContext` the plugin imports |
-|| `../../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared `readHardRules` + `evaluate` the plugin imports |
+|| `../../../../../hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` | Shared `readHardRules` + `evaluate` the plugin imports |
 || `../../../../../skills/sk-git/SKILL.md` | The 17 rules in the `hard-rules.json` sidecar |
 || `../../../../../skills/sk-git/scripts/hooks/README.md` | Runtime matrix, suppression tiers, fail-open guarantees |
 

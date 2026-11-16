@@ -1,0 +1,3 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: restore the reason. Write: "The Codex hook installer allows each script under one event only, so seed detection and the mid-session nudge are separate entry points over `shared.mjs`."
+   - Defect 2: write: "Any other prompt withdraws an armed record when `SKILLED_LOOP_ID` is set and then answers with the withdrawn notice alone. A prompt that withdrew nothing runs the same threshold check as the nudge."

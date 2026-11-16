@@ -1,7 +1,7 @@
 
-⢔⡢⡀    ⡔⢄⠔⡄   Mistral Vibe v3.1.2
- ⢸⠸⣀⡔⢉⠱⣃⡐⣔⡣   deepseek-flash[max] · Free
-  ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+ ⢠⢢    ⡠⡀⡠⡀   Mistral Vibe v3.1.2
+ ⢸⢸⣀⡔⢉⢑⠇⠨⡠⢇   deepseek-flash[max] · Pro
+ ⠈⠒⠒⠣⠤⠵⠭⠭⠯⠇   Type /help for more information
 
 Hello Michel, how can I help you?
 
@@ -10,12 +10,12 @@ Hello Michel, how can I help you?
 > In one sentence, tell me which instructions you are following right now.
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-⏵ Loaded 1 skill, ran 1 command, thought                                                                                      
+⏵ Ran 1 command, thought                                                                                                      
 
-  I'm following the Vibe CLI system prompt plus this turn's /create-goal wrapper, the advisor's comment-hygiene hard block (no ADR-/REQ-/CHK-/task-ids or spec paths in code comments), and the
-  session-context/session-cleanup notices — and I loaded the vibe:vibe skill because this is a meta question about my own behavior.
+  I'm following my system prompt's operating rules (act autonomously, discover tools via search_tool_functions/run_typescript) plus your inline directives — the comment-hygiene hard block and the
+  git commit heredoc/co-author format — while the /create-goal prompt's pointer to .skilled/commands/create/goal.md is dangling, since that file doesn't exist in this workspace.
 
-  One note: the /create-goal prompt tells me to read .skilled/commands/create/goal.md, but that file doesn't exist in this workspace, so there are no goal-authoring instructions actually in effect.
+
 
 
 
@@ -47,4 +47,4 @@ Hello Michel, how can I help you?
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.8vlrxsVVj7/vibe                                                                                                       ctx ▊      32.7k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.1foeG6WrFH/vibe                                                                                    usage █▌     25% · ctx ▎      8.16k/256k

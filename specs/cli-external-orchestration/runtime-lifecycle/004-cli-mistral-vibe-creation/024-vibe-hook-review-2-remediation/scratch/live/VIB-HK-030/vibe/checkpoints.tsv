@@ -1,0 +1,4 @@
+turn	status	attempts	evidence	observed
+start-shell	PASS	1	turns/start-shell	shell-started
+typed-read	PASS	1	turns/typed-read	typed-command-refused
+no-leak	PASS	1	turns/no-leak	value-absent

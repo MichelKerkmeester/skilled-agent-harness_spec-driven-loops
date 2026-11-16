@@ -1,0 +1,7 @@
+directories=845
+gaps=21
+frozen_before=920
+new_gaps_against_920=0
+added_dirs: .skilled/hooks/ask-surface-guard
+added_dirs: .skilled/hooks/decision-capture
+removed_dirs=77 (the link-only folders whose READMEs this phase deleted)

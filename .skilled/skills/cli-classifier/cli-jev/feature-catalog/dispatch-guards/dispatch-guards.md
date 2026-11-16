@@ -7,7 +7,7 @@ trigger_phrases:
   - "jev audit shape"
 importance_tier: "important"
 contextType: "reference"
-version: 0.1.2.0
+version: 0.1.3.0
 ---
 
 # Dispatch guards
@@ -23,7 +23,7 @@ code that reads as coverage. Both directions are asserted by the repository's ow
 
 | Aspect | Value |
 |---|---|
-| Module | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` |
+| Module | `.skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs` |
 | Registry row | `DISPATCH_SHAPES` — a `jev` entry alongside the seven executors |
 | Command-position branch | `directExecutor()` returns `cli-classifier` for the `jev` and `jev-mcp` basenames |
 | Executor set | `EXECUTOR_BASENAMES` includes both basenames |
@@ -34,13 +34,13 @@ grep pattern or a `console.log` is text, and resolves to `null`. This is the pro
 packet's own references quote commands without arming the guard.
 
 Anchors: `dispatch-audit.mjs` (`DISPATCH_SHAPES`, `directExecutor`, `hasDispatchText`),
-`.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs` (the shape rows).
+`.skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs` (the shape rows).
 
 ---
 
 ## 2. The eight declared rules
 
-Declared in `hard-rules.json` beside `SKILL.md`, implemented in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`,
+Declared in `hard-rules.json` beside `SKILL.md`, implemented in `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs`,
 each with a satisfied/violated fixture pair in `dispatch-rule-checks.test.mjs`.
 
 | # | Rule id | Check id | Severity | What it refuses |
@@ -71,8 +71,8 @@ fail-open path from becoming a silent hole: a declared id with no implementation
 
 | Gate | Location | Fires |
 |---|---|---|
-| In-process dispatch audit | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` | Records a completed dispatch and resolves which packet governs it |
-| Preflight lint | `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts` | Before a Bash call runs; blocks on error-severity violations |
+| In-process dispatch audit | `.skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs` | Records a completed dispatch and resolves which packet governs it |
+| Preflight lint | `.skilled/hooks/cli-dispatch/pi/dispatch-preflight-lint.ts` | Before a Bash call runs; blocks on error-severity violations |
 | Test-suite guards | `dispatch-rule-checks.test.mjs` | In CI; the shape fixture, the decline fixture, and the bijection guard |
 
 Anchors and commands are in the per-scenario files under the packet's `manual-testing-playbook/dispatch-guards/`

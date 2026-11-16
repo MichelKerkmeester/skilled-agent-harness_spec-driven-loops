@@ -21,7 +21,7 @@ const test = require('node:test');
 const SCRIPT = path.resolve(__dirname, '..', 'opencode-setup.sh');
 const CORPUS = path.resolve(
   __dirname, '..', '..', '..', '..', '..',
-  'hooks', 'dispatch', 'lib', 'opencode-version-corpus.json',
+  'hooks', 'cli-dispatch', 'lib', 'opencode-version-corpus.json',
 );
 const CORPUS_ENTRIES = JSON.parse(fs.readFileSync(CORPUS, 'utf8'));
 const CLASSIFY_VERSION = execFileSync(

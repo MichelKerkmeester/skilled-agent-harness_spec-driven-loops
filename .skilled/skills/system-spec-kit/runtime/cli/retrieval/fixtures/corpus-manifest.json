@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f8dc99948f82f35d21e725b97889b6d38b3e4bdb41201971605ce2bc90de8820",
+  "corpusHash": "544df1277a7d84a66087b0ceb31ae3c441d49823cc91bbd016139ce86dbc8dca",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27921,
+  "includedPathCount": 27897,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -94,26 +94,28 @@
     ".skilled/changelog/skilled/v4.0.2.0.md",
     ".skilled/changelog/skilled/v4.0.2.1.md",
     ".skilled/hooks/README.md",
+    ".skilled/hooks/ask-surface-guard/README.md",
     ".skilled/hooks/classifier-injection-screen/README.md",
     ".skilled/hooks/classifier-injection-screen/claude/README.md",
     ".skilled/hooks/classifier-injection-screen/devin/README.md",
     ".skilled/hooks/classifier-injection-screen/dsh/README.md",
     ".skilled/hooks/classifier-injection-screen/lib/README.md",
-    ".skilled/hooks/classifier-injection-screen/opencode/README.md",
     ".skilled/hooks/classifier-injection-screen/pi/README.md",
     ".skilled/hooks/classifier-injection-screen/tests/README.md",
-    ".skilled/hooks/codex-watchdog/README.md",
-    ".skilled/hooks/codex-watchdog/opencode/README.md",
-    ".skilled/hooks/completion/README.md",
-    ".skilled/hooks/completion/claude/README.md",
-    ".skilled/hooks/completion/codex/README.md",
-    ".skilled/hooks/completion/cursor/README.md",
-    ".skilled/hooks/completion/devin/README.md",
-    ".skilled/hooks/completion/dsh/README.md",
-    ".skilled/hooks/completion/opencode/README.md",
-    ".skilled/hooks/completion/pi/README.md",
-    ".skilled/hooks/completion/tests/README.md",
+    ".skilled/hooks/cli-dispatch/README.md",
+    ".skilled/hooks/cli-dispatch/claude/README.md",
+    ".skilled/hooks/cli-dispatch/codex/README.md",
+    ".skilled/hooks/cli-dispatch/cursor/README.md",
+    ".skilled/hooks/cli-dispatch/devin/README.md",
+    ".skilled/hooks/cli-dispatch/dsh/README.md",
+    ".skilled/hooks/cli-dispatch/lib/README.md",
+    ".skilled/hooks/cli-dispatch/pi/README.md",
+    ".skilled/hooks/cli-dispatch/tests/README.md",
+    ".skilled/hooks/codex-global-hooks-check/README.md",
+    ".skilled/hooks/completion-evidence/README.md",
+    ".skilled/hooks/completion-evidence/tests/README.md",
     ".skilled/hooks/coverage-rationale.md",
+    ".skilled/hooks/decision-capture/README.md",
     ".skilled/hooks/decision-capture/bin/README.md",
     ".skilled/hooks/decision-capture/claude/README.md",
     ".skilled/hooks/decision-capture/devin/README.md",
@@ -123,59 +125,14 @@
     ".skilled/hooks/decision-capture/tests/README.md",
     ".skilled/hooks/decision-capture/vibe/README.md",
     ".skilled/hooks/directive-lifecycle/README.md",
-    ".skilled/hooks/directive-lifecycle/claude/README.md",
-    ".skilled/hooks/dispatch/README.md",
-    ".skilled/hooks/dispatch/claude/README.md",
-    ".skilled/hooks/dispatch/codex/README.md",
-    ".skilled/hooks/dispatch/cursor/README.md",
-    ".skilled/hooks/dispatch/devin/README.md",
-    ".skilled/hooks/dispatch/dsh/README.md",
-    ".skilled/hooks/dispatch/lib/README.md",
-    ".skilled/hooks/dispatch/opencode/README.md",
-    ".skilled/hooks/dispatch/pi/README.md",
-    ".skilled/hooks/dispatch/tests/README.md",
     ".skilled/hooks/dist-freshness/README.md",
-    ".skilled/hooks/dist-freshness/claude/README.md",
-    ".skilled/hooks/dist-freshness/codex/README.md",
-    ".skilled/hooks/dist-freshness/cursor/README.md",
-    ".skilled/hooks/dist-freshness/devin/README.md",
-    ".skilled/hooks/dist-freshness/opencode/README.md",
     ".skilled/hooks/env-secret-guard/README.md",
     ".skilled/hooks/git-hooks-check/README.md",
-    ".skilled/hooks/git-hooks-check/claude/README.md",
-    ".skilled/hooks/git-hooks-check/codex/README.md",
-    ".skilled/hooks/git-hooks-check/cursor/README.md",
-    ".skilled/hooks/git-hooks-check/devin/README.md",
     ".skilled/hooks/git-live-follow/README.md",
-    ".skilled/hooks/git-live-follow/claude/README.md",
-    ".skilled/hooks/git-live-follow/codex/README.md",
-    ".skilled/hooks/git-live-follow/cursor/README.md",
-    ".skilled/hooks/git-live-follow/devin/README.md",
-    ".skilled/hooks/git-live-follow/dsh/README.md",
-    ".skilled/hooks/git-live-follow/pi/README.md",
-    ".skilled/hooks/git-message-gate/dsh/README.md",
-    ".skilled/hooks/git-message-gate/opencode/README.md",
-    ".skilled/hooks/git-message-gate/pi/README.md",
-    ".skilled/hooks/git-message-gate/shared/README.md",
     ".skilled/hooks/git-message-gate/tests/README.md",
-    ".skilled/hooks/git-preflight/dsh/README.md",
-    ".skilled/hooks/git-preflight/opencode/README.md",
-    ".skilled/hooks/git-preflight/pi/README.md",
-    ".skilled/hooks/git-preflight/shared/README.md",
     ".skilled/hooks/git-preflight/tests/README.md",
     ".skilled/hooks/git-primary-reconcile/README.md",
-    ".skilled/hooks/git-primary-reconcile/claude/README.md",
-    ".skilled/hooks/git-primary-reconcile/codex/README.md",
-    ".skilled/hooks/git-primary-reconcile/cursor/README.md",
-    ".skilled/hooks/git-primary-reconcile/devin/README.md",
-    ".skilled/hooks/git-primary-reconcile/dsh/README.md",
-    ".skilled/hooks/git-primary-reconcile/pi/README.md",
     ".skilled/hooks/git-worktree-guard/README.md",
-    ".skilled/hooks/git-worktree-guard/claude/README.md",
-    ".skilled/hooks/git-worktree-guard/codex/README.md",
-    ".skilled/hooks/git-worktree-guard/cursor/README.md",
-    ".skilled/hooks/git-worktree-guard/devin/README.md",
-    ".skilled/hooks/git/README.md",
     ".skilled/hooks/goal/README.md",
     ".skilled/hooks/goal/bin/README.md",
     ".skilled/hooks/goal/cursor/README.md",
@@ -183,14 +140,9 @@
     ".skilled/hooks/goal/dsh/README.md",
     ".skilled/hooks/goal/goal-plugin.md",
     ".skilled/hooks/goal/lib/README.md",
-    ".skilled/hooks/goal/opencode/README.md",
     ".skilled/hooks/goal/pi/README.md",
     ".skilled/hooks/goal/tests/README.md",
     ".skilled/hooks/goal/vibe/README.md",
-    ".skilled/hooks/hook-install/README.md",
-    ".skilled/hooks/hook-install/claude/README.md",
-    ".skilled/hooks/hook-install/cursor/README.md",
-    ".skilled/hooks/hook-install/devin/README.md",
     ".skilled/hooks/injection-contract.md",
     ".skilled/hooks/mcp-route-guard/README.md",
     ".skilled/hooks/mcp-route-guard/claude/README.md",
@@ -199,7 +151,6 @@
     ".skilled/hooks/mcp-route-guard/devin/README.md",
     ".skilled/hooks/mcp-route-guard/dsh/README.md",
     ".skilled/hooks/mcp-route-guard/lib/README.md",
-    ".skilled/hooks/mcp-route-guard/opencode/README.md",
     ".skilled/hooks/mcp-route-guard/pi/README.md",
     ".skilled/hooks/mcp-route-guard/tests/README.md",
     ".skilled/hooks/overlay-guard/README.md",
@@ -209,74 +160,47 @@
     ".skilled/hooks/overlay-guard/devin/README.md",
     ".skilled/hooks/overlay-guard/dsh/README.md",
     ".skilled/hooks/overlay-guard/lib/README.md",
-    ".skilled/hooks/overlay-guard/opencode/README.md",
     ".skilled/hooks/overlay-guard/pi/README.md",
     ".skilled/hooks/overlay-guard/tests/README.md",
     ".skilled/hooks/permission-policy/README.md",
-    ".skilled/hooks/permission-policy/devin/README.md",
     ".skilled/hooks/post-edit-quality/README.md",
     ".skilled/hooks/post-edit-quality/claude/README.md",
     ".skilled/hooks/post-edit-quality/codex/README.md",
-    ".skilled/hooks/post-edit-quality/cursor/README.md",
     ".skilled/hooks/post-edit-quality/devin/README.md",
     ".skilled/hooks/post-edit-quality/dsh/README.md",
     ".skilled/hooks/post-edit-quality/lib/README.md",
-    ".skilled/hooks/post-edit-quality/opencode/README.md",
     ".skilled/hooks/post-edit-quality/pi/README.md",
     ".skilled/hooks/post-edit-quality/tests/README.md",
     ".skilled/hooks/session-cleanup/README.md",
-    ".skilled/hooks/session-cleanup/claude/README.md",
-    ".skilled/hooks/session-cleanup/codex/README.md",
-    ".skilled/hooks/session-cleanup/cursor/README.md",
-    ".skilled/hooks/session-cleanup/devin/README.md",
-    ".skilled/hooks/session-cleanup/opencode/README.md",
     ".skilled/hooks/session-handover/README.md",
     ".skilled/hooks/session-handover/bin/README.md",
     ".skilled/hooks/session-handover/claude/README.md",
     ".skilled/hooks/session-handover/codex/README.md",
+    ".skilled/hooks/session-handover/goal-carry-over.md",
+    ".skilled/hooks/session-handover/handoff-protocol.md",
     ".skilled/hooks/session-handover/history/README.md",
     ".skilled/hooks/session-handover/lib/README.md",
-    ".skilled/hooks/session-handover/opencode/README.md",
     ".skilled/hooks/session-handover/pi/README.md",
+    ".skilled/hooks/session-handover/runtime-behavior.md",
+    ".skilled/hooks/session-handover/state-files.md",
     ".skilled/hooks/session-handover/tests/README.md",
+    ".skilled/hooks/session-handover/troubleshooting.md",
     ".skilled/hooks/session-lifecycle/README.md",
-    ".skilled/hooks/session-lifecycle/claude/README.md",
-    ".skilled/hooks/session-lifecycle/codex/README.md",
-    ".skilled/hooks/session-lifecycle/cursor/README.md",
-    ".skilled/hooks/session-lifecycle/devin/README.md",
-    ".skilled/hooks/session-lifecycle/dsh/README.md",
-    ".skilled/hooks/session-lifecycle/pi/README.md",
     ".skilled/hooks/session-lifecycle/tests/README.md",
     ".skilled/hooks/session-lifecycle/vibe/README.md",
     ".skilled/hooks/shared/README.md",
     ".skilled/hooks/shared/dsh/README.md",
     ".skilled/hooks/shared/session-readers/README.md",
     ".skilled/hooks/shared/tests/README.md",
-    ".skilled/hooks/skill-advisor/claude/README.md",
-    ".skilled/hooks/skill-advisor/codex/README.md",
-    ".skilled/hooks/skill-advisor/cursor/README.md",
-    ".skilled/hooks/skill-advisor/devin/README.md",
-    ".skilled/hooks/skill-advisor/dsh/README.md",
-    ".skilled/hooks/skill-advisor/opencode/README.md",
-    ".skilled/hooks/skill-advisor/pi/README.md",
-    ".skilled/hooks/skill-advisor/vibe/README.md",
-    ".skilled/hooks/spec-gate/claude/README.md",
-    ".skilled/hooks/spec-gate/codex/README.md",
-    ".skilled/hooks/spec-gate/cursor/README.md",
-    ".skilled/hooks/spec-gate/devin/README.md",
-    ".skilled/hooks/spec-gate/dsh/README.md",
-    ".skilled/hooks/spec-gate/opencode/README.md",
-    ".skilled/hooks/spec-gate/pi/README.md",
     ".skilled/hooks/spec-gate/tests/README.md",
-    ".skilled/hooks/task-dispatch/README.md",
-    ".skilled/hooks/task-dispatch/claude/README.md",
-    ".skilled/hooks/task-dispatch/cursor/README.md",
-    ".skilled/hooks/task-dispatch/devin/README.md",
-    ".skilled/hooks/task-dispatch/dsh/README.md",
-    ".skilled/hooks/task-dispatch/lib/README.md",
-    ".skilled/hooks/task-dispatch/opencode/README.md",
-    ".skilled/hooks/task-dispatch/pi/README.md",
-    ".skilled/hooks/task-dispatch/tests/README.md",
+    ".skilled/hooks/subagent-dispatch-guard/README.md",
+    ".skilled/hooks/subagent-dispatch-guard/claude/README.md",
+    ".skilled/hooks/subagent-dispatch-guard/cursor/README.md",
+    ".skilled/hooks/subagent-dispatch-guard/devin/README.md",
+    ".skilled/hooks/subagent-dispatch-guard/dsh/README.md",
+    ".skilled/hooks/subagent-dispatch-guard/lib/README.md",
+    ".skilled/hooks/subagent-dispatch-guard/pi/README.md",
+    ".skilled/hooks/subagent-dispatch-guard/tests/README.md",
     ".skilled/skills/.state/advisor/README.md",
     ".skilled/skills/.state/authority/README.md",
     ".skilled/skills/.state/completion-sentinel/README.md",
@@ -1376,6 +1300,8 @@
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/mcp-route-guard.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/overlay-guard.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/post-edit-quality.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/process-start-shell-guard.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/process-write-shell-guard.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/prompts-mirror.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-automatic-tier.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-manual-tier.md",
@@ -1386,6 +1312,7 @@
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/spec-gate-deny.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-end-ask-surface.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-end-completion.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-advisor-uptake.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-advisor.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-completion-advisory.md",
@@ -9594,6 +9521,10 @@
     "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/decision-record.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
@@ -10944,7 +10875,14 @@
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation/acceptance-criteria.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/decision-record.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/fanout-attribution.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/review-report.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/fanout-attribution.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/review-report.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md",
@@ -11363,6 +11301,11 @@
     "specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement/plan.md",
     "specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement/spec.md",
     "specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement/tasks.md",
+    "specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/implementation-summary.md",
+    "specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/plan.md",
+    "specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/spec.md",
+    "specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/tasks.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/001-decision-capture-build/acceptance-criteria.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/001-decision-capture-build/decision-record.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/001-decision-capture-build/goal.md",
@@ -11619,11 +11562,6 @@
     "specs/hooks-plugins-extensions/directive-lifecycle/003-retire-governor-and-proof-directives/plan.md",
     "specs/hooks-plugins-extensions/directive-lifecycle/003-retire-governor-and-proof-directives/spec.md",
     "specs/hooks-plugins-extensions/directive-lifecycle/003-retire-governor-and-proof-directives/tasks.md",
-    "specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/acceptance-criteria.md",
-    "specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/implementation-summary.md",
-    "specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/plan.md",
-    "specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/spec.md",
-    "specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/tasks.md",
     "specs/hooks-plugins-extensions/dist-freshness/001-dist-staleness-rebuild-on-drift/implementation-summary.md",
     "specs/hooks-plugins-extensions/dist-freshness/001-dist-staleness-rebuild-on-drift/plan.md",
     "specs/hooks-plugins-extensions/dist-freshness/001-dist-staleness-rebuild-on-drift/spec.md",
@@ -11842,6 +11780,38 @@
     "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/decision-record.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/goal.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/goal.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/goal.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/decision-record.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/goal.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/goal.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/spec.md",
     "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research/implementation-summary.md",
     "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research/plan.md",
     "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research/research/research.md",
@@ -12187,6 +12157,12 @@
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/goal.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/research.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/fanout-attribution.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/review-report.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/deep-review-dashboard.md",
@@ -27953,7 +27929,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "84ea5e56b98c7b9859a23b85f4d771447221a19c1163d42e098880549ffebb21",
+  "manifestHash": "769952bf08d7ab0c26dc6409bfdc26af6dbd0b99501a4014970a35c001e14462",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27980,43 +27956,67 @@
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/codex-watchdog/opencode/codex-hooks-watchdog.js",
+      "path": ".skilled/hooks/cli-dispatch/cursor/post-tool-use.mjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/claude/completion-evidence-stop.cjs",
+      "path": ".skilled/hooks/cli-dispatch/opencode/cli-dispatch-audit.js",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/codex/completion-evidence-stop.cjs",
+      "path": ".skilled/hooks/cli-dispatch/vibe/dispatch-preflight.mjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/cursor/completion-evidence-response.mjs",
+      "path": ".skilled/hooks/codex-global-hooks-check/claude/install-codex-hooks.mjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/devin/completion-evidence-stop.cjs",
+      "path": ".skilled/hooks/codex-global-hooks-check/cursor/install-codex-hooks.mjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/dsh/completion-evidence.mjs",
+      "path": ".skilled/hooks/codex-global-hooks-check/devin/install-codex-hooks.mjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/opencode/system-completion-sentinel.js",
+      "path": ".skilled/hooks/codex-global-hooks-check/opencode/codex-hooks-watchdog.js",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/opencode/system-speckit-completion.js",
+      "path": ".skilled/hooks/completion-evidence/claude/completion-evidence-stop.cjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/pi/completion-evidence.ts",
+      "path": ".skilled/hooks/completion-evidence/codex/completion-evidence-stop.cjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/vibe/completion-evidence-post-agent.cjs",
+      "path": ".skilled/hooks/completion-evidence/cursor/completion-evidence-response.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/devin/completion-evidence-stop.cjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/dsh/completion-evidence.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/opencode/system-completion-sentinel.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/opencode/system-speckit-completion.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/pi/completion-evidence.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/vibe/completion-evidence-post-agent.cjs",
       "reason": "symlink not followed"
     },
     {
@@ -28041,18 +28041,6 @@
     },
     {
       "path": ".skilled/hooks/directive-lifecycle/claude/speckit-directive-lifecycle-boundary.ts",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/dispatch/cursor/post-tool-use.mjs",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/dispatch/opencode/cli-dispatch-audit.js",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/dispatch/vibe/dispatch-preflight.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -28213,18 +28201,6 @@
     },
     {
       "path": ".skilled/hooks/goal/opencode/opencode-goal.js",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/hook-install/claude/install-codex-hooks.mjs",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/hook-install/cursor/install-codex-hooks.mjs",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/hook-install/devin/install-codex-hooks.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -28548,11 +28524,11 @@
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/task-dispatch/opencode/system-deep-loop-guard.js",
+      "path": ".skilled/hooks/subagent-dispatch-guard/opencode/system-deep-loop-guard.js",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/task-dispatch/vibe/deep-loop-guard.mjs",
+      "path": ".skilled/hooks/subagent-dispatch-guard/vibe/deep-loop-guard.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -29205,6 +29181,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/scratch",
       "reason": "excluded directory"
     },
     {
@@ -30696,6 +30676,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/lineages",
       "reason": "excluded directory"
     },
@@ -31116,6 +31104,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/cli-dispatch/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/001-decision-capture-build/scratch",
       "reason": "excluded directory"
     },
@@ -31241,14 +31237,6 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/directive-lifecycle/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/dispatch/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -31393,6 +31381,30 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/scratch",
       "reason": "excluded directory"
     },
     {
@@ -31741,6 +31753,26 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch",
       "reason": "excluded directory"
     },
     {

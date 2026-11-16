@@ -1,0 +1,8 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: "`PermissionRequest` is the only dedicated approval-hook event most supported runtimes expose." does not hold: Claude also has `PermissionRequest`, DSH has `approval/request` and Codex has neither (`.skilled/hooks/coverage-rationale.md`). Write: "Devin is the only runtime whose approval event is not already covered by a `PreToolUse` deny."
+   - Defect 2: "A non-interactive `devin -p` session sends every approval-needing tool call through it." is contradicted by `.devin/SYNC.md` and `.devin/README.md`. Write: "This repository runs Devin with `--permission-mode bypass`. Under bypass `PermissionRequest` never fires, so the adapter stays inert while `PreToolUse` still guards."
+   - Defect 3: restore that the adapter's fail-closed direction is the opposite of the fail-open guards elsewhere in this tree, on purpose, because a denied approval is the safe default.
+   - Defect 4, the Failure step: both deny paths give the reason "Permission denied: policy evaluation failed closed." Quote it.
+   - Defect 5: the import list leaves out `.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-adapter-shared.mjs`, which gives the adapter `readStdin`. Add it.
+   - Defect 6, the Devin row: "Devin reads `decision` and `hookSpecificOutput.permissionDecision`." No source shows what Devin reads. Write: "A JSON decision envelope on stdout carrying `decision` and `hookSpecificOutput.permissionDecision`."
+   - Defect 7: "`MK_PERMISSION_POLICY_DISABLED` is an older name for the same kill-switch." is rename history. Write "`MK_PERMISSION_POLICY_DISABLED` also turns the policy off."
