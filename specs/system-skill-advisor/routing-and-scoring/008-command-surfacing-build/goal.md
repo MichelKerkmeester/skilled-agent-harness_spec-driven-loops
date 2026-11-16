@@ -348,6 +348,7 @@ and findings belong here.
 | Correction to the Start shape split row | Completed | The row was cut short. It ends: which rule the printed rate follows was then waiting on the operator, who on 2026-11-16 asked for the recommended option, built in phase 036 |
 | Correction to the Suite metrics isolation row | Met, evidence replaced | committed check 035 scratch/isolation-check.sh at 267c27fc5df: COUNT 739 files 26383 lines before and after a full run (2325/0), no shared file changed, one per-run folder seen and gone (test -e exit 1). Replaces after.txt, whose COUNT moved with other sessions' writes; 035 scratch/isolation.txt |
 | Phase 035 suite metrics and start shape | Complete | 267c27fc5df: per-run TMPDIR, startShapes printed. Isolation 739 files and 26383 lines before and after a full run (2325/0), rescore rates equal to 034. Second gate review APPROVED 96/100, strict PASSED |
+| Phase 036 start rate fixed rule | Planned (Q080) | operator: do what you would recommend. The printed start rate will follow the fixed arm start rule, a read alone printed as a lookup beside it, and the 007 and 033 start rates restated. 9 tasks, strict PASSED |
 
 ### Deviations and findings
 

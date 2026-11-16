@@ -138,6 +138,7 @@ Q069 to Q073 above, as asked.
 | Q077 | After three failed fixes of the scorer's in-place sed and perl reading, the choice of path went to a Fable 5.2 high review, run on a native Claude agent at the operator's later word 'Use claude native', which chose option D, built as T050c and T050d. | Not stated. | None | 032-review-pass-five-remediation tasks.md T050c, T050d, plan.md D13 |
 | Q078 | Whether to stop each runtime after its first off and on run of the behaviour arm goes to a fresh Fable 5.2 medium session. | Not stated. Evidence: yes_no, option False, overlap 0, imperative True, shift False. | None | Q059, 026-untuned-behaviour-arm |
 | Q079 | Both open proposals are accepted: a small phase makes the direct call honour SYSTEM_SKILL_ADVISOR_DISABLED and the flags file, and phase 025 is built before the merge. | Not stated. Evidence: numbered_list, option not_applicable, overlap 0, imperative False, shift False. | None | phases 025 and the kill-switch phase of this packet |
+| Q080 | The printed start rate follows the goal's fixed arm start rule, so a document read with no checkout write is a lookup, counted beside the rate as startShapes.readOnly. | Not stated. The operator asked for the recommended option, which keeps one start rule across every printed number. Evidence: alternative, option false, overlap 0, imperative true, shift false. | None | 036-start-rate-fixed-rule REQ-001 to REQ-005, score-command-transcripts.mjs startState |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1572,6 +1573,21 @@ Options: none
 Answer:
 ```text
 Sure
+```
+
+### Q080
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:chat:c7cafaa6-f16d-4bc4-9dfe-bd4f1f6c9de2:b80e35bb-02b8-46cb-8365-904989f03727 -->
+
+Question:
+```text
+**Decision for you:** should the printed start rate follow the fixed rule (a document read alone is a lookup) or keep counting bare reads? The split now gives the numbers both ways, so nothing is blocked while it waits.
+```
+
+Options: none
+
+Answer:
+```text
+do what you would recommend
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
