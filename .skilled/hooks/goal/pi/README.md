@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`.skilled/hooks/goal/pi/` holds the real Pi goal extension, which Pi discovers through `.pi/extensions/goal-context.ts`. The entry file is a single line that re-exports the adapter. `goal-context.ts` registers the `/goal-pi` command and the three lifecycle handlers Pi fires. Each handler loads `../lib/goal-core.cjs` at call time, so the extension runs from this folder. The fallback path in `DISCOVERY_CORE_PATH` does not resolve from this folder.
+`.skilled/hooks/goal/pi/` holds the real Pi goal extension, which Pi discovers through `.pi/extensions/goal-context.ts`. The entry file is a single line that re-exports the adapter. `goal-context.ts` registers the `/goal-pi` command and the three lifecycle handlers Pi fires. Each handler loads `../lib/goal-core.cjs` at call time, so the extension runs from this folder.
 
 `input` binds a hand-over packet, reads the active record and returns `{ action: 'transform', text }`. The text is the operator's prompt with the brief and any resend reminder appended. At `session_start` the handler restores the same brief through `pi.sendMessage` with `triggerTurn: false`.
 

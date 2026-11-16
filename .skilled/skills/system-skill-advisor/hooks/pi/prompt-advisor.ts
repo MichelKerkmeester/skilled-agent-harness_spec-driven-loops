@@ -71,10 +71,9 @@ function sessionIdFromContext(ctx: { sessionManager?: { getSessionId?: () => unk
 // safe. Pi awaits input handlers before agent processing begins, so the old
 // two-process blocking-spawn bridge stalled every send; calling the same
 // lifecycle code directly removes that stall and lets its module-level prompt
-// cache work.
+// cache work. The specifier is relative to this folder, where Pi loads the
+// adapter through its one-line `.pi/extensions/` entry file.
 export const ADVISOR_HOOK_MODULE =
-  "../../.skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js";
-export const ADVISOR_HOOK_FALLBACK_MODULE =
   "../../runtime/dist/hooks/claude/user-prompt-submit.js";
 
 // ───────────────────────────────────────────────────────────────────
@@ -270,9 +269,7 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
     try {
       if (!event.text.trim()) return;
 
-      const advisorModule = await import(ADVISOR_HOOK_MODULE).catch(
-        () => import(ADVISOR_HOOK_FALLBACK_MODULE),
-      );
+      const advisorModule = await import(ADVISOR_HOOK_MODULE);
       const { handleClaudeUserPromptSubmit, renderAdvisorFallbackDirective, SETUP_WORDING } = advisorModule as {
         handleClaudeUserPromptSubmit?: (
           input: {

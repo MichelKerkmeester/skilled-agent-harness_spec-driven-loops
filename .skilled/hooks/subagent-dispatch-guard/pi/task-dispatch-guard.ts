@@ -10,11 +10,7 @@ import { isHookEnabled } from '../../shared/hook-flags.mjs';
 type DispatchCore = typeof import('../lib/subagent-dispatch-guard.cjs');
 
 async function loadDispatchCore(): Promise<DispatchCore> {
-  try {
-    return await import('../lib/subagent-dispatch-guard.cjs');
-  } catch {
-    return await import('../../.skilled/hooks/subagent-dispatch-guard/lib/subagent-dispatch-guard.cjs');
-  }
+  return await import('../lib/subagent-dispatch-guard.cjs');
 }
 
 function firstString(...values: unknown[]): string | undefined {

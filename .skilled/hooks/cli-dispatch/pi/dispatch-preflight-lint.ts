@@ -464,22 +464,14 @@ export function shouldDenyPiDispatch(input: PiDispatchGuardInput = {}): boolean 
 }
 
 async function loadDispatchModules(): Promise<{
-  lint: typeof import('../../.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs');
-  audit: typeof import('../../.skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs');
+  lint: typeof import('../lib/dispatch-rule-checks.mjs');
+  audit: typeof import('../lib/dispatch-audit.mjs');
 }> {
-  try {
-    const [lint, audit] = await Promise.all([
-      import('../../.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs'),
-      import('../../.skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs'),
-    ]);
-    return { lint, audit };
-  } catch {
-    const [lint, audit] = await Promise.all([
-      import('../lib/dispatch-rule-checks.mjs'),
-      import('../lib/dispatch-audit.mjs'),
-    ]);
-    return { lint, audit };
-  }
+  const [lint, audit] = await Promise.all([
+    import('../lib/dispatch-rule-checks.mjs'),
+    import('../lib/dispatch-audit.mjs'),
+  ]);
+  return { lint, audit };
 }
 
 // ───────────────────────────────────────────────────────────────────

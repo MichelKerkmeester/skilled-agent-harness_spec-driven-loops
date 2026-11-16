@@ -198,11 +198,9 @@ function asModule<T>(value: unknown): T {
 }
 
 // `../lib/` resolves from this file's own folder, where Pi loads it through its
-// one-line `.pi/extensions/` entry file. The longer specifier is left from the
-// link-based layout and resolves only through the hooks vitest alias, in tests.
-// The `as string` assertion keeps the typechecker from
-// resolving either path while transpilers still emit the literal specifier for
-// the module loader.
+// one-line `.pi/extensions/` entry file. The `as string` assertion keeps the
+// typechecker from resolving the path while transpilers still emit the literal
+// specifier for the module loader.
 function checkedCore(core: CoreModule): CoreModule {
   const exports = core as unknown as Record<string, unknown>;
   for (const name of CORE_FUNCTIONS) {
@@ -214,46 +212,20 @@ function checkedCore(core: CoreModule): CoreModule {
 }
 
 async function loadCore(): Promise<CoreModule> {
-  let core: CoreModule;
-  try {
-    core = asModule<CoreModule>(await import('../lib/relaunch-core.cjs' as string));
-  } catch {
-    core = asModule<CoreModule>(
-      await import('../../.skilled/hooks/session-handover/lib/relaunch-core.cjs' as string),
-    );
-  }
+  const core = asModule<CoreModule>(await import('../lib/relaunch-core.cjs' as string));
   return checkedCore(core);
 }
 
 async function loadContextUsage(): Promise<ContextUsageModule> {
-  try {
-    return asModule<ContextUsageModule>(await import('../lib/context-usage.cjs' as string));
-  } catch {
-    return asModule<ContextUsageModule>(
-      await import('../../.skilled/hooks/session-handover/lib/context-usage.cjs' as string),
-    );
-  }
+  return asModule<ContextUsageModule>(await import('../lib/context-usage.cjs' as string));
 }
 
 async function loadNudge(): Promise<NudgeModule> {
-  try {
-    return asModule<NudgeModule>(await import('../lib/nudge.cjs' as string));
-  } catch {
-    return asModule<NudgeModule>(
-      await import('../../.skilled/hooks/session-handover/lib/nudge.cjs' as string),
-    );
-  }
+  return asModule<NudgeModule>(await import('../lib/nudge.cjs' as string));
 }
 
 async function loadWithdraw(): Promise<WithdrawModule> {
-  let withdraw: WithdrawModule;
-  try {
-    withdraw = asModule<WithdrawModule>(await import('../lib/withdraw.cjs' as string));
-  } catch {
-    withdraw = asModule<WithdrawModule>(
-      await import('../../.skilled/hooks/session-handover/lib/withdraw.cjs' as string),
-    );
-  }
+  const withdraw = asModule<WithdrawModule>(await import('../lib/withdraw.cjs' as string));
   if (typeof withdraw.withdrawHandOver !== 'function') {
     throw new Error('session-handover withdraw does not export withdrawHandOver as a function');
   }

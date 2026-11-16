@@ -7,7 +7,6 @@ import { dirname, join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import promptAdvisor, {
-  ADVISOR_HOOK_FALLBACK_MODULE,
   ADVISOR_HOOK_MODULE,
   formatPiAdvisorDebug,
 } from '../../../hooks/pi/prompt-advisor.js';
@@ -224,24 +223,18 @@ describe('Pi prompt advisor bridge', () => {
     expect((result as { text: string }).text).not.toContain('Directives:\n- stub');
   });
 
-  it('resolves and imports the advisor hook from both Pi extension locations', async () => {
+  it('resolves and imports the advisor hook from the folder Pi loads the adapter from', async () => {
     const repositoryRoot = findRepositoryRoot();
-    const extensionUrl = pathToFileURL(join(repositoryRoot, '.pi/extensions/prompt-advisor.ts'));
     const sourceUrl = pathToFileURL(
       join(repositoryRoot, '.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts'),
     );
-    const resolvedModuleUrls = [
-      new URL(ADVISOR_HOOK_MODULE, extensionUrl),
-      new URL(ADVISOR_HOOK_FALLBACK_MODULE, sourceUrl),
-    ];
+    const moduleUrl = new URL(ADVISOR_HOOK_MODULE, sourceUrl);
 
-    for (const moduleUrl of resolvedModuleUrls) {
-      expect(existsSync(fileURLToPath(moduleUrl))).toBe(true);
-      const advisorModule = (await import(moduleUrl.href)) as {
-        handleClaudeUserPromptSubmit?: unknown;
-      };
-      expect(typeof advisorModule.handleClaudeUserPromptSubmit).toBe('function');
-    }
+    expect(existsSync(fileURLToPath(moduleUrl))).toBe(true);
+    const advisorModule = (await import(moduleUrl.href)) as {
+      handleClaudeUserPromptSubmit?: unknown;
+    };
+    expect(typeof advisorModule.handleClaudeUserPromptSubmit).toBe('function');
   });
 
   it('keeps the shared renderer pi-agnostic', () => {
