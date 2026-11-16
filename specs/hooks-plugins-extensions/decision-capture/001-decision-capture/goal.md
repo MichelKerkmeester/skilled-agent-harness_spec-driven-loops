@@ -116,6 +116,7 @@ and findings belong here.
 | Children 008 to 010 Complete | done | 2026-11-03: per-project state, chat-answer evidence and decision routing built and verified; hooks 122/122, writer, matcher and session-stop 52/52; recursive strict 11/11 PASSED; not committed |
 | 011 LEVEL_MATCH writer-only record fix; D1 exception added at operator answer | done | extended 87/87, upgrade-level 16/16, session-handover 001 LEVEL_MATCH warnings 4 to 0 |
 | 012 session-scoped sweep and shared worktree state | done | probe: own session from both checkouts, one root, pending 1 to 0; hook suites 135/135 |
+| 013 session-signal sweeps | done | live probes: Codex, OpenCode, Pi read session A, DSH signal maps; suites 140/140 |
 
 ### Deviations and findings
 

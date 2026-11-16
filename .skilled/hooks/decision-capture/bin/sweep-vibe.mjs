@@ -240,23 +240,25 @@ function sessionCwd(directory) {
 }
 
 // A session belongs to the directory it ran in, and the journal's mtime orders
-// sessions without parsing every metadata file.
+// sessions without parsing every metadata file. Vibe 3 keeps sessions under
+// `unified/`, and older releases kept them at the root, so both are read.
 function latestSession(projectDir) {
-  let entries;
-  try {
-    entries = readdirSync(sessionRoot(), { withFileTypes: true });
-  } catch {
-    return null;
-  }
-
   const candidates = [];
-  for (const entry of entries) {
-    if (!entry.isDirectory()) continue;
-    const directory = join(sessionRoot(), entry.name);
+  for (const root of [sessionRoot(), join(sessionRoot(), 'unified')]) {
+    let entries;
     try {
-      candidates.push({ directory, mtime: statSync(join(directory, JOURNAL_DIRECTORY)).mtimeMs });
+      entries = readdirSync(root, { withFileTypes: true });
     } catch {
-      // A session without a journal has nothing to replay.
+      continue;
+    }
+    for (const entry of entries) {
+      if (!entry.isDirectory()) continue;
+      const directory = join(root, entry.name);
+      try {
+        candidates.push({ directory, mtime: statSync(join(directory, JOURNAL_DIRECTORY)).mtimeMs });
+      } catch {
+        // A session without a journal has nothing to replay.
+      }
     }
   }
 

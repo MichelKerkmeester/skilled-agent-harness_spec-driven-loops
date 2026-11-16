@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0b37d0d496622f2bd6ba1fe113c2b171650601818fbf9e0a91bac8c9f4bec192",
+  "manifestHash": "f4bb7fd386d7f62c234464c258bb3407c545b22ee2c5828d3e22faff6c771fa2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -259,9 +259,6 @@
     ],
     "001 skill graph rollup": [
       "001-skill-graph rollup"
-    ],
-    "001 skill readmes operator decisions": [
-      "001-skill-readmes operator decisions"
     ],
     "001 spec memory cli complete": [
       "001 spec-memory cli complete"
@@ -1713,9 +1710,6 @@
     ],
     "006 purpose retention across handovers operator decisions": [
       "006-purpose-retention-across-handovers operator decisions"
-    ],
-    "006 readme template conformance operator decisions": [
-      "006-readme-template-conformance operator decisions"
     ],
     "006 redundancy decision record": [
       "006 redundancy decision record"
@@ -59303,21 +59297,6 @@
     "hook cleanup deep review fixes": [
       "hook cleanup deep review fixes"
     ],
-    "hook code folder readmes": [
-      "hook code folder readmes"
-    ],
-    "hook code folder readmes acceptance criteria": [
-      "hook code folder readmes acceptance criteria"
-    ],
-    "hook code folder readmes implementation summary": [
-      "hook code folder readmes implementation summary"
-    ],
-    "hook code folder readmes plan": [
-      "hook code folder readmes plan"
-    ],
-    "hook code folder readmes tasks": [
-      "hook code folder readmes tasks"
-    ],
     "hook compatibility consumer cutover": [
       "hook compatibility consumer cutover"
     ],
@@ -59440,21 +59419,6 @@
     ],
     "hook folder readme": [
       "hook folder readme"
-    ],
-    "hook folder readmes": [
-      "hook folder readmes"
-    ],
-    "hook folder readmes acceptance criteria": [
-      "hook folder readmes acceptance criteria"
-    ],
-    "hook folder readmes implementation summary": [
-      "hook folder readmes implementation summary"
-    ],
-    "hook folder readmes plan": [
-      "hook folder readmes plan"
-    ],
-    "hook folder readmes tasks": [
-      "hook folder readmes tasks"
     ],
     "hook gate settings": [
       "hook gate settings"
@@ -59677,21 +59641,6 @@
     ],
     "hook routing smoke test": [
       "hook-routing smoke test"
-    ],
-    "hook runtime readmes": [
-      "hook runtime readmes"
-    ],
-    "hook runtime readmes acceptance criteria": [
-      "hook runtime readmes acceptance criteria"
-    ],
-    "hook runtime readmes implementation summary": [
-      "hook runtime readmes implementation summary"
-    ],
-    "hook runtime readmes plan": [
-      "hook runtime readmes plan"
-    ],
-    "hook runtime readmes tasks": [
-      "hook runtime readmes tasks"
     ],
     "hook runtime wiring audit": [
       "hook runtime wiring audit"
@@ -73918,21 +73867,6 @@
     "mode packet packetkind": [
       "mode packet packetKind"
     ],
-    "mode packet readmes": [
-      "mode packet readmes"
-    ],
-    "mode packet readmes acceptance criteria": [
-      "mode packet readmes acceptance criteria"
-    ],
-    "mode packet readmes implementation summary": [
-      "mode packet readmes implementation summary"
-    ],
-    "mode packet readmes plan": [
-      "mode packet readmes plan"
-    ],
-    "mode packet readmes tasks": [
-      "mode packet readmes tasks"
-    ],
     "mode projection contracts": [
       "mode projection contracts"
     ],
@@ -82383,9 +82317,6 @@
     "phase 1 skill and tag move": [
       "phase 1 skill and tag move"
     ],
-    "phase 1 skill readmes": [
-      "phase 1 skill readmes"
-    ],
     "phase 1 source deprecation": [
       "phase 1 source deprecation"
     ],
@@ -82793,6 +82724,9 @@
     ],
     "phase 13 root cause and ux research": [
       "phase 13 root cause and ux research"
+    ],
+    "phase 13 session signal sweeps": [
+      "phase 13 session signal sweeps"
     ],
     "phase 13 sk create repo rule": [
       "phase 13 sk create repo rule"
@@ -83249,9 +83183,6 @@
     ],
     "phase 2 mistral provider roster": [
       "phase 2 mistral provider roster"
-    ],
-    "phase 2 mode packet readmes": [
-      "phase 2 mode packet readmes"
     ],
     "phase 2 onboarding fixes": [
       "phase 2 onboarding fixes"
@@ -83760,9 +83691,6 @@
     "phase 3 hard plugins": [
       "phase 3 hard plugins"
     ],
-    "phase 3 hook folder readmes": [
-      "phase 3 hook folder readmes"
-    ],
     "phase 3 hub surface precedence": [
       "phase 3 hub surface precedence"
     ],
@@ -84065,9 +83993,6 @@
     ],
     "phase 4 hook readme fold and rewrite": [
       "phase 4 hook readme fold and rewrite"
-    ],
-    "phase 4 hook runtime readmes": [
-      "phase 4 hook runtime readmes"
     ],
     "phase 4 hook stdin deadline": [
       "phase 4 hook stdin deadline"
@@ -84372,9 +84297,6 @@
     "phase 5 rule amendments": [
       "phase 5 rule amendments"
     ],
-    "phase 5 runtime plugin readmes": [
-      "phase 5 runtime plugin readmes"
-    ],
     "phase 5 setup check hardening": [
       "phase 5 setup check hardening"
     ],
@@ -84624,9 +84546,6 @@
     "phase 6 rg flood control": [
       "phase 6 rg flood control"
     ],
-    "phase 6 runtime folder readmes": [
-      "phase 6 runtime folder readmes"
-    ],
     "phase 6 runtime libraries and tests": [
       "phase 6 runtime libraries and tests"
     ],
@@ -84764,9 +84683,6 @@
     ],
     "phase 7 handoff gate exemptions": [
       "phase 7 handoff gate exemptions"
-    ],
-    "phase 7 hook code folder readmes": [
-      "phase 7 hook code folder readmes"
     ],
     "phase 7 hook deadline margins": [
       "phase 7 hook deadline margins"
@@ -92170,9 +92086,6 @@
     ],
     "readme template conformance implementation summary": [
       "readme template conformance implementation summary"
-    ],
-    "readme template conformance phase parent spec": [
-      "readme template conformance phase parent spec"
     ],
     "readme template conformance plan": [
       "readme template conformance plan"
@@ -100091,9 +100004,6 @@
     "rewrite changelogs to human voice": [
       "rewrite changelogs to human voice"
     ],
-    "rewrite every readme to its template": [
-      "rewrite every readme to its template"
-    ],
     "rewrite main skilled v4 0 0 0": [
       "rewrite main skilled v4 0 0 0"
     ],
@@ -100102,9 +100012,6 @@
     ],
     "rewrite skill changelogs": [
       "rewrite skill changelogs"
-    ],
-    "rewrite skill readmes": [
-      "rewrite skill readmes"
     ],
     "rg fallback handler parity": [
       "rg fallback handler parity"
@@ -102286,21 +102193,6 @@
     "runtime folder readme template": [
       "runtime folder readme template"
     ],
-    "runtime folder readmes": [
-      "runtime folder readmes"
-    ],
-    "runtime folder readmes acceptance criteria": [
-      "runtime folder readmes acceptance criteria"
-    ],
-    "runtime folder readmes implementation summary": [
-      "runtime folder readmes implementation summary"
-    ],
-    "runtime folder readmes plan": [
-      "runtime folder readmes plan"
-    ],
-    "runtime folder readmes tasks": [
-      "runtime folder readmes tasks"
-    ],
     "runtime fork drift guard gap": [
       "runtime fork drift guard gap"
     ],
@@ -102504,21 +102396,6 @@
     ],
     "runtime plugin readme": [
       "runtime plugin readme"
-    ],
-    "runtime plugin readmes": [
-      "runtime plugin readmes"
-    ],
-    "runtime plugin readmes acceptance criteria": [
-      "runtime plugin readmes acceptance criteria"
-    ],
-    "runtime plugin readmes implementation summary": [
-      "runtime plugin readmes implementation summary"
-    ],
-    "runtime plugin readmes plan": [
-      "runtime plugin readmes plan"
-    ],
-    "runtime plugin readmes tasks": [
-      "runtime plugin readmes tasks"
     ],
     "runtime process lifecycle closure": [
       "runtime process lifecycle closure"
@@ -105592,6 +105469,18 @@
     ],
     "session scoped sweep and consume tasks": [
       "session scoped sweep and consume tasks"
+    ],
+    "session signal sweeps": [
+      "session signal sweeps"
+    ],
+    "session signal sweeps implementation summary": [
+      "session signal sweeps implementation summary"
+    ],
+    "session signal sweeps plan": [
+      "session signal sweeps plan"
+    ],
+    "session signal sweeps tasks": [
+      "session signal sweeps tasks"
     ],
     "session snapshot stale ready gate": [
       "session-snapshot stale ready gate"
@@ -115941,14 +115830,8 @@
     "skill readability refinement phase parent spec": [
       "skill readability refinement phase parent spec"
     ],
-    "skill readme hook readme runtime readme rewrite": [
-      "skill readme hook readme runtime readme rewrite"
-    ],
     "skill readme refinement": [
       "skill README refinement"
-    ],
-    "skill readme rewrite batches": [
-      "skill readme rewrite batches"
     ],
     "skill readme routing": [
       "skill readme routing"
@@ -115958,24 +115841,6 @@
     ],
     "skill readme template": [
       "skill readme template"
-    ],
-    "skill readme template conformance": [
-      "skill readme template conformance"
-    ],
-    "skill readmes": [
-      "skill readmes"
-    ],
-    "skill readmes acceptance criteria": [
-      "skill readmes acceptance criteria"
-    ],
-    "skill readmes implementation summary": [
-      "skill readmes implementation summary"
-    ],
-    "skill readmes plan": [
-      "skill readmes plan"
-    ],
-    "skill readmes tasks": [
-      "skill readmes tasks"
     ],
     "skill recommendation tool": [
       "skill recommendation tool"
@@ -122531,6 +122396,9 @@
     ],
     "sweep reads another session transcript": [
       "sweep reads another session transcript"
+    ],
+    "sweep reads calling session": [
+      "sweep reads calling session"
     ],
     "sweep rrf sh sweep rrf py": [
       "sweep-rrf.sh sweep-rrf.py"
@@ -132336,6 +132204,9 @@
     ],
     "vibe turn start composer": [
       "vibe turn start composer"
+    ],
+    "vibe unified session folder": [
+      "vibe unified session folder"
     ],
     "viewport emulation": [
       "viewport emulation"

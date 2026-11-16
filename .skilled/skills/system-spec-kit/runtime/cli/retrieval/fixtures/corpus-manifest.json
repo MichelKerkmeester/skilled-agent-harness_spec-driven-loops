@@ -1,5 +1,5 @@
 {
-  "corpusHash": "428ce9c1f42fb5c71bb33040089d6d199306862f7ce0727fddd8ca9c0dbcc4f7",
+  "corpusHash": "660558ecc805e2509712b4d70ffa2a170afe7a55daaeb1db76559500581cc381",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27926,
+  "includedPathCount": 27892,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11383,6 +11383,10 @@
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/plan.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/spec.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/tasks.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps/implementation-summary.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps/plan.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps/spec.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps/tasks.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/decision-record.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/goal.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/handover.md",
@@ -16234,44 +16238,6 @@
     "specs/sk-doc/document-standards/005-root-readme-section-spacing/plan.md",
     "specs/sk-doc/document-standards/005-root-readme-section-spacing/spec.md",
     "specs/sk-doc/document-standards/005-root-readme-section-spacing/tasks.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/acceptance-criteria.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/decision-record.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/implementation-summary.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/plan.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/spec.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/tasks.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/acceptance-criteria.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/implementation-summary.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/plan.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/spec.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/tasks.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/acceptance-criteria.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/implementation-summary.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/plan.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/spec.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/tasks.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/acceptance-criteria.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/implementation-summary.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/plan.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/spec.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/tasks.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/acceptance-criteria.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/implementation-summary.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/plan.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/spec.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/tasks.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/acceptance-criteria.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/implementation-summary.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/plan.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/spec.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/tasks.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/acceptance-criteria.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/implementation-summary.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/plan.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/spec.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/tasks.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/decision-record.md",
-    "specs/sk-doc/document-standards/006-readme-template-conformance/spec.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/001-transport-and-baseline/acceptance-criteria.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/001-transport-and-baseline/goal.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/001-transport-and-baseline/implementation-summary.md",
@@ -27958,7 +27924,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0b37d0d496622f2bd6ba1fe113c2b171650601818fbf9e0a91bac8c9f4bec192",
+  "manifestHash": "f4bb7fd386d7f62c234464c258bb3407c545b22ee2c5828d3e22faff6c771fa2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31186,6 +31152,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps/scratch",
       "reason": "excluded directory"
     },
     {
@@ -34825,34 +34795,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/sk-doc/document-standards/z_archive",
       "reason": "excluded directory"
     },
@@ -36498,10 +36440,6 @@
     },
     {
       "path": "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/review/lineages",
       "reason": "excluded directory"
     },
     {

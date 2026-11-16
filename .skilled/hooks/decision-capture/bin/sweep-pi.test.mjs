@@ -42,11 +42,11 @@ function withSandbox(run) {
   }
 }
 
-function runSweep(projectDir, homeDir, args) {
+function runSweep(projectDir, homeDir, args, extraEnv = {}) {
   return spawnSync(process.execPath, [SCRIPT, ...args], {
     cwd: projectDir,
     encoding: 'utf8',
-    env: { ...process.env, HOME: homeDir },
+    env: { ...process.env, HOME: homeDir, PI_SESSION_ID: '', PI_SESSION_FILE: '', ...extraEnv },
     timeout: CLI_TIMEOUT_MS,
   });
 }
@@ -295,6 +295,31 @@ test('the newest session file is selected from the temporary HOME', () => {
     assert.equal(result.transcript, newestPath);
     assert.equal(result.session_id, 'pi-newest-session');
     assert.equal(result.recovered, 4);
+  });
+});
+
+test('the signalled session file is read, not a newer one', () => {
+  withSandbox(({ projectDir, homeDir }) => {
+    const fixture = readFixture();
+    const sessionsDir = sessionDirectory(homeDir, projectDir);
+    mkdirSync(sessionsDir, { recursive: true });
+    const own = structuredClone(fixture.lines);
+    own[0].id = 'pi-own-session';
+    own[0].cwd = realpathSync(projectDir);
+    const other = structuredClone(fixture.lines);
+    other[0].id = 'pi-other-session';
+    other[0].cwd = realpathSync(projectDir);
+    const ownPath = join(sessionsDir, '2026-11-01T00-00-00.000Z_own.jsonl');
+    writeTranscript(ownPath, own);
+    writeTranscript(join(sessionsDir, '2026-11-02T00-00-00.000Z_other.jsonl'), other);
+
+    const run = runSweep(projectDir, homeDir, [], { PI_SESSION_ID: 'pi-own-session', PI_SESSION_FILE: ownPath });
+    assert.equal(run.status, 0, run.stderr);
+    assert.equal(JSON.parse(run.stdout).session_id, 'pi-own-session');
+
+    const unsaved = runSweep(projectDir, homeDir, [], { PI_SESSION_ID: 'pi-own-session' });
+    assert.equal(unsaved.status, 0, unsaved.stderr);
+    assert.equal(unsaved.stdout, '');
   });
 });
 

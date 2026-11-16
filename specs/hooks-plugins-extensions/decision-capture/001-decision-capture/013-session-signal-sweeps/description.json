@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps",
+  "description": "Phase 13: session-signal-sweeps",
+  "keywords": [
+    "phase",
+    "session-signal-sweeps"
+  ],
+  "lastUpdated": "2026-11-16T15:52:37.950Z",
+  "specId": "013",
+  "folderSlug": "session-signal-sweeps",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "decision-capture",
+    "001-decision-capture"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_16-52__manual-context-save.md"
+  ]
+}

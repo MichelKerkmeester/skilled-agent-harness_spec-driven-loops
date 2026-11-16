@@ -400,9 +400,33 @@ function latestSession(projectDir) {
   return null;
 }
 
+// DSH names the calling session in DSH_SESSION_ID, and that session's directory
+// carries the same id, so a newer session in the project is never read instead.
+function signalledSession(sessionId) {
+  if (!/^[A-Za-z0-9-]+$/.test(sessionId)) return null;
+  const root = join(process.env.DSH_HOME || join(homedir(), '.dsh'), 'sessions');
+  let projects;
+  try {
+    projects = readdirSync(root);
+  } catch {
+    return null;
+  }
+  for (const project of projects) {
+    try {
+      const logPath = sessionLogIn(join(root, project, sessionId));
+      if (logPath) return logPath;
+    } catch {
+      // This project holds no directory for the session.
+    }
+  }
+  return null;
+}
+
 function main() {
   const projectDir = process.cwd();
-  const sessionPath = sessionFromArgs(process.argv.slice(2)) || latestSession(projectDir);
+  const signalled = process.env.DSH_SESSION_ID;
+  const sessionPath = sessionFromArgs(process.argv.slice(2))
+    || (signalled ? signalledSession(signalled) : latestSession(projectDir));
   if (!sessionPath) return 0;
 
   try {
