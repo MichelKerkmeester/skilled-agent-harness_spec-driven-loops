@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ec39520dde4b7e4c12953412a33799c01d075ea96ae45eb5713bf3f4bf180a65",
+  "corpusHash": "fda14279fea7d557887f66ac4d102e4bd1a8b2f8ee5703c3f37b43cc11864e69",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27748,
+  "includedPathCount": 27752,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12156,6 +12156,10 @@
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/research.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/fanout-attribution.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/review-report.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/deep-review-dashboard.md",
@@ -27780,7 +27784,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f6083270c7b97ac8f327ec075d107d1a141f7b76909e2034e181e8d2f49e5b6f",
+  "manifestHash": "ce053329349496c0273eb3d11537800ab8dc287f1bf448d78a41720334929867",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31624,6 +31628,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/scratch",
       "reason": "excluded directory"
     },
     {

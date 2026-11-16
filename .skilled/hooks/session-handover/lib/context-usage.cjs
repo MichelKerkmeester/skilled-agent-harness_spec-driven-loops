@@ -311,6 +311,48 @@ function readCodexSettings(rolloutPath, { tailBytes = DEFAULT_TAIL_BYTES } = {})
   };
 }
 
+/**
+ * Read the model of the latest OpenCode 2 assistant message from the session store.
+ *
+ * OpenCode 2 records each message in `session_message`, and an assistant row names the model
+ * that answered as `{providerID, id, variant}`. The variant is left out on purpose: OpenCode
+ * keeps the operator's variant per model in its own state, so a session that starts on the
+ * same model starts on that variant, and no launch setting can choose a different one.
+ *
+ * @param {string} dbPath - OpenCode SQLite store path.
+ * @param {string} sessionId - The sending session's identifier.
+ * @returns {{model: string, effort: string}|null} The `provider/model` the session last
+ * answered on, or null when the store, its table or such a message is missing.
+ */
+function readOpenCodeSettings(dbPath, sessionId) {
+  let database;
+  try {
+    if (!fs.existsSync(dbPath)) return null;
+    const { DatabaseSync } = require('node:sqlite');
+    database = new DatabaseSync(dbPath, { readOnly: true });
+    const hasTable = database
+      .prepare("SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'session_message'")
+      .get();
+    if (!hasTable) return null;
+    const row = database
+      .prepare("SELECT data FROM session_message WHERE session_id = ? AND type = 'assistant'"
+        + ' ORDER BY seq DESC LIMIT 1')
+      .get(sessionId);
+    if (!row || typeof row.data !== 'string') return null;
+    const model = JSON.parse(row.data)?.model;
+    const provider = settingText(model?.providerID);
+    const id = settingText(model?.id);
+    if (provider === '' || id === '') return null;
+    return { model: `${provider}/${id}`, effort: '' };
+  } catch {
+    return null;
+  } finally {
+    try {
+      database?.close();
+    } catch {}
+  }
+}
+
 /** Read the latest Codex rollout token count from a transcript tail. */
 function readCodexUsage(transcriptPath, { tailBytes = DEFAULT_TAIL_BYTES } = {}) {
   let latestCount;
@@ -522,6 +564,7 @@ module.exports = {
   readClaudeFill,
   readClaudeSettings,
   readCodexSettings,
+  readOpenCodeSettings,
   resolveWindow,
   fillRatio,
   fillFromPiUsage,

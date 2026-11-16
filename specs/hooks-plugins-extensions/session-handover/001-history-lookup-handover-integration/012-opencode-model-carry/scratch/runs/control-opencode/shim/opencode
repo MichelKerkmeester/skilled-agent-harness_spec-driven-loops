@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+case " $* " in *" --help "*|*" -h "*) exec "/Users/michelkerkmeester/.local/bin/opencode" "$@" ;; esac
+if [ ! -e "/Users/michelkerkmeester/worktrees/public/426-opencode-model-carry/specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/scratch/harness/../runs/control-opencode/shim/first-launch-done" ]; then
+  touch "/Users/michelkerkmeester/worktrees/public/426-opencode-model-carry/specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry/scratch/harness/../runs/control-opencode/shim/first-launch-done"
+  export OPENCODE_CONFIG_CONTENT='{"model":"llmgateway/deepseek-v4.1-flash","agent":{"build":{"model":"llmgateway/deepseek-v4.1-flash"},"plan":{"model":"llmgateway/deepseek-v4.1-flash"}}}'
+fi
+exec "/Users/michelkerkmeester/.local/bin/opencode" "$@"
