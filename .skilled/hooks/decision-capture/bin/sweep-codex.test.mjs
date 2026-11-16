@@ -44,11 +44,11 @@ function withSandbox(run) {
   }
 }
 
-function runSweep(projectDir, homeDir, codexHomeDir, args) {
+function runSweep(projectDir, homeDir, codexHomeDir, args, extraEnv = {}) {
   return spawnSync(process.execPath, [SCRIPT, ...args], {
     cwd: projectDir,
     encoding: 'utf8',
-    env: { ...process.env, HOME: homeDir, CODEX_HOME: codexHomeDir },
+    env: { ...process.env, HOME: homeDir, CODEX_HOME: codexHomeDir, CODEX_THREAD_ID: '', ...extraEnv },
     timeout: CLI_TIMEOUT_MS,
   });
 }
@@ -281,6 +281,30 @@ test('the newest rollout with a matching cwd is selected and supplies the fallba
     assert.equal(result.session_id, 'matched-session');
     assert.equal(result.recovered, 1);
     assert.equal(readQueue(projectDir, result.session_id)[0].answer, 'matched');
+  });
+});
+
+test('the signalled thread is read, and an unknown one never falls back', () => {
+  withSandbox(({ projectDir, homeDir, codexHomeDir }) => {
+    const processCwd = realpathSync(projectDir);
+    const ownPath = writeRollout(codexHomeDir, '2026', '11', '01', 'rollout-2026-11-01T23-00-00-own-thread.jsonl', [
+      { type: 'session_meta', payload: { id: 'own-thread', cwd: processCwd } },
+      requestCall('call_own', 'choice', 'Which choice should I use?'),
+      functionCallOutput('call_own', '{"answers":{"choice":{"answers":["own"]}}}'),
+    ]);
+    writeRollout(codexHomeDir, '2026', '11', '02', 'rollout-2026-11-02T00-00-00-newer-thread.jsonl', [
+      { type: 'session_meta', payload: { id: 'newer-thread', cwd: processCwd } },
+      requestCall('call_newer', 'choice', 'Which choice should I use?'),
+      functionCallOutput('call_newer', '{"answers":{"choice":{"answers":["newer"]}}}'),
+    ]);
+
+    const own = runSweep(projectDir, homeDir, codexHomeDir, [], { CODEX_THREAD_ID: 'own-thread' });
+    assert.equal(own.status, 0, own.stderr);
+    assert.equal(JSON.parse(own.stdout).transcript, ownPath);
+
+    const unknown = runSweep(projectDir, homeDir, codexHomeDir, [], { CODEX_THREAD_ID: 'thread-not-on-disk' });
+    assert.equal(unknown.status, 0, unknown.stderr);
+    assert.equal(unknown.stdout, '');
   });
 });
 

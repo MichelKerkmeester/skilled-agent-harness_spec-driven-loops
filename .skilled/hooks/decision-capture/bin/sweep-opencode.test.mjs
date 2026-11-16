@@ -26,6 +26,7 @@ import { queueFile, toolSourceKey } from '../lib/capture-core.mjs';
 import {
   latestOpenCodeSession,
   openCodeAnswerRecords,
+  rootOpenCodeSession,
   sweepOpenCodeSession,
 } from './sweep-opencode.mjs';
 
@@ -285,7 +286,7 @@ test('the CLI resolves the newest session under the XDG data home', () => {
     const run = spawnSync(process.execPath, [SCRIPT], {
       cwd: projectDir,
       encoding: 'utf8',
-      env: { ...process.env, XDG_DATA_HOME: root },
+      env: { ...process.env, XDG_DATA_HOME: root, OPENCODE_SESSION_ID: '' },
       timeout: 20000,
     });
 
@@ -293,6 +294,33 @@ test('the CLI resolves the newest session under the XDG data home', () => {
     const result = JSON.parse(run.stdout);
     assert.equal(result.session_id, SESSION);
     assert.equal(result.recovered, 4);
+  });
+});
+
+test('the CLI reads the signalled session, not a newer one, and climbs to its root', () => {
+  withTemp(({ root, projectDir }) => {
+    const dbPath = join(root, 'opencode', 'opencode.db');
+    writePartDatabase(dbPath, readFixture());
+    const database = new DatabaseSync(dbPath);
+    try {
+      database.exec('CREATE TABLE session_v2 (id TEXT, parent_id TEXT, directory TEXT, time_updated INTEGER)');
+      const insert = database.prepare('INSERT INTO session_v2 (id, parent_id, directory, time_updated) VALUES (?, ?, ?, ?)');
+      insert.run(SESSION, null, realpathSync(projectDir), 1000);
+      insert.run('ses_CHILD0001', SESSION, realpathSync(projectDir), 2000);
+      insert.run('ses_NEWER0001', null, realpathSync(projectDir), 9000);
+    } finally {
+      database.close();
+    }
+    assert.equal(rootOpenCodeSession({ dbPath, sessionId: 'ses_CHILD0001' }), SESSION);
+
+    const run = spawnSync(process.execPath, [SCRIPT], {
+      cwd: projectDir,
+      encoding: 'utf8',
+      env: { ...process.env, XDG_DATA_HOME: root, OPENCODE_SESSION_ID: 'ses_CHILD0001' },
+      timeout: 20000,
+    });
+    assert.equal(run.status, 0, run.stderr);
+    assert.equal(JSON.parse(run.stdout).session_id, SESSION);
   });
 });
 

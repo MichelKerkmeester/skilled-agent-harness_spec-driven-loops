@@ -6,10 +6,12 @@
 // Every queue case runs in an isolated project directory.
 
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 import { mkdirSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
+import { fileURLToPath } from 'node:url';
 
 import { appendRecords, readQueue, toolSourceKey } from '../lib/capture-core.mjs';
 import { sweepVibeSession, vibeAnswerRecords } from './sweep-vibe.mjs';
@@ -175,5 +177,29 @@ test('the sweep writes the key the hook writes, once', () => {
     const afterHook = sweepVibeSession({ projectDir: hookProject, transcriptPath, now: NOW });
     assert.equal(afterHook.recovered, 0);
     assert.equal(readQueue(hookProject, SESSION_ID).length, 1);
+  });
+});
+
+test('the CLI finds a session under the unified folder', () => {
+  withSandbox(({ rootDir, projectDir }) => {
+    const sessionsRoot = join(rootDir, 'sessions');
+    const sessionDir = join(sessionsRoot, 'unified', SESSION_ID);
+    mkdirSync(join(sessionDir, 'journal'), { recursive: true });
+    writeFileSync(
+      join(sessionDir, 'meta.json'),
+      JSON.stringify({ session_id: SESSION_ID, environment: { working_directory: projectDir } }),
+    );
+    writeFileSync(
+      join(sessionDir, 'journal', '0000000000000001.jsonl'),
+      journalRecords().map((record) => JSON.stringify(record)).join('\n') + '\n',
+    );
+    const run = spawnSync(process.execPath, [fileURLToPath(new URL('./sweep-vibe.mjs', import.meta.url))], {
+      cwd: projectDir,
+      encoding: 'utf8',
+      env: { ...process.env, HOME: rootDir, MISTRAL_VIBE_SESSION_ROOT: sessionsRoot },
+      timeout: 20000,
+    });
+    assert.equal(run.status, 0, run.stderr);
+    assert.equal(JSON.parse(run.stdout).session_id, SESSION_ID);
   });
 });

@@ -140,6 +140,15 @@ function codexHome() {
   return process.env.CODEX_HOME || join(homedir(), '.codex');
 }
 
+// Codex names the calling thread in CODEX_THREAD_ID, and every rollout file name
+// ends with its thread id, so a newer thread in the project is never read instead.
+function signalledTranscript(threadId) {
+  if (!/^[A-Za-z0-9-]+$/.test(threadId)) return null;
+  const suffix = `-${threadId}${TRANSCRIPT_EXT}`;
+  return rolloutPaths(join(codexHome(), 'sessions'))
+    .find((transcriptPath) => transcriptPath.endsWith(suffix)) ?? null;
+}
+
 function latestTranscript(projectDir) {
   const candidates = rolloutPaths(join(codexHome(), 'sessions')).sort().reverse();
   for (const transcriptPath of candidates) {
@@ -336,8 +345,9 @@ function transcriptFromArgs(argv) {
 
 function main() {
   const projectDir = process.cwd();
+  const signalled = process.env.CODEX_THREAD_ID;
   const transcriptPath = transcriptFromArgs(process.argv.slice(2))
-    || latestTranscript(projectDir);
+    || (signalled ? signalledTranscript(signalled) : latestTranscript(projectDir));
   if (!transcriptPath) return 0;
 
   try {

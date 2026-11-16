@@ -126,7 +126,7 @@ The save-time sweeps ignore the switch and still append what they recover.
 
 Set a switch inline for one command or export it for a session. To keep it, write it in `.skilled/hooks/hook-flags.env`, a gitignored copy of `.skilled/hooks/hook-flags.env.example`. The environment wins over the file.
 
-A sweep takes a flag to read one named record instead of the newest one it finds.
+A sweep reads the calling session when its runtime names it: Claude Code, Codex, DSH, OpenCode and Pi set a session variable in every command they run. Devin and Vibe set none, so their sweeps take the newest session for the project. A flag reads one named record instead.
 
 | Flag | Sweep | Effect |
 |---|---|---|
