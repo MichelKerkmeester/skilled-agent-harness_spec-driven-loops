@@ -10,7 +10,7 @@ trigger_phrases:
   - "vibe guard porting"
 importance_tier: normal
 contextType: implementation
-version: 1.3.7.0
+version: 1.3.8.0
 ---
 
 # Mistral Vibe - Guards and Hooks
@@ -243,6 +243,7 @@ The deny is in the session journal under the run's `--output-dir`: `<output-dir>
 | Fact | Evidence |
 |---|---|
 | Shell guards must match `re:bash\|process_start`, and map the payload name `process.start` | A background command goes through the builtin `process.start` (`mistralai_vibe_local_harness/protocol.py:40`). A `match` selector accepts its alias `process_start` (`_hook_matcher.py:68`), which `match = "bash"` does not catch (`SKILL.md:859-861`), while the payload's `tool_name` is the dotted `process.start` (`_foreign_hooks.py:187`), so the guards' tool-name map must carry that spelling. The fixture's `hooks.toml` uses that selector. |
+| The command guards also match `process_write`, and judge its text as a command | `process.write` types `text` or `bytesBase64` into the stdin of a process `process.start` launched (`mistralai_vibe_local_harness/vibe/_process_actions.py:369-377`), and an interactive shell runs each line, so a clean background shell would otherwise take any command unjudged. Vibe's own protected-path check reads that `text` as shell text (`_protected_paths.py:56-62`). `spec-gate`, `env-secret-guard`, `dispatch-preflight` and `git-message-gate` match `process_write`, and `lib/hook-io.mjs` hands them the written text, or the decoded bytes, as the command. A `control` key reaches them as an empty command. `dist-freshness-shell` does not match it, because a write ends no command. |
 | A project hook loads only in a trusted folder, and the trust entry must be the resolved path | `run-fixture.sh` writes the project path from `pwd -P` and notes that `/var/folders` must be spelled `/private/var/folders`. An unresolved entry loaded no hook and gave no error. |
 | `post_tool` fires only when the tool body ran | A `pre_tool` deny, a user denial at the approval prompt, permission `NEVER` or a cancellation before the body starts leaves it unfired (`SKILL.md:824`). |
 | `post_agent` cannot be strict | The validator rejects `strict` on it (`models.py:31-35,94-98`), and its deny injects a retry message instead of holding the turn, capped at three retries per turn before force-accept (phase 014's `deny-always` fixture recorded `retry, retry, retry, accept`; `SKILL.md:987`). |

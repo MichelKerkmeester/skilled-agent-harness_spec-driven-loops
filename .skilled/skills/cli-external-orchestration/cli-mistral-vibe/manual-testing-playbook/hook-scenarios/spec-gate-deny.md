@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-002 -- Strict spec gate refuses the first write while the gate is open"
 description: "This scenario validates that the Vibe spec-gate strict pre_tool hook refuses the first write of a session whose gate was opened by the classify pass, judged from a pre_tool_call skip in the session journal."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # VIB-HK-002 -- Strict spec gate refuses the first write while the gate is open
@@ -120,7 +120,7 @@ Capture `matrix.md`, `checkpoints.tsv`, each turn's `screen.txt` and `check.txt`
 ### Failure Triage
 
 1. Read turns/write/check.txt and screen.txt.
-2. Confirm the rendered `$VIBE_HOME/hooks.toml` lists `spec-gate` as strict at `pre_tool` with `match = "re:bash|process_start|write_file|edit"`.
+2. Confirm the rendered `$VIBE_HOME/hooks.toml` lists `spec-gate` as strict at `pre_tool` with `match = "re:bash|process_start|process_write|write_file|edit"`.
 3. Read the `pre_tool_call` result and the gate state file in the scratch project; a classify write under one directory and an enforce read under another is a product bug.
 4. Pipe the same `write_file` payload into `.vibe/plugins/repo-guards/spec-gate.mjs` and read its output.
 

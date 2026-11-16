@@ -20,9 +20,10 @@ const GUARDS = join(dirname(fileURLToPath(import.meta.url)), '..');
  * Runs the hook with one shell payload.
  * @param {string} toolName - The payload's tool_name.
  * @param {string} command - The shell command.
+ * @param {object} [toolInput] - The payload's tool_input, when it is not a command.
  * @returns {string} The hook's stdout.
  */
-function runHook(toolName, command) {
+function runHook(toolName, command, toolInput = { command }) {
   const result = spawnSync(process.execPath, [join(GUARDS, 'git-message-gate.mjs')], {
     input: JSON.stringify({
       hook_event_name: 'pre_tool',
@@ -30,7 +31,7 @@ function runHook(toolName, command) {
       cwd: tmpdir(),
       tool_name: toolName,
       tool_call_id: 'call-1',
-      tool_input: { command },
+      tool_input: toolInput,
     }),
     encoding: 'utf8',
   });
@@ -43,6 +44,11 @@ test('a non-conforming commit message is refused in the foreground and in the ba
     const verdict = JSON.parse(runHook(toolName, "git commit -m 'stuff'") || '{}');
     assert.equal(verdict.decision, 'deny', toolName);
   }
+});
+
+test('a non-conforming commit typed into a running background shell is refused', () => {
+  const verdict = JSON.parse(runHook('process.write', '', { processId: 'proc-1', text: "git commit -m 'stuff'\n" }) || '{}');
+  assert.equal(verdict.decision, 'deny');
 });
 
 test('a background command that is not a commit is allowed', () => {

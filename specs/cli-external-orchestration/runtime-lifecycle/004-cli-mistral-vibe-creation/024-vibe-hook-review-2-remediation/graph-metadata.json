@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Vibe 3.1.2 puts `\"toolname\": \"process.start\"` in the payload of a background shell command, while the repo guards' tool-name map keyed only `processstart`, the alias a `match` selector accepts",
     "created_at": "2026-11-16T06:43:46Z",
-    "last_save_at": "2026-11-16T07:23:41.905Z",
+    "last_save_at": "2026-11-16T07:36:37.548Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:26c4555fd5d462e7c080b59ab2e41fc6a0009e9ce448b07fbd192ff45f93558e",
+    "source_fingerprint": "sha256:3ab81bdbefdadc6d0504d5160924a0bc66dc6884a0d7cee2bca7dfae621b5b3f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b12a7e1e6d810c1a3a3030ed5b94dff0494aeb5bc26affca2d7da675f51a9662",
+      "spec.md": "7a52430c0e9595cc59944ea62b25fbda83e952eb9fb3b52580528964adb677db",
       "plan.md": "aba33717084f684ce50a5e78d3eb3ad93ad4053964e4f3c359ff3284b7cff254",
-      "tasks.md": "a1a5e2838acc77b3bcf0fde8820f7189403636b22d40b6df352f8f24d19ce944",
-      "implementation-summary.md": "619f5b3e60331e8c46e1216e5892005a92f2d4ea5ea5f818ea849c6a3f1380a1"
+      "tasks.md": "1454de975aab5af9ed414d42ebe78968fd1dd60805b070fea0ec14d262f4f60c",
+      "implementation-summary.md": "5b2a572ce47643ab1ba21cdf5e5767e6e4ded048005b74b7292572046c23d4f4"
     },
     "last_active_at": null
   }

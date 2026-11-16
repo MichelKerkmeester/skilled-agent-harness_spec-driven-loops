@@ -112,7 +112,7 @@ Each case checks `file_system.bash` first, so the four failures are the `process
 | `.vibe/plugins/repo-guards/tests/env-secret-guard.test.mjs`, `spec-gate.test.mjs` | Modify | `process.start` payload cases |
 | `.vibe/plugins/repo-guards/tests/git-message-gate.test.mjs`, `dispatch-preflight.test.mjs`, `deep-loop-guard.test.mjs` | Create | Payload tests for the three guards with none |
 | `.vibe/plugins/repo-guards/spec-gate.mjs` | Modify | Comment: why `observe()` is not called and that the note repeats |
-| `.vibe/hooks.toml`, `.vibe/plugins/repo-guards/fixtures/overlay-guard/hooks.toml` | Modify | overlay-guard on the write tools only |
+| `.vibe/hooks.toml`, `.vibe/plugins/repo-guards/fixtures/overlay-guard/hooks.toml` | Modify | overlay-guard on the write tools only; `process_write` in the four command-guard matches |
 | `.vibe/plugins/repo-guards/dist-freshness.mjs`, `dispatch-preflight.mjs` | Modify | Shared `sessionDirFor` |
 | `.vibe/plugins/repo-guards/session-cleanup.mjs` | Modify | Dynamic import inside `main` |
 | `.vibe/plugins/repo-guards/render-home-hooks.cjs` and its test | Modify | Whole command values, multi-line cases |
@@ -152,6 +152,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-006 | `guards-and-hooks.md` and the session-lifecycle README state the strict `post_tool` binding, the reply fields, the unported tool registrations and the goal switch |
 | REQ-007 | session-start's parts are testable without a subprocess, the four lifecycle entry points share one stdin reader, deep-loop-guard has a payload test, and the advisor and the two adapters read the injected env |
 | REQ-008 | In a live Vibe session, a dotenv read started through the background process tool is denied by env-secret-guard and no value reaches the journal |
+| REQ-009 | Input typed into a running background process with `process.write` is judged by the command guards as the shell command it becomes, in unit tests and in a live Vibe session |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -166,6 +167,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - **SC-002**: The session-lifecycle, decision-capture, session-handover and Vibe reader suites print `fail 0` with the new cases included.
 - **SC-003**: `validate.sh` on this folder with `--strict` prints `RESULT: PASSED`.
 - **SC-004**: The live scenario VIB-HK-029 shows a background `cat` of a dotenv file denied in a real Vibe session.
+- **SC-005**: The live scenario VIB-HK-030 shows a dotenv read typed into a clean background shell denied in a real Vibe session.
 <!-- /ANCHOR:success-criteria -->
 
 ---

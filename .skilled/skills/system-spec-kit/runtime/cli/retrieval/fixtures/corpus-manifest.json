@@ -1,5 +1,5 @@
 {
-  "corpusHash": "74ea8699d942728d567187bb7b7cb6264a65bfee48b38183ceca6e27332cf0dd",
+  "corpusHash": "20f5ba67be3a675628a8032de4f03b2bb988fc3238cdf8bcfa6d8ec2790d152f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27791,
+  "includedPathCount": 27792,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1377,6 +1377,7 @@
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/overlay-guard.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/post-edit-quality.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/process-start-shell-guard.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/process-write-shell-guard.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/prompts-mirror.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-automatic-tier.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-manual-tier.md",
@@ -27823,7 +27824,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "497dbcff2e2246ee54997e2befd4820411ffe75416625c4b5ab0d21e6c7a957d",
+  "manifestHash": "9df7262ceac5359755067943c48633336b031a72fb179da1b4db8f621ddd91db",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

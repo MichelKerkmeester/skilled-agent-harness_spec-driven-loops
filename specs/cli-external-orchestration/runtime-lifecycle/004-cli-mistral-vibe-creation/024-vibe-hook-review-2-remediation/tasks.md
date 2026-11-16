@@ -60,6 +60,8 @@ contextType: "implementation"
 - [x] T011 Rerun the four suites from the brief (`node --test`). Verify: 28, 55, 1041 and 11 pass, each `fail 0`, exit 0.
 - [x] T012 Record a disposition for every finding V01 to V26 (`implementation-summary.md`). Verify: each id appears in the disposition table.
 - [x] T013 Strict validation of this folder (`validate.sh`). Verify: it prints `RESULT: PASSED`.
+- [x] T015 Guard input typed into a running background process: `process.write` in the tool-name map with its `text` or decoded `bytesBase64` read as the command, and `process_write` in the spec-gate, env-secret-guard, dispatch-preflight and git-message-gate matches (`G/lib/hook-io.mjs`, `.vibe/hooks.toml`, `G/tests/env-secret-guard.test.mjs`, `G/tests/git-message-gate.test.mjs`, `guards-and-hooks.md`, `G/fixtures/wire-format/tool-names.md`). Verify: `node --test .vibe/plugins/repo-guards/tests/` passes the write cases.
+- [x] T016 Live VIB-HK-030 typed-command scenario (`hook-scenarios/process-write-shell-guard.md`). Verify: its `result.json` reads `"verdict": "PASS"` with the model recorded.
 - [x] T014 Live VIB-HK-029 background-shell scenario run by the orchestrator (`hook-scenarios/process-start-shell-guard.md`). Verify: its `result.json` reads `"verdict": "PASS"` with the model recorded.
 <!-- /ANCHOR:phase-3 -->
 

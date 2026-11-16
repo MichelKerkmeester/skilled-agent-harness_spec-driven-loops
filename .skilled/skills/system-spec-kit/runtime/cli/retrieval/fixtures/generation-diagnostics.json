@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6851,
+    "missing-frontmatter": 6852,
     "ok": 19313,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27791,
+  "documentsScanned": 27792,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "497dbcff2e2246ee54997e2befd4820411ffe75416625c4b5ab0d21e6c7a957d",
+  "manifestHash": "9df7262ceac5359755067943c48633336b031a72fb179da1b4db8f621ddd91db",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -5013,6 +5013,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/process-start-shell-guard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/process-write-shell-guard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {

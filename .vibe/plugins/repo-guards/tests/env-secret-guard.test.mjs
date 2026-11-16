@@ -93,6 +93,35 @@ test('a background shell command that reads a dotenv file is denied like a foreg
   }
 });
 
+/**
+ * A process.write payload, which types input into a running background process.
+ * @param {object} toolInput - The write's arguments besides processId.
+ * @returns {object} The payload.
+ */
+function writePayload(toolInput) {
+  return {
+    hook_event_name: 'pre_tool',
+    session_id: 'vibe-env-guard-write',
+    cwd: tmpdir(),
+    tool_name: 'process.write',
+    tool_call_id: 'call-1',
+    tool_input: { processId: 'proc-1', ...toolInput },
+  };
+}
+
+test('a dotenv read typed into a running background shell is denied, as text or as bytes', () => {
+  const asText = JSON.parse(runHook(writePayload({ text: `${DOTENV_READ}\n` })) || '{}');
+  assert.equal(asText.decision, 'deny', 'text');
+  const bytesBase64 = Buffer.from(`${DOTENV_READ}\n`).toString('base64');
+  const asBytes = JSON.parse(runHook(writePayload({ bytesBase64 })) || '{}');
+  assert.equal(asBytes.decision, 'deny', 'bytesBase64');
+});
+
+test('a control key or a plain line typed into a background process is allowed', () => {
+  assert.equal(runHook(writePayload({ control: ['ctrl-c'] })), '');
+  assert.equal(runHook(writePayload({ text: 'ls -la\n' })), '');
+});
+
 test('a background shell command that touches no dotenv file is allowed', () => {
   assert.equal(runHook(shellPayload('process.start', 'ls -la')), '');
 });

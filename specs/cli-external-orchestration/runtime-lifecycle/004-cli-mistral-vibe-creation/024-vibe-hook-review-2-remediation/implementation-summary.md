@@ -62,7 +62,8 @@ The compaction post-tool part now stays out of subagents, as the hand-over part 
 | `.vibe/plugins/repo-guards/tests/env-secret-guard.test.mjs`, `spec-gate.test.mjs` | Modified | `process.start` payload cases |
 | `.vibe/plugins/repo-guards/tests/git-message-gate.test.mjs`, `dispatch-preflight.test.mjs`, `deep-loop-guard.test.mjs` | Created | Payload tests for three untested guards |
 | `.vibe/plugins/repo-guards/spec-gate.mjs` | Modified | Why `observe()` is not called; the note repeats |
-| `.vibe/hooks.toml`, `.vibe/plugins/repo-guards/fixtures/overlay-guard/hooks.toml` | Modified | overlay-guard on `write_file` and `edit` only |
+| `.vibe/hooks.toml`, `.vibe/plugins/repo-guards/fixtures/overlay-guard/hooks.toml` | Modified | overlay-guard on `write_file` and `edit` only; `process_write` in the spec-gate, env-secret-guard, dispatch-preflight and git-message-gate matches |
+| `hook-scenarios/process-start-shell-guard.md`, `hook-scenarios/process-write-shell-guard.md`, `manual-testing-playbook.md` | Created, Modified | VIB-HK-029 and VIB-HK-030, the live proofs for the background start and the typed command |
 | `.vibe/plugins/repo-guards/dist-freshness.mjs` | Modified | Imports `sessionDirFor`; private copy removed |
 | `.vibe/plugins/repo-guards/dispatch-preflight.mjs` | Modified | Rule context resolves a present cwd with `sessionDirFor` |
 | `.vibe/plugins/repo-guards/session-cleanup.mjs` | Modified | OpenCode module imported inside `main` |
@@ -99,6 +100,7 @@ The baseline ran first: repo-guards and goal 17 pass, session-lifecycle and deci
 | Decision | Why |
 |----------|-----|
 | Move `sessionDirFor` and `existingDirectory` into `.skilled/hooks/shared/payload-dir.mjs` and re-export them from `hook-io.mjs` | The first cut had turn-start, ask-capture and ask-surface import them from `.vibe/plugins/repo-guards/lib/hook-io.mjs`, which broke the hooks tree's rule that its adapters depend on nothing outside it (`hook-adapter-shared.cjs:13`), and turn-start's static import would have silenced every turn-start part if that file went missing. The rules now live inside the tree, and the Vibe guards still read the same functions |
+| Judge `process.write` text as a shell command | A write types into the stdin of a process a start launched, and an interactive shell runs each line, so a clean `bash -i` would otherwise take any refused command one line at a time. Vibe's own protected-path check reads that `text` as shell text (`mistralai_vibe_local_harness/vibe/_protected_paths.py:56-62`). The mapper decodes `bytesBase64` the same way and hands a `control` key over as an empty command. `dist-freshness-shell` stays on `process_start`, because a write ends no command. Found while closing the review, not raised by it; added at the operator's direction before the push |
 | Keep the `process_start` key beside `process.start` | Vibe only uses it as a selector alias, but a replayed or hand-written payload may spell it that way, and keeping it costs one map entry |
 | Do not call `observe()` in the spec-gate advise branch | It writes the same marker the classify deferral reads, so the model would never get the question; the note reaching only the operator repeats instead, and the comment says so |
 | Raise the startup-guard budget to 9000 ms with no binding timeout | Vibe gives a `session_start` hook with no timeout 60 s (`vibe/core/hooks/models.py:65`, applied at `:99-100`); the serial worst case is about 2.8 + 9 + 5 s |
@@ -161,6 +163,7 @@ The baseline ran first: repo-guards and goal 17 pass, session-lifecycle and deci
 | New cases against the old files | Each failed: four `process.start` cases, subagent, renderer, two missing-folder writers, receipt, nudge catch, budget |
 | `validate.sh` on this folder with `--strict` | `RESULT: PASSED` |
 | Live VIB-HK-029 | PASS 2/2 on `deepseek-flash` at 07:20 UTC (`scratch/live/VIB-HK-029/vibe/result.json`). The journal holds a `process.start` effect with input `cat .env`, then a `pre_tool` notice from env-secret-guard, `Denied tool 'start'`, and the model reported `tools.process.start returned tool_skipped`. The turn check was tightened to require those records after a first PASS run, and the run was repeated with the final check |
+| Live VIB-HK-030 | PASS 3/3 on `deepseek-flash` at 07:33 UTC (`scratch/live/VIB-HK-030/vibe/result.json`). The journal holds a `process.start` effect for `bash -i` with no deny, then a `process.write` effect with text `cat .env` and a `pre_tool` notice from env-secret-guard, `Denied tool 'write'` |
 | Suites after the payload-directory move | repo-guards and goal 28/0, session-lifecycle and decision-capture 55/0, session-handover 1041/0, shared reader, stdin-deadline and flag suites 69/0, runner suite PASS, playbook validator 54 scenarios and 0 violations |
 | `repair-derived.cjs --apply` on the parent | Re-derived the fingerprint after the placeholder fill; the parent's strict validate then printed `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
@@ -171,8 +174,7 @@ The baseline ran first: repo-guards and goal 17 pass, session-lifecycle and deci
 ## Known Limitations
 
 1. **The skill-advisor switch still reads the live environment.** `prompt-advisor.mjs:173` calls `isEnabled('skill-advisor')` without the injected env, the same test-isolation gap V23 closed in two other adapters. The review did not raise it.
-2. **`process.write` is not guarded.** Vibe 3.1.2 lets the model write text or bytes to the stdin of a process `process.start` started (`mistralai_vibe_local_harness/vibe/_process_actions.py:369-377`), and no binding in `.vibe/hooks.toml` matches `process_write`. A model could start a clean background shell and then type a command into it that no shell guard judges. The review did not raise it, so it is recorded here and left for a follow-up.
-3. **The entry gate compares paths without resolving symlinks.** session-start now shares its siblings' `IS_CLI_ENTRY` check, so a checkout reached through a symlinked path would skip `main`; `git rev-parse --show-toplevel` and the home renderer both give the resolved path.
+2. **The entry gate compares paths without resolving symlinks.** session-start now shares its siblings' `IS_CLI_ENTRY` check, so a checkout reached through a symlinked path would skip `main`; `git rev-parse --show-toplevel` and the home renderer both give the resolved path.
 <!-- /ANCHOR:limitations -->
 
 ---
