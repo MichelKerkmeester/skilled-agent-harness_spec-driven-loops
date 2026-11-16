@@ -124,6 +124,20 @@ function buildRequest(snapshot, input) {
     }),
   }];
   if (disposition.evidence) evidence.push(disposition.evidence);
+  // A surface hint can change the route, so it is a request fact. It is kept as
+  // given, so two requests that differ only in the hint never share a hash.
+  if (typeof input.surfaceHint === 'string' && input.surfaceHint.trim()) {
+    evidence.push({
+      id: 'runtime:surface-hint',
+      kind: 'runtime',
+      provenance: {
+        capturedAtEpoch: snapshot.policy.activationGeneration,
+        source: 'caller-session',
+      },
+      trust: 'live',
+      value: canonicalize({ surfaceHint: normalize(input.surfaceHint) }),
+    });
+  }
   const request = {
     evidence,
     ...(input.explicitMode ? { explicitMode: input.explicitMode } : {}),
@@ -258,10 +272,10 @@ function hintedSurface(snapshot, surfaceHint) {
 }
 
 // Serve-time reorder of a validated route's targets. The compiled composition
-// rules fix one order per surface set, so the hint is applied after validation
-// and never inside evaluateCanary. The hinted surface takes the first surface
-// slot, workflow modes keep their slots and no target is added or dropped, so a
-// hint the prompt did not match returns the targets unchanged. The fallback
+// rules fix one order per surface set, so the reorder runs after validation.
+// The hinted surface takes the first surface slot, workflow modes keep their
+// slots and no target is added or dropped here. A hinted specific surface joins
+// the route earlier, inside evaluateCanary, where the route is validated. The fallback
 // surface ranks after every other surface, so a hint naming it changes nothing:
 // the tie-break order already places it where it belongs.
 function applySurfaceHint(snapshot, targets, surfaceHint) {
@@ -283,6 +297,17 @@ function applySurfaceHint(snapshot, targets, surfaceHint) {
     next += 1;
     return reordered[next - 1];
   });
+}
+
+// The caller already knows the surface its session works in, so a hint naming a
+// surface the hub declares as specific adds that surface to the selected modes.
+// A prompt that scored nothing then routes to it. The fallback surface, a
+// workflow mode or an unknown name adds nothing.
+function joinHintedSurface(snapshot, selected, surfaceHint) {
+  const hinted = hintedSurface(snapshot, surfaceHint);
+  const specific = (snapshot.routingModel.surfaceDetection || {}).specific || [];
+  if (!hinted || !specific.includes(hinted) || selected.includes(hinted)) return selected;
+  return [...selected, hinted];
 }
 
 function evaluateCanary(snapshot, input) {
@@ -307,7 +332,11 @@ function evaluateCanary(snapshot, input) {
     scores.sort((left, right) => (
       right.score - left.score || order.get(left.mode) - order.get(right.mode)
     ));
-    const selected = selectNearTiedModes(scores, snapshot.routingModel.ambiguityDelta);
+    const selected = joinHintedSurface(
+      snapshot,
+      selectNearTiedModes(scores, snapshot.routingModel.ambiguityDelta),
+      input.surfaceHint,
+    );
     if (constraints.has('clarify')) {
       decision = clarify(snapshot, built.request, selected.length ? selected : scores.map((entry) => entry.mode));
     } else if (selected.length === 0) {

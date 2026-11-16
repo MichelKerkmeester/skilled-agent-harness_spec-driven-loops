@@ -1,0 +1,37 @@
+TASK: read a host capture file beside the upstream baseline when one exists.
+One file changes. Do the two steps below in order. Each step replaces one block of text with another.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 2. File: R/.skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts
+OLD (2 lines, this exact text appears once in the file):
+const BASELINE_PATH = join(ROUTING, 'command-routing-baseline.json');
+const RECAPTURE = 'node scripts/routing-accuracy/capture-command-routing-baseline.mjs --write';
+NEW (replace those lines with these 17 lines, same indentation):
+const BASELINE_PATH = join(ROUTING, 'command-routing-baseline.json');
+
+// A host with its own hub vocabulary routes some rows differently from upstream.
+// It keeps its own capture in a `.host.json` file beside the upstream one, and
+// the ratchet reads that file whenever it exists. Every row stays guarded on the
+// host, including the rows its vocabulary moved.
+function capturePath(upstreamPath: string): string {
+  const hostPath = upstreamPath.replace(/\.json$/, '.host.json');
+  return existsSync(hostPath) ? hostPath : upstreamPath;
+}
+
+const BASELINE_READ_PATH = capturePath(BASELINE_PATH);
+// The capture prints its JSON to stdout, so a host writes its own file by
+// redirecting that output rather than through `--write`, which targets upstream.
+const RECAPTURE = BASELINE_READ_PATH === BASELINE_PATH
+  ? 'node scripts/routing-accuracy/capture-command-routing-baseline.mjs --write'
+  : 'node scripts/routing-accuracy/capture-command-routing-baseline.mjs > scripts/routing-accuracy/command-routing-baseline.host.json';
+
+STEP 2 of 2. File: R/.skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts
+OLD (1 lines, this exact text appears once in the file):
+    baseline = JSON.parse(readFileSync(BASELINE_PATH, 'utf8')) as CommandRoutingBaseline;
+NEW (replace those lines with these 1 lines, same indentation):
+    baseline = JSON.parse(readFileSync(BASELINE_READ_PATH, 'utf8')) as CommandRoutingBaseline;
+
+CHECK. Run:
+cd R/.skilled/skills/system-skill-advisor/runtime && npx vitest run tests/command-routing-slice.vitest.ts
+Expected: the summary shows "6 passed" and no failed test. Report the passed and failed counts. If a test fails, do not change it: report its name and output.

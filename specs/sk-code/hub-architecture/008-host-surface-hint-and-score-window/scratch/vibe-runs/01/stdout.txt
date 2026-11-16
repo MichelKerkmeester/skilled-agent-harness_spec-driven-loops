@@ -1,0 +1,37 @@
+1. FILES CHANGED:
+- /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/bin/tests/compiled-route-surface-hint.test.cjs
+
+2. COMMANDS:
+
+`grep -n "SK_CODE_ROOT\|FRONT_DOOR\|compiledRoute\|compileRegistry\|applySurfaceHint\|a hub without surface packets" .skilled/bin/tests/compiled-route-surface-hint.test.cjs` — exit 0
+```
+20:const SK_CODE_ROOT = path.join(__dirname, '..', '..', 'skills', 'sk-code');
+21:const FRONT_DOOR = path.join(__dirname, '..', 'compiled-route.cjs');
+22:const { compiledRoute } = require(path.join(ENGINE_DIR, 'compiled-route.cjs'));
+23:const { compileRegistry } = require(path.join(SK_CODE_LIB, 'registry-compiler.cjs'));
+24:const { applySurfaceHint, evaluateCanary } = require(path.join(SK_CODE_LIB, 'canary-router.cjs'));
+...
+256:test('a hub without surface packets ignores the hint', () => {
+```
+
+`sed -n '18,26p;250,300p' .skilled/bin/tests/compiled-route-surface-hint.test.cjs` — exit 0 (post-edit read-back; both edits present, `loadHubEngine` added to the destructure, five new tests inserted before the `a hub without surface packets` test)
+
+`node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs` — exit 1
+```
+ℹ tests 20
+ℹ pass 16
+ℹ fail 4
+ℹ duration_ms 300.844125
+```
+Failing tests (exactly the four the brief predicted, no others):
+```
+✖ a specific surface hint joins a route the prompt scored
+✖ a specific surface hint routes a prompt that scores nothing
+✖ the hint is a request fact
+✖ a hinted host surface joins as the first surface after the workflow modes
+```
+Failure shapes, for the later router brief: test 1 gets `action: 'defer'` where `'route'` is expected; test 2 same; test 3 gets an identical `requestFactsHash` for `'FRONTEND'` and `undefined` (the hint is not yet a request fact); test 4 gets `['sk-code-review','sk-code-frontend']` where `['sk-code-review','sk-code-webflow','sk-code-frontend']` is expected (the hinted host surface is not yet joined).
+
+`git diff -- .skilled/bin/tests/compiled-route-surface-hint.test.cjs` — exit 0, diff is exactly the two specified edits (1 line changed, 49 lines added).
+
+3. OPEN QUESTIONS: none. The working tree already carried unrelated modifications (doctor command assets, skill-advisor runtime tests, two spec packets) before this dispatch; I did not touch them, and `git diff` on the named file confirms only the two briefed edits.

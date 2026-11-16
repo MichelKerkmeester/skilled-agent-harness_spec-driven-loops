@@ -1121,6 +1121,11 @@ const SECRET_PATTERNS = [
   // first, so its match (and the "Bearer"/"Basic" keyword itself) is never re-consumed here —
   // the negative lookahead is a belt-and-suspenders guard against reprocessing it.
   { regex: /\b([A-Za-z0-9-]*(?:token|key|secret|password|authorization)[A-Za-z0-9-]*\s*:\s*)(?!(?:Bearer|Basic)\b)("([^"]+)"|'([^']+)'|(\S+))/gi, replacement: `$1${REDACTED_PLACEHOLDER}` },
+  // URL userinfo (`scheme://user:password@host`, or a token alone as the user) carries no
+  // keyword, so a proxy or base URL would otherwise log its credentials. Only the userinfo is
+  // replaced; the scheme and host stay readable. The userinfo class excludes `/`, so an `@`
+  // later in the path is never taken for one.
+  { regex: /\b([a-z][a-z0-9+.-]*:\/\/)[^\s/@'"]+@/gi, replacement: `$1${REDACTED_PLACEHOLDER}@` },
   // Common provider secret-key prefixes appearing bare in the command text (hyphen-delimited
   // and underscore-delimited live/test key formats alike).
   { regex: /\b(sk-[A-Za-z0-9_-]{10,}|sk_(?:live|test)_[A-Za-z0-9]{10,}|pk_(?:live|test)_[A-Za-z0-9]{10,}|ghp_[A-Za-z0-9]{10,}|xox[baprs]-[A-Za-z0-9-]{10,}|AKIA[0-9A-Z]{12,})\b/g, replacement: REDACTED_PLACEHOLDER },
@@ -1240,7 +1245,9 @@ export function appendAuditLog(logPath, line) {
     } catch (_) {
       // A missing/unreadable active log is the normal first-write case.
     }
-    appendFileSync(logPath, `${line}\n`, 'utf8');
+    // Owner-only, like the other hook state files: a line can still hold a secret the
+    // scrubber has no pattern for. The mode applies only when this call creates the file.
+    appendFileSync(logPath, `${line}\n`, { encoding: 'utf8', mode: 0o600 });
     return true;
   } catch (_) {
     return false;

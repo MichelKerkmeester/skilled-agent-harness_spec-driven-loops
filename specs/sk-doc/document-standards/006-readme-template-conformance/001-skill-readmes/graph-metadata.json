@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes",
+  "spec_folder": "sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes",
+  "parent_id": "sk-doc/document-standards/006-readme-template-conformance",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill readmes",
+      "phase 1 skill readmes",
+      "skill readme template conformance",
+      "rewrite skill readmes",
+      "skill readmes plan",
+      "skill readme rewrite batches",
+      "skill readmes tasks",
+      "skill readmes acceptance criteria",
+      "001-skill-readmes operator decisions",
+      "skill readmes implementation summary"
+    ],
+    "key_topics": [
+      "skill",
+      "readmes",
+      "phase",
+      "readme",
+      "template",
+      "conformance",
+      "rewrite",
+      "plan",
+      "batches",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md",
+      ".skilled/skills/cli-classifier/README.md",
+      ".skilled/skills/cli-external-orchestration/README.md",
+      ".skilled/skills/cli-orca/README.md",
+      ".skilled/skills/mcp-code-mode/README.md",
+      ".skilled/skills/mcp-tooling/README.md",
+      ".skilled/skills/sk-code/README.md",
+      ".skilled/skills/sk-doc/README.md",
+      ".skilled/skills/sk-git/README.md",
+      ".skilled/skills/sk-prompt/README.md",
+      ".skilled/skills/system-deep-loop/README.md",
+      ".skilled/skills/system-skill-advisor/README.md",
+      ".skilled/skills/system-skilled-doctor/README.md",
+      ".skilled/skills/system-spec-kit/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill READMEs are the front door a person reads before opening a skill's `SKILL.md`",
+    "created_at": "2026-11-16T15:20:12Z",
+    "last_save_at": "2026-11-16T15:56:38.030Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:798f2a699802c5d539f93309f2b774f72fef7e3544a3524068d9f231e1adb9a9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "84faf5f6ef1def4af0ff252493d3e48ea5b3221ce7fcd831c6c868b691990b5d",
+      "plan.md": "cfae898e0fbc9a68f6e46f2b9951453cf2e4ca88e409a50afa92824979f05145",
+      "tasks.md": "b443e2546cddc13d70124f4c2b14f47afe8d31ddf8271213de8eb3ff85e0b201",
+      "decision-record.md": "79910a889faf65cadf2a794d4b15d0700ef9754fe61f32d15775c6cc6c17b565",
+      "implementation-summary.md": "8b77e6456b785678b4e1eadcad2cad231f4ee5dc12360dc7793579c5c408cb05"
+    },
+    "last_active_at": null
+  }
+}

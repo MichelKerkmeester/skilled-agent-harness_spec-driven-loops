@@ -826,3 +826,108 @@ test('a dropped set is restored from the pinned copy the run was given', () => {
 
   assert.equal(restored, newPin);
 });
+
+// An array index is a position, so a restore through one is trusted only while
+// the live array and the pin's still line up.
+const PINNED_LIST = { rows: [{ id: 'A', top: 'a' }, { id: 'B', top: 'b' }] };
+const INSERT_X = { op: 'insertItems', path: ['rows'], identityKey: 'id', before: { id: 'A' }, items: [{ id: 'X', top: 'x' }] };
+
+test('apply restores a dropped set through an array index while the arrays line up', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  fixture.writeOperations([{ op: 'set', path: ['rows', 1, 'top'], value: 'v' }]);
+  seedState(fixture);
+  assert.equal(readJson(fixture.livePath).rows[1].top, 'v');
+
+  fixture.writeOperations([]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+});
+
+test('apply refuses a dropped set through an array the overlay added an item to', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  fixture.writeOperations([INSERT_X, { op: 'set', path: ['rows', 1, 'top'], value: 'v' }]);
+  seedState(fixture);
+  assert.deepEqual(readJson(fixture.livePath).rows.map((row) => row.top), ['x', 'v', 'b']);
+  const liveBefore = fixture.readLive();
+
+  // With the insert kept, index 1 is A in the live file and B in the pin.
+  fixture.writeOperations([INSERT_X]);
+  const keptInsert = fixture.run(['apply']);
+  assert.equal(keptInsert.code, 1, keptInsert.output);
+  assert.match(keptInsert.output, /cannot restore the dropped set at rows\.1\.top: its path goes through an array whose items differ from the pinned copy/);
+  assert.equal(fixture.readLive(), liveBefore);
+
+  // With both dropped, removing the item would move every index after it.
+  fixture.writeOperations([]);
+  const droppedBoth = fixture.run(['apply']);
+  assert.equal(droppedBoth.code, 1, droppedBoth.output);
+  assert.match(droppedBoth.output, /cannot restore the dropped set at rows\.1\.top/);
+  assert.equal(fixture.readLive(), liveBefore);
+});
+
+test('two sets on one path keep one record and both leave together', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([
+    { op: 'set', path: TOP_PATH, value: 'sk-doc' },
+    { op: 'set', path: TOP_PATH, value: 'sk-git' },
+  ]);
+  seedState(fixture);
+  assert.equal(readJson(fixture.livePath).rows.a.top, 'sk-git');
+  assert.deepEqual(fixture.recordedSets(), [{ path: TOP_PATH, value: 'sk-git', added: false }]);
+
+  fixture.writeOperations([]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+});
+
+test('apply deletes a key the pin does not hold even when its record never marked it as added', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: ['rows', 'a', 'extra'], value: 1 }]);
+  seedState(fixture);
+  // An older engine added the key and kept no record, so the next apply finds
+  // the key in place and cannot know who put it there.
+  const older = readJson(fixture.statePath);
+  delete older.sets;
+  writeFile(fixture.overlayDir, 'sync-state.json', JSON.stringify(older, null, 2) + '\n');
+  assert.equal(fixture.run(['apply']).code, 0);
+  assert.deepEqual(fixture.recordedSets(), [{ path: ['rows', 'a', 'extra'], value: 1, added: false }]);
+
+  fixture.writeOperations([]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+});
+
+test('apply refuses to delete a key the pin does not hold once its value was edited', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: ['rows', 'a', 'extra'], value: 1 }]);
+  seedState(fixture);
+  writeFile(fixture.tree, 'baseline.json', fixture.readLive().replace('"extra": 1', '"extra": 2'));
+  const liveBefore = fixture.readLive();
+
+  fixture.writeOperations([]);
+  const refused = fixture.run(['apply']);
+
+  assert.equal(refused.code, 1, refused.output);
+  assert.match(refused.output, /dropped set at rows\.a\.extra was edited after it was applied/);
+  assert.equal(fixture.readLive(), liveBefore);
+});
+
+test('a dropped set is restored while the operations that stay are still applied', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  const keys = { op: 'insertObjectKeys', path: ['rows', 'a'], entries: [{ key: 'note', value: 'kept' }] };
+  fixture.writeOperations([keys, { op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  seedState(fixture);
+
+  fixture.writeOperations([keys]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.deepEqual(readJson(fixture.livePath).rows.a, { top: 'sk-code', note: 'kept' });
+  assert.deepEqual(fixture.recordedSets(), []);
+});

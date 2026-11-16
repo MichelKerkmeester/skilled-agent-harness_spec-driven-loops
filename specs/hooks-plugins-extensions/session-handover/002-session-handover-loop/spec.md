@@ -153,6 +153,8 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 47 | 047-vibe-handover-hardening/ | Vibe hand-over hardening: the turn-start withdraw, the session-id record, the deferred mark and a killer that watches the whole journal folder | Complete |
 | 48 | 048-cross-runtime-handover-parity-fixes/ | Pi and OpenCode senders get History Lookup, a failed arm is deferred on Codex, Pi and OpenCode, one shared nudge claim, and readable history previews | Complete |
 | 49 | 049-handover-doc-alignment/ | Every hand-over doc checked against the code: the findings of a doc alignment run fixed, the ones in worktree 411's rewritten READMEs handed to that rewrite, and `vibe` added to the loop shell shim | Complete |
+| 50 | 050-handover-doc-alignment-2/ | A second doc alignment run over all 86 hand-over docs: four broken reader commands fixed, and Pi's arm event, OpenCode 2's model carry and Vibe's arm and withdraw paths stated as the code runs them | Complete |
+| 51 | 051-handover-doc-alignment-3/ | A third doc alignment run over 87 hand-over docs: `.vibe` added to the linked-folder lists, Cursor's command named right and every wrapper variable listed in the env reference | Complete |
 
 ### Phase Transition Rules
 
@@ -213,6 +215,8 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 046-vibe-history-locator | 047-vibe-handover-hardening | Phase 46 is Complete and pushed | `validate.sh 046-vibe-history-locator --strict` RESULT: PASSED |
 | 047-vibe-handover-hardening | 048-cross-runtime-handover-parity-fixes | Phase 47 is Complete and pushed | `validate.sh 047-vibe-handover-hardening --strict` RESULT: PASSED |
 | 048-cross-runtime-handover-parity-fixes | 049-handover-doc-alignment | Phase 48 is Complete and pushed, so the doc check reads the shipped parity code | `validate.sh 048-cross-runtime-handover-parity-fixes --recursive --strict` RESULT: PASSED |
+| 049-handover-doc-alignment | 050-handover-doc-alignment-2 | Phase 49 is Complete and pushed, so the second check reads its fixed docs | `validate.sh 049-handover-doc-alignment --strict` RESULT: PASSED |
+| 050-handover-doc-alignment-2 | 051-handover-doc-alignment-3 | Phase 50 is Complete and pushed, so the third check reads its fixed docs | `validate.sh 050-handover-doc-alignment-2 --strict` RESULT: PASSED |
 <!-- /ANCHOR:phase-map -->
 
 ---

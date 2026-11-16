@@ -1,0 +1,43 @@
+TASK: let `apply --adopt` take a path under `repin.exclude` when the overlay folder holds its copy.
+One file changes. Do the 1 step below in order, then run the check.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 1. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (8 lines, this exact text appears once in the file):
+  const root = canonicalPath(ctx.root);
+  const settings = writeCheckSettings(manifest);
+  const destinationPath = captureCandidates(root, inputPath)
+    .map((candidate) => canonicalPathWithoutLeaf(candidate))
+    .find((candidate) => isWithin(root, candidate) && candidate !== root &&
+      isVendoredKey(relativeKey(root, candidate), settings));
+  if (!destinationPath) {
+    return refuse(`${inputPath} is not under a vendored root (${settings.roots.join(', ')}) and is not a file ` +
+NEW (replace those lines with these 23 lines, same indentation):
+  const root = canonicalPath(ctx.root);
+  const settings = writeCheckSettings(manifest);
+  // A path under repin.exclude would be vendored but for that list. A re-pin never
+  // copies it, so it needs no overlay, yet a project may keep its copy in the
+  // overlay folder to carry it. Adopt takes such a path only from that copy.
+  const isExcludedVendoredKey = (key) => isUnderAny(key, settings.exclude) &&
+    isVendoredKey(key, { ...settings, exclude: [] });
+  const hasOverlayCopy = (key) => pathExists(path.join(ctx.overlayRoot, ...adoptSource(key).split('/')));
+  const candidates = captureCandidates(root, inputPath)
+    .map((candidate) => canonicalPathWithoutLeaf(candidate))
+    .filter((candidate) => isWithin(root, candidate) && candidate !== root);
+  const destinationPath = candidates.find((candidate) => {
+    const key = relativeKey(root, candidate);
+    return isVendoredKey(key, settings) || (isExcludedVendoredKey(key) && hasOverlayCopy(key));
+  });
+  const excludedPath = candidates.find((candidate) => isExcludedVendoredKey(relativeKey(root, candidate)));
+  if (!destinationPath && excludedPath) {
+    const key = relativeKey(root, excludedPath);
+    return refuse(`${key} is under repin.exclude, so adopt takes it only from its overlay copy at ` +
+      `${ctx.overlayLabel}/${adoptSource(key)}, which does not exist; move or create the file there, then adopt again`);
+  }
+  if (!destinationPath) {
+    return refuse(`${inputPath} is not under a vendored root (${settings.roots.join(', ')}) and is not a file ` +
+
+CHECK. Run:
+cd R && node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')" && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs
+Expected: the first command prints nothing, and the summary shows "tests 19", "pass 19" and "fail 0". Report the pass and fail counts. If a test fails, do not change it: report its name and output.

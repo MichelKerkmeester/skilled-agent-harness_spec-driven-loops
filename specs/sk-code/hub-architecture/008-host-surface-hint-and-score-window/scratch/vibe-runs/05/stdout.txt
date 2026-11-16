@@ -1,0 +1,45 @@
+RETURN: PASS | escalation=NONE | confidence=HIGH
+
+## Code Implementation Result
+
+**Mode:** 2: Surgical Fix
+**Files:** `.skilled/bin/README.md`
+**Verification:** PASS
+**Quality Gate:** N/A (documentation line edit; no code path changed)
+**Command:** `rg -n 'surface-hint' .skilled/bin/README.md`
+**Exit Code:** 0
+**First Failing Assertion:** N/A
+**Rubric Score:** N/A
+**Escalation:** NONE
+**Confidence:** HIGH
+**Not checked:** nothing material
+
+### Summary
+Line 174 of `.skilled/bin/README.md` now describes `--surface-hint` as adding a hub-declared specific surface to the route, leading the surfaces after the workflow modes, routing a no-match hinted prompt to that surface alone, and changing nothing for the fallback surface, a workflow mode or an unknown name. The other four lines in the block were byte-identical between OLD and NEW, so only the one line changed; `git diff --stat` confirms 1 insertion, 1 deletion.
+
+---
+
+1. FILES CHANGED
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/bin/README.md`
+
+2. COMMANDS
+
+**`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -n 'compiled-route.cjs --hub' .skilled/bin/README.md`** — exit 0 (pre-edit anchor check)
+```
+174:| `node .skilled/bin/compiled-route.cjs --hub <id> --prompt "<task>"` | CLI | Ask whether the compiled router is authoritative for a hub. Returns a legacy sentinel when it is not. `--prompt-stdin` reads the prompt from stdin instead, which keeps a user's prompt out of the process table. `--surface-hint <SURFACE>` passes the surface the caller's session works in. A specific surface hint leads a keyword tie between surfaces the prompt matched. A hint naming the fallback surface (SKILLED for sk-code) changes nothing, because the fallback always ranks last. |
+```
+
+**`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -n 'surface-hint' .skilled/bin/README.md`** — exit 0 (STEP 2 of 2)
+```
+174:| `node .skilled/bin/compiled-route.cjs --hub <id> --prompt "<task>"` | CLI | Ask whether the compiled router is authoritative for a hub. Returns a legacy sentinel when it is not. `--prompt-stdin` reads the prompt from stdin instead, which keeps a user's prompt out of the process table. `--surface-hint <SURFACE>` passes the surface the caller's session works in. A hint that names a surface the hub declares as specific adds that surface to the route and leads the surfaces after the workflow modes. A hinted prompt that matches nothing routes to that surface alone. A hint naming the fallback surface (SKILLED for sk-code), a workflow mode or an unknown name changes nothing. |
+```
+One line, numbered 174, containing "adds that surface to the route" — as expected.
+
+**`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && git diff --stat -- .skilled/bin/README.md`** — exit 0 (scope check)
+```
+ .skilled/bin/README.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+```
+
+3. OPEN QUESTIONS
+none

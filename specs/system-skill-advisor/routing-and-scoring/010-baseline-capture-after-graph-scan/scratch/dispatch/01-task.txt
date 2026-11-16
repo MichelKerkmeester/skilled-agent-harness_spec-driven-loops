@@ -1,0 +1,52 @@
+TASK: add two failing tests for reading a host capture file beside the upstream baseline.
+One file changes. Do the three steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 3. File: R/.skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts
+OLD (5 lines, this exact text appears once in the file):
+import { readFileSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+import { beforeAll, describe, expect, it } from 'vitest';
+NEW (replace those lines with these 6 lines, same indentation):
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
+
+STEP 2 of 3. Same file.
+Append the block below at the END of the file, after one blank line. Change nothing else in the file.
+
+BLOCK TO APPEND:
+describe('host capture selection', () => {
+  let dir = '';
+  let upstream = '';
+
+  beforeEach(() => {
+    dir = mkdtempSync(join(tmpdir(), 'command-routing-host-'));
+    upstream = join(dir, 'command-routing-baseline.json');
+    writeFileSync(upstream, '{}\n');
+  });
+
+  afterEach(() => {
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  it('reads the upstream capture when no host capture sits beside it', () => {
+    expect(capturePath(upstream)).toBe(upstream);
+  });
+
+  it('reads the host capture when one sits beside the upstream one', () => {
+    const host = join(dir, 'command-routing-baseline.host.json');
+    writeFileSync(host, '{}\n');
+    expect(capturePath(upstream)).toBe(host);
+  });
+});
+
+STEP 3 of 3. Run:
+cd R/.skilled/skills/system-skill-advisor/runtime && npx vitest run tests/command-routing-slice.vitest.ts
+Expected: the summary shows "2 failed" and "4 passed". The two failing tests are in "host capture selection" and fail with "capturePath is not defined". That failure is wanted: the function comes in a later brief. Do not add it and do not change the tests to make them pass. Report the passed and failed counts and the first error message. If any other test fails, report its name and output.

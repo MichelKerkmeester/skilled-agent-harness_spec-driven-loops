@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-handover-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.28.0
+version: 1.0.29.0
 id: session-handover-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -157,7 +157,7 @@ tmux new-session -d -s "$session_name" "$tmux_command"
 tmux attach -t "$session_name"
 ~~~
 
-Observe Pi's `message_end` nudge, the seed injection at `before_agent_start` and matching-record arming at `agent_end`. Pi only decides the nudge at `message_end` and holds the text until the next `turn_end` whose tools ran, which re-checks the record and the hop limit before steering it into the running loop. When the loop ends first, `agent_end` makes the same checks and sends it as a follow-up that starts a turn. Confirm the killer ends the current Pi process and `skilled-loop` starts Pi with the prepared claim seed. Confirm the receiving TUI claims that note and continues the task. The 2026-10-19 benchmark report for this scenario records the seed claims those runs made in the receiving TUI.
+Observe Pi's `message_end` nudge, the seed injection at `before_agent_start` and matching-record arming at `agent_settled`. Pi only decides the nudge at `message_end` and holds the text until the next `turn_end` whose tools ran, which re-checks the record and the hop limit before steering it into the running loop. When the loop ends first, `agent_end` makes the same checks and sends it as a follow-up that starts a turn. Confirm the killer ends the current Pi process and `skilled-loop` starts Pi with the prepared claim seed. Confirm the receiving TUI claims that note and continues the task. The 2026-10-19 benchmark report for this scenario records the seed claims those runs made in the receiving TUI.
 
 #### Live OpenCode hop in tmux (Live)
 
@@ -178,7 +178,7 @@ Observe `message.updated` usage handling, `message.part.updated` seed capture an
 
 These checks call a Pi or OpenCode hand-over off, or let it run, and read the result from the record, the logs and the hop history. Each runtime runs through `skilled-loop` in a detached tmux session so one shell can type into it and read it. The code paths are covered by the suites listed under PO-6. The live steps were authored from that code, so record your own run before you rely on a timing. The Pi commands in PO-5 were run as written while this file was authored, and the OpenCode flow in CO-046 was run on OpenCode 1 and 2. The tmux checks PO-1 to PO-4 were not.
 
-Both runtimes withdraw an armed record when a new turn starts, and a pending record a failed arm left deferred is withdrawn too; only a freshly prepared pending record is left alone. Pi acts on `agent_start` and OpenCode on a `message.updated` event for a user message it has not seen. Both tell the model it was withdrawn: Pi sends the withdraw notice as a steer and OpenCode adds it to the system prompt, `relaunch.log` records `arm-cancelled` where Claude and Codex record `withdrawn`, and the extra nudge comes after the next assistant message that grows the fill by a step. Neither runtime has background-task completion prompts, so there is no `<task-notification>` case.
+Both runtimes withdraw an armed record when a new turn starts, and a pending record a failed arm left deferred is withdrawn too; only a freshly prepared pending record is left alone. Pi acts on `agent_start` and OpenCode on a `message.updated` event for a user message it has not seen. Both tell the model it was withdrawn: Pi sends the withdraw notice as a steer and OpenCode adds it to the system prompt, `relaunch.log` records `arm-cancelled` where Claude, Codex and Vibe record `withdrawn`, and the extra nudge comes after the next assistant message that grows the fill by a step. Neither runtime has background-task completion prompts, so there is no `<task-notification>` case.
 
 #### PO-0 Live setup shared by PO-1 to PO-4 (Live)
 
@@ -248,7 +248,7 @@ Evidence: the three history lines and the two log lines. PASS when the three lin
 
 #### PO-2 A new turn withdraws an armed hand-over (Live)
 
-Pi arms on `agent_end` and OpenCode on `session.idle`. OpenCode's killer has no transcript and waits a fixed 3 s, and Pi's reads the session file. A prompt typed inside that window must withdraw the record, so the check types it as soon as the record is armed.
+Pi arms on `agent_settled` and OpenCode on `session.idle`. OpenCode's killer has no transcript and waits a fixed 3 s, and Pi's reads the session file. A prompt typed inside that window must withdraw the record, so the check types it as soon as the record is armed.
 
 ~~~bash
 start_runtime
@@ -267,7 +267,7 @@ Expected:
 
 - The record reads `"status":"disarmed"` and `"disarmReason":"user-message"`.
 - `should-relaunch` prints `{"relaunch":false,"reason":"withdrawn",...}` and `exit 1`.
-- `relaunch.log` holds `arm-cancelled loopId=<id> sessionId=<id> reason=user-message` and no `killer-signal` line after it. There is no `withdrawn` line, because that event name belongs to Claude and Codex.
+- `relaunch.log` holds `arm-cancelled loopId=<id> sessionId=<id> reason=user-message` and no `killer-signal` line after it. There is no `withdrawn` line, because that event name belongs to Claude, Codex and Vibe.
 - `history` ends with a `withdrawn` line that carries `by <first eight characters of the session id>`, then `open notes: 1 withdrawn note still with its session`.
 - The pane shows the runtime answering STAYING in the same session.
 
@@ -282,7 +282,7 @@ tmux display -p -t "$session_name" '#{pane_dead_status}'
 
 Expected: one line `warning: the prepared hand-over was withdrawn in the session; <note path> stays open and out of date`, no line that carries `claim and continue handoff` (the manual claim command) and the runtime's own exit status for the pane.
 
-Evidence: the command output, the pane text and `relaunch.log`. PASS when the record is disarmed with `user-message`, `should-relaunch` reports `withdrawn`, the session kept running and the wrapper printed the single warning without a claim command. FAIL when the record stays armed, the log shows `killer-signal`, a second runtime starts with a seed or the wrapper prints a manual claim command. Triage: if the pane shows the relaunch already, the prompt landed after the killer's wait, so rerun. If `wait_for_record armed` never returns, read `relaunch.log` for `prepare-declined`, `session-idle-arm-error` or `stop-arm-error`.
+Evidence: the command output, the pane text and `relaunch.log`. PASS when the record is disarmed with `user-message`, `should-relaunch` reports `withdrawn`, the session kept running and the wrapper printed the single warning without a claim command. FAIL when the record stays armed, the log shows `killer-signal`, a second runtime starts with a seed or the wrapper prints a manual claim command. Triage: if the pane shows the relaunch already, the prompt landed after the killer's wait, so rerun. If `wait_for_record armed` never returns, read `relaunch.log` for `prepare-declined`, `agent-settled-arm-error` or `session-idle-arm-error`.
 
 #### PO-3 The extra nudge arrives after a withdraw (Live)
 
@@ -441,7 +441,7 @@ bash "$harness/run-hop.sh" pi "$sandbox" "$out" goal
 bash "$harness/finish-run.sh" pi "$out"
 ~~~
 
-`run-hop.sh` starts the sender under `skilled-loop pi -ne -e <session-handover> -e <goal-context> --model openai/gpt-6-luna`, types `/goal-pi bind specs/demo/001-demo`, writes a note, runs `prepare`, sends one more prompt so `agent_end` arms, and lets the wrapper relaunch. It drops the host's `SKILLED_LOOP_*` and `SESSION_HANDOVER_GOAL*` variables, uses its own tmux socket and `XDG_RUNTIME_DIR`, and kills its tmux server on exit. `finish-run.sh` reduces the session logs to an extract and deletes the raw files.
+`run-hop.sh` starts the sender under `skilled-loop pi -ne -e <session-handover> -e <goal-context> --model openai/gpt-6-luna`, types `/goal-pi bind specs/demo/001-demo`, writes a note, runs `prepare`, sends one more prompt so `agent_settled` arms, and lets the wrapper relaunch. It drops the host's `SKILLED_LOOP_*` and `SESSION_HANDOVER_GOAL*` variables, uses its own tmux socket and `XDG_RUNTIME_DIR`, and kills its tmux server on exit. `finish-run.sh` reduces the session logs to an extract and deletes the raw files.
 
 Evidence, read from the receiver and not the sender:
 

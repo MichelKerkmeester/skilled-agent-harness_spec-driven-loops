@@ -246,7 +246,16 @@
         "README.md",
         "code folder readme",
         "front-page overview",
-        "/create:readme"
+        "/create:readme",
+        "readme for",
+        "skill readme",
+        "install guide",
+        "contributing guide",
+        "contributing.md",
+        "security policy",
+        "security.md",
+        "sync.md",
+        "sync doc for the"
       ]
     },
     "create-agent-aliases": {

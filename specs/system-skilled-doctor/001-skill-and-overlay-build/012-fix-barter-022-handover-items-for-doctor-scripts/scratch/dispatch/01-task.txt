@@ -1,0 +1,57 @@
+TASK: add three tests for a host hook listed under the `skilled.hostHook` local git config value.
+One file changes. Do the 1 step below in order, then run the check.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 1. File: R/.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs
+OLD (4 lines, this exact text appears once in the file):
+});
+
+test('hooks names this checkout\'s installer by absolute path when the inspected repository is the battery\'s own checkout', (t) => {
+  const f = fixture(t);
+NEW (replace those lines with these 41 lines, same indentation):
+});
+
+// A host may replace a shipped hook with its own script, which neither is a hook
+// source nor hands over to one.
+function installHostHook(f, name) {
+  const { hooksDir } = linkOwnHooks(f, [name]);
+  const installed = path.join(hooksDir, name);
+  fs.writeFileSync(installed, '#!/bin/sh\necho host hook\nexit 0\n', { mode: 0o755 });
+  return installed;
+}
+
+test('hooks passes a host hook the local config lists under skilled.hostHook and names it', (t) => {
+  const f = fixture(t);
+  installHostHook(f, 'pre-commit');
+  execFileSync('git', ['-C', f.repo, 'config', '--local', '--add', 'skilled.hostHook', 'pre-commit'], { env: f.env });
+  const row = rowOf(reportOf(f.run(['--json'])), 'hooks');
+  assert.equal(row.result, 'PASS', row.details.join(' | '));
+  assert.deepEqual(row.details, ['pre-commit: host hook by skilled.hostHook']);
+});
+
+test('hooks still fails a host hook that skilled.hostHook does not list', (t) => {
+  const f = fixture(t);
+  const installed = installHostHook(f, 'pre-commit');
+  // Listing a different hook does not cover this one.
+  execFileSync('git', ['-C', f.repo, 'config', '--local', '--add', 'skilled.hostHook', 'post-commit'], { env: f.env });
+  const row = rowOf(reportOf(f.run(['--json'])), 'hooks');
+  assert.equal(row.result, 'FAIL');
+  assert.deepEqual(row.details, [`pre-commit: resolves to ${fs.realpathSync(installed)}, not a hook source`]);
+});
+
+test('hooks reads skilled.hostHook from local config only, not from global config', (t) => {
+  const f = fixture(t);
+  const installed = installHostHook(f, 'pre-commit');
+  execFileSync('git', ['config', '--global', '--add', 'skilled.hostHook', 'pre-commit'], { env: f.env });
+  const row = rowOf(reportOf(f.run(['--json'])), 'hooks');
+  assert.equal(row.result, 'FAIL');
+  assert.deepEqual(row.details, [`pre-commit: resolves to ${fs.realpathSync(installed)}, not a hook source`]);
+});
+
+test('hooks names this checkout\'s installer by absolute path when the inspected repository is the battery\'s own checkout', (t) => {
+  const f = fixture(t);
+
+CHECK. Run:
+cd R && node --test .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs
+Expected: the summary shows "tests 86", "pass 85" and "fail 1". The one failing test is "hooks passes a host hook the local config lists under skilled.hostHook and names it". That failure is wanted: the code change comes in a later brief. Do not edit any other file and do not change the test to make it pass. Report the pass and fail counts. If any other test fails, report its name and output.

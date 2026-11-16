@@ -55,6 +55,8 @@ contextType: "general"
 - [x] T006 Rerun the validator. Verify: `V README.md` prints valid with no warning.
 - [x] T007 Rerun the voice scanner. Verify: `H README.md` prints 0 hard blockers.
 - [x] T008 Check every relative link and the absence of the old term. Verify: the link check reports no missing target and `rg -ci relaunch README.md` prints nothing.
+- [x] T010 Rewrite the five root guides and widen the validator's divider exemption to them. Verify: `V` prints `VALID` for each and the sk-doc suite prints 444 passed.
+- [x] T011 Add the guide templates to sk-create-readme and move the skill README template there. Verify: `parent-skill-check.cjs .skilled/skills/sk-doc` prints `all hard invariants passed` and the old template path has no live reference.
 - [x] T009 Run strict packet validation. Verify: `validate.sh <this folder> --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 

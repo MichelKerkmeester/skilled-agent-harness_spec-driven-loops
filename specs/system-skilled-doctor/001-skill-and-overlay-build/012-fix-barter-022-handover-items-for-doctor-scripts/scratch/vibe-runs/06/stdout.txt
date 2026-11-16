@@ -1,0 +1,106 @@
+Both commands exit 0. The check matches the expected result exactly.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs`
+
+## 2. COMMANDS
+
+**Anchor confirmation** — `wc -l .skilled/commands/doctor/scripts/overlay-engine.cjs && grep -n "function regenerate\|changedOutputs\|function printProblems\|isRegenerated\|const unresolved" ...` — exit 0
+```
+    5344 .skilled/commands/doctor/scripts/overlay-engine.cjs
+2008: * @returns {{results: object[], failed: object[], changedOutputs: string[]}}
+2010:function regenerate(manifest, root) {
+2016:  const changedOutputs = [];
+2018:    if (before.get(output) !== digest) changedOutputs.push(output);
+2020:  return { results, failed, changedOutputs };
+2420:function printProblems(ctx, records) {
+2892:  const isRegenerated = written > 0 || options.isRegenerateForced === true;
+2893:  if (isRegenerated) {
+2906:  const unresolved = updated.records.filter((record) => record.state !== 'in-sync');
+2949:  const generatedProblems = isRegenerated ? verifyGenerated(manifest, root) : [];
+```
+
+**Post-edit re-read, `regenerate`** — `sed -n '2005,2050p' ...` — exit 0
+```
+ * @param {string[]} [watched] Tree-relative paths to trace, such as overlay destinations.
+ * @returns {{results: object[], failed: object[], changedOutputs: string[],
+ *   rewrittenBy: Map<string, string[]>}} `rewrittenBy` maps each watched path a
+ *   step changed to the ids of the steps that changed it, in run order.
+ */
+function regenerate(manifest, root, watched = []) {
+  const before = snapshotOutputs(manifest, root);
+  const digestOf = (key) => {
+    const buffer = readBufferOrNull(path.join(root, key));
+    return buffer ? sha256(buffer) : null;
+  };
+  let digests = new Map(watched.map((key) => [key, digestOf(key)]));
+  const rewrittenBy = new Map();
+  const results = [];
+  for (const step of manifest.regenerate || []) {
+    results.push({ step, result: runCommand(root, step.argv) });
+    const next = new Map(watched.map((key) => [key, digestOf(key)]));
+```
+
+**Post-edit re-read, `regeneratedLine` and apply region** — `sed -n '2430,2450p' ... && sed -n '2905,2935p' ...` — exit 0
+```
+// A file a regenerate step rewrote after the overlay was applied would read as an
+// upstream move or a live edit, which sends the reader to a diff that does not
+// hold the change. The line names the step instead.
+function regeneratedLine(ctx, record, stepIds) {
+  const source = ctx.overlayLabel + '/' + record.source;
+  return 'regenerated ' + record.key + '  (overlay: ' + source + ')  step: ' + stepIds.join(', ') +
+    '  fix: carry the step\'s change into ' + source + ', or change the step so it leaves ' + record.key +
+    ' alone, then run ' + ENGINE_COMMAND + ' apply';
+}
+--- apply region ---
+  const isRegenerated = written > 0 || options.isRegenerateForced === true;
+  let rewrittenBy = new Map();
+  if (isRegenerated) {
+    const owned = analysis.records.filter((record) => !record.layout && !record.removal).map((record) => record.key);
+    const regeneration = regenerate(manifest, root, owned);
+    rewrittenBy = regeneration.rewrittenBy;
+```
+
+**Post-edit re-read, `unresolved` loop and `printProblems` call sites** — `sed -n '2936,2955p' ... && grep -n "printProblems(" ...` — exit 0
+```
+  const unresolved = updated.records.filter((record) => record.state !== 'in-sync');
+  if (unresolved.length > 0) {
+    for (const record of unresolved) {
+      const stepIds = record.layout ? undefined : rewrittenBy.get(record.key);
+      console.log(stepIds ? regeneratedLine(ctx, record, stepIds) : problemLine(ctx, record));
+    }
+    return EXIT_CONFLICT;
+  }
+--- printProblems call sites ---
+2451:function printProblems(ctx, records) {
+2893:      printProblems(ctx, analysis.records);
+3144:    printProblems(ctx, [classified]);
+3987:  printProblems(ctx, outOfSync);
+```
+
+**CHECK** — `node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')"; node --test .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs` — `require_exit=0`, `test_exit=0`
+```
+✔ a nested overlay folder hides only its own paths from the not-copied list (787.105166ms)
+✔ a re-pin over a refused overlay stops before the backup and writes nothing (376.628709ms)
+✔ a re-pin replaces an unowned link with the folder the new pin ships there (646.63425ms)
+✔ a re-pin still refuses a new upstream file that a project link already reaches (620.0165ms)
+✔ repin --stage treats an upstream addition inside a directory overlay as overlay-owned, and a hand-added file as live-edited (763.881375ms)
+✔ a folder overlay rebased onto the new pin applies after the copy, and one that is not stays upstream-moved (1232.398959ms)
+✔ a live repin names the regenerate step that rewrote a file an overlay owns, not upstream-moved (629.877125ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16691.258417
+```
+
+**Scoped diff check** — `git status --porcelain && git diff --stat` — exit 0. `overlay-engine.cjs` shows `70 ++++---`; the rest of the tree's modifications predate this dispatch (other packets in this checkout). No file outside the brief was written.
+
+## 3. OPEN QUESTIONS
+
+- STEP 2's NEW block listed 5 lines, but its 5th line is the blank line that already follows `}` in the file. I applied the 4-line content change, so the file content is identical to the brief's intent with no doubled blank line.
+- `rewrittenBy` is declared `let` above the `if (isRegenerated)` block, as the brief specifies, so the later `unresolved` loop reads it even when no step ran. That is the only reason the declaration sits outside the block; nothing else changed.

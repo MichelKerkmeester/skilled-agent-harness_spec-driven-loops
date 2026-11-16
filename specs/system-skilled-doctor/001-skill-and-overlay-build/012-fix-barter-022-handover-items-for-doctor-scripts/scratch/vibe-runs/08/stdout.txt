@@ -1,0 +1,59 @@
+RETURN: PASS | escalation=NONE | confidence=HIGH
+
+## Code Implementation Result
+
+**Mode:** 2: Surgical Fix
+**Files:** `.skilled/commands/doctor/assets/doctor-git-setup.yaml`
+**Verification:** PASS
+**Quality Gate:** N/A (single-line asset text edit; brief named the check)
+**Command:** `rg -c 'skilled.hostHook' .skilled/commands/doctor/assets/doctor-git-setup.yaml && python3 -c "import yaml,sys; yaml.safe_load(open('.skilled/commands/doctor/assets/doctor-git-setup.yaml')); print('yaml ok')"`
+**Exit Code:** 0
+**First Failing Assertion:** N/A
+**Escalation:** NONE
+**Confidence:** HIGH
+**Not checked:** nothing material — the brief's check is the whole gate for this edit.
+
+### Summary
+The `hooks` row description in the doctor git setup asset now names `skilled.hostHook` alongside `skilled.omitHook`: an installed hook declared there passes as the host's own script and must run the shipped gates itself, and the passing row names each one. Only the anchor text changed; the rest of the line is byte-identical.
+
+### Out Of Scope
+None observed.
+
+### Spec Drift
+update_recommended: false
+reason: none
+affected_spec_docs: none
+
+---
+
+1. FILES CHANGED:
+   - `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/assets/doctor-git-setup.yaml`
+
+2. COMMANDS:
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -n 'skilled.omitHook' .skilled/commands/doctor/assets/doctor-git-setup.yaml`
+   exit 0 — last lines (single long line, truncated to the relevant span):
+   ```
+   49:    - "The battery runs eleven checks in order: install (the toolchain is present), hooks (every shipped hook is installed, resolves to this repository's or this checkout's hook source or hands over to it through a skilled-hook-handover marker line, and is executable, except a hook the repository declares in local skilled.omitHook), trust (passes for this checkout, ...
+   ```
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -c 'except a hook the repository declares in local skilled\.omitHook\), trust' .skilled/commands/doctor/assets/doctor-git-setup.yaml`
+   exit 0 — anchor occurs once:
+   ```
+   1
+   ```
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -c 'skilled.hostHook' .skilled/commands/doctor/assets/doctor-git-setup.yaml && python3 -c "import yaml,sys; yaml.safe_load(open('.skilled/commands/doctor/assets/doctor-git-setup.yaml')); print('yaml ok')"`
+   exit 0 — the CHECK:
+   ```
+   1
+   yaml ok
+   ```
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -o 'except a hook the repository declares in local skilled\.omitHook.{0,260}' .skilled/commands/doctor/assets/doctor-git-setup.yaml && git status --porcelain`
+   exit 0 — post-edit read of the changed span:
+   ```
+   except a hook the repository declares in local skilled.omitHook, which may be absent, and an installed hook it declares in local skilled.hostHook, which passes as the host's own script and must run the shipped gates itself. The passing row names each one), trust (passes for this checkout, a repository with local skilled.t
+   ```
+
+3. OPEN QUESTIONS: none. The working tree already carried many unrelated modifications before this dispatch; `git status` shows `M .skilled/commands/doctor/assets/doctor-git-setup.yaml` as the only path this task touched, and no git write commands were run.

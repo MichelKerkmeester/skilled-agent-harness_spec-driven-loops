@@ -1,0 +1,933 @@
+{
+  "sessionId": "2026-11-16T11:20:27.056Z",
+  "parentSessionId": "2026-11-16T10:21:46.673Z",
+  "generation": 2,
+  "lineageMode": "restart",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Parent spec reports Complete while phase 7 is Draft and its review rerun is unfinished",
+      "file": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/spec.md",
+      "line": 52,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "README prescribes a removed Pi import fallback and a Vitest alias that does not exist",
+      "file": ".skilled/hooks/cli-dispatch/README.md",
+      "line": 115,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Directory tree omits the Vibe adapter folder",
+      "file": ".skilled/hooks/cli-dispatch/README.md",
+      "line": 166,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Credential-bearing URLs pass the dispatch audit scrubber unredacted",
+      "file": ".skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs",
+      "line": 1106,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "Audit log takes default umask permissions while sibling hook state uses 0600",
+      "file": ".skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs",
+      "line": 1243,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Phase 7's implementation summary is still an unfilled template",
+      "file": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/implementation-summary.md",
+      "line": 50,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "goal.md still records four child phases and omits phases 5-7 from the binding table",
+      "file": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/goal.md",
+      "line": 109,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-003",
+      "severity": "P2",
+      "title": "Parent spec still lists the Pi fallbacks and Vitest alias as out of scope after phases 5 and 6 fixed them",
+      "file": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/spec.md",
+      "line": 91,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Three feature README trees omit live entries that their own runtime tables name",
+      "file": ".skilled/hooks/decision-capture/README.md",
+      "line": 71,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "readdir over all five feature folders and all five trees read: three omissions, while completion-evidence and goal list every runtime entry",
+      "affectedSurfaceHints": [
+        "decision-capture/README.md section 4",
+        "subagent-dispatch-guard/README.md section 4",
+        "session-lifecycle/README.md section 4"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The subagent-dispatch-guard Pi leaf README repeats the removed fallback and test alias",
+      "file": ".skilled/hooks/subagent-dispatch-guard/README.md",
+      "line": 92,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "All five feature READMEs read: the only removed-import-fallback or test-alias statement is line 92",
+      "affectedSurfaceHints": [
+        "subagent-dispatch-guard/README.md section 3",
+        "subagent-dispatch-guard/pi/task-dispatch-guard.ts"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 5,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": []
+  },
+  "persistentSameSeverity": [
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The subagent-dispatch-guard Pi leaf README repeats the removed fallback and test alias",
+      "file": ".skilled/hooks/subagent-dispatch-guard/README.md",
+      "line": 92,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "All five feature READMEs read: the only removed-import-fallback or test-alias statement is line 92",
+      "affectedSurfaceHints": [
+        "subagent-dispatch-guard/README.md section 3",
+        "subagent-dispatch-guard/pi/task-dispatch-guard.ts"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The subagent-dispatch-guard Pi leaf README repeats the removed fallback and test alias",
+      "file": ".skilled/hooks/subagent-dispatch-guard/README.md",
+      "line": 92,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "All five feature READMEs read: the only removed-import-fallback or test-alias statement is line 92",
+      "affectedSurfaceHints": [
+        "subagent-dispatch-guard/README.md section 3",
+        "subagent-dispatch-guard/pi/task-dispatch-guard.ts"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 9
+  },
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.9,
+  "graphConvergenceScore": 0.85,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "evidenceDensity": 0,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.85
+  },
+  "candidateCoverage": {
+    "covered": [
+      "doc_code_drift",
+      "doc_completeness",
+      "missing_artifact",
+      "missing_file_permission",
+      "module_resolution",
+      "secret_redaction_bypass",
+      "stale_alias_reference",
+      "stale_path_reference"
+    ],
+    "ruledOut": [
+      "broken_symlink",
+      "flag_precedence_inversion",
+      "missing_artifact",
+      "module_resolution",
+      "raw_prompt_logging",
+      "stale_path_reference",
+      "unbounded_input"
+    ],
+    "deferred": [
+      "test_isolation"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "module_resolution": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "stale_path_reference": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "doc_code_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          4
+        ]
+      },
+      "doc_completeness": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          4
+        ]
+      },
+      "missing_artifact": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          4
+        ]
+      },
+      "computed_path_resolution": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "secret_redaction_bypass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "missing_file_permission": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "flag_precedence_inversion": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "unbounded_input": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "raw_prompt_logging": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "stale_alias_reference": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "broken_symlink": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "test_isolation": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-lifecycle/tests/pi-session-start-advisories.test.ts",
+        ".skilled/hooks/session-lifecycle/tests/dsh-session-lifecycle.test.mjs"
+      ],
+      "bugClass": "test_isolation",
+      "disposition": "deferred",
+      "rationale": "no isolation conclusion without the file",
+      "evidenceRefs": [
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/implementation-summary.md:86"
+      ],
+      "reason": "iteration budget did not allow reading the test bodies; only the phase record and README description were reviewed"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/cli-dispatch",
+        ".skilled/hooks/decision-capture",
+        ".skilled/hooks/completion-evidence",
+        ".skilled/hooks/subagent-dispatch-guard"
+      ],
+      "bugClass": "module_resolution",
+      "disposition": "ruled_out",
+      "rationale": "Every static relative specifier and literal spawn path resolves from each importer's real path.",
+      "evidenceRefs": [
+        ".skilled/hooks/cli-dispatch/pi/dispatch-preflight-lint.ts:11",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs:40"
+      ],
+      "reason": "0 missing across 74 files after symlink realpath resolution."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/cli-dispatch",
+        ".skilled/hooks/decision-capture",
+        ".skilled/hooks/completion-evidence",
+        ".skilled/hooks/subagent-dispatch-guard"
+      ],
+      "bugClass": "stale_path_reference",
+      "disposition": "ruled_out",
+      "rationale": "No live file under the four concerns references a removed folder name.",
+      "evidenceRefs": [
+        ".skilled/hooks/cli-dispatch/README.md:19"
+      ],
+      "reason": "0 matches."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/decision-capture/README.md",
+        ".skilled/hooks/completion-evidence/README.md",
+        ".skilled/hooks/subagent-dispatch-guard/README.md"
+      ],
+      "bugClass": "missing_artifact",
+      "disposition": "ruled_out",
+      "rationale": "Every suspicious adapter and test named by the READMEs exists at the named path.",
+      "evidenceRefs": [
+        ".skilled/hooks/decision-capture/README.md:54",
+        ".skilled/hooks/completion-evidence/README.md:194"
+      ],
+      "reason": "All stat checks returned files."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs"
+      ],
+      "bugClass": "flag_precedence_inversion",
+      "disposition": "ruled_out",
+      "rationale": "Precedence matches the documented per-key contract.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs:243"
+      ],
+      "reason": "resolve() is environment-first for the same key."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs"
+      ],
+      "bugClass": "unbounded_input",
+      "disposition": "ruled_out",
+      "rationale": "Cap and deadline both settle; the 64 MiB bound is intentional.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:27"
+      ],
+      "reason": "Bounded by MAX_STDIN_BYTES plus the deadline timer."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/subagent-dispatch-guard/lib/subagent-dispatch-guard.cjs",
+        ".skilled/hooks/completion-evidence/dsh/completion-evidence.mjs"
+      ],
+      "bugClass": "raw_prompt_logging",
+      "disposition": "ruled_out",
+      "rationale": "No write path carries raw prompt text.",
+      "evidenceRefs": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs:370",
+        ".skilled/hooks/subagent-dispatch-guard/lib/subagent-dispatch-guard.cjs:1013"
+      ],
+      "reason": "Read every write site in the three families."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/decision-capture",
+        ".skilled/hooks/subagent-dispatch-guard",
+        ".skilled/hooks/session-lifecycle"
+      ],
+      "bugClass": "broken_symlink",
+      "disposition": "ruled_out",
+      "rationale": "the tree omissions are documentation structure, not dead files",
+      "evidenceRefs": [
+        ".skilled/hooks/decision-capture/README.md:61"
+      ],
+      "reason": "all 44 symlinks resolve and every sampled README-named path exists"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/cli-dispatch",
+        ".skilled/hooks/decision-capture",
+        ".skilled/hooks/completion-evidence",
+        ".skilled/hooks/subagent-dispatch-guard"
+      ],
+      "bugClass": "module_resolution",
+      "disposition": "ruled_out",
+      "rationale": "Every static relative specifier and literal spawn path resolves from each importer's real path.",
+      "evidenceRefs": [
+        ".skilled/hooks/cli-dispatch/pi/dispatch-preflight-lint.ts:11",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs:40"
+      ],
+      "proof": "0 missing across 74 files after symlink realpath resolution."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/cli-dispatch",
+        ".skilled/hooks/decision-capture",
+        ".skilled/hooks/completion-evidence",
+        ".skilled/hooks/subagent-dispatch-guard"
+      ],
+      "bugClass": "stale_path_reference",
+      "disposition": "ruled_out",
+      "rationale": "No live file under the four concerns references a removed folder name.",
+      "evidenceRefs": [
+        ".skilled/hooks/cli-dispatch/README.md:19"
+      ],
+      "proof": "0 matches."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/decision-capture/README.md",
+        ".skilled/hooks/completion-evidence/README.md",
+        ".skilled/hooks/subagent-dispatch-guard/README.md"
+      ],
+      "bugClass": "missing_artifact",
+      "disposition": "ruled_out",
+      "rationale": "Every suspicious adapter and test named by the READMEs exists at the named path.",
+      "evidenceRefs": [
+        ".skilled/hooks/decision-capture/README.md:54",
+        ".skilled/hooks/completion-evidence/README.md:194"
+      ],
+      "proof": "All stat checks returned files."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs"
+      ],
+      "bugClass": "flag_precedence_inversion",
+      "disposition": "ruled_out",
+      "rationale": "Precedence matches the documented per-key contract.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs:243"
+      ],
+      "proof": "resolve() is environment-first for the same key."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs"
+      ],
+      "bugClass": "unbounded_input",
+      "disposition": "ruled_out",
+      "rationale": "Cap and deadline both settle; the 64 MiB bound is intentional.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-adapter-shared.cjs:27"
+      ],
+      "proof": "Bounded by MAX_STDIN_BYTES plus the deadline timer."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/subagent-dispatch-guard/lib/subagent-dispatch-guard.cjs",
+        ".skilled/hooks/completion-evidence/dsh/completion-evidence.mjs"
+      ],
+      "bugClass": "raw_prompt_logging",
+      "disposition": "ruled_out",
+      "rationale": "No write path carries raw prompt text.",
+      "evidenceRefs": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs:370",
+        ".skilled/hooks/subagent-dispatch-guard/lib/subagent-dispatch-guard.cjs:1013"
+      ],
+      "proof": "Read every write site in the three families."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/decision-capture",
+        ".skilled/hooks/subagent-dispatch-guard",
+        ".skilled/hooks/session-lifecycle"
+      ],
+      "bugClass": "broken_symlink",
+      "disposition": "ruled_out",
+      "rationale": "the tree omissions are documentation structure, not dead files",
+      "evidenceRefs": [
+        ".skilled/hooks/decision-capture/README.md:61"
+      ],
+      "proof": "all 44 symlinks resolve and every sampled README-named path exists"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "doc_code_drift",
+      "doc_completeness",
+      "stale_alias_reference",
+      "test_isolation"
+    ],
+    "covered": [
+      "doc_code_drift",
+      "doc_completeness",
+      "stale_alias_reference"
+    ],
+    "ruledOut": [
+      "broken_symlink",
+      "missing_artifact"
+    ],
+    "deferred": [
+      "test_isolation"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 2,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/spec.md:52",
+          "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/spec.md:127",
+          "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/spec.md:25",
+          ".skilled/hooks/cli-dispatch/README.md:115",
+          ".skilled/hooks/subagent-dispatch-guard/pi/README.md:21"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "Parent completion state, phase 7 state and the README/code drift re-read against the current files."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/tasks.md:46",
+          "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/tasks.md:48",
+          "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/tasks.md:47",
+          "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/tasks.md:62",
+          "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/tasks.md:62"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "summary": "165 ticked task rows read; phases 001-006 completion artifacts re-checked against the current tree. Test-count rows accepted from recorded evidence, not re-executed."
+      }
+    ],
+    "unfinishedCoreProtocols": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

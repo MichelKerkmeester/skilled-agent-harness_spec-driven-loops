@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume",
+  "spec_folder": "hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume",
+  "parent_id": "hooks-plugins-extensions/decision-capture/001-decision-capture",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "session scoped sweep and consume",
+      "phase 12 session scoped sweep and consume",
+      "worktree save pending answer",
+      "sweep reads another session transcript",
+      "session scoped sweep and consume plan",
+      "session scoped sweep and consume tasks",
+      "012-session-scoped-sweep-and-consume operator decisions",
+      "session scoped sweep and consume implementation summary"
+    ],
+    "key_topics": [
+      "session",
+      "scoped",
+      "sweep",
+      "consume",
+      "phase",
+      "worktree",
+      "save",
+      "pending",
+      "answer",
+      "reads",
+      "another",
+      "transcript"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs",
+      ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+      ".skilled/hooks/decision-capture/lib/capture-core.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts",
+      ".skilled/hooks/decision-capture/README.md",
+      "lib/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-transcript.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-transcript.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "capture-core.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "capture-core.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/lib/capture-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record-writer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record-writer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/decision-capture/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Run without `--transcript`, the sweep reads the newest transcript recorded for the project",
+    "created_at": "2026-11-16T13:29:20Z",
+    "last_save_at": "2026-11-16T14:02:30.407Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d52881fc3d8d61e44838d79bccc23b169dd93b5d646a49d2b83778c186a36276",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "410d82d4b47b656dcd33dd34619a14e4bdce5dfb1cbcadde56afb9c75c08b33f",
+      "plan.md": "96c2cdf6fde4ff9a984c712b0429ed61ebb445e30e54e5827bfc56923f53e082",
+      "tasks.md": "06dce3d6a0d33651b3c6766c14b1a6f89006306d0f31abfc2728b9aa4e960fd1",
+      "decision-record.md": "1f62d86f1e8cfdf5632dfdecda5962cfa2a68e0144a76be1f6f8434ee5b920c7",
+      "implementation-summary.md": "a0d41f990b23b66b2c4c9d24651d63c0ad2465d66ee1aa03269e911c4f04a56b"
+    },
+    "last_active_at": null
+  }
+}

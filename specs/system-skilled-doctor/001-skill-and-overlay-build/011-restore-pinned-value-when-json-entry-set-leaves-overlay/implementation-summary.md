@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay"
-    last_updated_at: "2026-11-16T10:58:43Z"
+    last_updated_at: "2026-11-16T13:22:15Z"
     last_updated_by: "generate-context"
-    recent_action: "Built and verified the restore of a removed set"
-    next_safe_action: "Commit the worktree once the operator says yes"
+    recent_action: "Applied and verified the review fix for index paths and added keys"
+    next_safe_action: "Verify the Barter session knows which commit holds the review fix"
     packet_purpose: "Purpose: After a `set` operation leaves an overlay source, `apply` returns the live value to the pin's value, and removes a key the engine added that the pin does not hold."
     blockers: []
     key_files:
@@ -21,9 +21,9 @@ _memory:
       - "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/handover-to-barter.md"
     session_ref:
       runtime: "claude"
-      sessionId: "8dafc84b-d965-4347-8887-f936e5033e76"
+      sessionId: "3912763e-4a15-47d7-994e-71d31bbf339f"
       workspace: "/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake"
-      savedAt: "2026-11-16T10:58:43Z"
+      savedAt: "2026-11-16T13:22:15Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -57,15 +57,17 @@ When you remove a `set` operation from a `json-entry` overlay source, the next `
 
 The engine now records each `set` it applies in `sync-state.json`, under a `sets` key per destination: the path, the value written and whether the engine added the key. A `set` is recorded whether or not it changed a byte, so the first `apply` under this engine records a value an older engine wrote. Before an entry set runs, `restoreDroppedSets` takes back each recorded `set` the entry set no longer names. It refuses the overlay when the live value was edited after it was recorded, and when the pinned copy cannot be read.
 
+A review of the first version found that a path through an array index could restore another item's value. The fix refuses such a path unless the array holds the same number of items in the live file and in the pin and the overlay adds no item to it. It also deletes a key the pin does not hold whatever the record says about who added it, and keeps one record when two `set` operations name one path.
+
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/commands/doctor/scripts/overlay-engine.cjs` | Modified | The `onSet` report in `planOperation`, the `sets` record in the state read and write, `restoreDroppedSets` and its call in `applyJsonOperations` |
-| `.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs` | Modified | Eight new tests and a fixture with a pinned upstream checkout. One older test keeps its first `set` listed |
+| `.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs` | Modified | Eight new tests and a fixture with a pinned upstream checkout. One older test keeps its first `set` listed. The review fix added six more tests |
 | `.skilled/skills/system-skilled-doctor/references/overlays.md` | Modified | The `sets` record beside `links` and `items`, and `setKeyOnItem` as a known limit |
 | `handover-to-barter.md` | Created | What the vendoring project removes, and after which `apply` |
-| `scratch/dispatch/`, `scratch/vibe-runs/` | Created | The seven briefs and each run's `export.json` and output |
+| `scratch/dispatch/`, `scratch/vibe-runs/` | Created | The twelve briefs and each run's `export.json` and output |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -76,6 +78,8 @@ The engine now records each `set` it applies in `sync-state.json`, under a `sets
 The change was written and tested once as a prototype, saved as a patch and reverted. It was then cut into seven briefs of literal old and new text, one change per brief. DeepSeek v4.1 flash at max thinking applied each brief through the Mistral Vibe CLI. After each run the edited files were compared byte for byte with the text the brief gave, and the next run started only on a match.
 
 The first brief added the failing test. It printed `pass 21` and `fail 1` before any engine change. The fifth brief added the restore and the same file printed `pass 22` and `fail 0`.
+
+After the first version reached main, a fresh Fable 5.2 session reviewed the commit. Its findings 1 to 5 were reproduced with a script before anything changed. The operator chose the fix for each. The fix went the same way as the build: a prototype, then briefs 08 to 12. Brief 08 added six tests and printed `pass 32` and `fail 3`. Briefs 09, 10 and 11 each made one of the three pass, and the file ended at `pass 35` and `fail 0`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -88,7 +92,9 @@ The first brief added the failing test. It printed `pass 21` and `fail 1` before
 | Record every `set`, changed or not | The vendoring project's two operations state a value the live file already holds. Recording only a changed value would never record them |
 | A live value that equals the pin's is left alone before the edit check | After `apply` restores a value, its own second analysis reads the old record against the restored file. Without this order it would call the restore a hand edit |
 | Write the pin's own text, not a new serialisation | The file returns to upstream's bytes, which a test asserts |
-| Delete a key only when its record says the engine added it | A key the pin does not hold and the engine did not add may be a person's. The engine refuses and names the path |
+| Delete a key the pin does not hold while it carries the recorded value | The first version deleted only a key its record marked as added. A record made after an older engine added the key is not marked, so the removal was refused for good. An equal live value shows that nobody edited it. The operator chose this after the review |
+| Refuse a path through an array index unless the arrays line up | An index is a position. An item the overlay added moves it, and the first version then wrote another item's value. The engine refuses and says to restore the value by hand |
+| One record per path | Two `set` operations on one path made two records, and the first never matched the live value again |
 | Change one older test's setup | It replaced one `set` with another on a fixture with no pinned copy, which the operator's refusal rule now stops first. The test keeps its first `set` listed and no assert line changed |
 <!-- /ANCHOR:decisions -->
 
@@ -108,6 +114,9 @@ The first brief added the failing test. It printed `pass 21` and `fail 1` before
 | `scratch/repro-removed-set.cjs` with a recorded `set` | `after the set is removed: sk-code (equals the pin: true)` |
 | The engine at `5e6589083e1` on a state file that carries `sets` | `apply` printed `0 changed`, exit 0 |
 | Seven Vibe runs | Each `export.json` records `exit_code` 0 and `outcome` `finished` |
+| `overlay-engine-sync.test.cjs` with the six fix tests and the engine before the fix | `tests 35`, `pass 32`, `fail 3` |
+| The same file after the fix | `tests 35`, `pass 35`, `fail 0`, exit 0 |
+| Five more Vibe runs, 08 to 12 | Each `export.json` records `exit_code` 0 and `outcome` `finished`. The engine, the test file and the reference each equal the prototype byte for byte |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,9 +126,14 @@ The first brief added the failing test. It printed `pass 21` and `fail 1` before
 
 1. **A value left behind before this change is not restored.** No record of it exists. Put it back by hand, or keep the `set` until one `apply` has recorded it.
 2. **`setKeyOnItem` keeps no record.** A value it wrote stays after the operation leaves the entry set. The operator left it out of this phase.
-3. **A key an older engine added is recorded as not added.** Removing that `set` is refused when the pin does not hold the key. Delete the key by hand first.
+3. **A path through an array index is often refused.** It is restored only while the array has the same length in the live file and in the pin and the overlay adds no item to it. A `set` on an item the overlay itself added can therefore not be dropped.
 4. **The restore across a changed pin is tested on the function only.** No test runs a whole `repin` over a dropped `set`.
 5. **A restore needs the checkout the manifest's pin names.** Without it `apply` refuses and writes nothing.
+6. **A `set` that another operation writes inside or over cannot be dropped alone.** A `set` on an object with a second `set` on one of its keys, or with an `insertObjectKeys` on the same object, is refused as edited though nobody edited it.
+7. **A restored value carries the pin's line endings.** A CRLF pin puts them into an LF live file when the value spans lines.
+8. **Removing a whole entry from the manifest, or changing its `destination`, restores nothing.** The records leave with the entry. The `items` record behaves the same way.
+9. **A record with no `path` refuses with a JavaScript error text.** The state check only looks at whether each destination maps to a list.
+10. **A re-pin may refuse a dropped `set` after its copy has written.** Read in the code and not run. It needs a `json-entry` destination outside the folders the re-pin extracts.
 <!-- /ANCHOR:limitations -->
 
 ---

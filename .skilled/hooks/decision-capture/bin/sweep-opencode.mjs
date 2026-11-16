@@ -248,6 +248,35 @@ export function latestOpenCodeSession({ dbPath, projectDir } = {}) {
   }
 }
 
+// OpenCode names the calling session in OPENCODE_SESSION_ID. A subagent runs in a
+// child session, while the operator answers in the session that dispatched it, so
+// the id climbs parent links to that root.
+export function rootOpenCodeSession({ dbPath, sessionId } = {}) {
+  const database = openDatabase(dbPath);
+  try {
+    const tables = tableNames(database);
+    let current = sessionId;
+    for (let depth = 0; depth < 16; depth += 1) {
+      let parent = null;
+      for (const table of SESSION_TABLES) {
+        if (!tables.has(table)) continue;
+        try {
+          const row = database.prepare(`SELECT parent_id FROM ${table} WHERE id = ?`).get(current);
+          if (typeof row?.parent_id === 'string' && row.parent_id) parent = row.parent_id;
+        } catch {
+          // A store without a parent column has no subagent sessions to climb.
+        }
+        if (parent) break;
+      }
+      if (!parent) return current;
+      current = parent;
+    }
+    return current;
+  } finally {
+    database.close();
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 6. SWEEP
 // ─────────────────────────────────────────────────────────────────────────────
@@ -304,8 +333,11 @@ function main() {
 
   let sessionId;
   try {
+    const signalled = process.env.OPENCODE_SESSION_ID;
     sessionId = argumentValue(argv, '--session')
-      || latestOpenCodeSession({ dbPath, projectDir });
+      || (signalled
+        ? rootOpenCodeSession({ dbPath, sessionId: signalled })
+        : latestOpenCodeSession({ dbPath, projectDir }));
   } catch (error) {
     process.stdout.write(
       `${JSON.stringify({ error: error?.message || `cannot read ${dbPath}` }, null, 2)}\n`,

@@ -1,0 +1,35 @@
+1. FILES CHANGED:
+- /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs
+
+2. COMMANDS:
+
+`grep -n "the commit check reports a staged change under a vendored tree that sits below the git top level" .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs` — exit 0
+```
+518:test('the commit check reports a staged change under a vendored tree that sits below the git top level', (t) => {
+```
+
+`node --test .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs` — exit 1 (expected)
+```
+✔ a path under repin.exclude needs no overlay, so the guard and the commit check leave it alone (445.165791ms)
+✖ adopt takes a path under repin.exclude when the overlay folder holds its copy (318.916458ms)
+✖ adopt still refuses a path under repin.exclude with no copy in the overlay folder (379.085084ms)
+✔ the commit check reports a staged change under a vendored tree that sits below the git top level (202.393833ms)
+✔ the commit check names an unowned vendored change when the checkout its pin names is gone (511.722625ms)
+✔ a staged re-pin names each listed root file upstream changed, owned or not (470.7865ms)
+✔ --adopt and pre-commit reject a misused command line (481.67325ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 17
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9521.678666
+```
+
+Counts match the brief exactly: `tests 19`, `pass 17`, `fail 2`. The only two failures are the two new tests, and no other test failed. Their failure messages are the pre-change refusals, as intended:
+
+- `adopt takes a path under repin.exclude when the overlay folder holds its copy` — `2 !== 0`, actual stdout `refuse: .skilled/local/hook.sh is not under a vendored root (.skilled, .claude) and is not a file named in repin.rootFiles`
+- `adopt still refuses a path under repin.exclude with no copy in the overlay folder` — stdout did not match `/^refuse: \.skilled\/local\/hook\.sh is under repin\.exclude/`, got the same `is not under a vendored root` refusal
+
+3. OPEN QUESTIONS: none. The anchor appeared once, the edit applied cleanly, and the helper names the new tests use (`createStrictFixture`, `writeFile`, `entryFor`, `readJson`, `fixture.manifestPath`, `fixture.overlayDir`, `fixture.tree`, `fixture.run`) all resolved at runtime — the failures are assertion failures on refusal text, not `ReferenceError`s.

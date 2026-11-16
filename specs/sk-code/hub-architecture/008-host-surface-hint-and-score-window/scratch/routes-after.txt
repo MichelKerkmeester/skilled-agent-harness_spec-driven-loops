@@ -1,0 +1,14 @@
+single-quality	single:sk-code-quality
+single-quality-restraint	single:sk-code-quality
+single-review	single:sk-code-review
+single-opencode	single:sk-code-skilled
+ambiguous-leaf	orderedBundle:sk-code-quality,sk-code-review
+zero-leaf-signal	defer
+forbidden-request	reject
+surface-bundle-ci	surfaceBundle:sk-code-review,sk-code-ci
+surface-bundle-frontend	surfaceBundle:sk-code-review,sk-code-frontend
+visual-values-frontend	single:sk-code-frontend
+visual-review-bundle	surfaceBundle:sk-code-review,sk-code-frontend
+visual-motion-frontend	single:sk-code-frontend
+hinted-surface-joins-route	surfaceBundle:sk-code-review,sk-code-frontend,sk-code-skilled
+hinted-surface-routes-unscored	single:sk-code-frontend

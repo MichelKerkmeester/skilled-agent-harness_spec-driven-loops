@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite"
-    last_updated_at: "2026-11-16T18:00:00Z"
+    last_updated_at: "2026-11-16T23:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Rewrote README.md and recorded the verification evidence"
     next_safe_action: "Review the README diff and commit it with the research folder"
@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The root README now describes the repository as it is after v4.0.2.1 and the work merged since. A new reader meets what Skilled is, the eight runtimes and the quick start in the first hundred lines. Detail that other READMEs already own is a link instead of a copy.
+The root README and its sibling guides now describe the repository as it is after v4.0.2.1 and the work merged since. A new reader meets what Skilled is, the eight runtimes and the quick start in the first hundred lines. Detail that other READMEs already own is a link instead of a copy.
 
 ### Research the current repository reality for a root README rewrite
 
@@ -55,10 +55,13 @@ A deep-research loop ran 20 iterations on the Devin CLI with `deepseek-v4-1-flas
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `README.md` | Modified | Full rewrite, 1,773 to 703 lines |
+| `README.md` | Modified | Full rewrite, 1,773 lines down to about 780 |
 | `research/` | Created | Research state, iterations, `research.md` and `resource-map.md` |
 | `../spec.md` | Modified | Phase map row and transition row for this child |
 | `../graph-metadata.json` | Modified | Child entry |
+| `INSTALL-SKILLED.md`, `PUBLIC-RELEASE.md`, `SECURITY.md`, `CONTRIBUTING.md`, `.skilled/CROSS-CLI.md` | Modified | Rewritten in the README's style, stale facts corrected |
+| sk-doc validator and its structure test | Modified | The divider exemption covers the root guides |
+| `sk-create-readme` assets, references and routing | Created, Modified | Install, contributing and security policy templates, and the skill README template moved in |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -80,6 +83,7 @@ The research ran first and its load-bearing claims were re-read at their source 
 | Follow the code over the hook coverage matrix for the Vibe dispatch audit | Vibe ships only the preflight adapter, so the audit trail runs on seven runtimes |
 | Drop unsourced figures such as the context-saving percentage and the token counts | No source file read for this task states them |
 | Keep the `#git-hooks` and `#off-switches` headings | Other docs link to those anchors |
+| Bring back one history lookup sentence in the session handover section, after completion | The operator asked for it once the rewrite had dropped it. The sentence names only the five runtimes that hop, because the claim prints the lookup only for a sender on one of them |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -94,7 +98,11 @@ The research ran first and its load-bearing claims were re-read at their source 
 | `hvr_scan.py README.md` ceiling | 81 to 99 |
 | Relative link check | 100 links, 0 problems |
 | `rg -ci relaunch README.md` | No hits |
-| Hook headings | Every folder in `.skilled/hooks/` except `shared` is named in a `###` heading |
+| Hook headings | Every folder in `.skilled/hooks/` except `shared` is named in a heading |
+| Root guides | `validate_document.py` prints `VALID` and the voice scan reports 0 hard blockers for all five |
+| sk-doc suite | 444 passed |
+| sk-doc hub gate | `parent-skill-check — all hard invariants passed, 0 warnings` |
+| Routing replay | "create a README for my new skill" routes to sk-create-readme, "create a new skill" to sk-create-skill |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -1,0 +1,28 @@
+TASK: keep one record per path when two `set` operations of one entry set name the same path.
+One file changes. Do the 1 step below in order. Each step replaces one block of text with another.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 1. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (5 lines, this exact text appears once in the file):
+      readUpstreamText,
+      onListed: (record) => listedItems.push(record),
+      onSet: (record) => listedSets.push(record),
+    });
+  } catch (error) {
+NEW (replace those lines with these 11 lines, same indentation):
+      readUpstreamText,
+      onListed: (record) => listedItems.push(record),
+      // One record per path: a later set on the same path is the value the file
+      // ends with, and a key stays marked as added once either set added it.
+      onSet: (record) => {
+        const index = listedSets.findIndex((listed) => deepEqual(listed.path, record.path));
+        if (index < 0) listedSets.push(record);
+        else listedSets[index] = { ...record, added: listedSets[index].added === true || record.added === true };
+      },
+    });
+  } catch (error) {
+
+CHECK. Run:
+cd R && node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')" && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Expected: the first command prints nothing, and the test summary shows "pass 35" and "fail 0". Report the pass and fail counts. If a test fails, do not change the test and do not change the engine further: report its name and output.

@@ -16,15 +16,17 @@
     "reads",
     "state"
   ],
-  "lastUpdated": "2026-11-16T10:25:10.712Z",
+  "lastUpdated": "2026-11-16T13:22:25.186Z",
   "specId": "010",
   "folderSlug": "baseline-capture-after-graph-scan",
   "parentChain": [
     "system-skill-advisor",
     "routing-and-scoring"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "16-11-26_11-25__planned-the-stale-capture-reproduction-and-the.md"
+    "16-11-26_11-25__planned-the-stale-capture-reproduction-and-the.md",
+    "16-11-26_14-21__built-the-host-capture-file-for-the-two-advisor.md",
+    "16-11-26_14-22__built-the-host-capture-file-for-the-two-advisor.md"
   ]
 }

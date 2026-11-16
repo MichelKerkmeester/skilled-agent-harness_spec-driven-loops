@@ -907,6 +907,43 @@ test('hooks passes a hook the local config declares omitted and fails it without
   assert.deepEqual(omitted.details, ['post-commit: omitted by skilled.omitHook']);
 });
 
+// A host may replace a shipped hook with its own script, which neither is a hook
+// source nor hands over to one.
+function installHostHook(f, name) {
+  const { hooksDir } = linkOwnHooks(f, [name]);
+  const installed = path.join(hooksDir, name);
+  fs.writeFileSync(installed, '#!/bin/sh\necho host hook\nexit 0\n', { mode: 0o755 });
+  return installed;
+}
+
+test('hooks passes a host hook the local config lists under skilled.hostHook and names it', (t) => {
+  const f = fixture(t);
+  installHostHook(f, 'pre-commit');
+  execFileSync('git', ['-C', f.repo, 'config', '--local', '--add', 'skilled.hostHook', 'pre-commit'], { env: f.env });
+  const row = rowOf(reportOf(f.run(['--json'])), 'hooks');
+  assert.equal(row.result, 'PASS', row.details.join(' | '));
+  assert.deepEqual(row.details, ['pre-commit: host hook by skilled.hostHook']);
+});
+
+test('hooks still fails a host hook that skilled.hostHook does not list', (t) => {
+  const f = fixture(t);
+  const installed = installHostHook(f, 'pre-commit');
+  // Listing a different hook does not cover this one.
+  execFileSync('git', ['-C', f.repo, 'config', '--local', '--add', 'skilled.hostHook', 'post-commit'], { env: f.env });
+  const row = rowOf(reportOf(f.run(['--json'])), 'hooks');
+  assert.equal(row.result, 'FAIL');
+  assert.deepEqual(row.details, [`pre-commit: resolves to ${fs.realpathSync(installed)}, not a hook source`]);
+});
+
+test('hooks reads skilled.hostHook from local config only, not from global config', (t) => {
+  const f = fixture(t);
+  const installed = installHostHook(f, 'pre-commit');
+  execFileSync('git', ['config', '--global', '--add', 'skilled.hostHook', 'pre-commit'], { env: f.env });
+  const row = rowOf(reportOf(f.run(['--json'])), 'hooks');
+  assert.equal(row.result, 'FAIL');
+  assert.deepEqual(row.details, [`pre-commit: resolves to ${fs.realpathSync(installed)}, not a hook source`]);
+});
+
 test('hooks names this checkout\'s installer by absolute path when the inspected repository is the battery\'s own checkout', (t) => {
   const f = fixture(t);
 

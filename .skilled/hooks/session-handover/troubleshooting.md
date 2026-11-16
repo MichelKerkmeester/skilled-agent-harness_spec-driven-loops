@@ -32,8 +32,7 @@ A `prepare` exit code of 2 means the note or loop cannot be prepared. Common rea
 - The handoffs directory is reached through a symlink below the repository root.
 - The note has invalid flat frontmatter, a non-open status, a different supplied session id, a missing required field or an empty required section.
 - The note's `spec_folder` names a packet path that does not exist as a directory in the repository, so `keep` refuses it the same way.
-- The receiving session shows no `Goal packet:` line or the note has no `goal_packet`. `prepare` and `keep` write it only when the sender's goal can be proven. A Codex sender, a Claude session whose log cannot be read and a session whose goal has ended all leave it out. A Claude session that never had a goal set also leaves it out. That happens when neither the note's spec folder nor its parent has an unfinished `goal.md` within the slice budget. A `goal_packet` the note carried is removed on the next call in the same cases.
-- No session id reached `prepare` or `claim`. Only Claude can fall back to `CLAUDE_CODE_SESSION_ID`, so other runtimes must pass `--session`.
+- No session id reached `prepare` or `claim`. Claude can fall back to `CLAUDE_CODE_SESSION_ID`, and a Vibe session under `skilled-loop` can omit `--session` on `prepare` through the id its turn-start hook recorded; every other runtime must pass `--session`.
 - The concern is off for this runtime, so the reason names which switch did it. The note is left unchanged.
   - `SYSTEM_SESSION_HANDOVER_DISABLED` or the master hook switch is set.
   - The runtime's `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` holds a falsy value.
@@ -49,6 +48,10 @@ When prepare exits 3 outside the loop, start the runtime through `skilled-loop`,
 At the hop cap, prepare writes no record and logs `prepare-declined reason=hop-cap`. Its first line reads `[session-handover] hop limit reached; continue in this session (auto-compaction remains the fallback)`.
 
 A corrupt relaunch JSON file makes `should-relaunch` decline with reason `no-file`. An unreadable Claude transcript yields no context usage, while unreadable Claude settings files are skipped as absent.
+
+### The receiver shows no goal packet
+
+A missing `Goal packet:` line or `goal_packet` field is not a refusal, and `prepare` still exits 0. The goal step never fails the hand-over. It prints `[session-handover] goal not carried: <reason>` on stderr instead. `prepare` and `keep` write it only when the sender's goal can be proven. A Codex sender, a Claude session whose log cannot be read and a session whose goal has ended all leave it out. A Claude session that never had a goal set also leaves it out. That happens when neither the note's spec folder nor its parent has an unfinished `goal.md` within the slice budget. A `goal_packet` the note carried is removed on the next call in the same cases.
 
 ### Killer log lines
 
@@ -75,7 +78,7 @@ The killer polls every 100 ms. The idle window defaults to 3000 ms and the overa
 
 A signal probe that fails with `EPERM` means the pid belongs to another user's process, so the killer treats its target as gone instead of signalling it. `killer-lock-held` also appears while another killer holds the `<lock>.takeover` mutex.
 
-If an armed record has no live killer, the next arm event starts one. A live killer that owns the lock blocks that restart by design. `killer-error` with exit code 1 means the takeover mutex's owner file could not be read, for example because the owner path is a directory. The killer stops before the takeover and the armed record stays armed for the next arm event.
+If an armed record has no live killer, the next arm event starts one. A live killer that owns the lock blocks that restart by design. `killer-error` with exit code 1 means the takeover mutex's owner file could not be read, for example a read error other than `ENOENT`, `EACCES`, `EISDIR` or `ENOTDIR`; a directory at the owner path, or a non-directory at the mutex path, counts as no owner and is judged by age. The killer stops before the takeover and the armed record stays armed for the next arm event.
 
 `killer-mutex-release-error` means the `<lock>.takeover` directory could not be removed after the takeover finished. The takeover result stands and the killer keeps the lock it acquired, so this line does not mean the handoff failed. A leftover mutex is reclaimed by the next takeover once its owner is dead. It is also reclaimed once it has no owner file and is older than 30 s.
 

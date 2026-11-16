@@ -1,0 +1,37 @@
+The replacement landed on the single line, the surrounding paragraph is intact, and the line was not wrapped.
+
+1. FILES CHANGED:
+   - /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skilled-doctor/references/overlays.md
+
+2. COMMANDS:
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -n 'deletes a key the engine added' .skilled/skills/system-skilled-doctor/references/overlays.md`
+   - exit status: 0
+   - last 15 lines of output (single line, truncated for width):
+     ```
+     62:`sync-state.json` carries three optional records beside its hashes. `links` maps each layout link path to the target the engine confirmed there, ... When the entry set stops naming that path, `apply` writes back the value the pin holds, and deletes a key the engine added that the pin does not hold. A value edited since it was recorded is refused rather than overwritten. The restore reads the pinned copy from the checkout the manifest's pin names, and without that copy the overlay is refused. `setKeyOnItem` keeps no record, ...
+     ```
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -c 'restore the value by hand' .skilled/skills/system-skilled-doctor/references/overlays.md && rg -c 'deletes a key the engine added' .skilled/skills/system-skilled-doctor/references/overlays.md ; git diff --numstat -- .skilled/skills/system-skilled-doctor/references/overlays.md`
+   - exit status: 0
+   - last 15 lines of output:
+     ```
+     1
+     5	1	.skilled/skills/system-skilled-doctor/references/overlays.md
+     ```
+   - First count is `1` as expected. The second search printed nothing (old sentence gone). Numstat shows `5 added, 1 deleted` as expected.
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && sed -n '62p' .skilled/skills/system-skilled-doctor/references/overlays.md | fold -w 200 | head -20; echo "---"; git diff --stat -- .skilled/skills/system-skilled-doctor/references/overlays.md`
+   - exit status: 0
+   - last 15 lines of output:
+     ```
+     `sync-state.json` carries three optional records beside its hashes. ... `sets` holds each `set` a `json-ent
+     ry` overlay applied: its path, the value written and whether the engine added the key. Two `set` operations on one path share one record. When the entry set stops naming that path, `apply` writes back
+      the value the pin holds. A key the pin does not hold is deleted while it still carries the recorded value. ... Without that copy t
+     he overlay is refused. `setKeyOnItem` keeps no record, ...
+     ---
+      .skilled/skills/system-skilled-doctor/references/overlays.md | 6 +++++-
+      1 file changed, 5 insertions(+), 1 deletion(-)
+     ```
+
+3. OPEN QUESTIONS: none. The OLD text matched exactly once, the line stayed unwrapped, and the numstat matches the expected 5/1.

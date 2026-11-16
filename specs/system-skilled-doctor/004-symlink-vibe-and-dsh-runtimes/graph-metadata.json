@@ -34,7 +34,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,7 +49,10 @@
       ".skilled/commands/doctor/assets/doctor-symlink-check.yaml",
       ".skilled/commands/doctor/assets/doctor-install.yaml",
       ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
-      ".skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs"
+      ".skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs",
+      ".vibe/config.toml",
+      ".vibe/hooks.toml",
+      ".claude/settings.json"
     ],
     "entities": [
       {
@@ -137,6 +140,24 @@
         "source": "derived"
       },
       {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".vibe/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -155,6 +176,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -167,31 +194,7 @@
         "source": "derived"
       },
       {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Change",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -199,7 +202,7 @@
     ],
     "causal_summary": "`.skilled/commands/doctor/assets/symlink-manifest.json` lists the runtimes `claude`, `opencode`, `codex`, `cursor`, `devin` and `pi`",
     "created_at": "2026-11-16T10:15:56Z",
-    "last_save_at": "2026-11-16T10:25:16.727Z",
+    "last_save_at": "2026-11-16T13:22:20.450Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a23192a6702fc844facad0f1d6f531ec52b5fc202e87ca67fb27d2163af6f92",
+    "source_fingerprint": "sha256:4e61fe6a74b34a0887f43ea5bcd6ec702af078a68395fe76a94e9f22591ea569",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e6b6c92d172f05aee0dc12c9f8aff0080d614ae4f8d6b873bd9d2ace9933eb0b",
+      "spec.md": "1ad09ba06f029defbcc75ec20eaf93671cb1538d78ccf920e6ca5b99b766d96d",
       "plan.md": "98fa1c4124291aeded74adf77bac8e8321b9bfee77c1ed62552dfd69c1d0e2d5",
-      "tasks.md": "9b33b81d95145ccb3b6f0adcec82f9cd64b7d95ed072aa575ace02db77a2be96",
+      "tasks.md": "36eb64a161c974ffd16689fc07df3a1412aea5c28acb7537ed2fe786cde492b0",
       "decision-record.md": "69d4b424a0962a9507dd0e7f3ef126341d5bf5b4779bd26262882f7c4bdfd944",
-      "implementation-summary.md": "08df5c1944025c06015517b17c5775e095b58aa7797e6c4a9f7f05971a4290d1"
+      "implementation-summary.md": "1ea192b5ad701cfffb33ef8b841fdb0c33653af096c3f70413b692b3390bf636"
     },
     "last_active_at": null
   }

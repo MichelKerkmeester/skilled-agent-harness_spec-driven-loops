@@ -140,8 +140,15 @@
     {
       "leaves": [
         "assets/architecture-template.md",
+        "assets/contributing-template.md",
+        "assets/hook-readme-template.md",
+        "assets/install-template.md",
         "assets/readme-code-template.md",
         "assets/readme-template.md",
+        "assets/runtime-folder-template.md",
+        "assets/runtime-plugin-readme-template.md",
+        "assets/security-policy-template.md",
+        "assets/skill-readme-template.md",
         "references/README.md",
         "references/readme/quality-and-checklist.md",
         "references/readme/types-and-voice.md",
@@ -170,7 +177,6 @@
         "assets/skill/skill-leaf-manifest-config-template.json",
         "assets/skill/skill-md-template.md",
         "assets/skill/skill-procedure-template.md",
-        "assets/skill/skill-readme-template.md",
         "assets/skill/skill-reference-template.md",
         "assets/skill/skill-router-template.md",
         "assets/skill/skill-scaffold-template.md",

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps",
+  "spec_folder": "hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps",
+  "parent_id": "hooks-plugins-extensions/decision-capture/001-decision-capture",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "session signal sweeps",
+      "phase 13 session signal sweeps",
+      "sweep reads calling session",
+      "vibe unified session folder",
+      "session signal sweeps plan",
+      "session signal sweeps tasks",
+      "session signal sweeps implementation summary"
+    ],
+    "key_topics": [
+      "session",
+      "signal",
+      "sweeps",
+      "phase",
+      "sweep",
+      "reads",
+      "calling",
+      "vibe",
+      "unified",
+      "folder",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-dsh.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-vibe.mjs",
+      ".skilled/hooks/decision-capture/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-codex.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-dsh.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-dsh.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-opencode.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-pi.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-vibe.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-vibe.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/decision-capture/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Signal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Run without a flag, each sweep takes the newest session recorded for the project",
+    "created_at": "2026-11-16T15:23:27Z",
+    "last_save_at": "2026-11-16T15:56:52.463Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cf700610f92abe072249fdf8976632ecd420219d852915d53c6da55cea8687bd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7103afbe19338f92789e0042cf257f38c3a1792fe52c1cb5034d94b60e75ec3a",
+      "plan.md": "9745178b88d27ee3bd22b2d89c0208a009cfee42cb08f9fd2df7063baa46c3b6",
+      "tasks.md": "3e1be49eb10935228300283da2c4e7365a9aa362452b3d3ec6e2801e2fd8e226",
+      "implementation-summary.md": "b32bfce38194b362fe4b55683d24b96269640f274515196ee046bafe8085b2f6"
+    },
+    "last_active_at": null
+  }
+}

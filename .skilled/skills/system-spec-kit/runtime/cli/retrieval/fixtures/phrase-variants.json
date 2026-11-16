@@ -1,5 +1,5 @@
 {
-  "manifestHash": "53f18967c6d8650c8e2724c8f3ff5127016d88bb5297e1a269a3919a7331d796",
+  "manifestHash": "ae82d8105b3e20e1f28035599b8f7496fdfbe7b270f980dea24345ced783ea78",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -259,6 +259,9 @@
     ],
     "001 skill graph rollup": [
       "001-skill-graph rollup"
+    ],
+    "001 skill readmes operator decisions": [
+      "001-skill-readmes operator decisions"
     ],
     "001 spec memory cli complete": [
       "001 spec-memory cli complete"
@@ -1711,6 +1714,9 @@
     "006 purpose retention across handovers operator decisions": [
       "006-purpose-retention-across-handovers operator decisions"
     ],
+    "006 readme template conformance operator decisions": [
+      "006-readme-template-conformance operator decisions"
+    ],
     "006 redundancy decision record": [
       "006 redundancy decision record"
     ],
@@ -1930,6 +1936,9 @@
     "007 plan voyage cleanup": [
       "007 plan voyage cleanup"
     ],
+    "007 review doc reconciliation operator decisions": [
+      "007-review-doc-reconciliation operator decisions"
+    ],
     "007 review remediation operator decisions": [
       "007-review-remediation operator decisions"
     ],
@@ -2031,6 +2040,9 @@
     ],
     "008 changelog backfill rollup": [
       "008 changelog backfill rollup"
+    ],
+    "008 claude hook tree guard operator decisions": [
+      "008-claude-hook-tree-guard operator decisions"
     ],
     "008 command surfacing build operator decisions": [
       "008-command-surfacing-build operator decisions"
@@ -2729,6 +2741,9 @@
     "011 implementation summary": [
       "011 implementation summary"
     ],
+    "011 level match operator record operator decisions": [
+      "011-level-match-operator-record operator decisions"
+    ],
     "011 migration bridge": [
       "011 migration bridge"
     ],
@@ -2971,6 +2986,9 @@
     ],
     "012 session index schema audit": [
       "012 session index schema audit"
+    ],
+    "012 session scoped sweep and consume operator decisions": [
+      "012-session-scoped-sweep-and-consume operator decisions"
     ],
     "012 tasks": [
       "012 tasks"
@@ -7184,6 +7202,9 @@
     "049 supersession": [
       "049 supersession"
     ],
+    "050 handover doc alignment 2 operator decisions": [
+      "050-handover-doc-alignment-2 operator decisions"
+    ],
     "050 review remediation": [
       "050 review remediation"
     ],
@@ -7198,6 +7219,9 @@
     ],
     "051 closeout reconciliation": [
       "051 closeout reconciliation"
+    ],
+    "051 handover doc alignment 3 operator decisions": [
+      "051-handover-doc-alignment-3 operator decisions"
     ],
     "052 deep review findings remediation": [
       "052 deep-review findings remediation"
@@ -8449,6 +8473,9 @@
     ],
     "adopt parser glm lane": [
       "adopt parser GLM lane"
+    ],
+    "adopt path under repin exclude": [
+      "adopt path under repin exclude"
     ],
     "adopt spec kit modules": [
       "adopt spec-kit modules"
@@ -14391,6 +14418,9 @@
     ],
     "barter handover items": [
       "barter handover items"
+    ],
+    "barter host capture file command routing baseline": [
+      "barter host capture file command routing baseline"
     ],
     "barter overlay mechanics research": [
       "barter overlay mechanics research"
@@ -20900,6 +20930,18 @@
     ],
     "claude hook settings schema normalization": [
       "claude hook settings schema normalization"
+    ],
+    "claude hook tree guard": [
+      "claude hook tree guard"
+    ],
+    "claude hook tree guard implementation summary": [
+      "claude hook tree guard implementation summary"
+    ],
+    "claude hook tree guard plan": [
+      "claude hook tree guard plan"
+    ],
+    "claude hook tree guard tasks": [
+      "claude hook tree guard tasks"
     ],
     "claude injection screen": [
       "claude injection screen"
@@ -31196,6 +31238,12 @@
     ],
     "contributing clone url": [
       "contributing clone url"
+    ],
+    "contributing guide template": [
+      "contributing guide template"
+    ],
+    "contributing md template": [
+      "contributing.md template"
     ],
     "convention audit tasks": [
       "convention audit tasks"
@@ -48884,6 +48932,9 @@
     "extension floors sk code review": [
       "extension floors sk-code-review"
     ],
+    "extension folder readme template": [
+      "extension folder readme template"
+    ],
     "extension guide ac traceability": [
       "extension guide ac traceability"
     ],
@@ -53416,6 +53467,9 @@
     ],
     "fromscan recheck bypass": [
       "fromScan recheck bypass"
+    ],
+    "front page readme template": [
+      "front page readme template"
     ],
     "front proxy buffer then decode": [
       "front-proxy buffer then decode"
@@ -57996,6 +58050,9 @@
     "hand drawn diagram variant": [
       "hand drawn diagram variant"
     ],
+    "hand over doc alignment 050": [
+      "hand-over doc alignment 050"
+    ],
     "hand over doc alignment fixes": [
       "hand-over doc alignment fixes"
     ],
@@ -58119,6 +58176,33 @@
     "handover doc alignment": [
       "handover doc alignment"
     ],
+    "handover doc alignment 2 acceptance criteria": [
+      "handover doc alignment 2 acceptance criteria"
+    ],
+    "handover doc alignment 2 implementation summary": [
+      "handover doc alignment 2 implementation summary"
+    ],
+    "handover doc alignment 2 plan": [
+      "handover doc alignment 2 plan"
+    ],
+    "handover doc alignment 2 tasks": [
+      "handover doc alignment 2 tasks"
+    ],
+    "handover doc alignment 3": [
+      "handover doc alignment 3"
+    ],
+    "handover doc alignment 3 acceptance criteria": [
+      "handover doc alignment 3 acceptance criteria"
+    ],
+    "handover doc alignment 3 implementation summary": [
+      "handover doc alignment 3 implementation summary"
+    ],
+    "handover doc alignment 3 plan": [
+      "handover doc alignment 3 plan"
+    ],
+    "handover doc alignment 3 tasks": [
+      "handover doc alignment 3 tasks"
+    ],
     "handover doc alignment acceptance criteria": [
       "handover doc alignment acceptance criteria"
     ],
@@ -58128,8 +58212,14 @@
     "handover doc alignment plan": [
       "handover doc alignment plan"
     ],
+    "handover doc alignment second pass": [
+      "handover doc alignment second pass"
+    ],
     "handover doc alignment tasks": [
       "handover doc alignment tasks"
+    ],
+    "handover doc alignment third pass": [
+      "handover doc alignment third pass"
     ],
     "handover docs and harness": [
       "handover docs and harness"
@@ -58211,6 +58301,9 @@
     ],
     "handover to barter repin limits": [
       "handover to barter repin limits"
+    ],
+    "handover to barter stale capture after scan": [
+      "handover to barter stale capture after scan"
     ],
     "handover trigger review": [
       "handover trigger review"
@@ -59408,6 +59501,9 @@
     "hook adapter port": [
       "hook adapter port"
     ],
+    "hook adapter readme": [
+      "hook adapter readme"
+    ],
     "hook adapter shared": [
       "hook adapter shared"
     ],
@@ -59431,6 +59527,24 @@
     ],
     "hook bridge window": [
       "hook bridge window"
+    ],
+    "hook cleanup deep review fixes": [
+      "hook cleanup deep review fixes"
+    ],
+    "hook code folder readmes": [
+      "hook code folder readmes"
+    ],
+    "hook code folder readmes acceptance criteria": [
+      "hook code folder readmes acceptance criteria"
+    ],
+    "hook code folder readmes implementation summary": [
+      "hook code folder readmes implementation summary"
+    ],
+    "hook code folder readmes plan": [
+      "hook code folder readmes plan"
+    ],
+    "hook code folder readmes tasks": [
+      "hook code folder readmes tasks"
     ],
     "hook compatibility consumer cutover": [
       "hook compatibility consumer cutover"
@@ -59552,6 +59666,24 @@
     "hook flags trailing comment": [
       "hook flags trailing comment"
     ],
+    "hook folder readme": [
+      "hook folder readme"
+    ],
+    "hook folder readmes": [
+      "hook folder readmes"
+    ],
+    "hook folder readmes acceptance criteria": [
+      "hook folder readmes acceptance criteria"
+    ],
+    "hook folder readmes implementation summary": [
+      "hook folder readmes implementation summary"
+    ],
+    "hook folder readmes plan": [
+      "hook folder readmes plan"
+    ],
+    "hook folder readmes tasks": [
+      "hook folder readmes tasks"
+    ],
     "hook gate settings": [
       "hook gate settings"
     ],
@@ -59624,6 +59756,15 @@
     "hook library cleanup and readme rewrite": [
       "hook library cleanup and readme rewrite"
     ],
+    "hook library cleanup deep review iteration 2 security": [
+      "hook library cleanup deep review iteration 2 security"
+    ],
+    "hook library cleanup deep review report": [
+      "hook library cleanup deep review report"
+    ],
+    "hook library cleanup deep review strategy": [
+      "hook library cleanup deep review strategy"
+    ],
     "hook library cleanup phase parent spec": [
       "hook library cleanup phase parent spec"
     ],
@@ -59644,6 +59785,9 @@
     ],
     "hook markers improvement family": [
       "hook markers improvement family"
+    ],
+    "hook mirror readme": [
+      "hook mirror readme"
     ],
     "hook off switch broken": [
       "hook off-switch broken"
@@ -59717,6 +59861,9 @@
     "hook readme rewrite": [
       "hook readme rewrite"
     ],
+    "hook readme template": [
+      "hook readme template"
+    ],
     "hook references as routed leaves": [
       "hook references as routed leaves"
     ],
@@ -59764,6 +59911,21 @@
     ],
     "hook routing smoke test": [
       "hook-routing smoke test"
+    ],
+    "hook runtime readmes": [
+      "hook runtime readmes"
+    ],
+    "hook runtime readmes acceptance criteria": [
+      "hook runtime readmes acceptance criteria"
+    ],
+    "hook runtime readmes implementation summary": [
+      "hook runtime readmes implementation summary"
+    ],
+    "hook runtime readmes plan": [
+      "hook runtime readmes plan"
+    ],
+    "hook runtime readmes tasks": [
+      "hook runtime readmes tasks"
     ],
     "hook runtime wiring audit": [
       "hook runtime wiring audit"
@@ -60130,6 +60292,9 @@
     ],
     "how to author a chart template": [
       "how to author a chart template"
+    ],
+    "how to contribute guide": [
+      "how to contribute guide"
     ],
     "how to phrase a jev question": [
       "how to phrase a jev question"
@@ -62021,6 +62186,9 @@
     "install guide sweep": [
       "install guide sweep"
     ],
+    "install guide template": [
+      "install guide template"
+    ],
     "install guides coverage question": [
       "install guides coverage question"
     ],
@@ -62029,6 +62197,9 @@
     ],
     "install guides trigger index corpus": [
       "install guides trigger index corpus"
+    ],
+    "install md template": [
+      "install.md template"
     ],
     "install obsidian theme": [
       "install obsidian theme"
@@ -62056,6 +62227,9 @@
     ],
     "install transition tasks": [
       "install-transition tasks"
+    ],
+    "installation guide scaffold": [
+      "installation guide scaffold"
     ],
     "installation verification": [
       "installation verification"
@@ -65325,6 +65499,18 @@
     ],
     "level mapping thresholds": [
       "level mapping thresholds"
+    ],
+    "level match operator record": [
+      "level match operator record"
+    ],
+    "level match operator record implementation summary": [
+      "level match operator record implementation summary"
+    ],
+    "level match operator record plan": [
+      "level match operator record plan"
+    ],
+    "level match operator record tasks": [
+      "level match operator record tasks"
     ],
     "level one docs authoring": [
       "level one docs authoring"
@@ -73351,6 +73537,9 @@
     "mistral vibe research angles": [
       "mistral vibe research angles"
     ],
+    "mistral vibe runtime hooks": [
+      "mistral vibe runtime hooks"
+    ],
     "mistral vibe session handover docs": [
       "mistral vibe session handover docs"
     ],
@@ -73404,6 +73593,9 @@
     ],
     "mixed version oracle handoff": [
       "mixed-version oracle handoff"
+    ],
+    "mk claude hook could not resolve home folder": [
+      "mk claude hook could not resolve home folder"
     ],
     "mk code index 32000 fix": [
       "mk-code-index -32000 fix"
@@ -73971,6 +74163,21 @@
     ],
     "mode packet packetkind": [
       "mode packet packetKind"
+    ],
+    "mode packet readmes": [
+      "mode packet readmes"
+    ],
+    "mode packet readmes acceptance criteria": [
+      "mode packet readmes acceptance criteria"
+    ],
+    "mode packet readmes implementation summary": [
+      "mode packet readmes implementation summary"
+    ],
+    "mode packet readmes plan": [
+      "mode packet readmes plan"
+    ],
+    "mode packet readmes tasks": [
+      "mode packet readmes tasks"
     ],
     "mode projection contracts": [
       "mode projection contracts"
@@ -82440,6 +82647,9 @@
     "phase 1 skill and tag move": [
       "phase 1 skill and tag move"
     ],
+    "phase 1 skill readmes": [
+      "phase 1 skill readmes"
+    ],
     "phase 1 source deprecation": [
       "phase 1 source deprecation"
     ],
@@ -82626,6 +82836,9 @@
     "phase 11 hub registration and routing": [
       "phase 11 hub registration and routing"
     ],
+    "phase 11 level match operator record": [
+      "phase 11 level match operator record"
+    ],
     "phase 11 opencode pi handover parity": [
       "phase 11 opencode pi handover parity"
     ],
@@ -82755,6 +82968,9 @@
     "phase 12 session name carry": [
       "phase 12 session name carry"
     ],
+    "phase 12 session scoped sweep and consume": [
+      "phase 12 session scoped sweep and consume"
+    ],
     "phase 12 sk create readme": [
       "phase 12 sk create readme"
     ],
@@ -82841,6 +83057,9 @@
     ],
     "phase 13 root cause and ux research": [
       "phase 13 root cause and ux research"
+    ],
+    "phase 13 session signal sweeps": [
+      "phase 13 session signal sweeps"
     ],
     "phase 13 sk create repo rule": [
       "phase 13 sk create repo rule"
@@ -83315,6 +83534,9 @@
     ],
     "phase 2 mistral provider roster": [
       "phase 2 mistral provider roster"
+    ],
+    "phase 2 mode packet readmes": [
+      "phase 2 mode packet readmes"
     ],
     "phase 2 onboarding fixes": [
       "phase 2 onboarding fixes"
@@ -83853,6 +84075,9 @@
     "phase 3 hard plugins": [
       "phase 3 hard plugins"
     ],
+    "phase 3 hook folder readmes": [
+      "phase 3 hook folder readmes"
+    ],
     "phase 3 hub surface precedence": [
       "phase 3 hub surface precedence"
     ],
@@ -84183,6 +84408,9 @@
     "phase 4 hook readme fold and rewrite": [
       "phase 4 hook readme fold and rewrite"
     ],
+    "phase 4 hook runtime readmes": [
+      "phase 4 hook runtime readmes"
+    ],
     "phase 4 hook stdin deadline": [
       "phase 4 hook stdin deadline"
     ],
@@ -84486,6 +84714,9 @@
     "phase 5 rule amendments": [
       "phase 5 rule amendments"
     ],
+    "phase 5 runtime plugin readmes": [
+      "phase 5 runtime plugin readmes"
+    ],
     "phase 5 setup check hardening": [
       "phase 5 setup check hardening"
     ],
@@ -84551,6 +84782,9 @@
     ],
     "phase 51 dispatch lint nested quote gap": [
       "phase 51 dispatch lint nested quote gap"
+    ],
+    "phase 51 handover doc alignment 3": [
+      "phase 51 handover doc alignment 3"
     ],
     "phase 52 v1 default llmgateway": [
       "phase 52 v1 default llmgateway"
@@ -84732,6 +84966,9 @@
     "phase 6 rg flood control": [
       "phase 6 rg flood control"
     ],
+    "phase 6 runtime folder readmes": [
+      "phase 6 runtime folder readmes"
+    ],
     "phase 6 runtime libraries and tests": [
       "phase 6 runtime libraries and tests"
     ],
@@ -84870,6 +85107,9 @@
     "phase 7 handoff gate exemptions": [
       "phase 7 handoff gate exemptions"
     ],
+    "phase 7 hook code folder readmes": [
+      "phase 7 hook code folder readmes"
+    ],
     "phase 7 hook deadline margins": [
       "phase 7 hook deadline margins"
     ],
@@ -84911,6 +85151,9 @@
     ],
     "phase 7 remediation review fixes": [
       "phase 7 remediation review fixes"
+    ],
+    "phase 7 review doc reconciliation": [
+      "phase 7 review doc reconciliation"
     ],
     "phase 7 review packet fixes": [
       "phase 7 review packet fixes"
@@ -84992,6 +85235,9 @@
     ],
     "phase 8 claim error per state": [
       "phase 8 claim error per state"
+    ],
+    "phase 8 claude hook tree guard": [
+      "phase 8 claude hook tree guard"
     ],
     "phase 8 cli pi": [
       "phase 8 cli pi"
@@ -87839,6 +88085,9 @@
     "plugin documentation removal": [
       "plugin documentation removal"
     ],
+    "plugin folder readme template": [
+      "plugin folder readme template"
+    ],
     "plugin hook standards alignment": [
       "plugin hook standards alignment"
     ],
@@ -90374,6 +90623,9 @@
     "pull request commit hygiene": [
       "pull request commit hygiene"
     ],
+    "pull request guide scaffold": [
+      "pull request guide scaffold"
+    ],
     "pull request packet resolution": [
       "pull request packet resolution"
     ],
@@ -92264,6 +92516,9 @@
     "readme template conformance implementation summary": [
       "readme template conformance implementation summary"
     ],
+    "readme template conformance phase parent spec": [
+      "readme template conformance phase parent spec"
+    ],
     "readme template conformance plan": [
       "readme template conformance plan"
     ],
@@ -93653,6 +93908,9 @@
     ],
     "regenerate runtime mirrors after move": [
       "regenerate runtime mirrors after move"
+    ],
+    "regenerated line regenerate step overlay": [
+      "regenerated line regenerate step overlay"
     ],
     "regeneration and verification": [
       "regeneration and verification"
@@ -96634,6 +96892,9 @@
     "repoint the clickup official code mode manual": [
       "repoint the clickup official code mode manual"
     ],
+    "report a vulnerability guide": [
+      "report a vulnerability guide"
+    ],
     "report gen ts tokens json": [
       "report-gen.ts tokens.json"
     ],
@@ -96687,6 +96948,9 @@
     ],
     "repository field on the config": [
       "repository field on the config"
+    ],
+    "repository install guide": [
+      "repository install guide"
     ],
     "repository quality config": [
       "repository quality config"
@@ -99370,6 +99634,18 @@
     "review divergent convergence": [
       "review divergent convergence"
     ],
+    "review doc reconciliation": [
+      "review doc reconciliation"
+    ],
+    "review doc reconciliation implementation summary": [
+      "review doc reconciliation implementation summary"
+    ],
+    "review doc reconciliation plan": [
+      "review doc reconciliation plan"
+    ],
+    "review doc reconciliation tasks": [
+      "review doc reconciliation tasks"
+    ],
     "review docs floor and lens": [
       "review docs floor and lens"
     ],
@@ -100256,6 +100532,9 @@
     "rewrite changelogs to human voice": [
       "rewrite changelogs to human voice"
     ],
+    "rewrite every readme to its template": [
+      "rewrite every readme to its template"
+    ],
     "rewrite main skilled v4 0 0 0": [
       "rewrite main skilled v4 0 0 0"
     ],
@@ -100264,6 +100543,9 @@
     ],
     "rewrite skill changelogs": [
       "rewrite skill changelogs"
+    ],
+    "rewrite skill readmes": [
+      "rewrite skill readmes"
     ],
     "rg fallback handler parity": [
       "rg fallback handler parity"
@@ -102304,6 +102586,9 @@
     "runtime council tests": [
       "runtime council tests"
     ],
+    "runtime coverage table": [
+      "runtime coverage table"
+    ],
     "runtime data": [
       "runtime data"
     ],
@@ -102438,6 +102723,24 @@
     ],
     "runtime file path inventory": [
       "runtime file path inventory"
+    ],
+    "runtime folder readme template": [
+      "runtime folder readme template"
+    ],
+    "runtime folder readmes": [
+      "runtime folder readmes"
+    ],
+    "runtime folder readmes acceptance criteria": [
+      "runtime folder readmes acceptance criteria"
+    ],
+    "runtime folder readmes implementation summary": [
+      "runtime folder readmes implementation summary"
+    ],
+    "runtime folder readmes plan": [
+      "runtime folder readmes plan"
+    ],
+    "runtime folder readmes tasks": [
+      "runtime folder readmes tasks"
     ],
     "runtime fork drift guard gap": [
       "runtime fork drift guard gap"
@@ -102640,6 +102943,24 @@
     "runtime playbook fail cleanup": [
       "runtime playbook fail cleanup"
     ],
+    "runtime plugin readme": [
+      "runtime plugin readme"
+    ],
+    "runtime plugin readmes": [
+      "runtime plugin readmes"
+    ],
+    "runtime plugin readmes acceptance criteria": [
+      "runtime plugin readmes acceptance criteria"
+    ],
+    "runtime plugin readmes implementation summary": [
+      "runtime plugin readmes implementation summary"
+    ],
+    "runtime plugin readmes plan": [
+      "runtime plugin readmes plan"
+    ],
+    "runtime plugin readmes tasks": [
+      "runtime plugin readmes tasks"
+    ],
     "runtime process lifecycle closure": [
       "runtime process lifecycle closure"
     ],
@@ -102660,6 +102981,9 @@
     ],
     "runtime readme folder map": [
       "runtime readme folder map"
+    ],
+    "runtime readme template": [
+      "runtime readme template"
     ],
     "runtime remediation matrix": [
       "runtime remediation matrix"
@@ -102735,6 +103059,9 @@
     ],
     "runtime symlink retarget research": [
       "runtime symlink retarget research"
+    ],
+    "runtime sync doc template": [
+      "runtime sync doc template"
     ],
     "runtime sync manifest template": [
       "runtime sync manifest template"
@@ -104815,6 +105142,9 @@
     "security md sk doc": [
       "security.md sk-doc"
     ],
+    "security md template": [
+      "security.md template"
+    ],
     "security md verification": [
       "security.md verification"
     ],
@@ -104835,6 +105165,9 @@
     ],
     "security policy tasks": [
       "security policy tasks"
+    ],
+    "security policy template": [
+      "security policy template"
     ],
     "security policy validation": [
       "security policy validation"
@@ -105706,6 +106039,30 @@
     ],
     "session scoped graph query": [
       "session-scoped graph query"
+    ],
+    "session scoped sweep and consume": [
+      "session scoped sweep and consume"
+    ],
+    "session scoped sweep and consume implementation summary": [
+      "session scoped sweep and consume implementation summary"
+    ],
+    "session scoped sweep and consume plan": [
+      "session scoped sweep and consume plan"
+    ],
+    "session scoped sweep and consume tasks": [
+      "session scoped sweep and consume tasks"
+    ],
+    "session signal sweeps": [
+      "session signal sweeps"
+    ],
+    "session signal sweeps implementation summary": [
+      "session signal sweeps implementation summary"
+    ],
+    "session signal sweeps plan": [
+      "session signal sweeps plan"
+    ],
+    "session signal sweeps tasks": [
+      "session signal sweeps tasks"
     ],
     "session snapshot stale ready gate": [
       "session-snapshot stale ready gate"
@@ -116076,8 +116433,14 @@
     "skill readability refinement phase parent spec": [
       "skill readability refinement phase parent spec"
     ],
+    "skill readme hook readme runtime readme rewrite": [
+      "skill readme hook readme runtime readme rewrite"
+    ],
     "skill readme refinement": [
       "skill README refinement"
+    ],
+    "skill readme rewrite batches": [
+      "skill readme rewrite batches"
     ],
     "skill readme routing": [
       "skill readme routing"
@@ -116087,6 +116450,24 @@
     ],
     "skill readme template": [
       "skill readme template"
+    ],
+    "skill readme template conformance": [
+      "skill readme template conformance"
+    ],
+    "skill readmes": [
+      "skill readmes"
+    ],
+    "skill readmes acceptance criteria": [
+      "skill readmes acceptance criteria"
+    ],
+    "skill readmes implementation summary": [
+      "skill readmes implementation summary"
+    ],
+    "skill readmes plan": [
+      "skill readmes plan"
+    ],
+    "skill readmes tasks": [
+      "skill readmes tasks"
     ],
     "skill recommendation tool": [
       "skill recommendation tool"
@@ -116373,6 +116754,9 @@
     ],
     "skilled hook handover": [
       "skilled-hook-handover"
+    ],
+    "skilled hosthook host pre commit": [
+      "skilled hostHook host pre-commit"
     ],
     "skilled house checklist": [
       "skilled house checklist"
@@ -122673,6 +123057,12 @@
     "sweep live zero trigger index": [
       "sweep live zero trigger index"
     ],
+    "sweep reads another session transcript": [
+      "sweep reads another session transcript"
+    ],
+    "sweep reads calling session": [
+      "sweep reads calling session"
+    ],
     "sweep rrf sh sweep rrf py": [
       "sweep-rrf.sh sweep-rrf.py"
     ],
@@ -122898,6 +123288,9 @@
     ],
     "sync derived block": [
       "sync derived block"
+    ],
+    "sync manifest template": [
+      "sync manifest template"
     ],
     "sync md template": [
       "sync md template"
@@ -132583,6 +132976,9 @@
     "vibe turn start composer": [
       "vibe turn start composer"
     ],
+    "vibe unified session folder": [
+      "vibe unified session folder"
+    ],
     "viewport emulation": [
       "viewport emulation"
     ],
@@ -134395,6 +134791,9 @@
     "worktree safety hardening": [
       "worktree safety hardening"
     ],
+    "worktree save pending answer": [
+      "worktree save pending answer"
+    ],
     "worktree session sh": [
       "worktree-session.sh"
     ],
@@ -134724,6 +135123,9 @@
     ],
     "writer lock stale reclaim race tasks": [
       "writer lock stale reclaim race tasks"
+    ],
+    "writer only decision record level warning": [
+      "writer-only decision record level warning"
     ],
     "writer regex widen task": [
       "writer regex widen task"

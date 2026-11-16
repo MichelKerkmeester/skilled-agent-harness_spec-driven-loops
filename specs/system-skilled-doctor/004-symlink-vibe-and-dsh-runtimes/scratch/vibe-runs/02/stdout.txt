@@ -1,0 +1,35 @@
+1. FILES CHANGED:
+- /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/assets/symlink-manifest.json
+
+2. COMMANDS:
+
+`grep -n '"pi"' .skilled/commands/doctor/assets/symlink-manifest.json` — exit 0
+```
+10:    "pi":       [{ "name": ".pi", "kind": "dir" }]
+```
+
+`node -e "JSON.parse(require('fs').readFileSync('.skilled/commands/doctor/assets/symlink-manifest.json','utf8'))"` — exit 0, no output
+
+`node --test .skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs` — exit 0
+```
+✔ setup keeps a host-relative specs alias out of the ignore list (595.237875ms)
+✔ --runtimes vibe links .vibe, and a link without --runtimes leaves it out (665.674875ms)
+✔ --runtimes dsh links .dsh, and a link without --runtimes leaves it out (614.892875ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19113.893833
+```
+pass 25, fail 0.
+
+`git status --porcelain -- .skilled/commands/doctor/` — exit 0
+```
+ M .skilled/commands/doctor/assets/symlink-manifest.json
+ M .skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs
+```
+
+3. OPEN QUESTIONS: `symlink-engine.test.cjs` also shows as modified in the working tree. I did not touch it — it was already dirty before my edit, and it is the file carrying the two new `--runtimes vibe` / `--runtimes dsh` tests that now pass. Nothing else in the brief was off.

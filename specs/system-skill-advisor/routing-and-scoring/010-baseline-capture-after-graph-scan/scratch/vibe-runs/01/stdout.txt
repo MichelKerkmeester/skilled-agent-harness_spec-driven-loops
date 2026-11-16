@@ -1,0 +1,72 @@
+1. FILES CHANGED:
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts`
+
+2. COMMANDS:
+
+**`sed -n '1,20p' … && tail -n 20 … && wc -l …`** (anchor read) — exit 0
+```
+import { readFileSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+import { beforeAll, describe, expect, it } from 'vitest';
+...
+    expect(uncovered).toEqual([]);
+  });
+});
+---WC---
+     141 .skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts
+```
+
+**`tail -c 20 … | od -c`** (confirm trailing newline) — exit 0
+```
+0000000    q   u   a   l   (   [   ]   )   ;  \n           }   )   ;  \n
+0000020    }   )   ;  \n
+```
+
+**`sed -n '10,18p' … && tail -n 32 … && wc -l …`** (post-edit re-read) — exit 0
+```
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
+...
+describe('host capture selection', () => {
+  ...
+  it('reads the host capture when one sits beside the upstream one', () => {
+    const host = join(dir, 'command-routing-baseline.host.json');
+    writeFileSync(host, '{}\n');
+    expect(capturePath(upstream)).toBe(host);
+  });
+});
+---WC---
+     167 .skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts
+```
+
+**`cd …/runtime && npx vitest run tests/command-routing-slice.vitest.ts`** — exit 1
+```
+ ❯ tests/command-routing-slice.vitest.ts (6 tests | 2 failed) 8395ms
+     × reads the upstream capture when no host capture sits beside it 2ms
+     × reads the host capture when one sits beside the upstream one 1ms
+
+ FAIL  tests/command-routing-slice.vitest.ts > host capture selection > reads the upstream capture when no host capture sits beside it
+ReferenceError: capturePath is not defined
+ ❯ tests/command-routing-slice.vitest.ts:159:5
+
+ FAIL  tests/command-routing-slice.vitest.ts > host capture selection > reads the host capture when one sits beside the upstream one
+ReferenceError: capturePath is not defined
+ ❯ tests/command-routing-slice.vitest.ts:165:5
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+```
+
+**`git status --porcelain`** — exit 0. Only the target test file is modified by me; the other listed entries were already dirty before this dispatch.
+
+Counts: 4 passed, 2 failed. First error: `ReferenceError: capturePath is not defined` at line 159. Both failures are inside `host capture selection`; no other test failed.
+
+3. OPEN QUESTIONS:
+- `existsSync` is imported but unused in the current file. That is exactly the import line the brief specified, so I left it; it will presumably be consumed when `capturePath` lands. Flagging only so a lint gate later does not read as a surprise.
+- The brief said "after one blank line"; I placed the new `describe` one blank line after the closing `});` of the existing block, which is the file end.

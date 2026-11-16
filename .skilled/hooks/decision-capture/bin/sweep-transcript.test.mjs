@@ -349,7 +349,35 @@ test('the CLI skips a newer transcript recorded for another project', () => {
     const run = spawnSync(process.execPath, [SCRIPT], {
       cwd: projectDir,
       encoding: 'utf8',
-      env: { ...process.env, HOME: homeDir },
+      env: { ...process.env, HOME: homeDir, CLAUDE_CODE_SESSION_ID: '' },
+      timeout: 20000,
+    });
+
+    assert.equal(run.status, 0, run.stderr);
+    assert.equal(JSON.parse(run.stdout).transcript, ownPath);
+  });
+});
+
+test('the CLI reads the calling session transcript, not a newer one from another session', () => {
+  withProject((projectDir) => {
+    const homeDir = join(projectDir, 'home');
+    const realProject = realpathSync(projectDir);
+    const transcriptDir = join(homeDir, '.claude', 'projects', realProject.replace(/[^A-Za-z0-9]/g, '-'));
+    mkdirSync(transcriptDir, { recursive: true });
+
+    const ownPath = writeTranscript(transcriptDir, 'own-session.jsonl', [
+      { ...userPrompt('u0', 'start'), cwd: realProject },
+    ]);
+    const otherPath = writeTranscript(transcriptDir, 'other-session.jsonl', [
+      { ...userPrompt('u0', 'start'), cwd: realProject },
+    ]);
+    utimesSync(ownPath, new Date('2026-11-01T00:00:00Z'), new Date('2026-11-01T00:00:00Z'));
+    utimesSync(otherPath, new Date('2026-11-02T00:00:00Z'), new Date('2026-11-02T00:00:00Z'));
+
+    const run = spawnSync(process.execPath, [SCRIPT], {
+      cwd: join(projectDir, 'home'),
+      encoding: 'utf8',
+      env: { ...process.env, HOME: homeDir, CLAUDE_CODE_SESSION_ID: 'own-session' },
       timeout: 20000,
     });
 

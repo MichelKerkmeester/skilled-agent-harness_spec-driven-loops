@@ -126,8 +126,8 @@ Pinned lists, each once, after the last README edit:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed. One read-only Claude reviewer per feature group read each file against the code, and the orchestrator spot-checked each defect.
 - [x] `FOLD` prints `FOLD missing=0`, `TRIGGERS` prints `TRIGGERS lost=0`, `LINKONLY` prints `[]` and `CHECK` prints `FAIL` only for `skill-advisor/README.md`
 <!-- /ANCHOR:completion -->

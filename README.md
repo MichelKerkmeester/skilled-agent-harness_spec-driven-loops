@@ -25,7 +25,7 @@ Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor CLI, DeepSeek Ha
 - **Gate System** - six gates check every request before the agent acts: prior context, the right skill, a spec folder and the repository rules
 - **Skill Advisor** - routes every prompt to the right skill and workflow using 5-lane fusion and a live skill graph, so you never need to remember a command
 - **Spec Kit Framework** - spec folders with plans, tasks and a 42-rule validator, grouped into tracks, sub-tracks and phases, with progress saved into each folder and found again by keyword search after any reset or compaction
-- **Session Handover** - endless sessions: near the context limit, the work moves to a fresh session in the same terminal, which keeps the goal, the session name, the running command and the model, effort and launch flags
+- **Session Handover** - endless sessions: near the context limit, the work moves to a fresh session in the same terminal, which keeps the goal, the session name, the running command, the launch flags and, except on Vibe, the model
 - **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
 - **CLI Orchestration** - hand work to another AI CLI on its own subscription, with any provider and model you have set up
 - **14 On-Demand Skills** - seven parent hubs with 42 modes, plus standalone skills for specs, git, prompts and Orca
@@ -224,7 +224,7 @@ After a compaction, a session can read back its own earlier turns with one read-
 
 ### Handing Over A Long Session
 
-A long session can hand its work to a fresh one before the context window fills. Near the limit, the session writes a handoff note and saves its spec folder. A small wrapper then starts the same runtime in the same terminal, and the new session claims the note. The running command, the goal, the model and the session name all carry over.
+A long session can hand its work to a fresh one before the context window fills. Near the limit, the session writes a handoff note and saves its spec folder. A small wrapper then starts the same runtime in the same terminal, and the new session claims the note. The running command, the goal and the session name carry over, and so does the model on every runtime except Vibe.
 
 Handover is on by default for Claude Code. The [Session Handover](#session-handover) hook below shows how to turn it on for the others.
 
@@ -330,9 +330,11 @@ Near the context limit, this hook asks the session to write a handoff note and a
 
 To start every runtime under the wrapper, add the wrapper to your shell profile. The session handover README shows the line.
 
-The note carries what the next session needs. It holds the goal and what is left. It also names the running command with its mode and arguments. The model, effort, launch flags and session name carry over too. The hop waits for the session's background tasks, and your next prompt calls off a hop that is still waiting.
+The note carries what the next session needs. It holds the goal and what is left. It also names the running command with its mode and arguments. The model, the launch flags and the session name carry over too, and so does the effort on the runtimes that take one at launch. Vibe is the one runtime that keeps no model. The hop waits for the session's background tasks, and your next prompt calls off a hop that is still waiting.
 
-Handover is on by default for Claude Code only. You can turn it on for every runtime at once or for one runtime at a time, and a runtime's own setting wins. One off switch beats every on setting. While handover is off for a runtime, `/speckit:handoff` refuses there and the runtime's own compaction handles a full window.
+Handover is on by default for Claude Code only. You can turn it on for every runtime at once or for one runtime at a time, and a runtime's own setting wins. Only Claude Code, Codex, Pi, OpenCode and Mistral Vibe nudge and hop on their own. On Cursor and Devin, `/speckit:handoff` writes the note and you start the next session with the printed claim command. One off switch beats every on setting. While handover is off for a runtime, `/speckit:handoff` refuses there and the runtime's own compaction handles a full window.
+
+When the sender ran one of those five runtimes, the session that claims the note can also read the sender's earlier turns back through a printed lookup command, as the [handoff protocol](.skilled/hooks/session-handover/handoff-protocol.md#3-history-lookup-after-a-claim) explains.
 
 Read more in the [session handover README](.skilled/hooks/session-handover/README.md).
 

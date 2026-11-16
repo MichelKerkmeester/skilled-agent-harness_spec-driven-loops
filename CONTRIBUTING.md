@@ -4,7 +4,7 @@ Thank you for wanting to improve Skilled. This guide covers the setup, the rules
 
 &nbsp;
 
-## 1. 🧭 OVERVIEW
+## 1. OVERVIEW
 
 A contribution takes five steps. Fork the repository on GitHub and clone your fork. Create a branch with a name the hooks accept, as [Branch Names](#branch-names) explains. Write your change and run the tests for the part you touched. Then open a pull request whose description has a `## Summary` and a `## Test Plan` section.
 
@@ -12,7 +12,7 @@ The git hooks check most of the rules below before anything leaves your machine.
 
 &nbsp;
 
-## 2. ⚙️ DEVELOPMENT SETUP
+## 2. DEVELOPMENT SETUP
 
 ### Prerequisites
 
@@ -62,7 +62,7 @@ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.
 
 &nbsp;
 
-## 3. 📝 CODE STYLE
+## 3. CODE STYLE
 
 The full standards live in the [sk-code skill](.skilled/skills/sk-code/sk-code-skilled/README.md). Reviewers check these rules most often.
 
@@ -86,7 +86,7 @@ TypeScript carries the types in the signature, so the TSDoc tags leave them out.
 
 &nbsp;
 
-## 4. 💬 COMMIT MESSAGES
+## 4. COMMIT MESSAGES
 
 Commits follow [Conventional Commits](https://www.conventionalcommits.org/) with a required scope:
 
@@ -114,7 +114,7 @@ The `pre-push` hook checks a new branch's name when you push it. It accepts `mai
 
 &nbsp;
 
-## 5. 🔄 PULL REQUESTS
+## 5. PULL REQUESTS
 
 ### Description
 
@@ -150,18 +150,18 @@ Reviewers look for code that follows the patterns around it and changes that com
 
 &nbsp;
 
-## 6. 💡 WHAT TO CONTRIBUTE
+## 6. WHAT TO CONTRIBUTE
 
 Bug fixes with clear steps to reproduce them are the most welcome. Performance work with benchmarks and documentation fixes rank just as high. New skills, commands, agents and tests are welcome too. Scaffold a skill with `/create:sk-skill`, or `/create:skill-parent` for a skill with several modes. Use `/create:command` and `/create:agent` for the others. Typo fixes, clearer code and English translations of non-English content are always welcome.
 
 &nbsp;
 
-## 7. ❓ QUESTIONS AND SECURITY
+## 7. QUESTIONS AND SECURITY
 
 Open an issue for a bug, a feature request, a question or an idea. Check the existing issues first. Report a security problem privately, as [SECURITY.md](SECURITY.md) describes, and never in a public issue.
 
 &nbsp;
 
-## 8. 📜 LICENSE
+## 8. LICENSE
 
 By contributing, you agree that your contributions are licensed under the project's [MIT License](LICENSE).

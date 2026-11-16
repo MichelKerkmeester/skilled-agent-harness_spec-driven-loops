@@ -216,4 +216,4 @@ The output log holds the same lines plus `offeredCommand`, `offeredPolicy`, `off
 |---|---|
 | [`system-skill-advisor/SKILL.md`](../../../SKILL.md) | Runtime instructions for the owning skill. |
 | [`sk-code/SKILL.md`](../../../../sk-code/SKILL.md) | OpenCode coding standards and verification routing. |
-| [`sk-doc skill-readme-template.md`](../../../../sk-doc/sk-create-skill/assets/skill/skill-readme-template.md) | README structure used for this code README. |
+| [`sk-doc skill-readme-template.md`](../../../../sk-doc/sk-create-readme/assets/skill-readme-template.md) | README structure used for this code README. |

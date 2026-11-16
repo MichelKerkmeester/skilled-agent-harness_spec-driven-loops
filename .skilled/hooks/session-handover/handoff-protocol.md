@@ -16,7 +16,7 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-`prepare` writes a handoff note and arms a relaunch record. The killer ends the sending session once it goes idle. A fresh session claims the note and continues the work. This document covers that protocol, its refusals and its exit codes.
+`prepare` validates a handoff note and writes a pending relaunch record that the runtime's arm event arms. The killer ends the sending session once it goes idle. A fresh session claims the note and continues the work. This document covers that protocol, its refusals and its exit codes.
 
 ---
 
@@ -112,7 +112,7 @@ An arm that throws is logged as `stop-arm-error stage=arm` and leaves the same s
 
 When the operator types a prompt in that session, the `UserPromptSubmit` nudge withdraws the session's record. It does so when the record is deferred or already armed. The killer signals an armed session after a few quiet seconds. A new turn that runs one long tool would otherwise be ended mid-turn and relaunched onto the old note.
 
-Claude, Codex, Pi, OpenCode and `cancel` all withdraw through one helper, `lib/withdraw.cjs`. It disarms the record under the record lock with reason `user-message`, or `cancelled` for the command. It grants the extra nudge below and writes a `withdrawn` line to the hop history. The Claude and Codex hooks also log `withdrawn` and tell the session to keep working. The note stays open as it was.
+Claude, Codex, Pi, OpenCode, Vibe and `cancel` all withdraw through one helper, `lib/withdraw.cjs`. It disarms the record under the record lock with reason `user-message`, or `cancelled` for the command. It grants the extra nudge below and writes a `withdrawn` line to the hop history. The Claude, Codex and Vibe hooks also log `withdrawn` and tell the session to keep working. The note stays open as it was.
 
 The killer stands down on a record disarmed after Stop. It does so at its timeout and in its last read before the signal.
 
@@ -122,7 +122,7 @@ A background task's own completion arrives as a `<task-notification>` prompt and
 
 ### The Killer
 
-Every arm path restarts a killer for an armed record that has no live killer owner. Those paths are Claude Stop, Codex Stop, OpenCode `session.idle` and Pi `agent_settled`. It does nothing while a killer owns the lock. A record left armed by a failed spawn is therefore recovered by the next arm event.
+Every arm path restarts a killer for an armed record that has no live killer owner. Those paths are Claude Stop, Codex Stop, OpenCode `session.idle`, Pi `agent_settled` and Vibe `post_agent`. It does nothing while a killer owns the lock. A record left armed by a failed spawn is therefore recovered by the next arm event.
 
 Claude and Codex write the armed state before starting the killer. A killer spawn failure therefore does not return the record to pending.
 

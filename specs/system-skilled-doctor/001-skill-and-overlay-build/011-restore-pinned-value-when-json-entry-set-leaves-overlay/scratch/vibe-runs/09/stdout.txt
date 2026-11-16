@@ -1,0 +1,64 @@
+RETURN: PASS | escalation=NONE | confidence=HIGH
+
+## Code Implementation Result
+
+**Mode:** 2: Surgical Fix
+**Files:** `.skilled/commands/doctor/scripts/overlay-engine.cjs`
+**Verification:** PASS (matches the brief's expected 33 pass / 2 fail)
+**Quality Gate:** N/A — orchestrator pre-routed sk-code; brief named the exact check
+**Command:** `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`
+**Exit Code:** 1 (expected: the two named tests fail until a later brief)
+**First Failing Assertion:** `two sets on one path keep one record and both leave together` — `deepStrictEqual` actual `[{path:[...],value:'sk-doc',added:false},{path:[...],value:'sk-git',added:false}]` vs expected `[{path:[...],value:'sk-git',added:false}]`
+**Escalation:** NONE
+**Confidence:** HIGH
+**Not checked:** The full `node --test .skilled/commands/doctor/scripts/tests` directory was not run — the brief scoped the check to the single sync test file.
+
+### Summary
+Added `indexesMatchPin(root, upstreamRoot, path, operations, recordedItems)` at `overlay-engine.cjs:1235`, which walks each numeric index on a recorded path and returns false when the live and pinned containers are not both arrays, when their item counts differ, when this overlay recorded adding an item to that container, or when the current entry set is about to add items there. `restoreDroppedSets` now takes `recordedItems = []` as a fifth parameter (`:1281`) and throws a refusal at `:1305` before reading the pin when the guard fails, so a dropped `set` whose path runs through a shifted array is refused instead of restoring the wrong item's value. `applyJsonOperations` passes `options.recordedItems || []` through at `:1350`. All four blocks were replaced verbatim as specified; no other lines changed.
+
+### Adversarial Summary
+| Finding | Builder Defense | Critic Challenge | Verifier Verdict | Final Action |
+| --- | --- | --- | --- | --- |
+| Guard placed before `recordedNodeAt(upstreamRoot, ...)` | Refusal must precede any pin read, per the brief's step 3 | Could the guard fire on a path with no numeric index? | PASS — loop `continue`s on non-numeric segments, returns true | ship |
+| `recordedItems` default `[]` keeps existing callers working | Default parameter, no call-site breakage | Does any other caller pass positionally? | PASS — only `applyJsonOperations` calls it, updated | ship |
+
+---
+
+1. FILES CHANGED:
+   - `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs`
+
+2. COMMANDS:
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')"`
+   - exit status: 0
+   - output: nothing printed (last 15 lines empty)
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`
+   - exit status: 1
+   - counts: `tests 35`, `pass 33`, `fail 2`, `cancelled 0`, `skipped 0`, `todo 0`
+   - failing tests, both the ones the brief named:
+     - `two sets on one path keep one record and both leave together`
+     - `apply deletes a key the pin does not hold even when its record never marked it as added`
+   - last 15 lines:
+     ```
+       at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:902:10)
+       at Test.runInAsyncScope (node:async_hooks:226:14)
+       at Test.run (node:internal/test_runner/test:1402:25)
+       at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+       at Test.postRun (node:internal/test_runner/test:1542:19)
+       at Test.run (node:internal/test_runner/test:1467:12)
+       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+         generatedMessage: false,
+         code: 'ERR_ASSERTION',
+         actual: 1,
+         expected: 0,
+         operator: 'strictEqual',
+         diff: 'simple'
+       }
+     ```
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && git status --porcelain && git diff --stat`
+   - exit status: 0
+   - used only to confirm my write touched one file; the tree already carried unrelated modifications from earlier briefs. Last 15 lines are the untracked `specs/.../scratch/` entries.
+
+3. OPEN QUESTIONS: none. The two failing tests are the ones the brief said to leave alone, and no other test failed.

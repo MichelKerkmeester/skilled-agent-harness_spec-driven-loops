@@ -9,7 +9,9 @@
     "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames",
     "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite",
     "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes",
-    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes"
+    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes",
+    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation",
+    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard"
   ],
   "manual": {
     "depends_on": [],
@@ -163,19 +165,19 @@
     ],
     "causal_summary": "A person who opens `.skilled/hooks/` to learn which hook does what meets four obstacles",
     "created_at": "2026-11-15T14:58:48Z",
-    "last_save_at": "2026-11-16T10:05:53.131Z",
+    "last_save_at": "2026-11-16T13:04:15.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:b297a4450498ea863812457dcd0b2925f1fa2b13087994e7cc948ca1e429d2f7",
+    "source_fingerprint": "sha256:25fdad62e569802c10974098f24951a08a03feb4160325f272521f41df1cd07c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "88f55ac45458d798dd0e4802e300f9f093d0e925a7744dc1db7d40e25d4865f4"
+      "spec.md": "d5764c5f7c69d0ec88fba493c390975ed349cf39d8763c0af4c4f3425531af50"
     },
-    "last_active_child_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes",
-    "last_active_at": "2026-11-16T09:52:16.360Z"
+    "last_active_child_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard",
+    "last_active_at": "2026-11-16T13:04:15.242Z"
   }
 }

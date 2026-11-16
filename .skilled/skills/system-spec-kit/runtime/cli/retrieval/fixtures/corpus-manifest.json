@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7fc951e354a4cf4409fd9943184370d19000b46b283753bf5d20ff163ae0afb3",
+  "corpusHash": "2258b91b8e8bc3c6d14a8e274bbb9dcf3e82e973cb2f34acf9215f1c2d02977d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27977,
+  "includedPathCount": 28087,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7032,8 +7032,15 @@
     ".skilled/skills/sk-doc/sk-create-readme/ROUTER.md",
     ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/architecture-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/contributing-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/install-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-folder-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/security-policy-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.2.0.0.md",
@@ -7119,7 +7126,6 @@
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md",
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md",
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-procedure-template.md",
-    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md",
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md",
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-scaffold-template.md",
@@ -11374,6 +11380,20 @@
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary/plan.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary/spec.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary/tasks.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/decision-record.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/implementation-summary.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/plan.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/spec.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/tasks.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/decision-record.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/implementation-summary.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/plan.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/spec.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/tasks.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps/implementation-summary.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps/plan.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps/spec.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps/tasks.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/decision-record.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/goal.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/handover.md",
@@ -11815,7 +11835,45 @@
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/decision-record.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/decision-record.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/tasks.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/goal.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/deep-review-dashboard.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/deep-review-strategy.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/iterations/iteration-001.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/iterations/iteration-002.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/iterations/iteration-003.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/iterations/iteration-004.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/iterations/iteration-005.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/prompts/iteration-1.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/prompts/iteration-2.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/prompts/iteration-3.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/prompts/iteration-4.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/prompts/iteration-5.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/resource-map.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/review-report.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/deep-review-dashboard.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/deep-review-strategy.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/iterations/iteration-001.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/iterations/iteration-002.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/iterations/iteration-003.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/iterations/iteration-004.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/iterations/iteration-005.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/prompts/iteration-1.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/prompts/iteration-2.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/prompts/iteration-3.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/prompts/iteration-4.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/prompts/iteration-5.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/resource-map.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/review-report.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/acceptance-criteria.md",
     "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/decision-record.md",
@@ -12872,6 +12930,18 @@
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/plan.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/051-handover-doc-alignment-3/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/051-handover-doc-alignment-3/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/051-handover-doc-alignment-3/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/051-handover-doc-alignment-3/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/051-handover-doc-alignment-3/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/051-handover-doc-alignment-3/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/research.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
@@ -16175,6 +16245,44 @@
     "specs/sk-doc/document-standards/005-root-readme-section-spacing/plan.md",
     "specs/sk-doc/document-standards/005-root-readme-section-spacing/spec.md",
     "specs/sk-doc/document-standards/005-root-readme-section-spacing/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/decision-record.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/implementation-summary.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/plan.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/spec.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/implementation-summary.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/plan.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/spec.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/implementation-summary.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/plan.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/spec.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/implementation-summary.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/plan.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/spec.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/implementation-summary.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/plan.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/spec.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/implementation-summary.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/plan.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/spec.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/implementation-summary.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/plan.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/spec.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/decision-record.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/spec.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/001-transport-and-baseline/acceptance-criteria.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/001-transport-and-baseline/goal.md",
     "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/001-transport-and-baseline/implementation-summary.md",
@@ -19234,6 +19342,7 @@
     "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/handover-to-barter.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/implementation-summary.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/spec.md",
@@ -19381,6 +19490,7 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/decision-record.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/goal.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/handover-from-barter-022.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/handover-to-barter.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/implementation-summary.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/spec.md",
@@ -28009,7 +28119,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "53f18967c6d8650c8e2724c8f3ff5127016d88bb5297e1a269a3919a7331d796",
+  "manifestHash": "ae82d8105b3e20e1f28035599b8f7496fdfbe7b270f980dea24345ced783ea78",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31232,6 +31342,18 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/research/lineages",
       "reason": "excluded directory"
     },
@@ -31485,6 +31607,14 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/007-review-doc-reconciliation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/scratch",
       "reason": "excluded directory"
     },
     {
@@ -32373,6 +32503,14 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/051-handover-doc-alignment-3/scratch",
       "reason": "excluded directory"
     },
     {
@@ -34849,6 +34987,34 @@
     },
     {
       "path": "specs/sk-doc/document-standards/005-root-readme-section-spacing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/scratch",
       "reason": "excluded directory"
     },
     {

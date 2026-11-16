@@ -18,7 +18,7 @@ version: 1.0.0.0
 
 Every verdict is advisory here. A reject returns a `reason` and never blocks the call. `SYSTEM_TASK_DISPATCH_DISABLED=1` turns the concern off. The extension then returns at once.
 
-The extension loads the shared core from `../lib/subagent-dispatch-guard.cjs`. A longer fallback specifier sits beside that import. It resolves only through the test alias. The core returns the decision, the warnings and the audits.
+The extension loads the shared core from `../lib/subagent-dispatch-guard.cjs`. The core returns the decision, the warnings and the audits.
 
 Claude, Cursor, Devin, DSH, OpenCode, Pi and Vibe each run the guard. The parent README names each registration.
 

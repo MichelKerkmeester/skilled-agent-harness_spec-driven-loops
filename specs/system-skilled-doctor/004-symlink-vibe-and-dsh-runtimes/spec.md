@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-11-16 |
 | **Branch** | `worktrees/425-repin-engine-limits-intake` |
 <!-- /ANCHOR:metadata -->
@@ -141,7 +141,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 7. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- Does `.vibe` or `.dsh` hold a file that must stay per project? UNKNOWN. T002 answers it.
+- Does `.vibe` or `.dsh` hold a file that must stay per project? No. T002 found none. Both runtimes keep session state, trust and logs in `VIBE_HOME` or `DSH_HOME` outside the folder. `config.toml` and `hooks.toml` are Skilled's own runtime config, like `.claude/settings.json`, which is already linked whole. The evidence is in `implementation-summary.md`.
 <!-- /ANCHOR:questions -->
 
 ---

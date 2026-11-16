@@ -57,6 +57,7 @@ _memory:
 | Q021 | Review lineage Vibe homes stay out of the commit; only the review artifacts are committed. | Not stated. | None | .gitignore, review/ (packet 004) |
 | Q022 | Of the Mistral open ends, do the quick fixes (stale box and symlink launch check), refresh VIB-HK-026, and record the session's decisions; the glm-flash pass is not run. | Not stated. | None | 024 T018, 022 scratch/live/VIB-HK-026/hop-record.md |
 | Q023 | Before calling the Vibe hooks verified on current code, run 10 iterations of deep review on all the Mistral and Vibe work, to find what to improve. | Not stated. Evidence: open_value, option not_applicable, overlap 0, imperative false, shift false. | None | review/ (packet 004), 023-vibe-review-remediation |
+| Q024 | Fold the Mistral Vibe work, including the fixes pushed after the tag, into the v4.0.2.1 entry and republish the v4.0.2.1 tag at the new main. | Not stated. | None | .skilled/changelog/skilled/v4.0.2.1.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -515,6 +516,26 @@ Options: none
 Answer:
 ```text
 zrun 10 iters of deep review / research on all work done to improve
+```
+
+### Q024
+<!-- source: claude:425e79e1-c5de-4edb-b8bb-77ee620d2538:toolu_0197x8EX5vQ4Sy7a7CUAMqwH:0 -->
+
+Question:
+```text
+v4.0.2.1 is tagged and published (tag at 2026-11-15 22:24). Its tag already holds the first Mistral Vibe hook round, which the notes never mention. Five later pushes came after the tag: the process.start/process.write shell-guard fix, kill switches staying live, Claude user hook sync, symlinked-checkout hooks and the second scenario round. The changelog skill says work after a tag goes in a new entry. Where should the post-tag work go?
+```
+
+Options:
+```text
+All in v4.0.2.1 + move tag (Recommended)
+All in v4.0.2.1, keep tag
+Split: new v4.0.2.2
+```
+
+Answer:
+```text
+All in v4.0.2.1 + move tag (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

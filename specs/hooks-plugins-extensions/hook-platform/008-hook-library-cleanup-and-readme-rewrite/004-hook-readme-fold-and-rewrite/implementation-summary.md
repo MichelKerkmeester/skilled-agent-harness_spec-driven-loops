@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite"
-    last_updated_at: "2026-11-16T09:43:09Z"
+    last_updated_at: "2026-11-16T13:04:06Z"
     last_updated_by: "generate-context"
     recent_action: "Recorded the operator's T021 decision"
     next_safe_action: "None; phase 4 is complete and on main"
@@ -17,14 +17,14 @@ _memory:
     key_files:
       - ".skilled/hooks/env-secret-guard/README.md"
     session_dedup:
-      fingerprint: "sha256:e4ac12162aad5884d56abbd2a72411c27018043c25c68b4421ecf226d75df121"
+      fingerprint: "sha256:dbee44cc30fd49fcdc455c69e2353cbdc3810cc3caa06738073e142d31f65e83"
       session_id: "scaffold-004-hook-readme-fold-and-rewrite"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "a4c37e98-2c3a-4c20-a7bf-acbc32e31f29"
-      workspace: "/Users/michelkerkmeester/worktrees/public/411-hook-library-cleanup"
-      savedAt: "2026-11-16T09:43:09Z"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-16T13:04:06Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -56,7 +56,7 @@ _memory:
 ## What Was Built
 <!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-`.skilled/hooks/` now holds 104 READMEs instead of 183. Each one describes code that sits in its folder, and none is left for a folder that holds only symlinks. One README is not signed off: `env-secret-guard/README.md` holds a worker draft with one wrong diagram line, and the guard refuses the agent edit that would fix it.
+`.skilled/hooks/` held 104 READMEs instead of 183 when this phase closed. Each one describes code that sits in its folder, and none is left for a folder that holds only symlinks. Every README is signed off: the guard refused the agent edit to the one wrong diagram line in `env-secret-guard/README.md`, so the operator made it and T021 closed. The later merge of origin/main brought in `session-handover/history/README.md` from another packet, so the tree now holds 105.
 
 ### Phase 4: hook-readme-fold-and-rewrite
 

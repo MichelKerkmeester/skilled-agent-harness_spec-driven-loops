@@ -28,7 +28,7 @@ It keeps only the pointer, liveness and telemetry per session. Pi, Cursor, Devin
 
 See [`injection-contract.md`](./injection-contract.md) for what each AI-runtime hook here actually injects and its visibility to the human operator.
 
-A session-handover concern, documented in [session-handover/](./session-handover/README.md), adds context nudges and runtime-specific arming for Claude, Pi, OpenCode, Codex and Vibe sessions started through skilled-loop. Cursor and Devin join the same loop on the `/speckit:handoff` command trigger only. DSH has no relaunch, because `skilled-loop` does not launch it. Inside skilled-loop the nudge asks for a hop, and outside it only for a note the session keeps through compaction.
+A session-handover concern, documented in [session-handover/](./session-handover/README.md), adds context nudges and runtime-specific arming for Claude, Pi, OpenCode, Codex and Vibe sessions started through skilled-loop. Cursor and DSH run the `/speckit-handoff` command trigger and Devin the `/speckit:handoff` trigger only. DSH has no relaunch, because `skilled-loop` does not launch it. Inside skilled-loop the nudge asks for a hop, and outside it only for a note the session keeps through compaction.
 
 The sourced `.skilled/bin/skilled-loop-shell.sh` shim starts every plain interactive runtime launch under a trusted wrapper, a symlinked `.skilled` included. Trusted means inside the sourced checkout, a linked worktree registered to it or a checkout in `SKILLED_LOOP_TRUSTED_CHECKOUTS`.
 
@@ -41,6 +41,8 @@ Every concern except `git-message-gate` honors the master `SYSTEM_HOOKS_DISABLED
 The default is enabled, except `session-handover`, which ships on for Claude Code and off for every other runtime. The flag that decides is `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` when it holds a value. `<RUNTIME>` is `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR`, `DEVIN` or `VIBE`. Next comes `SYSTEM_SESSION_HANDOVER_ENABLED` when it holds one. With both empty or unset, only Claude Code runs it.
 
 So `SYSTEM_SESSION_HANDOVER_ENABLED=1` with `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED=0` is on for every runtime except Claude Code. The disable switch and the master switch still win over every enable flag. Truthy disable values are `1`, `true`, `yes` and `on`, in any case. The kill-switch index below lists every concern and alias.
+
+### Kill-switch index
 
 This table is the single source of truth for repo-authored hook kill-switch names, apart from the older `MK_*` spellings that `hook-flags.cjs` still honors. All concerns are wired to the shared resolver or its shell equivalent.
 
@@ -143,7 +145,7 @@ hooks/
 +-- coverage-rationale.md            # why each runtime lacks a concern
 +-- injection-contract.md            # what each hook injects and who sees it
 +-- hook-flags.env.example           # the switch file template
-+-- vitest.config.ts                 # the hooks vitest config and its long-specifier alias
++-- vitest.config.ts                 # the hooks vitest config
 +-- shared/
 |   +-- hook-adapter-shared.cjs      # stdin collection + fail-open JSON parse, used by the CommonJS and ESM adapters below
 |   +-- hook-flags.cjs, hook-flags.mjs, hook-flags.sh   # the switch resolver in CommonJS, ESM and shell
@@ -256,6 +258,7 @@ hooks/
 |   +-- opencode/session-handover.js (browsability symlink -> .opencode/plugins/session-handover.js)
 |   +-- vibe/handover-parts.mjs
 |   +-- lib/context-usage.cjs, nudge.cjs, relaunch-core.cjs, killer.cjs, goal-handover.cjs, hop-history.cjs, withdraw.cjs
+|   +-- history/ the History Lookup engine behind bin/history-lookup.mjs: lib/, tests/ and its own dist/ build
 |   `-- tests/ nineteen Node test files plus payload fixtures
 `-- goal/                            # cross-runtime passive session-goal tracking (sibling of opencode-goal)
     +-- goal-plugin.md               # the OpenCode plugin contract
@@ -279,7 +282,7 @@ Vibe's guard scripts take the OpenCode direction too. `.vibe/hooks.toml` runs ea
 
 The bin-backed concerns follow the same pattern. `git-live-follow/` and `git-primary-reconcile/` hold one symlink per runtime into `.skilled/bin/`, and the additional-hooks table below indexes them. `codex-global-hooks-check/` holds three links into `.skilled/bin/` and one into `.opencode/plugins/`. DSH's skill-owned adapters follow it too. `skill-advisor/dsh/`, `spec-gate/dsh/`, `session-lifecycle/dsh/`, `completion-evidence/dsh/`, `git-preflight/dsh/` and `git-message-gate/dsh/` hold index links to the real files in `system-skill-advisor/hooks/dsh/`, `system-spec-kit/runtime/hooks/dsh/` and `sk-git/scripts/hooks/dsh/`.
 
-Pi's portable adapters live here too, in per-concern `pi/` subfolders. They are `ask-surface-guard/pi/`, `cli-dispatch/pi/`, `env-secret-guard/pi/`, `mcp-route-guard/pi/`, `overlay-guard/pi/`, `post-edit-quality/pi/`, `subagent-dispatch-guard/pi/`, `classifier-injection-screen/pi/`, `decision-capture/pi/`, `goal/pi/` and `session-handover/pi/`. Pi auto-discovers `.pi/extensions/`, whose one-line entry files re-export these adapters. Each adapter therefore loads from its own folder, and the imports Pi resolves are relative to that folder. A few adapters also carry a long specifier that does not resolve from the adapter's folder, so under Pi that specifier never loads.
+Pi's portable adapters live here too, in per-concern `pi/` subfolders. They are `ask-surface-guard/pi/`, `cli-dispatch/pi/`, `env-secret-guard/pi/`, `mcp-route-guard/pi/`, `overlay-guard/pi/`, `post-edit-quality/pi/`, `subagent-dispatch-guard/pi/`, `classifier-injection-screen/pi/`, `decision-capture/pi/`, `goal/pi/` and `session-handover/pi/`. Pi auto-discovers `.pi/extensions/`, whose one-line entry files re-export these adapters. Each adapter therefore loads from its own folder, and the imports Pi resolves are relative to that folder.
 
 OpenCode (`.opencode/plugins/*.js`) is the runtime whose adapter files cannot live here. Its plugins are real modules in a fixed folder that its loader scans. For browsability, each concern's `opencode/` subfolder holds a relative symlink back into `.opencode/plugins/`. That is the reverse of Pi's direction.
 
@@ -307,7 +310,7 @@ Node is not Pi's loader. It resolves a link to its real path before it resolves 
 | `goal` | cursor, devin, pi (re-exported), dsh (`goal-context.mjs` and `goal-manage.mjs`, symlinked), plus `lib/` core and slice module + `bin/` manage CLI | `opencode-goal.js` |
 | `ask-surface` | claude (blocking Stop), codex and devin (advisory Stop), pi (re-exported from `.pi/extensions/`), dsh (symlinked from `.dsh/plugins/repo-guards/adapters/`), vibe (`post_agent`, loaded by `session-lifecycle/vibe/turn-end.mjs`), plus the `lib/` detector and its fixtures | `ask-surface-guard.js` |
 | `decision-capture` | claude and devin (PostToolUse), vibe (`post_tool` on `ask_user_question`), pi (re-exported from `.pi/extensions/`), dsh (symlinked from `.dsh/plugins/repo-guards/adapters/`), plus save-time sweeps in `bin/` that read the Claude, Devin, Pi and DSH sessions, Codex rollouts and OpenCode's SQLite store | `decision-capture.js` |
-| session-handover | Claude: context-nudge on PostToolUse / UserPromptSubmit, stop-arm on Stop, compact-pointer on SessionStart after a compaction, and subagent-guard on PreToolUse (Bash and AskUserQuestion), which denies relaunch lifecycle commands run from a sub-agent and a question dialog over a pending hand-over. Pi: `message_end` / `before_agent_start` / `agent_end`. Codex: `handover-prompt-seed.mjs` on UserPromptSubmit, `handover-context-nudge.mjs` on PostToolUse, `handover-stop-arm.mjs` on Stop. Cursor, Devin and DSH run the `/speckit:handoff` command trigger only | `session-handover.js` (real OpenCode adapter) |
+| session-handover | Claude: context-nudge on PostToolUse / UserPromptSubmit, stop-arm on Stop, compact-pointer on SessionStart after a compaction, and subagent-guard on PreToolUse (Bash and AskUserQuestion), which denies relaunch lifecycle commands run from a sub-agent and a question dialog over a pending hand-over. Pi: `message_end`, `before_agent_start`, `agent_start`, `turn_end`, `agent_end`, `agent_settled`, `tool_call` and `session_compact`. Codex: `handover-prompt-seed.mjs` on UserPromptSubmit, `handover-context-nudge.mjs` on PostToolUse, `handover-stop-arm.mjs` on Stop and `handover-compact-pointer.mjs` on SessionStart. Vibe: `vibe/handover-parts.mjs`, which the session-lifecycle composers run on `pre_agent`, `post_tool` and `post_agent`. Cursor and DSH run the `/speckit-handoff` command trigger and Devin the `/speckit:handoff` trigger only | `session-handover.js` (real OpenCode adapter) |
 
 `sk-git-preflight-advisory.js` and `cli-dispatch-audit.js` are OpenCode plugins owned by `sk-git` and `cli-opencode`. Both also import `cli-dispatch/lib/dispatch-rule-checks.mjs` and `cli-dispatch/lib/dispatch-audit.mjs` from here.
 
@@ -338,7 +341,7 @@ node --test .skilled/hooks/shared/hook-adapter-shared.test.cjs .skilled/hooks/sh
 # dispatch-audit is a vitest suite and cannot run under node --test
 .skilled/node_modules/.bin/vitest run --root .skilled/hooks/cli-dispatch/lib dispatch-audit.test.mjs
 
-# The dispatch adapter suites are vitest files. The hooks config's alias serves the literal long specifiers a few Pi adapters keep. They resolve only through the test alias
+# The dispatch adapter suites are vitest files and run through the hooks config
 .skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/cli-dispatch/codex/codex-shell-tool.test.mjs .skilled/hooks/cli-dispatch/pi/dispatch-preflight-lint.test.ts .skilled/hooks/cli-dispatch/pi/directive-dedup.test.ts
 ```
 
@@ -398,7 +401,7 @@ For the why behind each absence, see [`coverage-rationale.md`](./coverage-ration
 | `permission-policy` | by-design: permission via `PreToolUse` decision, no dedicated permission-request adapter | n/a: fires no permission event at all, so no approval hook exists | by-design: no dedicated permission-request adapter | ✓ covered | by-design: no dedicated permission-request adapter | by-design: no separate approval event beyond `tool_call` | by-design: `tools/pre-execute` already carries the spec-gate and dispatch decisions, and `approval/request` carries no tool arguments to judge | by-design: the dispatch runs `--auto-approve` behind the strict rendered guards |
 | `post-edit-quality` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `session-lifecycle` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | by-design: session events run inside the concern plugins (`system-skill-advisor`, `opencode-goal`, `session-cleanup`) | ✓ covered | ✓ covered | ✓ covered |
-| `session-handover` | ✓ covered | ✓ covered | by-design: `/speckit:handoff` command trigger, no automatic hop because no usage signal is verified | by-design: `/speckit:handoff` command trigger, no automatic hop because no usage signal is verified | ✓ covered | ✓ covered | by-design: `/speckit:handoff` prompt trigger only, because `skilled-loop` launches no DSH session | ✓ covered |
+| `session-handover` | ✓ covered | ✓ covered | by-design: `/speckit-handoff` command trigger, no automatic hop because no usage signal is verified | by-design: `/speckit:handoff` command trigger, no automatic hop because no usage signal is verified | ✓ covered | ✓ covered | by-design: `/speckit-handoff` prompt trigger only, because `skilled-loop` launches no DSH session | ✓ covered |
 | `skill-advisor` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `spec-gate` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `task-dispatch` | ✓ covered | n/a: codex-cli 0.160 fires `PreToolUse` on `spawn_agent` (as `collaborationspawn_agent`), but a captured payload carries the spawn message encrypted, so no prompt or target reaches a hook | ✓ covered | ✓ covered | ✓ covered | ~ partial: intercepts direct `subagent` calls, but not yet workflow-nested (`runs.run`) dispatches | ~ partial: guards `subagent` and `subagent_fork` at `tools/pre-execute`, but only logs and never denies | ✓ covered |

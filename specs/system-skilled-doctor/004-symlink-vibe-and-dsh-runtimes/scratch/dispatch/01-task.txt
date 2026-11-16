@@ -1,0 +1,44 @@
+TASK: add two failing tests that link the .vibe and .dsh runtime folders.
+One file changes. Do the two steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 2. File: R/.skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs
+Append the block below at the END of the file, after one blank line. Change nothing else in the file.
+
+BLOCK TO APPEND:
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MISTRAL VIBE AND DSH RUNTIMES
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Both folders are linked whole like every other runtime folder. A link that
+// names no runtime keeps only the ones the project already has, so a project
+// without the folder must not be handed one.
+for (const [runtime, folder] of [['vibe', '.vibe'], ['dsh', '.dsh']]) {
+  test(`--runtimes ${runtime} links ${folder}, and a link without --runtimes leaves it out`, () => {
+    const { source, root } = buildFixture();
+    writeFile(path.join(source, folder, 'fixture.txt'), `${runtime} fixture\n`);
+
+    const detected = runEngine(source, 'plan', ['--root', root]);
+    assertStatus(detected, 0, 'a plan without --runtimes should run');
+    const detectedDigest = detected.stdout.match(/^PLAN DIGEST: ([a-f0-9]{64})\s*$/m);
+    assert.ok(detectedDigest, `plan should print its digest\n${detected.output}`);
+    const plain = runEngine(source, 'apply', ['--root', root, '--plan-digest', detectedDigest[1]]);
+    assertStatus(plain, 0, 'an apply without --runtimes should run');
+    assert.equal(fs.lstatSync(path.join(root, folder), { throwIfNoEntry: false }), undefined);
+
+    const args = ['--root', root, '--runtimes', runtime];
+    const planned = runEngine(source, 'plan', args);
+    assertStatus(planned, 0, `a plan with --runtimes ${runtime} should run`);
+    assertPlanAction(planned, 'link', folder);
+    const digest = planned.stdout.match(/^PLAN DIGEST: ([a-f0-9]{64})\s*$/m);
+    assert.ok(digest, `plan should print its digest\n${planned.output}`);
+    const applied = runEngine(source, 'apply', [...args, '--plan-digest', digest[1]]);
+    assertStatus(applied, 0, `apply should link ${folder}`);
+    assertLinkResolvesTo(path.join(root, folder), path.join(source, folder));
+  });
+}
+
+STEP 2 of 2. Run:
+cd R && node --test .skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs
+Expected: the summary shows "tests 25", "pass 23" and "fail 2". The two failing tests are "--runtimes vibe links .vibe, and a link without --runtimes leaves it out" and "--runtimes dsh links .dsh, and a link without --runtimes leaves it out", and each output shows "ERROR: unknown runtime". That failure is wanted: the manifest change comes in a later brief. Do not edit any other file and do not change the test to make it pass. Report the pass and fail counts. If any other test fails, report its name and output.

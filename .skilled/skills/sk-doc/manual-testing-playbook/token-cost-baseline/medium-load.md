@@ -7,7 +7,6 @@ expected_intent: sk-create-skill
 expected_resources:
   - sk-create-skill/references/skill/creation-workflow.md
   - sk-create-skill/assets/skill/skill-md-template.md
-  - sk-create-skill/assets/skill/skill-readme-template.md
   - sk-create-skill/assets/skill/skill-reference-template.md
 expected_workflow_mode: sk-create-skill
 expected_leaf_resources:
@@ -16,10 +15,8 @@ expected_leaf_resources:
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-md-template.md
   - workflow_mode: sk-create-skill
-    leaf_resource_id: assets/skill/skill-readme-template.md
-  - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-reference-template.md
-version: 2.1.2.0
+version: 2.1.3.0
 ---
 
 # SD-014: Medium-Load Token Cost (Median)
@@ -93,8 +90,8 @@ Re-read `ROUTER.md` section 3 `INTENT_SIGNALS` / `RESOURCE_MAP` and intent keywo
 **Expected Behavior**
 
 - **Intent picked**: `SKILL_CREATION`
-- **Resources loaded**: 4 (skill_creation reference + SKILL.md, skill README and reference templates).
-- **Outcome**: CLI emits a populated `SKILL.md` scaffold, optional README scaffold and starter reference doc. This establishes the MEDIAN token cost per CLI.
+- **Resources loaded**: 3 (skill_creation reference + SKILL.md and reference templates). The README step goes to the `sk-create-readme` mode.
+- **Outcome**: CLI emits a populated `SKILL.md` scaffold and starter reference doc. This establishes the MEDIAN token cost per CLI.
 
 **Cross-CLI Variants**
 

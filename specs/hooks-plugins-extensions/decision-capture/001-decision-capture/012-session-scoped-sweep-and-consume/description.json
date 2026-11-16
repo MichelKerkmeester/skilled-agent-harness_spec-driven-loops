@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume",
+  "description": "Phase 12: session-scoped-sweep-and-consume",
+  "keywords": [
+    "phase",
+    "session-scoped-sweep-and-consume"
+  ],
+  "lastUpdated": "2026-11-16T14:02:30.407Z",
+  "specId": "012",
+  "folderSlug": "session-scoped-sweep-and-consume",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "decision-capture",
+    "001-decision-capture"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_15-02__manual-context-save.md"
+  ]
+}

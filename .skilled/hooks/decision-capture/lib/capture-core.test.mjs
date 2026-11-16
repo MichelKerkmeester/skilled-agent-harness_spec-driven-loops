@@ -137,6 +137,44 @@ test('queueDir uses the git root for its token across project paths', () => {
   });
 });
 
+test('a linked worktree shares its primary checkout state and still reads its own', () => {
+  withProject((projectDir) => {
+    const gitEnv = { ...process.env };
+    delete gitEnv.GIT_DIR;
+    delete gitEnv.GIT_WORK_TREE;
+    const git = (args) => {
+      const run = spawnSync('git', ['-c', 'user.email=t@t', '-c', 'user.name=t', ...args], {
+        cwd: projectDir,
+        env: gitEnv,
+        encoding: 'utf8',
+      });
+      assert.equal(run.status, 0, run.stderr);
+    };
+    git(['init', '--quiet']);
+    git(['commit', '--quiet', '--allow-empty', '-m', 'init']);
+    const worktreePath = join(projectDir, 'linked');
+    git(['worktree', 'add', '--quiet', worktreePath, '-b', 'linked']);
+
+    assert.equal(queueDir(worktreePath), queueDir(projectDir));
+
+    const realWorktree = realpathSync(worktreePath);
+    const localDir = join(
+      realWorktree,
+      QUEUE_RELATIVE_DIR,
+      createHash('sha256').update(realWorktree).digest('hex').slice(0, 12),
+    );
+    mkdirSync(localDir, { recursive: true });
+    writeFileSync(
+      join(localDir, `${Buffer.from('s-local', 'utf8').toString('hex')}.jsonl`),
+      `${JSON.stringify({ key: 'local-key' })}\n`,
+    );
+    writeFileSync(join(localDir, 'consumed.jsonl'), `${JSON.stringify({ key: 'local-consumed' })}\n`);
+
+    assert.deepEqual(readQueue(worktreePath, 's-local').map((row) => row.key), ['local-key']);
+    assert.ok(readConsumedKeys(worktreePath).has('local-consumed'));
+  });
+});
+
 test('queueDir uses the real path and token outside git', () => {
   withProject((projectDir) => {
     const realRoot = realpathSync(projectDir);

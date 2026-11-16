@@ -22,7 +22,7 @@ trigger_phrases:
 
 Each adapter asks for a handoff near its context threshold. The sender prepares a note and the adapter arms a matching record. After the runtime exits, `skilled-loop` relaunches it with a claim seed. That happens when the record is armed, fresh and below the hop cap. A record still pending at exit makes the wrapper print a manual claim command and consume the record.
 
-`SKILLED_LOOP_MANUAL_TEMPLATE` builds that command from the first launch's name and Pi extension flags. It also uses the model, provider and effort the record carries. A hop that switched model therefore prints the model the session was last using. The killer uses the same template in its timeout notification.
+`SKILLED_LOOP_MANUAL_TEMPLATE` builds that command from the name, model, provider and effort the loop carries, the record's live values first, plus the first launch's Pi extension flags. A hop that switched model therefore prints the model the session was last using, except on OpenCode 2, whose printed command carries no model. The killer uses the same template in its timeout notification.
 
 Claude Code uses `PreToolUse` for Bash and `AskUserQuestion`, `PostToolUse`, `UserPromptSubmit`, `Stop` and `SessionStart`. Pi, OpenCode, Codex and Vibe use their host events or a plugin. Cursor and Devin ship on the command trigger only.
 
@@ -39,25 +39,26 @@ Start each runtime from the repository root:
 ```bash
 bash .skilled/bin/skilled-loop claude "Work on the task and preserve unfinished work for the next session."
 bash .skilled/bin/skilled-loop pi --provider openai --model gpt-6-luna -ne -e .pi/extensions/session-handover.ts
-bash .skilled/bin/skilled-loop opencode -m openai/gpt-6-luna
+bash .skilled/bin/skilled-loop opencode
 bash .skilled/bin/skilled-loop codex -m gpt-6-luna
 bash .skilled/bin/skilled-loop cursor
 bash .skilled/bin/skilled-loop devin
 bash .skilled/bin/skilled-loop vibe
 ```
 
-The wrapper accepts `skilled-loop [claude|pi|opencode|codex|cursor|devin|vibe] [args...]` and defaults to `claude`. Vibe's `--model` is headless-only, so a hop never replays it. The interactive relaunch keeps the configured `active_model`. The `cursor` arm launches the `cursor-agent` binary.
+The wrapper accepts `skilled-loop [claude|pi|opencode|codex|cursor|devin|vibe] [args...]` and defaults to `claude`. Vibe's `--model` is headless-only, so a hop never replays it. The interactive relaunch keeps the configured `active_model`. OpenCode 2's root command has no model flag, so that command takes no `-m`; the wrapper starts it with `--standalone` and carries a hop's model through `OPENCODE_CONFIG_CONTENT`. On OpenCode 1, add `-m openai/gpt-6-luna`. The `cursor` arm launches the `cursor-agent` binary.
 
-A hop replays the first launch's options in their original order. It replaces the start prompt with the claim seed. Model, effort and name come from the relaunch record when it carries a usable value. The launch line supplies the rest.
+A hop rebuilds the launch in a fixed order rather than the first launch's order. It replaces the start prompt with the claim seed. Model, effort and name come from the relaunch record when it carries a usable value. The launch line supplies the rest.
 
-Flags that select or continue a session are in the deny list and are not repeated:
+The deny list holds the flags that select or continue a session and the flags a hop must not replay. They are not repeated:
 
-- Claude `-c`, `--resume`, `--session-id` and `--cloud`.
-- Pi `--session` and `--fork`.
-- OpenCode `--session` and `--prompt`.
-- Codex `--image`, `--worktree` and `--last`.
-- Devin `--resume`, `--prompt-file` and `--print`.
-- Cursor `--worktree` and `--worktree-base`.
+- Claude `-c`, `--continue`, `-r`, `--resume`, `--fork-session`, `--from-pr`, `--session-id`, `--teleport`, `--cloud`, `-w`, `--worktree` and `--tmux`.
+- Pi `-c`, `--continue`, `-r`, `--resume`, `--session`, `--session-id` and `--fork`.
+- OpenCode `-c`, `--continue`, `-s`, `--session` and `--prompt`.
+- Codex `-i`, `--image`, `--worktree`, `--last`, `--all` and `--include-non-interactive`.
+- Devin `-c`, `--continue`, `-p`, `--print`, `-r`, `--resume` and `--prompt-file`.
+- Cursor `--resume`, `--continue`, `-w`, `--worktree`, `--worktree-base` and `--skip-worktree-setup`.
+- Vibe `-c`, `--continue`, `--resume`, `-p`, `--prompt`, `--prompt-file`, `--worktree` and `--model`.
 
 Options documented by each runtime's help are replayed with their values. An unknown option followed by a bare word makes the wrapper warn and decline the hop. Relative Pi extension paths resolve against the starting directory before a hop changes directories.
 
@@ -192,7 +193,7 @@ Hook switches resolve from the environment and the optional `.skilled/hooks/hook
 
 | Switch | Default | Behavior |
 |---|---|---|
-| `SYSTEM_SESSION_HANDOVER_ENABLED` | unset, on for Claude Code and off elsewhere | `1` turns on the nudge, Stop-arm and compact-pointer hooks and `prepare`. `0` turns them off on Claude Code too. While off, auto-compaction stays the fallback. |
+| `SYSTEM_SESSION_HANDOVER_ENABLED` | unset, on for Claude Code and off elsewhere | `1` turns on the nudge, Stop-arm and compact-pointer hooks and `prepare`. `0` turns them off on Claude Code too, except the goal-command start claim, which the compact pointer still delivers. While off, auto-compaction stays the fallback. |
 | `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` | unset, falls back to `SYSTEM_SESSION_HANDOVER_ENABLED`, then to the runtime's default | One flag each for `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR`, `DEVIN` and `VIBE`. A non-empty value wins over `SYSTEM_SESSION_HANDOVER_ENABLED` for that runtime. `1` turns them on and `0` turns them off. Each key is read from the environment first, then from `hook-flags.env`. |
 | `SYSTEM_SESSION_HANDOVER_DISABLED` | unset | `1` disables the same hooks. It wins over `SYSTEM_SESSION_HANDOVER_ENABLED` and every per-runtime enable flag. |
 | `SYSTEM_HOOKS_DISABLED` | unset, off | A truthy value disables hooks across the repository. `MK_HOOKS_DISABLED` is a supported alias. |
@@ -202,7 +203,7 @@ Hook switches resolve from the environment and the optional `.skilled/hooks/hook
 | `SESSION_HANDOVER_MAX_AGE_MIN` | `10` | Maximum age in minutes for an armed relaunch record. Zero is accepted and makes any older record stale. Unset, empty, negative or non-numeric values use 10. |
 | `SESSION_HANDOVER_NOTIFY_HOPS` | unset, off | `1` sends a macOS notice titled "Session handed over" on each relaunch. It names the runtime, the session folder and the note's goal. |
 | `SESSION_HANDOVER_GOAL` | unset, on | `0`, `false`, `off` or `no` stops the hand-over from carrying the sender's goal packet. Also read from `.skilled/hooks/hook-flags.env`. |
-| `SESSION_HANDOVER_GOAL_PACKET` | wrapper-managed | Exported by `skilled-loop` when the consumed note carries a usable goal packet. Never set it by hand. |
+| `SESSION_HANDOVER_GOAL_PACKET` | wrapper-managed | Exported by `skilled-loop` when the consumed note carries a usable goal packet, or when a first launch starts from the printed manual claim command's seed and that note carries one. Never set it by hand. |
 | `SKILLED_LOOP_CLAIM_SEED` | wrapper-managed | Exported by `skilled-loop` to a Claude receiver that starts on the goal command. Never set it by hand. |
 | `SESSION_HANDOVER_REPO_ROOT` | unset, the install root | Absolute path to the repository that holds the concern. Planned note paths resolve under it. The generic `REPO_ROOT` is not read. |
 | `SKILLED_LOOP_HOPS` | `0` | Wrapper-managed completed-hop count. It must be a non-negative integer. |
@@ -213,11 +214,11 @@ Inside the loop no adapter nudges at the hop cap. `prepare` at that count prints
 
 The wrapper accepts `-n` or `--name` with a value and `--name=value`. The first launch keeps the original name argument. The wrapper copies the name to later hops. A `--` argument ends the name scan, so later values are passed through as Claude arguments.
 
-The killer CLI requires `--loop-id` and `--target-pid`. `--transcript` is optional. The Claude and Codex Stop hooks and the Pi arm pass it, and Pi passes its session file when the path resolves. The OpenCode plugin does not. Without it, idle means the configured idle time has elapsed since the killer started.
+The killer CLI requires `--loop-id` and `--target-pid`. `--transcript` is optional. The Claude and Codex Stop hooks and the Pi and Vibe arms pass it, and Pi passes its session file when the path resolves while Vibe passes its journal folder. The OpenCode plugin does not. Without it, idle means the configured idle time has elapsed since the killer started.
 
 The loop id must be greater than 1 and match `SKILLED_LOOP_ID`. The defaults are `--idle-ms 3000` and `--timeout-ms 30000`. The killer polls every 100 ms. `--no-notify` defaults to off, so a timeout attempts a notification. The Stop hook starts the killer without `--no-notify`.
 
-`prepare` receives the note through `--handoff <path>`, while `claim` and `complete` receive it positionally. Both `prepare` and `claim` require `--session <id>`. Claude Code can omit the flag and use `CLAUDE_CODE_SESSION_ID`. On a Vibe session under `skilled-loop`, `prepare` can also omit it and use the id the turn-start hook recorded, while `claim` there must pass `--session`. A successful prepare exits 0 and leaves the record pending for Stop to arm. Outside `skilled-loop`, prepare prints the manual claim command and exits 3. Inside the loop it does the same at the hop cap. A refused prepare exits 2.
+`prepare` receives the note through `--handoff <path>`, while `claim` and `complete` receive it positionally. Both `prepare` and `claim` require `--session <id>`. Claude Code can omit the flag and use `CLAUDE_CODE_SESSION_ID`. On a Vibe session under `skilled-loop`, `prepare` can also omit it and use the id the turn-start hook recorded, while `claim` there must pass `--session`. A successful prepare exits 0 and leaves the record pending for the runtime's own arm event. Outside `skilled-loop`, prepare prints the manual claim command and exits 3. Inside the loop it does the same at the hop cap. A refused prepare exits 2.
 
 `keep --handoff <path>` takes the same `--session` and `--runtime` options. It exits 0 outside the loop and exits 2 inside it.
 

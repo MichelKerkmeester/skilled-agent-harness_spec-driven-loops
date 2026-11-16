@@ -7,7 +7,6 @@ expected_intent: sk-create-skill
 expected_resources:
   - sk-create-skill/references/skill/creation-workflow.md
   - sk-create-skill/assets/skill/skill-md-template.md
-  - sk-create-skill/assets/skill/skill-readme-template.md
   - sk-create-skill/assets/skill/skill-reference-template.md
 expected_workflow_mode: sk-create-skill
 expected_leaf_resources:
@@ -16,10 +15,8 @@ expected_leaf_resources:
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-md-template.md
   - workflow_mode: sk-create-skill
-    leaf_resource_id: assets/skill/skill-readme-template.md
-  - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-reference-template.md
-version: 2.1.2.0
+version: 2.1.3.0
 ---
 
 # SD-002: SKILL_CREATION Intent Detection
@@ -96,9 +93,8 @@ Re-read `ROUTER.md` section 3 `INTENT_SIGNALS` / `RESOURCE_MAP` and intent keywo
 - **Resources loaded**:
   - `references/skill-creation.md`
   - `assets/skill/skill-md-template.md`
-  - `assets/skill/skill-readme-template.md`
   - `assets/skill/skill-reference-template.md`
-- **Outcome**: CLI loads the skill-creation reference plus the SKILL.md, skill README and reference templates, then produces a populated `SKILL.md` skeleton, optional README skeleton and reference-doc skeleton citing the loaded templates.
+- **Outcome**: CLI loads the skill-creation reference plus the SKILL.md and reference templates, then produces a populated `SKILL.md` skeleton and reference-doc skeleton citing the loaded templates. The README step goes to the `sk-create-readme` mode, which owns the skill README template.
 
 **Cross-CLI Variants**
 

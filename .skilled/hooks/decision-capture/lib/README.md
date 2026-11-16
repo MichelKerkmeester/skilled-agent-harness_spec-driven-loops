@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 `capture-core.mjs` is the runtime-neutral half of decision capture. Two producers feed the queue. Both hand the same normalized shape to `appendRecords`. A live adapter sees a question tool's result as it happens. A transcript sweep recovers what the adapter missed. The save step therefore reads one file format, whatever the source.
 
-Answers are kept byte-exact, because a trimmed quote would change what the operator agreed to. The queue sits under `.skilled/skills/.state/decision-capture` at the nearest Git root, in a folder named by a hash of that root. Appends serialize on a lock directory. A lock abandoned by a dead holder is reclaimed after two minutes.
+Answers are kept byte-exact, because a trimmed quote would change what the operator agreed to. The queue sits under `.skilled/skills/.state/decision-capture` at the nearest Git root, in a folder named by a hash of that root. A linked worktree uses its primary checkout's root, because a session's hook queues answers where the session started while its save may run in the worktree. Reads still include the worktree's old folder. Appends serialize on a lock directory. A lock abandoned by a dead holder is reclaimed after two minutes.
 
 `chat-questions.mjs` handles questions asked in plain chat, where no tool result exists. It pairs an assistant question with the next typed prompt and describes the evidence for the save step.
 

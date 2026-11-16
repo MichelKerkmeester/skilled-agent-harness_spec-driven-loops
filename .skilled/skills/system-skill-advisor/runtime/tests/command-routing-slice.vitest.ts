@@ -8,11 +8,12 @@
 // against: a scoring change, a bridge-metadata change or a corpus edit has to
 // surface here instead of drifting in silently.
 
-import { readFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { beforeAll, describe, expect, it } from 'vitest';
+import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import {
   assertFitRowsUnique as captureAssertFitRowsUnique,
   scoreCommandCorpus as captureCommandCorpus,
@@ -22,7 +23,22 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const ROUTING = resolve(HERE, '../scripts/routing-accuracy');
 const CORPUS_PATH = join(ROUTING, 'command-prompts.jsonl');
 const BASELINE_PATH = join(ROUTING, 'command-routing-baseline.json');
-const RECAPTURE = 'node scripts/routing-accuracy/capture-command-routing-baseline.mjs --write';
+
+// A host with its own hub vocabulary routes some rows differently from upstream.
+// It keeps its own capture in a `.host.json` file beside the upstream one, and
+// the ratchet reads that file whenever it exists. Every row stays guarded on the
+// host, including the rows its vocabulary moved.
+function capturePath(upstreamPath: string): string {
+  const hostPath = upstreamPath.replace(/\.json$/, '.host.json');
+  return existsSync(hostPath) ? hostPath : upstreamPath;
+}
+
+const BASELINE_READ_PATH = capturePath(BASELINE_PATH);
+// The capture prints its JSON to stdout, so a host writes its own file by
+// redirecting that output rather than through `--write`, which targets upstream.
+const RECAPTURE = BASELINE_READ_PATH === BASELINE_PATH
+  ? 'node scripts/routing-accuracy/capture-command-routing-baseline.mjs --write'
+  : 'node scripts/routing-accuracy/capture-command-routing-baseline.mjs > scripts/routing-accuracy/command-routing-baseline.host.json';
 
 // The capture projects these nine names to score reproducibly. A harness imports
 // the module and scores in process, so the projection has to be undone before
@@ -151,7 +167,7 @@ function publishedHoldoutIds(capture: CommandRoutingBaseline, holdoutIds: Readon
 
 describe('command routing slice', () => {
   beforeAll(async () => {
-    baseline = JSON.parse(readFileSync(BASELINE_PATH, 'utf8')) as CommandRoutingBaseline;
+    baseline = JSON.parse(readFileSync(BASELINE_READ_PATH, 'utf8')) as CommandRoutingBaseline;
     corpus = readJsonl<CorpusRow>(CORPUS_PATH);
     // The capture owns its own environment projection and scoring clock, so it
     // re-scores under the same regime the baseline was recorded in. Doing that
@@ -328,5 +344,30 @@ describe('command routing slice', () => {
       return tally.typed.rows < 1 || tally.plain.tune.rows < 1 || tally.plain.holdout.rows < 1;
     });
     expect(uncovered).toEqual([]);
+  });
+});
+
+describe('host capture selection', () => {
+  let dir = '';
+  let upstream = '';
+
+  beforeEach(() => {
+    dir = mkdtempSync(join(tmpdir(), 'command-routing-host-'));
+    upstream = join(dir, 'command-routing-baseline.json');
+    writeFileSync(upstream, '{}\n');
+  });
+
+  afterEach(() => {
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  it('reads the upstream capture when no host capture sits beside it', () => {
+    expect(capturePath(upstream)).toBe(upstream);
+  });
+
+  it('reads the host capture when one sits beside the upstream one', () => {
+    const host = join(dir, 'command-routing-baseline.host.json');
+    writeFileSync(host, '{}\n');
+    expect(capturePath(upstream)).toBe(host);
   });
 });

@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard",
+  "spec_folder": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard",
+  "parent_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "claude hook tree guard",
+      "phase 8 claude hook tree guard",
+      "mk claude hook could not resolve home folder",
+      "claude hook tree guard plan",
+      "claude hook tree guard tasks",
+      "008-claude-hook-tree-guard operator decisions",
+      "claude hook tree guard implementation summary"
+    ],
+    "key_topics": [
+      "claude",
+      "hook",
+      "tree",
+      "guard",
+      "phase",
+      "resolve",
+      "home",
+      "folder",
+      "plan",
+      "tasks",
+      "008-claude-hook-tree-guard",
+      "operator"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+      ".claude/settings.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts",
+      ".skilled/bin/tests/sync-claude-user-hooks.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+      ".skilled/bin/sync-claude-user-hooks.mjs",
+      ".skilled/bin/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registration-sync.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sync-claude-user-hooks.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/sync-claude-user-hooks.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-hook-registrations.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-claude-user-hooks.mjs",
+        "kind": "file",
+        "path": ".skilled/bin/sync-claude-user-hooks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Skilled Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every rendered Claude hook starts with `{ [ -e .skilled ] || exit 0; }`, and the user-level copy of the hooks runs in every folder a Claude session starts in",
+    "created_at": "2026-11-16T11:36:44Z",
+    "last_save_at": "2026-11-16T13:04:15.210Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f26ef59cc5e12a4a78a8765ad0c279804d545ba5421fade6347920784a18fb0c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1a0e1578150b790d228cd3d8ddb90d4c5c50ae908ef09948104986b79448273f",
+      "plan.md": "60dac422857d187848e1658c1c62656cb663edffba1f0dc16ddc9d7db140a14e",
+      "tasks.md": "e3f4204b24495415574c906e9f24e47dc616967babd81478ef815374bd1bc666",
+      "decision-record.md": "8345012544c583f5d51cd27593dfd02e1b1070cdaca3a1018e8892fd6006b19f",
+      "implementation-summary.md": "274f6ac4b017fc4f27b5a8e8a56c9e3aca16ad205edf59662912904d7f602195"
+    },
+    "last_active_at": null
+  }
+}

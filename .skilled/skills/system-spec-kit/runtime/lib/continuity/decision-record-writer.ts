@@ -123,11 +123,66 @@ const APPENDIX_BLOCK: readonly string[] = [
 const TEMPLATE_SOURCE_LINE = '<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->';
 const HVR_REFERENCE_LINE = '<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->';
 const STATE_DIR_SEGMENTS = ['.skilled', 'skills', '.state', 'decision-capture'];
+const checkoutRoots = new Map<string, string>();
 const canonicalRoots = new Map<string, string>();
 
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ───────────────────────────────────────────────────────────────────
+
+function gitOutput(cwd: string, args: string[]): string {
+  const env = { ...process.env };
+  // Ignore inherited Git overrides so the requested project path determines its root.
+  delete env.GIT_DIR;
+  delete env.GIT_WORK_TREE;
+  return execFileSync('git', ['-c', 'core.fsmonitor=false', ...args], {
+    cwd,
+    env,
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+    timeout: 5000,
+  }).trim();
+}
+
+/** The working tree that holds dir: its Git top level, or its real path outside Git. */
+function checkoutRoot(dir: string): string {
+  const input = String(dir);
+  const cached = checkoutRoots.get(input);
+  if (cached !== undefined) {
+    return cached;
+  }
+
+  let root: string;
+  try {
+    root = fs.realpathSync(gitOutput(input, ['rev-parse', '--show-toplevel']));
+  } catch {
+    try {
+      root = fs.realpathSync(input);
+    } catch {
+      root = path.resolve(input);
+    }
+  }
+
+  checkoutRoots.set(input, root);
+  return root;
+}
+
+// A session's hook queues answers where the session started, while its save may
+// run in a linked worktree, so a worktree shares its primary checkout's state. The
+// first `git worktree list` entry is the primary checkout. A submodule shares no
+// common dir and a bare repository has no working tree, so both keep their own root.
+function primaryCheckout(dir: string): string | null {
+  const [gitDir, commonDir] = gitOutput(dir, ['rev-parse', '--path-format=absolute', '--git-dir', '--git-common-dir']).split('\n');
+  if (!gitDir || !commonDir || fs.realpathSync(gitDir) === fs.realpathSync(commonDir)) {
+    return null;
+  }
+  const first = gitOutput(dir, ['worktree', 'list', '--porcelain']).split('\n\n')[0].split('\n');
+  if (first.includes('bare')) {
+    return null;
+  }
+  const line = first.find((entry) => entry.startsWith('worktree '));
+  return line ? fs.realpathSync(line.slice('worktree '.length)) : null;
+}
 
 function canonicalRoot(dir: string): string {
   const input = String(dir);
@@ -136,25 +191,11 @@ function canonicalRoot(dir: string): string {
     return cachedRoot;
   }
 
-  let root: string;
+  let root = checkoutRoot(input);
   try {
-    const env = { ...process.env };
-    // Ignore inherited Git overrides so the requested project path determines its root.
-    delete env.GIT_DIR;
-    delete env.GIT_WORK_TREE;
-    root = fs.realpathSync(execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', '--show-toplevel'], {
-      cwd: input,
-      env,
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'ignore'],
-      timeout: 5000,
-    }).trim());
+    root = primaryCheckout(input) ?? root;
   } catch {
-    try {
-      root = fs.realpathSync(input);
-    } catch {
-      root = path.resolve(input);
-    }
+    // Outside Git the checkout root already stands.
   }
 
   canonicalRoots.set(input, root);
@@ -812,6 +853,17 @@ export function legacyConsumedLogPath(projectRoot: string): string {
   return path.join(canonicalRoot(projectRoot), ...STATE_DIR_SEGMENTS, 'consumed.jsonl');
 }
 
+// A linked worktree kept its own state folder before it shared the primary
+// checkout's. Reads still include that folder's log so its consumed keys hold.
+function worktreeConsumedLogPath(projectRoot: string): string | null {
+  const local = checkoutRoot(projectRoot);
+  if (local === canonicalRoot(projectRoot)) {
+    return null;
+  }
+  const token = createHash('sha256').update(local).digest('hex').slice(0, 12);
+  return path.join(local, ...STATE_DIR_SEGMENTS, token, 'consumed.jsonl');
+}
+
 /**
  * Every usable row in the consumed log, and none when the file does not exist yet.
  * A torn or hand-edited line is skipped, and a row with no key is dropped: a row
@@ -820,7 +872,12 @@ export function legacyConsumedLogPath(projectRoot: string): string {
 export function readConsumedRows(projectRoot: string): ConsumedLogRow[] {
   const rows: ConsumedLogRow[] = [];
   const seen = new Set<string>();
-  for (const filePath of [consumedLogPath(projectRoot), legacyConsumedLogPath(projectRoot)]) {
+  const worktreeLog = worktreeConsumedLogPath(projectRoot);
+  const filePaths = [consumedLogPath(projectRoot), legacyConsumedLogPath(projectRoot)];
+  if (worktreeLog) {
+    filePaths.push(worktreeLog);
+  }
+  for (const filePath of filePaths) {
     let raw: string;
     try {
       raw = fs.readFileSync(filePath, 'utf8');

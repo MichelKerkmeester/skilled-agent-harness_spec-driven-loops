@@ -372,7 +372,19 @@ function handoverTarget(installedReal, name, accepted) {
 // local scope counts, as for skilled.trustRepoHooks, because local config is never
 // cloned.
 function omittedHooks(repoRoot) {
-  const result = git(repoRoot, ['config', '--local', '--get-all', 'skilled.omitHook']);
+  return localHookNames(repoRoot, 'skilled.omitHook');
+}
+
+// A host may also replace a shipped hook with a script of its own that runs its
+// own checks. It lists each such hook under skilled.hostHook in its local config,
+// one value per hook. The hook then passes as the host's, and the row names it,
+// because nothing here can tell whether that script runs the shipped gates.
+function hostHooks(repoRoot) {
+  return localHookNames(repoRoot, 'skilled.hostHook');
+}
+
+function localHookNames(repoRoot, key) {
+  const result = git(repoRoot, ['config', '--local', '--get-all', key]);
   if (result.status !== 0) return new Set();
   return new Set(result.stdout.split(/\r?\n/).map((value) => value.trim()).filter(Boolean));
 }
@@ -390,8 +402,9 @@ function omittedHooks(repoRoot) {
 // tree, where the installer links them, or this checkout's, which a core.hooksPath
 // shares. A missing target and a foreign target both surface as one detail line.
 // A host hook whose marker line hands over to a hook source counts as that source,
-// and a hook the local config lists under skilled.omitHook may be absent. A
-// passing row names both, so the operator can see why it passed.
+// a hook the local config lists under skilled.omitHook may be absent, and an
+// installed hook it lists under skilled.hostHook is the host's own. A passing row
+// names all three, so the operator can see why it passed.
 function checkHooks(ctx) {
   const source = 'git rev-parse --git-path hooks + hook links';
   const ownDir = path.join(OWN_ROOT, 'scripts', 'git-hooks');
@@ -415,6 +428,7 @@ function checkHooks(ctx) {
     .map((entry) => entry.name)
     .sort();
   const omitted = omittedHooks(ctx.repoRoot);
+  const hosted = hostHooks(ctx.repoRoot);
   const details = [];
   const notes = [];
   for (const name of names) {
@@ -433,11 +447,14 @@ function checkHooks(ctx) {
       .map((dir) => fs.realpathSync(path.join(dir, name)));
     if (!accepted.includes(installedReal)) {
       const target = handoverTarget(installedReal, name, accepted);
-      if (target === null) {
+      if (target !== null) {
+        notes.push(`${name}: hands over to ${target}`);
+      } else if (hosted.has(name)) {
+        notes.push(`${name}: host hook by skilled.hostHook`);
+      } else {
         details.push(`${name}: resolves to ${installedReal}, not a hook source`);
         continue;
       }
-      notes.push(`${name}: hands over to ${target}`);
     }
     // Git skips a hook it cannot execute, so a hook without the execute bit gates
     // nothing. For a hand-over hook that is the host file git runs.

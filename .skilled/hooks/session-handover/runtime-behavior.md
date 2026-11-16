@@ -25,7 +25,7 @@ This document covers how each runtime adapter starts a handover. It lists the se
 |---|---|---|---|---|---|
 | Claude | automatic | `claude [--model <model>] "<seed>" [--name <name>]` | `--model`, `--model=` | [.claude/settings.json](../../../.claude/settings.json) hook entries | AUTO |
 | Pi | automatic | `pi [--provider <p>] [--model <model>] [-ne] [-e <path>] [--name <name>] "<seed>"` | `--model`, `--provider`, extension flags | `.pi/extensions/` one-line entry file that re-exports `pi/session-handover.ts` | AUTO |
-| OpenCode | automatic | `opencode [-m <model>] --prompt "<seed>"`, and on OpenCode 2 `opencode --standalone --prompt "<seed>"` | `-m`, `--model`, `--model=` on OpenCode 1 only | `.opencode/plugins/` plugin plus `opencode/` browsability symlink | AUTO |
+| OpenCode | automatic | `opencode [-m <model>] --prompt "<seed>"`, and on OpenCode 2 `opencode --standalone --prompt "<seed>"` | `-m`, `--model`, `--model=` on OpenCode 1; on OpenCode 2 a hop carries the model in `OPENCODE_CONFIG_CONTENT` | `.opencode/plugins/` plugin plus `opencode/` browsability symlink | AUTO |
 | Codex | automatic | `codex --no-daemon [-m <model>] "<seed>"` | `-m`, `--model`, `--model=` | [.codex/hooks.json](../../../.codex/hooks.json) hook entries plus `.codex/hooks/` symlinks | AUTO |
 | Cursor | `/speckit-handoff` | `cursor-agent [--model <model>] "<seed>"` | `--model`, `--model=` | [.cursor/commands/speckit-handoff.md](../../../.cursor/commands/speckit-handoff.md) symlink | COMMAND-ONLY |
 | Devin | `/speckit:handoff` | `devin [--model <model>] -- "<seed>"` | `--model`, `--model=` | none, [.devin/SYNC.md](../../../.devin/SYNC.md) carries no command surface | COMMAND-ONLY |
@@ -35,7 +35,7 @@ The OpenCode 2 root command has no model flag. So `-m`, `--model` and `--model=`
 
 On Vibe under `skilled-loop`, a typed `/speckit-handoff` arms, because the session reads its id from the `session-id` command. Outside the loop it prepares a manual start with a `uuidgen` id. That id is never armed, so the route prints the claim command.
 
-`skilled-loop` exports `SKILLED_LOOP_RUNTIME` with the selected runtime. It carries the first launch's model for every runtime except Vibe, whose `--model` is headless-only, and OpenCode 2, whose root command has no model flag. Pi also carries its provider. Claude and Pi carry their name. Pi carries its extension flags. Relative Pi extension paths resolve against the wrapper's starting directory.
+`skilled-loop` exports `SKILLED_LOOP_RUNTIME` with the selected runtime. It carries the first launch's model for every runtime except Vibe, whose `--model` is headless-only; OpenCode 2 has no model flag, so the model rides in `OPENCODE_CONFIG_CONTENT`. Pi also carries its provider. Claude and Pi carry their name. Pi carries its extension flags. Relative Pi extension paths resolve against the wrapper's starting directory.
 
 `prepare` and `claim` require `--session <id>`. Claude can omit it and use `CLAUDE_CODE_SESSION_ID`. Vibe under `skilled-loop` can omit it for `prepare` only. `claim` has no Vibe fallback, so a Vibe claim passes `--session`.
 
@@ -47,7 +47,7 @@ Vibe gives its tools no session id, so the turn-start hook records the id it see
 
 A relaunched session starts on the model and effort the sender was using, where the runtime can be told them at launch. The wrapper replays the first launch's model and effort flags on every relaunch, in each runtime's own syntax.
 
-At `prepare` the CLI also reads the sender's latest values from its own session log on Claude and Codex and from the CLI config on Cursor. The Pi extension adds them when it arms. All of them keep the values on the relaunch record, never in the note.
+At `prepare` the CLI also reads the sender's latest values from its own session log on Claude and Codex, from the OpenCode database on OpenCode and from the CLI config on Cursor. The Pi extension adds them when it arms. All of them keep the values on the relaunch record, never in the note.
 
 `consume` hands them to the wrapper, and a value read from the log beats the launch flag for that hop. The value that was used then carries to later hops that record none.
 
@@ -60,7 +60,7 @@ An arm that records a new model without an effort removes the effort the record 
 - **Pi:** model and provider as before, effort from `--thinking` (`off` up to `max`). A `:<thinking>` suffix on the model travels inside the model. The extension hands the session's current model, provider and thinking level to the record when it arms it. The provider is used only together with a live model the wrapper accepted. A launch `--model openai/gpt-6-luna` and a recorded `openai` plus `gpt-6-luna` are the same model, so that hop keeps the launch thinking level when the record has none. A recorded provider that differs from the launch provider counts as a model switch. That covers `--provider X` and the `X/model` form. Such a hop drops the launch thinking level when the record has none. A launch that names no provider has nothing to compare, so a provider change on the same model keeps the launch thinking level. When the plan-build extension is loaded, the sender's Plan or Build mode is replayed too. The hop starts with `--plan` or `--build` for the mode the sender was last in, in place of the launch flag.
 - **Cursor:** the model, with any bracketed `effort=` inside it. At `prepare` the CLI reads the current `model` from `~/.cursor/cli-config.json`. When `selectedModel` names the same model, its parameters are added as `<modelId>[<id>=<value>,...]`. Cursor rewrites `model` on every switch but `selectedModel` only for a parameterized choice, so a `selectedModel` naming another model is stale and is ignored. The file is shared by every Cursor session. So the CLI uses it only when it changed after the wrapper launched this hop. The wrapper records that moment as `SKILLED_LOOP_LAUNCHED_AT`. An older file may hold another session's choice, and the auto model has no id to pass, so in either case the launch flag stands.
 - **Devin:** the model only, because it has no effort flag. It reads no live value.
-- **OpenCode 2:** nothing, because its root command takes no model or effort flag. The receiver starts on the configured default.
+- **OpenCode 2:** the model through `OPENCODE_CONFIG_CONTENT`, which the wrapper merges into the operator's config text, when that text is plain JSON, and sets on `model`, `agent.build.model` and `agent.plan.model`; no effort, because its root command has no effort flag.
 
 The Claude Stop adapter stamps a non-empty `payload.permission_mode` on the armed record as `permissionMode`, and `consume` prints it. A Claude hop and the manual claim command carry a usable live mode as `--permission-mode`. A launch `--permission-mode` is captured into `SKILLED_LOOP_PERMISSION_MODE`, so a hop with no usable live mode keeps the launch value.
 
@@ -133,7 +133,7 @@ The shim defines `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent`, `
 
 The shim resolves only wrappers inside the sourced checkout or a linked worktree registered to it. It also accepts an absolute checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS` as a colon-separated value. An unset or empty variable trusts no extra checkout.
 
-The automatic hop in a linking repository also needs that repository's runtime folders, because each runtime reads its hooks or plugins from the project it starts in. Link `.claude`, `.codex`, `.opencode` and `.pi` from this checkout as well, or give each its own session-handover registration. A repository that links only `.skilled` starts under the wrapper but never receives the nudge, so its sessions hop only through `/speckit:handoff`.
+The automatic hop in a linking repository also needs that repository's runtime folders, because each runtime reads its hooks or plugins from the project it starts in. Link `.claude`, `.codex`, `.opencode`, `.pi` and `.vibe` from this checkout as well, or give each its own session-handover registration. A repository that links only `.skilled` starts under the wrapper but never receives the nudge, so its sessions hop only through `/speckit:handoff`.
 
 A wrapper runs the code it read when it started, so a change to `.skilled/bin/skilled-loop` reaches no hop of a loop that is already running. The wrapper takes a checksum of its own file before the first launch and compares it before each hop. When the file changed, it prints one line on stderr: `note: skilled-loop changed on disk after this loop started, restart the wrapper to run the new code`.
 

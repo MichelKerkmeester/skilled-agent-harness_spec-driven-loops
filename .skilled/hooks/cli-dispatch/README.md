@@ -112,7 +112,7 @@ The command is scrubbed before it lands on disk. Secret-bearing flags (`--api-ke
 | Failure | A missing `SKILL.md`, malformed sidecar JSON, a throwing check, an unparsable payload or an unwritable log resolves to allow or skip. The DSH preflight denies instead. |
 | Output | The cores never write stdout or stderr. Each adapter owns its own transport. Audit writes only to the rotated log file. |
 
-The Pi preflight is the one import exception. It tries a long specifier such as `../../.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` first and falls back to `../lib/`. Only the long one resolves through the test alias in `.skilled/hooks/vitest.config.ts`, whose alias maps that path to the real tree. The Cursor proxy imports `hook-flags.mjs` by a deep repo-relative path, because its real home is under `system-spec-kit`.
+The Cursor proxy is the one import exception. It imports `hook-flags.mjs` by a deep repo-relative path, because its real home is under `system-spec-kit`. The Pi preflight imports `../lib/` like every other adapter.
 
 ---
 
@@ -196,6 +196,8 @@ cli-dispatch/
 |   `-- dispatch-audit.mjs
 +-- opencode/
 |   `-- cli-dispatch-audit.js -> ../../../../.opencode/plugins/cli-dispatch-audit.js
++-- vibe/
+|   `-- dispatch-preflight.mjs -> ../../../../.vibe/plugins/repo-guards/dispatch-preflight.mjs
 `-- tests/
     `-- dsh-dispatch.test.mjs
 ```
@@ -254,11 +256,11 @@ node --test .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs .skill
 ```
 
 ```bash
-# The adapter suites are vitest files. Run them under the hooks config, whose alias serves the literal long specifier the Pi preflight keeps.
+# The adapter suites are vitest files. The hooks config collects them with the rest of the hooks tree.
 .skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/cli-dispatch/codex/codex-shell-tool.test.mjs .skilled/hooks/cli-dispatch/devin/devin-dispatch-audit.test.mjs .skilled/hooks/cli-dispatch/pi/dispatch-preflight-lint.test.ts .skilled/hooks/cli-dispatch/pi/directive-dedup.test.ts
 ```
 
-`node --test` cannot run these files, because they are vitest suites. The codex file fails with `Cannot read properties of undefined (reading 'config')`. A vitest run without `--config` runs two of them, but not `dispatch-preflight-lint.test.ts`, which fails on the Pi adapter's `hook-flags.mjs` import. Each command calls the pinned `.skilled/node_modules/.bin/vitest`, because vitest is installed under `.skilled/node_modules` and not at the repository root. So `npx vitest` from the root fetches or reuses a different copy.
+`node --test` cannot run these files, because they are vitest suites. The codex file fails with `Cannot read properties of undefined (reading 'config')`. Each command calls the pinned `.skilled/node_modules/.bin/vitest`, because vitest is installed under `.skilled/node_modules` and not at the repository root. So `npx vitest` from the root fetches or reuses a different copy.
 
 Expected result: all tests pass.
 

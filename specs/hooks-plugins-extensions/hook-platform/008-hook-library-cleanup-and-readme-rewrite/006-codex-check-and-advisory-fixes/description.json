@@ -6,7 +6,7 @@
     "phase",
     "codex-check-and-advisory-fixes"
   ],
-  "lastUpdated": "2026-11-16T09:52:16.327Z",
+  "lastUpdated": "2026-11-16T13:04:10.160Z",
   "specId": "006",
   "folderSlug": "codex-check-and-advisory-fixes",
   "parentChain": [
@@ -14,8 +14,9 @@
     "hook-platform",
     "008-hook-library-cleanup-and-readme-rewrite"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "16-11-26_10-52__manual-context-save.md"
+    "16-11-26_10-52__manual-context-save.md",
+    "16-11-26_14-04__recorded-4-operator-decision-s-from-the-hook.md"
   ]
 }

@@ -26,7 +26,7 @@ This reference covers the `goal_packet` field and the per-runtime lookup behind 
 
 A Claude sender under an unmet native goal usually still hops. No `UserPromptSubmit` fires for the continuation, so the killer's 3 s idle wait lands in its first API call. The hop is lost with `killer-timeout` only when the continuation keeps writing less than 3 s apart for 30 s. A continuation tool call longer than 3 s can be killed mid-run. That work is not in the note.
 
-The killer lock stores its owner pid, a creation timestamp and an expiry timestamp. The expiry is the idle timeout plus 15000 ms of signal wait, 3000 ms of notification time and a 60000 ms margin.
+The killer lock stores its owner pid, a creation timestamp and an expiry timestamp. The expiry is the overall timeout plus 15000 ms of signal wait, 3000 ms of notification time and a 60000 ms margin.
 
 A lock past its expiry does not count as a live owner, even while its pid exists. The same holds for a two-field lock, with no expiry stamp, that is older than 10 minutes. That pid may by then belong to an unrelated process.
 

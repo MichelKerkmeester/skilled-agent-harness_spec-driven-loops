@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Hook library cleanup, literal names and README rewrite"
-description: "The hook library carries dead files, two folders that run the same Codex check, names that do not say which feature a file belongs to and READMEs that are long and hard to read. Four phases remove the dead files, join the two Codex checks, give folders and files literal names and rewrite the READMEs."
+description: "The hook library carries dead files, two folders that run the same Codex check, names that do not say which feature a file belongs to and READMEs that are long and hard to read. Eight phases remove the dead files, join the two Codex checks, give folders and files literal names, rewrite the READMEs, fix what the close-out and two deep reviews found, and keep the user-level Claude hooks quiet outside a Skilled checkout."
 trigger_phrases:
   - "hook library cleanup and readme rewrite"
   - "hook library cleanup phase parent spec"
@@ -56,7 +56,7 @@ _memory:
 | **Parent Packet** | hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite |
 | **Predecessor** | None |
 | **Successor** | None |
-| **Handoff Criteria** | All four children are Complete, recursive strict validation reports RESULT: PASSED, both sync checks print PASS and the hook test suites match the baseline captured before the first edit. |
+| **Handoff Criteria** | All eight children are Complete, recursive strict validation reports RESULT: PASSED, both sync checks print PASS and the hook test suites match the baseline captured before the first edit. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -88,7 +88,6 @@ A reader of `.skilled/hooks/` finds only live files, can tell from a name which 
 ### Out of Scope
 - Kill-switch names and concern keys. They stay as they are, so operator config keeps working.
 - Hook behaviour. No phase changes what a hook does when it fires.
-- The dead legacy import fallbacks in four Pi adapters and the Vitest alias that exists only for them. Found during analysis and reported at close.
 - OpenCode plugin file prefixes that do not match concern names. Reported at close.
 - `coverage-rationale.md` and `injection-contract.md`. They have the same density problem but are not READMEs.
 - Old code paths inside historical spec documents. They stay as written.
@@ -124,6 +123,8 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 4 | 004-hook-readme-fold-and-rewrite/ | Fold 81 symlink-only leaf READMEs, rewrite the rest to the skill-README voice, author two missing feature READMEs and split the session-handover README. | Complete |
 | 5 | 005-closeout-follow-up-fixes/ | Fix the no-behavior-change findings reported at the phase 4 close: the actionlint path filter, stale citations and comments, doc-checker markers and the dead Pi import fallbacks. | Complete |
 | 6 | 006-codex-check-and-advisory-fixes/ | Let the Codex hook check run in a linked worktree, make Pi and DSH show it only when it fails, and remove the spec-kit Vitest alias if the suites prove it unused. | Complete |
+| 7 | 007-review-doc-reconciliation/ | Fix the findings of both deep review runs: the completion records, the kill-switch link, the hook README trees and the removed Pi fallback text, and two dispatch audit log hardening gaps. | Complete |
+| 8 | 008-claude-hook-tree-guard/ | Make the Claude hook check test for `.skilled/hooks`, so a user-level copy stays silent in a home folder that keeps a `.skilled` data directory. | Complete |
 
 ### Phase Transition Rules
 
@@ -141,6 +142,8 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 003-literal-hook-renames | 004-hook-readme-fold-and-rewrite | No old folder or file name remains outside `specs/`, changelogs and the relocation ledger, and the pinned README lists are rebased. | The old-name search prints nothing, both sync checks print PASS and the README parity and manifest tests pass. |
 | 004-hook-readme-fold-and-rewrite | 005-closeout-follow-up-fixes | Phase 4 is Complete and on main, and its close-out lists the findings. | `validate.sh --recursive --strict` on this packet prints `RESULT: PASSED`. |
 | 005-closeout-follow-up-fixes | 006-codex-check-and-advisory-fixes | Phase 5 is Complete and on main, and the operator chose the phase 6 fixes. | `validate.sh --recursive --strict` on this packet prints `RESULT: PASSED`. |
+| 006-codex-check-and-advisory-fixes | 007-review-doc-reconciliation | Phase 6 is Complete and on main, and the deep review report lists the findings. | `validate.sh --recursive --strict` on this packet prints `RESULT: PASSED`. |
+| 007-review-doc-reconciliation | 008-claude-hook-tree-guard | The operator reported the home-folder hook notice. | `hook-registration-sync.vitest.ts` passes and both sync checks print PASS. |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -376,6 +376,13 @@ readme_ai_optimization:
 # ─────────────────────────────────────────────────────────────────
 readme_reference_templates:
   readme_template: .skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+  skill_readme_template: .skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md
+  install_template: .skilled/skills/sk-doc/sk-create-readme/assets/install-template.md
+  contributing_template: .skilled/skills/sk-doc/sk-create-readme/assets/contributing-template.md
+  security_policy_template: .skilled/skills/sk-doc/sk-create-readme/assets/security-policy-template.md
+  hook_readme_template: .skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md
+  runtime_plugin_readme_template: .skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md
+  runtime_folder_template: .skilled/skills/sk-doc/sk-create-readme/assets/runtime-folder-template.md
   speckit_readme: .skilled/skills/system-spec-kit/README.md
   memory_readme: .skilled/skills/system-spec-kit/README.md
   core_standards: .skilled/skills/sk-doc/shared/references/core-standards.md
@@ -652,6 +659,7 @@ readme_templates:
   # All types use the canonical 9-section template as their base.
   project_readme: |
     # Reference: See readme-template.md §13 (Complete Template) for the canonical 9-section scaffold.
+    # A repository front page uses the front-page scaffold in readme-template.md section 7 instead.
     # Adapt sections per readme_types.project.sections above.
     # Template path: .skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
   component_readme: |
@@ -663,9 +671,22 @@ readme_templates:
     # Adapt sections per readme_types.feature.sections above (subset of 9 sections).
     # Template path: .skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
   skill_readme: |
-    # Reference: See readme-template.md §13 (Complete Template) for the canonical 9-section scaffold.
+    # Reference: skill-readme-template.md section 6 (Fillable Scaffold) is the skill README scaffold.
+    # It is also the scaffold for the README step create-skill hands to this mode.
     # Adapt sections per readme_types.skill.sections above.
-    # Template path: .skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+    # Template path: .skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md
+  hook_readme: |
+    # Reference: hook-readme-template.md section 4 is the shared hook folder scaffold.
+    # Section 5 is the scaffold for each runtime adapter folder inside a hook folder.
+    # Template path: .skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md
+  runtime_plugin_readme: |
+    # Reference: runtime-plugin-readme-template.md section 4 is the scaffold for a folder a runtime loads its hooks from.
+    # A self-contained extension package uses the component scaffold in readme-template.md section 6 instead.
+    # Template path: .skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md
+  runtime_folder: |
+    # Reference: runtime-folder-template.md section 4 is the runtime folder README scaffold.
+    # Section 5 is the SYNC.md sync manifest scaffold for the same folder.
+    # Template path: .skilled/skills/sk-doc/sk-create-readme/assets/runtime-folder-template.md
 
 # ─────────────────────────────────────────────────────────────────
 # README: COMPLETION REPORT TEMPLATE

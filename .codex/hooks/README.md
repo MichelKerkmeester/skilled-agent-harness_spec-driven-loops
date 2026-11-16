@@ -32,7 +32,7 @@ Two compiled ESM adapters do not execute through their symlink because their dir
 | Spec and completion gates | `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `completion-evidence-stop.cjs` |
 | Dispatch and MCP guards | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `mcp-route-guard.cjs` |
 | Edit quality | `post-edit-quality.cjs` |
-| Session handover | `handover-context-nudge.mjs`, `handover-prompt-seed.mjs`, `handover-stop-arm.mjs` |
+| Session handover | `handover-compact-pointer.mjs`, `handover-context-nudge.mjs`, `handover-prompt-seed.mjs`, `handover-stop-arm.mjs` |
 | Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `git-live-follow.sh`, `git-preflight-advisory.mjs`, `git-primary-reconcile.sh`, `git-message-gate.mjs` |
 
 The session-handover row backs the `skilled-loop` wrapper's automatic hop. `skilled-loop codex` always starts Codex with `--no-daemon` because Codex's shared app-server daemon keeps the environment of the session that started it, so a later loop's hooks would see a stale `SKILLED_LOOP_ID`. In a git worktree, Codex loads the main checkout's `.codex/hooks.json` rather than the worktree's, so the automatic hop needs the session-handover rows in the main checkout.

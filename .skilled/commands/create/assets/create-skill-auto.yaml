@@ -191,7 +191,7 @@ template_sources:
   skill_asset: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md
   skill_smart_router: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md
   skill_router: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md
-  skill_readme: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md
+  skill_readme: .skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md
 
 frontmatter_contract:
   rule: "Every authored .md ships frontmatter from its template before completion."
@@ -347,7 +347,7 @@ workflow:
         - Apply section boundary rules
         - "Seed SKILL.md Section 2 (SMART ROUTING) as 8 to 12 lines of plain prose that say what selects this skill, what it loads first, and that the machine router lives in the sibling ROUTER.md. Take the machine router block (INTENT_SIGNALS and RESOURCE_MAP) from skill-smart-router.md, keep its four resilience patterns (runtime discovery, existence-check-before-load, extensible routing key, multi-tier fallback), adapt the routing key and resource map to this skill, and write the block to ROUTER.md under a final '## MACHINE ROUTER' heading. Add the relative markdown link to ./ROUTER.md in SMART ROUTING. A SMART ROUTING section over 12 lines, a machine router section left in SKILL.md, or a missing ROUTER.md link fails this branch."
         - "Set SKILL.md frontmatter per frontmatter_contract.skill_md: name (==folder), description, allowed-tools, version (4-part X.Y.Z.W)"
-        - "Create baseline references/assets/scripts from requested scope. Seed every references/*.md from skill_reference and every assets/*.md from skill_asset so each ships the full 5-field + version frontmatter; name non-exempt files in kebab-case. Create README.md from skill_readme if the initializer did not emit it, with title, description, and version."
+        - "Create baseline references/assets/scripts from requested scope. Seed every references/*.md from skill_reference and every assets/*.md from skill_asset so each ships the full 5-field + version frontmatter; name non-exempt files in kebab-case. Create README.md through the sk-create-readme mode, which owns skill_readme, if the initializer did not emit it, with title, description, and version."
         - Remove placeholders and sample-only content
         outputs:
         - skill_scaffolded

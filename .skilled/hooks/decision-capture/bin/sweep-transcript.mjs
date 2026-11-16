@@ -19,7 +19,7 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { closeSync, openSync, readFileSync, readSync, readdirSync, realpathSync, statSync } from 'node:fs';
+import { closeSync, existsSync, openSync, readFileSync, readSync, readdirSync, realpathSync, statSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { basename, join } from 'node:path';
 import process from 'node:process';
@@ -271,6 +271,25 @@ function recordedCwd(filePath) {
   return null;
 }
 
+// Claude Code gives every command it runs the id of the session that ran it. The
+// id names the transcript exactly, wherever the save runs, so a newer transcript
+// from another session in the same project is never read by mistake.
+function sessionTranscript(sessionId) {
+  if (!/^[A-Za-z0-9-]+$/.test(sessionId)) return null;
+  const projectsDir = join(homedir(), '.claude', 'projects');
+  let dirs;
+  try {
+    dirs = readdirSync(projectsDir);
+  } catch {
+    return null;
+  }
+  for (const dir of dirs) {
+    const filePath = join(projectsDir, dir, `${sessionId}${TRANSCRIPT_EXT}`);
+    if (existsSync(filePath)) return filePath;
+  }
+  return null;
+}
+
 // The newest transcript recorded for this project is the session a save
 // without an explicit path is most likely to be resuming.
 function latestTranscript(projectDir) {
@@ -309,7 +328,9 @@ function latestTranscript(projectDir) {
 
 function main() {
   const projectDir = process.cwd();
-  const transcriptPath = transcriptFromArgs(process.argv.slice(2)) || latestTranscript(projectDir);
+  const sessionId = process.env.CLAUDE_CODE_SESSION_ID;
+  const transcriptPath = transcriptFromArgs(process.argv.slice(2))
+    || (sessionId ? sessionTranscript(sessionId) : latestTranscript(projectDir));
 
   if (!transcriptPath) {
     process.stdout.write(

@@ -8,26 +8,23 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes"
-    last_updated_at: "2026-11-16T09:52:16Z"
+    last_updated_at: "2026-11-16T13:04:10Z"
     last_updated_by: "generate-context"
     recent_action: "Fixed codex check and advisory output"
-    next_safe_action: "Commit when the operator asks"
+    next_safe_action: "None; phase 6 is complete and on main"
     packet_purpose: "Purpose: A session warns about Codex hook drift only when the check finds drift."
     blockers: []
     key_files:
-      - ".skilled/bin/install-codex-hooks.mjs"
-      - ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts"
-      - ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs"
-      - ".skilled/skills/system-spec-kit/vitest.config.ts"
+      - "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review/review-report.md"
     session_dedup:
-      fingerprint: "sha256:4a6cc55ac0303dc3a2a22c417a2a7e42239ad821d1835604e886df4f9d52a769"
+      fingerprint: "sha256:c895f0b70646b0edb8e2d8ce4cc6eb89a4279417d517fec957c327ec3a5ac497"
       session_id: "scaffold-006-codex-check-and-advisory-fixes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "a4c37e98-2c3a-4c20-a7bf-acbc32e31f29"
-      workspace: "/Users/michelkerkmeester/worktrees/public/411-hook-library-cleanup"
-      savedAt: "2026-11-16T09:52:16Z"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-16T13:04:10Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

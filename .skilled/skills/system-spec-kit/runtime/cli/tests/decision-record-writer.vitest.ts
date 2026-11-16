@@ -492,6 +492,9 @@ describe('recordConsumedKeys', () => {
     delete gitEnv.GIT_DIR;
     delete gitEnv.GIT_WORK_TREE;
     execFileSync('git', ['init', '--quiet'], { cwd: gitRoot, env: gitEnv, stdio: 'ignore' });
+    execFileSync('git', ['-c', 'user.email=t@t', '-c', 'user.name=t', 'commit', '--quiet', '--allow-empty', '-m', 'init'], { cwd: gitRoot, env: gitEnv, stdio: 'ignore' });
+    const linkedWorktree = path.join(PACKET, 'linked-worktree');
+    execFileSync('git', ['worktree', 'add', '--quiet', linkedWorktree, '-b', 'linked'], { cwd: gitRoot, env: gitEnv, stdio: 'ignore' });
     fs.symlinkSync(gitRoot, symlinkRoot, 'dir');
 
     const captureCorePath = path.resolve(
@@ -502,9 +505,10 @@ describe('recordConsumedKeys', () => {
       queueDir(projectRoot: string): string;
     };
 
-    for (const projectRoot of [gitRoot, gitSubfolder, symlinkRoot, nonGitRoot]) {
+    for (const projectRoot of [gitRoot, gitSubfolder, symlinkRoot, nonGitRoot, linkedWorktree]) {
       expect(captureCore.queueDir(projectRoot)).toBe(stateDirPath(projectRoot));
     }
+    expect(stateDirPath(linkedWorktree)).toBe(stateDirPath(gitRoot));
   });
 
   it('reads legacy consumed rows, skips their keys and leaves the legacy log unchanged', () => {
