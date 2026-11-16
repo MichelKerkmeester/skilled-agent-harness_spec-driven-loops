@@ -1,5 +1,5 @@
 {
-  "manifestHash": "333677b0bdb8138c719ea7162e4a94103461431676adacdf4c0674e3fee7f326",
+  "manifestHash": "f4bb7fd386d7f62c234464c258bb3407c545b22ee2c5828d3e22faff6c771fa2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -82725,6 +82725,9 @@
     "phase 13 root cause and ux research": [
       "phase 13 root cause and ux research"
     ],
+    "phase 13 session signal sweeps": [
+      "phase 13 session signal sweeps"
+    ],
     "phase 13 sk create repo rule": [
       "phase 13 sk create repo rule"
     ],
@@ -105467,6 +105470,18 @@
     "session scoped sweep and consume tasks": [
       "session scoped sweep and consume tasks"
     ],
+    "session signal sweeps": [
+      "session signal sweeps"
+    ],
+    "session signal sweeps implementation summary": [
+      "session signal sweeps implementation summary"
+    ],
+    "session signal sweeps plan": [
+      "session signal sweeps plan"
+    ],
+    "session signal sweeps tasks": [
+      "session signal sweeps tasks"
+    ],
     "session snapshot stale ready gate": [
       "session-snapshot stale ready gate"
     ],
@@ -122382,6 +122397,9 @@
     "sweep reads another session transcript": [
       "sweep reads another session transcript"
     ],
+    "sweep reads calling session": [
+      "sweep reads calling session"
+    ],
     "sweep rrf sh sweep rrf py": [
       "sweep-rrf.sh sweep-rrf.py"
     ],
@@ -132186,6 +132204,9 @@
     ],
     "vibe turn start composer": [
       "vibe turn start composer"
+    ],
+    "vibe unified session folder": [
+      "vibe unified session folder"
     ],
     "viewport emulation": [
       "viewport emulation"

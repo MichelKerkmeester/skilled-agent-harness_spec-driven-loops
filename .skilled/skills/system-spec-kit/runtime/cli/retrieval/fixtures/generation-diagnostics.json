@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6874,
-    "ok": 19387,
+    "ok": 19391,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27888,
+  "documentsScanned": 27892,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "333677b0bdb8138c719ea7162e4a94103461431676adacdf4c0674e3fee7f326",
+  "manifestHash": "f4bb7fd386d7f62c234464c258bb3407c545b22ee2c5828d3e22faff6c771fa2",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44536,
+      "ok": 44543,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -55906,6 +55906,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps/scratch",
       "reason": "excluded directory"
     },
     {
