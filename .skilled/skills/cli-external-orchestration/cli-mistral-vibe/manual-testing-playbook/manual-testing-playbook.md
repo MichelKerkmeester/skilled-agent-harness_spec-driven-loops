@@ -1,7 +1,7 @@
 ---
 title: "cli-mistral-vibe: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance and per-scenario validation files for the cli-mistral-vibe skill."
-version: 1.0.10.0
+version: 1.0.11.0
 ---
 
 # cli-mistral-vibe: Manual Testing Playbook
@@ -336,7 +336,7 @@ The `cli-mistral-vibe` packet owns the dispatch contract around the `vibe` binar
 
 | Test Surface | Coverage | Playbook Overlap |
 |---|---|---|
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | The seven Vibe hard rules, the documented dispatch line and the enforcement guards | `VIB-HR-001` |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs` | The seven Vibe hard rules, the documented dispatch line and the enforcement guards | `VIB-HR-001` |
 | `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/hard-rules.json` | The seven rule ids, messages and severities | `VIB-HR-002` |
 | `.vibe/plugins/repo-guards/tests/spec-gate.test.mjs` | The interactive deny and the two child exemptions | `VIB-GRD-001` |
 | `.skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs` | Generated agent profiles, `--check` drift mode | `VIB-MIR-001` |

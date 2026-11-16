@@ -45,8 +45,8 @@ import { recoveredRecords, sweepPiTranscript } from '../bin/sweep-pi.mjs';
 import { sweepTranscript } from '../bin/sweep-transcript.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const ADAPTER = join(HERE, '..', 'claude', 'ask-capture-posttooluse.mjs');
-const DEVIN_ADAPTER = join(HERE, '..', 'devin', 'ask-capture-posttooluse.mjs');
+const ADAPTER = join(HERE, '..', 'claude', 'decision-capture-posttooluse.mjs');
+const DEVIN_ADAPTER = join(HERE, '..', 'devin', 'decision-capture-posttooluse.mjs');
 const OPEN_CODE_PLUGIN_URL = pathToFileURL(
   join(HERE, '..', '..', '..', '..', '.opencode', 'plugins', 'decision-capture.js'),
 ).href;

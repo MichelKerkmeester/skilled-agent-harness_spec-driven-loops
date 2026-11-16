@@ -16,7 +16,7 @@ const os = require('node:os');
 const path = require('node:path');
 const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 
-const SUBAGENT_GUARD_PATH = path.resolve(__dirname, '../claude/subagent-guard.mjs');
+const SUBAGENT_GUARD_PATH = path.resolve(__dirname, '../claude/handover-subagent-guard.mjs');
 const CLI_PATH = '.skilled/hooks/session-handover/bin/session-handover.cjs';
 const SESSION_ID = 'session-subagent-guard-0001';
 const AGENT_ID = 'a2e707a219a23a8f7';

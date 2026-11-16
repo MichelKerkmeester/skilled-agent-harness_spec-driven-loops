@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-020 -- An answered question becomes one decision record"
 description: "This scenario validates that the Vibe decision-capture post_tool hook turns one answered ask_user_question call into one queue record keyed on the tool call id, judged from the queue file and the session journal."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # VIB-HK-020 -- An answered question becomes one decision record
@@ -44,7 +44,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VIB-HK-020 | Decision capture on ask | Record one answered question as one queue row keyed on the tool call id | `I'm wiring the upload retry policy. Before you write anything, ask me one thing: should a failed upload retry three times or five?` | `CONVERSATION_REPO_ROOT="$(git rev-parse --show-toplevel)" node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs --scenario .skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/decision-capture-ask.md --runtime vibe --scratch "$(mktemp -d)" --out specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/live/VIB-HK-020` | One queue row whose key is `vibe:<session_id>:<tool_use_id>:0`, and that call id present in the journal | `matrix.md`, `checkpoints.tsv`, the turn's `screen.txt` and `check.txt`, the queue file under the scratch project | PASS when the check passes. FAIL when the queue is empty, holds more than one row, or holds a key the record's own identity does not build. | 1. Read the turn's check.txt. 2. Confirm the rendered `$VIBE_HOME/hooks.toml` lists `decision-capture-ask`. 3. Read the queue file and the journal's question call. 4. Pipe a `post_tool` payload for an answered question into `.skilled/hooks/decision-capture/vibe/ask-capture-post-tool.mjs` and read the queue it writes. |
+| VIB-HK-020 | Decision capture on ask | Record one answered question as one queue row keyed on the tool call id | `I'm wiring the upload retry policy. Before you write anything, ask me one thing: should a failed upload retry three times or five?` | `CONVERSATION_REPO_ROOT="$(git rev-parse --show-toplevel)" node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs --scenario .skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/decision-capture-ask.md --runtime vibe --scratch "$(mktemp -d)" --out specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/live/VIB-HK-020` | One queue row whose key is `vibe:<session_id>:<tool_use_id>:0`, and that call id present in the journal | `matrix.md`, `checkpoints.tsv`, the turn's `screen.txt` and `check.txt`, the queue file under the scratch project | PASS when the check passes. FAIL when the queue is empty, holds more than one row, or holds a key the record's own identity does not build. | 1. Read the turn's check.txt. 2. Confirm the rendered `$VIBE_HOME/hooks.toml` lists `decision-capture-ask`. 3. Read the queue file and the journal's question call. 4. Pipe a `post_tool` payload for an answered question into `.skilled/hooks/decision-capture/vibe/decision-capture-post-tool.mjs` and read the queue it writes. |
 
 ### Conversation Script
 
@@ -122,7 +122,7 @@ Capture `matrix.md`, `checkpoints.tsv`, the turn's `screen.txt` and `check.txt`,
 1. Read turns/answer-question/check.txt and turns/answer-question/screen.txt.
 2. Confirm the rendered `$VIBE_HOME/hooks.toml` lists `decision-capture-ask` and that its `match` names `ask_user_question`.
 3. Read the queue file under the scratch project's `.skilled/skills/.state/decision-capture` and the journal's `action_intent` for the question call.
-4. Pipe a `post_tool` payload with an answered question into `.skilled/hooks/decision-capture/vibe/ask-capture-post-tool.mjs` and read the queue it writes.
+4. Pipe a `post_tool` payload with an answered question into `.skilled/hooks/decision-capture/vibe/decision-capture-post-tool.mjs` and read the queue it writes.
 
 ---
 
@@ -139,7 +139,7 @@ Capture `matrix.md`, `checkpoints.tsv`, the turn's `screen.txt` and `check.txt`,
 
 | File | Role |
 |---|---|
-| `.skilled/hooks/decision-capture/vibe/ask-capture-post-tool.mjs` | The hook under test |
+| `.skilled/hooks/decision-capture/vibe/decision-capture-post-tool.mjs` | The hook under test |
 | `.skilled/hooks/decision-capture/bin/sweep-vibe.mjs` | The answer mapper the hook and the save-time sweep share |
 | `.skilled/hooks/decision-capture/lib/capture-core.mjs` | The queue path, key builder and deduplicated append |
 | `.vibe/hooks.toml` | The hook binding |

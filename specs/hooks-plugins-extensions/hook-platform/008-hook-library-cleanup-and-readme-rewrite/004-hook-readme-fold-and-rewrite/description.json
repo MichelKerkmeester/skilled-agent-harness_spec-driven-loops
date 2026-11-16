@@ -1,0 +1,38 @@
+{
+  "level": "3",
+  "specFolder": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite",
+  "description": "A reader who opens a runtime folder such as `.skilled/hooks/git-live-follow/claude/` finds a README of about 300 words for one symlink",
+  "keywords": [
+    "reader",
+    "opens",
+    "runtime",
+    "folder",
+    "skilled",
+    "hooks",
+    "git-live-follow",
+    "claude",
+    "finds",
+    "readme",
+    "about",
+    "words",
+    "one",
+    "symlink"
+  ],
+  "lastUpdated": "2026-11-16T07:03:33.325Z",
+  "specId": "004",
+  "folderSlug": "hook-readme-fold-and-rewrite",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "hook-platform",
+    "008-hook-library-cleanup-and-readme-rewrite"
+  ],
+  "memorySequence": 6,
+  "memoryNameHistory": [
+    "15-11-26_20-01__planned-phase-4-of-the-hook-library-cleanup-up-to.md",
+    "15-11-26_20-10__finished-the-planning-of-phase-4-of-the-hook.md",
+    "15-11-26_20-23__planned-phase-4-to-the-end-and-ran-its-setup.md",
+    "16-11-26_00-15__closed-the-verification-tasks-of-phase-004-the.md",
+    "16-11-26_06-26__recorded-the-operator-s-choice-for-closing-t021.md",
+    "16-11-26_07-52__merged-origin-main-1a8ee2e5087-folded-its-vibe.md"
+  ]
+}

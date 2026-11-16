@@ -1,0 +1,8 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: "`markTurn` writes a marker file before the adapter sends anything back." Only DSH, Pi, OpenCode and Vibe call `markTurn`. Claude, Codex and Devin skip a payload with `stop_hook_active` instead. Rewrite it. Also say only DSH, Pi and Vibe can report `no-surface`, because the others never pass `surfaceAvailable`.
+   - Defect 2: the registration sentence names only Claude, Codex and Devin. Write: "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` lists Claude, Codex and Devin at `Stop` with a 5-second timeout, plus the Pi extension."
+   - Defect 3, error paths: an error in the Vibe part is caught by the turn-end composer (`.skilled/hooks/session-lifecycle/vibe/turn-end.mjs`), which skips the part. Add: when an adapter cannot load, Claude and Codex print a drift line and a JSON message, and Devin prints nothing.
+   - Defect 4, Vibe: add one sentence. Vibe passes a turn when `AI_SESSION_CHILD=1`, when there is a `parent_session_id`, or when the tool catalog never names `ask_user_question`. Its hook runs with `match = "main"` and a 20-second timeout in `.vibe/hooks.toml`.
+   - Defect 5: "like every other repository hook" is wrong, because `session-handover` is off by default. Write: "The guard is on by default, because `ask-surface` is not a default-off concern."
+   - Defect 6: "Every adapter returns at once." Write: "Every adapter does nothing. DSH and Pi read the switch only at load, so set it before the session starts."
+   - Defect 7: write `hook-flags.env.example` as `.skilled/hooks/hook-flags.env.example`, its full path from the repository root.

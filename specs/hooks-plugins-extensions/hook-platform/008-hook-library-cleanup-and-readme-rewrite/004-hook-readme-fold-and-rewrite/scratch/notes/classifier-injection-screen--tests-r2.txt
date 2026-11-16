@@ -1,0 +1,3 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: the catch returns the result, not the `ERROR_POLICY` value. Write: "The adapter catches the throw and returns the accepted result unchanged." Restore: "The throw case first asserts that `ERROR_POLICY` equals `fail-open`."
+   - Defect 2: the description must spell the name out: "...checks the DeepSeek Harness (DSH) injection screen adapter...".

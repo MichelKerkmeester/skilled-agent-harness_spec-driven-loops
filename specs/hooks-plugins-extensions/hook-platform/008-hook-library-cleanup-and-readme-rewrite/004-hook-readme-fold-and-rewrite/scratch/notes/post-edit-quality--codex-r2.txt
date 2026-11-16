@@ -1,0 +1,2 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: the adapter prints one block per finding, and nothing for a clean file. Write: "Findings print as plain stdout, one block per finding, and a file with no finding prints nothing."

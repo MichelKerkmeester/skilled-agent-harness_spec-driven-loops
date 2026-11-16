@@ -74,7 +74,7 @@ The compaction post-tool part now stays out of subagents, as the hand-over part 
 | `.skilled/hooks/session-lifecycle/vibe/session-start.test.mjs` | Created | Session-prime, startup-guard and dist part cases |
 | `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs`, `turn-end.mjs`, `compaction-post-tool.mjs` | Modified | Shared reader; turn-start readers use `sessionDirFor` |
 | `.skilled/hooks/session-lifecycle/vibe/turn-start.test.mjs`, `turn-end.test.mjs` | Modified | Receipt env case; missing-folder cases for both writers |
-| `.skilled/hooks/decision-capture/vibe/ask-capture-post-tool.mjs` | Modified | Queue writer uses `sessionDirFor` |
+| `.skilled/hooks/decision-capture/vibe/decision-capture-post-tool.mjs` | Modified | Queue writer uses `sessionDirFor` |
 | `.skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs` | Modified | Existing-directory rule, checkout fallback, env to the kill switch |
 | `.skilled/hooks/ask-surface-guard/vibe/ask-surface-post-agent.mjs` | Modified | Fire log only under an existing folder, env to the kill switch |
 | `.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs` | Modified | Receipt folder from the injected env |

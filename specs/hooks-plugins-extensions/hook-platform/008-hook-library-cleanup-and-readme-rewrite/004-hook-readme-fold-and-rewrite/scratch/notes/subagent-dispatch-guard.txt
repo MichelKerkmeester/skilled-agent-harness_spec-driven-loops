@@ -1,0 +1,5 @@
+   - The old table has no DSH and no Vibe row. DSH loads `dsh/task-dispatch-guard.mjs` in this folder through `.dsh/plugins/repo-guards/adapters/task-dispatch-guard.mjs`, which listens on `tools/pre-execute`. Vibe has a `pre_tool` hook named `deep-loop-guard`, `strict = true`, matching `agents_spawn`, that runs `.vibe/plugins/repo-guards/deep-loop-guard.mjs`. Read both and give each a row.
+   - The concern key is `task-dispatch`, which differs from the folder name. Say so in CONFIGURATION.
+   - The old tree lost its comment alignment and leaves out `dsh/` and `tests/`. Write a new tree whose comments line up. The OpenCode link target is `.opencode/plugins/system-deep-loop-guard.js`. Check it with `ls -l` before you write the arrow.
+   - Keep the Codex row and its reason byte for byte, and keep the three Fable shapes the Claude guard denies.
+   - The old sections WHAT IT DOES and BOUNDARIES AND FLOW become HOW IT WORKS. PER-RUNTIME DELIVERY becomes RUNTIME COVERAGE, and a payload column becomes short prose under the table.

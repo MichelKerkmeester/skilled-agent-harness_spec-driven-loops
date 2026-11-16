@@ -1,7 +1,7 @@
 ---
 title: "119-B -- Comment Hygiene — Claude Code PostToolUse Hook"
 description: "This scenario validates the Claude Code PostToolUse write-time hook for `119-B`. It focuses on confirming the hook fires on Write and Edit tool calls, prints a warning when violations are found, remains fail-safe (exits 0 and never blocks), and stays silent on clean files."
-version: 1.6.1.0
+version: 1.6.2.0
 id: ux-hooks-b-comment-hygiene-claude-code-hook
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -49,11 +49,11 @@ Operators run the exact prompt and command sequence for `119-B` and confirm the 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| 119-B | Claude Code PostToolUse hook | Verify hook fires on Write/Edit, warns on violation, silent on clean, exits 0 | `Write a comment to /tmp/hygiene-sandbox/violation.ts then to /tmp/hygiene-sandbox/allowed.ts. Report any hook warnings you observe after each write.` | 1. `python3 -c "import json; d=json.load(open('.claude/settings.json')); print('PostToolUse' in d['hooks'])"` -> 2. `echo '{"tool_name":"Write","tool_input":{"file_path":"/tmp/hygiene-sandbox/violation.ts","content":"// REQ-011: lease cleanup\nconst x=1;"},"cwd":"'"$(pwd)"'"}' \| node .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs; echo "EXIT:$?"` -> 3. `echo '{"tool_name":"Write","tool_input":{"file_path":"/tmp/hygiene-sandbox/allowed.ts","content":"// SEC: input sanitize (CWE-79)\nconst y=2;"},"cwd":"'"$(pwd)"'"}' \| node .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs; echo "EXIT:$?"` -> 4. Live Claude Code session: prompt above -> observe tool result | Step 1: `True`; Step 2: `COMMENT HYGIENE WARNING` block + EXIT:0; Step 3: (empty) + EXIT:0; Step 4: warning visible in tool result, session continues | Step 1 stdout: `True`<br>Step 2 stdout: `EXIT:0`<br>Step 3 stdout: `EXIT:0`<br>Step 4 not run: current task allows writes only to `.skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/comment-hygiene-claude-code-hook.md`; the live prompt would write `/tmp/hygiene-sandbox/violation.ts` and `/tmp/hygiene-sandbox/allowed.ts`. | FAIL — Step 2 did not print `COMMENT HYGIENE WARNING`; both shell invocations exited 0, and Step 3 stayed silent as expected. | If `False` at step 1: add PostToolUse entry to `.claude/settings.json`; if hook exits non-zero: run `node .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs < /dev/null` to expose the exception; if warning missing in live session but simulation works: confirm `.claude/settings.json` is the project file in CWD |
+| 119-B | Claude Code PostToolUse hook | Verify hook fires on Write/Edit, warns on violation, silent on clean, exits 0 | `Write a comment to /tmp/hygiene-sandbox/violation.ts then to /tmp/hygiene-sandbox/allowed.ts. Report any hook warnings you observe after each write.` | 1. `python3 -c "import json; d=json.load(open('.claude/settings.json')); print('PostToolUse' in d['hooks'])"` -> 2. `echo '{"tool_name":"Write","tool_input":{"file_path":"/tmp/hygiene-sandbox/violation.ts","content":"// REQ-011: lease cleanup\nconst x=1;"},"cwd":"'"$(pwd)"'"}' \| node .skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs; echo "EXIT:$?"` -> 3. `echo '{"tool_name":"Write","tool_input":{"file_path":"/tmp/hygiene-sandbox/allowed.ts","content":"// SEC: input sanitize (CWE-79)\nconst y=2;"},"cwd":"'"$(pwd)"'"}' \| node .skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs; echo "EXIT:$?"` -> 4. Live Claude Code session: prompt above -> observe tool result | Step 1: `True`; Step 2: `COMMENT HYGIENE WARNING` block + EXIT:0; Step 3: (empty) + EXIT:0; Step 4: warning visible in tool result, session continues | Step 1 stdout: `True`<br>Step 2 stdout: `EXIT:0`<br>Step 3 stdout: `EXIT:0`<br>Step 4 not run: current task allows writes only to `.skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/comment-hygiene-claude-code-hook.md`; the live prompt would write `/tmp/hygiene-sandbox/violation.ts` and `/tmp/hygiene-sandbox/allowed.ts`. | FAIL — Step 2 did not print `COMMENT HYGIENE WARNING`; both shell invocations exited 0, and Step 3 stayed silent as expected. | If `False` at step 1: add PostToolUse entry to `.claude/settings.json`; if hook exits non-zero: run `node .skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs < /dev/null` to expose the exception; if warning missing in live session but simulation works: confirm `.claude/settings.json` is the project file in CWD |
 
 ### Optional Supplemental Checks
 
-**Fail-safe on missing script**: temporarily rename `claude-posttooluse.cjs`, trigger a Write, confirm the hook exits 0 with a stderr warning rather than blocking.
+**Fail-safe on missing script**: temporarily rename `post-edit-quality.cjs`, trigger a Write, confirm the hook exits 0 with a stderr warning rather than blocking.
 
 **Edit tool parity**: repeat step 2–3 using `tool_name: "Edit"` instead of `"Write"` — the hook must fire for both matchers.
 
@@ -71,7 +71,7 @@ Operators run the exact prompt and command sequence for `119-B` and confirm the 
 
 | File | Role |
 |---|---|
-| `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs` | Primary implementation anchor — the PostToolUse hook script |
+| `.skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs` | Primary implementation anchor — the PostToolUse hook script |
 | `.claude/settings.json` | Hook wiring config — PostToolUse `Write\|Edit` entry |
 
 Provenance: manual only - python3 -c "import json; d=json.load(open('.claude/settings.json')); print('PostToolUse' in d['hooks'])"

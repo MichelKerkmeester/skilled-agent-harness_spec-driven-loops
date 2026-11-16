@@ -1,0 +1,5 @@
+   - This README is split. `handoff-protocol.md`, `goal-carry-over.md`, `runtime-behavior.md`, `state-files.md` and `troubleshooting.md` in this folder now hold the deep behavior. Read them first. Never copy their content back. The check reads this README together with them.
+   - Keep only: OVERVIEW from old lines 15 to 20. QUICK START in place of HOW IT WORKS, from old lines 75 to 100: the wrapper commands, the enable flag and the shell line. RUNTIME COVERAGE as in step 4. DIRECTORY TREE, KEY FILES, CONFIGURATION from old lines 282 to 310, VALIDATION from old lines 335 to 344 and RELATED.
+   - Where a moved topic comes up, write one sentence that links its document. RELATED links all five.
+   - Drop the old adapter matrix with its links into `specs/` and its packet id. `runtime-behavior.md` holds its columns.
+   - Done means the check prints PASS and `wc -w` on the output file prints under 2700. If it is over, shorten prose, never a token.

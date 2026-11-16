@@ -14,23 +14,41 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`goal/bin/` holds the manage command for runtimes with no plugin tool surface. `goal.cjs` is a thin router over `../lib/goal-core.cjs` and never writes goal state itself. It parses the action and the scope flags, validates the scope when an action needs a session and calls the core for the work. `goal.test.cjs` covers that contract.
+`goal.cjs` is the manage command for runtimes with no plugin tool surface. Adapters and operators invoke it directly. It is a thin router over `../lib/goal-core.cjs` and never writes goal state itself. It parses the action and the scope flags, then calls the core for the work.
 
-Session actions require `--runtime`, `--session` and `--workspace`. `set` and `bind` also accept `--budget <n>`. The packet reads `packet` and `packet-log` need only `--workspace`, and `doctor`, `health`, `legacy-inspect` and `legacy-archive` run without a session scope. A failed action prints `STATUS=FAIL`, a `code=` line and sets exit status 1. A leading flag no action owns, such as `--help`, fails with `UNKNOWN_ACTION` instead of becoming an objective.
+`goal.cjs` dispatches `set`, `bind`, `unbind`, `resent`, `log`, `packet` and `packet-log` to the core. `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause` and `resume` take the same route. The three legacy actions are `legacy-inspect`, `legacy-migrate` and `legacy-archive`.
 
----
+A session action needs `--runtime`, `--session` and `--workspace` before it can run. The router validates that scope before any write. `set` and `bind` also accept `--budget <n>` to cap the token budget. `packet` reads a packet file and `packet-log` appends a log row to one. Neither needs a session, and the workspace defaults to the current directory when `--workspace` is absent. `doctor`, `health`, `legacy-inspect` and `legacy-archive` also run without a session scope.
 
-## 2. WHAT EACH FILE DOES
-
-| File | Event | What it does | On error |
-|---|---|---|---|
-| `goal.cjs` | Invoked by adapters and operators | Parses the action and scope, then dispatches to the core for `set`, `bind`, `unbind`, `resent`, `log`, `packet`, `packet-log`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, `resume` and the three legacy actions. Prints the `STATUS=OK ACTION=...` or `STATUS=FAIL ACTION=...` envelope. | Prints `STATUS=FAIL` with a stable `code=` and exits 1. A missing workspace, runtime or session id fails before any write. |
-| `goal.test.cjs` | `node --test` | Covers missing identity, per-session isolation, aggregate diagnostics, legacy inspect, migrate and archive, concurrent writers, an unknown leading flag, the `MISSING_WORKSPACE` gate and the workspace-free packet read. | A failed assertion fails the test process with a nonzero status. |
+Every action prints a `STATUS=OK ACTION=...` or `STATUS=FAIL ACTION=...` envelope. A failed action adds a `code=` line and sets exit status 1. A missing workspace, runtime or session id fails before any write. A leading flag no action owns, such as `--help`, fails with `UNKNOWN_ACTION`. Such a flag is a typo or a usage request, never an objective. `OPENCODE_GOAL_DISABLED=1` fails every action with `PLUGIN_DISABLED` before any work starts.
 
 ---
 
-## 3. RELATED
+## 2. FILES
 
-- [`../README.md`](../README.md): the concern index, with the scope model and the state layout.
+| File | Responsibility |
+|---|---|
+| `goal.cjs` | The manage CLI. It parses the action and the scope flags, then dispatches to the core. |
+| `goal.test.cjs` | The test suite. It spawns the CLI and asserts the envelope, the exit status and the state left behind. |
+
+`goal.test.cjs` covers missing identity, per-session isolation and aggregate diagnostics. It also covers legacy inspect, migrate and archive, plus concurrent writers. An unknown leading flag, the `MISSING_WORKSPACE` gate and the workspace-free packet read are covered too. A failed assertion fails the test process with a nonzero status.
+
+---
+
+## 3. VALIDATION
+
+Run from the repository root.
+
+```bash
+node --test .skilled/hooks/goal/bin/goal.test.cjs
+```
+
+Expected result: every test passes.
+
+---
+
+## 4. RELATED
+
+- [`../README.md`](../README.md): the goal concern, with the scope model and the state layout.
 - [`./goal.cjs`](./goal.cjs): the manage CLI itself.
 - [`../lib/goal-core.cjs`](../lib/goal-core.cjs): the shared core every action calls.

@@ -8,7 +8,7 @@ trigger_phrases:
   - "skcode.qualityConfig"
 importance_tier: normal
 contextType: implementation
-version: 1.0.11.0
+version: 1.0.12.0
 ---
 
 # Repository Quality Config
@@ -70,7 +70,7 @@ A file that carries `"repository": "<owner>/<name>"` applies only when the curre
     {"id": "typecheck", "argv": ["npm", "run", "typecheck"], "languages": ["typescript"], "cwd": "package",
      "requires": "npm", "severity": "P0", "timeoutSec": 300},
     {"id": "ruff", "argv": ["ruff", "check", "{files}"], "languages": ["python"], "severity": "P1"},
-    {"id": "actionlint", "argv": ["actionlint", "{files}"], "paths": [".github/workflows/**"], "severity": "P1"}
+    {"id": "actionlint", "argv": ["actionlint", "{files}"], "paths": [".github/workflows/*.yml", ".github/workflows/*.yaml"], "severity": "P1"}
   ],
   "checklists": [{"file": ".skilled/skills/sk-code/sk-code-quality/repository/checklists/web.md", "paths": ["src/**"]}],
   "generated": [{"paths": ["dist/**"], "argv": ["npm", "run", "build:check"], "severity": "P1"}],

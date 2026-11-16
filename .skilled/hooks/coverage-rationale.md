@@ -44,7 +44,7 @@ Almost every asymmetry falls out of which of these a runtime uses:
 
 ## 3. PER-CONCERN RATIONALE
 
-Only concerns whose coverage or wiring needs explaining appear. The six covered everywhere (`completion`, `dispatch`, `mcp-route-guard`, `post-edit-quality`, `skill-advisor`, `spec-gate`) need no explanation. The sections below cover either a real gap or a factoring difference worth naming.
+Only concerns whose coverage or wiring needs explaining appear. The eight covered everywhere with no section of their own (`completion`, `dispatch`, `env-secret-guard`, `mcp-route-guard`, `overlay-guard`, `post-edit-quality`, `skill-advisor`, `spec-gate`) need no explanation. The sections below cover either a real gap or a factoring difference worth naming.
 
 ### `session-lifecycle`: folder on **all but opencode**
 **OpenCode has no per-event files. Its session events are already consumed by the concern plugins, so nothing is left to centralize.**
@@ -62,9 +62,9 @@ OpenCode's `system-dist-freshness-guard` plugin owns the rebuild-on-stale projec
 **Pi runs the startup-guard portion but wires no discrete cleanup/teardown adapter.**
 The shared `session-cleanup.sh` (startup + teardown) is a discrete hook on the four editors plus an OpenCode plugin. Pi covers only the startup half inside `session-start-advisories.ts`. DSH matches Pi: `session-start-advisories.mjs` runs the startup guards and `session-stop-context.mjs` runs `session-stop.js` when an interactive agent closes, with no discrete cleanup adapter.
 
-### `codex-watchdog`: folder only on **opencode**
-**Only a long-lived OpenCode plugin can poll whether Codex's hooks stayed installed.**
-Codex can't audit its own not-yet-installed hooks, and no other runtime has a stake in Codex's install state. `codex-hooks-watchdog` watches `hooks.json` from OpenCode's process. DSH runs `install-codex-hooks.mjs --check` once at session start, inside `session-start-advisories.mjs`, and no DSH process stays alive to poll.
+### `codex-global-hooks-check`: folder on **opencode, claude, cursor and devin**
+**Each runtime with a discrete session-start entry gets a link. Pi and DSH bundle the check into one adapter.**
+The folder holds `opencode/`, `claude/`, `cursor/` and `devin/`. Claude, Cursor and Devin run `install-codex-hooks.mjs --check` as a registered session-start hook. OpenCode runs the same check from the `codex-hooks-watchdog` plugin on `session.created`. Pi and DSH run it once at session start, inside `session-start-advisories.ts` and `session-start-advisories.mjs`. Codex owns the checked file and does not check itself.
 
 ### `directive-lifecycle`: folder only on **claude**
 **Everyone de-dups the directives in the prompt path. Only Claude needs a separate adapter because its host lifecycle events carry the de-dup's durable state.**
@@ -74,7 +74,7 @@ Per the module: *"host lifecycle hooks advance durable policy state independentl
 **Devin is the only runtime whose approval event isn't already covered by a `PreToolUse` deny.**
 Codex fires **no** permission event at all (real capability gap). Claude *has* `PermissionRequest` but already gates mutations via `PreToolUse` deny in `spec-gate-enforce`, so a second adapter would duplicate it. DSH is Claude's case with one more reason. `tools/pre-execute` already carries the spec-gate and dispatch decisions, and the `approval/request` waterfall carries the tool name, call id and reason but no tool arguments, so an adapter there would have nothing to judge (`ApprovalRequestEvent` in the installed `@deepseek-ai/dsh-user-approval` types).
 
-### `task-dispatch`: folder on **all but codex**
+### `subagent-dispatch-guard`: folder on **all but codex**
 **Codex fires `PreToolUse` on its `spawn_agent` tool, but the payload hides what the guard checks.**
 Claude/Cursor/Devin fire a tool event for the spawn and OpenCode/Pi expose a subagent `tool_call`. A live codex-cli 0.160 capture shows the spawn reaching `PreToolUse` as `collaborationspawn_agent` with `tool_input` holding `task_name`, `fork_turns` and a `message` that is encrypted (`gAAAAA...`). The guard's mode check needs the prompt, and its loop check would read every loop-executor spawn as one no command drove, so an adapter could only stay silent or warn falsely. Codex is n/a until a payload carries the prompt in clear text. (Pi is `~ partial`: direct `subagent` calls only.) DSH evaluates `subagent` and `subagent_fork` at `tools/pre-execute`, but its guard only logs warnings and audits, so it never denies (`~ partial`). A call nested in a `workflow` run goes through the same executor call that raises that event (`dsh-tools` `pipeline.js`), so the guard sees it too. That is read from the installed code, not yet observed on a live nested dispatch.
 
@@ -90,7 +90,7 @@ Claude Code's synchronous `Stop` hook returns `decision: "block"`. DSH's `agent/
 
 ### `injection-screen`: folders on **claude, devin, opencode, pi, dsh**
 **Only Cursor and Codex cannot carry it, because no hook on either ever sees the fetched page text.**
-Cursor's `postToolUse` payload for its `Fetch` tool carries only `url`, `status_code` and `content_length` (probed on the cursor-agent 2026.09.28 build), so there is no text to screen. Codex's only web tool is the provider-hosted `web_search`, which runs on the model provider's side, so no local hook ever sees a page. The five wired runtimes share `lib/classifier-injection-advisory.mjs`: Claude Code screens `WebFetch` at `PostToolUse`, Devin screens `webfetch` at `PostToolUse`, OpenCode screens `webfetch` in its plugin and drains the advisory through the next `experimental.chat.system.transform`, and Pi screens `fetch_content` at `tool_result`. DSH screens `web_fetch`, `web_search` and `mcp__*` results at `tools/post-execute`.
+Cursor's `postToolUse` payload for its `Fetch` tool carries only `url`, `status_code` and `content_length` (probed on the cursor-agent 2026.09.28 build), so there is no text to screen. Codex's only web tool is the provider-hosted `web_search`, which runs on the model provider's side, so no local hook ever sees a page. The five wired runtimes share `classifier-injection-screen/lib/classifier-injection-advisory.mjs`: Claude Code screens `WebFetch` at `PostToolUse`, Devin screens `webfetch` at `PostToolUse`, OpenCode screens `webfetch` in its plugin and drains the advisory through the next `experimental.chat.system.transform`, and Pi screens `fetch_content` at `tool_result`. DSH screens `web_fetch`, `web_search` and `mcp__*` results at `tools/post-execute`.
 
 ### `decision-capture`: live on **claude, devin, opencode, pi, dsh**, save-time on **codex**, **cursor** unverified
 **Codex captures at save time by choice, and Cursor has never shown an answered question to capture.**
@@ -98,11 +98,11 @@ Codex's rollout holds the same answered `request_user_input` calls a `PostToolUs
 
 ### `git-preflight`: covered on **all seven** (not a gap)
 **The four editors share one `shared/` adapter instead of a copy each. Only opencode, pi and dsh carry runtime-native subfolders.**
-A folder scan shows just `opencode/`, `pi/` and `dsh/` because the editor adapter is centralized in `shared/git-preflight-advisory.mjs`.
+A folder scan shows just `opencode/`, `pi/` and `dsh/` because the editor adapter is centralized in `git-preflight/shared/git-preflight-advisory.mjs`.
 
 ### `git-message-gate`: covered on **all seven**
 **Same shape as `git-preflight`: the four editors share the `shared/` gate, and only opencode, pi and dsh carry runtime-native subfolders.**
-Claude, Codex, Cursor and Devin run `shared/git-message-gate.mjs` through the hook registry. The OpenCode plugin, the Pi extension and the DSH adapter import its `evaluateCommand`.
+Claude, Codex, Cursor and Devin run `git-message-gate/shared/git-message-gate.mjs` through the hook registry. The OpenCode plugin, the Pi extension and the DSH adapter import its `evaluateCommand`.
 
 ### `live-sync` (`git-live-follow` and `git-primary-reconcile`): covered on **all seven**, folders on all but opencode
 **OpenCode and Pi run both `.sh` scripts too, one bundled into a session-start extension and one launched by a plugin, instead of a discrete folder per runtime.**
@@ -112,13 +112,14 @@ Claude, Codex, Cursor and Devin each hold a relative symlink per script and wire
 **DSH gets the `/speckit:handoff` prompt but no automatic hop, because `skilled-loop` launches no DSH session.**
 The wrapper's runtime list in `.skilled/bin/skilled-loop` names Claude, Pi, OpenCode, Codex, Devin and Cursor, and the per-runtime enable switch list in `shared/hook-flags.cjs` has no DSH entry, so no relaunch could be armed. The handoff command reaches DSH as `.dsh/prompts/speckit-handoff.md`. A fan-out leaf is one-shot, and the outer deep-loop runner owns its restarts.
 
-### `git` (commit hooks): **no runtime subfolders**
-**They fire from git itself, independent of any AI runtime.**
-`pre-commit` is the only hook this folder installs, into `.git/hooks` (or `core.hooksPath`), so there is no per-runtime axis to populate.
-
 ---
 
 ## 4. RELATED
 
 - [`README.md`](./README.md): the coverage matrix (per-cell authority) and the directory tree.
 - [`injection-contract.md`](./injection-contract.md): what each hook injects, per event and channel.
+
+<!-- readme-check
+allow-ref pipeline.js | a file in the installed dsh-tools package, not in this repository
+allow-count two scripts | the sentence names both scripts
+-->

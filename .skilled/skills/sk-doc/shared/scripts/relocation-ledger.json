@@ -257,6 +257,36 @@
           "to": "hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports"
         }
       ]
+    },
+    {
+      "applied_at": "2026-11-15T18:05:11.384Z",
+      "base_commit": "a03f07436cff24818945d08ec1e9a848fe072630",
+      "steps": {
+        "redirects": true,
+        "triggerIndex": true,
+        "sweep": true
+      },
+      "moves": [
+        {
+          "from": "hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair",
+          "to": "hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair"
+        }
+      ]
+    },
+    {
+      "applied_at": "2026-11-16T07:03:35.341Z",
+      "base_commit": "e660cab41953ef534250849a9ce9255eb7f7b67c",
+      "steps": {
+        "redirects": true,
+        "triggerIndex": true,
+        "sweep": true
+      },
+      "moves": [
+        {
+          "from": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite",
+          "to": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite"
+        }
+      ]
     }
   ]
 }

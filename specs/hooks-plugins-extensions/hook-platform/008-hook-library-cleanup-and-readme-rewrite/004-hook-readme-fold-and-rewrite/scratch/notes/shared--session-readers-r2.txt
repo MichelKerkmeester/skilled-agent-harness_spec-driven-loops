@@ -1,0 +1,7 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: `locator_unavailable` row: "The id is empty, or the runtime has no locator to resolve. An unsafe id returns `session_mismatch`."
+   - Defect 2: `capability_gated` row: "No reader exists for the runtime, or its switch is off."
+   - Defect 3: write: "`.vibe/hooks.toml` runs `turn-start` as a `pre_agent` hook, `turn-end` as a `post_agent` hook and `compaction-post-tool` as a `post_tool` hook."
+   - Defect 4: write: "The history lookup CLI calls `readSession` for any runtime whose `status` is `ready`."
+   - Defect 5: Devin row: "Devin `sessions.db` reader. A recorded folder at or below the named one passes. It falls back to the transcript file for a store without the session's turns."
+   - Defect 6: `opencode.mjs` row: "OpenCode SQLite reader. When the caller names a folder, a different recorded directory returns `session_mismatch`."

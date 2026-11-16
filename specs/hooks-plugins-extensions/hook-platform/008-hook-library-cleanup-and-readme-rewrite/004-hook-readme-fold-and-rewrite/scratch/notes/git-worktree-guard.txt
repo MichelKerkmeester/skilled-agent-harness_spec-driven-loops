@@ -1,0 +1,6 @@
+   - The old table says Pi is not applicable. That is wrong. Pi runs the script at session start from `.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts`, and DSH runs it from `.skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs`. Read both files for the event and for what each runtime shows. Each gets a row whose entry is None.
+   - OpenCode runs the script from `.opencode/plugins/session-cleanup.js`. Its entry is None. Read the file for the event.
+   - No Vibe registration runs the script. Vibe gets a row that says so.
+   - The registry id is `worktree-guard` in `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json`. Claude, Codex and Devin give it 3 seconds and Cursor gives it 10.
+   - The script also starts the numbered-worktree sweep, which the old text leaves out. Describe it in HOW IT WORKS from the script itself: `worktree-reaper.sh --numbered`, the six-hour window, the stamp file `worktree-reaper-numbered.stamp`, the log `worktree-reaper-numbered.log` and the switch `SPECKIT_WORKTREE_AUTOREAP=0`.
+   - The old section BOUNDARIES AND FLOW is not in the target shape. Move its facts into HOW IT WORKS as prose.

@@ -1,7 +1,7 @@
 ---
 title: "CLI-002 -- Repository-root dispatch refusal"
 description: "This scenario validates that the dispatch hook refuses a dsh run whose working directory is the repository root and accepts the isolated scratch shape for `CLI-002`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CLI-002 -- Repository-root dispatch refusal
@@ -44,8 +44,8 @@ Headless dsh reads API keys from the launch environment, then `<cwd>/.env`, then
 ### Commands
 
 ```bash
-node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
-grep -n "no-repo-root-dotenv" .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+node --test .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs
+grep -n "no-repo-root-dotenv" .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs
 ```
 
 ### Recorded Result
@@ -58,7 +58,7 @@ grep -n "no-repo-root-dotenv" .skilled/hooks/dispatch/lib/dispatch-rule-checks.t
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CLI-002 | Repository-root dispatch refusal | Prove the hook refuses a repo-root cwd | `Check that the dispatch hook refuses a DeepSeek Harness command that would start in the repository root. Show me both rejected shapes and the accepted scratch-folder shape, and do not run dsh.` | 1. `node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` -> 2. inspect the `each dsh hard rule refuses its own violating command` test -> 3. inspect the `dsh hard rules accept a complete isolated, pipe-fed dispatch` test | Step 1: exit `0`, 50 pass, 0 fail. Step 2: two `no-repo-root-dotenv` rows assert `false`. Step 3: the complete scratch dispatch asserts no violation | The observed suite transcript with 50 pass and 0 fail, plus the two refusal rows and the accepted-shape assertion in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | PASS if the suite passes and both refusal rows are present and refused. FAIL if a repo-root shape is accepted or the suite fails | 1. Confirm the suite ran from the repository root and read the exact test names. 2. Check whether a `cd` to a variable bypasses the cwd resolution. 3. Re-read the `no-repo-root-dotenv` implementation before changing a test |
+| CLI-002 | Repository-root dispatch refusal | Prove the hook refuses a repo-root cwd | `Check that the dispatch hook refuses a DeepSeek Harness command that would start in the repository root. Show me both rejected shapes and the accepted scratch-folder shape, and do not run dsh.` | 1. `node --test .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs` -> 2. inspect the `each dsh hard rule refuses its own violating command` test -> 3. inspect the `dsh hard rules accept a complete isolated, pipe-fed dispatch` test | Step 1: exit `0`, 50 pass, 0 fail. Step 2: two `no-repo-root-dotenv` rows assert `false`. Step 3: the complete scratch dispatch asserts no violation | The observed suite transcript with 50 pass and 0 fail, plus the two refusal rows and the accepted-shape assertion in `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs` | PASS if the suite passes and both refusal rows are present and refused. FAIL if a repo-root shape is accepted or the suite fails | 1. Confirm the suite ran from the repository root and read the exact test names. 2. Check whether a `cd` to a variable bypasses the cwd resolution. 3. Re-read the `no-repo-root-dotenv` implementation before changing a test |
 
 ---
 
@@ -77,8 +77,8 @@ grep -n "no-repo-root-dotenv" .skilled/hooks/dispatch/lib/dispatch-rule-checks.t
 
 | File | Role |
 |---|---|
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` | `no-repo-root-dotenv` and `dsh-home-isolated` checks |
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Accepted shape and both refused repo-root shapes |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` | `no-repo-root-dotenv` and `dsh-home-isolated` checks |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs` | Accepted shape and both refused repo-root shapes |
 | `.dsh/SYNC.md` | The root `.env` warning and the disposable home rule |
 
 ---

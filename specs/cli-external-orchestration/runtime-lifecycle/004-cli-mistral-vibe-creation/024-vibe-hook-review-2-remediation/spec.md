@@ -120,7 +120,7 @@ Each case checks `file_system.bash` first, so the four failures are the `process
 | `.skilled/hooks/session-lifecycle/vibe/session-start.mjs` | Modify | Entry gate, exported parts, 9000 ms budget, shared reader |
 | `.skilled/hooks/session-lifecycle/vibe/session-start.test.mjs` | Create | Session-prime, startup-guard and dist part tests |
 | `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs`, `turn-end.mjs`, `compaction-post-tool.mjs` | Modify | Shared reader; the turn-start readers use `sessionDirFor` |
-| `.skilled/hooks/decision-capture/vibe/ask-capture-post-tool.mjs` | Modify | Queue writer uses `sessionDirFor` |
+| `.skilled/hooks/decision-capture/vibe/decision-capture-post-tool.mjs` | Modify | Queue writer uses `sessionDirFor` |
 | `.skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs` | Modify | Existing-directory rule, checkout fallback, env to the kill switch |
 | `.skilled/hooks/ask-surface-guard/vibe/ask-surface-post-agent.mjs` | Modify | Existing-directory rule for the fire log, env to the kill switch |
 | `.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs` | Modify | Receipt folder from the injected env |

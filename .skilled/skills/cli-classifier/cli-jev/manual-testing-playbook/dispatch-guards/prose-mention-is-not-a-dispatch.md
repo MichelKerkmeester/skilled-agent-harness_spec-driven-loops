@@ -1,7 +1,7 @@
 ---
 title: "JEV-018 -- A jev mention in prose is not a dispatch"
 description: "Confirm the dispatch audit does not resolve jev text that no shell would execute, for `JEV-018`."
-version: 0.1.0.1
+version: 0.1.1.0
 ---
 
 # JEV-018 -- A jev mention in prose is not a dispatch
@@ -48,12 +48,12 @@ Operators run the exact prompt and command sequence for `JEV-018` and confirm th
 ### Commands
 
 ```bash
-npx vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+npx vitest run .skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| JEV-018 | Prose false positive | Confirm a quoted, grepped, heredoc'd or logged jev string resolves to no packet | `describe the json value in this file` | 1. `npx vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs` | The suite reports every test passing; every prose, grep, heredoc and log form resolves to `null`; the alias-narrowness reply stays a deferral | The test file path, the runner command, and the pass and fail counts from the summary line | PASS when the suite reports zero failures and every prose shape resolves to no packet; FAIL when a quoted or logged string resolves to `cli-classifier`; SKIP only when the runner cannot start, naming the missing runner as the blocker | A prose shape that resolves to the packet is a false positive that will block an unrelated command; narrow the row's pattern rather than the tokenizer. If the runner cannot start, install dependencies rather than editing the test |
+| JEV-018 | Prose false positive | Confirm a quoted, grepped, heredoc'd or logged jev string resolves to no packet | `describe the json value in this file` | 1. `npx vitest run .skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs` | The suite reports every test passing; every prose, grep, heredoc and log form resolves to `null`; the alias-narrowness reply stays a deferral | The test file path, the runner command, and the pass and fail counts from the summary line | PASS when the suite reports zero failures and every prose shape resolves to no packet; FAIL when a quoted or logged string resolves to `cli-classifier`; SKIP only when the runner cannot start, naming the missing runner as the blocker | A prose shape that resolves to the packet is a false positive that will block an unrelated command; narrow the row's pattern rather than the tokenizer. If the runner cannot start, install dependencies rather than editing the test |
 
 ### Recorded Result
 

@@ -1,0 +1,14 @@
+Claude: event `UserPromptSubmit [id spec-gate-classify, timeout 3]`, entry `claude/spec-gate-classify.mjs`, real file `.skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs`
+Claude: event `PreToolUse (Bash) [id spec-gate-enforce, timeout 5] + PreToolUse (Write|Edit) [id spec-gate-enforce, timeout 5]`, entry `claude/spec-gate-enforce.mjs`, real file `.skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs`
+Codex: event `UserPromptSubmit [id spec-gate-classify, timeout 3]`, entry `codex/spec-gate-classify.mjs`, real file `.skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs`
+Codex: event `PreToolUse (exec|Bash|apply_patch|edit) [id spec-gate-enforce, timeout 5]`, entry `codex/spec-gate-enforce.mjs`, real file `.skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs`
+Cursor: event `beforeSubmitPrompt [id spec-gate-classify, timeout 10]`, entry `cursor/spec-gate-classify.mjs`, real file `.skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs`
+Cursor: event `preToolUse [id spec-gate-enforce, timeout 10]`, entry `cursor/spec-gate-enforce.mjs`, real file `.skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs`
+Cursor: event `sessionStart [id spec-gate-prebind, timeout 10]`, entry `cursor/spec-gate-prebind.mjs`, real file `.skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs`
+Devin: event `UserPromptSubmit [id spec-gate-classify, timeout 10]`, entry `devin/spec-gate-classify.mjs`, real file `.skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs`
+Devin: event `PreToolUse (^exec$) [id spec-gate-enforce, timeout 5] + PreToolUse (^(edit|write)$) [id spec-gate-enforce, timeout 5]`, entry `devin/spec-gate-enforce.mjs`, real file `.skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs`
+DSH: event `agent/pre-step`, entry `dsh/spec-gate-classify.mjs`, real file `.skilled/skills/system-spec-kit/runtime/hooks/dsh/spec-gate-classify.mjs`
+DSH: event `tools/pre-execute`, entry `dsh/spec-gate-enforce.mjs`, real file `.skilled/skills/system-spec-kit/runtime/hooks/dsh/spec-gate-enforce.mjs`
+OpenCode: event `experimental.chat.system.transform, session.compact, session.compacted, session.created, session.deleted, session.resumed, tool.execute.before`, entry `opencode/system-spec-gate.js`, real file `.opencode/plugins/system-spec-gate.js`
+Pi: event `input`, entry `pi/spec-gate-classify.ts`, real file `.skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-classify.ts`
+Pi: event `tool_call`, entry `pi/spec-gate-enforce.ts`, real file `.skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts`

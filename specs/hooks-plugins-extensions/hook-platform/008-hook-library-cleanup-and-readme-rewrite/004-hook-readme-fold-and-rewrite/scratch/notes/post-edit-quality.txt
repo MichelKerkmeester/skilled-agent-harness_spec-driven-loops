@@ -1,0 +1,4 @@
+   - The old table has no DSH and no Vibe row. DSH loads `dsh/` in this folder through `.dsh/plugins/repo-guards/adapters/post-edit-quality.mjs`. Vibe has a `post_tool` hook named `post-edit-quality`, `strict = true`, matching `write_file` and `edit`, that runs `.vibe/plugins/repo-guards/post-edit-quality.mjs` and appends findings to the tool result. Read both files and give each a row.
+   - `cursor/post-tool-use.mjs` is a link to `.skilled/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs`, registered as `postToolUse` with id `post-tool-use`, 10 seconds. It also serves `cli-dispatch`, as the old text says.
+   - `lib/post-edit-router.cjs` runs `check-dist-staleness.sh` for a single file. Keep that and link `../dist-freshness/README.md`.
+   - The old sections WHAT IT DOES and BOUNDARIES AND FLOW become HOW IT WORKS. PER-RUNTIME DELIVERY becomes RUNTIME COVERAGE, and a payload column becomes short prose under the table.

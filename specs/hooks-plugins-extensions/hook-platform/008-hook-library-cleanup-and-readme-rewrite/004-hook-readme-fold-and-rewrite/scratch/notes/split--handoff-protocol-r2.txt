@@ -1,0 +1,8 @@
+   - Defect 1: write: "The session writes a handoff note, and `prepare` validates it and writes a pending relaunch record."
+   - Defect 2: the killer order. Write: "When the transcript stays unchanged for `--idle-ms` (3000 ms by default), it re-reads the record, and as its last check before the signal it confirms the target is a descendant of the loop."
+   - Defect 3: write: "`keep` validates the note the way `prepare` does, except that it does not require the `Running workers:` line."
+   - Defect 4: Codex has a compaction pointer. Write: "Codex does the same through `codex/handover-compact-pointer.mjs` on `SessionStart` with `source: compact`, as described under Per-Runtime Delivery."
+   - Defect 5: write: "It prints one JSON line whose `systemMessage` says the hop could not arm because the Stop carried no transcript path and that the next prompt withdraws the hop, and then returns."
+   - Defect 6: the paragraphs that start "Stop then resolves the killer target before it arms" belong in the arm section, after its checks, not under the withdrawal. Move them there and open with "After those checks, Stop resolves the killer target before it arms."
+   - Defect 7, history wording: "Prepare does not walk every descendant of the runtime, because a background worker has left the runtime's process tree by the time `prepare` runs." / "An open note named with the first eight characters of the session id is also found and reused." / "The claim then prints the note body, the `complete` line and any `Goal packet:` line, without the section."
+   - Defect 8: the list is not complete. Write "The section is withheld in these cases, among others:" in place of "in four cases".

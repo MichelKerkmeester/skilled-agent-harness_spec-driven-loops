@@ -1,0 +1,5 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: "Zero packets or several leave it ambiguous." is wrong. Write: "Several resolved packets leave it ambiguous, and zero packets leave it a non-dispatch the hook ignores."
+   - Defect 2: restore that it captures the operator's text only from an interactive or RPC `input` event, authorizes the dispatch and then runs the hard rules.
+   - Defect 3: restore that the audit records a finished `bash` dispatch through `recordDispatch` with the command, output, session and call ids, tagged `runtime: 'pi'`.
+   - Defect 4: restore that the preflight calls `shouldDenyPiDispatch`, then evaluates the hard rules of every resolved packet in the command.

@@ -14,21 +14,34 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`pi/` holds the real Pi extension for session handover and its vitest suite. Pi discovers the extension through the one-line entry file `.pi/extensions/session-handover.ts`. The extension registers `message_end`, `before_agent_start`, `agent_start`, `turn_end`, `agent_end`, `agent_settled`, `tool_call` and `session_compact`. It holds a nudge until the next turn end or the end of the run, arms the record at the settle, withdraws an arm when a new turn starts and tells the model it was withdrawn, refuses a question dialog while the record can still be armed and points a compacted session back at its open note.
+`pi/` holds the Pi extension for session handover and its vitest suite. Pi discovers the extension through the one-line entry file `.pi/extensions/session-handover.ts`. The extension registers `message_end`, `before_agent_start`, `agent_start`, `turn_end`, `agent_end`, `agent_settled`, `tool_call` and `session_compact`.
+
+The extension answers to the concern key `session-handover` and reloads the flags file per event. The extension runs one handoff step per event, as follows.
+
+- `message_end` measures fill and holds the nudge text for that session.
+- `before_agent_start` answers a seed taken from the prompt's first block.
+- `turn_end` steers a held nudge into a running loop once that turn's tools ran.
+- `agent_end` delivers the held nudge as a follow-up when the loop ended instead.
+- `agent_settled` arms the record once no turn can undo it and spawns the killer.
+- `agent_start` cancels an arm and steers the withdrawn notice to the model.
+- `tool_call` blocks the `question` and `ask_user_question` tools while the record can still be armed.
+- `session_compact` resets the pointer and points the session at its open note.
+
+Every handler catches its own error and returns `undefined` to the host. A core module that lacks a function it calls fails the load instead. A failed module load is retried on the next event. A killer spawn error is logged and the record stays armed.
 
 ---
 
-## 2. WHAT EACH FILE DOES
+## 2. FILES
 
-| File | Event or role | What it does | On error |
-|---|---|---|---|
-| [`session-handover.ts`](./session-handover.ts) | Extension, eight events | Measures fill from `message_end`, answers a seed in `before_agent_start` from the prompt's first block, steers a held nudge into a running loop on `turn_end` once that turn's tools ran, delivers it on `agent_end` when the loop ended instead, arms on `agent_settled`, cancels an arm on `agent_start` and steers the withdrawn notice in, blocks the `question` and `ask_user_question` tools on `tool_call` while the record can still be armed and resets the pointer on `session_compact`. | Fails open. Each handler catches and returns `undefined`. |
-| [`session-handover.test.ts`](./session-handover.test.ts) | Vitest suite | Covers the nudge, seed, arm, cancel and compaction paths with a mocked `spawn` and the shared fixture environment. | Not applicable, the suite asserts behavior. |
+| File | Responsibility |
+|---|---|
+| `session-handover.ts` | The extension. It registers eight events and runs the nudge, seed, arm, cancel and compaction paths. |
+| `session-handover.test.ts` | The vitest suite. It covers the nudge, seed, arm, cancel and compaction paths with a mocked `spawn` and the shared fixture environment. |
 
 ---
 
 ## 3. RELATED
 
 - [`../README.md`](../README.md): the concern README with the runtime matrix and the handoff protocol.
-- [`../lib/nudge.cjs`](../lib/nudge.cjs): the text and threshold logic the extension imports.
-- [`../../../../.pi/extensions/session-handover.ts`](../../../../.pi/extensions/session-handover.ts): the one-line entry file Pi discovers.
+- [`../lib/nudge.cjs`](../lib/nudge.cjs): the text and threshold logic the extension imports from it.
+- [`../../../../.pi/extensions/session-handover.ts`](../../../../.pi/extensions/session-handover.ts): the one-line entry file through which Pi discovers the extension.

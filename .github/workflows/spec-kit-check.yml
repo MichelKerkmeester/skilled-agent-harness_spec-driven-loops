@@ -45,6 +45,7 @@ on:
       # The history lookup engine's suites run only in this workflow's runtime
       # job, so an engine-only change has to trigger it. The hooks vitest tree
       # does not collect the engine's suites.
+      - '.opencode/hooks/**'
       - '.skilled/hooks/**'
   pull_request:
     branches: [main]
@@ -90,6 +91,7 @@ on:
       # The history lookup engine's suites run only in this workflow's runtime
       # job, so an engine-only change has to trigger it. The hooks vitest tree
       # does not collect the engine's suites.
+      - '.opencode/hooks/**'
       - '.skilled/hooks/**'
 
 permissions:

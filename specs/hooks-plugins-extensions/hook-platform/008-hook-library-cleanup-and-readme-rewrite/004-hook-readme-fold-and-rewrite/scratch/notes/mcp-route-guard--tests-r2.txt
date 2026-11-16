@@ -1,0 +1,3 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: four cases use the real core. Write: "The suite drives `registerMcpRouteGuard()` with a fake plugin context. It uses the real core, and a stubbed core only for the non-MCP and throw cases."
+   - Defect 2: the suite never loads the Pi extension. Write: "One case compares the deny reason with a local copy of the Pi extension's reason logic."

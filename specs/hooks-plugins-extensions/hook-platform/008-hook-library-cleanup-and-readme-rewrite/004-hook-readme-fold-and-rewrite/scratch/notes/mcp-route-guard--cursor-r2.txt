@@ -1,0 +1,3 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: the core also matches a bare name that starts with a manifest manual name. Write: "The shared core needs a packed name, so a bare tool name matches only when it starts with a manifest manual name."
+   - Defect 2: write: "Without a server name or a tool name, the bare tool name passes through unpacked and usually matches nothing."

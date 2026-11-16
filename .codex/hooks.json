@@ -30,7 +30,7 @@
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/codex/compact-pointer.mjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=SessionStart adapter=compact-pointer.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}}\"; }'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/codex/handover-compact-pointer.mjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=SessionStart adapter=handover-compact-pointer.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}}\"; }'",
             "timeout": 5
           }
         ]
@@ -68,7 +68,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/codex/prompt-seed.mjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=UserPromptSubmit adapter=prompt-seed.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}}\"; }'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/codex/handover-prompt-seed.mjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=UserPromptSubmit adapter=handover-prompt-seed.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}}\"; }'",
             "timeout": 5
           }
         ]
@@ -80,7 +80,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=PreToolUse adapter=dispatch-preflight-lint.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}}\"; }'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/cli-dispatch/codex/dispatch-preflight-lint.mjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=PreToolUse adapter=dispatch-preflight-lint.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}}\"; }'",
             "timeout": 5
           },
           {
@@ -152,7 +152,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=PostToolUse adapter=dispatch-audit-posttooluse.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}}\"; }'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/cli-dispatch/codex/dispatch-audit-posttooluse.mjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=PostToolUse adapter=dispatch-audit-posttooluse.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}}\"; }'",
             "timeout": 5
           }
         ]
@@ -161,7 +161,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/codex/context-nudge.mjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=PostToolUse adapter=context-nudge.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}}\"; }'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/codex/handover-context-nudge.mjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=PostToolUse adapter=handover-context-nudge.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}}\"; }'",
             "timeout": 5
           }
         ]
@@ -191,7 +191,7 @@
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/codex/stop-arm.mjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=Stop adapter=stop-arm.mjs\" >&2; printf %s \"{\\\"systemMessage\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}\"; }'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/codex/handover-stop-arm.mjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=Stop adapter=handover-stop-arm.mjs\" >&2; printf %s \"{\\\"systemMessage\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}\"; }'",
             "timeout": 10
           },
           {

@@ -1,0 +1,3 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: the suite does not test the `isHookEnabled` kill switch. Its only switch case sets `JEV_FEATURE_INJECTION_SCREEN=0`, the feature gate. Write: "The suite covers the advisory path, a content block array, an attacker heading, a non-fetch tool, the `JEV_FEATURE_INJECTION_SCREEN=0` feature gate and malformed stdin."
+   - Defect 2: the reason no test reaches a real backend is the stub `jev` first on `PATH`. Write: "Each case runs against a stub `jev` first on `PATH`, so no test reaches a real backend, and the suite removes its fixture directories afterwards."

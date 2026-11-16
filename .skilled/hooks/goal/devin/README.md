@@ -1,6 +1,6 @@
 ---
 title: "Goal (Devin): SessionStart and UserPromptSubmit Injection"
-description: "The Devin hook pair that renders the bound packet goal and the resend reminder as additionalContext on session start and on each submitted prompt."
+description: "The Devin goal adapter that renders the bound packet goal and the resend reminder as additionalContext on session start and on each submitted prompt."
 trigger_phrases:
   - "devin goal injection"
   - "userpromptsubmit goal brief"
@@ -14,22 +14,40 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`goal/devin/` holds the Devin goal adapter. `goal-inject.mjs` is registered in `.devin/hooks.v1.json` for `SessionStart` and `UserPromptSubmit`, so one file serves both events. Devin exposes no prompt command surface in this repository, which makes the runtime injection-only. Binding happens on a runtime whose command carries a native session identity, and the record is shared through the same core.
+`goal-inject.mjs` is the Devin goal adapter. `.devin/hooks.v1.json` registers the file for `SessionStart` and `UserPromptSubmit`, so one file serves both events. Devin exposes no prompt command surface in this repository, which makes the runtime injection-only. Binding happens on a runtime whose command carries a native session identity. The record is shared through the same core.
 
-The hook reads `session_id` and takes the workspace from `cwd` or `DEVIN_PROJECT_DIR`. It binds a hand-over packet when one was exported, reads the active record and renders the brief. While the operator copy is behind the packet, the reminder names the `goal.cjs resent` line for this session. The result is a `hookSpecificOutput` envelope with `hookEventName` and `additionalContext`.
+The hook reads `session_id` and takes the workspace from `cwd` or `DEVIN_PROJECT_DIR`. It falls back to the process working directory when neither names one. It binds a hand-over packet when one was exported. Then it reads the active record and renders the brief.
 
----
-
-## 2. WHAT EACH FILE DOES
-
-| File | Event | What it does | On error |
-|---|---|---|---|
-| `goal-inject.mjs` | `SessionStart` and `UserPromptSubmit` | Reads the payload, binds a hand-over packet, renders the brief plus the resend reminder and emits `{ hookSpecificOutput: { hookEventName, additionalContext } }`. Records one turn on the bound record. | Emits `{}` on malformed stdin, a disabled plugin or any core error. An unusable hand-over packet writes one stderr line and the session continues. |
-| `goal-devin.test.mjs` | `node --test` | Spawns the hook against a temp state directory. Covers the injection envelope, the reminder text, the paused and missing cases and fail-open behavior on bad input. | A failed assertion fails the test process with a nonzero status. |
+While the operator copy is behind the packet, the reminder names the `goal.cjs resent` line. That line records the resend for this session. The result is a `hookSpecificOutput` envelope with `hookEventName` and `additionalContext`. The envelope keeps the event name the payload carries, and `UserPromptSubmit` is the default.
 
 ---
 
-## 3. RELATED
+## 2. FILES
+
+| File | Responsibility |
+|---|---|
+| `goal-inject.mjs` | The hook for both events. It reads the payload, binds a hand-over packet, renders the brief and the reminder, records one turn and emits the envelope. |
+| `goal-devin.test.mjs` | The `node --test` suite. It spawns the hook as a real process against a temp state directory. |
+
+`goal-inject.mjs` reads the payload, binds a hand-over packet, renders the brief and the resend reminder. It records one turn on the bound record and emits `{ hookSpecificOutput: { hookEventName, additionalContext } }`. A malformed payload, a disabled plugin or any core error emits `{}` instead. An unusable hand-over packet writes one stderr line, and the session continues. Every path exits 0, so the hook never blocks a turn.
+
+`goal-devin.test.mjs` spawns the hook as a real process against a temp state directory. It covers the injection envelope, the reminder text and the missing and paused cases. Bad input and a disabled plugin fail open. The suite also covers the hand-over bind, a later turn and a dispatched child. A failed assertion fails the test process with a nonzero status.
+
+---
+
+## 3. VALIDATION
+
+Run from the repository root.
+
+```bash
+node --test .skilled/hooks/goal/devin/goal-devin.test.mjs
+```
+
+Expected result: every test passes.
+
+---
+
+## 4. RELATED
 
 - [`../README.md`](../README.md): the concern index, with the per-runtime capability matrix and the state layout.
 - [`./goal-inject.mjs`](./goal-inject.mjs): the hook itself.

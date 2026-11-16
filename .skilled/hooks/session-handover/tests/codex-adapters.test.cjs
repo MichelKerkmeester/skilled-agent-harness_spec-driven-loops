@@ -11,10 +11,10 @@ const os = require('node:os');
 const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 
-const CONTEXT_NUDGE_PATH = path.resolve(__dirname, '../codex/context-nudge.mjs');
-const PROMPT_SEED_PATH = path.resolve(__dirname, '../codex/prompt-seed.mjs');
-const STOP_ARM_PATH = path.resolve(__dirname, '../codex/stop-arm.mjs');
-const COMPACT_POINTER_PATH = path.resolve(__dirname, '../codex/compact-pointer.mjs');
+const CONTEXT_NUDGE_PATH = path.resolve(__dirname, '../codex/handover-context-nudge.mjs');
+const PROMPT_SEED_PATH = path.resolve(__dirname, '../codex/handover-prompt-seed.mjs');
+const STOP_ARM_PATH = path.resolve(__dirname, '../codex/handover-stop-arm.mjs');
+const COMPACT_POINTER_PATH = path.resolve(__dirname, '../codex/handover-compact-pointer.mjs');
 const USER_PROMPT_SUBMIT = require('./fixtures/codex-user-prompt-submit.json');
 const STOP_PAYLOAD = require('./fixtures/codex-stop.json');
 const ROLLOUT_CAPTURE = require('./fixtures/codex-rollout-token-count.json');
@@ -274,10 +274,10 @@ test('Codex registrations assign each event a unique adapter', () => {
   );
 
   assert.deepEqual(scriptByEvent, {
-    UserPromptSubmit: '.skilled/hooks/session-handover/codex/prompt-seed.mjs',
-    PostToolUse: '.skilled/hooks/session-handover/codex/context-nudge.mjs',
-    Stop: '.skilled/hooks/session-handover/codex/stop-arm.mjs',
-    SessionStart: '.skilled/hooks/session-handover/codex/compact-pointer.mjs',
+    UserPromptSubmit: '.skilled/hooks/session-handover/codex/handover-prompt-seed.mjs',
+    PostToolUse: '.skilled/hooks/session-handover/codex/handover-context-nudge.mjs',
+    Stop: '.skilled/hooks/session-handover/codex/handover-stop-arm.mjs',
+    SessionStart: '.skilled/hooks/session-handover/codex/handover-compact-pointer.mjs',
   });
   assert.equal(
     new Set(bindings.map(({ script }) => script)).size,

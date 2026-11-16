@@ -1,0 +1,172 @@
+---
+title: "Shared: Hook Adapter Helpers"
+description: "Shared hook plumbing: the kill-switch resolver, fail-open stdin/JSON helpers and the read-only per-runtime session readers, kept local so the tree has zero out-of-tree dependencies."
+trigger_phrases:
+  - "hook adapter shared"
+  - "hooks shared helpers"
+---
+
+# Shared: Hook Adapter Helpers
+
+---
+
+## 1. OVERVIEW
+
+This folder injects nothing into any AI session, it is pure plumbing for the adapters that do. Three concerns live here: the kill-switch resolver that every adapter calls before doing anything, the fail-open stdin/JSON helpers that the CommonJS and ESM adapters share and the read-only session reader package that resolves one exact session id per runtime. Keeping local copies is deliberate, it is what makes every adapter under `.skilled/hooks/` importable with zero dependency outside this tree, which is the point of the tree existing.
+
+A second, independent ESM sibling (`hook-adapter-shared.mjs`) lives in `system-spec-kit/runtime/hooks/lib/` for that skill's own spec-gate adapters, which are not part of the fully-portable set. The two are allowed to drift in principle; in practice the file is small and stable enough that they shouldn't.
+
+---
+
+## 2. WHAT IT DOES
+
+**Kill-switch resolver.** `hook-flags.cjs` exports `isHookEnabled(concern, env?, config?)`: default-on, so adding the guard changes no behavior until a flag is set. A hook goes silent when the master switch (`SYSTEM_HOOKS_DISABLED`, alias `MK_HOOKS_DISABLED`) or one of the concern's kill-switches is truthy (`1`/`true`/`yes`/`on`, case-insensitive). A short list of concerns is default-off instead, `DEFAULT_OFF` in `hook-flags.cjs`, and today it holds one entry: `session-handover`. A default-off concern answers enabled only when its enable flag is truthy, read from the same two sources as the kill-switches. For `session-handover` the caller names its runtime through a fourth `options.runtime` argument, and the enable flag is that runtime's `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` (`CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR`, `DEVIN` or `VIBE`) when it holds a non-empty value, `1` on and `0` off, and `SYSTEM_SESSION_HANDOVER_ENABLED` when it holds a non-empty value. With both blank, a runtime that `DEFAULT_ON_RUNTIMES` lists for the concern is on, and today that is `claude` alone, so Claude Code hands over by default while every other runtime and a caller that names none stays off. Each key resolves environment first, then config file, before that rule applies, so a config-file `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED=0` beats an environment `SYSTEM_SESSION_HANDOVER_ENABLED=1` for Claude Code. The master switch and the concern's kill-switch still win over every enable flag. `concernFlag(concern)` derives the canonical env-var name: concerns listed in `CONCERN_CANONICAL` get their hand-set name (e.g. `goal` → `OPENCODE_GOAL_DISABLED`, `dispatch` → `CLI_DISPATCH_AUDIT_DISABLED`); every other concern falls back to the default shape `SYSTEM_<CONCERN>_DISABLED`. `LEGACY_ALIASES` maps each concern to the older `MK_`/`SPECKIT_`/plugin-owned names that also disable it, so operator config written against any generation keeps working. `isFlagOn(name, env?, config?)` answers the same question for one named switch that is not a hook concern, such as the `SPECKIT_SKIP_VALIDATION` and `SKDOC_SKIP_VALIDATION` validation switches: the environment answers whenever the name is set there, even to an empty value, and the config file answers otherwise.
+
+Flags resolve from two sources: the live environment, and an optional operator config file (`hook-flags.env`, sibling of this folder, overridable via `HOOK_FLAGS_CONFIG`). The environment always wins over the file for a given key, so a persisted default can still be overridden per session. The config file is read once per process and cached; tests reset the cache via `_resetConfigCache()`. In the file, a `#` after a space or tab ends a value, so `SYSTEM_SKILL_ADVISOR_DISABLED=1  # why` reads as `1`. Every reader of the file applies that rule: `hook-flags.cjs`, `hook-flags.sh`, sk-doc's `validation_switch.py` and sk-code's `check-dist-staleness.sh`. A test in `hook-flags.test.cjs` holds all four to the same answers.
+
+At load, `hook-flags.cjs` calls `env-aliases.cjs.applyEnvAliases()`, which copies every legacy `MK_*` env value forward onto its new name (only when the new name is unset: a value set explicitly under the new name always wins). This bridges the rename from the opaque `MK_` prefix to self-describing prefixes that name the owning skill or surface.
+
+**Adapter plumbing.** `hook-adapter-shared.cjs` provides `readStdin({ timeoutMs })` (stdin collection that resolves at a 3000 ms deadline with the bytes read so far, and rejects on a stream error) and `parseJsonFailOpen(raw)` (JSON parsing that resolves to `null` instead of throwing). CommonJS adapters `require()` the file and ESM adapters import both names from it, which Node reads from its `module.exports` object literal. Byte-identical behavior for every consumer.
+
+**Session readers.** `session-readers/` resolves one exact session id per runtime, projects the store's records into the shared `HistoryEntry` list and writes nothing. Its `capabilities` export is the source of truth for which runtimes are `ready`, and Cursor stays `gated` until its PreCompact delivery is confirmed.
+
+**POSIX mirror.** `hook-flags.sh` exposes `hook_enabled <concern>` for shell entrypoints. It resolves the config file at source time (explicit `HOOK_FLAGS_CONFIG`, then `__hf_root`, then `git rev-parse --show-toplevel`). It checks the master switch and the default-shape `SYSTEM_<CONCERN>_DISABLED` only: it does not carry the `CONCERN_CANONICAL` overrides or `LEGACY_ALIASES`, so shell entrypoints that need those must use the Node resolver instead. `hook_flag_on <name>` checks one named switch with the same precedence, and refuses any name that is not a plain variable name before the resolver's `eval` sees it.
+
+---
+
+## 3. PER-RUNTIME DELIVERY
+
+This concern has no per-runtime adapters: it is consumed by every other concern's adapters. Each module flavor exists so a different runtime's adapter can import it without a module-system mismatch:
+
+| Flavor | File | Consumed by | Mechanism |
+|---|---|---|---|
+| CommonJS | `hook-flags.cjs` | Claude, Codex, Devin, Cursor (via `.mjs`), OpenCode plugins (via `createRequire`) | `require()`; calls `applyEnvAliases()` at load. |
+| ESM | `hook-flags.mjs` | Cursor, Pi (via `.ts`), ESM adapters | `createRequire` facade over `.cjs`, zero drift. |
+| POSIX sh | `hook-flags.sh` | Shell entrypoints (dist-freshness, git hooks, `validate.sh`) | `source` + `hook_enabled <concern>` or `hook_flag_on <name>`. Default-shape flags only. |
+| CommonJS | `hook-adapter-shared.cjs` | `mcp-route-guard/{claude,codex,devin}`, `subagent-dispatch-guard/{claude,devin}`, `post-edit-quality/{claude,codex,devin}` | `require()`; `readStdin()` + `parseJsonFailOpen()`. |
+| ESM | `hook-adapter-shared.cjs` | `classifier-injection-screen/{claude,devin}`, `cli-dispatch/{claude,codex,cursor,devin}` (preflight), `cli-dispatch/{claude,codex,devin}` (audit), `goal/{cursor,devin}`, `mcp-route-guard/cursor`, `subagent-dispatch-guard/{cursor,claude}` | `import { readStdin }` from this folder's `hook-adapter-shared.cjs`, through a relative specifier that climbs from the adapter's runtime folder to the hooks root and then into `shared/`. Node reads the named exports from the CommonJS file. |
+
+The resolver family currently gates 25 concerns: `skill-advisor`, `spec-gate`, `completion`, `codex-watchdog`, `permission-policy`, `directive-lifecycle`, `dispatch`, `dispatch-guard`, `post-edit-quality`, `task-dispatch`, `mcp-route-guard`, `goal`, `git-preflight`, `session-lifecycle`, `git-worktree-guard`, `git-hooks-check`, `dist-freshness`, `session-cleanup`, `hook-install`, `git-commit-hooks`, `live-sync`, `live-follow`, `injection-screen`, `session-handover`, and `primary-reconcile`. Pi's bundled SessionStart adapter calls `isHookEnabled()` separately for each of its five advisory concerns.
+
+---
+
+## 4. DIRECTORY TREE
+
+```text
+shared/
++-- hook-flags.cjs              # canonical kill-switch resolver (isHookEnabled, isFlagOn, concernFlag, isTruthy, LEGACY_ALIASES)
++-- hook-flags.mjs              # ESM facade over .cjs (createRequire, zero drift)
++-- hook-flags.sh               # POSIX sh mirror: hook_enabled <concern>, hook_flag_on <name> (default-shape flags only)
++-- hook-flags.test.cjs         # node --test suite for the resolver
++-- env-aliases.cjs             # back-compat bridge: copies MK_* env values forward to new names at load
++-- hook-adapter-shared.cjs     # readStdin() + parseJsonFailOpen() for CommonJS and ESM adapters
++-- hook-adapter-shared.test.cjs   # node --test suite: stdin deadline and whole-input read
++-- hook-stdin-deadline.test.mjs   # node --test suite: every ESM adapter exits at the stdin deadline
++-- session-reader-declarations.mjs   # rebuilds or checks the session readers' .d.mts declarations
+`-- session-readers/               # read-only per-runtime session readers (see session-readers/index.mjs)
+```
+
+---
+
+## 5. KEY FILES
+
+| File | Responsibility |
+|---|---|
+| `hook-flags.cjs` | Canonical kill-switch resolver. `isHookEnabled(concern, env?, config?)`, `isFlagOn(name, env?, config?)`, `concernFlag()`, `isTruthy()`, `loadConfigFile()`, `configPath()`, `_resetConfigCache()`. Owns `MASTER_FLAG`, `MASTER_ALIASES`, `CONCERN_CANONICAL`, `LEGACY_ALIASES`. Calls `env-aliases.cjs` at load. Config file cached per process. |
+| `hook-flags.mjs` | ESM facade re-exporting `hook-flags.cjs` via `createRequire` (zero drift). |
+| `hook-flags.sh` | POSIX sh mirror. `hook_enabled <concern>` returns 0 (enabled) unless the master or default-shape per-concern switch is truthy, and `hook_flag_on <name>` returns 0 when one named switch is truthy. Resolves config file at source time. Does not carry canonical-name overrides or legacy aliases. |
+| `env-aliases.cjs` | Back-compat bridge. `applyEnvAliases(env?)` copies every legacy `MK_*` value forward to its new name when the new name is unset. `PREFIX_RULES` maps specific prefixes (`MK_GOAL_` → `OPENCODE_GOAL_`, `MK_CLI_DISPATCH_AUDIT_` → `CLI_DISPATCH_AUDIT_`, etc.); the catch-all `MK_` → `SYSTEM_` rule handles the rest. |
+| `hook-adapter-shared.cjs` | `readStdin({ timeoutMs })` + `parseJsonFailOpen()`. The reader resolves at a 3000 ms deadline with the bytes read so far, and the JSON parser returns `null` on bad JSON. Byte-identical behavior for every consumer, CommonJS or ESM. |
+| `hook-flags.test.cjs` | `node --test` suite: default-on, master switch, per-concern switch, `concernFlag` derivation, config-file merge, legacy-alias parity, named-switch precedence in both resolvers, trailing comments in all four readers of the file. |
+| `hook-adapter-shared.test.cjs` | `node --test` suite: a never-closed stdin resolves at the deadline and its process exits; complete input comes back whole. |
+| `hook-stdin-deadline.test.mjs` | `node --test` suite: with stdin left open and never written, each of the seventeen ESM adapters that import `readStdin` exits 0 at the deadline with its fail-open output, and the seven adapters no other suite spawns still answer a normal payload. |
+| `session-readers/` | Read-only session reader package: `readSession()` resolves one exact session id per runtime (Claude, Codex, Pi, OpenCode, Devin and DSH are ready, and Cursor is gated), projects the result into the shared `HistoryEntry` list and writes nothing, while the six decision-capture sweeps remain the writers. See [`session-readers/index.mjs`](./session-readers/index.mjs). |
+| `session-reader-declarations.mjs` | Rebuilds the committed `session-readers/*.d.mts` declarations that TypeScript callers read, or with `--check` reports any that no longer match their source. The compiler will not overwrite a declaration in place, so a plain build never refreshes them. It builds in a temporary copy and borrows the TypeScript compiler that the system-spec-kit skill installs. A development tool: no hook loads it. |
+
+---
+
+## 6. CONFIGURATION
+
+The resolver is itself the configuration mechanism for every other concern. Operators interact with it through env vars and the config file, not through this folder.
+
+| Variable | Effect |
+|---|---|
+| `SYSTEM_HOOKS_DISABLED=1` | Master switch. Disables every concern across every runtime. |
+| `MK_HOOKS_DISABLED=1` | Legacy alias of the master switch. |
+| `SYSTEM_<CONCERN>_DISABLED=1` | Default-shape per-concern switch (e.g. `SYSTEM_TASK_DISPATCH_DISABLED=1`). Derivable via `concernFlag(concern)`. |
+| `SYSTEM_SESSION_HANDOVER_ENABLED=1` | Enable flag for `session-handover`, the one default-off concern. Without it, or a runtime's own flag, the concern stays silent on every runtime but Claude Code. A set value, `1` or `0`, decides for Claude Code too. `SYSTEM_SESSION_HANDOVER_DISABLED=1` and the master switch still win over it. |
+| `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED=1` or `=0` | Per-runtime enable flag for `session-handover`, one each for `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR`, `DEVIN` and `VIBE`. A non-empty value wins over `SYSTEM_SESSION_HANDOVER_ENABLED` for that runtime, and an empty or unset value falls back to it. `SYSTEM_SESSION_HANDOVER_ENABLED=1` with `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED=0` is on for every runtime except Claude Code. The disable switch and the master switch still win. |
+| `OPENCODE_GOAL_DISABLED=1` | Canonical name for `goal` (non-default shape). Six concerns have hand-set canonical names in `CONCERN_CANONICAL`; see the table below. |
+| `HOOK_FLAGS_CONFIG` | Override path for the operator config file (default: `.skilled/hooks/hook-flags.env`). |
+
+Concerns whose canonical name does not follow the default `SYSTEM_<CONCERN>_DISABLED` shape:
+
+| Concern | Canonical flag |
+|---|---|
+| `goal` | `OPENCODE_GOAL_DISABLED` |
+| `dispatch` | `CLI_DISPATCH_AUDIT_DISABLED` |
+| `mcp-route-guard` | `MCP_ROUTE_GUARD_DISABLED` |
+| `codex-watchdog` | `CODEX_HOOKS_WATCHDOG_DISABLED` |
+| `git-preflight` | `SK_GIT_PREFLIGHT_DISABLED` |
+| `post-edit-quality` | `SK_CODE_POST_EDIT_QUALITY_DISABLED` |
+
+Each concern also honors a set of legacy aliases (`MK_`/`SPECKIT_`/plugin-owned names) listed in `LEGACY_ALIASES` inside `hook-flags.cjs`. The config file (`hook-flags.env`, copied from `hook-flags.env.example`, gitignored) lets an operator persist choices without exporting env vars every session; the environment always wins over the file.
+
+---
+
+## 7. BOUNDARIES AND FLOW
+
+| Boundary | Rule |
+|---|---|
+| Imports | Node builtins only. `hook-flags.cjs` imports `node:fs`, `node:path`, and `./env-aliases.cjs`. `hook-adapter-shared.cjs` imports nothing. The ESM facade (`hook-flags.mjs`) imports `node:module` only. |
+| Growth | Only helpers genuinely shared by multiple concerns belong here; a concern-specific helper goes in that concern's `lib/`. |
+| Failure | The resolver is default-on: a missing or unreadable config file, a missing env var, or any parse failure resolves to enabled. A default-off concern (`session-handover`) resolves to off in the same cases, because its enable flag is not set, except on a runtime `DEFAULT_ON_RUNTIMES` lists, which is `claude`. `parseJsonFailOpen` returns `null` instead of throwing. |
+| Drift | The ESM facade (`hook-flags.mjs`) is zero-drift by construction (it re-exports the `.cjs` implementation). The `.sh` mirror is a manual port and intentionally narrower (default-shape flags only). |
+
+---
+
+## 8. VALIDATION
+
+```bash
+node --test .skilled/hooks/shared/hook-flags.test.cjs
+```
+
+Expected result: all tests pass (default-on, master switch, per-concern switch, `concernFlag` derivation, config-file merge, legacy-alias parity, named-switch precedence, trailing comments).
+
+`hook-adapter-shared.cjs` is covered by its consumers' own suites:
+
+```bash
+node --test .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs
+```
+
+Expected result: all tests pass.
+
+The stdin deadline has its own suites. The first checks the reader itself and the second checks that each ESM adapter exits at the deadline when its stdin never closes:
+
+```bash
+node --test .skilled/hooks/shared/hook-adapter-shared.test.cjs .skilled/hooks/shared/hook-stdin-deadline.test.mjs
+```
+
+Expected result: all tests pass. The second suite takes about 3 seconds because it waits out the reader's deadline.
+
+The session readers have their own suite:
+
+```bash
+node --test .skilled/hooks/shared/tests/session-readers/*.test.mjs
+```
+
+Expected result: every test passes, including the store-unchanged check that every reader leaves the seven fixture stores untouched, and the declaration check, which is skipped when the TypeScript compiler is not installed.
+
+After changing a reader's exports or return shapes, rebuild its declarations:
+
+```bash
+node .skilled/hooks/shared/session-reader-declarations.mjs
+```
+
+---
+
+## 9. RELATED
+
+- [`../README.md`](../README.md): the unified hooks tree this helper serves, with the full kill-switch index and coverage matrix.
+- [`../hook-flags.env.example`](../hook-flags.env.example): the operator config file template.
+- [`../injection-contract.md`](../injection-contract.md): runtime injection visibility contract.

@@ -1,0 +1,3 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: nothing reads `ERROR_POLICY` except the test. The try/catch around the screen is what fails open. Write: "The module declares `ERROR_POLICY = 'fail-open'`, and a try/catch around the screen keeps a throw from changing the result."
+   - Defect 2: the description must spell the name out: "DeepSeek Harness (DSH) adapter that ...".

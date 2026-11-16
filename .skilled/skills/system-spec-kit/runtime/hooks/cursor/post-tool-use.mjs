@@ -11,7 +11,7 @@
 // read a failure shape).
 //
 // Per tool_name, chains to:
-//   Write -> claude-posttooluse.cjs (post-edit quality checks)
+//   Write -> post-edit-quality.cjs (post-edit quality checks)
 //   Shell -> dispatch-audit-posttooluse.mjs (CLI dispatch audit trail)
 //
 // Deliberately NOT a thin proxy through shared.ts's runClaudeHookAdapter():
@@ -38,8 +38,8 @@ import { readStdin } from '../lib/hook-adapter-shared.mjs';
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-const CLAUDE_POST_TOOL_USE_RELATIVE = '.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs';
-const DISPATCH_AUDIT_RELATIVE = '.skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs';
+const CLAUDE_POST_TOOL_USE_RELATIVE = '.skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs';
+const DISPATCH_AUDIT_RELATIVE = '.skilled/hooks/cli-dispatch/claude/dispatch-audit-posttooluse.mjs';
 const CHILD_TIMEOUT_MS = 8_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
 

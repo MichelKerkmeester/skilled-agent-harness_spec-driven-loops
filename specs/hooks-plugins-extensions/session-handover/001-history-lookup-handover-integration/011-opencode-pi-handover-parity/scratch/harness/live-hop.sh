@@ -120,7 +120,7 @@ end_ms=$(node -e 'console.log(Date.now())')
 tail -n +"$((log_offset + 1))" "$state/relaunch.log" > "$out/relaunch.log"
 for f in "$notes"/*.md; do
   [ -f "$f" ] || continue
-  grep -q "$code_word" "$f" && cp "$f" "$out/note-$(basename "$f")"
+  grep -q "$code_word" "$f" && cp "$f" "$out/note-$(basename "$f" | tr '_' '-')"
 done
 node -e '
 const fs=require("fs"); const p=process.argv[1]; const m=JSON.parse(fs.readFileSync(p));

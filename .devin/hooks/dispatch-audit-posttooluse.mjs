@@ -1,1 +1,1 @@
-../../.skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs
+../../.skilled/hooks/cli-dispatch/devin/dispatch-audit-posttooluse.mjs

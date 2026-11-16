@@ -1,0 +1,2 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: delete the second validation block, the `node --test .skilled/hooks/shared/hook-stdin-deadline.test.mjs` command and its expected-result line. That suite has one failing case, so the expected result is false. Keep the `printf` check and its expected result.

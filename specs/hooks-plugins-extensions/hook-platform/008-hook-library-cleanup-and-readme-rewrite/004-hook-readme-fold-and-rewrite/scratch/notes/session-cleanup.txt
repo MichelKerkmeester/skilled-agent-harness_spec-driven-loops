@@ -1,0 +1,4 @@
+   - Codex runs the script at `Stop`, not at a teardown event. The registry id is `session-cleanup`: Claude `SessionEnd`, Codex `Stop`, Cursor `sessionEnd` and Devin `SessionEnd`, each 10 seconds. Write each Event cell from those.
+   - The old table has no Vibe row. Vibe has a `session_end` hook named `session-cleanup-end` that runs `.vibe/plugins/repo-guards/session-cleanup.mjs`, which runs the cleanup script and a process sweep. Read it and give Vibe a row with entry None.
+   - Keep the Pi row. Give DSH a row only if a file under `.dsh/plugins/repo-guards/` runs the cleanup script. Search before you write it.
+   - The old sections WHAT IT DOES and BOUNDARIES AND FLOW become HOW IT WORKS. PER-RUNTIME DELIVERY becomes RUNTIME COVERAGE, and a payload column becomes short prose under the table.

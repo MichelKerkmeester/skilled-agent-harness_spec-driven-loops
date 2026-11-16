@@ -39,7 +39,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `message-contract.yml` | Holds each pushed commit message, each new branch name and each pull request description to the sk-git templates, so neither a missing hook nor a skipped hook turns the check off. A fork's branch names and a Dependabot pull request's description are not checked. |
 | `naming-standard-guard.yml` | Enforces the repository filesystem naming standard. |
 | `opencode-dual-version.yml` | Installs OpenCode 1.19.4 and 2.3.0 into separate prefixes and runs the version battery on each and on both together. Also runs the config-shape, battery and cli-opencode unit tests. |
-| `opencode-plugin-tests.yml` | Provisions every listed tree once and runs the OpenCode plugin suites under `.opencode/plugins/tests`, the inventory and registration guards among them, the hook suites written for `node --test` that the vitest config skips, and the hook installer test. A weekly scheduled run bypasses the cache so the cold install path still runs. |
+| `opencode-plugin-tests.yml` | Provisions every listed tree once and runs the OpenCode plugin suites under `.opencode/plugins/tests`, the inventory and registration guards among them, and the hook suites written for `node --test` that the vitest config skips. A weekly scheduled run bypasses the cache so the cold install path still runs. |
 | `pi-extension-tests.yml` | Finds each folder under `.pi/extensions/` that holds a `package.json` at run time, so a new extension needs no edit here. Installs it from its lockfile, runs its test script, which every extension must define, then its typecheck and pack check when it defines them. |
 | `playbook-operator-contract.yml` | Checks the manual-testing-playbook operator-scenario contract. |
 | `prompt-card-sync.yml` | Checks prompt and knowledge-card synchronization. |
@@ -109,6 +109,10 @@ Run `/doctor:ci report` to see each switch state. Run `/doctor:ci toggle` to cha
 ### Checkouts that skip loop state
 
 About two thirds of the tracked files are loop state under `specs/`: the `research/`, `review/`, `scratch/` and `z_archive/` folders. A full checkout fetches all of it and takes about a minute. Seven workflows whose suites read none of it skip those four folder kinds with a non-cone sparse checkout: `command-tree-parity.yml`, `hook-vitest-suites.yml`, `opencode-dual-version.yml`, `opencode-plugin-tests.yml`, `playbook-operator-contract.yml`, `sk-git-script-tests.yml` and `skill-advisor-stress.yml`. `opencode-plugin-tests.yml` names one archived packet again after the exclusions, because a plugin test reads it.
+
+<!-- readme-check
+allow-count Seven workflows | the sentence names all seven workflow files
+-->
 
 Three larger jobs do the same with the few paths their suites read: the CLI and runtime vitest jobs of `spec-kit-check.yml` and `deep-loop-runtime.yml`. The CLI job names two archived packets and one archived fixture folder again, and the deep-loop job names the folders of five recorded loop logs. A test added to one of these jobs that reads another loop-state path must add that path to the job's pattern list. A workflow that validates packets, checks links or walks every README keeps the full checkout, as do the other four jobs of `spec-kit-check.yml`.
 

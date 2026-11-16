@@ -1,0 +1,2 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: restore the dropped fact. Write: "A longer fallback specifier sits beside that import. It resolves only through the test alias."

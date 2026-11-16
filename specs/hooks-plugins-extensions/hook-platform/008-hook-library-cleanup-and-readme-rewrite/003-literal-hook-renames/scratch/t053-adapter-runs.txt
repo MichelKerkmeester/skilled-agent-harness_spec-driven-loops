@@ -1,0 +1,56 @@
+ADAPTER dispatch-preflight-lint.mjs
+  script=.skilled/hooks/cli-dispatch/claude/dispatch-preflight-lint.mjs exists=true
+  exit=0 signal=null drift=false
+  stdout=""
+  stderr=""
+ADAPTER dispatch-audit-posttooluse.mjs
+  script=.skilled/hooks/cli-dispatch/claude/dispatch-audit-posttooluse.mjs exists=true
+  exit=0 signal=null drift=false
+  stdout=""
+  stderr=""
+ADAPTER task-dispatch-guard.cjs
+  script=.skilled/hooks/subagent-dispatch-guard/claude/task-dispatch-guard.cjs exists=true
+  exit=0 signal=null drift=false
+  stdout=""
+  stderr=""
+ADAPTER fable-subagent-guard.mjs
+  script=.skilled/hooks/subagent-dispatch-guard/claude/fable-subagent-guard.mjs exists=true
+  exit=0 signal=null drift=false
+  stdout=""
+  stderr=""
+ADAPTER post-edit-quality.cjs
+  script=.skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs exists=true
+  exit=0 signal=null drift=false
+  stdout=""
+  stderr=""
+ADAPTER handover-subagent-guard.mjs
+  script=.skilled/hooks/session-handover/claude/handover-subagent-guard.mjs exists=true
+  exit=0 signal=null drift=false
+  stdout=""
+  stderr=""
+ADAPTER handover-context-nudge.mjs
+  script=.skilled/hooks/session-handover/claude/handover-context-nudge.mjs exists=true
+  exit=0 signal=null drift=false
+  stdout=""
+  stderr=""
+ADAPTER handover-compact-pointer.mjs
+  script=.skilled/hooks/session-handover/claude/handover-compact-pointer.mjs exists=true
+  exit=0 signal=null drift=false
+  stdout=""
+  stderr=""
+ADAPTER handover-stop-arm.mjs
+  script=.skilled/hooks/session-handover/claude/handover-stop-arm.mjs exists=true
+  exit=0 signal=null drift=false
+  stdout=""
+  stderr=""
+ADAPTER decision-capture-posttooluse.mjs
+  script=.skilled/hooks/decision-capture/claude/decision-capture-posttooluse.mjs exists=true
+  exit=0 signal=null drift=false
+  stdout=""
+  stderr=""
+ADAPTER CONTROL (path with no file)
+  script=.skilled/hooks/session-handover/claude/no-such-adapter.mjs exists=false
+  exit=0 signal=null drift=true
+  stdout="{\"hookSpecificOutput\":{\"hookEventName\":\"Stop\",\"additionalContext\":\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}}"
+  stderr="node:internal/modules/cjs/loader:1607\n  throw err;\n  ^\n\nError: Cannot find module '/Users/michelkerkmeester/worktrees/public/411-hook-library-cleanup/.skilled/hooks/session-handover/claude/no-such-adapter.mjs'\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1603:15)\n    at wrapResol"
+SUMMARY registered=10 exit0_no_drift=10 control_exit=0 control_drift=true

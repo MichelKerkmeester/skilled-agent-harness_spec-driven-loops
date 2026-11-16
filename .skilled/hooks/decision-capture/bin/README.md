@@ -14,38 +14,104 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`hooks/decision-capture/bin/` holds the save-time sweeps for the decision capture concern. A live adapter sees a question only while its hook is registered. Each sweep replays a runtime's own session record and appends the answered questions the hook missed. Deduplication lives in the queue core, so a key an earlier producer wrote is skipped and a sweep can run on every save.
+`.skilled/hooks/decision-capture/bin/` holds the save-time sweeps for the decision capture concern. A live adapter sees a question only while its hook is registered. Each sweep replays a runtime's session record and appends the answers the hook missed. The queue core deduplicates by key, so a key an earlier producer wrote is skipped. A sweep can therefore run on every save.
 
-Each sweep is also a module. The live adapters import the Devin, DSH, Pi and Vibe record mappers, so the live path and the swept path write the same key.
+Each sweep is also a module. The live adapters import the Devin, DSH, Pi, Vibe and OpenCode record mappers. The live path and the swept path therefore write the same key.
 
----
+Six runtimes run the live hook. Claude and Devin register it in `hook-registry.json` under the id `decision-capture`, each with a 5-second timeout. Claude's entry carries a fallback and Devin's names none. Pi loads `.skilled/hooks/decision-capture/pi/decision-capture.ts` through `.pi/extensions/decision-capture.ts`. DSH loads `.skilled/hooks/decision-capture/dsh/decision-capture.mjs` through a link at `.dsh/plugins/repo-guards/adapters/decision-capture.mjs`. Vibe names the hook `decision-capture-ask` in `.vibe/hooks.toml`. OpenCode loads `.opencode/plugins/decision-capture.js` from its plugin folder.
 
-## 2. WHAT EACH FILE DOES
-
-| File | Event or role | Behavior | On error |
-|---|---|---|---|
-| `sweep-codex.mjs` | Codex sweep, CLI | Reads a Codex rollout record and appends its answered questions to the queue. | Prints a JSON error object and exits 1 when the transcript cannot be read. |
-| `sweep-codex.test.mjs` | `node --test` suite | Covers the Codex sweep against recorded rollout fixtures. | Not applicable. |
-| `sweep-devin.mjs` | Devin sweep, CLI and module | Exports `devinAnswerRecords` for the live adapter and `sweepDevinTranscript` for the save path. Reads a Devin transcript and appends answered questions. | Prints a JSON error object and exits 1 on a read or path failure. |
-| `sweep-devin.test.mjs` | `node --test` suite | Covers the Devin sweep and its record mapping. | Not applicable. |
-| `sweep-dsh.mjs` | DSH sweep, CLI and module | Exports `QUESTION_TOOL`, `dshAnswerRecords` and `recoveredRecords`. Reads a DSH session log and pairs an answer with the question that asked it, including a late reply to a timed question. | Prints a JSON error object and exits 1 when the session log cannot be read. |
-| `sweep-dsh.test.mjs` | `node --test` suite | Covers the DSH sweep, the late-reply shape and the shared record key. | Not applicable. |
-| `sweep-opencode.mjs` | OpenCode sweep, CLI | Reads OpenCode's SQLite storage and appends answers from completed question parts. | Prints a JSON error object and exits 1 on a storage or read failure. |
-| `sweep-opencode.test.mjs` | `node --test` suite | Covers the OpenCode sweep against recorded session data. | Not applicable. |
-| `sweep-pi.mjs` | Pi sweep, CLI and module | Exports `QUESTION_TOOLS` and `recoveredRecords`. Reads a Pi session file and appends answered questions. | Prints a JSON error object and exits 1 when the session file cannot be read. |
-| `sweep-pi.test.mjs` | `node --test` suite | Covers the Pi sweep and its record mapping. | Not applicable. |
-| `sweep-transcript.mjs` | Claude sweep, CLI | Replays a Claude transcript, appends answered calls and lists plain-chat question and answer candidates. | Prints a JSON error object and exits 1 on a read or path failure. |
-| `sweep-transcript.test.mjs` | `node --test` suite | Covers transcript replay, chat candidates and deduplication. | Not applicable. |
-| `sweep-vibe.mjs` | Vibe sweep, CLI and module | Exports `isQuestionTool` and `vibeAnswerRecords` for the live adapter and `sweepVibeSession` for the save path. Reads a Vibe session journal and appends the answered question calls it records. | Prints a JSON error object and exits 1 when the journal cannot be read. |
-| `sweep-vibe.test.mjs` | `node --test` suite | Covers the answer mapping, a cancelled question and a sweep whose answer the hook already queued. | Not applicable. |
-| `runtime-refusal.test.mjs` | `node --test` suite | Checks that the concern README carries a coverage row for all eight runtimes and that every cell has a known state with a non-empty reason. | Not applicable. |
-
-The `fixtures/` folder holds the recorded runtime payloads these suites replay.
+`/speckit:save` runs the sweep for the runtime it saves on. Codex has no live adapter, so its answers arrive only through `sweep-codex.mjs`.
 
 ---
 
-## 3. RELATED
+## 2. DIRECTORY TREE
 
-- [`../`](../): the decision capture concern folder.
+```text
+bin/
++-- README.md
++-- fixtures/                     # The recorded runtime payloads the suites replay
++-- runtime-refusal.test.mjs      # The hooks tree README coverage-row check
++-- sweep-codex.mjs               # The Codex sweep
++-- sweep-codex.test.mjs          # Its node --test suite
++-- sweep-devin.mjs               # The Devin sweep and record mapper
++-- sweep-devin.test.mjs          # Its node --test suite
++-- sweep-dsh.mjs                 # The DSH sweep and record mapper
++-- sweep-dsh.test.mjs            # Its node --test suite
++-- sweep-opencode.mjs            # The OpenCode sweep and record mapper
++-- sweep-opencode.test.mjs       # Its node --test suite
++-- sweep-pi.mjs                  # The Pi sweep and record mapper
++-- sweep-pi.test.mjs             # Its node --test suite
++-- sweep-transcript.mjs          # The Claude sweep
++-- sweep-transcript.test.mjs     # Its node --test suite
++-- sweep-vibe.mjs                # The Vibe sweep and record mapper
+`-- sweep-vibe.test.mjs          # Its node --test suite
+```
+
+| File | Responsibility |
+|---|---|
+| `fixtures/` | The recorded runtime payloads the suites replay. |
+| `runtime-refusal.test.mjs` | The suite that checks the `decision-capture` row of the hooks tree README's coverage matrix. |
+| `sweep-codex.mjs` | The Codex sweep. |
+| `sweep-codex.test.mjs` | The Codex suite. |
+| `sweep-devin.mjs` | The Devin sweep and its record mapper. |
+| `sweep-devin.test.mjs` | The Devin suite. |
+| `sweep-dsh.mjs` | The DSH sweep and its record mapper. |
+| `sweep-dsh.test.mjs` | The DSH suite. It covers the late-reply shape and the shared record key. |
+| `sweep-opencode.mjs` | The OpenCode sweep and its record mapper. |
+| `sweep-opencode.test.mjs` | The OpenCode suite. |
+| `sweep-pi.mjs` | The Pi sweep and its record mapper. |
+| `sweep-pi.test.mjs` | The Pi suite. |
+| `sweep-transcript.mjs` | The Claude sweep. |
+| `sweep-transcript.test.mjs` | The Claude suite. It covers transcript replay, chat candidates and deduplication. |
+| `sweep-vibe.mjs` | The Vibe sweep and its record mapper. |
+| `sweep-vibe.test.mjs` | The Vibe suite. It covers the answer mapping, a cancelled question and a sweep whose answer the hook already queued. |
+
+Every suite runs under `node --test`. `runtime-refusal.test.mjs` reads the hooks tree README at `../../README.md` and finds the `decision-capture` row of its coverage matrix. It requires eight runtime cells, each marked covered or naming a known state with a non-empty reason. A bare `n/a` fails. So does a state outside the four accepted prefixes. No runtime may be marked `n/a`.
+
+`sweep-codex.mjs` reads a Codex rollout record and appends its answered `request_user_input` calls. It also lists plain-chat question and answer candidates. `--transcript <file>` reads a named record. Without it the sweep takes the newest rollout whose header `cwd` matches the project. It exits 0 with no output when no rollout matches, or when it appends nothing and finds no pending answer and no chat candidate. A record it cannot read prints a JSON error object and exits 1.
+
+`sweep-devin.mjs` exports `devinAnswerRecords` for the live adapter and `sweepDevinTranscript` for the save path. It pairs a question call with the answer in the same step's observation. Only a result carrying the answered-questions envelope counts, so a rejected call queues nothing. `--transcript <file>` reads a named transcript. Without it the sweep reads the newest session row for the project from Devin's store, opened read-only. It prints a JSON error object and exits 1 when no transcript is found or a read fails.
+
+`sweep-dsh.mjs` exports `QUESTION_TOOL`, `dshAnswerRecords` and `recoveredRecords`. It decodes each Zstandard frame of a session log on its own. It pairs an answer with the question that asked it, including a late reply to a timed question.
+
+`--session <file>` reads a named log. Without it the sweep takes the newest log whose header `cwd` matches the project. It exits 0 with no output when no log matches, or when it appends nothing and finds no pending answer and no chat candidate. A log it cannot read prints a JSON error object and exits 1. So does a log with no session header.
+
+`sweep-opencode.mjs` exports `openCodeAnswerRecords`, which the OpenCode plugin imports. It reads the `part` table and the `session_message` table of OpenCode's SQLite store. It appends answers from completed question parts only, so a dismissed call queues nothing. `--db <file>` names the store and `--session <id>` names the session. It prints a JSON error object and exits 1 when no session is found or a read fails.
+
+`sweep-pi.mjs` exports `QUESTION_TOOLS` and `recoveredRecords`. It accepts `ask_user_question` and `question`. A cancelled or errored result is dropped. `--transcript <file>` reads a named session file. Without it the sweep takes the newest file whose header `cwd` matches the project. It exits 0 with no output when no file matches, or when it appends nothing and finds no pending answer and no chat candidate. A file it cannot read prints a JSON error object and exits 1.
+
+`sweep-transcript.mjs` exports `sweepTranscript`. It replays a Claude transcript and appends answered `AskUserQuestion` calls. It also lists plain-chat question and answer candidates. A sidechain line and a torn final line are skipped. `--transcript <file>` reads a named transcript. It prints a JSON error object and exits 1 when no transcript is found or a read fails.
+
+`sweep-vibe.mjs` exports `isQuestionTool` and `vibeAnswerRecords` for the live adapter and `sweepVibeSession` for the save path. It reads a Vibe session journal and matches `ask_user_question` bare or group-qualified. A cancelled question yields nothing.
+
+`--session <dir>` reads a named session directory. Without it the sweep takes the newest session whose recorded directory matches the project. It exits 0 with no output when no session matches, or when it appends nothing and finds no pending answer. A journal it cannot read prints a JSON error object and exits 1. So does a journal that names no session.
+
+`fixtures/` holds the recorded payloads the Codex, Devin, OpenCode, Pi and Claude suites replay. The DSH and Vibe suites build their logs inside the test file.
+
+---
+
+## 3. VALIDATION
+
+Run from the repository root.
+
+```bash
+node --test .skilled/hooks/decision-capture/bin/*.test.mjs
+```
+
+Expected result: every case passes and the process exits 0.
+
+```bash
+node .skilled/hooks/decision-capture/bin/sweep-transcript.mjs --transcript .skilled/hooks/decision-capture/bin/fixtures/claude-chat-questions.jsonl
+```
+
+Expected result: a JSON report with `pending` and `chat_candidates`. The exit status is 0.
+
+---
+
+## 4. RELATED
+
+- [`../README.md`](../README.md): the decision capture concern, with its queue and switches.
 - [`../lib/capture-core.mjs`](../lib/capture-core.mjs): the queue core every sweep appends through.
-- [`../../README.md`](../../README.md): the unified hooks tree this concern lives in.
+- [`../lib/chat-questions.mjs`](../lib/chat-questions.mjs): the chat detector every sweep offers candidates to.
+- [`../../README.md`](../../README.md): the hooks tree, with the switch index and the coverage matrix.
+- [`../../../commands/speckit/save.md`](../../../commands/speckit/save.md): the save command that runs the sweeps.

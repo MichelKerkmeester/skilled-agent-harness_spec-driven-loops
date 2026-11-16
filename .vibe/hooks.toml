@@ -135,7 +135,7 @@ command = "node \"$(git rev-parse --show-toplevel)/.skilled/hooks/session-lifecy
 name = "decision-capture-ask"
 type = "post_tool"
 match = "ask_user_question"
-command = "node \"$(git rev-parse --show-toplevel)/.skilled/hooks/decision-capture/vibe/ask-capture-post-tool.mjs\""
+command = "node \"$(git rev-parse --show-toplevel)/.skilled/hooks/decision-capture/vibe/decision-capture-post-tool.mjs\""
 
 # The only session-start hook: adds the bound packet's goal slice, the session context, the
 # startup-guard warnings and the stale-dist warning as additional context, composed in one

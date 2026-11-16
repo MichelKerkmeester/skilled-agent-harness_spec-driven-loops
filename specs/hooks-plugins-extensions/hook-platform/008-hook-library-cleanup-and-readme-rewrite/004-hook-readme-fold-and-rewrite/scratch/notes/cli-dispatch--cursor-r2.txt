@@ -1,0 +1,2 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: the runtime sentence reads as the full list but leaves out DSH, OpenCode and Vibe, and Pi registers its own files, not the proxy's targets. Write: "Claude, Codex, Devin and Cursor register a command-hook preflight, while DSH, OpenCode, Vibe and Pi enforce in-process. Only Cursor registers the proxy, and Pi registers its own `post-edit-quality.ts` and `dispatch-audit.ts` instead."

@@ -1,7 +1,7 @@
 ---
 title: "GRD-002 -- Dispatch rule-check suite"
 description: "This scenario validates that the dispatch rule-check suite passes and keeps every declared dsh hard rule paired with an implemented check for `GRD-002`."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # GRD-002 -- Dispatch rule-check suite
@@ -44,7 +44,7 @@ A rule can be declared in `hard-rules.json` and never implemented, or implemente
 ### Commands
 
 ```bash
-node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+node --test .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs
 ```
 
 ### Recorded Result
@@ -56,7 +56,7 @@ node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| GRD-002 | Dispatch rule-check suite | Prove the dsh rule table is complete and tested | `Run the dispatch rule-check suite and tell me whether every dsh hard rule still has a test and every declared check is implemented. Do not change the rules.` | 1. `node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` -> 2. read the summary block -> 3. confirm the dsh refusal and enforcement cases ran | Step 1: exit `0`. Step 2: 50 tests, 50 pass, 0 fail. Step 3: the dsh rule cases and the three enforcement guards are present and passing | The observed runner transcript with the summary counts and exit code | PASS if the suite exits `0` with `fail 0` and the dsh and enforcement cases ran. FAIL if any test fails or a declared check has no implementation | 1. Read the failing case name and the rule id. 2. Compare the `hard-rules.json` entry with the `CHECKS` table. 3. Re-run the enforcement guard before changing a rule message |
+| GRD-002 | Dispatch rule-check suite | Prove the dsh rule table is complete and tested | `Run the dispatch rule-check suite and tell me whether every dsh hard rule still has a test and every declared check is implemented. Do not change the rules.` | 1. `node --test .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs` -> 2. read the summary block -> 3. confirm the dsh refusal and enforcement cases ran | Step 1: exit `0`. Step 2: 50 tests, 50 pass, 0 fail. Step 3: the dsh rule cases and the three enforcement guards are present and passing | The observed runner transcript with the summary counts and exit code | PASS if the suite exits `0` with `fail 0` and the dsh and enforcement cases ran. FAIL if any test fails or a declared check has no implementation | 1. Read the failing case name and the rule id. 2. Compare the `hard-rules.json` entry with the `CHECKS` table. 3. Re-run the enforcement guard before changing a rule message |
 
 ---
 
@@ -75,9 +75,9 @@ node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
 
 | File | Role |
 |---|---|
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` | Rule table and check implementations |
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Accepted shape, refusal cases and enforcement guards |
-| `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` | Audit path that consumes the rule result |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` | Rule table and check implementations |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs` | Accepted shape, refusal cases and enforcement guards |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs` | Audit path that consumes the rule result |
 
 ---
 

@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge",
+  "description": "A reader who wants to know how this repository watches Codex's user-global hook file finds two folders",
+  "keywords": [
+    "reader",
+    "wants",
+    "know",
+    "repository",
+    "watches",
+    "codex",
+    "user-global",
+    "hook",
+    "file",
+    "finds",
+    "two",
+    "folders"
+  ],
+  "lastUpdated": "2026-11-16T07:03:33.272Z",
+  "specId": "002",
+  "folderSlug": "codex-hook-check-merge",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "hook-platform",
+    "008-hook-library-cleanup-and-readme-rewrite"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "15-11-26_17-45__planned-phase-2-merge-codex-watchdog-and-hook.md",
+    "15-11-26_18-17__implemented-and-closed-phase-2-of-the-hook.md"
+  ]
+}

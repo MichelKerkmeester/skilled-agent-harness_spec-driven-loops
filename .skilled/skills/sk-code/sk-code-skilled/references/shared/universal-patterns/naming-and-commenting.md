@@ -8,7 +8,7 @@ trigger_phrases:
   - "reference comment patterns"
 importance_tier: normal
 contextType: implementation
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # Universal Patterns - Cross-Language Code Standards
@@ -271,9 +271,9 @@ Comment hygiene is not a soft style preference in OpenCode system code. Ephemera
 This is enforced in two real hooks:
 
 - `.skilled/scripts/git-hooks/pre-commit` is the installed Git hook selected by the global `core.hooksPath`; it runs the shared checker against staged code files and blocks the commit when violations are found.
-- `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs` is the Claude `Write|Edit` adapter wired by `.claude/settings.json`; it runs the shared checker and surfaces immediate comment-hygiene warnings for the edited file.
+- `.skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs` is the Claude `Write|Edit` adapter wired by `.claude/settings.json`; it runs the shared checker and surfaces immediate comment-hygiene warnings for the edited file.
 
-The older `.skilled/hooks/git/pre-commit` and `sk-code-quality/scripts/hooks/claude-posttooluse.sh` files remain compatibility helpers for direct tests only; neither is an installed runtime hook.
+The older `sk-code-quality/scripts/hooks/claude-posttooluse.sh` file remains a compatibility helper for direct tests only. It is not an installed runtime hook.
 
 ### Allowed Reference Comments
 

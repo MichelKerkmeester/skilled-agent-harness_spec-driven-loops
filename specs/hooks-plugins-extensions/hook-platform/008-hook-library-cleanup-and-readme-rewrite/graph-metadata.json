@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite",
+  "spec_folder": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite",
+  "parent_id": "hooks-plugins-extensions/hook-platform",
+  "children_ids": [
+    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal",
+    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge",
+    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames",
+    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite",
+    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook library cleanup and readme rewrite",
+      "hook library cleanup phase parent spec",
+      "literal hook folder names",
+      "hook readme rewrite",
+      "dead hook file removal",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "hook",
+      "library",
+      "cleanup",
+      "readme",
+      "rewrite",
+      "phase",
+      "parent",
+      "spec",
+      "literal",
+      "folder",
+      "names",
+      "dead"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".github/workflows/opencode-plugin-tests.yml",
+      ".github/scripts/check-gate-inputs.sh",
+      ".skilled/hooks/shared/hook-flags.test.cjs",
+      ".skilled/hooks/README.md",
+      "001-dead-hook-file-removal/goal.md",
+      "002-codex-hook-check-merge/goal.md",
+      "003-literal-hook-renames/goal.md",
+      "004-hook-readme-fold-and-rewrite/goal.md",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-plugin-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.sh",
+        "kind": "script",
+        "path": ".github/scripts/check-gate-inputs.sh",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A person who opens `.skilled/hooks/` to learn which hook does what meets four obstacles",
+    "created_at": "2026-11-15T14:58:48Z",
+    "last_save_at": "2026-11-16T07:29:33.176Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:8bb42b400e1faabcfc16c76fbae72ec2c62b09887d464e4cac66237efb9ae9b0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cec5a36bab3062ebcdc2d7478215f07126d00f5568df7c4fb626678b95b89278"
+    },
+    "last_active_child_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes",
+    "last_active_at": "2026-11-16T07:29:33.176Z"
+  }
+}

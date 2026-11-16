@@ -10,7 +10,7 @@ set -euo pipefail
 # ───────────────────────────────────────────────────────────────
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ADAPTER="$(cd "$SCRIPT_DIR/../../../../../hooks/post-edit-quality/claude" && pwd)/claude-posttooluse.cjs"
+ADAPTER="$(cd "$SCRIPT_DIR/../../../../../hooks/post-edit-quality/claude" && pwd)/post-edit-quality.cjs"
 TMP_DIR="$(mktemp -d)"
 
 cleanup() {
@@ -24,7 +24,7 @@ trap cleanup EXIT
 
 node --check "$ADAPTER"
 
-BROKEN_ADAPTER="$TMP_DIR/claude-posttooluse.cjs"
+BROKEN_ADAPTER="$TMP_DIR/post-edit-quality.cjs"
 cp "$ADAPTER" "$BROKEN_ADAPTER"
 printf '\n<<<<<<< HEAD\n' >> "$BROKEN_ADAPTER"
 
