@@ -10,7 +10,7 @@
 
 ## 1. 📝 SUMMARY
 
-**[Quick Start](#2--quick-start)** · [Overview](#overview) · [How It Works](#4--how-it-works) · [Workflows](#5--everyday-workflows) · [Skills](#6--skills) · [Hooks](#7--hooks-plugins-and-extensions) · [Agents](#8--agents) · [Commands](#9--commands) · [Runtimes](#10--runtimes-and-cli-bridges) · [Doctor](#11--doctor-commands) · [FAQ](#16--faq)
+**[Quick Start](#2--quick-start)** · [Overview](#overview) · [How It Works](#4--how-it-works) · [Workflows](#5--everyday-workflows) · [Skills](#6--skills) · [Hooks](#7--hooks-plugins-and-extensions) · [Agents](#8--agents) · [Commands](#9--commands) · [Runtimes](#10--runtimes-and-cli-bridges) · [Doctor](#11--doctor-commands) · [FAQ](#15--faq)
 
 ---
 
@@ -724,35 +724,7 @@ That guarantee covers continuity, not every feature. Your AI runtime sends your 
 
 &nbsp;
 
-## 15. 🆕 WHAT'S NEW SINCE v4.0.0.0
-
-### v4.0.1.0: Every Skill Routes From Its Own File
-
-Each skill now keeps its routing tables in a router file beside its skill file, so the agent reads less before it starts. Every request routes as it did before. A skill you wrote yourself needs the same move, and `/doctor:sk-skill` makes it for you.
-
-The doctor family grew. `/doctor:install` and `/doctor:symlink` link Skilled into your own project. `/doctor:agents-md` keeps your root instruction file current, and `/doctor:helper` names the command for a problem.
-
-Your answers to the agent's questions started landing in the decision record. sk-code gained a web frontend surface, and playbooks can now script a whole conversation. MagicPath, the vision skill and the old design values mode were retired. See the [v4.0.1.0 release notes](.skilled/changelog/skilled/v4.0.1.0.md).
-
-### v4.0.2.0: Skilled In Your Own Project
-
-The [install guide](INSTALL-SKILLED.md) arrived as the single setup guide for linking or copying Skilled into a project. The new doctor skill owns the setup commands. `/doctor:overlay` keeps a copied project's own changes through each update. A project whose specs folder links elsewhere can save again, and Gate 1 now finds the project's own packets.
-
-A compacted session can read back its earlier turns through one read-only command. A reply that ends in a typed option menu now goes back once, so the agent asks through the question tool.
-
-DeepSeek Harness joined as an experimental CLI. Hermes Agent was removed, together with its CLI bridge, its runtime folder and its shell function. See the [v4.0.2.0 release notes](.skilled/changelog/skilled/v4.0.2.0.md).
-
-### v4.0.2.1: Chat Automation, Search And Session Handover
-
-Skilled now requires a patched Node release. The new env secret guard keeps dotenv values away from the agent on all eight runtimes. The skill advisor names the command behind a hub skill, with a run, start or ask policy.
-
-Claude Code now hands over by default. Pi, OpenCode and Mistral Vibe finish a hop too. The whole feature is now called session handover. Its old switch names are no longer read, so rename any you set, as the [release notes](.skilled/changelog/skilled/v4.0.2.1.md#session-handover) describe.
-
-The AI Council moved out of Deep Loop. Run `/speckit:ai-council`, because `/deep:ai-council` is gone. Deep loops now stop on a decision a script computes, and a deep review fails while a required check still fails. Search answers now say how much they left out, and a new spec document is found before the index catches up. A vendored tree can now refuse writes that no overlay owns. Pi 1.5.2 loads every hook adapter again. See the [v4.0.2.1 release notes](.skilled/changelog/skilled/v4.0.2.1.md).
-
-&nbsp;
-
-## 16. ❓ FAQ
+## 15. ❓ FAQ
 
 ### Must all 14 skills be installed?
 
@@ -784,7 +756,7 @@ It runs as a resident daemon behind one command-line front door, so every runtim
 
 &nbsp;
 
-## 17. 📚 RELATED DOCUMENTS
+## 16. 📚 RELATED DOCUMENTS
 
 **Start here**
 
