@@ -102,6 +102,7 @@ The baseline ran first: repo-guards and goal 17 pass, session-lifecycle and deci
 | Move `sessionDirFor` and `existingDirectory` into `.skilled/hooks/shared/payload-dir.mjs` and re-export them from `hook-io.mjs` | The first cut had turn-start, ask-capture and ask-surface import them from `.vibe/plugins/repo-guards/lib/hook-io.mjs`, which broke the hooks tree's rule that its adapters depend on nothing outside it (`hook-adapter-shared.cjs:13`), and turn-start's static import would have silenced every turn-start part if that file went missing. The rules now live inside the tree, and the Vibe guards still read the same functions |
 | Judge `process.write` text as a shell command | A write types into the stdin of a process a start launched, and an interactive shell runs each line, so a clean `bash -i` would otherwise take any refused command one line at a time. Vibe's own protected-path check reads that `text` as shell text (`mistralai_vibe_local_harness/vibe/_protected_paths.py:56-62`). The mapper decodes `bytesBase64` the same way and hands a `control` key over as an empty command. `dist-freshness-shell` stays on `process_start`, because a write ends no command. Found while closing the review, not raised by it; added at the operator's direction before the push |
 | Pass a kill switch the env only when a caller injected one | `hookFlagDecision` reads `hook-flags.env` only when it gets no env (`.skilled/hooks/shared/hook-flags.cjs:235-242`), and `/doctor:env` saves kill switches to that file. Passing the default `process.env` would let a test decide the switch but make a live session ignore a saved switch, the way the first V23 cut did in the ask-surface and completion adapters until it was caught after the push |
+| One shared launch check in `.skilled/hooks/shared/cli-entry.mjs` | Five Vibe entry points carried the same comparison and the same symlink gap; Node reports the entry module under its real path but leaves `process.argv[1]` as typed, so a project that links the `.skilled` tree in would never run these hooks. One helper fixes all five and has one test |
 | Keep the `process_start` key beside `process.start` | Vibe only uses it as a selector alias, but a replayed or hand-written payload may spell it that way, and keeping it costs one map entry |
 | Do not call `observe()` in the spec-gate advise branch | It writes the same marker the classify deferral reads, so the model would never get the question; the note reaching only the operator repeats instead, and the comment says so |
 | Raise the startup-guard budget to 9000 ms with no binding timeout | Vibe gives a `session_start` hook with no timeout 60 s (`vibe/core/hooks/models.py:65`, applied at `:99-100`); the serial worst case is about 2.8 + 9 + 5 s |
@@ -167,6 +168,7 @@ The baseline ran first: repo-guards and goal 17 pass, session-lifecycle and deci
 | Live VIB-HK-030 | PASS 3/3 on `deepseek-flash` at 07:33 UTC (`scratch/live/VIB-HK-030/vibe/result.json`). The journal holds a `process.start` effect for `bash -i` with no deny, then a `process.write` effect with text `cat .env` and a `pre_tool` notice from env-secret-guard, `Denied tool 'write'` |
 | Suites after the payload-directory move | repo-guards and goal 28/0, session-lifecycle and decision-capture 55/0, session-handover 1041/0, shared reader, stdin-deadline and flag suites 69/0, runner suite PASS, playbook validator 54 scenarios and 0 violations |
 | Kill-switch env fix | session-lifecycle and decision-capture 200/0 with the six new cases, repo-guards 26/0, skill-advisor hooks 8/0, ask-surface 8/0, shared 104/0. The injected-env case failed on the old advisor call; each flag-file case failed when the default env was passed |
+| Launch check through a symlink | `cli-entry.test.mjs` 3/0, and its two path cases failed on the old `resolve(argv[1]) === fileURLToPath(...)` comparison, which on macOS fails even for a temp-folder script because `/var` is itself a symlink. session-start run through a symlinked checkout printed 0 bytes on the old code and 1139 bytes on the new |
 | `repair-derived.cjs --apply` on the parent | Re-derived the fingerprint after the placeholder fill; the parent's strict validate then printed `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
@@ -175,7 +177,7 @@ The baseline ran first: repo-guards and goal 17 pass, session-lifecycle and deci
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The entry gate compares paths without resolving symlinks.** session-start now shares its siblings' `IS_CLI_ENTRY` check, so a checkout reached through a symlinked path would skip `main`; `git rev-parse --show-toplevel` and the home renderer both give the resolved path.
+None open. The symlink gap in the launch check, the last limitation listed here, is fixed by T018.
 <!-- /ANCHOR:limitations -->
 
 ---

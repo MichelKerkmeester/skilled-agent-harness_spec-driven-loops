@@ -21,7 +21,7 @@ contextType: "research"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-11-16 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
@@ -81,6 +81,9 @@ $ git log --oneline v4.0.2.1..HEAD | wc -l
 | `specs/system-speckit/runtime-and-release/004-v4-release-line-research/graph-metadata.json` | Modify | Child id for this packet |
 | `specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/` | Create | Deep-research state, iterations, `research.md` and `resource-map.md` |
 | `specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/spec.md` | Create | This seeded spec |
+| `INSTALL-SKILLED.md`, `PUBLIC-RELEASE.md`, `SECURITY.md`, `CONTRIBUTING.md`, `.skilled/CROSS-CLI.md` | Modify | Rewrite in the README's style, more technical where the document needs it |
+| `.skilled/skills/sk-doc/sk-create-readme/assets/` | Create, Modify | README templates modeled on the rewritten root docs, and the skill README template moved in from sk-create-skill |
+| `.skilled/skills/sk-doc/sk-create-skill/` and every live reference to the skill README template | Modify | Point skill README creation at the sk-create-readme mode |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -107,6 +110,8 @@ REQ ids run in one sequence across the P0 and P1 tables.
 | REQ-004 | Rewrite `README.md` in the approved order with every verified stale claim corrected | The validator prints valid with no warning, the voice scanner reports 0 hard blockers, and `rg -ci relaunch README.md` finds nothing |
 | REQ-005 | Give every shared hook, runtime-only hook and Pi extension package its own subsection | Each folder in `.skilled/hooks/` except `shared` is named in a `###` heading in `README.md`, and closely related hooks such as the session-start git checks may share one heading |
 | REQ-006 | Every relative link and in-page anchor in `README.md` resolves | A link check over `README.md` reports no missing target |
+| REQ-007 | Rewrite the five root docs in the README's style | Each passes `validate_document.py`, the voice scanner reports 0 hard blockers and every inbound anchor still resolves |
+| REQ-008 | Add README templates to sk-create-readme and move the skill README template there | No live file references the old template path, and sk-doc's routing checks pass |
 <!-- /ANCHOR:requirements -->
 
 ---

@@ -635,12 +635,25 @@ def _fenced_line_numbers(content: str) -> set:
 _STRUCTURE_ENFORCEMENT_ENV = 'SKDOC_ENFORCE_STRUCTURE'
 
 
-def is_repo_root_readme(file_path: str) -> bool:
-    """Whether the file is the README at a repository root, the directory that holds
-    `.git` (a folder in a checkout, a file in a linked worktree). That README separates
-    its sections with `&nbsp;` lines instead of `---` rules, so the divider rule skips it."""
+ROOT_GUIDE_NAMES = frozenset({
+    'readme.md', 'install-skilled.md', 'public-release.md', 'security.md', 'contributing.md',
+})
+SKILLED_ROOT_GUIDE_NAMES = frozenset({'cross-cli.md'})
+
+
+def is_repo_root_guide(file_path: str) -> bool:
+    """Whether the file is one of the front-door guides of a repository root, the
+    directory that holds `.git` (a folder in a checkout, a file in a linked worktree):
+    the README and its sibling guides at the root, or the cross-runtime guide in
+    `.skilled/`. These guides separate their sections with `&nbsp;` lines instead of
+    `---` rules, so the divider rule skips them."""
     path = Path(file_path).resolve()
-    return path.name.lower() == 'readme.md' and (path.parent / '.git').exists()
+    name = path.name.lower()
+    if name in ROOT_GUIDE_NAMES:
+        return (path.parent / '.git').exists()
+    if name in SKILLED_ROOT_GUIDE_NAMES and path.parent.name == '.skilled':
+        return (path.parent.parent / '.git').exists()
+    return False
 
 
 def _structure_enforcement_enabled() -> bool:
@@ -3053,7 +3066,7 @@ def validate_document(
     all_errors.extend(validate_h2_headers(content, doc_type_rules, rules))
     if doc_type != 'code_folder':
         structure_rules = doc_type_rules
-        if is_repo_root_readme(file_path):
+        if is_repo_root_guide(file_path):
             structure_rules = {**doc_type_rules, 'h2DividerRequired': False}
         all_errors.extend(validate_general_structure(content, structure_rules))
     all_errors.extend(validate_render_checks(content, doc_type, doc_type_rules, Path(file_path)))

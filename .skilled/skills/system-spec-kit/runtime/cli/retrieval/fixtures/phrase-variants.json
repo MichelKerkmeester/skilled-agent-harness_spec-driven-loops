@@ -1,5 +1,5 @@
 {
-  "manifestHash": "56afeb30f246835ac8be99235a61184436b8117082fdc282c81f8b9ff3e5516a",
+  "manifestHash": "9648d4997039ee9a94a70f7b53074951a2bec1285a8c03fbefe25cefdc5f2b80",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2332,6 +2332,9 @@
     ],
     "009 changelogs constitutional and templates implementation summary": [
       "009-changelogs-constitutional-and-templates implementation summary"
+    ],
+    "009 claude user hook sync operator decisions": [
+      "009-claude-user-hook-sync operator decisions"
     ],
     "009 cocoindex ipc fix": [
       "009 cocoindex IPC fix"

@@ -20,6 +20,7 @@ import { fileURLToPath } from 'node:url';
 import { renderVibeGoalSlice } from '../../goal/vibe/goal-inject.mjs';
 import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
+import { isCliEntry } from '../../shared/cli-entry.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -28,9 +29,7 @@ import { isHookEnabled } from '../../shared/hook-flags.mjs';
 // A Vibe session runs in a throwaway folder, so the checkout is located from
 // this file instead: vibe -> session-lifecycle -> hooks -> .skilled -> root.
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..');
-const IS_CLI_ENTRY = process.argv[1]
-  ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
-  : false;
+const IS_CLI_ENTRY = isCliEntry(import.meta.url);
 
 const SESSION_PRIME_PATH = resolve(
   REPO_ROOT,
