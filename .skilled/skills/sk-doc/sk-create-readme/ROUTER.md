@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-readme routing"
 importance_tier: normal
 contextType: general
-version: 1.0.4.0
+version: 1.0.5.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -31,7 +31,6 @@ It routes to ten artifact templates under `assets/`:
 - `runtime-plugin-readme-template.md` for a folder a runtime loads its hooks from, or a hook mirror.
 - `runtime-folder-template.md` for a runtime folder's README and its `SYNC.md`.
 - `architecture-template.md` for a skill package's `ARCHITECTURE.md`.
-- `install-template.md` for a repository install guide.
 - `contributing-template.md` for a repository contributing guide.
 - `security-policy-template.md` for a repository security policy.
 
@@ -45,7 +44,7 @@ loads before an intent selects it.
 
 ## 2. INTENT MODEL
 
-- **`readme`** fires on `readme`, `readme for`, `folder readme`, `create readme`, `write readme`, `project readme`, `skill readme`, `install guide`, `contributing guide`, `security policy`, `sync.md` and `sync doc for the` at weight 4. It selects the template the target names: `assets/skill-readme-template.md` for a skill package, `assets/architecture-template.md` for a skill package's `ARCHITECTURE.md`, a root-guide template for an install guide, contributing guide or security policy, `assets/hook-readme-template.md` for a hook folder, `assets/runtime-plugin-readme-template.md` for a plugin or extension folder, `assets/runtime-folder-template.md` for a runtime folder's README or `SYNC.md`, and `assets/readme-template.md` for everything else. It then loads the flat markdown inventory under `references/` and `assets/`.
+- **`readme`** fires on `readme`, `readme for`, `folder readme`, `create readme`, `write readme`, `project readme`, `skill readme`, `contributing guide`, `security policy`, `sync.md` and `sync doc for the` at weight 4. It selects the template the target names: `assets/skill-readme-template.md` for a skill package, `assets/architecture-template.md` for a skill package's `ARCHITECTURE.md`, a root-guide template for an install guide, contributing guide or security policy, `assets/hook-readme-template.md` for a hook folder, `assets/runtime-plugin-readme-template.md` for a plugin or extension folder, `assets/runtime-folder-template.md` for a runtime folder's README or `SYNC.md`, and `assets/readme-template.md` for everything else. It then loads the flat markdown inventory under `references/` and `assets/`.
 - **`code_readme`** fires on `code folder readme`, `source-code folder readme` and `source code readme` at weight 4. It selects `assets/readme-code-template.md` and loads the same flat inventory, with `references/readme/` carrying the extended code-folder voice and pattern detail.
 
 ---
@@ -61,7 +60,6 @@ Route by artifact type first, then by folder purpose.
 | --- | --- | --- |
 | Repository front page, feature or component README | `README.md` in the target folder | `assets/readme-template.md` |
 | Skill package README | `README.md` at the skill package root | `assets/skill-readme-template.md` |
-| Repository install guide | `INSTALL.md` at the repository root | `assets/install-template.md` |
 | Repository contributing guide | `CONTRIBUTING.md` at the repository root | `assets/contributing-template.md` |
 | Repository security policy | `SECURITY.md` at the repository root | `assets/security-policy-template.md` |
 | Source-code folder README | `README.md` in the source folder | `assets/readme-code-template.md` |
@@ -106,7 +104,7 @@ DEFAULT_RESOURCE = "references/README.md"
 
 # Two output artifacts; keywords come from this packet's activation triggers.
 INTENT_MODEL = {
-    "readme": {"weight": 4, "keywords": ["readme", "readme for", "folder readme", "create readme", "write readme", "project readme", "skill readme", "install guide", "contributing guide", "security policy", "sync.md", "sync doc for the"]},
+    "readme": {"weight": 4, "keywords": ["readme", "readme for", "folder readme", "create readme", "write readme", "project readme", "skill readme", "contributing guide", "security policy", "sync.md", "sync doc for the"]},
     "code_readme": {"weight": 4, "keywords": ["code folder readme", "source-code folder readme", "source code readme"]},
 }
 UNKNOWN_FALLBACK_CHECKLIST = [
