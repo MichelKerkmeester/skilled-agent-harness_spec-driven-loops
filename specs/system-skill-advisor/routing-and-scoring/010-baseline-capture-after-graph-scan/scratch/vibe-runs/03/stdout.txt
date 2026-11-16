@@ -1,0 +1,30 @@
+Both runs agree: exit 0, 2 files passed, 15 tests passed, 0 failed.
+
+1. FILES CHANGED:
+   - /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts
+
+2. COMMANDS:
+   - `rg -n "LEDGER_PATH|existsSync|fileURLToPath|^import|^} from" .skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts` — exit 0. Last lines: confirmed `existsSync` already imported at line 24 (`import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';`), `resolve`/`dirname` at 26, `fileURLToPath` at 27, and `LEDGER_PATH` at 116-119.
+   - `cd .../runtime && npx vitest run tests/command-routing-slice.vitest.ts tests/parity/local-native-divergence-ratchet.vitest.ts` — exit 0 (first run, piped through `tail`). Output:
+     ```
+      RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skill-advisor/runtime
+
+      Test Files  2 passed (2)
+           Tests  15 passed (15)
+        Start at  13:26:39
+        Duration  13.30s (transform 337ms, setup 20ms, import 36ms, tests 13.10s, environment 0ms)
+     ```
+   - Same command again, redirecting to a log so `$?` could be read — exit 0. Last 15 lines:
+     ```
+     EXIT_STATUS=0
+
+      RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skill-advisor/runtime
+
+      Test Files  2 passed (2)
+           Tests  15 passed (15)
+        Start at  13:26:54
+        Duration  12.64s (transform 340ms, setup 21ms, import 38ms, tests 12.43s, environment 0ms)
+     ```
+   - Passed: 15. Failed: 0. Matches the expected summary exactly.
+
+3. OPEN QUESTIONS: none. Two notes that did not block: `existsSync` was already imported, so no import line needed adding; and the first run's `${PIPESTATUS[0]}` printed empty because the shell is not bash, which is why I re-ran with `$?` to get observed exit status rather than inferring it.

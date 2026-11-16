@@ -1,0 +1,28 @@
+Both paragraphs are in place, and the diff is 4 insertions with no deletions — nothing else on either line changed.
+
+1. FILES CHANGED:
+- /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skilled-doctor/references/overlays.md
+
+2. COMMANDS:
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -n 'Adopt refuses a generated path|does not count as a copy at the new path' .skilled/skills/system-skilled-doctor/references/overlays.md` — exit 0
+```
+153:`/doctor:overlay apply --adopt <path>` turns the path into a manifest entry. ... Adopt refuses a generated path, a path an overlay already owns, a `.env` file, a token-named file that is not source or prose, and a folder that holds upstream files.
+206:Two cases are not edits made in place. ... so a file seen through that link does not count as a copy at the new path.
+```
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -n 'only from its copy in the overlay folder|regenerated <path>' .skilled/skills/system-skilled-doctor/references/overlays.md; echo "EXIT=$?"` — exit 0
+```
+155:Adopt takes a path under `repin.exclude` only from its copy in the overlay folder. A re-pin never copies such a path, so it needs no overlay, but a project may still want its own file there carried and checked by an entry. Put the copy at the overlay path first, with the live file moved there or absent, then run `apply --adopt <path>`. The entry is a project addition with no `pinnedSha256`, and the apply writes the file back to the tree. Without that copy, adopt refuses and names the overlay path it looked for.
+210:A `regenerate` step can also rewrite a file an overlay owns. The live run then fails and prints a `regenerated <path>` line in place of `upstream-moved`. It names the overlay and the step, because the upstream diff for that path holds none of the change. A plain `apply` prints the same line. If the step's output is right, carry it into the overlay copy and run `apply`. Otherwise change the step so it leaves the file alone. A stage skips the steps, so only the live run can print this line.
+EXIT=0
+```
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && git diff --stat -- .skilled/skills/system-skilled-doctor/references/overlays.md && git diff --numstat -- .skilled/skills/system-skilled-doctor/references/overlays.md` — exit 0
+```
+ .skilled/skills/system-skilled-doctor/references/overlays.md | 4 ++++
+ 1 file changed, 4 insertions(+)
+4	0	.skilled/skills/system-skilled-doctor/references/overlays.md
+```
+
+3. OPEN QUESTIONS: none. Both anchors matched exactly once, each replacement kept the original sentence intact and appended the new paragraph after a blank line, and the check printed the two expected lines.

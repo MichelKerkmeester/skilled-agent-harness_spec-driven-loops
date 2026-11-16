@@ -84,6 +84,8 @@ and findings belong here.
 | Build | Done | Seven Vibe runs, each `scratch/vibe-runs/<number>/export.json` records `exit_code` 0 and `outcome` `finished`. Each edited file was compared byte for byte with the text the brief gave |
 | Final gate | Done | `node --test .skilled/commands/doctor/scripts/tests` printed `tests 1183`, `pass 1183`, `fail 0`, exit 0. `sk-code-setup-check.cjs` ended `STATUS=OK legs=9` |
 | Packet validation after the build | Done | validate.sh --strict printed RESULT: PASSED (errors=0 warnings=2) on 2026-11-16, and the parent tree printed 13 of 13 PASSED |
+| Review of the commit on main | Done | A fresh Fable 5.2 session reviewed `cb31e584730` and listed nine findings. Findings 1 to 5 were reproduced on the function with a script |
+| Review fix | Done | Five more Vibe runs, 08 to 12, each `export.json` records `exit_code` 0 and `outcome` `finished`. `node --test` on `overlay-engine-sync.test.cjs` printed `tests 35`, `pass 35`, `fail 0` |
 
 ### Deviations and findings
 
@@ -96,4 +98,8 @@ and findings belong here.
 | The restore across a changed pin is tested on the function, not through a re-pin | The test calls `applyJsonOperations` with a reader that returns the new pin's text. No test runs a whole `repin` over a dropped `set`. |
 | Every `set` is recorded, changed or not | A `set` whose value the live file already holds is recorded too. That is what lets the first `apply` under the new engine record a value an older engine wrote. |
 | Two of the eight new tests pass without the restore step | The changed-value test needs the record only. The older-state test guards that a tree with no `set` keeps its state bytes, and passes on every engine. |
+| The restore wrote another item's value through an array index | Review findings 1 and 2. The record's index was read against the live file and the pin, while the overlay's own inserted item had moved the live index. The operator chose to refuse such a path unless the arrays line up. |
+| A key was refused when its record did not say the engine added it | Review finding 4. A record made after an older engine added the key says `added: false`. The operator chose to delete the key while the live value equals the recorded one. |
+| Two sets on one path made two records | Review finding 3, first variant. The second record's value never matched the first, so dropping both was refused. One record per path now. |
+| Findings left as limits | Finding 3 for a parent and child path and for `insertObjectKeys`, and findings 5 to 9. The operator chose to document them. They are in `handover-to-barter.md` and `implementation-summary.md`. |
 <!-- /ANCHOR:log -->

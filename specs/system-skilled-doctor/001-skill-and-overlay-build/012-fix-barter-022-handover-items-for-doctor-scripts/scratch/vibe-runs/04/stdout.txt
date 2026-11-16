@@ -1,0 +1,91 @@
+RETURN: PASS | escalation=NONE | confidence=HIGH
+
+## Code Implementation Result
+
+**Mode:** 2: Surgical Fix
+**Files:** `.skilled/commands/doctor/scripts/overlay-engine.cjs`
+**Verification:** PASS
+**Quality Gate:** N/A (not run — brief named the check command only)
+**Command:** `node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')" && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs`
+**Exit Code:** 0
+**First Failing Assertion:** N/A
+**Escalation:** NONE
+**Confidence:** HIGH
+**Not checked:** the full `tests` directory run (completion criterion 1) — the brief scoped the check to `overlay-engine-strict-writes.test.cjs` only.
+
+### Summary
+`adoptUnderLock` now resolves candidates in two passes: a path is adoptable when `isVendoredKey` holds, or when it is excluded-but-otherwise-vendored (`isExcludedVendoredKey`, i.e. `isUnderAny(key, settings.exclude)` plus `isVendoredKey` with `exclude: []`) and its overlay copy exists at `ctx.overlayRoot/adoptSource(key)`. When no candidate is adoptable but one is excluded, the refusal names the excluded key and the exact overlay path to create, instead of the generic "not under a vendored root" message. The nearest refusal still holds: an excluded path with no overlay copy is refused, and the existing generic refusal is unchanged for paths outside every root.
+
+---
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs`
+
+## 2. COMMANDS
+
+**a) `grep -n "is not under a vendored root" .skilled/commands/doctor/scripts/overlay-engine.cjs`** — exit 0
+```
+4515:    return refuse(`${inputPath} is not under a vendored root (${settings.roots.join(', ')}) and is not a file ` +
+```
+
+**b) `grep -n "isUnderAny\|function writeCheckSettings\|exclude:" .skilled/commands/doctor/scripts/overlay-engine.cjs | head -40`** — exit 0
+```
+3399:function isUnderAny(relativePath, prefixes) {
+3406: * @returns {{roots: string[], runtimeFolders: string[], exclude: string[], rootFiles: string[]}}
+3422:    exclude: listOf('exclude', []),
+3465:  const isKept = (relativePath) => !isUnderAny(relativePath, settings.exclude);
+3471:    if (isUnderAny(relativePath, settings.runtimeFolders)) copy.add(relativePath);
+3521:    (exact.has(relativePath) || isUnderAny(relativePath, prefixes));
+3564:    if (isUnderAny(relativePath, touched.delete)) continue;
+3624:    for (const relativePath of job.newBlobs.keys()) if (isUnderAny(relativePath, [root])) return true;
+3804:      if (!isUnderAny(key, roots)) return false;
+3839:    .filter((relativePath) => !isUnderAny(relativePath, [ctx.overlayLabel]) &&
+3840:      (isUnderAny(relativePath, exclude) ||
+3841:        (!isUnderAny(relativePath, roots) && holdsRealTopLevel(relativePath))))
+3983:  if (isUnderAny(ctx.overlayLabel, job.settings.roots)) {
+4332: * @returns {{roots: string[], rootFiles: string[], exclude: string[], isGenerated: (key: string) => boolean}}
+4334:function writeCheckSettings(manifest) {
+4354:  if (isUnderAny(key, settings.exclude)) return false;
+```
+
+**c) `grep -n "function adoptSource\|function pathExists\|function captureCandidates\|function canonicalPathWithoutLeaf\|function relativeKey\|function isWithin" .skilled/commands/doctor/scripts/overlay-engine.cjs`** — exit 0
+```
+133:function pathExists(filePath) {
+159:function isWithin(basePath, candidatePath) {
+164:function relativeKey(root, filePath) {
+371:function canonicalPathWithoutLeaf(filePath) {
+2978:function captureCandidates(root, inputPath) {
+4370:function adoptSource(key) {
+```
+
+**d) `awk 'NR>=4500 && NR<=4620' .skilled/commands/doctor/scripts/overlay-engine.cjs | grep -n "candidates\|const key"`** — exit 0
+```
+19:  const key = relativeKey(root, destinationPath);
+```
+
+**e) CHECK — `node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')" && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs`** — exit 0; the first command printed nothing. Last 15 lines:
+```
+✔ a path under repin.exclude needs no overlay, so the guard and the commit check leave it alone (501.093708ms)
+✔ adopt takes a path under repin.exclude when the overlay folder holds its copy (375.467125ms)
+✔ adopt still refuses a path under repin.exclude with no copy in the overlay folder (354.161583ms)
+✔ the commit check reports a staged change under a vendored tree that sits below the git top level (205.272292ms)
+✔ the commit check names an unowned vendored change when the checkout its pin names is gone (429.145825ms)
+✔ a staged re-pin names each listed root file upstream changed, owned or not (443.392833ms)
+✔ --adopt and pre-commit reject a misused command line (396.122833ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9665.695292
+```
+
+**Counts: pass 19, fail 0.**
+
+## 3. OPEN QUESTIONS
+
+- The two tests the brief's outcome depends on already existed in `overlay-engine-strict-writes.test.cjs` before this edit ("adopt takes a path under repin.exclude when the overlay folder holds its copy", "adopt still refuses a path under repin.exclude with no copy in the overlay folder"). I did not add or modify them; they now pass against the new code. If the brief expected them to be written in this step, that expectation did not match the file on disk.
+- Completion criterion 1 in the packet goal (`node --test .skilled/commands/doctor/scripts/tests` → `fail 0`) was not run, since the brief scoped the check to the single test file.

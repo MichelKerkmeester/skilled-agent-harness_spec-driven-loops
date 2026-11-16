@@ -1,0 +1,57 @@
+All three steps landed and both gates are green.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs`
+
+## 2. COMMANDS
+
+**`cp .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs`** — exit 0
+
+```
+cp exit=0
+```
+
+**`cmp <served> <authored> && echo twin-same`** — exit 0
+
+```
+twin-same
+```
+
+**`node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs`** — exit 0
+
+```
+✔ a specific surface hint joins a route the prompt scored (1.47575ms)
+✔ a specific surface hint routes a prompt that scores nothing (1.551125ms)
+✔ a hint naming a workflow mode or a surface that is not specific adds nothing (9.697042ms)
+✔ the hint is a request fact (5.247708ms)
+✔ a hinted host surface joins as the first surface after the workflow modes (4.929667ms)
+✔ a hub without surface packets ignores the hint (30.832375ms)
+✔ the front door passes --surface-hint through and keeps stdout to one route line (128.270333ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 299.901917
+```
+
+**`node .skilled/bin/compiled-route-sync.cjs --check`** — exit 0
+
+```
+  013-live-activation/activation/sk-doc/manifest.json
+  013-live-activation/activation/system-deep-loop/manifest.json
+  014-runtime-engine/lib/compiled-route.cjs
+  014-runtime-engine/lib/resolve.cjs
+all 7 hubs resolve
+all 55 served copies match their authored files
+```
+
+## 3. OPEN QUESTIONS
+
+none
+
+The 12-line anchor matched exactly once, so no stale-anchor retry was needed. The edit is 18 lines as specified, and the served copy is byte-identical to the authored twin.

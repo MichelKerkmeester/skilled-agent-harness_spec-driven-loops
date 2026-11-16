@@ -6,15 +6,17 @@
     "phase",
     "fix-barter-022-handover-items-for-doctor-scripts"
   ],
-  "lastUpdated": "2026-11-16T10:24:58.608Z",
+  "lastUpdated": "2026-11-16T13:22:17.879Z",
   "specId": "012",
   "folderSlug": "fix-barter-022-handover-items-for-doctor-scripts",
   "parentChain": [
     "system-skilled-doctor",
     "001-skill-and-overlay-build"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "16-11-26_11-24__planned-three-doctor-script-limits-and-recorded.md"
+    "16-11-26_11-24__planned-three-doctor-script-limits-and-recorded.md",
+    "16-11-26_14-21__built-the-three-doctor-script-changes-from-the.md",
+    "16-11-26_14-22__built-the-three-doctor-script-changes-from-the.md"
   ]
 }

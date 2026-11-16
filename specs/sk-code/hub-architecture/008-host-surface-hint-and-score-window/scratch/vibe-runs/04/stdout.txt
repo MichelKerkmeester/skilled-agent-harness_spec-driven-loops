@@ -1,0 +1,62 @@
+Both canary cases are in place, the twin holds identical bytes, and all three checks pass.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json` (edited: 4-line anchor replaced with 42 lines, 314 → 352 lines)
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json` (overwritten by `cp` from the file above)
+
+## 2. COMMANDS
+
+**`grep -n '"expectedResources": \[\]' <fixture>`** — exit 0. Located 12 occurrences; the anchor's trailing `],` made it unique at lines 256-259.
+
+**`cp <authored> <twin>`** — exit 0, no output.
+
+**`cmp <authored> <twin> && echo twin-same`** — exit 0:
+```
+twin-same
+```
+
+**`node -e "JSON.parse(...canary-cases.v1.json...)" && echo json-ok`** — exit 0:
+```
+json-ok
+```
+
+**`node specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/scratch/measure-candidates.cjs . routes-only`** — exit 0, 14 lines:
+```
+single-quality	single:sk-code-quality
+single-quality-restraint	single:sk-code-quality
+single-review	single:sk-code-review
+single-opencode	single:sk-code-skilled
+ambiguous-leaf	orderedBundle:sk-code-quality,sk-code-review
+zero-leaf-signal	defer
+forbidden-request	reject
+surface-bundle-ci	surfaceBundle:sk-code-review,sk-code-ci
+surface-bundle-frontend	surfaceBundle:sk-code-review,sk-code-frontend
+visual-values-frontend	single:sk-code-frontend
+visual-review-bundle	surfaceBundle:sk-code-review,sk-code-frontend
+visual-motion-frontend	single:sk-code-frontend
+hinted-surface-joins-route	surfaceBundle:sk-code-review,sk-code-frontend,sk-code-skilled
+hinted-surface-routes-unscored	single:sk-code-frontend
+```
+Last two lines match the expected output exactly.
+
+**`node .skilled/bin/compiled-route-sync.cjs --check`** — exit 0. Last 15 lines:
+```
+  009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs
+  013-live-activation/activation/cli-classifier/manifest.json
+  013-live-activation/activation/cli-external-orchestration/manifest.json
+  013-live-activation/activation/mcp-tooling/manifest.json
+  013-live-activation/activation/sk-code/manifest.json
+  013-live-activation/activation/sk-design/manifest.json
+  013-live-activation/activation/sk-doc/manifest.json
+  013-live-activation/activation/system-deep-loop/manifest.json
+  014-runtime-engine/lib/compiled-route.cjs
+  014-runtime-engine/lib/resolve.cjs
+all 7 hubs resolve
+all 55 served copies match their authored files
+```
+Ends with the expected `all 55 served copies match their authored files`.
+
+## 3. OPEN QUESTIONS
+
+none

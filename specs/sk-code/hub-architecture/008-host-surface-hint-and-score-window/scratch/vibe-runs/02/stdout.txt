@@ -1,0 +1,63 @@
+All six steps are done and verified.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs`
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs`
+
+Both files are byte-identical (`cmp` → `twin-same`). The four edits landed as specified: the `runtime:surface-hint` request fact in `buildRequest`, the reworded `applySurfaceHint` comment, the new `joinHintedSurface` helper, and the `selected` call site in `evaluateCanary`.
+
+## 2. COMMANDS
+
+**`cp .../canary-router.cjs .../015-router-unification-program/.../canary-router.cjs`** — exit 0
+```
+cp exit=0
+```
+
+**`cmp <src> <twin> && echo twin-same`** — exit 0
+```
+twin-same
+```
+
+**`node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs`** — exit 1 (expected)
+```
+ℹ tests 20
+ℹ pass 18
+ℹ fail 2
+✖ a specific surface hint joins a route the prompt scored (2.229ms)
+✖ a specific surface hint routes a prompt that scores nothing (0.817459ms)
+```
+Last 15 lines of output:
+```
+      at TestContext.<anonymous> (.../compiled-route-surface-hint.test.cjs:269:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner:974:18)
+      at Test.postRun (node:internal/test_runner:1542:19)
+      at Test.run (node:internal/test_runner:1467:25)
+      at async Test.processPendingSubtests (node:internal/test_runner:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'defer',
+    expected: 'route',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+```
+The two failures are exactly the two the brief names, with the expected assertion shapes: `actual: ['sk-code-review','sk-code-skilled']` vs `expected: ['sk-code-review','sk-code-frontend','sk-code-skilled']` for the first, and `'defer' !== 'route'` for the second. Left unfixed per the brief.
+
+**`node .skilled/bin/compiled-route-sync.cjs --check`** — exit 0
+```
+  014-runtime-engine/lib/compiled-route.cjs
+  014-runtime-engine/lib/resolve.cjs
+all 7 hubs resolve
+all 55 served copies match their authored files
+```
+
+**`node --check` on both files** — exit 0 each, confirming both parse.
+
+## 3. OPEN QUESTIONS
+
+One thing worth flagging, not a deviation: `git status` in this worktree shows 17 other modified files (doctor assets, advisor vitest files, other packets' spec docs) plus untracked scratch dirs. Those were already dirty before this dispatch — I touched only the two files above, and `git diff` on the target file shows exactly the four specified hunks and nothing else.
+
+The two failing tests fail for a reason the brief anticipated: `joinHintedSurface` adds the hinted surface to `selected`, but the downstream `selected.length === 1` / bundle branches still need the score-window change that a later brief carries. The first failure shows the hint is not yet reaching the route at all (`sk-code-frontend` absent from `actual`), which suggests the `specific` list lookup in `snapshot.routingModel.surfaceDetection` may not be populated for this hub — worth confirming when the next brief lands, since a missing `specific` array would make the helper a no-op regardless of the score-window fix.

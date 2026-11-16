@@ -1,0 +1,115 @@
+TASK: refuse to restore a dropped `set` whose path goes through an array that no longer lines up with the pinned copy.
+One file changes. Do the 4 steps below in order. Each step replaces one block of text with another.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 4. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (12 lines, this exact text appears once in the file):
+}
+
+/**
+ * Return every value a `set` wrote to what the pin holds once the entry set no
+ * longer names its path, so a dropped `set` leaves the live file instead of
+ * staying behind as a value nothing explains. A key the overlay added is deleted
+ * when the pin does not hold it. A value that changed after it was applied is
+ * refused rather than overwritten: that edit belongs to a person. Without a
+ * readable pinned copy there is no value to return to, so the overlay is
+ * refused rather than given a guess.
+ * @param {string} text Live document text.
+ * @param {object[]} operations Operations of one entry set, in order.
+NEW (replace those lines with these 41 lines, same indentation):
+}
+
+/**
+ * Whether every array index on a recorded path names the same item in the live
+ * file and in the pinned copy. An index is a position, so it is trusted only
+ * while the two arrays hold the same number of items and this overlay neither
+ * added an item to that array nor is about to.
+ * @param {object} root Root node of the live document.
+ * @param {object} upstreamRoot Root node of the pinned document.
+ * @param {Array<string|number>} path Path the set wrote.
+ * @param {object[]} operations Operations of one entry set, in order.
+ * @param {object[]} recordedItems Items this overlay added to the destination.
+ * @returns {boolean} Whether the path's indexes can be read against the pin.
+ */
+function indexesMatchPin(root, upstreamRoot, path, operations, recordedItems) {
+  for (let depth = 0; depth < path.length; depth += 1) {
+    if (typeof path[depth] !== 'number') continue;
+    const container = path.slice(0, depth);
+    const live = recordedNodeAt(root, container);
+    const pinned = recordedNodeAt(upstreamRoot, container);
+    if (!live || !pinned || live.type !== 'array' || pinned.type !== 'array') return false;
+    if (live.items.length !== pinned.items.length) return false;
+    if (recordedItems.some((item) => item && deepEqual(item.path, container))) return false;
+    const addsItems = operations.some((operation) =>
+      (operation.op === 'insertItems' || operation.op === 'appendItems') && deepEqual(operation.path, container));
+    if (addsItems) return false;
+  }
+  return true;
+}
+
+/**
+ * Return every value a `set` wrote to what the pin holds once the entry set no
+ * longer names its path, so a dropped `set` leaves the live file instead of
+ * staying behind as a value nothing explains. A key the pin does not hold is
+ * deleted while it still carries the recorded value. A value that changed after
+ * it was applied is refused rather than overwritten: that edit belongs to a
+ * person. Without a readable pinned copy there is no value to return to, so the
+ * overlay is refused rather than given a guess. The same holds for a path
+ * through an array whose items no longer line up with the pin's.
+ * @param {string} text Live document text.
+ * @param {object[]} operations Operations of one entry set, in order.
+
+STEP 2 of 4. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (7 lines, this exact text appears once in the file):
+ * @param {() => (string|null)} [readUpstreamText] Reads the destination as the
+ *   pin holds it, or null when there is no upstream copy to read.
+ * @returns {string} The text with every dropped set taken back.
+ */
+function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = () => null) {
+  let output = text;
+  for (const record of recordedSets) {
+NEW (replace those lines with these 8 lines, same indentation):
+ * @param {() => (string|null)} [readUpstreamText] Reads the destination as the
+ *   pin holds it, or null when there is no upstream copy to read.
+ * @param {object[]} [recordedItems] Items this overlay added to the destination.
+ * @returns {string} The text with every dropped set taken back.
+ */
+function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = () => null, recordedItems = []) {
+  let output = text;
+  for (const record of recordedSets) {
+
+STEP 3 of 4. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (4 lines, this exact text appears once in the file):
+      throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy of the file is not valid JSON');
+    }
+    const pinned = recordedNodeAt(upstreamRoot, record.path);
+    const live = JSON.parse(output.slice(node.start, node.end));
+NEW (replace those lines with these 8 lines, same indentation):
+      throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy of the file is not valid JSON');
+    }
+    if (!indexesMatchPin(root, upstreamRoot, record.path, operations, recordedItems)) {
+      throw new Error('cannot restore the dropped set at ' + where +
+        ': its path goes through an array whose items differ from the pinned copy; restore the value by hand');
+    }
+    const pinned = recordedNodeAt(upstreamRoot, record.path);
+    const live = JSON.parse(output.slice(node.start, node.end));
+
+STEP 4 of 4. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (5 lines, this exact text appears once in the file):
+  let output = removeDroppedItems(text, operations, options.recordedItems || [], options.readUpstreamText);
+  // A dropped set is taken back first for the same reason.
+  output = restoreDroppedSets(output, operations, options.recordedSets || [], options.readUpstreamText);
+  // Each operation sees the document the operations before it produced, so a
+  // later operation can address an item an earlier one in the same set added.
+NEW (replace those lines with these 6 lines, same indentation):
+  let output = removeDroppedItems(text, operations, options.recordedItems || [], options.readUpstreamText);
+  // A dropped set is taken back first for the same reason.
+  output = restoreDroppedSets(output, operations, options.recordedSets || [], options.readUpstreamText,
+    options.recordedItems || []);
+  // Each operation sees the document the operations before it produced, so a
+  // later operation can address an item an earlier one in the same set added.
+
+CHECK. Run:
+cd R && node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')" && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Expected: the first command prints nothing, and the test summary shows "pass 33" and "fail 2". The two failing tests are "apply deletes a key the pin does not hold even when its record never marked it as added" and "two sets on one path keep one record and both leave together". They fail until a later brief, so do not try to fix them. Report the pass and fail counts. If any other test fails, do not change it: report its name and output.

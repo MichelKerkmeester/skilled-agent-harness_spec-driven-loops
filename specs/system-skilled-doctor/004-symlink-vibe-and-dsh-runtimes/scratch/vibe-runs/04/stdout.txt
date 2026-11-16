@@ -1,0 +1,61 @@
+All five edits landed, both checks pass, and the scoped diff shows only the five intended line changes.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/assets/doctor-symlink-link.yaml` (line 52)
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/assets/doctor-symlink-check.yaml` (line 45)
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/assets/doctor-install.yaml` (line 58)
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/assets/doctor-install-presentation.txt` (lines 58 and 78)
+
+## 2. COMMANDS
+
+**Anchor discovery** — `rg -n` over the five OLD strings, exit 0. All five found exactly once:
+
+```
+52:  runtimes: "Optional comma-separated runtime names: claude,opencode,codex,cursor,devin,pi. When omitted, ...
+45:  runtimes: "Optional comma-separated runtime names, passed as --runtimes <list> when supplied: claude,opencode,codex,cursor,devin,pi. When omitted, ...
+58:    - "Ask: When --root or --runtimes is missing, ask once for the target repo's absolute path, runtimes (claude, opencode, codex, cursor, devin, pi, or the ones already there), ...
+58:2) Runtimes: claude, opencode, codex, cursor, devin, pi, or "the ones already there"
+78:A runtime name outside the seven, a shape outside the three, or an instruction word outside the two is not guessed. ...
+```
+
+**CHECK part 1** — `cd R && rg -c 'devin,pi,vibe,dsh|devin, pi, vibe, dsh' .skilled/commands/doctor`, exit 0:
+
+```
+.skilled/commands/doctor/assets/doctor-install-presentation.txt:1
+.skilled/commands/doctor/install.md:1
+.skilled/commands/doctor/assets/doctor-install.yaml:1
+.skilled/commands/doctor/symlink.md:1
+.skilled/commands/doctor/assets/doctor-symlink-link.yaml:1
+.skilled/commands/doctor/assets/doctor-symlink-check.yaml:1
+```
+
+Exactly the six expected files, each at count 1.
+
+**CHECK part 2** — `node --test .skilled/commands/doctor/scripts/tests/doctor-symlink-contract.test.cjs`, exit 0:
+
+```
+✔ the unlink workflow lets an explicit dry run end before its approval question (0.036292ms)
+✔ the doctor family contract carries every schema-required field and no unknown field (0.062583ms)
+✔ the doctor family contract names the symlink router and generic route assets (0.074375ms)
+✔ the doctor family contract owns the symlink engine and entry manifest (0.063667ms)
+✔ the doctor family loader requirements preserve the symlink route contract (0.037334ms)
+✔ the doctor family destructive policy names the gated symlink writes (0.0315ms)
+✔ the doctor family invocation aliases include the symlink command form (0.048584ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 156.616208
+```
+
+**Scope confirmation** — `git diff` scoped to the four files, exit 0. Five changed lines, nothing else: the two `runtimes:` input descriptions, the install `Ask:` step, presentation line 58, and `seven` → `nine` on line 78.
+
+## 3. OPEN QUESTIONS
+
+- The working tree already carried unrelated modifications before this dispatch: `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs`, `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`, `.skilled/commands/doctor/assets/symlink-manifest.json`, `.skilled/commands/doctor/install.md`, `.skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs`, `.skilled/commands/doctor/symlink.md`. I did not touch any of them; they are presumably other dispatches' work in this packet. Worth knowing that `install.md` and `symlink.md` already carry the `vibe,dsh` text, which is why `rg` counts them.
+- The brief's CHECK expects six files, and `rg` returns six — but two of those six (`install.md`, `symlink.md`) were not in my edit set. The count matches only because those two were already updated upstream. Flagging so the six-file expectation is not read as proof that all six came from this dispatch.
+- `symlink-manifest.json` is modified in the tree but was not in my brief. If the manifest is meant to carry the runtime list, it may need a separate dispatch — I did not inspect it, since the brief named four files and forbade edits outside them.

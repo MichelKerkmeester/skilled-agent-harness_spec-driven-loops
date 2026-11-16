@@ -808,3 +808,24 @@ test('a folder overlay rebased onto the new pin applies after the copy, and one 
   assert.match(live.output, /^RESULT: PASSED$/m);
   assert.equal(read(fixture.tree, '.skilled/skills/owned/keep.md'), 'overlay keep\n');
 });
+
+// A regenerate step can rewrite a file an overlay owns. The engine has to name
+// the step, because the upstream diff for that file holds nothing.
+test('a live repin names the regenerate step that rewrote a file an overlay owns, not upstream-moved', (t) => {
+  const fixture = createRepinFixture(t);
+  // The step rewrites the owned file only once the re-pin has copied the new commit in.
+  fixture.manifest.regenerate.push({
+    id: 'rewrites-owned',
+    argv: ['node', '-e', "const fs = require('fs'); if (fs.existsSync('.skilled/skills/hub/added.md')) " +
+      "fs.writeFileSync('.skilled/skills/hub/SKILL.md', 'regenerated skill\\n')"],
+  });
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+
+  const failed = fixture.repin();
+  assert.equal(failed.code, 1, failed.output);
+  assert.match(failed.output, /^RESULT: FAILED$/m);
+  assert.match(failed.output,
+    /^regenerated \.skilled\/skills\/hub\/SKILL\.md {2}\(overlay: skilled-overlays\/files\/SKILL\.md\) {2}step: rewrites-owned {2}fix: /m);
+  assert.doesNotMatch(failed.output, /^upstream-moved \.skilled\/skills\/hub\/SKILL\.md/m);
+});

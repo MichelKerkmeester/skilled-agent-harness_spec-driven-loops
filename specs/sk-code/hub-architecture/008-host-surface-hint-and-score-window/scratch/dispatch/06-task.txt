@@ -1,0 +1,22 @@
+TASK: say what a host may change in hub-router.json while a surface can push a workflow mode out of a route.
+One file changes. Do the two steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 2. File: R/.skilled/skills/sk-code/README.md
+OLD (4 lines, this exact text appears once in the file):
+5. Commit with the hooks installed, or refresh and copy the manifest by hand.
+
+### Add a Private Surface Outside the Hub
+
+NEW (replace those lines with these 6 lines, same indentation):
+5. Commit with the hooks installed, or refresh and copy the manifest by hand.
+
+A surface that matches several phrases of one prompt can push a workflow mode out of the route. Each matched phrase adds the surface's `weight` to its score, and the router keeps only the modes within `routerPolicy.ambiguityDelta` of the top score. Until the hub changes how it scores a surface, a host may lower its surface's `weight` or raise `routerPolicy.ambiguityDelta` in `hub-router.json`. Then refresh the manifest as in step 5.
+
+### Add a Private Surface Outside the Hub
+
+
+STEP 2 of 2. Run:
+cd R && rg -n 'ambiguityDelta' .skilled/skills/sk-code/README.md
+Expected: it prints exactly one line, which starts with "A surface that matches several phrases". Report the output.

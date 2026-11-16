@@ -1,0 +1,40 @@
+The edit is in place and the check matches the expected result.
+
+1. FILES CHANGED:
+   - `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs`
+
+2. COMMANDS:
+
+   `cd R && node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')"`
+   - exit status: 0
+   - output: nothing printed (last 15 lines: empty)
+
+   `cd R && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`
+   - exit status: 1
+   - last 15 lines:
+     ```
+       at TestContext.<anonymous> (.../tests/overlay-engine-sync.test.cjs:878:10)
+       at Test.runInAsyncScope (node:async_hooks:226:14)
+       at Test.run (node:internal/test_runner/test:1402:25)
+       at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+       at Test.postRun (node:internal/test_runner/test:1542:19)
+       at Test.run (node:internal/test_runner/test:1467:12)
+       at async Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+         generatedMessage: true,
+         code: 'ERR_ASSERTION',
+         actual: [ { path: [Array], value: 'sk-doc', added: false }, { path: [Array], value: 'sk-git', added: false } ],
+         expected: [ { path: [Array], value: 'sk-git', added: false } ],
+         operator: 'deepStrictEqual',
+         diff: 'simple'
+       }
+     ```
+   - summary counts: `tests 35`, `pass 34`, `fail 1`. The single failure is `two sets on one path keep one record and both leave together` — the expected one, left alone.
+
+   `grep -n "record.added !== true || index < 0" .skilled/commands/doctor/scripts/overlay-engine.cjs`
+   - exit status: 1 (no match, old guard removed as intended)
+
+   `git diff -U2 -- .skilled/commands/doctor/scripts/overlay-engine.cjs`
+   - exit status: 0
+   - hunk at `@@ -1285,5 +1319,8 @@` shows exactly the 5 old lines replaced by the 8 new ones, nothing else in that region.
+
+3. OPEN QUESTIONS: none. The working tree already carried unrelated pre-existing modifications from earlier work in this checkout; I touched only the one file named in the brief.

@@ -1,0 +1,17 @@
+TASK: add the vibe and dsh runtimes to the doctor link manifest.
+One file changes. Do the one step below, then run the check.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 1. File: R/.skilled/commands/doctor/assets/symlink-manifest.json
+OLD (1 line, this exact text appears once in the file):
+    "pi":       [{ "name": ".pi", "kind": "dir" }]
+NEW (replace that line with these 3 lines, same indentation):
+    "pi":       [{ "name": ".pi", "kind": "dir" }],
+    "vibe":     [{ "name": ".vibe", "kind": "dir" }],
+    "dsh":      [{ "name": ".dsh", "kind": "dir" }]
+Keep the spaces after each key exactly as shown, so the brackets line up with the rows above.
+
+CHECK. Run:
+cd R && node -e "JSON.parse(require('fs').readFileSync('.skilled/commands/doctor/assets/symlink-manifest.json','utf8'))" && node --test .skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs
+Expected: the first command prints nothing, and the test summary shows "tests 25", "pass 25" and "fail 0". Report the pass and fail counts. If a test fails, do not change the test: report its name and output.

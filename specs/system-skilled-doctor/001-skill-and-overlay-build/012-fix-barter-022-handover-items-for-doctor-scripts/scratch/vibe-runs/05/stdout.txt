@@ -1,0 +1,54 @@
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs`
+
+`git diff --stat` on that file: `1 file changed, 21 insertions(+)` — the 23-line block minus the 2 anchor lines that were already present. No other file was written.
+
+## 2. COMMANDS
+
+**a. Locate the anchor**
+```
+grep -n "overlay keep" .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs
+```
+Exit 0. Last lines: hits at 539, 560, 576, 594, 742, 760, 775, 809 — the brief's anchor is the unique `read(fixture.tree, ...)` at 809.
+
+**b. Confirm the inserted call name after the edit**
+```
+grep -n "const failed = fixture\." .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs | od -c | head -8
+```
+Exit 0. Output: `331: const failed = fixture.repin();` and `825: const failed = fixture.repin();` — matches the brief.
+
+**c. The check**
+```
+cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs > /tmp/repin-check.log 2>&1; echo "EXIT=$?"; tail -15 /tmp/repin-check.log
+```
+Exit status: **1** (`EXIT=1`). Last 15 lines:
+```
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:828:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner:974:20)
+      at Test.postRun (node:internal/test_runner:1542:19)
+      at Test.run (node:internal/test_runner:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'not-copied 1 upstream change(s) outside .skilled, ... \nupstream-moved .skilled/skills/hub/SKILL.md  (overlay: skilled-overlays/files/SKILL.md)  fix: resolve skilled-overlays/files/SKILL.md and .skilled/skills/hub/SKILL.md, then run node .skilled/commands/doctor/scripts/overlay-engine.cjs status\nrollback: ... \nRESULT: FAILED\n',
+    expected: /^regenerated \.skilled\/skills\/hub\/SKILL\.md {2}\(overlay: skilled-overlays\/files\/SKILL\.md\) {2}step: rewrites-owned {2}fix: /m,
+    operator: 'match',
+    diff: 'simple'
+  }
+```
+
+**d. Counts and scope**
+```
+grep -E "^ℹ (tests|pass|fail)" /tmp/repin-check.log; echo "---"; git status --porcelain
+```
+Exit 0. Counts: `tests 27`, `pass 26`, `fail 1`. The single failure is `a live repin names the regenerate step that rewrote a file an overlay owns, not upstream-moved` — the wanted failure, failing on the `regenerated ...` assertion because the engine still emits `upstream-moved`. No other test failed.
+
+## 3. OPEN QUESTIONS
+
+None on the brief. Two notes:
+
+- The checkout already carried many unrelated modified and untracked paths before this edit (other packets' work). `git status` is noisy for that reason; the diff on the named file is the 21 added lines only.
+- The new test's fixture API resolved as written (`fixture.manifest.regenerate`, `writeManifest`, `fixture.repin()`), so the failure is the assertion, not a missing helper.

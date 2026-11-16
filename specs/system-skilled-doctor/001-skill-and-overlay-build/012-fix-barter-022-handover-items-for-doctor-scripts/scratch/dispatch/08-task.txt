@@ -1,0 +1,14 @@
+TASK: describe the `skilled.hostHook` local git config value in the doctor git setup asset.
+One file changes. Do the 1 step below in order, then run the check.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 1. File: R/.skilled/commands/doctor/assets/doctor-git-setup.yaml
+OLD (this exact text appears once in the file; it may sit inside a longer line):
+except a hook the repository declares in local skilled.omitHook), trust
+NEW (replace only that text with this, change nothing else on the line):
+except a hook the repository declares in local skilled.omitHook, which may be absent, and an installed hook it declares in local skilled.hostHook, which passes as the host's own script and must run the shipped gates itself. The passing row names each one), trust
+
+CHECK. Run:
+cd R && rg -c 'skilled.hostHook' .skilled/commands/doctor/assets/doctor-git-setup.yaml && python3 -c "import yaml,sys; yaml.safe_load(open('.skilled/commands/doctor/assets/doctor-git-setup.yaml')); print('yaml ok')"
+Expected: the first command prints 1 and the last prints "yaml ok". Report both outputs.

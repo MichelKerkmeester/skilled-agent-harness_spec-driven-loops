@@ -1,0 +1,4 @@
+     × matches the captured baseline row by row 3ms
+     × ledger entries match current promptHash and local/native tops 3ms
+ Test Files  2 failed (2)
+      Tests  2 failed | 13 passed (15)

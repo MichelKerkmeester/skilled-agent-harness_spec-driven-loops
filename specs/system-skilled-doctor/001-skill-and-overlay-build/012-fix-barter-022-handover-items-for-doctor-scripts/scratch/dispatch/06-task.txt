@@ -1,0 +1,129 @@
+TASK: name the regenerate step in the problem line when a step rewrote a file an overlay owns.
+One file changes. Do the 5 steps below in order, then run the check.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 5. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (12 lines, this exact text appears once in the file):
+/**
+ * Run the manifest regeneration steps and report failed steps and changed outputs.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {string} root Destination tree root.
+ * @returns {{results: object[], failed: object[], changedOutputs: string[]}}
+ */
+function regenerate(manifest, root) {
+  const before = snapshotOutputs(manifest, root);
+  const results = [];
+  for (const step of manifest.regenerate || []) results.push({ step, result: runCommand(root, step.argv) });
+  const failed = results.filter(({ result }) => result.status !== 0);
+  const after = snapshotOutputs(manifest, root);
+NEW (replace those lines with these 33 lines, same indentation):
+/**
+ * Run the manifest regeneration steps and report failed steps and changed outputs.
+ * Each watched path is hashed around every step, so a file an overlay owns that a
+ * step rewrote is traced to that step whether or not the step lists it under
+ * `outputs`. Once the steps have run, no other record says which one wrote it.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {string} root Destination tree root.
+ * @param {string[]} [watched] Tree-relative paths to trace, such as overlay destinations.
+ * @returns {{results: object[], failed: object[], changedOutputs: string[],
+ *   rewrittenBy: Map<string, string[]>}} `rewrittenBy` maps each watched path a
+ *   step changed to the ids of the steps that changed it, in run order.
+ */
+function regenerate(manifest, root, watched = []) {
+  const before = snapshotOutputs(manifest, root);
+  const digestOf = (key) => {
+    const buffer = readBufferOrNull(path.join(root, key));
+    return buffer ? sha256(buffer) : null;
+  };
+  let digests = new Map(watched.map((key) => [key, digestOf(key)]));
+  const rewrittenBy = new Map();
+  const results = [];
+  for (const step of manifest.regenerate || []) {
+    results.push({ step, result: runCommand(root, step.argv) });
+    const next = new Map(watched.map((key) => [key, digestOf(key)]));
+    for (const [key, digest] of next) {
+      if (digests.get(key) === digest) continue;
+      if (!rewrittenBy.has(key)) rewrittenBy.set(key, []);
+      rewrittenBy.get(key).push(step.id);
+    }
+    digests = next;
+  }
+  const failed = results.filter(({ result }) => result.status !== 0);
+  const after = snapshotOutputs(manifest, root);
+
+STEP 2 of 5. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (5 lines, this exact text appears once in the file):
+    if (before.get(output) !== digest) changedOutputs.push(output);
+  }
+  return { results, failed, changedOutputs };
+}
+
+NEW (replace those lines with these 5 lines, same indentation):
+    if (before.get(output) !== digest) changedOutputs.push(output);
+  }
+  return { results, failed, changedOutputs, rewrittenBy };
+}
+
+
+STEP 3 of 5. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (4 lines, this exact text appears once in the file):
+}
+
+function printProblems(ctx, records) {
+  for (const record of records) {
+NEW (replace those lines with these 14 lines, same indentation):
+}
+
+// A file a regenerate step rewrote after the overlay was applied would read as an
+// upstream move or a live edit, which sends the reader to a diff that does not
+// hold the change. The line names the step instead.
+function regeneratedLine(ctx, record, stepIds) {
+  const source = ctx.overlayLabel + '/' + record.source;
+  return 'regenerated ' + record.key + '  (overlay: ' + source + ')  step: ' + stepIds.join(', ') +
+    '  fix: carry the step\'s change into ' + source + ', or change the step so it leaves ' + record.key +
+    ' alone, then run ' + ENGINE_COMMAND + ' apply';
+}
+
+function printProblems(ctx, records) {
+  for (const record of records) {
+
+STEP 4 of 5. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (6 lines, this exact text appears once in the file):
+
+  const isRegenerated = written > 0 || options.isRegenerateForced === true;
+  if (isRegenerated) {
+    const regeneration = regenerate(manifest, root);
+    for (const { step, result } of regeneration.failed) {
+      const output = ((result.stdout || '') + (result.stderr || '')).trim().split('\n').slice(-3).join(' | ');
+NEW (replace those lines with these 9 lines, same indentation):
+
+  const isRegenerated = written > 0 || options.isRegenerateForced === true;
+  let rewrittenBy = new Map();
+  if (isRegenerated) {
+    const owned = analysis.records.filter((record) => !record.layout && !record.removal).map((record) => record.key);
+    const regeneration = regenerate(manifest, root, owned);
+    rewrittenBy = regeneration.rewrittenBy;
+    for (const { step, result } of regeneration.failed) {
+      const output = ((result.stdout || '') + (result.stderr || '')).trim().split('\n').slice(-3).join(' | ');
+
+STEP 5 of 5. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (5 lines, this exact text appears once in the file):
+  const unresolved = updated.records.filter((record) => record.state !== 'in-sync');
+  if (unresolved.length > 0) {
+    printProblems(ctx, unresolved);
+    return EXIT_CONFLICT;
+  }
+NEW (replace those lines with these 8 lines, same indentation):
+  const unresolved = updated.records.filter((record) => record.state !== 'in-sync');
+  if (unresolved.length > 0) {
+    for (const record of unresolved) {
+      const stepIds = record.layout ? undefined : rewrittenBy.get(record.key);
+      console.log(stepIds ? regeneratedLine(ctx, record, stepIds) : problemLine(ctx, record));
+    }
+    return EXIT_CONFLICT;
+  }
+
+CHECK. Run:
+cd R && node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')" && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs
+Expected: the first command prints nothing, and the summary shows "tests 27", "pass 27" and "fail 0". Report the pass and fail counts. If a test fails, do not change it: report its name and output.

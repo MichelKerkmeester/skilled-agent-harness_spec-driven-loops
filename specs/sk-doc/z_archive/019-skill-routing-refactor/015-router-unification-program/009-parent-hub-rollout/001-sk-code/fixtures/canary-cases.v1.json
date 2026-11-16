@@ -255,6 +255,44 @@
         ],
         "expectedResources": []
       }
+    },
+    {
+      "id": "hinted-surface-joins-route",
+      "prompt": "review this function for bugs",
+      "surfaceHint": "FRONTEND",
+      "riskSlice": "actor:mutating:composite",
+      "expectedAction": "route",
+      "expectedSelectionKind": "surfaceBundle",
+      "expectedModes": [
+        "sk-code-review",
+        "sk-code-frontend",
+        "sk-code-skilled"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-code-review",
+          "sk-code-frontend",
+          "sk-code-skilled"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "hinted-surface-routes-unscored",
+      "prompt": "add a filter to the table",
+      "surfaceHint": "FRONTEND",
+      "riskSlice": "evidence:nonmutating:single",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-code-frontend"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-code-frontend"
+        ],
+        "expectedResources": []
+      }
     }
   ],
   "certificateCases": [

@@ -34,7 +34,7 @@
       "decisions"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,11 +43,12 @@
       "decision-record.md",
       "implementation-summary.md",
       ".skilled/commands/doctor/scripts/git-setup-check.cjs",
-      ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
       ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
       ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
       ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs",
-      ".skilled/skills/system-skilled-doctor/references/overlays.md"
+      ".skilled/skills/system-skilled-doctor/references/overlays.md",
+      ".skilled/commands/doctor/assets/doctor-git-setup.yaml"
     ],
     "entities": [
       {
@@ -93,15 +94,15 @@
         "source": "derived"
       },
       {
-        "name": "git-setup-check.test.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
-        "source": "derived"
-      },
-      {
         "name": "overlay-engine.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
         "source": "derived"
       },
       {
@@ -120,6 +121,12 @@
         "name": "overlays.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skilled-doctor/references/overlays.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "an",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A project that vendors Skilled met three limits that it still works around by hand",
     "created_at": "2026-11-16T10:06:47Z",
-    "last_save_at": "2026-11-16T10:24:58.608Z",
+    "last_save_at": "2026-11-16T13:22:17.879Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4b8c1109b389ede16d8b8ddb46231c93ed8398afc1d953ca04ef0523af1aa936",
+    "source_fingerprint": "sha256:3e0cdb269f150c13b21c3b6055bb5566260d4665d19759389c975cc32a7c70b1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7c65d8c636eb4bcf8f8b95f49a6919b6a86ef06bb68682df06e18c3f944856f0",
+      "spec.md": "c755693f0a1de29864caf380e0e0bd9a85a03c0774195d409eaa7d3dd28b4013",
       "plan.md": "350d0d5e72d00381fdc0d0b3673891bcb50645242f7b9bd2bcaa4d1fdd69d040",
-      "tasks.md": "d9a948115a2f279292b54d2fb1a717b4234f3707bcc5eac4f2dd6395c2155960",
+      "tasks.md": "f58121e72ec277838528b430d7aa474a96092a32b39dc7c65f0165ceb8490e15",
       "decision-record.md": "406db68a0395277bfe1f9d551f2df057170030d726955889c02e1eb399dae7f3",
-      "implementation-summary.md": "473cbf22458577ac265d6f3f27bb3ae81444f84ad102493e321f2945e29f94d0"
+      "implementation-summary.md": "faca4328c87b0e6d01dfd22a0f8bb34e95e1a98a8960095a4494ab810bc42d25"
     },
     "last_active_at": null
   }

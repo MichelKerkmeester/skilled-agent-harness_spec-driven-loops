@@ -1,0 +1,105 @@
+All three parts below.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs`
+
+`git diff --stat` for that file: `1 file changed, 37 insertions(+)`. The 41-line NEW block replaced the 4-line OLD block, and 4 of those lines were re-emitted verbatim, so the net insertion is 37. No other file was touched by me; `git status` shows unrelated pre-existing modifications from other work in the tree.
+
+## 2. COMMANDS
+
+**a.** `grep -n "hooks names this checkout's installer by absolute path" .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs`
+Exit status: 1. Output: empty (the apostrophe in the pattern broke the match).
+
+**b.** `grep -n "installer by absolute path" .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs; grep -n "linkOwnHooks\|function rowOf\|function reportOf\|function fixture" ...`
+Exit status: 0. Last lines:
+```
+910:test('hooks names this checkout\'s installer by absolute path when the inspected repository is the battery\'s own checkout', (t) => {
+---
+83:function fixture(t) {
+158:function rowOf(report, id) {
+850:function linkOwnHooks(f, skip = []) {
+868:  const { ownSources, hooksDir } = linkOwnHooks(f, ['pre-commit']);
+882:  const { hooksDir } = linkOwnHooks(f, ['pre-commit']);
+899:  linkOwnHooks(f, ['post-commit']);
+```
+
+**c.** `sed -n '905,913p' <file> | cat -A`
+Exit status: 0 (pipeline), `cat` itself errored: `cat: illegal option -- A` — BSD `cat` on macOS. Re-ran with `cat -e`.
+
+**d.** `sed -n '905,913p' <file> | cat -e`
+Exit status: 0. Last lines:
+```
+});$
+$
+test('hooks names this checkout\\'s installer by absolute path when the inspected repository is the battery\\'s own checkout', (t) => {$
+  const f = fixture(t);$
+$
+  // The battery's root lives inside the inspected repository, so both resolve$
+```
+
+**e.** `node --test .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs 2>&1 | tail -40`
+Exit status: 0 for the pipeline (`tail`); the test run itself failed. Last 15 lines:
+```
+ℹ tests 86
+ℹ suites 0
+ℹ pass 85
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 158993.900375
+
+✖ failing tests:
+
+test at .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:919:1
+✖ hooks passes a host hook the local config lists under skilled.hostHook and names it (1299.822625ms)
+  AssertionError [ERR_ASSERTION]: pre-commit: resolves to /private/var/folders/.../repo/.git/hooks/pre-commit, not a hook source
+  'FAIL' !== 'PASS'
+```
+
+**f.** `node --test .skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs > /tmp/git-setup-check-run.log 2>&1; echo "EXIT_STATUS=$?"; tail -15 /tmp/git-setup-check-run.log`
+Exit status: 1. Last 15 lines:
+```
+EXIT_STATUS=1
+
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs:924:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+      at Test.postRun (node:internal/test_runner/test:1542:25)
+      at Test.run (node:internal/test_runner/test:1467:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'FAIL',
+    expected: 'PASS',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+```
+
+**g.** `grep -E "^ℹ (tests|pass|fail)" /tmp/git-setup-check-run.log; grep -E "^✖ " ...; git status --porcelain`
+Exit status: 0. Last lines:
+```
+ℹ tests 86
+ℹ pass 85
+ℹ fail 1
+--- failing test names ---
+✖ hooks passes a host hook the local config lists under skilled.hostHook and names it (898.167ms)
+✖ failing tests:
+✖ hooks passes a host hook the local config lists under skilled.hostHook and names it (898.167ms)
+```
+
+**h.** `git diff --stat -- <file>; git diff -- <file> | head -60`
+Exit status: 0. Last lines:
+```
+ .../doctor/scripts/tests/git-setup-check.test.cjs  | 37 ++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+```
+
+**Counts, as requested:** `tests 86`, `pass 85`, `fail 1`. The single failure is `hooks passes a host hook the local config lists under skilled.hostHook and names it` — the wanted one, since the code change comes in a later brief. No other test failed.
+
+## 3. OPEN QUESTIONS
+
+none. The anchor matched exactly once at lines 908-911 as the brief stated, and the counts came out exactly as predicted.

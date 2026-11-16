@@ -1,0 +1,63 @@
+Capture inputs hashed at five moments per run: before the scan, after the regenerate step, after capture 1, before capture 2 and after capture 2.
+Input list: 344 files the capture read (traced with trace-reads.mjs), plus the scan's generation file.
+
+run 1
+  regenerate step changed: nothing
+  scan + capture 1 changed: <db>/skill-graph-generation.json 
+  the wait changed: nothing
+  capture 2 changed: nothing
+  sk-code graph-metadata.json states seen by the 200 ms poll: 1
+run 2
+  regenerate step changed: .opencode/skills/sk-code/ROUTER.md .skilled/skills/sk-code/graph-metadata.json 
+  scan + capture 1 changed: <db>/skill-graph-generation.json 
+  the wait changed: nothing
+  capture 2 changed: nothing
+  sk-code graph-metadata.json states seen by the 200 ms poll: 2
+run 3
+  regenerate step changed: nothing
+  scan + capture 1 changed: <db>/skill-graph-generation.json 
+  the wait changed: nothing
+  capture 2 changed: nothing
+  sk-code graph-metadata.json states seen by the 200 ms poll: 1
+run 4
+  regenerate step changed: .opencode/skills/sk-code/ROUTER.md .skilled/skills/sk-code/graph-metadata.json 
+  scan + capture 1 changed: <db>/skill-graph-generation.json 
+  the wait changed: nothing
+  capture 2 changed: nothing
+  sk-code graph-metadata.json states seen by the 200 ms poll: 2
+run 5
+  regenerate step changed: nothing
+  scan + capture 1 changed: <db>/skill-graph-generation.json 
+  the wait changed: nothing
+  capture 2 changed: nothing
+  sk-code graph-metadata.json states seen by the 200 ms poll: 1
+run 6
+  regenerate step changed: .opencode/skills/sk-code/ROUTER.md .skilled/skills/sk-code/graph-metadata.json 
+  scan + capture 1 changed: <db>/skill-graph-generation.json 
+  the wait changed: nothing
+  capture 2 changed: nothing
+  sk-code graph-metadata.json states seen by the 200 ms poll: 2
+run 7
+  regenerate step changed: .opencode/skills/sk-code/ROUTER.md .skilled/skills/sk-code/graph-metadata.json 
+  scan + capture 1 changed: <db>/skill-graph-generation.json 
+  the wait changed: nothing
+  capture 2 changed: nothing
+  sk-code graph-metadata.json states seen by the 200 ms poll: 2
+run 8
+  regenerate step changed: nothing
+  scan + capture 1 changed: <db>/skill-graph-generation.json 
+  the wait changed: nothing
+  capture 2 changed: nothing
+  sk-code graph-metadata.json states seen by the 200 ms poll: 1
+run 9
+  regenerate step changed: .opencode/skills/sk-code/ROUTER.md .skilled/skills/sk-code/graph-metadata.json 
+  scan + capture 1 changed: <db>/skill-graph-generation.json 
+  the wait changed: nothing
+  capture 2 changed: nothing
+  sk-code graph-metadata.json states seen by the 200 ms poll: 2
+run 10
+  regenerate step changed: nothing
+  scan + capture 1 changed: <db>/skill-graph-generation.json 
+  the wait changed: nothing
+  capture 2 changed: nothing
+  sk-code graph-metadata.json states seen by the 200 ms poll: 1

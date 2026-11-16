@@ -1,0 +1,22 @@
+TASK: name the vibe and dsh runtimes in the --runtimes list of two command documents.
+Two files change. Do the two steps below in order. Each step replaces one piece of text inside one line.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 2. File: R/.skilled/commands/doctor/symlink.md
+In the one line that holds this text, replace the text only. Change nothing else on the line.
+OLD (this exact text appears once in the file):
+from `claude,opencode,codex,cursor,devin,pi`.
+NEW:
+from `claude,opencode,codex,cursor,devin,pi,vibe,dsh`.
+
+STEP 2 of 2. File: R/.skilled/commands/doctor/install.md
+In the one line that holds this text, replace the text only. Change nothing else on the line.
+OLD (this exact text appears once in the file):
+is a comma list drawn from `claude`, `opencode`, `codex`, `cursor`, `devin` and `pi`;
+NEW:
+is a comma list drawn from `claude,opencode,codex,cursor,devin,pi,vibe,dsh`;
+
+CHECK. Run:
+cd R && rg -c 'devin,pi,vibe,dsh' .skilled/commands/doctor/symlink.md .skilled/commands/doctor/install.md && node --test .skilled/commands/doctor/scripts/tests/doctor-symlink-contract.test.cjs
+Expected: rg prints a count of 1 for each of the two files, and the test summary shows "fail 0". Report both outputs. If a test fails, do not change it: report its name and output.

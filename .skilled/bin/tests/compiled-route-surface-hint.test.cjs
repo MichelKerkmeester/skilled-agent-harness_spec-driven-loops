@@ -19,7 +19,7 @@ const ENGINE_DIR = path.join(__dirname, '..', 'lib', 'compiled-routing', '014-ru
 const SK_CODE_LIB = path.join(__dirname, '..', 'lib', 'compiled-routing', '009-parent-hub-rollout', '001-sk-code', 'lib');
 const SK_CODE_ROOT = path.join(__dirname, '..', '..', 'skills', 'sk-code');
 const FRONT_DOOR = path.join(__dirname, '..', 'compiled-route.cjs');
-const { compiledRoute } = require(path.join(ENGINE_DIR, 'compiled-route.cjs'));
+const { compiledRoute, loadHubEngine } = require(path.join(ENGINE_DIR, 'compiled-route.cjs'));
 const { compileRegistry } = require(path.join(SK_CODE_LIB, 'registry-compiler.cjs'));
 const { applySurfaceHint, evaluateCanary } = require(path.join(SK_CODE_LIB, 'canary-router.cjs'));
 
@@ -251,6 +251,51 @@ test('non-frontend prompts that share frontend words do not select the frontend 
     assert.ok(route, prompt);
     assert.ok(!modes(route).includes('sk-code-frontend'), prompt);
   }
+});
+
+// A session that names a specific surface gets that surface in a scored route,
+// after the workflow modes and ahead of the fallback.
+test('a specific surface hint joins a route the prompt scored', () => {
+  const route = resolveRoute('sk-code', 'review this function for bugs', { surfaceHint: 'FRONTEND' });
+  assert.equal(route.action, 'route');
+  assert.equal(route.selectionKind, 'surfaceBundle');
+  assert.deepEqual(modes(route), ['sk-code-review', 'sk-code-frontend', 'sk-code-skilled']);
+});
+
+test('a specific surface hint routes a prompt that scores nothing', () => {
+  const prompt = 'add a filter to the table';
+  assert.equal(resolveRoute('sk-code', prompt).action, 'defer');
+  const route = resolveRoute('sk-code', prompt, { surfaceHint: 'FRONTEND' });
+  assert.equal(route.action, 'route');
+  assert.equal(route.selectionKind, 'single');
+  assert.deepEqual(modes(route), ['sk-code-frontend']);
+});
+
+// CI is a surface the hub does not declare as specific, so it joins nothing.
+test('a hint naming a workflow mode or a surface that is not specific adds nothing', () => {
+  const prompt = 'review this function for bugs';
+  const plain = resolveRoute('sk-code', prompt);
+  for (const surfaceHint of ['sk-code-review', 'quality', 'CI', 'sk-code-ci']) {
+    assert.deepEqual(resolveRoute('sk-code', prompt, { surfaceHint }), plain, surfaceHint);
+  }
+  assert.equal(resolveRoute('sk-code', 'add a filter to the table', { surfaceHint: 'CI' }).action, 'defer');
+});
+
+test('the hint is a request fact', () => {
+  const { snapshot } = loadHubEngine('sk-code');
+  const hash = (surfaceHint) => evaluateCanary(snapshot, { prompt: SKILLED_TESTING, surfaceHint }).request.requestFactsHash;
+  assert.notEqual(hash('FRONTEND'), hash(undefined));
+  assert.notEqual(hash('FRONTEND'), hash('SKILLED'));
+});
+
+test('a hinted host surface joins as the first surface after the workflow modes', () => {
+  const snapshot = compileHub(hubWithAddedSurface());
+  const { decision } = evaluateCanary(snapshot, { prompt: 'review my css cascade layers change', surfaceHint: 'WEBFLOW' });
+  assert.equal(decision.action, 'route');
+  assert.deepEqual(
+    targetModes(applySurfaceHint(snapshot, decision.route.targets, 'WEBFLOW')),
+    ['sk-code-review', 'sk-code-webflow', 'sk-code-frontend'],
+  );
 });
 
 test('a hub without surface packets ignores the hint', () => {
