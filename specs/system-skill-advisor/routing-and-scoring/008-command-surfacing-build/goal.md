@@ -394,6 +394,8 @@ and findings belong here.
 | Pre-existing: S7-skill-graph-freshness | Fails on origin/main | --strict reports SIGNAL DRIFT compiled vs disk for sk-doc on clean origin/main 2005499d504 as on HEAD; main changed sk-doc graph-metadata without recompiling skill-graph.json, and the reindex is operator-gated |
 | Local build: S1-package-check | Fixed locally | the merge left the gitignored system-spec-kit runtime and cli dist stale; npm run build in both brings dist freshness to 4/4, nothing tracked changes |
 | Operator answer: main's sk-doc routing regression | Fix on this branch | ask tool 2026-11-16: fix on this branch, reindex the skill graph here, add TEMP and TMP to the surface map (added, backup scratchpad/surface-map.yaml.bak2); phase 039 planned |
+| Phase 039, sk-doc routing repair | Built | narrowed main's sk-doc README intents: 12 git-* and 2 spec-gate named hook phrases, hook mirror readme and the security policy phrase (security.md kept); intent signals regenerated, skill graph recompiled (freshness exit 0); the 7 inherited tests pass; README probes still top sk-doc; FLOOR 24/44 0/35 2/44, EVAL [160,49,21,5], stored sets unchanged |
+| Criterion 2 recheck after phase 039 | Met pending a clean unset run | child-flag suite 2349/0; the unset run failed only the 60 ms native scorer latency gate under review load, which passes 21/21 three times alone; a clean full unset run follows once review pass ten ends |
 
 ### Deviations and findings
 

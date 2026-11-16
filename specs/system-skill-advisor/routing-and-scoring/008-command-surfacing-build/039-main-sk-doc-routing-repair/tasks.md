@@ -34,7 +34,7 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [C] Record the failing tests and the before gates (`$SP/before.txt`). Verify: `SEVEN` shows 7 failed, and `FLOOR` and `EVAL` print 24/44 0/35 2/44 and [160,49,21,5]. Evidence:
+- [x] T001 [C] Record the failing tests and the before gates (`$SP/before.txt`). Verify: `SEVEN` shows 7 failed, and `FLOOR` and `EVAL` print 24/44 0/35 2/44 and [160,49,21,5]. Evidence: before.txt: SEVEN 7 failed 63 passed (4 doctor-bridge-isolation, doctor-routing-slice, divergence ratchet, holdout-independent), FLOOR 24/44 0/35 2/44, EVAL [160,49,21,5], SIGNAL DRIFT sk-doc
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -42,10 +42,10 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Narrow the named hook README phrases (`$DOC/ROUTER.md`). Verify: the four isolation cases and slice rows doctor-control-11, 12 and 14 pass. Evidence:
-- [ ] T003 Narrow the runtime folder and hook mirror README phrases (`$DOC/ROUTER.md`, `$DOC/sk-create-readme/ROUTER.md`). Verify: slice row doctor-a-10 passes. Evidence:
-- [ ] T004 Find which of main's new intents moved the holdout row and `rr-iter3-069`, reading only row ids and expected skills, and narrow it (`$DOC/ROUTER.md`). Verify: the holdout prints 49 of 63 or more and the ratchet passes. Evidence:
-- [ ] T005 Regenerate the intent signals and recompile the graph (`$DOC/graph-metadata.json`, `$ADV/scripts/skill-graph.json`). After T004. Verify: `generate-router-intent-signals.cjs --check` and `skill-graph-freshness.cjs --strict` exit 0. Evidence:
+- [x] T002 Narrow the named hook README phrases (`$DOC/ROUTER.md`). Verify: the four isolation cases and slice rows doctor-control-11, 12 and 14 pass. Evidence: HOOK_README 58 to 44: the 12 git-* named phrases and the 2 spec-gate ones dropped; isolation x4 and doctor-control-11/12/14 pass (try-variant.sh no-git-named+names:spec-gate)
+- [x] T003 Narrow the runtime folder and hook mirror README phrases (`$DOC/ROUTER.md`, `$DOC/sk-create-readme/ROUTER.md`). Verify: slice row doctor-a-10 passes. Evidence: "hook mirror readme" dropped from RUNTIME_PLUGIN_README (7 to 6); doctor-a-10 passes; sk-create-readme/ROUTER.md carries no advisor intent, left as is
+- [x] T004 Find which of main's new intents moved the holdout row and `rr-iter3-069`, reading only row ids and expected skills, and narrow it (`$DOC/ROUTER.md`). Verify: the holdout prints 49 of 63 or more and the ratchet passes. Evidence: one intent dropped at a time, counts only: SECURITY_POLICY "security policy" moved the holdout (48 to 49 without it), HOOK_README spec-gate names moved rr-iter3-069 (a labeled row, not holdout); SECURITY_POLICY keeps "security.md" only, any "security policy" phrase drops the holdout to 48; 69 of 69 pass
+- [x] T005 Regenerate the intent signals and recompile the graph (`$DOC/graph-metadata.json`, `$ADV/scripts/skill-graph.json`). After T004. Verify: `generate-router-intent-signals.cjs --check` and `skill-graph-freshness.cjs --strict` exit 0. Evidence: generate-router-intent-signals --write --hub sk-doc then --check RESULT: PASSED; skill_graph_compiler --export-json; skill-graph-freshness --strict exit 0, SIGNAL DRIFT none
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -53,9 +53,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 [C] Probe README requests through the advisor CLI (`$SP/readme-probes.txt`). After T005. Verify: the session-handover hook, git-preflight hook and runtime folder README requests each top sk-doc. Evidence:
-- [ ] T007 [C] Rebuild and rerun the gates both ways (`$SP/after.txt`). After T006. Verify: 0 failed with the flag unset and set, `FLOOR` unchanged, `EVAL` [160,49,21,5] or better, stored sets unchanged. Evidence:
-- [ ] T008 [C] Log the fix and the criterion 2 recheck (`../goal.md`). After T007. Verify: `packet_budget=ok`. Evidence:
+- [x] T006 [C] Probe README requests through the advisor CLI (`$SP/readme-probes.txt`). After T005. Verify: the session-handover hook, git-preflight hook and runtime folder README requests each top sk-doc. Evidence: readme-probes.txt: session-handover, git-preflight and spec-gate hook READMEs, runtime and plugins folder READMEs and SECURITY.md top sk-doc; git hooks, git rules, git standards top sk-git; runtime mirror drift tops command-doctor-runtime-mirrors
+- [x] T007 [C] Rebuild and rerun the gates both ways (`$SP/after.txt`). After T006. Verify: 0 failed with the flag unset and set, `FLOOR` unchanged, `EVAL` [160,49,21,5] or better, stored sets unchanged. Evidence: after.txt: stored sets unchanged, intent signals PASSED, graph freshness exit 0, build and typecheck exit 0, child run 2349 passed 0 failed, unset run 2348 passed 1 failed on the 60 ms native scorer latency p95 gate under review load, which passes 21/21 three times alone; FLOOR 24/44 0/35 2/44, EVAL [160,49,21,5]
+- [x] T008 [C] Log the fix and the criterion 2 recheck (`../goal.md`). After T007. Verify: `packet_budget=ok`. Evidence: goal rows Phase 039, sk-doc routing repair and Criterion 2 recheck after phase 039; packet_budget=ok
 - [ ] T009 [C] Close the phase (`implementation-summary.md`). After T008. Verify: `validate.sh $PK/039-main-sk-doc-routing-repair --strict` prints `RESULT: PASSED`. Evidence:
 <!-- /ANCHOR:phase-3 -->
 

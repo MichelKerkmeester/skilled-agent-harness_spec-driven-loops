@@ -20,8 +20,8 @@
   "progressiveSynthesis": false,
   "specFolder": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
   "createdAt": "2026-11-16T16:49:26.000Z",
-  "status": "initialized",
-  "releaseReadinessState": "in-progress",
+  "status": "complete",
+  "releaseReadinessState": "converged",
   "executionMode": "auto",
   "executor": {
     "kind": "cli-opencode",
@@ -99,5 +99,6 @@
     ]
   },
   "fanout_lineage_artifact_dir": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/attach-scorer-10",
-  "fanoutLabel": "attach-scorer-10"
+  "fanoutLabel": "attach-scorer-10",
+  "completedAt": "2026-11-16T17:11:57.493Z"
 }

@@ -35,7 +35,7 @@
       "graph"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,9 +43,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       ".skilled/skills/sk-doc/ROUTER.md",
-      ".skilled/skills/sk-doc/sk-create-readme/ROUTER.md",
       ".skilled/skills/sk-doc/graph-metadata.json",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      "scratch/try-variant.py",
+      "scratch/try-variant.sh",
+      "scratch/readme-probes.txt",
+      ".skilled/skills/sk-doc/sk-create-readme/ROUTER.md",
+      "scratch/after.txt"
     ],
     "entities": [
       {
@@ -97,7 +101,37 @@
         "source": "derived"
       },
       {
+        "name": "try-variant.py",
+        "kind": "file",
+        "path": "scratch/try-variant.py",
+        "source": "derived"
+      },
+      {
+        "name": "try-variant.sh",
+        "kind": "script",
+        "path": "scratch/try-variant.sh",
+        "source": "derived"
+      },
+      {
+        "name": "readme-probes.txt",
+        "kind": "file",
+        "path": "scratch/readme-probes.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -122,12 +156,6 @@
       },
       {
         "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement Main",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -167,35 +195,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Main's README intents gave sk-doc words that other skills own",
     "created_at": "2026-11-16T16:54:08Z",
-    "last_save_at": "2026-11-16T16:56:48.203Z",
+    "last_save_at": "2026-11-16T17:18:02.132Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +209,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e38208956228630288dd512e3304b42359d6b4362c230b5e441a7f1ca0cbe297",
+    "source_fingerprint": "sha256:b7cb3b521c104232bda7c51fd224444c706bbea2784aee48c84190417bc9f454",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "efce936d942cbcfcc98e9c1fb473cb0009e04453e794758357621e74efc0488c",
+      "spec.md": "410192b5817fbad337d8991061d31e09f02e179e593800c87b5499e00f85bf59",
       "plan.md": "5a6f13606b0c9299ad3355d979b520ca1cf6f47dd2313a10eb34d0d33f5b21f4",
-      "tasks.md": "7b92751215b84340023db0f924b6587d02326e362c4288bec69e6d4eef4ebdf0",
-      "implementation-summary.md": "9c07944a274cd8e37fa3e82d4b2f6efcf860d943f021c73e4309dfabed1e491a"
+      "tasks.md": "cefe2f9e068216eee11398b7ea64f7068f6051ddf680e1d4890a7dee2681a912",
+      "implementation-summary.md": "54b066e256ba7ce068ce6d141a268e8970b0200a0f6fedddb6e78e7d08da3f27"
     },
     "last_active_at": null
   }
