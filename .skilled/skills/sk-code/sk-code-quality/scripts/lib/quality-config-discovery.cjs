@@ -276,7 +276,7 @@ function readSuggestions(root) {
   }
   if (workflows.length > 0) {
     out.push(suggestion('.github/workflows', 'the repository has GitHub Actions workflows', {
-      id: 'actionlint', argv: ['actionlint', FILES_TOKEN], paths: ['.github/workflows/**'], requires: 'actionlint', severity: 'P1', required: false,
+      id: 'actionlint', argv: ['actionlint', FILES_TOKEN], paths: ['.github/workflows/*.yml', '.github/workflows/*.yaml'], requires: 'actionlint', severity: 'P1', required: false,
     }));
   }
   for (const name of ['GNUmakefile', 'makefile', 'Makefile']) {
