@@ -79,13 +79,13 @@ Two measures were not rerun. OpenCode's turn lengths were not, because its store
 
 ## 3. Merged ranking and proposed disposition
 
-Ranked by expected gain per unit of risk to the floors. Gain here means measurement restored or a silent failure made visible, because no lineage measured a product change that would start more useful commands. The floors are typed recall 24 of 44, false offers 0 of 35, the arm target's sealed reach floor and scorer eval `[160,49,21,5]` (goal log, catch-up merge row). None of the four build items touches a scoring input. The ranks below are new numbers. Earlier ranks are named as segment four rank N.
+Ranked by expected gain per unit of risk to the floors. Gain here means measurement restored or a silent failure made visible, because no lineage measured a product change that would start more useful commands. The floors are typed recall 24 of 44, false offers 0 of 35, the arm target's sealed reach floor and scorer eval `[160,49,21,5]` (goal log, catch-up merge row). None of the build items touches a scoring input. The ranks below are new numbers. Earlier ranks are named as segment four rank N.
 
 | Rank | Recommendation | Source | Proposed disposition |
 |---|---|---|---|
-| 1 | Record on every run line how long the turn ran and whether the cap fired, and mark `capped` from them | performance-5 rank 2, the aim of cross-cli-5 rank 3 and the store times in section 2 | Build in a new measurement phase. Phase 034 removed the B-5 retest, so the phase runs on its own merit |
-| 2 | Write a prompt-free OpenCode delivery receipt and read it in `briefDelivered` | cross-cli-5 rank 1, segment four rank 3 | Build in the same phase, before the next run that includes OpenCode |
-| 3 | Keep the advisor suite's records out of the shared metrics folder | performance-5 rank 3, moved from the readers to the producer | Build in the same phase |
+| 1 | Record on every run line how long the turn ran and whether the cap fired, and mark `capped` from them | performance-5 rank 2, the aim of cross-cli-5 rank 3 and the store times in section 2 | Decline. It records future turns only, so it cannot correct 033's lines, and no further arm is planned in this packet. Reopen with rank 5 when a full arm is designed |
+| 2 | Write a prompt-free OpenCode delivery receipt and read it in `briefDelivered` | cross-cli-5 rank 1, segment four rank 3 | Decline. The plugin's observation sink is in memory, so a receipt needs a new file write in a plugin every OpenCode session loads, for a run nobody has planned. Reopen with rank 5 when a full arm with OpenCode is designed |
+| 3 | Keep the advisor suite's records out of the shared metrics folder | performance-5 rank 3, moved from the readers to the producer | Build in a new measurement phase |
 | 4 | Print the shape of each start per runtime beside the start rate | cross-cli-5 rank 2 | Build in the same phase, print only. Which rule the rate follows waits on the operator (section 7, question 1) |
 | 5 | Give turns that open a workflow a longer cap | performance-5 rank 1, segment four rank 4 | Decline. No further arm is planned in this packet, and a cap with no arm to run it measures nothing. Reopen when a full arm is designed |
 | 6 | Split `capped` into exit 143 and exit null | cross-cli-5 rank 3 | Decline. Devin's null exits are cap kills |
@@ -107,7 +107,7 @@ Not re-ranked, because the operator or a lineage settled them, or the coordinato
 - A policy legend in the brief. ux-5 withdrew it, because `AGENTS.md:68` defines the words.
 - Trimming the brief and lowering the 300 s cap. performance-5 declined both, and this draft agrees (section 5).
 
-Detail for the build items and the rank 5 decline:
+Detail for ranks 1 to 5. Ranks 3 and 4 build. Ranks 1, 2 and 5 serve only a future arm and are declined until one is designed:
 
 | Rank | Files | Measurable gain | Verify | Floor risk |
 |---|---|---|---|---|
@@ -209,7 +209,7 @@ The worst live row uses 61.5 percent of the 2,500 ms budget. The 2,218 ms maximu
 
 ### (e) Segment four's open questions
 
-- Question 2, another behaviour arm with OpenCode: none is planned. The B-5 retest fell away with phase 034's rescore. Rank 2 is built so that any later run with OpenCode answers delivery.
+- Question 2, another behaviour arm with OpenCode: none is planned. The B-5 retest fell away with phase 034's rescore, so rank 2 waits for that arm's design.
 - Question 3, Claude's create rows after phase 016: answered in (c).
 - Question 5, who writes small health files: one writer to the shared folder is now named, the trim test behind rank 3. The 13 marked records in one- or two-record files are a different shape and stay open.
 - Question 6, the embedder's cold first call: still UNKNOWN. The cascade probe narrows to a first daemon start, and the 690 ms cold figure counts the cold embedding twice (inferred).
