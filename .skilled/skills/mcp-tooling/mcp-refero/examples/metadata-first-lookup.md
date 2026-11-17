@@ -5,10 +5,12 @@ trigger_phrases:
   - "refero metadata first example"
   - "refero single tool lookup"
   - "refero empty state lookup"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Example: Single-Tool Metadata-First Lookup
+
+## 1. OVERVIEW
 
 A worked walkthrough for the cheapest useful lane: *"What do real empty states look like in web dashboards?"* Most of the answer lives in search **metadata** — titles, `ux_patterns`, `ui_elements`, `page_types`, colors, content — so one search call does the work, and detail is fetched only when a shortlist earns it. Every tool and argument traces to [`references/tool-surface.md`](../references/tool-surface.md).
 

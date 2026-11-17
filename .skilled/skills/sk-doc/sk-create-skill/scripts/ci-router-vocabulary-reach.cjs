@@ -116,11 +116,24 @@ function hubs() {
     .sort();
 }
 
+// A stage-one-only hub declares an empty INTENT_SIGNALS on purpose and keeps its
+// whole vocabulary in hub-router.json, so its phrases come from vocabularyClasses.
+// A hub with neither still yields nothing and still fails as an empty inventory.
+function hubRouterPhrases(directory) {
+  const file = path.join(directory, 'hub-router.json');
+  if (!fs.existsSync(file)) return [];
+  const classes = JSON.parse(fs.readFileSync(file, 'utf8')).vocabularyClasses || {};
+  return Object.values(classes).flatMap((c) => (Array.isArray(c.keywords) ? c.keywords : []));
+}
+
 function declaredPhrases(directory) {
   const text = fs.readFileSync(path.join(directory, 'ROUTER.md'), 'utf8');
   const block = /INTENT_SIGNALS\s*=\s*\{([^\n]*(?=\}[ \t]*$)|[\s\S]*?(?=\n\}))/m.exec(text);
   if (!block) return [];
-  const found = [...block[1].matchAll(/"([^"]{3,60})"/g)].map((m) => m[1]);
+  const stageOneOnly = block[1].trim() === '';
+  const found = stageOneOnly
+    ? hubRouterPhrases(directory).filter((k) => k.length >= 3 && k.length <= 60)
+    : [...block[1].matchAll(/"([^"]{3,60})"/g)].map((m) => m[1]);
   return [...new Set(found.filter((k) => (
     // a single token fails on length, not on vocabulary; reporting it buries the rest
     k.includes(' ')
@@ -146,6 +159,16 @@ const RETRYABLE_EXIT = 75;
 const PROBE_ATTEMPTS = 3;
 
 const sleep = (ms) => new Promise((r) => { setTimeout(r, ms); });
+
+// An advisor reindexing after a metadata change answers "stale" until its scan
+// finishes, and a stale answer says nothing about the phrase. A probe that meets
+// one waits and asks again, but every probe shares one deadline, so a run that
+// starts during a long reindex waits once rather than once per phrase. A probe
+// still stale at the deadline is reported as stale and fails the run: it was
+// never judged, so it can never count as a pass.
+const STALE_WAIT_MS = Number(process.env.ROUTER_REACH_STALE_WAIT_MS || 180000);
+const STALE_POLL_MS = Number(process.env.ROUTER_REACH_STALE_POLL_MS || 5000);
+let staleDeadline = null;
 
 async function probeOnce(phrase) {
   const { stdout } = await execFileAsync('node', [ADVISOR, 'advisor_recommend', '--json',
@@ -181,6 +204,14 @@ async function reaches(phrase, hub) {
   const data = envelope && typeof envelope === 'object' ? envelope.data : null;
   if (!data) return { error: 'probe returned no data envelope' };
   const trust = data.trustState;
+  if (trust?.state === 'stale') {
+    if (staleDeadline === null) staleDeadline = Date.now() + STALE_WAIT_MS;
+    if (Date.now() < staleDeadline) {
+      await sleep(Math.min(STALE_POLL_MS, Math.max(0, staleDeadline - Date.now())));
+      return reaches(phrase, hub);
+    }
+    return { stale: true, error: `advisor stayed stale past the ${Math.round(STALE_WAIT_MS / 1000)} s wait, so the phrase was not judged` };
+  }
   if (envelope.degraded || trust?.state !== 'live' || !Number.isInteger(trust.generation)) {
     return { error: 'advisor response is degraded, not live, or lacks generation' };
   }
@@ -271,6 +302,10 @@ async function main() {
       const phrase = phrases[i];
       const r = probed[i];
       if (r.generation != null) generation = r.generation;
+      if (r.stale) {
+        unreachable.push({ phrase, kind: 'stale', reaches: [r.error] });
+        continue;
+      }
       if (r.error) {
         unreachable.push({ phrase, kind: 'probe-error', reaches: [r.error] });
         continue;
@@ -320,8 +355,12 @@ async function main() {
       const none = r.unreachable.filter((u) => u.kind === 'no-reach');
       const ok = r.unreachable.filter((u) => u.kind === 'allowed');
       const local = r.unreachable.filter((u) => u.kind === 'operator-local');
-      const bad = errs.length + wrong.length + lost.length;
-      process.stdout.write(`${bad ? 'FAIL' : 'OK  '} ${r.hub.padEnd(28)} declared=${String(r.declared).padStart(3)} wrong-hub=${String(wrong.length).padStart(3)} outranked=${String(lost.length).padStart(3)} no-reach=${String(none.length).padStart(3)} allowed=${String(ok.length).padStart(3)} probe-error=${String(errs.length).padStart(3)} operator-local=${String(local.length).padStart(3)}\n`);
+      const stale = r.unreachable.filter((u) => u.kind === 'stale');
+      const bad = errs.length + wrong.length + lost.length + stale.length;
+      process.stdout.write(`${bad ? 'FAIL' : 'OK  '} ${r.hub.padEnd(28)} declared=${String(r.declared).padStart(3)} wrong-hub=${String(wrong.length).padStart(3)} outranked=${String(lost.length).padStart(3)} no-reach=${String(none.length).padStart(3)} allowed=${String(ok.length).padStart(3)} probe-error=${String(errs.length).padStart(3)} stale=${String(stale.length).padStart(3)} operator-local=${String(local.length).padStart(3)}\n`);
+      for (const u of stale) {
+        process.stdout.write(`       stale      ${u.phrase.padEnd(42)} ${u.reaches.join(', ')}\n`);
+      }
       for (const u of errs) {
         process.stdout.write(`       probe-error ${u.phrase.padEnd(41)} ${u.reaches.join(', ')}\n`);
       }
@@ -345,13 +384,17 @@ async function main() {
     const none = tally('no-reach');
     const allowed = tally('allowed');
     const local = tally('operator-local');
-    process.stdout.write(`\nchecked=${report.length} hub(s), wrong-hub=${wrong}, outranked=${lost}, no-reach=${none}, allowed=${allowed}, probe-error=${errs}, operator-local=${local}\n`);
+    const stale = tally('stale');
+    process.stdout.write(`\nchecked=${report.length} hub(s), wrong-hub=${wrong}, outranked=${lost}, no-reach=${none}, allowed=${allowed}, probe-error=${errs}, stale=${stale}, operator-local=${local}\n`);
+    if (stale) {
+      process.stdout.write(`advisor stale: ${stale} phrase(s) were not judged because the advisor was still reindexing; run the check again once it reports live\n`);
+    }
     process.stdout.write(`advisor generation: ${generation == null ? 'unknown' : generation}\n`);
     // A phrase that reaches nobody is reported rather than failed: it is usually a
     // length limit, and failing on it would make the check unrunnable. Everything
     // else is a real defect, and a probe that never ran is the worst of them,
     // because it is the one that would otherwise print a pass.
-    process.stdout.write(errs + wrong + lost ? 'RESULT: FAILED\n' : 'RESULT: PASSED\n');
+    process.stdout.write(errs + wrong + lost + stale ? 'RESULT: FAILED\n' : 'RESULT: PASSED\n');
   }
   const failed = report.some((r) => r.unreachable.some((u) => !NON_FAILING.has(u.kind)));
   process.exit(failed ? 1 : 0);

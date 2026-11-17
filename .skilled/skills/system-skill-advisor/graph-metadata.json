@@ -184,5 +184,12 @@
     ],
     "weight": 0.7,
     "context_template": "routes ${target.id} delegation requests"
-  }
+  },
+  "intent_signals_generated": [
+    "pi prompt advisor",
+    "prompt-time brief",
+    "skill advice before the agent handles my prompt",
+    "advisor skipped my prompt",
+    "advisor skip my prompt"
+  ]
 }

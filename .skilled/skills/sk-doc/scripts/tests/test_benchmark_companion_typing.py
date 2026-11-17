@@ -21,7 +21,14 @@ sys.path.insert(0, str(SCRIPTS_DIR))
 from validate_document import detect_document_type, load_rules, should_exclude_path, validate_document  # type: ignore
 
 RUN = ".skilled/skills/example-skill/benchmark/reports/2026-07-29--manual-testing-playbook--goal-hook"
-COMPANIONS = ("failed-runs.md", "source.md", "skill-benchmark-report.md", "findings-and-recommendations.md")
+COMPANIONS = (
+    "failed-runs.md",
+    "source.md",
+    "skill-benchmark-report.md",
+    "findings-and-recommendations.md",
+    "report.md",
+    "serving-snapshot.md",
+)
 
 
 def test_companion_files_in_a_run_folder_get_the_companion_type() -> None:
@@ -37,6 +44,7 @@ def test_run_readme_and_same_names_elsewhere_keep_their_type() -> None:
     assert detect_document_type(f"{RUN}/README.md", "", rules) == "readme"
     assert detect_document_type(".skilled/skills/example-skill/benchmark/reports/source.md", "", rules) != "benchmark_companion"
     assert detect_document_type(".skilled/skills/example-skill/benchmark/source.md", "", rules) != "benchmark_companion"
+    assert detect_document_type(".skilled/skills/example-skill/references/report.md", "", rules) != "benchmark_companion"
     assert detect_document_type(".skilled/skills/example-skill/references/source.md", "", rules) == "reference"
 
 

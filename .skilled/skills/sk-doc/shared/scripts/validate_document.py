@@ -169,6 +169,9 @@ BENCHMARK_COMPANION_NAMES = (
     'source.md',
     'skill-benchmark-report.md',
     'findings-and-recommendations.md',
+    # The compiled-routing renderer writes these two into the same run folders.
+    'report.md',
+    'serving-snapshot.md',
 )
 
 # A spec packet or phase folder name: three digits, an optional letter, then a
@@ -317,6 +320,10 @@ def _detect_document_type_with_source(file_path: str, content: str, rules: Dict[
     # lowercase security.md reference or playbook leaf keeps its own type.
     if Path(str(file_path)).name == 'SECURITY.md':
         return 'security_policy', 'rule'
+    # A repository rule file lives in a repo-rules/ folder. Its own README keeps
+    # README rules.
+    if 'repo-rules' in portable_path.parts and portable_path.suffix == '.md' and portable_path.name != 'readme.md':
+        return 'rule', 'rule'
     # A skill or mode keeps its machine router in a sibling ROUTER.md, and only that
     # exact name marks it. Without this rule a router fell back to README rules.
     if Path(str(file_path)).name == 'ROUTER.md':
@@ -1844,14 +1851,17 @@ def validate_required_sections(content: str, doc_type_rules: Dict[str, Any]) -> 
     for alias, canonical in section_aliases.items():
         reverse_aliases.setdefault(canonical, []).append(alias)
 
-    h2_pattern = re.compile(r'^## \d+\.\s+[^\n]+', re.MULTILINE)
+    # A type whose template keeps some sections unnumbered, such as a rule file's
+    # Fires when and The rule, counts those headings too.
+    number_pattern = r'(?:\d+\.\s+)?' if doc_type_rules.get('unnumberedSectionsCount') else r'\d+\.\s+'
+    h2_pattern = re.compile(r'^## ' + number_pattern + r'[^\n]+', re.MULTILINE)
     headers = h2_pattern.findall(content)
 
     # Keep both normalized and raw names for partial matching fallback
     found_sections = set()
     found_sections_raw = []
     for header in headers:
-        match = re.search(r'^## \d+\.\s+(?:[^\w\s]\s+)?(.+)$', header)
+        match = re.search(r'^## ' + number_pattern + r'(?:[^\w\s]\s+)?(.+)$', header)
         if match:
             raw_name = match.group(1).strip().lower()
             section_name = normalize_section_name(raw_name)
@@ -3190,7 +3200,7 @@ def main() -> None:
         epilog=__doc__
     )
     parser.add_argument('file', help='Markdown file to validate')
-    parser.add_argument('--type', choices=['readme', 'code_folder', 'code-folder', 'skill', 'reference', 'asset', 'agent', 'command', 'install_guide', 'security_policy', 'skill_router', 'spec', 'changelog', 'playbook', 'playbook_feature', 'feature_catalog', 'benchmark_companion'],
+    parser.add_argument('--type', choices=['readme', 'code_folder', 'code-folder', 'skill', 'reference', 'asset', 'agent', 'command', 'install_guide', 'security_policy', 'skill_router', 'spec', 'changelog', 'playbook', 'playbook_feature', 'feature_catalog', 'benchmark_companion', 'rule'],
                         help='Document type (auto-detected if not specified)')
     parser.add_argument('--json', action='store_true', help='Output results as JSON')
     parser.add_argument('--blocking-only', action='store_true', help='Show only blocking errors')
