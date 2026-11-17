@@ -321,6 +321,20 @@ function dataFor<TStem extends DeepResearchEventStem>(
       compatibilityDecision: 'migrate',
       recoveryReceiptRef: 'recovery-2',
     },
+    'deep_research.run_extended': {
+      priorTailDigest: hash,
+      sessionId: 'run-1',
+      generation: 1,
+      continuedFromRun: 7,
+      extension: {
+        addedIterations: 3,
+        priorMaxIterations: 10,
+        newMaxIterations: 10,
+        priorMaxDurationMinutes: 120,
+        newMaxDurationMinutes: 420,
+        elapsedMinutesAtExtension: 300,
+      },
+    },
     'deep_research.question_registered': {
       normalizedQuestionDigest: hash,
       dependencyQuestionIds: [],
@@ -1910,6 +1924,31 @@ describe('deep-research typed ledger schema', () => {
       expect(kept.data).toMatchObject({ generation: 2, maxIterations: 4, topic: config.topic });
       expect(kept.warnings.some((warning) => /numeric string/.test(warning))).toBe(false);
     }
+  });
+
+  it('upcasts a legacy extended row into run_extended and refuses one without a full budget', () => {
+    const context = {
+      scope: { runId: 'run-extend-1', lineageId: 'lineage-extend-1' },
+      prevEventHash: '0'.repeat(64),
+      replay: replayMetadata('legacy-extended'),
+    };
+    const extension = {
+      addedIterations: 3, priorMaxIterations: 10, newMaxIterations: 10,
+      priorMaxDurationMinutes: 120, newMaxDurationMinutes: 420, elapsedMinutesAtExtension: 300,
+    };
+    const row = {
+      type: 'event', event: 'extended', sessionId: 'run-extend-1', generation: 2,
+      continuedFromRun: 7, extension, timestamp: '2026-11-17T00:00:00Z',
+    };
+    const migrated = upcastLegacyDeepResearchRecord(JSON.parse(JSON.stringify(row)), context);
+    if (migrated.status !== 'migrated') throw new Error(migrated.decision.reasonCode);
+    expect(migrated.targetStem).toBe('deep_research.run_extended');
+    expect(migrated.data).toMatchObject({
+      sessionId: 'run-extend-1', generation: 2, continuedFromRun: 7, extension,
+    });
+    const { extension: _dropped, ...withoutBudget } = row;
+    const refused = upcastLegacyDeepResearchRecord(JSON.parse(JSON.stringify(withoutBudget)), context);
+    expect(refused.status).toBe('refused');
   });
 
   it('upcasts legacy JSONL purely while preserving source and upcaster digests', () => {

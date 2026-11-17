@@ -162,7 +162,8 @@ function scopeFor<TStem extends DeepReviewEventStem>(
   const base = { runId: 'run-1', sessionId: 'session-1' };
   if (stem === 'deep_review.run_initialized'
     || stem === 'deep_review.run_resumed'
-    || stem === 'deep_review.run_restarted') {
+    || stem === 'deep_review.run_restarted'
+    || stem === 'deep_review.run_extended') {
     return { ...base, generation: 1 } as DeepReviewScopeMap[TStem];
   }
   if (stem === 'deep_review.protocol_plan_recorded') {
@@ -267,6 +268,18 @@ function dataFor<TStem extends DeepReviewEventStem>(
       continuedFromRunId: 'run-0',
       compatibilityDecision: 'migrate',
       recoveryReceiptRef: 'recovery-receipt-2',
+    },
+    'deep_review.run_extended': {
+      priorTailDigest: hash,
+      continuedFromRun: 7,
+      extension: {
+        addedIterations: 3,
+        priorMaxIterations: 10,
+        newMaxIterations: 10,
+        priorMaxDurationMinutes: 120,
+        newMaxDurationMinutes: 420,
+        elapsedMinutesAtExtension: 300,
+      },
     },
     'deep_review.scope_resolved': {
       targetSetDigest: hash,

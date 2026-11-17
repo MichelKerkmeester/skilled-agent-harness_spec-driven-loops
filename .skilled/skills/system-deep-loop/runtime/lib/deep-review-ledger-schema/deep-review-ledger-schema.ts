@@ -81,6 +81,7 @@ type DataFieldKind =
   | 'digest'
   | 'digest-array'
   | 'evidence-locator'
+  | 'extension-budget'
   | 'finding-counts'
   | 'gate-results'
   | 'identifier'
@@ -161,6 +162,11 @@ const DATA_FIELD_RULES = Object.freeze({
     continuedFromRunId: 'identifier',
     compatibilityDecision: COMPATIBILITY_RULE,
     recoveryReceiptRef: 'identifier',
+  },
+  'deep_review.run_extended': {
+    priorTailDigest: 'digest',
+    continuedFromRun: 'uint32',
+    extension: 'extension-budget',
   },
   'deep_review.scope_resolved': {
     targetSetDigest: 'digest',
@@ -522,6 +528,7 @@ const SCOPE_FIELDS = Object.freeze({
   'deep_review.run_initialized': ['runId', 'sessionId', 'generation'],
   'deep_review.run_resumed': ['runId', 'sessionId', 'generation'],
   'deep_review.run_restarted': ['runId', 'sessionId', 'generation'],
+  'deep_review.run_extended': ['runId', 'sessionId', 'generation'],
   'deep_review.scope_resolved': ['runId', 'sessionId'],
   'deep_review.dimension_ordered': ['runId', 'sessionId'],
   'deep_review.protocol_plan_recorded': ['runId', 'sessionId', 'protocolId'],
@@ -881,6 +888,14 @@ function isFieldValue(rule: DataFieldRule, value: unknown): boolean {
       return isReportSectionManifest(value);
     case 'run-completion-counts':
       return isRunCompletionCounts(value);
+    case 'extension-budget':
+      return isObject(value)
+        && hasExactFields(value, [
+          'addedIterations', 'priorMaxIterations', 'newMaxIterations',
+          'priorMaxDurationMinutes', 'newMaxDurationMinutes',
+          'elapsedMinutesAtExtension',
+        ])
+        && Object.values(value).every(isUint32);
     case 'semantic-fingerprint':
       return isSemanticFingerprint(value);
     case 'source-event-range':

@@ -48,6 +48,9 @@
       "decision-record.md",
       "implementation-summary.md",
       ".skilled/agents/deep-research.md",
+      "scratch/run-resumed-sites.txt",
+      "scratch/baseline.txt",
+      "scratch/confirm-branch-trace.md",
       ".skilled/commands/deep/assets/deep-research.yaml",
       ".skilled/commands/deep/assets/deep-review.yaml",
       ".skilled/commands/deep/research.md",
@@ -102,6 +105,24 @@
         "name": "deep-research.md",
         "kind": "doc",
         "path": ".skilled/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-resumed-sites.txt",
+        "kind": "file",
+        "path": "scratch/run-resumed-sites.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "confirm-branch-trace.md",
+        "kind": "doc",
+        "path": "scratch/confirm-branch-trace.md",
         "source": "derived"
       },
       {
@@ -181,29 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Event",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A completed deep-research run halts on `oncompletedsession`, and a completed deep-review run re-synthesizes but adds no iterations (defect D11)",
     "created_at": "2026-11-17T14:35:15Z",
-    "last_save_at": "2026-11-17T18:12:34.335Z",
+    "last_save_at": "2026-11-17T18:51:43.784Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +218,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:35d00d62cc75da7864b3065ecd31f0c6bdf3c23129b8bb835d683904752b7eb1",
+    "source_fingerprint": "sha256:8aa037edb1def571f77a078cf6d08c4298a44cfa05268ed4665f717e7e882248",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8357d308c194013292fedfb30f721a05cff0e8611bd85d2e856837207456bb1d",
       "plan.md": "8ee43e36580eb91d7626a7cb6437ffa38e77f2979c2f47de8677bf6db858b7bf",
-      "tasks.md": "c0c778026bb47ca19e3d192ad7de13fb1389983716da411c9b6bd0f58efd8316",
+      "tasks.md": "e0c817133d6b4518e3c1937c4f9d7996de7615a0f8e09d0cced5072b0d990686",
       "decision-record.md": "fa05ab8fc24c58bddf8f0347f5026530d43bbb17d332790d3f6239c8919f9567",
       "implementation-summary.md": "89e0a0a96fda5aac9d05ddc996b989f3193e559f83acdf1f4e1556802d149ec5"
     },

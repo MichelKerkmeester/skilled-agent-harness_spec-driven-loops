@@ -1,0 +1,51 @@
+# run_resumed handler inventory (T001), worktree HEAD 21c4b325b5a
+
+## rg -n 'run_resumed' .skilled/skills/system-deep-loop/runtime .skilled/skills/system-deep-loop/deep-research/scripts (excluding node_modules, dist)
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts:149:  'deep_review.run_resumed': {
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts:523:  'deep_review.run_resumed': ['runId', 'sessionId', 'generation'],
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:573:  'deep_review.run_resumed',
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:621:  'deep_review.run_resumed': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:658:  'deep_review.run_resumed': 'deep-review.ledger.run-resumed',
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:698:  readonly 'deep_review.run_resumed': RunResumedData;
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:735:  readonly 'deep_review.run_resumed': DeepReviewGenerationScope;
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:33:  resumed: 'deep_research.run_resumed',
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:601:    case 'deep_research.run_resumed':
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:263:  'deep_research.run_resumed': {
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:741:  'deep_research.run_resumed': ['runId', 'lineageId'],
+.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts:272:      } else if (stem === 'deep_research.run_resumed') {
+.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts:138:      } else if (stem === 'deep_review.run_resumed') {
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts:104:  'deep_review.run_resumed': Object.freeze(['status']),
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts:493:  if (event.payload.stem === 'deep_review.run_resumed'
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts:709:    case 'deep_review.run_resumed':
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts:1417:    case 'deep_review.run_resumed':
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts:1615:    case 'deep_review.run_resumed':
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts:688:  'deep_research.run_resumed',
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts:760:  'deep_research.run_resumed': { status: 'reserved', reason: 'No writer emits it today: resume rebuilds the flat config and state in place. The resume step would speak it once a resumed run records its compatibility decision as an event.' },
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts:821:  'deep_research.run_resumed': 'deep-research.ledger.run-resumed',
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts:885:  readonly 'deep_research.run_resumed': RunResumedData;
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts:946:  readonly 'deep_research.run_resumed': DeepResearchBaseScope;
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts:106:  'deep_research.run_resumed': Object.freeze(['run', 'status']),
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts:501:    case 'deep_research.run_resumed': {
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts:502:      const payload = payloadFor(event, 'deep_research.run_resumed');
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts:1338:    case 'deep_research.run_resumed':
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts:1432:    case 'deep_research.run_resumed':
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts:1899:    case 'deep_research.run_resumed':
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts:164:    || stem === 'deep_review.run_resumed'
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts:255:    'deep_review.run_resumed': {
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reducers.vitest.ts:1151:    const resumed = createEvent('deep_research.run_resumed', 7, baseScope(), {
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts:308:    'deep_research.run_resumed': {
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts:925:      ['deep_research.run_resumed', 2, 'recoveryReceiptRef'],
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts:944:        'deep_research.run_resumed',
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts:1032:      ['deep_research.run_resumed', 2, 'sourceLineageId', overlongProse],
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts:1033:      ['deep_research.run_resumed', 2, 'resumeReason', overlongProse],
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts:1077:      eventInputWithDataField('deep_research.run_resumed', 2, 'topic', 'not a resume field'),
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts:1174:      ['deep_research.run_resumed', 'resumeReason', 'Resume after an operator-approved pause.'],
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-contract.vitest.ts:174:        'deep_review.run_resumed',
+.skilled/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts:239:      'deep_review.run_resumed',
+
+## rg -n "'resumed'|'restarted'" reduce-state.cjs (both)
+.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2245:    .filter((record) => record.event === 'resumed' || record.event === 'restarted')
+.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2294:    records.findLastIndex((record) => record?.type === 'event' && (record?.event === 'resumed' || record?.event === 'restarted')),
+.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:497:    .filter((record) => record?.type === 'event' && (record?.event === 'resumed' || record?.event === 'restarted'))
+.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:549:    if (record.event === 'resumed' || record.event === 'restarted') {
+.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:591:    } else if (record.event === 'resumed' || record.event === 'restarted' || record.event === 'synthesis_complete') {

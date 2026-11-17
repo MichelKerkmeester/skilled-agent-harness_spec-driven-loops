@@ -192,6 +192,26 @@ export interface RunRestartedData extends JsonObject {
   readonly recoveryReceiptRef: string;
 }
 
+// An operator extension raises the iteration and time budgets of a run that is
+// already under way. The budget spent at extension time is recorded beside the
+// old and new ceilings, so a projection can tell a raised limit from the one the
+// run started with. Run identity travels in the scope, so the payload carries
+// the budget alone.
+export interface RunExtensionBudget extends JsonObject {
+  readonly addedIterations: Uint32;
+  readonly priorMaxIterations: Uint32;
+  readonly newMaxIterations: Uint32;
+  readonly priorMaxDurationMinutes: Uint32;
+  readonly newMaxDurationMinutes: Uint32;
+  readonly elapsedMinutesAtExtension: Uint32;
+}
+
+export interface RunExtendedData extends JsonObject {
+  readonly priorTailDigest: Digest;
+  readonly continuedFromRun: Uint32;
+  readonly extension: RunExtensionBudget;
+}
+
 export interface ScopeResolvedData extends JsonObject {
   readonly targetSetDigest: Digest;
   readonly scopeClass: 'bounded' | 'repository' | 'targeted';
@@ -572,6 +592,7 @@ export const DeepReviewEventStems = Object.freeze([
   'deep_review.run_initialized',
   'deep_review.run_resumed',
   'deep_review.run_restarted',
+  'deep_review.run_extended',
   'deep_review.scope_resolved',
   'deep_review.dimension_ordered',
   'deep_review.protocol_plan_recorded',
@@ -620,6 +641,7 @@ export const DEEP_REVIEW_STEM_PRODUCERS = Object.freeze({
   'deep_review.run_initialized': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
   'deep_review.run_resumed': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
   'deep_review.run_restarted': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
+  'deep_review.run_extended': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
   'deep_review.scope_resolved': { status: 'reserved', reason: 'No writer emits it today: scope lives in workflow step text. A scope step would speak it once selected and omitted targets are appended with their digests.' },
   'deep_review.dimension_ordered': { status: 'reserved', reason: 'No writer emits it today: dimension order is computed in the workflow. An ordering step would speak it once the order and its policy version are appended.' },
   'deep_review.protocol_plan_recorded': { status: 'reserved', reason: 'No writer emits it today: the protocol plan is an operator-facing asset. A plan step would speak it once protocol selection and its contract digest are appended.' },
@@ -657,6 +679,7 @@ export const DeepReviewWireEventTypes = Object.freeze({
   'deep_review.run_initialized': 'deep-review.ledger.run-initialized',
   'deep_review.run_resumed': 'deep-review.ledger.run-resumed',
   'deep_review.run_restarted': 'deep-review.ledger.run-restarted',
+  'deep_review.run_extended': 'deep-review.ledger.run-extended',
   'deep_review.scope_resolved': 'deep-review.ledger.scope-resolved',
   'deep_review.dimension_ordered': 'deep-review.ledger.dimension-ordered',
   'deep_review.protocol_plan_recorded': 'deep-review.ledger.protocol-plan-recorded',
@@ -697,6 +720,7 @@ export interface DeepReviewPayloadMap {
   readonly 'deep_review.run_initialized': RunInitializedData;
   readonly 'deep_review.run_resumed': RunResumedData;
   readonly 'deep_review.run_restarted': RunRestartedData;
+  readonly 'deep_review.run_extended': RunExtendedData;
   readonly 'deep_review.scope_resolved': ScopeResolvedData;
   readonly 'deep_review.dimension_ordered': DimensionOrderedData;
   readonly 'deep_review.protocol_plan_recorded': ProtocolPlanRecordedData;
@@ -734,6 +758,7 @@ export interface DeepReviewScopeMap {
   readonly 'deep_review.run_initialized': DeepReviewGenerationScope;
   readonly 'deep_review.run_resumed': DeepReviewGenerationScope;
   readonly 'deep_review.run_restarted': DeepReviewGenerationScope;
+  readonly 'deep_review.run_extended': DeepReviewGenerationScope;
   readonly 'deep_review.scope_resolved': DeepReviewBaseScope;
   readonly 'deep_review.dimension_ordered': DeepReviewBaseScope;
   readonly 'deep_review.protocol_plan_recorded': DeepReviewProtocolScope;
