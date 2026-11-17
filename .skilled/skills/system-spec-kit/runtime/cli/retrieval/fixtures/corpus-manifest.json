@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4f9501d74b4bce6ed85209667d7e162fe4cc6f393c4935f2472b52e14196345f",
+  "corpusHash": "e77a871ea90031f2f98dfcd1846325ccbf99ef56ceabb21e78eb7d9cbeced79c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28280,
+  "includedPathCount": 28285,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6777,6 +6777,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.2.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.3.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.4.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.6.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
@@ -16292,6 +16293,10 @@
     "specs/sk-doc/document-standards/003-changelog-system/008-spec-line-position-gates/plan.md",
     "specs/sk-doc/document-standards/003-changelog-system/008-spec-line-position-gates/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/008-spec-line-position-gates/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default/tasks.md",
     "specs/sk-doc/document-standards/003-changelog-system/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/timeline.md",
     "specs/sk-doc/document-standards/004-security-policy-alignment/goal.md",
@@ -28312,7 +28317,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "909d17c401984497ae11e73d38b284bdf04ec77bd8c6e42cd11bc04d84a72d1f",
+  "manifestHash": "5a8a76954965ac6bc27a1581510a1b72f463e507b57dedc92c0f0aad2ede930b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -35200,6 +35205,10 @@
     },
     {
       "path": "specs/sk-doc/document-standards/003-changelog-system/008-spec-line-position-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default/scratch",
       "reason": "excluded directory"
     },
     {
