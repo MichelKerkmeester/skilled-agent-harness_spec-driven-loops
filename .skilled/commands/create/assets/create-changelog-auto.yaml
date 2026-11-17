@@ -285,10 +285,13 @@ changelog_template:
   #
   # It defines TWO narrative formats:
   #   1. COMPACT - for releases with fewer than 10 changes and no breaking change
-  #      Uses: summary narrative -> ## What's New at a Glance bullets -> ## Upgrade
+  #      Uses: summary paragraph -> ## What's New at a Glance short bullets -> ## Upgrade
+  #            -> the spec-folder line, after an &nbsp; line
   #   2. EXPANDED - for 10+ changes, a major bump, or any breaking change
-  #      Uses: opening narrative -> Why This Release -> What's New at a Glance ->
-  #            topical H2 sections with H4 benefit-led story items -> Upgrade Notes
+  #      Uses: opening lead sentences with short bullets -> [!IMPORTANT] break box ->
+  #            Why This Release -> What's New at a Glance table -> topical H2 sections
+  #            with H4 items of short bullets -> How It Was Checked -> Upgrade Notes
+  #            -> the spec-folder line or folded list, after an &nbsp; line
   #
   # FORMAT SELECTION:
   #   - Count the changes in work_context
@@ -304,13 +307,16 @@ changelog_template:
   #   - No Files Changed, test-metric or schema tables unless the numbers
   #     themselves are the story
   #   - Benefit-led H4 headings, 2-7 words for most and 10 at most
-  #   - At-a-glance bullets open with a bold lead-in sentence
+  #   - Short bullets prevail, under one or two short paragraphs per section
+  #   - No bold text outside a folded block's summary header
+  #   - One source line per paragraph and bullet: a release page turns each
+  #     newline into a line break
   #   - No Oxford commas, em dashes, or semicolons
   #
-  # Model entries: .skilled/changelog/skilled/v4.0.1.0.md for length, selection
-  # and a release with many changes, and .skilled/changelog/skilled/v4.0.0.0.md
-  # for voice and how a major release opens. Length comes from the template's
-  # ceilings, never from either entry.
+  # Model entries: .skilled/changelog/skilled/v4.0.2.1.md for the layout,
+  # .skilled/changelog/skilled/v4.0.1.0.md for selection and
+  # .skilled/changelog/skilled/v4.0.0.0.md for voice and how a major release
+  # opens. Length comes from the template's ceilings, never from an entry.
   # Read the template file at Step 4 before generating content.
   # ─────────────────────────────────────────────────────────────────
   template_file: ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md"
@@ -542,7 +548,7 @@ workflow:
             breaks ties in and follow-on housekeeping
             (docs brought in line, regenerated copies, rebuilt indexes, refreshed metadata or versions)
           To get under a ceiling, cut at the H4 level: fold an item into a sibling, move it into the section's
-            Smaller Fixes list or drop it. Never drop a whole section
+            Smaller fixes block or drop it. Never drop a whole section
       - |
         SELECT FORMAT based on the changes that survive SELECT CONTENT and the release type:
           IF change_count < 10 AND change_type != major AND no breaking change -> COMPACT format
@@ -565,34 +571,41 @@ workflow:
             Use spec.md title + implementation-summary.md first paragraph
           IF source_type = component or git_history:
             Synthesize from commit messages and changed files
-          Compact: 1-2 sentences, 3 at most. Expanded: an opening narrative of 1-3 paragraphs, 5 at most, told at the level of themes.
+          Compact: one paragraph of 1-2 sentences, 3 at most.
+          Expanded: two to four parts, 5 at most, told at the level of themes. Each part is one lead sentence and 2-4 short bullets.
+          With a breaking change, end the opening with a > [!IMPORTANT] box: one numbered line per break, linked to its item anchor.
+          Write every paragraph and bullet as one source line.
           Lead with WHY, not technical stats.
       - |
         Generate BODY using selected format:
 
           COMPACT FORMAT:
             ## What's New at a Glance
-            - **{The change, stated as a short sentence.}** {One or two short plain sentences that add what the bold one does not say.}
+            - {One change, as one short sentence.}
 
-          EXPANDED FORMAT:
+          EXPANDED FORMAT (the layout of .skilled/changelog/skilled/v4.0.2.1.md):
             ## Why This Release
+              {One short paragraph on the gap}, then one short bullet per gap
             ## What's New at a Glance
-              - **{The theme, stated as a short sentence.}** {One or two short plain sentences that add what the bold one does not say.} <!-- section: {Topical Domain} -->
-              (one bullet per theme, tagged with the topical section it summarizes, in section order)
+              | Change | What It Means | Section |
+              | [{The change, as a short phrase}](#c-{item-slug}) | {One short sentence} | {Topical Domain} |
+              (one row per change, the Section cell spelled as its H2, rows in section order)
             ## {Topical Domain}
-              #### {Benefit-led heading, usually 2-7 words}
-              {One paragraph of short sentences, about 60 words, or two when the item needs it: what was broken, what changed, why it matters. Start where the glance bullet stopped}
-              (inline **Breaking:** markers where a change breaks something)
-              #### Smaller Fixes
-              - **{The fix.}** {One sentence on what the reader now sees.}
-              (optional: group visible fixes that share a section rather than giving each one a heading, last in that section)
+              {One or two short paragraphs: what this area does and what changed in it}
+              #### {Benefit-led heading, usually 2-7 words} <a id="c-{item-slug}"></a>
+              - {Short bullet: one fact, about 8 words}
+              (bullets only, 3-8 of them; one shows a real line of output or a command in code)
+              (a > [!WARNING] box inside the item where a change breaks something, with the exact step)
+              <details> / <summary><b>Smaller fixes</b></summary> / one bullet per fix / </details>
+              (optional, last in its section, a blank line after the summary line and before </details>)
             ## How It Was Checked
-              #### Before and After
+              {One short paragraph}
+              #### Before and After <a id="c-before-and-after"></a>
               (a table of real commands or questions: what each returned before and what it returns now)
-              #### Tests and Scenarios
-              - **{The suite passes.}** {How many tests passed and how many failed.}
-              (required in an expanded entry, last before Upgrade Notes; add the measured cost when there is one)
+              (folded blocks: What it costs, then Tests and scenarios with how many passed and failed)
+              (required in an expanded entry, last before Upgrade Notes)
             In the last body section, one sentence names every component and mode with its own changelog entry for this release
+            Bold text appears only in a folded block's summary header. Code spans hold every file, path, command, flag, setting and output line
 
           Expanded ceilings (template section 4, enforced by shape_check in Step 5):
             22 words a sentence, 10 words a sentence on average
@@ -624,11 +637,12 @@ workflow:
           component/git: commit messages, merged by the effect each change has for the reader
       - |
         Generate UPGRADE section:
-          IF breaking changes -> Upgrade Notes, one bullet per action in section order, each led in bold by the reader's situation
-            (a note about the release as a whole goes first, and a retirement's note sits with the section that names its replacement)
+          IF breaking changes -> Upgrade Notes: one short paragraph, then #### Before You Start with numbered steps every reader takes,
+            then one folded <details> group per topical section, in section order, with one bullet per action
           IF no migration needed -> "No migration required."
           List only the actions, one line each, never why the change was made
           Compact format uses "## Upgrade"; expanded format uses "## Upgrade Notes".
+          Close the entry with an &nbsp; line and the spec-folder line. Several folders fold into a Spec folders ({N}) details block
       - |
         IF entry_mode == "extend":
           Read the open entry at open_entry_path first; it is the base, not the template
@@ -636,8 +650,8 @@ workflow:
           IF the open entry is compact and the merged changes reach the expanded threshold (SELECT FORMAT above), convert it to the expanded format
           Fold the selected changes into it rather than generating a second entry:
             Add a topical H2 section, or H4 items under an existing section the change belongs to
-            Add one glance bullet per new theme, with its section tag, in section order
-            Add the spec folder to the spec-folder line and any action to Upgrade Notes
+            Add one glance row per new change, in section order, linked to the new item's anchor
+            Add any break to the important box, the spec folder to the spec-folder list and any action to Upgrade Notes
             Widen the opening and Why This Release only enough to name the new theme
             Keep the title and frontmatter unless the new work changes the headline
             Correct any existing sentence the new work makes untrue
@@ -656,13 +670,14 @@ workflow:
         FORMAT CHECKS:
           [ ] Frontmatter block carries title, description, trigger_phrases, importance_tier and contextType in contract order
           [ ] trigger_phrases holds both identity phrases for the target path and at least one topic phrase
-          [ ] Prose starts with the summary narrative after the frontmatter block and any editorial title H1 (a bare version header may not precede it)
+          [ ] Prose starts with the summary or the opening lead sentences after the frontmatter block and any editorial title H1 (a bare version header may not precede it)
           [ ] Spec folder blockquote present when source is a spec folder, closing the entry after the last section and an &nbsp; line and carrying the path only
           [ ] Summary narrative present (non-empty, leads with why)
-          [ ] At-a-glance section present with bold lead-in bullets
-          [ ] Expanded: Why This Release, topical H2 sections with H4 items, Upgrade Notes
+          [ ] At-a-glance section present: short bullets compact, a Change / What It Means / Section table expanded
+          [ ] Expanded: Why This Release, topical H2 sections with anchored H4 items, Upgrade Notes, and an important box when anything breaks
           [ ] No Files Changed / Test Impact / Schema Changes default sections
-          [ ] An &nbsp; line before every H2 (opening, Why This Release, What's New at a Glance and every later section), nothing between H4 items, no --- rule in the body
+          [ ] An &nbsp; line before every H2 (opening, Why This Release, What's New at a Glance and every later section) and before the spec-folder block, no --- rule in the body
+          [ ] Every paragraph, bullet and alert line is one source line, with no trailing-space or backslash break
       - |
         VERSION CHECKS:
           [ ] Version follows 4-segment format (MAJOR.MINOR.PATCH.BUILD)
@@ -674,9 +689,9 @@ workflow:
             [ ] No release tag v{next_version} exists yet
       - |
         CONTENT CHECKS:
-          [ ] Compact summary near 60 words, expanded opening within 5 paragraphs, short sentences preferred
-          [ ] Each at-a-glance bullet opens with a bold lead-in sentence
-          [ ] H4 headings 10 words at most, H4 items one paragraph, two only for a breaking change or the coverage sentence
+          [ ] Compact summary near 60 words, expanded opening within 5 parts, short sentences preferred
+          [ ] Short bullets outnumber paragraphs, and no bold text sits outside a folded block's summary header
+          [ ] H4 headings 10 words at most, H4 items short bullets with no paragraph, each break in a > [!WARNING] box
           [ ] Omission rules applied (no file inventories, process detail or housekeeping items, no test counts outside How It Was Checked)
           [ ] Each new feature says how it works, every fix is named and an expanded entry carries How It Was Checked
           [ ] No internal labels outside the spec-folder line

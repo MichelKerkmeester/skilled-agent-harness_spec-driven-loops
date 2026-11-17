@@ -2,7 +2,7 @@
 name: sk-create-changelog
 description: Author global component changelogs in the v4 narrative style, with placement, versioning, lean content and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.5.4.0
+version: 1.6.0.0
 ---
 
 # create-changelog
@@ -97,17 +97,24 @@ Existing packet-local files such as `changelog-<packet>-root.md` stay where they
 
 ## 5. CHANGELOG FORMAT CONTRACT
 
-Read `assets/changelog-template.md` before generating global content. It owns the compact and expanded shapes (section 2), what to leave out and the say-it-once rule (section 3), voice and length (section 4) and format selection (section 5). Every entry must read in the voice and section shape of the three model entries, at whatever length the template's ceilings allow. `.skilled/changelog/skilled/v4.0.2.1.md` models sentence length, plain words, feature detail and the testing section. `.skilled/changelog/skilled/v4.0.1.0.md` models selection and a release with many changes, and `.skilled/changelog/skilled/v4.0.0.0.md` models voice and how a major release opens.
+Read `assets/changelog-template.md` before generating global content. It owns the compact and expanded shapes (section 2), what to leave out and the say-it-once rule (section 3), voice and length (section 4) and format selection (section 5). Every entry must read in the layout of `.skilled/changelog/skilled/v4.0.2.1.md`, at whatever length the template's ceilings allow. That entry also models sentence length, plain words, feature detail and the testing section. `.skilled/changelog/skilled/v4.0.1.0.md` models selection, and `.skilled/changelog/skilled/v4.0.0.0.md` models voice and how a major release opens. Neither of those two is a layout model.
 
 The contract in one pass:
 
-1. Frontmatter first, then an optional editorial title H1, then the summary narrative. No version header, backlink or version-date line.
-2. Compact under 10 reader-visible changes when the release is neither major nor breaking: summary, `## What's New at a Glance` and `## Upgrade`, with `## Why This Release` only when the summary does not say why.
-3. Expanded for 10 or more changes, a major bump or any breaking change: opening narrative, `## Why This Release`, `## What's New at a Glance`, topical H2 sections with benefit-led H4 items, `## How It Was Checked` and `## Upgrade Notes`.
-4. A spec-folder blockquote, ``> Spec folder: `{path}` ``, when the release has a spec folder. It closes the entry, after the last section and an `&nbsp;` line. It carries the path only, and the level stays in the packet.
+1. Frontmatter first, then an optional editorial title H1, then the opening. No version header, backlink or version-date line.
+2. Compact under 10 reader-visible changes when the release is neither major nor breaking: a one-paragraph summary, `## What's New at a Glance` as short bullets and `## Upgrade`, with `## Why This Release` only when the summary does not say why.
+3. Expanded for 10 or more changes, a major bump or any breaking change:
+   - an opening of two to four lead sentences, each with short bullets, then a `> [!IMPORTANT]` box listing every break.
+   - `## Why This Release`, then `## What's New at a Glance` as a table of Change, What It Means and Section.
+   - topical H2 sections, each opened by one or two short paragraphs, with benefit-led H4 items of short bullets.
+   - each H4 ending in an `<a id="c-{item-slug}"></a>` anchor the glance table links to.
+   - `> [!WARNING]` boxes where a change breaks something and a folded Smaller fixes block last in a section.
+   - `## How It Was Checked` with its costs and tests folded, and `## Upgrade Notes` with numbered steps and folded groups.
+4. A spec-folder blockquote, ``> Spec folder: `{path}` ``, when the release has a spec folder. It closes the entry, after the last section and an `&nbsp;` line. It carries the path only, and the level stays in the packet. Several folders fold into a `<details>` block headed `Spec folders ({N})`.
 5. Content chosen by reader impact and each fact said once. No file or schema tables unless the numbers are the story.
 6. Detail by default, with no request needed. Each new feature says how it works and shows a real line of output. Every fix a reader could run into is named. `## How It Was Checked` gives the before and after, the cost and the tests that ran.
-7. Short sentences in plain words: about 8 words each, none past 22 and 10 at most on average.
+7. Short sentences in plain words: about 8 words each, none past 22 and 10 at most on average. Short bullets outnumber paragraphs.
+8. One source line per paragraph, bullet and alert line, because a GitHub release page turns every newline into a line break.
 
 When a source such as an older command snippet conflicts with the template, follow the template, write the narrative format and record the mismatch rather than inventing a hybrid.
 
@@ -203,10 +210,10 @@ python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <comp
    - Explain how each new feature works, step by step, and quote one real line of its output. Name every fix a reader could run into.
    - Write `## How It Was Checked` from evidence the source records: the before and after of a real command, the measured cost and each suite's result. Run the command when the source lacks its output. Never write a number that no run produced, and say so when something was not measured.
    - Write short sentences in everyday words (template section 4). Split a long sentence rather than cut its fact.
-   - Lead with why the release matters. Outside How It Was Checked, add a table only when its numbers are the story.
+   - Lead with why the release matters. Beyond the glance table and the before-and-after table, add a table only when its numbers are the story.
    - Order the opening, the glance list, the topical sections and the upgrade notes by what matters most to the reader, never by when the work landed.
    - When extending an open release, read the entry first and fold the new work into it.
-     Add its section or H4 items, a glance bullet in section order, its spec folder on the spec-folder line and any upgrade action.
+     Add its section or H4 items with their anchors, a glance row in section order, any break to the important box, its spec folder to the spec-folder list and any upgrade action.
      Widen the opening and Why This Release only enough to cover the new theme, keep the title unless the new work changes the headline, and correct any existing sentence the new work makes untrue.
      When the new work matters more to a reader than what the entry leads with, retitle the entry and re-rank its sections, so the release still opens on its most important change.
 5. **Validate quality.** Run the section 9 checks on the draft. For a new entry, confirm the version is strictly greater than the latest one and no file exists at the target. For an extension, confirm the target is the open entry. Confirm every path the entry names exists. Apply the cut test (template section 3), fix what is safe and revalidate.
@@ -227,7 +234,12 @@ The voice, structure, omission and length rules live in `assets/changelog-templa
 1. Write for a smart person who is not a developer, and lead with why the release matters.
 2. Keep what the reader would notice or act on, how each feature works, every fix and the evidence in How It Was Checked. Drop file inventories, test counts outside that section, internal labels, process detail and follow-on housekeeping, and compress reverted work to one story sentence or nothing.
 3. Say each fact once, in the section whose job it is.
-4. Bold lead-in sentences on glance bullets, a trailing `<!-- section: {Topical Domain} -->` comment on each one in an expanded entry, H4 item headings of 2-7 words (10 at most), an `&nbsp;` line before every H2 (the opening, Why This Release, What's New at a Glance and every later section), nothing between H4 items, no `---` rule in the body and inline `**Breaking:**` markers.
+4. In an expanded entry:
+   - a glance table whose Section column names each topical H2, in section order.
+   - H4 item headings of 2-7 words (10 at most), each ending in an `<a id="c-{item-slug}"></a>` anchor.
+   - `> [!WARNING]` boxes where a break is described, and one `> [!IMPORTANT]` box listing every break.
+   - folded `<details>` blocks with a `<summary><b>…</b></summary>` header, the only bold text.
+   - an `&nbsp;` line before every H2 and before the closing spec-folder block, and no `---` rule in the body.
 5. No Oxford commas, em dashes or semicolons, per the Human Voice Rules.
 6. Short sentences in everyday words. No sentence runs past 22 words and the entry averages 10 at most.
 
@@ -282,14 +294,14 @@ Global changelog checks:
 1. The target is `.skilled/changelog/{component}/v{VERSION}.md` in an existing folder, and no file exists at that path. Extending an open `skilled` release is the one exception: the target is that release's existing entry.
 2. The version follows `vX.Y.Z.B` and is strictly greater than the latest one in the folder, counting its generation folders. An extension keeps the open release's version.
 3. The frontmatter carries `title`, `description`, `trigger_phrases`, `importance_tier` and `contextType` in contract order, with both identity phrases for the target path and at least one topic phrase. `validate_document.py` blocks an entry whose block, keys or phrases are missing.
-4. The prose opens with the summary narrative, and the spec-folder blockquote closes the entry when the source is a spec folder, after the last section and an `&nbsp;` line.
+4. The prose opens with the summary or the opening lead sentences, and the spec-folder blockquote closes the entry when the source is a spec folder, after the last section and an `&nbsp;` line.
 5. The tier's sections are present: compact carries the summary, `## What's New at a Glance` and `## Upgrade`. Expanded carries the opening narrative, `## Why This Release`, `## What's New at a Glance`, at least one topical H2 with H4 items, `## How It Was Checked` and `## Upgrade Notes`.
 6. No Files Changed, Test Impact or Schema Changes section. Any table outside How It Was Checked passes the earned-evidence rule.
 7. Omission applied: no file inventories, process detail or housekeeping items, and no test counts outside How It Was Checked. No internal labels (task, requirement, scenario or finding IDs, packet or phase numbers) appear outside the spec-folder line.
-8. Each fact appears once: no sentence restates one from another section, and each glance bullet adds something the summary did not.
-9. The template's ceilings hold: opening within 5 paragraphs, prose near its word budgets (guidance, counted in words, never sentences), glance bullets one line each and H4 headings within 10 words. No line, H4 item or glance bullet ceiling applies.
+8. Each fact appears once: no sentence restates one from another section, and each glance row adds something the opening did not.
+9. The template's ceilings hold: opening within 5 parts, prose near its word budgets (guidance, counted in words, never sentences), glance rows one line each and H4 headings within 10 words. Every paragraph and bullet is one source line. No line, H4 item or glance row ceiling applies.
 10. H4 headings are benefit-led and never numbered or sentence-length, and no H3 sits inside a topical section.
-11. `scripts/check_changelog_shape.py` passes the draft. It fails tagged glance bullets out of section order, a spec-folder line with a level label and a spec-folder line that does not close the entry after an `&nbsp;` line. It also fails a sentence past 22 words, an average past 10 words a sentence and an expanded entry with no `## How It Was Checked`.
+11. `scripts/check_changelog_shape.py` passes the draft. It fails glance rows or tagged glance bullets out of section order, a spec-folder line with a level label and a spec-folder line that does not close the entry after an `&nbsp;` line. It also fails a sentence past 22 words, an average past 10 words a sentence and an expanded entry with no `## How It Was Checked`.
 
 Voice gate, run on the draft before writing:
 
@@ -301,12 +313,13 @@ The scan must report zero hard blockers (banned punctuation or words).
 Deductions below that threshold are acceptable.
 If the scanner is unavailable, apply the rules by hand and record that the scan was skipped.
 Structural checks complement it:
-- bold lead-ins on glance bullets.
+- a glance table with a Section column, and item anchors its links resolve to.
 - an `&nbsp;` line before every H2.
-- nothing between H4 items.
+- no bold text outside a folded block's summary header.
 - no `---` rule in the body.
 - no `**Problem:**`/`**Fix:**` labels.
-- inline `**Breaking:**` markers.
+- `> [!WARNING]` boxes in place of inline breaking markers.
+- no paragraph or bullet wrapped across source lines.
 
 Shape gate, run on the draft before writing:
 
@@ -314,7 +327,7 @@ Shape gate, run on the draft before writing:
 python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py <draft-file>
 ```
 
-Exit 1 prints one line per broken rule and blocks the write. Cut at the H4 level (template section 3) and run it again. The order rule is skipped, with a note, when no glance bullet carries a section tag.
+Exit 1 prints one line per broken rule and blocks the write. Cut at the H4 level (template section 3) and run it again. The order rule is skipped, with a note, when no glance row or bullet names a section.
 
 After writing, run the shared markdown checks:
 
@@ -383,7 +396,7 @@ The workflow succeeds when:
 
 1. The file lands at its global component path, and a `--nested` request is refused with a global entry offered instead.
 2. Global versioning is sequential, unique and four-part, and an untagged `skilled` release is extended rather than followed by a second untagged entry.
-3. The entry follows the template's compact or expanded shape and reads in the v4 style: why first, benefit-led headings, short plain sentences, how each feature works, every fix, the evidence in How It Was Checked and each fact said once.
+3. The entry follows the template's compact or expanded shape in the v4.0.2.1 layout: why first, short bullets under short paragraphs, benefit-led headings, short plain sentences, how each feature works, every fix, the evidence in How It Was Checked and each fact said once.
 4. A release body uses the entry and appends the full changelog path, and a published release never shows older text than its entry.
 5. Validation passes, or the remaining issue is escalated with exact evidence.
 6. No other file changes unless the user asked for it.

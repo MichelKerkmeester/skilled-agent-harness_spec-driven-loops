@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default",
+  "description": "Make the v4.0.2.1 release-notes layout the default changelog template and close the open changelog battery findings",
+  "keywords": [
+    "release-notes",
+    "layout",
+    "default",
+    "changelog",
+    "template",
+    "close",
+    "open",
+    "battery",
+    "findings"
+  ],
+  "lastUpdated": "2026-11-17T16:57:21.475Z",
+  "specId": "009",
+  "folderSlug": "release-notes-layout-default",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

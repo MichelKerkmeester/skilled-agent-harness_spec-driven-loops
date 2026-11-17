@@ -9,7 +9,7 @@ holds the same numbers, so a change to one is a change to both.
 
 Six rules, each an error:
 
-  glance-order  tagged glance bullets follow the order of the sections they name
+  glance-order  glance rows and tagged bullets follow the order of the sections they name
   spec-line     the spec-folder line carries paths only, never a "(Level N)" label
   spec-position the spec-folder line closes the entry, after an "&nbsp;" line
   checked-section  an expanded entry carries a "How It Was Checked" section
@@ -17,13 +17,18 @@ Six rules, each an error:
   sentence-mean the prose averages at most 10 words a sentence
 
 The sentence rules read prose only: paragraphs and bullets, with headings,
-tables, quoted lines and fenced code left out. An inline code span counts as
+tables, quoted lines, HTML tag lines and fenced code left out. An inline code span counts as
 one word, because a reader takes a command or a path in as one thing.
 
-The order check reads the section each glance bullet names, from a trailing
-"<!-- section: Topical Domain -->" comment or a visible "(Topical Domain)" tag
-after its bold lead-in. An entry whose bullets carry no tag skips it, because without a
-tag a bullet does not say which section it summarizes.
+The order check reads the section each glance row names. The default glance is
+a table whose "Section" column names the H2, one row per change. An older entry
+uses bullets that end in a "<!-- section: Topical Domain -->" comment or carry a
+visible "(Topical Domain)" tag after the bold lead-in. An entry whose rows and
+bullets name no section skips the check, because nothing says which section a
+line summarizes.
+
+The spec-folder line may sit inside a closing <details> block, so the entry ends
+"&nbsp;", "<details>", "<summary>", the line, "</details>".
 
 Usage: check_changelog_shape.py <entry.md> [<entry.md> ...]
 Exit codes: 0 every entry passes, 1 an entry breaks a rule, 2 a usage or read error
@@ -61,7 +66,12 @@ def glance_tag(line):
     return match.group(1).strip() if match else None
 SPEC_LINE = re.compile(r"^>\s*Spec folders?:", re.IGNORECASE)
 LEVEL_LABEL = re.compile(r"\(\s*Level\b[^)]*\)", re.IGNORECASE)
-NOT_PROSE = re.compile(r"^\s*(#|>|\||&nbsp;\s*$)")
+NOT_PROSE = re.compile(r"^\s*(#|>|\||&nbsp;\s*$|<.*>\s*$)")
+# A details block's own tag lines may sit between the spec-folder line and the
+# "&nbsp;" line before it, or after the line, without the line losing its place.
+DETAILS_TAG = re.compile(r"^\s*(</?details>|<summary>.*</summary>)\s*$", re.IGNORECASE)
+TABLE_RULE = re.compile(r"^\s*\|?\s*:?-{3,}")
+LINK_TEXT = re.compile(r"\[([^\]]*)\]\([^)]*\)")
 COMMENT = re.compile(r"<!--.*?-->")
 CODE_SPAN = re.compile(r"`[^`\n]*`")
 # A closing quote or bracket after the stop belongs to the sentence it ends.
@@ -101,20 +111,40 @@ def outside_fences(lines, offset):
             yield number, line
 
 
+def table_cells(line):
+    """Split a table row into its cell texts, with links read as their text."""
+    cells = line.strip().strip("|").split("|")
+    return [LINK_TEXT.sub(r"\1", cell).strip() for cell in cells]
+
+
 def read_shape(lines, offset):
-    """Collect the headings, glance bullets and spec lines the rules read."""
+    """Collect the headings, glance rows and spec lines the rules read.
+
+    Each glance entry is (line_number, section_name_or_None): a table row's
+    "Section" cell, or a bullet's tag.
+    """
     shape = {"h2": [], "h4": 0, "glance": [], "spec": []}
-    current = None
+    current, section_column = None, None
     for number, line in outside_fences(lines, offset):
         heading = H2.match(line)
         if heading:
             current = heading.group(1).strip()
             shape["h2"].append(current)
+            section_column = None
             continue
+        in_glance = current and current.lower() == GLANCE_SECTION
         if H4.match(line):
             shape["h4"] += 1
-        elif current and current.lower() == GLANCE_SECTION and BULLET.match(line):
-            shape["glance"].append((number, line))
+        elif in_glance and BULLET.match(line):
+            shape["glance"].append((number, glance_tag(line)))
+        elif in_glance and line.lstrip().startswith("|") and not TABLE_RULE.match(line):
+            cells = table_cells(line)
+            if section_column is None:
+                lowered = [cell.lower() for cell in cells]
+                section_column = lowered.index("section") if "section" in lowered else -1
+            elif section_column >= 0:
+                name = cells[section_column] if section_column < len(cells) else ""
+                shape["glance"].append((number, name or None))
         if SPEC_LINE.match(line):
             shape["spec"].append((number, line))
     return shape
@@ -166,7 +196,7 @@ def is_expanded(shape):
 
 def check_glance_order(shape):
     """Return (violations, skipped) for the tagged-bullet order rule."""
-    tags = [(number, glance_tag(line)) for number, line in shape["glance"]]
+    tags = shape["glance"]
     if not any(name for _, name in tags):
         return [], True
 
@@ -176,7 +206,7 @@ def check_glance_order(shape):
     last_index, last_name = -1, None
     for number, name in tags:
         if not name:
-            violations.append(f"line {number}: the bullet has no section tag, and every other bullet does")
+            violations.append(f"line {number}: the glance line names no section, and every other line does")
             continue
         index = position.get(name.lower())
         if index is None:
@@ -194,9 +224,9 @@ def check_spec_position(lines, offset, spec):
     """Return violations for spec-folder lines that do not close the entry.
 
     A reader meets the change before the bookkeeping, so the blockquote comes
-    last, after an `&nbsp;` line. Its continuation lines belong to it. An entry
-    with one block per dated section may follow each block with the next
-    section's heading.
+    last, after an `&nbsp;` line. Its continuation lines belong to it, and so do
+    the tag lines of a details block that folds it. An entry with one block per
+    dated section may follow each block with the next section's heading.
     """
     violations = []
     several = len(spec) > 1
@@ -205,10 +235,12 @@ def check_spec_position(lines, offset, spec):
         end = index + 1
         while end < len(lines) and lines[end].startswith(">"):
             end += 1
-        rest = next((line for line in lines[end:] if line.strip()), None)
+        rest = next((line for line in lines[end:] if line.strip() and not DETAILS_TAG.match(line)), None)
         if rest is not None and not (several and H2.match(rest)):
             violations.append(f"line {number}: content follows the spec-folder line. Move the line to the end of the entry")
-        before = next((line for line in reversed(lines[:index]) if line.strip()), None)
+        before = next(
+            (line for line in reversed(lines[:index]) if line.strip() and not DETAILS_TAG.match(line)), None
+        )
         if before is None or before.strip() != "&nbsp;":
             violations.append(f"line {number}: put an \"&nbsp;\" line before the spec-folder line")
     return violations
@@ -225,7 +257,7 @@ def check_entry(text):
         order, skipped = check_glance_order(shape)
         violations.extend(("glance-order", message) for message in order)
         if skipped:
-            notes.append("glance-order skipped: no glance bullet carries a section tag")
+            notes.append("glance-order skipped: no glance row or bullet names a section")
 
     for number, line in shape["spec"]:
         label = LEVEL_LABEL.search(line)

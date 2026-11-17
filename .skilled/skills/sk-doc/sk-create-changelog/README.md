@@ -4,7 +4,7 @@ description: "Writes a correctly versioned, correctly placed changelog entry fro
 trigger_phrases:
   - "create changelog"
   - "release notes"
-version: 1.3.11.0
+version: 1.3.12.0
 ---
 
 # create-changelog
@@ -79,8 +79,8 @@ The format follows the changes that survive selection, not the number of tasks b
 
 | Format | When it applies | Sections it carries |
 |---|---|---|
-| Compact | Under 10 visible changes in a release that is not major and not breaking | Summary, `## Why This Release` when the summary does not say why, `## What's New at a Glance` and `## Upgrade` |
-| Expanded | 10 or more changes, a major bump or any breaking change | Opening narrative, `## Why This Release`, `## What's New at a Glance`, topical H2 sections with H4 items, `## How It Was Checked` and `## Upgrade Notes` |
+| Compact | Under 10 visible changes in a release that is not major and not breaking | A one-paragraph summary, `## Why This Release` when the summary does not say why, `## What's New at a Glance` as short bullets and `## Upgrade` |
+| Expanded | 10 or more changes, a major bump or any breaking change | Opening lead sentences with short bullets and an important box for breaks, `## Why This Release`, `## What's New at a Glance` as a linked table, topical H2 sections with anchored H4 items of short bullets, `## How It Was Checked` and `## Upgrade Notes`, with smaller fixes, costs, tests and upgrade groups folded |
 
 Every entry opens with a five-key frontmatter block, which is what the trigger index reads to find it. The keys are `title`, `description`, `trigger_phrases`, `importance_tier` and `contextType`.
 

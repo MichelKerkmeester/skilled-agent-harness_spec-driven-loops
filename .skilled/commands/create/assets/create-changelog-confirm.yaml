@@ -535,7 +535,7 @@ workflow:
         changes with the same effect, rank the rest by impact and drop lists of test names,
         internal labels, how the work was done, the order a router or scorer breaks ties in and
         follow-on housekeeping. Read tasks.md only to confirm what shipped. To get under a ceiling,
-        cut at the H4 level into a sibling item or the section's Smaller Fixes list, never by
+        cut at the H4 level into a sibling item or the section's Smaller fixes block, never by
         dropping a whole section.
       - |
         SELECT FORMAT based on the changes that survive SELECT CONTENT and the release type:
@@ -545,14 +545,20 @@ workflow:
       - "Generate SUMMARY (lead with WHY, not technical stats)"
       - |
         Generate BODY using selected format:
-          COMPACT: summary narrative + at-a-glance bullets with bold lead-in sentences + Upgrade
-          EXPANDED: opening narrative + Why This Release + at-a-glance bullets with bold lead-in
-                    sentences and a trailing <!-- section: {Topical Domain} --> comment, in section order + topical H2 sections
-                    with H4 benefit-led story items of one paragraph each (two for a breaking
-                    change) + an optional Smaller Fixes H4 list last in its section + one sentence
-                    in the last body section naming every component with its own entry
-                    + How It Was Checked (a before-and-after table of real commands, the measured
-                    cost and each suite's result) + Upgrade Notes
+          COMPACT: summary paragraph + at-a-glance short bullets + Upgrade + the spec-folder line
+          EXPANDED (the layout of .skilled/changelog/skilled/v4.0.2.1.md): two to four opening parts,
+                    each a lead sentence with short bullets + a > [!IMPORTANT] box listing every break
+                    + Why This Release + a glance table of Change, What It Means and Section, in section
+                    order, each Change linked to its item anchor + topical H2 sections opened by one or
+                    two short paragraphs, with H4 items of short bullets, each heading ending in
+                    <a id="c-{item-slug}"></a> + > [!WARNING] boxes where a change breaks something
+                    + an optional folded Smaller fixes block last in its section + one sentence in the
+                    last body section naming every component with its own entry + How It Was Checked
+                    (a before-and-after table of real commands, then the cost and each suite's result
+                    folded) + Upgrade Notes (numbered steps for everyone, then folded groups by section)
+                    + the spec-folder line, or a folded Spec folders ({N}) list
+          Every paragraph, bullet and alert line is one source line, because a release page turns
+          each newline into a line break. Bold text appears only in a folded block's summary header.
           Expanded ceilings (template section 4, enforced by shape_check in Step 5):
             22 words a sentence,
             10 words a sentence on average
@@ -562,15 +568,15 @@ workflow:
           - Short sentences in everyday words: about 8 words, none past 22, 10 at most on average
           - Numbers in How It Was Checked come from a run the source records or one made now, never from memory
         Omission rules apply: no Files Changed tables, no schema tables and no test results
-        outside How It Was Checked. Elsewhere a table appears only when the numbers are the story.
+        outside How It Was Checked. Beyond the glance table, a table appears only when the numbers are the story.
         No internal labels outside the spec-folder line.
         Say each fact once: themes in the opening, the gap in Why This Release, one payoff
-        line per theme at a glance, the detail in H4 items and only actions in the upgrade notes.
+        row per change at a glance, the detail in H4 items and only actions in the upgrade notes.
         Expanded-format heading rule:
           - Prefer 2-7 words, 10 at most, benefit-led
           - Make it easy to scan at a glance
           - Avoid packet IDs, numbering, and sentence-length headings unless truly required
-      - "Generate UPGRADE section (Upgrade Notes, one bullet per action in section order, each led in bold by the reader's situation, when there is migration work)"
+      - "Generate UPGRADE section (Upgrade Notes, when there is migration work: one short paragraph, a Before You Start item of numbered steps every reader takes, then one folded group per topical section in section order, one bullet per action)"
       - |
         IF entry_mode == "extend":
           Read the open entry at open_entry_path first; it is the base, not the template
@@ -578,8 +584,8 @@ workflow:
           IF the open entry is compact and the merged changes reach the expanded threshold (SELECT FORMAT above), convert it to the expanded format
           Fold the selected changes into it rather than generating a second entry:
             Add a topical H2 section, or H4 items under an existing section the change belongs to
-            Add one glance bullet per new theme, with its section tag, in section order
-            Add the spec folder to the spec-folder line and any action to Upgrade Notes
+            Add one glance row per new change, in section order, linked to the new item's anchor
+            Add any break to the important box, the spec folder to the spec-folder list and any action to Upgrade Notes
             Widen the opening and Why This Release only enough to name the new theme
             Keep the title and frontmatter unless the new work changes the headline
             Correct any existing sentence the new work makes untrue
@@ -601,9 +607,9 @@ workflow:
   step_5_quality_validation:
     purpose: Verify the generated changelog meets format and quality standards
     activities:
-      - "Run FORMAT CHECKS (frontmatter block with the five contract keys in order, both identity phrases and at least one topic phrase, narrative summary opening after the frontmatter and any editorial title, spec-folder blockquote closing the entry after the last section and an &nbsp; line and carrying the path only, when the source is a spec folder, at-a-glance bullets with bold lead-ins, expanded: Why This Release + topical H2/H4 sections + Upgrade Notes, no Files Changed/Test Impact/Schema default sections, an &nbsp; line before every H2, nothing between H4 items and no --- rule in the body)"
+      - "Run FORMAT CHECKS (frontmatter block with the five contract keys in order, both identity phrases and at least one topic phrase, a summary or opening lead sentences after the frontmatter and any editorial title, spec-folder blockquote closing the entry after the last section and an &nbsp; line and carrying the path only, when the source is a spec folder, at-a-glance short bullets compact or a Change / What It Means / Section table expanded, expanded: Why This Release + topical H2 sections with anchored H4 items + Upgrade Notes + an important box when anything breaks, no Files Changed/Test Impact/Schema default sections, an &nbsp; line before every H2 and before the spec-folder block, no --- rule in the body, and every paragraph and bullet one source line)"
       - "Run VERSION CHECKS (4-segment; for a new entry sequential with no duplicates; when extending, the version equals the open entry's and no v{next_version} release tag exists yet)"
-      - "Run CONTENT CHECKS (compact summary near 60 words or expanded opening within 5 paragraphs, short sentences preferred, bold lead-in bullets, H4 headings 10 words at most, H4 items one paragraph near 60 words and two when the item needs it, omission rules applied, no internal labels outside the spec-folder line, each fact said once)"
+      - "Run CONTENT CHECKS (compact summary near 60 words or expanded opening within 5 parts, short sentences preferred, short bullets outnumbering paragraphs, no bold text outside a folded block's summary header, H4 headings 10 words at most, H4 items short bullets with each break in a > [!WARNING] box, omission rules applied, no internal labels outside the spec-folder line, each fact said once)"
       - "Run the SHAPE GATE (blocking): write changelog_content to a temp draft file, run `python3 {shape_check} {draft_file}` and treat each printed [rule] line as a failed check. Exit 1 means cut at the H4 level (template section 3) and rerun, exit 2 means the draft could not be read. Never write the entry while it exits non-zero"
       - "Run the VOICE GATE (blocking): run `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py {draft_file}` on the same draft. Zero hard blockers passes; any hard blocker means rewrite the flagged sentences and rerun. When the scanner is unavailable, apply the rules by hand and record that the scan was skipped. Never write the entry while it reports a hard blocker"
       - "Auto-fix minor issues if possible"

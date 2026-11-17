@@ -1,7 +1,7 @@
 ---
 title: "Create Changelog Scripts: shape gate and release notes builder"
 description: "A Python gate that fails a global changelog entry whose shape breaks the template's ceilings, and a builder that turns an entry into its GitHub release body."
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # Create Changelog Scripts
@@ -22,9 +22,11 @@ An entry is expanded when it carries an H4 item or an `## Upgrade Notes` section
 | `sentence-max` | A prose sentence runs past 22 words | Both |
 | `sentence-mean` | The prose sentences average more than 10 words | Both |
 
-The sentence rules read prose only. Headings, tables, blockquotes and fenced blocks are skipped, and a code span counts as one word. Lines wrapped inside one paragraph or list item are joined first, a list number is not a word and a colon does not end a sentence.
+The sentence rules read prose only. Headings, tables, blockquotes, HTML tag lines such as `<details>` and fenced blocks are skipped, and a code span counts as one word. Lines wrapped inside one paragraph or list item are joined first, a list number is not a word and a colon does not end a sentence.
 
-The order rule reads the trailing `<!-- section: {Topical Domain} -->` comment on each bullet, or a visible `({Topical Domain})` tag after its bold sentence. Either one names a topical H2 exactly as the heading spells it, letter case aside. When no bullet carries a tag the rule is skipped and the output says so, because an untagged bullet does not say which section it summarizes.
+The order rule reads the Section column of the glance table, one name per row. An older entry may use bullets instead, each with a trailing `<!-- section: {Topical Domain} -->` comment or a visible `({Topical Domain})` tag after its bold sentence. Each one names a topical H2 exactly as the heading spells it, letter case aside. When no row or bullet names a section the rule is skipped and the output says so.
+
+The spec-position rule accepts a spec-folder line folded inside a closing `<details>` block, so a list of several folders can stay collapsed.
 
 ---
 

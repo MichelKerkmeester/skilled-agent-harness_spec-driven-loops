@@ -1,6 +1,6 @@
 ---
 title: "Changelog & Release Notes Templates"
-description: "The two-tier narrative format for global component changelogs at .skilled/changelog/{component}/v{VERSION}.md, with the selection, voice and length rules that keep a generated release short and readable."
+description: "The two-tier format for global component changelogs at .skilled/changelog/{component}/v{VERSION}.md: short bullets under short paragraphs, a glance table, alert boxes and folded detail, with the selection, voice and length rules."
 trigger_phrases:
   - "changelog format templates"
   - "release notes template"
@@ -9,18 +9,18 @@ trigger_phrases:
   - "changelog omission rules"
 importance_tier: normal
 contextType: general
-version: 1.3.5.0
+version: 1.4.0.0
 ---
 
 # Changelog & Release Notes Templates - Format Reference
 
-Two narrative formats for global component changelogs and their GitHub release notes. Every rule below serves one goal: the reader learns what changed for them and why, in the fewest words that still carry the connection.
+Two formats for global component changelogs and their GitHub release notes. Every rule below serves one goal: the reader learns what changed for them and why, in the fewest words that still carry the connection.
 
 ## 1. OVERVIEW
 
 ### Purpose
 
-The two-tier narrative format for global component changelogs at `.skilled/changelog/{component}/v{VERSION}.md`, with the selection, voice and length rules that keep a generated release short and readable.
+The two-tier format for global component changelogs at `.skilled/changelog/{component}/v{VERSION}.md`. Short bullets carry the detail. A short paragraph opens each section and says what the area does and what changed. A glance table, alert boxes and folded blocks keep a long release easy to scan.
 
 ### Usage
 
@@ -28,19 +28,19 @@ The `/create:changelog` workflow reads this template at step 4. Section 5 picks 
 
 ### The Model Entries
 
-Three published entries show the house style. Each one teaches something different, so read all three before writing. Only v4.0.2.1 passes the sentence rules in section 4. The other two were written before them.
+Three published entries show the house style. Each one teaches something different, so read all three before writing.
 
-- `.skilled/changelog/skilled/v4.0.1.0.md` is the model for length and selection. It keeps what a reader would notice, gives each item one paragraph and cuts items rather than sections. It also collects small fixes into a Smaller Fixes list, orders its upgrade notes by section and names the components with their own entry in one sentence. Model a release with many changes on it.
-- `.skilled/changelog/skilled/v4.0.2.1.md` is the model for readability and depth. Its sentences are short and its words are plain. Each feature item says how the feature works and shows a real line of output. Its fixes are listed one by one. Its How It Was Checked section shows what was measured before and after, what the change costs and which tests ran. Copy its sentence length, its level of detail and that section.
-- `.skilled/changelog/skilled/v4.0.0.0.md` is the model for voice and for how a major release opens. Its opening narrative and Why This Release frame a large change for a reader who was not there. Copy that voice and framing, never its length, because it records one unusually large release.
+- `.skilled/changelog/skilled/v4.0.2.1.md` is the model for the layout. Copy its four-part opening of lead sentences and bullets, its breaking-change box and its glance table. Copy its one-paragraph section openings, its short bullets and its warning boxes. Copy its folded blocks for smaller fixes, the costs, the tests, the upgrade groups and the spec folders. It is also the model for sentence length, plain words, feature detail and How It Was Checked.
+- `.skilled/changelog/skilled/v4.0.1.0.md` is the model for selection. It keeps what a reader would notice and cuts items rather than sections. Its layout is older: bold lead-in bullets, one paragraph per item and inline breaking markers. Do not copy that layout.
+- `.skilled/changelog/skilled/v4.0.0.0.md` is the model for voice and for how a major release frames a large change. Copy that framing, never its length or its layout.
 
-When this template and a model entry disagree on how a section reads, the model entry wins. When they disagree on how long an entry runs, this template's length guidance wins (section 4). Record the discrepancy either way. Older entries in the same folders predate this style, so do not copy them.
+When this template and a model entry disagree on how a section reads, v4.0.2.1 wins. When they disagree on how long an entry runs, this template's length guidance wins (section 4). Record the discrepancy either way. Older entries in the same folders predate this style, so do not copy them.
 
 ---
 
 ## 2. THE TWO TIERS
 
-Every entry opens with the frontmatter block that SKILL.md section 5 defines. An editorial title H1 may follow it, and then the prose starts with the summary narrative. The retired machine header (a bare version title, a backlink, a version-date line) stays gone.
+Every entry opens with the frontmatter block that SKILL.md section 5 defines. An editorial title H1 may follow it, and then the prose starts. The retired machine header (a bare version title, a backlink, a version-date line) stays gone.
 
 ### Compact Format (under 10 changes, non-breaking)
 
@@ -56,13 +56,14 @@ importance_tier: "normal"
 contextType: "general"
 ---
 
-{Summary: a few short sentences, about 60 words in all, on what the release does for the reader and why it matters.}
+{Summary: one short paragraph, about 60 words, on what the release does for the reader and why it matters.}
 
 &nbsp;
 
 ## What's New at a Glance
 
-- **{The change, as a short sentence.}** {One or two short plain sentences that add what the bold one does not say.}
+- {One change, as one short sentence.}
+- {The next change.}
 
 &nbsp;
 
@@ -82,78 +83,137 @@ Include the spec-folder line only when the release has a spec folder. It closes 
 ```markdown
 {The same frontmatter block as the compact format.}
 
-{Opening narrative: 1-5 paragraphs in plain prose, one per theme, no headers.}
+# v{VERSION}, {Editorial Title}
+
+{Lead sentence for the first theme.}
+
+- {Short bullet: one fact.}
+- {Short bullet.}
+
+{Lead sentence for the next theme.}
+
+- {Short bullet.}
+
+> [!IMPORTANT]
+> {N} changes can break an existing setup. Read these before you update.
+>
+> 1. {What breaks, in one short sentence.} [{Item name}](#c-{item-slug})
 
 &nbsp;
 
 ## Why This Release
 
-{Why the release exists: the gap it closes or the gain it buys, in one to three short paragraphs or bold lead-in gain bullets.}
+{One short paragraph on the gap the release closes.}
+
+- {One gap per bullet.}
 
 &nbsp;
 
 ## What's New at a Glance
 
-- **{The theme, as a short sentence.}** {One or two short plain sentences that add what the bold one does not say.} <!-- section: {Topical Domain} -->
+| Change | What It Means | Section |
+|---|---|---|
+| [{The change, as a short phrase}](#c-{item-slug}) | {One short sentence the change column does not say.} | {Topical Domain} |
 
 &nbsp;
 
 ## {Topical Domain}
 
-{Optional short introduction.}
+{One or two short paragraphs: what this area does and what changed in it.}
 
-#### {Benefit-led heading, usually 2-7 words}
+#### {Benefit-led heading} <a id="c-{item-slug}"></a>
 
-{One paragraph of short sentences, about 60 words: what was broken, what changed and why it matters. Start where the glance bullet stopped. Add a second paragraph when the item needs it. A breaking change always gets its own, so its exact step stands apart.}
+- {Short bullet: one fact, about 8 words.}
+- {A bullet that shows a real line of output, such as `RESULT: PASSED`.}
 
-#### {Next heading}
+#### {Next heading} <a id="c-{next-item-slug}"></a>
 
-**Breaking:** {What breaks and exactly what to do about it.}
+> [!WARNING]
+> {What breaks and exactly what to do about it.}
 
-#### Smaller Fixes
+- {Short bullet.}
 
-- **{The fix, as a short sentence.}** {One or two short sentences on what the reader now sees.}
+<details>
+<summary><b>Smaller fixes</b></summary>
+
+- {One fix a reader could run into, as one short sentence.}
+
+</details>
 
 &nbsp;
 
 ## How It Was Checked
 
-#### Before and After
+{One short paragraph on how the release was tested.}
+
+#### Before and After <a id="c-before-and-after"></a>
 
 | Check | Before | After |
 |---|---|---|
 | {A real command or question a reader could run} | {What it returned} | {What it returns now} |
 
-#### Tests and Scenarios
+<details>
+<summary><b>What it costs</b></summary>
 
-- **{The suite, as a short sentence that it passes.}** {How many tests passed and how many failed.}
+- {A measured cost against its budget.}
+
+</details>
+
+<details>
+<summary><b>Tests and scenarios</b></summary>
+
+- {A suite and how many tests passed and failed.}
+
+</details>
 
 &nbsp;
 
 ## Upgrade Notes
 
-- **{The reader's situation, such as "Skills you wrote yourself"}:** {The action, as a short instruction.}
+{One short paragraph on which steps apply to everyone.}
+
+#### Before You Start <a id="c-before-you-start"></a>
+
+1. {A step every reader takes, in the order they take it.}
+
+<details>
+<summary><b>{Topical Domain}</b></summary>
+
+- {An action for a reader who uses this part.}
+
+</details>
 
 &nbsp;
 
-> Spec folder: `{path}`
-```
+<details>
+<summary><b>Spec folders ({N})</b></summary>
 
-Include the spec-folder line only when the release has a spec folder, as the last line of the entry.
+> Spec folders: {path}, {path}
+
+</details>
+```
 
 **Field guidelines**:
 
-- **`## How It Was Checked` (required in an expanded entry).** It is the last section before Upgrade Notes. It shows the reader why they can trust the release. Give a before-and-after table of real commands or questions, one row per change. Add what the change costs when it was measured, such as a lookup time against its budget. Then list each test suite and scenario that ran, with how many passed and failed. Say plainly when a check was left failing or undecided. This is the one section where test results belong. A compact entry may carry it as one short paragraph.
-- **How a feature works.** An item for a new feature says what it does step by step, in the order it happens. It shows one real line of output or one command, in code. It names the flag that turns the feature off when one exists. It names the gap that remains when one does. A reader should be able to predict the new output from the item alone.
-- **Fixes.** Every fix a reader could run into gets its own bold-led bullet: what went wrong and what happens now. Fixes found during the work sit in their own section or in Smaller Fixes, apart from the features.
-
-- **`{Topical Domain}` (H2).** Name the section for the domain it changes, the way the model entries name `Spec Kit` and `Doctor Commands`, never for a change type such as `New Features` or `Bug Fixes`. Most releases need three to six domains, and eight is the most. Add one past six only when a reader would look for it by name.
-- **`<!-- section: {Topical Domain} -->` tag.** Each glance bullet ends with a comment naming the topical section it summarizes, spelled as that section's H2, and the bullets follow the order of those sections. The comment does not show on a rendered page or in the release notes, so the bullet reads as plain text while the shape check can still test the order. A section may go without a glance bullet, but the tagged bullets never run out of order. A compact entry has no topical sections, so its bullets carry no tag.
+- **One line per paragraph and per bullet.** A GitHub release page turns every newline into a line break, so a paragraph wrapped across source lines breaks early on a phone. Write each paragraph, bullet and alert line as one source line, and never force a break with two trailing spaces or a backslash.
+- **Short bullets prevail.** A bullet carries one fact in one short sentence, about 8 words. Prose stays to one or two short paragraphs where a section opens. An H4 item is bullets only, with no paragraph of its own.
+- **Opening.** Two to four parts. Each part is one lead sentence that names a theme, then two to four short bullets under it. The parts follow what matters most to the reader. A release with a breaking change ends its opening with the `[!IMPORTANT]` box.
+- **`> [!IMPORTANT]` box.** It lists every breaking change as a numbered line, each linked to the item that explains it. It sits after the opening, so a reader sees it before any section. Leave it out when nothing breaks.
+- **`> [!WARNING]` box.** It replaces the inline breaking marker. It sits inside the item where the change is described, says what breaks and gives the exact step to take.
+- **`## What's New at a Glance` table.** One row per change a reader would notice. The Change cell is a short phrase that links to its item. What It Means adds one short sentence the Change cell does not say. The Section cell names the topical H2 in plain text, spelled as that H2. Rows follow the order of those sections. A section may go without a row.
+- **Item anchors.** Every H4 ends with `<a id="c-{item-slug}"></a>`, because a release page renders headings without anchors. The slug is the heading in lowercase, with punctuation dropped and spaces as hyphens. The glance table and the important box link to these anchors.
+- **`{Topical Domain}` (H2).** Name the section for the domain it changes, the way the model entries name `Session Handover` and `Skill Advisor`, never for a change type such as `New Features` or `Bug Fixes`. Most releases need three to six domains, and twelve is the most. Add one past six only when a reader would look for it by name. Open each one with one or two short paragraphs.
 - **`{Benefit-led heading}` (H4).** 2-7 words for most headings and 10 at most, stating the gain or the fact. Good: `Specs Move to the Top Level`. Bad: `Improved validation logic`, a numbered item or a sentence-length title.
-- **Separators.** An `&nbsp;` line, a forced blank line, goes before every H2: between the opening and Why This Release, between Why This Release and What's New at a Glance, and between every later section. Nothing separates the H4 items inside one H2, and no `---` rule appears anywhere in the entry body.
-- **`#### Smaller Fixes` (optional H4).** Small fixes a reader would notice, but that need no paragraph of their own, collect into one Smaller Fixes item with one bold-led bullet per fix. It sits last in the section that owns the fixes, and it is the one H4 whose body is a list. Leave it out when no such fix exists, and leave out a fix with no visible effect.
-- **Coverage sentence.** When other components or modes have their own changelog entry for this release, one sentence in the last body section names every one of them, so a reader knows where the detail lives. It may stand as its own paragraph at the end of the item it closes.
-- **Upgrade Notes.** One bullet per action, in the same order as the entry's sections, each led in bold by the reader's situation, such as `**Skills you wrote yourself:**`. A note about the release as a whole goes first. A retirement's note sits where the section that names its replacement sits, and a retirement with no replacement sits with its own section. Use the Adopt, Repoint and Drop lead-ins only in a compact entry, where section order does not apply. Write "No upgrade needed." when there is nothing to do.
+- **How a feature works.** An item for a new feature lists what it does step by step, one bullet per step, in the order it happens. One bullet shows a real line of output or a command, in code. One names the switch that turns it off when one exists, and one names the gap that remains when one does.
+- **Fixes.** Every fix a reader could run into gets its own bullet. A fix that needs more than one bullet gets its own H4 item. The rest go in the section's Smaller fixes block, which sits last in its section. Leave out a fix with no visible effect.
+- **Folded blocks.** A `<details>` block with a `<summary><b>…</b></summary>` header folds detail a reader opens only when they need it. Use one for Smaller fixes, What it costs, Tests and scenarios, each upgrade group and the spec-folder list. Put a blank line after the summary line and before `</details>`, or the list inside does not render. The summary header is the one place bold text appears.
+- **Code spans.** Put every file, path, command, flag, environment variable, setting, agent name and literal output line in code, such as `relocate.mjs`. Spec-folder paths in the closing list stay plain.
+- **Numbered lists.** Use them only where order matters: the important box and the steps every reader takes in Upgrade Notes. Every other list is bullets.
+- **`## How It Was Checked` (required in an expanded entry).** It is the last section before Upgrade Notes. It shows the reader why they can trust the release. Give a before-and-after table of real commands or questions, one row per change. Fold what the change costs and each test suite and scenario, with how many passed and failed. Say plainly when a check was left failing or undecided. This is the one section where test results belong. A compact entry may carry it as one short paragraph.
+- **Upgrade Notes.** One short paragraph first, then a `#### Before You Start` item with the numbered steps every reader takes. A second numbered item may follow for a move that touches many readers, such as a renamed setting. Every other action goes in a folded group named for its topical section, in section order, one bullet per action. Write "No upgrade needed." when there is nothing to do.
+- **Spec-folder line.** One folder closes the entry as a plain blockquote. Several fold into a `Spec folders ({N})` block. Either way it is last, after an `&nbsp;` line, and it carries paths only.
+- **Coverage sentence.** When other components or modes have their own changelog entry for this release, one sentence in the last body section names every one of them, so a reader knows where the detail lives.
+- **Separators.** An `&nbsp;` line goes before every H2 and before the closing spec-folder block. Alert boxes and folded blocks may sit between H4 items, but no `&nbsp;` line and no `---` rule does.
 
 ---
 
@@ -163,11 +223,11 @@ What goes in decides the length more than the wording does, so choose the conten
 
 ### Choose by Reader Impact
 
-Start from the reader: write down what they would notice, act on or decide differently about, then confirm each one in the source. A change the source records and the reader would not notice is not an item. Merge items that have the same effect for the reader, and lead with the one that matters most. A task list is evidence of what shipped, not an outline: ten tasks that produced one visible change make one bullet.
+Start from the reader: write down what they would notice, act on or decide differently about, then confirm each one in the source. A change the source records and the reader would not notice is not an item. Merge items that have the same effect for the reader, and lead with the one that matters most. A task list is evidence of what shipped, not an outline: ten tasks that produced one visible change make one row.
 
 ### Cut Items, Never Sections
 
-To shorten an entry, cut at the H4 level. A cut item leaves in one of three ways: it folds into a sibling item as a closing sentence, it moves into its section's Smaller Fixes list or it is dropped as process, housekeeping or a fix with no visible effect. Never drop a whole section to shorten the entry, because each section is a domain a reader looks for by name.
+To shorten an entry, cut at the H4 level. A cut item leaves in one of three ways: it folds into a sibling item as one more bullet, it moves into its section's Smaller fixes block or it is dropped as process, housekeeping or a fix with no visible effect. Never drop a whole section to shorten the entry, because each section is a domain a reader looks for by name.
 
 ### Keep
 
@@ -189,7 +249,7 @@ To shorten an entry, cut at the H4 level. A cut item leaves in one of three ways
 - How the work was done: review rounds, models, agents, research phases and the order the work landed in, unless it changes how far the reader can trust the result.
 - How a router or scorer decides between candidates, such as the order that breaks a tie, unless the reader must act on it.
 - Follow-on housekeeping: docs brought in line with the change, regenerated copies, rebuilt indexes and refreshed metadata or versions.
-- Small fixes with no visible effect. Leave them out. A small fix with a visible effect goes in the section's Smaller Fixes list (section 2).
+- Small fixes with no visible effect. Leave them out. A small fix with a visible effect goes in the section's Smaller fixes block (section 2).
 - Work tried and reverted during the cycle. It gets one story sentence at most, written into the narrative: what was tried and that it left before release. The v4.0.0.0 entry's model is "An alignment mode was built during the cycle and removed before release, and the removal took `/deep:command-benchmark` and the conformance benchmark family with it."
 
 ### Say Each Fact Once
@@ -198,10 +258,11 @@ Each section has one job, and a fact lives in the section whose job it is.
 
 | Section | Its job | Not its job |
 |---|---|---|
-| Summary or opening | What the release does, told at the level of themes | Fix-by-fix detail and the numbers behind it |
-| Why This Release | The gap the release closes or the gain it buys | The list of changes, which the glance section carries |
-| What's New at a Glance | One line per theme, stating the payoff | The full mechanism or a sentence that restates the bold one |
-| Topical H4 items | The detail: before, mechanism and after | The glance bullet's sentence, said again |
+| Opening | What the release does, told at the level of themes | Fix-by-fix detail and the numbers behind it |
+| Why This Release | The gap the release closes or the gain it buys | The list of changes, which the glance table carries |
+| What's New at a Glance | One row per change, stating the payoff | The full mechanism or a sentence that restates the Change cell |
+| Section opening | What the area does and what changed in it | An item's detail |
+| Topical H4 items | The detail: before, mechanism and after | The glance row's sentence, said again |
 | How It Was Checked | The evidence: before and after, the cost and the tests that ran | A new claim about behavior, which a topical item carries |
 | Upgrade Notes | The actions, one line each | Why the change was made |
 
@@ -209,7 +270,7 @@ When a sentence would repeat an earlier one, cut it or replace it with something
 
 ### When a Table Earns Its Place
 
-A table appears only when the numbers are the claim. The v4.0.0.0 entry carries one in more than five hundred lines, the measured cached-input cost per model, because the dollar difference was the finding. The before-and-after table in How It Was Checked earns its place the same way, because each row is a result a reader can reproduce. A table that restates prose or lists files does not, and most entries carry no other table.
+An expanded entry carries two tables: the glance table, which links each change to its item, and the before-and-after table in How It Was Checked, where each row is a result a reader can reproduce. Any other table appears only when its numbers are the claim. The v4.0.0.0 entry carries one in more than five hundred lines, the measured cached-input cost per model, because the dollar difference was the finding. A table that restates prose or lists files does not earn its place.
 
 ### The Cut Test
 
@@ -230,14 +291,15 @@ These rules apply to changelog files and GitHub release notes. The Human Voice R
 - Write short sentences, about 8 words each. None runs past 22 words, and the entry averages 10 at most. More sentences are always fine. When a sentence runs long, split it rather than cut a fact.
 - Use the everyday word: "cut" before "truncate", "shows" before "surfaces", "runs" before "executes". Keep a technical word only when it is the literal name the reader will see, and put it in code.
 - Define a technical term on first use, such as "BM25 (exact word matching)".
-- Name an identifier (a skill, a path or a command) only where the reader acts on it, the way the v4.0.0.0 entry names `mode-registry.json` where it explains dispatch.
 - No Oxford commas, em dashes or semicolons, per `.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`.
 
 ### Structure
 
-- Bold lead-in bullets for lists of gains or upgrade steps.
+- Short bullets for detail and one or two short paragraphs where a section opens. Bullets outnumber paragraphs.
+- No bold text outside a folded block's summary header. No bold lead-in bullets.
 - H4 (`####`) for item headings, never H3. No `**Problem:**` or `**Fix:**` labels.
-- Inline `**Breaking:**` markers where the break is described, not a separate section.
+- A `> [!WARNING]` box where a break is described, and one `> [!IMPORTANT]` box listing every break after the opening.
+- One source line per paragraph, bullet and alert line (section 2).
 - No metrics soup: never pack many numbers into one sentence.
 
 ### Length
@@ -245,16 +307,17 @@ These rules apply to changelog files and GitHub release notes. The Human Voice R
 | Element | Usually | Ceiling |
 |---|---|---|
 | Summary paragraph | 1-3 short sentences | About 60 words |
-| Expanded opening narrative | 1-3 paragraphs | 5 paragraphs |
-| Why This Release | 1-3 short paragraphs | About 120 words, gain bullets allowed |
-| What's New at a Glance | 3-6 bullets compact, 5-9 expanded | One line each |
-| Glance bullet | A bold sentence and one short plain sentence | A bold sentence and about 30 words |
-| H4 item narrative | 1 paragraph, about 60 words | 2 paragraphs, about 120 words |
+| Expanded opening | 2-4 lead sentences, each with 2-4 bullets | 5 parts |
+| Section opening | 1 short paragraph | 2 paragraphs |
+| Why This Release | 1 short paragraph and a few gap bullets | About 120 words |
+| What's New at a Glance | 3-6 bullets compact, one row per change expanded | One line each |
+| Glance row | A short phrase and one short sentence | About 20 words |
+| H4 item | 3-8 short bullets | No paragraph |
 | H4 heading | 2-7 words | 10 words |
 | Sentence | About 8 words | 22 words |
 | Sentence average | About 8 words | 10 words |
 
-Validation checks the ceilings, and each one is set from the entry a reader needs, never from a model entry's length. `scripts/check_changelog_shape.py` fails tagged glance bullets that run out of section order and a spec-folder line that carries a level label. It also fails a sentence past its ceiling, an average past its ceiling and an expanded entry with no How It Was Checked section. An entry has no line, H4 item or glance bullet ceiling: its size follows from what the release changed. The usual column is the target. A release with one fix reads short. Paragraph and section word counts are guidance, not gates, so more short sentences are always fine. The two sentence ceilings are gates. Go past a word budget when a reader needs the fact, and record why.
+Validation checks the ceilings, and each one is set from the entry a reader needs, never from a model entry's length. `scripts/check_changelog_shape.py` fails glance rows and tagged bullets that run out of section order and a spec-folder line that carries a level label or does not close the entry. It also fails a sentence past its ceiling, an average past its ceiling and an expanded entry with no How It Was Checked section. An entry has no line, H4 item or glance row ceiling: its size follows from what the release changed. The usual column is the target. A release with one fix reads short. Paragraph and section word counts are guidance, not gates, so more short sentences are always fine. The two sentence ceilings are gates. Go past a word budget when a reader needs the fact, and record why.
 
 ---
 
@@ -280,7 +343,7 @@ Count the changes in the release.
 
 ## 6. GITHUB RELEASE NOTES FORMAT
 
-The release body is the changelog content with any YAML frontmatter and the editorial title H1 removed, because GitHub shows the release title on its own. It keeps the entry's spacing, an `&nbsp;` line before every H2 and nothing between H4 items. The release step in the command YAMLs strips both before it runs `gh release create`, then appends an `&nbsp;` line and the pointer:
+The release body is the changelog content with any YAML frontmatter and the editorial title H1 removed, because GitHub shows the release title on its own. It keeps the entry's spacing, its alert boxes and its folded blocks, which a release page renders the same way. A release page also turns every newline into a line break, which is why each paragraph and bullet is one source line. The release step in the command YAMLs strips both before it runs `gh release create`, then appends an `&nbsp;` line and the pointer:
 
 ```text
 &nbsp;
@@ -302,10 +365,10 @@ Existing `changelog-<packet>-root.md` and `changelog-<packet>-<phase-folder>.md`
 
 ## 8. RELATED RESOURCES
 
-- `.skilled/changelog/skilled/v4.0.1.0.md` - the model for length, selection and the shape of a release with many changes
-- `.skilled/changelog/skilled/v4.0.2.1.md` - the model for sentence length, plain words, feature detail and the How It Was Checked section
+- `.skilled/changelog/skilled/v4.0.2.1.md` - the model for the layout, sentence length, plain words, feature detail and the How It Was Checked section
+- `.skilled/changelog/skilled/v4.0.1.0.md` - the model for selection in a release with many changes
 - `.skilled/changelog/skilled/v4.0.0.0.md` - the model for voice and for how a major release opens
-- [check_changelog_shape.py](../scripts/check_changelog_shape.py) - the shape check that enforces the expanded ceilings
+- [check_changelog_shape.py](../scripts/check_changelog_shape.py) - the shape check that enforces the glance order, the spec-folder line and the sentence ceilings
 - [hvr-rules.md](../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules (banned words, punctuation, structure)
 - [core-standards.md](../../shared/references/core-standards.md) - Markdown structure and naming conventions
 - [worked-examples.md](../references/worked-examples.md) - a filled-in v4-style entry with annotations

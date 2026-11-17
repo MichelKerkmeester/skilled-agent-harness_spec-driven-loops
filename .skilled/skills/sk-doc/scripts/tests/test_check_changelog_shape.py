@@ -228,3 +228,37 @@ def test_a_closing_quote_ends_the_sentence_it_closes():
 def test_an_ordered_list_number_is_not_a_sentence():
     items = "\n".join(f"{n}. " + " ".join(["word"] * 15) + "." for n in range(1, 21)) + "\n"
     assert rules(expanded(extra=items)) == ["sentence-mean"]
+
+
+def glance_table(*sections):
+    rows = [f"| [Change {n}](#c-change-{n}) | What it means. | {name} |" for n, name in enumerate(sections)]
+    return ["| Change | What It Means | Section |", "|---|---|---|", *rows]
+
+
+def test_glance_table_rows_follow_the_section_column():
+    sections = [("Alpha", 1), ("Beta", 1)]
+    assert rules(expanded(glance=glance_table("Alpha", "Beta", "Beta"), sections=sections)) == []
+    violations, _notes = check_entry(expanded(glance=glance_table("Beta", "Alpha"), sections=sections))
+    assert [rule for rule, _ in violations] == ["glance-order"]
+    assert "(Alpha) comes after (Beta)" in violations[0][1]
+    assert rules(expanded(glance=glance_table("Gamma"), sections=sections)) == ["glance-order"]
+
+
+def test_a_glance_table_without_a_section_column_skips_the_order_rule():
+    table = ["| Change | What It Means |", "|---|---|", "| One | It helps. |"]
+    violations, notes = check_entry(expanded(glance=table, sections=[("Alpha", 1)]))
+    assert violations == []
+    assert notes == ["glance-order skipped: no glance row or bullet names a section"]
+
+
+def test_a_spec_line_folded_in_a_details_block_still_closes_the_entry():
+    folded = "<details>\n<summary><b>Spec folders (2)</b></summary>\n\n> Spec folders: specs/a, specs/b\n\n</details>"
+    assert rules(expanded(spec=folded)) == []
+    assert rules(expanded(spec=folded + "\n\nA closing line.")) == ["spec-position"]
+
+
+def test_html_tag_lines_are_not_prose():
+    """A summary or details line is not a short sentence that pulls the average down."""
+    thirteen = (" ".join(["word"] * 13) + ".\n\n") * 40
+    folds = "<details>\n<summary><b>Smaller fixes</b></summary>\n\n</details>\n\n" * 40
+    assert rules(expanded(extra=thirteen + folds)) == ["sentence-mean"]
