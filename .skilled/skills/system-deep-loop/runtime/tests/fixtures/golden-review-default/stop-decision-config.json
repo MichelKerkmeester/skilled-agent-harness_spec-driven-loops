@@ -1,0 +1,8 @@
+{
+  "maxIterations": 7,
+  "minIterations": 0,
+  "convergenceThreshold": 0.1,
+  "stopPolicy": "convergence",
+  "stuckThreshold": 2,
+  "convergenceMode": "default"
+}

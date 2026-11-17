@@ -80,6 +80,9 @@ and findings belong here.
 |------|-------|----------|
 | Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md` written 2026-11-17 |
 | Implementation | Pending | Not started |
+| T000 pilot choice | Done | Pilot raises maxIterations to meet the ADR-002 band rule ceil(nodes / lineages) * dimensions and keeps all four review dimensions; narrowing review_dimensions would weaken the very coverage the review gate checks. Rollback: record the narrower-dimensions option here before the pilot runs. |
+| T001 dependencies | Done | Merged on this branch (git branch --contains lists 469 for each): 003 c898b3ad9a3, 004 227d594603e, 008 4d0b12723eb, 009 7cb4f32d305, 010 5e583331cc9, 012 79ae240955e. |
+| T003 golden baseline | Done | Seven baselines in runtime/tests/fixtures/golden-review-default/ captured on 5e583331cc9 before any review depth-mode code; review-depth-mode-golden.vitest passed 14/14 on two reruns with the same sha256 per file; grep -c /Users/ prints 0 for every file (checkout path tokenized as <CWD>). |
 
 ### Deviations and findings
 
@@ -87,4 +90,5 @@ and findings belong here.
 |------|------|
 | Criteria grouping | The rows of `acceptance-criteria.md` are grouped into seven criteria; closure still requires every row there to be `Met`, `Waived` or `Superseded`. |
 | Plan review 2026-11-17 | The Fable 5.2 plan review (`../scratch/fable-5-2-plan-review.md`, F011-1 to F011-6, X-1 to X-4, X-6, X-7) added the review node store, steering through `next_dimension`, the seed step, the fan-out passthrough and merged `frontier`, the binding surfaces, per-node dimension coverage, the `renderDashboard` target, the 003, 004 and 012 dependencies, the docs, contract and mirror tasks, and the `npm test` form. |
+| Golden artifact set | Seven artifacts, not six: the six named plus the stop-decision config, because the review veto changes that output too; the lineage artifact also carries buildNativeCommandInput. The pivot artifact omits the config echo, which mirrors the fixture file and differs by design between the two variants. |
 <!-- /ANCHOR:log -->
