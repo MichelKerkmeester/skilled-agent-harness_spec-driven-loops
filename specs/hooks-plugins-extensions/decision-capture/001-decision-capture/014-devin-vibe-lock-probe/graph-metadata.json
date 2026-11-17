@@ -196,7 +196,7 @@
     ],
     "causal_summary": "With two Devin or two Vibe sessions open in one project, a save reads the newest one, which can be the other session",
     "created_at": "2026-11-16T18:14:15Z",
-    "last_save_at": "2026-11-16T18:43:00.728Z",
+    "last_save_at": "2026-11-16T21:19:06.310Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f8b54fb4542d4cb720543cab36f834180fb733beec1a81508adf757e609248f",
+    "source_fingerprint": "sha256:91f0765bd1f0b3ec916a6a07ab5f77fa38f586b351b43a1cd32b5519dd328148",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f0122fb39bf45eb0147417eddd2e10487c0d4505be0b881b7ba67e447e9b7bb9",
       "plan.md": "48992b2ec7795d3dfa1b42564913cd475b749014a0b56fd86f07c1e96282e988",
       "tasks.md": "a688e2839b9fb145d6cf23cb80ac8d8bf9cb5c5fcabde24a4ba3ce8d330e3c47",
       "decision-record.md": "8328a936e8c5530b98ce0c5830393b5108e82d01fece3949c38e01528b524b76",
-      "implementation-summary.md": "90c836e9756297f2ecf83d7f07d5016eaf3c5f7ef944f3a1ca84eadeb708b21d"
+      "implementation-summary.md": "50b06c86469ae4dd95969bbc82a8845958bb8025a3efcbbb8e179da26337cbee"
     },
     "last_active_at": null
   }

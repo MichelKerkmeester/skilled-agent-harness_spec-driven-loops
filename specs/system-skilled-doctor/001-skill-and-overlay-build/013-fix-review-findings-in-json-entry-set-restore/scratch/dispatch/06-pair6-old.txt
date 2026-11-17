@@ -1,0 +1,1 @@
+`setKeyOnItem` keeps no record, so a value it wrote stays in the live file after the operation leaves the entry set.

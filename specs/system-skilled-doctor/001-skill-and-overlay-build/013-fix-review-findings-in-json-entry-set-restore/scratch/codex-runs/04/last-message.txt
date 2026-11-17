@@ -1,0 +1,187 @@
+1. FILES CHANGED:
+
+- /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs
+
+2. COMMANDS:
+
+- `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Change overlay engine pinned-copy and set recording with four exact replacements in overlay-engine.cjs"` — exit 0. Last 15 output lines:
+
+  ```text
+        "score": 0.88
+      }
+    ],
+    "schemaVersion": 2,
+    "specFolder": null,
+    "tokens": [
+      "change",
+      "overlay",
+      "engine",
+      "pinned",
+      "copy",
+      "and",
+      "set",
+      "recording"
+    ],
+    "totalCandidates": 1,
+    "truncated": false
+  }
+  ```
+
+- `cat 'REPO RULES.md'` — exit 0. Last output lines:
+
+  ```text
+  **The ask-surface carve-out, added as the fourth widening, on an operator decision that
+  overrode a research refusal.** A four-iteration decision-test run returned *refuse* here:
+  naming a question tool per runtime reads as the "which command" family, and the paragraph
+  above pre-refuses a fourth widening that admits selection. The operator widened it anyway,
+  and what follows is the narrowing that keeps the boundary standing. *Choosing between
+  runtimes, agents, commands, models or flags* stays Out, unchanged. *Naming the surface that
+  asks the operator a question, in the runtime you are already running in*, is In. That is not
+  a selection, because nothing is being selected: the runtime is a given, and the rule records
+  which of its surfaces carries an obligation the rule already imposes. `communication-handoff.md`
+  is the one rule on this side of that line, its §5 is the only place a tool name appears, and
+  it names only what this repository confirms. A fifth widening that let a rule pick between
+  runtimes would be the dissolution this one avoids.
+  ```
+
+- `cat '.skilled/repo-rules/communication.md'` — exit 0. Last output lines:
+
+  ```text
+  - [ ] The first line carries the answer or the action, not a label, an announcement or a setup, and the outcome is complete by the second line.
+  - [ ] I reached the verdict by analysis, recommended one path with its trade-off and stated the assumptions I made.
+  - [ ] Where the request was ambiguous or I delivered a different version of it, the first lines say which reading I took and why.
+  - [ ] Each paragraph stands alone and carries the reader forward, and multi-step work reads as a numbered list.
+  - [ ] No group runs past five items, nothing was dropped to keep it under, and a tangent appears once at the end or not at all.
+  - [ ] Every sentence carries information, each fact appears once, and no runtime instruction to plan privately was copied into the reply.
+  - [ ] Length matches what the reader asked, no table stands in a reply, and nothing was compressed past the point where the reader has to re-expand it.
+  - [ ] Every sentence carries one idea in plain words and says how it attaches to the one before.
+  - [ ] Arrows, bare IDs, counts and fragments were turned into sentences, and every path, hash or flag is one the reader will act on.
+  - [ ] No em dash, no semicolon, no serial comma.
+  - [ ] Before a long stretch I said where I was going, with a concrete time estimate when it was long, and no estimate argued against starting.
+  - [ ] A synthesis I reported carries its findings, not just its path and its counts.
+  - [ ] When the reader did not follow, I changed modality, and a plain re-render kept every claim, number and caveat at the same strength.
+  ```
+
+- `cat '.skilled/repo-rules/communication-handoff.md'` — initial invocation could not spawn, so no exit status or output. Retried below and it exited 0.
+- `ls .skilled/repo-rules` — exit 0. Output:
+
+  ```text
+  blast-radius.md
+  communication-handoff.md
+  communication.md
+  delegation-and-orchestration.md
+  evidence-and-proof.md
+  prevent-overengineering.md
+  root-cause-and-debugging.md
+  scope-discipline.md
+  skill-hub-routing.md
+  uncertainty-and-honesty.md
+  ```
+
+- `cat '.skilled/repo-rules/blast-radius.md'` — exit 0. Last output lines:
+
+  ```text
+  - [ ] Placed the action on the reversibility ladder and said so.
+  - [ ] Looked at the target before deleting or overwriting it.
+  - [ ] The rollback sentence is written and concrete.
+  - [ ] For tier 3, I have an explicit, in-the-moment yes for *this* action.
+  - [ ] Enumerated what still speaks the old contract, by searching rather than assuming.
+  - [ ] Removal is scoped to the requested surface; nothing wider happened silently.
+  - [ ] Cheap, reversible forks were decided rather than deliberated.
+  - [ ] Any installation went through the same scope, approval and verification as any other mutation.
+  ```
+
+- `cat '.skilled/repo-rules/evidence-and-proof.md'` — exit 0. Last output lines:
+
+  ```text
+  - [ ] Every load-bearing sentence is marked OBSERVED, DERIVED, or INFERRED.
+  - [ ] I read the output and exit status of every command I am citing.
+  - [ ] Checked the green run against the four failure modes in §3.
+  - [ ] A before-number exists for every "no regressions" and performance claim.
+  - [ ] The close-out says what failed and what is inferred, not only what worked.
+  - [ ] The close-out names any known residual risk the operator must weigh. It says "none known" when there is none.
+  - [ ] Every claim about behavior came from the code or a command, not from memory.
+  - [ ] Where a document and the code disagreed, I said so rather than trusting the document.
+  - [ ] Every receipt I cite could have come out differently if the claim were false, or it is marked inferred.
+  - [ ] I reproduced the failure with the same check that now proves the fix, or said why I could not.
+  - [ ] A filter enumerated its variants first, a computed answer was derived twice, an exact artifact was checked by name and shape.
+  - [ ] Every sub-agent, reviewer or tool finding I acted on was confirmed against the real symptom first.
+  - [ ] The proof plan existed before the first edit, and it passed from the final state with the scoped diff clean of residue.
+  - [ ] I reread the request, and every outcome it asks for is met or named as not done.
+  ```
+
+- `cat '.skilled/repo-rules/communication-handoff.md'` — exit 0. Last output lines:
+
+  ```text
+  - [ ] The status names what ran, what is inferred, what only the operator can verify, the state of the work and any known residual risk. It says "none known" when there is none.
+  - [ ] The turn ends by naming what is the operator's to do, or by saying nothing is.
+  - [ ] Every item on that list is theirs, not mine reframed.
+  - [ ] The handback is last, and survives a reader who stops halfway.
+  - [ ] Every choice I offered carries a recommendation and a reason.
+  - [ ] Nothing was handed back that I could have decided or done myself.
+  - [ ] No question-tool name appears that I did not confirm for the runtime I am in.
+  - [ ] Where the direction changed, two fixes failed or the work resumed after a gap, I restated what is done, what is open and what changed.
+  - [ ] Anything I started that is still running is named with the state it is in, and nothing appears there that has already finished.
+  - [ ] A claim that I will continue on my own names the event that resumes me, and no such claim stands on a turn that needs an operator decision.
+  ```
+
+- Four `cat` commands for `04-pair1-old.txt` through `04-pair4-old.txt` — each exited 0. Their outputs were the supplied old replacement snippets; last 15 lines of each output were the full snippets.
+- Four `rg -n -F` commands locating the old anchors in `overlay-engine.cjs` — each exited 0. Outputs:
+
+  ```text
+  1728:  const readUpstreamText = () => {
+  1744:      // One record per path: a later set on the same path is the value the file
+  4156:  writePin(ctx, job.newPin);
+  4237:  const shape = treeShapeProblems(ctx.root, touched);
+  ```
+
+- `sed -n '1725,1752p;4153,4185p;4234,4245p' .skilled/commands/doctor/scripts/overlay-engine.cjs` — exit 0. Last output lines:
+
+  ```text
+    if (second.changed !== 0) {
+      console.log(`MISS     a second apply changed ${second.changed} destination(s)`);
+      return false;
+      drift.push(`  move each edit into an overlay, list the path in repin.exclude, or restore it from ${job.oldPin}`);
+      return refuseRepin(drift);
+    }
+    const shape = treeShapeProblems(ctx.root, touched);
+    if (shape.length > 0) return refuseRepin(shape);
+    report.notCopied = notCopiedChanges(ctx, job);
+    reportNotCopied(report.notCopied, job.settings);
+    report.rootFiles = rootFileChanges(ctx, manifest, job);
+    reportRootFiles(report.rootFiles);
+  ```
+
+- Four replacement scripts using the supplied `python3 -c` command for `04-pair1` through `04-pair4`, each with the absolute source, old snippet and new snippet paths — each exited 0. Last output lines for each: none.
+- `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node --check .skilled/commands/doctor/scripts/overlay-engine.cjs && echo SYNTAX-OK` — exit 0. Last output line: `SYNTAX-OK`.
+- Four `cat` commands for `04-pair1-new.txt` through `04-pair4-new.txt` — each exited 0. Their outputs were the supplied new replacement snippets; the last 15 lines were the full outputs for pairs 1 and 2, and the final 15 lines for pairs 3 and 4.
+- Four post-edit `rg -n -F` commands locating the new anchors in the absolute source path — each exited 0. Outputs:
+
+  ```text
+  1728:  const readUpstreamText = () =>
+  1747:      // One record per path: a later set on the same path is the value the file
+  4164:  writePin(ctx, job.newPin);
+  4249:  const shape = treeShapeProblems(ctx.root, touched);
+  ```
+
+- `sed -n '1726,1765p;4161,4193p;4247,4278p' /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs` — exit 0. Last output lines:
+
+  ```text
+      const lines = leftInPlace.flatMap((plan) => plan.problems.map((problem) => `blocked ${plan.entry.id}: refused ${problem}`));
+      lines.push(`refuse: ${leftInPlace.length} json-entry overlay(s) the copy leaves in place cannot be applied at the new pin; fix them before a re-pin`);
+      return refuseRepin(lines);
+    }
+    report.notCopied = notCopiedChanges(ctx, job);
+    reportNotCopied(report.notCopied, job.settings);
+    report.rootFiles = rootFileChanges(ctx, manifest, job);
+    reportRootFiles(report.rootFiles);
+
+    const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'overlay-repin-'));
+    try {
+      const newTree = extractNewCommit(job, scratch, touched);
+      let runId = makeRunId();
+  ```
+
+3. OPEN QUESTIONS:
+
+None.

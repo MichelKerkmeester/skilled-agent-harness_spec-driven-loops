@@ -1,0 +1,15 @@
+      (operation.op === 'insertItems' || operation.op === 'appendItems') && samePath(operation.path, container));
+    if (addsItems) return false;
+    const liveItem = live.items[Number(path[depth])];
+    const pinnedItem = pinned.items[Number(path[depth])];
+    if (!liveItem || !pinnedItem) return false;
+    const itemPath = path.slice(0, depth + 1);
+    const written = writtenPaths
+      .filter((writtenPath) => samePath(writtenPath, itemPath) || isInsidePath(writtenPath, itemPath))
+      .map((writtenPath) => writtenPath.slice(depth + 1));
+    if (!deepEqual(
+      maskedValue(JSON.parse(liveDocument.text.slice(liveItem.start, liveItem.end)), written),
+      maskedValue(JSON.parse(pinnedDocument.text.slice(pinnedItem.start, pinnedItem.end)), written),
+    )) return false;
+  }
+  return true;

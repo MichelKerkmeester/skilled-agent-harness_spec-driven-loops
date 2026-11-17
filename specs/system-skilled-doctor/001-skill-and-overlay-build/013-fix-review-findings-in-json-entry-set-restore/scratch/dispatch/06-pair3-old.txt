@@ -1,0 +1,1 @@
+A path through an array is restored only while that array holds the same number of items in the live file and in the pin and the overlay adds no item to it.

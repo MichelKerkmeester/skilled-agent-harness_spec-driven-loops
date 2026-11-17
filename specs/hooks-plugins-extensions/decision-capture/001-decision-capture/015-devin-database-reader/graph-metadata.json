@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader",
+  "spec_folder": "hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader",
+  "parent_id": "hooks-plugins-extensions/decision-capture/001-decision-capture",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "devin database reader",
+      "phase 15 devin database reader",
+      "devin message nodes",
+      "devin sweep sessions.db",
+      "devin database reader plan",
+      "devin database reader tasks",
+      "015-devin-database-reader operator decisions",
+      "devin database reader implementation summary"
+    ],
+    "key_topics": [
+      "devin",
+      "database",
+      "reader",
+      "phase",
+      "message",
+      "nodes",
+      "sweep",
+      "sessions",
+      "plan",
+      "tasks",
+      "015-devin-database-reader",
+      "operator"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-devin.test.mjs",
+      ".skilled/hooks/decision-capture/bin/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-devin.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-devin.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-devin.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/decision-capture/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Devin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Adapter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Devin writes a session's transcript file only when an interactive session ends, and wrote none for four headless probe sessions",
+    "created_at": "2026-11-16T19:45:54Z",
+    "last_save_at": "2026-11-16T21:18:16.517Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:46213ca978e01298bbaccd28af04472994947767c7e8868c08ae1b0fca8f116a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "924f3be5a9b906da1ea0e9fcf7fe0f2646c1bf7df6c4db13d7d06fdea5e05199",
+      "plan.md": "27d016799d4ccd77bf92e0aa4ddc8061f03498aaec59d2e3d9e788485300b875",
+      "tasks.md": "c4e72b5bd7e75f8f2441d0099ee632e15573d5901cbea8a16e6c4f1f69b60abb",
+      "decision-record.md": "12c54eaa69c20f1b6edc99a61feb7e64501873b9d8126051d99f2652675e2d51",
+      "implementation-summary.md": "92a61d1d7aa52a8da2613dc7d94feba930171bf41fe607e9258c28c30a5680f5"
+    },
+    "last_active_at": null
+  }
+}

@@ -20,7 +20,7 @@ import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, readdirSync, realpathSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { homedir } from 'node:os';
-import { basename, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
@@ -193,6 +193,55 @@ function chatTurnsOf(steps) {
 // 6. SWEEP
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Devin keeps a session's messages in `message_nodes`, one JSON message per row,
+// and writes the transcript file only when an interactive session ends. The rows
+// are rebuilt into the transcript's step shape so the answer and chat readers
+// serve both sources. A message can be stored twice with only its metadata
+// changed, so each message id is kept once.
+export function databaseTranscript(dbPath, sessionId) {
+  const database = openDatabase(dbPath);
+  try {
+    const rows = database
+      .prepare('SELECT node_id, chat_message FROM message_nodes WHERE session_id = ? ORDER BY row_id')
+      .all(sessionId);
+    const steps = [];
+    const seen = new Set();
+    for (const row of rows) {
+      let message;
+      try {
+        message = JSON.parse(row.chat_message);
+      } catch {
+        continue;
+      }
+      if (!message || typeof message !== 'object') continue;
+      if (typeof message.message_id === 'string') {
+        if (seen.has(message.message_id)) continue;
+        seen.add(message.message_id);
+      }
+      const text = typeof message.content === 'string' ? message.content : '';
+      if (message.role === 'tool') {
+        steps.push({
+          step_id: row.node_id,
+          source: 'tool',
+          observation: { results: [{ source_call_id: message.tool_call_id, content: text }] },
+        });
+      } else if (message.role === 'assistant') {
+        const toolCalls = (Array.isArray(message.tool_calls) ? message.tool_calls : []).map((call) => ({
+          tool_call_id: call?.id,
+          function_name: call?.name,
+          arguments: call?.arguments,
+        }));
+        steps.push({ step_id: row.node_id, source: 'agent', message: text, tool_calls: toolCalls });
+      } else if (message.role === 'user') {
+        steps.push({ step_id: row.node_id, source: 'user', message: text });
+      }
+    }
+    return { session_id: sessionId, steps };
+  } finally {
+    database.close();
+  }
+}
+
 // The file name carries the session id, so a transcript without a declared id
 // still gets a stable identity for its queue file.
 function sessionIdOf(transcript, transcriptPath) {
@@ -202,8 +251,8 @@ function sessionIdOf(transcript, transcriptPath) {
   return basename(transcriptPath).replace(/\.json$/, '');
 }
 
-export function sweepDevinTranscript({ projectDir, transcriptPath, now } = {}) {
-  const transcript = JSON.parse(readFileSync(transcriptPath, 'utf8'));
+export function sweepDevinTranscript({ projectDir, transcriptPath, transcript: loaded, now } = {}) {
+  const transcript = loaded ?? JSON.parse(readFileSync(transcriptPath, 'utf8'));
   const sessionId = sessionIdOf(transcript, transcriptPath);
   const capturedAt = now || new Date().toISOString();
   const steps = Array.isArray(transcript?.steps) ? transcript.steps : [];
@@ -370,10 +419,22 @@ function main() {
     return 1;
   }
 
-  // Devin 3000.12 keeps messages in its database and writes no transcript file,
-  // so the save still gets the answers the live hook queued for the session.
+  // A live session has no transcript file yet, so the save reads its message
+  // store, or failing that still gets the answers the live hook queued.
   if (!explicitPath && !existsSync(transcriptPath)) {
     const sessionId = basename(transcriptPath, TRANSCRIPT_EXT);
+    const dbPath = join(dirname(dirname(transcriptPath)), 'sessions.db');
+    try {
+      const result = sweepDevinTranscript({
+        projectDir,
+        transcriptPath: dbPath,
+        transcript: databaseTranscript(dbPath, sessionId),
+      });
+      process.stdout.write(`${JSON.stringify({ ...result, transcript_missing: true }, null, 2)}\n`);
+      return 0;
+    } catch {
+      // A store without the message table still yields the answers the hook queued.
+    }
     process.stdout.write(`${JSON.stringify({
       transcript: null,
       transcript_missing: true,

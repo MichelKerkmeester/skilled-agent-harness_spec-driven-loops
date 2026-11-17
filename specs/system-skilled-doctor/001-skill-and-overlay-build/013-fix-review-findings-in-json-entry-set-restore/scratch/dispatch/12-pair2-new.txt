@@ -1,0 +1,20 @@
+      (operation.op === 'insertItems' || operation.op === 'appendItems') && samePath(operation.path, container));
+    if (addsItems) return false;
+    const maskedItems = (index) => {
+      const written = writtenInside([...container, index]);
+      return [
+        maskedValue(readItem(liveDocument, live.items[index]), written),
+        maskedValue(readItem(pinnedDocument, pinned.items[index]), written),
+      ];
+    };
+    const itemMatches = (index) => deepEqual(...maskedItems(index));
+    const index = Number(path[depth]);
+    if (!live.items[index] || !pinned.items[index]) return false;
+    if (!itemMatches(index)) return false;
+    // Masks that leave nothing of either item mean the overlay wrote all of it,
+    // whether in one set or in several, so the item itself proves nothing.
+    const nothingLeft = (value) => value === null ||
+      (typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === 0);
+    const wholeItemWritten = maskedItems(index).every(nothingLeft);
+    if (wholeItemWritten && !live.items.every((item, other) => other === index || itemMatches(other))) return false;
+  }

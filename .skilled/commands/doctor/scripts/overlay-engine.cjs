@@ -77,8 +77,8 @@ const LOCK_FILE = '.build-lock';
 const LOCK_TAKEOVER_SUFFIX = '.takeover';
 const LOCK_TAKEOVER_STALE_MS = 60 * 1000;
 const STATE_SCHEMA_VERSION = 1;
-const STATUS_NAMES = ['in-sync', 'overlay-edited', 'live-edited', 'both-changed', 'upstream-moved'];
-const BLOCKING_STATES = new Set(['live-edited', 'both-changed', 'upstream-moved']);
+const STATUS_NAMES = ['in-sync', 'overlay-edited', 'live-edited', 'both-changed', 'upstream-moved', 'cannot-apply'];
+const BLOCKING_STATES = new Set(['live-edited', 'both-changed', 'upstream-moved', 'cannot-apply']);
 const ENGINE_COMMAND = 'node .skilled/commands/doctor/scripts/overlay-engine.cjs';
 const EXIT_OK = 0;
 const EXIT_CONFLICT = 1;
@@ -1250,6 +1250,64 @@ function arrayOnPath(root, path) {
 }
 
 /**
+ * Whether two paths name one location. A step into an array may be spelled as
+ * a number or as a string, and both spellings reach the same item.
+ * @param {Array<string|number>} left One path.
+ * @param {Array<string|number>} right The other path.
+ * @returns {boolean} Whether the steps read the same once each is a string.
+ */
+function samePath(left, right) {
+  return left.length === right.length && left.every((step, index) => String(step) === String(right[index]));
+}
+
+/**
+ * Whether a path sits strictly inside another one.
+ * @param {Array<string|number>} inner The path that may sit inside.
+ * @param {Array<string|number>} outer The path that may hold it.
+ * @returns {boolean} Whether `inner` starts with every step of `outer` and goes further.
+ */
+function isInsidePath(inner, outer) {
+  return inner.length > outer.length && samePath(inner.slice(0, outer.length), outer);
+}
+
+/**
+ * A copy of a parsed value with one location changed. A location the value does
+ * not reach is left alone, so a missing step never invents structure.
+ * @param {*} value Parsed JSON value.
+ * @param {Array<string|number>} steps Location inside the value.
+ * @param {(container: object, step: string|number) => void} change Edits the
+ *   container that holds the location.
+ * @returns {*} The changed copy.
+ */
+function changedAt(value, steps, change) {
+  const copy = value === undefined ? undefined : JSON.parse(JSON.stringify(value));
+  let container = copy;
+  for (const step of steps.slice(0, -1)) {
+    if (container === null || typeof container !== 'object' || !(step in container)) return copy;
+    container = container[step];
+  }
+  if (container === null || typeof container !== 'object') return copy;
+  change(container, steps[steps.length - 1]);
+  return copy;
+}
+
+/**
+ * A copy of a parsed value with every listed location blanked out, so two
+ * values can be compared on what is left. A location at the value itself
+ * blanks the whole value.
+ * @param {*} value Parsed JSON value.
+ * @param {Array<Array<string|number>>} locations Locations inside the value.
+ * @returns {*} The masked copy.
+ */
+function maskedValue(value, locations) {
+  if (locations.some((steps) => steps.length === 0)) return null;
+  return locations.reduce((masked, steps) => changedAt(masked, steps, (container, step) => {
+    if (!Array.isArray(container)) delete container[step];
+    else if (step in container) container[step] = null;
+  }), value);
+}
+
+/**
  * Keep one record per path, the last one written. A state file from an engine
  * that recorded every `set` can hold two for one path, and only the last value
  * is the one the live file carries.
@@ -1258,37 +1316,112 @@ function arrayOnPath(root, path) {
  */
 function lastRecordPerPath(records) {
   return records.filter((record, index) =>
-    !records.slice(index + 1).some((later) => deepEqual(later.path, record.path)));
+    !records.slice(index + 1).some((later) => samePath(later.path, record.path)));
 }
 
 /**
  * Whether every array index on a recorded path names the same item in the live
  * file and in the pinned copy. An index is a position, so it is trusted only
- * while the two arrays hold the same number of items and this overlay neither
- * added an item to that array nor is about to.
- * @param {object} root Root node of the live document.
- * @param {object} upstreamRoot Root node of the pinned document.
+ * while the two arrays hold the same number of items, this overlay neither
+ * added an item to that array nor is about to, and the item at that index is
+ * the pin's item apart from the values this overlay's operations wrote into it.
+ * Equal lengths alone miss a file left on an older base after upstream swapped
+ * or replaced an item. A set that wrote the whole item leaves nothing of it to
+ * recognize, so then every other item of the array must be the pin's.
+ * @param {{text: string, root: object}} liveDocument The live text and its root node.
+ * @param {{text: string, root: object}} pinnedDocument The pinned text and its root node.
  * @param {Array<string|number>} path Path the set wrote.
  * @param {object[]} operations Operations of one entry set, in order.
+ * @param {object[]} recordedSets Sets this overlay applied to the destination.
  * @param {object[]} recordedItems Items this overlay added to the destination.
  * @returns {boolean} Whether the path's indexes can be read against the pin.
  */
-function indexesMatchPin(root, upstreamRoot, path, operations, recordedItems) {
+function indexesMatchPin(liveDocument, pinnedDocument, path, operations, recordedSets, recordedItems) {
+  const writtenPaths = [
+    ...recordedSets.map((record) => record.path),
+    ...operations.filter((operation) => operation.op === 'set').map((operation) => operation.path),
+  ];
+  const readItem = (document, item) => JSON.parse(document.text.slice(item.start, item.end));
+  // Every location inside one item that this overlay writes, relative to the item.
+  const writtenInside = (itemPath) => {
+    const inside = (written) => samePath(written, itemPath) || isInsidePath(written, itemPath);
+    const relative = (written) => written.slice(itemPath.length);
+    const locations = writtenPaths.filter(inside).map(relative);
+    // A set on a path above the item wrote the whole item.
+    if (writtenPaths.some((written) => isInsidePath(itemPath, written))) locations.push([]);
+    for (const operation of operations) {
+      if (operation.op === 'setKeyOnItem' && samePath(operation.path, itemPath.slice(0, -1))) {
+        locations.push([operation.key]);
+      } else if (operation.op === 'insertObjectKeys' && inside(operation.path)) {
+        for (const entry of operation.entries || []) locations.push([...relative(operation.path), entry.key]);
+      } else if ((operation.op === 'insertItems' || operation.op === 'appendItems') && isInsidePath(operation.path, itemPath)) {
+        locations.push(relative(operation.path));
+      }
+    }
+    for (const item of recordedItems) if (item && isInsidePath(item.path, itemPath)) locations.push(relative(item.path));
+    return locations;
+  };
   for (let depth = 0; depth < path.length; depth += 1) {
     const container = path.slice(0, depth);
-    const live = recordedNodeAt(root, container);
-    const pinned = recordedNodeAt(upstreamRoot, container);
+    const live = recordedNodeAt(liveDocument.root, container);
+    const pinned = recordedNodeAt(pinnedDocument.root, container);
     const liveIsArray = Boolean(live) && live.type === 'array';
     const pinnedIsArray = Boolean(pinned) && pinned.type === 'array';
     if (!liveIsArray && !pinnedIsArray) continue;
     if (!liveIsArray || !pinnedIsArray) return false;
     if (live.items.length !== pinned.items.length) return false;
-    if (recordedItems.some((item) => item && deepEqual(item.path, container))) return false;
+    if (recordedItems.some((item) => item && samePath(item.path, container))) return false;
     const addsItems = operations.some((operation) =>
-      (operation.op === 'insertItems' || operation.op === 'appendItems') && deepEqual(operation.path, container));
+      (operation.op === 'insertItems' || operation.op === 'appendItems') && samePath(operation.path, container));
     if (addsItems) return false;
+    const maskedItems = (index) => {
+      const written = writtenInside([...container, index]);
+      return [
+        maskedValue(readItem(liveDocument, live.items[index]), written),
+        maskedValue(readItem(pinnedDocument, pinned.items[index]), written),
+      ];
+    };
+    const itemMatches = (index) => deepEqual(...maskedItems(index));
+    const index = Number(path[depth]);
+    if (!live.items[index] || !pinned.items[index]) return false;
+    if (!itemMatches(index)) return false;
+    // Masks that leave nothing of either item mean the overlay wrote all of it,
+    // whether in one set or in several, so the item itself proves nothing.
+    const nothingLeft = (value) => value === null ||
+      (typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === 0);
+    const wholeItemWritten = maskedItems(index).every(nothingLeft);
+    if (wholeItemWritten && !live.items.every((item, other) => other === index || itemMatches(other))) return false;
   }
   return true;
+}
+
+/**
+ * The values a dropped set may leave at its path when nothing else edited it.
+ * The first is the recorded value with every set written inside it later laid
+ * on top. An older engine kept records in first-write order, so the recorded
+ * value alone, and the recorded value with every dropped set inside it laid on,
+ * are values the overlay may have left there too. A set the entry set still
+ * names is masked out of the comparison, because it writes its value again
+ * after the restore.
+ * @param {object} record The dropped record.
+ * @param {object[]} records Every record of the destination, in the order written.
+ * @param {Array<Array<string|number>>} keptPaths Paths the entry set still sets.
+ * @returns {{candidates: Array<*>, masks: Array<Array<string|number>>}} The
+ *   values to compare with, and the locations to leave out of the comparison.
+ */
+function valueLeftBySets(record, records, keptPaths) {
+  const droppedInside = records.filter((other) => isInsidePath(other.path, record.path) &&
+    !keptPaths.some((kept) => samePath(kept, other.path)));
+  const later = records.slice(records.indexOf(record) + 1);
+  const layOn = (inner) => inner.reduce((laid, other) => changedAt(laid, other.path.slice(record.path.length),
+    (container, step) => {
+      container[step] = other.value;
+    }), record.value);
+  const candidates = [layOn(droppedInside.filter((other) => later.includes(other))), record.value, layOn(droppedInside)];
+  const masks = keptPaths
+    .filter((kept) => isInsidePath(kept, record.path))
+    .map((kept) => kept.slice(record.path.length));
+  return { candidates, masks };
 }
 
 /**
@@ -1310,8 +1443,14 @@ function indexesMatchPin(root, upstreamRoot, path, operations, recordedItems) {
  */
 function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = () => null, recordedItems = []) {
   let output = text;
-  for (const record of lastRecordPerPath(recordedSets)) {
-    if (operations.some((operation) => operation.op === 'set' && deepEqual(operation.path, record.path))) continue;
+  const records = lastRecordPerPath(recordedSets);
+  const keptPaths = operations.filter((operation) => operation.op === 'set').map((operation) => operation.path);
+  const dropped = records.filter((record) => !keptPaths.some((kept) => samePath(kept, record.path)));
+  // An outer value is taken back before a value written inside it. Once the
+  // outer value is the pin's, the inner one reads as the pin's too, so two
+  // nested sets dropped together both leave.
+  const outerFirst = [...dropped].sort((left, right) => left.path.length - right.path.length);
+  for (const record of outerFirst) {
     const where = record.path.join('.');
     const root = parseJsonSource(output);
     // The key, or the object that held it, may be gone already: nothing is left
@@ -1323,7 +1462,8 @@ function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = (
     if (!node && !liveArray) continue;
     const upstreamText = readUpstreamText();
     if (upstreamText === null) {
-      throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy of the file cannot be read');
+      throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy of the file cannot be read; ' +
+        "name the upstream checkout in the manifest's pin.checkout, or put the file back to the pin's bytes by hand");
     }
     let upstreamRoot;
     try {
@@ -1339,9 +1479,12 @@ function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = (
       JSON.parse(output.slice(liveArray.node.start, liveArray.node.end)),
       JSON.parse(upstreamText.slice(pinnedArray.node.start, pinnedArray.node.end)),
     )) continue;
-    if (!indexesMatchPin(root, upstreamRoot, record.path, operations, recordedItems)) {
+    if (!indexesMatchPin({ text: output, root }, { text: upstreamText, root: upstreamRoot },
+      record.path, operations, records, recordedItems)) {
+      const arrayPath = (liveArray || pinnedArray).path;
       throw new Error('cannot restore the dropped set at ' + where +
-        ': its path goes through an array whose items differ from the pinned copy; restore the value by hand');
+        ': its path goes through an array whose items differ from the pinned copy; put the array at ' +
+        (arrayPath.length > 0 ? arrayPath.join('.') : 'the top level') + ' back to the pinned copy by hand and run apply');
     }
     // The arrays line up, so a key that is missing is gone and not one place along.
     if (!node) continue;
@@ -1349,7 +1492,8 @@ function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = (
     const live = JSON.parse(output.slice(node.start, node.end));
     // A live value that already equals the pin's needs no write.
     if (pinned && deepEqual(live, JSON.parse(upstreamText.slice(pinned.start, pinned.end)))) continue;
-    if (!deepEqual(live, record.value)) {
+    const { candidates, masks } = valueLeftBySets(record, records, keptPaths);
+    if (!candidates.some((candidate) => deepEqual(maskedValue(live, masks), maskedValue(candidate, masks)))) {
       throw new Error('dropped set at ' + where +
         ' was edited after it was applied; restore the value by hand or put the set back in the entry set');
     }
@@ -1614,7 +1758,10 @@ function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, 
   const readUpstreamText = () => {
     if (upstreamText !== undefined) return upstreamText;
     const bytes = upstreamBytes ? upstreamBytes(relativeKey(ctx.root, destinationPath)) : null;
-    upstreamText = bytes === null ? null : bytes.toString('utf8');
+    // Live bytes that hash to the entry's pinned hash are the pinned copy itself,
+    // so they stand in when no checkout can be read.
+    if (bytes !== null) upstreamText = bytes.toString('utf8');
+    else upstreamText = entry.pinnedSha256 && sha256(current) === entry.pinnedSha256 ? currentText : null;
     return upstreamText;
   };
   let expected;
@@ -1628,11 +1775,16 @@ function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, 
       readUpstreamText,
       onListed: (record) => listedItems.push(record),
       // One record per path: a later set on the same path is the value the file
-      // ends with, and a key stays marked as added once either set added it.
+      // ends with, and a key stays marked as added once either set added it. The
+      // record moves to the end, so the records keep the order the values were written.
       onSet: (record) => {
-        const index = listedSets.findIndex((listed) => deepEqual(listed.path, record.path));
-        if (index < 0) listedSets.push(record);
-        else listedSets[index] = { ...record, added: listedSets[index].added === true || record.added === true };
+        const index = listedSets.findIndex((listed) => samePath(listed.path, record.path));
+        if (index < 0) {
+          listedSets.push(record);
+          return;
+        }
+        const [earlier] = listedSets.splice(index, 1);
+        listedSets.push({ ...record, added: earlier.added === true || record.added === true });
       },
     });
   } catch (error) {
@@ -2494,6 +2646,16 @@ function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manif
           upstreamBytes,
         });
       if (plan.problems.length > 0 && stateName === 'overlay-edited') stateName = 'both-changed';
+      // An entry set the engine cannot apply to a file nobody edited since the
+      // last apply, or since the pin, is a problem in the entry set alone. Only
+      // the live copy moving as well makes it both-changed.
+      if (stateName === 'both-changed' && plan.entry.scope === 'json-entry' && output.buffer === null &&
+          plan.problems.length > 0) {
+        const live = readBufferOrNull(output.filePath);
+        if (hashMatches(live, acceptedHashFor(state.files, key)) || hashMatches(live, plan.entry.pinnedSha256)) {
+          stateName = 'cannot-apply';
+        }
+      }
       records.push({
         state: stateName,
         key,
@@ -2512,6 +2674,10 @@ function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manif
 function fixFor(ctx, record) {
   if (record.state === 'overlay-edited') return ENGINE_COMMAND + ' apply';
   if (record.state === 'live-edited') return ENGINE_COMMAND + ' apply --capture ' + record.key;
+  if (record.state === 'cannot-apply') {
+    const reasons = record.plan.problems.map((problem) => problem.replace(/^cannot apply the entry set to [^:]+: /, ''));
+    return reasons.join('; ') + '; change the entry set or the live file, then run ' + ENGINE_COMMAND + ' status';
+  }
   return 'resolve ' + ctx.overlayLabel + '/' + record.source + ' and ' + record.key +
     ', then run ' + ENGINE_COMMAND + ' status';
 }
@@ -4056,7 +4222,11 @@ function repinWrites(ctx, job, touched, newTree, report) {
       console.log(`stage skipped ${report.stageSkipped.regenerate} regenerate and ${report.stageSkipped.verify} verify step(s); the live run runs them`);
     }
   }
-  const readUpstream = treeBytesReader(newTree);
+  // The extracted tree holds only the copied roots. A destination outside them is
+  // read from the new commit itself, which is the pin it is restored to.
+  const fromTree = treeBytesReader(newTree);
+  const fromCommit = commitBytesReader(job.upstream, job.newCommit);
+  const readUpstream = (key) => fromTree(key) || fromCommit(key);
   const afterCopy = analyze(ctx, manifest, loadState(ctx, manifest), readUpstream);
   reportBlocked(afterCopy, report);
   report.equalsUpstream = overlaysEqualToUpstream(ctx, afterCopy, newTree, job.settings.roots);
@@ -4122,6 +4292,25 @@ function repinUnderLock(ctx, job, report) {
   }
   const shape = treeShapeProblems(ctx.root, touched);
   if (shape.length > 0) return refuseRepin(shape);
+  // A json-entry destination the copy leaves in place keeps its live bytes, so
+  // its entry set meets the new pin with the file as it is now. A refusal there
+  // would stop the apply after the copy had written, so it is planned here first.
+  const state = loadState(ctx, manifest);
+  const leftInPlace = manifest.overlays
+    .filter((entry) => entry.scope === 'json-entry' &&
+      !touched.copy.includes(entry.destination) && !touched.delete.includes(entry.destination))
+    .map((entry) => planOverlay(entry, ctx, {
+      acceptedSha256: state.files,
+      recordedItems: (state.items || {})[entry.destination] || [],
+      recordedSets: (state.sets || {})[entry.destination] || [],
+      upstreamBytes: commitBytesReader(job.upstream, job.newCommit),
+    }))
+    .filter((plan) => plan.problems.length > 0);
+  if (leftInPlace.length > 0) {
+    const lines = leftInPlace.flatMap((plan) => plan.problems.map((problem) => `blocked ${plan.entry.id}: refused ${problem}`));
+    lines.push(`refuse: ${leftInPlace.length} json-entry overlay(s) the copy leaves in place cannot be applied at the new pin; for a refused array, put it back to the copy at the current pin by hand, run apply, then re-pin`);
+    return refuseRepin(lines);
+  }
   report.notCopied = notCopiedChanges(ctx, job);
   reportNotCopied(report.notCopied, job.settings);
   report.rootFiles = rootFileChanges(ctx, manifest, job);

@@ -1,0 +1,2 @@
+| `upstream-moved` | A re-pin brought in an upstream change to a file an overlay owns | A person resolves the overlay against the new upstream, then reruns `/doctor:overlay status` |
+| `cannot-apply` | A json-entry overlay's entry set cannot be applied to a destination nobody edited, and the `fix:` text names why | A person changes the entry set or the destination as the fix says, then reruns `/doctor:overlay status` |

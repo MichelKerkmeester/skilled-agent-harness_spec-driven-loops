@@ -13,24 +13,30 @@
     "trigger_phrases": [
       "runtime plugin readmes",
       "phase 5 runtime plugin readmes",
+      "plugin extension readme",
+      "hook mirror readme",
       "runtime plugin readmes plan",
+      "runtime plugin readmes rewrite waves",
       "runtime plugin readmes tasks",
       "runtime plugin readmes acceptance criteria",
-      "runtime plugin readmes implementation summary"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "runtime",
       "plugin",
       "readmes",
       "phase",
+      "extension",
+      "readme",
+      "hook",
+      "mirror",
       "plan",
-      "tasks",
-      "acceptance",
-      "criteria",
-      "implementation",
-      "summary",
-      "yourvaluehere",
-      "broken"
+      "rewrite",
+      "waves",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -39,8 +45,20 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md"
+      ".pi/extensions/README.md",
+      ".opencode/plugins/README.md",
+      ".dsh/plugins/repo-guards/README.md",
+      ".vibe/plugins/README.md",
+      ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md",
+      ".claude/hooks/README.md",
+      ".codex/hooks/README.md",
+      ".cursor/hooks/README.md",
+      ".devin/hooks/README.md",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".opencode/plugins/tests/goal-doc-contract.test.cjs"
     ],
     "entities": [
       {
@@ -68,9 +86,21 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/extensions/README.md",
         "source": "derived"
       },
       {
@@ -80,13 +110,25 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-doc-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/goal-doc-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -116,6 +158,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement These",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -128,7 +176,19 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -140,73 +200,32 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "These folders are where a runtime picks up the repository's hooks and plugins, and their READMEs tell a maintainer which entry is a link, a re-export or a real plugin",
     "created_at": "2026-11-16T15:20:16Z",
-    "last_save_at": "2026-11-16T15:23:32.257Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-16T19:27:07.793Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e2e039eaf72587d445423ddf0c8818be931f364f3ae400b6779ebc04eacd06a",
+    "source_fingerprint": "sha256:59b9d812d14ed3d2af1b5eece4505746b354d1b6258e8f085bec2344e0bc954a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ba2dc10ff5d3c126e50fb5daa088cd87c299a0eb440d64d11e376d0bd53fc3a9",
-      "plan.md": "b782c936e2f921fdd46da7ea7afa3266c8adf15b4238517510537d3d605a8a55",
-      "tasks.md": "e30400b9754dd2d450f08440897eb82b6af274d915fb28ea82ed85da3c0759f3",
-      "implementation-summary.md": "5016945b5fafccffcfb4a0eaaf3c2db97e8fe978112cf04ead06debf573562d1"
+      "spec.md": "d630524e71a6dc70313c1866ff26a7a64f30cdb39a6dae69fae7b342a364f1df",
+      "plan.md": "e9bceb05d90966bb1129f99bcb76dae8cba3f8c65c4098b4f71ca651d152d5f3",
+      "tasks.md": "ff436e29787eaae869995732eff943aa5a559ed0f34ee17676f83d45489adb8e",
+      "implementation-summary.md": "bbc1a384cb4c3e56ccd4e01e3f1fcb6cef9d8537c0461d45ffe5c44ab65f1b4a"
     },
     "last_active_at": null
   }

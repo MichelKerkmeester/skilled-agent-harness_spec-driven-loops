@@ -1,0 +1,4 @@
+    const relative = (written) => written.slice(itemPath.length);
+    const locations = writtenPaths.filter(inside).map(relative);
+    for (const operation of operations) {
+      if (operation.op === 'setKeyOnItem' && samePath(operation.path, itemPath.slice(0, -1))) {

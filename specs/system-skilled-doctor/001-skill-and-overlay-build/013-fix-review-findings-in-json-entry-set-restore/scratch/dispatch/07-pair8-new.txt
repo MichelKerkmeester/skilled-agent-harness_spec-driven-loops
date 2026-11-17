@@ -1,0 +1,1 @@
+writes nothing while a destination is live-edited, both-changed, upstream-moved or cannot-apply;

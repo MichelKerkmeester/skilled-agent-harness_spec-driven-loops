@@ -1,11 +1,12 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes",
   "description": "Phase 4: hook-runtime-readmes",
   "keywords": [
     "phase",
     "hook-runtime-readmes"
   ],
-  "lastUpdated": "2026-11-16T15:20:16.032Z",
+  "lastUpdated": "2026-11-16T19:27:06.360Z",
   "specId": "004",
   "folderSlug": "hook-runtime-readmes",
   "parentChain": [
@@ -13,7 +14,8 @@
     "document-standards",
     "006-readme-template-conformance"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_20-27__phase-planned.md"
+  ]
 }

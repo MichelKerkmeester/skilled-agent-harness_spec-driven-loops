@@ -1,0 +1,1 @@
+| `upstream-moved` | A re-pin brought in an upstream change to a file an overlay owns | A person resolves the overlay against the new upstream, then reruns `/doctor:overlay status` |

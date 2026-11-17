@@ -1,0 +1,30 @@
+
+/**
+ * The values a dropped set may leave at its path when nothing else edited it.
+ * The first is the recorded value with every set written inside it later laid
+ * on top. An older engine kept records in first-write order, so the recorded
+ * value alone, and the recorded value with every dropped set inside it laid on,
+ * are values the overlay may have left there too. A set the entry set still
+ * names is masked out of the comparison, because it writes its value again
+ * after the restore.
+ * @param {object} record The dropped record.
+ * @param {object[]} records Every record of the destination, in the order written.
+ * @param {Array<Array<string|number>>} keptPaths Paths the entry set still sets.
+ * @returns {{candidates: Array<*>, masks: Array<Array<string|number>>}} The
+ *   values to compare with, and the locations to leave out of the comparison.
+ */
+function valueLeftBySets(record, records, keptPaths) {
+  const droppedInside = records.filter((other) => isInsidePath(other.path, record.path) &&
+    !keptPaths.some((kept) => samePath(kept, other.path)));
+  const later = records.slice(records.indexOf(record) + 1);
+  const layOn = (inner) => inner.reduce((laid, other) => changedAt(laid, other.path.slice(record.path.length),
+    (container, step) => {
+      container[step] = other.value;
+    }), record.value);
+  const candidates = [layOn(droppedInside.filter((other) => later.includes(other))), record.value, layOn(droppedInside)];
+  const masks = keptPaths
+    .filter((kept) => isInsidePath(kept, record.path))
+    .map((kept) => kept.slice(record.path.length));
+  return { candidates, masks };
+}
+

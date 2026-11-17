@@ -1,0 +1,8 @@
+    if (pinned && deepEqual(live, JSON.parse(upstreamText.slice(pinned.start, pinned.end)))) continue;
+    const { expected, masks } = valueLeftBySets(record, records, keptPaths);
+    // An older engine kept the records in first-write order, so the record's own
+    // value alone is also a value the overlay left there.
+    if (!deepEqual(maskedValue(live, masks), maskedValue(expected, masks)) &&
+        !deepEqual(maskedValue(live, masks), maskedValue(record.value, masks))) {
+      throw new Error('dropped set at ' + where +
+        ' was edited after it was applied; restore the value by hand or put the set back in the entry set');

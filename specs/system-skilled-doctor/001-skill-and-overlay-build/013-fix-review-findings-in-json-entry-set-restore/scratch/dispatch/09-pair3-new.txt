@@ -1,0 +1,50 @@
+  assert.deepEqual(readJson(fixture.livePath).rows.map((row) => row.top), ['x', 'a', 'b']);
+  assert.deepEqual(fixture.recordedSets(), []);
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('a dropped set that wrote a whole array item restores only while every other item is the pin\'s', () => {
+  const live = JSON.stringify({ rows: [{ id: 'A' }, { id: 'V' }] }, null, 2) + '\n';
+  const record = { path: ['rows', 1], value: { id: 'V' }, added: false };
+  const restore = (pinned) => engine.applyJsonOperations(live, { operations: [] }, {
+    canReplaceExisting: true,
+    recordedSets: [record],
+    readUpstreamText: () => JSON.stringify(pinned, null, 2) + '\n',
+  });
+
+  assert.deepEqual(JSON.parse(restore({ rows: [{ id: 'A' }, { id: 'B' }] })).rows, [{ id: 'A' }, { id: 'B' }]);
+  assert.throws(() => restore({ rows: [{ id: 'B' }, { id: 'A' }] }),
+    /cannot restore the dropped set at rows\.1: its path goes through an array whose items differ from the pinned copy/);
+});
+
+test('a dropped set is restored beside other operations the entry set keeps in the same item', () => {
+  const pinned = JSON.stringify({ rows: [{ id: 'A', top: 'a' }, { id: 'B', top: 'b', tags: ['t'] }] }, null, 2) + '\n';
+  const live = JSON.stringify({ rows: [{ id: 'A', top: 'a' }, { id: 'B', top: 'v', tags: ['t', 'mine'], extra: 1 }] }, null, 2) + '\n';
+  const kept = [
+    { op: 'setKeyOnItem', path: ['rows'], identityKey: 'id', match: { id: 'B' }, key: 'extra', value: 1 },
+    { op: 'appendItems', path: ['rows', 1, 'tags'], items: ['mine'] },
+  ];
+
+  const restored = engine.applyJsonOperations(live, { operations: kept }, {
+    canReplaceExisting: true,
+    recordedSets: [{ path: ['rows', 1, 'top'], value: 'v', added: false }],
+    readUpstreamText: () => pinned,
+    onSet: () => {},
+    onListed: () => {},
+  });
+
+  assert.deepEqual(JSON.parse(restored).rows[1], { id: 'B', top: 'b', tags: ['t', 'mine'], extra: 1 });
+});
+
+test('records an older engine kept in first-write order still restore nested sets dropped together', () => {
+  const pinned = JSON.stringify({ a: { x: 0 }, k: 0 }, null, 2) + '\n';
+  const live = JSON.stringify({ a: { x: 3 }, k: 0 }, null, 2) + '\n';
+
+  const restored = engine.applyJsonOperations(live, { operations: [] }, {
+    canReplaceExisting: true,
+    recordedSets: [{ path: ['a'], value: { x: 3 }, added: false }, { path: ['a', 'x'], value: 2, added: false }],
+    readUpstreamText: () => pinned,
+  });
+
+  assert.equal(restored, pinned);
+});

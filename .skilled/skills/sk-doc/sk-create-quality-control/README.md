@@ -6,12 +6,12 @@ trigger_phrases:
   - "/doc:quality"
   - "score this document"
   - "human voice"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # create-quality-control
 
-> Run one command and know, with a number, whether a markdown document is actually ready to publish.
+> Know whether an existing markdown document is ready to publish, and improve it only when you ask.
 
 ---
 
@@ -21,86 +21,93 @@ version: 1.0.3.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Auditing, scoring and optionally improving an existing markdown document's structure and voice |
-| **Invoke with** | "doc quality", "score this document", "DQI", "HVR" (hub routing only; the packet declares no slash command) |
-| **Works on** | Any existing markdown file already in the repo: README, `SKILL.md`, command doc, spec doc, reference |
-| **Produces** | A DQI score and band with the blocking/warning/recommendation issue list behind it, plus a targeted edit to that one file only when you ask |
-
-### Why This Skill Exists
-
-A document either reads well to the person who wrote it or it does not. A self-assessment is not evidence. Without a scoring pass, "looks fine to me" is the only quality bar a README or `SKILL.md` ever clears. A document can then ship with missing frontmatter, a broken section order, a misdetected document type or robotic AI-pattern prose that nobody catches until an operator hits it mid-task. Fixing that blind, by rewriting on instinct, risks changing product claims or policy text that nobody actually asked to touch.
-
-### When To Use This Skill
-
-Reach for this packet when a document needs to clear a real quality gate before publishing, when a document "feels off" but nobody has run a structural check on it, when someone asks to optimize or rewrite an existing document for AI-friendliness or when a document needs re-validation after another packet finished authoring it. Skip it when the document does not exist yet (that is a creation packet's job) or when the fix is a one-character typo that does not need a scoring pass.
+| **Use it for** | Auditing, scoring or improving one existing markdown document |
+| **Invoke with** | "doc quality" or "score this document" through `sk-doc` routing (no slash command) |
+| **Works on** | An existing README, `SKILL.md`, command doc, reference, spec file or generic markdown file |
+| **Produces** | A DQI score and band, ranked findings and scoped edits only on request |
 
 ### What It Does
 
-`create-quality-control` reads a markdown file and runs it through structure extraction to get a Document Quality Index score with its quality band. It classifies what it finds into blocking/warning/recommendation tiers before applying Human Voice Rules on top. The audit is report-only by default: it tells you where the document stands and why. Only when edits are explicitly requested does it touch the file, staying scoped to that one document. It never creates a new artifact. For that, route to the matching creation packet (`create-readme`, `create-skill` and the rest).
+create-quality-control audits a markdown file that already exists. It runs structure extraction and reports the Document Quality Index with its quality band, using the checklist result as evidence. Then it ranks the findings so blocking issues come before softer warnings. The run is report-only unless you ask for an edit. When an edit is in scope, it improves that same file and re-runs the evidence commands.
+
+The packet declares no slash command. The `sk-doc` hub routes an existing-document quality request here, and the workflow runs from the packet's [runtime contract](./SKILL.md). It never creates an artifact, so new work belongs to the matching creation packet.
+
+### Why This Skill Exists
+
+A document reads fine to the person who wrote it. That is not evidence. Without a scoring pass, "looks fine to me" is the only bar a README ever clears, and missing frontmatter or a broken section order can ship unnoticed. Fixing that by instinct is worse, because a rewrite can change a claim nobody meant to touch. This packet gives the document a number and the evidence behind it before anyone edits a line.
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Invoke it.** Ask for a doc-quality audit, score or validation of a named file and `sk-doc` routes here. Read `SKILL.md` directly for the full contract.
+**Step 1: Invoke it.** Ask `sk-doc` to score or audit an existing markdown file. A run needs no reference file to start.
 
 **Step 2: Run the primary workflow.**
 
 ```bash
-python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py README.md
+python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <file>
 ```
 
-You get a JSON report with the detected document type, structural metrics, checklist results, DQI score and quality band.
+Expected output: one JSON object. It carries the detected `type`, a `checklist` block, the `metrics`, the `content_issues`, the `style_issues` and a `dqi` block with `total` and `band`. The command exits 0.
 
 **Step 3: Verify before you rely on it.**
 
 ```bash
-python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py README.md --type readme
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <file> --type <type>
 ```
 
-Expected: zero blocking issues before the document counts as ready.
+Expected output: `✅ VALID: <file>` followed by `Document type: <type>` and `Total issues: 0`, with exit 0. A blocking failure exits 1. The types include `readme`, `skill`, `reference`, `command` and `spec`.
 
 ---
 
 ## 3. HOW IT WORKS
 
-1. Confirm the target file and pick one execution mode: report-only audit (the default), structure validation, content optimization (only when edits are explicitly requested) or a batch snapshot across multiple docs.
-2. Run `extract_structure.py` and treat its JSON output as the source of truth for structure, metrics, checklist results and DQI. Never claim a score without reading it.
-3. Classify findings in order: blocking structural failures first, then warnings, then recommendations. Only then apply an HVR voice review, since HVR is a pass after structural issues are understood, not a substitute for finding them.
-4. Report findings in the fixed shape: document path and type, DQI score and band, filename-case signal, blocking issues, warnings, HVR issues and recommendations.
-5. When edits are explicitly requested, audit the current state for weak patterns, map the document against likely developer questions, apply only the transformation patterns the observed gaps call for, edit narrowly without expanding scope, then re-run `validate_document.py` and `extract_structure.py` to confirm the post-edit DQI and checklist state.
+A run starts by reading the target and choosing a mode. The default is a report-only audit. Extraction comes next, and its JSON is the source of truth for the document type, the metrics, the checklist result and the DQI. Findings are ranked, with blocking structural failures first and the softer warnings behind them. The voice review runs after that. It looks for generic phrasing and padded language, which is why it cannot replace the structural gate.
 
-### Key Concept: DQI Is Read, Never Guessed
+The audit ends with a fixed report: the path and detected type, the DQI score and band, the filename-case signal, the blocking list and the next steps. When you ask for edits, the packet applies only the transformations the gaps call for and edits the one target. Then it re-runs validation and extraction, so the new score is evidence rather than hope.
 
-The DQI score always comes from running `extract_structure.py` against the real file on disk, never from eyeballing the document. For example, a README can look polished and still be missing a required Quick Start section. The extractor still returns a lower DQI and flags the missing section as a blocking issue. That number is what gets reported, not the impression a fast read leaves.
+```mermaid
+flowchart TD
+  Request["Quality request"] --> Read["Read the target and pick a mode"]
+  Read --> Extract["Run extract_structure.py"]
+  Extract --> Rank["Rank blockers before softer findings"]
+  Rank --> Voice["Apply the voice review"]
+  Voice --> Report["Report the score and the findings"]
+  Report --> Decision{"Edits requested?"}
+  Decision -->|"no"| Stop["Stop with the report"]
+  Decision -->|"yes"| Edit["Edit the one target"]
+  Edit --> Recheck["Re-run validation and extraction"]
+```
 
-### Enforcement Fixes
+### The Four Execution Modes
 
-The three structural failures this packet fixes most often are:
+| Mode | What runs | What you get |
+|---|---|---|
+| Report-only audit | `extract_structure.py <file>` plus a written read of the JSON | The score, the band and the findings, with no edit |
+| Structure validation | `validate_document.py <file> --type <type>` for a document, `quick_validate.py <dir>` for a packet | The checklist result and the blocking list |
+| Content optimization | The extraction, edit and re-check sequence | Scoped edits to the one target and post-edit evidence |
+| Batch snapshot | `extract_structure.py <file>` per file | One evidence-backed entry per file, with no edits |
 
-- Missing frontmatter.
-- Sections out of the required order.
-- A required section that is simply absent.
+### Key Concept: DQI Is Read, Not Guessed
 
-Each fix follows the same shape:
-
-1. Identify the gap against the detected document type.
-2. Apply the minimal correction rather than a rewrite.
-3. Re-run validation and extraction to confirm the fix actually landed.
-
-When the missing content needs source evidence that is not in the workspace, the packet escalates instead of inventing it.
+The score comes from `extract_structure.py` against the file on disk. A README can look polished and still fail a checklist item, such as the blockquote a reader scans after the H1. Extraction returns a lower DQI and reports the failed item, and that number is what gets reported. The band follows the score: excellent at 90 and above, good from 75 to 89, acceptable from 60 to 74 and needs work below 60. An edit that changes the score is not finished until extraction has run again.
 
 ---
 
 ## 4. INTEGRATION & NAVIGATION
 
+### When To Use This Skill
+
+Reach for this packet when an existing document needs a quality gate before publishing. It also fits when a document feels off and nobody has run a structural check. Use it when another packet has just written or changed a file and the result needs re-validation. Skip it when the file does not exist yet. Creation belongs to the matching `sk-doc` creation packet, such as `sk-create-readme` or `sk-create-skill`.
+
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `create-readme`, `create-skill`, `create-agent` and the rest of the creation family | Own brand-new artifact creation. `create-quality-control` never originates a new file |
-| `create-manual-testing-playbook`, `create-benchmark`, `create-feature-catalog` | Validate inline as part of their own authoring workflow. This packet audits something already shipped |
-| `sk-code` | Owns code review and debugging. This packet is markdown-only |
+| `sk-doc` hub | Routes an existing-document quality request to this packet |
+| `sk-create-readme`, `sk-create-skill` and the rest of the creation family | Write a new artifact. This packet audits one that already exists |
+| `sk-create-with-human-voice` | Owns the Human Voice Rules and the voice workflow. This packet applies the rules as a review pass |
+| `sk-code` | Owns code review and debugging. This packet reads markdown only |
 
 ---
 
@@ -108,41 +115,46 @@ When the missing content needs source evidence that is not in the workspace, the
 
 | What you see | Why | Fix |
 |---|---|---|
-| A DQI claim with no extraction evidence behind it | The score was estimated instead of read from the tool | Re-run `extract_structure.py` and cite its JSON output |
-| Validator flags a document-type mismatch | `extract_structure.py` auto-detected the wrong type | Force the type on `validate_document.py --type <type>`. The extractor itself has no `--type` flag |
-| An edit touched more than the target document | Optimization scope crept into a nearby file | Revert the unrelated changes. Keep edits scoped to the one file unless the user explicitly expanded scope |
-| HVR issues were flagged while structural blockers are still open | Voice review ran ahead of the structural gate | Fix blocking structural issues first. HVR is a pass that comes after extraction, not a substitute for it |
-| A batch snapshot run edited files nobody asked to change | Batch mode drifted from summary into unrequested edits | Batch mode only summarizes per-file type and DQI, with top recommendations noted. Edit only the specific files the user names |
+| `SKILL.md not found` from `quick_validate.py` | The script expects a packet directory and received a file path | Pass the folder, such as `.skilled/skills/sk-doc/sk-create-quality-control` |
+| A score with no extraction output behind it | The number came from a guess | Run `extract_structure.py` and cite its JSON |
+| The validator reports the wrong document type | The type was auto-detected from the path or the content | Pass `--type` with the correct type. The extractor has no type flag |
+| An edit changed a file next to the target | The change left the one document | Revert the other files and keep the edit scoped to the named target |
+| Voice findings arrive before the structural check | The review ran out of order | Fix the blocking structure first, then review the voice |
 
 ---
 
 ## 6. FAQ
 
-**Q: Why is the audit report-only by default?**
+### Why is the audit report-only by default?
 
-A: An unrequested edit risks changing product claims or policy text without a real decision behind it. Edits happen only when explicitly asked for.
+An unrequested edit can change a product claim or a policy sentence without a decision behind it. The packet reports the score and the evidence first. It edits only when you ask and the scope is clear.
 
-**Q: Why this instead of letting each creation packet validate its own output?**
+### Why not let each creation packet validate its own output?
 
-A: A creation packet validates what it just wrote. `create-quality-control` audits something that already exists, independent of who authored it or when.
+A creation packet validates what it just wrote. This packet audits any existing file, whoever wrote it and whenever it landed. That is why it is the right gate for a document that has already shipped, or for work another packet handed over.
 
-**Q: Does it add a table of contents to the documents it touches?**
+### Does it add a table of contents?
 
-A: No, never, unless another active project rule explicitly overrides that.
+No. Adding one needs an explicit project rule that overrides the shared standard.
 
-**Q: What happens if the requested optimization would change a product claim or a legal or policy statement?**
+### What happens when an edit would change a product claim or a policy statement?
 
-A: The packet escalates instead of editing. Product claims and policy text, plus canonical spec decisions, need a human decision, not a quality-pass rewrite.
+The packet escalates instead of editing. A product claim or a policy sentence needs a human decision, and a quality pass is the wrong place for that decision.
 
 ---
 
 ## 7. VERIFICATION
 
-| Check | How to run it |
-|---|---|
-| Structure and DQI | `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <file>` returns metrics, checklist results, DQI score and band |
-| Format validation | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <file> --type <type>` reports zero blocking issues |
-| Filename case (non-scored) | `python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <file>` reports `PASS` or `FAIL`, plus an exemption outcome where the naming rules do not apply |
+Run the checks from the repository root. Stop when a blocking check exits non-zero.
+
+| Check | How to run it | What a pass looks like |
+|---|---|---|
+| Structure and DQI | `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <file>` | JSON with a `dqi` total and band, exit 0 |
+| Format | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <file> --type <type>` | `✅ VALID: <file>` and `Total issues: 0` |
+| Packet sanity | `python3 .skilled/skills/sk-doc/shared/scripts/quick_validate.py <dir>` | `✅ Skill is valid!` |
+| Filename case | `python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <file>` | One line: `PASS: authored artifact name is kebab-case: <file>`, `PASS: authored artifact name is exempt: <file>` or a `FAIL:` line with exit 1 |
+
+The filename-case check is a signal. It changes no DQI point. The [manual testing playbook](manual-testing-playbook/manual-testing-playbook.md) walks the same behavior by hand across six scenarios in two categories, and each scenario records a verdict with its reason.
 
 ---
 
@@ -150,12 +162,14 @@ A: The packet escalates instead of editing. Product claims and policy text, plus
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Authoritative workflow contract for `create-quality-control` |
-| [`references/README.md`](./references/README.md) | Route map over the reference set |
-| [`references/workflows.md`](./references/workflows.md) | The four execution modes and how to select one |
-| [`references/validation-and-enforcement.md`](./references/validation-and-enforcement.md) | Validation touchpoints, enforcement approval prompts and phase chaining |
-| [`references/workflow-examples.md`](./references/workflow-examples.md) | Copy-paste command recipes and batch processing patterns |
-| [`references/optimization.md`](./references/optimization.md) | Optimization procedure, heuristics and checklist |
-| [`references/transformation-patterns.md`](./references/transformation-patterns.md) | The 16 transformation patterns with worked before/after examples |
-| [`../shared/references/validation.md`](../shared/references/validation.md) | DQI bands and quality-gate interpretation |
-| [`../sk-create-with-human-voice/references/hvr-rules.md`](../sk-create-with-human-voice/references/hvr-rules.md) | Human Voice Rules for natural documentation style |
+| [`SKILL.md`](./SKILL.md) | Runtime contract for the audit and optimization workflow |
+| [`ROUTER.md`](./ROUTER.md) | Intent map and resource map for the packet |
+| [`references/README.md`](./references/README.md) | Route map to the five reference files |
+| [`references/workflows.md`](./references/workflows.md) | The four execution modes and how to choose one |
+| [`references/validation-and-enforcement.md`](./references/validation-and-enforcement.md) | Validation touchpoints, approval wording and phase chaining |
+| [`references/workflow-examples.md`](./references/workflow-examples.md) | Copy-paste recipes and batch processing |
+| [`references/optimization.md`](./references/optimization.md) | The optimization procedure and its heuristics |
+| [`references/transformation-patterns.md`](./references/transformation-patterns.md) | The 16 transformation patterns with worked examples |
+| [`manual-testing-playbook/manual-testing-playbook.md`](manual-testing-playbook/manual-testing-playbook.md) | Six hand-run scenarios for audit, validation and voice |
+| [`../shared/references/validation.md`](../shared/references/validation.md) | DQI components, quality bands and gate interpretation |
+| [`../sk-create-with-human-voice/references/hvr-rules.md`](../sk-create-with-human-voice/references/hvr-rules.md) | The Human Voice Rules |

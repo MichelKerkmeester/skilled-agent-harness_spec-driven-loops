@@ -1,0 +1,1 @@
+With relayout, a live-edited, both-changed or upstream-moved line stops

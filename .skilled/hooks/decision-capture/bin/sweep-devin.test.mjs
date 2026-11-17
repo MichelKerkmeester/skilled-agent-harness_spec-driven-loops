@@ -245,6 +245,54 @@ test('a session with no transcript still prints the answers the hook queued', ()
   });
 });
 
+test('a session with no transcript is read from the message store', () => {
+  withProject((projectDir) => {
+    withDevinData(projectDir, [[SESSION, 1000]], (cliDir, sweep) => {
+      const callId = 'ask_user_question:0#7f6b492fed214f47852ea113097b6cd3';
+      const question = 'Which colour should the demo badge use?';
+      const call = {
+        message_id: 'm2',
+        role: 'assistant',
+        content: '',
+        tool_calls: [{
+          id: callId,
+          name: 'ask_user_question',
+          arguments: { questions: [{ question, header: 'Badge', options: [{ label: 'Red' }, { label: 'Blue' }] }] },
+        }],
+      };
+      const database = new DatabaseSync(join(cliDir, 'sessions.db'));
+      try {
+        database.exec(
+          'CREATE TABLE message_nodes (row_id INTEGER PRIMARY KEY, session_id TEXT, node_id INTEGER, parent_node_id INTEGER, chat_message TEXT)',
+        );
+        const insert = database.prepare('INSERT INTO message_nodes (session_id, node_id, chat_message) VALUES (?, ?, ?)');
+        insert.run(SESSION, 0, JSON.stringify({ message_id: 'm0', role: 'system', content: 'rules' }));
+        insert.run(SESSION, 1, JSON.stringify({ message_id: 'm1', role: 'user', content: 'Ask me about the badge.' }));
+        insert.run(SESSION, 2, JSON.stringify(call));
+        insert.run(SESSION, 3, JSON.stringify({ ...call, metadata: { num_tokens: 1 } }));
+        insert.run(SESSION, 4, JSON.stringify({
+          message_id: 'm3',
+          role: 'tool',
+          tool_call_id: callId,
+          content: `User answered your questions:\n${JSON.stringify({ [question]: { selected: ['Blue'], skipped: false } })}`,
+        }));
+      } finally {
+        database.close();
+      }
+
+      const run = sweep();
+      assert.equal(run.status, 0, run.stderr);
+      const result = JSON.parse(run.stdout);
+      assert.equal(result.transcript_missing, true);
+      assert.equal(result.recovered, 1);
+      assert.equal(result.pending.length, 1);
+      assert.equal(result.pending[0].key, toolSourceKey('devin', SESSION, callId, 0));
+      assert.equal(result.pending[0].answer, 'Blue');
+      assert.equal(JSON.parse(sweep().stdout).recovered, 0);
+    });
+  });
+});
+
 // ───────────────────────────────────────────────────────────────────
 // CHAT CANDIDATES
 // ───────────────────────────────────────────────────────────────────

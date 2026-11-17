@@ -1,0 +1,5 @@
+      recordedSets: [{ path: ['rows', 1, 'top'], value: 'v', added: false }],
+      readUpstreamText: () => JSON.stringify(pinned, null, 2) + '\n',
+    }), /cannot restore the dropped set at rows\.1\.top: its path goes through an array whose items differ from the pinned copy; put the array at rows back to the pinned copy by hand$/);
+  }
+});

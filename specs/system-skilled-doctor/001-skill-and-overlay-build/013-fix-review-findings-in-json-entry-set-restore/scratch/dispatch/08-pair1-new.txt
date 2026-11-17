@@ -1,0 +1,8 @@
+ * while the two arrays hold the same number of items, this overlay neither
+ * added an item to that array nor is about to, and the item at that index is
+ * the pin's item apart from the values this overlay's operations wrote into it.
+ * Equal lengths alone miss a file left on an older base after upstream swapped
+ * or replaced an item. A set that wrote the whole item leaves nothing of it to
+ * recognize, so then every other item of the array must be the pin's.
+ * @param {{text: string, root: object}} liveDocument The live text and its root node.
+ * @param {{text: string, root: object}} pinnedDocument The pinned text and its root node.

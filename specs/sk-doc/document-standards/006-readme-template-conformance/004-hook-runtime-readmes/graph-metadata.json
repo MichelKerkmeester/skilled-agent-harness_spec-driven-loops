@@ -13,24 +13,30 @@
     "trigger_phrases": [
       "hook runtime readmes",
       "phase 4 hook runtime readmes",
+      "runtime adapter readme",
+      "rewrite runtime adapter readmes",
       "hook runtime readmes plan",
+      "hook runtime readmes rewrite waves",
       "hook runtime readmes tasks",
       "hook runtime readmes acceptance criteria",
-      "hook runtime readmes implementation summary"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "hook",
       "runtime",
       "readmes",
       "phase",
+      "adapter",
+      "readme",
+      "rewrite",
       "plan",
+      "waves",
       "tasks",
       "acceptance",
-      "criteria",
-      "implementation",
-      "summary",
-      "yourvaluehere",
-      "broken"
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -39,8 +45,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md"
+      ".skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".claude/settings.json",
+      ".codex/hooks.json",
+      ".cursor/hooks.json",
+      ".devin/hooks.v1.json",
+      ".vibe/hooks.toml"
     ],
     "entities": [
       {
@@ -68,6 +82,12 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -80,13 +100,43 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -116,6 +166,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -128,85 +184,44 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Human Voice Rules",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Pattern Template",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "A runtime adapter README tells a maintainer how one runtime runs one concern: the event, the file that registers the adapter and how it fails",
     "created_at": "2026-11-16T15:20:15Z",
-    "last_save_at": "2026-11-16T15:49:13.425Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-16T19:27:06.360Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bf2c89ed5a51c1591d0f9d6f78127c76e91f1d2c225ca6567b9d2cae81db8cf0",
+    "source_fingerprint": "sha256:c5b144105d651053d77a704dfdf9e1ed1024bee853171c88995f61b4ae992732",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "94bf9e8d6f021c39a617b036f53540bce1d6cffb836a2d39129f62835619b0ea",
-      "plan.md": "1cdc6cd704550119eb0aa430a71fbd95ec54e8b8541920134f9c625ef923c852",
-      "tasks.md": "b1fec0741734c8b5a92c468d6695c3c96bcfe533248647c5121d112f09d05059",
-      "implementation-summary.md": "b202eb40c038b42ff1c2900877c4e834026b0d9677dbbc1f37c7147aa1fdecc1"
+      "spec.md": "278f099329d99d9ee7cd42b7f666a9faf2ef2678817f8fdef97663786005243c",
+      "plan.md": "428bbb4fed54fd0987d3e8664fe9fffb83a3d811ecfd2f50354815d894cb26b8",
+      "tasks.md": "611eeba6e7e341afc232bf99ba232d4fd01dfae689c09aed242fc5376336acd3",
+      "implementation-summary.md": "d32973243c1f7deb1f25576c7e5e873e469f3046185592ee8f7ed03cb40064c3"
     },
     "last_active_at": null
   }

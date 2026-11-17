@@ -1,0 +1,19 @@
+RUN CONTEXT
+- Work only in /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake. Name every file by absolute path.
+- The git workspace is already chosen: the current branch of that checkout. Do not ask about it.
+- sk-code routing is already done by the orchestrator. Do not load skills or read a subsystem first. Read only the lines around each anchor.
+
+DON'T
+- Do not edit any file other than the ones this brief names.
+- Do not run git add, commit, push, checkout, switch, branch, reset or stash.
+- Do not dispatch codex, vibe or any other CLI or sub-agent.
+- Do not read, write or name any dotenv file.
+- Do not put a spec path, packet number, task id or requirement id in a code comment.
+- Do not reformat, rename or tidy code outside the literal edits.
+- Do not change a test's assertions to make it pass. If the check fails after the edits, stop and report the output.
+
+HANDBACK
+Reply with exactly these parts:
+1. FILES CHANGED: each absolute path.
+2. COMMANDS: each command you ran, its exit status and the last 15 lines of its output.
+3. OPEN QUESTIONS: anything that did not match this brief, or "none".

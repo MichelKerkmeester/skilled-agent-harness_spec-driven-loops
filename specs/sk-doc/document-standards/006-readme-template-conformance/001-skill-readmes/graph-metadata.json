@@ -39,7 +39,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The skill READMEs are the front door a person reads before opening a skill's `SKILL.md`",
     "created_at": "2026-11-16T15:20:12Z",
-    "last_save_at": "2026-11-16T19:04:05.421Z",
+    "last_save_at": "2026-11-16T19:08:31.422Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f5906051cecba861f5359daa8a1d18ffe017be9e5dd01a4ffb8e7a7318d9352",
+    "source_fingerprint": "sha256:e760cf8695eab5ff4d782a0e59076c2b1322a74e7ea801209eceaf5e1f77eaa6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c610f17c51d27ed0faf5fdf9ce8c4d8b8980089f1c82a69abde67c47c615b54b",
       "plan.md": "cfae898e0fbc9a68f6e46f2b9951453cf2e4ca88e409a50afa92824979f05145",
-      "tasks.md": "f332f880dfaa422062582b2bde5daa4a6ced25addfce6f9cb301afab3c305cfd",
+      "tasks.md": "5329607c485f9aafec2861d6faf9727f0a6e153edc19155cc74f5264ba2586ff",
       "decision-record.md": "519e86af06f0c26378ede7d32520692ecbfd27ecb2f6cad4b1e16672445e1ae6",
-      "implementation-summary.md": "719126c4a25eacc9b11f2ce2874a66631e94561f066d3c3a8ee941f17ee408ea"
+      "implementation-summary.md": "c7a1ea73bca3481a05fc22e7f45bfa900e218c6f09bcbbf4298028a9ffadf158"
     },
     "last_active_at": null
   }

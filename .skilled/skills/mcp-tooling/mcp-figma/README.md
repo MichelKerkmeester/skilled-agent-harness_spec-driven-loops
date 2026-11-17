@@ -8,12 +8,14 @@ trigger_phrases:
   - "render in figma"
   - "drive figma from the terminal"
   - "figma mcp"
-version: 1.1.9.0
+version: 1.1.10.0
 ---
 
 # mcp-figma
 
-> Figma designs become operable by your coding agent, right in the open desktop file: frames, tokens, components and variables can be read, authored, modified and exported from the terminal with no Figma API key. Design context can be pulled back into the agent through an optional MCP when you need it.
+> Turn the Figma file you have open into something an agent can operate: read the design, build frames, manage tokens and export the result, with no API key to manage.
+
+The work runs through a terminal CLI that drives the live desktop session. An optional bridge pulls design context back into the agent.
 
 ---
 
@@ -23,104 +25,111 @@ version: 1.1.9.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Driving Figma Desktop from the terminal: creating and rendering frames, working a design system of tokens and variables, inspecting and exporting content, importing tokens and managing the connection and daemon |
-| **Invoke with** | "figma cli", "figma-ds-cli", "render in figma", "figma tokens", "extract DESIGN.md", "connect to figma", "figma daemon" or auto-routing on Figma CLI keywords |
-| **Works on** | The installed Figma **Desktop** app while it is open with a file, since the CLI drives the live Desktop session over a local daemon. Needs Node.js 18 or newer and the silships `figma-ds-cli` on PATH. macOS is the supported baseline |
-| **Produces** | Rendered frames and components in the open file, design-system tokens and variables, read-only exports (DESIGN.md, PNG, SVG, JSX, CSS, Tailwind, Storybook, a11y audits) and optional design context pulled in through Code Mode |
-
-### Why This Skill Exists
-
-Figma's natural home is its own canvas. Reaching it from a coding agent is awkward without a contract. The silships CLI closes that gap by driving Figma Desktop directly, but an agent needs to know several things before it touches a real file. The canonical binary is `figma-ds-cli`. The npm package literally named `figma-cli` is an unrelated tool. There is no API key, so the live Desktop session is the source of truth and a closed app means nothing works. Connecting has a safe default and a riskier patched mode, a local daemon brokers every command. The command surface ranges from harmless reads to destructive verbs that can delete nodes and variables or clear whole batches. Guessing at any of that wastes a round trip or, worse, fires a destructive verb against real work. This skill wraps the CLI, its daemon and an optional Figma MCP behind one set of instructions, so the agent always knows which binary is real, which calls are safe and exactly where the gates are.
+| **Use it for** | Reading and building design work in the Figma file you have open |
+| **Invoke with** | "figma cli", "figma-ds-cli", "render in figma", "figma tokens", "figma mcp" |
+| **Works on** | Figma Desktop with a file open, through `figma-ds-cli` and its local daemon |
+| **Produces** | Frames and components in the open file, tokens and variables, export files, design context through the optional MCP |
 
 ### What It Does
 
-The skill drives Figma in two directions. The **CLI direction** is the primary surface and does the bulk of the work: it connects to Figma Desktop, brings up the daemon, inspects and exports content read-only and authors or modifies frames, components, tokens and variables behind gates. The **optional MCP direction** runs the other way. It pulls design context out of Figma into the agent as model input through Code Mode. It is opt-in rather than required. The skill works fully with the CLI alone. Throughout, the measured design reference belongs to `sk-design-md-generator`: this skill owns the transport and that skill produces a Style Reference (extracted design tokens). Any read or export that feeds a design decision is grounded in that measured reference before deciding.
+The skill gives an agent a safe route into Figma Desktop from a terminal. It reads the open file, builds frames and components, manages tokens and variables and exports assets or code to a path you name. The canonical command is `figma-ds-cli`. It covers every task without a Figma API key.
 
-This is a CLI-primary surface with an optional MCP, not the reverse. The binary is the silships tool published to npm as `figma-ds-cli`, the daemon is a local HTTP server and the optional MCP is a community Framelink manual already registered in this repo's Code Mode. The skill reaches for whichever face fits the step.
+It is the transport, not the design authority. A measured Style Reference of extracted design tokens belongs to the `sk-design-md-generator` mode in `sk-design`. This skill reaches Figma for it rather than producing one.
 
-### The Figma Document Layer
+### Why This Skill Exists
 
-| Surface | What the skill knows how to operate |
-|---|---|
-| **Frames and components** | create, render, modify and arrange them in the open Desktop file |
-| **Tokens and variables** | list, find, import, create, modify and delete them through the design-system verbs |
-| **Read-only exports** | DESIGN.md, PNG, SVG, JSX, CSS, Tailwind, Storybook and a11y audits, each written to an explicit path |
-| **Design context** | pull Figma content into the agent through the optional Code Mode MCP |
+The name collision catches people first. The tool publishes to npm as `figma-ds-cli`, while the npm package named `figma-cli` is a different project that installs a binary called `figma`. Install the wrong one and nothing in this skill matches what sits on your PATH.
+
+The second problem is how much one verb can change. The command set runs from harmless reads to verbs that delete every variable in a collection. The skill states the class of a verb before it runs, so a read stays a read.
 
 ---
 
 ## 2. QUICK START
 
-> Examples below are illustrative. Verify exact flags with `figma-ds-cli --help`. Do not run the patched yolo connect mode without explicit consent and a stated rollback.
-
-**Step 1: Verify the binary and confirm Figma Desktop is open.**
+**Step 1: Confirm the binary.**
 
 ```bash
-# Canonical binary = figma-ds-cli. The npm package 'figma-cli' is an UNRELATED tool.
-command -v figma-ds-cli && figma-ds-cli --version
+figma-ds-cli --version
+command -v figma-ds-cli
 ```
 
-Expected: the silships version string. Figma Desktop must be open with a file, because the CLI drives the live Desktop session and there is no API key. Never run `npm i -g figma-cli`, because that installs the unrelated unic/figma-cli.
-
-**Step 2: Connect with the safe default.**
+This checkout prints `1.2.0`. The second command prints the path of the binary that answered. That path differs per machine. Any version at or above `1.2.0` carries safe connect, the daemon verbs, `extract` and `import`. npm publishes only a `1.0.0` build without them, so an older string means install from the silships repo first:
 
 ```bash
-figma-ds-cli connect --safe   # FigCli plugin bridge, no patch
+bash scripts/install.sh --source repo --force
 ```
 
-Import `plugin/manifest.json` once, then keep `Plugins > Development > FigCli` open each session. The riskier `figma-ds-cli connect` without `--safe` patches Figma's `app.asar` and is gated.
+The script reports the version it finds or installs, then verifies the binary. `--source auto` is the default and upgrades when the npm build is stale. The binary needs Node 18 or newer. macOS is the supported baseline.
 
-**Step 3: Confirm the daemon is healthy.**
+**Step 2: Connect in safe mode and check the daemon.**
 
 ```bash
-figma-ds-cli daemon status     # local HTTP server on 127.0.0.1:3456
+figma-ds-cli connect --safe
+figma-ds-cli daemon status
 ```
 
-The status verb reports healthy or points at the problem. "Unauthorized" means run `daemon diagnose`, then `daemon restart`. Never delete or paste the token at `~/.figma-ds-cli/.daemon-token`.
+Safe connect patches nothing. It starts the daemon in plugin mode and prints `✓ Daemon running in Safe Mode`, then waits up to 90 seconds for the plugin.
 
-**Step 4: Inspect or export, the safe default.**
+Import `plugin/manifest.json` from the figma-ds-cli install once through `Plugins → Development → Import plugin from manifest`, then keep `Plugins → Development → FigCli` open each session. A plugin that answers in time prints `✓ Plugin connected!` and `✓ Ready! Safe Mode active.` If it stays closed, connect warns `Plugin not detected yet` and the daemon keeps listening.
+
+`daemon status` then prints `✓ Daemon is running on port 3456`.
+
+**Step 3: Export a read-only snapshot.**
 
 ```bash
-OUT="design-$(date +%Y%m%d-%H%M%S).md"; [ -e "$OUT" ] || figma-ds-cli extract "$OUT"   # read-only, writes a new file and never overwrites one
+figma-ds-cli extract design-system.md
 ```
 
-This verb is read-only and never changes the document. Local exports still write files, so always give an explicit path and never overwrite silently.
+Expect a line like `✓ Extracted 1 page(s), 214 nodes → design-system.md`. The Figma document is unchanged. The verb writes a local file, so the skill always passes an explicit path and never overwrites an existing one. A structure section above roughly 50k tokens splits into a `DESIGN-structure/` folder, so a large file produces more than one output.
 
-For authoring, every create, render, token, variable or bind verb changes the open file and is gated behind explicit confirmation. Destructive verbs are stricter still, requiring an explicit target and a one-line rollback before they run.
+**Step 4: Gate every write.**
+
+The write verbs change the open file: create, render, the token and variable verbs, binds, layout changes and imports. The skill confirms the target and the intent before one runs. A destructive verb also needs an explicit node or collection plus a one-line rollback. Section 3 carries the class table.
 
 ---
 
 ## 3. HOW IT WORKS
 
-### First Step Always
+Every call follows the same shape. The agent checks the binary and confirms Figma Desktop holds an open file. It connects, which starts the daemon that brokers each command over `127.0.0.1:3456`. It classifies the verb before running it. A read returns data or writes an export file. A write changes the document behind a gate. The verbs that support verification report the result.
 
-Every session starts by verifying the binary and confirming Figma Desktop is open with a file. The canonical command is `figma-ds-cli`. The npm package literally named `figma-cli` is an unrelated tool (unic/figma-cli, with a `figma` binary), so a bare `figma-cli` command should be trusted only when it resolves to the silships build, which exposes both names when installed from the repo `main` branch. There is no Figma API key in this model. The CLI drives the live Desktop session, so a closed app or a window with no file open means the daemon has nothing to broker and the work cannot proceed. Node 18 or newer is required. macOS is the supported baseline. Linux and Windows are experimental and unverified.
+```mermaid
+flowchart TD
+  Check["Check the binary and the open file"] --> Connect["Connect and start the daemon"]
+  Connect --> Class["Classify the verb"]
+  Class --> Read["Read or export"]
+  Class --> Write["Author behind a gate"]
+  Read --> Out["Data or a file at your path"]
+  Write --> Done["A changed Figma document"]
+```
 
-### The Naming Trap
+### Two Connect Modes
 
-The single most important fact about installing this tool is that two different packages compete for the same short name. The silships tool publishes to npm as `figma-ds-cli`, which is the unambiguous binary the skill uses everywhere. The npm package literally named `figma-cli` is a completely separate project with its own `figma` binary. Installing it gives you the wrong tool. So the rule is firm: never `npm i -g figma-cli`. Install `figma-ds-cli` from npm or build the silships repo, where the `figma-cli` command exists only as a second name for the same tool.
+Safe mode is the default and the one to use. `figma-ds-cli connect --safe` runs the FigCli plugin bridge over a WebSocket. The plugin scans ports `3456` to `3460`. It patches nothing, so there is no patch for a Figma update to overwrite.
 
-### Connect Modes And The Daemon
+Yolo mode is bare `figma-ds-cli connect`. It rewrites Figma Desktop's `app.asar`, codesigns the app on macOS and restarts Figma with a debug port on `9222`. It may need Full Disk Access or admin rights. A Figma update overwrites the patch. `figma-ds-cli unpatch` restores the original file. The skill runs this mode only on explicit consent with that rollback stated first.
 
-Connecting has two modes and a sharp difference in risk.
+### The Command Classes
 
-- **Safe mode (default):** `figma-ds-cli connect --safe` runs the FigCli plugin bridge and patches nothing. Import `plugin/manifest.json` once, then keep `Plugins > Development > FigCli` open each session.
-- **Yolo mode (gated):** `figma-ds-cli connect` with no `--safe` patches Figma Desktop's `app.asar`, codesigns on macOS and restarts Figma with a CDP debug port on 9222. It may need Full Disk Access or admin rights, and it breaks when Figma updates. The skill never runs it without explicit consent and a stated rollback, which is `figma-ds-cli unpatch`.
+| Class | What it covers | Gate |
+|---|---|---|
+| Read-only | `status`, `get`, `find`, `inspect`, `node tree`, `extract`, the `export` verbs, the a11y audits and the dry-run variants | None. A local export still needs an explicit output path |
+| Mutating | `create`, `render`, the token and variable verbs, binds, layout changes, variants and imports | Confirm the target and the intent |
+| Destructive | `var delete-all`, `var delete-batch`, `delete`, `node delete`, `undo`, `unwrap`, `arrange`, `fj delete` and `grid clear` | Confirm, name the target and state a one-line rollback |
+| Arbitrary | `eval`, `raw` and `run` | Treat as mutating and read the code or command first |
 
-Behind both modes sits a local daemon, an HTTP server on `127.0.0.1:3456` authenticated by a token at `~/.figma-ds-cli/.daemon-token`, with verbs `status`, `diagnose`, `start`, `stop`, `restart` and `reconnect`. The daemon is idle-timed and not reboot-persistent. The token is never exposed in output. An "Unauthorized" error is diagnosed and restarted rather than fixed by deleting the token.
+The full per-command list lives in [`references/tool-surface.md`](./references/tool-surface.md). The destructive set there is wider than the rows above. Every member carries its own rollback.
 
-### The Command Safety Model
+### The Optional MCP Path
 
-The CLI's verbs fall into classes. The gate depends on the class.
+The CLI works alone. Most work ends there. When an agent needs Figma content as model input, the community Framelink `figma-developer-mcp` server is already registered in this repository's Code Mode as the `figma` manual. It runs over stdio through `npx` and reads a Figma personal access token from `.env`. Code Mode prefixes the manual name, so the key is `figma_FIGMA_API_KEY`.
 
-- **Read-only** verbs are the safe default: `status`, `get`, `find`, `inspect`, the `var list` and `var find` queries, `extract`, every `export` form, the analyze and a11y audits plus dry-run variants. None of them change the Figma document, though the local exports do write files, so they still demand an explicit output path and never a silent overwrite.
-- **Mutating** verbs change the open file and are gated behind confirmation: every `create`, `render` and token or variable verb, the bind and set families, layout verbs, variant generation, imports and the app-level `connect`, `unpatch` and `config set`.
-- **Destructive** verbs are gated more strictly, requiring explicit confirmation, an explicit target node or file, a command preview and a one-line rollback. The destructive set is `var delete-all`, `var delete-batch`, `delete` and `remove`, `node delete`, `undo`, `unwrap`, `fj delete`, `plugins uninstall`, `dev unlink`, `component prop delete`, `grid clear` and `annotate clear`.
-- **Arbitrary** verbs are `eval`, `raw` and `run`, which execute arbitrary instructions, so the skill treats them as mutating and reviews the code or command before running it, even when the prompt sounds exploratory.
+Discovery comes before the first call. An agent lists the tools and confirms the name it wants before calling it through `call_tool_chain` as `figma.figma_<tool>`. Two tools were confirmed live, `figma.figma_get_figma_data` and `figma.figma_download_figma_images`. The wiring and a call example live in [`references/mcp-wiring.md`](./references/mcp-wiring.md). The official Figma Dev Mode MCP is outside this skill.
 
-### The Optional Figma MCP
+### Where The Files Sit
 
-The skill is complete with the CLI alone. When the agent needs to pull design context the other way, out of Figma and into the model, it can use the optional Figma MCP. The supported path for this release is the community Framelink manual, `figma-developer-mcp`, which is already registered in this repo's Code Mode as the manual named `figma`. It runs over stdio and needs a Figma personal token supplied through `.env` as `figma_FIGMA_API_KEY`, since Code Mode prefixes the environment variable with the manual name. Calls go through `call_tool_chain()` using the naming convention `figma.figma_<tool>`. The agent always discovers the live tool set first with `search_tools()` or `tool_info()` before invoking, rather than assuming a tool exists or is read-only. The official Figma Dev Mode MCP is out of scope for this release and is not a documented or supported path here, though it remains a possible future option.
+The packet keeps its depth in four reference files. `references/figma-cli-reference.md` is the baseline every scored route loads. `references/tool-surface.md` holds the gating taxonomy, `references/mcp-wiring.md` the Code Mode path and `references/troubleshooting.md` the failure fixes.
+
+The two assets carry paste-ready snippets for the MCP path only. `scripts/doctor.sh` reports the environment without changing it and `scripts/install.sh` installs and verifies the binary. `scripts/connect-safe.sh` walks the safe connect with a confirmation prompt.
 
 ---
 
@@ -128,71 +137,71 @@ The skill is complete with the CLI alone. When the agent needs to pull design co
 
 ### When To Use This Skill
 
-Reach for this skill whenever a user wants to drive Figma Desktop from the terminal: creating and rendering frames and components, working a design system of tokens and variables, inspecting and exporting content, importing a design system into Figma and setting up or troubleshooting the connection and daemon. Use it also when the agent needs to pull design context out of Figma through the optional Code Mode MCP. Skip it when the work is generic app coding with no Figma input, in which case use `sk-code`. Skip it when the work is extracting a measured Style Reference (design tokens) from a live website's real CSS, which belongs to `sk-design-md-generator` while this skill stays the Figma transport. Skip it for a last-mile browser preview of a built page, which is `mcp-chrome-devtools`. Skip it entirely when Figma Desktop is not installed or not open, since the CLI cannot work without the live session.
+Reach for this skill when a request lands in an open Figma file: build a frame, render a component, add or bind tokens, read the structure, export an asset or repair a connect problem. Reach for it too when an agent needs design context out of Figma and the optional MCP is wired.
+
+Leave it to a sibling when Figma is not the surface. Generic app code with no design input is `sk-code`. A measured Style Reference from a live site's CSS is the `sk-design-md-generator` mode in `sk-design`. This skill stays the Figma transport behind it. A last-mile browser preview of a built page is `mcp-chrome-devtools`. If Figma Desktop is missing or no file is open, there is nothing to drive. The skill says so rather than reporting a read it never made.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-design-md-generator` | Produces a measured Style Reference (extracted design tokens) and is applied whenever a Figma read or export feeds a design decision. This skill is the transport, that skill produces the measured reference. |
-| `sk-code` | Owns application-code standards for adapting extracted tokens, a DESIGN.md or exported code into a real app and verifying the result. |
-| `mcp-code-mode` | The transport for the optional Figma MCP. The Framelink `figma` manual is called through Code Mode's `call_tool_chain()`. |
-| `mcp-chrome-devtools` | A real-browser surface for a last-mile visual preview only. It is never the way to operate Figma. |
+| `mcp-tooling` | The hub that routes a Figma request to this packet |
+| `sk-design-md-generator` | Produces the measured Style Reference that grounds a design decision. It reaches Figma through this packet |
+| `sk-code` | Owns application-code standards when an export becomes a real app |
+| `mcp-code-mode` | Runs the optional Figma MCP calls through `call_tool_chain` |
+| `mcp-chrome-devtools` | Gives a real-browser preview of a built page, never a way to operate Figma |
 
 ---
 
 ## 5. TROUBLESHOOTING
 
-> Symptoms and fixes below come from the skill contract and research digest. Verify exact command output against your installed version.
-
 | What you see | Why | Fix |
 |---|---|---|
-| `figma-ds-cli: command not found` | The binary is not installed. The unrelated `figma-cli` npm package may be the only one on PATH | Install `figma-ds-cli` from npm or the silships repo per INSTALL-GUIDE.md. Never `npm i -g figma-cli`, which is the unrelated unic/figma-cli |
-| `bare figma-cli runs but behaves strangely` | The `figma-cli` name may resolve to unic/figma-cli rather than the silships build | Confirm the silships tool with `--version` or `--help`. The `figma-cli` command is only the silships tool when installed from the silships repo |
-| Every command fails or hangs | Figma Desktop is closed or open with no file, so there is no live session to drive | Open Figma Desktop with a file. The CLI drives the live Desktop session and has no API-key fallback |
-| `Unauthorized` from a daemon command | The daemon token is stale or the daemon is unhealthy | Run `figma-ds-cli daemon diagnose`, then `daemon restart`. Never auto-delete the token at `~/.figma-ds-cli/.daemon-token` |
-| The yolo connect broke after a Figma update | The yolo mode patches `app.asar`, which a Figma update overwrites | Re-run `figma-ds-cli connect` only with consent or prefer `connect --safe`. Roll a patch back with `figma-ds-cli unpatch` |
-| A mutating or destructive verb ran without confirmation | A gate was skipped | Every mutating verb needs confirmation. Destructive verbs also need an explicit target and a one-line rollback before running |
-| An export silently overwrote a file | An export was run without an explicit unique output path | Always pass an explicit output path to `extract` and `export` verbs. The skill never overwrites silently |
-| A Code Mode `figma.figma_<tool>` call fails | The Framelink manual or its token is not configured. The tool name may have been assumed | Confirm `figma_FIGMA_API_KEY` is in `.env`, then discover the live tools with `search_tools()` or `tool_info()` before relying on any tool |
+| `figma-ds-cli: command not found` | The binary is not on PATH. The unrelated npm package may be the only one installed | Run `bash scripts/install.sh` from the packet. Never `npm i -g figma-cli` |
+| `figma-cli` runs but the verbs are missing | The unic npm package shadows the `figma-cli` name | Use `figma-ds-cli`, check `figma-ds-cli --version` for `1.2.0` or newer and reinstall with `--source repo --force` |
+| `○ Daemon is not running` | No connect has run this session. The idle timer may also have closed the daemon | Run `figma-ds-cli connect --safe`. The daemon is idle-timed and not reboot-persistent |
+| `Unauthorized` from a daemon verb | The CLI token and the daemon token differ | Run `figma-ds-cli daemon diagnose`, then `daemon restart`. Never delete the token file or print its contents |
+| Every command hangs | Figma Desktop is closed or open with no file | Open a file in Figma. The CLI has no API-key fallback |
+| The yolo connect stopped working after a Figma update | The update replaced the patched `app.asar` | Run `figma-ds-cli connect --safe` or re-run the patch with consent. `figma-ds-cli unpatch` restores the original |
+| A `figma.figma_<tool>` call fails | The manual, the token or the tool name is not what the call assumed | Confirm `figma_FIGMA_API_KEY` in `.env`, then list the tools before the call |
+
+Full recovery steps live in [`references/troubleshooting.md`](./references/troubleshooting.md).
 
 ---
 
 ## 6. FAQ
 
-**Q: Do I need a Figma API key?**
+### Is a Figma API key needed?
 
-A: No, not for the CLI. The `figma-ds-cli` binary drives the live Figma Desktop session, so the app must be open with a file and there is no key involved. A key is needed only for the optional Figma MCP, where the Framelink manual reads `figma_FIGMA_API_KEY` from `.env` through Code Mode.
+No, not for the CLI. `figma-ds-cli` drives the live desktop session, so the app has to be open with a file and no key is involved. A key is needed only for the optional MCP, where the `figma` manual reads `figma_FIGMA_API_KEY` from `.env`.
 
-**Q: Which package do I install, `figma-cli` or `figma-ds-cli`?**
+### Which package belongs on PATH?
 
-A: Install `figma-ds-cli`. The npm package literally named `figma-cli` is an unrelated tool (unic/figma-cli, with a `figma` binary), so never `npm i -g figma-cli`. The `figma-cli` command is the silships tool only when installed from the silships repo, which exposes both names for the same binary.
+`figma-ds-cli`. The npm package named `figma-cli` is a separate project from unic that installs a `figma` binary, so `npm i -g figma-cli` puts the wrong tool on your PATH. The `figma-cli` command is the silships tool only when you build it from the silships repo.
 
-**Q: Is the optional MCP required?**
+### Is the optional MCP required?
 
-A: No. The skill works fully with the CLI alone. The optional Figma MCP runs the other direction and pulls design context out of Figma into the agent as model input. Reach for it only when you need that. The supported path is the community Framelink `figma` manual through Code Mode. The official Figma Dev Mode MCP is out of scope for this release.
+No. The CLI covers every task. The MCP only pulls design context into the agent. Reach for it when code generation needs the design as input. Confirm the tool names with a discovery call first.
 
-**Q: What is the difference between safe and yolo connect?**
+### What is the difference between safe and yolo connect?
 
-A: Safe connect, `figma-ds-cli connect --safe`, runs the FigCli plugin bridge and patches nothing, so it is the default. Yolo connect, `figma-ds-cli connect` with no flag, patches Figma's `app.asar`, opens a CDP debug port and breaks on Figma updates, so the skill runs it only with explicit consent and a stated `figma-ds-cli unpatch` rollback.
+Safe connect runs the FigCli plugin bridge and patches nothing, so it survives a Figma update. Yolo connect rewrites `app.asar` to open a debug port and breaks when Figma updates. The skill runs yolo only with explicit consent and a stated `figma-ds-cli unpatch` rollback.
 
-**Q: How does this relate to `sk-design-md-generator`?**
+### How does this relate to `sk-design-md-generator`?
 
-A: This skill is the transport that reads and writes Figma content. `sk-design-md-generator` produces a measured Style Reference (extracted design tokens) from a live site's real CSS. Whenever a Figma read or export feeds a design decision, that measured reference grounds it. It reaches Figma only through this skill.
+This skill is the transport. It reads Figma and writes Figma. The `sk-design-md-generator` mode produces the measured Style Reference that grounds a design decision. It reaches Figma through this packet.
 
 ---
 
 ## 7. VERIFICATION
 
-> The CLI reachability check requires `figma-ds-cli` installed and Figma Desktop open. The skill ships without vendoring the CLI source.
-
-| Check | How to run it |
+| Check | Pass looks like |
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/mcp-tooling/mcp-figma/README.md --type readme` reports zero issues |
-| SKILL.md frontmatter | `head -8 .skilled/skills/mcp-tooling/mcp-figma/SKILL.md` shows `name: mcp-figma`, a `description` and `user-invocable: true` |
-| Binary identity | `figma-ds-cli --version` returns the silships version (NOT the unrelated unic/figma-cli) |
-| CLI reachability | `figma-ds-cli --help` returns usage text with Figma Desktop open (Node.js 18 or newer required) |
-| Daemon health | `figma-ds-cli daemon status` reports healthy against `127.0.0.1:3456` with the token present |
+| Setup diagnostics | `bash .skilled/skills/mcp-tooling/mcp-figma/scripts/doctor.sh` prints a `✓` line for the platform, Node, the resolved binary, Figma Desktop and the registered `figma` manual. The daemon lines report no token, no PID file and a closed port until a connect runs |
+| Binary identity | `figma-ds-cli --version` prints `1.2.0` or newer, not the `1.0.0` npm build |
+| Daemon health | `figma-ds-cli daemon status` prints `✓ Daemon is running on port 3456` after a connect |
+| Playbook | `manual-testing-playbook/manual-testing-playbook.md` holds 20 scenarios across 7 categories. The default set performs no destructive Figma write |
 
 ---
 
@@ -200,24 +209,25 @@ A: This skill is the transport that reads and writes Figma content. `sk-design-m
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, SUCCESS CRITERIA, INTEGRATION POINTS and references |
-| [`ROUTER.md#3-machine-router`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
-| [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Install and verify `figma-ds-cli`, the naming-trap warning and the connect-mode setup |
-| [`references/figma-cli-reference.md`](./references/figma-cli-reference.md) | Binary identity, the Node and macOS baseline, the Figma Desktop requirement, connect modes, the daemon model and command examples |
-| [`references/tool-surface.md`](./references/tool-surface.md) | The read-only, mutating and destructive command taxonomy, the destructive set, the `eval/raw/run` rule and the export no-overwrite rule |
-| [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The optional Figma MCP (Framelink `figma`) through Code Mode: the registered manual, the `.env` token, discovery and a `call_tool_chain` example |
-| [`references/troubleshooting.md`](./references/troubleshooting.md) | Failure modes and fixes for the binary collision, Desktop not running, daemon Unauthorized, port conflicts and the Code Mode env-var prefix |
-| [`assets/utcp-figma-manual.md`](./assets/utcp-figma-manual.md) | Paste-ready Framelink `figma` `.utcp_config.json` manual entry and the matching `.env` note for the optional Code Mode path |
-| [`assets/env-template.md`](./assets/env-template.md) | The single prefixed `figma_FIGMA_API_KEY` `.env` line for the optional Figma MCP token |
-| [`examples/README.md`](./examples/README.md) | Safe worked walkthroughs: safe connect and daemon health, read-only inspect/export and the optional MCP context pull |
-| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory for every `figma-ds-cli` command group, tagged read-only, mutating or destructive |
-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation scenarios across detection, daemon health, read-only access, the safety gate and routing |
-| [`scripts/install.sh`](./scripts/install.sh) | Installs and verifies `figma-ds-cli`, preferring the silships repo when the npm build is stale |
-| [`scripts/README.md`](./scripts/README.md) | What each setup, connect, daemon and diagnostic script changes and the output it prints |
-| [`mcp-servers/figma-cli/README.md`](./mcp-servers/figma-cli/README.md) | Install and verification notes for the `figma-ds-cli` binary the skill drives |
-| [`mcp-servers/figma-mcp/README.md`](./mcp-servers/figma-mcp/README.md) | Configuration notes for the optional Framelink Figma MCP through Code Mode |
+| [`SKILL.md`](./SKILL.md) | Runtime contract: when to use, routing, rules and success criteria |
+| [`ROUTER.md#3-machine-router`](./ROUTER.md#3-machine-router) | Intent map, resource map and loading levels |
+| [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Install and verification steps for `figma-ds-cli`, plus the connect-mode setup |
+| [`references/figma-cli-reference.md`](./references/figma-cli-reference.md) | Binary identity, prerequisites, connect modes, the daemon and command examples |
+| [`references/tool-surface.md`](./references/tool-surface.md) | The full read-only, mutating, destructive and arbitrary taxonomy |
+| [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The optional Figma MCP through Code Mode, with the token and a call example |
+| [`references/troubleshooting.md`](./references/troubleshooting.md) | Failure modes and fixes for the binary collision, a closed app, daemon auth and port conflicts |
+| [`assets/utcp-figma-manual.md`](./assets/utcp-figma-manual.md) | Paste-ready `figma` manual entry for `.utcp_config.json` |
+| [`assets/env-template.md`](./assets/env-template.md) | The prefixed `figma_FIGMA_API_KEY` line for `.env` |
+| [`examples/README.md`](./examples/README.md) | Safe worked walkthroughs: connect, daemon health, read-only export and the MCP pull |
+| [`scripts/README.md`](./scripts/README.md) | What each setup, connect, daemon and diagnostic script changes |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory tagged read-only, mutating, destructive or arbitrary |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator scenarios across detection, daemon health, read-only access, the gate and routing |
+| [`mcp-servers/figma-cli/README.md`](./mcp-servers/figma-cli/README.md) | Install and verification notes for the binary the skill drives |
+| [`mcp-servers/figma-mcp/README.md`](./mcp-servers/figma-mcp/README.md) | The optional MCP registration and its two confirmed tools |
 | [Skills Library](../../README.txt) | The skill catalog and routing front door |
 
 <!-- readme-check
 allow-ref plugin/manifest.json | the FigCli plugin manifest inside the installed figma-ds-cli package, imported into Figma Desktop rather than a path in this repository
+allow-ref design-system.md | the output file the reader names on the extract command, created in the working folder rather than kept in this repository
+allow-ref DESIGN-structure/ | the folder extract creates beside its DESIGN.md output when a structure section is large, not a path in this repository
 -->

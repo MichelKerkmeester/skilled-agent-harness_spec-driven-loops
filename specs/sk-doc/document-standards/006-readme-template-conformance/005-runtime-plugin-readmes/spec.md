@@ -1,9 +1,11 @@
 ---
 title: "Feature Specification: Phase 5: runtime-plugin-readmes"
-description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "The 8 READMEs of the folders runtimes load entries from use section sets of their own, and four of them fail the voice scan with 27 hard blockers. This phase brings them to the runtime plugin template with every entry checked against the folder."
 trigger_phrases:
   - "runtime plugin readmes"
   - "phase 5 runtime plugin readmes"
+  - "plugin extension readme"
+  - "hook mirror readme"
 importance_tier: "normal"
 contextType: "general"
 ---
@@ -15,7 +17,6 @@ contextType: "general"
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/rotate-logs-keep`. WEAK: Priority TBD. Status maybe. -->
 
 | Field | Value |
 |-------|-------|
@@ -28,7 +29,7 @@ contextType: "general"
 | **Phase** | 5 of 7 |
 | **Predecessor** | 004-hook-runtime-readmes |
 | **Successor** | 006-runtime-folder-readmes |
-| **Handoff Criteria** | All 8 plugin and mirror READMEs validate, scan clean and have 0 broken links |
+| **Handoff Criteria** | All 8 plugin and mirror READMEs validate and scan with 0 hard voice blockers |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,13 +39,15 @@ contextType: "general"
 
 This is **Phase 5** of the README template conformance specification.
 
-**Scope Boundary**: The 8 READMEs of the folders a runtime loads hooks from: `.pi/extensions`, `.opencode/plugins`, `.dsh/plugins/repo-guards`, `.vibe/plugins` and the `.claude`, `.codex`, `.cursor` and `.devin` hooks folders.
+**Scope Boundary**: `.pi/extensions/README.md`, `.opencode/plugins/README.md`, `.dsh/plugins/repo-guards/README.md`, `.vibe/plugins/README.md` and the README in each of `.claude/hooks/`, `.codex/hooks/`, `.cursor/hooks/` and `.devin/hooks/`. Runtime folder roots and their `SYNC.md` belong to phase 006.
 
 **Dependencies**:
-- The validator `validate_document.py` and the voice scanner `hvr_scan.py` under `.skilled/skills/sk-doc/`, and `.skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md`
+- `.skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md`
+- Phase 004, so the adapter READMEs these entries point at are settled
+- `goal-doc-contract.test.cjs`, which reads the OpenCode plugins README
 
 **Deliverables**:
-- 8 plugin, extension and hook mirror READMEs that follow the runtime plugin template
+- 8 READMEs that follow the runtime plugin template
 - A before and after baseline per file
 <!-- /ANCHOR:phase-context -->
 
@@ -52,63 +55,95 @@ This is **Phase 5** of the README template conformance specification.
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
-<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+These folders are where a runtime picks up the repository's hooks and plugins, and their READMEs tell a maintainer which entry is a link, a re-export or a real plugin. None of the 8 uses the runtime plugin template's section list. The four hook mirror READMEs share an ENTRYPOINT BEHAVIOR and INVENTORY shape of their own, and `.opencode/plugins/README.md` carries twelve H2 sections. Four fail the voice scan, with 27 hard blockers between them, and `.pi/extensions/README.md` alone carries 19.
 
 ### Purpose
-[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
+Each of the 8 READMEs follows the runtime plugin template, passes the validator and the voice scan with zero hard blockers, and maps every entry to its real file as the folder shows it.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
-<!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
+The list is fixed by the parent spec. `baseline.sh` and `h2model.py` are the scratchpad checks named in `plan.md`.
+
 ```text
-[YOUR_VALUE_HERE: command and its verbatim output]
+$ bash baseline.sh $(cat r005.txt) | cut -f1,2,4,5
+.pi/extensions/README.md	lines=201	hard=19	ceil=3/100
+.opencode/plugins/README.md	lines=255	hard=3	ceil=83/100
+.dsh/plugins/repo-guards/README.md	lines=171	hard=4	ceil=78/100
+.vibe/plugins/README.md	lines=176	hard=0	ceil=100/100
+.claude/hooks/README.md	lines=77	hard=0	ceil=98/100
+.codex/hooks/README.md	lines=65	hard=0	ceil=98/100
+.cursor/hooks/README.md	lines=69	hard=1	ceil=92/100
+.devin/hooks/README.md	lines=62	hard=0	ceil=99/100
+
+$ python3 h2model.py "OVERVIEW,ARCHITECTURE,DIRECTORY TREE,ENTRY MAP,BOUNDARIES AND FLOW,CONFIGURATION,VALIDATION,RELATED" $(cat r005.txt) | cut -f1 | sort | uniq -c
+   8 DIFF
+
+$ python3 readme_links.py . $(cat r005.txt)
+checked 49 outbound and 0 inbound anchored links across 8 files, 0 problems
+
+$ node --test .opencode/plugins/tests/goal-doc-contract.test.cjs
+ℹ pass 5
 ```
+
+All 8 print `✅ VALID` and none has an emoji in a heading.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. Before you list a new file, module, option, layer or dependency, name what fails today without it, or drop it. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- [YOUR_VALUE_HERE: Deliverable 1]
-- [YOUR_VALUE_HERE: Deliverable 2]
-- [YOUR_VALUE_HERE: Deliverable 3]
+- Bring each of the 8 READMEs to the runtime plugin template, with an ENTRY MAP row for every entry in the folder.
+- Say for each entry whether it is a link, a one-line re-export, a thin adapter or a full plugin, checked on disk.
+- Clear the 27 hard voice blockers in the four files that carry them.
+- Check every path, event and switch against the folder, the runtime config and the cores the entries call.
 
 ### Out of Scope
-- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
-- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
+- Runtime folder READMEs and `SYNC.md` files. Phase 006 owns them.
+- The entries, adapters and runtime configs themselves. A defect found there is recorded, not fixed.
+- Hand edits to README versions and changelog entries.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
+| `.pi/extensions/README.md` | Modify | Bring to the template, 19 hard blockers to clear |
+| `.opencode/plugins/README.md` | Modify | Bring to the template, 3 hard blockers to clear, keep live goal switch names |
+| `.dsh/plugins/repo-guards/README.md` | Modify | Bring to the template, 4 hard blockers to clear |
+| `.vibe/plugins/README.md` | Modify | Bring to the template, keeping its PLUGIN MAP |
+| `.claude/hooks/README.md`, `.codex/hooks/README.md`, `.cursor/hooks/README.md`, `.devin/hooks/README.md` | Modify | Bring to the template, 1 hard blocker to clear |
+| `.skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json` | Modify | Generated. Rebuilt for the entries whose verdict changes |
+| `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` and its three retrieval fixtures | Modify | Generated. Rebuilt when `trigger_phrases` change |
 <!-- /ANCHOR:scope -->
 
 ---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
-<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With 10 archives, `bash scripts/rotate-logs.sh --keep 3` exits 0 and `ls logs/archive | wc -l` prints 3. WEAK: The option should work well. -->
 REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
 
 ### P0 - Blockers (MUST complete)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-001 | Each of the 8 READMEs opens with an H1 naming the runtime and its entries, and every H2 is numbered, ALL CAPS, named in the template's section model and preceded by `---`. |
+| REQ-002 | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <readme>` prints `VALID` for each of the 8 files. |
+| REQ-003 | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <readme>` reports `hard blockers: 0` for each of the 8 files. |
+| REQ-004 | Every relative link in the 8 files resolves, and every link elsewhere in the repository that points into one of them with an anchor still resolves. |
+| REQ-005 | Every path, command, count and list a README states matches the code it describes, checked by a session that did not write that README. |
+| REQ-006 | The tests that read these READMEs still pass: the goal doc contract test, the README verdict parity test and the sk-doc script suite. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-007 | Each command a README shows is followed by its expected output, as the template's checklist asks. |
+| REQ-008 | No rewritten README's mechanical voice ceiling ends lower than its baseline. |
+| REQ-009 | `implementation-summary.md` records the before and after validator, voice and link results for every file. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -118,81 +153,61 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
-- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
-- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+- **SC-001**: The baseline script prints `✅ VALID` and `hard=0` for all 8 files, and `h2model.py` prints EXACT or SUBSET for each.
+- **SC-002**: The link checker reports 0 problems for links into and out of the 8 files.
+- **SC-003**: The goal doc contract test, the verdict parity test and the sk-doc suite pass, and the phase is pushed with `validate.sh --strict` printing `RESULT: PASSED`.
 <!-- /ANCHOR:success-criteria -->
 
 ---
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
-<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A script that reads `--keep` with no value could delete every archive. Mitigation: reject a missing value with exit 2 and test it. WEAK: There may be some risk. -->
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
-| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
+| Dependency | The runtime plugin template and the two sk-doc scripts | A template change mid-phase would move the target | Read the template once at Setup and treat that read as the contract for the phase |
+| Risk | A rewrite drops a fact a reader relied on, or states one the code does not support | High | A session that did not write the README checks it against the code before the phase closes |
+| Risk | An entry map row calls a link a plugin, so a maintainer edits a file that changes nothing | High | The reviewer runs `ls -l` on the folder and checks each row's kind |
+| Risk | Parallel sessions edit the same file | Med | Each session owns one README and edits nothing else |
 <!-- /ANCHOR:risks -->
-
----
-
 
 ---
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
-<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The option adds under 5 ms to a run. WEAK: Performance is good. -->
+N/A: this phase changes documentation only and runs no service, so it has no performance, security or reliability limit to state.
 <!-- /ANCHOR:nfr -->
-
-### Performance
-- **NFR-P01**: [YOUR_VALUE_HERE: Response time target - e.g., <200ms p95]
-- **NFR-P02**: [YOUR_VALUE_HERE: Throughput target - e.g., 100 req/sec]
-
-### Security
-- **NFR-S01**: [YOUR_VALUE_HERE: Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [YOUR_VALUE_HERE: Data protection - e.g., TLS + encrypted at rest]
-
-### Reliability
-- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target - e.g., 99.9%]
-- **NFR-R02**: [YOUR_VALUE_HERE: Error rate - e.g., <1%]
 
 ---
 
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
-<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
 
-- Empty input: [YOUR_VALUE_HERE: How system handles]
-- Maximum input: [YOUR_VALUE_HERE: Limit and behavior]
-- Failure path: [YOUR_VALUE_HERE: Exit code and message]
+- Empty input: a template section with no real content for a folder is left out and the rest renumbered, never filled with a placeholder.
+- Maximum input: `.opencode/plugins/README.md` holds 255 lines and twelve sections. It keeps the entry map and links to the plugin tests for the rest.
+- Failure path: a claim the session cannot confirm from the code is dropped, never kept on trust.
 <!-- /ANCHOR:edge-cases -->
 
 ---
 
 <!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
-<!-- FILL: Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. GOOD: Scope 6/25: one option in `scripts/rotate-logs.sh`. Total 18/100. WEAK: Complexity is medium. -->
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files, LOC, systems] |
-| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth, API, breaking changes] |
-| Research | [YOUR_VALUE_HERE: /20] | [YOUR_VALUE_HERE: Investigation needs] |
-| **Total** | **[YOUR_VALUE_HERE: /70]** | **Level 2** |
+| Scope | 8/25 | 8 files, 1,076 lines |
+| Risk | 6/25 | One test reads goal switch names from one file |
+| Research | 12/20 | Every entry needs a check against the folder and the runtime config |
+| **Total** | **26/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- [YOUR_VALUE_HERE: Question 1 requiring clarification]
-- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+- None.
 <!-- /ANCHOR:questions -->
 
 ---
-
-

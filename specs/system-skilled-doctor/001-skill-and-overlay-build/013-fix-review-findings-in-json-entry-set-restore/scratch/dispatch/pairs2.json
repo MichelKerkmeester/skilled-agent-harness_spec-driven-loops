@@ -1,0 +1,19 @@
+{
+ "08": [
+  ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+  ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+  ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+  ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+  ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+  ".skilled/commands/doctor/scripts/overlay-engine.cjs"
+ ],
+ "09": [
+  ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs",
+  ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs",
+  ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs",
+  ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs"
+ ],
+ "10": [
+  ".skilled/skills/system-skilled-doctor/references/overlays.md"
+ ]
+}

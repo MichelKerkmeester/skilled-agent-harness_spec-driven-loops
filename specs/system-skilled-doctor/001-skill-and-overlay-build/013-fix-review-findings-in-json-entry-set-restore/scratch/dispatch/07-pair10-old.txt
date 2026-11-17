@@ -1,0 +1,1 @@
+a destination in live-edited, both-changed or upstream-moved state, which the engine refuses to overwrite

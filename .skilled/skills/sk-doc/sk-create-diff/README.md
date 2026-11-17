@@ -4,12 +4,12 @@ description: "Local, Git-free before/after review of an edited document, rendere
 trigger_phrases:
   - "before after document review"
   - "document diff report"
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # create-diff
 
-> Capture what changed in an edited document, offline, without Git, as one HTML report you can open in any browser.
+> See exactly what changed in a document through one local HTML report, with no Git repository and no upload.
 
 ---
 
@@ -19,64 +19,60 @@ version: 1.1.4.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Reviewing what changed in a locally edited Markdown, text, HTML, DOCX or text-PDF document without Git |
-| **Invoke with** | `python3 scripts/create_diff.py snapshot / compare / compare-pair` or `/create:diff` |
-| **Works on** | One document at a time or a pre-composed multi-file aggregate pair |
-| **Produces** | A single self-contained HTML report with inlined CSS, zero JavaScript, no remote references and no network calls |
-
-### Why This Skill Exists
-
-Not everything you edit lives in Git. An AI or a person edits a Markdown spec, a DOCX brief, a PDF export or a text file outside version control and now needs to know exactly what changed before trusting it. Diffing that by eye is unreliable beyond a sentence. Pasting the file into a hosted diff tool sends its content somewhere you may not want it to go. create-diff exists so review works the same everywhere: local and offline, never touching the source file.
+| **Use it for** | Reviewing an edit to a Markdown, text, HTML, DOCX or text-PDF document outside Git |
+| **Invoke with** | `/create:diff` or `python3 scripts/create_diff.py <subcommand>` |
+| **Works on** | One document or a pre-composed before/after bundle of several files |
+| **Produces** | One self-contained HTML report with inlined CSS and no network references |
 
 ### What It Does
 
-create-diff captures a baseline snapshot of a document before an edit happens, then compares the current file against that snapshot or an explicit second file and renders one self-contained HTML report you can open offline. The engine ships as `scripts/create_diff.py` and reads Markdown, plain text, HTML, DOCX and text-layer PDF. It does not touch code or Git-tracked files: that boundary belongs to `sk-git`. It does not audit a single document on its own either, since comparing two states is the point. `create-quality-control` handles single-document scoring.
+create-diff compares two states of a document and writes the difference to one HTML file you can open offline in any browser. The engine is `scripts/create_diff.py`. Capture a baseline with `snapshot` before an edit, then run `compare` after it. When no baseline exists, `compare-pair` takes two explicit files instead. Source diffs belong to `sk-git`. A single-document audit belongs to `create-quality-control`.
 
-### When To Use This Skill
+### Why This Skill Exists
 
-Use create-diff when:
-
-- An AI or a person edited a document outside Git and you need proof of what changed.
-- You want a baseline captured before a risky edit.
-- A pre-composed multi-file bundle needs its transitions to stay visible in review.
-
-Skip it when:
-
-- The files are code or already tracked in Git (`sk-git` owns that).
-- The comparison is visual or pixel-level (out of scope: create-diff compares extracted text only).
-- You are scoring a single document with no second state to compare (`create-quality-control` owns that).
+Not every document you edit lives in Git. A Markdown page or a DOCX brief can change outside version control. Reading a whole file to find one changed sentence does not scale. create-diff keeps the comparison on your machine, with no hosted service and no upload.
 
 ### The Format Fidelity Layer
 
-Every comparison runs at a stated fidelity tier so a limited result is never mistaken for a complete one. The engine extracts what a format can honestly give:
+A comparison only shows what its extractor can read. Every report states the format and the tier, so a text-only result is never mistaken for a full one.
 
-| Format | What the skill knows how to operate |
+| Format | What the engine compares |
 |---|---|
-| **Plain text** | diff `.txt`, `.log`, `.csv` and unknown text-like files at full fidelity after normalization |
-| **Markdown** | diff `.md`, `.markdown` and `.mdown` files at full fidelity, comparing normalized text with rendered HTML left out |
-| **HTML** | extract visible text and `h1` to `h6` headings at text fidelity, with CSS and scripts left out |
-| **DOCX** | compare paragraph text, table text and heading-styled paragraphs at text fidelity |
-| **PDF** | diff the extracted text layer at `text*` fidelity when a local extractor is installed, with scanned pages warned and OCR out of scope |
+| **Plain text** | `.txt`, `.log`, `.csv` and other text files at `full` tier, after normalization |
+| **Markdown** | `.md`, `.markdown` and `.mdown` at `full` tier, compared as normalized text with headings parsed for structure |
+| **HTML** | visible text and `h1` to `h6` headings at `text` tier, with CSS and scripts left out |
+| **DOCX** | paragraph text, table text and heading-styled paragraphs at `text` tier |
+| **PDF** | the extracted text layer at `text*` tier when a local extractor is installed |
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: capture a baseline before the edit.**
+**Step 1: Capture the baseline before the edit.**
 
 ```bash
 python3 scripts/create_diff.py snapshot path/to/doc.md
 ```
 
-Confirms a snapshot was stored. Nothing else changes.
+Prints `Captured baseline for doc.md`, a hash line and the store path. The source file is only read.
 
-**Step 2: after the edit, compare and render.**
+**Step 2: After the edit, compare and render the report.**
 
 ```bash
 python3 scripts/create_diff.py compare path/to/doc.md --report review.html
 ```
 
-Or, without a stored baseline, compare two explicit files directly using the shipped fixtures:
+Prints `Compared baseline @ <captured-at> → doc.md (markdown, tier full)`, a `+N −N ~N` count line and `report: review.html`.
+
+**Step 3: Verify the report before you hand it off.**
+
+```bash
+python3 scripts/validate_report.py review.html
+```
+
+Prints `PASS review.html` and exits 0. A `FAIL` line names the element or reference that broke the report contract.
+
+To see the whole flow without editing anything, run the shipped fixtures:
 
 ```bash
 python3 scripts/create_diff.py compare-pair \
@@ -85,42 +81,69 @@ python3 scripts/create_diff.py compare-pair \
   --report /tmp/onboarding-review.html
 ```
 
-You get one HTML file with a change summary line like `markdown, tier full, +6 -0 ~3` and a unified or side-by-side diff view.
-
-**Step 3: verify the report before you hand it off.**
-
-```bash
-python3 scripts/validate_report.py /tmp/onboarding-review.html
+```text
+Compared onboarding-before.md → onboarding-after.md (markdown, tier full)
+  +4  −0  ~9  moves≈0  unchanged 19
+  report: /tmp/onboarding-review.html
 ```
-
-Prints `PASS` when the report is safe and self-contained.
 
 ---
 
 ## 3. HOW IT WORKS
 
-The lifecycle has one hard invariant: the baseline has to exist before the edit happens.
+The lifecycle has one hard rule: capture the baseline before the edit. Once a file is overwritten, the original is gone and there is nothing to compare against.
 
-- `snapshot` copies the current file into a local `.create-diff/` store without altering the source.
-- Once the edit is done, `compare` diffs the live file against its latest stored baseline and writes the report.
-- When no baseline exists or you already have two explicit versions, `compare-pair` skips the store entirely and diffs `--before` against `--after`.
-- Either path ends the same way: a deterministic line-and-word diff, run through a format-aware extractor and rendered into one inlined-CSS HTML file with no scripts and no network calls.
+`snapshot` copies the current file into a `.create-diff/` store, in a folder keyed by a hash of the absolute path. The copy is written atomically. A manifest beside it records the capture time and a SHA-256 digest. The source is never opened for writing.
 
-### Key Concept: Aggregate File Boundaries
+`compare` reads the latest baseline for the file and diffs it against the current file. `compare-pair` skips the store and diffs `--before` against `--after` directly. Both paths extract text, normalize it, run a line diff with word-level highlights and render one HTML file with inlined CSS. The report opens in the unified view by default. `--view side-by-side` puts the old and new lines in two columns.
 
-`compare-pair` can also review a bundle of files in one call, as long as both `--before` and `--after` wrap every file in matching `===== BEGIN FILE: <path> =====` and `===== END FILE: <path> =====` markers. When the markers line up, the report renders each transition as a full-width boundary band with a canvas gap before it, so a five-file bundle still reads as five distinct reviews instead of one file's heading bleeding into the next. Malformed or unbalanced markers just render as ordinary text. The CLI itself still only ever receives one before-document and one after-document.
+The renderer refuses to overwrite an existing report. Without `--report`, the file lands in the working directory as `<source-slug>.diff.html`, where the slug is lowercase kebab-case derived from the file stem.
+
+```mermaid
+flowchart TD
+  Ask["Review an edited document"] --> Shape{"Baseline captured before the edit?"}
+  Shape -->|Yes| Snap["snapshot, then compare"]
+  Shape -->|No| Pair["compare-pair with --before and --after"]
+  Snap --> Diff["Extract, normalize and diff"]
+  Pair --> Diff
+  Diff --> Report["One self-contained HTML report"]
+  Report --> Check["validate_report.py"]
+```
+
+### Key Concept: One Report, Many Files
+
+`compare-pair` always receives one before-document and one after-document. To review a bundle of files in one pass, compose both sides with the same markers:
+
+```text
+===== BEGIN FILE: docs/first.md =====
+[file content]
+===== END FILE: docs/first.md =====
+===== BEGIN FILE: docs/second.md =====
+[file content]
+===== END FILE: docs/second.md =====
+```
+
+When both sides carry at least two balanced, path-matched file envelopes in the same order, the report renders each transition as a `START FILE` and `END FILE` band. The bands stay visible through collapsed context. A 32px gap opens before each later file. A new file resets the Markdown section label. Markers that fail any of those checks render as ordinary text.
 
 ---
 
 ## 4. INTEGRATION & NAVIGATION
 
+### When To Use This Skill
+
+- A person or an agent edited a document outside Git and you need a record of what changed.
+- You want a baseline captured before a risky edit, so the original survives the edit.
+- A bundle of files needs one review where every file transition stays visible.
+- Two explicit versions need a unified or side-by-side comparison.
+
+Source diffs belong to `sk-git`. A pixel or layout comparison is out of scope, because the engine compares extracted text only. A single-document audit with no second state belongs to `create-quality-control`.
+
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-git` | Owns diffs for code and Git-tracked files. create-diff is for everything outside that boundary. |
-| Visual / pixel-level comparison | Out of scope: create-diff only compares extracted text. |
-| `create-quality-control` | Audits one existing document. create-diff always compares two states. |
+| `sk-git` | Owns diffs for code and Git-tracked files. |
+| `create-quality-control` | Audits one document. create-diff needs two states to compare. |
 
 ---
 
@@ -128,31 +151,31 @@ The lifecycle has one hard invariant: the baseline has to exist before the edit 
 
 | What you see | Why | Fix |
 |---|---|---|
-| Exit `4`, missing baseline | `compare` ran with no stored snapshot for that file | Run `snapshot` first or use `compare-pair` with explicit `--before` and `--after` |
-| Exit `3`, unsupported format | The file type has no extractor or the PDF has no text layer | Run `capabilities` to see what is available or provide a pre-extracted explicit pair |
-| Report already exists | The engine refuses to overwrite an existing report path | Pass a new `--report` path or remove the old file first |
-| File-boundary bands missing on a multi-file pair | The `BEGIN FILE` and `END FILE` markers are unbalanced or unmatched between the two inputs | Match marker order and paths exactly in both `--before` and `--after` |
-| `validate_report.py` fails | The report references a remote resource or an inline script somehow made it through | Fix the renderer input and regenerate. Never hand off a failed report as clean |
+| Exit `4`, `no baseline snapshot` | `compare` found no stored baseline for the file | Run `snapshot` before the edit or use `compare-pair` with explicit files |
+| Exit `3` | The file is not a supported format or the PDF has no extractor | Run `capabilities` to see the format rows and the PDF extractor |
+| Exit `3`, `Refusing to overwrite existing report` | A file already sits at the report path | Pass a new `--report` path |
+| No `START FILE` bands in a bundle review | The markers differ between the two inputs | Use the same paths in the same order on both sides |
+| `FAIL` from `validate_report.py` | The report fails a safety check: a missing doctype, `lang` or CSP, a disallowed element or attribute, or an external reference | Regenerate it and fix the renderer input. Never hand off a failed report |
 
 ---
 
 ## 6. FAQ
 
-**Q: Why not just use `git diff` for this?**
+### Why not use `git diff` for this?
 
-A: Git needs the file under version control with commit history. create-diff works on any document, anywhere on disk, without ever needing a Git repo.
+`git diff` needs the file inside a Git repository with history. create-diff works on any document on disk, including one that was never committed.
 
-**Q: Does this send my document anywhere?**
+### Does my document leave the machine?
 
-A: No. Everything runs locally with the Python standard library. The report has no scripts and no remote references. When PDF extraction is available it uses a local extractor only.
+No. The engine runs locally and writes only local files: the report, plus a baseline copy and a manifest under `.create-diff/` when you run `snapshot`. The report has no scripts and no remote references. A local extractor such as `pdftotext`, `pypdf` or `pdfplumber` handles PDF text.
 
-**Q: What if the document is a scanned PDF?**
+### What happens with a scanned PDF?
 
-A: There is no text layer to diff, so the comparison would be empty. OCR is out of scope. Use the explicit-pair fallback with pre-extracted text instead.
+A scan has no text layer, so the extraction is empty. The engine warns you in the report. OCR is out of scope. Pre-extract the text and compare the two text files instead.
 
-**Q: Can I compare more than two files at once?**
+### Can I compare more than two files at once?
 
-A: `compare-pair` accepts one before-document and one after-document, but you can pre-compose either side into a multi-file bundle using the `BEGIN FILE` and `END FILE` markers described in Section 3.
+One call takes one before-document and one after-document. Compose each side into a bundle with the `BEGIN FILE` and `END FILE` markers, then pass the two bundles to `compare-pair`.
 
 ---
 
@@ -160,9 +183,12 @@ A: `compare-pair` accepts one before-document and one after-document, but you ca
 
 | Check | Result |
 |---|---|
-| `python3 scripts/validate_report.py <report>` | `PASS` (asserts doctype, `lang`, a CSP meta tag, zero `<script>`, no inline handlers and no remote resources) |
-| Source unchanged | The source file stays byte-for-byte identical before and after `compare` or `compare-pair` |
-| Manual scenarios | `manual-testing-playbook/manual-testing-playbook.md` groups scenarios by snapshot lifecycle, comparison formats and safety guarantees |
+| Report validator | `python3 scripts/validate_report.py <report>` prints `PASS <report>` and exits 0 |
+| Source file | The source bytes are identical before and after a `compare` or `compare-pair` run |
+| Regression suite | `python3 scripts/test_create_diff.py` reports `Ran 59 tests` and `OK` |
+| Manual playbook | The [manual testing playbook](./manual-testing-playbook/manual-testing-playbook.md) runs 11 scenarios across the snapshot, comparison and safety categories |
+
+A report that fails the validator is not safe to share, even when the diff looks right.
 
 ---
 
@@ -179,6 +205,7 @@ A: `compare-pair` accepts one before-document and one after-document, but you ca
 | [`references/accessibility-contract.md`](./references/accessibility-contract.md) | The report's accessibility guarantees |
 | [`references/worked-example.md`](./references/worked-example.md) | End-to-end walkthrough using the shipped fixtures |
 | [`assets/fixtures/README.md`](./assets/fixtures/README.md) | Runnable before/after worked example |
+| [`scripts/README.md`](./scripts/README.md) | Engine and validator README for the code folder |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Canonical capability inventory |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator-facing validation scenarios |
 

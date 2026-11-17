@@ -287,14 +287,19 @@ name_is_replayable() {
   ( LC_ALL=C; [[ "$name" != *[[:cntrl:]]* ]] )
 }
 
-# Removes the number this wrapper wrote for the sender, so a hop replaces it instead of
-# stacking. The first session carries no number, so a trailing " (1)" is someone's own text.
-# Arguments: name, the sender's own session number.
+# Removes every trailing " (<digits>)", so a receiver carries one number, the one the hop
+# adds. A number can come from this wrapper, from a title that still shows an earlier
+# session's number, or from the launch name itself, and any of them left in place would sit
+# beside the hop number. Text in brackets that is not all digits stays part of the name.
+# Arguments: name.
 name_stem() {
-  local name="$1" sender_number="${2:-0}"
-  if ((sender_number >= 2)) && [[ "$name" == *" ($sender_number)" ]]; then
-    name="${name% ($sender_number)}"
-  fi
+  local name="$1" number
+  while [[ "$name" == *" ("*")" ]]; do
+    number="${name##*" ("}"
+    number="${number%")"}"
+    [[ -n "$number" && "$number" != *[!0-9]* ]] || break
+    name="${name%" ($number)"}"
+  done
   printf '%s' "$name"
 }
 
@@ -365,13 +370,12 @@ apply_consumed_live_settings() {
   local launch_model="${SKILLED_LOOP_MODEL:-}"
   local launch_provider="${SKILLED_LOOP_PROVIDER:-}"
   local accepted_model=''
-  local sender_number=$((10#${SKILLED_LOOP_HOPS:-0} + 1))
   local changed=1
 
   # A manual claim starts a new wrapper at hop 0, so the command carries the stem with no
   # number, whichever name the sender's record proves.
   if name_is_replayable "$consumed_live_name"; then
-    SKILLED_LOOP_NAME=$(name_stem "$consumed_live_name" "$sender_number")
+    SKILLED_LOOP_NAME=$(name_stem "$consumed_live_name")
     changed=0
   fi
   if [[ -n "$consumed_live_model" ]] && model_is_valid "$consumed_live_model"; then
@@ -946,9 +950,11 @@ opencode_server_seen=0
 opencode_config_content_base="${OPENCODE_CONFIG_CONTENT-}"
 opencode_config_content_set="${OPENCODE_CONFIG_CONTENT+1}"
 # The packet and the claim belong to one hop, so a value from an outer session never reaches a
-# first launch.
+# first launch. The hop count belongs to one loop too: a wrapper started from a looped
+# session's shell would otherwise number its first receiver from the outer loop's count.
 unset SKILLED_LOOP_NAME SKILLED_LOOP_MODEL SKILLED_LOOP_PROVIDER SKILLED_LOOP_EFFORT \
-  SKILLED_LOOP_PERMISSION_MODE SESSION_HANDOVER_GOAL_PACKET SKILLED_LOOP_CLAIM_SEED
+  SKILLED_LOOP_PERMISSION_MODE SESSION_HANDOVER_GOAL_PACKET SKILLED_LOOP_CLAIM_SEED \
+  SKILLED_LOOP_HOPS
 index=0
 option_scan_stopped=0
 skip_next_option=0
@@ -1519,9 +1525,9 @@ while true; do
         esac
       fi
       # The sender's record holds the name its session really carries, which a /rename never
-      # wrote back to the launch line. The stem drops the number this wrapper wrote for the
-      # sender, so the receiver's own number replaces it instead of stacking. A name the
-      # record cannot prove leaves the launch name in place.
+      # wrote back to the launch line. The stem drops every trailing number the name shows,
+      # so the receiver's own number replaces it instead of stacking. A name the record
+      # cannot prove leaves the launch name in place.
       live_name=$(consumed_field name)
       if [[ -n "$live_name" ]] && ! name_is_replayable "$live_name"; then
         printf 'warning: ignoring the sender name %s; relaunching on the launch name\n' \
@@ -1529,9 +1535,9 @@ while true; do
         live_name=''
       fi
       if [[ -n "$live_name" ]]; then
-        SKILLED_LOOP_NAME=$(name_stem "$live_name" "$SKILLED_LOOP_HOPS")
+        SKILLED_LOOP_NAME=$(name_stem "$live_name")
       else
-        SKILLED_LOOP_NAME=$(name_stem "${SKILLED_LOOP_NAME:-}" "$SKILLED_LOOP_HOPS")
+        SKILLED_LOOP_NAME=$(name_stem "${SKILLED_LOOP_NAME:-}")
       fi
       export SKILLED_LOOP_NAME
       # Every later manual command, the session's own hop-cap command among them, starts

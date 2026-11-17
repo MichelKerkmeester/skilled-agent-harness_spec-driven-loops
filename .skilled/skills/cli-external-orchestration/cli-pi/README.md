@@ -1,18 +1,18 @@
 ---
 title: cli-pi
-description: Cross-AI dispatcher for Pi's terminal coding agent with guarded print, JSON event, RPC and community-extension workflows.
+description: "Cross-AI dispatcher for Pi's terminal coding agent with guarded print, JSON event, RPC and community-extension workflows."
 trigger_phrases:
   - "pi cli"
   - "pi agent"
   - "pi.dev cli"
   - "delegate to pi"
   - "pi coding agent"
-version: 1.5.5.0
+version: 1.5.6.0
 ---
 
 # cli-pi
 
-> Dispatch a scoped task to Pi's terminal coding agent and return validated code, analysis, JSON events or RPC results to the calling runtime.
+> Hand one bounded task to a headless coding agent, then judge the result from the text it returned and the files it touched, not from the exit code.
 
 ---
 
@@ -22,208 +22,259 @@ version: 1.5.5.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Headless Pi coding, read-only tool-constrained review, JSON event output, RPC integration and Pi resource inspection |
+| **Use it for** | One guarded headless dispatch: a print answer, a JSON event stream, an RPC session or a read-only review |
 | **Invoke with** | "pi cli", "pi agent", "pi.dev cli", "delegate to pi" or "pi coding agent" |
-| **Works on** | An external runtime that can reach the pi binary and the shared deep-loop executor |
-| **Produces** | Validated text, JSONL event output, RPC handback or workspace changes |
-
-### Why This Skill Exists
-
-A calling AI that wants Pi's headless surfaces has no safe shortcut. Hand-building a dispatch risks malformed flags, a failed provider call treated as success or a surface mismatch. Pi exposes more than one headless surface. Its JSON event mode and persistent RPC mode require different consumers. The local contract pin confirms the core command shape and the unreliable failure exit-code behavior. See the [pinned contract](../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
-
-That is the whole reason this skill exists. It makes Pi reachable as a controlled headless surface: probe the binary, pick the output contract and delegate execution to the shared deep-loop runtime. The calling AI stays the conductor and validates what comes back. The skill is not a launcher for one command. Matching the consumer to the right surface is the point.
+| **Works on** | A machine with the `pi` binary on PATH and an authenticated provider from the packet roster |
+| **Produces** | The answer text, a JSONL event stream, RPC responses and any workspace change the run made |
 
 ### What It Does
 
-cli-pi probes for the pi binary, selects the requested headless surface and delegates process execution to the shared deep-loop runtime. It keeps Pi-native skills, prompt templates, extensions, MCP and community packages in separate references, so documentation-only behavior is not mistaken for live verification.
+cli-pi is the routing point for a Pi dispatch. The hub sends a request here when it names Pi or pi.dev. It also answers a request that needs Pi's JSON event stream, an RPC client, a code review or an independent second opinion. The packet fixes the command shape, names the roster a model must come from and states how to read the result. The [runtime instructions](./SKILL.md) hold the contract. The [machine router](./ROUTER.md) maps a request to the file that answers it.
 
-### The Output Contract Layer
+The packet owns prompt construction and the availability probe. The provider choice sits here too. The shared deep-loop runtime owns process construction and execution. This skill builds no second adapter: a research or review lineage runs through the runtime's `cli-pi` executor kind. A single build or doc dispatch uses the child envelope in the [provider roster](./references/providers-and-models.md).
 
-| Contract | What the skill returns | When it earns its place |
+### Why This Skill Exists
+
+A Pi run can look clean and still be wrong. The contract pin saw the same unauthenticated print dispatch return exit 0 on its first run, then exit 1 on later runs. Print mode also buffers until completion, so a run stuck on an inherited stdin prints nothing and reads exactly like a slow model. The packet turns both traps into checks you run before the command leaves your session.
+
+### Headless Surfaces
+
+Pi answers in more than one shape. Pick the shape your consumer can parse, because print mode returns only the final message while RPC keeps one process alive.
+
+| Surface | Invocation | What comes back |
 |---|---|---|
-| **Print** | Validated text from a one-shot headless run | A single task with read-only tool constraints |
-| **JSON** | One JSON object per line as an event stream | A consumer that parses structured output |
-| **RPC** | A persistent stdin/stdout JSONL protocol | A long-lived integration with a JSONL client |
+| **Print** | `pi -p` or `pi --print` | the final assistant message only |
+| **JSON** | `pi --mode json` | one JSON object per line, opening with a session header |
+| **RPC** | `pi --mode rpc` | a persistent stdin/stdout JSONL protocol over one live process |
+| **Read-only review** | print mode plus `--tools read,grep,find,ls` | findings from a run limited to four read-only tools, a caller choice rather than a Pi mode |
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Verify the CLI is installed.**
+**Step 1: Find the binary.**
 
-~~~bash
+```bash
 command -v pi
-~~~
+```
 
-Success prints the path to the Pi executable. If it prints nothing, stop before constructing a dispatch.
+Expect one resolved path, such as `/Users/you/.local/bin/pi`. No output means the binary is absent, so stop before you build a command. The packet runs this probe before every dispatch.
 
-**Step 2: Choose the output contract.**
+**Step 2: Record the installed release.**
 
-~~~bash
-pi -p "Review the authentication flow and report findings" --mode text --tools read,grep,find,ls
-~~~
+```bash
+pi --version
+```
 
-This is the read-only tool-constrained print pattern from the live help capture. Validate the output before relying on it.
+Expect one version string. This machine printed `1.5.2`. Record what yours prints, because the flag set moves with the release and the [CLI reference](./references/cli-reference.md) is written against a captured help.
 
-**Step 3: Use structured output only when the consumer is ready.**
+**Step 3: Dispatch a read-only review in print mode.**
 
-~~~bash
-pi --mode json "Summarize the changed files"
-~~~
+```bash
+PI_BLACKHOLE_PASSIVE=true \
+  pi -p "Review src/auth/session.ts for injection risks. Do not edit files. Return findings with file and line evidence." \
+  --model opencode-go/deepseek-v4.1-flash \
+  --thinking max --mode text --offline --tools read,grep,find,ls \
+  </dev/null > stdout.log 2> stderr.log
+```
 
-JSON mode emits one JSON object per line. For a persistent integration, use pi --mode rpc and a JSONL client. See [cli-reference.md](./references/cli-reference.md).
+Expect `stdout.log` to hold the findings as the final assistant message. Read `stderr.log` for startup or extension errors before you trust the run. If `stdout.log` says `No API key found for the selected model`, the run never reached a model, whatever the exit code reported. Swap the model for another id on the roster when the task needs one.
+
+**Step 4: Switch the output contract only when the consumer is ready.**
+
+```bash
+pi --mode json "Summarize the changed files" \
+  --model opencode-go/deepseek-v4.1-flash \
+  --thinking max --offline </dev/null
+```
+
+Expect one JSON object per line on stdout. The first record is a session header, then agent, turn, message and tool events arrive in order. Parse one line at a time. For a long-lived integration, run `pi --mode rpc --no-session` with a client that owns the process lifecycle, as the [integration patterns](./references/integration-patterns.md) describe.
 
 ---
 
 ## 3. HOW IT WORKS
 
-### The Conductor Model
+A dispatch runs in one direction. The caller probes the binary, picks the output contract, composes a scoped prompt and names a model from the roster. The shared runtime launches the command. The caller reads the output text, checks the diff, runs the tests and records the result.
 
-The calling AI remains the conductor. It classifies the task, selects the output contract, composes a scoped prompt and sends it to the shared runtime. The runtime launches Pi and returns output. The caller checks provider errors, extension errors, changed files and tests. Print mode is the one-shot path. JSON mode is an event stream. RPC is a long-lived stdin/stdout protocol.
-
-The pinned contract confirms these distinctions, while native skills and prompt-template discovery remain documented but unconfirmed for this packet. The exact source links and confidence labels live in [native-skills-and-extensions.md](./references/native-skills-and-extensions.md).
-
-Prompt quality follows the shared two-tier rule in [prompt-quality-card.md](./assets/prompt-quality-card.md). The card delegates framework selection to sk-prompt and adds only Pi dispatch mechanics.
-
-### The Conservative Guard
-
-The packet's guard is conservative. Process ancestry is checked first, then a .pi project-directory heuristic is checked. Neither the absence of a signal nor the presence of a directory proves that a session is active. A detected signal stops dispatch.
-
----
-
-## 4. STRUCTURE
-
-The packet folder holds the routing contract in [`ROUTER.md`](./ROUTER.md), plus this README and the resources the smart router loads.
-
-```text
-cli-pi/
-  SKILL.md                                      # Runtime instructions and hard rules
-  ROUTER.md                                     # Machine router: intent map, resource map and loading levels
-  README.md                                     # Folder orientation and navigation for the packet
-  assets/                                       # Prompt-quality card and dispatch templates
-    assets/prompt-quality-card.md               # Thin prompt-quality delegator with the two-tier rule
-    assets/prompt-templates.md                  # Print, JSON, RPC, review and generation scaffolds
-  benchmark/                                    # Curated validation reports
-  changelog/                                    # Versioned release notes
-  manual-testing-playbook/                      # Manual scenarios that validate packet behavior
-  references/                                   # Routing-loaded reference documents
-    references/agent-delegation.md              # Pi's built-in tool surface and the delegation boundary
-    references/cli-reference.md                 # Confirmed CLI flags, modes, auth failure and command examples
-    references/integration-patterns.md          # Conductor/executor patterns, cross-validation and anti-patterns
-    references/mcp-and-third-party-packages.md  # MCP and community package boundaries
-    references/native-skills-and-extensions.md  # Native resource discovery with confidence labels
-    references/pi-tools.md                      # Capabilities with no sibling analog (RPC, native extensions/prompts, tool surface)
-    references/providers-and-models.md          # Authenticated provider/model roster and the --thinking effort scale
+```mermaid
+flowchart TD
+  Request["A request that names Pi"] --> Probe["command -v pi"]
+  Probe -->|no path| Stop["Stop and name the missing binary"]
+  Probe -->|path| Pick["Pick print, JSON, RPC or a read-only review"]
+  Pick --> Roster["Name a roster model and an effort tier"]
+  Roster --> Run["The shared runtime launches the guarded command"]
+  Run --> Read["Read stdout and stderr"]
+  Read -->|provider error in the text| Fail["Report the failure, with the exit code as a weak signal"]
+  Read -->|answer| Check["Check the diff and run the tests"]
 ```
 
-| File | Role |
+### The Guarded Dispatch Line
+
+Four preflight checks sit in [`hard-rules.json`](./hard-rules.json), each at severity `error`. The dispatch preflight reads them as fail-closed rules. A hand-written dispatch needs the same lines.
+
+| Rule id | What it prevents |
 |---|---|
-| SKILL.md | Runtime instructions and hard rules |
-| ROUTER.md | Machine router: intent map, resource map and loading levels |
-| README.md | Folder orientation and navigation for the packet |
-| assets/prompt-quality-card.md | Thin prompt-quality delegator with the two-tier precedence rule |
-| assets/prompt-templates.md | Print, JSON, RPC, review and generation scaffolds |
-| references/agent-delegation.md | Pi's built-in tool surface and the delegation boundary |
-| references/cli-reference.md | Confirmed CLI flags, modes, auth failure behavior and command examples |
-| references/integration-patterns.md | Conductor/executor patterns, cross-validation and anti-patterns |
-| references/mcp-and-third-party-packages.md | MCP and community package boundaries |
-| references/native-skills-and-extensions.md | Native resource discovery with confidence labels |
-| references/pi-tools.md | Capabilities with no sibling analog (RPC, native extensions/prompts, tool surface) |
-| references/providers-and-models.md | Authenticated provider/model roster and the --thinking effort scale |
-| hard-rules.json | Dispatch preflight hard rules (stdin redirect, availability, offline, provider-qualified model) |
+| `stdin-redirect-required` | `pi -p` inheriting the parent terminal's stdin and hanging with no output at all |
+| `pi-availability-required` | building a command on a machine where `command -v pi` fails |
+| `pi-offline-required` | startup network probes that outlast the dispatch timeout |
+| `pi-provider-qualified-model` | a bare model id resolving against Pi's default provider, so a different model answers |
+
+### The Exit Code Is Not A Verdict
+
+The pin saw exit 0 on its first unauthenticated print run and exit 1 on later identical runs. Every guard in the packet therefore reads the output text, where a missing credential says `No API key found for the selected model`. A zero exit is also what a failed provider call returned, so the number alone settles nothing.
+
+An invalid extension fails the whole session rather than that one extension. Pi requires every `.pi/extensions/*.ts` entry to export a factory function. A broken entry blocks the dispatch with `Extension does not export a valid factory function`. Repair or remove the entry before the next run.
+
+### The Runtime Owns The Process
+
+The shared deep-loop runtime is the process adapter. Its `cli-pi` executor kind accepts only the `research` and `review` loop types, so a lineage that needs a second opinion dispatches through it with a provider-qualified model and an effort tier. A single build or doc dispatch uses the child envelope in the [provider roster](./references/providers-and-models.md) instead. The packet never adds a local wrapper, because a second adapter carries a second set of failure semantics.
+
+### The Closed Roster
+
+The roster is closed and per provider. Only the ids in [the provider reference](./references/providers-and-models.md) may be dispatched. A provider's live catalog is not a licence to try a neighbouring id. A fan-out lineage rejects any id outside its enforced allowlist before launch. That allowlist also keeps two OpenRouter ids the direct roster leaves out. The `pi` binary itself is a pass-through with no allowlist, so a direct dispatch follows the roster as a discipline rule.
+
+### What Loads In The Child
+
+A dispatched child inherits the operator's Pi packages. One of them, pi-blackhole, can replace what the child has read with a structural summary mid-run at its `compactAfterTokens` threshold, which is 272,000 here. A child still reading when that fires can start again and loop without editing. Set `PI_BLACKHOLE_PASSIVE=true` in the child's environment to switch off the package's background workers and auto-compaction. The fan-out's cli-pi environment filter passes that variable and the `LLMGATEWAY_` variables through, and strips every variable outside its allowlist. Pi's own compaction is off in `.pi/settings.json`, so the child keeps its full context window.
+
+### What Is In The Packet
+
+| File | What it holds |
+|---|---|
+| [`SKILL.md`](./SKILL.md) | The activation triggers, the dispatch rules and the success criteria |
+| [`ROUTER.md`](./ROUTER.md) | The intent map, the resource map and the loading levels |
+| [`hard-rules.json`](./hard-rules.json) | The four preflight rules at severity `error` |
+| [`references/cli-reference.md`](./references/cli-reference.md) | The flags, the headless modes, auth failure handling and a safe invocation checklist |
+| [`references/providers-and-models.md`](./references/providers-and-models.md) | The closed roster, the `--thinking` ladder and the child dispatch envelope |
+| [`references/pi-tools.md`](./references/pi-tools.md) | The surfaces with no sibling analog, plus the capability comparison |
+| [`references/integration-patterns.md`](./references/integration-patterns.md) | The conductor lifecycle, the validation pipeline and the anti-patterns |
+| [`references/agent-delegation.md`](./references/agent-delegation.md) | The built-in tool boundary and the child handback shape |
+| [`references/native-skills-and-extensions.md`](./references/native-skills-and-extensions.md) | Native discovery with its confidence labels |
+| [`references/mcp-and-third-party-packages.md`](./references/mcp-and-third-party-packages.md) | The MCP and community package boundaries |
+| [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | The prompt-quality delegator and its two-tier rule |
+| [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-ready templates for each dispatch shape |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The operator scenarios, indexed by category |
+| [`benchmark/README.md`](./benchmark/README.md) | The index of archived validation reports |
+| [`changelog/`](./changelog/) | One release note per version |
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
-Use cli-pi when the request names Pi, needs Pi's native model or provider surface or asks for Pi JSON or RPC output. Use a sibling packet when the user names another CLI or the task needs that provider's unique runtime.
+Use cli-pi when the request names Pi or asks for its JSON event stream. Use it for a read-only review whose tool allowlist the model cannot widen. Use it too for an RPC client that must keep one process alive across requests. An independent second opinion fits when the caller wants an answer from a different provider than its own.
+
+### When Not To Use It
+
+Skip the packet when `command -v pi` fails. Skip it too for a small edit the caller already understands. Skip it for a request that names another CLI. A task that needs the project's whole runtime belongs to cli-opencode. A task that needs spec-folder continuity goes through system-spec-kit rather than through a Pi prompt.
 
 ### Sibling Boundaries
 
+Each sibling dispatches to its own CLI. A request that names one of them routes there, never here.
+
+| Skill | What it dispatches |
+|---|---|
+| `cli-opencode` | OpenCode, with the project's plugins, skills, MCP servers and instruction file loaded |
+| `cli-claude-code` | Claude Code, for deep reasoning, diff-based edits and structured output |
+| `cli-codex` | Codex, for sandboxed coding, repo analysis, PR review and web research |
+| `cli-cursor` | Cursor, for Composer work and read-only plan or ask exploration |
+| `cli-devin` | Devin, for multi-model coding, subagents and cloud handoff |
+| `cli-deepseek-harness` | DeepSeek Harness, with a pinned binary and a closed two-route roster |
+| `cli-mistral-vibe` | Mistral Vibe print mode, with the outcome read from `export.json` |
+
+### Related Skills
+
 | Skill | Relationship |
 |---|---|
-| cli-opencode | Full OpenCode runtime, plugins, memory stack and detached sessions |
-| cli-claude-code | Anthropic-backed CLI dispatch and structured Claude Code output |
-| cli-codex | OpenAI-backed coding, review and web research |
-| cli-cursor | Cursor Composer, plan/ask modes and shared editor configuration |
-| cli-devin | Devin models, subagents and cloud handoff |
-| cli-deepseek-harness | DeepSeek Harness pinned headless one-task dispatch over a closed DeepSeek V4.1 Flash roster. Experimental, no route proven live yet |
-| cli-mistral-vibe | Mistral Vibe pinned print-mode one-task dispatch over a closed DeepSeek and GLM roster, outcome read from `export.json`. Experimental, ACP deferred |
-
-### Resource Map
-
-- CLI behavior: [references/cli-reference.md](./references/cli-reference.md)
-- Unique capabilities: [references/pi-tools.md](./references/pi-tools.md)
-- Conductor patterns: [references/integration-patterns.md](./references/integration-patterns.md)
-- Subagents: [references/agent-delegation.md](./references/agent-delegation.md)
-- Native resources: [references/native-skills-and-extensions.md](./references/native-skills-and-extensions.md)
-- MCP and packages: [references/mcp-and-third-party-packages.md](./references/mcp-and-third-party-packages.md)
-- Prompt assets: [assets/prompt-templates.md](./assets/prompt-templates.md)
+| `system-deep-loop` | Owns the runtime that launches a Pi lineage, including the model allowlist |
+| `sk-code` | Owns code standards and the tests that judge what Pi returns |
+| `system-spec-kit` | Owns spec folders, the session gate and continuity |
+| `sk-prompt` | Owns the canonical prompt card that the packet's prompt asset delegates to |
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
-| pi is not found | The binary is absent from PATH | Install the Pi package, refresh PATH, then rerun command -v pi |
-| Missing provider API key | Pi cannot reach the selected model | Configure provider auth and retry, then inspect the output text. Do not rely on the exit code |
-| Different failure exit codes | The pinned contract observed exit 0 and exit 1 for similar unauthenticated runs | Inspect output text and classify the failure |
-| Extension load failure | An extension can block the session when its export is invalid | Remove or fix the extension, then rerun with the required validation |
-| JSON consumer hangs or misparses | JSON mode is line-delimited and RPC is persistent | Choose one contract and parse JSONL records correctly |
-| Package install asks for trust | Project-local package changes need approval | Review the package and approve project-local changes explicitly |
+| `command -v pi` prints nothing | The binary is absent from PATH | Install `@earendil-works/pi-coding-agent`, refresh PATH and rerun the probe |
+| The run hangs with an empty log | `pi -p` inherited a terminal stdin | Append `</dev/null` after the prompt and before any redirect |
+| A run stalls for minutes before any output | Startup network probes with no reachable path, which `--offline` skips | Pass `--offline` on every automated dispatch |
+| `No API key found for the selected model` | The named provider has no credential | Configure provider auth outside the prompt and rerun. Never read the exit code as a pass |
+| A different model answers than the one named | A bare `--model` id resolved against Pi's default provider | Write `--model provider/id` |
+| `Extension does not export a valid factory function` | An invalid `.pi/extensions/*.ts` entry fails the session | Repair or remove the entry, then rerun |
+| `pi install` or `pi list` act as if no package exists | The project trust gate covers reads as well as writes | Add `--approve` after you review the package |
+| A child keeps rereading and never edits | pi-blackhole compacted the child mid-run | Set `PI_BLACKHOLE_PASSIVE=true` in the child's environment |
+| A JSON consumer misparses the stream | JSON mode is line-delimited, not one document | Read one line at a time and keep RPC on a persistent client |
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
-**Q: Is Pi's RPC mode a JSON version of print mode?**
+### Is RPC mode a JSON version of print mode?
 
-A: No. The pinned contract treats RPC as a persistent stdin/stdout JSONL protocol. Use a long-lived client and read [integration-patterns.md](./references/integration-patterns.md).
+No. Print mode returns the final assistant message and exits. RPC keeps one process alive and frames requests and responses as newline-delimited JSON on stdin and stdout. A client that treats RPC as a one-shot call has no lifecycle owner for timeouts, backpressure, stderr capture or cleanup, so it should stay on print mode.
 
-**Q: Does this packet claim that Pi flattens every nested skill?**
+### Why must `--model` carry its provider?
 
-A: No. That discovery behavior remains documented but unconfirmed. The packet labels the claim and routes live verification to the native-resource reference.
+A bare id resolves against Pi's own default provider, so the run silently uses a model you did not choose instead of failing. The provider-qualified form names one route. The enforcement guard refuses the split `--provider` plus bare `--model` form before launch.
 
-**Q: Is pi-mcp-extension a first-party Pi feature?**
+### Does the packet prove that Pi flattens nested skills?
 
-A: No. It is a community package. The package reference separates its documented surfaces from the Pi CLI contract and does not treat installation as approval.
+No. Skill discovery stays documented but unconfirmed in this packet. Prompt templates under `.pi/prompts/` and project-local extensions under `.pi/extensions/` are confirmed for the locations this repository populates. The confidence boundary is in [the native resource reference](./references/native-skills-and-extensions.md).
 
-**Q: Why not use the alias pi?**
+### Is `pi-mcp-extension` a Pi feature?
 
-A: It is a common short word and a math constant. This packet uses multi-word aliases to reduce cross-hub routing collisions.
+No. It is a community package, not part of the Pi CLI. Its stdio transport connected in a recorded test, while streamable HTTP and SSE remain documented only. The [package reference](./references/mcp-and-third-party-packages.md) holds the trust and rollback rules.
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | Result |
 |---|---|
-| Availability | command -v pi prints a path before dispatch |
-| CLI contract | cli-reference.md matches the pinned implementation summary |
-| Recursion bounds | A fan-out lineage and a repeated dispatch stack are still refused by the shared runtime |
-| Output handling | Text, JSON and RPC consumers use the matching parser |
-| Workspace safety | Returned changes pass the calling workflow's verification gates |
-| Package safety | Community packages remain explicitly labeled and trust-gated |
-| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-pi/README.md --type readme` reports zero issues |
-| Manual playbook | `manual-testing-playbook/manual-testing-playbook.md` runs every scenario behind these checks |
+| Dispatch rules | The rule check below prints `4` with the four rule ids |
+| Availability | `command -v pi` prints one path |
+| Installed release | `pi --version` prints one version string |
+| README structure | The validator check below reports `Total issues: 0` |
+| Operator scenarios | The [manual testing playbook](./manual-testing-playbook/manual-testing-playbook.md) indexes the scenario files by category |
+
+**Check the rule sidecar.**
+
+```bash
+node -e "const rules=require('./.skilled/skills/cli-external-orchestration/cli-pi/hard-rules.json')
+console.log(rules.length, rules.map((rule)=>rule.id).join(' '))"
+```
+
+Expected output: `4 stdin-redirect-required pi-availability-required pi-offline-required pi-provider-qualified-model`.
+
+**Check this document.**
+
+```bash
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-pi/README.md --type readme
+```
+
+Expected output: `Document type: readme` followed by `Total issues: 0`. The command exits 0.
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
-| [SKILL.md](./SKILL.md) | Runtime instructions and hard rules |
-| [ROUTER.md](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
-| [references/cli-reference.md](./references/cli-reference.md) | Pi flags, commands, modes, environment and failure handling |
-| [references/pi-tools.md](./references/pi-tools.md) | Capabilities with no sibling analog (RPC, native extensions/prompts, tool surface) |
-| [references/integration-patterns.md](./references/integration-patterns.md) | Cross-AI dispatch lifecycle, cross-validation and anti-patterns |
-| [references/agent-delegation.md](./references/agent-delegation.md) | Built-in boundary and community subagent package guidance |
-| [references/native-skills-and-extensions.md](./references/native-skills-and-extensions.md) | Native resource discovery with confidence labels |
-| [references/mcp-and-third-party-packages.md](./references/mcp-and-third-party-packages.md) | MCP and community package boundaries |
-| [assets/prompt-quality-card.md](./assets/prompt-quality-card.md) | Thin prompt-quality delegator |
-| [assets/prompt-templates.md](./assets/prompt-templates.md) | Reusable Pi dispatch templates |
-| [manual-testing-playbook/manual-testing-playbook.md](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate each catalog entry |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions and the hard rules |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: the intent map, the resource map and the loading levels |
+| [`hard-rules.json`](./hard-rules.json) | The four preflight rules at severity `error` |
+| [`references/cli-reference.md`](./references/cli-reference.md) | The flags, the headless modes, auth failures and the safe invocation checklist |
+| [`references/providers-and-models.md`](./references/providers-and-models.md) | The closed roster, the effort ladder and the child envelope |
+| [`references/pi-tools.md`](./references/pi-tools.md) | The surfaces with no sibling analog |
+| [`references/integration-patterns.md`](./references/integration-patterns.md) | The conductor lifecycle, the validation pipeline and the anti-patterns |
+| [`references/agent-delegation.md`](./references/agent-delegation.md) | The built-in tool boundary and the delegation handback |
+| [`references/native-skills-and-extensions.md`](./references/native-skills-and-extensions.md) | Native discovery with its confidence labels |
+| [`references/mcp-and-third-party-packages.md`](./references/mcp-and-third-party-packages.md) | The MCP and community package boundaries |
+| [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | The prompt-quality delegator and the two-tier rule |
+| [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-ready dispatch templates |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator scenarios by category |
+| [`benchmark/README.md`](./benchmark/README.md) | The index of archived validation reports |
+| [`changelog/`](./changelog/) | One release note per version |

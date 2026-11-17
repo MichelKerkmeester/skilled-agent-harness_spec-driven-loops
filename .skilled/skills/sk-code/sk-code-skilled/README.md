@@ -1,16 +1,16 @@
 ---
 title: "sk-code-skilled"
-description: "System-code work under .skilled/ holds to the right standards: read-only evidence for the sk-code hub, from six language rule sets to shared patterns, hooks and authoring checklists, bundled beside a workflow mode and never routed as a primary."
+description: "System code under `.skilled/` meets this repository's standards, because the sk-code hub bundles this read-only surface beside a workflow mode, with language standards and checklists sliced to the files a task touches plus the hook contracts and workflow references."
 trigger_phrases:
   - "skilled system code"
   - "skilled surface authoring"
   - "system code standards"
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 # sk-code-skilled
 
-> System-code work under `.skilled/` lands with the right language standard and authoring checklist already attached, handed to the paired workflow mode without you having to know which reference tree to open.
+> System code under `.skilled/` gets the language standards and authoring checks its task needs, sliced to the files it touches.
 
 ---
 
@@ -18,54 +18,42 @@ version: 1.0.9.0
 
 ### At a Glance
 
-| Aspect | What you get |
+| Aspect | What it gives you |
 |---|---|
-| **Use it for** | System-code work under `.skilled/`: skills, agents, commands, plugins, MCP servers, config and runtime wiring that must hold to the sk-code standards |
-| **Invoke with** | No direct invocation. The sk-code hub bundles this surface beside a workflow mode when it detects a system-code surface, then slices evidence by the detected language |
-| **Works on** | The read-only evidence tree: six language standard sets, the shared pattern tier, hook contracts, alignment verification, authoring checklists and this framework's house style |
-| **Produces** | The language-sliced evidence a workflow mode applies, plus drift-guard verification results. The surface itself edits nothing |
-
-**Version authority.** `SKILL.md` carries the packet's release version, which matches the newest entry under `changelog/`. The `version` in this file and in `ROUTER.md` counts that document's own revisions, the same split the hub `SKILL.md` states for the hub's files.
+| **Use it for** | System code under `.skilled/`: a skill, agent, command, plugin, MCP server or config file |
+| **Invoke with** | No direct call. The hub routes it beside a workflow mode, or alone when no workflow mode scores |
+| **Works on** | Six language standard sets, the shared pattern tier, the authoring checklists, the hook contracts and the house style |
+| **Produces** | The evidence the acting agent applies, sliced to the languages the task touches |
 
 ### What It Does
 
-This surface carries the system-code evidence for the sk-code hub:
-
-- Language standards for TypeScript, Python, shell, Rust, config and JavaScript, plus a language-agnostic shared tier for naming, organization, hooks and alignment verification.
-- Authoring checklists for skills, agents, commands and MCP servers.
-- Detection that tries every declared specific surface first and checks this surface last as the hub's fallback. A specific surface is a hub packet with a `surfaceDetection` block in `../mode-registry.json`, or a skill outside the hub that declares `surface_detection` in its own `graph-metadata.json`, as `../shared/references/stack-detection.md` describes. When a specific surface also matches, this surface loads as second evidence.
-- The hub slices to the set of languages the task actually touches. Only an interop task spanning both languages legitimately loads both.
-- Read-only, advisor-invisible evidence. The paired workflow mode owns all edits, tests and commits.
-
-### Why This Skill Exists
-
-A task that touches `.skilled/` system code, be it a skill, agent, command, plugin, MCP server or descriptor, needs the right language rules and the right authoring checklist, not the whole sk-code reference tree. Without this surface, a workflow mode would either hold every language standard itself or guess which trio applies. A TypeScript edit would end up pulling Python and shell guidance it never needed.
-
-### The House Style Lives Here
-
-The quality and review modes ship rules that hold in any repository. This framework's own house style is a different thing, and it sits in this surface, so another repository that uses the hub does not inherit it. That covers the file layout and size limits, the `MODULE:` header, the `ceiling:` shortcut marker, the test layout, the formatter and line-length rules, the JavaScript and CSS house checks under `assets/checklists/js-css-style/` and the documentation and typing rows of `assets/checklists/universal-checklist.md`.
-
-These checks load only for a file the surface detection places in SKILLED, so a SKILLED `.js` or `.css` file keeps exactly the checks it always had. The universal checklist also carries a `## 7. RULE OVERRIDES` section with one row. It replaces the review mode's TODO rule with this surface's own format: every TODO names its owner and what is left, and carries no ticket id. The section is written in the contract the other modes read, [`rule-overrides.md`](../shared/references/universal/rule-overrides.md), so a surface or repository of your own can do the same for any rule outside the hard floor.
+This surface carries the standards this repository applies to its own code under `.skilled/`. It holds six language standard sets, a shared pattern tier, the authoring checklists, the hook contracts and the workflow references that link to the hub's shared doctrine. The sk-code hub bundles it beside a workflow mode when one scores, or routes it alone for a lookup, implement, debug or verify task. The surface is read-only: its tool list allows `Read`, `Bash`, `Grep` and `Glob` and carries no `Write` or `Edit` tool.
 
 ### The Language Slice
 
-| Language | What the surface can operate |
+The language follows the extensions and local markers a task touches. The shared tier joins every slice. A parity task that spans a language pair loads both sets.
+
+| Language | What the surface carries |
 |---|---|
-| **TypeScript** | `.ts`, `.tsx`, `.mts` and `.d.ts` style guides, quality standards, quick references and the TypeScript checklist |
-| **Python** | `.py` style guide, quality standards, quick reference and the Python checklist |
-| **Shell** | `.sh` and `.bash` style guides, quality standards, quick references and the shell checklist |
-| **Rust** | `.rs` style guides, quality standards, quick references and the Rust checklist split across its topic parts |
-| **Config** | JSON, JSONC and YAML descriptor style guide, quality standards, quick reference and the config checklist |
-| **JavaScript** | CommonJS and ESM plugin style guide, quality standards, quick reference and the JavaScript checklist |
-| **Shared tier** | Language-agnostic patterns, code organization, hooks and alignment verification, kept in every slice |
+| **TypeScript** | `.ts`, `.tsx`, `.mts` and `.d.ts`: two style-guide parts, three quality-standard parts, two quick-reference parts and the TypeScript checklist |
+| **Python** | `.py`: a style guide, quality standards, a quick reference and the Python checklist |
+| **Shell** | `.sh` and `.bash`: two style-guide parts, two quality-standard parts, two quick-reference parts and the shell checklist |
+| **Rust** | `.rs`, plus `Cargo.toml`, `Cargo.lock`, napi-rs and wasm-bindgen markers: seven style-guide parts, five quality-standard parts, five quick-reference parts and four checklist parts |
+| **Config** | `.json`, `.jsonc`, `.yaml` and `.yml` with a `graph-metadata` or `spec-folder` marker: a style guide, quality standards, a quick reference and the config checklist |
+| **JavaScript** | `.js`, `.cjs` and `.mjs`: a style guide, two quality-standard parts, a quick reference and the JavaScript checklist |
+| **Shared tier** | Every slice: universal patterns, code organization, hook contracts, alignment verification and the workflow guardrails |
+
+### The House Style Lives Here
+
+The quality and review modes read a universal floor that holds in any repository. This surface adds this repository's own house rules. A rule applies only to a file that resolves to SKILLED. That covers the `MODULE:` header, the `ceiling:` shortcut marker, the test layout under `tests/`, the line-length limits and the JavaScript and CSS checks under `assets/checklists/js-css-style/`. The documentation row sits at P1 here. The type-safety rule is stricter than the universal floor. The universal checklist carries a `## 7. RULE OVERRIDES` section with one row, which replaces the review mode's TODO rule with the SKILLED owner-first format. The row follows the shared [rule overrides contract](../shared/references/universal/rule-overrides.md).
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Let the hub bundle it.** There is nothing to install and no command to run. When a task touches `.skilled/` system code, the sk-code hub bundles this surface alongside the active workflow mode and slices the evidence to the languages the task touches.
+**Step 1: Let the hub route it.** There is nothing to install and no command that loads the surface. The hub bundles it beside a workflow mode when one scores, or routes it alone for a lookup, implement, debug or verify task.
 
-**Step 2: Read the sliced evidence.** The workflow mode loads the standards for each detected language plus the shared tier. Confirm the slice against the resource map in `ROUTER.md` section 3 before relying on it.
+**Step 2: Read the slice.** The workflow mode loads the standards for each detected language plus the shared tier. The resource map in `ROUTER.md` section 3 lists the files for each intent.
 
 **Step 3: Run the drift guard before any completion claim.**
 
@@ -73,36 +61,36 @@ These checks load only for a file the surface detection places in SKILLED, so a 
 bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 ```
 
-A clean exit means all four guards pass: the alignment verifier, the stack-folder verifier, the router-sync guard and the documentation claim guard. A non-zero exit reports a drift.
+A clean run prints a `PASS:` line for each guard and exits 0. A failed guard prints `FAIL:` and the script exits 1. Guards can report non-blocking warnings, and the summary counts them.
 
 ---
 
 ## 3. HOW IT WORKS
 
-### Detection and Slicing
+### The Detection Order
 
-Detection is two-step.
+Surface detection runs before intent. It tries every declared specific surface first, then the outside skills that declare one, then this fallback, then `UNKNOWN`. This surface leads only when no specific surface matched. When a specific surface also matches, this surface comes along as second evidence, so its standards still load for the `.skilled/` files in the same task.
 
-1. Work under `.skilled/` makes this surface the leading one when no specific surface matched: skills, agents, commands, plugins, MCP servers, config, changelogs and runtime bridge wiring.
-2. File extensions and local markers select the language:
-   - `.ts`, `.tsx`, `.mts` and `.d.ts` map to TypeScript.
-   - `.py` plus argparse maps to Python.
-   - `.sh` and `.bash` map to shell.
-   - `.rs` maps to Rust.
-   - JSON, JSONC and YAML with graph-metadata or spec-folder markers map to config.
-   - `.cjs`, `.mjs` and `.js` map to JavaScript.
+A specific surface is a hub packet whose `surfaceDetection` block in `../mode-registry.json` states `"role": "specific"`. A skill beside the hub can join by declaring `surface_detection` with that role and `"family": "sk-code"` in its own `graph-metadata.json`. The shared [stack detection reference](../shared/references/stack-detection.md) holds the order and the markers.
 
-When no `.rs` file is touched, local `Cargo.toml` or `Cargo.lock` markers select Rust, with napi-rs and wasm-bindgen vocabulary as intent signals. The slice is the set of touched languages, not one per task.
+Language selection reads the file extensions and local markers in the task. A parity task that holds a Rust module to its TypeScript oracle loads both language sets plus the shared tier, because the module must match its oracle byte for byte. For any other task the slice stays the set of touched languages.
 
-### The Surface Standards
+```mermaid
+flowchart TD
+  Request["A task in system code"] --> Detect["Surface detection"]
+  Detect --> Specific["A specific surface leads"]
+  Detect --> Fallback["SKILLED leads when none matched"]
+  Specific --> Slice["Language slice, plus the shared tier"]
+  Fallback --> Slice
+  Slice --> Guard["Drift guards"]
+  Guard --> Apply["The acting agent applies the evidence"]
+```
 
-Five non-negotiables hold across the evidence.
+### The Drift Guards
 
-- **OpenCode plugins never write to the TUI.** Their output goes through system-context injection, tools, append-only log files or a DEBUG-gated stream behind an env flag.
-- **Descriptors are load-bearing**, since `graph-metadata.json` and `description.json` shape discovery.
-- **Alignment drift is a verification gate**, so system-code changes re-run the drift guards before any completion claim.
-- **Rust preserves the TypeScript contract.**
-- **The slice stays the touched-language set.**
+A completion claim on system code needs a clean drift-gate run. The wrapper runs four guards in order: the alignment verifier, the stack-folder verifier, the router-sync guard and the documentation claim guard. The alignment verifier checks language integrity and dead router routes. The stack-folder verifier checks that every language reference folder resolves. The router-sync guard checks the skill router against the parent hub and the compiled router. It also checks the playbook routes. The documentation claim guard reads the hub prose for paths that fail to resolve, retired packet names, surface counts and load-tier claims.
+
+The alignment verifier scans only the files git tracks, and the router-sync guard drops git-ignored docs. Ignored trees and sibling worktrees therefore stay out of a gate they can never pass. It exits 0 only when every guard passes.
 
 ---
 
@@ -110,16 +98,17 @@ Five non-negotiables hold across the evidence.
 
 ### When To Use This Surface
 
-Use this surface when a task touches `.skilled/` system code, be it a skill, agent, command, plugin, MCP server or descriptor. Use it when a workflow phase needs a language standard, a language-agnostic organization pattern, a hook contract, an alignment-verification procedure or an authoring checklist. The surface is bundled, never invoked directly and never routed as a primary. Spec-folder authoring lives in system-spec-kit, not here.
+Use this surface when a task touches `.skilled/` system code: a skill, agent, command, plugin, MCP server, descriptor or config file. Use it when a workflow phase needs a language standard, a language-agnostic organization pattern, a hook contract, an alignment-verification procedure or an authoring checklist. A file that resolves to a specific surface follows that surface first. This surface stays as second evidence for the `.skilled/` files in the task. Spec-folder authoring lives in system-spec-kit, not here.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-code` | Parent hub. Bundles this surface beside a workflow mode when the surface is detected |
-| `sk-code-review` | Receives the formal findings-first review hand-off |
-| `sk-code-quality` | Receives the author-side quality gate hand-off |
-| `system-spec-kit` | Owns spec-folder authoring, which this surface does not cover |
+| `sk-code` | Parent hub. Bundles this surface beside a workflow mode, or routes it alone |
+| `sk-code-frontend` | Specific surface for frontend files. Leads ahead of this surface when a frontend marker matches |
+| `sk-code-review` | Takes the formal findings-first review hand-off |
+| `sk-code-quality` | Takes the author-side quality gate hand-off |
+| `system-spec-kit` | Owns spec-folder authoring |
 
 ---
 
@@ -127,30 +116,42 @@ Use this surface when a task touches `.skilled/` system code, be it a skill, age
 
 | What you see | Why | Fix |
 |---|---|---|
-| The drift guard exits non-zero | A language reference or router map fell out of sync with the filesystem or the machine router | Re-run `scripts/run-all-drift-guards.sh`, fix the drifted route, then re-run until clean |
-| The expected language slice is missing | The touched extension has no entry in the surface reference map | Confirm the extension and its local markers, then check the resource map in `ROUTER.md` section 3 |
+| The drift guard exits non-zero | A language-integrity finding, a missing or orphan language folder, router drift or a prose claim that no longer matches the files on disk | Read the `FAIL:` line, fix the finding it names, then rerun the wrapper |
+| A `[WARN]` line appears and the run still exits 0 | Warnings are non-blocking and the summary counts them | Read the warning and decide whether to fix it |
+| The expected language slice is missing | The extension or local marker has no entry in the language table | Check the extension and its markers against the [stack detection reference](../shared/references/stack-detection.md) section 3 |
+| The documentation claim guard fails | The hub prose no longer matches the files on disk or the registry | Fix the prose or the registry row, then rerun |
 
 ---
 
 ## 6. FAQ
 
-**Q: Why does this surface exist as a separate skill?**
+### Can I invoke this surface directly?
 
-A: The workflow modes stay lean by owning the edit, debug and verify workflow while this surface holds the evidence they apply. One surface gives every language standard and authoring checklist a single home, sliced on demand, so a TypeScript task never pulls Python and shell guidance it does not need.
+Not as a command. The hub routes it: beside a workflow mode when one scores, or alone for a lookup, implement, debug or verify task. To read the evidence on your own, open the resource map in `ROUTER.md` or the language folders under `references/`.
 
-**Q: Can I invoke this surface directly?**
+### Why does this surface sit apart from the workflow modes?
 
-A: No. The hub bundles it beside a workflow mode. It never routes as a primary. For the evidence on its own, read the resource map in `ROUTER.md` or browse `references/`.
+The workflow modes own the acting side of the work. This surface holds the evidence those modes apply, so every language standard and authoring checklist has one home. A TypeScript task then loads the TypeScript set and the shared tier without pulling the Python or shell guidance.
+
+### What happens when another surface also matches?
+
+The declared specific surface leads. This surface comes along as second evidence, so its standards still apply to the `.skilled/` files the task touches. The order comes from the surface declarations, so no reader keeps a list of its own.
+
+### Why does `SKILL.md` carry a different version from this README?
+
+`SKILL.md` holds the packet release version, which matches the newest entry under `changelog/`. This file and `ROUTER.md` count their own document revisions.
 
 ---
 
 ## 7. VERIFICATION
 
-| Check | How to run it |
+Every check below runs from the repository root.
+
+| Check | What a pass looks like |
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-skilled/README.md --type readme` reports zero issues |
-| Drift guard | `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits clean, with a non-zero exit reporting the drift |
-| Manual playbook | `manual-testing-playbook/manual-testing-playbook.md` runs the surface scenarios behind these checks |
+| Drift guards | `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0 and prints a `PASS:` line for each guard |
+| Manual playbook | The scenarios under `manual-testing-playbook/` pass, and each outcome and reason lands in `benchmark/reports/<dated-run-label>/` |
 
 ---
 
@@ -158,14 +159,13 @@ A: No. The hub bundles it beside a workflow mode. It never routes as a primary. 
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Surface contract, reference map and standards |
-| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
-| [`references/`](./references/) | Language standard folders and the shared pattern tier |
-| [`assets/checklists/`](./assets/checklists/) | Component authoring checklists, per-language quality gates and the JavaScript and CSS house checks |
-| [`../shared/references/universal/rule-overrides.md`](../shared/references/universal/rule-overrides.md) | The `## Rule overrides` contract this surface's universal checklist follows |
-| [`scripts/README.md`](./scripts/README.md) | The drift-guard runner entry point |
-| [`references/shared/hooks.md`](./references/shared/hooks.md) | Runtime hook entrypoints and wiring |
-| [`references/shared/alignment-verification-automation.md`](./references/shared/alignment-verification-automation.md) | The alignment-drift verifier |
+| [`SKILL.md`](./SKILL.md) | Surface contract and standards |
+| [`ROUTER.md`](./ROUTER.md) | Intent map and resource map for each route |
+| [`references/`](./references/) | Language standards and the shared pattern tier |
+| [`assets/checklists/`](./assets/checklists/) | Authoring checklists and per-language quality gates |
+| [`scripts/README.md`](./scripts/README.md) | The drift-guard entry point and its test suites |
+| [`references/shared/hooks.md`](./references/shared/hooks.md) | Runtime hook entry points and wiring |
+| [`references/shared/alignment-verification-automation.md`](./references/shared/alignment-verification-automation.md) | The alignment-drift verifier and its checks |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate the surface |
 | [`changelog/`](./changelog/) | Release history for this surface |
 

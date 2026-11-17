@@ -1,0 +1,1 @@
+The same refusal meets a dropped `set` whose value another operation of the same entry set wrote inside or over, because the live value no longer equals the record.

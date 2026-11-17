@@ -8,12 +8,12 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.5.0
+version: 1.11.6.0
 ---
 
 # deep-review
 
-> Run an autonomous review loop that audits one dimension per pass with fresh context, classifies every finding by blocking severity and ends with a release-readiness verdict that routes the next command.
+> Audit code across four review dimensions in separate passes and end with a release-readiness verdict you can act on.
 
 ---
 
@@ -23,130 +23,140 @@ version: 1.11.5.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Multi-pass code audit where each dimension gets a fresh agent, findings carry blocking severity and the loop stops on a convergence signal |
-| **Invoke with** | `/deep:review:auto` (autonomous), `/deep:review:confirm` (approval-gated) or `/deep:review` (asks which mode). Keyword triggers include "deep review", "convergence review", "release readiness" and "spec folder review" |
-| **Works on** | Five target types: a spec folder, a skill package, a named agent, a spec track or an explicit file set |
-| **Produces** | A release-readiness verdict (PASS, CONDITIONAL or FAIL), a full findings registry, a dashboard, an iteration audit trail and a nine-section review report under `{spec_folder}/review/` |
+| **Use it for** | A multi-pass audit where each dimension is read by its own agent and a gated stop decides when the loop ends |
+| **Invoke with** | `/deep:review:auto` for an unattended run, `/deep:review:confirm` for approval gates or bare `/deep:review` to be asked which |
+| **Works on** | A spec folder, a skill package, a named agent, a spec track or an explicit file set |
+| **Produces** | A release-readiness verdict, a nine-section report, a finding registry, a dashboard and an iteration audit trail |
 
 ### What It Does
 
-`deep-review` runs an autonomous multi-iteration review loop through `/deep:review:auto`. Each iteration dispatches a fresh `@deep-review` LEAF agent that reads accumulated state from disk, audits one review dimension, writes findings to an iteration file and appends a JSONL delta record. A reducer rewrites the strategy and the dashboard after each pass. The findings registry tracks every discovery. The loop stops when a composite convergence signal clears and nine legal-stop gates pass, then produces a release-readiness verdict. PASS routes to changelog creation. FAIL and CONDITIONAL route to remediation planning.
+`deep-review` audits code in repeated passes and ends with a verdict. The `/deep:review` command runs the loop with one review dimension per iteration and a fresh agent each time. Every finding is written to disk before the next pass begins. Synthesis compiles a nine-section report and derives the verdict from the finding registry.
 
-It does not investigate outward knowledge (`deep-research`), perform one-shot codebase lookup (`@context`) or compare competing plans. A single-pass review is `sk-code`'s code-review mode. The active deep-loop families share the `runtime/` for executors, state handling and coverage graphs.
+A one-pass review belongs to `sk-code`'s code-review mode. Outward investigation belongs to `deep-research`. This skill audits code and never modifies the files it reads.
 
 ### Why This Skill Exists
 
-A single-pass review reads the diff once and calls it done. The dimension the reviewer was not thinking about that day ships unreviewed. Hold correctness, security, maintainability and spec alignment in one context window and the later dimensions get a worse read than the first. There is no honest stop condition, so you keep re-reading past the point of new findings or stop early and miss a blocker. Spec-versus-code drift goes unnoticed because nobody cross-checks the implementation against the spec on every pass.
+A single-pass review reads the diff once and calls it done. Whatever the reviewer was not thinking about that day ships unreviewed. Holding correctness, security, maintainability and spec alignment in one context window leaves the later dimensions with a worse read than the first. A long session also has no honest stop condition, so you keep reading past the last new finding or stop early and miss a blocker.
 
-That is the whole reason this skill exists. It gives you a review you can release against: a fresh agent per dimension, every finding classified by blocking severity and a stop decision gated on a weighted convergence signal instead of a guess. The command, the reducer and the state files are the means. The verdict at the end is the point.
+This skill splits the audit by dimension and puts the stop decision on a weighted signal rather than a hunch. Each pass starts from a clean context window. The verdict is the point. The command, the reducer, the state files and the report are how it arrives.
 
-### The Dimension Coverage
+### The Review Dimensions
+
+All four dimensions are configured by default. All four are required for coverage, so the loop can stop clean only after each one has been audited. Correctness and security are the two the mode contract marks as required for severity coverage.
 
 | Dimension | What the skill audits |
 |---|---|
-| **Correctness** | logic, invariants, state transitions and edge cases against observable intent, with file:line evidence |
-| **Security** | trust boundaries, auth behavior, input handling and secrets exposure, with file:line evidence |
-| **Traceability** | spec-to-code alignment, checklist evidence and cross-reference integrity across linked artifacts |
-| **Maintainability** | codebase patterns, documentation quality and the ease of safe follow-on changes |
+| **Correctness** | Logic, invariants, state transitions and edge cases against observable intent |
+| **Security** | Trust boundaries, auth behavior, input handling, secrets exposure and exploit paths |
+| **Traceability** | Spec alignment, checklist evidence and cross-reference integrity across linked artifacts |
+| **Maintainability** | Codebase patterns, documentation quality, clarity and the ease of safe follow-on changes |
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Invoke it.** Pick a mode. Autonomous runs straight through with no gates. Confirm asks for approval at each iteration. Plain `/deep:review` asks which mode you want.
+**Step 1: Pick a mode.** `:auto` runs without questions. `:confirm` asks for approval at the iteration gate. A bare `/deep:review` asks which mode you want.
 
 ```bash
-/deep:review:auto "skill deep-review"
-/deep:review:confirm "<spec-folder>"
-/deep:review "skill deep-review"
+/deep:review:auto "skill:deep-research"
 ```
 
-The target can be a spec folder path, a skill name, an agent name, a track name or a file set.
+Expected result: the loop starts on the named target and asks nothing.
 
-**Step 2: Run the primary workflow.** The command YAML initializes the packet, dispatches iterations, evaluates convergence and synthesizes the report.
+**Step 2: Add flags when the shipped defaults miss the target.**
 
 ```bash
-/deep:review:auto "track skilled-agent-orchestration" --max-iterations 10 --convergence 0.05
+/deep:review:auto "specs/sk-doc/document-standards/006-readme-template-conformance" --max-iterations=5 --convergence=0.05
 ```
 
-Expected output: a review report at `{spec_folder}/review/review-report.md` with a verdict, the active findings registry, remediation workstreams and an audit appendix. Iteration files live under `{spec_folder}/review/iterations/`.
+Expected result: one `iteration-NNN.md` file per pass and then `review-report.md`, both under `{spec_folder}/review/`. The report's first section carries the verdict, and the rest follow the nine-section list in `references/protocol/quick-reference.md`.
 
-**Step 3: Verify the reducer output after the loop finishes.**
+**Step 3: Rebuild the derived state and read the summary.**
 
 ```bash
 node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs <spec-folder>
 ```
 
-Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iterationsCompleted`, `findings` and convergence fields.
+Expected output: one JSON object carrying `registryPath`, `dashboardPath`, `strategyPath`, `openFindingsCount`, `resolvedFindingsCount`, `convergenceScore` and `corruptionCount`, with exit status 0. A malformed line in the state log stops the reducer with exit status 2 unless you pass `--lenient`.
 
 ---
 
 ## 3. HOW IT WORKS
 
-### Iteration Lifecycle
+`/deep:review` owns the loop. Its YAML workflow owns the state and every dispatch, and it decides the stop. Initialization writes the packet. The loop then repeats a fixed cycle: check convergence, dispatch one `@deep-review` LEAF agent for one dimension, wait for the write-back, run the reducer and decide whether to continue. Synthesis compiles the report, and the save phase writes continuity.
 
-The command YAML workflow owns dispatch. It initializes the review packet on first run, then loops: check convergence, dispatch the `@deep-review` LEAF agent for one iteration, wait for the write-back, run the reducer and decide whether to continue or stop. Each iteration audits one review dimension. The agent reads the current strategy (including the audit focus) and prior findings from disk, executes review actions, writes a numbered iteration markdown file, appends a JSONL delta record and returns. It never dispatches sub-agents and never nests another loop. It never asks the user a question.
+```mermaid
+flowchart TD
+  Command["/deep:review"] --> Init["Init: config, strategy and state log"]
+  Init --> Iteration["Iteration: one LEAF agent, one dimension"]
+  Iteration --> Reduce["Reducer: registry and dashboard"]
+  Reduce --> Stop{"Convergence and gates agree"}
+  Stop -->|continue| Iteration
+  Stop -->|stop| Synthesis["Synthesis: report and verdict"]
+  Synthesis --> Save["Save: continuity"]
+```
 
-The four review dimensions are correctness, security, traceability and maintainability. Correctness and security are required for coverage before the loop can stop. Traceability and maintainability are not required but are audited when configured.
+### The Iteration Lifecycle
 
-### Severity Classification and Verdicts
+Each pass reads the packet rather than the conversation. The agent opens the strategy to see the next focus, then the state log and the registry that record what earlier passes found. It audits one dimension and writes `iteration-NNN.md`. Its record reaches the state log through the append gateway, the only writer of that file. The agent stays LEAF. It dispatches no sub-agents, asks no questions, fetches nothing from the web and changes none of the reviewed files.
 
-Every finding carries a blocking severity.
+The reducer then derives the finding registry and the dashboard from that delta, and the strategy picks up the new next focus. The stuck count and the consecutive failure count rebuild from the state log on every pass, so a resumed run counts the same as one that never paused. Three failed iterations in a row stop the loop with stop reason `error`. In `:confirm` mode the workflow asks the operator before that stop.
+
+### Severity and Verdicts
+
+Every finding carries one severity. A P2 rides along as an advisory rather than blocking anything.
 
 | Severity | Weight | Meaning |
 |---|---|---|
-| **P0** | 10 | Correctness failure, security vulnerability or spec contradiction. Blocks a PASS verdict |
-| **P1** | 5 | Degraded behavior, incomplete implementation or missing validation. Triggers a CONDITIONAL verdict |
-| **P2** | 1 | Style, naming or documentation gaps. Rides as a PASS advisory |
+| **P0** | 10 | Correctness failure, security vulnerability or spec contradiction. Blocks PASS |
+| **P1** | 5 | Degraded behavior, incomplete implementation or missing validation. Forces CONDITIONAL |
+| **P2** | 1 | Style, naming or documentation gap. Recorded as an advisory |
 
-The loop ends with one of three verdicts.
+Synthesis derives one verdict from the active findings.
 
-| Verdict | Condition | Route |
+| Verdict | Condition | Next command |
 |---|---|---|
-| **PASS** | No active P0 or P1 findings and no open search debt | `/create:changelog` |
-| **CONDITIONAL** | No P0 remains, P1 findings or open search debt still need attention | `/speckit:plan` for remediation |
-| **FAIL** | An active P0 remains or a legal-stop gate failed at terminal stop time | `/speckit:plan` for remediation |
+| **PASS** | No active P0 or P1 and no open search debt | `/create:changelog` |
+| **CONDITIONAL** | No active P0 and no required gate failing, but P1 findings or open search debt remain | `/speckit:plan` |
+| **FAIL** | An active P0 remains or a required quality gate still fails at the terminal stop | `/speckit:plan` |
 
-### Externalized State
+A P0 is not written on trust. The agent re-reads the cited code and tries to disprove the blocker before the label holds. At synthesis on a single-executor run, each self-check is recorded as a `claim_adjudication` row with its `findingId` and `finalSeverity`, and the reducer applies that row before the verdict is derived. A downgrade therefore lowers the counts the report and the closeout use.
 
-All continuity lives in packet files under `{spec_folder}/review/`, not in conversation memory.
+### State on Disk
+
+The packet lives under `{spec_folder}/review/`. A root-spec target writes there directly. A child-phase target writes flat on its first run and gets a `pt-NN` sibling packet only when prior content for a different target already exists.
 
 | File under `{spec_folder}/review/` | Role |
 |---|---|
-| `deep-review-config.json` | Settings. Immutable after init |
-| `deep-review-state.jsonl` | Append-only log of every iteration, event and convergence signal |
-| `deep-review-strategy.md` | Dimension coverage and the next audit focus |
-| `deep-review-findings-registry.json` | Indexed discovery set |
-| `deep-review-dashboard.md` | Convergence trends |
-| `review-report.md` | The workflow-owned final report |
+| `deep-review-config.json` | Run settings. Immutable after init, apart from the terminal `status: complete` flip |
+| `deep-review-state.jsonl` | Append-only log of iterations, events and stop decisions |
+| `deep-review-findings-registry.json` | Reducer-owned index of every finding and its state |
+| `deep-review-strategy.md` | Dimension coverage, findings and the next audit focus |
+| `deep-review-dashboard.md` | Reducer-generated convergence trend |
+| `.deep-review-pause` | Operator-owned pause sentinel |
+| `resource-map.md` | Emitted at synthesis unless the run passes `--no-resource-map` |
+| `review-report.md` | The nine-section report, written at synthesis |
+| `iterations/iteration-NNN.md` | One write-once file per iteration |
 
-The reducer machine-owns the strategy sections and the dashboard. The findings registry is reducer-owned too. The agent writes only iteration files and JSONL records. The workflow owns the canonical `review-report.md`. Because state is on disk, a crashed run resumes from the packet files. Use `/deep:review:auto` again and the workflow picks up the active lineage.
+The lineage block carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun` and `releaseReadinessState`. A first run is mode `new`. `resume` continues the same lineage without changing generation. `restart` opens a new generation and archives the prior packet. `fork` and `completed-continue` are reserved and deferred, so the runtime neither emits nor accepts them. `releaseReadinessState` starts at `in-progress`. It moves to `release-blocking` while any unresolved P0 remains. It moves to `converged` when the run stops converged with a PASS or CONDITIONAL verdict.
 
-### Convergence Detection
+### Convergence and the Stop Gates
 
 Convergence is a weighted vote over three signals.
 
-| Signal | Weight | What it evaluates |
+| Signal | Weight | What it measures |
 |---|---|---|
-| **Rolling Average** | 0.30 | The last two severity-weighted finding yields |
-| **MAD Noise Floor** | 0.25 | The latest ratio against statistical noise |
-| **Dimension Coverage** | 0.45 | That every configured dimension has been audited |
+| **Rolling average** | 0.30 | Recent severity-weighted finding yield across the last two evidence-bearing iterations |
+| **MAD noise floor** | 0.25 | The latest ratio measured against statistical noise |
+| **Dimension coverage** | 0.45 | Configured dimensions plus the required traceability protocols are covered, after at least one stabilization pass |
 
-When the weighted stop score clears the composite threshold (default 0.60), the loop enters the legal-stop gate bundle.
+The weighted score has to reach `compositeStopScore`, which defaults to 0.60, before the loop may consider a stop. Clearing the threshold is not enough on its own. Nine binary gates have to pass as well, and a failure writes a `blocked_stop` event with `blockedBy` and a per-gate `gateResults` record. The gate list and its criteria live in `references/convergence/convergence.md`.
 
-Nine gates must all pass before STOP is legal. The bundle covers finding stability, dimension coverage, P0 resolution, evidence density, hotspot saturation, claim adjudication, fix-completeness replay, candidate coverage and graphless fallback. If any gate fails, the loop persists a `blocked_stop` event and continues with a recovery focus. A P0 override raises the new-findings ratio so any fresh P0 finding forces at least one more iteration regardless of the other signals.
+Any new P0 forces another iteration. The override sets `newFindingsRatio` to at least 0.50, so a fresh blocker cannot be averaged away. The shipped config adds `antiConvergence.minIterations` of 2 and a `stopPolicy` of `fail-closed`, and the runtime capability loader rejects a missing or permissive stop policy.
 
-The shipped config carries the shared anti-convergence contract:
+### Fan-out and Merged Verdicts
 
-- `antiConvergence.minIterations` = 2
-- `convergenceMode` = "default"
-- `stopPolicy` = "fail-closed"
-
-Runtime capability loading rejects a missing or permissive stop policy. The optimizer manifest locks convergence mode and enforces `minIterations <= maxIterations`.
-
-### Adversarial Self-Check
-
-Every P0 finding runs through a Hunter, Skeptic, Referee re-read before it enters the active findings registry. The agent re-reads the cited code and checks the finding against the source evidence, rejecting inference-only claims. Findings that fail this check are downgraded with a rationale recorded in the iteration narrative.
+One run can spread the loop across executor lineages. Pass `--executor` once per lineage, or pass an `--executors` matrix. Cap the pool with `--concurrency`. The merged verdict is strongest restriction: any lineage with an active P0, or a required gate still failing at its stop, turns the merged verdict into FAIL.
 
 ---
 
@@ -154,23 +164,21 @@ Every P0 finding runs through a Hunter, Skeptic, Referee re-read before it enter
 
 ### When To Use This Skill
 
-Use `deep-review` when you need a multi-pass audit where each dimension gets a dedicated agent and the stop condition is gated rather than guessed. Run it before a release to get a verdict you can ship against. Run it when you want the review to run unattended. Run it after `@context` or `/speckit:plan` has established the implementation context, to audit code against that plan. Run it when you want a convergence-gated loop that stops when findings run dry instead of when you decide to call it.
+Use it before a release, when you want a verdict rather than a list of impressions. Use it for a spec folder whose documents have to be checked against the code that ships. Use it for an unattended overnight audit or when each dimension's findings should inform the next pass.
 
-Skip it for the lighter cases:
+Skip it for a quick one-file check or for a single-pass review of a pull request. `sk-code`'s code-review mode covers those cases faster.
 
-- Single-pass review: `sk-code`'s code-review mode is faster.
-- External investigation: `deep-research`.
-- One-shot codebase lookup: `@context`.
+### Related Skills
 
-### Sibling Deep Loops
-
-`deep-review` shares the `runtime/` with the other active deep-loop families. Each owns a different phase and none crosses into another's territory.
+The `system-deep-loop` hub routes a review-mode request to this packet, and its registry also carries the `research` mode.
 
 | Skill | Relationship |
 |---|---|
-| `deep-research` | Investigates outward knowledge with web access. `deep-review` audits inward code with no web access |
+| `sk-code` | Its code-review mode runs a single-pass review. This skill runs the multi-iteration loop with convergence gating |
+| `deep-research` | Investigates outward knowledge with web access. `deep-review` audits code with no web access |
+| `system-spec-kit` | Owns the spec folder, its validation, its continuity save and the `/speckit:resume` path |
 
-`sk-code`'s code-review mode handles a single-pass review with no convergence gating. `deep-review` is the multi-iteration loop. `system-spec-kit` owns the spec folder, its validation, its memory continuity and its resume protocol.
+For a one-shot retrieval pass before the review, reach for the `@context` agent rather than this skill.
 
 ---
 
@@ -178,62 +186,45 @@ Skip it for the lighter cases:
 
 | What you see | Why | Fix |
 |---|---|---|
-| Loop runs to max iterations without converging | The threshold is too tight or the target has real structural issues | Raise `--convergence` and re-run with auto-resume |
-| P0 keeps blocking convergence | Either a real P0 survived the adversarial check or a P1 was misclassified up | Read the Hunter/Skeptic/Referee output in the iteration file |
-| Loop stuck on one dimension | The strategy next-focus is not advancing | Inspect `deep-review-strategy.md` |
-| `review-report.md` missing sections | Synthesis was interrupted | Re-run synthesis. JSONL state is intact |
-| Reducer refuses to write derived state | `reduce-state.cjs` detected JSONL corruption | Repair the line or pass `--lenient` |
-| Packet resumes when you expected a new run | An active lineage exists in the config | Archive the existing `review/` tree and pass `--restart` or delete the config |
-| Loop will not continue after pause | The pause file is still present | Remove `{spec_folder}/review/.deep-review-pause` and re-invoke the command |
+| The loop stops earlier than you expected | The weighted score cleared the threshold and every gate passed | Lower `--convergence` from 0.10 to 0.05 or pass `--stop-policy=max-iterations` |
+| The loop reaches the iteration ceiling without converging | The threshold demands more passes than the target can absorb | Raise `--convergence` or raise `--max-iterations` |
+| One P0 keeps blocking the stop | Expected behavior. A new P0 forces `newFindingsRatio` to 0.50 or more | Read the adversarial re-read in the iteration file. Clear the P0 or accept a FAIL verdict |
+| The same dimension comes up again and again | The strategy next focus is not advancing | Open `deep-review-strategy.md` and check the next focus rotation |
+| The reducer exits 2 and names state corruption | A malformed line in `deep-review-state.jsonl` | Repair the line or pass `--lenient` so the derived state is written anyway |
+| The run resumes when you wanted a fresh one | An active lineage sits in the packet | Pass `--restart` to archive the prior `review/` tree and open a new session |
+| The loop will not continue after a pause | `{spec_folder}/review/.deep-review-pause` is still present | Delete the sentinel and invoke the command again |
 
 ---
 
 ## 6. FAQ
 
-**Q: How does deep-review differ from sk-code's code-review mode?**
+### Does this replace `sk-code`'s code-review mode?
 
-A: `sk-code`'s code-review mode is a single-pass review that reads the diff once and reports findings with no convergence gating. `deep-review` runs multiple iterations, each with a fresh agent auditing one dimension. It stops only when the convergence signal clears and every legal-stop gate passes. It produces a full findings registry, a dashboard, an iteration audit trail and a release-readiness verdict. Use `sk-code`'s code-review mode for a quick PR check. Use `deep-review` when you need a gated audit with a verdict.
+No. That mode reads a diff once and reports what it finds, which suits a quick pull-request check. This skill runs multiple passes and gives each dimension its own agent. It stops only when the convergence signal and the gates agree. The extra passes buy coverage and a verdict you can release against.
 
-**Q: What does FAIL mean and what do I do next?**
+### What comes after a FAIL verdict?
 
-A: FAIL means an active P0 finding remains at terminal stop time or a legal-stop gate failed. The P0 is a correctness failure, a security vulnerability or a spec contradiction that blocks release. The review report includes remediation workstreams grouped from the active findings. Run `/speckit:plan` to create a fix plan from those workstreams. Fix the P0s, then re-run the review loop.
+A FAIL means an active P0 survived the adversarial re-read or a required gate still failed at the terminal stop. The report groups the active findings into remediation workstreams. Run `/speckit:plan` against those workstreams and fix the blockers before you run the loop again.
 
-**Q: How do I review a skill or a single file set?**
+### How can I pause a run and pick it up later?
 
-A: Pass the target directly. A skill review audits the skill's SKILL.md, references, assets, scripts and the files it claims to own. A file set review accepts an explicit set. Both modes run the same iteration lifecycle and produce the same verdict-bearing report.
+Create `{spec_folder}/review/.deep-review-pause` between iterations with `touch`. The loop checks for the file before each dispatch and halts with a `userPaused` event. Delete the sentinel and invoke the command again. The resume reads the packet, so it continues from the last completed iteration rather than from the first.
 
-```bash
-/deep:review:auto "skill deep-research"
-/deep:review:auto "files src/handler.ts,src/middleware/auth.ts,__tests__/handler.test.ts"
-```
+### Why does each pass start a new agent?
 
-**Q: Why does each iteration get a fresh agent?**
-
-A: A shared context window fills with stale findings that degrade reasoning quality across a long session. By dispatching a fresh LEAF agent per iteration and externalizing state to disk, every round starts with a clean window. The agent reads only the current strategy and audit focus plus prior findings, then writes back. Nothing lingers.
-
-**Q: Can I pause the loop and resume later?**
-
-A: Yes. Place a `.deep-review-pause` sentinel file in the `review/` directory. The loop finishes the current iteration and detects the sentinel, then stops. Remove the sentinel and re-invoke the command to resume. All state is on disk, so you can resume days later.
+A shared context window fills with stale findings, and that drags on reasoning as the session grows. Each pass reads the packet from disk and writes its own iteration file back. Nothing carries over in the window itself, which is why one dimension cannot bias the next.
 
 ---
 
 ## 7. VERIFICATION
 
-The skill ships two validation packages.
+The skill ships a feature catalog and a manual testing playbook. The catalog groups its inventory by loop lifecycle, state management, review dimensions and the severity system. Every entry names the files that implement it. The playbook carries 56 deterministic scenarios across ten categories. Each scenario maps to a feature file with a stated objective, a canonical prompt, expected signals and live source anchors.
 
-### Feature Catalog
-
-The `feature-catalog/` covers every capability across its categories: loop lifecycle, state management, convergence and review output. Each category documents inputs, outputs, the owning resource and acceptance criteria.
-
-### Manual Testing Playbook
-
-Deterministic scenarios under `manual-testing-playbook/` cover loop lifecycle, state management, convergence, recovery and review output. Preconditions, expected signals and pass, fail or partial verdict rules are defined in the root playbook. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and live source anchors.
-
-```bash
-python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/README.md --type readme
-```
-
-Expected output: zero issues reported.
+| Check | How to run it | A pass looks like |
+|---|---|---|
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/README.md --type readme` | Exit status 0, document type `readme` and a final `Total issues: 0` line |
+| Reducer regressions | `node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/` | A summary reading `pass 5` and `fail 0` |
+| Loop scenarios | The scenarios under `manual-testing-playbook/`, run one at a time | Each scenario ends PASS, FAIL or SKIP with a recorded reason |
 
 ---
 
@@ -243,24 +234,24 @@ Expected output: zero issues reported.
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions and the full operating contract |
 | [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
-| [`references/protocol/quick-reference.md`](./references/protocol/quick-reference.md) | One-page operator cheat sheet with commands, defaults, dimensions, verdicts and convergence rules |
+| [`references/protocol/quick-reference.md`](./references/protocol/quick-reference.md) | One-page operator cheat sheet with commands, defaults, dimensions and verdicts |
 | [`references/protocol/loop-protocol.md`](./references/protocol/loop-protocol.md) | Four-phase lifecycle, dispatch contract and executor invariants |
-| [`references/protocol/loop-state-and-gates.md`](./references/protocol/loop-state-and-gates.md) | State transitions, error handling and binary quality gates |
-| [`references/convergence/convergence.md`](./references/convergence/convergence.md) | Stop condition algorithms, legal-stop gates and recovery strategies |
-| [`references/convergence/convergence-signals.md`](./references/convergence/convergence-signals.md) | Three-signal weighted vote, severity-weighted ratio and signal math |
+| [`references/protocol/loop-state-and-gates.md`](./references/protocol/loop-state-and-gates.md) | State transitions, error handling and the stop-decision gates |
+| [`references/protocol/completion-criteria.md`](./references/protocol/completion-criteria.md) | The loop-completion and quality-gate checklist |
+| [`references/convergence/convergence.md`](./references/convergence/convergence.md) | Stop algorithms, the nine gates and recovery strategies |
+| [`references/convergence/convergence-signals.md`](./references/convergence/convergence-signals.md) | Three-signal weighted vote and the severity-weighted ratio |
 | [`references/convergence/convergence-recovery.md`](./references/convergence/convergence-recovery.md) | Stuck recovery, recovery strategy selection and escalation |
-| [`references/state/state-format.md`](./references/state/state-format.md) | Packet file hub with owners, mutability rules and navigation |
-| [`references/state/state-jsonl.md`](./references/state/state-jsonl.md) | Config, iteration, event and blocked-stop JSONL record types |
-| [`references/state/state-outputs.md`](./references/state/state-outputs.md) | Strategy, iteration markdown, report, dashboard and resource-map outputs |
-| [`references/state/state-reducer-registry.md`](./references/state/state-reducer-registry.md) | Reducer ownership, findings registry, validation and reconstruction |
-| [`assets/review-mode-contract.yaml`](./assets/review-mode-contract.yaml) | Source of truth for this loop's dimensions, verdicts, gates and lifecycle modes, and for loop rules stricter than the review mode's, such as a file:line requirement at every severity. The severity ids and their meanings belong to [`review-core.md`](../../sk-code/sk-code-review/references/review-core.md) |
-| [`../runtime/scripts/reduce-state.cjs`](../runtime/scripts/reduce-state.cjs) | The single state reducer that updates the findings registry, dashboard and strategy |
-| [`scripts/runtime-capabilities.cjs`](./scripts/runtime-capabilities.cjs) | Machine-readable capability lookup for the active runtime |
-| [`assets/deep-review-config.json`](./assets/deep-review-config.json) | Config template with defaults for max iterations, convergence threshold, anti-convergence floor and executor |
-| [`assets/deep-review-strategy.md`](./assets/deep-review-strategy.md) | Strategy template with dimensions, coverage tracker and next-focus rotation |
-| [`assets/deep-review-dashboard.md`](./assets/deep-review-dashboard.md) | Dashboard template with convergence trend and iteration summary |
-| [`assets/prompt-pack-iteration.md.tmpl`](./assets/prompt-pack-iteration.md.tmpl) | The per-iteration prompt template dispatched to the LEAF agent |
-| [`assets/runtime-capabilities.json`](./assets/runtime-capabilities.json) | Declared capability manifest checked at runtime for parity gate validation |
-| [`feature-catalog/`](./feature-catalog/) | Feature inventory across loop lifecycle, state management, convergence and review output |
-| [`manual-testing-playbook/`](./manual-testing-playbook/) | Deterministic scenarios with preconditions, expected signals and per-feature execution contracts |
-| [`behavior-benchmark/`](./behavior-benchmark/) | Executor-model behavior benchmark (RVB): what the model does at `/deep:review` under realistic prompts, including dispatch evidence, presentation and latency vs Claude |
+| [`references/state/state-format.md`](./references/state/state-format.md) | Packet file schemas, owners and mutability rules |
+| [`references/state/state-jsonl.md`](./references/state/state-jsonl.md) | Config, iteration, event and blocked-stop record types |
+| [`references/state/state-outputs.md`](./references/state/state-outputs.md) | Strategy, iteration, report, dashboard and resource-map outputs |
+| [`references/state/state-reducer-registry.md`](./references/state/state-reducer-registry.md) | Reducer ownership, findings registry and reconstruction |
+| [`assets/review-mode-contract.yaml`](./assets/review-mode-contract.yaml) | Source of truth for target types, dimensions, severities, verdicts, gates and lifecycle modes. The severity meanings come from [`review-core.md`](../../sk-code/sk-code-review/references/review-core.md) |
+| [`assets/deep-review-config.json`](./assets/deep-review-config.json) | Config template with defaults for iterations, thresholds, anti-convergence and executor |
+| [`assets/prompt-pack-iteration.md.tmpl`](./assets/prompt-pack-iteration.md.tmpl) | The per-iteration prompt rendered for the LEAF agent |
+| [`assets/runtime-capabilities.json`](./assets/runtime-capabilities.json) | Capability manifest checked at runtime for parity validation |
+| [`../runtime/scripts/reduce-state.cjs`](../runtime/scripts/reduce-state.cjs) | The state reducer that writes the registry, the dashboard and the strategy updates |
+| [`../runtime/scripts/convergence.cjs`](../runtime/scripts/convergence.cjs) | The stop decision, computed once per pass from config, log, registry and coverage graph |
+| [`scripts/runtime-capabilities.cjs`](./scripts/runtime-capabilities.cjs) | Capability lookup bound to this packet |
+| [`feature-catalog/`](./feature-catalog/) | Feature inventory by category, with implementation and validation anchors |
+| [`manual-testing-playbook/`](./manual-testing-playbook/) | Deterministic scenarios with preconditions and expected signals |
+| [`behavior-benchmark/`](./behavior-benchmark/) | Scenario set that measures what an executor does at the `/deep:review` surface |

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6896,
-    "ok": 19587,
+    "ok": 19617,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28110,
+  "documentsScanned": 28140,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "4c2db51706a1a1d9cafb1d9f88f15ed51dbd705dd1a13124a8c643a8b9983635",
+  "manifestHash": "8ec70830a5338229c15f9a1ab18b3a3db1ea543b19e037ae94fcd98a8598d549",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44840,
+      "ok": 44892,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -56049,6 +56049,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/research/lineages",
       "reason": "excluded directory"
     },
@@ -57206,6 +57210,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/051-handover-doc-alignment-3/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/052-duplicate-hop-title-numbers/scratch",
       "reason": "excluded directory"
     },
     {
@@ -61458,6 +61466,14 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/scratch",
       "reason": "excluded directory"
     },
     {

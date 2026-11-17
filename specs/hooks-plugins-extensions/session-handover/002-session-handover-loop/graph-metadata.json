@@ -54,7 +54,8 @@
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes",
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment",
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2",
-    "hooks-plugins-extensions/session-handover/002-session-handover-loop/051-handover-doc-alignment-3"
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/051-handover-doc-alignment-3",
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/052-duplicate-hop-title-numbers"
   ],
   "manual": {
     "depends_on": [],
@@ -257,7 +258,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-16T14:13:32.895Z",
+    "last_save_at": "2026-11-16T20:49:45.082Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -265,13 +266,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:4aeb7a45263333f8c6fab5683cb655692e341e2ccd32a5cd5f93cc866ed79dcf",
+    "source_fingerprint": "sha256:0696059c0254199e467f24034cb77573f31b8f5830feb61a5fc1924496a1a49b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "192ade85671189e695ed0fa29ef0ccaeab9ba966ab68e22a669fa165b6f4a2df",
+      "spec.md": "c886d77db019f1b25fe6f7aa7384d701d1770a6ffcd188b09c50256fbc7725d0",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/051-handover-doc-alignment-3",
-    "last_active_at": "2026-11-16T14:12:40.719Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/052-duplicate-hop-title-numbers",
+    "last_active_at": "2026-11-16T20:46:45.660Z"
   }
 }

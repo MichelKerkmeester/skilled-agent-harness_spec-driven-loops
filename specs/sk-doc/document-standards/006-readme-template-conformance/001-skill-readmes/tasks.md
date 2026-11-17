@@ -67,7 +67,7 @@ contextType: "general"
   - Rerun the wider gates after `git add` of the changed READMEs, because the parity and manifest tests list READMEs with `git ls-files`. Rebuild the manifest with `test_readme_manifest.py --write` first and check its diff adds only `.skilled/skills/sk-design` and the already missing `.pi/types`.
   - Verify: `run-script-tests.sh` fails on nothing but `install-guide-contract.test.cjs`, every hub check still exits 0 with 0 FAIL and 0 WARN, `check-markdown-links.cjs` prints `0 broken` and `check_readme_references.py` prints `unresolved=0` for the sk-git and spec-kit READMEs.
 - [x] T014 Record before and after numbers and close the packet docs (`implementation-summary.md`). Verify: `validate.sh --strict` on this folder prints `RESULT: PASSED`. Evidence: the Verification section holds the before and after numbers.
-- [ ] T015 Commit, merge origin/main and push under sk-git (`git log -1`). Verify: `git rev-parse HEAD origin/main` prints the same hash twice.
+- [x] T015 Commit, merge origin/main and push under sk-git (`git log -1`). Verify: `git rev-parse HEAD origin/main` prints the same hash twice. Evidence: commit `d68e7fdf888` pushed, and `git rev-parse HEAD origin/main` printed `d68e7fdf888e388934bef4de5f3f2e9bd01ab2d2` twice.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -75,10 +75,10 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed: every reviewer finding is applied or rejected with a reason
-- [ ] The phase commit is on origin/main
+- [x] The phase commit is on origin/main (`d68e7fdf888`)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -162,7 +162,7 @@ A blocked task is marked `[B]` with the failing command and its output beside it
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files live in the scratchpad, never in the repository (check scripts live in the session scratchpad)
-- [ ] CHK-051 [P1] `git status --short` after the commit shows only the operator's three files
+- [x] CHK-051 [P1] `git status --short` after the commit shows only the operator's three files (after `d68e7fdf888`: the operator's three paths plus the parent `goal.md`, which stays untracked until every child goal exists)
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -173,7 +173,7 @@ A blocked task is marked `[B]` with the failing command and its output beside it
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 7 | 7/7 |
-| P1 Items | 9 | 8/9 |
+| P1 Items | 9 | 9/9 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-11-16

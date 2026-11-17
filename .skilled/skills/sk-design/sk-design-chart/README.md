@@ -12,12 +12,12 @@ trigger_phrases:
   - "style reference chart"
 importance_tier: normal
 contextType: general
-version: 0.23.3.0
+version: 0.23.4.0
 ---
 
 # sk-design-chart
 
-> Turn a question about data into a single HTML file that opens in a browser and answers it.
+> Turn a question about data into one self-contained HTML file that answers it in a browser.
 
 ---
 
@@ -28,127 +28,162 @@ version: 0.23.3.0
 | Aspect | What you get |
 |---|---|
 | **Use it for** | A chart that plots values a reader compares |
-| **Invoke with** | "create a chart", "plot the data", a named form such as "treemap" or a direct read of `SKILL.md` |
-| **Works on** | A dataset and the comparison someone wants to make from it |
-| **Produces** | One self-contained HTML file, built from a form file and one colour system |
-| **Corpus** | Twenty-nine chart forms across six question families, plus three stock colour systems and provenance-gated design-md deliveries |
+| **Invoke with** | A chart request routed from the `sk-design` hub or a direct read of `SKILL.md` |
+| **Works on** | A dataset and the comparison a reader needs from it |
+| **Produces** | One self-contained HTML file, built from a copied form and one colour system |
 
 ### What It Does
 
-You describe the comparison a reader needs to make. The catalog in `references/catalog.md` turns that comparison into one row, and the row names the file that draws it. You copy that file, swap its data block and apply one colour system. A validator then proves the corpus still renders.
+You describe the comparison a reader needs, and the packet returns one HTML file that draws it. The catalog in `references/catalog.md` resolves the comparison to a single row, and the row names the form file under `assets/templates/`. You copy that file and swap its data block. Then you apply one colour system. There is no chart code to write and no build step to run.
 
-When a request names a local v3 `DESIGN.md`, or passes `--default` for the carried `evilcharts`
-reference in the style library, `scripts/apply-design-md.cjs` derives the chart role
-palette, typeface stacks and corner ladder from its documented tables. The script reuses the
-corpus gates, refuses to write on a failure, and places a hash-bearing provenance comment in both
-theme blocks. Site extraction remains the job of `sk-design-md-generator`. This packet applies the
-reference it receives.
+The packet also themes a copy from a local v3 `DESIGN.md`. The adapter lives in `scripts/apply-design-md.cjs`, and it writes a delivery only after the derived colours clear the contrast gates.
 
-The visual register is shared by the corpus: a 16px semibold title, a muted 14px description, a two-row footer, bare axes with 12px tabular ticks, a horizontal dashed grid, measured bar and line geometry, positioned HTML tooltip cards and keyed legend chips. Each template accepts `?scheme=light` or `?scheme=dark` and sets `data-scheme` before it paints, so a capture can pin a scheme the host machine does not have.
+### The Chart Corpus
 
-One form is one file, so there is no gallery page to lift a block out of. The packet holds no per-request logic. It holds a corpus and the rules for picking from it.
+Copying works because every form is authored here. Every form is drawn in one visual register, so a copy looks like the rest of the corpus before you change a value. Six question families hold twenty-nine forms.
 
-### Why This Packet Exists
+| Family | The question behind it | Forms |
+|---|---|---|
+| comparison | Which of these is biggest, and how two periods compare | 6 forms, including `bar-columns` and `dumbbell` |
+| composition | How does a whole divide up | 6 forms, including `unit-grid` and `treemap` |
+| time | What happened across days, weeks or a year | 9 forms, including `daily-line` and `calendar-grid` |
+| distribution | How are individual values spread | 4 forms, including `histogram` and `box-plot` |
+| relationship | How two variables move together | 3 forms, including `scatter` and `parallel-axes` |
+| matrix | Which combinations of two discrete dimensions are hot | 1 form, `heat-matrix` |
 
-Charts written freehand are the ones that break. The axis labels overlap at the third data point, the legend wraps under a narrow viewport, the palette runs out of distinguishable colors at series six. None of that shows up in a check. It shows up when someone opens the file, and by then the chart has already been sent to somebody.
-
-A form file that already renders has had those problems solved once. Copying it and swapping the data keeps the solution and changes only the part that should change. That is the whole method, and it is why this packet is organized around a corpus rather than around instructions for drawing.
-
-### Why It Matters
-
-- **A chart that renders where it was built renders where it is read:** the output is one file with no install step and no build.
-- **The palette decision is made once:** colour systems are named and applied whole, so no artifact invents its own.
-- **Regressions are catchable:** a validator over the corpus turns "the charts still work" into something you can run.
+The counts total twenty-nine, the same as the number of files under `assets/templates/`. The corpus check reads the catalog in both directions, so a row with no file fails and a file with no row fails too.
 
 ---
 
-## 2. CHART OR DIAGRAM
+## 2. QUICK START
 
-This packet and `sk-design-diagram` both answer "make me a bar chart", so the boundary is worth stating before the first request rather than after a misroute.
+**Step 1: Invoke it.** Send a chart request through the `sk-design` hub or read [`SKILL.md`](./SKILL.md) and follow its workflow. A request that names a form such as `treemap` or a data-qualified phrase such as `bar chart of` routes to this packet.
+
+**Step 2: Resolve the comparison and copy the form.** Open `references/catalog.md` and land on one row. Copy the file that row names under `assets/templates/`, then replace its data block with the reader's numbers. A stock chart has no build command, because the copied file already renders.
+
+**Step 3: Verify before you rely on it.**
+
+```bash
+node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs
+```
+
+The run prints one line per check family and ends with `Summary: errors: 0` and `RESULT: PASSED`. A run that never reaches that line has not passed, even when it prints no error.
+
+---
+
+## 3. HOW IT WORKS
+
+The workflow is template-first, and that is a constraint rather than a preference. A chart written freehand breaks in a browser, where no check is looking. A form that already renders has answered its axis labels and palette capacity once.
+
+```mermaid
+flowchart TD
+  Request["Chart request"] --> Route["sk-design hub resolves the packet"]
+  Route --> Catalog["references/catalog.md picks one row"]
+  Catalog --> Copy["Copy the form under assets/templates/"]
+  Copy --> Data["Swap the data block"]
+  Data --> Colour["Apply one colour system"]
+  Colour --> File["One self-contained HTML file"]
+  File --> Check["check-corpus.cjs"]
+```
+
+Read the request and name the comparison. Resolve that comparison to one catalog row and copy the file the row names. Leave the render code alone, swap the data block, apply one colour system from `assets/style-reference/evilcharts/palettes.json` and keep the result a single file. Run the corpus check before you report it.
+
+### Copy A Form, Never Draw One
+
+Each form file carries sentinel-marked data blocks. Changing the data block rewrites the numbers the chart shows, and everything around it stays byte for byte the same. The axis ladder and the keyed legend are part of the form rather than settings you edit per request.
+
+Every chart form here is authored in the packet, and the stock palette is derived from the evilcharts reference the packet carries. Content copied from an outside chart library would arrive under a licence this repository cannot pass on, so the no-external check also fails a remote `src`, `href`, `@import` or runtime fetch. A delivered file opens from a `file://` URL with no network.
+
+### Theming A Copy
+
+When a request names a local v3 `DESIGN.md` or another Style Reference, run `scripts/apply-design-md.cjs` with that path. The script reads the documented v3 tables and derives both grounds. It writes the copies only after every gate passes. A pass prints one `MAPPING` line per role for both grounds and ends with `RESULT: PASSED`. A failure ends with `RESULT: FAILED` and writes nothing.
+
+A request that names no reference runs the same script with `--default`, which themes from the evilcharts reference carried at `assets/style-reference/evilcharts/`. A URL is refused. An ordered form is refused by name, and `--all` skips it with a note, because a colour table cannot supply the single-hue ramp that form needs. Extraction of a site belongs to `sk-design-md-generator`. This packet applies the reference it receives.
+
+---
+
+## 4. INTEGRATION & NAVIGATION
+
+### When To Use This Skill
+
+Use this packet when the artifact plots values a reader compares or tracks. A flow, an architecture, a sequence or a state machine belongs to `sk-design-diagram`, because a reader of that artifact traces a path rather than comparing quantities.
 
 | The artifact carries | Packet |
 |---|---|
-| Values a reader compares, ranks or tracks over time | `sk-design-chart` |
-| A structure a reader follows: a flow, an architecture, a sequence, a state machine | `sk-design-diagram` |
+| Values a reader compares or tracks over time | `sk-design-chart` |
+| A structure a reader follows, as a flow, an architecture, a sequence or a state machine | `sk-design-diagram` |
 
-The test is what the reader does with it. Someone reading a chart is comparing quantities. Someone reading a diagram is tracing a path.
+The split is tested because `sk-design-diagram` names bar, line, scatter and radar in its own selection guide. A bare type name with a diagram request reaches both packets, and the router asks which one you mean. This packet answers form names the diagram packet has no file for, such as `treemap`, `waterfall chart`, `heatmap`, `box plot` and `histogram`. It also answers data-qualified phrases such as `bar chart of`.
 
-The hub router draws the same line by name. The bare type names `sk-design-diagram` documents stay with it, and this packet answers the form names that packet has no file for along with the data-qualified phrasings such as "bar chart of". `SKILL.md` section 1 lists both sides.
+Radar is the one name where the two splits disagree. By name it routes to `sk-design-diagram`. By artifact it is values a reader compares, and `references/catalog.md` names `parallel-axes` instead, with one scale per axis.
 
----
+### Related Skills
 
-## 3. LAYOUT
-
-| Path | What it holds |
+| Skill | Relationship |
 |---|---|
-| [`README.md`](./README.md) | This file: the packet overview and navigation |
-| [`SKILL.md`](./SKILL.md) | The runtime contract: when to use the packet, the workflow, the rules |
-| [`ROUTER.md`](./ROUTER.md) | The machine router: intent model, resource domains and the format-resolution rule |
-| [`references/`](./references/) | The catalog, the colour systems and the template contract |
-| [`assets/templates/`](./assets/templates/) | One self-contained file per chart form, copied whole |
-| [`assets/style-reference/`](./assets/style-reference/) | One directory per Style Reference, each carrying its own `DESIGN.md`, `palettes.json` and proof sheets. A reference is carried here rather than read from a sibling library, so nothing outside the packet can change it |
-| [`assets/style-reference/evilcharts/`](./assets/style-reference/evilcharts/) | The default reference, whose palette supplies the three stock colour systems every stock form reads |
-| [`scripts/`](./scripts/) | The corpus validator, shared gate arithmetic and the local `DESIGN.md` applicator |
-| [`manual-testing-playbook/`](./manual-testing-playbook/) | Operator scenarios for the packet |
-| [`changelog/`](./changelog/) | One file per release, named `v[version].md` |
-| [`screenshots/`](./screenshots/) | One PNG per template and example, mirroring the source layout, so a form can be judged without opening a browser |
+| `sk-design` | The hub that routes a chart request here |
+| `sk-design-diagram` | Owns structural visuals on the other side of the boundary |
+| `sk-design-md-generator` | Extracts a v3 Style Reference from a site. This packet applies a reference that already exists |
 
 ---
 
-## 4. LICENSING
+## 5. TROUBLESHOOTING
 
-Every chart, palette and script in this packet is authored here. Nothing is copied in from an outside chart library.
-
-That is a constraint rather than a preference. This repository is MIT and public, so anything it ships is handed onward to every downstream reader under an MIT grant. Content carried in from a source that did not give that grant would put a recipient in breach of a license they never saw. So the corpus is written rather than gathered, and an outside library is read for ideas and never for bytes.
+| What you see | Why | Fix |
+|---|---|---|
+| The corpus check names a form you did not touch | A catalog row or a palette value moved under it | Read the check name. A catalog row and a form file have to name each other in both directions |
+| A `--render` run fails on a different file each time | Chrome refused to start under sustained back-to-back headless launches | Pause, then rerun. Never edit the chart |
+| The same file fails `--render` every run and reproduces by hand | The chart draws nothing | Fix the chart. This is the failure the render mode exists to catch |
+| A themed delivery fails `--extra` | Its provenance comment is malformed or a value failed a gate | Rerun `scripts/apply-design-md.cjs` and read the role, ratio, gate and nearest clearing colour it names |
 
 ---
 
-## 5. VERIFICATION
+## 6. FAQ
+
+### Why copy a form instead of writing chart code?
+
+A freehand chart has to solve axis labels and palette capacity on the way to its first render. A form file has already met those cases and passed the corpus check. Copying it keeps the solved geometry and leaves one thing to change, which is the data.
+
+### Can a chart wear a brand's colours?
+
+Yes, when the brand publishes a local v3 `DESIGN.md`. Run `scripts/apply-design-md.cjs` with that path and the script maps the reference's measured values into the chart roles. The data keeps the encoding its form declares. A site still has to be measured first, and extraction belongs to `sk-design-md-generator`.
+
+### Does a green corpus check mean the chart is correct?
+
+No. The check reads the file and the palette. It never reads the picture and never reads the words, so a chart that opens as an empty box can pass the structural run, and a headline can contradict the numbers beneath it. Open the delivered file and read it before you report the result.
+
+### How can I add a form to the corpus?
+
+Add the file under `assets/templates/`, add its row to `references/catalog.md`, add its pointer row to `references/template-contract.md` and run `scripts/check-corpus.cjs`. The check fails a catalog that does not resolve in both directions and a form with no pointer row.
+
+---
+
+## 7. VERIFICATION
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
-| Corpus | `node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs` | `RESULT: PASSED` |
-| Design reference | `node .skilled/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs <DESIGN.md> --forms <a,b> --out <dir>` | `RESULT: PASSED` and deterministic themed copies |
-| Outside delivery | `node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --extra <dir>` | `RESULT: PASSED` with `design-md` provenance and gates checked |
-| Mutation suite | `node --test .skilled/skills/sk-design/sk-design-chart/scripts/tests/` | Every check family is exercised by a case or named with the reason it needs a browser |
+| Corpus | `node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs` | `Summary: errors: 0` and `RESULT: PASSED` |
+| Render pass | `node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --render` | `RESULT: PASSED`, with `render`, `dark-render` and `settled-render` listed. Needs Chrome or Chromium on the usual path or in `CHROME_PATH` |
+| Themed delivery | `node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --extra <dir>` | `RESULT: PASSED` over the delivery directory |
+| Screenshots | `cd .skilled/skills/sk-design/sk-design-chart && node ../shared/scripts/render-screenshots.cjs ./assets ./screenshots --check` | `sources 30, missing 0` and `RESULT: PASSED` |
 | Package shape | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/sk-design/sk-design-chart --check --strict` | `Result: PASS` |
-| Hub shape | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-design` | Zero invariant failures |
-| Voice | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .skilled/skills/sk-design/sk-design-chart/README.md` | Zero hard blockers |
+| Hub shape | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-design` | `PASS:` on every invariant, then `OK: parent-skill-check` and 0 warnings |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-design/sk-design-chart/README.md --type readme` | `VALID` and `Total issues: 0` |
+| Operator read | [The manual testing playbook](./manual-testing-playbook/manual-testing-playbook.md) | Each scenario records a `PASS` or a named `SKIP`, and `git status --porcelain` on the packet path is empty |
 
 ---
 
-## 6. SCREENSHOTS
-
-Every template and example in this mode is rendered to a PNG under
-[`screenshots/`](./screenshots/), mirroring the source layout, so a form can be
-judged without opening a browser.
-
-Regenerate from this packet's directory after changing any template:
-
-```bash
-node ../shared/scripts/render-screenshots.cjs \
-  ./assets ./screenshots
-node ../shared/scripts/render-screenshots.cjs \
-  ./assets ./screenshots --check   # every source covered
-```
-
-The captures sit beside `assets/` rather than inside it: a leaf is something a mode
-loads into context, and a picture for a human to read is not one.
-
-The colour scheme follows the host machine. Chrome ignores the scheme flags in
-headless capture, so a regenerated set matches whichever theme the operator's
-system is set to. Both themes are valid corpus output and each is validated on its
-own, so regenerate on the machine whose theme you want committed.
-
----
-
-## 7. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | The runtime contract and the template-first workflow |
-| [`references/README.md`](./references/README.md) | The reference index |
-| [`scripts/README.md`](./scripts/README.md) | What the corpus validator checks |
+| [`SKILL.md`](./SKILL.md) | The runtime contract: when to use the packet, the workflow and the rules |
+| [`ROUTER.md`](./ROUTER.md) | The machine router: intent model, resource map and the no-match fallback |
+| [`references/README.md`](./references/README.md) | The reference index for the catalog, the colour systems and the template contract |
+| [`references/catalog.md`](./references/catalog.md) | The index from a comparison to one form and the file that draws it |
+| [`references/color-system.md`](./references/color-system.md) | The three stock systems, the role vocabulary and the contrast gates |
+| [`references/template-contract.md`](./references/template-contract.md) | What a form file has to contain before the corpus check passes it |
+| [`scripts/README.md`](./scripts/README.md) | What the corpus check enforces and how to prove a check can fail |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The operator scenarios that a green corpus check cannot replace |
 | [`../SKILL.md`](../SKILL.md) | The `sk-design` hub that routes here |
-| [`ROUTER.md`](./ROUTER.md) | The machine router: intent map, resource map and loading levels |
 | [`../sk-design-diagram/README.md`](../sk-design-diagram/README.md) | The structural-visual packet across the boundary |

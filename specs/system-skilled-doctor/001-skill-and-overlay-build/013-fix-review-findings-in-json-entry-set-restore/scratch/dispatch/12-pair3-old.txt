@@ -1,0 +1,27 @@
+
+/**
+ * The value a dropped set leaves at its path when nothing else edited it: the
+ * recorded value, with every set written inside it later laid on top. A set the
+ * entry set still names is masked out of both sides, because it writes its
+ * value again after the restore.
+ * @param {object} record The dropped record.
+ * @param {object[]} records Every record of the destination, in the order written.
+ * @param {Array<Array<string|number>>} keptPaths Paths the entry set still sets.
+ * @returns {{expected: *, masks: Array<Array<string|number>>}} The value to
+ *   compare with, and the locations to leave out of the comparison.
+ */
+function valueLeftBySets(record, records, keptPaths) {
+  let expected = record.value;
+  for (const later of records.slice(records.indexOf(record) + 1)) {
+    if (!isInsidePath(later.path, record.path)) continue;
+    if (keptPaths.some((kept) => samePath(kept, later.path))) continue;
+    expected = changedAt(expected, later.path.slice(record.path.length), (container, step) => {
+      container[step] = later.value;
+    });
+  }
+  const masks = keptPaths
+    .filter((kept) => isInsidePath(kept, record.path))
+    .map((kept) => kept.slice(record.path.length));
+  return { expected, masks };
+}
+

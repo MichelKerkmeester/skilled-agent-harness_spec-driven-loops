@@ -1,0 +1,2 @@
+  const shape = treeShapeProblems(ctx.root, touched);
+  if (shape.length > 0) return refuseRepin(shape);

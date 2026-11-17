@@ -1,0 +1,1 @@
+With adopt_path: a live-edited, both-changed, upstream-moved or cannot-apply line anywhere

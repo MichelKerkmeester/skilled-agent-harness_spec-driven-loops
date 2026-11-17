@@ -1037,3 +1037,230 @@ test('a dropped set leaves in the same apply whose kept set shortens its array',
   assert.equal(fixture.run(['status']).code, 0);
   assert.equal(fixture.run(['apply']).output.trim(), '0 changed');
 });
+
+// The item at an index is checked too, not only how many items the array holds.
+test('a dropped set through an array index is refused when the pin holds another item at that index', () => {
+  const live = JSON.stringify({ rows: [{ id: 'A', top: 'a' }, { id: 'B', top: 'v' }] }, null, 2) + '\n';
+  const swapped = { rows: [{ id: 'B', top: 'b' }, { id: 'A', top: 'a' }] };
+  const replaced = { rows: [{ id: 'A', top: 'a' }, { id: 'C', top: 'c' }] };
+  for (const pinned of [swapped, replaced]) {
+    assert.throws(() => engine.applyJsonOperations(live, { operations: [] }, {
+      canReplaceExisting: true,
+      recordedSets: [{ path: ['rows', 1, 'top'], value: 'v', added: false }],
+      readUpstreamText: () => JSON.stringify(pinned, null, 2) + '\n',
+    }), /cannot restore the dropped set at rows\.1\.top: its path goes through an array whose items differ from the pinned copy; put the array at rows back to the pinned copy by hand and run apply$/);
+  }
+});
+
+test('a dropped set through an array index is restored beside a set the entry set keeps in the same item', () => {
+  const pinned = JSON.stringify({ rows: [{ id: 'A', top: 'a', note: 0 }, { id: 'B', top: 'b', note: 0 }] }, null, 2) + '\n';
+  const live = JSON.stringify({ rows: [{ id: 'A', top: 'a', note: 0 }, { id: 'B', top: 'v', note: 9 }] }, null, 2) + '\n';
+  const kept = { op: 'set', path: ['rows', 1, 'note'], value: 9 };
+
+  const restored = engine.applyJsonOperations(live, { operations: [kept] }, {
+    canReplaceExisting: true,
+    recordedSets: [{ path: ['rows', 1, 'top'], value: 'v', added: false }, { path: kept.path, value: 9, added: false }],
+    readUpstreamText: () => pinned,
+    onSet: () => {},
+  });
+
+  assert.deepEqual(JSON.parse(restored).rows[1], { id: 'B', top: 'b', note: 9 });
+});
+
+test('two nested sets dropped together both leave, in either order they were written', (t) => {
+  const outer = { op: 'set', path: ['rows', 'a'], value: { top: 'y', note: 1 } };
+  const inner = { op: 'set', path: TOP_PATH, value: 'x' };
+  for (const operations of [[inner, outer], [outer, inner]]) {
+    const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+    fixture.writeOperations(operations);
+    seedState(fixture);
+
+    fixture.writeOperations([]);
+    const applied = fixture.run(['apply']);
+
+    assert.equal(applied.code, 0, applied.output);
+    assert.equal(fixture.readLive(), fixture.seed);
+    assert.deepEqual(fixture.recordedSets(), []);
+  }
+});
+
+test('two nested sets dropped together are refused once the inner value was edited by hand', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([
+    { op: 'set', path: ['rows', 'a'], value: { top: 'y', note: 1 } },
+    { op: 'set', path: TOP_PATH, value: 'x' },
+  ]);
+  seedState(fixture);
+  writeFile(fixture.tree, 'baseline.json', fixture.readLive().replace('"x"', '"hand"'));
+  const liveBefore = fixture.readLive();
+
+  fixture.writeOperations([]);
+  const refused = fixture.run(['apply']);
+
+  assert.equal(refused.code, 1, refused.output);
+  assert.match(refused.output, /dropped set at rows\.a was edited after it was applied/);
+  assert.equal(fixture.readLive(), liveBefore);
+});
+
+test('sets spelled with 1 and with "1" keep one record, and both leave together', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  fixture.writeOperations([
+    { op: 'set', path: ['rows', 1, 'top'], value: 'v1' },
+    { op: 'set', path: ['rows', '1', 'top'], value: 'v2' },
+  ]);
+  seedState(fixture);
+  assert.equal(fixture.recordedSets().length, 1);
+
+  fixture.writeOperations([]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+});
+
+test('a kept set respelled from "1" to 1 is the same set, so nothing is restored', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  fixture.writeOperations([INSERT_X, { op: 'set', path: ['rows', '1', 'top'], value: 'v' }]);
+  seedState(fixture);
+  const liveBefore = fixture.readLive();
+
+  fixture.writeOperations([INSERT_X, { op: 'set', path: ['rows', 1, 'top'], value: 'v' }]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fixture.readLive(), liveBefore);
+});
+
+test('with no pinned copy to read, the refusal names pin.checkout and clears once the file holds the pinned bytes', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS, { checkout: false });
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  seedState(fixture);
+  fixture.writeOperations([]);
+  const refused = fixture.run(['apply']);
+  assert.equal(refused.code, 1, refused.output);
+  assert.match(refused.output, /the pinned copy of the file cannot be read; name the upstream checkout in the manifest's pin\.checkout/);
+
+  fs.writeFileSync(fixture.livePath, fixture.seed);
+  const cleared = fixture.run(['apply']);
+
+  assert.equal(cleared.code, 0, cleared.output);
+  assert.deepEqual(fixture.recordedSets(), []);
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('an entry set refused over an untouched file is cannot-apply, and putting the named array back clears it', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  fixture.writeOperations([INSERT_X, { op: 'set', path: ['rows', 1, 'top'], value: 'v' }]);
+  seedState(fixture);
+  fixture.writeOperations([INSERT_X]);
+
+  const status = fixture.run(['status', '--json']);
+  assert.equal(status.code, 1, status.output);
+  const parsed = JSON.parse(status.stdout);
+  assert.equal(parsed.counts['cannot-apply'], 1);
+  assert.equal(parsed.counts['both-changed'], 0);
+  assert.equal(parsed.destinations[0].state, 'cannot-apply');
+  assert.match(parsed.destinations[0].fix, /^cannot restore the dropped set at rows\.1\.top: .*put the array at rows back to the pinned copy by hand and run apply; change the entry set or the live file, then run /);
+
+  const live = readJson(fixture.livePath);
+  live.rows = PINNED_LIST.rows;
+  fs.writeFileSync(fixture.livePath, JSON.stringify(live, null, 2) + '\n');
+  const cleared = fixture.run(['apply']);
+
+  assert.equal(cleared.code, 0, cleared.output);
+  assert.deepEqual(readJson(fixture.livePath).rows.map((row) => row.top), ['x', 'a', 'b']);
+  assert.deepEqual(fixture.recordedSets(), []);
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('a dropped set that wrote a whole array item restores only while every other item is the pin\'s', () => {
+  const live = JSON.stringify({ rows: [{ id: 'A' }, { id: 'V' }] }, null, 2) + '\n';
+  const record = { path: ['rows', 1], value: { id: 'V' }, added: false };
+  const restore = (pinned) => engine.applyJsonOperations(live, { operations: [] }, {
+    canReplaceExisting: true,
+    recordedSets: [record],
+    readUpstreamText: () => JSON.stringify(pinned, null, 2) + '\n',
+  });
+
+  assert.deepEqual(JSON.parse(restore({ rows: [{ id: 'A' }, { id: 'B' }] })).rows, [{ id: 'A' }, { id: 'B' }]);
+  assert.throws(() => restore({ rows: [{ id: 'B' }, { id: 'A' }] }),
+    /cannot restore the dropped set at rows\.1: its path goes through an array whose items differ from the pinned copy/);
+});
+
+test('a dropped set is restored beside other operations the entry set keeps in the same item', () => {
+  const pinned = JSON.stringify({ rows: [{ id: 'A', top: 'a' }, { id: 'B', top: 'b', tags: ['t'] }] }, null, 2) + '\n';
+  const live = JSON.stringify({ rows: [{ id: 'A', top: 'a' }, { id: 'B', top: 'v', tags: ['t', 'mine'], extra: 1 }] }, null, 2) + '\n';
+  const kept = [
+    { op: 'setKeyOnItem', path: ['rows'], identityKey: 'id', match: { id: 'B' }, key: 'extra', value: 1 },
+    { op: 'appendItems', path: ['rows', 1, 'tags'], items: ['mine'] },
+  ];
+
+  const restored = engine.applyJsonOperations(live, { operations: kept }, {
+    canReplaceExisting: true,
+    recordedSets: [{ path: ['rows', 1, 'top'], value: 'v', added: false }],
+    readUpstreamText: () => pinned,
+    onSet: () => {},
+    onListed: () => {},
+  });
+
+  assert.deepEqual(JSON.parse(restored).rows[1], { id: 'B', top: 'b', tags: ['t', 'mine'], extra: 1 });
+});
+
+test('records an older engine kept in first-write order still restore nested sets dropped together', () => {
+  const pinned = JSON.stringify({ a: { x: 0 }, k: 0 }, null, 2) + '\n';
+  const live = JSON.stringify({ a: { x: 3 }, k: 0 }, null, 2) + '\n';
+
+  const restored = engine.applyJsonOperations(live, { operations: [] }, {
+    canReplaceExisting: true,
+    recordedSets: [{ path: ['a'], value: { x: 3 }, added: false }, { path: ['a', 'x'], value: 2, added: false }],
+    readUpstreamText: () => pinned,
+  });
+
+  assert.equal(restored, pinned);
+});
+
+test('a dropped set inside an item is restored while a kept set rewrites the whole array', () => {
+  const pinned = JSON.stringify({ arr: [{ n: 1 }, { n: 2 }] }, null, 2) + '\n';
+  const live = JSON.stringify({ arr: [{ n: 'a' }, { n: 'b', x: 5 }] }, null, 2) + '\n';
+  const kept = { op: 'set', path: ['arr'], value: [{ n: 'a' }, { n: 'b' }] };
+
+  const restored = engine.applyJsonOperations(live, { operations: [kept] }, {
+    canReplaceExisting: true,
+    recordedSets: [{ path: kept.path, value: kept.value, added: false }, { path: ['arr', 1, 'x'], value: 5, added: true }],
+    readUpstreamText: () => pinned,
+    onSet: () => {},
+  });
+
+  assert.deepEqual(JSON.parse(restored).arr, [{ n: 'a' }, { n: 'b' }]);
+});
+
+test('sets that together wrote every key of an item restore only while every other item is the pin\'s', () => {
+  const live = JSON.stringify({ rows: [{ id: 'A', top: 'a' }, { id: 'Z', top: 'v' }] }, null, 2) + '\n';
+  const records = [
+    { path: ['rows', 1, 'top'], value: 'v', added: false },
+    { path: ['rows', 1, 'id'], value: 'Z', added: false },
+  ];
+  const restore = (pinned) => engine.applyJsonOperations(live, { operations: [] }, {
+    canReplaceExisting: true,
+    recordedSets: records,
+    readUpstreamText: () => JSON.stringify(pinned, null, 2) + '\n',
+  });
+
+  const pin = { rows: [{ id: 'A', top: 'a' }, { id: 'B', top: 'b' }] };
+  assert.equal(restore(pin), JSON.stringify(pin, null, 2) + '\n');
+  assert.throws(() => restore({ rows: [{ id: 'B', top: 'b' }, { id: 'A', top: 'a' }] }),
+    /cannot restore the dropped set at rows\.1\.\w+: its path goes through an array whose items differ from the pinned copy/);
+});
+
+test('records an older engine kept with the inner set first still restore when it was written last', () => {
+  const pinned = JSON.stringify({ c: { a: 0, b: 0 } }, null, 2) + '\n';
+  const live = JSON.stringify({ c: { a: 9, b: 2 } }, null, 2) + '\n';
+
+  const restored = engine.applyJsonOperations(live, { operations: [] }, {
+    canReplaceExisting: true,
+    recordedSets: [{ path: ['c', 'a'], value: 9, added: false }, { path: ['c'], value: { a: 1, b: 2 }, added: false }],
+    readUpstreamText: () => pinned,
+  });
+
+  assert.equal(restored, pinned);
+});

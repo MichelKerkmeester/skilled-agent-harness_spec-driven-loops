@@ -405,6 +405,7 @@ and findings belong here.
 | Phase 040 build | T001 to T007 done | full loop per the operator: later refusals, document namings, wider wrappers and doc paths read as mentions, typed reader takes the same marks, playbook prompt fixed, advisor phrases for P07 to P09; P05 declined because /doctor:helper ranks /doctor:skill-advisor rebuild first; 2381 passed 0 failed both ways, FLOOR and EVAL unchanged |
 | Review pass thirteen | 3 P1 fixed | data-13 converged, mention-13 hit maxIterationsReached; later request clause read first, refusal must end its clause, six leaking advisor phrases removed with P08 and P09 declined in ADR-001; after-pass-13.txt 2385 passed 0 failed both ways, floors unchanged; pass fourteen follows |
 | Review pass fourteen | Closed by operator decision | data-14 P1 fixed (four generic advisor phrases, eight ordinary prompts no longer top the advisor); mention-14's two P1 mirror pass thirteen, a fresh Opus read judged the patching non-converging, the operator accepted the no-lead refusal class as a known limit graded P2 for new wordings (Q088); after-pass-14.txt 2385 passed 0 failed both ways, floors unchanged; Q086 to Q088 recorded |
+| Merge origin/main 0d1c89d4e3a | Done | 18 commits; main's sk-create-skill README taken with /create:sk-skill re-applied, trigger index regenerated; after-merge-3.txt: 2385 passed 0 failed both ways, doctor 1289/0, bin 198/0, decision-capture 99/0, FLOOR and EVAL unchanged |
 
 ### Deviations and findings
 

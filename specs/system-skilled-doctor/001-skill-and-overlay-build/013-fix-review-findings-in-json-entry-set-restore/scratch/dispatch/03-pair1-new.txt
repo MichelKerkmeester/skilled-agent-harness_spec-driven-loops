@@ -1,0 +1,238 @@
+/**
+ * Whether two paths name one location. A step into an array may be spelled as
+ * a number or as a string, and both spellings reach the same item.
+ * @param {Array<string|number>} left One path.
+ * @param {Array<string|number>} right The other path.
+ * @returns {boolean} Whether the steps read the same once each is a string.
+ */
+function samePath(left, right) {
+  return left.length === right.length && left.every((step, index) => String(step) === String(right[index]));
+}
+
+/**
+ * Whether a path sits strictly inside another one.
+ * @param {Array<string|number>} inner The path that may sit inside.
+ * @param {Array<string|number>} outer The path that may hold it.
+ * @returns {boolean} Whether `inner` starts with every step of `outer` and goes further.
+ */
+function isInsidePath(inner, outer) {
+  return inner.length > outer.length && samePath(inner.slice(0, outer.length), outer);
+}
+
+/**
+ * A copy of a parsed value with one location changed. A location the value does
+ * not reach is left alone, so a missing step never invents structure.
+ * @param {*} value Parsed JSON value.
+ * @param {Array<string|number>} steps Location inside the value.
+ * @param {(container: object, step: string|number) => void} change Edits the
+ *   container that holds the location.
+ * @returns {*} The changed copy.
+ */
+function changedAt(value, steps, change) {
+  const copy = value === undefined ? undefined : JSON.parse(JSON.stringify(value));
+  let container = copy;
+  for (const step of steps.slice(0, -1)) {
+    if (container === null || typeof container !== 'object' || !(step in container)) return copy;
+    container = container[step];
+  }
+  if (container === null || typeof container !== 'object') return copy;
+  change(container, steps[steps.length - 1]);
+  return copy;
+}
+
+/**
+ * A copy of a parsed value with every listed location blanked out, so two
+ * values can be compared on what is left. A location at the value itself
+ * blanks the whole value.
+ * @param {*} value Parsed JSON value.
+ * @param {Array<Array<string|number>>} locations Locations inside the value.
+ * @returns {*} The masked copy.
+ */
+function maskedValue(value, locations) {
+  if (locations.some((steps) => steps.length === 0)) return null;
+  return locations.reduce((masked, steps) => changedAt(masked, steps, (container, step) => {
+    if (!Array.isArray(container)) delete container[step];
+    else if (step in container) container[step] = null;
+  }), value);
+}
+
+/**
+ * Keep one record per path, the last one written. A state file from an engine
+ * that recorded every `set` can hold two for one path, and only the last value
+ * is the one the live file carries.
+ * @param {object[]} records Recorded sets of one destination.
+ * @returns {object[]} The records with earlier duplicates of a path left out.
+ */
+function lastRecordPerPath(records) {
+  return records.filter((record, index) =>
+    !records.slice(index + 1).some((later) => samePath(later.path, record.path)));
+}
+
+/**
+ * Whether every array index on a recorded path names the same item in the live
+ * file and in the pinned copy. An index is a position, so it is trusted only
+ * while the two arrays hold the same number of items, this overlay neither
+ * added an item to that array nor is about to, and the item at that index is
+ * the pin's item apart from the values this overlay's sets wrote into it. Equal
+ * lengths alone miss a file left on an older base after upstream swapped or
+ * replaced an item.
+ * @param {{text: string, root: object}} liveDocument The live text and its root node.
+ * @param {{text: string, root: object}} pinnedDocument The pinned text and its root node.
+ * @param {Array<string|number>} path Path the set wrote.
+ * @param {object[]} operations Operations of one entry set, in order.
+ * @param {object[]} recordedSets Sets this overlay applied to the destination.
+ * @param {object[]} recordedItems Items this overlay added to the destination.
+ * @returns {boolean} Whether the path's indexes can be read against the pin.
+ */
+function indexesMatchPin(liveDocument, pinnedDocument, path, operations, recordedSets, recordedItems) {
+  const writtenPaths = [
+    ...recordedSets.map((record) => record.path),
+    ...operations.filter((operation) => operation.op === 'set').map((operation) => operation.path),
+  ];
+  for (let depth = 0; depth < path.length; depth += 1) {
+    const container = path.slice(0, depth);
+    const live = recordedNodeAt(liveDocument.root, container);
+    const pinned = recordedNodeAt(pinnedDocument.root, container);
+    const liveIsArray = Boolean(live) && live.type === 'array';
+    const pinnedIsArray = Boolean(pinned) && pinned.type === 'array';
+    if (!liveIsArray && !pinnedIsArray) continue;
+    if (!liveIsArray || !pinnedIsArray) return false;
+    if (live.items.length !== pinned.items.length) return false;
+    if (recordedItems.some((item) => item && samePath(item.path, container))) return false;
+    const addsItems = operations.some((operation) =>
+      (operation.op === 'insertItems' || operation.op === 'appendItems') && samePath(operation.path, container));
+    if (addsItems) return false;
+    const liveItem = live.items[Number(path[depth])];
+    const pinnedItem = pinned.items[Number(path[depth])];
+    if (!liveItem || !pinnedItem) return false;
+    const itemPath = path.slice(0, depth + 1);
+    const written = writtenPaths
+      .filter((writtenPath) => samePath(writtenPath, itemPath) || isInsidePath(writtenPath, itemPath))
+      .map((writtenPath) => writtenPath.slice(depth + 1));
+    if (!deepEqual(
+      maskedValue(JSON.parse(liveDocument.text.slice(liveItem.start, liveItem.end)), written),
+      maskedValue(JSON.parse(pinnedDocument.text.slice(pinnedItem.start, pinnedItem.end)), written),
+    )) return false;
+  }
+  return true;
+}
+
+/**
+ * The value a dropped set leaves at its path when nothing else edited it: the
+ * recorded value, with every set written inside it later laid on top. A set the
+ * entry set still names is masked out of both sides, because it writes its
+ * value again after the restore.
+ * @param {object} record The dropped record.
+ * @param {object[]} records Every record of the destination, in the order written.
+ * @param {Array<Array<string|number>>} keptPaths Paths the entry set still sets.
+ * @returns {{expected: *, masks: Array<Array<string|number>>}} The value to
+ *   compare with, and the locations to leave out of the comparison.
+ */
+function valueLeftBySets(record, records, keptPaths) {
+  let expected = record.value;
+  for (const later of records.slice(records.indexOf(record) + 1)) {
+    if (!isInsidePath(later.path, record.path)) continue;
+    if (keptPaths.some((kept) => samePath(kept, later.path))) continue;
+    expected = changedAt(expected, later.path.slice(record.path.length), (container, step) => {
+      container[step] = later.value;
+    });
+  }
+  const masks = keptPaths
+    .filter((kept) => isInsidePath(kept, record.path))
+    .map((kept) => kept.slice(record.path.length));
+  return { expected, masks };
+}
+
+/**
+ * Return every value a `set` wrote to what the pin holds once the entry set no
+ * longer names its path, so a dropped `set` leaves the live file instead of
+ * staying behind as a value nothing explains. A key the pin does not hold is
+ * deleted while it still carries the recorded value. A value that changed after
+ * it was applied is refused rather than overwritten: that edit belongs to a
+ * person. Without a readable pinned copy there is no value to return to, so the
+ * overlay is refused rather than given a guess. The same holds for a path
+ * through an array whose items no longer line up with the pin's.
+ * @param {string} text Live document text.
+ * @param {object[]} operations Operations of one entry set, in order.
+ * @param {object[]} recordedSets Sets this overlay applied to the destination.
+ * @param {() => (string|null)} [readUpstreamText] Reads the destination as the
+ *   pin holds it, or null when there is no upstream copy to read.
+ * @param {object[]} [recordedItems] Items this overlay added to the destination.
+ * @returns {string} The text with every dropped set taken back.
+ */
+function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = () => null, recordedItems = []) {
+  let output = text;
+  const records = lastRecordPerPath(recordedSets);
+  const keptPaths = operations.filter((operation) => operation.op === 'set').map((operation) => operation.path);
+  const dropped = records.filter((record) => !keptPaths.some((kept) => samePath(kept, record.path)));
+  // An outer value is taken back before a value written inside it. Once the
+  // outer value is the pin's, the inner one reads as the pin's too, so two
+  // nested sets dropped together both leave.
+  const outerFirst = [...dropped].sort((left, right) => left.path.length - right.path.length);
+  for (const record of outerFirst) {
+    const where = record.path.join('.');
+    const root = parseJsonSource(output);
+    // The key, or the object that held it, may be gone already: nothing is left
+    // for this record to take back. Through an array that reading waits for the
+    // index check below, because a removed item moves every index after it and
+    // the value may sit one place along.
+    const node = recordedNodeAt(root, record.path);
+    const liveArray = arrayOnPath(root, record.path);
+    if (!node && !liveArray) continue;
+    const upstreamText = readUpstreamText();
+    if (upstreamText === null) {
+      throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy of the file cannot be read; ' +
+        "name the upstream checkout in the manifest's pin.checkout, or put the file back to the pin's bytes by hand");
+    }
+    let upstreamRoot;
+    try {
+      upstreamRoot = parseJsonSource(upstreamText);
+    } catch (error) {
+      throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy of the file is not valid JSON');
+    }
+    const pinnedArray = arrayOnPath(upstreamRoot, record.path);
+    // An array that reads the same as the pin's holds nothing this overlay
+    // wrote, so the record has nothing left to take back. This is also how a
+    // refusal below clears once the array was put right by hand.
+    if (liveArray && pinnedArray && deepEqual(
+      JSON.parse(output.slice(liveArray.node.start, liveArray.node.end)),
+      JSON.parse(upstreamText.slice(pinnedArray.node.start, pinnedArray.node.end)),
+    )) continue;
+    if (!indexesMatchPin({ text: output, root }, { text: upstreamText, root: upstreamRoot },
+      record.path, operations, records, recordedItems)) {
+      const arrayPath = (liveArray || pinnedArray).path;
+      throw new Error('cannot restore the dropped set at ' + where +
+        ': its path goes through an array whose items differ from the pinned copy; put the array at ' +
+        (arrayPath.length > 0 ? arrayPath.join('.') : 'the top level') + ' back to the pinned copy by hand');
+    }
+    // The arrays line up, so a key that is missing is gone and not one place along.
+    if (!node) continue;
+    const pinned = recordedNodeAt(upstreamRoot, record.path);
+    const live = JSON.parse(output.slice(node.start, node.end));
+    // A live value that already equals the pin's needs no write.
+    if (pinned && deepEqual(live, JSON.parse(upstreamText.slice(pinned.start, pinned.end)))) continue;
+    const { expected, masks } = valueLeftBySets(record, records, keptPaths);
+    if (!deepEqual(maskedValue(live, masks), maskedValue(expected, masks))) {
+      throw new Error('dropped set at ' + where +
+        ' was edited after it was applied; restore the value by hand or put the set back in the entry set');
+    }
+    if (pinned) {
+      // The pin's own text is written back, so the file returns to upstream's bytes.
+      output = applyEdits(output, [{ start: node.start, end: node.end, text: upstreamText.slice(pinned.start, pinned.end) }]);
+      continue;
+    }
+    const parent = recordedNodeAt(root, record.path.slice(0, -1));
+    const index = parent && parent.type === 'object'
+      ? parent.members.findIndex((member) => member.key === record.path[record.path.length - 1])
+      : -1;
+    // The live value equals the recorded one here, so the key carries nothing a
+    // person wrote. Whether this engine or an older one added it, the pin does
+    // not hold it and the entry set no longer asks for it.
+    if (index < 0) {
+      throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy holds no value there');
+    }
+    output = applyEdits(output, [memberRemovalEdit(parent.members, index)]);
+  }
+  return output;
+}
+

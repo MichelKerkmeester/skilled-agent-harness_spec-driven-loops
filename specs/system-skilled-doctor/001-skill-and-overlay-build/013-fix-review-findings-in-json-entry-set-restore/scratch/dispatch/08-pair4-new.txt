@@ -1,0 +1,5 @@
+      throw new Error('cannot restore the dropped set at ' + where +
+        ': its path goes through an array whose items differ from the pinned copy; put the array at ' +
+        (arrayPath.length > 0 ? arrayPath.join('.') : 'the top level') + ' back to the pinned copy by hand and run apply');
+    }
+    // The arrays line up, so a key that is missing is gone and not one place along.

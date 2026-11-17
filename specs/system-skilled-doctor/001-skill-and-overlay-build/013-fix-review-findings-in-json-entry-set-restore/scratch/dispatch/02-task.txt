@@ -1,0 +1,16 @@
+TASK: add two re-pin tests for the json-entry set restore. 1 file(s) change.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+P = R/specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch/dispatch
+
+The exact text lives in the files under P. Copy it byte for byte with a script; do not retype it, reflow it or change its whitespace.
+
+STEP 1 of 1. Append the whole content of P/02-pair1-new.txt to the end of R/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs. Add nothing else.
+
+One way to do a replace step, with the paths filled in:
+python3 -c "import sys;f,o,n=sys.argv[1:];t=open(f).read();a=open(o).read();assert t.count(a)==1,t.count(a);open(f,'w').write(t.replace(a,open(n).read()))" <file> <old> <new>
+If an assert fails, stop and report it. Do not edit by hand to make it fit.
+
+CHECK. Run:
+cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs 2>&1 | grep -E "^ℹ (tests|pass|fail)"
+Expected: tests 30, pass 28, fail 2. The two failures are expected: the engine change comes in a later step.

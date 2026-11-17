@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4c2db51706a1a1d9cafb1d9f88f15ed51dbd705dd1a13124a8c643a8b9983635",
+  "manifestHash": "8ec70830a5338229c15f9a1ab18b3a3db1ea543b19e037ae94fcd98a8598d549",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -3391,6 +3391,9 @@
     ],
     "015 deep research loop and phase 5": [
       "015 deep-research loop and phase 5"
+    ],
+    "015 devin database reader operator decisions": [
+      "015-devin-database-reader operator decisions"
     ],
     "015 docs drift review": [
       "015 docs drift review"
@@ -7234,6 +7237,9 @@
     ],
     "052 deep review remediation": [
       "052 deep-review remediation"
+    ],
+    "052 duplicate hop title numbers operator decisions": [
+      "052-duplicate-hop-title-numbers operator decisions"
     ],
     "052 findings resolved": [
       "052 findings resolved"
@@ -14422,6 +14428,9 @@
     "bare worktree dist warning": [
       "bare worktree dist warning"
     ],
+    "barter cannot apply state": [
+      "barter cannot-apply state"
+    ],
     "barter frontend proposals for skilled": [
       "barter frontend proposals for skilled"
     ],
@@ -16677,6 +16686,9 @@
     ],
     "candidate verification": [
       "candidate verification"
+    ],
+    "cannot apply overlay state": [
+      "cannot-apply overlay state"
     ],
     "cannot find module spec kit shared": [
       "cannot find module spec-kit shared"
@@ -41050,6 +41062,18 @@
     "devin dangerous mode approval": [
       "devin dangerous mode approval"
     ],
+    "devin database reader": [
+      "devin database reader"
+    ],
+    "devin database reader implementation summary": [
+      "devin database reader implementation summary"
+    ],
+    "devin database reader plan": [
+      "devin database reader plan"
+    ],
+    "devin database reader tasks": [
+      "devin database reader tasks"
+    ],
     "devin decision capture": [
       "devin decision capture"
     ],
@@ -41190,6 +41214,9 @@
     ],
     "devin mcp route guard": [
       "devin mcp route guard"
+    ],
+    "devin message nodes": [
+      "devin message nodes"
     ],
     "devin model alias reference": [
       "devin model alias reference"
@@ -41373,6 +41400,9 @@
     ],
     "devin swe default model": [
       "devin swe default model"
+    ],
+    "devin sweep sessions db": [
+      "devin sweep sessions.db"
     ],
     "devin task dispatch guard": [
       "devin task dispatch guard"
@@ -45919,6 +45949,18 @@
     ],
     "duplicate hash collapse": [
       "duplicate hash collapse"
+    ],
+    "duplicate hop title numbers": [
+      "duplicate hop title numbers"
+    ],
+    "duplicate hop title numbers implementation summary": [
+      "duplicate hop title numbers implementation summary"
+    ],
+    "duplicate hop title numbers plan": [
+      "duplicate hop title numbers plan"
+    ],
+    "duplicate hop title numbers tasks": [
+      "duplicate hop title numbers tasks"
     ],
     "duplicate nudge race": [
       "duplicate nudge race"
@@ -52191,6 +52233,27 @@
     "fix rerank sidecar reaper": [
       "fix rerank sidecar reaper"
     ],
+    "fix review findings in json entry set restore": [
+      "fix review findings in json entry set restore"
+    ],
+    "fix review findings in json entry set restore decision record": [
+      "fix review findings in json entry set restore decision record"
+    ],
+    "fix review findings in json entry set restore goal": [
+      "fix review findings in json entry set restore goal"
+    ],
+    "fix review findings in json entry set restore implementation summary": [
+      "fix review findings in json entry set restore implementation summary"
+    ],
+    "fix review findings in json entry set restore plan": [
+      "fix review findings in json entry set restore plan"
+    ],
+    "fix review findings in json entry set restore tasks": [
+      "fix review findings in json entry set restore tasks"
+    ],
+    "fix review findings in json entry set restore timeline": [
+      "fix review findings in json entry set restore timeline"
+    ],
     "fix script filesystem scope": [
       "fix script filesystem scope"
     ],
@@ -58341,6 +58404,9 @@
     "handover to barter repin limits": [
       "handover to barter repin limits"
     ],
+    "handover to barter set restore review fixes": [
+      "handover to barter set restore review fixes"
+    ],
     "handover to barter stale capture after scan": [
       "handover to barter stale capture after scan"
     ],
@@ -58482,6 +58548,21 @@
     ],
     "hardcoded embedder default removal": [
       "hardcoded embedder default removal"
+    ],
+    "harden overlay engine from fable review": [
+      "harden overlay engine from fable review"
+    ],
+    "harden overlay engine from fable review goal": [
+      "harden overlay engine from fable review goal"
+    ],
+    "harden overlay engine from fable review implementation summary": [
+      "harden overlay engine from fable review implementation summary"
+    ],
+    "harden overlay engine from fable review plan": [
+      "harden overlay engine from fable review plan"
+    ],
+    "harden overlay engine from fable review tasks": [
+      "harden overlay engine from fable review tasks"
     ],
     "harden the series parent rule": [
       "harden the series parent rule"
@@ -59582,6 +59663,9 @@
     "hook code folder readmes plan": [
       "hook code folder readmes plan"
     ],
+    "hook code folder readmes rewrite waves": [
+      "hook code folder readmes rewrite waves"
+    ],
     "hook code folder readmes tasks": [
       "hook code folder readmes tasks"
     ],
@@ -59719,6 +59803,9 @@
     ],
     "hook folder readmes plan": [
       "hook folder readmes plan"
+    ],
+    "hook folder readmes rewrite waves": [
+      "hook folder readmes rewrite waves"
     ],
     "hook folder readmes tasks": [
       "hook folder readmes tasks"
@@ -59903,6 +59990,9 @@
     "hook readme rewrite": [
       "hook readme rewrite"
     ],
+    "hook readme runtime coverage": [
+      "hook readme runtime coverage"
+    ],
     "hook readme template": [
       "hook readme template"
     ],
@@ -59965,6 +60055,9 @@
     ],
     "hook runtime readmes plan": [
       "hook runtime readmes plan"
+    ],
+    "hook runtime readmes rewrite waves": [
+      "hook runtime readmes rewrite waves"
     ],
     "hook runtime readmes tasks": [
       "hook runtime readmes tasks"
@@ -60067,6 +60160,9 @@
     ],
     "hooks lib": [
       "hooks lib"
+    ],
+    "hooks library readme": [
+      "hooks library readme"
     ],
     "hooks node test ci": [
       "hooks node test ci"
@@ -63535,6 +63631,9 @@
     ],
     "json conversation placeholder block": [
       "json conversation placeholder block"
+    ],
+    "json entry restore item identity check": [
+      "json entry restore item identity check"
     ],
     "json first save workflow": [
       "json-first save workflow"
@@ -74218,6 +74317,9 @@
     "mode packet packetkind": [
       "mode packet packetKind"
     ],
+    "mode packet readme template conformance": [
+      "mode packet readme template conformance"
+    ],
     "mode packet readmes": [
       "mode packet readmes"
     ],
@@ -74229,6 +74331,9 @@
     ],
     "mode packet readmes plan": [
       "mode packet readmes plan"
+    ],
+    "mode packet readmes rewrite waves": [
+      "mode packet readmes rewrite waves"
     ],
     "mode packet readmes tasks": [
       "mode packet readmes tasks"
@@ -75126,6 +75231,9 @@
     ],
     "name file in plan phase lines tasks": [
       "name file in plan phase lines tasks"
+    ],
+    "name stem hop suffix": [
+      "name_stem hop suffix"
     ],
     "named colour tokens": [
       "named colour tokens"
@@ -80063,6 +80171,9 @@
     "overlay apply adopt": [
       "overlay apply adopt"
     ],
+    "overlay apply failure state record": [
+      "overlay apply failure state record"
+    ],
     "overlay engine": [
       "overlay engine"
     ],
@@ -80156,6 +80267,9 @@
     "overlay owned path": [
       "overlay owned path"
     ],
+    "overlay pinned copy cross check": [
+      "overlay pinned copy cross check"
+    ],
     "overlay repin": [
       "overlay repin"
     ],
@@ -80173,6 +80287,9 @@
     ],
     "overlay status audit and relayout": [
       "overlay status audit and relayout"
+    ],
+    "overlay status honesty no checkout note": [
+      "overlay status honesty no checkout note"
     ],
     "overlay sync repin failure modes": [
       "overlay sync repin failure modes"
@@ -83091,6 +83208,9 @@
     "phase 13 dsh live contract pin": [
       "phase 13 dsh live contract pin"
     ],
+    "phase 13 fix review findings in json entry": [
+      "phase 13 fix review findings in json entry"
+    ],
     "phase 13 killer test spawn race": [
       "phase 13 killer test spawn race"
     ],
@@ -83157,6 +83277,9 @@
     "phase 14 handover docs promotion": [
       "phase 14 handover docs promotion"
     ],
+    "phase 14 harden overlay engine from fable review": [
+      "phase 14 harden overlay engine from fable review"
+    ],
     "phase 14 playbook docs and closeout": [
       "phase 14 playbook docs and closeout"
     ],
@@ -83216,6 +83339,9 @@
     ],
     "phase 15 closure gate": [
       "phase 15 closure gate"
+    ],
+    "phase 15 devin database reader": [
+      "phase 15 devin database reader"
     ],
     "phase 15 dsh hook parity": [
       "phase 15 dsh hook parity"
@@ -84848,6 +84974,9 @@
     ],
     "phase 51 handover doc alignment 3": [
       "phase 51 handover doc alignment 3"
+    ],
+    "phase 52 duplicate hop title numbers": [
+      "phase 52 duplicate hop title numbers"
     ],
     "phase 52 v1 default llmgateway": [
       "phase 52 v1 default llmgateway"
@@ -88147,6 +88276,9 @@
     ],
     "plugin documentation removal": [
       "plugin documentation removal"
+    ],
+    "plugin extension readme": [
+      "plugin extension readme"
     ],
     "plugin folder readme template": [
       "plugin folder readme template"
@@ -100598,11 +100730,20 @@
     "rewrite every readme to its template": [
       "rewrite every readme to its template"
     ],
+    "rewrite hook folder readmes": [
+      "rewrite hook folder readmes"
+    ],
     "rewrite main skilled v4 0 0 0": [
       "rewrite main skilled v4 0 0 0"
     ],
+    "rewrite mode packet readmes": [
+      "rewrite mode packet readmes"
+    ],
     "rewrite references same commit": [
       "rewrite references same commit"
+    ],
+    "rewrite runtime adapter readmes": [
+      "rewrite runtime adapter readmes"
     ],
     "rewrite skill changelogs": [
       "rewrite skill changelogs"
@@ -102484,6 +102625,9 @@
     "runtime adapter goal tasks": [
       "runtime adapter goal tasks"
     ],
+    "runtime adapter readme": [
+      "runtime adapter readme"
+    ],
     "runtime agent directory": [
       "runtime agent directory"
     ],
@@ -102802,6 +102946,9 @@
     "runtime folder readmes plan": [
       "runtime folder readmes plan"
     ],
+    "runtime folder readmes rewrite waves": [
+      "runtime folder readmes rewrite waves"
+    ],
     "runtime folder readmes tasks": [
       "runtime folder readmes tasks"
     ],
@@ -103020,6 +103167,9 @@
     ],
     "runtime plugin readmes plan": [
       "runtime plugin readmes plan"
+    ],
+    "runtime plugin readmes rewrite waves": [
+      "runtime plugin readmes rewrite waves"
     ],
     "runtime plugin readmes tasks": [
       "runtime plugin readmes tasks"
@@ -120662,6 +120812,9 @@
     "stacked filters": [
       "stacked filters"
     ],
+    "stacked hop number in session name": [
+      "stacked hop number in session name"
+    ],
     "stage 0 decision": [
       "stage 0 decision"
     ],
@@ -132872,6 +133025,9 @@
     ],
     "vibe provider row": [
       "vibe provider row"
+    ],
+    "vibe readme": [
+      "vibe readme"
     ],
     "vibe relaunch command tier": [
       "vibe relaunch command tier"

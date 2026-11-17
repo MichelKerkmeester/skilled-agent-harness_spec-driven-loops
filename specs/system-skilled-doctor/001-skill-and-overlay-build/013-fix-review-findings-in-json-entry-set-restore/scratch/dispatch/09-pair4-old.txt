@@ -1,0 +1,5 @@
+  assert.equal(result.code, 2, result.output);
+  assert.match(result.output, /^blocked list-set: refused cannot apply the entry set to \.codex\/list\.json: cannot restore the dropped set at rows\.1\.top: its path goes through an array whose items differ from the pinned copy/m);
+  assert.match(result.output, /^refuse: 1 json-entry overlay\(s\) the copy leaves in place cannot be applied at the new pin; fix them before a re-pin$/m);
+  assert.equal(treeDigest(fixture.tree), before);
+  assert.equal(fs.existsSync(fixture.runsDir), false);

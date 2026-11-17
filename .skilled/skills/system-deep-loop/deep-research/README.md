@@ -8,12 +8,14 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.7.0
+version: 1.14.8.0
 ---
 
 # deep-research
 
-> Run an autonomous research loop that stores all findings on disk, dispatches a fresh agent per iteration and stops when new information runs dry.
+> Investigate a broad question over many rounds, keep every finding on disk and stop when new evidence runs out.
+
+The run leaves a packet on disk, so you can resume it later or audit how each finding arrived.
 
 ---
 
@@ -23,86 +25,123 @@ version: 1.14.7.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Multi-round investigation of a topic that spans three or more sources, where each round should build on what the prior round found |
-| **Invoke with** | `/deep:research:auto "topic"` (autonomous) or `:confirm` (approval-gated). Keyword triggers include "autoresearch", "deep research" and "research loop" |
-| **Works on** | Any research topic with web sources, codebase references or both, through the LEAF agent's tools, which the permission map in `.skilled/agents/deep-research.md` lists |
-| **Produces** | A converged findings report at `research/research.md`, plus an iteration audit trail, a findings registry and a convergence dashboard under `{spec_folder}/research/` |
-
-### Why This Skill Exists
-
-Long-form investigation inside a conversation degrades as findings pile up in the context window. You prune to make room, which means you lose earlier insights. Each follow-up round re-injects prior results and the model rereads what it already decided. Multi-domain topics compound the problem because each sub-question drags in its own evidence trail. Without an explicit stop condition you keep digging past diminishing returns, or you stop too early and miss evidence. This skill externalizes every finding to disk, starts each round from a clean context window and computes a stop signal from the ratio of new information. You get a complete investigation without context fatigue.
+| **Use it for** | A broad question that needs several rounds, where each round builds on the last |
+| **Invoke with** | `/deep:research:auto "topic"` or `/deep:research:confirm "topic"` or prose that names autoresearch |
+| **Works on** | Web sources and repo files, read through the LEAF agent's tools |
+| **Produces** | `research/research.md`, an iteration trail, a findings registry and a convergence dashboard |
 
 ### What It Does
 
-`deep-research` runs an autonomous multi-iteration research loop through `/deep:research:auto`. Each iteration dispatches a fresh `@deep-research` LEAF agent that reads the accumulated state from disk, investigates one focus area, writes findings to an iteration file and appends a JSONL record with a new-information ratio. A reducer updates the strategy, registry and dashboard after each pass. The loop stops when the new-information ratio falls below the convergence threshold for long enough, or when all research questions are answered.
+`deep-research` runs one question through repeated rounds until the evidence stops growing. Every round starts a fresh `@deep-research` agent that reads the packet from disk, investigates one focus and writes its findings back. The workflow then reduces the state, scores novelty against the accumulated record and decides whether to continue. Start an unattended run with `/deep:research:auto "topic"`. Use `/deep:research:confirm "topic"` when you want an approval point before the first round and before synthesis.
 
-It does not perform one-shot codebase lookup (`@context` does that) or audit code (`deep-review`). The active family and lane roster is authoritative in [`mode-registry.json`](../mode-registry.json). This packet does not repeat it. The runtime-backed families share `runtime/` for executors, state handling and coverage graphs.
+It does not run a single-pass codebase lookup (`@context` does that) or audit code (`deep-review` does that).
+
+### Why This Skill Exists
+
+A long investigation inside one conversation loses detail as findings fill the context window. Pruning to keep the window small removes the early evidence. Reading prior results again costs the next round its working room. This skill writes every finding to disk, starts each round clean and stops on a measure of new information instead of a hunch.
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Invoke it.** Pick your mode. Autonomous runs straight through with no gates. Confirm asks for approval at setup, each iteration and synthesis.
+**Step 1: Invoke it.** Auto resolves setup from the arguments and runs without approval prompts. Confirm asks for approval at setup and after each round. It also holds synthesis behind a gate.
 
 ```bash
 /deep:research:auto "WebSocket reconnection strategies across browsers"
 /deep:research:confirm "Distributed cache invalidation patterns"
 ```
 
-**Step 2: Run the primary workflow.** The command YAML initializes the packet, dispatches iterations, evaluates convergence and synthesizes the report.
+Expected output: auto resolves setup without a prompt, writes the first packet files under `{spec_folder}/research/` and starts the loop. It asks one targeted question only when the spec folder is ambiguous. Confirm shows the consolidated setup prompt first and waits for your answers.
+
+**Step 2: Run the primary workflow.** Bound the run with flags.
 
 ```bash
 /deep:research:auto "API backpressure patterns" --max-iterations 6 --convergence 0.03
 ```
 
-Expected output: a converged research report at `{spec_folder}/research/research.md` with findings from every iteration, a convergence report and an iteration audit trail under `{spec_folder}/research/iterations/`.
+Expected output: the loop stops at the six-round cap or when the legal-stop gates pass, then writes `{spec_folder}/research/research.md` with the synthesized findings. The iteration trail sits under `{spec_folder}/research/iterations/`.
 
-**Step 3: Verify the reducer output after the loop finishes.**
+`--executor=<kind>` selects the executor kind. The native kind dispatches the agent. The CLI kinds dispatch each round through `dispatch-iteration.cjs`. `cli-mistral-vibe` runs only as a fan-out lineage, so its inline branch fails closed. `--dry-run` previews setup and focus selection, then halts before the first write.
+
+**Step 3: Rebuild the derived files.**
 
 ```bash
 node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder>
 ```
 
-Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iterationsCompleted`, `findings` and convergence fields.
+Expected output: a JSON summary that names the files it rewrote and reports the iteration and corruption counts. Exit 0 means the derived files are current. Exit 2 means the reducer refused the state, usually because the log holds corruption. The resource-map fields stay null unless you add `--emit-resource-map`.
 
 ---
 
 ## 3. HOW IT WORKS
 
-### The Iteration Lifecycle
+The workflow runs four phases: initialization, iteration, synthesis and save. Initialization classifies the packet as fresh, resume, completed-session or invalid-state, then writes the config and the strategy. It seeds the state log with its first line through the append gateway. The iteration phase repeats until a stop is legal: read state, check the pause sentinel, dispatch one fresh agent, validate its outputs and run the reducer. Synthesis compiles the iteration trail into `research.md`. Save writes continuity through `generate-context.js`.
 
-The command YAML workflow owns dispatch. It initializes the research packet on first run, then loops: check convergence, dispatch the `@deep-research` LEAF agent for one iteration, wait for the write-back, run the reducer and decide whether to continue or stop. Each iteration is a single LEAF dispatch whose tool-call budget comes from `maxToolCallsPerIteration` in the config. The agent investigates one focus area, writes a numbered iteration markdown file, appends a JSONL delta record and returns. It never dispatches sub-agents, never nests another loop and never asks the user a question.
+```mermaid
+flowchart TD
+  Start["/deep:research:auto or :confirm"] --> Init["Init writes the packet"]
+  Init --> Read["Read state and check convergence"]
+  Read --> Dispatch["Dispatch one fresh @deep-research round"]
+  Dispatch --> Reduce["Reducer rewrites derived state"]
+  Reduce --> Stop{"Stop legal?"}
+  Stop -- No --> Read
+  Stop -- Yes --> Synth["Synthesis compiles research.md"]
+  Synth --> Save["Save writes continuity"]
+```
 
-Lifecycle controls include [run-now control](./feature-catalog/loop-lifecycle/run-now-control.md), [per-iteration memory upsert](./feature-catalog/loop-lifecycle/per-iteration-memory-upsert.md), and [loop-wide dry-run](./feature-catalog/loop-lifecycle/loop-wide-dry-run.md).
+### The Packet Files
 
-### Externalized State
+Every run keeps continuity under `{spec_folder}/research/`. A root spec writes there directly. A child-phase target writes flat on a first run and adds a `{basename(spec_folder)}-pt-{NN}` folder only when prior content exists for a different target.
 
-All continuity lives in packet files under `{spec_folder}/research/`, not in conversation memory.
+| File | Owner | What it holds |
+|---|---|---|
+| `deep-research-config.json` | Workflow | Loop parameters and lineage. Read-only after init |
+| `deep-research-state.jsonl` | Append gateway | Config record, iteration records and typed events |
+| `deep-research-strategy.md` | Reducer | Key questions, next focus, what worked and what failed |
+| `findings-registry.json` | Reducer | Question state, key findings, ruled-out directions and blocked-stop history |
+| `deep-research-dashboard.md` | Reducer | Iteration table, trend, dead ends and active risks |
+| `iterations/iteration-NNN.md` | Agent | One round of cited findings |
+| `deltas/iter-NNN.jsonl` | Agent | The structured delta for that round |
+| `research.md` | Workflow | The canonical synthesis of the run |
+| `resource-map.md` | Workflow | The optional evidence-derived map of cited files |
+| `.deep-research-pause` | Operator | The pause sentinel checked before each dispatch |
 
-- **Config:** `deep-research-config.json` holds settings.
-- **Log:** the append-only `deep-research-state.jsonl` records every iteration, event and convergence signal.
-- **Strategy:** `deep-research-strategy.md` tracks focus areas, what worked, what failed and exhausted approaches.
-- **Registry:** `findings-registry.json` indexes every discovery.
-- **Dashboard:** `deep-research-dashboard.md` shows convergence trends.
-- **Reducer:** machine-owns the strategy sections, the registry and the dashboard.
-- **Agent:** writes only iteration files and JSONL records.
-- **Workflow:** owns the canonical `research.md`.
+The workflow owns the config and the synthesis. The agent writes its iteration file and delta, plus any progressive synthesis contribution the config allows. The reducer owns the strategy sections and the registry. It redraws the dashboard. Because every artifact is on disk, a crashed run resumes from the packet files.
 
-Because state is on disk, a crashed run resumes from the packet files. Use `/deep:research:auto` again and the workflow picks up the active lineage.
+### Convergence
 
-Reducer-owned state also covers [injection inbox provenance](./feature-catalog/state-management/injection-inbox-provenance.md), [question conflict ownership](./feature-catalog/state-management/question-conflict-ownership.md), [rejected-pattern cache](./feature-catalog/state-management/rejected-pattern-cache.md), [ideas backlog lifecycle](./feature-catalog/state-management/ideas-backlog-lifecycle.md), and [dashboard sparkline trend](./feature-catalog/state-management/dashboard-sparkline-trend.md).
+A low novelty score only nominates STOP.
 
-### Convergence Detection
+| Signal | Weight | Votes STOP when |
+|---|---|---|
+| Rolling average | 0.30 | The last three ratios average below `convergenceThreshold` |
+| MAD noise floor | 0.35 | The latest ratio sits at or below `MAD * 1.4826` |
+| Question entropy | 0.35 | Evidence-backed coverage reaches 0.85 |
 
-Convergence is a composite stop signal driven by the new-information ratio per iteration. The loop continues as long as iterations keep surfacing new findings. It stops when the ratio falls below the convergence threshold (default 0.05) for long enough. A quality gate also checks source diversity, focus alignment and weak-source prevention before accepting a stop. A stuck-recovery path handles iterations that add nothing, escalating after the stuck threshold (default 3) is reached.
+A normalized score above 0.60 nominates STOP. The legal-stop gates then check that low novelty held for the required rounds, that every key question has an evidence-backed answer, that sources are diverse and that one weak source does not carry a finding. A missing graph decision blocks every non-terminal STOP. When a gate fails, the run records `blocked_stop` and continues with a recovery focus.
 
-The convergence model weighs the new-information ratio against a minimum-iterations floor. The full signal math lives in `references/convergence/convergence.md` and `references/convergence/convergence-signals.md`. The convergence threshold is not interchangeable with sibling deep loops. `deep-review` uses a different default tuned to its domain.
+The shipped config floors convergence at 3 rounds, sets `stuckThreshold` to 3 and caps a run at 10 rounds and 120 minutes. Lower `--convergence` asks for more rounds. Raise it when the loop should finish sooner.
 
-The minimum-iteration behavior is documented as the [anti-convergence floor](./feature-catalog/convergence/anti-convergence-floor.md).
+`--convergence-mode` changes the stop path. `off` disables convergence STOP while the hard caps stay active. `sliding-window` scores novelty over a bounded window. `divergent` sends an eligible legal stop into one bounded pivot round instead of synthesis, then returns to the loop.
 
-### Progressive Synthesis
+### Stop Reasons
 
-`research.md` updates as iterations land. The workflow can write interim synthesis content before the loop stops. Final synthesis consolidates all findings into one report with a convergence summary, a questions-answered ratio and an average new-information trend.
+The workflow persists one `stopReason` value when the loop ends or pauses.
+
+| Value | Meaning |
+|---|---|
+| `converged` | A legal stop passed and the run may exit |
+| `maxIterationsReached` | The round cap was hit |
+| `blockedStop` | A gate blocked a STOP candidate |
+| `stuckRecovery` | Stuck detection triggered or recovery failed |
+| `error` | An unrecoverable workflow or state error |
+| `manualStop` | The operator asked the run to stop |
+| `userPaused` | A pause sentinel halted the run |
+| `maxDurationReached` | The wall-clock limit was hit |
+
+### Fresh Context Per Iteration
+
+Each dispatch starts a new agent with no memory of prior rounds. The agent reads the strategy and the state log, picks the next focus and returns after one round. Nothing carries over in context. Everything carries over in files. A crashed run therefore resumes from the packet files instead of starting over.
 
 ---
 
@@ -110,19 +149,18 @@ The minimum-iteration behavior is documented as the [anti-convergence floor](./f
 
 ### When To Use This Skill
 
-Run `deep-research` when a topic demands three or more rounds of investigation and the findings from one round should shape the next. Run it when you want the research to run overnight or unattended. Run it when you need a convergence-gated investigation that stops itself rather than running until you manually call it. Once the loop completes, save continuity to the memory index with `generate-context.js` and use `/speckit:resume` to rebuild context before extending or reviewing a completed run.
+Run `deep-research` when a question needs several rounds and each round should shape the next. Run it when the work is unattended, such as an overnight investigation. Run it when you want the loop to stop on a measured signal instead of your judgment call.
 
-Skip it for a single-question lookup, where a direct web search or the `@context` agent is faster. Skip it for implementation planning, where `/speckit:plan` owns the plan after context is gathered. Skip it for code audits (`deep-review`).
+Skip it for a single lookup, where a direct web search or the `@context` agent is faster. Skip it for implementation planning, where `/speckit:plan` owns the plan once context is in hand. Skip it for a code audit, where `deep-review` owns the pass.
 
-### Sibling Deep Loops
-
-`deep-research` shares the `runtime/` with the other active deep-loop families. Each owns a different phase and none crosses into another's territory.
+### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `deep-review` | Audits code for bugs, security gaps and quality issues. Run it after implementation. |
+| `deep-review` | Audits the code a research run points at. The two share `runtime/` and keep separate convergence thresholds |
+| `system-spec-kit` | Owns the spec folder, its validation and the continuity save that closes a run |
 
-`/speckit:plan` and `/speckit:implement` consume the research report. `system-spec-kit` owns the spec folder, validation and memory continuity. `runtime/` provides the shared executor, state layer and coverage graph.
+`/speckit:plan` and `/speckit:implement` consume the report. `/speckit:resume` rebuilds context before you extend a completed run. `/speckit:save` writes a manual memory save, though a research run already saves at the end.
 
 ---
 
@@ -130,14 +168,13 @@ Skip it for a single-question lookup, where a direct web search or the `@context
 
 | What you see | Why | Fix |
 |---|---|---|
-| Loop stops too early | The convergence threshold is too loose for the topic breadth | Lower `--convergence` (try 0.03) or raise `--max-iterations` (try 12) |
-| Loop never converges | The topic keeps yielding partial overlap that stays above the threshold, or the stuck-recovery path has triggered | Check the dashboard for stuck count. Tighten the focus in the strategy file or raise the convergence threshold. |
-| JSONL parse failure on resume | A trailing corrupt line in the append-only log | The reducer fails closed unless `--lenient` is explicitly passed. Inspect and repair the log before resuming. |
-| Strategy or dashboard drift from iteration files | The reducer did not run after the last iteration write | Run `node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder>` to regenerate derived files |
-| Packet resumes when you expected a new run | An active lineage exists in the config | Inspect `deep-research-config.json` for the current `sessionId`. Archive the existing `research/` tree and pass `--restart` or delete the config. |
-| Loop will not continue after pause | The pause file is still present | Remove `{spec_folder}/research/.deep-research-pause` and re-invoke the command |
-| Agent hits the tool-call cap every iteration | The focus area is too broad | Tighten the focus in `deep-research-strategy.md` to one sub-question per iteration |
-| Runtime mirror behaves differently across CLI executors | Provider quirks or missing capabilities | Compare the mirror against `references/guides/capability-matrix.md` and `assets/runtime-capabilities.json` |
+| The loop stops before the topic is covered | The threshold is loose for the breadth of the question | Lower `--convergence` to 0.03 or raise `--max-iterations` |
+| The loop runs to the cap without converging | The weighted score stays under 0.60 or a legal-stop gate keeps blocking it | Read the dashboard for `BLOCKED STOPS` and the current focus, then narrow the focus or raise the threshold |
+| The reducer exits 2 | The state log holds corruption and the reducer fails closed | Repair the bad line or rerun with `--lenient` to accept it |
+| Derived files lag the last round | The reducer did not run after the write-back | Run the reducer command from QUICK START |
+| A new run resumes an old packet | The config still holds an active lineage | Pass `--restart` or archive the packet and start again |
+| The loop will not continue after a pause | `.deep-research-pause` is still in the packet | Remove `{spec_folder}/research/.deep-research-pause` and invoke the command again |
+| Every round hits the tool-call cap | The focus is too wide for one round | Narrow `Next Focus` in `deep-research-strategy.md` to one sub-question |
 
 ---
 
@@ -145,49 +182,44 @@ Skip it for a single-question lookup, where a direct web search or the `@context
 
 **Q: How does convergence decide to stop?**
 
-A: The loop tracks the new-information ratio after each iteration. When the ratio stays below the convergence threshold (default 0.05) for long enough, and quality gates for source diversity, focus alignment and weak-source prevention all pass, the loop stops. If any gate fails the decision is STOP_BLOCKED and the loop continues with a recovery focus. The full signal model is in `references/convergence/convergence.md`.
+A: A low novelty score only nominates STOP. The weighted score must clear 0.60 before a STOP is nominated. Then the legal-stop gates check novelty over the required rounds, question coverage, source diversity and graph evidence. A blocked gate writes a `blocked_stop` event and the loop continues with a recovery focus. The full decision order is in [the convergence reference](./references/convergence/convergence.md).
 
-**Q: Why does each iteration get a fresh agent?**
+**Q: Why does each iteration start a fresh agent?**
 
-A: A shared context window fills with stale findings that degrade reasoning quality across a long session. By dispatching a fresh LEAF agent per iteration and externalizing state to disk, every round starts with a clean window. The agent reads only the current strategy, focus and prior findings, then writes back. Nothing lingers.
+A: A shared context window fills with stale findings. Later rounds read the same material through more clutter. A fresh LEAF agent per round plus state on disk means every round reads only what the packet holds. The agent never dispatches a sub-agent or nests another loop.
 
-**Q: Where do the findings live?**
+**Q: Where are the findings kept?**
 
-A: Iteration files go under `{spec_folder}/research/iterations/iteration-NNN.md`. The workflow synthesizes those into `research/research.md` when the loop stops. A findings registry at `findings-registry.json` indexes every discovery. The dashboard at `deep-research-dashboard.md` shows the convergence trend.
+A: Each round writes `{spec_folder}/research/iterations/iteration-NNN.md` and a delta file under `deltas/`. Synthesis compiles the trail into `research.md`. The reducer indexes the finding set in `findings-registry.json` and draws the trend in `deep-research-dashboard.md`.
 
-**Q: What is the difference between `resume` and `restart`?**
+**Q: What is the difference between resume and restart?**
 
-A: `resume` continues the same session and generation, appending a `resumed` event to the JSONL log. The existing `research/` tree stays in place. `restart` archives the current `research/` tree, mints a fresh session ID, increments the generation counter and appends a `restarted` event. Both are supported at runtime. The `fork` and `completed-continue` branches are deferred and not yet shipped.
+A: `resume` keeps the same `sessionId` and appends a `resumed` event. `restart` archives the current `research/` tree under `research_archive/`, mints a fresh `sessionId`, increments `generation` and appends a `restarted` event. `fork` and `completed-continue` are declared in the lifecycle vocabulary but not wired.
 
-**Q: Can I use a CLI executor instead of the native agent?**
+**Q: Can I run each iteration through a CLI executor?**
 
-A: Yes. Pass `--executor` with the CLI type and model.
-
-```bash
-/deep:research:auto "GPU memory allocation strategies" --executor=cli-opencode --model=deepseek-v4-pro
-```
-
-The YAML workflow routes the executor. The LEAF constraints still apply: no sub-dispatch, no nested loops and a tool-call cap.
+A: Yes. Pass `--executor=<kind>`. The workflow owns executor selection. The LEAF limits still apply, including the per-round tool-call cap.
 
 ---
 
 ## 7. VERIFICATION
 
-The skill ships two validation packages. You can also check that this document passes structural validation.
+The skill ships a feature catalog and a manual testing playbook. The checks below cover the part a machine can settle.
 
 ### Feature Catalog
 
-The `feature-catalog/` covers every capability across its categories: loop lifecycle, state management, convergence and research output. Each category documents inputs, outputs, the owning resource and acceptance criteria.
+`feature-catalog/` groups 26 live features by loop lifecycle, state management, convergence and research output. Each file explains how the feature works and lists the implementation and validation files behind it. Start at the [feature catalog index](./feature-catalog/feature-catalog.md).
 
 ### Manual Testing Playbook
 
-Deterministic scenarios under `manual-testing-playbook/` cover loop lifecycle, state management, convergence and recovery, and research output. Preconditions, expected signals and pass, fail or partial verdict rules are defined in the root playbook. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and live source anchors.
+`manual-testing-playbook/manual-testing-playbook.md` holds 54 deterministic scenarios across 8 categories. The playbook states the global preconditions, and each scenario names its expected signals and its verdict rule. Release readiness depends on complete coverage and no unresolved blocking contradiction.
 
-```bash
-python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-research/README.md --type readme
-```
-
-Expected output: zero issues reported.
+| Check | Result |
+|---|---|
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-research/README.md --type readme` prints `✅ VALID` and `Total issues: 0` |
+| Workflow script paths | `bash .skilled/skills/system-deep-loop/deep-research/scripts/verify-yaml-script-paths.sh` prints `PASS checked 24 script references across 2 workflow YAMLs` |
+| Packet contract parity | `deep-research-contract-parity.vitest.ts` checks that the primary docs name the canonical state log, the findings registry, the pause sentinel and `completed-continue`, and that both runtime mirrors name all of them except the pause sentinel |
+| Manual scenarios | Every scenario in the playbook returns PASS |
 
 ---
 
@@ -195,43 +227,39 @@ Expected output: zero issues reported.
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the rules and the full operating contract |
-| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
-| [`references/guides/quick-reference.md`](./references/guides/quick-reference.md) | One-page operator cheat sheet with commands, parameters, state files and the convergence tree |
-| [`references/protocol/loop-protocol.md`](./references/protocol/loop-protocol.md) | Iteration lifecycle, dispatch rules, reducer sequencing and the command-owned state flow |
-| [`references/protocol/spec-check-protocol.md`](./references/protocol/spec-check-protocol.md) | Bounded `spec.md` anchoring, `folder_state` rules and generated-fence write-back |
-| [`references/convergence/convergence.md`](./references/convergence/convergence.md) | Live stop contract, legal-stop gates and convergence navigation hub |
-| [`references/convergence/convergence-signals.md`](./references/convergence/convergence-signals.md) | New-information ratio, rolling average, noise floor, entropy, stuck count and reporting |
-| [`references/convergence/convergence-recovery.md`](./references/convergence/convergence-recovery.md) | Stuck recovery, recovery strategy selection, tiered errors and escalation |
-| [`references/convergence/convergence-graph.md`](./references/convergence/convergence-graph.md) | Graph-aware stop gates, coverage-graph events and graceful degradation |
-| [`references/state/state-format.md`](./references/state/state-format.md) | Packet file hub with owners, mutability rules and navigation |
-| [`references/state/state-jsonl.md`](./references/state/state-jsonl.md) | Config, iteration, event, lineage, graph and blocked-stop JSONL record types |
-| [`references/state/state-outputs.md`](./references/state/state-outputs.md) | Strategy, iteration markdown, report, dashboard, resource-map and spec anchoring outputs |
-| [`references/state/state-reducer-registry.md`](./references/state/state-reducer-registry.md) | Reducer ownership, findings registry, validation, reconstruction and file protection |
-| [`references/guides/capability-matrix.md`](./references/guides/capability-matrix.md) | Runtime parity source of truth across the OpenCode / Copilot and Claude executors |
-| [`scripts/reduce-state.cjs`](./scripts/reduce-state.cjs) | The agreement-weighted findings reducer, dashboard generator and convergence evaluator |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions and the operating contract |
+| [`ROUTER.md`](./ROUTER.md) | Intent map, resource map and loading levels |
+| [`references/guides/quick-reference.md`](./references/guides/quick-reference.md) | Commands, defaults, state files and the convergence decision tree |
+| [`references/protocol/loop-protocol.md`](./references/protocol/loop-protocol.md) | Four-phase lifecycle, dispatch rules and error handling |
+| [`references/protocol/spec-check-protocol.md`](./references/protocol/spec-check-protocol.md) | Bounded `spec.md` anchoring and generated-fence write-back |
+| [`references/convergence/convergence.md`](./references/convergence/convergence.md) | Stop contract, convergence modes and legal-stop gates |
+| [`references/convergence/convergence-signals.md`](./references/convergence/convergence-signals.md) | How `newInfoRatio`, the three signals and the stuck count are scored |
+| [`references/convergence/convergence-recovery.md`](./references/convergence/convergence-recovery.md) | Stuck recovery, recovery strategy selection and escalation |
+| [`references/convergence/convergence-graph.md`](./references/convergence/convergence-graph.md) | Graph-aware stop gates and coverage-graph fallback |
+| [`references/state/state-format.md`](./references/state/state-format.md) | Packet files, ownership rules and the location rules |
+| [`references/state/state-jsonl.md`](./references/state/state-jsonl.md) | Config, iteration, event and blocked-stop record types |
+| [`references/state/state-outputs.md`](./references/state/state-outputs.md) | Strategy, iteration, report and dashboard output shapes |
+| [`references/state/state-reducer-registry.md`](./references/state/state-reducer-registry.md) | Reducer ownership, registry validation and reconstruction |
+| [`references/guides/capability-matrix.md`](./references/guides/capability-matrix.md) | The runtime capability matrix, which holds the parity rules for every supported mirror |
+| [`scripts/reduce-state.cjs`](./scripts/reduce-state.cjs) | The reducer that rewrites the registry, dashboard and strategy |
 | [`scripts/runtime-capabilities.cjs`](./scripts/runtime-capabilities.cjs) | Machine-readable capability lookup for the active runtime |
-| [`assets/deep-research-config.json`](./assets/deep-research-config.json) | Config template with defaults for max iterations, convergence threshold and executor |
-| [`assets/deep-research-strategy.md`](./assets/deep-research-strategy.md) | Strategy template with focus areas, what worked, what failed and exhausted approaches |
-| [`assets/deep-research-dashboard.md`](./assets/deep-research-dashboard.md) | Dashboard template with convergence trend and iteration summary |
-| [`assets/prompt-pack-iteration.md.tmpl`](./assets/prompt-pack-iteration.md.tmpl) | The per-iteration prompt template dispatched to the LEAF agent |
-| [`assets/runtime-capabilities.json`](./assets/runtime-capabilities.json) | Declared capability manifest checked at runtime for parity gate validation |
-| [`feature-catalog/`](./feature-catalog/) | Feature inventory across loop lifecycle, state management, convergence and research output |
-| [`manual-testing-playbook/`](./manual-testing-playbook/) | Deterministic scenarios with preconditions, expected signals and per-feature execution contracts |
-| [`behavior-benchmark/`](./behavior-benchmark/) | Executor-model behavior benchmark (RSB): what the model does at `/deep:research` under realistic prompts: dispatch evidence, presentation, latency vs Claude |
+| [`scripts/verify-yaml-script-paths.sh`](./scripts/verify-yaml-script-paths.sh) | Checks that workflow YAML script paths exist |
+| [`assets/deep-research-config.json`](./assets/deep-research-config.json) | Config template with the shipped defaults |
+| [`assets/deep-research-strategy.md`](./assets/deep-research-strategy.md) | Strategy template with key questions and next focus |
+| [`assets/deep-research-dashboard.md`](./assets/deep-research-dashboard.md) | Dashboard template with the convergence trend |
+| [`assets/prompt-pack-iteration.md.tmpl`](./assets/prompt-pack-iteration.md.tmpl) | Per-round prompt template dispatched to the agent |
+| [`assets/runtime-capabilities.json`](./assets/runtime-capabilities.json) | Declared capability manifest checked at runtime |
+| [`feature-catalog/`](./feature-catalog/) | 26 features across four categories |
+| [`manual-testing-playbook/`](./manual-testing-playbook/) | 54 scenarios with expected signals and verdict rules |
+| [`behavior-benchmark/`](./behavior-benchmark/) | Behavior benchmark for the command surface under realistic prompts |
+| [`research.md`](../../../commands/deep/research.md) | The command entry that resolves setup and loads the workflow |
+| [`deep-research.yaml`](../../../commands/deep/assets/deep-research.yaml) | The workflow that owns init, dispatch, convergence and synthesis |
 
-### Maintainer Checklist: Adding or Changing a Research-Loop Feature
-
-A feature change to this skill typically touches more than one surface. Before calling a change complete, check each:
-
-- [ ] **`ROUTER.md`** -- routing rules and the resource list stay in sync with the new or changed behavior
-- [ ] **`references/`** -- the owning protocol, state or convergence doc reflects the change (see section 8 table for which doc owns what)
-- [ ] **`feature-catalog/`** -- the feature's category package documents inputs, outputs, owner and acceptance criteria
-- [ ] **`manual-testing-playbook/`** -- a scenario exists (or is updated) with preconditions, expected signals and a pass/fail verdict
-- [ ] **command YAML/tests** -- `.skilled/commands/deep/assets/deep-research.yaml`, plus any `scripts/*.test.cjs`, cover the change
-- [ ] **`assets/`** -- templates (`deep-research-config.json`, `deep-research-strategy.md`, `deep-research-dashboard.md`, prompt pack) match the new shape
-- [ ] **`scripts/`** -- `reduce-state.cjs` and `runtime-capabilities.cjs` implement the change and stay idempotent
+A feature change touches at least the router, the owning reference, the feature catalog entry and the matching playbook scenario.
 
 <!-- readme-check
 allow-ref research/research.md | a research packet writes it inside its own spec folder
+allow-ref research.md | the workflow writes it inside a run's research packet
+allow-ref findings-registry.json | the reducer creates it inside a run's research packet
+allow-ref iterations/iteration-NNN.md | a round writes it inside a run's research packet
 -->

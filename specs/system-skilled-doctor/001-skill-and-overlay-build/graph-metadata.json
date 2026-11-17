@@ -15,7 +15,9 @@
     "system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up",
     "system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine",
     "system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay",
-    "system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts"
+    "system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts",
+    "system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore",
+    "system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review"
   ],
   "manual": {
     "depends_on": [],
@@ -166,20 +168,20 @@
     ],
     "causal_summary": "A project that vendors Skilled by archive, as Barter does, keeps its local changes across a new pin only through a private overlay engine, guard adapters in each runtime, a manual runbook and scratch scripts written for each re-pin",
     "created_at": "2026-11-06T07:23:07Z",
-    "last_save_at": "2026-11-16T16:27:27.119Z",
+    "last_save_at": "2026-11-16T22:24:06.046Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9617ea2e3068e29a0f2947b4f79d4321cff3ec7c81ed11fb479d983f787403de",
+    "source_fingerprint": "sha256:eb01c9b03959e88168a3b868166b62fb7c0572813b0b325003bad94f0829d5c0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5aa1241370b2f6942f64fa64aa7ab8384dd7e53249241b6ac9dabbda33df1845",
+      "spec.md": "ea1279735361d3f533abec3c89901b2a2d8ead4c214629a18c754f07a53b064c",
       "research/research.md": "b0650e10ec6e394fc1bd35c7d7dca9abc4e629f88b8512927b5d085859dd24c8"
     },
-    "last_active_child_id": "system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay",
-    "last_active_at": "2026-11-16T16:25:35.615Z"
+    "last_active_child_id": "system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore",
+    "last_active_at": "2026-11-16T22:10:51.739Z"
   }
 }
