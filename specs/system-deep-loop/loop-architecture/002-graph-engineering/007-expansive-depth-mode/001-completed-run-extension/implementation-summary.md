@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-11-17T21:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Implementation, tests, docs and mirrors committed on the phase branch"
-    next_safe_action: "Merge to integration, then T028 and T031 as @markdown"
+    next_safe_action: "Walk DR-065 and DRV-070 live for AC-004; AC-010 waits on the operator decision about the .vibe one-line mirrors"
     packet_purpose: "Purpose: An operator runs `/deep:research --extend=N` or `/deep:review --extend=N` on a completed run and gets exactly N more iterations in the same session and generation, with the extension recorded as a `run_extended` ledger event and the run re-synthesized afterwards."
     blockers: []
     key_files:
@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 001-completed-run-extension |
 | **Status** | In Progress |
-| **Completed** | Not yet: built 2026-11-17 on branch `worktrees/456-ed-001-completed-run-extension`; T027, T028 and T031 wait on the integration worktree |
+| **Completed** | Merged into `worktrees/455-expansive-depth-integration` 2026-11-17 (merge `238c4e95ccb`). The merge gate printed 185 files, 3115 passed, 9 skipped, 0 failed. Playbook scenarios DR-065 and DRV-070, the catalog line and changelog `v2.1.0.0` were written by `@markdown` in integration. AC-004 (live walk) and AC-010 (`.vibe` mirror grep) stay open |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -126,7 +126,7 @@ A fork orchestrated the phase in worktree 456. Pi with DeepSeek did the schema, 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Three acceptance rows are Unmet.** AC-004 needs a live run to show exactly 3 new dispatches, and AC-019 needs the playbook scenarios. Both wait on T028, which `/create:manual-testing-playbook` allows only as `@markdown`, in the integration worktree. AC-010 waits on the feature-catalog line (T031), which needs `/create:feature-catalog` as `@markdown` too. The parent log defers only playbooks and changelogs, so T031's deferral is an operator call.
+1. **Two acceptance rows are Unmet.** AC-004 needs a live run that shows exactly 3 new dispatches; the DR-065 and DRV-070 scenarios exist for that walk. AC-010: the REQ-010 grep still matches `.vibe/agents/deep-research.toml:4` and `deep-review.toml:4`, because the Vibe generator writes each agent body as one TOML line, so the line holds `completed-continue` and unrelated words such as "deferred tangents". The fix (amend REQ-010 to exclude `.vibe/agents`, whose parity `sync-agents-vibe.cjs --check` covers) waits on the operator.
 2. **The typed reducers still treat a terminal event as final.** Review throws `duplicate-terminal-event` and research keeps a terminal state one-way. They have no live caller today, only tests, so an extended run is never folded by them. A future live caller must handle `run_extended` after a terminal event.
 3. **Classification is prose.** `extension_rule` and `extension_override` tell the model to land on resume and skip the `resumed` row. Tests read the contract, not an executed branch.
 4. **The before-the-lock refusal is prose too.** The preflight `extend_values` check is not executed by any test. The in-step check refuses the same values after the lock and is tested.

@@ -13,9 +13,9 @@ _memory:
     last_updated_at: "2026-11-17T20:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Pack aligned with the agent definition; seven suites pass; contract regenerated"
-    next_safe_action: "Write the playbook scenario and changelog entry as @markdown, then merge into integration"
+    next_safe_action: "Final full-suite rerun after phase 014"
     blockers:
-      - "Playbook and changelog commands require the @markdown agent"
+      - "None open for this phase; the final full-suite rerun after phase 014 is the remaining check"
     key_files:
       - ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl"
       - ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts"
@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-prompt-pack-contract-alignment |
-| **Completed** | 2026-11-17, code and tests; the playbook scenario and changelog entry are blocked (see Known Limitations) |
+| **Completed** | 2026-11-17, merged into integration. Playbook scenario DLR-060 and changelog `deep-research/changelog/v1.15.16.0.md` written by `@markdown` in integration. The merge gate on the integration branch after this phase merged printed 185 files, 3136 passed, 9 skipped, 1 failed. The one failure is `fanout-pool.vitest.ts` (orphan grace window, 15 ms), which passes 42 of 42 run alone and sits in a file no wave-1 phase changed; the final full-suite rerun decides it |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -96,7 +96,7 @@ Three one-change DeepSeek V4.1 Flash dispatches on the OpenCode Go lane (tests f
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Playbook scenario not written (T009).** `/create:manual-testing-playbook` hard-blocks at its Phase 0 self-check unless it runs as the `@markdown` agent, and this phase was built by a worker that cannot start one. The scenario still has to be written through that command as `@markdown`.
-2. **Changelog entry not written (T011).** `/create:changelog` carries the same `@markdown` gate.
+1. **Playbook scenario written** as DLR-060 in `runtime/manual-testing-playbook/prompt-rendering/research-prompt-pack-contract.md`.
+2. **Changelog entry written** as `deep-research/changelog/v1.15.16.0.md`.
 3. **Compiled contract.** `../006-state-log-leaf-fields/` also edits the pack, so the research contract must be regenerated after each merge rather than hand-merged.
 <!-- /ANCHOR:limitations -->

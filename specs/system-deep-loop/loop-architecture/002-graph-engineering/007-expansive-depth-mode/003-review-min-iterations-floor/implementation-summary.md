@@ -12,7 +12,7 @@ _memory:
     last_updated_at: "2026-11-17T21:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Review floor applied; three suites pass; stop order, README and review contract updated"
-    next_safe_action: "Full suite at the integration merge; playbook and changelog as @markdown"
+    next_safe_action: "Walk DRV-072 live; the final full-suite rerun after phase 014 confirms no new failure"
     blockers:
       - "Playbook and changelog commands require the @markdown agent"
       - "Full runtime suite runs at the integration merge gate"
@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-review-min-iterations-floor |
-| **Completed** | 2026-11-17, code, tests and docs; the full-suite rerun, playbook scenario and changelog entry are open (see Known Limitations) |
+| **Completed** | 2026-11-17, merged into integration (`c898b3ad9a3`). Playbook scenario DRV-072 and changelog `deep-review/changelog/v1.11.18.0.md` written by `@markdown` in integration. The merge gate on the integration branch after this phase merged printed 185 files, 3136 passed, 9 skipped, 1 failed. The one failure is `fanout-pool.vitest.ts` (orphan grace window, 15 ms), which passes 42 of 42 run alone and sits in a file no wave-1 phase changed; the final full-suite rerun decides it |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -98,6 +98,6 @@ Five one-change DeepSeek V4.1 Flash dispatches on the Mistral Vibe lane: the loo
 ## Known Limitations
 
 1. **Full runtime suite not rerun here (T007).** The phase worker ran only the named suites, and the full suite runs once per merge in the integration worktree. T002's baseline comes from the parent goal's log: 3095 passed, 0 failed.
-2. **Playbook scenario not written (T011).** `/create:manual-testing-playbook` hard-blocks at its Phase 0 self-check unless it runs as the `@markdown` agent, which the phase worker cannot start.
-3. **Changelog entry not written (T012).** `/create:changelog` carries the same gate.
+2. **Playbook scenario written (T011)** as DRV-072 in `deep-review/manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md`; the live walk is still open.
+3. **Changelog entry written (T012)** as `deep-review/changelog/v1.11.18.0.md`.
 <!-- /ANCHOR:limitations -->

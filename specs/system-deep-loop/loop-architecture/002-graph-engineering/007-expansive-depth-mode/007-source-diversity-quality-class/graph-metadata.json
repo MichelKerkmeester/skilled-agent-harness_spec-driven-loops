@@ -45,13 +45,15 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      "changelog/v2.1.1.0.md",
       ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts",
       ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-graph-upsert.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts",
-      "scratch/baseline.txt"
+      "scratch/baseline.txt",
+      ".skilled/skills/system-deep-loop/changelog/v2.1.1.0.md"
     ],
     "entities": [
       {
@@ -88,6 +90,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.1.1.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.1.1.0.md",
         "source": "derived"
       },
       {
@@ -191,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow Leaf",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`computeResearchSourceDiversityFromData` counts distinct `metadata.qualityclass` values on SOURCE nodes cited by each question's answering findings (`runtime/lib/coverage-graph/coverage-graph-signals.ts:653-690`)",
     "created_at": "2026-11-17T14:43:29.967Z",
-    "last_save_at": "2026-11-17T18:57:15.245Z",
+    "last_save_at": "2026-11-17T20:13:12.644Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8727c3f7f87d0111f27e1c4e41caae07341cf9946281845beba96074c9742034",
+    "source_fingerprint": "sha256:fb1aa94387ae1d2c5ea2bc47a2736e2cd0dd4f7c98615414ce9a31d3548061c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "75da24d950c24c9e14c413d15a084572d0e11bb918fe5eab909fc94419408733",
       "plan.md": "55e0476191dc9c46bfe48e01e0dbcac2c80350826189f0bb61760b58ccc05efe",
-      "tasks.md": "16074adc92687439362c4a797ca51308e858eb6866a3c10286c74c1d1ff07cee",
+      "tasks.md": "1ffcb77e0cd2985a04a2d08014271b98faee7215c2b972b1e5b29f34f2a63ce7",
       "decision-record.md": "7899e44b9f3785d069df45b9dffb5a7b75f78b1a8167c6653474fcf78b006ecb",
-      "implementation-summary.md": "1510c8c0a5c29c192dddb488d5d7638abb4d9f3029fc05f5937a735dbb52eb0b"
+      "implementation-summary.md": "46c39fd67536fc74e205e004cfc2b3c06f3fe199f93dace8e3ed136daa2e1e2a"
     },
     "last_active_child_id": null,
     "last_active_at": null

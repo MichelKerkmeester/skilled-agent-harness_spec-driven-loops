@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 56 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (40 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063), and §17 covers fan-out dispatch (4 scenarios under DRV-064..067). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 59 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (42 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063), and §17 covers fan-out dispatch (5 scenarios under DRV-064..067 and DRV-071). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -126,7 +126,7 @@ Keep global verdict logic in this root playbook. Put feature-specific acceptance
 
 ## 7. ENTRY POINTS AND MODES
 
-This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DRV-001 | Auto mode deep-review kickoff
 
@@ -166,6 +166,19 @@ Expected signals: Default values of 7 and 0.10 appear consistently across all so
 
 #### Test Execution
 > **Feature File:** [DRV-003](../manual-testing-playbook/entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md)
+
+### DRV-070 | Completed-run extension with --extend
+
+#### Description
+Verify that `--extend=N` reopens a completed review run in the same session and generation, records one `run_extended` event, and keeps the prior review report as a snapshot before re-synthesis.
+
+#### Scenario Contract
+Prompt: `Extend the completed deep-review run in the fixture spec folder by three iterations with --extend=3, then confirm the original session identifier, the single run_extended event and the review report snapshot.`
+
+Expected signals: One `run_extended` event projected as one `extended` row, the original `sessionId` and generation 1 kept, `maxIterations` at the prior count plus 3, a `completed-continue` lineage, one `review-report-v*-r*.md` snapshot, no `resumed` row and exactly three new iteration files.
+
+#### Test Execution
+> **Feature File:** [DRV-070](../manual-testing-playbook/entry-points-and-modes/extend-completed-review-run.md)
 
 ---
 
@@ -339,7 +352,7 @@ Expected signals: `graphEvents` referenced as iteration-record input for graph-a
 
 ## 10. CONVERGENCE AND RECOVERY
 
-This category covers 10 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 11 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DRV-030 | Stop on max iterations
 
@@ -486,6 +499,19 @@ Expected signals: Only `all_dimensions_clean` is eligible; all nine gates preced
 #### Test Execution
 
 > **Feature File:** [RV-069](../manual-testing-playbook/convergence-and-recovery/divergent-convergence-mode.md)
+
+### DRV-072 | Review run holds below its minIterations floor
+
+#### Description
+Verify that a review stop candidate below its configured `minIterations` returns `CONTINUE` with `minIterationsNotReached`, and that the run releases only once the floor is reached.
+
+#### Scenario Contract
+Prompt: `Stop a deep-review run that reaches a stop candidate at iteration 2 with minIterations set to 3, and confirm the run continues with minIterationsNotReached and releases only at iteration 3.`
+
+Expected signals: The iteration-2 candidate returns `CONTINUE` with `minIterationsNotReached`, the iteration-3 candidate releases, the shipped floor of 2 still passes its replay, and the review workflow names the floor as stop-order item `4a`.
+
+#### Test Execution
+> **Feature File:** [DRV-072](../manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md)
 
 ---
 
@@ -849,7 +875,7 @@ Verify ledger-led upserts emit the canonical graph vocabulary (BUG_CLASS, INVARI
 
 ## 17. FAN-OUT
 
-This category covers 4 scenarios validating the opt-in fan-out dispatch layer added in the review loop: CLI lineage pool dispatch, strongest-restriction verdict binding, native sequential command dispatch, and single-executor parity.
+This category covers 5 scenarios validating the opt-in fan-out dispatch layer added in the review loop: CLI lineage pool dispatch, strongest-restriction verdict binding, native sequential command dispatch, single-executor parity, and merged coverage surfaces.
 
 ### DRV-064 | Fan-out review with two CLI lineages
 
@@ -902,3 +928,16 @@ Expected signals: `if_absent` command uses `'review'`; both fan-out steps have `
 
 #### Test Execution
 > **Feature File:** [DRV-067](../manual-testing-playbook/fanout/fanout-single-executor-parity-review.md)
+
+### DRV-071 | Fan-out merged review keeps its coverage surfaces
+
+#### Description
+Verify that a merged two-lineage review fan-out keeps `dimensionCoverage`, `traceability`, `searchCoverage`, `candidateCoverage`, `divergenceByLineage` and `ruledOutCandidates` from both lineages, with no merged `divergence` key.
+
+#### Scenario Contract
+Prompt: `Merge the two-lineage deep-review fan-out artifact and confirm the merged registry keeps dimensionCoverage, traceability, searchCoverage, candidateCoverage, divergenceByLineage and ruledOutCandidates from both lineages.`
+
+Expected signals: The merge exits 0, the six surfaces are built from both lineages, `traceability` keeps the strictest status per protocol, `divergenceByLineage` is keyed by lineage label, and every `ruledOutCandidates` entry carries a `lineage` field.
+
+#### Test Execution
+> **Feature File:** [DRV-071](../manual-testing-playbook/fanout/fan-out-merged-coverage-surfaces.md)

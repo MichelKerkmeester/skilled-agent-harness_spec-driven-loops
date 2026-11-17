@@ -60,8 +60,8 @@ Frozen choices. Changing one is an amendment.
 - [ ] `rg -c '\| Unmet \|' acceptance-criteria.md` in this folder prints nothing, so each of its 19 rows is `Met`, `Waived` or `Superseded`.
 - [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run` prints no failure that is absent from `scratch/baseline.txt`, and `check-ledger-stem-producers.cjs`, `check-projection-coverage.cjs` and `check-contract-drift.cjs` all exit 0.
 - [x] `/doctor:runtime-mirrors` reports no drift for the `deep-research` and `deep-review` agents.
-- [ ] Each of `deep-research/manual-testing-playbook` and `deep-review/manual-testing-playbook` lists an `--extend=N` scenario written by `/create:manual-testing-playbook`.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` on this folder with `--strict` prints `RESULT: PASSED`.
+- [x] Each of `deep-research/manual-testing-playbook` and `deep-review/manual-testing-playbook` lists an `--extend=N` scenario written by `/create:manual-testing-playbook`.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` on this folder with `--strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -81,8 +81,9 @@ and findings belong here.
 | Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` written from `../research/research.md` §19 and §20 |
 | Implementation | Done on the phase branch | 2026-11-17, worktree 456: commits `32d56a21455`, `2c80c64f391`, `dc00a20a8dd`, `ac4151f027f` and a closing commit. Phase suites pass (ledger-schema 76, typed reducers 144, state reducers 51, legacy seam 6, restart lifecycle 34, heartbeat 5, YAML/doc readers 442, system-spec-kit 18), typecheck exit 0, the three guard scripts exit 0 |
 | Mirrors | Done | Every checker `/doctor:runtime-mirrors` lists exits 0 after the generators and the hand-maintained `.claude/agents` twins were updated |
-| Open | Waiting on integration | AC-004 and AC-019 (T028 playbooks, `@markdown` only), AC-010 (T031 catalog line, `@markdown` only), whole-suite run (T027) |
+| Open | Waiting on integration | AC-004 (the live walk, T028), AC-010 (REQ-010 still prints two `.vibe/agents` TOML lines, see the 2026-11-17 row above), whole-suite run (T027). AC-019 is Met as of 2026-11-17. |
 | Session save | Done | operator decisions written to decision-record.md |
+| Playbook, catalog and changelog | Done for 001, walk open | 2026-11-17, `@markdown`: `DR-065` and `DRV-070` written through the update-mode steps (both validators PASS); `initialization.md:27` split (validate_document VALID, DQI 88); changelog `v2.1.0.0` (DQI 89), with step 6 moving the hub version carriers to 2.1.0.0 (parent-skill-check PASS). Open: the walk (CHK-021), and REQ-010 still prints two `.vibe/agents` TOML lines (AC-010). |
 
 ### Deviations and findings
 

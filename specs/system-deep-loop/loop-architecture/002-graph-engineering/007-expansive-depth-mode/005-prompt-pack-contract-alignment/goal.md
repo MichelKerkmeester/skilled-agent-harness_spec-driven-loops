@@ -60,7 +60,7 @@ Frozen choices. Changing one is an amendment.
 - [x] A case feeds the research reducer a narrative with the headings the pack names and gets a non-empty parsed `nextFocus`.
 - [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/prompt-pack.vitest.ts tests/unit/deep-research-reduce-state.vitest.ts tests/unit/deep-research-deltas-contract.vitest.ts tests/unit/deep-review-deltas-contract.vitest.ts tests/unit/check-documentation-drift.vitest.ts tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0.
 - [x] `git diff --stat` for this phase lists no file under `deep-review/`, neither agent definition and no compiled contract other than a regenerated `deep-research.contract.markdown`.
-- [ ] `rg -l "progressiveSynthesis" .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/prompt-rendering` lists a scenario written by `/create:manual-testing-playbook`.
+- [x] `rg -l "progressiveSynthesis" .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/prompt-rendering` lists a scenario written by `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,7 +80,7 @@ and findings belong here.
 | Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md` written 2026-11-17 |
 | Implementation | Done (code and tests) | 2026-11-17 in worktree `458-ed-005-prompt-pack-contract`. Pack entry at `prompt-pack-iteration.md.tmpl:45`, heading renamed at `:62`, four new `prompt-pack.vitest.ts` cases, research contract regenerated. Seven suites: 89 passed, exit 0 (baseline 85) |
 | Negative control | Done | A scratch pack without the entry failed the lockstep case, and one with the old heading failed it too. Both copies deleted |
-| Playbook scenario | Blocked | `/create:manual-testing-playbook` hard-blocks at Phase 0 unless run as `@markdown`; the phase worker cannot start that agent |
+| Playbook and changelog | Done for 005, walk open | 2026-11-17, `@markdown`: `DLR-060` written through the update-mode steps (`validate-playbook-package.cjs` PASS, 52 scenarios); `rg -l progressiveSynthesis` lists it. Changelog `deep-research v1.15.16.0` (DQI 89), with step 6 moving the packet SKILL.md version to 1.15.16.0 (parent-skill-check PASS). The scenario walk is not run. |
 
 ### Deviations and findings
 

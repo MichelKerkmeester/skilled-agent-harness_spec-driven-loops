@@ -59,7 +59,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `rg -n "Object.freeze" .skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts` prints the constant within 20 lines of `SAFE_METADATA_KEYS`, and `upsert.cjs` reads that constant instead of repeating the values.
 - [x] A `convergence-script` case reports `sourceDiversity` 2.0 for two findings citing sources of two different derived classes and 1.0 when both share one class, and a code-only fixture citing a `.cjs` file and its `.vitest.ts` test reports 2.0 with no `source_diversity_guard` blocker.
 - [x] An `upsert-script` case stores a FINDING's `metadata.confidence` and a review node's metadata exactly as given.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/coverage-graph-signals.vitest.ts tests/integration/convergence-script.vitest.ts tests/integration/upsert-script.vitest.ts tests/unit/deep-research-graph-upsert.vitest.ts` exits 0, and `rg -l "quality_class" .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/coverage-graph` lists a scenario written by `/create:manual-testing-playbook`.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/coverage-graph-signals.vitest.ts tests/integration/convergence-script.vitest.ts tests/integration/upsert-script.vitest.ts tests/unit/deep-research-graph-upsert.vitest.ts` exits 0, and `rg -l "quality_class" .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/coverage-graph` lists a scenario written by `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -78,7 +78,7 @@ and findings belong here.
 |------|-------|----------|
 | Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md` written 2026-11-17 |
 | Implementation | Done (code and tests) | 2026-11-17 in worktree `459-ed-007-source-diversity-quality`. `SOURCE_QUALITY_CLASS` at `coverage-graph-query.ts:141`; derivation in `upsert.cjs`. Four suites: 76 passed, exit 0 (baseline 69). Fail-before proven by reverting the two source files: 14 of 50 failed |
-| Playbook scenario | Blocked | `/create:manual-testing-playbook` hard-blocks at Phase 0 unless run as `@markdown`; the phase worker cannot start that agent. The last criterion stays open on it |
+| Playbook and changelog | Done for 007, walk open | 2026-11-17, `@markdown`: `DLR-061` written through the update-mode steps (`validate-playbook-package.cjs` PASS, 53 scenarios); `rg -l quality_class` lists it. Changelog `v2.1.1.0` (DQI 89), with step 6 moving the hub version carriers to 2.1.1.0 (parent-skill-check PASS). The four named vitest suites were re-run here: 4 files, 76 of 76 passed, exit 0. The scenario walk is not run. |
 
 ### Deviations and findings
 

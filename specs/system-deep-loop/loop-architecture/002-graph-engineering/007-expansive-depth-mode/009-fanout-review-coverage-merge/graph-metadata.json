@@ -42,9 +42,11 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "changelog/v2.1.2.0.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
-      ".skilled/skills/system-deep-loop/runtime/tests/fanout-review-focus.vitest.ts"
+      ".skilled/skills/system-deep-loop/runtime/tests/fanout-review-focus.vitest.ts",
+      ".skilled/skills/system-deep-loop/changelog/v2.1.2.0.md"
     ],
     "entities": [
       {
@@ -75,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.1.2.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.1.2.0.md",
         "source": "derived"
       },
       {
@@ -184,17 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`mergeReviewRegistries` in `runtime/scripts/fanout-merge.cjs:869-997` returns findings, resolved findings, severity counts, search debt and the merged verdict, and nothing else",
     "created_at": "2026-11-17T14:35:13Z",
-    "last_save_at": "2026-11-17T19:03:25.507Z",
+    "last_save_at": "2026-11-17T20:13:17.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74af88ca53b871861abb190a67bf3d3ddd78dc213d66161501a5e146c7e96e1f",
+    "source_fingerprint": "sha256:36b5fb7e3e0c14bd63d6ed7ea61e3a394f282f0eee74b92ecf7a95f70127448f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "71ac7135f33f34f7abf724fa974fb1164f8e0b1baba7446755782e8f96863e7a",
       "plan.md": "6aaf0ceaba13f9e603a8ed80c0733def10db2bad537eb5ba0731d286f28c866a",
-      "tasks.md": "eb28cb18c2914f2cec41bd74b5e251e649189ededb0e1d73ace690eb9093cbea",
-      "implementation-summary.md": "f4a8ef0ebe03cf95eca20bd7b845084b15ed1e2b81d853374d51df866bad00a7"
+      "tasks.md": "0f2ed57d7093667b50148072fd1f9b05a9d296c399edb2a57125eecc50bdc278",
+      "implementation-summary.md": "1cc9ed594f3985208af40a837066b1171ef0639180d012839f85dbca9146214e"
     },
     "last_active_at": null
   }

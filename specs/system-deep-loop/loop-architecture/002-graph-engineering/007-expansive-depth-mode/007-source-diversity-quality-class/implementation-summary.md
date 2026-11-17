@@ -13,9 +13,9 @@ _memory:
     last_updated_at: "2026-11-17T21:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "quality_class derived at upsert; four suites pass; fail-before proven"
-    next_safe_action: "Write the playbook scenario and changelog entry as @markdown, then merge into integration"
+    next_safe_action: "Final full-suite rerun after phase 014"
     blockers:
-      - "Playbook and changelog commands require the @markdown agent"
+      - "None open for this phase; the final full-suite rerun after phase 014 is the remaining check"
     key_files:
       - ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs"
       - ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts"
@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 007-source-diversity-quality-class |
-| **Completed** | 2026-11-17, code and tests; the playbook scenario and changelog entry are blocked (see Known Limitations) |
+| **Completed** | 2026-11-17, merged into integration. Playbook scenario DLR-061 and changelog `changelog/v2.1.1.0.md` written by `@markdown` in integration. The merge gate on the integration branch after this phase merged printed 185 files, 3136 passed, 9 skipped, 1 failed. The one failure is `fanout-pool.vitest.ts` (orphan grace window, 15 ms), which passes 42 of 42 run alone and sits in a file no wave-1 phase changed; the final full-suite rerun decides it |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -103,8 +103,8 @@ Seven one-change DeepSeek V4.1 Flash dispatches on the Pi lane (tests first, the
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Playbook scenario not written (T011).** `/create:manual-testing-playbook` hard-blocks at its Phase 0 self-check unless it runs as the `@markdown` agent, which the phase worker cannot start.
-2. **Changelog entry not written (T012).** `/create:changelog` carries the same gate.
+1. **Playbook scenario written** as DLR-061 in `runtime/manual-testing-playbook/coverage-graph/source-quality-class-derivation.md`.
+2. **Changelog entry written** as `changelog/v2.1.1.0.md`.
 3. **The T007 rg check matches three test inputs.** The strip cases send `quality_class: 'primary'` on purpose, as REQ-001 specifies, so `rg -n "quality_class: '(primary|secondary|tertiary)'"` is clean only over the seeded fixtures.
 4. **A dotted id can read as a file.** An id with no path or URL label, such as `src.v2`, classifies as `repo-code` because it looks like a file name. Leaves send `path` on file sources, so this only affects malformed nodes.
 <!-- /ANCHOR:limitations -->

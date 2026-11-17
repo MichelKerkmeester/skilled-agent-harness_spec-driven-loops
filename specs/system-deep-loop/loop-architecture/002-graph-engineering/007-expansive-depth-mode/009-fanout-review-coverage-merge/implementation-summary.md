@@ -13,9 +13,9 @@ _memory:
     last_updated_at: "2026-11-17T21:20:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Six coverage surfaces merged; five suites pass; readers audited"
-    next_safe_action: "Write the playbook scenario and changelog entry as @markdown, then merge into integration"
+    next_safe_action: "Final full-suite rerun after phase 014"
     blockers:
-      - "Playbook and changelog commands require the @markdown agent"
+      - "None open for this phase; the final full-suite rerun after phase 014 is the remaining check"
     key_files:
       - ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
       - ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts"
@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 009-fanout-review-coverage-merge |
-| **Completed** | 2026-11-17, code and tests; the playbook scenario and changelog entry are blocked (see Known Limitations) |
+| **Completed** | 2026-11-17, merged into integration. Playbook scenario DRV-071 and changelog `changelog/v2.1.2.0.md` written by `@markdown` in integration. The merge gate on the integration branch after this phase merged printed 185 files, 3136 passed, 9 skipped, 1 failed. The one failure is `fanout-pool.vitest.ts` (orphan grace window, 15 ms), which passes 42 of 42 run alone and sits in a file no wave-1 phase changed; the final full-suite rerun decides it |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -109,7 +109,7 @@ The orchestrator read each diff and reran each check. Briefs and results are in 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Playbook scenario not written (T013).** `/create:manual-testing-playbook` hard-blocks at its Phase 0 self-check unless it runs as the `@markdown` agent, which the phase worker cannot start.
-2. **Changelog entry not written (T014).** `/create:changelog` carries the same gate.
+1. **Playbook scenario written** as DRV-071 in `deep-review/manual-testing-playbook/fanout/fan-out-merged-coverage-surfaces.md`.
+2. **Changelog entry written** as `changelog/v2.1.2.0.md`.
 3. **Iteration numbers in `candidateCoverage.byBugClass` are per lineage.** The union mixes them, and the `lineages` list is what keeps them attributable.
 <!-- /ANCHOR:limitations -->

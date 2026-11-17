@@ -1,7 +1,7 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # runtime/: Manual Testing Playbook
@@ -36,7 +36,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 51 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
+This playbook provides 53 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
 
 ### REALISTIC TEST MODEL
 
@@ -169,7 +169,7 @@ Expected signals: Route trace metadata, preflight validation errors, cycle detec
 
 ## 7. PROMPT RENDERING
 
-This category covers 1 scenario while the linked feature files remain the canonical execution contract.
+This category covers 2 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-004 | Prompt pack
 
@@ -183,6 +183,19 @@ Expected signals: Runtime behavior matches the source contract and primary regre
 
 #### Test Execution
 > **Feature File:** [DLR-004](../manual-testing-playbook/prompt-rendering/prompt-pack.md)
+
+### DLR-060 | Research prompt pack contract
+
+#### Description
+Verify that the research prompt pack allows `research/research.md` under `progressiveSynthesis` and ends its heading list in `Recommended Next Focus`, the heading the reducer parses.
+
+#### Scenario Contract
+Prompt: `Validate the research prompt pack against the research agent contract: check the research.md write path and the Recommended Next Focus heading, then run the lockstep and reducer-parse cases.`
+
+Expected signals: One conditional `research.md` entry beside the iteration folder, the heading list ending in `Recommended Next Focus`, the four prompt-pack cases passing, and a drifted copy failing the lockstep case.
+
+#### Test Execution
+> **Feature File:** [DLR-060](../manual-testing-playbook/prompt-rendering/research-prompt-pack-contract.md)
 
 ---
 
@@ -422,7 +435,7 @@ Expected signals: First-iteration null delta, prior-snapshot delta, graph output
 
 ## 11. COVERAGE GRAPH
 
-This category covers 6 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 7 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-011 | Coverage graph DB
 
@@ -503,6 +516,19 @@ Expected signals: Similarity thresholding, category guard, bounded namespace beh
 
 #### Test Execution
 > **Feature File:** [DLR-043](../manual-testing-playbook/coverage-graph/coverage-graph-fuzzy-merge.md)
+
+### DLR-061 | Source quality class derivation
+
+#### Description
+Verify that `upsert.cjs` derives `quality_class` on each research SOURCE node from its path, then its label, then its id, and that the source-diversity signal reads the derived classes on normal runs.
+
+#### Scenario Contract
+Prompt: `Upsert a research source with a repo test path and a leaf-supplied quality_class that disagrees, then confirm the stored class follows the path and that a question answered only from code files still blocks at the source diversity guard.`
+
+Expected signals: The stored class is `repo-test` for the test path, the leaf-supplied value is overwritten, a code-only question scores 1.0 and blocks at `source_diversity_guard`, and code plus its tests scores 2.0 and passes.
+
+#### Test Execution
+> **Feature File:** [DLR-061](../manual-testing-playbook/coverage-graph/source-quality-class-derivation.md)
 
 ---
 
@@ -924,3 +950,5 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | DLR-054 | [F052 Torn-tail recovery marker ordering](../feature-catalog/state-safety/torn-tail-recovery-marker-ordering.md) | [state-safety/torn-tail-recovery-marker-ordering.md](../manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md) |
 | DLR-055 | [F051 append-mode-event.cjs](../feature-catalog/script-entry-points/append-mode-event-script.md) | [script-entry-points/append-mode-event-script.md](../manual-testing-playbook/script-entry-points/append-mode-event-script.md) |
 | DLR-059 | [F059 Fan-out pair replay](../feature-catalog/fanout/fanout-pair-replay.md) | [fanout/fanout-pair-replay.md](../manual-testing-playbook/fanout/fanout-pair-replay.md) |
+| DLR-060 | [F004 Prompt pack](../feature-catalog/prompt-rendering/prompt-pack.md) | [prompt-rendering/research-prompt-pack-contract.md](../manual-testing-playbook/prompt-rendering/research-prompt-pack-contract.md) |
+| DLR-061 | [F013 Coverage graph signals](../feature-catalog/coverage-graph/coverage-graph-signals.md) | [coverage-graph/source-quality-class-derivation.md](../manual-testing-playbook/coverage-graph/source-quality-class-derivation.md) |

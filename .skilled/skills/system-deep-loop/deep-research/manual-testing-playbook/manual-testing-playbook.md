@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.14.4.0
+version: 1.14.5.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -27,7 +27,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 54 deterministic scenarios across 8 categories validating the current `deep-research` skill surface (45 DR-* feature scenarios + 6 CP-* command-flow stress tests + 3 fan-out scenarios). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 63 deterministic scenarios across 9 categories validating the current `deep-research` skill surface, including 6 CP-* command-flow stress tests. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -83,7 +83,7 @@ This playbook provides 54 deterministic scenarios across 8 categories validating
 
 ## 7. ENTRY POINTS AND MODES
 
-This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DR-001 | Auto mode deep-research kickoff
 
@@ -136,6 +136,19 @@ Expected signals: `--dry-run` normalizes to boolean input, non-mutating setup/re
 
 #### Test Execution
 > **Feature File:** [DR-063](../manual-testing-playbook/entry-points-and-modes/loop-wide-dry-run.md)
+
+### DR-065 | Completed-run extension with --extend
+
+#### Description
+Verify that `--extend=N` reopens a completed research run in the same session and generation, records one `run_extended` event, and snapshots the prior synthesis before the first new iteration.
+
+#### Scenario Contract
+Prompt summary: Extend a completed deep-research fixture run by three iterations and confirm the session identifier, the single extension event, the iteration cap and the synthesis snapshot.
+
+Expected signals: One `run_extended` event projected as one `extended` row, the original `sessionId` and generation 1 kept, `maxIterations` at the prior count plus 3, a `completed-continue` lineage, one `synthesis-v*-r*.md` snapshot, no `resumed` row and exactly three new iterations.
+
+#### Test Execution
+> **Feature File:** [DR-065](../manual-testing-playbook/entry-points-and-modes/extend-completed-research-run.md)
 
 ---
 

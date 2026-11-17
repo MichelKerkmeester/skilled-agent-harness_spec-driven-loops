@@ -48,7 +48,8 @@
       ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
       ".skilled/agents/deep-review.md",
       ".skilled/commands/deep/assets/deep-research.yaml",
-      "scratch/baseline.txt"
+      "scratch/baseline.txt",
+      ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md"
     ],
     "entities": [
       {
@@ -124,6 +125,12 @@
         "source": "derived"
       },
       {
+        "name": "v1.15.16.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.16.0.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A research leaf gets two contradicting write rules: `.skilled/agents/deep-research.md:58` allows `research/research.md` when `progressiveSynthesis == true`, while the prompt pack's \"ALLOWED WRITE PATHS\" list (`deep-research/assets/prompt-pack-iteration.md.tmpl:42-45`) names only the iteration narrative, the delta and the gateway writes (defect D6, seen on 12 of 12 iterations across both generations of the parent run)",
     "created_at": "2026-11-17T14:43:29.630Z",
-    "last_save_at": "2026-11-17T18:49:11.858Z",
+    "last_save_at": "2026-11-17T20:13:07.475Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4dc9d7fb93a2c28fd4d67a62143de738bc725d73bc8e882c310ee0fe01c220ab",
+    "source_fingerprint": "sha256:80523b408ba7cd87896b1b370f9ba9bdd5e858d553989bd490eeffebd77add4c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c2cf368b5dc6f378cce28854e073a6bcdfd21d20672e6c12bfef74b29c78819",
       "plan.md": "6e6bcb7e8c05c51a14d6972e6163b56e26bd0efca1bcc2d7f508e88443114102",
-      "tasks.md": "e8a0988dc04af89fb2e0ab087076a66a8532ddfdf5087d37f1cebce08e707a0b",
-      "implementation-summary.md": "a4fae88088f7870219f59ff6ae3567f90f47199d5e1dda72a35c49420ea6b41b"
+      "tasks.md": "a247cae4f29438bc7baa83ceff02e3969b8b98b2b0905a533d8d7bbe729a9a6e",
+      "implementation-summary.md": "ea15546099e749902f236c431f25c24ce7d30600c5e2bda45f8e9bfef5f025c4"
     },
     "last_active_child_id": null,
     "last_active_at": null
