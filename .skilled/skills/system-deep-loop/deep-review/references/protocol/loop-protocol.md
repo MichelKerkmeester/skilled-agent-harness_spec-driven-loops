@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.14.0
+version: 1.11.15.0
 ---
 
 # Deep Review Loop Protocol
@@ -451,6 +451,22 @@ function selectReviewRecoveryStrategy(stuckIterations, state, config):
 **Recovery evaluation**:
 - If recovery iteration finds any new P0/P1 or materially advances required traceability coverage: recovery successful. Reset stuck count. Continue.
 - If recovery iteration finds only P2 or nothing: recovery failed. If all dimensions are already covered, exit to synthesis. Otherwise, move to the next unreviewed dimension.
+
+---
+
+### Expansive Depth Frontier (opt-in)
+
+Under `--depth-mode=expansive` the loop keeps a frontier of sub-target nodes beside the review target. The flag writes `antiConvergence.depthMode: "expansive"` and the caps in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands, and `maxFrontierNodes`, set to `maxIterations` at config creation. A run without the flag keeps the default path and runs exactly as before, and both the mode and the caps are locked against the optimizer.
+
+`step_frontier_seed` decomposes the review target into depth-1 sub-target nodes before iteration 1, through `runtime/scripts/frontier-admit.cjs seed --target review`. On a plain run it sits in `phase_init` after `step_create_config`; on a fan-out run it runs before `step_fanout_spawn`. A merge that carries no diff of its own is pruned `merge-no-own-diff` and an index rebuild `generated-artifact`, because neither is reviewable work.
+
+`step_read_state` reads `active_frontier_node` from `registry.frontier.activeNodeId` and sets `next_dimension` to that node's next uncovered dimension, so the iteration reviews depth the node has not spent yet. `step_frontier_activate` marks the node `active` before the dispatch, and the prompt pack's `{frontier_block}` names the node; a leaf proposes `frontier_proposal` rows only when its block is non-empty.
+
+`step_frontier_admit` runs before the reducer and applies six checks in order: relevance, dedupe, depth, fan-out, budget, cycle. Relevance includes a node's scope sitting inside a file-list review target. The first failure prunes the proposal under that check's name. A review run has no inbox, so the store alone queues an admitted node, and `runtime/scripts/frontier-admit.cjs --target review` is its only writer.
+
+Next Focus reads, in precedence order: blocked-stop recovery, the pivot, the active frontier node, the leaf's `nextFocus`, then the first uncovered dimension. The `frontierOpen` veto holds the loop at CONTINUE while a node stays open, and never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the review floor. Stuck recovery closes the active node `exhausted` with reason `stuck` before recovery continues.
+
+On a fan-out run the depth-1 nodes are dealt round-robin in node-id order, `frontier_scope:` binds each lineage's node ids beside `review_focus:` in its prompt, and the partition is recorded in `orchestration-summary.json`. Each lineage's store is written before it spawns, the merge returns a merged `frontier`, and a partition guard names any dealt node no lineage reports. A node needs one iteration per configured dimension, so 50% of each lineage's `maxIterations` should reach `ceil(nodes / lineages) * dimensions`; below that the depth-1 band cannot fund the nodes it was dealt.
 
 ---
 

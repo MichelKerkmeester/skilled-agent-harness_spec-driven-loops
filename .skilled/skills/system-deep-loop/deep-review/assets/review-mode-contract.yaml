@@ -173,6 +173,22 @@ contract:
       noProgressThreshold: 0.05
       compositeStopScore: 0.60
 
+    # Opt-in frontier growth. An absent flag keeps every threshold above and
+    # grows no frontier, so a default run renders the same bytes as before.
+    depthMode:
+      flag: "--depth-mode=default|expansive"
+      default: default
+      description: "expansive keeps a review stop candidate at CONTINUE while an open or active frontier node remains, and never outranks the iteration cap, stuck recovery, pause, --convergence-mode=off, --stop-policy=max-iterations or the review floor."
+      caps:
+        maxDepth: 3
+        maxChildrenPerNode: 6
+        budgetSplit:
+          depth1: 0.5
+          depth2: 0.35
+          depth3: 0.15
+        # Inherited from maxIterations at config creation rather than fixed here.
+        maxFrontierNodes: maxIterations
+
   lifecycleModes:
     - id: new
       description: Create a brand-new review lineage with generation 1 and no parent session.

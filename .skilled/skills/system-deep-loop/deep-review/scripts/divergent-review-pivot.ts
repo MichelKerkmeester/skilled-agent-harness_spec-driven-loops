@@ -198,6 +198,16 @@ function ledgerEvidence(row: JsonRecord): string[] {
   ])];
 }
 
+// The frontier queue only exists under the expansive depth mode, so a run that
+// never asked for it projects no nodes and every frontier-aware branch below
+// stays on its default path.
+function expansiveFrontierNodes(config: JsonRecord, registry: JsonRecord): JsonRecord[] {
+  const antiConvergence = isRecord(config.antiConvergence) ? config.antiConvergence : {};
+  if (antiConvergence.depthMode !== 'expansive') return [];
+  const frontier = isRecord(registry.frontier) ? registry.frontier : {};
+  return Array.isArray(frontier.nodes) ? frontier.nodes.filter(isRecord) : [];
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 3. CANDIDATE GENERATION
 // ───────────────────────────────────────────────────────────────────
@@ -283,6 +293,26 @@ function buildCandidateSeeds(
       focus: `Read-only re-examine the configured ${protocol} traceability protocol and report unresolved drift without changing the review target.`,
       evidenceRefs: refs.length ? refs : [`deep-review-findings-registry.json#traceability-result-${index + 1}`],
       relevanceRationale: 'The reducer-owned traceability rollup does not record this configured protocol as passing or not applicable.',
+      scopeGrounded: true,
+    });
+  });
+
+  // A frontier node the run closed without answering is review depth it already
+  // paid for, and revisiting that sub-target is read-only work inside the same
+  // configured target, so it seeds a fresh direction instead of being dropped.
+  expansiveFrontierNodes(config, registry).forEach((node) => {
+    const status = normalizeText(node.status);
+    if (status !== 'exhausted' && status !== 'blocked') return;
+    const nodeId = normalizeText(node.nodeId);
+    const scope = (Array.isArray(node.scope)
+      ? readStringList(node.scope).join(', ')
+      : normalizeText(node.scope)) || 'unscoped';
+    add({
+      source: 'frontier-unanswered',
+      title: `Revisit ${status} frontier node ${nodeId}`,
+      focus: `Read-only review of the ${status} frontier sub-target ${nodeId} (${scope}) and report findings without expanding the review target.`,
+      evidenceRefs: [`frontier-nodes.jsonl#${nodeId}`],
+      relevanceRationale: `The frontier closed this sub-target ${status} without covering every configured dimension.`,
       scopeGrounded: true,
     });
   });

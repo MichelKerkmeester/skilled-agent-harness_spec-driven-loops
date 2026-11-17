@@ -9,7 +9,7 @@ trigger_phrases:
   - "review loop troubleshooting"
 importance_tier: normal
 contextType: general
-version: 1.11.5.0
+version: 1.11.6.0
 ---
 
 # Deep Review Quick Reference
@@ -45,6 +45,7 @@ Use this quick reference when you need the command shape, artifact names, conver
 |-----------|---------|-------------|
 | `--max-iterations` | 7 | Maximum review iterations |
 | `--convergence` | 0.10 | Base sensitivity for review convergence |
+| `--depth-mode` | default | `expansive` seeds depth-1 sub-target nodes, reviews the active node's next uncovered dimension, and vetoes a stop while nodes stay open |
 | `--stop-policy` | convergence | Use `max-iterations` when convergence must not end the run before the iteration ceiling |
 | `--spec-folder` | auto | Target spec folder path |
 | `--restart` | off | Archive the current review packet and start a fresh lineage |
@@ -160,6 +161,8 @@ Review mode stores its packet under the resolved local review path rooted at `{s
 **Key defaults:** `maxIterations=7`, `convergenceThreshold=0.10`, `rollingStopThreshold=0.08`, `noProgressThreshold=0.05`, `stuckThreshold=2`, `minStabilizationPasses=1`
 
 **P0 override:** Any new P0 finding sets `newFindingsRatio >= 0.50`, blocking convergence.
+
+**Frontier veto:** Under `--depth-mode=expansive` an open or active frontier node turns a stop candidate into `CONTINUE` with reasonDetail `frontierOpen`. It never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the review floor.
 
 ---
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "composite convergence vote"
 importance_tier: important
 contextType: implementation
-version: 1.11.8.0
+version: 1.11.9.0
 ---
 
 # Deep Review Convergence
@@ -99,6 +99,12 @@ The shared convergence runtime accepts four values. Review legality, security ga
 | `off` | Is accepted and persisted, but the shipped review YAML has no `off` decision branch; review therefore follows the same legal-stop and synthesis path as `default`. Use `stopPolicy: "max-iterations"` when convergence must remain telemetry-only until the iteration ceiling. |
 | `sliding-window` | Is accepted and persisted, but windowed graph-novelty telemetry is research-only in the shared runtime; review therefore retains its ordinary full-history signals, legal-stop gates, and synthesis path. |
 | `divergent` | After all review gates pass, translates the eligible `all_dimensions_clean` STOP into a read-only three-seat direction-selection pivot and continues with the selected review direction. |
+
+#### Expansive Depth Mode
+
+`--depth-mode=expansive` grows a depth-capped frontier of sub-target nodes beside the review target. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands, and `maxFrontierNodes`, which is set to `maxIterations` when the config is created. Both the mode and the block are locked against the optimizer. An absent flag means `default`, which runs exactly as before.
+
+After the review floor, an expansive run that still holds an open or active node turns a stop candidate into `CONTINUE` with reasonDetail `frontierOpen`, whichever candidate it was, `all_dimensions_clean` or a composite convergence vote. The veto never creates a stop of its own and never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the `minIterations` floor. Under stuck recovery the handler closes the active node as `exhausted` with reason `stuck`, so a node the run cannot fund stops holding the veto open.
 
 #### Divergent Pivot Contract
 
@@ -596,6 +602,7 @@ The following fields are runtime contracts and MUST NOT be modified by the optim
 
 - `stopReason` enum values and semantics
 - `blocked_stop` event structure and gate names
+- Depth mode (`antiConvergence.depthMode`) and the `expansiveDepth` caps
 - Lineage fields (`sessionId`, `lineageMode`, `generation`)
 - Reducer configuration and file protection policies
 - Review dimensions (`reviewDimensions`) and product mode (`mode`)

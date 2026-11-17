@@ -9,7 +9,7 @@ trigger_phrases:
   - "review iteration file structure"
 importance_tier: important
 contextType: implementation
-version: 1.11.3.0
+version: 1.11.4.0
 ---
 
 # Deep Review State Format
@@ -293,6 +293,14 @@ When JSONL parses cleanly, `corruptionWarnings: []`.
 - **Missing machine-owned anchors**: `replaceAnchorSection()` throws `Error('Missing machine-owned anchor "<id>" in deep-review strategy file.')` when the strategy file is present but lacks one of the required anchors. Pass `--create-missing-anchors` (or `createMissingAnchors:true`) to bootstrap empty strategy files by appending the missing anchor blocks.
 - **Dashboard surfaces**: `CORRUPTION WARNINGS` section lists detected lines. `BLOCKED STOPS` section lists `blockedStopHistory` entries. `GRAPH CONVERGENCE` section reports `graphConvergenceScore` / `graphDecision` / `graphBlockers`.
 - **Strategy next-focus override**: When the latest `blocked_stop` event timestamp is newer than the latest iteration timestamp, the reducer rewrites the strategy `next-focus` anchor to surface the blocking gates and recovery hint so operators see the blocker before choosing the next iteration direction.
+
+### Frontier Node Store (expansive depth only)
+
+`review/frontier-nodes.jsonl` is the node-status store for a run started with `--depth-mode=expansive`; a default run never creates it. Rows are append-only and carry `{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}`. The last row per `nodeId` wins, so a status change is one more row rather than an edit, and `runtime/scripts/frontier-admit.cjs --target review` is its only writer, for seed, admit and close.
+
+The reducer projects the store as `registry.frontier`: `nodes`, each with its `coveredDimensions`, `nextDimension` and `visits`; `stats`; `budget`; `activeNodeId`; and `activeNextDimension`. A node is `answered` once every configured dimension is covered for it. An iteration counts toward a node by its `frontierNodeId`, by the `Frontier node <id>` focus marker anywhere in the focus, or by the store's `active` row for that iteration.
+
+An open node is a `searchDebt` entry with `bugClass: frontier:<id>`, since the depth it stands for is unspent. An answered node becomes `candidateCoverage` `covered`; a pruned or abstained node becomes `ruledOut`; an exhausted or blocked node stays frontier-only, because filing it as debt would report work the run may no longer do.
 
 ---
 
