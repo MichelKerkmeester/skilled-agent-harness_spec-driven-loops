@@ -24,6 +24,14 @@ const { reviewUnfinishedCoreProtocols } = require('./convergence.cjs');
 const REQUIRED_DIMENSIONS = ['correctness', 'security', 'traceability', 'maintainability'];
 const SEVERITY_KEYS = ['P0', 'P1', 'P2'];
 const SEVERITY_WEIGHTS = { P0: 10.0, P1: 5.0, P2: 1.0 };
+// The frontier lifecycle the node store records, in the order the projection
+// reports it. A status outside this list is still carried, just not counted.
+const FRONTIER_STATUSES = ['open', 'active', 'answered', 'blocked', 'exhausted', 'abstained', 'pruned'];
+// A record with one of these statuses proves nothing about the node it names:
+// the attempt never produced evidence, so it cannot cover a dimension or spend
+// budget share.
+const FRONTIER_FAILED_STATUSES = new Set(['error', 'failed', 'failure', 'timeout']);
+
 // An extension continues a completed run in place, so its lineage mode stays live.
 const LIVE_LINEAGE_MODES = new Set(['new', 'resume', 'restart', 'completed-continue']);
 
@@ -1891,6 +1899,210 @@ function buildSearchLedgerState(iterationRecords) {
   };
 }
 
+// The frontier node store is append-only and the last row per node wins, so a
+// reduce rebuilds the same node list every time it reads the same file. The
+// history keeps every valid row in file order: a status a node has since left
+// still has to attribute the iterations it spent there.
+function readReviewFrontierStore(storePath) {
+  if (!fs.existsSync(storePath)) return { nodes: [], history: [] };
+  const byId = new Map();
+  const history = [];
+  for (const line of readUtf8(storePath).split('\n')) {
+    if (!line.trim()) continue;
+    let row;
+    try { row = JSON.parse(line); } catch { continue; }
+    if (!row || typeof row !== 'object' || typeof row.nodeId !== 'string' || !row.nodeId) continue;
+    byId.set(row.nodeId, row);
+    history.push(row);
+  }
+  return {
+    nodes: [...byId.values()].sort((left, right) => left.nodeId.localeCompare(right.nodeId)),
+    history,
+  };
+}
+
+// A focus carries the node it was dispatched to as a marker phrase, and a bare
+// substring match would let a node claim a longer id that starts with its own,
+// so the id is bounded on both sides.
+function frontierMarkerPattern(nodeId) {
+  return new RegExp(`(?:^|[^\\w-])Frontier node ${escapeRegExp(String(nodeId))}(?![\\w-])`);
+}
+
+// A leaf can reword a focus before it reaches the state log, so the marker alone
+// cannot attribute every visit. A store row that marked the node active on an
+// iteration's number claims that iteration's record either way.
+function reviewRecordsForNode(nodeId, history, iterationRecords) {
+  const marker = frontierMarkerPattern(nodeId);
+  const activeIterations = new Set(
+    (Array.isArray(history) ? history : [])
+      .filter((row) => row && row.nodeId === nodeId && row.status === 'active')
+      .map((row) => getIterationRun(row))
+      .filter((iteration) => iteration !== null),
+  );
+  return (Array.isArray(iterationRecords) ? iterationRecords : []).filter((record) => {
+    if (!record || record.type !== 'iteration') return false;
+    if (record.frontierNodeId === nodeId) return true;
+    if (typeof record.focus === 'string' && marker.test(record.focus)) return true;
+    const iteration = getIterationRun(record);
+    return iteration !== null && activeIterations.has(iteration);
+  });
+}
+
+// Only an attempt that produced evidence counts as a visit: an errored or timed
+// out record is retried work, not depth the node has already spent.
+function reviewFrontierVisits(nodeId, history, iterationRecords) {
+  return reviewRecordsForNode(nodeId, history, iterationRecords)
+    .filter((record) => !FRONTIER_FAILED_STATUSES.has(String(record.status || '').toLowerCase()))
+    .length;
+}
+
+// Depth bands share maxIterations 50/35/15 by default (depths 0-1, 2, 3). A band's
+// unspent share rolls down to the next band only once the band has no open node,
+// and never up. When a band's spend reaches its share, its open nodes close as
+// exhausted with reason budget, so the run stops waiting on work it cannot fund.
+function applyReviewFrontierBudget(nodes, history, iterationRecords, maxIterations, budgetSplit) {
+  const split = budgetSplit && typeof budgetSplit === 'object' ? budgetSplit : {};
+  const shares = [
+    Number.isFinite(split.depth1) ? split.depth1 : 0.5,
+    Number.isFinite(split.depth2) ? split.depth2 : 0.35,
+    Number.isFinite(split.depth3) ? split.depth3 : 0.15,
+  ];
+  const cap = Number.isFinite(maxIterations) && maxIterations > 0 ? maxIterations : 10;
+  const bandOf = (depth) => (depth <= 1 ? 0 : depth === 2 ? 1 : 2);
+  const spent = [0, 0, 0];
+  for (const node of nodes) {
+    spent[bandOf(node.depth)] += reviewFrontierVisits(node.nodeId, history, iterationRecords);
+  }
+  let result = nodes.map((node) => ({ ...node }));
+  const budget = {};
+  let carry = 0;
+  for (let band = 0; band < 3; band += 1) {
+    const allotted = cap * shares[band] + carry;
+    if (spent[band] >= allotted) {
+      result = result.map((node) => (bandOf(node.depth) === band && (node.status === 'open' || node.status === 'active')
+        ? { ...node, status: 'exhausted', reason: 'budget' }
+        : node));
+    }
+    const bandOpen = result.some((node) => bandOf(node.depth) === band && (node.status === 'open' || node.status === 'active'));
+    carry = bandOpen ? 0 : Math.max(0, allotted - spent[band]);
+    budget[`depth${band + 1}`] = { allotted: Math.round(allotted * 100) / 100, spent: spent[band] };
+  }
+  return { nodes: result, budget };
+}
+
+// A node is answered once every dimension in the review's universe has evidence
+// behind it. That status is derived on every reduce instead of written back, so
+// the store keeps only the lifecycle its writer owns and the projection stays a
+// pure function of the rows it read.
+function buildReviewFrontier(storeData, iterationRecords, config) {
+  const universe = buildDimensionUniverse(config);
+  const history = Array.isArray(storeData?.history) ? storeData.history : [];
+  const storedNodes = Array.isArray(storeData?.nodes) ? storeData.nodes : [];
+  const nodes = storedNodes.map((node) => {
+    const nodeId = node.nodeId;
+    const records = reviewRecordsForNode(nodeId, history, iterationRecords)
+      .filter((record) => !FRONTIER_FAILED_STATUSES.has(String(record.status || '').toLowerCase()));
+    const covered = new Set();
+    for (const record of records) {
+      if (!Array.isArray(record.dimensions)) continue;
+      for (const dimension of record.dimensions) {
+        const name = String(dimension).trim().toLowerCase();
+        if (name) covered.add(name);
+      }
+    }
+    const coveredDimensions = universe.filter((dimension) => covered.has(dimension));
+    const stillOpen = node.status === 'open' || node.status === 'active';
+    const status = stillOpen && coveredDimensions.length === universe.length ? 'answered' : node.status;
+    return {
+      nodeId,
+      parentId: node.parentId ?? null,
+      depth: node.depth,
+      scope: node.scope ?? null,
+      question: node.question ?? null,
+      status,
+      reason: status === node.status ? (node.reason ?? null) : null,
+      iteration: node.iteration ?? null,
+      coveredDimensions,
+      nextDimension: universe.find((dimension) => !covered.has(dimension)) ?? null,
+      visits: records.length,
+    };
+  });
+  const budgeted = applyReviewFrontierBudget(
+    nodes,
+    history,
+    iterationRecords,
+    Number(config?.maxIterations),
+    config?.expansiveDepth?.budgetSplit,
+  );
+  const projected = budgeted.nodes;
+  const stats = { total: projected.length };
+  for (const status of FRONTIER_STATUSES) stats[status] = projected.filter((node) => node.status === status).length;
+  // Breadth first: the shallowest node, then one not yet visited, then the oldest.
+  const chosen = projected
+    .filter((node) => node.status === 'open' || node.status === 'active')
+    .sort((left, right) => ((left.depth ?? 0) - (right.depth ?? 0))
+      || (left.visits - right.visits)
+      || ((left.iteration ?? 0) - (right.iteration ?? 0))
+      || left.nodeId.localeCompare(right.nodeId))[0] ?? null;
+  return {
+    nodes: projected,
+    stats,
+    budget: budgeted.budget,
+    activeNodeId: chosen ? chosen.nodeId : null,
+    activeNextDimension: chosen ? chosen.nextDimension : null,
+  };
+}
+
+function frontierScopeRefs(scope) {
+  if (Array.isArray(scope)) return asStringList(scope);
+  const single = normalizeText(scope);
+  return single ? [single] : [];
+}
+
+// A node the store still holds open is search depth the run has not spent yet,
+// so it belongs in the same debt ledger a leaf's own deferral lands in. Exhausted
+// and blocked nodes stay frontier-only: their question is closed, and filing them
+// as debt would report work the run is no longer allowed to do.
+function mergeFrontierIntoSearchLedger(searchLedgerState, frontier) {
+  const candidateCoverage = searchLedgerState.candidateCoverage;
+  const debtById = new Map(
+    (Array.isArray(searchLedgerState.searchDebt) ? searchLedgerState.searchDebt : [])
+      .map((entry) => [entry.id, entry]),
+  );
+  for (const node of frontier.nodes) {
+    const bugClass = `frontier:${node.nodeId}`;
+    const iteration = node.iteration ?? 0;
+    if (node.status === 'open' || node.status === 'active') {
+      const id = `frontier-${node.nodeId}`;
+      debtById.set(id, {
+        id,
+        iteration,
+        targetRefs: frontierScopeRefs(node.scope),
+        bugClass,
+        disposition: 'deferred',
+        rationale: `Frontier node ${node.nodeId} is still open: ${node.question}`,
+        evidenceRefs: [`frontier-nodes.jsonl#${node.nodeId}`],
+        reason: 'frontier node open',
+        frontier: true,
+      });
+      addCandidateClass(candidateCoverage, bugClass, 'deferred', iteration);
+    } else if (node.status === 'answered') {
+      addCandidateClass(candidateCoverage, bugClass, 'covered', iteration);
+    } else if (node.status === 'pruned' || node.status === 'abstained') {
+      addCandidateClass(candidateCoverage, bugClass, 'ruled_out', iteration);
+    }
+  }
+  searchLedgerState.searchDebt = [...debtById.values()]
+    .sort((left, right) => left.iteration - right.iteration || left.id.localeCompare(right.id));
+  for (const key of ['covered', 'ruledOut', 'deferred', 'blocked']) {
+    candidateCoverage[key].sort((left, right) => left.localeCompare(right));
+  }
+  for (const state of Object.values(candidateCoverage.byBugClass)) {
+    state.iterations.sort((left, right) => Number(left) - Number(right));
+  }
+  return searchLedgerState;
+}
+
 /**
  * Enforce record validation at the field level. parseJsonlDetailed only guards
  * JSON syntax; these warnings surface schema drift without changing the
@@ -1946,7 +2158,7 @@ function validateReviewRecordFields(records) {
   return warnings;
 }
 
-function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, config, corruptionWarnings = [], deltaRecords = [], eventRecords = iterationRecords) {
+function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, config, corruptionWarnings = [], deltaRecords = [], eventRecords = iterationRecords, frontierStore = null) {
   const terminalStop = buildTerminalStopState(iterationRecords);
   const lineage = buildLineageState(config, iterationRecords, terminalStop);
   const dimensionUniverse = buildDimensionUniverse(config);
@@ -1958,6 +2170,17 @@ function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, con
   const blockedStopHistory = buildBlockedStopHistory(iterationRecords);
   const terminalGates = buildTerminalGates(iterationRecords);
   const searchLedgerState = buildSearchLedgerState(iterationRecords);
+  // The frontier store is this run's own queue, so its projection is opt-in with
+  // the depth mode that fills it: a default run never reads the store and its
+  // registry keeps the shape it had before the mode existed.
+  const frontier = config?.antiConvergence?.depthMode === 'expansive'
+    ? buildReviewFrontier(
+      frontierStore && typeof frontierStore === 'object' ? frontierStore : { nodes: [], history: [] },
+      iterationRecords,
+      config,
+    )
+    : null;
+  if (frontier) mergeFrontierIntoSearchLedger(searchLedgerState, frontier);
   const traceability = buildTraceabilityRollup(iterationRecords);
   traceability.unfinishedCoreProtocols = reviewUnfinishedCoreProtocols(config, { traceability });
   const divergence = buildPivotState(eventRecords);
@@ -2014,6 +2237,7 @@ function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, con
     ruledOutCandidates: searchLedgerState.ruledOutCandidates,
     cleanSearchProof: searchLedgerState.cleanSearchProof,
     searchCoverage: searchLedgerState.searchCoverage,
+    ...(frontier ? { frontier } : {}),
     traceability,
     divergence,
     fieldWarnings,
@@ -2607,6 +2831,9 @@ function reduceReviewState(specFolder, options = {}) {
     allCorruptionWarnings,
     flattenedDeltaRecords,
     records.concat(pivotEvents),
+    config?.antiConvergence?.depthMode === 'expansive'
+      ? readReviewFrontierStore(path.join(reviewDir, 'frontier-nodes.jsonl'))
+      : null,
   );
   let strategy = strategyContent;
   let strategyWarning = null;
@@ -2788,10 +3015,14 @@ module.exports = {
   SEVERITY_KEYS,
   SEVERITY_WEIGHTS,
   buildGraphConvergenceRollup,
+  buildReviewFrontier,
+  frontierMarkerPattern,
   normalizeTraceabilityChecks,
   parseIterationFile,
   parseJsonl,
   parseJsonlDetailed,
+  readReviewFrontierStore,
+  reviewRecordsForNode,
   parseFindingLine,
   replaceAnchorSection,
   upsertHeadingSectionBefore,

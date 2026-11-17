@@ -17,6 +17,30 @@ import { join } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
+// The expansive projection the review reducer derives from the frontier node
+// store. Only the fields the assertions read are modelled.
+type FrontierNode = {
+  nodeId: string;
+  parentId: string | null;
+  depth: number;
+  scope: string[] | string | null;
+  question: string | null;
+  status: string;
+  reason: string | null;
+  iteration: number | null;
+  coveredDimensions: string[];
+  nextDimension: string | null;
+  visits: number;
+};
+
+type FrontierProjection = {
+  nodes: FrontierNode[];
+  stats: Record<string, number>;
+  budget: Record<string, { allotted: number; spent: number }>;
+  activeNodeId: string | null;
+  activeNextDimension: string | null;
+};
+
 const nodeRequire = createRequire(import.meta.url);
 const { reduceReviewState } = nodeRequire('../../scripts/reduce-state.cjs') as {
   reduceReviewState: (
@@ -46,6 +70,25 @@ const { reduceReviewState } = nodeRequire('../../scripts/reduce-state.cjs') as {
       } | null;
       continuedFromRun: number | null;
       lineageMode: string;
+      candidateCoverage: {
+        covered: string[];
+        ruledOut: string[];
+        deferred: string[];
+        blocked: string[];
+        byBugClass: Record<string, { covered: boolean; ruledOut: boolean; deferred: boolean; blocked: boolean; iterations: number[] }>;
+      };
+      searchDebt: {
+        id: string;
+        iteration: number;
+        targetRefs: string[];
+        bugClass: string;
+        disposition: string;
+        rationale: string;
+        evidenceRefs: string[];
+        reason?: string;
+        frontier?: boolean;
+      }[];
+      frontier?: FrontierProjection;
     };
     dashboard: string;
   };
@@ -804,5 +847,172 @@ describe('reduceReviewState: configured custom dimensions', () => {
     const coverage = asCoverageRegistry(result).dimensionCoverage;
 
     expect(Object.keys(coverage)).toEqual(['correctness', 'security', 'traceability', 'maintainability']);
+  });
+});
+
+describe('reduceReviewState expansive frontier', () => {
+  // The expansive depth mode is the only thing that makes the reducer read the
+  // node store, so every case here writes the mode into the config.
+  function writeExpansiveConfig(reviewDir: string) {
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      maxIterations: 10,
+      reviewTarget: 'expansive-frontier',
+      reviewDimensions: ['correctness', 'security'],
+      antiConvergence: { depthMode: 'expansive' },
+    }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), '');
+  }
+
+  function writeStore(reviewDir: string, rows: Record<string, unknown>[]) {
+    writeFileSync(
+      join(reviewDir, 'frontier-nodes.jsonl'),
+      `${rows.map((row) => JSON.stringify(row)).join('\n')}\n`,
+    );
+  }
+
+  function nodeRow(overrides: Record<string, unknown>): Record<string, unknown> {
+    return {
+      parentId: null,
+      depth: 1,
+      scope: ['src'],
+      question: 'Does the stop path keep its reason?',
+      status: 'open',
+      reason: null,
+      iteration: 1,
+      ...overrides,
+    };
+  }
+
+  function iterationRecord(iteration: number, focus: string, dimensions: string[], extra: Record<string, unknown> = {}) {
+    return JSON.stringify({
+      type: 'iteration',
+      iteration,
+      run: iteration,
+      status: 'complete',
+      focus,
+      dimensions,
+      newFindingsRatio: 0.5,
+      findingsSummary: { P0: 0, P1: 0, P2: 0 },
+      ...extra,
+    });
+  }
+
+  // A missing projection would otherwise surface as a confusing `undefined`
+  // property read in every assertion below.
+  function readFrontier(result: ReturnType<typeof reduceReviewState>): FrontierProjection {
+    const frontier = result.registry.frontier;
+    if (!frontier) throw new Error('expected the expansive depth mode to project a frontier');
+    return frontier;
+  }
+
+  it('projects one open node into the frontier and one deferred search-debt entry', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeStore(reviewDir, [nodeRow({ nodeId: 'F-1-001' })]);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const frontier = readFrontier(result);
+
+    expect(frontier.nodes).toHaveLength(1);
+    expect(frontier.activeNodeId).toBe('F-1-001');
+    expect(frontier.activeNextDimension).toBe('correctness');
+    expect(result.registry.searchDebt).toHaveLength(1);
+    expect(result.registry.searchDebt[0]).toMatchObject({
+      id: 'frontier-F-1-001',
+      bugClass: 'frontier:F-1-001',
+      disposition: 'deferred',
+      reason: 'frontier node open',
+      frontier: true,
+      targetRefs: ['src'],
+      evidenceRefs: ['frontier-nodes.jsonl#F-1-001'],
+    });
+    expect(result.registry.candidateCoverage.deferred).toEqual(['frontier:F-1-001']);
+    expect(result.registry.candidateCoverage.byBugClass['frontier:F-1-001'].deferred).toBe(true);
+  });
+
+  it('reduces the same store to byte-identical frontier and search debt', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    // Rows are written out of nodeId order so the projection's own ordering, not
+    // the file's, is what the two runs have to agree on.
+    writeStore(reviewDir, [
+      nodeRow({ nodeId: 'F-1-002', depth: 2, iteration: 2, scope: ['src', 'lib'] }),
+      nodeRow({ nodeId: 'F-1-001' }),
+    ]);
+
+    const first = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const second = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+
+    expect(JSON.stringify(second.registry.frontier)).toBe(JSON.stringify(first.registry.frontier));
+    expect(JSON.stringify(second.registry.searchDebt)).toBe(JSON.stringify(first.registry.searchDebt));
+  });
+
+  it('closes an exhausted node and derives an answered one, reporting neither as debt', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeStore(reviewDir, [
+      nodeRow({ nodeId: 'F-1-001', status: 'exhausted', reason: 'budget', iteration: 2 }),
+      nodeRow({ nodeId: 'F-1-002', question: 'Is the parser covered on all sides?' }),
+    ]);
+    // The review universe is the canonical four plus any configured extras, so
+    // an answered node has to carry evidence for all four of them.
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${[
+      iterationRecord(1, 'parser pass one', ['correctness', 'security'], { frontierNodeId: 'F-1-002' }),
+      iterationRecord(2, 'parser pass two', ['traceability', 'maintainability'], { frontierNodeId: 'F-1-002' }),
+    ].join('\n')}\n`);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const frontier = readFrontier(result);
+
+    expect(frontier.nodes.map((node) => [node.nodeId, node.status])).toEqual([
+      ['F-1-001', 'exhausted'],
+      ['F-1-002', 'answered'],
+    ]);
+    expect(frontier.nodes[1].coveredDimensions).toEqual(['correctness', 'security', 'traceability', 'maintainability']);
+    expect(result.registry.searchDebt.filter((entry) => entry.frontier)).toEqual([]);
+    expect(result.registry.candidateCoverage.deferred.filter((bugClass) => bugClass.startsWith('frontier:'))).toEqual([]);
+    expect(result.registry.candidateCoverage.blocked.filter((bugClass) => bugClass.startsWith('frontier:'))).toEqual([]);
+    expect(result.registry.candidateCoverage.covered).toContain('frontier:F-1-002');
+  });
+
+  it('attributes a reworded focus through the store and keeps a longer node id out', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    // The node was seeded open, then marked active on iteration 2 — that row is
+    // what attributes the reworded focus, which never echoed the marker.
+    writeStore(reviewDir, [
+      nodeRow({ nodeId: 'F-1-001', iteration: 1 }),
+      nodeRow({ nodeId: 'F-1-001', status: 'active', iteration: 2 }),
+    ]);
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${[
+      iterationRecord(2, 'went over the parser edge cases', ['correctness']),
+      iterationRecord(3, 'Review of Frontier node F-1-001: security', ['security']),
+      iterationRecord(4, 'Frontier node F-1-0012 maintainability sweep', ['maintainability']),
+    ].join('\n')}\n`);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const [node] = readFrontier(result).nodes;
+
+    expect(node.status).toBe('active');
+    expect(node.coveredDimensions).toEqual(['correctness', 'security']);
+    expect(node.nextDimension).toBe('traceability');
+    expect(node.visits).toBe(2);
+  });
+
+  it('leaves the frontier out of a default run that happens to carry a store file', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      maxIterations: 10,
+      reviewTarget: 'default-frontier-absent',
+      reviewDimensions: ['correctness', 'security'],
+    }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), '');
+    writeStore(reviewDir, [nodeRow({ nodeId: 'F-1-001' })]);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+
+    expect('frontier' in result.registry).toBe(false);
+    expect(result.registry.searchDebt).toEqual([]);
+    expect(result.registry.candidateCoverage.deferred).toEqual([]);
   });
 });

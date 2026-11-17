@@ -1181,13 +1181,16 @@ function buildStopDecision(input) {
     return emit('CONTINUE', null, 'minIterationsNotReached', gatesAt(false), []);
   }
 
-  // An expansive run that still holds open frontier nodes turns a soft stop
+  // An expansive run that still holds open frontier nodes turns a stop
   // candidate into another iteration. It never creates a stop, and everything
   // above it (cap, failures, stuck recovery, off, max-iterations, the floor)
-  // still wins.
+  // still wins. A review clean candidate is a hard stop, so keying the veto on
+  // soft candidates alone would leave a review run no way to spend the
+  // iteration its open nodes need.
   const depthFacts = loopType === 'review' ? review : research;
+  const vetoable = loopType === 'review' || !candidate.hardStop;
   if (config.depthMode === 'expansive'
-    && !candidate.hardStop
+    && vetoable
     && Number.isFinite(depthFacts.frontierOpen)
     && depthFacts.frontierOpen > 0) {
     return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);
@@ -1627,6 +1630,9 @@ function stopDecisionReviewFacts(options = {}) {
       ? searchCoverage.graphCoverageMode
       : null,
     fallbackCoveredBugClasses: reviewFallbackCoveredBugClasses(iterationRecords),
+    ...(isPlainObject(registry.frontier) && Array.isArray(registry.frontier.nodes)
+      ? { frontierOpen: registry.frontier.nodes.filter((node) => node?.status === 'open' || node?.status === 'active').length }
+      : {}),
   };
 }
 
