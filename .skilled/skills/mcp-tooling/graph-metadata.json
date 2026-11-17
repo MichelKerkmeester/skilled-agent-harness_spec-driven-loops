@@ -210,7 +210,8 @@
     "approve clickup",
     "clickup readiness check",
     "chrome_devtools_live",
-    "clickup mcp"
+    "clickup mcp",
+    "capture repl evidence"
   ],
   "derived": {
     "trigger_phrases": [
@@ -623,6 +624,7 @@
     "clickup approval",
     "approve clickup",
     "clickup readiness check",
-    "clickup mcp"
+    "clickup mcp",
+    "capture repl evidence"
   ]
 }

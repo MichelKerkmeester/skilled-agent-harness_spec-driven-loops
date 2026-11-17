@@ -48,6 +48,8 @@
       ".skilled/skills/mcp-tooling/mcp-obsidian/examples/mcp-roundtrip.sh",
       ".skilled/skills/mcp-tooling/hub-router.json",
       ".skilled/skills/mcp-tooling/mode-registry.json",
+      ".skilled/skills/mcp-tooling/ROUTER.md",
+      ".skilled/skills/mcp-tooling/graph-metadata.json",
       ".skilled/bin/lib/compiled-routing/013-live-activation/activation/mcp-tooling/manifest.json",
       "scratch/repin-check.sh",
       ".skilled/bin/compiled-route.cjs",
@@ -121,6 +123,18 @@
         "source": "derived"
       },
       {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-tooling/graph-metadata.json",
+        "source": "derived"
+      },
+      {
         "name": "manifest.json",
         "kind": "config",
         "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/mcp-tooling/manifest.json",
@@ -185,23 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Four",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The vendoring project keeps overlays for Skilled files that are wrong upstream: a stale hub list, two template sentences, an example script that misses the env names `.env.example` declares, and a bare `health` keyword that routes backend health checks to Obsidian",
     "created_at": "2026-11-17T08:23:07Z",
-    "last_save_at": "2026-11-17T08:26:39.070Z",
+    "last_save_at": "2026-11-17T08:38:39.761Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed1e8e380b050d5414f874c00ec583589f80fbcdb3da3abb3dab6aa9c5bf01dd",
+    "source_fingerprint": "sha256:6d41d44563c6ac67b9aeefc8e0e8837206d96092c52276c9a45de18f09d9d810",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "66afcdbbc52af9d882df7fb089ef96acb4fdbfc9e399c2e94e248edbc39e83c2",
+      "spec.md": "68a9f74ac5127bffae31439156e1612a798720a2de3eb2dca2d705fb4a96eef3",
       "plan.md": "dfff9c90dcdb85ae56fb22470394a35f46d8f1ba9ac06f6d3bee9955666693d4",
-      "tasks.md": "79e163aa803a6b5eb5a31434844c3ab050aade14a99a4393eadc0555c772eaf0",
-      "implementation-summary.md": "698a465b9f2d44ca16570eccc298e1a832f11f218d71028d6a653aa80f9280be"
+      "tasks.md": "bea7c48586638ec105530a55f0049f59142d1d0e32a62f76c5657df98404c844",
+      "implementation-summary.md": "42099ad48f74459866c6f4272181df38de7dd69b7fca01102c2ffe9e52b17101"
     },
     "last_active_at": null
   }

@@ -68,6 +68,8 @@ The re-pin report was not a copy defect. The five dist-freshness links were alre
 | `.skilled/skills/mcp-tooling/mcp-obsidian/examples/mcp-roundtrip.sh` | Modified | Falls back to `obsidian_OBSIDIAN_*` |
 | `.skilled/skills/mcp-tooling/hub-router.json` | Modified | Drops bare `health`, adds two phrases |
 | `.skilled/skills/mcp-tooling/mode-registry.json` | Modified | Drops the `health` alias |
+| `.skilled/skills/mcp-tooling/ROUTER.md` | Modified | Mirrors the keyword change in the prose fallback router |
+| `.skilled/skills/mcp-tooling/graph-metadata.json` | Modified | Carries "capture repl evidence" into stage one |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/mcp-tooling/manifest.json` and its authored copy | Modified | Re-minted to the new policy hash |
 <!-- /ANCHOR:what-built -->
 
@@ -86,6 +88,7 @@ Each claim was checked against the code or history it named before any edit. The
 
 | Decision | Why |
 |----------|-----|
+| Mirror the change in `ROUTER.md` | Without it the prose fallback, used whenever compiled serving is off, still sent bare health prompts to Obsidian |
 | Keep the bare `aside` keyword the project removed | Without it, "run aside on the pricing page", "open aside and log in" and "aside, fill the form" deferred instead of routing to Aside |
 | Make no overlay engine change for item 2 | The engine did what `references/overlays.md` documents, and changing what a re-pin copies or what status reports is the operator's call |
 <!-- /ANCHOR:decisions -->
@@ -107,7 +110,7 @@ Each claim was checked against the code or history it named before any edit. The
 | `node --test .skilled/bin/tests/*.test.cjs` | PASS: 198 tests, 197 pass, 0 fail, 1 skipped |
 | `validate_document.py` on the two Markdown files | PASS: 0 issues each |
 | `bash -n` and `shellcheck` on `mcp-roundtrip.sh` | PASS: both exit 0 |
-| `ci-router-vocabulary-reach.cjs --hub mcp-tooling` | FAIL before and after: one row, "figma mcp" outranked by sk-code, unchanged by this phase |
+| `ci-router-vocabulary-reach.cjs --hub mcp-tooling` | Before the `ROUTER.md` mirror: FAIL with one row, "figma mcp" outranked by sk-code, same as baseline. After it: NOT RUN, every probe returned `probe-error` because the advisor stayed `stale` on a watcher reindex for over three minutes, and `advisor_rebuild` needs `--trusted` |
 | Doctor suite | 1234 tests, 1234 pass, 0 fail before and after |
 <!-- /ANCHOR:verification -->
 

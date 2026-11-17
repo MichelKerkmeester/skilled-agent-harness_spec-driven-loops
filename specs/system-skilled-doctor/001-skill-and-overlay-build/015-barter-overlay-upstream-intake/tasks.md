@@ -48,6 +48,7 @@ contextType: "general"
 - [x] T006 Fall back to the prefixed Obsidian env names (`.skilled/skills/mcp-tooling/mcp-obsidian/examples/mcp-roundtrip.sh`). Verify: `bash -n` and `shellcheck` on the file both exit 0.
 - [x] T007 Drop the bare `health` keyword, add "inspect the dom" and "capture repl evidence" (`.skilled/skills/mcp-tooling/hub-router.json`). Verify: `R --hub mcp-tooling --prompt "inspect the dom of the checkout page"` routes to `mcp-chrome-devtools`.
 - [x] T008 Drop the `health` alias (`.skilled/skills/mcp-tooling/mode-registry.json`). Verify: `parent-skill-check.cjs .skilled/skills/mcp-tooling` prints `OK: parent-skill-check`.
+- [x] T009a Mirror the keyword change and carry the new phrase to stage one (`.skilled/skills/mcp-tooling/ROUTER.md`). Verify: `generate-router-intent-signals.cjs --check --hub mcp-tooling` prints `missing=  0`.
 - [x] T009 Re-mint the activation manifest and its authored copy (`M`). Verify: `compiled-route-guard.cjs` prints every hub fresh.
 <!-- /ANCHOR:phase-2 -->
 
