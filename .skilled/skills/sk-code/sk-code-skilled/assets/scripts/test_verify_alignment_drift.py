@@ -163,6 +163,24 @@ class VerifyAlignmentDriftTests(unittest.TestCase):
             self.assertEqual(1, result.returncode)
             self.assertIn("[SH-SHEBANG] [ERROR]", result.stdout)
 
+    def test_sh_header_declaring_source_usage_skips_strict_mode(self) -> None:
+        # A file whose header says it is sourced must not set strict mode, which would
+        # leak into the caller's shell, wherever the file sits.
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            sourced = root / "bin" / "shim.sh"
+            self.write_file(
+                sourced,
+                "#!/usr/bin/env bash\n# Usage: source /abs/path/bin/shim.sh\necho shim\n",
+            )
+            plain = root / "bin" / "tool.sh"
+            self.write_file(plain, "#!/usr/bin/env bash\n# Usage: tool.sh <arg>\necho tool\n")
+
+            sourced_findings = self.module.check_file(str(sourced))
+            plain_findings = self.module.check_file(str(plain))
+            self.assertFalse(any(item.rule_id == "SH-STRICT-MODE" for item in sourced_findings))
+            self.assertTrue(any(item.rule_id == "SH-STRICT-MODE" for item in plain_findings))
+
     def test_python_sh_shebang_skips_shell_checks(self) -> None:
         # A .sh file with a python3 shebang must produce no SH-SHEBANG or SH-STRICT-MODE findings.
         with tempfile.TemporaryDirectory() as temp_dir:
