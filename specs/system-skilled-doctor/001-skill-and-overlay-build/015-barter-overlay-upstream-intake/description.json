@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake",
+  "description": "Phase 15: barter-overlay-upstream-intake",
+  "keywords": [
+    "phase",
+    "barter-overlay-upstream-intake"
+  ],
+  "lastUpdated": "2026-11-17T08:23:08.601Z",
+  "specId": "015",
+  "folderSlug": "barter-overlay-upstream-intake",
+  "parentChain": [
+    "system-skilled-doctor",
+    "001-skill-and-overlay-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

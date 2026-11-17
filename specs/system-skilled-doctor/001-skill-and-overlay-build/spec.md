@@ -112,6 +112,7 @@ The decided design, its research and the operator's eight rulings are in `resear
 | 12 | 012-fix-barter-022-handover-items-for-doctor-scripts/ | Three items still open from the same vendoring project's first handover: a host hook form in the git setup check, `apply --adopt` under `repin.exclude` and a regenerate step named when it rewrites an owned file | Complete |
 | 13 | 013-fix-review-findings-in-json-entry-set-restore/ | Seven findings from a fresh review of phase 11's set restore: an index restore that wrote the wrong item's value during a re-pin, a re-pin that refused after writing, nested and respelled sets, the no-checkout refusal, the array refusal's advice and a new `cannot-apply` state | Complete |
 | 14 | 014-harden-overlay-engine-from-fable-review/ | Nine items from a read-only Fable 5.2 review of the overlay engine: a pinned-copy cross-check, apply-failure state, status honesty and data safety | Pending |
+| 15 | 015-barter-overlay-upstream-intake/ | Six items from the vendoring project's overlay audit: four upstream file fixes, a bare `health` routing fix, a re-pin report traced to the project's own vendoring, and five operator questions | Complete |
 
 ### Phase Transition Rules
 
@@ -137,6 +138,7 @@ The decided design, its research and the operator's eight rulings are in `resear
 | 011-restore-pinned-value-when-json-entry-set-leaves-overlay | 012-fix-barter-022-handover-items-for-doctor-scripts | None. Phase 12 does not wait on phase 11 | `node --test` on the doctor script tests |
 | 012-fix-barter-022-handover-items-for-doctor-scripts | 013-fix-review-findings-in-json-entry-set-restore | None. Phase 13 fixes a review of phase 11 and does not wait on phase 12 | `node --test` on the doctor script tests |
 | 013-fix-review-findings-in-json-entry-set-restore | 014-harden-overlay-engine-from-fable-review | Phase 13 is on origin/main at `969335a6380` | `node --test` on the doctor script tests |
+| 014-harden-overlay-engine-from-fable-review | 015-barter-overlay-upstream-intake | None. Phase 15 takes a separate handover and does not wait on phase 14 | `node --test` on the doctor script tests |
 <!-- /ANCHOR:phase-map -->
 
 ---
