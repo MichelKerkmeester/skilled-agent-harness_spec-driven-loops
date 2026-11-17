@@ -163,6 +163,55 @@ function canonicalReviewDimensionId(id) {
   return `dimension:${match[1].toLowerCase()}`;
 }
 
+// A research SOURCE node's quality class comes from where the source lives, never
+// from a value the leaf sends, so source diversity rises only when a finding cites
+// sources of genuinely different kinds. `classes` is the frozen vocabulary the
+// coverage-graph query module exports, so no class name is repeated here.
+const DOC_HOST_PREFIXES = ['docs.', 'developer.', 'learn.', 'devdocs.'];
+const DOC_HOSTS = new Set(['developer.mozilla.org', 'nodejs.org', 'typescriptlang.org', 'www.typescriptlang.org', 'vitest.dev']);
+const DOC_EXTENSIONS = new Set(['.md', '.mdx', '.txt', '.rst']);
+const TEST_FILE_PATTERN = /\.(?:test|spec|vitest)\.[cm]?[jt]sx?$/i;
+const TEST_DIR_NAMES = new Set(['test', 'tests', '__tests__']);
+
+function classifySourceLocation(value, classes) {
+  if (typeof value !== 'string') return classes.UNCLASSIFIED;
+  const text = value.trim();
+  if (!text) return classes.UNCLASSIFIED;
+  if (/^https?:\/\//i.test(text)) {
+    let host = '';
+    try {
+      host = new URL(text).hostname.toLowerCase();
+    } catch {
+      return classes.EXTERNAL_OTHER;
+    }
+    const isDocHost = DOC_HOSTS.has(host)
+      || DOC_HOST_PREFIXES.some((prefix) => host.startsWith(prefix))
+      || host.endsWith('.readthedocs.io');
+    return isDocHost ? classes.EXTERNAL_DOC : classes.EXTERNAL_OTHER;
+  }
+  if (/\s/.test(text)) return classes.UNCLASSIFIED;
+  const repoPath = text.replace(/^\.\//, '').replace(/:\d+(?:-\d+)?$/, '');
+  const segments = repoPath.split('/').filter(Boolean);
+  const fileName = segments[segments.length - 1] || '';
+  const extension = path.extname(fileName).toLowerCase();
+  if (segments.length < 2 && !extension) return classes.UNCLASSIFIED;
+  if (TEST_FILE_PATTERN.test(fileName) || segments.some((segment) => TEST_DIR_NAMES.has(segment))) return classes.REPO_TEST;
+  if (extension === '.jsonl' || /ledger/i.test(fileName)) return classes.LEDGER_STATE;
+  if (segments[0] === 'specs') return classes.REPO_SPEC;
+  if (DOC_EXTENSIONS.has(extension)) return classes.SKILL_DOC;
+  return classes.REPO_CODE;
+}
+
+// path outranks the label, and the label outranks the id: the first field that
+// names a real location decides the class.
+function deriveSourceQualityClass(node, classes) {
+  for (const candidate of [node.path, node.name, node.label, node.id]) {
+    const qualityClass = classifySourceLocation(candidate, classes);
+    if (qualityClass !== classes.UNCLASSIFIED) return qualityClass;
+  }
+  return classes.UNCLASSIFIED;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -184,6 +233,7 @@ async function main() {
   };
   try {
     db = await import('../lib/coverage-graph/coverage-graph-db.ts');
+    const { SOURCE_QUALITY_CLASS } = await import('../lib/coverage-graph/coverage-graph-query.ts');
     installSignalHandlers(cleanup);
     maybeThrowTestFault();
     const events = readEvents(args.events);
@@ -226,13 +276,21 @@ async function main() {
         nodeId = canonicalId;
       }
       const name = n.name || n.label || n.id;
+      // The derived class overwrites any leaf-supplied quality_class on a research
+      // SOURCE node; every other node keeps its metadata as sent.
+      const metadata = loopType === 'research' && kind === 'SOURCE'
+        ? {
+          ...(n.metadata && typeof n.metadata === 'object' ? n.metadata : {}),
+          quality_class: deriveSourceQualityClass(n, SOURCE_QUALITY_CLASS),
+        }
+        : n.metadata;
       const baseNode = {
         id: nodeId,
         specFolder,
         sessionId,
         kind,
         name,
-        metadata: n.metadata,
+        metadata,
       };
       nodes.push({
         ...baseNode,

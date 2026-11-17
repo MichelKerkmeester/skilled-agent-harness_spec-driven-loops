@@ -213,6 +213,35 @@ describe.each(WORKFLOW_PATHS)('step_graph_upsert in %s', (workflowPath) => {
     }
   });
 
+  it('stores the derived quality_class on a SOURCE node and drops the leaf value', () => {
+    const fixture = createFixture('source-class');
+    writeDeltaIteration(fixture, [
+      ...GRAPH_EVENTS,
+      {
+        type: 'node',
+        id: 's-graph-upsert-1',
+        kind: 'SOURCE',
+        label: 'The upsert script',
+        path: '.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs',
+        metadata: { quality_class: 'primary' },
+      },
+    ]);
+
+    const result = runStepCommand(renderStepCommand(command, fixture), fixture);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    const db = openDatabase(fixture.dbPath);
+    try {
+      const row = db
+        .prepare('SELECT metadata FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?')
+        .get(SPEC_FOLDER, LOOP_TYPE, SESSION_ID, 's-graph-upsert-1') as { metadata: string | null } | undefined;
+      expect(row).toBeDefined();
+      expect(JSON.parse(row?.metadata ?? '{}').quality_class).toBe('repo-code');
+    } finally {
+      db.close();
+    }
+  });
+
   it('skips without graph events and creates no rows', () => {
     const fixture = createFixture('no-events');
     writeDeltaIteration(fixture);

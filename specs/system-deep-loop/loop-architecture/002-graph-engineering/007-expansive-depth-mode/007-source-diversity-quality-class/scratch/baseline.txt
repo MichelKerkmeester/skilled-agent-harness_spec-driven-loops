@@ -1,0 +1,4 @@
+007 four-suite baseline, 2026-11-17, worktree 459 at 21c4b325b5a
+cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/coverage-graph-signals.vitest.ts tests/integration/convergence-script.vitest.ts tests/integration/upsert-script.vitest.ts tests/unit/deep-research-graph-upsert.vitest.ts
+Result: exit 0. Test Files 4 passed (4). Tests 69 passed (69).
+T002: rg -n quality_class runtime/tests prints 9 lines: convergence-script.vitest.ts 49, 50, 70, 71, 112, 653, 654; coverage-graph-signals.vitest.ts 67, 68.

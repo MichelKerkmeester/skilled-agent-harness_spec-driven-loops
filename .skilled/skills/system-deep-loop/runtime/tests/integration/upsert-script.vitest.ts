@@ -8,6 +8,16 @@ import { cleanupNamespace, namespaceArgs, runScript, uniqueNamespace, type Scrip
 
 const namespaces: ScriptNamespace[] = [];
 
+async function readStoredMetadata(namespace: ScriptNamespace): Promise<Map<string, Record<string, unknown> | undefined>> {
+  const db = await import('../../lib/coverage-graph/coverage-graph-db.js');
+  try {
+    const ns = { specFolder: namespace.specFolder, loopType: namespace.loopType, sessionId: namespace.sessionId };
+    return new Map(db.getNodes(ns).map((node) => [node.id, node.metadata]));
+  } finally {
+    db.closeDb();
+  }
+}
+
 afterEach(async () => {
   while (namespaces.length > 0) {
     const namespace = namespaces.pop();
@@ -222,5 +232,73 @@ describe('upsert.cjs direct invocation', () => {
     const convergence = runScript('convergence', [...namespaceArgs(namespace), '--read-only']);
     expect(convergence.exitCode).toBe(0);
     expect((convergence.json.data as { signals: { dimensionCoverage: number } }).signals.dimensionCoverage).toBe(1);
+  });
+
+  it('derives a research SOURCE quality_class from its path and drops the leaf-supplied value', async () => {
+    const namespace = uniqueNamespace('upsert', 'research');
+    namespaces.push(namespace);
+    const result = runScript('upsert', [
+      ...namespaceArgs(namespace),
+      '--nodes', JSON.stringify([{
+        id: 'src-agent',
+        kind: 'SOURCE',
+        name: 'The research agent definition',
+        path: '.skilled/agents/deep-research.md',
+        metadata: { quality_class: 'primary' },
+      }]),
+    ]);
+    expect(result.exitCode).toBe(0);
+    const stored = await readStoredMetadata(namespace);
+    expect(stored.get('src-agent')?.quality_class).toBe('skill-doc');
+  });
+
+  it('stores only closed-vocabulary quality classes for research SOURCE nodes', async () => {
+    const namespace = uniqueNamespace('upsert', 'research');
+    namespaces.push(namespace);
+    const sources = [
+      { id: 'src-code', kind: 'SOURCE', name: 'upsert script', path: '.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs' },
+      { id: 'src-test', kind: 'SOURCE', name: 'upsert suite', path: '.skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts' },
+      { id: 'src-spec', kind: 'SOURCE', name: 'demo spec', path: 'specs/system-deep-loop/demo/spec.md' },
+      { id: 'src-doc', kind: 'SOURCE', name: 'skill doc', path: '.skilled/skills/system-deep-loop/SKILL.md' },
+      { id: 'src-ledger', kind: 'SOURCE', name: 'state ledger', path: 'specs/system-deep-loop/demo/research/deep-research-state.jsonl' },
+      { id: 'src-ext-doc', kind: 'SOURCE', name: 'https://docs.python.org/3/library/json.html' },
+      { id: 'src-ext-other', kind: 'SOURCE', name: 'https://example.com/blog/post' },
+      { id: 'src-free', kind: 'SOURCE', name: 'An interview with a maintainer' },
+    ];
+    const result = runScript('upsert', [...namespaceArgs(namespace), '--nodes', JSON.stringify(sources)]);
+    expect(result.exitCode).toBe(0);
+    const stored = await readStoredMetadata(namespace);
+    expect(Object.fromEntries(sources.map((source) => [source.id, stored.get(source.id)?.quality_class]))).toEqual({
+      'src-code': 'repo-code',
+      'src-test': 'repo-test',
+      'src-spec': 'repo-spec',
+      'src-doc': 'skill-doc',
+      'src-ledger': 'ledger-state',
+      'src-ext-doc': 'external-doc',
+      'src-ext-other': 'external-other',
+      'src-free': 'unclassified',
+    });
+  });
+
+  it('keeps FINDING metadata and review node metadata exactly as given', async () => {
+    const research = uniqueNamespace('upsert', 'research');
+    namespaces.push(research);
+    const findingMetadata = { confidence: 0.8, quality_class: 'primary' };
+    const researchResult = runScript('upsert', [
+      ...namespaceArgs(research),
+      '--nodes', JSON.stringify([{ id: 'finding-1', kind: 'FINDING', name: 'A finding', metadata: findingMetadata }]),
+    ]);
+    expect(researchResult.exitCode).toBe(0);
+    expect((await readStoredMetadata(research)).get('finding-1')).toEqual(findingMetadata);
+
+    const review = uniqueNamespace('upsert', 'review');
+    namespaces.push(review);
+    const reviewMetadata = { severity: 'P1', quality_class: 'primary' };
+    const reviewResult = runScript('upsert', [
+      ...namespaceArgs(review),
+      '--nodes', JSON.stringify([{ id: 'file-1', kind: 'FILE', name: 'src/guard.cjs', metadata: reviewMetadata }]),
+    ]);
+    expect(reviewResult.exitCode).toBe(0);
+    expect((await readStoredMetadata(review)).get('file-1')).toEqual(reviewMetadata);
   });
 });

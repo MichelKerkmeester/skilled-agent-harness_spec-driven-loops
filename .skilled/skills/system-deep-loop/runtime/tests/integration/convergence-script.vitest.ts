@@ -46,8 +46,8 @@ function seedConvergedResearchGraph(namespace: ScriptNamespace, options: RunScri
       { id: 'question-1', kind: 'QUESTION', name: 'Main question' },
       { id: 'finding-1', kind: 'FINDING', name: 'First answer' },
       { id: 'finding-2', kind: 'FINDING', name: 'Second answer' },
-      { id: 'source-1', kind: 'SOURCE', name: 'Primary source', metadata: { quality_class: 'primary' } },
-      { id: 'source-2', kind: 'SOURCE', name: 'Secondary source', metadata: { quality_class: 'secondary' } },
+      { id: 'source-1', kind: 'SOURCE', name: 'Primary source', path: '.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs' },
+      { id: 'source-2', kind: 'SOURCE', name: 'Secondary source', path: '.skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts' },
     ]),
     '--edges',
     JSON.stringify([
@@ -59,6 +59,36 @@ function seedConvergedResearchGraph(namespace: ScriptNamespace, options: RunScri
   ], options);
 }
 
+// Two findings answer one question and each cites one source. The upsert step
+// derives each source's class from its path, so the paths decide the diversity.
+function seedTwoSourceResearchGraph(namespace: ScriptNamespace, firstPath: string, secondPath: string) {
+  return runScript('upsert', [
+    ...namespaceArgs(namespace),
+    '--nodes',
+    JSON.stringify([
+      { id: 'question-1', kind: 'QUESTION', name: 'Main question' },
+      { id: 'finding-1', kind: 'FINDING', name: 'First answer' },
+      { id: 'finding-2', kind: 'FINDING', name: 'Second answer' },
+      { id: 'source-1', kind: 'SOURCE', name: 'First source', path: firstPath },
+      { id: 'source-2', kind: 'SOURCE', name: 'Second source', path: secondPath },
+    ]),
+    '--edges',
+    JSON.stringify([
+      { id: 'answer-1', sourceId: 'finding-1', targetId: 'question-1', relation: 'ANSWERS' },
+      { id: 'answer-2', sourceId: 'finding-2', targetId: 'question-1', relation: 'ANSWERS' },
+      { id: 'cite-1', sourceId: 'finding-1', targetId: 'source-1', relation: 'CITES' },
+      { id: 'cite-2', sourceId: 'finding-2', targetId: 'source-2', relation: 'CITES' },
+    ]),
+  ]);
+}
+
+function readDiversity(namespace: ScriptNamespace): { sourceDiversity: unknown; blockerTypes: unknown[] } {
+  const result = runScript('convergence', [...namespaceArgs(namespace), '--read-only']);
+  expect(result.exitCode).toBe(0);
+  const data = result.json.data as { signals: Record<string, unknown>; blockers: Array<Record<string, unknown>> };
+  return { sourceDiversity: data.signals.sourceDiversity, blockerTypes: data.blockers.map((blocker) => blocker.type) };
+}
+
 function seedObservationThresholdResearchGraph(namespace: ScriptNamespace, observations: number) {
   return runScript('upsert', [
     ...namespaceArgs(namespace),
@@ -67,8 +97,8 @@ function seedObservationThresholdResearchGraph(namespace: ScriptNamespace, obser
       { id: 'question-1', kind: 'QUESTION', name: 'Main question' },
       { id: 'finding-1', kind: 'FINDING', name: 'Repeated answer', metadata: { observations } },
       { id: 'finding-2', kind: 'FINDING', name: 'Second answer', metadata: { observations: 1 } },
-      { id: 'source-1', kind: 'SOURCE', name: 'Primary source', metadata: { quality_class: 'primary' } },
-      { id: 'source-2', kind: 'SOURCE', name: 'Secondary source', metadata: { quality_class: 'secondary' } },
+      { id: 'source-1', kind: 'SOURCE', name: 'Primary source', path: '.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs' },
+      { id: 'source-2', kind: 'SOURCE', name: 'Secondary source', path: '.skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts' },
     ]),
     '--edges',
     JSON.stringify([
@@ -109,7 +139,7 @@ function addNewResearchSource(namespace: ScriptNamespace) {
     ...namespaceArgs(namespace),
     '--nodes',
     JSON.stringify([
-      { id: 'source-3', kind: 'SOURCE', name: 'New independent source', iteration: 2, metadata: { quality_class: 'tertiary' } },
+      { id: 'source-3', kind: 'SOURCE', name: 'New independent source', iteration: 2, path: 'https://example.com/independent-report' },
     ]),
   ]);
 }
@@ -483,6 +513,37 @@ describe('convergence.cjs direct invocation', () => {
   });
 });
 
+describe('research source diversity from derived quality classes', () => {
+  it('counts two classes when the cited sources are of different kinds', () => {
+    const namespace = uniqueNamespace('convergence', 'research');
+    namespaces.push(namespace);
+    expect(seedTwoSourceResearchGraph(namespace, 'specs/demo/spec.md', 'https://docs.python.org/3/library/json.html').exitCode).toBe(0);
+    expect(readDiversity(namespace).sourceDiversity).toBe(2);
+  });
+
+  it('counts one class and blocks when both cited sources share a kind', () => {
+    const namespace = uniqueNamespace('convergence', 'research');
+    namespaces.push(namespace);
+    expect(seedTwoSourceResearchGraph(namespace, '.skilled/demo/one.cjs', '.skilled/demo/two.cjs').exitCode).toBe(0);
+    const { sourceDiversity, blockerTypes } = readDiversity(namespace);
+    expect(sourceDiversity).toBe(1);
+    expect(blockerTypes).toContain('source_diversity_guard');
+  });
+
+  it('passes a code-only question that cites a script and its test', () => {
+    const namespace = uniqueNamespace('convergence', 'research');
+    namespaces.push(namespace);
+    expect(seedTwoSourceResearchGraph(
+      namespace,
+      '.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs',
+      '.skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts',
+    ).exitCode).toBe(0);
+    const { sourceDiversity, blockerTypes } = readDiversity(namespace);
+    expect(sourceDiversity).toBe(2);
+    expect(blockerTypes).not.toContain('source_diversity_guard');
+  });
+});
+
 describe('convergence profile parity pins', () => {
   it('replays a recorded research convergence cassette against the pinned envelope', async () => {
     const hermetic = createHermeticEnv('convergence-cassette');
@@ -650,8 +711,8 @@ describe('convergence profile parity pins', () => {
       { id: 'question-1', kind: 'QUESTION' },
       { id: 'finding-1', kind: 'FINDING' },
       { id: 'finding-2', kind: 'FINDING' },
-      { id: 'source-1', kind: 'SOURCE', metadata: { quality_class: 'primary' } },
-      { id: 'source-2', kind: 'SOURCE', metadata: { quality_class: 'secondary' } },
+      { id: 'source-1', kind: 'SOURCE', metadata: { quality_class: 'repo-code' } },
+      { id: 'source-2', kind: 'SOURCE', metadata: { quality_class: 'repo-test' } },
     ] as Parameters<typeof computeResearchQuestionCoverageFromData>[0];
     const researchEdges = [
       { id: 'answer-1', sourceId: 'finding-1', targetId: 'question-1', relation: 'ANSWERS' },
