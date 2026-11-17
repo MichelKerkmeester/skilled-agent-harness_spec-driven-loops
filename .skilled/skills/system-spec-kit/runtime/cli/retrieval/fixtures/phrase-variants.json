@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8ec70830a5338229c15f9a1ab18b3a3db1ea543b19e037ae94fcd98a8598d549",
+  "manifestHash": "a1c454bf7ed29834f0b0d4e69ece39ac67b847bc94315cd8b0fbeaf775ea3f99",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14466,6 +14466,9 @@
     ],
     "barter remove set operations after sets record": [
       "barter remove set operations after sets record"
+    ],
+    "barter state schema version 2": [
+      "barter state schema version 2"
     ],
     "barter symlinks readme": [
       "barter symlinks readme"
@@ -58395,6 +58398,9 @@
     "handover state routing correction": [
       "handover_state routing correction"
     ],
+    "handover to barter hardened overlay engine": [
+      "handover to barter hardened overlay engine"
+    ],
     "handover to barter overlay follow up": [
       "handover to barter overlay follow up"
     ],
@@ -78411,6 +78417,9 @@
     ],
     "opencode overlay owned write": [
       "opencode overlay owned write"
+    ],
+    "opencode overlay plugin link": [
+      "opencode overlay plugin link"
     ],
     "opencode parallel detached session": [
       "opencode parallel detached session"

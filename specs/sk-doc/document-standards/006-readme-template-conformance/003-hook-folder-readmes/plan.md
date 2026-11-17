@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 3: hook-folder-readmes"
-description: "One DeepSeek writer session per README brings the 26 hook folder READMEs to the hook template's folder scaffold, a different session checks each runtime row against the adapters and their registration files, and the main session reruns every gate before one commit."
+description: "One GPT-6 Luna writer session per README brings the 26 hook folder READMEs to the hook template's folder scaffold, a different session checks each runtime row against the adapters and their registration files, and the main session reruns every gate before one commit."
 trigger_phrases:
   - "hook folder readmes plan"
   - "hook folder readmes rewrite waves"
@@ -59,8 +59,8 @@ Template-driven rewrite with independent review, one README per session.
 
 ### Key Components
 - **Template** (`.skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md`): the folder scaffold in its section 4: OVERVIEW, HOW IT WORKS, RUNTIME COVERAGE, DIRECTORY TREE, KEY FILES, CONFIGURATION, VALIDATION and RELATED. HOW IT WORKS is kept only when the core makes decisions worth explaining, and a hand-started concern may put QUICK START in its place, as session handover does.
-- **Writer sessions**: DeepSeek V4.1 Flash at max through cli-opencode, one README per session, started by `$S/dispatch.sh`. Each reads its sources, rewrites only its README and runs the per-file checks.
-- **Reviewer sessions**: the same model through `$S/review.sh`, never the session that wrote the file. Each checks every path, command, count and list against the sources read-only and returns findings.
+- **Writer sessions**: GPT-6 Luna at max on the fast tier through cli-codex, one README per session, started by `$S/run.sh` in waves of four that `$S/drive.sh` runs and stops at the first quota or rate-limit failure. Each reads its sources, rewrites only its README and runs the per-file checks.
+- **Reviewer sessions**: the same model through `$S/run.sh` in review mode with a read-only sandbox, never the session that wrote the file. Each checks every path, command, count and list against the sources read-only and returns findings.
 - **Main session**: confirms each finding against the code before applying it, reruns every check itself and owns the commit.
 - **Scratchpad checks**: `baseline.sh` (validator, voice scan and emoji heading count per file), `h2model.py` (H2 list against the template), `readme_links.py` (outbound links plus anchored links into the files) and the enumeration list `r003.txt`, all under `$S`, which is `/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/256db329-443e-4697-8e43-b3b7f7c74ec6/scratchpad`.
 
@@ -74,7 +74,7 @@ Expected: 26 lines. Rerun it at implement time, because other sessions keep movi
 Each writer reads its sources and the template, then writes the README. Its reviewer reads the same sources and the new README and returns findings. The main session applies confirmed findings, reruns every check and records the before and after numbers.
 
 ### Waves
-One canary writer runs first on `classifier-injection-screen` (163 lines). The other 25 run in waves of up to eight sessions. A symlinked README is written at its target path, and the two sk-git hooks share one target, so that file gets one writer and one reviewer. Reviewers start as soon as their file's writer returns.
+One canary writer runs first on `classifier-injection-screen` (163 lines). The other 24 writer targets run in waves of four sessions. A symlinked README is written at its target path, and the two sk-git hooks share one target, so that file gets one writer and one reviewer. Reviewers start as soon as their file's writer returns.
 
 ### Writer Brief Constraints
 - Follow the folder scaffold: an H1 that names the concern and what it does, no tagline, `---` before each numbered ALL-CAPS H2, and only the section names in the template's section model.
@@ -133,7 +133,7 @@ Setup rebuilds the file list, records the baseline and confirms every check pass
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `python3`, `node`, `npx vitest` and `rg` | Internal | Green | No check can run |
-| `opencode` with the DeepSeek V4.1 Flash route | External | Green | The writers run as Claude subagents instead, recorded as a deviation from D4 |
+| `codex` with the GPT-6 Luna route | External | Green | The drive stops at the first quota failure and the operator chooses the next route, as Q005 in the parent decision record did |
 <!-- /ANCHOR:dependencies -->
 
 ---

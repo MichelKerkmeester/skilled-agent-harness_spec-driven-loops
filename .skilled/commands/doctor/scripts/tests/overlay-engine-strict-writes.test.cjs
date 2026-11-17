@@ -418,6 +418,27 @@ test('adopt refuses a taken source, a source clash, a non-file and a missing che
   assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'skilled/skills/hub/fix.md')), false);
 });
 
+test('a manifest write that fails at the rename keeps the old manifest and leaves no temporary file', (t) => {
+  const engine = require('../overlay-engine.cjs');
+  const fixture = createStrictFixture(t);
+  writeFile(fixture.tree, '.skilled/skills/brand/SKILL.md', 'brand skill\n');
+  const before = fs.readFileSync(fixture.manifestPath, 'utf8');
+  const rename = fs.renameSync;
+  t.mock.method(fs, 'renameSync', (from, to) => {
+    if (path.resolve(String(to)) === path.resolve(fixture.manifestPath)) {
+      throw new Error('simulated crash before the rename');
+    }
+    return rename(from, to);
+  });
+  t.mock.method(console, 'log', () => {});
+
+  assert.throws(() => engine.commandAdopt(engine.createContext(fixture.tree),
+    path.join(fixture.tree, '.skilled/skills/brand')), /simulated crash/);
+
+  assert.equal(fs.readFileSync(fixture.manifestPath, 'utf8'), before);
+  assert.deepEqual(fs.readdirSync(path.dirname(fixture.manifestPath)).filter((name) => name.includes('.tmp')), []);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. COMMIT CHECK
 // ─────────────────────────────────────────────────────────────────────────────

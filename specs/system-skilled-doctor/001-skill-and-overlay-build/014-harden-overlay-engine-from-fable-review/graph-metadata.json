@@ -36,7 +36,7 @@
       "failure"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -45,9 +45,11 @@
       "implementation-summary.md",
       ".skilled/commands/doctor/scripts/overlay-engine.cjs",
       ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs",
-      ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
       ".skilled/skills/system-skilled-doctor/references/overlays.md",
-      ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt"
+      ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+      ".skilled/commands/doctor/assets/doctor-overlay-status.yaml",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs"
     ],
     "entities": [
       {
@@ -93,9 +95,9 @@
         "source": "derived"
       },
       {
-        "name": "overlay-engine-repin.test.cjs",
+        "name": "overlay-engine-strict-writes.test.cjs",
         "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
         "source": "derived"
       },
       {
@@ -108,6 +110,18 @@
         "name": "doctor-overlay-presentation.txt",
         "kind": "file",
         "path": ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-status.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-status.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-repin.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs",
         "source": "derived"
       },
       {
@@ -181,24 +195,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A json-entry overlay is the only scope whose bytes come from the live file rather than from a source, so the restore has to guess what the overlay wrote before",
     "created_at": "2026-11-16T22:20:26Z",
-    "last_save_at": "2026-11-17T04:39:57.724Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-17T06:06:08.419Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -207,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd02893a21e0dc07993d5ffe789b38b4789391530e03ffad86804219ac10f979",
+    "source_fingerprint": "sha256:89e890e2324259aae24d0465bbde8b8943682ff960662be5aaf1d6ff580501bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "980b208fc0fb78c22edc9836347cfadebd2b90c217e2d79c208b5bb2a03aedb4",
+      "spec.md": "9b3e93b4ebde4db5391090fc79ab81dcf8669adcba82ae6766e067bfeb64514b",
       "plan.md": "79037b2f3e2163ef7d03c083aa00dea4ab71ab2228e51c8d7752fd0a656f9524",
-      "tasks.md": "717f54b10b096fcd07b944bba0a5f4cdbff10f7acdbd27c0d4963bd01792c7a2",
-      "implementation-summary.md": "0384d517a59ee4c07ab9b3be926b8a7d27eac4c2e16a50d3b9e976127957e7c7"
+      "tasks.md": "28ac023b740e0da5858e11fd152355e446936549f21d2abd10ffc19186aa5f2f",
+      "implementation-summary.md": "2235272657f1b00e55bdb31cabdbae114371ea4ee071e74c68f873a16f710e79"
     },
     "last_active_at": null
   }

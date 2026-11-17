@@ -76,7 +76,11 @@ const STATE_FILE = 'sync-state.json';
 const LOCK_FILE = '.build-lock';
 const LOCK_TAKEOVER_SUFFIX = '.takeover';
 const LOCK_TAKEOVER_STALE_MS = 60 * 1000;
-const STATE_SCHEMA_VERSION = 1;
+const STATE_SCHEMA_VERSION = 2;
+// Version 1 files predate the run-level flags. They still load, and the next
+// write upgrades them; the version is how status tells a file another writer
+// may have rewritten from one this engine wrote.
+const READABLE_STATE_VERSIONS = new Set([1, STATE_SCHEMA_VERSION]);
 const STATUS_NAMES = ['in-sync', 'overlay-edited', 'live-edited', 'both-changed', 'upstream-moved', 'cannot-apply'];
 const BLOCKING_STATES = new Set(['live-edited', 'both-changed', 'upstream-moved', 'cannot-apply']);
 const ENGINE_COMMAND = 'node .skilled/commands/doctor/scripts/overlay-engine.cjs';
@@ -254,6 +258,31 @@ function collectRemovalPaths(filePath) {
 function writeFile(filePath, buffer, mode) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, buffer, { mode: mode || 0o644 });
+}
+
+/**
+ * Replace a file through a temporary file and a rename, so a run killed
+ * mid-write leaves the old bytes instead of half a JSON document that every
+ * later command refuses to read.
+ * @param {string} filePath File to replace.
+ * @param {string|Buffer} content New content.
+ */
+function writeFileAtomic(filePath, content) {
+  const temporary = filePath + '.tmp-' + process.pid;
+  let mode;
+  try {
+    mode = fs.statSync(filePath).mode & 0o777;
+  } catch (error) {
+    if (!error || error.code !== 'ENOENT') throw error;
+  }
+  fs.writeFileSync(temporary, content);
+  try {
+    if (mode !== undefined) fs.chmodSync(temporary, mode);
+    fs.renameSync(temporary, filePath);
+  } catch (error) {
+    fs.rmSync(temporary, { force: true });
+    throw error;
+  }
 }
 
 function ensureSymlink(filePath, target) {
@@ -457,11 +486,27 @@ function loadManifest(ctx) {
   }
   const manifest = JSON.parse(buffer.toString('utf8'));
   if (!manifest || !Array.isArray(manifest.overlays)) throw new Error('overlay manifest has no overlays array');
+  // A relative checkout is written for the tree, not for whichever folder the
+  // engine is run from, so one manifest works on every machine that keeps the
+  // checkout at the same place beside the tree. The manifest file keeps its text.
+  if (manifest.pin && typeof manifest.pin.checkout === 'string' && !path.isAbsolute(manifest.pin.checkout)) {
+    manifest.pin.checkout = path.resolve(ctx.root, manifest.pin.checkout);
+  }
   return manifest;
 }
 
 function emptyState(pin) {
-  return { schemaVersion: STATE_SCHEMA_VERSION, pin, files: {}, links: {}, items: {}, sets: {}, exists: false };
+  return {
+    schemaVersion: STATE_SCHEMA_VERSION,
+    loadedVersion: null,
+    pin,
+    files: {},
+    links: {},
+    items: {},
+    sets: {},
+    regeneratePending: false,
+    exists: false,
+  };
 }
 
 /**
@@ -470,9 +515,11 @@ function emptyState(pin) {
  * the values its `set` operations wrote.
  * @param {object} ctx Engine context.
  * @param {object} manifest Loaded overlay manifest.
- * @returns {{schemaVersion: number, pin: string, files: Record<string, string>,
- *   links: Record<string, string>, items: Record<string, object[]>,
- *   sets: Record<string, object[]>, exists: boolean}}
+ * @returns {{schemaVersion: number, loadedVersion: number|null, pin: string,
+ *   files: Record<string, string>, links: Record<string, string>,
+ *   items: Record<string, object[]>, sets: Record<string, object[]>,
+ *   regeneratePending: boolean, exists: boolean}} `loadedVersion` is the
+ *   version the file was written with, or null when there is no file.
  */
 function loadState(ctx, manifest) {
   const buffer = readBufferOrNull(ctx.statePath);
@@ -481,9 +528,10 @@ function loadState(ctx, manifest) {
   try {
     parsed = JSON.parse(buffer.toString('utf8'));
   } catch (error) {
-    throw new Error(STATE_FILE + ' is not valid JSON: ' + error.message);
+    throw new Error(STATE_FILE + ' is not valid JSON: ' + error.message +
+      '; restore it from version control, because every command reads it');
   }
-  if (parsed.schemaVersion !== STATE_SCHEMA_VERSION || typeof parsed.pin !== 'string' ||
+  if (!parsed || !READABLE_STATE_VERSIONS.has(parsed.schemaVersion) || typeof parsed.pin !== 'string' ||
       !parsed.files || typeof parsed.files !== 'object' || Array.isArray(parsed.files)) {
     throw new Error(STATE_FILE + ' has an unsupported shape');
   }
@@ -508,6 +556,19 @@ function loadState(ctx, manifest) {
       Object.values(sets).some((records) => !Array.isArray(records))) {
     throw new Error(STATE_FILE + ' has an unsupported shape');
   }
+  // A record without a usable path cannot be matched to any operation, so a
+  // drop would pass it by in silence; the file is refused while one is there.
+  const isPathStep = (step) => typeof step === 'string' || (Number.isInteger(step) && step >= 0);
+  for (const [kind, records] of [['items', items], ['sets', sets]]) {
+    for (const [destination, list] of Object.entries(records)) {
+      for (const record of list) {
+        if (!record || typeof record !== 'object' || !Array.isArray(record.path) || !record.path.every(isPathStep)) {
+          throw new Error(`${STATE_FILE} has a ${kind} record for ${destination} without a valid path; ` +
+            `restore ${STATE_FILE} from version control, or remove that record and run apply`);
+        }
+      }
+    }
+  }
   for (const [destination, hash] of Object.entries(parsed.files)) {
     if (path.isAbsolute(destination) || destination.includes('\\') ||
         destination.split('/').some((part) => part === '..' || part === '.' || part === '') ||
@@ -517,11 +578,13 @@ function loadState(ctx, manifest) {
   }
   return {
     schemaVersion: STATE_SCHEMA_VERSION,
+    loadedVersion: parsed.schemaVersion,
     pin: parsed.pin,
     files: parsed.files,
     links,
     items,
     sets,
+    regeneratePending: parsed.regeneratePending === true,
     exists: true,
   };
 }
@@ -530,8 +593,9 @@ function loadState(ctx, manifest) {
  * Write the applied-hash state, sorted, only when its bytes would change.
  * @param {object} ctx Engine context.
  * @param {{pin: string, files: Record<string, string>, links?: Record<string, string>,
- *   items?: Record<string, object[]>, sets?: Record<string, object[]>}} state
- *   State to record.
+ *   items?: Record<string, object[]>, sets?: Record<string, object[]>,
+ *   regeneratePending?: boolean}} state State to record. `regeneratePending`
+ *   says a run wrote destinations whose regeneration has not finished yet.
  * @returns {boolean} Whether the file was written.
  */
 function writeStateIfChanged(ctx, state) {
@@ -556,10 +620,12 @@ function writeStateIfChanged(ctx, state) {
   if (Object.keys(sortedItems).length > 0) body.items = sortedItems;
   // So do the recorded sets: a tree whose overlays hold no `set` writes no key.
   if (Object.keys(sortedSets).length > 0) body.sets = sortedSets;
+  // Only an unfinished regeneration is written, so a clean run's file stays as it was.
+  if (state.regeneratePending === true) body.regeneratePending = true;
   const content = JSON.stringify(body, null, 2) + '\n';
   const current = readBufferOrNull(ctx.statePath);
   if (current && current.toString('utf8') === content) return false;
-  fs.writeFileSync(ctx.statePath, content, 'utf8');
+  writeFileAtomic(ctx.statePath, content);
   return true;
 }
 
@@ -867,7 +933,7 @@ function planOperation(operation, root, text, style, edits, options) {
       options.onSet({ path: [...operation.path], value: operation.value, added });
     };
     const wasAdded = (options.recordedSets || [])
-      .some((record) => record.added === true && deepEqual(record.path, operation.path));
+      .some((record) => record.added === true && samePath(record.path, operation.path));
     // A key the object does not hold yet is added after its last member, so one
     // entry set fits the file before and after upstream starts shipping the key.
     if (parent && parent.type === 'object' && typeof lastKey === 'string' && !findMember(parent, lastKey)) {
@@ -1506,11 +1572,16 @@ function restoreDroppedSets(text, operations, recordedSets, readUpstreamText = (
     const index = parent && parent.type === 'object'
       ? parent.members.findIndex((member) => member.key === record.path[record.path.length - 1])
       : -1;
-    // The live value equals the recorded one here, so the key carries nothing a
-    // person wrote. Whether this engine or an older one added it, the pin does
-    // not hold it and the entry set no longer asks for it.
     if (index < 0) {
       throw new Error('cannot restore the dropped set at ' + where + ': the pinned copy holds no value there');
+    }
+    // The pin does not hold the key, so the restore would delete it. Only a key
+    // the record says this overlay added is deleted: a key that was already
+    // there when a set first named it may be a person's, and an older engine
+    // never marked the keys it added, so such a key is left to a hand delete.
+    if (record.added !== true) {
+      throw new Error('dropped set at ' + where + ': the pin holds no value there and the record does not show ' +
+        'that this overlay added the key; delete the key by hand or put the set back in the entry set');
     }
     output = applyEdits(output, [memberRemovalEdit(parent.members, index)]);
   }
@@ -1746,7 +1817,15 @@ function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, 
     problems.push(`upstream removed ${entry.destination}; rebase the overlay`);
     return { writes: [], deletes: [], outputs: [] };
   }
-  const spec = JSON.parse(specBuffer.toString('utf8'));
+  // A malformed entry set is this overlay's problem alone, so it blocks only this
+  // overlay and names the file instead of stopping every other report.
+  let spec;
+  try {
+    spec = JSON.parse(specBuffer.toString('utf8'));
+  } catch (error) {
+    problems.push(`entry set ${entry.source} is not valid JSON: ${error.message}`);
+    return { writes: [], deletes: [], outputs: [] };
+  }
   const currentText = current.toString('utf8');
   // The recorded applied hash is the only proof that the live bytes are this
   // overlay's own work. Without it a differing entry may be a hand edit.
@@ -3054,6 +3133,178 @@ function layoutMoves(manifest) {
   return moves;
 }
 
+function pathLabel(steps) {
+  return steps.length > 0 ? steps.join('.') : 'the top level';
+}
+
+/**
+ * The first path at which two parsed JSON values differ.
+ * @param {*} left One value.
+ * @param {*} right The other value.
+ * @param {Array<string|number>} [at] Path walked so far.
+ * @returns {Array<string|number>|null} The path, or null when the values are equal.
+ */
+function firstDifference(left, right, at = []) {
+  if (deepEqual(left, right)) return null;
+  const isObject = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
+  if (Array.isArray(left) && Array.isArray(right)) {
+    for (let index = 0; index < Math.max(left.length, right.length); index += 1) {
+      if (index >= left.length || index >= right.length) return [...at, index];
+      const found = firstDifference(left[index], right[index], [...at, index]);
+      if (found) return found;
+    }
+  }
+  if (isObject(left) && isObject(right)) {
+    for (const key of [...new Set([...Object.keys(left), ...Object.keys(right)])].sort()) {
+      if (!Object.hasOwn(left, key) || !Object.hasOwn(right, key)) return [...at, key];
+      const found = firstDifference(left[key], right[key], [...at, key]);
+      if (found) return found;
+    }
+  }
+  return at;
+}
+
+function readEntrySet(ctx, entry) {
+  const buffer = readBufferOrNull(path.join(ctx.overlayRoot, entry.source));
+  if (!buffer) return null;
+  try {
+    const spec = JSON.parse(buffer.toString('utf8'));
+    return spec && Array.isArray(spec.operations) ? spec : null;
+  } catch {
+    return null;
+  }
+}
+
+// What one untracked operation writes, so two operations at the same path
+// print as two different lines.
+function untrackedTarget(operation) {
+  const shown = (value) => (typeof value === 'string' ? value : JSON.stringify(value));
+  if (operation.op === 'setKeyOnItem') {
+    const match = operation.match && typeof operation.match === 'object'
+      ? Object.entries(operation.match).map(([key, value]) => `${key}=${shown(value)}`).join(', ')
+      : shown(operation.match);
+    return `${shown(operation.key)} on the item matching ${match}`;
+  }
+  const keys = (Array.isArray(operation.entries) ? operation.entries : []).map((entry) => shown(entry && entry.key));
+  return keys.length > 3 ? `${keys.slice(0, 3).join(', ')} and ${keys.length - 3} more` : keys.join(', ');
+}
+
+/**
+ * The json-entry operations whose effect the state cannot follow. Each still
+ * applies; the note tells the author what a later drop or insert will not undo.
+ * @param {object} entry Manifest overlay entry.
+ * @param {object} spec Parsed entry set.
+ * @returns {string[]} One note per operation.
+ */
+function untrackedOperationNotes(entry, spec) {
+  const notes = [];
+  for (const operation of spec.operations) {
+    if (!operation || !Array.isArray(operation.path)) continue;
+    if (operation.op === 'setKeyOnItem' || operation.op === 'insertObjectKeys') {
+      notes.push(`${entry.id}: ${operation.op} of ${untrackedTarget(operation)} at ${pathLabel(operation.path)} ` +
+        `keeps no record, so its value stays in ${entry.destination} after it leaves the entry set`);
+    } else if (operation.op === 'set' &&
+        operation.path.some((step) => Number.isInteger(step) || (typeof step === 'string' && /^\d+$/.test(step)))) {
+      notes.push(`${entry.id}: set at ${pathLabel(operation.path)} goes through an array index, so it lands on ` +
+        'another item when an item before it is added or removed');
+    }
+  }
+  return notes;
+}
+
+/**
+ * Compare an in-sync json-entry destination with the entry set applied to the
+ * pinned copy. The live result is built from the live file, so a value nothing
+ * records, such as one a dropped `setKeyOnItem` left, reads as in sync there;
+ * the pinned copy carries no such history.
+ * @param {object} record Classified destination.
+ * @param {object} spec Parsed entry set.
+ * @param {(key: string) => Buffer|null} readPinned Reads a path at the pin.
+ * @returns {string|null} A note, or null when the two agree or no pinned copy exists.
+ */
+function crossCheckNote(record, spec, readPinned) {
+  const pinned = readPinned(record.key);
+  if (pinned === null) return null;
+  const pinnedText = pinned.toString('utf8');
+  let fromPin;
+  try {
+    fromPin = JSON.parse(applyJsonOperations(pinnedText, spec, {
+      canReplaceExisting: true,
+      readUpstreamText: () => pinnedText,
+    }));
+  } catch (error) {
+    return `cross-check ${record.key}: the entry set cannot be applied to the pinned copy: ${error.message}`;
+  }
+  let live;
+  try {
+    live = JSON.parse(record.output.buffer.toString('utf8'));
+  } catch {
+    return null;
+  }
+  const difference = firstDifference(live, fromPin);
+  if (difference === null) return null;
+  return `cross-check ${record.key}: the live file differs from the entry set applied to the pinned copy ` +
+    `at ${pathLabel(difference)}; no record covers that value, unless a regenerate step that leaves ` +
+    `${record.key} out of its outputs wrote it`;
+}
+
+/**
+ * The lines status prints beside its check that never fail it: what the run
+ * could not check, and what the engine keeps no record of.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {object} state Loaded applied-hash state.
+ * @param {object} analysis Analysis of the tree.
+ * @returns {string[]} One line per note, without its prefix.
+ */
+function statusNotes(ctx, manifest, state, analysis) {
+  const notes = [];
+  if (state.loadedVersion === 1) {
+    notes.push(`${STATE_FILE} is schema version 1; the next apply rewrites it as version 2. A script that still ` +
+      'writes version 1 drops the records of the items and values the json-entry overlays wrote');
+  }
+  const pin = manifest.pin || {};
+  const readPinned = pinnedUpstreamBytes(manifest);
+  // A checkout that never fetched the pinned commit reads back nothing for
+  // every path, which would pass both checks below without comparing anything.
+  const isPinReadable = readPinned !== null && resolveCommit(pin.checkout, pin.commit) !== null;
+  const { rootFiles } = repinSettings(manifest);
+  const hasPinnedRootFile = manifest.overlays.some((entry) => PINNED_UPSTREAM_SCOPES.has(entry.scope) &&
+    entry.pinnedSha256 && rootFiles.includes(entry.destination));
+  const skipped = [];
+  if (!isPinReadable && hasPinnedRootFile) skipped.push('the stale root-file check');
+  if (!isPinReadable && manifest.overlays.some((entry) => entry.scope === 'json-entry')) {
+    skipped.push('the json-entry cross-check');
+  }
+  if (skipped.length > 0) {
+    const fix = readPinned === null
+      ? "name it in the manifest's pin.checkout"
+      : `fetch commit ${pin.commit} into ${pin.checkout}`;
+    notes.push(`no upstream checkout at the pin, so ${skipped.join(' and ')} ` +
+      `${skipped.length === 1 ? 'was' : 'were'} skipped; ${fix}`);
+  }
+  for (const entry of manifest.overlays) {
+    if (entry.scope !== 'json-entry') continue;
+    const spec = readEntrySet(ctx, entry);
+    if (spec) notes.push(...untrackedOperationNotes(entry, spec));
+  }
+  if (!isPinReadable) return notes;
+  // A regenerate step rewrites its outputs after the entry sets apply, so the
+  // pinned copy says nothing about what such a file should hold.
+  const generated = new Set((manifest.regenerate || [])
+    .flatMap((step) => (Array.isArray(step.outputs) ? step.outputs : []))
+    .filter((output) => typeof output === 'string')
+    .map((output) => path.posix.normalize(output)));
+  for (const record of analysis.records) {
+    if (record.layout || record.state !== 'in-sync' || record.plan.entry.scope !== 'json-entry' ||
+        !record.output || record.output.buffer === null || generated.has(path.posix.normalize(record.key))) continue;
+    const spec = readEntrySet(ctx, record.plan.entry);
+    const note = spec ? crossCheckNote(record, spec, readPinned) : null;
+    if (note) notes.push(note);
+  }
+  return notes;
+}
+
 /**
  * Report every destination not in sync, then run the full check.
  * @param {object} ctx Engine context.
@@ -3070,6 +3321,7 @@ function commandStatus(ctx, options = {}) {
   const outOfSync = analysis.records.filter((record) => record.state !== 'in-sync');
   const stale = staleRootFiles(manifest);
   const offLayout = layoutMoves(manifest);
+  const notes = statusNotes(ctx, manifest, state, analysis);
   const isInSync = outOfSync.length === 0 && analysis.blocked.length === 0 && check.miss === 0 &&
     stale.length === 0 && (audit === null || audit.findings.length === 0);
 
@@ -3089,6 +3341,7 @@ function commandStatus(ctx, options = {}) {
       })),
       staleRootFiles: stale,
       offLayout,
+      notes,
       check,
     };
     if (audit) report.audit = audit;
@@ -3109,6 +3362,7 @@ function commandStatus(ctx, options = {}) {
   for (const move of offLayout) {
     console.log(`LAYOUT   ${move.overlay}: ${move.field} ${move.from} belongs at ${move.to}; run ${ENGINE_COMMAND} apply --relayout`);
   }
+  for (const note of notes) console.log(`NOTE     ${note}`);
   if (audit) {
     for (const finding of audit.findings) console.log(`AUDIT    ${finding.kind} ${finding.path}`);
     if (!audit.isAvailable) console.log('AUDIT    skipped: no upstream checkout at the pin');
@@ -3122,6 +3376,57 @@ function commandStatus(ctx, options = {}) {
 // ─────────────────────────────────────────────────────────────────────────────
 // 13. APPLY
 // ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * The items and sets each entry set still lists. One it dropped has just left
+ * the live file, and a destination with none listed keeps no key at all.
+ * @param {object[]} plans The plans whose writes the run applied.
+ * @returns {{items: Record<string, object[]>, sets: Record<string, object[]>}}
+ */
+function listedRecords(plans) {
+  const items = {};
+  const sets = {};
+  for (const plan of plans) {
+    if (plan.listedItems && plan.listedItems.length > 0) items[plan.entry.destination] = plan.listedItems;
+    if (plan.listedSets && plan.listedSets.length > 0) sets[plan.entry.destination] = plan.listedSets;
+  }
+  return { items, sets };
+}
+
+/**
+ * The state a run leaves once its writes are on disk: each destination's hash
+ * of what its overlay wants there, the layout links standing at their targets,
+ * and the items and sets the entry sets still list.
+ * @param {string} root Destination tree root.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {object[]} records Classified destinations whose desired bytes are recorded.
+ * @param {object[]} plans The plans whose writes the run applied, which name the
+ *   items and sets as their own even after a later analysis sees them as live.
+ * @returns {{pin: string, files: Record<string, string>, links: Record<string, string>,
+ *   items: Record<string, object[]>, sets: Record<string, object[]>}}
+ */
+function stateAfterWrites(root, manifest, records, plans) {
+  const files = {};
+  for (const record of records) {
+    if (record.output && record.output.buffer !== null) files[record.key] = sha256(record.output.buffer);
+  }
+  const links = {};
+  for (const link of manifest.layoutLinks || []) {
+    const linkPath = path.join(root, link.path);
+    let stats = null;
+    try {
+      stats = fs.lstatSync(linkPath);
+    } catch (error) {
+      if (!error || error.code !== 'ENOENT') throw error;
+    }
+    // Only a link standing at the manifest's target is recorded as the
+    // engine's own: that record is what lets a later apply retarget it.
+    if (stats && stats.isSymbolicLink() && fs.readlinkSync(linkPath) === link.target) {
+      links[link.path] = link.target;
+    }
+  }
+  return { pin: manifest.pin.commit, files, links, ...listedRecords(plans) };
+}
 
 /**
  * Apply every overlay edit; the caller holds the lock.
@@ -3174,7 +3479,17 @@ function applyUnderLock(ctx, manifest, options = {}) {
     console.log('linked ' + record.key + ' -> ' + record.target);
   }
 
-  const isRegenerated = written > 0 || options.isRegenerateForced === true;
+  // A regeneration an earlier run left unfinished runs again even when nothing
+  // is written now: that run's writes are already live, so the tree is in sync
+  // with its overlays but not yet rebuilt from them.
+  const isRegenerated = written > 0 || options.isRegenerateForced === true || state.regeneratePending === true;
+  // What this run wrote is recorded before any step that can still fail. A run
+  // that stopped later would otherwise leave items it added with no record, and
+  // a later drop of them would leave them in the file without a word.
+  writeStateIfChanged(ctx, {
+    ...stateAfterWrites(root, manifest, analysis.records, analysis.plans),
+    regeneratePending: isRegenerated && (manifest.regenerate || []).length > 0,
+  });
   let rewrittenBy = new Map();
   if (isRegenerated) {
     const owned = analysis.records.filter((record) => !record.layout && !record.removal).map((record) => record.key);
@@ -3190,15 +3505,11 @@ function applyUnderLock(ctx, manifest, options = {}) {
     }
   }
 
-  // Only a set the entry set still names is kept. The check after the write
-  // reads these records and not the ones the run started with: a set this run
-  // took back has left the file, and reading its old record against the
-  // written file would judge the run's own work as a stranger's edit.
-  const sets = {};
-  for (const plan of analysis.plans) {
-    if (!plan.listedSets || plan.listedSets.length === 0) continue;
-    sets[plan.entry.destination] = plan.listedSets;
-  }
+  // The check after the write reads the sets this run left listed and not the
+  // ones it started with: a set this run took back has left the file, and
+  // reading its old record against the written file would judge the run's own
+  // work as a stranger's edit.
+  const { sets } = listedRecords(analysis.plans);
   const updated = analyze(ctx, manifest, { ...state, sets }, options.upstreamBytes);
   const unresolved = updated.records.filter((record) => record.state !== 'in-sync');
   if (unresolved.length > 0) {
@@ -3208,35 +3519,7 @@ function applyUnderLock(ctx, manifest, options = {}) {
     }
     return EXIT_CONFLICT;
   }
-  const files = {};
-  for (const record of updated.records) {
-    if (record.output.buffer !== null) files[record.key] = sha256(record.output.buffer);
-  }
-  // Only the items an entry set still lists are recorded: one it dropped has just
-  // left the live file, and a destination with none listed keeps no key at all.
-  // The plans are the ones whose writes this run applied, because the analysis
-  // that follows sees those items as already live and no longer as its own work.
-  const items = {};
-  for (const plan of analysis.plans) {
-    if (!plan.listedItems || plan.listedItems.length === 0) continue;
-    items[plan.entry.destination] = plan.listedItems;
-  }
-  const links = {};
-  for (const link of manifest.layoutLinks || []) {
-    const linkPath = path.join(root, link.path);
-    let stats = null;
-    try {
-      stats = fs.lstatSync(linkPath);
-    } catch (error) {
-      if (!error || error.code !== 'ENOENT') throw error;
-    }
-    // Only a link standing at the manifest's target is recorded as the
-    // engine's own: that record is what lets a later apply retarget it.
-    if (stats && stats.isSymbolicLink() && fs.readlinkSync(linkPath) === link.target) {
-      links[link.path] = link.target;
-    }
-  }
-  writeStateIfChanged(ctx, { pin: manifest.pin.commit, files, links, items, sets });
+  writeStateIfChanged(ctx, stateAfterWrites(root, manifest, updated.records, analysis.plans));
 
   // The applied hashes are recorded first: they describe the destinations, which
   // are in sync, whatever the generators' own checks say next.
@@ -4077,7 +4360,7 @@ function writePin(ctx, commit) {
   const text = fs.readFileSync(ctx.manifestPath, 'utf8');
   const node = nodeAtPath(parseJsonSource(text), ['pin', 'commit']);
   if (node.type !== 'string') throw new Error('the manifest pin.commit is not a string');
-  fs.writeFileSync(ctx.manifestPath, text.slice(0, node.start) + JSON.stringify(commit) + text.slice(node.end));
+  writeFileAtomic(ctx.manifestPath, text.slice(0, node.start) + JSON.stringify(commit) + text.slice(node.end));
 }
 
 /**
@@ -4807,7 +5090,7 @@ function appendOverlayEntry(ctx, entry) {
   const updated = last
     ? text.slice(0, last.end) + ',\n' + indent + body + text.slice(last.end)
     : text.slice(0, list.start) + '[\n' + indent + body + '\n  ]' + text.slice(list.end);
-  fs.writeFileSync(ctx.manifestPath, updated);
+  writeFileAtomic(ctx.manifestPath, updated);
 }
 
 /**
@@ -5417,7 +5700,7 @@ function planRelayoutManifest(ctx, fieldEdits, linkEdits) {
  */
 function writeRelayoutManifest(ctx, text) {
   if (text === null) return;
-  fs.writeFileSync(ctx.manifestPath, text);
+  writeFileAtomic(ctx.manifestPath, text);
 }
 
 /**

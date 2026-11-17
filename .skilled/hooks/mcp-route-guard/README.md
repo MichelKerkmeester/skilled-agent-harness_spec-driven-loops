@@ -1,6 +1,6 @@
 ---
 title: "MCP Route Guard: Code Mode Routing Advisory"
-description: "Decides whether a native external MCP tool call should carry a Code Mode routing advisory, with one runtime-neutral core and one adapter per runtime."
+description: "Checks native MCP calls against the Code Mode manifest and reports route warnings, with DSH and Vibe denying warned calls."
 trigger_phrases:
   - "mcp route guard"
   - "code mode routing advisory"
@@ -18,51 +18,31 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-`mcp-route-guard/` decides whether a native external MCP tool call should carry a routing advisory. A native call is any tool named `mcp__*` or `mcp_*`. The advisory nudges the model toward Code Mode's `call_tool_chain` instead of calling the server directly.
+`mcp-route-guard/` checks native MCP tool names against the manuals in `.utcp_config.json`. A matching family produces a route warning that points to `call_tool_chain`. DSH and Vibe return that warning as a denial reason.
 
-Code Mode wraps the same external tools behind one batched entrypoint. It cuts the context that a raw MCP round-trip would otherwise spend. The guard exists to keep the model on that cheap path.
+The shared policy core lives in `lib/mcp-route-guard.cjs`. Cursor packs its split server and tool fields, then runs the Claude adapter to reach that core.
 
-The concern is one runtime-neutral policy core plus a thin adapter per runtime. The core makes the decision. Each adapter translates its runtime's event shape and delivers the result. The core returns `allow` or `warn` and nothing stronger.
-
-The core fails open. A malformed payload, a missing or oversized manifest, an unparsable tool name or any internal error resolves to `allow`. Two adapters add a deny of their own, and Section 3 names both.
+The concern key is `mcp-route-guard`. Set `MCP_ROUTE_GUARD_DISABLED=1` to turn it off. `SYSTEM_HOOKS_DISABLED=1` turns off every repository hook except the sk-git message gate, which has no off switch.
 
 ---
 
 ## 2. HOW IT WORKS
 
-The guard runs before a native external MCP call executes. It parses the tool name into a `(server, tool)` pair. Then it normalizes the server token, so a manifest manual name and its live connector spelling collapse onto one family id. `clickup_official` and `claude_ai_ClickUp` both become `clickup`.
+`evaluateNativeMcpCall` parses `mcp__<server>__<tool>` names and OpenCode's `<server>_<tool>` names. `normalizeServerToken` maps a connector spelling to a manifest family. `loadManifestFamilies` reads `manual_call_templates` from `.utcp_config.json`.
+
+`isInternalServerToken` exempts names that start with `system_` or `mk_` and the exact names `code_mode` and `sequential_thinking`.
 
 | Condition | Decision |
 |---|---|
-| The token starts with `system_` or `mk_`, or is `code_mode` or `sequential_thinking` | `allow`: never nudge Code Mode to wrap its own siblings |
-| The server family is registered in the Code Mode manifest, `.utcp_config.json` | `warn`: the call is routable, so advise it |
-| The family is absent from the manifest, in the default manifest-strict mode | `allow`: stay silent so every advisory stays useful |
-| The family is absent from the manifest, with broad mode on | `warn`: a coverage advisory asking the operator to register a manual |
-| Anything goes wrong | `allow`, fail open |
+| A parsed external family has a manifest manual | `warn` |
+| A parsed external family has no manual in default mode | `allow` |
+| A parsed external family has no manual and broad mode is exactly `1` | `warn` |
+| The server name is internal | `allow` |
+| The name cannot be parsed or the core catches an unexpected error | `allow` |
 
-A `warn` carries one of two texts. A routable family gets this one:
+Manifest-strict mode is the default. Set `MCP_ROUTE_GUARD_BROAD_MODE=1` to warn on parsed families that have no manifest manual.
 
-```text
-mcp-route-guard: native call to "<server>" -- Code Mode can route this family via the "<manual>" manual (call_tool_chain); route through Code Mode for the ~98% context reduction the mcp-code-mode SKILL mandates.
-```
-
-An unrouteable family in broad mode gets this one:
-
-```text
-mcp-route-guard: native call to "<server>" (family "<family>") -- no Code Mode manual registers this family in .utcp_config.json yet; register one to make this call routable.
-```
-
-The manifest family set is cached by file mtime. A manifest edit widens coverage on the very next call, with no restart and no per-call re-parse.
-
-The core understands two packed tool-name shapes only. Claude packs `mcp__<server>__<tool>`. OpenCode packs `<server>_<tool>`. A runtime whose event presents neither shape reshapes its payload before the core sees it.
-
-Four adapters read stdin through `../../shared/hook-adapter-shared.cjs`, and each requires it by that path. It collects raw stdin and parses the JSON fail-open. Every adapter except Cursor imports the core from `../lib/`, and Cursor reaches it through the Claude adapter. The core itself imports Node builtins and the shared truthiness helper only.
-
-In Claude, Codex and Devin, invalid stdin, a missing payload or a thrown error exits 0 with no output. In Pi, a failed import or a core error returns `undefined`, so the call proceeds.
-
-Two adapters can refuse a call. DSH turns a `warn` into a deny, because its pre-execute event has no advisory channel. Vibe turns a `warn` into a deny too, under a `strict` hook. Every other adapter only attaches or logs the advisory.
-
-The core never writes stdout or stderr. Each adapter owns its own transport and its own logging.
+DSH adds a mount rule. While the guard is enabled, it denies `code_mode` calls outside `call_tool_chain`, `list_tools`, `search_tools` and `tool_info`.
 
 ---
 
@@ -70,30 +50,25 @@ The core never writes stdout or stderr. Each adapter owns its own transport and 
 
 | Runtime | Event | Entry in this folder | Real file | What the runtime shows |
 |---|---|---|---|---|
-| Claude | `PreToolUse` | `claude/mcp-route-guard.cjs` | `.skilled/hooks/mcp-route-guard/claude/mcp-route-guard.cjs` | An `additionalContext` advisory, never a `permissionDecision`. |
-| Codex | `PreToolUse` | `codex/mcp-route-guard.cjs` | `.skilled/hooks/mcp-route-guard/codex/mcp-route-guard.cjs` | The same `additionalContext` envelope. |
-| Devin | `PreToolUse` | `devin/mcp-route-guard.cjs` | `.skilled/hooks/mcp-route-guard/devin/mcp-route-guard.cjs` | The same `additionalContext` envelope. |
-| Cursor | `beforeMCPExecution` | `cursor/mcp-route-guard.mjs` | `.skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs` | `permission: "allow"`, with the advisory as `agent_message`. |
-| Pi | `tool_call` | `pi/mcp-route-guard.ts` | `.skilled/hooks/mcp-route-guard/pi/mcp-route-guard.ts` | The advisory as the tool call's `reason`. |
-| DSH | `tools/pre-execute` | `dsh/mcp-route-guard.mjs` | `.skilled/hooks/mcp-route-guard/dsh/mcp-route-guard.mjs` | A deny, with the advisory as the reason. |
-| OpenCode | `tool.execute.before` | `opencode/mcp-route-guard.js` | `.opencode/plugins/mcp-route-guard.js` | One line in `mcp-route-guard.log`, never console output. |
-| Vibe | `pre_tool` | `vibe/mcp-route-guard.mjs` | `.vibe/plugins/repo-guards/mcp-route-guard.mjs` | A deny, with the advisory as the reason. |
+| Claude | `PreToolUse` | `claude/mcp-route-guard.cjs` | `.skilled/hooks/mcp-route-guard/claude/mcp-route-guard.cjs` | `additionalContext` warning. |
+| Codex | `PreToolUse` | `codex/mcp-route-guard.cjs` | `.skilled/hooks/mcp-route-guard/codex/mcp-route-guard.cjs` | `additionalContext` warning. |
+| Cursor | `beforeMCPExecution` | `cursor/mcp-route-guard.mjs` | `.skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs` | `permission: allow` with a warning in `agent_message`. |
+| Devin | `PreToolUse` | `devin/mcp-route-guard.cjs` | `.skilled/hooks/mcp-route-guard/devin/mcp-route-guard.cjs` | `additionalContext` warning. |
+| OpenCode | `tool.execute.before` | `opencode/mcp-route-guard.js` | `.opencode/plugins/mcp-route-guard.js` | Warnings and errors go to a log. |
+| Pi | `tool_call` | `pi/mcp-route-guard.ts` | `.skilled/hooks/mcp-route-guard/pi/mcp-route-guard.ts` | A warning in the tool call's `reason`. |
+| DSH | `tools/pre-execute` | `dsh/mcp-route-guard.mjs` | `.skilled/hooks/mcp-route-guard/dsh/mcp-route-guard.mjs` | Denies a warning or a core error. |
+| Vibe | `pre_tool` | `vibe/mcp-route-guard.mjs` | `.vibe/plugins/repo-guards/mcp-route-guard.mjs` | Denies a warning. |
 
-Claude registers `PreToolUse` with the matcher `mcp__claude_ai_.*` in `.claude/settings.json`, at a 5-second timeout. Codex registers `PreToolUse` with the matcher `mcp__.*` in `.codex/hooks.json`, at 5 seconds. Devin registers `PreToolUse` with the matcher `^mcp__.*$` in `.devin/hooks.v1.json`, at 5 seconds. Cursor registers `beforeMCPExecution` with no matcher and a 10-second timeout.
+- Claude registers `PreToolUse` in `.claude/settings.json` with matcher `mcp__claude_ai_.*` and a 5-second timeout.
+- Codex registers `PreToolUse` in `.codex/hooks.json` with matcher `mcp__.*` and a 5-second timeout.
+- Cursor registers `beforeMCPExecution` in `.cursor/hooks.json` with no matcher and a 10-second timeout.
+- Devin registers `PreToolUse` in `.devin/hooks.v1.json` with matcher `^mcp__.*$` and a 5-second timeout.
+- OpenCode loads `.opencode/plugins/mcp-route-guard.js` from the `.opencode/plugins/*.js` glob. The plugin registers `tool.execute.before`.
+- Pi discovers `.pi/extensions/mcp-route-guard.ts`. That entry re-exports `pi/mcp-route-guard.ts`, which registers `tool_call`.
+- DSH loads the guard bundle from `.dsh/plugins/repo-guards/index.mjs`. The bundle imports `.dsh/plugins/repo-guards/adapters/mcp-route-guard.mjs`, a link to `dsh/mcp-route-guard.mjs`, which registers `tools/pre-execute`.
+- Vibe registers `mcp-route-guard` in `.vibe/hooks.toml` as a strict `pre_tool` hook. It runs `.vibe/plugins/repo-guards/mcp-route-guard.mjs`.
 
-Codex stays silent today, because its only MCP server, `code_mode`, is exempt.
-
-Cursor's payload splits the server and the tool into separate fields. `mcp_server_name` holds the server and `tool_name` holds a bare tool name. A bare tool name matches nothing, so the adapter recombines both into the packed shape. It then `spawnSync`s the Claude adapter, which owns the advisory text.
-
-The adapter takes `workspace_roots[0]` as the project folder and gives the child 3000 ms and a 1 MB buffer. Invalid JSON, a spawn failure, a timeout or non-JSON child output returns a plain `permission: allow`.
-
-Pi filters on the `mcp_` prefix, then dynamic-imports the core. `.pi/extensions/mcp-route-guard.ts` is the one-line entry file Pi discovers, and it re-exports `pi/mcp-route-guard.ts`.
-
-DSH registers `tools/pre-execute` through `.dsh/plugins/repo-guards/index.mjs`. `.dsh/plugins/repo-guards/adapters/mcp-route-guard.mjs` is a symlink to `dsh/mcp-route-guard.mjs`. DSH also denies a `code_mode` tool outside its allowlist of `call_tool_chain`, `list_tools`, `search_tools` and `tool_info`. It fails closed. A core failure logs a warning and denies the call, with a reason naming the tool. `MCP_ROUTE_GUARD_DISABLED` turns off the allowlist rule too.
-
-Vibe registers the hook in `.vibe/hooks.toml` as `mcp-route-guard`, of type `pre_tool`, with `strict = true`. Vibe names an MCP call by its route, as `mcp_<server>.<tool>`. The hook repacks that into `mcp__<server>__<tool>` before the core judges it. It strips the core's own label from the reason, because Vibe prefixes the hook name. A thrown error allows the call and writes to stderr.
-
-OpenCode loads the plugin by its flat glob over `.opencode/plugins/`. `opencode/mcp-route-guard.js` is a browsability symlink back into that folder, and nothing loads through it. The plugin appends to `mcp-route-guard.log` under the source root's `logs/` folder. It rotates that log to `.1` once the file passes 256 KB. It never writes to stdout or stderr, because OpenCode paints plugin output onto the prompt line.
+Claude and Codex exit 0 with no output when the input is invalid or the core returns no warning. Devin follows the same path. Cursor returns `permission: allow` without an `agent_message` when the child returns no warning. Pi returns `undefined` when it has no warning or catches an error. OpenCode writes warnings and evaluation errors to its log and prints nothing to stdout or stderr. DSH logs a core error and denies the call. Vibe writes caught errors to stderr and exits 0, which lets the call proceed.
 
 ---
 
@@ -101,19 +76,22 @@ OpenCode loads the plugin by its flat glob over `.opencode/plugins/`. `opencode/
 
 ```text
 mcp-route-guard/
-+-- lib/
-|   +-- mcp-route-guard.cjs        # runtime-neutral policy core
-|   `-- mcp-route-guard.test.cjs   # node --test suite for the core
-+-- claude/   mcp-route-guard.cjs  # PreToolUse adapter
-+-- codex/    mcp-route-guard.cjs  # PreToolUse adapter
-+-- devin/    mcp-route-guard.cjs  # PreToolUse adapter
-+-- cursor/   mcp-route-guard.mjs  # beforeMCPExecution adapter
-+-- pi/       mcp-route-guard.ts   # tool_call extension
-+-- dsh/      mcp-route-guard.mjs  # tools/pre-execute adapter
-+-- opencode/ mcp-route-guard.js   # browsability symlink -> .opencode/plugins/mcp-route-guard.js
-+-- tests/    dsh-mcp-route-guard.test.mjs  # node --test suite for the DSH adapter
-`-- vibe/     mcp-route-guard.mjs  # browsability symlink -> .vibe/plugins/repo-guards/mcp-route-guard.mjs
+├── README.md
+├── lib/
+│   ├── mcp-route-guard.cjs
+│   └── mcp-route-guard.test.cjs
+├── claude/mcp-route-guard.cjs
+├── codex/mcp-route-guard.cjs
+├── cursor/mcp-route-guard.mjs
+├── devin/mcp-route-guard.cjs
+├── dsh/mcp-route-guard.mjs
+├── opencode/mcp-route-guard.js -> ../../../../.opencode/plugins/mcp-route-guard.js
+├── pi/mcp-route-guard.ts
+├── tests/dsh-mcp-route-guard.test.mjs
+└── vibe/mcp-route-guard.mjs -> ../../../../.vibe/plugins/repo-guards/mcp-route-guard.mjs
 ```
+
+Claude, Codex, Cursor, Devin, DSH and Pi each have a short adapter README in their folder. OpenCode and Vibe have mirror links instead.
 
 ---
 
@@ -121,61 +99,54 @@ mcp-route-guard/
 
 | File | Responsibility |
 |---|---|
-| `lib/mcp-route-guard.cjs` | The whole policy: parsing for both shapes, server-token normalization, the internal-server exemption, the mtime-cached manifest family set and the `allow` / `warn` decision. |
-| `claude/mcp-route-guard.cjs` | The Claude `PreToolUse` adapter. It reads the payload, evaluates the core and emits an `additionalContext` advisory on a `warn`. |
-| `codex/mcp-route-guard.cjs` | The Codex `PreToolUse` adapter over the same packed shape and the shared stdin parser. |
-| `devin/mcp-route-guard.cjs` | The Devin `PreToolUse` adapter. It treats a whitespace-only `cwd` as absent. |
-| `cursor/mcp-route-guard.mjs` | The Cursor `beforeMCPExecution` adapter. It recombines the split fields, then `spawnSync`s the Claude adapter. |
-| `pi/mcp-route-guard.ts` | The Pi `tool_call` extension. It prefix-filters, honors the kill-switch and dynamic-imports the core. |
-| `dsh/mcp-route-guard.mjs` | The DSH `tools/pre-execute` adapter. It denies on a `warn`, on a core failure and on a `code_mode` tool outside the allowlist. |
-| `lib/mcp-route-guard.test.cjs` | The `node --test` suite for the core and for the Claude and Cursor adapters. |
-| `tests/dsh-mcp-route-guard.test.mjs` | The `node --test` suite for the DSH adapter. |
-
-`.opencode/plugins/mcp-route-guard.js` is the OpenCode adapter, and it imports this same `lib/` core.
+| `lib/mcp-route-guard.cjs` | The shared policy core and its exported helpers. |
+| `.utcp_config.json` | The manifest names the core matches. |
+| `.skilled/hooks/shared/hook-flags.cjs` | Resolves the concern and master switches. |
+| `.skilled/hooks/shared/hook-adapter-shared.cjs` | Reads stdin for Claude, Codex, Devin and Cursor. Its fail-open JSON parser serves Claude, Codex and Devin. Cursor parses the input itself. |
+| `lib/mcp-route-guard.test.cjs` | Checks core decisions and the Claude and Cursor adapters. |
+| `tests/dsh-mcp-route-guard.test.mjs` | Checks the DSH allowlist and deny behavior. |
 
 ---
 
 ## 6. CONFIGURATION
 
-The guard is on by default. A switch is on when its value is `1`, `true`, `yes` or `on`, in any case.
+The guard is on by default. The shared switch resolver treats `1`, `true`, `yes` or `on` as enabled values, without regard to case.
 
-| Variable | Effect |
+| Switch | Effect |
 |---|---|
-| `MCP_ROUTE_GUARD_DISABLED=1` | A full no-op on every call, in every runtime. The core short-circuits to `allow` and each adapter checks the shared resolver. |
-| `SYSTEM_HOOKS_DISABLED=1` | The master switch. It turns off this concern along with every other repository hook. |
-| `MCP_ROUTE_GUARD_BROAD_MODE=1` | Opt-in. It also advises on external servers the manifest cannot route yet. |
+| `MCP_ROUTE_GUARD_DISABLED=1` | Turns off this guard, including the DSH mount rule. |
+| `SYSTEM_HOOKS_DISABLED=1` | Turns off every repository hook except the sk-git message gate. |
+| `MCP_ROUTE_GUARD_BROAD_MODE=1` | Warns on parsed server families with no manifest manual. |
 
-Broad mode reads only the exact value `1`, so `true` does not enable it.
-
-Set a switch inline for one command or export it for a session. The off switches can be persisted in `.skilled/hooks/hook-flags.env`, but broad mode is read only from the environment. That file is a gitignored copy of `hook-flags.env.example`. The environment always wins over the file.
+Set disable flags in the process environment or `.skilled/hooks/hook-flags.env`. The process environment wins over that file. Broad mode reads only the process environment and turns on only for the exact value `1`.
 
 ---
 
 ## 7. VALIDATION
 
-```bash
-node --test .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs
-```
-
-Expected result: all tests pass.
+Run the commands from the repository root.
 
 ```bash
-node --test .skilled/hooks/mcp-route-guard/tests/dsh-mcp-route-guard.test.mjs
+bun .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs
 ```
 
-Expected result: all tests pass.
+Expected output: `[mcp-route-guard] 18/18 assertions passed` and exit status 0.
 
 ```bash
-node -e "import('./.opencode/plugins/mcp-route-guard.js').then(()=>console.log('ok'))"
+TMPDIR=/private/tmp deno test --no-remote --no-check --allow-read=.,/private/tmp --allow-write=/private/tmp --allow-env --allow-sys .skilled/hooks/mcp-route-guard/tests/dsh-mcp-route-guard.test.mjs
 ```
 
-Expected result: `ok`, with no module-resolution error, which confirms the OpenCode adapter still resolves this core.
+Expected output: `ok | 6 passed | 0 failed` and exit status 0.
+
+```bash
+MCP_ROUTE_GUARD_DISABLED=1 bun .skilled/hooks/mcp-route-guard/claude/mcp-route-guard.cjs < /dev/null
+```
+
+Expected output: no stdout or stderr and exit status 0.
 
 ---
 
 ## 8. RELATED
 
-- [`../README.md`](../README.md): the hooks tree, with the switch index and the coverage matrix.
-- [`../injection-contract.md`](../injection-contract.md): the advisory's exact injected text and its visibility to the operator.
-- [`../shared/README.md`](../shared/README.md): the shared stdin parser and the switch resolver the adapters use.
-- [`../../skills/mcp-code-mode/SKILL.md`](../../skills/mcp-code-mode/SKILL.md): the Code Mode workflow this guard routes toward.
+- [Hooks tree](../README.md): the hook concerns and runtime coverage matrix.
+- [Shared helpers](../shared/README.md): the switch resolver and stdin helpers.

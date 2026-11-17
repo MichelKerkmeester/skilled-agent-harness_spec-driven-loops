@@ -48,7 +48,7 @@ test('clean apply records every managed file and a second apply is a no-op', (t)
   assert.equal(second.output.trim(), '0 changed');
 
   const state = readJson(fixture.statePath);
-  assert.equal(state.schemaVersion, 1);
+  assert.equal(state.schemaVersion, 2);
   assert.equal(state.pin, 'pin-one');
   assert.equal(Object.keys(state.files).length, 6);
   assert.equal(
@@ -884,7 +884,7 @@ test('two sets on one path keep one record and both leave together', (t) => {
   assert.equal(fixture.readLive(), fixture.seed);
 });
 
-test('apply deletes a key the pin does not hold even when its record never marked it as added', (t) => {
+test('a key the pin does not hold is refused, not deleted, when its record never marked it as added', (t) => {
   const fixture = createPinnedSetFixture(t, PINNED_ROWS);
   fixture.writeOperations([{ op: 'set', path: ['rows', 'a', 'extra'], value: 1 }]);
   seedState(fixture);
@@ -897,8 +897,30 @@ test('apply deletes a key the pin does not hold even when its record never marke
   assert.deepEqual(fixture.recordedSets(), [{ path: ['rows', 'a', 'extra'], value: 1, added: false }]);
 
   fixture.writeOperations([]);
-  const applied = fixture.run(['apply']);
+  const liveBefore = fixture.readLive();
+  const refused = fixture.run(['apply']);
 
+  assert.equal(refused.code, 1, refused.output);
+  assert.match(refused.output, /dropped set at rows\.a\.extra: the pin holds no value there and the record does not show that this overlay added the key; delete the key by hand or put the set back in the entry set/);
+  assert.equal(fixture.readLive(), liveBefore);
+
+  writeFile(fixture.tree, 'baseline.json', fixture.seed);
+  const cleared = fixture.run(['apply']);
+  assert.equal(cleared.code, 0, cleared.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+  assert.deepEqual(fixture.recordedSets(), []);
+});
+
+test('a key added through an index keeps its added mark when the entry set respells the index', (t) => {
+  const fixture = createPinnedSetFixture(t, { rows: [{ id: 'A' }] });
+  fixture.writeOperations([{ op: 'set', path: ['rows', 0, 'extra'], value: 1 }]);
+  seedState(fixture);
+  fixture.writeOperations([{ op: 'set', path: ['rows', '0', 'extra'], value: 1 }]);
+  assert.equal(fixture.run(['apply']).code, 0);
+  assert.equal(fixture.recordedSets()[0].added, true);
+
+  fixture.writeOperations([]);
+  const applied = fixture.run(['apply']);
   assert.equal(applied.code, 0, applied.output);
   assert.equal(fixture.readLive(), fixture.seed);
 });
@@ -1263,4 +1285,233 @@ test('records an older engine kept with the inner set first still restore when i
   });
 
   assert.equal(restored, pinned);
+});
+
+// A failed apply still wrote its destinations, so what it wrote has to be on
+// record before any later step can fail, and the step that failed has to run
+// again on the next apply even though every destination is already in sync.
+const GENERATOR = "const fs = require('fs'); fs.appendFileSync('gen-runs.txt', 'x'); " +
+  "process.exit(fs.existsSync('regen-fail') ? 1 : 0);";
+const VERIFIER = "require('fs').appendFileSync('verify-runs.txt', 'x');";
+
+test('a rerun of apply after a failed regenerate step runs the step again, and the item it added still leaves later', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  fixture.manifest.regenerate = [{ id: 'gen', argv: ['node', '-e', GENERATOR], outputs: [] }];
+  fixture.manifest.verifyGenerated = [{ id: 'gen-check', argv: ['node', '-e', VERIFIER] }];
+  writeManifest(fixture);
+  fixture.writeOperations([]);
+  seedState(fixture);
+  const count = (name) => (fs.existsSync(path.join(fixture.tree, name))
+    ? fs.readFileSync(path.join(fixture.tree, name), 'utf8').length
+    : 0);
+  const runs = () => count('gen-runs.txt');
+  const verifies = () => count('verify-runs.txt');
+
+  writeFile(fixture.tree, 'regen-fail', '');
+  fixture.writeOperations([INSERT_X]);
+  const failed = fixture.run(['apply']);
+  assert.equal(failed.code, 1, failed.output);
+  assert.match(failed.output, /regen gen: FAILED/);
+  assert.equal(runs(), 1);
+  assert.equal(verifies(), 0);
+
+  fs.rmSync(path.join(fixture.tree, 'regen-fail'));
+  const rerun = fixture.run(['apply']);
+  assert.equal(rerun.code, 0, rerun.output);
+  assert.equal(runs(), 2);
+  assert.equal(verifies(), 1);
+  assert.equal(fixture.run(['apply']).code, 0);
+  assert.equal(runs(), 2);
+
+  fixture.writeOperations([]);
+  const dropped = fixture.run(['apply']);
+  assert.equal(dropped.code, 0, dropped.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+});
+
+test('a state file of schema version 1 loads, is named in status and is rewritten as version 2', (t) => {
+  const fixture = createFixture(t);
+  seedState(fixture);
+  const older = readJson(fixture.statePath);
+  older.schemaVersion = 1;
+  writeFile(fixture.overlayDir, 'sync-state.json', JSON.stringify(older, null, 2) + '\n');
+
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.match(status.output, /^NOTE +sync-state\.json is schema version 1; the next apply rewrites it as version 2/m);
+
+  assert.equal(fixture.run(['apply']).code, 0);
+  assert.equal(readJson(fixture.statePath).schemaVersion, 2);
+  assert.doesNotMatch(fixture.run(['status']).output, /schema version 1/);
+});
+
+test('a state record without a path is refused and named', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  seedState(fixture);
+  const broken = readJson(fixture.statePath);
+  broken.sets['baseline.json'] = [{ value: 'sk-doc', added: false }];
+  writeFile(fixture.overlayDir, 'sync-state.json', JSON.stringify(broken, null, 2) + '\n');
+
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, status.output);
+  assert.match(status.output, /sync-state\.json has a sets record for baseline\.json without a valid path/);
+});
+
+test('the state file is replaced through a rename, so a failed write keeps the old bytes and leaves no temporary file', (t) => {
+  const fixture = createFixture(t);
+  seedState(fixture);
+  const before = fs.readFileSync(fixture.statePath, 'utf8');
+  const ctx = engine.createContext(fixture.tree);
+  t.mock.method(fs, 'renameSync', () => {
+    throw new Error('simulated crash before the rename');
+  });
+
+  assert.throws(() => engine.writeStateIfChanged(ctx, { pin: 'pin-two', files: {} }), /simulated crash/);
+
+  assert.equal(fs.readFileSync(fixture.statePath, 'utf8'), before);
+  assert.deepEqual(fs.readdirSync(fixture.overlayDir).filter((name) => name.includes('.tmp')), []);
+});
+
+test('status notes a skipped stale root-file check when no upstream checkout can be read', (t) => {
+  const fixture = createWorkspace(t, 'overlay-engine-no-checkout-');
+  writeFile(fixture.overlayDir, 'files/AGENTS.md', 'overlay agents\n');
+  writeFile(fixture.tree, 'AGENTS.md', 'overlay agents\n');
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', commit: 'pin-one' },
+    repin: { rootFiles: ['AGENTS.md'] },
+    layoutLinks: [],
+    overlays: [{
+      id: 'agents-file',
+      scope: 'file',
+      source: 'files/AGENTS.md',
+      destination: 'AGENTS.md',
+      pinnedSha256: sha256(Buffer.from('upstream agents\n')),
+    }],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  const run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+  assert.equal(run(['apply']).code, 0);
+
+  const status = run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.match(status.output, /^NOTE +no upstream checkout at the pin, so the stale root-file check was skipped; name it in the manifest's pin\.checkout$/m);
+  const report = JSON.parse(run(['status', '--json']).stdout);
+  assert.ok(report.notes.some((note) => /stale root-file check was skipped/.test(note)), report.notes);
+});
+
+test('status names both skipped checks when the checkout lacks the pinned commit', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  writeFile(fixture.overlayDir, 'files/AGENTS.md', 'overlay agents\n');
+  writeFile(fixture.tree, 'AGENTS.md', 'overlay agents\n');
+  fixture.manifest.repin = { rootFiles: ['AGENTS.md'] };
+  fixture.manifest.overlays.push({
+    id: 'agents-file',
+    scope: 'file',
+    source: 'files/AGENTS.md',
+    destination: 'AGENTS.md',
+    pinnedSha256: sha256(Buffer.from('upstream agents\n')),
+  });
+  writeManifest(fixture);
+  seedState(fixture);
+  const missing = 'f'.repeat(40);
+  fixture.manifest.pin.commit = missing;
+  writeManifest(fixture);
+
+  const status = fixture.run(['status']);
+  assert.match(status.output, new RegExp('^NOTE +no upstream checkout at the pin, so the stale root-file check and ' +
+    `the json-entry cross-check were skipped; fetch commit ${missing} into `, 'm'));
+});
+
+test('a relative pin.checkout is read from the tree root, not from the shell\'s folder', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.manifest.pin.checkout = path.relative(fixture.tree, fixture.manifest.pin.checkout);
+  writeManifest(fixture);
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  seedState(fixture);
+
+  fixture.writeOperations([]);
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+});
+
+test('a malformed entry set blocks only its own overlay and names its file', (t) => {
+  const fixture = createFixture(t);
+  seedState(fixture);
+  writeFile(fixture.overlayDir, 'json/entries.json', '{ "operations": [');
+  writeFile(fixture.overlayDir, 'files/guarded.txt', 'overlay two\n');
+
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /json-entry: entry set json\/entries\.json is not valid JSON/);
+  assert.match(status.output, /overlay-edited guarded\.txt/);
+});
+
+test('status notes each operation the engine keeps no record of', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  fixture.writeOperations([
+    { op: 'setKeyOnItem', path: ['rows'], identityKey: 'id', match: { id: 'B' }, key: 'extra', value: 1 },
+    { op: 'set', path: ['rows', 0, 'top'], value: 'z' },
+  ]);
+  seedState(fixture);
+
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.match(status.output, /^NOTE +baseline-set: setKeyOnItem of extra on the item matching id=B at rows keeps no record, so its value stays in baseline\.json after it leaves the entry set$/m);
+  assert.match(status.output, /^NOTE +baseline-set: set at rows\.0\.top goes through an array index, so it lands on another item when an item before it is added or removed$/m);
+});
+
+test('status reports a json-entry result that differs from the entry set applied to the pinned copy', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  fixture.writeOperations([
+    { op: 'setKeyOnItem', path: ['rows'], identityKey: 'id', match: { id: 'B' }, key: 'extra', value: 1 },
+  ]);
+  seedState(fixture);
+  const clean = fixture.run(['status']);
+  assert.doesNotMatch(clean.output, /cross-check/);
+
+  fixture.writeOperations([]);
+  assert.equal(fixture.run(['apply']).code, 0);
+  assert.equal(readJson(fixture.livePath).rows[1].extra, 1);
+
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.match(status.output, /^NOTE +cross-check baseline\.json: the live file differs from the entry set applied to the pinned copy at rows\.1\.extra; no record covers that value, unless a regenerate step that leaves baseline\.json out of its outputs wrote it$/m);
+});
+
+test('status names each untracked operation by what it sets, so two at one path read apart', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  fixture.writeOperations([
+    { op: 'setKeyOnItem', path: ['rows'], identityKey: 'id', match: { id: 'A' }, key: 'extra', value: 1 },
+    { op: 'setKeyOnItem', path: ['rows'], identityKey: 'id', match: { id: 'B' }, key: 'extra', value: 2 },
+    { op: 'insertObjectKeys', path: [], entries: [{ key: 'one', value: 1 }, { key: 'two', value: 2 }] },
+  ]);
+  seedState(fixture);
+
+  const notes = fixture.run(['status']).output.split('\n').filter((line) => line.startsWith('NOTE'));
+  assert.deepEqual(notes, [
+    'NOTE     baseline-set: setKeyOnItem of extra on the item matching id=A at rows keeps no record, so its value stays in baseline.json after it leaves the entry set',
+    'NOTE     baseline-set: setKeyOnItem of extra on the item matching id=B at rows keeps no record, so its value stays in baseline.json after it leaves the entry set',
+    'NOTE     baseline-set: insertObjectKeys of one, two at the top level keeps no record, so its value stays in baseline.json after it leaves the entry set',
+  ]);
+});
+
+test('status skips the cross-check on a json-entry destination a regenerate step lists as an output', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  fixture.manifest.regenerate = [{ id: 'gen', argv: ['node', '-e', '0'], outputs: ['baseline.json'] }];
+  writeManifest(fixture);
+  fixture.writeOperations([]);
+  seedState(fixture);
+  const live = readJson(fixture.livePath);
+  live.rows[1].generated = true;
+  writeFile(fixture.tree, 'baseline.json', JSON.stringify(live, null, 2) + '\n');
+
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.doesNotMatch(status.output, /cross-check/);
 });

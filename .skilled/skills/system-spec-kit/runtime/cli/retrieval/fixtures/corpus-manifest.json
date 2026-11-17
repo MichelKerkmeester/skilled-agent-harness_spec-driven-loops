@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c994492c26090df42429f81a446f3527f0cafe4f734ff663d15d8f36ad3aefa9",
+  "corpusHash": "60ca4f2f91f4fa9c8e5b196e90acb518c7dd32db2b3302c86711c59e70221623",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28140,
+  "includedPathCount": 28141,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -19544,6 +19544,7 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/timeline.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/handover-to-barter.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/implementation-summary.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/spec.md",
@@ -28172,7 +28173,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8ec70830a5338229c15f9a1ab18b3a3db1ea543b19e037ae94fcd98a8598d549",
+  "manifestHash": "a1c454bf7ed29834f0b0d4e69ece39ac67b847bc94315cd8b0fbeaf775ea3f99",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
