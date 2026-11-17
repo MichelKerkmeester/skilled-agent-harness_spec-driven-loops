@@ -15,6 +15,7 @@
       "phase 8 spec line position gates",
       "spec line position gates plan",
       "spec line position gates tasks",
+      "008-spec-line-position-gates operator decisions",
       "spec line position gates implementation summary"
     ],
     "key_topics": [
@@ -25,11 +26,11 @@
       "phase",
       "plan",
       "tasks",
+      "008-spec-line-position-gates",
+      "operator",
+      "decisions",
       "implementation",
-      "summary",
-      "changelog",
-      "template",
-      "skill"
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -37,6 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py",
       ".skilled/skills/sk-doc/scripts/tests/test_check_changelog_shape.py",
@@ -63,6 +65,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -184,32 +192,28 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The changelog template and SKILL.md section 5 say the spec-folder line closes the entry, after an `&nbsp;` line",
     "created_at": "2026-11-17T16:09:44Z",
-    "last_save_at": "2026-11-17T16:14:08.747Z",
+    "last_save_at": "2026-11-17T16:54:33.300Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8cb8afbe709e4921f8ac073deeca0e59ad7323b2628a3bced531c6755bf8954b",
+    "source_fingerprint": "sha256:4a4be71e679d63219c20400d7ea0482e29ee3cdca36572249ef40d5426dd5f50",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "95412c4e5a94196b8ce30e41ec43605fa3ee8c7afbb146f6baab7519d70a9a63",
       "plan.md": "6c3e0d8c197641dec5acba00febb315e1fc17c55f50f4c2cd63e6297f0c14263",
       "tasks.md": "df8a02178a8e1c11e43f2149274e1a3a24c46d91096a1ec56e9bcca7c6340745",
-      "implementation-summary.md": "f5a316af70ddb9c0c2676c703f08d53a78a6b0cc27dbe3d7ab13d33db94cb554"
+      "decision-record.md": "890ae4ef79c8945a3d151c6f98a4643cf815c7157e1255ccba47412874ec941d",
+      "implementation-summary.md": "583e81402951f9ae5862d9c437a3c9360296a7aaba012b85f5d838edf944f05e"
     },
     "last_active_at": null
   }

@@ -1,0 +1,678 @@
+{
+  "sessionId": "fanout-deepseek-1794073077587-4hefyi",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-11-16T08:08:33.938Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "create.sh --track <track>/<sub-track> writes through a symlinked sub-track that every reader skips",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "line": 1340,
+      "description": "create.sh follows a symlinked sub-track and scaffolds a packet through it even though track-roots treats that folder as skipped and never refreshes it.",
+      "findingClass": "path_containment",
+      "deltaStatus": null,
+      "scopeProof": "--track is user input accepted by validate_track_value; the two-segment form is the new sub-track form this packet introduces.",
+      "affectedSurfaceHints": [
+        "create.sh SPECS_DIR/FEATURE_DIR",
+        "track-roots.mjs symlink skip",
+        "sweep-track-roots.mjs diagnostics",
+        "archive.sh link refusal"
+      ],
+      "contentHash": "60513390f7c81f7eba668ec25186d700e1f81fc0d5c8eb47fbf619ce3fba9969",
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-002",
+      "severity": "P1",
+      "title": "A linked description.json declares a sub-track in validation and archive but not in track-roots or the repair path",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      "line": 199,
+      "description": "The tools disagree on whether a symlinked description.json declares a sub-track, producing an exempted validator/archiver container that the track readers do not see.",
+      "findingClass": "declaration_consistency",
+      "deltaStatus": null,
+      "scopeProof": "All five implementations read the same declaration field from the same folder; the disagreement is reachable by replacing a real description.json with a symlink.",
+      "affectedSurfaceHints": [
+        "validate.sh recursion and exemption",
+        "archive.sh packet home and --list",
+        "orchestrator.ts exemption",
+        "track-roots.mjs both views",
+        "repair-derived.cjs parent repair"
+      ],
+      "contentHash": "0203510eab1a74658faeb1b554400d93e6f2e8a52035201e538db2431cf3d48f",
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P2",
+      "title": "The parent repair cannot clear a sub-track parent after a move to the specs root or to another track",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+      "line": 368,
+      "description": "A packet moved out of a sub-track to the specs root or to another track keeps the stale sub-track parent because expectedParentId has no known parent for that destination.",
+      "findingClass": "incomplete_move_repair",
+      "deltaStatus": null,
+      "scopeProof": "repair-derived.cjs is the tool named by REQ-005 and the packet's Files to Change for recomputing parent_id after a move.",
+      "affectedSurfaceHints": [
+        "repair-derived.cjs expectedParentId",
+        "graph-metadata-parser.ts resolveParentId",
+        "graph-metadata-parser.ts mergeGraphMetadata"
+      ],
+      "contentHash": "71b0af73b5f062b832c417b754dc0ad11c966dcba30e43158dda831f922adb32",
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "A symlinked graph-metadata.json reads differently in the two views",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+      "line": 154,
+      "description": "The working tree reads a symlinked metadata target while the commit view reads the link text, so the views disagree on the same sub-track.",
+      "findingClass": "view_parity",
+      "deltaStatus": null,
+      "scopeProof": "readWorkingTreeTracks and readCommitTracks are the two views the module documents as equivalent.",
+      "affectedSurfaceHints": [
+        "refresh",
+        "sweep --rev",
+        "pre-push gate"
+      ],
+      "contentHash": "c323baf69b10d562c0d02e074d8e5af36182b98f10216b01dd90f815a6aa3de6",
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "repair-derived treats the literal string null as absent but does not rewrite it",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+      "line": 538,
+      "description": "A parent_id stored as the literal string null compares equal to the expected null, so the repair skips the rewrite and leaves the literal in the file.",
+      "findingClass": "repair_idempotence",
+      "deltaStatus": null,
+      "scopeProof": "fixRecordedLocation is the repair for recorded locations; the normalization is introduced there.",
+      "affectedSurfaceHints": [
+        "repair-derived report counts",
+        "later graph merge"
+      ],
+      "contentHash": "76b0aa4f5a5088963f38c0f819f037ae647be3eb553f113bbe9795d2ea086fc2",
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "A three-segment --track value scaffolds a packet at a depth no reader scans",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "line": 1174,
+      "description": "A three-segment --track passes validate_track_value and creates a packet that no track reader or recursive validation reaches.",
+      "findingClass": "input_validation",
+      "deltaStatus": null,
+      "scopeProof": "--track is caller input; the three-segment value passes every refusal in validate_track_value.",
+      "affectedSurfaceHints": [
+        "create.sh validate_track_value",
+        "create.sh refresh_track_root",
+        "track readers",
+        "validation recursion"
+      ],
+      "contentHash": "17137bd5624d3404903a38348fa9fc3bd9fbfe6f809029b7fc2b9e46ac609c17",
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "The doctor host-relative alias check is lexical; a host symlink inside the root can make the mirrored alias resolve outside it",
+      "file": ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+      "line": 818,
+      "description": "The host-target containment check uses a lexical path comparison while the target is later resolved through the host filesystem, so a host symlink can move the alias outside the root.",
+      "findingClass": "containment_hardening",
+      "deltaStatus": null,
+      "scopeProof": "The function's stated purpose is to keep a host-sibling alias inside the host; the target check is the only gate before op:link.",
+      "affectedSurfaceHints": [
+        "inspectMergeTree",
+        "planMergeTree"
+      ],
+      "contentHash": "c47a50efb23ff76bce0b5f4dd81f3f587b713a225a825fb7a49a6a36bb23bf3a",
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "The declaration table requires a specId no reader enforces",
+      "file": ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+      "line": 115,
+      "description": "The docs require a specId in a sub-track description.json that no reader validates and that is semically a numeric prefix elsewhere.",
+      "findingClass": "doc_contract_mismatch",
+      "deltaStatus": null,
+      "scopeProof": "The docs table is the normative declaration contract a reader follows; no code path validates it.",
+      "affectedSurfaceHints": [
+        "folder-structure.md",
+        "track-roots.mjs",
+        "validate.sh",
+        "orchestrator.ts",
+        "subtrack-tree.mjs"
+      ],
+      "contentHash": "4b5ef3f6f26e7b2727596a201d9e103497c2a3dea3e39f899a56c9aad436f071",
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "The track/sub-track example writes children_ids without the parent prefix",
+      "file": ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+      "line": 385,
+      "description": "The example's children_ids entries omit the track prefix that every writer and test uses.",
+      "findingClass": "doc_example_wrong",
+      "deltaStatus": null,
+      "scopeProof": "expectedChildrenIds prepends the identity; compareTrackChildren treats a bare entry as foreign.",
+      "affectedSurfaceHints": [
+        "folder-structure.md example",
+        "refresh",
+        "sweep",
+        "create.sh readers"
+      ],
+      "contentHash": "3b207baded985ca56bb4cb14328c32af115c17f14122104cc58ed7cbce45d17f",
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-003",
+      "severity": "P2",
+      "title": "The implementation summary says a deeper layout is reported but no reader scans a folder inside a sub-track",
+      "file": "specs/system-speckit/044-named-subtracks-and-host-repos/implementation-summary.md",
+      "line": 129,
+      "description": "The known-limitation row says a deeper layout is reported, but no reader scans folders inside a sub-track.",
+      "findingClass": "doc_behavior_mismatch",
+      "deltaStatus": null,
+      "scopeProof": "The statement is in the packet's own Known Limitations, so it is the contract a reader relies on.",
+      "affectedSurfaceHints": [
+        "readWorkingTreeTracks",
+        "sweep-track-roots.mjs",
+        "create.sh",
+        "recursion"
+      ],
+      "contentHash": "4ad3cc6988fd40fc377100e0a21d97b803347d4e334079bd7c4799902c67dc92",
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-004",
+      "severity": "P2",
+      "title": "The packet completion percentage contradicts its complete status",
+      "file": "specs/system-speckit/044-named-subtracks-and-host-repos/implementation-summary.md",
+      "line": 26,
+      "description": "completion_pct is 90 while the spec, acceptance closure and recent_action all describe the packet as complete.",
+      "findingClass": "completion_metadata_inconsistent",
+      "deltaStatus": null,
+      "scopeProof": "The three fields are in the same packet and name the same transaction.",
+      "affectedSurfaceHints": [
+        "implementation-summary.md continuity",
+        "spec.md status",
+        "acceptance closure"
+      ],
+      "contentHash": "7692f9fd4a040c59f3763c653f19fb87197db04f68cbcd25e13ee41a0e4e5a6b",
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-005",
+      "severity": "P2",
+      "title": "The sub-track container parent_id contract has two writers with different answers",
+      "file": ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+      "line": 116,
+      "description": "The docs and repair-derived say a sub-track parent_id is its track, while resolveParentId returns null for the container.",
+      "findingClass": "writer_contract_mismatch",
+      "deltaStatus": null,
+      "scopeProof": "Both writers target the same parent_id field of the same folder, and the docs name the value.",
+      "affectedSurfaceHints": [
+        "graph-metadata-parser.ts",
+        "repair-derived.cjs",
+        "graph-metadata-schema.ts",
+        "save/refresh path"
+      ],
+      "contentHash": "147529b044f48a627d896868fc47718be256e6dfc25e135e10a2656dbb0f11bf",
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The declaration rule exists in six copies that already disagree",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+      "line": 76,
+      "description": "Six independent copies of the declaration rule already disagree on a linked description and a z_ track.",
+      "findingClass": "duplicate_rule",
+      "deltaStatus": null,
+      "scopeProof": "Every copy reads the same description.json field and answers whether a folder is a sub-track; a single exported predicate could be called from all of them.",
+      "affectedSurfaceHints": [
+        "track-roots.mjs",
+        "validate.sh",
+        "orchestrator.ts",
+        "archive.sh",
+        "repair-derived.cjs",
+        "graph-metadata-parser.ts",
+        "create.sh"
+      ],
+      "contentHash": "158ea766dbeaaf6905b756910ccb53e6624c97122e36db17668a72abbde50dbc",
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "readWorkingTreeTracks returns an array with an attached diagnostics property while readCommitTracks returns an object",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+      "line": 163,
+      "description": "The working-tree view hides diagnostics on the array while the commit view returns a named property, so a copy loses diagnostics silently.",
+      "findingClass": "api_shape_asymmetry",
+      "deltaStatus": null,
+      "scopeProof": "The same module exposes two view functions; one return shape is an array with a hidden property, the other an object.",
+      "affectedSurfaceHints": [
+        "readWorkingTreeTracks callers",
+        "readCommitTracks callers",
+        "tests"
+      ],
+      "contentHash": "9f51cf6316a7ebe1f732de8ff4ffc2d67b9b9e9cd3dcbdc709ef336e66999eaa",
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-003",
+      "severity": "P2",
+      "title": "create.sh declaration probe swallows every reader failure",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "line": 1031,
+      "description": "A missing or broken reader is indistinguishable from an undeclared folder because the probe redirects both streams to /dev/null.",
+      "findingClass": "failure_visibility",
+      "deltaStatus": null,
+      "scopeProof": "create.sh accepts the reader path and checks only -f before running it; every other failure is suppressed.",
+      "affectedSurfaceHints": [
+        "create.sh is_declared_subtrack",
+        "create.sh refresh_track_root",
+        "operator stderr"
+      ],
+      "contentHash": "999f4b807c1ff330e90951b9febc1cc76a2767fb346379a7d5d4ad2ede54d42a",
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-004",
+      "severity": "P2",
+      "title": "The host-index instructions are duplicated in three files",
+      "file": ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+      "line": 401,
+      "description": "The same host-index command block lives in three docs and can drift on the next flag or path change.",
+      "findingClass": "duplicated_documentation",
+      "deltaStatus": null,
+      "scopeProof": "The three files name the same generator and lookup invocations for the same host-index mode.",
+      "affectedSurfaceHints": [
+        "folder-structure.md section 7",
+        "runtime/data/README.md",
+        "search.md",
+        "retrieval CLIs"
+      ],
+      "contentHash": "fa5378de402f18121e2fbb9a767ed2899760ba0b8ff67fed718e85b4758d7c41",
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 14
+  },
+  "openFindingsCount": 16,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 0,
+      "partial": 2,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 4,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "status": "notApplicable",
+        "protocolId": "agent_cross_runtime",
+        "gateClass": "advisory",
+        "applicable": false
+      },
+      {
+        "status": "partial",
+        "protocolId": "checklist_evidence",
+        "gateClass": "hard",
+        "applicable": true
+      },
+      {
+        "status": "notApplicable",
+        "protocolId": "feature_catalog_code",
+        "gateClass": "advisory",
+        "applicable": false
+      },
+      {
+        "status": "notApplicable",
+        "protocolId": "playbook_capability",
+        "gateClass": "advisory",
+        "applicable": false
+      },
+      {
+        "status": "notApplicable",
+        "protocolId": "skill_agent",
+        "gateClass": "advisory",
+        "applicable": false
+      },
+      {
+        "status": "partial",
+        "protocolId": "spec_code",
+        "gateClass": "hard",
+        "applicable": true
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "spec_code",
+      "checklist_evidence"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

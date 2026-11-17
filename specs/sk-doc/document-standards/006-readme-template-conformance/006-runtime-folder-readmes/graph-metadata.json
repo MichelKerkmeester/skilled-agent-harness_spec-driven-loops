@@ -48,17 +48,17 @@
       "goal.md",
       "implementation-summary.md",
       ".opencode/SYNC.md",
-      ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-folder-template.md",
-      ".pi/SYNC.md",
-      ".devin/SYNC.md",
       ".claude/README.md",
+      ".claude/SYNC.md",
       ".codex/README.md",
       ".cursor/README.md",
+      ".cursor/mcp.json",
+      ".claude/mcp.json",
       ".devin/README.md",
+      ".devin/SYNC.md",
       ".dsh/README.md",
       ".opencode/README.md",
       ".pi/README.md",
-      ".claude/SYNC.md",
       ".codex/SYNC.md",
       ".cursor/SYNC.md"
     ],
@@ -106,15 +106,15 @@
         "source": "derived"
       },
       {
-        "name": "runtime-folder-template.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-folder-template.md",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": ".claude/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".cursor/mcp.json",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Each runtime folder has a README for a person setting it up and a `SYNC.md` that records what is generated, linked or authored and how drift is caught",
     "created_at": "2026-11-16T15:20:17Z",
-    "last_save_at": "2026-11-16T19:27:09.216Z",
+    "last_save_at": "2026-11-17T16:55:35.881Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0dc3c1d0a817b4371b17fdace5414fe74cfc57a1c12d5d0f41120e48f5b87400",
+    "source_fingerprint": "sha256:d5d4f5c78d16d87159195b1cbea8347d3a2df200ccec46550b9b10fd25a1fdf8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "44a8570dd5f504b4453c99ff2bf3113637d62ccf6368ea9a6f064ab78e7b710b",
       "plan.md": "e31d5debcccaff17933fe742b32915ed2e0a7c74b0a0ce1f2ba246ec9991fcba",
       "tasks.md": "c371a60a29cc405908ac311ab1888bc96bf06092e0b9239f6a778dd4132e2632",
-      "implementation-summary.md": "1f2a3c7eca018491f70b27bac35044feec966e27f28def8d2427382ac37a5558"
+      "implementation-summary.md": "f9d8b4922228cc87af15c0de1a0b2fc643db92d2aab1e4679aa21024c87dcee6"
     },
     "last_active_at": null
   }

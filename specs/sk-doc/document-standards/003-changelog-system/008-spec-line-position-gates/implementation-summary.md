@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/document-standards/003-changelog-system/008-spec-line-position-gates"
-    last_updated_at: "2026-11-17T16:14:08Z"
+    last_updated_at: "2026-11-17T16:54:33Z"
     last_updated_by: "generate-context"
     recent_action: "Added the spec-position rule and named the position in four docs"
     next_safe_action: "Run the commit and push for the spec-line position gates"
@@ -21,14 +21,14 @@ _memory:
       - ".skilled/commands/create/assets/create-changelog-auto.yaml"
       - ".skilled/commands/create/assets/create-changelog-confirm.yaml"
     session_dedup:
-      fingerprint: "sha256:008f57c41338a41c76cb3c14f9b9f59a45b3e9a6f1cf7b4345d374b7ccf622ff"
+      fingerprint: "sha256:24bfcf4c6b6f5afb1cf765ff9cebab510f5df8448f52dc062c5c3024f2fd200c"
       session_id: "scaffold-008-spec-line-position-gates"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "77af2d6d-58e8-4180-b6da-697f12833f71"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-17T16:14:08Z"
+      savedAt: "2026-11-17T16:54:33Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

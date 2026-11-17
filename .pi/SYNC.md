@@ -1,21 +1,25 @@
 ---
-title: "Pi CLI — Runtime Sync Manifest"
-description: "How .pi derives from .skilled: two generators for agents and prompts, one-line extension entries that re-export the hand-authored guard bridges, and how to detect drift."
+title: "Pi CLI: Runtime Sync Manifest"
+description: "How .pi derives from .skilled: the generated agent and prompt trees, the one-line extension entries, the authored settings and the checks that catch drift."
+trigger_phrases:
+  - "pi sync manifest"
+  - "pi runtime surfaces"
+  - "pi extension drift"
 ---
 
 # Pi CLI Sync Manifest
 
-> Like Codex, `.pi/agents/` and `.pi/prompts/` are **generated** trees, not symlinked ones — compiler output, never hand-edit them; edit the canonical source and re-run the generator. (Other surfaces below are symlinks or hand-authored; see the inventory.)
+> Two generators and a set of one-line extension entries carry `.skilled/` into Pi.
 
 ---
 
 ## 1. OVERVIEW
 
-Pi consumes flat real files, so two generators in `.skilled/skills/system-spec-kit/runtime/cli/pi/` transform the canonical trees into Pi's dialect. Both own their output directory: write mode regenerates changed files and prunes anything the canonical tree no longer justifies (a retired command's stale prompt was the live drift mode here).
+Pi reads `AGENTS.md` from the working directory and the folders above it, so the root [`AGENTS.md`](../AGENTS.md) reaches a session with no copy in this folder. `--no-context-files` turns that read off. Pi also loads the project settings in `settings.json` and reads the prompt templates in `prompts/`. It scans the top-level `*.ts` files in `extensions/` for entries. The `code_mode` server comes from `mcp.json`.
 
-Canonical for agents is `.skilled/agents/` — the same upstream Codex uses, *not* the `.claude/agents/` fork that Cursor and Devin symlink. The generator maps OpenCode's `permission:` block onto Pi's built-in tool names, so a `.pi/agents/*.md` never byte-matches either parent tree.
+Two generators in `.skilled/skills/system-spec-kit/runtime/cli/pi/` write `agents/` and `prompts/` as flat files. The folder also holds four links: `skills`, `repo-rules` and `manual-testing-playbook`, plus the adapter file at `extensions/lib/claude-hook-adapter.ts`. The extension entries are written here. The settings files and the folder documents are too.
 
-Unlike every sibling runtime, Pi's guard layer is **native code, not config**: `extensions/*.ts` are one-line entry files that re-export hand-authored factories under `.skilled/`, and those factories bridge the repo's shared guard cores into Pi's lifecycle-event API. There is no `hooks.json` dialect here at all.
+An entry re-exports an adapter under `.skilled/`. The adapter calls the core that owns the policy. A guard change lands in the core, so an entry needs no edit. The entries are authored. `sync-hook-registrations.cjs` checks their shape rather than writing them.
 
 ---
 
@@ -23,103 +27,144 @@ Unlike every sibling runtime, Pi's guard layer is **native code, not config**: `
 
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
-| `agents/*.md` | **generated** | `.skilled/agents/*.md` | Yes — `sync-agents-pi.cjs --check` |
-| `prompts/*.md` (45) | **generated** pointer stubs, except the native command below | `.skilled/commands/**/*.md` | Yes — `sync-prompts-pi.cjs --check` |
-| `prompts/goal-pi.md` | hand-authored native command | none | No — exempt by `command-scope.cjs` |
-| `extensions/*.ts` + `lib/` | **one-line re-exports** of hand-authored guard bridges, plus the symlinked module `lib/claude-hook-adapter.ts` | shared guard cores under `.skilled/**` | Behavioral drift only; shape checked, no behavioral checker |
-| `mcp.json` | **hand-authored** | — | Registers the code_mode MCP server. The advisor is not an MCP server and is not registered here: `extensions/prompt-advisor.ts` reaches it in-process. |
-| `settings.json` | **hand-authored** | — | Pi package configuration |
-| `settings.json`, `modes.json`, `statusline.sh`, `pi-blackhole-config.json`, `models.json` (global) | **symlinked canonicals** | repo `.pi/*` is the source of truth; `~/.pi/agent/*` and `~/.pi/agent/pi-blackhole/pi-blackhole-config.json` are relative symlinks back into the repo | Users pull the latest configs from this repo; the local Mac consumes them via symlink |
-| `npm/` | operator-local package output | — | not synced |
-| `skills/` | whole-dir symlink | `.skilled/skills` (same mirror as `.claude/skills`) | No |
-| `manual-testing-playbook/` | whole-dir symlink | `.skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook` | No |
-
-Prompt names are the flattened command path (`create/agent.md` → `create-agent.md`), the same rule as Codex and Cursor, with the same `assets|scripts|fixtures` exclusion.
+| `agents/*.md` | generated | `.skilled/agents/*.md` | Yes. `sync-agents-pi.cjs --check` reports drift file by file |
+| `prompts/*.md` | generated stub | `.skilled/commands/**/*.md` | Yes. `sync-prompts-pi.cjs --check` reports drift file by file |
+| `prompts/goal-pi.md` | authored native command | none | No. `command-scope.cjs` names it, so the generator never writes or prunes it |
+| `extensions/*.ts` | authored one-line re-export | the adapter it names under `.skilled/` | Yes. `sync-hook-registrations.cjs --check` reports an entry that is not one re-export of an existing adapter |
+| `extensions/lib/claude-hook-adapter.ts` | relative symlink | `.skilled/skills/system-spec-kit/runtime/hooks/pi/lib/claude-hook-adapter.ts` | Yes, if the target moves. No check reads the link |
+| `extensions/pi-cache-optimizer/` | authored local package | none | No. Pi loads it from the `packages` list |
+| `extensions/pi-fast-mode-w-subagent-support/` | authored local package | none | No. Pi loads it from the `packages` list |
+| `mcp.json` | authored | none | No. It registers the `code_mode` server |
+| `settings.json` | authored | none | No. It holds the project settings and the `packages` list |
+| `models.json` | authored | none | No. It holds the provider blocks Pi merges over its own catalog |
+| `pi-blackhole-config.json` | authored project override | none | No. The package merges it over the global config |
+| `pi-cache-optimizer-config.json` | authored | none | No. The package keeps its setting under the Pi agent directory |
+| `pi-fast-mode-w-subagent-support-config.json` | local state, git-ignored | none | No. The package writes it at run time |
+| `deep-pi-stats.json` | local state, git-ignored | none | No. `.gitignore` excludes it, and no sync check reads it |
+| `statusline.sh` | authored | none | No. `settings.json` names it as the status line command |
+| `custom-providers.md` | authored | none | No |
+| `PLUGINS.md` | authored | none | No |
+| `README.md` | authored | none | No |
+| `SYNC.md` | authored | none | Yes, this table. No drift check reads it |
+| `skills` | relative symlink | `../.skilled/skills` | No. The link holds no content |
+| `repo-rules` | relative symlink | `../.skilled/repo-rules` | No. The link holds no content |
+| `manual-testing-playbook` | relative symlink | `../.skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook` | No. The link holds no content |
+| `types/` | authored declarations | none | No. `tsconfig.pi.json` lists `node-globals.d.ts` and `pi-coding-agent.d.ts` |
+| `git/` | install output, git-ignored | none | No. A package install writes it |
+| `npm/` | install output, git-ignored | none | No. A package install writes it |
 
 ---
 
-## 3. WHEN TO SYNC
+## 3. WHAT THIS FOLDER NEVER HOLDS
 
-- Any `.skilled/agents/*.md` changes → re-run `sync-agents-pi.cjs`.
-- Any `.skilled/commands/**` file is added, renamed or deleted → re-run `sync-prompts-pi.cjs`. Renames matter: a deleted canonical file leaves a stale prompt until write mode prunes it.
-- Guard-core behavior changes under `.skilled/**` → review `extensions/*.ts` by hand; nothing regenerates them.
+| Kept out | Where it lives | Why |
+|---|---|---|
+| A copy of the shared instructions | `../AGENTS.md` | Pi reads the root file from the working directory and its ancestors |
+| A skills tree | `.skilled/skills/` | The `skills` link is the only copy. A fix to a skill lands once |
+| A guard rule | `.skilled/hooks/` | An entry re-exports an adapter. The adapter calls the core that owns the rule |
+| Keys and login state | `~/.pi/agent/auth.json` and `~/.pi/agent/models-store.json` | `models.json` reads `${LLMGATEWAY_API_KEY}` from the environment and holds no secret |
 
 ---
 
-## 4. SYNC WORKFLOW
+## 4. WHEN TO SYNC
+
+- An agent is added or renamed under `.skilled/agents/` → run `sync-agents-pi.cjs`. A write run adds the new file and prunes the old one.
+- A command is added or renamed under `.skilled/commands/` → run `sync-prompts-pi.cjs`. A write run prunes a stub whose source is gone and leaves `goal-pi.md` alone.
+- A hook joins or leaves `hook-registry.json` → add or edit its entry here, then run `sync-hook-registrations.cjs --check`.
+- A guard core changes under `.skilled/` → nothing to run. The entry and the adapter resolve at load time, so the next session reads the new core.
+- A package joins the `packages` list in `settings.json` → run `pi update --extensions --approve` from the repository root so `.pi/npm` carries it.
+
+---
+
+## 5. SYNC WORKFLOW
 
 ```bash
-# Regenerate both owned trees (write mode also prunes stale output)
 node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs
 node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs
-
-# Verify roster coverage across all six runtime surfaces
-node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs
 ```
+
+With both trees in step, the first prints `[pi-agent-sync] Wrote 0 of 11 generated agents.` and the second prints `[pi-prompt-sync] Wrote 0 of 46 generated prompts.` Both exit 0. A write run prunes a generated file whose source is gone. It also refuses to write through a symlink at an output path.
 
 ---
 
-## 5. FORMAT CONTRACT
+## 6. FORMAT CONTRACT
 
-Generated agents carry Pi's own frontmatter dialect — quoted strings and a YAML list of **lowercase built-in tool names**:
+`sync-agents-pi.cjs` writes Pi's agent frontmatter. The name and description are quoted. `tools` holds lowercase Pi built-in names.
 
 ```yaml
 ---
 name: "review"
-description: "Code review specialist with pattern validation, quality scoring, and standards enforcement"
+description: "Code review specialist that applies the sk-code review mode's floor and lens, with a severity-based verdict and an advisory score, for PRs and code changes"
 tools:
   - read
   - bash
   - grep
   - find
+  - ls
+# Unmapped OpenCode permission keys: external_directory
 ---
 ```
 
-The tool list is **derived and lossy**: OpenCode's `permission:` map collapses onto Pi's built-in vocabulary, and MCP tool globs have no Pi equivalent. Like the Codex TOMLs, a Pi agent cannot be round-tripped back to its source.
+The tool list is derived and lossy. A permission outside `PERMISSION_TOOL_MAP` survives only as a YAML comment. An empty list is still written so a loader never falls back to the full tool set. The generated file cannot round-trip to its source.
 
-Each prompt is a small stub that points at the canonical file rather than duplicating it:
+Each prompt is a stub that names the canonical command file and passes the arguments through.
 
 ```markdown
 <!-- Generated by sync-prompts-pi.cjs from .skilled/commands/create/agent.md — do not edit by hand. -->
 # Pi entry: /create-agent
+
+This is the Pi runtime entry point for the `/create-agent` command. The canonical, authoritative command definition lives in the OpenCode tree at:
+
+`.skilled/commands/create/agent.md`
 ```
 
-No installed surface reads `.pi/agents/**/*.md` today. Pi core exposes `--skill` and `--prompt-template` but has no agent flag, and the community package that used to discover these profiles went away with Pi's subagents feature. The mirror stays generated and drift-checked so the deliverable is ready if a consumer returns; nothing currently loads it, and this file is the place that says so.
+The stub copies the command name and the canonical path. It does not copy the command body, so an edit to the body needs no regeneration. The slash command name is the command path with each slash turned into a dash.
 
 ---
 
-## 6. REQUIRED PARITY
+## 7. REQUIRED PARITY
 
-- **Gate 1 lookup instruction: inherited, not mirrored.** Pi loads `AGENTS.md` (or `CLAUDE.md`) from the working directory and its ancestors at startup, so the root `AGENTS.md` Gate 1 line reaches every Pi session in this repository without a `.pi` copy. Source: `@earendil-works/pi-coding-agent` 0.85.1, `README.md` §"Pi loads `AGENTS.md`" and `dist/core/resource-loader.js` `loadContextFileFromDir`, whose candidate list is `AGENTS.override.md`, `AGENTS.md`, `AGENTS.MD`, `CLAUDE.md`, `CLAUDE.MD`; `--no-context-files` is the only way to disable it. Recorded 2026-09-07; `/doctor speckit-retrieval` phase 0 reports it as `gate1_reach.pi`.
-- Agents and prompts: the prompts generated from the canonical tree plus one hand-authored native command. The generators' `--check` is authoritative.
-- Every prompt stub's cited canonical path must exist. A stub pointing at a deleted file is the drift mode that actually occurred here (`interface-motion` outlived its command).
+- Every canonical agent has a file in `agents/`. `agent-roster-mirror-check.cjs` compares the runtime surfaces and prints `OK   pi        11/11 present`.
+- Every canonical command has a stub in `prompts/`. `goal-pi.md` stands beside them. `sync-prompts-pi.cjs --check` is authoritative.
+- Every Pi binding in `hook-registry.json` has an entry in `extensions/`. `sync-hook-registrations.cjs --check` is authoritative.
+- Every prompt stub names a canonical path that the generator derived. A deleted source leaves an extra stub, which the prompt check reports.
 
 ---
 
-## 7. DRIFT CHECKS
+## 8. DRIFT CHECKS
 
 | Check | Command | Exit |
 |---|---|---|
 | Generated agents | `node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check` | 0 ok / 1 drift |
 | Generated prompts | `node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check` | 0 ok / 1 drift |
-| Roster coverage | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 ok / 1 drift |
-| Everything at once | `/doctor runtime-mirrors` | read-only |
+| Extension entries | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check` | 0 ok / 1 drift / 2 usage or registry error |
+| Roster coverage | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 covered / 1 drift / 2 checker error |
+| Everything at once | `/doctor-runtime-mirrors` | read-only |
+
+Each check prints a pass line or one line for each problem it finds. The agents check prints `[pi-agent-sync] PASS: 11 agents are in sync.` The prompts check prints `[pi-prompt-sync] PASS: 46 prompts are in sync.` The extension check prints `[hook-registration-sync] PASS: 4 registration files match the 36-hook registry; 22 Pi extensions resolve.` The roster check ends with `STATUS=OK agent-roster-mirror: every runtime covers the canonical roster`.
 
 ---
 
-## 8. KNOWN GAPS
+## 9. KNOWN GAPS
 
-- **Generated agents lose information.** The permission-to-tool mapping cannot round-trip; Pi is a one-way derivation, same class as Codex's `sandbox_mode`.
-- **`extensions/` has no behavioral drift checker.** `sync-hook-registrations.cjs --check` verifies each entry is a one-line re-export whose adapter exists, but the bridges are hand-authored against the shared guard cores; a core behavior change surfaces only at runtime or in the manual-testing playbook.
-- **Editing a canonical agent does not remind you about Pi.** The `.claude` fork gate and the symlink mirrors cover their surfaces; only `--check` (or `/doctor runtime-mirrors`) catches a stale `.pi` tree.
+- **No surface loads the generated agents.** Pi core has no agent flag. The package that used to find these profiles is gone. The files stay generated and checked as a ready deliverable.
+- **The tool list loses permissions.** A permission outside `PERMISSION_TOOL_MAP` has no Pi equivalent, so it survives only as a comment and the generated file cannot be round-tripped.
+- **The extension check reads shape, not behavior.** `sync-hook-registrations.cjs --check` proves each entry is one re-export of an adapter that exists. A change in a shared core shows up at run time or in the Pi suites under `.skilled/hooks/*/pi/`.
+- **The adapter link has no check.** The two session bridges import the real path under `.skilled/`, so `extensions/lib/claude-hook-adapter.ts` is there for browsing. A moved target leaves a dangling link that no check reports.
+- **The type declarations run in no gate.** No CI workflow or git hook runs `tsc -p tsconfig.pi.json`, so a declaration that falls behind an adapter is caught only by hand.
+- **The cache-optimizer config here is not the one the package reads.** `extensions/pi-cache-optimizer/index.ts` reads `pi-cache-optimizer-config.json` from Pi's agent directory, so a change to the copy in this folder has no effect.
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 10. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
-| `.skilled/skills/system-spec-kit/runtime/cli/pi/README.md` | The generator contract |
-| [`extensions/README.md`](extensions/README.md) | Why the guard layer is native code |
-| `.skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/` | Executable scenarios for these surfaces |
-| [`../.claude/SYNC.md`](../.claude/SYNC.md) · [`../.codex/SYNC.md`](../.codex/SYNC.md) · [`../.cursor/SYNC.md`](../.cursor/SYNC.md) · [`../.devin/SYNC.md`](../.devin/SYNC.md) | Sibling runtime manifests |
+| [`README.md`](./README.md) | What a session here receives and the checks that confirm it |
+| [`extensions/README.md`](./extensions/README.md) | Each entry, the adapter it re-exports and the switches that silence it |
+| [`types/README.md`](./types/README.md) | The declarations behind `tsconfig.pi.json` |
+| [`../.skilled/skills/system-spec-kit/runtime/cli/pi/README.md`](../.skilled/skills/system-spec-kit/runtime/cli/pi/README.md) | The two generators and their `--check` mode |
+| [`../.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md`](../.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md) | The hook registry, the renderer and the entry check |
+| [`../.skilled/hooks/README.md`](../.skilled/hooks/README.md) | The shared guard cores and the coverage matrix |
+| [`../.skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/manual-testing-playbook.md`](../.skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/manual-testing-playbook.md) | Executable scenarios for this runtime |
+| [`../.claude/SYNC.md`](../.claude/SYNC.md), [`../.codex/SYNC.md`](../.codex/SYNC.md), [`../.cursor/SYNC.md`](../.cursor/SYNC.md), [`../.devin/SYNC.md`](../.devin/SYNC.md), [`../.opencode/SYNC.md`](../.opencode/SYNC.md), [`../.vibe/SYNC.md`](../.vibe/SYNC.md) | Sibling runtime manifests |

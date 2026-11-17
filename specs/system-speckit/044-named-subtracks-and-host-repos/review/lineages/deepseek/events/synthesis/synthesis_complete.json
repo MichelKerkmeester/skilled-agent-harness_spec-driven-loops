@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"fanout-deepseek-1794073077587-4hefyi","sessionId":"fanout-deepseek-1794073077587-4hefyi"},"data":{"mode":"review","totalIterations":5,"activeP0":0,"activeP1":2,"activeP2":14,"dimensionCoverage":1,"verdict":"CONDITIONAL","releaseReadinessState":"release-blocking","stopReason":"maxIterationsReached"}}

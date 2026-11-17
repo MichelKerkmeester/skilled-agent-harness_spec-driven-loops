@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b3dee7df489c6fb439c66b1924edf4f0c1031a76325f8056f908900ac847d371",
+  "manifestHash": "e5ad307cccf0a707d20841bdfa8e77503ced8bc3a59302e061832f102a8f6eab",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -91,6 +91,9 @@
     ],
     "001 code readmes implementation summary": [
       "001-code-readmes implementation summary"
+    ],
+    "001 completed run extension operator decisions": [
+      "001-completed-run-extension operator decisions"
     ],
     "001 continuity memory runtime changelog index": [
       "001-continuity-memory-runtime changelog index"
@@ -1855,6 +1858,9 @@
     "007 docs and readmes rollup": [
       "007-docs-and-readmes rollup"
     ],
+    "007 expansive depth mode operator decisions": [
+      "007-expansive-depth-mode operator decisions"
+    ],
     "007 fix stress test coverage gap followup plan": [
       "007-fix-stress-test-coverage-gap-followup plan"
     ],
@@ -2275,6 +2281,9 @@
     ],
     "008 spec": [
       "008 spec"
+    ],
+    "008 spec line position gates operator decisions": [
+      "008-spec-line-position-gates operator decisions"
     ],
     "008 spec memory playbook run": [
       "008 spec-memory playbook run"
@@ -12463,6 +12472,9 @@
     "apply tag to task": [
       "apply tag to task"
     ],
+    "apply the configured review miniterations": [
+      "apply the configured review miniterations"
+    ],
     "applytreethinning": [
       "applyTreeThinning"
     ],
@@ -16716,6 +16728,9 @@
     ],
     "candidate verification": [
       "candidate verification"
+    ],
+    "candidatecoverage searchdebt frontier": [
+      "candidateCoverage searchDebt frontier"
     ],
     "cannot apply overlay state": [
       "cannot-apply overlay state"
@@ -29570,6 +29585,30 @@
     "complete with note": [
       "complete with note"
     ],
+    "completed continue extension": [
+      "completed-continue extension"
+    ],
+    "completed continue lineage mode": [
+      "completed-continue lineage mode"
+    ],
+    "completed run extension": [
+      "completed run extension"
+    ],
+    "completed run extension acceptance criteria": [
+      "completed run extension acceptance criteria"
+    ],
+    "completed run extension goal": [
+      "completed run extension goal"
+    ],
+    "completed run extension implementation summary": [
+      "completed run extension implementation summary"
+    ],
+    "completed run extension plan": [
+      "completed run extension plan"
+    ],
+    "completed run extension tasks": [
+      "completed run extension tasks"
+    ],
     "completed sessions no longer re entered": [
       "completed sessions no longer re-entered"
     ],
@@ -33875,6 +33914,9 @@
     "custom footer fast indicator": [
       "custom footer fast indicator"
     ],
+    "custom review dimensions": [
+      "custom review dimensions"
+    ],
     "customize diagram colors": [
       "customize diagram colors"
     ],
@@ -36514,6 +36556,9 @@
     ],
     "deep loop certificate verification": [
       "deep-loop certificate verification"
+    ],
+    "deep loop change slices": [
+      "deep loop change slices"
     ],
     "deep loop changelog internal ids": [
       "deep loop changelog internal ids"
@@ -40281,6 +40326,15 @@
     ],
     "deprecation tasks list": [
       "deprecation tasks list"
+    ],
+    "depth mode expansive": [
+      "depth-mode expansive"
+    ],
+    "depth mode expansive research": [
+      "depth-mode expansive research"
+    ],
+    "depth mode expansive review": [
+      "depth-mode expansive review"
     ],
     "depth thinking framework removed": [
       "depth thinking framework removed"
@@ -48923,6 +48977,21 @@
     "expanded retrieval fixture": [
       "expanded retrieval fixture"
     ],
+    "expansive depth mode": [
+      "expansive depth mode"
+    ],
+    "expansive depth mode implementation summary": [
+      "expansive depth mode implementation summary"
+    ],
+    "expansive depth mode plan": [
+      "expansive depth mode plan"
+    ],
+    "expansive depth mode tasks": [
+      "expansive depth mode tasks"
+    ],
+    "expansive depth sub mode for deep research": [
+      "expansive depth sub mode for deep research"
+    ],
     "expected 6a handoff": [
       "expected 6a handoff"
     ],
@@ -49004,6 +49073,9 @@
     "export network trace": [
       "export network trace"
     ],
+    "extend completed deep research run": [
+      "extend completed deep research run"
+    ],
     "extend dispatch coverage": [
       "extend dispatch coverage"
     ],
@@ -49018,6 +49090,9 @@
     ],
     "extend dispatch coverage tasks": [
       "extend dispatch coverage tasks"
+    ],
+    "extend n implementation plan": [
+      "extend=N implementation plan"
     ],
     "extend the existing citation scanner to spec": [
       "extend the existing citation scanner to spec"
@@ -50516,6 +50591,18 @@
     ],
     "fanout resume salvage evidence": [
       "fanout resume salvage evidence"
+    ],
+    "fanout review coverage merge": [
+      "fanout review coverage merge"
+    ],
+    "fanout review coverage merge goal": [
+      "fanout review coverage merge goal"
+    ],
+    "fanout review coverage merge plan": [
+      "fanout review coverage merge plan"
+    ],
+    "fanout review coverage merge tasks": [
+      "fanout review coverage merge tasks"
     ],
     "fanout review focus": [
       "fanout review focus"
@@ -52722,6 +52809,15 @@
     "focus dimension dispatch": [
       "focus dimension dispatch"
     ],
+    "focus hijack fix": [
+      "focus hijack fix"
+    ],
+    "focus hijack fix plan": [
+      "focus hijack fix plan"
+    ],
+    "focus hijack fix tasks": [
+      "focus hijack fix tasks"
+    ],
     "focus ring and keyboard behavior": [
       "focus ring and keyboard behavior"
     ],
@@ -53267,6 +53363,9 @@
     "forward plan": [
       "forward plan"
     ],
+    "forward the claude config dir on single executor": [
+      "forward the claude config dir on single executor"
+    ],
     "forwarded launcher signals": [
       "forwarded launcher signals"
     ],
@@ -53770,6 +53869,15 @@
     ],
     "frontend web surface routing": [
       "frontend web surface routing"
+    ],
+    "frontier admit step": [
+      "frontier admit step"
+    ],
+    "frontier veto": [
+      "frontier veto"
+    ],
+    "frontieropen veto": [
+      "frontierOpen veto"
     ],
     "frontmatter audit": [
       "frontmatter audit"
@@ -68167,6 +68275,9 @@
     "max secondary clients 64": [
       "max secondary clients 64"
     ],
+    "maxcouncilseatoutputs per pivot": [
+      "maxCouncilSeatOutputs per pivot"
+    ],
     "maxdurationreached terminal gate record": [
       "maxDurationReached terminal gate record"
     ],
@@ -73072,6 +73183,9 @@
     "merge replay criteria": [
       "merge replay criteria"
     ],
+    "merge review registries coverage": [
+      "merge review registries coverage"
+    ],
     "merge sk prompt sk prompt models": [
       "merge sk-prompt sk-prompt-models"
     ],
@@ -75922,6 +76036,9 @@
     "next focus architecture": [
       "next-focus architecture"
     ],
+    "next focus hijack": [
+      "next focus hijack"
+    ],
     "next focus implementation": [
       "next-focus implementation"
     ],
@@ -76081,6 +76198,18 @@
     ],
     "no progress recovery": [
       "no-progress recovery"
+    ],
+    "no redispatch landed iteration": [
+      "no redispatch landed iteration"
+    ],
+    "no redispatch landed iteration goal": [
+      "no redispatch landed iteration goal"
+    ],
+    "no redispatch landed iteration plan": [
+      "no redispatch landed iteration plan"
+    ],
+    "no redispatch landed iteration tasks": [
+      "no redispatch landed iteration tasks"
     ],
     "no replacement surface": [
       "no replacement surface"
@@ -79291,6 +79420,12 @@
     ],
     "opt in collector posture": [
       "opt-in collector posture"
+    ],
+    "opt in expansive depth mode for deep research": [
+      "opt in expansive depth mode for deep research"
+    ],
+    "opt in expansive depth mode for deep review": [
+      "opt in expansive depth mode for deep review"
     ],
     "opt in external executor": [
       "opt-in external executor"
@@ -85656,6 +85791,9 @@
     "phase 8 spec kit check parallel jobs": [
       "phase 8 spec kit check parallel jobs"
     ],
+    "phase 8 spec line position gates": [
+      "phase 8 spec line position gates"
+    ],
     "phase 8 surface hint hub root": [
       "phase 8 surface hint hub root"
     ],
@@ -87631,6 +87769,24 @@
     ],
     "pipx editable repair plan": [
       "pipx editable repair plan"
+    ],
+    "pivot hygiene": [
+      "pivot hygiene"
+    ],
+    "pivot hygiene decision record": [
+      "pivot hygiene decision record"
+    ],
+    "pivot hygiene goal": [
+      "pivot hygiene goal"
+    ],
+    "pivot hygiene implementation summary": [
+      "pivot hygiene implementation summary"
+    ],
+    "pivot hygiene plan": [
+      "pivot hygiene plan"
+    ],
+    "pivot hygiene tasks": [
+      "pivot hygiene tasks"
     ],
     "placeholder fence matching": [
       "placeholder fence matching"
@@ -90122,6 +90278,9 @@
     "progressive synthesis": [
       "progressive synthesis"
     ],
+    "progressive synthesis write conflict": [
+      "progressive synthesis write conflict"
+    ],
     "progressive tool loading": [
       "progressive tool loading"
     ],
@@ -90456,6 +90615,15 @@
     ],
     "prompt pack": [
       "prompt pack"
+    ],
+    "prompt pack contract alignment": [
+      "prompt pack contract alignment"
+    ],
+    "prompt pack contract alignment plan": [
+      "prompt pack contract alignment plan"
+    ],
+    "prompt pack contract alignment tasks": [
+      "prompt pack contract alignment tasks"
     ],
     "prompt pack direct append fix": [
       "prompt-pack direct append fix"
@@ -91274,6 +91442,9 @@
     "quality checklist map": [
       "quality checklist map"
     ],
+    "quality class upsert derivation": [
+      "quality_class upsert derivation"
+    ],
     "quality config inside the skill folder": [
       "quality config inside the skill folder"
     ],
@@ -91783,6 +91954,9 @@
     ],
     "questions anchor un nesting": [
       "questions anchor un-nesting"
+    ],
+    "questions remaining next focus": [
+      "questions remaining next focus"
     ],
     "queued operator answers": [
       "queued operator answers"
@@ -93322,6 +93496,9 @@
     ],
     "recommendations in chat": [
       "recommendations in chat"
+    ],
+    "recommended next focus heading": [
+      "recommended next focus heading"
     ],
     "reconcile codex hooks": [
       "reconcile codex hooks"
@@ -97779,6 +97956,18 @@
     "research citations removed": [
       "research citations removed"
     ],
+    "research claude config dir": [
+      "research claude config dir"
+    ],
+    "research claude config dir goal": [
+      "research claude config dir goal"
+    ],
+    "research claude config dir plan": [
+      "research claude config dir plan"
+    ],
+    "research claude config dir tasks": [
+      "research claude config dir tasks"
+    ],
     "research codebase pointers": [
       "research codebase pointers"
     ],
@@ -97904,6 +98093,21 @@
     ],
     "research folders under spec tree root": [
       "research folders under spec-tree root"
+    ],
+    "research frontier mode": [
+      "research frontier mode"
+    ],
+    "research frontier mode acceptance criteria": [
+      "research frontier mode acceptance criteria"
+    ],
+    "research frontier mode implementation summary": [
+      "research frontier mode implementation summary"
+    ],
+    "research frontier mode plan": [
+      "research frontier mode plan"
+    ],
+    "research frontier mode tasks": [
+      "research frontier mode tasks"
     ],
     "research gate": [
       "research gate"
@@ -98306,6 +98510,9 @@
     ],
     "research tuning guide": [
       "research tuning guide"
+    ],
+    "research upcast keyquestions findingscount": [
+      "research upcast keyQuestions findingsCount"
     ],
     "research verification checklist": [
       "research verification checklist"
@@ -99937,6 +100144,24 @@
     "review diff signature hash": [
       "review diff signature hash"
     ],
+    "review dimension coverage": [
+      "review dimension coverage"
+    ],
+    "review dimension coverage decision record": [
+      "review dimension coverage decision record"
+    ],
+    "review dimension coverage goal": [
+      "review dimension coverage goal"
+    ],
+    "review dimension coverage implementation summary": [
+      "review dimension coverage implementation summary"
+    ],
+    "review dimension coverage plan": [
+      "review dimension coverage plan"
+    ],
+    "review dimension coverage tasks": [
+      "review dimension coverage tasks"
+    ],
     "review dimension table": [
       "review-dimension table"
     ],
@@ -100072,6 +100297,24 @@
     "review follow ups tasks": [
       "review follow ups tasks"
     ],
+    "review frontier admission": [
+      "review frontier admission"
+    ],
+    "review frontier mode": [
+      "review frontier mode"
+    ],
+    "review frontier mode acceptance criteria": [
+      "review frontier mode acceptance criteria"
+    ],
+    "review frontier mode implementation summary": [
+      "review frontier mode implementation summary"
+    ],
+    "review frontier mode plan": [
+      "review frontier mode plan"
+    ],
+    "review frontier mode tasks": [
+      "review frontier mode tasks"
+    ],
     "review gate follows severity": [
       "review gate follows severity"
     ],
@@ -100170,6 +100413,18 @@
     ],
     "review metadata author line": [
       "review metadata author line"
+    ],
+    "review min iterations floor": [
+      "review min iterations floor"
+    ],
+    "review min iterations floor goal": [
+      "review min iterations floor goal"
+    ],
+    "review min iterations floor plan": [
+      "review min iterations floor plan"
+    ],
+    "review min iterations floor tasks": [
+      "review min iterations floor tasks"
     ],
     "review mode": [
       "review mode"
@@ -102540,6 +102795,9 @@
     ],
     "run doctor subsystem diagnostic": [
       "run doctor subsystem diagnostic"
+    ],
+    "run extended ledger event": [
+      "run_extended ledger event"
     ],
     "run extraction phase": [
       "run extraction phase"
@@ -117754,6 +118012,27 @@
     "sleeptime agent tasks": [
       "sleeptime agent tasks"
     ],
+    "slice d focus": [
+      "slice d focus"
+    ],
+    "slice e prompt pack": [
+      "slice e prompt pack"
+    ],
+    "slice f d7 d9": [
+      "slice f d7 d9"
+    ],
+    "slice g quality class": [
+      "slice g quality class"
+    ],
+    "slice h d10": [
+      "slice h d10"
+    ],
+    "slice i d12": [
+      "slice i d12"
+    ],
+    "slice l pivot hygiene": [
+      "slice l pivot hygiene"
+    ],
     "slow and failing tests": [
       "slow and failing tests"
     ],
@@ -118032,6 +118311,15 @@
     "source diversity check": [
       "source diversity check"
     ],
+    "source diversity quality class": [
+      "source diversity quality class"
+    ],
+    "source diversity quality class plan": [
+      "source diversity quality class plan"
+    ],
+    "source diversity quality class tasks": [
+      "source diversity quality class tasks"
+    ],
     "source doc hashes": [
       "source doc hashes"
     ],
@@ -118209,6 +118497,9 @@
     ],
     "source topology routing resilience": [
       "source-topology routing resilience"
+    ],
+    "sourcediversity cannot pass": [
+      "sourcediversity cannot pass"
     ],
     "sourcesignature null": [
       "sourceSignature null",
@@ -119693,6 +119984,18 @@
     ],
     "spec lifecycle automation": [
       "spec lifecycle automation"
+    ],
+    "spec line position gates": [
+      "spec line position gates"
+    ],
+    "spec line position gates implementation summary": [
+      "spec line position gates implementation summary"
+    ],
+    "spec line position gates plan": [
+      "spec line position gates plan"
+    ],
+    "spec line position gates tasks": [
+      "spec line position gates tasks"
     ],
     "spec memory allowlist": [
       "spec-memory allowlist"
@@ -121687,6 +121990,24 @@
     "state jsonl iteration field": [
       "state jsonl iteration field"
     ],
+    "state log leaf fields": [
+      "state log leaf fields"
+    ],
+    "state log leaf fields decision record": [
+      "state log leaf fields decision record"
+    ],
+    "state log leaf fields goal": [
+      "state log leaf fields goal"
+    ],
+    "state log leaf fields implementation summary": [
+      "state log leaf fields implementation summary"
+    ],
+    "state log leaf fields plan": [
+      "state log leaf fields plan"
+    ],
+    "state log leaf fields tasks": [
+      "state log leaf fields tasks"
+    ],
     "state log unattributed": [
       "state log unattributed"
     ],
@@ -122116,6 +122437,9 @@
     ],
     "stop reason max iterations": [
       "stop reason max iterations"
+    ],
+    "stop redispatch once from re running": [
+      "stop redispatch once from re-running"
     ],
     "stop running timer": [
       "stop running timer"

@@ -6,7 +6,7 @@
     "phase",
     "spec-line-position-gates"
   ],
-  "lastUpdated": "2026-11-17T16:14:08.747Z",
+  "lastUpdated": "2026-11-17T16:54:33.300Z",
   "specId": "008",
   "folderSlug": "spec-line-position-gates",
   "parentChain": [
@@ -14,8 +14,9 @@
     "document-standards",
     "003-changelog-system"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "17-11-26_17-14__all-except-changelog-stuff.md"
+    "17-11-26_17-14__all-except-changelog-stuff.md",
+    "17-11-26_17-54__records-the-operator-scope-answer-for-the-spec.md"
   ]
 }

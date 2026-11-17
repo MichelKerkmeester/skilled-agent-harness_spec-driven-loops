@@ -1,60 +1,47 @@
 ---
-title: "DeepSeek Harness — Runtime Sync Manifest"
-description: "How .dsh derives from .skilled: hand-authored route and lineage patches, a generated skill-link farm, prompt stubs and persona patches, and what this folder never holds."
+title: "DeepSeek Harness: Runtime Sync Manifest"
+description: "How .dsh derives from .skilled: generated skill links, prompt stubs and persona patches, authored patches and guard bundle, then the checks that catch drift."
+trigger_phrases:
+  - "dsh sync manifest"
+  - "dsh surface inventory"
+  - "dsh patch drift"
 ---
 
 # DeepSeek Harness Sync Manifest
 
-> DeepSeek Harness (`dsh`) reads no project folder by itself. A dispatch reaches this folder only through `--patch` arguments, so every file here is a composition layer the caller names explicitly.
+> `.skilled/` is the source of truth. Three trees here are generated from it. One folder of adapter links is written by the mirror writer. The patches are hand-authored because each one is a diff against a base profile.
 
 ---
 
 ## 1. OVERVIEW
 
-DeepSeek Harness is a Node agent CLI published as `@deepseek-ai/dsh`. It composes its runtime from bundle patches, then the profile's `cordis.patch.yml`, then `$DSH_HOME/cordis.patch.yml`, then each `--patch <file>` in argv order. The last layer wins per row and replaces that row's whole `config`.
+dsh reads one path in this folder on its own. It discovers a skill at `<projectRoot>/.dsh/skills/<name>/SKILL.md`, one level deep. It follows the link. Every other file reaches a run only when a dispatch names it. A patch arrives as a `--patch` argument. The layers apply in argv order, so a later layer wins per row. A prompt stub arrives when a dispatcher copies it into the task text. A persona patch arrives only when the dispatch passes it.
 
-This folder holds the `--patch` layers the repository owns. Model selection belongs to the harness, so the closed roster is enforced here: one route patch per roster entry, and a lineage patch that switches off every surface a non-interactive dispatch must not run. The base default route is the official DeepSeek API, and a dispatch that names no route patch falls through to it.
+Three trees are generated. `skills/` holds one link per skill. `prompts/` holds one pointer stub per command. `agents/` holds one persona patch per agent. The adapter links under `plugins/repo-guards/adapters/` come from the mirror writer that serves every runtime. The rest is written here. No source tree declares a patch or a guard bundle, so both are authored.
 
 ---
 
 ## 2. SURFACE INVENTORY
 
+One row for each surface this folder exposes.
+
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
-| `patches/route-llmgateway-deepseek.patch.yml` | **hand-authored** route patch | none | Yes. `--dump-config` shows the composed `llm-pi-ai` provider and the `agent-default-model` row |
-| `patches/route-opencode-go-deepseek.patch.yml` | **hand-authored** route patch | none | Yes, same check. Its endpoint is unverified until a keyed run proves it |
-| `patches/lineage.patch.yml` | **hand-authored** lineage patch | none | Yes. `--dump-config` shows telemetry `DISABLED`, the five disabled rows and the `repo-guards-lineage-leaf` marker row |
-| `patches/guards.patch.yml` | **hand-authored** patch that inserts the `repo-guards` row | none | Yes. A keyless boot with it must print no `did not activate` line |
-| `patches/mcp-code-mode.patch.yml` | **hand-authored**, opt-in patch that mounts one `code_mode` stdio server | `.pi/mcp.json` | Yes. A keyless boot with it must leave no new `mcp-code-mode-launcher` process |
-| `plugins/repo-guards/` | **hand-authored** bundle entry, leaf marker plugin and the bundle's own tests. Each adapter's tests live in its concern's `tests/` folder | `.skilled/hooks/`, `.skilled/skills/*/runtime/hooks/` | Yes. `node --test .skilled/hooks/*/tests/dsh-*.test.mjs .skilled/skills/system-skill-advisor/hooks/tests/dsh-*.test.mjs .dsh/plugins/repo-guards/tests/` |
-| `plugins/repo-guards/adapters/*.mjs` | **derived** relative symlink, one per adapter in a `.skilled/hooks/<concern>/dsh/` folder, aimed at the real file | `.skilled/hooks/*/dsh/*.mjs` and the skill-owned files they index | Yes. `sync-runtime-mirrors.cjs --check` |
-| `skills/<name>` | **generated** relative symlink, one per canonical `SKILL.md`, named by its frontmatter `name` | `.skilled/skills/**/SKILL.md` | Yes. `sync-skills-dsh.cjs --check` |
-| `prompts/*.md` | **generated** pointer stubs | `.skilled/commands/**/*.md` | Yes. `sync-prompts-dsh.cjs --check` |
-| `agents/<name>.patch.yml` | **generated** persona patch, one `system-prompt` row whose `personaPrefix` is the agent body | `.skilled/agents/*.md` | Yes. `sync-agents-dsh.cjs --check` |
-| `README.md` | hand-authored | none | No |
-| `SYNC.md` | hand-authored | none | No |
+| `patches/route-llmgateway-deepseek.patch.yml` | authored route patch | none | Yes. `--dump-config` names the provider and model it declares. A renamed base row leaves the patch a no-op with a stderr warning |
+| `patches/route-opencode-go-deepseek.patch.yml` | authored route patch | none | Yes. The same check reads its provider and model |
+| `patches/lineage.patch.yml` | authored lineage patch | none | Yes. `--dump-config` shows `mode: DISABLED` on telemetry and a disabled flag on each row it names |
+| `patches/guards.patch.yml` | authored patch that inserts the guard rows | none | Yes. `--dump-config` with it shows the `repo-guards` row. With the lineage patch also named, it shows the marker row |
+| `patches/mcp-code-mode.patch.yml` | authored, opt-in patch that mounts one stdio server | none | Yes. `--dump-config` with it shows the `mcp-code-mode` row |
+| `plugins/repo-guards/` | authored bundle entry, marker plugin, adapter folder and tests | none | Yes. The bundle suite reads the two patches and checks the loader each adapter uses. Nothing compares the bundle source to a source tree |
+| `plugins/repo-guards/adapters/` | one relative link per adapter, plus an authored `README.md` and two helper links | `.skilled/hooks/*/dsh/*.mjs` and the skill-owned `hooks/dsh/` files | Yes. `sync-runtime-mirrors.cjs --check` reports a link that is absent or points at the wrong source |
+| `skills/<name>` | generated relative link, one per `SKILL.md`, named by its frontmatter `name` | `.skilled/skills/**/SKILL.md` | Yes. `sync-skills-dsh.cjs --check` reports a missing, stale or extra link |
+| `prompts/*.md` | generated pointer stub | `.skilled/commands/**/*.md` | Yes. `sync-prompts-dsh.cjs --check` reports a missing, stale or extra stub |
+| `agents/<name>.patch.yml` | generated persona patch, one `system-prompt` row | `.skilled/agents/*.md` | Yes. `sync-agents-dsh.cjs --check` reports a missing, stale or extra patch |
+| `manual-testing-playbook` | relative link to a folder | `../.skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook` | No. The link holds no content of its own |
+| `README.md` | authored | none | No. Nothing here generates it |
+| `SYNC.md` | authored | none | No. Nothing here generates it |
 
-### Repo-guards adapters
-
-The bundle registers twenty-two adapters. `.dsh/plugins/repo-guards/README.md` section 4 owns the full table with each adapter's event, scope, leaf behavior and error policy. The real adapters live in the hook library, `.skilled/hooks/<concern>/dsh/` or the owning skill's `hooks/dsh/` folder, and `adapters/` holds one relative link per adapter, unlike `.pi/extensions/`, which holds one-line re-export files.
-
-| Adapter group | Adapters | Fan-out leaf |
-|---|---|---|
-| Deny or ask | `dispatch-preflight-lint`, `spec-gate-enforce`, `mcp-route-guard`, `git-message-gate`, `overlay-guard`, `env-secret-guard` | runs |
-| Advise, audit or attach | `dispatch-audit`, `task-dispatch-guard`, `post-edit-quality`, `classifier-injection-screen`, `git-preflight-advisory`, `completion-evidence`, `spec-gate-classify` | runs |
-| Send back | `ask-surface-guard` | off: a leaf has no question tool |
-| Context and capture | `goal-context`, `session-start-context`, `session-compact-context`, `decision-capture` | runs |
-| Interactive only | `prompt-advisor`, `goal-manage`, `session-start-advisories`, `session-stop-context` | off by the lineage marker |
-
-dsh discovers skills at `.dsh/skills/<name>/SKILL.md`, one level deep, and follows symlinks. A single link to the whole skill tree would expose only the top-level hubs, so the generator links every skill directory on its own, and a linked skill keeps its `references/`, `assets/` and `scripts/`. dsh has no agent-file loader and no command loader. A persona reaches a run as `--patch .dsh/agents/<name>.patch.yml`, and a dispatcher composes a prompt stub into the task text, appending the user request below its last line. A `.dsh/skills/local-*` entry belongs to the operator and is ignored by git and never pruned.
-
-The two route patches replace two rows. `llm-pi-ai` gets one custom provider with `apiKeyEnv` naming the key variable, never a key value. `agent-default-model` gets that provider, its single model and the default effort `max`. Each provider carries `compat.thinkingFormat: deepseek`, so `off` sends `thinking: {type: disabled}`, and `compat.supportsDeveloperRole: false`, because the gateway upstream refuses the `developer` role. Each model declares `off`, `high` and `max`, since a hand-declared model has no reasoning levels until the patch declares them. Whether either endpoint accepts `max` on the wire is unverified until a keyed run.
-
-The guards patch inserts `plugins/repo-guards/index.mjs` by a path relative to the patch file, so it resolves from any dispatch cwd. A plugin that fails to load only prints `N entry did not activate` and the run carries on unguarded, so the deep-loop runner fails a lineage whose stderr holds that line. The bundle README names every shipped adapter and its error policy.
-
-The MCP patch is never part of a default dispatch. A caller adds it, and the deep-loop runner adds it only for a lineage that names `code_mode` in `liveTools.mcpServers`. dsh starts the server eagerly and strips ambient variables whose names hold `KEY`, `PASSWORD`, `SECRET` or `TOKEN`, so the row names `UTCP_CONFIG_FILE` in its `env` and resolves the checkout root from its own `--patch` path. The launcher picks a Node 24 interpreter through `NVM_DIR` or `$HOME/.nvm`, so a dispatch that also replaces `HOME` must pass `NVM_DIR`. A Code Mode manual whose token variable was stripped does not register; the server still starts.
-
-The lineage patch sets `session-telemetry-otel` to `mode: DISABLED` and disables `session-log-deepseek`, `goal-round-driver`, `command-goal`, `tool-goal` and `plan-mode`. The base bundle mounts all six. A headless dispatch has no feedback channel, a goal round driver keeps an idle agent running, the native `get_goal`, `create_goal` and `update_goal` tools need a direct human turn a leaf never has, and plan mode's exit tool fails closed without an interactive review. It also inserts `repo-guards-lineage-leaf`, a marker plugin. The runner applies the lineage patch before the guards patch inserts `repo-guards`, so the lineage patch cannot override that row, and the bundle reads the marker when an event fires instead.
+The bundle registers one adapter per link and reads the lineage marker to keep its interactive-only adapters off. The [bundle README](./plugins/repo-guards/README.md) section 4 owns the entry map, with each event and its effect. Section 5 owns the failure policy. The two helper links are not entries.
 
 ---
 
@@ -62,50 +49,123 @@ The lineage patch sets `session-telemetry-otel` to `mode: DISABLED` and disables
 
 | Kept out | Where it lives | Why |
 |---|---|---|
-| API keys and `.env` files | the launch environment or a disposable `$DSH_HOME/.env` | Headless reads keys from the environment, then `<cwd>/.env`, then `$DSH_HOME/.env`. A key in the repository leaks to every dispatch |
-| Profiles, sessions, storages | `$DSH_HOME`, one disposable home per dispatch | The harness writes them at first boot |
-| `node_modules` | the dsh installation | Bundles resolve from the installation that runs `dsh` |
+| API keys and `.env` files | the launch environment or a disposable `$DSH_HOME/.env` | Headless reads keys from the environment, then `<cwd>/.env`, then `$DSH_HOME/.env`. A key in the checkout reaches every dispatch |
+| Profiles, sessions and storages | `$DSH_HOME`, one fresh home per dispatch | dsh writes them as it runs. A home is process state |
+| `node_modules` | the dsh installation | A bundle resolves its imports from the installation that runs `dsh` |
 
-Never start a dispatch from the repository root. The root holds a `.env`, and headless would read it.
+Start a dispatch outside the repository root. The root holds a `.env`. Headless reads it.
 
 ---
 
 ## 4. WHEN TO SYNC
 
-- Any `.skilled/skills/**/SKILL.md` is added, renamed or deleted, or its frontmatter `name` changes → re-run `sync-skills-dsh.cjs`. Write mode prunes stale links.
-- Any `.skilled/commands/**` file is added, renamed or deleted → re-run `sync-prompts-dsh.cjs`.
-- Any `.skilled/agents/*.md` changes → re-run `sync-agents-dsh.cjs`.
-
-- A roster model id, provider endpoint or key variable changes → edit the matching route patch, then run the check in section 5.
-- A shared guard core under `.skilled/hooks/` changes its exports → rerun the bundle tests.
-- A new harness release renames or adds a base row → rerun the check. A patch whose target row is missing is only a loader warning, so a renamed row silently turns that patch into a no-op.
+- A skill is added, renamed or deleted → run `sync-skills-dsh.cjs`. A change to its frontmatter `name` also needs a run. A write run prunes a link whose source is gone and leaves a `local-*` entry alone.
+- A command file is added, renamed or deleted → run `sync-prompts-dsh.cjs`.
+- An agent file in `.skilled/agents/` changes → run `sync-agents-dsh.cjs`.
+- A hook adapter is added, renamed or removed → run `sync-runtime-mirrors.cjs` for the link under `adapters/`.
+- A provider, endpoint, key variable or roster entry changes → edit the matching patch by hand, then run the composition check in section 5.
+- A dsh release changes a base row → rerun the composition check. A patch whose target row is gone is only a loader warning, so the whole patch can go quiet.
 
 ---
 
 ## 5. SYNC WORKFLOW
 
+Run these from the repository root.
+
 ```bash
-# Regenerate the three owned trees (write mode also prunes stale output)
 node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs
 node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs
 node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs
-
-# Check without writing: exit 0 in sync, 1 on drift
-node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check
-node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs --check
-node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check
+node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
 ```
 
-The pre-commit mirror gate runs the three checks on every commit in this repository, and CI runs them again in its `dsh-mirror` job. A commit that stages a skill, agent or command source with a dirty `.dsh` copy is blocked until the regenerated copy is staged too.
+Each tree generator ends with a `Wrote` line under its own tag. That line states the number it wrote and pruned. The command exits 0. The mirror writer ends with a `Linked` line that states the number it linked and removed. A clean tree writes nothing and prunes nothing.
 
-Then check that the patches still compose:
+Then check that the patches still compose. The run prints the composed config and makes no model call.
 
 ```bash
-# Compose each route with the lineage patch, from a disposable home and a temp cwd
 H=$(mktemp -d); W=$(mktemp -d); R="$PWD/.dsh/patches"
 (cd "$W" && DSH_HOME="$H" dsh --profile headless \
   --patch "$R/route-llmgateway-deepseek.patch.yml" \
   --patch "$R/lineage.patch.yml" --dump-config </dev/null)
 ```
 
-Expected result: exit 0, empty stderr, `agent-default-model` naming `llmgateway` and `deepseek-v4.1-flash-1017`, and `mode: DISABLED` under `session-telemetry-otel`. Repeat with `route-opencode-go-deepseek.patch.yml`, which names `opencode-go` and `deepseek-v4.1-flash`. Any stderr line about an unmatched patch target is a failure.
+The run exits 0 with nothing on stderr. `agent-default-model` names the provider and model the route patch declares. `session-telemetry-otel` reads `mode: DISABLED`. Repeat it with `route-opencode-go-deepseek.patch.yml`, which names its own provider and model. Any stderr line about an unmatched patch target is a failure.
+
+To compose with the guard bundle, add the guards patch after the lineage patch.
+
+```bash
+H=$(mktemp -d); W=$(mktemp -d); R="$PWD/.dsh/patches"
+(cd "$W" && DSH_HOME="$H" dsh --profile headless \
+  --patch "$R/route-llmgateway-deepseek.patch.yml" \
+  --patch "$R/lineage.patch.yml" --patch "$R/guards.patch.yml" --dump-config </dev/null)
+```
+
+The run exits 0 with nothing on stderr. The config carries a `repo-guards` row and a `repo-guards-lineage-leaf` row.
+
+---
+
+## 6. FORMAT CONTRACT
+
+A persona patch is the one generated dialect. `sync-agents-dsh.cjs` strips the frontmatter from a shared agent file and writes one `system-prompt` row whose `personaPrefix` is the body as a YAML block scalar.
+
+```yaml
+# Generated by sync-agents-dsh.cjs from .skilled/agents/review.md
+- id: system-prompt
+  config:
+    personaPrefix: |2
+```
+
+Every line of the agent body follows the indicator, indented by six spaces. The translation loses the frontmatter, so the patch never carries the agent's declared `name` or its `permission` map. The header names the source file. A body change reaches the patch on the next run. A frontmatter change never does.
+
+---
+
+## 7. REQUIRED PARITY
+
+- Every agent in `.skilled/agents/` has `agents/<name>.patch.yml` here. The roster check covers every runtime and prints the `dsh` count it finds.
+- Every `SKILL.md` under `.skilled/skills/` has a link in `skills/`, named by its frontmatter `name`. A directory the generator excludes and an operator `local-*` entry are the exceptions.
+- Every `.mjs` file in a hook library `dsh/` folder has one link in `adapters/`. The mirror check is authoritative.
+
+---
+
+## 8. DRIFT CHECKS
+
+| Check | Command | Exit |
+|---|---|---|
+| Skill links match their sources | `node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check` | 0 in sync, 1 on drift |
+| Prompt stubs match their commands | `node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs --check` | 0 in sync, 1 on drift |
+| Persona patches match their agents | `node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check` | 0 in sync, 1 on drift |
+| Adapter links match the hook library | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 in sync, 1 on drift |
+| Every adapter behaves | `node --test .skilled/hooks/*/tests/dsh-*.test.mjs .skilled/skills/system-skill-advisor/hooks/tests/dsh-*.test.mjs .dsh/plugins/repo-guards/tests/` | 0 pass, 1 fail |
+| Every runtime covers the agent roster | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 covered, 1 on drift, 2 on a checker error |
+| The patches still compose | the `--dump-config` runs in section 5 | 0 composed. Read stderr for an unmatched target |
+| Every runtime at once | `/doctor:runtime-mirrors` | read-only |
+
+Each `--check` command prints a `PASS` line and exits 0 when in sync. On drift the three tree generators print a `FAIL` line and all four commands exit 1. The mirror writer prints `[runtime-mirror-sync] Drift detected:` with one line per drift item instead. The test output reports `fail 0`. The roster check prints a final `STATUS=OK` line.
+
+---
+
+## 9. KNOWN GAPS
+
+- **An authored patch has no check.** A wrong endpoint or key variable composes without an error. Only a keyed run proves the endpoint.
+- **A failed plugin load leaves the run unguarded.** dsh prints `did not activate` and carries on. The deep-loop runner fails a lineage whose stderr holds that line. That check runs after the run has finished.
+- **A manifest row can fall behind the folder.** No check reads this file, so a new file or a removed one needs a row edited by hand.
+- **The mirror check proves the link, not the adapter.** The adapter tests cover behavior. An adapter with no test is found only by reading the folder.
+- **The MCP row is opt-in.** A dispatch that names no MCP patch never loads the server, so a broken row shows up only in a run that names it.
+
+---
+
+## 10. RELATED DOCUMENTS
+
+| Document | Purpose |
+|---|---|
+| [`README.md`](./README.md) | What a session here works on and the commands that check the folder |
+| [`plugins/repo-guards/README.md`](./plugins/repo-guards/README.md) | The bundle, its entry map and its error policy |
+| [`plugins/repo-guards/adapters/README.md`](./plugins/repo-guards/adapters/README.md) | One row per adapter link and the event it serves |
+| [`../.skilled/hooks/README.md`](../.skilled/hooks/README.md) | The hook cores and the switch each concern reads |
+| [`runtime-folder-and-sync.md`](../.skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/runtime-folder-and-sync.md) | The folder layout and the three homes |
+| [`../.claude/SYNC.md`](../.claude/SYNC.md) | A sibling runtime manifest |
+
+<!-- readme-check
+allow-ref hooks/dsh/ | the dsh folder inside each skill that owns a hook, a pattern rather than one path
+-->

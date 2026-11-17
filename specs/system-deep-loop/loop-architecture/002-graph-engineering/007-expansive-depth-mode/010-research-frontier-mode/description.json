@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode",
+  "description": "Opt-in expansive depth mode for deep-research: frontier admission, veto, close rules",
+  "keywords": [
+    "opt-in",
+    "expansive",
+    "depth",
+    "mode",
+    "deep-research",
+    "frontier",
+    "admission",
+    "veto",
+    "close",
+    "rules"
+  ],
+  "lastUpdated": "2026-11-17T14:34:22.457Z",
+  "specId": "010",
+  "folderSlug": "research-frontier-mode",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "002-graph-engineering",
+    "007-expansive-depth-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage",
+  "description": "Close the out-of-contract review dimension gap (D10), after an operator decision",
+  "keywords": [
+    "close",
+    "out-of-contract",
+    "review",
+    "dimension",
+    "gap",
+    "d10",
+    "operator",
+    "decision"
+  ],
+  "lastUpdated": "2026-11-17T16:56:40.358Z",
+  "specId": "008",
+  "folderSlug": "review-dimension-coverage",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "002-graph-engineering",
+    "007-expansive-depth-mode"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-11-26_17-56__ran-deep-research-generation-2-5-cli-devin-swe-2.md"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix",
+  "description": "Stop free text under Questions Remaining hijacking Next Focus in the research and review reducers",
+  "keywords": [
+    "stop",
+    "free",
+    "text",
+    "questions",
+    "remaining",
+    "hijacking",
+    "next",
+    "focus",
+    "research",
+    "review",
+    "reducers"
+  ],
+  "lastUpdated": "2026-11-17T14:43:29.070Z",
+  "specId": "004",
+  "folderSlug": "focus-hijack-fix",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "002-graph-engineering",
+    "007-expansive-depth-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

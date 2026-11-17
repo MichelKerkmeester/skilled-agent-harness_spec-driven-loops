@@ -6,7 +6,7 @@
     "phase",
     "runtime-folder-readmes"
   ],
-  "lastUpdated": "2026-11-16T19:27:09.216Z",
+  "lastUpdated": "2026-11-17T14:03:36.601Z",
   "specId": "006",
   "folderSlug": "runtime-folder-readmes",
   "parentChain": [
@@ -14,8 +14,9 @@
     "document-standards",
     "006-readme-template-conformance"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "16-11-26_20-27__phase-planned.md"
+    "16-11-26_20-27__phase-planned.md",
+    "17-11-26_15-03__phase-006-drive-in-progress.md"
   ]
 }

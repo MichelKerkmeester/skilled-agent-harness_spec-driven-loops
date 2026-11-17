@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor",
+  "description": "Apply the configured review minIterations floor in convergence",
+  "keywords": [
+    "apply",
+    "configured",
+    "review",
+    "miniterations",
+    "floor",
+    "convergence"
+  ],
+  "lastUpdated": "2026-11-17T14:34:34.538Z",
+  "specId": "003",
+  "folderSlug": "review-min-iterations-floor",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "002-graph-engineering",
+    "007-expansive-depth-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
