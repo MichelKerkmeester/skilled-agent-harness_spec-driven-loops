@@ -199,7 +199,7 @@
     ],
     "causal_summary": "A json-entry overlay is the only scope whose bytes come from the live file rather than from a source, so the restore has to guess what the overlay wrote before",
     "created_at": "2026-11-16T22:20:26Z",
-    "last_save_at": "2026-11-17T05:13:53.008Z",
+    "last_save_at": "2026-11-17T06:06:08.419Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aac1473dec1b49a0a7b175a004d43ef82ed477179cf5987f1f84ac059a2ac7ba",
+    "source_fingerprint": "sha256:89e890e2324259aae24d0465bbde8b8943682ff960662be5aaf1d6ff580501bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9b3e93b4ebde4db5391090fc79ab81dcf8669adcba82ae6766e067bfeb64514b",
