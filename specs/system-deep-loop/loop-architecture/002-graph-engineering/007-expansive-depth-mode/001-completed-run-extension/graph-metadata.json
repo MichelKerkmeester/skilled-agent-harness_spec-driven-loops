@@ -209,7 +209,7 @@
     ],
     "causal_summary": "A completed deep-research run halts on `oncompletedsession`, and a completed deep-review run re-synthesizes but adds no iterations (defect D11)",
     "created_at": "2026-11-17T14:35:15Z",
-    "last_save_at": "2026-11-17T22:09:01.525Z",
+    "last_save_at": "2026-11-17T22:35:27.317Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce0af58cf4aaa5bbf3aaa3ffd8636ba867f5e559b0235329e763c806bc6bec85",
+    "source_fingerprint": "sha256:a80af15ddd68ab9177fc113cbd9c9c07513d81612f6793f5a5ae3c881d1246eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c321366ef9763ea686442c9db2b9f0607466132ac1c1f0278a433fe4db40b1d9",
       "plan.md": "8ee43e36580eb91d7626a7cb6437ffa38e77f2979c2f47de8677bf6db858b7bf",
-      "tasks.md": "070d8b186e21bc1426ff8dc8e6641483751d50df14f693a09ec1fd890083faea",
+      "tasks.md": "806a8370913fac1075a7ae9daf47f4db08c59ada99c9d1a6632f773bc63b4c0e",
       "decision-record.md": "c49d1c7437dce9c7669028941c6e55db27dff4501d74628c3c70596f22591b80",
       "implementation-summary.md": "5c1cea22d4db7b46483dd11ce12f5edc8d7d3173277c773d81fc5c0338a1b383"
     },

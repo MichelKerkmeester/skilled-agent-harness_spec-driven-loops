@@ -89,10 +89,10 @@ Shell variables: `S` is `.skilled/skills/system-deep-loop`, `C` is `.skilled/com
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-- [ ] A fixture run extended from 7 of 10 with `--extend=3` ends at 10 iterations in one session, and the deep-loop suite shows no new failure against the baseline
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed: DR-065 and DRV-070 both walked live with PASS (`scratch/dr-065-walk.md`, `scratch/drv-070-walk.md`)
+- [x] A fixture run extended from 7 of 10 with `--extend=3` ends at 10 iterations in one session, and the deep-loop suite shows no new failure against the baseline. The case "research: a run stopped at 7 of 10 extended by 3 is capped at 10" passes, and integration gate `4d0b12723eb` showed 0 failures against baseline `c9d8ff4`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -141,7 +141,7 @@ A blocked task is marked `[B]` with the blocker named on the line; a `[B]` task 
 
 - [x] CHK-010 [P0] `npx tsc --noEmit` in the deep-loop runtime exits 0 `npm run -s typecheck` (the package has no local `tsc`; the script runs system-spec-kit's) exit 0.
 - [x] CHK-011 [P0] `node --check` passes on both edited `reduce-state.cjs` files exit 0 on both files.
-- [ ] CHK-012 [P1] Invalid `--extend` and `--extend-minutes` values exit with a usage error before the lock Open: the before-the-lock refusal is the prose preflight `extend_values`, which no test executes. The in-step check (CHK-023) refuses the same values after the lock.
+- [x] CHK-012 [P1] Invalid `--extend` and `--extend-minutes` values exit with a usage error before the lock. The before-the-lock refusal is the prose preflight `extend_values`, which the orchestrator applies and no unit test executes. In the live walk, `--extend=0` was refused with `--extend needs a positive integer, and got "0".` (exit 2), with the lock absent and the config, state-log hashes and 27 ledger frames unchanged. The in-step check (CHK-023) refuses the same values after the lock, and `workflow-restart-lifecycle.vitest.ts` covers it.
 - [x] CHK-013 [P1] No code comment embeds a spec path, phase number or finding id `git diff 21c4b325b5a` added comment lines matched against spec paths, REQ/ADR/task ids and phase numbers: no hit.
 <!-- /ANCHOR:code-quality -->
 
@@ -150,8 +150,8 @@ A blocked task is marked `[B]` with the blocker named on the line; a `[B]` task 
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met Open: AC-004, AC-010 and AC-019 are Unmet.
-- [ ] CHK-021 [P0] Playbook entry walked for both loops. DR-065 (research) walked live 2026-11-17, PASS (`scratch/dr-065-walk.md`). DRV-070 (review) walked live and FAILED its count: the extension step counted runs with `row.run ?? row.iteration`, and review leaves write the run id string in `run`, so 2 iterations counted as 1 run. Fixed in both workflow YAMLs (integer iteration first, numeric run fallback) with a regression case in `workflow-restart-lifecycle.vitest.ts` that reproduces the walk's row shape (failed before, passes after). A DRV-070 re-walk on the fixed tree closes this item.
+- [x] CHK-020 [P0] All acceptance criteria met. `rg -c '| Unmet |' acceptance-criteria.md` prints 0. AC-010 closed by OD-005, AC-004 by the DR-065 walk, and AC-019 by the wave-1 doc pass.
+- [x] CHK-021 [P0] Playbook entry walked for both loops. DR-065 (research) walked live 2026-11-17, PASS (`scratch/dr-065-walk.md`). DRV-070 (review) first FAILED its count live (2 iterations counted as 1 run, because review leaves write the run id string in `run`), which was fixed in `6953b67c5dd` with a regression case in `workflow-restart-lifecycle.vitest.ts`. The re-walk on the fixed tree PASSED: 2 to 5 iterations, `maxIterations` 5, `continuedFromRun` 2, one `extended` row, 0 `resumed`, the same session and generation, and a `-r2` snapshot equal to the prior report (`scratch/drv-070-walk.md`).
 - [x] CHK-022 [P1] Duration-ceiling and second-extension cases pass workflow-restart-lifecycle 34 of 34.
 - [x] CHK-023 [P1] Non-complete run and invalid-value cases rejected non-complete run exits 2 with the config untouched; `0`, `-2`, `abc`, `1.5` for `--extend` and `0`, `ten` for `--extend-minutes` exit 2 from the extension step. The test fails against the step without its validation.
 - [x] CHK-024 [P1] Fan-out rejection and not-terminal-before-first-iteration cases pass (T034, T035) T034 51 of 51, T035 in the 34 cases.
