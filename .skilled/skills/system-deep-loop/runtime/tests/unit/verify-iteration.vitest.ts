@@ -532,6 +532,30 @@ describe('verify-iteration findings enumeration', () => {
     expect(verify('research', absentDir, 1).ok).toBe(true);
   });
 
+  it('returns findings_not_enumerated only for a landed iteration: removing any artifact changes the reason', () => {
+    const noFindingsNarrative = '# Iteration 1\n\n## Actions Taken\nReviewed the target.\n';
+    const landedRun = (name: string): string => {
+      const runDir = path.join(findingsDir, name);
+      const record = researchRecord(1, { findingsCount: 3 });
+      writeResearchArtifacts(runDir, record, noFindingsNarrative, [record]);
+      return runDir;
+    };
+
+    expect(verify('research', landedRun('landed'), 1).reason).toBe('findings_not_enumerated');
+
+    const noNarrative = landedRun('no-narrative');
+    fs.rmSync(path.join(noNarrative, 'iterations', 'iteration-001.md'));
+    expect(verify('research', noNarrative, 1).reason).toBe('iteration_file_missing');
+
+    const noRecord = landedRun('no-record');
+    fs.writeFileSync(path.join(noRecord, 'deep-research-state.jsonl'), `${JSON.stringify({ type: 'event', iteration: 1 })}\n`);
+    expect(verify('research', noRecord, 1).reason).toBe('state_record_missing');
+
+    const noDelta = landedRun('no-delta');
+    fs.rmSync(path.join(noDelta, 'deltas', 'iter-001.jsonl'));
+    expect(verify('research', noDelta, 1).reason).toBe('delta_file_missing');
+  });
+
   it('counts only delta finding rows the merge files under this iteration', () => {
     const noFindingsNarrative = '# Iteration 1\n\n## Actions Taken\nReviewed the target.\n';
     const findingRow = (iteration: number | undefined) => ({
@@ -791,6 +815,22 @@ describe('verify-iteration executor provenance', () => {
     expect(r.detail).toContain("'cli-deepseek-harness'");
   });
 
+  it('returns executor_missing only for a landed iteration: removing any artifact changes the reason', () => {
+    const landed = reviewRun('landed', nonNative, [reviewRecord(1)]);
+    expect(verify('review', landed, 1).reason).toBe('executor_missing');
+
+    const noNarrative = reviewRun('no-narrative', nonNative, [reviewRecord(1)]);
+    fs.rmSync(path.join(noNarrative, 'iterations', 'iteration-001.md'));
+    expect(verify('review', noNarrative, 1).reason).toBe('iteration_file_missing');
+
+    const noRecord = reviewRun('no-record', nonNative, [{ type: 'event', iteration: 1 }]);
+    expect(verify('review', noRecord, 1).reason).toBe('state_record_missing');
+
+    const noDelta = reviewRun('no-delta', nonNative, [reviewRecord(1)]);
+    fs.rmSync(path.join(noDelta, 'deltas', 'iter-001.jsonl'));
+    expect(verify('review', noDelta, 1).reason).toBe('delta_file_missing');
+  });
+
   it('does not take an executor row filed under another iteration', () => {
     const dir = reviewRun('review', nonNative, [start(2), reviewRecord(1)]);
     expect(verify('review', dir, 1).reason).toBe('executor_missing');
@@ -871,4 +911,30 @@ describe('verify-iteration executor provenance', () => {
     expect(verify('review', reviewRun('review/lineages/native', { executor: { kind: 'native' } }, [reviewRecord(1)]), 1).ok).toBe(true);
     expect(verify('review', reviewRun('review/lineages/no-block', { mode: 'review' }, [reviewRecord(1)]), 1).ok).toBe(true);
   });
+});
+
+// A landed iteration fails verification only with a reason returned after the delta check.
+// A second leaf refuses to overwrite a landed iteration, so redispatching it spends a full
+// dispatch for nothing; the workflow rule must name those reasons and skip the redispatch.
+describe('workflow redispatch rule skips reasons only a landed iteration returns', () => {
+  const assets = path.resolve(__dirname, '..', '..', '..', '..', '..', 'commands', 'deep', 'assets');
+  const skipClause = 'Skip this redispatch when the failure reason is executor_missing, findings_not_enumerated or ledger_backing_missing.';
+  const stillRedispatched = ['iteration_file_missing', 'state_record_missing', 'delta_file_missing', 'route_proof_missing', 'route_proof_mismatch'];
+
+  function redispatchRule(file: string): string {
+    const line = fs.readFileSync(path.join(assets, file), 'utf8')
+      .split(/\r?\n/)
+      .find((candidate) => candidate.trim().startsWith('redispatch_once:'));
+    expect(line, `${file} has a redispatch_once rule`).toBeDefined();
+    return line as string;
+  }
+
+  for (const file of ['deep-research.yaml', 'deep-review.yaml']) {
+    it(`${file} skips the redispatch for landed-iteration reasons and still caps it at one`, () => {
+      const rule = redispatchRule(file);
+      expect(rule).toContain(skipClause);
+      for (const reason of stillRedispatched) expect(rule).not.toContain(reason);
+      expect(rule).toContain('Never re-dispatch a given iteration more than once');
+    });
+  }
 });
