@@ -64,8 +64,8 @@ function seedConvergedResearchGraph(namespace: ScriptNamespace) {
       { id: 'question-1', kind: 'QUESTION', name: 'Main question' },
       { id: 'finding-1', kind: 'FINDING', name: 'First answer' },
       { id: 'finding-2', kind: 'FINDING', name: 'Second answer' },
-      { id: 'source-1', kind: 'SOURCE', name: 'Primary source', metadata: { quality_class: 'primary' } },
-      { id: 'source-2', kind: 'SOURCE', name: 'Secondary source', metadata: { quality_class: 'secondary' } },
+      { id: 'source-1', kind: 'SOURCE', name: 'Primary source', path: '.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs' },
+      { id: 'source-2', kind: 'SOURCE', name: 'Secondary source', path: '.skilled/skills/system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts' },
     ]),
     '--edges',
     JSON.stringify([

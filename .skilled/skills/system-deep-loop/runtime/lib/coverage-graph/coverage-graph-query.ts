@@ -135,6 +135,20 @@ const SAFE_METADATA_KEYS = new Set([
   'verified',
 ]);
 
+// Closed vocabulary for a research SOURCE node's quality_class. The upsert step
+// derives the value from where the source lives, so a leaf cannot raise source
+// diversity by inventing a class.
+export const SOURCE_QUALITY_CLASS = Object.freeze({
+  REPO_CODE: 'repo-code',
+  REPO_TEST: 'repo-test',
+  REPO_SPEC: 'repo-spec',
+  SKILL_DOC: 'skill-doc',
+  LEDGER_STATE: 'ledger-state',
+  EXTERNAL_DOC: 'external-doc',
+  EXTERNAL_OTHER: 'external-other',
+  UNCLASSIFIED: 'unclassified',
+} as const);
+
 const SECRET_METADATA_VALUE_PATTERNS = [
   /\b(?:ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9_]{20,}\b/,
   /\bgithub_pat_[A-Za-z0-9_]{20,}\b/,

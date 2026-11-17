@@ -54,11 +54,11 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] An `upsert-script` case that upserts a research SOURCE node with `path: ".skilled/agents/deep-research.md"`, a free-text label and `metadata.quality_class: "primary"` stores the class derived from the path, not `primary` and not `unclassified`.
-- [ ] An `upsert-script` case with SOURCE nodes identified by a repo code path, a test path, a spec path, a skill doc, a state ledger file, an external doc URL, another URL and free text stores `repo-code`, `repo-test`, `repo-spec`, `skill-doc`, `ledger-state`, `external-doc`, `external-other` and `unclassified`.
-- [ ] `rg -n "Object.freeze" .skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts` prints the constant within 20 lines of `SAFE_METADATA_KEYS`, and `upsert.cjs` reads that constant instead of repeating the values.
-- [ ] A `convergence-script` case reports `sourceDiversity` 2.0 for two findings citing sources of two different derived classes and 1.0 when both share one class, and a code-only fixture citing a `.cjs` file and its `.vitest.ts` test reports 2.0 with no `source_diversity_guard` blocker.
-- [ ] An `upsert-script` case stores a FINDING's `metadata.confidence` and a review node's metadata exactly as given.
+- [x] An `upsert-script` case that upserts a research SOURCE node with `path: ".skilled/agents/deep-research.md"`, a free-text label and `metadata.quality_class: "primary"` stores the class derived from the path, not `primary` and not `unclassified`.
+- [x] An `upsert-script` case with SOURCE nodes identified by a repo code path, a test path, a spec path, a skill doc, a state ledger file, an external doc URL, another URL and free text stores `repo-code`, `repo-test`, `repo-spec`, `skill-doc`, `ledger-state`, `external-doc`, `external-other` and `unclassified`.
+- [x] `rg -n "Object.freeze" .skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts` prints the constant within 20 lines of `SAFE_METADATA_KEYS`, and `upsert.cjs` reads that constant instead of repeating the values.
+- [x] A `convergence-script` case reports `sourceDiversity` 2.0 for two findings citing sources of two different derived classes and 1.0 when both share one class, and a code-only fixture citing a `.cjs` file and its `.vitest.ts` test reports 2.0 with no `source_diversity_guard` blocker.
+- [x] An `upsert-script` case stores a FINDING's `metadata.confidence` and a review node's metadata exactly as given.
 - [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/coverage-graph-signals.vitest.ts tests/integration/convergence-script.vitest.ts tests/integration/upsert-script.vitest.ts tests/unit/deep-research-graph-upsert.vitest.ts` exits 0, and `rg -l "quality_class" .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/coverage-graph` lists a scenario written by `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
 
@@ -77,7 +77,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md` written 2026-11-17 |
-| Implementation | Pending | Not started |
+| Implementation | Done (code and tests) | 2026-11-17 in worktree `459-ed-007-source-diversity-quality`. `SOURCE_QUALITY_CLASS` at `coverage-graph-query.ts:141`; derivation in `upsert.cjs`. Four suites: 76 passed, exit 0 (baseline 69). Fail-before proven by reverting the two source files: 14 of 50 failed |
+| Playbook scenario | Blocked | `/create:manual-testing-playbook` hard-blocks at Phase 0 unless run as `@markdown`; the phase worker cannot start that agent. The last criterion stays open on it |
 
 ### Deviations and findings
 
@@ -85,5 +86,7 @@ and findings belong here.
 |------|------|
 | Goal source | This phase has no `acceptance-criteria.md`; the criteria come from the REQ table in `spec.md` §4, as the authoring brief directed. |
 | Open questions | None open. `spec.md` §7 records the planning answers: `unclassified` counts (D3), and the pack already requires `path` on file SOURCE nodes, which the derivation reads first (D1). |
+| Changelog | Added T012 from the cross-phase handoff §3 (default-path change). Blocked by the same `@markdown` gate. |
+| T007 rg check | The strip cases send `quality_class: 'primary'` on purpose (REQ-001), so the T007 rg is clean only over the seeded fixtures. |
 | Plan review | The 2026-11-17 plan review findings were applied: derive from `path` first, wording changed from distinct sources to distinct derived classes, a code-only fixture that must pass, runnable test commands, and this phase's own playbook scenario. |
 <!-- /ANCHOR:log -->
