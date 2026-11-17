@@ -157,6 +157,7 @@ describe('prompt-pack', () => {
       pivot_lineage: 'Pivot pivot-1-fed654cba321 selected candidate-001 from source iteration 3.',
       saturated_directions: '- traceability',
       review_focus_block: '',
+      frontier_block: '',
       review_dimensions_list: 'correctness, security, traceability, maintainability',
       unfinished_core_protocols_block: '',
     });
@@ -180,6 +181,7 @@ const deepLoopRootDir = join(import.meta.dirname, '..', '..', '..');
 // lockstep case is shown to fail when a pack line goes missing.
 const researchPackPath = process.env.DEEP_RESEARCH_PACK_TEMPLATE
   ?? join(deepLoopRootDir, 'deep-research', 'assets', 'prompt-pack-iteration.md.tmpl');
+const reviewPackPath = join(deepLoopRootDir, 'deep-review', 'assets', 'prompt-pack-iteration.md.tmpl');
 const researchAgentPath = join(deepLoopRootDir, '..', '..', 'agents', 'deep-research.md');
 
 function hasSynthesisWriteRule(text: string): boolean {
@@ -214,6 +216,34 @@ function researchBindings(iterationPattern: string): Record<string, string | num
     pivot_lineage: 'none',
     saturated_directions: '- none',
     frontier_block: '',
+  };
+}
+
+// The review pack binds the same lineage inputs as research, plus the review-specific blocks.
+function reviewBindings(reviewDimensionsList: string, frontierBlock = ''): Record<string, string | number> {
+  return {
+    state_summary: 'Review summary block',
+    current_iteration: 3,
+    max_iterations: 6,
+    max_tool_calls_per_iteration: 24,
+    next_dimension: 'traceability',
+    review_target: 'lib/deep-loop',
+    review_scope_files: 'file-a.ts, file-b.ts',
+    p0_count: 0,
+    p1_count: 1,
+    p2_count: 2,
+    state_paths_config: '.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json',
+    state_paths_state_log: '.skilled/skills/system-deep-loop/deep-review/runtime/state.jsonl',
+    state_paths_findings_registry: '.skilled/skills/system-deep-loop/deep-review/runtime/findings.json',
+    state_paths_strategy: '.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md',
+    state_paths_iteration_pattern: '.skilled/skills/system-deep-loop/deep-review/runtime/iteration-003.md',
+    state_paths_delta_pattern: '.skilled/skills/system-deep-loop/deep-review/runtime/deltas/iter-003.jsonl',
+    pivot_lineage: 'Pivot pivot-1-fed654cba321 selected candidate-001 from source iteration 3.',
+    saturated_directions: '- traceability',
+    review_focus_block: '',
+    frontier_block: frontierBlock,
+    review_dimensions_list: reviewDimensionsList,
+    unfinished_core_protocols_block: '',
   };
 }
 
@@ -280,37 +310,9 @@ describe('research prompt pack and agent definition lockstep', () => {
 });
 
 describe('review prompt pack dimension list', () => {
-  const reviewTemplatePath = join(deepLoopRootDir, 'deep-review', 'assets', 'prompt-pack-iteration.md.tmpl');
-
-  function reviewBindings(reviewDimensionsList: string): Record<string, string | number> {
-    return {
-      state_summary: 'Review summary block',
-      current_iteration: 3,
-      max_iterations: 6,
-      max_tool_calls_per_iteration: 24,
-      next_dimension: 'traceability',
-      review_target: 'lib/deep-loop',
-      review_scope_files: 'file-a.ts, file-b.ts',
-      p0_count: 0,
-      p1_count: 1,
-      p2_count: 2,
-      state_paths_config: '.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json',
-      state_paths_state_log: '.skilled/skills/system-deep-loop/deep-review/runtime/state.jsonl',
-      state_paths_findings_registry: '.skilled/skills/system-deep-loop/deep-review/runtime/findings.json',
-      state_paths_strategy: '.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md',
-      state_paths_iteration_pattern: '.skilled/skills/system-deep-loop/deep-review/runtime/iteration-003.md',
-      state_paths_delta_pattern: '.skilled/skills/system-deep-loop/deep-review/runtime/deltas/iter-003.jsonl',
-      pivot_lineage: 'Pivot pivot-1-fed654cba321 selected candidate-001 from source iteration 3.',
-      saturated_directions: '- traceability',
-      review_focus_block: '',
-      review_dimensions_list: reviewDimensionsList,
-      unfinished_core_protocols_block: '',
-    };
-  }
-
   it('renders the default dimension line byte for byte', () => {
     const rendered = renderPromptPack(
-      reviewTemplatePath,
+      reviewPackPath,
       reviewBindings('correctness, security, traceability, maintainability'),
     );
 
@@ -319,7 +321,7 @@ describe('review prompt pack dimension list', () => {
 
   it('renders a configured custom dimension after the canonical four', () => {
     const rendered = renderPromptPack(
-      reviewTemplatePath,
+      reviewPackPath,
       reviewBindings('correctness, security, traceability, maintainability, performance'),
     );
 
@@ -350,6 +352,31 @@ describe('research frontier block', () => {
 
     expect(rendered).toContain(
       'Saturated Directions: - none\n\nFRONTIER (expansive depth)\nCurrent node: F-1-001\n\n## STATE FILES',
+    );
+  });
+});
+
+describe('review frontier block', () => {
+  const EMPTY_FRONTIER_BLOCK = '';
+  const RENDERED_FRONTIER_BLOCK = '\n\nFRONTIER (expansive depth)\nCurrent node: F-1-001';
+  const DEFAULT_DIMENSIONS = 'correctness, security, traceability, maintainability';
+
+  function renderWithFrontierBlock(frontierBlock: string): string {
+    return renderPromptPack(reviewPackPath, reviewBindings(DEFAULT_DIMENSIONS, frontierBlock));
+  }
+
+  it('an empty frontier block leaves the saturated-directions line followed directly by the shared doctrine', () => {
+    const rendered = renderWithFrontierBlock(EMPTY_FRONTIER_BLOCK);
+
+    expect(rendered).not.toContain('FRONTIER (expansive depth)');
+    expect(rendered).toContain('- traceability\n\n## SHARED DOCTRINE');
+  });
+
+  it('a frontier block lands between the saturated directions and the shared doctrine', () => {
+    const rendered = renderWithFrontierBlock(RENDERED_FRONTIER_BLOCK);
+
+    expect(rendered).toContain(
+      '- traceability\n\nFRONTIER (expansive depth)\nCurrent node: F-1-001\n\n## SHARED DOCTRINE',
     );
   });
 });

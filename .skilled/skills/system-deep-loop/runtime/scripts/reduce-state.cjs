@@ -2404,6 +2404,18 @@ function pickReviewBaseFocus(iterationFiles, registry) {
   return uncovered[0] || leafFocus || '[All dimensions covered]';
 }
 
+// The expansive frontier is the run's own queue, and the node it chose carries
+// the dimension that node still owes, so a leaf's free-text focus cannot point
+// the next iteration at work the frontier has already closed or reordered.
+function pickReviewFrontierFocus(frontier) {
+  if (!frontier || typeof frontier !== 'object' || !frontier.activeNodeId) return '';
+  const nodes = Array.isArray(frontier.nodes) ? frontier.nodes : [];
+  const node = nodes.find((candidate) => candidate && candidate.nodeId === frontier.activeNodeId);
+  if (!node) return '';
+  const scope = Array.isArray(node.scope) ? node.scope.join(', ') : (node.scope || 'unscoped');
+  return `Frontier node ${node.nodeId} (depth ${node.depth}, scope ${scope}): ${node.question} - review the ${frontier.activeNextDimension} dimension`;
+}
+
 function updateStrategyContent(strategyContent, registry, iterationFiles, options = {}, iterationRecords = []) {
   // Early return when there is no strategy file to update. Empty content
   // cannot contain the machine-owned anchors and replaceAnchorSection would
@@ -2434,6 +2446,11 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, option
 
   // Default next-focus: a leaf focus naming an uncovered dimension, else the first uncovered dimension, else the leaf focus.
   let nextFocus = pickReviewBaseFocus(iterationFiles, registry);
+  // An open node outranks the leaf's own focus; the pivot override and the
+  // blocked-stop recovery below still outrank the node, because a saturated
+  // direction or a hard block is what the run must heed before spending depth.
+  const frontierFocus = pickReviewFrontierFocus(registry.frontier);
+  if (frontierFocus) nextFocus = frontierFocus;
   if (registry.divergence.currentFocus) {
     nextFocus = registry.divergence.currentFocus;
   }
@@ -2504,6 +2521,39 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, option
   return updated;
 }
 
+// The frontier metrics only exist once the expansive depth mode projects a
+// frontier, so a default run renders no section at all rather than an empty one.
+function renderFrontierSection(frontier) {
+  if (!frontier || typeof frontier !== 'object') return [];
+  const stats = frontier.stats || {};
+  const nodes = Array.isArray(frontier.nodes) ? frontier.nodes : [];
+  // A visit that covered no new dimension is depth spent again on ground the
+  // run had already walked, which the size and status counts cannot show.
+  const revisits = nodes.reduce((total, node) => {
+    const visits = Number(node?.visits) || 0;
+    const covered = Array.isArray(node?.coveredDimensions) ? node.coveredDimensions.length : 0;
+    return total + Math.max(0, visits - covered);
+  }, 0);
+  const budgetEntries = Object.entries(
+    frontier.budget && typeof frontier.budget === 'object' ? frontier.budget : {},
+  );
+  return [
+    '<!-- ANCHOR:frontier -->',
+    '## 10B. FRONTIER',
+    `- Frontier size: ${stats.total} nodes (${stats.open} open, ${stats.active} active, ${stats.answered} answered, ${stats.exhausted} exhausted, ${stats.blocked} blocked)`,
+    `- Pruned nodes: ${stats.pruned}`,
+    `- Revisits: ${revisits}`,
+    ...(budgetEntries.length
+      ? budgetEntries.map(([band, entry]) => `- Budget ${band}: ${entry.spent} of ${entry.allotted} iterations spent`)
+      : ['- Budget: not recorded']),
+    ...(frontier.activeNodeId
+      ? [`- Active node: ${frontier.activeNodeId} (${frontier.activeNextDimension})`]
+      : ['- Active node: none']),
+    '',
+    '<!-- /ANCHOR:frontier -->',
+  ];
+}
+
 function renderDashboard(config, registry, iterationRecords, iterationFiles) {
   // Deduplication keys on the numeric iteration, so a run label must never replace
   // it: a corrected attempt carrying a text run value would show as a second row.
@@ -2519,7 +2569,9 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     .filter((value) => value !== null);
   const lastThreeRatios = ratios.slice(-3).map((value) => value.toFixed(2)).join(' -> ') || 'N/A';
   const nextFocus = pickReviewBaseFocus(iterationFiles, registry);
-  const effectiveNextFocus = registry.divergence.currentFocus || nextFocus;
+  const effectiveNextFocus = registry.divergence.currentFocus
+    || pickReviewFrontierFocus(registry.frontier)
+    || nextFocus;
 
   const severity = registry.findingsBySeverity;
   const openSearchDebt = openSearchDebtCount(registry);
@@ -2686,6 +2738,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     renderSearchDebtSection(registry),
     '',
     '<!-- /ANCHOR:search-debt -->',
+    ...renderFrontierSection(registry.frontier),
     '<!-- ANCHOR:next-focus -->',
     '## 11. NEXT FOCUS',
     effectiveNextFocus,
@@ -3017,6 +3070,7 @@ module.exports = {
   buildGraphConvergenceRollup,
   buildReviewFrontier,
   frontierMarkerPattern,
+  pickReviewFrontierFocus,
   normalizeTraceabilityChecks,
   parseIterationFile,
   parseJsonl,

@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "c2220a893641a9e2af71acb8de653bdb28f0330126e3189ba42d8105a5e9c9fc",
+      "sha256": "0de7a61cb5a59bb65c72c5ca3361bdde4cf3c59ce0e97d7f065a9adf73da5693",
       "section": "full"
     },
     {
@@ -67,7 +67,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "9642f5d7741f79bdf91a41676132f675ce83e000a821a0d60b2ef106fcda179f",
+      "sha256": "96ed8e08e58791ca94e6367c0140c1ab4a89b50edaede8a9c87c66580721d18d",
       "section": "full"
     },
     {

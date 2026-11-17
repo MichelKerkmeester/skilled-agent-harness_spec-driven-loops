@@ -91,6 +91,7 @@ const { reduceReviewState } = nodeRequire('../../scripts/reduce-state.cjs') as {
       frontier?: FrontierProjection;
     };
     dashboard: string;
+    strategy: string;
   };
 };
 
@@ -905,6 +906,60 @@ describe('reduceReviewState expansive frontier', () => {
     return frontier;
   }
 
+  // The machine-owned sections are seeded the way a live strategy file carries
+  // them, so an untouched anchor cannot quiet a next-focus assertion.
+  function writeStrategy(reviewDir: string) {
+    writeFileSync(join(reviewDir, 'deep-review-strategy.md'), [
+      '# Deep Review Strategy',
+      '',
+      '<!-- ANCHOR:review-dimensions -->',
+      '## 3. REVIEW DIMENSIONS (remaining)',
+      '- [ ] correctness',
+      '- [ ] security',
+      '- [ ] traceability',
+      '- [ ] maintainability',
+      '<!-- /ANCHOR:review-dimensions -->',
+      '',
+      '<!-- ANCHOR:completed-dimensions -->',
+      '## 4. COMPLETED DIMENSIONS',
+      '[None yet]',
+      '<!-- /ANCHOR:completed-dimensions -->',
+      '',
+      '<!-- ANCHOR:running-findings -->',
+      '## 5. RUNNING FINDINGS',
+      '- P0 (Blockers): 0',
+      '<!-- /ANCHOR:running-findings -->',
+      '',
+      '<!-- ANCHOR:exhausted-approaches -->',
+      '## 9. EXHAUSTED APPROACHES (do not retry)',
+      '[None yet]',
+      '<!-- /ANCHOR:exhausted-approaches -->',
+      '',
+      '## 11. RULED OUT DIRECTIONS',
+      '[None yet]',
+      '',
+      '<!-- ANCHOR:next-focus -->',
+      '## 11. NEXT FOCUS',
+      '[None yet]',
+      '<!-- /ANCHOR:next-focus -->',
+      '',
+    ].join('\n'));
+  }
+
+  // A leaf focus naming an uncovered dimension is what the base pick would
+  // otherwise hand the next iteration, so it is the candidate to lose.
+  function writeLeafFocus(reviewDir: string, focus: string) {
+    mkdirSync(join(reviewDir, 'iterations'), { recursive: true });
+    writeFileSync(join(reviewDir, 'iterations', 'iteration-001.md'), [
+      '# Iteration 1: Correctness',
+      '',
+      '## Recommended Next Focus',
+      '',
+      focus,
+      '',
+    ].join('\n'));
+  }
+
   it('projects one open node into the frontier and one deferred search-debt entry', () => {
     const { specFolder, reviewDir } = makeReviewDir();
     writeExpansiveConfig(reviewDir);
@@ -1014,5 +1069,144 @@ describe('reduceReviewState expansive frontier', () => {
     expect('frontier' in result.registry).toBe(false);
     expect(result.registry.searchDebt).toEqual([]);
     expect(result.registry.candidateCoverage.deferred).toEqual([]);
+  });
+
+  it('hands next focus to the active frontier node, and keeps the pivot and blocked-stop overrides ahead of it', () => {
+    const frontierFocus = 'Frontier node F-1-001 (depth 1, scope src, lib): Does the stop path keep its reason? - review the correctness dimension';
+
+    // An open node outranks the leaf focus, which here names an uncovered
+    // dimension and would otherwise be picked verbatim.
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeStrategy(reviewDir);
+    writeLeafFocus(reviewDir, 'security');
+    writeStore(reviewDir, [nodeRow({ nodeId: 'F-1-001', scope: ['src', 'lib'] })]);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const strategyFocus = sectionAfter(result.strategy, '## 11. NEXT FOCUS', '<!--');
+    const dashboardFocus = sectionAfter(result.dashboard, '## 11. NEXT FOCUS', '<!--');
+
+    // A skipped strategy anchor would leave the authored text behind and let the
+    // next assertion pass for the wrong reason.
+    expect(result.strategyWarning).toBeNull();
+    expect(readFrontier(result).activeNodeId).toBe('F-1-001');
+    expect(strategyFocus).toContain(frontierFocus);
+    expect(strategyFocus).not.toContain('security');
+    expect(dashboardFocus).toContain(frontierFocus);
+
+    // A completed pivot's current focus is the run's own latest decision, so it
+    // outranks the node the frontier would dispatch.
+    const pivotFocus = 'pivot focus on the scheduler';
+    const pivotRun = makeReviewDir();
+    writeExpansiveConfig(pivotRun.reviewDir);
+    writeStrategy(pivotRun.reviewDir);
+    writeLeafFocus(pivotRun.reviewDir, 'security');
+    writeStore(pivotRun.reviewDir, [nodeRow({ nodeId: 'F-1-001', scope: ['src', 'lib'] })]);
+    mkdirSync(join(pivotRun.reviewDir, 'divergent', 'pivots', 'pivot-1-a1b2', 'council'), { recursive: true });
+    writeFileSync(
+      join(pivotRun.reviewDir, 'divergent', 'pivots', 'pivot-1-a1b2', 'council', 'state.jsonl'),
+      `${JSON.stringify({
+        event: 'pivot_completed',
+        pivotId: 'pivot-1-a1b2',
+        previousFocus: 'correctness',
+        currentFocus: pivotFocus,
+        selectedCandidate: null,
+      })}\n`,
+    );
+
+    const pivotResult = reduceReviewState(pivotRun.specFolder, { write: false, artifactDir: pivotRun.reviewDir });
+    const pivotStrategyFocus = sectionAfter(pivotResult.strategy, '## 11. NEXT FOCUS', '<!--');
+    const pivotDashboardFocus = sectionAfter(pivotResult.dashboard, '## 11. NEXT FOCUS', '<!--');
+
+    expect(readFrontier(pivotResult).activeNodeId).toBe('F-1-001');
+    expect(pivotStrategyFocus).toContain(pivotFocus);
+    expect(pivotStrategyFocus).not.toContain(frontierFocus);
+    expect(pivotDashboardFocus).toContain(pivotFocus);
+
+    // With every node terminal there is no node to dispatch, so the leaf focus
+    // returns. The frontier is still projected, which is what makes the absence
+    // of a node the reason the leaf wins rather than a missing projection.
+    const terminalRun = makeReviewDir();
+    writeExpansiveConfig(terminalRun.reviewDir);
+    writeStrategy(terminalRun.reviewDir);
+    writeLeafFocus(terminalRun.reviewDir, 'security');
+    writeStore(terminalRun.reviewDir, [nodeRow({ nodeId: 'F-1-001', status: 'exhausted', reason: 'budget' })]);
+
+    const terminalResult = reduceReviewState(terminalRun.specFolder, { write: false, artifactDir: terminalRun.reviewDir });
+    const terminalStrategyFocus = sectionAfter(terminalResult.strategy, '## 11. NEXT FOCUS', '<!--');
+    const terminalDashboardFocus = sectionAfter(terminalResult.dashboard, '## 11. NEXT FOCUS', '<!--');
+
+    expect(readFrontier(terminalResult).activeNodeId).toBeNull();
+    expect(terminalStrategyFocus).toContain('security');
+    expect(terminalStrategyFocus).not.toContain('Frontier node');
+    expect(terminalDashboardFocus).toContain('security');
+    expect(terminalDashboardFocus).not.toContain('Frontier node');
+
+    // A blocked stop is the loop's latest event, so it still outranks the node.
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${JSON.stringify({
+      type: 'event',
+      event: 'blocked_stop',
+      run: 2,
+      timestamp: '2026-06-19T00:30:00.000Z',
+      blockedBy: ['evidence_gate'],
+      recoveryStrategy: 'collect the missing evidence',
+    })}\n`);
+
+    const blockedResult = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const blockedFocus = sectionAfter(blockedResult.strategy, '## 11. NEXT FOCUS', '<!--');
+
+    expect(readFrontier(blockedResult).activeNodeId).toBe('F-1-001');
+    expect(blockedFocus).toContain('BLOCKED on:');
+    expect(blockedFocus).not.toContain(frontierFocus);
+  });
+
+  it('reports frontier size, pruned nodes, revisits and per-band budget on the dashboard', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeStore(reviewDir, [
+      nodeRow({ nodeId: 'F-1-001', scope: ['src', 'lib'], iteration: 1 }),
+      nodeRow({
+        nodeId: 'F-1-002',
+        depth: 2,
+        scope: 'src/parser',
+        question: 'Is the parser covered on all sides?',
+        status: 'pruned',
+        reason: 'duplicate',
+        iteration: 2,
+      }),
+    ]);
+    // Two visits that covered the same dimension are depth spent twice on ground
+    // the run had already walked, which is what the revisit count has to show.
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${[
+      iterationRecord(1, 'Frontier node F-1-001: correctness', ['correctness'], { frontierNodeId: 'F-1-001' }),
+      iterationRecord(2, 'Frontier node F-1-001: correctness again', ['correctness'], { frontierNodeId: 'F-1-001' }),
+    ].join('\n')}\n`);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const frontier = readFrontier(result);
+    const section = sectionAfter(result.dashboard, '## 10B. FRONTIER', '<!--');
+
+    expect(section).toContain('- Frontier size: 2 nodes (1 open, 0 active, 0 answered, 0 exhausted, 0 blocked)');
+    expect(section).toContain('- Pruned nodes: 1');
+    expect(section).toContain('- Revisits: 1');
+    expect(section).toContain('- Budget depth1: 2 of 5 iterations spent');
+    expect(section).toContain('- Active node: F-1-001 (security)');
+    expect(frontier.budget.depth1).toEqual({ allotted: 5, spent: 2 });
+  });
+
+  it('renders no frontier section into a default run', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      maxIterations: 10,
+      reviewTarget: 'default-no-frontier-section',
+      reviewDimensions: ['correctness', 'security'],
+    }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), '');
+    writeStore(reviewDir, [nodeRow({ nodeId: 'F-1-001' })]);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+
+    expect(result.dashboard).not.toContain('10B. FRONTIER');
+    expect(result.dashboard).not.toContain('ANCHOR:frontier');
   });
 });

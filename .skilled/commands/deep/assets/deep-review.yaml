@@ -1615,6 +1615,8 @@ workflow:
             renderer: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts#renderPromptPack"
             output_path: "{state_paths.prompt_dir}/iteration-{current_iteration}.md"
             dry_run_output: "Render in memory and print to terminal preview; do not write output_path."
+            bind_before_render:
+              frontier_block: "Empty string unless depth_mode == 'expansive' and active_frontier_node is non-empty. Under expansive, the exact stdout of: node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs block --target review --artifact-dir \"{artifact_dir}\" --node-id \"{active_frontier_node}\" --dimension \"{next_dimension}\". Pass it verbatim; an empty stdout means the leaf gets no frontier block and proposes nothing."
             variables:
               state_summary: "{state_summary}"
               current_iteration: "{current_iteration}"
@@ -1629,6 +1631,7 @@ workflow:
               pivot_lineage: "{pivot_lineage}"
               saturated_directions: "{saturated_directions}"
               review_focus_block: "{review_focus_block}"
+              frontier_block: "{frontier_block}"
               review_dimensions_list: "{review_dimensions_list}"
               unfinished_core_protocols_block: "{unfinished_core_protocols_block}"
               state_paths_config: "{state_paths.config}"
