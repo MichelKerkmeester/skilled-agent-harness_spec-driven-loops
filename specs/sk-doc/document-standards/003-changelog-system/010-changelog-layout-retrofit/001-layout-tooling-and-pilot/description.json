@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot",
+  "description": "Phase 1: layout-tooling-and-pilot",
+  "keywords": [
+    "phase",
+    "layout-tooling-and-pilot"
+  ],
+  "lastUpdated": "2026-11-17T18:13:00.138Z",
+  "specId": "001",
+  "folderSlug": "layout-tooling-and-pilot",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system",
+    "010-changelog-layout-retrofit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

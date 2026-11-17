@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit",
+  "description": "Retroactively rewrite every skill and release changelog into the v4.1.0.0 layout and rebuild every GitHub release body",
+  "keywords": [
+    "retroactively",
+    "rewrite",
+    "every",
+    "skill",
+    "release",
+    "changelog",
+    "layout",
+    "rebuild",
+    "github",
+    "body"
+  ],
+  "lastUpdated": "2026-11-17T18:12:59.063Z",
+  "specId": "010",
+  "folderSlug": "changelog-layout-retrofit",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

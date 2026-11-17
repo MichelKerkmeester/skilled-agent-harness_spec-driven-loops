@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit",
+  "spec_folder": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit",
+  "parent_id": "sk-doc/document-standards/003-changelog-system",
+  "children_ids": [
+    "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot",
+    "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line",
+    "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs",
+    "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs",
+    "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs",
+    "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs",
+    "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs",
+    "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs",
+    "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs",
+    "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs",
+    "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs",
+    "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs",
+    "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "changelog layout retrofit phase parent spec",
+      "changelog layout retrofit goal"
+    ],
+    "key_topics": [
+      "changelog",
+      "layout",
+      "retrofit",
+      "phase",
+      "parent",
+      "spec",
+      "goal",
+      "default",
+      "new",
+      "changelogs",
+      "short",
+      "bullets"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-layout-tooling-and-pilot/goal.md",
+      "002-skilled-release-line/goal.md",
+      "003-sk-doc-changelogs/goal.md",
+      "004-cli-external-orchestration-changelogs/goal.md",
+      "005-sk-code-changelogs/goal.md",
+      "006-mcp-tooling-changelogs/goal.md",
+      "007-system-spec-kit-changelogs/goal.md",
+      "008-system-deep-loop-changelogs/goal.md",
+      "009-system-skill-advisor-changelogs/goal.md",
+      "010-sk-design-changelogs/goal.md",
+      "011-sk-git-changelogs/goal.md",
+      "012-small-skill-changelogs/goal.md",
+      "013-github-release-notes-sync/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Changelog Layout Retrofit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flash Free",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Devin",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 009 made the v4.1.0.0 layout the default for new changelogs: short bullets under short paragraphs, a linked glance table, alert boxes, folded detail and one source line per paragraph",
+    "created_at": "2026-11-17T18:12:58Z",
+    "last_save_at": "2026-11-17T18:17:05.879Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:209df500b93ac70ca22e7485090970314f1d17c22567b10df410eec117b43bdc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1a377de33831a4d9498632d596663f49861950a3149d6e30d952a7790bcc5c57"
+    },
+    "last_active_at": null
+  }
+}
