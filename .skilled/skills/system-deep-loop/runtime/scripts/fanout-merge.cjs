@@ -861,6 +861,157 @@ function mergeResearchRegistries(lineageData, options = {}) {
 // 4. REVIEW MERGE  (strongest-restriction)
 // ─────────────────────────────────────────────────────────────────────────────
 
+// A review lineage records what it covered in six surfaces. Merging them lets a guard
+// read what the fan-out as a whole covered. Every merge below walks lineages in label
+// order and sorts its output, so the merged registry never depends on arrival order.
+const TRACEABILITY_STATUS_RANK = { fail: 5, blocked: 4, partial: 3, pass: 2, notApplicable: 1 };
+const TRACEABILITY_UNDECIDED = new Set(['pending', 'deferred', 'skipped']);
+const COVERAGE_BUCKETS = ['covered', 'ruledOut', 'deferred', 'blocked'];
+
+function compareText(a, b) {
+  const left = String(a);
+  const right = String(b);
+  if (left < right) return -1;
+  return left > right ? 1 : 0;
+}
+
+function sortedUnion(lists) {
+  return [...new Set(lists.flatMap((list) => (Array.isArray(list) ? list : [])))].sort(compareText);
+}
+
+function lineagesByLabel(lineageData) {
+  return lineageData
+    .filter((lineage) => lineage && lineage.registry && typeof lineage.registry === 'object')
+    .sort((a, b) => compareText(a.label, b.label));
+}
+
+// A dimension counts as covered when any lineage covered it.
+function mergeDimensionCoverage(lineages) {
+  const merged = {};
+  for (const { registry } of lineages) {
+    const coverage = registry.dimensionCoverage;
+    if (!coverage || typeof coverage !== 'object') continue;
+    for (const [dimension, covered] of Object.entries(coverage)) {
+      merged[dimension] = merged[dimension] === true || covered === true;
+    }
+  }
+  return Object.fromEntries(Object.keys(merged).sort(compareText).map((key) => [key, merged[key]]));
+}
+
+function traceabilityRank(status) {
+  if (TRACEABILITY_UNDECIDED.has(status)) return 0;
+  return TRACEABILITY_STATUS_RANK[status] ?? 0;
+}
+
+// The strictest status wins per protocol, and an undecided status never replaces a
+// decided one; a tie keeps the first lineage in label order. The summary is then
+// recomputed from the merged results with the reducer's own counting rules.
+function mergeTraceability(lineages) {
+  const byProtocol = new Map();
+  for (const { registry } of lineages) {
+    const results = registry.traceability?.results;
+    if (!Array.isArray(results)) continue;
+    for (const result of results) {
+      if (!result || !result.protocolId) continue;
+      const previous = byProtocol.get(result.protocolId);
+      if (!previous || traceabilityRank(result.status) > traceabilityRank(previous.status)) {
+        byProtocol.set(result.protocolId, result);
+      }
+    }
+  }
+  const results = [...byProtocol.keys()].sort(compareText).map((protocolId) => byProtocol.get(protocolId));
+  const statuses = results.map((result) => result.status);
+  const applicable = results.filter((result) => result.applicable !== false);
+  return {
+    summary: {
+      required: applicable.length,
+      executed: applicable.filter((result) => !TRACEABILITY_UNDECIDED.has(result.status)).length,
+      pass: statuses.filter((status) => status === 'pass').length,
+      partial: statuses.filter((status) => status === 'partial').length,
+      fail: statuses.filter((status) => status === 'fail').length,
+      blocked: statuses.filter((status) => status === 'blocked').length,
+      notApplicable: statuses.filter((status) => status === 'notApplicable').length,
+      gatingFailures: applicable.filter((result) => result.gateClass === 'hard'
+        && ['partial', 'fail', 'blocked'].includes(result.status)).length,
+    },
+    results,
+    unfinishedCoreProtocols: sortedUnion(lineages.map(({ registry }) => registry.traceability?.unfinishedCoreProtocols)),
+  };
+}
+
+function mergeSearchCoverage(lineages) {
+  const coverages = lineages
+    .map(({ registry }) => registry.searchCoverage)
+    .filter((coverage) => coverage && typeof coverage === 'object');
+  const modes = [...new Set(coverages.map((coverage) => coverage.graphCoverageMode ?? null))];
+  return {
+    requiredBugClasses: sortedUnion(coverages.map((coverage) => coverage.requiredBugClasses)),
+    ...Object.fromEntries(COVERAGE_BUCKETS.map((bucket) => [bucket, sortedUnion(coverages.map((coverage) => coverage[bucket]))])),
+    // A mode every lineage shares is still true of the merged run; disagreeing modes are not.
+    graphCoverageMode: modes.length === 1 ? modes[0] : null,
+  };
+}
+
+// A bug class two lineages share has each flag ORed and its iterations unioned; the
+// lineage list keeps those iteration numbers attributable.
+function mergeCandidateCoverage(lineages) {
+  const coverages = [];
+  const byBugClass = {};
+  for (const { label, registry } of lineages) {
+    const coverage = registry.candidateCoverage;
+    if (!coverage || typeof coverage !== 'object') continue;
+    coverages.push(coverage);
+    for (const [bugClass, entry] of Object.entries(coverage.byBugClass || {})) {
+      const merged = byBugClass[bugClass]
+        || { covered: false, ruledOut: false, deferred: false, blocked: false, iterations: [], lineages: [] };
+      for (const bucket of COVERAGE_BUCKETS) merged[bucket] = merged[bucket] || entry?.[bucket] === true;
+      const iterations = Array.isArray(entry?.iterations) ? entry.iterations : [];
+      merged.iterations = [...new Set([...merged.iterations, ...iterations])].sort((a, b) => a - b);
+      merged.lineages = sortedUnion([merged.lineages, [label]]);
+      byBugClass[bugClass] = merged;
+    }
+  }
+  return {
+    ...Object.fromEntries(COVERAGE_BUCKETS.map((bucket) => [bucket, sortedUnion(coverages.map((coverage) => coverage[bucket]))])),
+    byBugClass: Object.fromEntries(Object.keys(byBugClass).sort(compareText).map((key) => [key, byBugClass[key]])),
+  };
+}
+
+// Pivot state belongs to one lineage, and a merged current focus would be invented,
+// so each lineage's divergence is kept whole under its own label.
+function mergeDivergenceByLineage(lineages) {
+  const byLineage = {};
+  for (const { label, registry } of lineages) {
+    if (registry.divergence && typeof registry.divergence === 'object') byLineage[label] = registry.divergence;
+  }
+  return byLineage;
+}
+
+function mergeRuledOutCandidates(lineages) {
+  const byKey = new Map();
+  for (const { label, registry } of lineages) {
+    if (!Array.isArray(registry.ruledOutCandidates)) continue;
+    for (const candidate of registry.ruledOutCandidates) {
+      if (!candidate || !candidate.id) continue;
+      const key = JSON.stringify([label, candidate.id]);
+      if (!byKey.has(key)) byKey.set(key, { ...candidate, lineage: label });
+    }
+  }
+  return [...byKey.values()].sort((a, b) => compareText(a.lineage, b.lineage) || compareText(a.id, b.id));
+}
+
+function mergeReviewCoverageSurfaces(lineageData) {
+  const lineages = lineagesByLabel(lineageData);
+  return {
+    dimensionCoverage: mergeDimensionCoverage(lineages),
+    traceability: mergeTraceability(lineages),
+    searchCoverage: mergeSearchCoverage(lineages),
+    candidateCoverage: mergeCandidateCoverage(lineages),
+    divergenceByLineage: mergeDivergenceByLineage(lineages),
+    ruledOutCandidates: mergeRuledOutCandidates(lineages),
+  };
+}
+
 /**
  * Merge review findings registries with strongest-restriction severity rollup.
  * Any lineage with an active P0 finding causes the merged result to be FAIL.
@@ -992,6 +1143,7 @@ function mergeReviewRegistries(lineageData, options = {}) {
     activeP1,
     activeP2,
     searchDebt: mergedSearchDebt,
+    ...mergeReviewCoverageSurfaces(lineageData),
     ...(schemaWarnings.length > 0 ? { schema_mismatch: schemaWarnings } : {}),
   };
 }
