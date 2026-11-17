@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7a7fbb61a95c873ffb66db5aff873ee18b0c62ab16114e66a28778d26246f688",
+  "manifestHash": "69345c91c6394ac1c55afd2ef9c1e65c194b0edfcc9ed4b85df90b110ebaad17",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -72,7 +72,7 @@
     ".skilled/changelog/skilled/v4.0.0.9.md",
     ".skilled/changelog/skilled/v4.0.1.0.md",
     ".skilled/changelog/skilled/v4.0.2.0.md",
-    ".skilled/changelog/skilled/v4.0.2.1.md",
+    ".skilled/changelog/skilled/v4.1.0.0.md",
     ".skilled/hooks/README.md",
     ".skilled/hooks/ask-surface-guard/README.md",
     ".skilled/hooks/classifier-injection-screen/README.md",
@@ -145405,7 +145405,7 @@
     "skilled v4 0 2 0": [
       61
     ],
-    "skilled v4 0 2 1": [
+    "skilled v4 1 0 0": [
       62
     ],
     "skilled verification phase goal": [
@@ -160172,7 +160172,7 @@
     "v4 0 2 1 handover release notes": [
       6862
     ],
-    "v4 0 2 1 release notes": [
+    "v4 1 0 0 release notes": [
       62
     ],
     "v4 changelog": [
