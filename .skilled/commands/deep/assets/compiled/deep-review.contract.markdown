@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "469f93bb0634f07220ffbe367208d07fb7b8a9e92396c8e2ee5838a61458e324",
+      "sha256": "122253662aaf1094013d54b816802e4afb6433bbfbb952b2450519a18569d775",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "de71b11facf3d766a2b4dde45abccdca8429dc63abe07947eeb209b9c729c638",
+      "sha256": "387afcdec4fffb94ed7e71a760c5d45485db5ea122cac6aa0e50c1e68bffa843",
       "section": "full"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "eb25b5db3b6a3d64e11fa8b1d158e77b60345e06df911718b4b19832cf4f5667",
+      "sha256": "2b9fc8c5b861d5fab6ca5ae580f4b74369c06e665579a7acc62211b43a6ec0aa",
       "section": "full"
     },
     {
@@ -52,12 +52,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
-      "sha256": "d69c120fc170871c49403fd190488d03bb8f0723eaa74292d5f04c2fb1c7e133",
+      "sha256": "b542890dd094fbdae7f29b0c3d37262f2f17220e4030a1d2a5ce19d9a9ea7de0",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "fcb5db2e35e243d22f68ce25f4e5f30f338d626455a732b9d9eb3af8c398ac44",
+      "sha256": "b354c09a15433af3fbc799db3d6fd54ad0c7d8943075c254bc338e38e4c1842e",
       "section": "full"
     },
     {
@@ -67,12 +67,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "dc0c8afab13e8a65d0d538d936680116b90bd6544f1a9b0085b3cef683b18c3b",
+      "sha256": "9642f5d7741f79bdf91a41676132f675ce83e000a821a0d60b2ef106fcda179f",
       "section": "full"
     },
     {
       "path": ".skilled/agents/deep-review.md",
-      "sha256": "131ef6c6e7e29b98a6b49cd976f2062d59d3537166ab7cc390d06c26b8c4ab80",
+      "sha256": "1d57624f9e7cfe6b3fbf76f9494a3b235817e944ce8ded3f8ec4117d556cc5f6",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "647a11e4874cfa00ac70f8f363946f8f93420910e17b0f1bd0d16aeb7ba52ff3"
+  "compiledBodyDigest": "910a42ac0dc8f7a5ce49cf2916f83028942e1d728de78d220549c44686076a04"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -169,7 +169,7 @@ The dispatched prompt body may contain one structured marker block. Parse it bef
 PRE-BOUND SETUP ANSWERS:
   review_target: <spec-folder>
   review_target_type: spec-folder  # one of: spec-folder | skill | agent | track | files
-  review_dimensions: all  # or comma-separated subset: correctness, security, traceability, maintainability
+  review_dimensions: all  # or comma-separated list: any of correctness, security, traceability, maintainability, plus custom names that follow them
   review_focus: ""  # optional free text every iteration covers in addition to its dimension
   spec_folder: existing  # one of: existing | new | update-related | phase-folder, or an explicit specs/.opencode/specs path
   execution_mode: AUTONOMOUS  # from :auto suffix
@@ -333,6 +333,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q_dims. Which review dimensions? (default: all 4)
      All: correctness, security, traceability, maintainability
      Or specify a subset (e.g., "correctness, security")
+     Or add custom names after them (e.g., "correctness, performance"); a custom dimension is reviewed after the canonical four
 
    Q1. Spec Folder (required):
      A) Use existing [suggest if found]

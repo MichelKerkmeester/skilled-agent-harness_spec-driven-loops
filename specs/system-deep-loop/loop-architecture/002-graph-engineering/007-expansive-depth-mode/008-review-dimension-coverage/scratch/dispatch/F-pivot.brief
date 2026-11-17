@@ -1,0 +1,31 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/468-ed-008-review-dimension-coverage
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0
+are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage (pre-approved). Proceed directly. Do not print
+A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt
+only after three failures on the same file. Your task is complete only when the file is
+changed on disk and the check below has been run.
+
+PERSONA: You are a careful code implementer. Change only what the task names, keep existing style (CommonJS, 2-space indent, single quotes), never refactor nearby code, and run the check before you report.
+
+PERSONA: You are a careful test author. Add only the case the task names and run the check before you report. Never edit a source file to make a test pass.
+
+TASK T015: prove the review pivot accepts the clean-stop trigger on a run with a covered custom dimension and seeds no unswept-dimension candidate for it.
+FILE: .skilled/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts
+CONTEXT (already implemented, do not change):
+- `.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` exports `buildReviewPivotPreparationInput(options)` with options `{ artifactRoot, configPath, stateLogPath, strategyPath, registryPath, currentIteration, maxIterations, triggerReason: 'all_dimensions_clean' }`. Its internal `buildCandidateSeeds` adds a seed with `source: 'unswept-dimension'` and title `Sweep configured review dimension: <name>` for every configured `reviewDimensions` entry whose `registry.dimensionCoverage[name]` is not true. Read `candidateFromSeed` in that file to see how a seed's source and title appear on the returned `candidates`.
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` `reduceReviewState(specFolder, { write: true, artifactDir })` writes the registry, with a custom dimension key after the four canonical ones.
+EDIT: append ONE new top-level `describe('review divergent pivot with a configured custom dimension', ...)` block at the end of the file, with one case 'accepts the clean-stop trigger and seeds no unswept-dimension for a covered custom dimension':
+- In a temp dir, lay out `<dir>/review/`: `deep-review-config.json` = `{ sessionId: 'review-custom-dim', generation: 1, reviewTarget: 'src', maxIterations: 6, reviewDimensions: ['correctness', 'performance'] }`; `deep-review-state.jsonl` with two complete iteration records (`type: 'iteration'`, `iteration` 1 and 2, `run` 1 and 2, `status: 'complete'`, `focus` 'correctness' then 'performance', `dimensions` ['correctness'] then ['performance'], `newFindingsRatio` 0.2 then 0.1, `findingsSummary: { P0: 0, P1: 0, P2: 0 }`); `deep-review-strategy.md` containing a `## 11. NEXT FOCUS` heading followed by the line `performance`.
+- Run `reduceReviewState(<dir>, { write: true, artifactDir: <dir>/review })` (load it with `createRequire(import.meta.url)` from the relative path to `runtime/scripts/reduce-state.cjs`), then call `buildReviewPivotPreparationInput` with those paths (`registryPath` = the reducer's `registryPath`), `currentIteration: 2`, `maxIterations: 6`, `triggerReason: 'all_dimensions_clean'` (import it from the relative path to `deep-review/scripts/divergent-review-pivot.ts`).
+- Expect the call not to throw, and expect no returned candidate (in `candidates` or `boundaryRejections`) to carry the unswept-dimension source with 'performance' in its title or focus.
+- Clean the temp dir in afterEach.
+ALLOWED WRITE PATHS: .skilled/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file,
+  edits outside ALLOWED WRITE PATHS, any edit under scripts/ or lib/, regenerating compiled contracts,
+  editing tasks.md, implementation-summary.md, spec.md or any spec-folder doc.
+COMMENTS: keep the durable WHY; never put spec paths, phase numbers or REQ/ADR/task ids in code.
+CHECK: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/divergent-pivot.vitest.ts
+RETURN: the changed path, the CHECK's last 15 lines and its exit code. Nothing else.

@@ -9,7 +9,7 @@ trigger_phrases:
   - "review loop troubleshooting"
 importance_tier: normal
 contextType: general
-version: 1.11.4.0
+version: 1.11.5.0
 ---
 
 # Deep Review Quick Reference
@@ -134,7 +134,7 @@ Review mode stores its packet under the resolved local review path rooted at `{s
 | State | Meaning |
 |-------|---------|
 | `in-progress` | Review still running or required coverage incomplete |
-| `converged` | All 4 dimensions covered and the stabilization pass found no new P0/P1 findings |
+| `converged` | Every configured dimension (the four by default) covered and the stabilization pass found no new P0/P1 findings |
 | `release-blocking` | At least one unresolved P0 remains active |
 
 ---
@@ -155,7 +155,7 @@ Review mode stores its packet under the resolved local review path rooted at `{s
 |--------|--------|-------------|
 | Rolling Average | 0.30 | Last 2 severity-weighted `newFindingsRatio` values average below `0.08` |
 | MAD Noise Floor | 0.25 | Latest ratio within noise floor |
-| Dimension Coverage | 0.45 | All 4 dimensions plus required traceability protocols covered, with `minStabilizationPasses >= 1` |
+| Dimension Coverage | 0.45 | Every configured dimension (the four by default) plus required traceability protocols covered, with `minStabilizationPasses >= 1` |
 
 **Key defaults:** `maxIterations=7`, `convergenceThreshold=0.10`, `rollingStopThreshold=0.08`, `noProgressThreshold=0.05`, `stuckThreshold=2`, `minStabilizationPasses=1`
 

@@ -51,7 +51,7 @@ mode_overrides:
 user_inputs:
   review_target: "[REVIEW_TARGET] - What to review. REQUIRED."
   review_target_type: "[spec-folder|skill|agent|track|files] - Target type for scope derivation. REQUIRED."
-  review_dimensions: "[all|correctness,security,traceability,maintainability] - Dimensions to check. Default: all."
+  review_dimensions: "[all|correctness,security,traceability,maintainability|custom names] - Dimensions to check. The four canonical dimensions are correctness, security, traceability and maintainability; any other name is a custom dimension, reviewed after the canonical four in configured order. Default: all."
   review_focus: "[optional free text] - Operator review focus that every iteration covers in addition to its dimension. Default: empty, which leaves the prompt unchanged."
   spec_folder: "[SPEC_FOLDER] - Spec folder path for state files. REQUIRED."
   session_id: "[SESSION_ID] - Optional caller-supplied session id for fan-out lineages. Default: timestamp."
@@ -768,7 +768,7 @@ workflow:
           1. Iteration 0 (inventory pass): Build artifact map, identify file types, estimate complexity
           2. Subsequent iterations follow risk-ordered deep passes:
              correctness → security → traceability → maintainability
-          3. If review_dimensions != "all", filter to only requested dimensions
+          3. If review_dimensions != "all", filter to only requested dimensions; each configured custom dimension follows the canonical four, in configured order
           4. Derive traceability protocol plan:
              - core: spec_code, checklist_evidence
              - overlay: skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability
@@ -783,12 +783,15 @@ workflow:
         outputs:
           - review_dimensions_normalized: "Canonical string[] for deep-review-config.json"
           - review_dimensions_json: "JSON.stringify(review_dimensions_normalized) for JSONL config record"
+          - review_dimensions_list: "The canonical four in risk order, then each configured custom dimension in configured order, joined by ', '"
+          - dimension_coverage_custom_seed: "For each configured custom dimension in configured order, the text ,\"<name>\":false; empty when every configured dimension is canonical"
         normalize: |
           Accept {review_dimensions} in any of these shapes and convert once:
             - "all" → ["correctness","security","traceability","maintainability"]
             - "correctness,security" → ["correctness","security"]
             - ["correctness"] → ["correctness"]
-          Every element MUST be one of the four canonical dimension names.
+            - "correctness,performance" → ["correctness","performance"]
+          Trim and lowercase each element and drop duplicates; an empty name fails setup. A name outside the four canonical dimension names is a custom dimension, kept in configured order after the canonical ones.
 
       step_normalize_review_focus:
         action: "Normalize the optional operator review focus once during init"
@@ -916,7 +919,7 @@ workflow:
       step_create_findings_registry:
         action: "Initialize reducer-owned review findings registry"
         dry_run_boundary: "state-mutation"
-        content: '{"sessionId":"{session_id_init}","generation":{generation_init},"lineageMode":"{lineage_mode_init}","openFindings":[],"resolvedFindings":[],"repeatedFindings":[],"dimensionCoverage":{"correctness":false,"security":false,"traceability":false,"maintainability":false},"findingsBySeverity":{"P0":0,"P1":0,"P2":0},"openFindingsCount":0,"resolvedFindingsCount":0,"convergenceScore":0.0}'
+        content: '{"sessionId":"{session_id_init}","generation":{generation_init},"lineageMode":"{lineage_mode_init}","openFindings":[],"resolvedFindings":[],"repeatedFindings":[],"dimensionCoverage":{"correctness":false,"security":false,"traceability":false,"maintainability":false{dimension_coverage_custom_seed}},"findingsBySeverity":{"P0":0,"P1":0,"P2":0},"openFindingsCount":0,"resolvedFindingsCount":0,"convergenceScore":0.0}'
         output: "{state_paths.findings_registry}"
 
       step_create_strategy:
@@ -1614,6 +1617,7 @@ workflow:
               pivot_lineage: "{pivot_lineage}"
               saturated_directions: "{saturated_directions}"
               review_focus_block: "{review_focus_block}"
+              review_dimensions_list: "{review_dimensions_list}"
               unfinished_core_protocols_block: "{unfinished_core_protocols_block}"
               state_paths_config: "{state_paths.config}"
               state_paths_state_log: "{state_paths.state_log}"
@@ -2470,12 +2474,13 @@ reference_only_appendix:
     p0_override: "If ANY new P0 discovered → newFindingsRatio = max(calculated, 0.50). A single new P0 blocks convergence."
     clean_pass: "If total_findings == 0 (clean pass) → newFindingsRatio = 0.0"
   review_dimensions:
-    note: "All 4 default review dimensions with priority ordering"
+    note: "The four canonical review dimensions in priority order; each configured custom dimension follows them under the custom rubric row"
     dimensions:
       - { priority: 1, name: "correctness", checks: "Logic, state flow, edge cases, error handling" }
       - { priority: 2, name: "security", checks: "Auth, input/output safety, data exposure, permissions" }
       - { priority: 3, name: "traceability", checks: "Spec/checklist alignment, cross-reference integrity, evidence coverage" }
       - { priority: 4, name: "maintainability", checks: "Patterns, documentation quality, safe follow-on change clarity" }
+      - { priority: 5, name: "<custom>", checks: "A configured custom dimension: review the target for the property its name states, under the shared P0-P2 doctrine. It follows the canonical four in configured order and is not required for severity coverage." }
   cross_reference_protocols:
     note: "Cross-reference verification protocols split into core and overlay classes"
     core_protocols:

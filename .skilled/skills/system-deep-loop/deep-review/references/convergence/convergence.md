@@ -9,7 +9,7 @@ trigger_phrases:
   - "composite convergence vote"
 importance_tier: important
 contextType: implementation
-version: 1.11.7.0
+version: 1.11.8.0
 ---
 
 # Deep Review Convergence
@@ -168,7 +168,7 @@ Every pivot dispatches three seats, or six when its first attempt misses quorum,
 Checks are evaluated in this order (first match wins):
 
 1. **Max iterations** -- hard cap, always checked first.
-2. **All dimensions covered + clean** -- all 4 dimensions covered, no active P0/P1, stabilization passed, gates passed.
+2. **All dimensions covered + clean** -- every configured dimension covered (the four by default), no active P0/P1, stabilization passed, gates passed.
 3. **Stuck detection** -- 2+ consecutive no-progress iterations.
 4. **Composite convergence** -- 3-signal weighted vote with threshold 0.60.
 5. **Legal-stop gate bundle** -- review-specific stop gates. If a stop vote fails any gate, persist `stopReason=blockedStop` and continue.
@@ -198,7 +198,7 @@ if coverage.dimensionCoverage == 1.0 and activeP0 == 0 and activeP1 == 0:
       return { action: "STOP", stopReason: "converged" }
 ```
 
-Triggers when all 4 dimensions (correctness, security, traceability, maintainability) are covered, no active P0/P1 remains, at least 1 stabilization pass has occurred, and the 9-gate legal-stop bundle passes. If gates fail, the loop records `stopReason=blockedStop` and continues despite full coverage.
+Triggers when every configured dimension (by default the four: correctness, security, traceability, maintainability, then any configured custom dimension) is covered, no active P0/P1 remains, at least 1 stabilization pass has occurred, and the 9-gate legal-stop bundle passes. If gates fail, the loop records `stopReason=blockedStop` and continues despite full coverage.
 
 ---
 

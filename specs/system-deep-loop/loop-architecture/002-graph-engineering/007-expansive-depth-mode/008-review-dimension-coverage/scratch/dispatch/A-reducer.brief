@@ -1,0 +1,43 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/468-ed-008-review-dimension-coverage
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0
+are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage (pre-approved). Proceed directly. Do not print
+A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt
+only after three failures on the same file. Your task is complete only when the file is
+changed on disk and the check below has been run.
+
+PERSONA: You are a careful code implementer. Change only what the task names, keep existing style (CommonJS, 2-space indent, single quotes), never refactor nearby code, and run the check before you report.
+
+TASK T003+T004: make the review reducer track configured custom review dimensions after the four canonical ones.
+FILE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs
+EDITS (apply all, literally):
+1. Directly below the line `function deriveDimension(finding, iteration) {` block's preceding blank line, i.e. immediately BEFORE `function deriveDimension`, insert this function:
+// The canonical four come first in risk order; configured custom names follow in configured order.
+function buildDimensionUniverse(config) {
+  const universe = [...REQUIRED_DIMENSIONS];
+  const raw = config && config.reviewDimensions;
+  const configured = Array.isArray(raw) ? raw : (typeof raw === 'string' ? raw.split(',') : []);
+  for (const entry of configured) {
+    const name = String(entry).trim().toLowerCase();
+    if (name && name !== 'all' && !universe.includes(name)) {
+      universe.push(name);
+    }
+  }
+  return universe;
+}
+
+2. In `function deriveDimension(finding, iteration)`: change the signature to `function deriveDimension(finding, iteration, universe = REQUIRED_DIMENSIONS)` and change its loop `for (const dimension of REQUIRED_DIMENSIONS)` to `for (const dimension of universe)`. Leave the fallback return line unchanged.
+3. In `function buildDimensionCoverage(iterationRecords, strategyDimensions)`: change the signature to `function buildDimensionCoverage(iterationRecords, strategyDimensions, universe = REQUIRED_DIMENSIONS)` and change BOTH loops `for (const dimension of REQUIRED_DIMENSIONS)` inside it to `for (const dimension of universe)`.
+4. In `function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [])`: add a fourth parameter `universe = REQUIRED_DIMENSIONS`, and in the `deriveDimension(` call inside it pass `universe` as a third argument after `iteration`.
+5. In `function buildRegistry(...)`: immediately before the line `const { openFindings, resolvedFindings } = buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords);` add `const dimensionUniverse = buildDimensionUniverse(config);`, then pass `dimensionUniverse` as the new last argument to that buildFindingRegistry call and as the third argument to the next line's `buildDimensionCoverage(iterationRecords, strategyDimensions)` call.
+6. In `function pickReviewBaseFocus(iterationFiles, registry)`, in `function updateStrategyContent` (the two lists `completedDimensions` and `remainingDimensions`) and in `function renderDashboard` (`dimensionRows`): replace each `REQUIRED_DIMENSIONS` with `Object.keys(registry.dimensionCoverage)`. The coverage map is built in universe order, so its keys are the universe.
+Do not touch the `const REQUIRED_DIMENSIONS = [...]` line or the module.exports entry.
+ALLOWED WRITE PATHS: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file,
+  edits outside ALLOWED WRITE PATHS, regenerating compiled contracts, editing tasks.md,
+  implementation-summary.md, spec.md or any spec-folder doc.
+COMMENTS: keep the durable WHY; never put spec paths, phase numbers or REQ/ADR/task ids in code.
+CHECK: node --check .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs && cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/deep-review-state-reducer.vitest.ts tests/integration/review-depth-convergence.vitest.ts
+RETURN: the changed path, the CHECK's last 15 lines and its exit code. Nothing else.

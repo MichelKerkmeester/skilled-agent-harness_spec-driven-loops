@@ -702,3 +702,107 @@ describe('reduceReviewState: an extension reopens a completed run', () => {
     expect(result.registry.lineageMode).toBe('completed-continue');
   });
 });
+
+describe('reduceReviewState: configured custom dimensions', () => {
+  // The registry keeps the configured custom dimensions beside the canonical four,
+  // and the declared return type only models the canonical surface, so the test
+  // reads those extra keys through an explicit shape.
+  type CoverageRegistry = {
+    dimensionCoverage: Record<string, boolean>;
+    openFindings: { findingId: string; title: string; dimension: string | null }[];
+  };
+  const asCoverageRegistry = (result: ReturnType<typeof reduceReviewState>) =>
+    result.registry as unknown as CoverageRegistry;
+
+  it('tracks and covers a configured custom dimension after the canonical four', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      maxIterations: 5,
+      reviewTarget: 'custom-dims',
+      reviewDimensions: ['correctness', 'performance'],
+    }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${JSON.stringify({
+      type: 'iteration',
+      iteration: 1,
+      run: 1,
+      status: 'complete',
+      focus: 'performance',
+      dimensions: ['performance'],
+      newFindingsRatio: 0.5,
+      findingsSummary: { P0: 0, P1: 0, P2: 0 },
+    })}\n`);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const coverage = asCoverageRegistry(result).dimensionCoverage;
+
+    expect(Object.keys(coverage)).toEqual(['correctness', 'security', 'traceability', 'maintainability', 'performance']);
+    expect(coverage.performance).toBe(true);
+    expect(coverage.correctness).toBe(false);
+    expect(result.dashboard).toContain('| performance | covered |');
+  });
+
+  // The iteration addressed a canonical dimension first, so only a match against the
+  // configured custom name, not the first-addressed fallback, can attribute the finding.
+  it('attributes a finding that names a custom dimension to it, not to the first addressed one', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      maxIterations: 5,
+      reviewTarget: 'custom-dims',
+      reviewDimensions: ['correctness', 'performance'],
+    }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${JSON.stringify({
+      type: 'iteration',
+      iteration: 1,
+      run: 1,
+      status: 'complete',
+      focus: 'mixed pass',
+      dimensions: ['correctness', 'performance'],
+      newFindingsRatio: 1,
+      findingsSummary: { P0: 0, P1: 1, P2: 0 },
+    })}\n`);
+    mkdirSync(join(reviewDir, 'iterations'), { recursive: true });
+    writeFileSync(join(reviewDir, 'iterations', 'iteration-001.md'), [
+      '# Iteration 1: Mixed pass',
+      '',
+      '## Findings - New',
+      '',
+      '### P1 Findings',
+      '',
+      '1. **Performance: hot loop allocates per row** -- `src/loop.cjs:10` -- Each row allocates a temporary buffer',
+      '',
+      '## Assessment',
+      '',
+      'Dimensions addressed: correctness, performance',
+      '',
+    ].join('\n'));
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const [finding] = asCoverageRegistry(result).openFindings;
+
+    expect(finding.dimension).toBe('performance');
+  });
+
+  it('keeps the canonical keys unchanged for a canonical-subset config', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      maxIterations: 5,
+      reviewTarget: 'custom-dims',
+      reviewDimensions: ['correctness', 'security'],
+    }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${JSON.stringify({
+      type: 'iteration',
+      iteration: 1,
+      run: 1,
+      status: 'complete',
+      focus: 'correctness',
+      dimensions: ['correctness'],
+      newFindingsRatio: 0.5,
+      findingsSummary: { P0: 0, P1: 0, P2: 0 },
+    })}\n`);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const coverage = asCoverageRegistry(result).dimensionCoverage;
+
+    expect(Object.keys(coverage)).toEqual(['correctness', 'security', 'traceability', 'maintainability']);
+  });
+});

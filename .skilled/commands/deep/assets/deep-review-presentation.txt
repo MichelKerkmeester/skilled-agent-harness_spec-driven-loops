@@ -32,7 +32,7 @@ The dispatched prompt body may contain one structured marker block. Parse it bef
 PRE-BOUND SETUP ANSWERS:
   review_target: <spec-folder>
   review_target_type: spec-folder  # one of: spec-folder | skill | agent | track | files
-  review_dimensions: all  # or comma-separated subset: correctness, security, traceability, maintainability
+  review_dimensions: all  # or comma-separated list: any of correctness, security, traceability, maintainability, plus custom names that follow them
   review_focus: ""  # optional free text every iteration covers in addition to its dimension
   spec_folder: existing  # one of: existing | new | update-related | phase-folder, or an explicit specs/.opencode/specs path
   execution_mode: AUTONOMOUS  # from :auto suffix
@@ -188,6 +188,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q_dims. Which review dimensions? (default: all 4)
      All: correctness, security, traceability, maintainability
      Or specify a subset (e.g., "correctness, security")
+     Or add custom names after them (e.g., "correctness, performance"); a custom dimension is reviewed after the canonical four
 
    Q1. Spec Folder (required):
      A) Use existing [suggest if found]

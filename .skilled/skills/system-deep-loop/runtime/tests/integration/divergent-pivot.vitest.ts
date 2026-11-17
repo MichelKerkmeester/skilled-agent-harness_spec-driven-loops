@@ -4,7 +4,17 @@
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
+import { createRequire } from 'node:module';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 import {
@@ -16,6 +26,7 @@ import {
   recordPivotSeatResult,
   runDivergentPivot,
 } from '../../lib/deep-loop/divergent-pivot.js';
+import { buildReviewPivotPreparationInput } from '../../../deep-review/scripts/divergent-review-pivot';
 import { createHermeticEnv, type HermeticEnv } from '../helpers/spawn-cjs.js';
 
 import type {
@@ -25,6 +36,17 @@ import type {
   RunDivergentPivotOptions,
 } from '../../lib/deep-loop/divergent-pivot.js';
 import type { PivotCandidate } from '../../lib/deep-loop/pivot-candidates.js';
+
+const requireCjs = createRequire(import.meta.url);
+const { reduceReviewState } = requireCjs('../../scripts/reduce-state.cjs') as {
+  reduceReviewState: (
+    specFolder: string,
+    options: { write?: boolean; artifactDir?: string },
+  ) => {
+    registryPath: string;
+    registry: { dimensionCoverage: Record<string, boolean> };
+  };
+};
 
 const environments: HermeticEnv[] = [];
 const seats: readonly PivotSeatMandate[] = [
@@ -659,5 +681,90 @@ describe('divergent pivot preflight and resume', () => {
       paths: resumed.paths,
       pivotId: derivePivotId(identity()),
     })).toThrow('does not match the expected contract');
+  });
+});
+
+describe('review divergent pivot with a configured custom dimension', () => {
+  const tempDirs: string[] = [];
+
+  afterEach(() => {
+    while (tempDirs.length > 0) {
+      rmSync(tempDirs.pop() as string, { recursive: true, force: true });
+    }
+  });
+
+  it('accepts the clean-stop trigger and seeds no unswept-dimension for a covered custom dimension', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'review-custom-dim-pivot-'));
+    tempDirs.push(dir);
+    const reviewDir = join(dir, 'review');
+    mkdirSync(reviewDir, { recursive: true });
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      sessionId: 'review-custom-dim',
+      generation: 1,
+      reviewTarget: 'src',
+      maxIterations: 6,
+      reviewDimensions: ['correctness', 'performance'],
+    }), 'utf8');
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), [
+      {
+        type: 'iteration',
+        iteration: 1,
+        run: 1,
+        status: 'complete',
+        focus: 'correctness',
+        dimensions: ['correctness'],
+        newFindingsRatio: 0.2,
+        findingsSummary: { P0: 0, P1: 0, P2: 0 },
+      },
+      {
+        type: 'iteration',
+        iteration: 2,
+        run: 2,
+        status: 'complete',
+        focus: 'performance',
+        dimensions: ['performance'],
+        newFindingsRatio: 0.1,
+        findingsSummary: { P0: 0, P1: 0, P2: 0 },
+      },
+    ].map((record) => JSON.stringify(record)).join('\n') + '\n', 'utf8');
+    writeFileSync(join(reviewDir, 'deep-review-strategy.md'), '## 11. NEXT FOCUS\n\nperformance\n', 'utf8');
+
+    const reduced = reduceReviewState(dir, { write: true, artifactDir: reviewDir });
+    // The custom dimension is covered by persisted state, so the pivot must not
+    // propose sweeping it again; the assertion below is only meaningful if this holds.
+    expect(reduced.registry.dimensionCoverage.performance).toBe(true);
+
+    const buildInput = () => buildReviewPivotPreparationInput({
+      artifactRoot: dir,
+      configPath: join(reviewDir, 'deep-review-config.json'),
+      stateLogPath: join(reviewDir, 'deep-review-state.jsonl'),
+      strategyPath: join(reviewDir, 'deep-review-strategy.md'),
+      registryPath: reduced.registryPath,
+      currentIteration: 2,
+      maxIterations: 6,
+      triggerReason: 'all_dimensions_clean',
+    });
+
+    expect(buildInput).not.toThrow();
+    const prepared = buildInput();
+
+    // A candidate carries its seed source on seatProvenance, while a rejected seed
+    // keeps the source field. Checking both lists keeps a re-proposed dimension
+    // from hiding in the boundary-rejection path.
+    const unsweptPerformanceSeeds = [
+      ...prepared.candidates.map((entry) => ({
+        source: entry.seatProvenance.join(' '),
+        title: entry.title,
+        focus: entry.focus,
+      })),
+      ...prepared.boundaryRejections.map((entry) => ({
+        source: entry.source,
+        title: entry.title,
+        focus: entry.focus,
+      })),
+    ].filter((entry) => entry.source.includes('unswept-dimension')
+      && /performance/iu.test(`${entry.title} ${entry.focus}`));
+
+    expect(unsweptPerformanceSeeds).toEqual([]);
   });
 });

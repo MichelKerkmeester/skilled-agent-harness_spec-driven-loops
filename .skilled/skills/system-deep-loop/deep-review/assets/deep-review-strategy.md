@@ -8,7 +8,7 @@ trigger_phrases:
   - "review session tracking"
 importance_tier: normal
 contextType: planning
-version: 1.11.0.13
+version: 1.11.1.0
 ---
 
 # Deep Review Strategy - Session Tracking Template
@@ -43,6 +43,8 @@ Serves as the "persistent brain" for a deep review session. Records which dimens
 - [ ] D3 Traceability, Spec/code alignment, checklist evidence, cross-reference integrity
 - [ ] D4 Maintainability, Patterns, clarity, documentation quality, safe follow-on change cost
 <!-- MACHINE-OWNED: END -->
+
+A configured custom dimension, such as `performance`, gets its own line after D4, in configured order.
 
 ---
 
