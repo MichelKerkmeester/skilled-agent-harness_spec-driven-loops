@@ -1,0 +1,21 @@
+Changed path: `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts` (+87 lines, 0 deletions — existing cases untouched).
+
+CHECK last 15 lines:
+```
+    302|     // in the file and let the assertion below pass for the wrong reas…
+    303|     expect(result.strategyWarning).toBeNull();
+    304|     expect(strategyNextFocus).toContain('correctness');
+       |                               ^
+    305|     expect(strategyNextFocus).not.toContain('Look at the release notes…
+    306|     expect(dashboardNextFocus).toContain('correctness');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 18 passed (19)
+   Start at  20:50:49
+   Duration  447ms (transform 62ms, setup 87ms, import 23ms, tests 107ms, environment 0ms)
+```
+
+Exit code: 1 — all 18 pre-existing cases pass; the new case fails only because the leaf free text ("Look at the release notes wording") wins the Next Focus pick today.

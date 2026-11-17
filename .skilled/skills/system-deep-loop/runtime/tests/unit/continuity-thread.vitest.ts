@@ -23,12 +23,16 @@ const {
     iterationFiles?: Array<Record<string, unknown>>;
     iterationRecords?: Array<Record<string, unknown>>;
     machineOpenQuestions?: Array<string | { text: string }>;
+    registryQuestions?: Array<string | { text: string }>;
+    resolvedQuestions?: Array<string | { text: string }>;
   }) => CarriedForwardQuestion[];
   deriveNextFocusFromContinuity: (input: {
     iterationFiles?: Array<Record<string, unknown>>;
     iterationRecords?: Array<Record<string, unknown>>;
     carriedForwardOpenQuestions?: CarriedForwardQuestion[];
     machineOpenQuestions?: Array<string | { text: string }>;
+    leafNextFocus?: string;
+    resolvedQuestions?: Array<string | { text: string }>;
     terminalSentinel?: string;
   }) => string;
   formatCarriedForwardOpenQuestions: (questions: CarriedForwardQuestion[]) => string;
@@ -120,5 +124,75 @@ describe('continuity threading helpers', () => {
       machineOpenQuestions: [],
       iterationFiles: [{ run: 1, findings: ['Resolved answer'] }],
     })).toBe('[All tracked questions are resolved]');
+  });
+
+  // Loop narration and bare topic labels appear in `questionsRemaining` but are not
+  // questions, so they must not seed the next focus or inflate the carried-forward thread.
+  it('drops a carried-forward item that is not question-shaped', () => {
+    const questions = buildCarriedForwardOpenQuestions({
+      iterationFiles: [
+        {
+          run: 2,
+          questionsRemaining: ['Iteration 1 mapped the reducer chain.', 'Which reducer owns focus?'],
+        },
+      ],
+      machineOpenQuestions: [{ text: 'Is the open machine question answered?' }],
+    });
+
+    expect(questions.map((question) => question.text)).toEqual(['Which reducer owns focus?']);
+  });
+
+  it('keeps a non-question item that equals a registry question', () => {
+    const questions = buildCarriedForwardOpenQuestions({
+      iterationFiles: [{ run: 1, questionsRemaining: ['Map the reducer chain'] }],
+      registryQuestions: [{ text: 'Map the reducer chain' }],
+    });
+
+    expect(questions.map((question) => question.text)).toEqual(['Map the reducer chain']);
+  });
+
+  // A resolved question stays resolved no matter how it is cased, so it must not return as focus.
+  it('drops a carried-forward item that equals a resolved question', () => {
+    const questions = buildCarriedForwardOpenQuestions({
+      iterationFiles: [{ run: 3, questionsRemaining: ['Which file owns the stop decision?'] }],
+      resolvedQuestions: [{ text: 'which file owns the stop decision?' }],
+    });
+
+    expect(questions).toEqual([]);
+  });
+
+  // A leaf's own recommendation is fresher evidence than the thread it inherited.
+  it('returns the leaf recommendation ahead of the carried-forward thread', () => {
+    const focus = deriveNextFocusFromContinuity({
+      carriedForwardOpenQuestions: [
+        { text: 'Old thread?', addedAtIteration: 1, source: 'iteration-markdown' },
+      ],
+      machineOpenQuestions: [{ text: 'Open question?' }],
+      leafNextFocus: 'Inspect the review twin',
+    });
+
+    expect(focus).toBe('Inspect the review twin');
+  });
+
+  it('skips a leaf recommendation that equals a resolved question', () => {
+    const focus = deriveNextFocusFromContinuity({
+      carriedForwardOpenQuestions: [
+        { text: 'Old thread?', addedAtIteration: 1, source: 'iteration-markdown' },
+      ],
+      machineOpenQuestions: [{ text: 'Open question?' }],
+      leafNextFocus: 'Old answered?',
+      resolvedQuestions: ['old answered?'],
+    });
+
+    expect(focus).toBe('Old thread?');
+  });
+
+  it('returns the terminal sentinel with no open machine question even when the leaf recommends a focus', () => {
+    const focus = deriveNextFocusFromContinuity({
+      machineOpenQuestions: [],
+      leafNextFocus: 'Do more work',
+    });
+
+    expect(focus).toBe('[All tracked questions are resolved]');
   });
 });

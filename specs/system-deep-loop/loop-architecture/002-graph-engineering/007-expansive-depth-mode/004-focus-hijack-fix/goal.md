@@ -56,11 +56,11 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] With one open machine question, two `deep-research-reduce-state` cases, one listing a resolved question's text and one listing a status sentence with no question mark under a later iteration's `## Questions Remaining`, resolve Next Focus to something other than that text, and the registry `carriedForwardOpenQuestions` list, its metric and strategy section 11A omit it.
-- [ ] A `deep-research-reduce-state` case with one open machine question returns the latest iteration's non-empty `## Recommended Next Focus` as Next Focus, and does not return it when it equals a resolved question.
-- [ ] A `deep-review-state-reducer` case with `correctness` uncovered and a free-text leaf `nextFocus` that names no dimension resolves both the strategy `11. NEXT FOCUS` section and the dashboard Next Focus to a value naming `correctness`.
-- [ ] A `continuity-thread` case with zero open machine questions and a leaf recommendation returns the terminal sentinel.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/deep-research-reduce-state.vitest.ts tests/unit/continuity-thread.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts` exits 0 with no existing case removed.
+- [x] With one open machine question, two `deep-research-reduce-state` cases, one listing a resolved question's text and one listing a status sentence with no question mark under a later iteration's `## Questions Remaining`, resolve Next Focus to something other than that text, and the registry `carriedForwardOpenQuestions` list, its metric and strategy section 11A omit it.
+- [x] A `deep-research-reduce-state` case with one open machine question returns the latest iteration's non-empty `## Recommended Next Focus` as Next Focus, and does not return it when it equals a resolved question.
+- [x] A `deep-review-state-reducer` case with `correctness` uncovered and a free-text leaf `nextFocus` that names no dimension resolves both the strategy `11. NEXT FOCUS` section and the dashboard Next Focus to a value naming `correctness`.
+- [x] A `continuity-thread` case with zero open machine questions and a leaf recommendation returns the terminal sentinel.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/deep-research-reduce-state.vitest.ts tests/unit/continuity-thread.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts` exits 0 with no existing case removed.
 - [ ] Through `/create:manual-testing-playbook`, `rg -il "status sentence" .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook` and `rg -il "first uncovered" .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` each list a scenario; both print nothing before this phase.
 <!-- /ANCHOR:completion -->
 
@@ -79,7 +79,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md` written 2026-11-17 |
-| Implementation | Pending | Not started |
+| Implementation | Done (code and tests) | 2026-11-17 in worktree 462. The three suites pass 68 (baseline 57); the 7 P0 cases failed before any source edit (`scratch/baseline.txt`). Criteria 1-5 met. Criterion 6 (playbook) and the changelog entry are written by @markdown in integration after merge |
 
 ### Deviations and findings
 

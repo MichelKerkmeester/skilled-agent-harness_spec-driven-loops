@@ -1,0 +1,43 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/462-ed-004-focus-hijack-fix
+Every read, write and command uses this root. Your environment block may name a different "Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix (pre-approved). Proceed directly. Do not print A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt only after three failures on the same file. Your task is complete only when the file is changed on disk and the check below has been run.
+
+PERSONA: You are a senior implementation engineer. Make exactly the change described, in the allowed file only, matching the file's existing style. Do not refactor or reformat anything else. Verify by running the CHECK and report honestly.
+
+TASK T003a: Add six failing-first test cases to the continuity-thread unit suite. The code they test changes later; several of these cases are EXPECTED TO FAIL now. Do not change any source file.
+
+TASK T007: In the review reducer, let the first uncovered required dimension outrank a leaf next focus that names no uncovered dimension.
+FILE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs
+EDIT:
+1. Add one helper function near the other small helpers above the strategy builder (anywhere at top level before its first use is fine):
+   function pickReviewBaseFocus(iterationFiles, registry) {
+     const leafFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1) || '';
+     const uncovered = REQUIRED_DIMENSIONS.filter((dimension) => !registry.dimensionCoverage[dimension]);
+     const leafKey = String(leafFocus).toLowerCase().trim();
+     if (leafFocus && (uncovered.length === 0 || uncovered.some((dimension) => leafKey.includes(dimension)))) {
+       return leafFocus;
+     }
+     return uncovered[0] || leafFocus || '[All dimensions covered]';
+   }
+   With a one-line comment: free leaf text must not hide a required dimension the run has not covered yet.
+2. Replace the strategy base pick, which reads:
+     let nextFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1)
+       || REQUIRED_DIMENSIONS.find((dimension) => !registry.dimensionCoverage[dimension])
+       || '[All dimensions covered]';
+   with:
+     let nextFocus = pickReviewBaseFocus(iterationFiles, registry);
+   and update the comment line just above it to: // Default next-focus: a leaf focus naming an uncovered dimension, else the first uncovered dimension, else the leaf focus.
+3. Replace the dashboard twin, which reads:
+     const nextFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1)
+       || REQUIRED_DIMENSIONS.find((dimension) => !registry.dimensionCoverage[dimension])
+       || '[All dimensions covered]';
+   with:
+     const nextFocus = pickReviewBaseFocus(iterationFiles, registry);
+The pivot override (`registry.divergence.currentFocus`) and the blocked-stop override stay exactly as they are.
+ALLOWED WRITE PATHS: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file, edits outside ALLOWED WRITE PATHS, regenerating compiled contracts, editing any spec-folder doc or any test file.
+COMMENTS: keep the durable WHY; never put spec paths, phase numbers or REQ/ADR/task ids in code comments.
+CHECK: cd .skilled/skills/system-deep-loop/runtime && node --check scripts/reduce-state.cjs && npx vitest run tests/unit/deep-review-state-reducer.vitest.ts
+EXPECTED: exit 0, every case passes.
+RETURN: the changed path, the CHECK's last 15 lines and its exit code. Nothing else.

@@ -1,0 +1,25 @@
+**Changed path:**
+`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs` (+16 lines, only `buildCarriedForwardOpenQuestions`; the six test cases in `tests/unit/continuity-thread.vitest.ts` were already present on disk and were left untouched — test writes are banned for this task)
+
+**CHECK:** `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/continuity-thread.vitest.ts` — last 15 lines:
+
+```
+    172|     });
+    173|
+    174|     expect(focus).toBe('Inspect the review twin');
+       |                   ^
+    175|   });
+    176|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 11 passed (12)
+   Start at  20:52:15
+   Duration  125ms (transform 20ms, setup 25ms, import 7ms, tests 6ms, environment 0ms)
+```
+
+**Exit code:** `1`
+
+Matches the expected outcome: the three filter cases pass (`drops a carried-forward item that is not question-shaped`, `keeps a non-question item that equals a registry question`, `drops a carried-forward item that equals a resolved question`); the only failure is the leaf-recommendation case `returns the leaf recommendation ahead of the carried-forward thread`, which the expectation allows; every other case passes.

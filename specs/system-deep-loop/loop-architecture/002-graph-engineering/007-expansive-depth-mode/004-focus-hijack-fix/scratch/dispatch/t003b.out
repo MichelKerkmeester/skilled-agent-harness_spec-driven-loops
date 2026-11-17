@@ -1,0 +1,27 @@
+**Changed path:** `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` (+138, −0; the three new cases sit directly after the model case, plus two helpers at the end of the same describe block).
+
+**CHECK last 20 lines:**
+
+```
++ Which delta merge path stays open?
++
++
+
+ ❯ tests/unit/deep-research-reduce-state.vitest.ts:1551:8
+    1549|
+    1550|     expect(sectionText(recommended.strategy, '## 11. NEXT FOCUS', '<!-…
+    1551|       .toContain('Trace the merge writer');
+       |        ^
+    1552|
+    1553|     const resolved = reduceResearchState(writeResolvedQuestionLeafFixt…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 33 passed (36)
+   Start at  20:49:39
+   Duration  9.81s (transform 32ms, setup 18ms, import 13ms, tests 9.68s, environment 0ms)
+```
+
+**Exit code:** 1 — 33 pre-existing cases pass; the three new cases fail, each on its first assert (`carriedForwardOpenQuestions` still holds the resolved question / the status sentence; NEXT FOCUS still falls back to `Which delta merge path stays open?` instead of the leaf recommendation).

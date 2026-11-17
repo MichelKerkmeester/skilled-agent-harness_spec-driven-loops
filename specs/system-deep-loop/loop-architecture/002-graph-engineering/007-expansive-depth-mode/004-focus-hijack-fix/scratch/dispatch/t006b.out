@@ -1,0 +1,22 @@
+Changed paths:
+
+- `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` (one comment plus one `.filter(...)` step in `resolveNextFocus`)
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` (one new case after the leaf Recommended Next Focus case)
+
+New case failed before the source edit: yes. With only the test added, the CHECK exited 1 with 37 tests run and 1 failed: `AssertionError: expected '\nTrace the merge writer\n\n' not to contain 'Trace the merge writer'`. Both files already carried earlier uncommitted edits when I started. I added only the comment, the filter line and the new case.
+
+CHECK output, last 15 lines:
+
+```
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/462-ed-004-focus-hijack-fix/.skilled/skills/system-deep-loop/runtime
+
+
+ Test Files  1 passed (1)
+      Tests  37 passed (37)
+   Start at  20:56:02
+   Duration  10.18s (transform 30ms, setup 19ms, import 29ms, tests 10.07s, environment 0ms)
+
+EXIT:0
+```
+
+Exit code: 0. Nothing is pending on the operator.

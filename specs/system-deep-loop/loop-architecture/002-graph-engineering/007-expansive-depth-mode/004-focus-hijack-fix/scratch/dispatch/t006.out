@@ -1,0 +1,14 @@
+CHANGED PATH: `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` (two call sites: `buildRegistry` gained `registryQuestions` + `resolvedQuestions`; `resolveNextFocus` defines `latestLeafNextFocus` just before `deriveNextFocusFromContinuity` and passes `leafNextFocus` + `resolvedQuestions`)
+
+CHECK last 15 lines:
+```
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/462-ed-004-focus-hijack-fix/.skilled/skills/system-deep-loop/runtime
+
+
+ Test Files  2 passed (2)
+      Tests  48 passed (48)
+   Start at  20:53:57
+   Duration  8.26s (transform 57ms, setup 37ms, import 50ms, tests 8.14s, environment 0ms)
+```
+`node --check` exit 0; `vitest run` exit 0 (overall CHECK exit code 0).

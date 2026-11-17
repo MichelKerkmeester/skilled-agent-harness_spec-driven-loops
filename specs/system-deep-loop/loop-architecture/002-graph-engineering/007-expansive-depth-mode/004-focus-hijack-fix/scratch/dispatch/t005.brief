@@ -1,0 +1,28 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/462-ed-004-focus-hijack-fix
+Every read, write and command uses this root. Your environment block may name a different "Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix (pre-approved). Proceed directly. Do not print A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt only after three failures on the same file. Your task is complete only when the file is changed on disk and the check below has been run.
+
+PERSONA: You are a senior implementation engineer. Make exactly the change described, in the allowed file only, matching the file's existing style. Do not refactor or reformat anything else. Verify by running the CHECK and report honestly.
+
+TASK T003a: Add six failing-first test cases to the continuity-thread unit suite. The code they test changes later; several of these cases are EXPECTED TO FAIL now. Do not change any source file.
+
+TASK T005: Add the leaf-recommendation step to `deriveNextFocusFromContinuity`.
+FILE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs
+ANCHOR: function `deriveNextFocusFromContinuity`.
+EDIT:
+1. Add two destructured params with defaults: `leafNextFocus = ''` and `resolvedQuestions = []`.
+2. Immediately AFTER the existing early return `if (machineQuestions.length === 0) { return terminalSentinel; }` and BEFORE `const latestThreadQuestion = getLatestByRun(carriedForwardOpenQuestions);`, insert:
+   const leafFocus = normalizeText(leafNextFocus);
+   const resolvedQuestionKeys = new Set(toTextArray(resolvedQuestions).map(normalizeKey));
+   if (leafFocus && !resolvedQuestionKeys.has(normalizeKey(leafFocus))) {
+     return truncateFocus(leafFocus);
+   }
+3. One short comment above the inserted block: the leaf's own recommendation is the freshest signal, but an answered recommendation must not reopen settled work, and it never overrides the terminal sentinel.
+Nothing else in the file changes.
+ALLOWED WRITE PATHS: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file, edits outside ALLOWED WRITE PATHS, regenerating compiled contracts, editing any spec-folder doc or any test file.
+COMMENTS: keep the durable WHY; never put spec paths, phase numbers or REQ/ADR/task ids in code comments.
+CHECK: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/continuity-thread.vitest.ts
+EXPECTED: every case in the file passes.
+RETURN: the changed path, the CHECK's last 15 lines and its exit code. Nothing else.

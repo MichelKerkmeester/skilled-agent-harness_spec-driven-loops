@@ -67,6 +67,18 @@ function makeReviewDir(): { specFolder: string; reviewDir: string } {
   return { specFolder, reviewDir };
 }
 
+// Slicing out the one section keeps an assertion honest: the same text living in a
+// neighbouring section must not satisfy it, and a missing section fails loudly
+// instead of shrinking the haystack to nothing.
+function sectionAfter(markdown: string, heading: string, boundary: string): string {
+  const start = markdown.indexOf(heading);
+  const end = start === -1 ? -1 : markdown.indexOf(boundary, start + heading.length);
+  if (start === -1 || end === -1) {
+    throw new Error(`Missing "${heading}" block bounded by "${boundary}"`);
+  }
+  return markdown.slice(start + heading.length, end);
+}
+
 describe('reduceReviewState — degrades gracefully on warning-class problems', () => {
   it('still writes the registry and dashboard when the strategy file has no recognizable machine anchor', () => {
     const { specFolder, reviewDir } = makeReviewDir();
@@ -217,6 +229,81 @@ describe('reduceReviewState — degrades gracefully on warning-class problems', 
     // What changed is that the drop is now attributable to the value that caused it.
     expect(result.registry.openFindings.map((f) => f.findingId)).toEqual(['F010']);
     expect(lines.join('')).toMatch(/severity "P3" is outside the P0\/P1\/P2 scale/);
+  });
+
+  // A leaf next focus is a hint about where attention could go, not evidence that a
+  // dimension was covered. When it names no required dimension, the first uncovered
+  // one is the work that still exists, so it has to outrank the hint in both outputs.
+  it('names the first uncovered dimension when the leaf next focus names no dimension', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 5, reviewTarget: 'default-next-focus' }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${JSON.stringify({
+      type: 'iteration',
+      iteration: 1,
+      run: 1,
+      status: 'complete',
+      focus: 'security',
+      dimensions: ['security'],
+      newFindingsRatio: 0.5,
+      findingsSummary: { P0: 0, P1: 0, P2: 0 },
+    })}\n`);
+    mkdirSync(join(reviewDir, 'iterations'), { recursive: true });
+    writeFileSync(join(reviewDir, 'iterations', 'iteration-001.md'), [
+      '# Iteration 1: Security',
+      '',
+      '## Recommended Next Focus',
+      '',
+      'Look at the release notes wording',
+      '',
+    ].join('\n'));
+    // The machine-owned sections are seeded the way a live strategy file carries them,
+    // so the authored free text is the only candidate standing behind the section body.
+    writeFileSync(join(reviewDir, 'deep-review-strategy.md'), [
+      '# Deep Review Strategy',
+      '',
+      '<!-- ANCHOR:review-dimensions -->',
+      '## 3. REVIEW DIMENSIONS (remaining)',
+      '- [ ] correctness',
+      '- [ ] security',
+      '- [ ] traceability',
+      '- [ ] maintainability',
+      '<!-- /ANCHOR:review-dimensions -->',
+      '',
+      '<!-- ANCHOR:completed-dimensions -->',
+      '## 4. COMPLETED DIMENSIONS',
+      '[None yet]',
+      '<!-- /ANCHOR:completed-dimensions -->',
+      '',
+      '<!-- ANCHOR:running-findings -->',
+      '## 5. RUNNING FINDINGS',
+      '- P0 (Blockers): 0',
+      '<!-- /ANCHOR:running-findings -->',
+      '',
+      '<!-- ANCHOR:exhausted-approaches -->',
+      '## 9. EXHAUSTED APPROACHES (do not retry)',
+      '[None yet]',
+      '<!-- /ANCHOR:exhausted-approaches -->',
+      '',
+      '## 11. RULED OUT DIRECTIONS',
+      '[None yet]',
+      '',
+      '<!-- ANCHOR:next-focus -->',
+      '## 11. NEXT FOCUS',
+      '[None yet]',
+      '<!-- /ANCHOR:next-focus -->',
+      '',
+    ].join('\n'));
+
+    const result = reduceReviewState(specFolder, { write: true, artifactDir: reviewDir });
+    const strategyNextFocus = sectionAfter(readFileSync(result.strategyPath, 'utf8'), '## 11. NEXT FOCUS', '<!--');
+    const dashboardNextFocus = sectionAfter(result.dashboard, '## 11. NEXT FOCUS', '<!--');
+
+    // A strategy update skipped over a missing anchor would leave the authored text
+    // in the file and let the assertion below pass for the wrong reason.
+    expect(result.strategyWarning).toBeNull();
+    expect(strategyNextFocus).toContain('correctness');
+    expect(strategyNextFocus).not.toContain('Look at the release notes wording');
+    expect(dashboardNextFocus).toContain('correctness');
   });
 });
 

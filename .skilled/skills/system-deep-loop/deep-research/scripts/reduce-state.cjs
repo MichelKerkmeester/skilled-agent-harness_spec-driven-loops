@@ -2452,11 +2452,20 @@ function resolveNextFocus(registry, iterationFiles, iterationRecords) {
   }
 
   const filteredInputs = filterNextFocusInputs(registry, iterationFiles, iterationRecords);
+  // A leaf recommendation goes through the same rejected-pattern suppression as every other next-focus candidate.
+  const latestLeafNextFocus = [...(Array.isArray(filteredInputs.iterationFiles) ? filteredInputs.iterationFiles : [])]
+    .sort((left, right) => (left.run || 0) - (right.run || 0))
+    .map((iteration) => iteration.nextFocus)
+    .filter((value) => typeof value === 'string' && value.trim())
+    .filter((value) => !findRejectedPatternMatch({ text: value, category: 'next-focus' }, rejectedIndex, { category: 'next-focus' }))
+    .at(-1) || '';
   const continuityFocus = deriveNextFocusFromContinuity({
     iterationFiles: filteredInputs.iterationFiles,
     iterationRecords: filteredInputs.iterationRecords,
     carriedForwardOpenQuestions: filteredInputs.carriedForwardOpenQuestions,
     machineOpenQuestions: filteredInputs.openQuestions,
+    leafNextFocus: latestLeafNextFocus,
+    resolvedQuestions: Array.isArray(registry.resolvedQuestions) ? registry.resolvedQuestions : [],
   });
 
   const normalizedFocus = normalizeOptionalText(continuityFocus).toLowerCase();
@@ -2588,6 +2597,8 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     iterationFiles,
     iterationRecords,
     machineOpenQuestions: openQuestions,
+    registryQuestions: keyedQuestions,
+    resolvedQuestions: keyedQuestions.filter((question) => question.resolved),
   });
   const suppressedCandidates = buildSuppressedNextFocusCandidates({
     openQuestions,

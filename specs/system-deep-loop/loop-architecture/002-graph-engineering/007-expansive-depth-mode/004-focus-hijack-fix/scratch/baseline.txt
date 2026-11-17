@@ -1,0 +1,5 @@
+Baseline 2026-11-17 on integration tip c898b3ad9a3 (worktree 462)
+Command: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/deep-research-reduce-state.vitest.ts tests/unit/continuity-thread.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts
+Result: exit 0. Test Files 3 passed (3). Tests 57 passed (57).
+
+Fail-before (after T003, before any source edit): Tests 7 failed | 60 passed (67). Failing: continuity "drops a carried-forward item that is not question-shaped", "drops a carried-forward item that equals a resolved question", "returns the leaf recommendation ahead of the carried-forward thread"; research reducer "drops a resolved question that a later iteration lists as remaining", "drops a status sentence listed under Questions Remaining", "reads the latest leaf Recommended Next Focus and skips it when it is resolved"; review reducer "names the first uncovered dimension when the leaf next focus names no dimension". Passing new pins: registry-question keep, resolved-leaf skip, terminal sentinel.

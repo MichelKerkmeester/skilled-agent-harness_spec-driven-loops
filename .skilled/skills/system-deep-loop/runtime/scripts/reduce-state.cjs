@@ -2153,6 +2153,17 @@ function upsertHeadingSectionBefore(content, heading, body, beforeHeading, optio
   return content.replace(beforePattern, (match) => `${replacement}${match}`);
 }
 
+// A free-text leaf focus must not hide a required dimension the run has not covered yet.
+function pickReviewBaseFocus(iterationFiles, registry) {
+  const leafFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1) || '';
+  const uncovered = REQUIRED_DIMENSIONS.filter((dimension) => !registry.dimensionCoverage[dimension]);
+  const leafKey = String(leafFocus).toLowerCase().trim();
+  if (leafFocus && (uncovered.length === 0 || uncovered.some((dimension) => leafKey.includes(dimension)))) {
+    return leafFocus;
+  }
+  return uncovered[0] || leafFocus || '[All dimensions covered]';
+}
+
 function updateStrategyContent(strategyContent, registry, iterationFiles, options = {}, iterationRecords = []) {
   // Early return when there is no strategy file to update. Empty content
   // cannot contain the machine-owned anchors and replaceAnchorSection would
@@ -2181,10 +2192,8 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, option
     .map((dimension) => `- [ ] ${dimension}`)
     .join('\n') || '[All dimensions complete]';
 
-  // Default next-focus comes from latest iteration → first uncovered dimension → fallback.
-  let nextFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1)
-    || REQUIRED_DIMENSIONS.find((dimension) => !registry.dimensionCoverage[dimension])
-    || '[All dimensions covered]';
+  // Default next-focus: a leaf focus naming an uncovered dimension, else the first uncovered dimension, else the leaf focus.
+  let nextFocus = pickReviewBaseFocus(iterationFiles, registry);
   if (registry.divergence.currentFocus) {
     nextFocus = registry.divergence.currentFocus;
   }
@@ -2269,9 +2278,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     .map((record) => (typeof record.newFindingsRatio === 'number' ? record.newFindingsRatio : null))
     .filter((value) => value !== null);
   const lastThreeRatios = ratios.slice(-3).map((value) => value.toFixed(2)).join(' -> ') || 'N/A';
-  const nextFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1)
-    || REQUIRED_DIMENSIONS.find((dimension) => !registry.dimensionCoverage[dimension])
-    || '[All dimensions covered]';
+  const nextFocus = pickReviewBaseFocus(iterationFiles, registry);
   const effectiveNextFocus = registry.divergence.currentFocus || nextFocus;
 
   const severity = registry.findingsBySeverity;

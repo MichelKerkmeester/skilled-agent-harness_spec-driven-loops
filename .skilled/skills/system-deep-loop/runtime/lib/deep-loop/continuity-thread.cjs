@@ -77,15 +77,28 @@ function buildCarriedForwardOpenQuestions({
   iterationFiles = [],
   iterationRecords = [],
   machineOpenQuestions = [],
+  registryQuestions = [],
+  resolvedQuestions = [],
 } = {}) {
   const machineQuestionKeys = new Set(toTextArray(machineOpenQuestions).map(normalizeKey));
+  const registryQuestionKeys = new Set(toTextArray(registryQuestions).map(normalizeKey));
+  const resolvedQuestionKeys = new Set(toTextArray(resolvedQuestions).map(normalizeKey));
   const seen = new Set();
   const candidates = [];
+
+  // A leaf may list status sentences or already-answered questions under Questions
+  // Remaining; carrying them forward would steer the next focus back to settled work.
+  const shouldSkipCarriedForward = (question, key) =>
+    resolvedQuestionKeys.has(key) ||
+    !(normalizeText(question).endsWith('?') || registryQuestionKeys.has(key));
 
   for (const iteration of iterationFiles) {
     for (const question of toTextArray(iteration.questionsRemaining)) {
       const key = normalizeKey(question);
       if (!key || machineQuestionKeys.has(key) || seen.has(key)) {
+        continue;
+      }
+      if (shouldSkipCarriedForward(question, key)) {
         continue;
       }
       seen.add(key);
@@ -101,6 +114,9 @@ function buildCarriedForwardOpenQuestions({
     for (const question of toTextArray(record.openQuestions).concat(toTextArray(record.questionsRemaining))) {
       const key = normalizeKey(question);
       if (!key || machineQuestionKeys.has(key) || seen.has(key)) {
+        continue;
+      }
+      if (shouldSkipCarriedForward(question, key)) {
         continue;
       }
       seen.add(key);
@@ -132,11 +148,21 @@ function deriveNextFocusFromContinuity({
   iterationRecords = [],
   carriedForwardOpenQuestions = [],
   machineOpenQuestions = [],
+  leafNextFocus = '',
+  resolvedQuestions = [],
   terminalSentinel = DEFAULT_TERMINAL_NEXT_FOCUS,
 } = {}) {
   const machineQuestions = toTextArray(machineOpenQuestions);
   if (machineQuestions.length === 0) {
     return terminalSentinel;
+  }
+
+  // The leaf's own recommendation is the freshest signal, but an answered recommendation
+  // must not reopen settled work, and it never overrides the terminal sentinel.
+  const leafFocus = normalizeText(leafNextFocus);
+  const resolvedQuestionKeys = new Set(toTextArray(resolvedQuestions).map(normalizeKey));
+  if (leafFocus && !resolvedQuestionKeys.has(normalizeKey(leafFocus))) {
+    return truncateFocus(leafFocus);
   }
 
   const latestThreadQuestion = getLatestByRun(carriedForwardOpenQuestions);
