@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** `040-final-alignment-loop`
 **Level:** [2/3/3+]
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-11-16
 <!-- /ANCHOR:metadata -->
 
@@ -57,7 +57,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-002 | REQ-002 | Given the fixes, When the suite runs with `AI_SESSION_CHILD` unset and set and `FLOOR` and `EVAL` run, Then 0 failed both ways, 24/44 0/35 2/44 and [160,49,21,5] or better, stored sets unchanged | `scratch/after.txt`: 2381 passed 0 failed both ways, 24/44 0/35 2/44, [160,49,21,5], stored sets unchanged | Met | - |
 | AC-003 | REQ-003 | Given the playbook's new third prompt, When the Claude hook scores it, Then the brief names `/doctor:update` | the Claude hook prints /doctor:update (ask) for check for skilled updates | Met | - |
 | AC-004 | REQ-004 | Given the four probe prompts, When `run-probes.cjs` scores them, Then each tops system-skill-advisor | P07 tops system-skill-advisor in `scratch/probes.json`; P05 tops /doctor:helper, which ranks /doctor:skill-advisor rebuild first; P08 and P09 need words that leak into ordinary prompts | Waived | ADR-001 |
-| AC-005 | REQ-005 | Given this phase's code, When review pass thirteen and a full alignment run finish, Then both report 0 P0 and 0 P1, or each remainder carries the operator's decision | - | Unmet | - |
+| AC-005 | REQ-005 | Given this phase's code, When review pass thirteen and a full alignment run finish, Then both report 0 P0 and 0 P1, or each remainder carries the operator's decision | review passes thirteen and fourteen closed per Q088; closing alignment run 20261117T064814Z: 0 P0, two run-command P1 fixed after it, nine waived as operator items | Waived | ADR-002 |
 
 ### Status values
 
@@ -81,7 +81,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
-**Closeable:** No
+**Closeable:** Yes
 
-No. AC-001 to AC-005 wait on the build, the review and the alignment run.
+Every row is Met or Waived with the ADR it names.
 <!-- /ANCHOR:closure -->

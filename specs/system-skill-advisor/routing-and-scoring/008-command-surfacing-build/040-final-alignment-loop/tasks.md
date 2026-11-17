@@ -57,8 +57,8 @@ Every command runs from the repository root. Set the names once with `export ADV
 - [x] T007 [C] Rebuild and rerun the gates both ways (`$SP/after.txt`). After T006. Verify: 0 failed with the flag unset and set, `FLOOR` unchanged, `EVAL` [160,49,21,5] or better, stored sets unchanged. Evidence: after.txt: stored sets unchanged, graph freshness exit 0, build and typecheck exit 0, 2381 passed 0 failed with the flag unset and set, FLOOR 24/44 0/35 2/44, EVAL [160,49,21,5], probes 13 of 15 with P05 declined and P04 overturned by the run's critic
 - [x] T008 [C] Run review pass thirteen over this phase's code. After T007. Verify: both lineages converge with 0 P0 and 0 P1, or each P1 is fixed. Evidence: pass thirteen found 3 P1 and 7 P2; all three P1 fixed (later request clause read first, refusal must end its clause, six leaking advisor phrases removed) with cases that fail on the old code; after-pass-13.txt 2385 passed 0 failed both ways, floors unchanged, no ordinary prompt tops the advisor; mention-13 stopped on maxIterationsReached, so pass fourteen reads the fixes
 - [x] T011 [C] Run review pass fourteen over the pass thirteen fixes. After T008. Verify: both lineages converge with 0 P0 and 0 P1. Evidence: pass fourteen: data-14 converged with 1 P1, fixed (four generic advisor phrases); mention-14 hit maxIterationsReached with 2 P1 mirroring pass thirteen; a fresh Opus read judged the patching non-converging; the operator approved recording the class as a known limit graded P2 for new wordings (2026-11-17); the rule is in the alignment lane and critic prompts
-- [ ] T009 [C] Run the full alignment on the final HEAD. After T011. Verify: 0 P0 and 0 P1, or each remainder is recorded with the operator's decision. Evidence:
-- [ ] T010 [C] Log and close (`../goal.md`, `implementation-summary.md`). After T009. Verify: `validate.sh $PK/040-final-alignment-loop --strict` prints `RESULT: PASSED`. Evidence:
+- [x] T009 [C] Run the full alignment on the final HEAD. After T011. Verify: 0 P0 and 0 P1, or each remainder is recorded with the operator's decision. Evidence: closing run 20261117T064814Z on 752f84d5ab4: 0 P0, 11 P1, 31 P2, battery 160 pass with 2 P2 fails, probes 8 of 15; the two run-command P1 (A-1, D-P1-01) fixed after the run with cases that fail on the old code, gate after-closing-alignment.txt 2395 passed 0 failed both ways, floors unchanged; the other nine waived as operator items in ADR-002; dispositions in scratch/closing-alignment.md
+- [x] T010 [C] Log and close (`../goal.md`, `implementation-summary.md`). After T009. Verify: `validate.sh $PK/040-final-alignment-loop --strict` prints `RESULT: PASSED`. Evidence: goal rows logged; implementation-summary, acceptance criteria and spec reconciled; validate --strict RESULT: PASSED
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -66,9 +66,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] The goal log records the fixes, review pass thirteen and the alignment run
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] The goal log records the fixes, review pass thirteen and the alignment run
 <!-- /ANCHOR:completion -->
 
 ---
@@ -117,7 +117,7 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. Evidence:
+- [x] CHK-020 [P0] All acceptance criteria met. Evidence: acceptance criteria Met or Waived with ADR-001 and ADR-002
 - [x] CHK-021 [P0] Full suite 0 failed with the flag unset and set (`after.txt`). Evidence: after.txt 2381/0 both ways
 - [x] CHK-022 [P1] The four probes top system-skill-advisor (`probes.txt`). Evidence: P07, P08 and P09 pass; P05 declined with the helper ranking
 - [x] CHK-023 [P1] `FLOOR` unchanged and `EVAL` not lower. Evidence: FLOOR and EVAL equal before.txt
@@ -147,7 +147,7 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, tasks and the goal rows name the same findings. Evidence:
+- [x] CHK-040 [P1] Spec, tasks and the goal rows name the same findings. Evidence: spec, tasks, the reports and the goal rows name the same findings
 <!-- /ANCHOR:docs -->
 
 ---
@@ -165,8 +165,8 @@ Every command runs from the repository root. Set the names once with `export ADV
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 0/11 |
-| P1 Items | 7 | 0/7 |
+| P0 Items | 11 | 11/11 |
+| P1 Items | 7 | 7/7 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-11-16

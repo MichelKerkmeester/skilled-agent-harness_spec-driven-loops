@@ -238,6 +238,10 @@ describe('a command the prompt only mentions', () => {
     ['please run /doctor:deep-loop on this packet', '/doctor:deep-loop', false],
     ['the loop stalled. /doctor:deep-loop now', '/doctor:deep-loop', false],
     ['can you kick off /doctor:speckit for me', '/doctor:speckit', false],
+    ['/doctor:install - is it safe?', '/doctor:install', true],
+    ['/doctor:speckit, cancel that', '/doctor:speckit', true],
+    ['run /doctor:deep-loop, on second thought do not', '/doctor:deep-loop', true],
+    ['/doctor:deep-loop on this packet please', '/doctor:deep-loop', false],
   ])('reads the run command naming %s as a mention: %s', (prompt, command, mentioned) => {
     expect(commandOnlyMentioned(prompt, command)).toBe(mentioned);
   });

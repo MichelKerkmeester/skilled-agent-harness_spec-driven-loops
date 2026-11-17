@@ -426,7 +426,13 @@ const COMMAND_AS_DOCUMENT = /^(?: command)?(?:'s)? (?:doc|docs|document|document
 // read as a request only on positive evidence: a use verb shortly before it, or
 // the name opening the prompt or a sentence. "no need for /doctor:deep-loop"
 // names no lead the lists know, and must not start the command on that alone.
-function runCommandRequested(before: string, name: string): boolean {
+// The words after the name can still take the request back or turn it into a
+// question, as in "/doctor:speckit, cancel that" or "/doctor:install - is it
+// safe?", so any of those after the name leaves the naming a mention.
+const RUN_COMMAND_WITHDRAWN = /\?|\b(?:not|don't|dont|never|cancel|scratch that|hold off|wait|undo|is it|should i|nevermind|never mind)\b/;
+
+function runCommandRequested(before: string, after: string, name: string): boolean {
+  if (RUN_COMMAND_WITHDRAWN.test(after)) return false;
   return new RegExp(`(?:^|[.!?;:\\n] *)(?:(?:please|now|just|then|and) )*${name}$`).test(before)
     || new RegExp(`\\b${COMMAND_USE_VERB} ${COMMAND_GAP_WORDS}(?:the )?${name}$`).test(before);
 }
@@ -481,7 +487,7 @@ export function commandOnlyMentioned(prompt: string, command: string): boolean {
     ));
     if (led) return true;
     const bareLead = new RegExp(`(?:^|[^a-z0-9_/])${COMMAND_BARE_ASK_LEAD}${COMMAND_OR_LIST}${name}$`).test(before);
-    if (!bareLead) return runsWithoutAsking && !runCommandRequested(before, name);
+    if (!bareLead) return runsWithoutAsking && !runCommandRequested(before, tail, name);
     const sentenceEnd = tail.search(/[.!\n]/);
     const sentence = sentenceEnd === -1 ? tail : tail.slice(0, sentenceEnd);
     // A chat question often leaves the question mark off, so a bare ask word that

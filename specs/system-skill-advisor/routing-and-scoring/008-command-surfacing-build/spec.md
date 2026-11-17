@@ -156,7 +156,7 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are
 | 37 | 037-review-pass-six-remediation/ | Review pass six closed with 0 P0 and 0 P1. Six cheap P2 fixes land and the other five carry a reason | Complete |
 | 38 | 038-alignment-p1-remediation/ | The final alignment run traced four P1 to the branch. All four are fixed and every other open P0 and P1 carries a reason | Complete |
 | 39 | 039-main-sk-doc-routing-repair/ | Narrow the sk-doc README intents main added so git, mirror and holdout prompts route as before, and recompile the skill graph | Complete |
-| 40 | 040-final-alignment-loop/ | Fix every P1 from the final alignment run and review pass twelve, then rerun review and alignment | In Progress |
+| 40 | 040-final-alignment-loop/ | Fix every P1 from the final alignment run and review pass twelve, then rerun review and alignment | Complete |
 
 ### Phase Transition Rules
 

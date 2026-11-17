@@ -36,7 +36,7 @@
       "signals"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -53,6 +53,8 @@
       "scratch/before.txt",
       "scratch/after.txt",
       "scratch/after-pass-13.txt",
+      "scratch/after-closing-alignment.txt",
+      "scratch/closing-alignment.md",
       "scratch/after-final-alignment.txt",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
       "scratch/probes.json"
@@ -149,6 +151,18 @@
         "source": "derived"
       },
       {
+        "name": "after-closing-alignment.txt",
+        "kind": "file",
+        "path": "scratch/after-closing-alignment.txt",
+        "source": "derived"
+      },
+      {
+        "name": "closing-alignment.md",
+        "kind": "doc",
+        "path": "scratch/closing-alignment.md",
+        "source": "derived"
+      },
+      {
         "name": "after-final-alignment.txt",
         "kind": "file",
         "path": "scratch/after-final-alignment.txt",
@@ -173,12 +187,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -195,17 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A reader who refuses or questions a command still gets it offered in four shapes: a refusal after the name (\"/create:readme is not what I want, do not run it\"), the command named as a document (\"read the /create:readme document and tell me what it does\"), a wrapper the fold keeps such as `[/create:readme]`, and a doc path such as `/create:readme.md` beside a led refusal",
     "created_at": "2026-11-16T21:16:16Z",
-    "last_save_at": "2026-11-17T06:35:04.097Z",
+    "last_save_at": "2026-11-17T07:49:01.965Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:11fd2b8a79f9ec865464c5f618bf94dea86d928e4f08e03c3fa17afdf50863ef",
+    "source_fingerprint": "sha256:eb6cbd1690e9e4eadc273e881c10123ae069ab50ae5c2c028e9fdba694add71c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "42e10e26e0295537bc182b09b265bfe30e15c09ef54cf9492ea305c7924fc6ea",
+      "spec.md": "edda14a6e9d7a3604f9c3c69fcb4b7b94ba184df698c6e95afe7e61c89c1a4b6",
       "plan.md": "d6d419b42c4bac0d92811eda01ff66fd1d6dd0bc1c389bae3438941a4291db99",
-      "tasks.md": "0df15608159450a393bfede1885e3e9f0708742086dcdd3510a14babca6e3f31",
-      "decision-record.md": "fd32dd4976ef3da43fd35ac5414a6a7bc8ada3285c843dda90cc52f9a6cc0dd0",
-      "implementation-summary.md": "944f75048d9150f7a9c098d3b9eefba7901a96d7554861877fd46ab321b54690"
+      "tasks.md": "f43b4a28b29307ac8fbef4100756310a4e5dbbe24051a27eb01c8065c8eeeb84",
+      "decision-record.md": "4f41af5b2a8b6531f57bc0a2e65cd82c9b464c6b10c9bfe32d9fa1895b2a6c0f",
+      "implementation-summary.md": "a455b08bfcb5d00f5ae5d0ff1dbeac1984d54e1f95c0ac083a0122a3f5a88488"
     },
     "last_active_at": null
   }

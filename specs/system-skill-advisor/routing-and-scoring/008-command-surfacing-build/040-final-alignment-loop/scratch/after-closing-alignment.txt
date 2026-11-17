@@ -1,0 +1,26 @@
+after the closing alignment run-command fix
+build exit 0
+typecheck exit 0
+rescore exit 0
+start-007 unchanged from 038
+pre-set unchanged from 038
+final-set unchanged from 038
+arm-033 unchanged from 038
+graph freshness exit 0
+generation: 532 -> 533
+ Test Files  185 passed (185)
+      Tests  2395 passed | 8 skipped (2403)
+suite exit 0
+ Test Files  185 passed (185)
+      Tests  2395 passed | 8 skipped (2403)
+suite child exit 0
+FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+EVAL
+[160,49,21,5]
+closing-run cases through the CLI
+/doctor:install - is it safe? => []
+/doctor:speckit, cancel that => [{"skillId":"system-spec-kit","command":null,"policy":null}]
+/doctor:speckit => [{"skillId":"command-doctor-speckit","command":"/doctor:speckit","policy":"run"}]
