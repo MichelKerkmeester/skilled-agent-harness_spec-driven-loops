@@ -7,7 +7,7 @@ trigger_phrases:
   - "flag sunset and audit"
   - "compiled routing kill switch"
   - "SPECKIT_COMPILED_ROUTING"
-version: 2.0.0.0
+version: 2.0.1.0
 ---
 
 # Feature flag governance
@@ -51,7 +51,7 @@ The default-on/explicit-opt-out helper and its `SPECKIT_ROLLOUT_PERCENT` partial
 | `0`, `false`, `off` | Explicit fleet-wide kill-switch: forces legacy regardless of manifest or cohort state |
 | anything else | Fails closed to legacy |
 
-**Eligibility** is the fixed hub set in `COMPILED_ROUTING_HUBS`: `sk-code`, `mcp-tooling`, `system-deep-loop`, `cli-external-orchestration`, `sk-doc`. The retired `sk-design` hub left the set when it was decommissioned; the standalone skill that now holds that name is not a hub and is not eligible. Serving additionally requires the hub's promoted activation manifest (`.skilled/bin/lib/compiled-routing/013-live-activation/activation/<hub>/manifest.json`) to report `servingAuthority: "compiled"`, so the flag alone lights no hub.
+**Eligibility** is the fixed hub set that `COMPILED_ROUTING_HUBS` exports in `.skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts`: `sk-code`, `mcp-tooling`, `system-deep-loop`, `cli-external-orchestration`, `cli-classifier`, `sk-doc`, `sk-design`. Serving additionally requires the hub's promoted activation manifest (`.skilled/bin/lib/compiled-routing/013-live-activation/activation/<hub>/manifest.json`) to report `servingAuthority: "compiled"`, so the flag alone lights no hub.
 
 **Serving status** for any hub is readable via `node .skilled/bin/compiled-route-status.cjs --hub <hub> | --all`, which emits one stable JSON record per hub with a `causeCode` that separates expected **drift** (`flag-off`, `legacy-authority`, `missing-manifest` — the flag or manifest intentionally withholds compiled serving) from a genuine **break** (`engine-throw` — flag and manifest both authorize compiled serving but the engine itself fails). `compiled-serving` means the hub is actually being served compiled right now; the full set in `compiled-route-status.cjs` also carries `stale-manifest`, `identity-mismatch` and `compile-error` for a manifest that no longer matches its inputs.
 
