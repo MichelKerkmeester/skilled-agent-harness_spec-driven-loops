@@ -66,6 +66,9 @@ contextType: "general"
 - [x] T016 Add the run-file exemption and the `rule` type (`.skilled/skills/sk-doc/shared/scripts/validate_document.py`). Verify: `python3 -m pytest -q .skilled/skills/sk-doc/scripts/tests` prints `passed` with no failure.
 - [x] T017 Add the stage-one fallback and the bounded stale wait (`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs`). Verify: `node --test` on `ci-router-vocabulary-reach-stale.test.cjs` prints `pass 3`.
 - [x] T018 Write the 27 missing intent signals (`.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs`). Verify: `--check` prints `missing=0`, and the corpus prints `top1_correct: 117` before and after.
+- [x] T019 Add the `documentation` and `design` families to the eight allowlists, rebuild, then move sk-doc and sk-design (`skill-graph-db.ts` and its mirrors). Verify: `vocabulary-agreement.vitest.ts` passes and the compiled graph lists `design: [sk-design]`, `documentation: [sk-doc]`.
+- [x] T020 Re-mint the sk-doc and sk-design activation manifests (`.skilled/bin/compiled-route-manifest.cjs`). Verify: `compiled-route-guard.cjs` prints every hub fresh, and `command-routing-slice.vitest.ts` passes.
+- [x] T021 Add the two reach anchors (`lanes/explicit.ts`). Verify: `ci-router-vocabulary-reach.cjs` over all seven hubs prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -75,7 +78,7 @@ contextType: "general"
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [x] The five operator questions are written in `spec.md` section 7
+- [x] The five operator questions are written in `spec.md` section 7, and all five are answered
 <!-- /ANCHOR:completion -->
 
 ---

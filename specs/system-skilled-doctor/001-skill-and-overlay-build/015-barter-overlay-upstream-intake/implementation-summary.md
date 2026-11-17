@@ -62,6 +62,8 @@ The re-pin report was not a copy defect. The five dist-freshness links were alre
 
 The operator answered four of the five open questions, and each answer is built in its own commit. Plain `status` now prints one note for unowned upstream paths missing from the tree (`36f16fa6b0f`). The 21 hub-routing playbook pages sit on the `playbook_feature` template with their prompts and gold unchanged (`89eaaee43c5`). The checkers changed in `6f946452805`: a run-file exemption, a `rule` type for `repo-rules/`, seven example pages with an overview, a stage-one fallback and a bounded stale wait in the reach check, and the 14-skill intent-signal generator with its 27-phrase write.
 
+The fifth answer adds two skill families. sk-doc is now `documentation` and sk-design is `design`, accepted by all eight family allowlists, and both templates say a hub keeps its domain family. The family edit changed both hubs' policy hashes, which left their activation manifests stale: every `/create:*` and `/design:*` command stopped attaching until the two manifests were re-minted. The two reach phrases that failed, `figma mcp` and `ruleset context`, now reach their hubs. Bare `mcp` and `context` token boosts had outweighed each hub's exact declared phrase, so two anchors in the explicit lane give each phrase back to its owner.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -120,6 +122,13 @@ Each claim was checked against the code or history it named before any edit. The
 | `validate_document.py` on the 10 `repo-rules/` files and the 28 example pages | PASS: 0 issues on all 10 rule files; all 28 example pages valid, the 7 fixed ones with one `document_type_fallback` warning each |
 | `ci-router-vocabulary-reach-stale.test.cjs` | PASS: 3 of 3; the same three fail against the previous script |
 | Advisor routing regression, before and after the 27-phrase write | No change: labeled corpus 117 of 195 top-1 correct and 5 gold-none false fires both times; regression set 84 of 84 both times |
+| Family change, before and after (live advisor) | Regression set 84 of 84 both times; labeled corpus 117 of 195 top-1 correct, 36 missed, 37 wrong and 5 gold-none false fires both times (aggregate counts only, since the corpus script prints no per-prompt rows) |
+| Inbound-enhances proposals, before and after | 159 candidates both times; three rows moved: `system-skill-advisor->sk-design` 0.900 to 0.450, `system-spec-kit->sk-design` 0.300 to 0.000 (both lose family inference), `system-spec-kit->sk-prompt` 0.450 to 0.600 (the sk-util pool shrank to two) |
+| `command-routing-slice.vitest.ts` and `vibe-prompt-advisor.vitest.ts` | FAIL with the family edit alone (both pass with it stashed); PASS 24 of 24 after the two manifests were re-minted |
+| `ci-router-vocabulary-reach.cjs`, all seven hubs | Before the anchors: FAIL, sk-code `ruleset context` (system-spec-kit 0.8755, sk-code 0.8405) and mcp-tooling `figma mcp` (sk-code 0.8668, mcp-tooling 0.8664). After: `RESULT: PASSED`, outranked 0 |
+| Advisor vitest suite, final state | 185 files, 2395 passed, 8 skipped, 0 failed |
+| Doctor suite, final state | 1306 tests, 1306 pass, 0 fail |
+| `compiled-route-guard.cjs`, final state | All hubs fresh |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -128,7 +137,8 @@ Each claim was checked against the code or history it named before any edit. The
 ## Known Limitations
 
 1. **A re-pin still does not restore a missing upstream path.** Plain `status` now names such a path, but restoring it is by hand from the pinned commit.
-2. **The live reach check was not rerun.** The advisor stayed stale for this whole session and its rebuild needs `--trusted`, so stage one for the 27 new phrases was measured only through the Python scorer.
+2. **The two reach anchors are per-phrase.** A bare token boost can still outweigh some other exact declared phrase. The scorer gives no general rule that an exact multi-word phrase beats a single-token boost.
+3. **The corpus comparison is aggregate.** Its four counts did not move, but no per-prompt diff was taken.
 <!-- /ANCHOR:limitations -->
 
 ---
