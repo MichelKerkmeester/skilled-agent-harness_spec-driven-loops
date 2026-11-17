@@ -57,8 +57,8 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `rg -c '\| Unmet \|' acceptance-criteria.md` in this folder prints nothing, so each of its 19 rows is `Met`, `Waived` or `Superseded`.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run` prints no failure that is absent from `scratch/baseline.txt`, and `check-ledger-stem-producers.cjs`, `check-projection-coverage.cjs` and `check-contract-drift.cjs` all exit 0.
+- [x] `rg -c '\| Unmet \|' acceptance-criteria.md` in this folder prints nothing, so each of its 19 rows is `Met`, `Waived` or `Superseded`.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run` prints no failure that is absent from `scratch/baseline.txt`, and `check-ledger-stem-producers.cjs`, `check-projection-coverage.cjs` and `check-contract-drift.cjs` all exit 0.
 - [x] `/doctor:runtime-mirrors` reports no drift for the `deep-research` and `deep-review` agents.
 - [x] Each of `deep-research/manual-testing-playbook` and `deep-review/manual-testing-playbook` lists an `--extend=N` scenario written by `/create:manual-testing-playbook`.
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` on this folder with `--strict` prints `RESULT: PASSED`.
@@ -94,4 +94,5 @@ and findings belong here.
 | In-step value check | 2026-11-17: the extension step now refuses a non-positive-integer `--extend` or `--extend-minutes` after the lock, beside the prose preflight check, so the refusal is tested (CHK-023, CHK-031). |
 | Open questions | Decided 2026-11-17: the operator accepted all four recommended defaults in `spec.md` §10, recorded as ADR-001 to ADR-004 in `decision-record.md` (T003 done). CHK-004 still waits on the T004 `:confirm` trace. |
 | Plan review amendments 2026-11-17 | Applied the Fable 5.2 plan review: presentation bindings, the five legacy-name lifecycle sites and the projected `extended` row, fan-out rejection (D6 added), wider deferred-wording sweep including the runtime mirrors, compiled-contract regeneration, mirror sync, test homes and command forms, and playbook scenarios through `/create:manual-testing-playbook`. Acceptance criteria grew from 13 to 19 rows. |
+| 2026-11-17 night | Criterion 1 met: AC-004 closed by the DR-065 live walk (`scratch/dr-065-walk.md`), AC-010 by OD-005, and `rg -c '\| Unmet \|'` exits 1 with no output. Criterion 2 met at integration gate `b5fb87abad8`: 186 files, 3185 passed, 0 failed, and the three check scripts exit 0. The final rerun after phase 014 re-confirms it. CHK-021 stays open until DRV-070 is walked live. |
 <!-- /ANCHOR:log -->

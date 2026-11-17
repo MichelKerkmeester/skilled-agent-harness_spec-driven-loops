@@ -151,7 +151,7 @@ A blocked task is marked `[B]` with the blocker named on the line; a `[B]` task 
 ## Testing Checklist
 
 - [ ] CHK-020 [P0] All acceptance criteria met Open: AC-004, AC-010 and AC-019 are Unmet.
-- [ ] CHK-021 [P0] Playbook entry walked for both loops Open: scenarios DR-065 and DRV-070 are authored. The walk (one `run_extended` event, the snapshot, the original sessionId) is a live run and was not done in this turn.
+- [ ] CHK-021 [P0] Playbook entry walked for both loops. DR-065 (research) walked live 2026-11-17, PASS (`scratch/dr-065-walk.md`); DRV-070 (review) live walk pending.
 - [x] CHK-022 [P1] Duration-ceiling and second-extension cases pass workflow-restart-lifecycle 34 of 34.
 - [x] CHK-023 [P1] Non-complete run and invalid-value cases rejected non-complete run exits 2 with the config untouched; `0`, `-2`, `abc`, `1.5` for `--extend` and `0`, `ten` for `--extend-minutes` exit 2 from the extension step. The test fails against the step without its validation.
 - [x] CHK-024 [P1] Fan-out rejection and not-terminal-before-first-iteration cases pass (T034, T035) T034 51 of 51, T035 in the 34 cases.
