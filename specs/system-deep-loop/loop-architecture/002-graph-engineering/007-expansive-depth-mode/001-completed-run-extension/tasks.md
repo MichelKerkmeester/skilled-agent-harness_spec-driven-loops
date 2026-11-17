@@ -127,11 +127,11 @@ A blocked task is marked `[B]` with the blocker named on the line; a `[B]` task 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
-- [ ] CHK-004 [P0] Open questions 1 to 4 decided (T003) and the `:confirm` trace written (T004). Decision half met 2026-11-17 (T003, ADR-001 to ADR-004); the T004 trace is still open.
-- [ ] CHK-005 [P1] The T001 inventory lists the five legacy-name lifecycle sites, not only the `run_resumed` stem sites
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-004 [P0] Open questions 1 to 4 decided (T003) and the `:confirm` trace written (T004). Decision half met 2026-11-17 (T003, ADR-001 to ADR-004); the T004 trace is still open. T004 trace written 2026-11-17 (`scratch/confirm-branch-trace.md`).
+- [x] CHK-005 [P1] The T001 inventory lists the five legacy-name lifecycle sites, not only the `run_resumed` stem sites `scratch/run-resumed-sites.txt` lists the five legacy-name sites.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -139,10 +139,10 @@ A blocked task is marked `[B]` with the blocker named on the line; a `[B]` task 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `npx tsc --noEmit` in the deep-loop runtime exits 0
-- [ ] CHK-011 [P0] `node --check` passes on both edited `reduce-state.cjs` files
-- [ ] CHK-012 [P1] Invalid `--extend` and `--extend-minutes` values exit with a usage error before the lock
-- [ ] CHK-013 [P1] No code comment embeds a spec path, phase number or finding id
+- [x] CHK-010 [P0] `npx tsc --noEmit` in the deep-loop runtime exits 0 `npm run -s typecheck` (the package has no local `tsc`; the script runs system-spec-kit's) exit 0.
+- [x] CHK-011 [P0] `node --check` passes on both edited `reduce-state.cjs` files exit 0 on both files.
+- [ ] CHK-012 [P1] Invalid `--extend` and `--extend-minutes` values exit with a usage error before the lock Open: the before-the-lock refusal is the prose preflight `extend_values`, which no test executes. The in-step check (CHK-023) refuses the same values after the lock.
+- [x] CHK-013 [P1] No code comment embeds a spec path, phase number or finding id `git diff 21c4b325b5a` added comment lines matched against spec paths, REQ/ADR/task ids and phase numbers: no hit.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -150,12 +150,12 @@ A blocked task is marked `[B]` with the blocker named on the line; a `[B]` task 
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Playbook entry walked for both loops
-- [ ] CHK-022 [P1] Duration-ceiling and second-extension cases pass
-- [ ] CHK-023 [P1] Non-complete run and invalid-value cases rejected
-- [ ] CHK-024 [P1] Fan-out rejection and not-terminal-before-first-iteration cases pass (T034, T035)
-- [ ] CHK-025 [P0] `check-contract-drift.cjs` exits 0 after T033
+- [ ] CHK-020 [P0] All acceptance criteria met Open: AC-004, AC-010 and AC-019 are Unmet.
+- [ ] CHK-021 [P0] Playbook entry walked for both loops Open: T028 deferred to the integration worktree.
+- [x] CHK-022 [P1] Duration-ceiling and second-extension cases pass workflow-restart-lifecycle 34 of 34.
+- [x] CHK-023 [P1] Non-complete run and invalid-value cases rejected non-complete run exits 2 with the config untouched; `0`, `-2`, `abc`, `1.5` for `--extend` and `0`, `ten` for `--extend-minutes` exit 2 from the extension step. The test fails against the step without its validation.
+- [x] CHK-024 [P1] Fan-out rejection and not-terminal-before-first-iteration cases pass (T034, T035) T034 51 of 51, T035 in the 34 cases.
+- [x] CHK-025 [P0] `check-contract-drift.cjs` exits 0 after T033 `[CONTRACT DRIFT] OK commands=2`.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -163,13 +163,13 @@ A blocked task is marked `[B]` with the blocker named on the line; a `[B]` task 
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-- [ ] CHK-FIX-001 [P0] D11 is classed `cross-consumer`: one new stem with many consumers.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed from `rg -n 'run_resumed'` (T001).
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for the stem, the config fields, the docs and the two `system-spec-kit` assertions.
-- [ ] CHK-FIX-004 [P0] N/A: no security, path, parser or redaction fix; the input validation cases are covered by CHK-023.
-- [ ] CHK-FIX-005 [P1] Matrix axes from `plan.md` (loop, stopPolicy, start time, extension count) and their rows are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] N/A: the change reads no process-wide state beyond the existing config and lock.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the fix commit SHA.
+- [x] CHK-FIX-001 [P0] D11 is classed `cross-consumer`: one new stem with many consumers.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed from `rg -n 'run_resumed'` (T001).
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for the stem, the config fields, the docs and the two `system-spec-kit` assertions. `scratch/run-resumed-sites.txt` plus the T020 and T021 sweeps.
+- [x] CHK-FIX-004 [P0] N/A: no security, path, parser or redaction fix; the input validation cases are covered by CHK-023.
+- [x] CHK-FIX-005 [P1] Matrix axes from `plan.md` (loop, stopPolicy, start time, extension count) and their rows are listed before completion is claimed. Axes listed in `implementation-summary.md` Verification.
+- [x] CHK-FIX-006 [P1] N/A: the change reads no process-wide state beyond the existing config and lock.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the fix commit SHA. Commits `32d56a21455`, `2c80c64f391`, `dc00a20a8dd`, `ac4151f027f` and the closing commit.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -177,9 +177,9 @@ A blocked task is marked `[B]` with the blocker named on the line; a `[B]` task 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No credential is read or written by the extension step
-- [ ] CHK-031 [P0] `--extend` and `--extend-minutes` accept positive integers only
-- [ ] CHK-032 [P1] The config mutation and the event append run under the loop lock
+- [x] CHK-030 [P0] No credential is read or written by the extension step The step reads only the config, the state log and the inbox.
+- [x] CHK-031 [P0] `--extend` and `--extend-minutes` accept positive integers only Preflight `extend_values` plus the in-step check; see CHK-023.
+- [x] CHK-032 [P1] The config mutation and the event append run under the loop lock `step_extend_completed_run` sits after `step_acquire_lock` in both YAMLs (AC-003).
 <!-- /ANCHOR:security -->
 
 ---
@@ -187,11 +187,11 @@ A blocked task is marked `[B]` with the blocker named on the line; a `[B]` task 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] `loop-protocol.md` snapshot line and the YAML snapshot step use the same name
-- [ ] CHK-042 [P2] Changelog notes the new opt-in flag
-- [ ] CHK-043 [P1] The ten runtime agent mirrors are synced (T032)
-- [ ] CHK-044 [P1] Playbook scenarios written through `/create:manual-testing-playbook` and the catalog line through `/create:feature-catalog`, with no hand edit to either package
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-041 [P1] `loop-protocol.md` snapshot line and the YAML snapshot step use the same name Both read `synthesis-v{generation}-r{continuedFromRun}.md` and `review-report-v{generation}-r{continuedFromRun}.md`.
+- [ ] CHK-042 [P2] Changelog notes the new opt-in flag Open: changelogs are written in the integration worktree after merge (parent goal log).
+- [x] CHK-043 [P1] The ten runtime agent mirrors are synced (T032) T032.
+- [ ] CHK-044 [P1] Playbook scenarios written through `/create:manual-testing-playbook` and the catalog line through `/create:feature-catalog`, with no hand edit to either package Open: T028 and T031.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -199,8 +199,8 @@ A blocked task is marked `[B]` with the blocker named on the line; a `[B]` task 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only. The gitignored `tmp/dispatch` kit was removed; test temp folders are removed by each suite's `afterEach`.
+- [ ] CHK-051 [P1] scratch/ cleaned before completion Open: `scratch/` keeps `baseline.txt`, `run-resumed-sites.txt` and `confirm-branch-trace.md`, which tasks cite as evidence.
 <!-- /ANCHOR:file-org -->
 
 ---

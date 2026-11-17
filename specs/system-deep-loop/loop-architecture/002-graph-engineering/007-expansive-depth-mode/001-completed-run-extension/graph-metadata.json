@@ -38,7 +38,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -189,6 +189,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -199,17 +205,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Known Context",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A completed deep-research run halts on `oncompletedsession`, and a completed deep-review run re-synthesizes but adds no iterations (defect D11)",
     "created_at": "2026-11-17T14:35:15Z",
-    "last_save_at": "2026-11-17T19:20:50.589Z",
+    "last_save_at": "2026-11-17T19:24:25.524Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aed8037baa73064f9c22950ea2aab55b29b0d0203500d647a58c10199de0bee2",
+    "source_fingerprint": "sha256:a72608d07c07cda27459dd21268d142eac27477a7f7197904ceb9796830eb307",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8357d308c194013292fedfb30f721a05cff0e8611bd85d2e856837207456bb1d",
+      "spec.md": "25b601c11e318cc1d6aa07de681c2e2e8909df248171032abbf9d40976f07c7d",
       "plan.md": "8ee43e36580eb91d7626a7cb6437ffa38e77f2979c2f47de8677bf6db858b7bf",
-      "tasks.md": "d5b5d5595c69fe84d4cf5b018d233f0357e2c21c89d25b0c0add46124913206a",
+      "tasks.md": "8b21b22a2f48e15220cf45737e008ee994461b0b71b89181b93f6e4bee192471",
       "decision-record.md": "fa05ab8fc24c58bddf8f0347f5026530d43bbb17d332790d3f6239c8919f9567",
-      "implementation-summary.md": "89e0a0a96fda5aac9d05ddc996b989f3193e559f83acdf1f4e1556802d149ec5"
+      "implementation-summary.md": "074a7ee5c941ec5856506a485240ffa46884c1dd9e3c009fecf3796b9a81fe4b"
     },
     "last_active_at": null
   }

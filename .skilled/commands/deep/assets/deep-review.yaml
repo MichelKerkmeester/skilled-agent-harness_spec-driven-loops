@@ -479,6 +479,14 @@ workflow:
             const [configPath, stateLogPath, extendRaw, extendMinutesRaw, workDir] = process.argv.slice(1);
             const fail = (message) => { console.error(message); process.exit(2); };
             const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+            // The preflight check refuses these first; this keeps a bad value from reaching the config.
+            if (!/^[1-9][0-9]*$/.test(String(extendRaw))) {
+              fail("--extend needs a positive integer, and got " + JSON.stringify(String(extendRaw)) + ".");
+            }
+            const minutesRaw = String(extendMinutesRaw);
+            if (minutesRaw !== "" && !minutesRaw.startsWith("{") && !/^[1-9][0-9]*$/.test(minutesRaw)) {
+              fail("--extend-minutes needs a positive integer, and got " + JSON.stringify(minutesRaw) + ".");
+            }
             if (config.status !== "complete") {
               fail("--extend needs a completed run, and this run has status " + config.status + ". Use --lineage-mode=resume to continue an unfinished run.");
             }

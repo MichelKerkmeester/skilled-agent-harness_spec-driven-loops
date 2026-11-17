@@ -882,6 +882,24 @@ describe('completed-run extension', () => {
     expect(stateRows(run.stateLog).some((row) => row.event === 'extended')).toBe(false);
   });
 
+  it('research: --extend and --extend-minutes refuse anything but a positive integer', () => {
+    const sessionId = 'extend-research-invalid';
+    const run = openResearchRun(sessionId);
+    appendResearchIteration(run, sessionId, 1, 'complete');
+    markComplete(run.config);
+    const before = readFileSync(run.config, 'utf8');
+    for (const [extend, minutes, flag] of [
+      ['0', '', '--extend '], ['-2', '', '--extend '], ['abc', '', '--extend '], ['1.5', '', '--extend '],
+      ['2', '0', '--extend-minutes'], ['2', 'ten', '--extend-minutes'],
+    ]) {
+      const result = extendResearch(run, extend, minutes);
+      expect(result.status, `${extend}/${minutes}`).toBe(2);
+      expect(String(result.stderr)).toContain(`${flag.trim()} needs a positive integer`);
+    }
+    expect(readFileSync(run.config, 'utf8')).toBe(before);
+    expect(stateRows(run.stateLog).some((row) => row.event === 'extended')).toBe(false);
+  });
+
   it('research: --extend-minutes replaces the default added minutes', () => {
     const sessionId = 'extend-research-minutes';
     const run = openResearchRun(sessionId);
