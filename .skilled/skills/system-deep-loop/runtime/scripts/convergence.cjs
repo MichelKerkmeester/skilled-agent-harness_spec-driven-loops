@@ -1156,7 +1156,7 @@ function buildStopDecision(input) {
     return emit('CONTINUE', null, 'noStopCandidate', gatesAt(false), []);
   }
 
-  if (loopType === 'research' && minIterations > 1 && iterationCount < minIterations) {
+  if (minIterations > 1 && iterationCount < minIterations) {
     return emit('CONTINUE', null, 'minIterationsNotReached', gatesAt(false), []);
   }
 

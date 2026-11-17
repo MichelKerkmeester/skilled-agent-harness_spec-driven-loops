@@ -1,0 +1,3 @@
+rc=0 secs=46
+main-new: 
+wt-new:  M .skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts;
