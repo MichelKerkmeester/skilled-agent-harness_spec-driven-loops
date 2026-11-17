@@ -57,7 +57,8 @@
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/051-handover-doc-alignment-3",
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/052-duplicate-hop-title-numbers",
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review",
-    "hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation"
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation",
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning"
   ],
   "manual": {
     "depends_on": [],
@@ -260,7 +261,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-17T08:03:24.042Z",
+    "last_save_at": "2026-11-17T19:36:36.647Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -268,13 +269,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:76be73389de63a28cf6a53819ccb10f9bf95e82af43c3e32c90328306cc9e091",
+    "source_fingerprint": "sha256:60ac87eb11317620fbc868b037c196d38dcda3f4afae14db04dd0e984ec8aa19",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5d5affd82bc68e147cbb50e8be9c821e7c57d5c007cc320a328497b7097a2964",
+      "spec.md": "d9d6de0f0fc2272998324727a0d56ad7a1c70227c94134ffcbfdb7d63c639faf",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation",
-    "last_active_at": "2026-11-17T08:03:20.254Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning",
+    "last_active_at": "2026-11-17T19:35:53.988Z"
   }
 }

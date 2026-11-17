@@ -733,7 +733,10 @@ test('stop-arm defers pending state when background tasks exist and logs the rea
   const notice = JSON.parse(lines[0]);
   assert.equal(typeof notice.systemMessage, 'string');
   assert.match(notice.systemMessage, /1 background task\b/);
-  assert.match(notice.systemMessage, /session-handover\.cjs cancel/);
+  assert.ok(
+    notice.systemMessage.includes(`\`${require('../lib/nudge.cjs').CLI_COMMAND} cancel\``),
+    notice.systemMessage,
+  );
   assert.equal(Object.hasOwn(notice, 'decision'), false);
   // The record stays pending for the next Stop and gains only the deferral mark.
   const { deferredAt, ...unchanged } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));

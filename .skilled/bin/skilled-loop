@@ -40,6 +40,15 @@ relaunch_core="$script_directory/../hooks/session-handover/lib/relaunch-core.cjs
 goal_handover="$script_directory/../hooks/session-handover/lib/goal-handover.cjs"
 relaunch_nudge="$script_directory/../hooks/session-handover/lib/nudge.cjs"
 hook_flags="$script_directory/../hooks/shared/hook-flags.cjs"
+
+# A looped session can run another checkout's hand-over CLI, for one when it works in a
+# project that vendors its own copy. Every copy reads its notes from this root, so the note
+# a session prepares is the one this wrapper consumes. A caller's own root is kept, but one
+# inherited from an outer loop belongs to that loop's checkout, not this one.
+if [[ -n "${SKILLED_LOOP_ID:-}" || -z "${SESSION_HANDOVER_REPO_ROOT:-}" ]]; then
+  SESSION_HANDOVER_REPO_ROOT=$(cd -P "$script_directory/../.." && pwd)
+fi
+export SESSION_HANDOVER_REPO_ROOT
 manual_handoff_token='@@HANDOFF@@'
 manual_template_conflict=''
 consumed_record_json=''
@@ -187,7 +196,8 @@ consumed_goal_packet() {
 }
 
 # Prints one string field of the consumed record, or nothing. Used for the sender's live
-# model and effort, which the CLI records only when the sender's own state proves them.
+# model and effort, which the CLI records only when the sender's own state proves them, and
+# for the two roots consume names when a note lies outside this loop's root.
 consumed_field() {
   local field_value=''
   if [[ -n "$consumed_record_json" ]]; then
@@ -1396,16 +1406,28 @@ while true; do
         if [[ -z "$note_state" ]]; then
           printf '%s\n' \
             'warning: could not read the consumed relaunch record; not relaunching' >&2
-        else
+        elif [[ "$note_state" != 'outside-root' ]]; then
           printf 'warning: the handoff note is %s; not relaunching\n' "$note_state" >&2
         fi
         # A claim throws on a claimed, done or missing note, so a command for one could
         # never work. An invalid note can be repaired and an unread state may hide an open
-        # note, so those two keep the command.
+        # note, so those two keep the command. A note outside this root is claimable only
+        # under its own root, so its command pins that root.
         case "$note_state" in
           ''|invalid)
             spec_folder=$(consumed_spec_folder)
             print_manual_command "$handoff_path" "$spec_folder" || true
+            ;;
+          outside-root)
+            note_root=$(consumed_field note_root)
+            printf 'warning: the handoff note %s belongs to %s, outside the handoffs directory this loop reads under %s; not relaunching\n' \
+              "$handoff_path" "${note_root:-another checkout}" "$(consumed_field repo_root)" >&2
+            if [[ -n "$note_root" ]]; then
+              manual_command=$(print_manual_command "$handoff_path" '') || true
+              if [[ -n "$manual_command" ]]; then
+                printf 'SESSION_HANDOVER_REPO_ROOT=%q %s\n' "$note_root" "$manual_command"
+              fi
+            fi
             ;;
         esac
         exit 1

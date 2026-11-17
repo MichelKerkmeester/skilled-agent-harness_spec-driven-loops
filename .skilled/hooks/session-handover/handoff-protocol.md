@@ -98,7 +98,7 @@ Stop matches the event session id to the stored record. A pending record stays p
 
 While background tasks remain it leaves the record as it is, pending or armed. A respawned killer then never ends live work. A pending record it defers this way gains a `deferredAt` stamp.
 
-Each deferred Stop prints one JSON line whose `systemMessage` names the background task count. That line says the hop goes ahead at the first Stop after the tasks finish. It tells the operator to send a prompt or run `node .skilled/hooks/session-handover/bin/session-handover.cjs cancel` to call the hop off. It carries no `decision` key, so Claude shows the notice and still ends the turn.
+Each deferred Stop prints one JSON line whose `systemMessage` names the background task count. That line says the hop goes ahead at the first Stop after the tasks finish. It tells the operator to send a prompt or run the CLI's `cancel` command to call the hop off. The command names the CLI by its absolute path, `node '<checkout>/.skilled/hooks/session-handover/bin/session-handover.cjs' cancel`, so it runs from any directory. It carries no `decision` key, so Claude shows the notice and still ends the turn.
 
 When a record is armable and `payload.session_crons` is a non-empty array, Stop appends one `session-crons` line to `relaunch.log`. That line carries `loopId`, `sessionId` and `crons` set to the count. An empty, missing or non-array value writes nothing. A scheduled task and the todo list end with the session, so the receiver starts with neither.
 
