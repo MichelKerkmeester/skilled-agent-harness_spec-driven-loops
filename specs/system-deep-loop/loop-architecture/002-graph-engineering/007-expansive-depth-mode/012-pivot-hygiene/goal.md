@@ -73,6 +73,7 @@ and findings belong here.
 |------|-------|----------|
 | Phase docs authored | Done | `spec.md`, `plan.md`, `tasks.md`, `decision-record.md` |
 | ADR-001 operator decision | Done | 2026-11-17: 3 seat outputs per council attempt, at most one retry, so at most 6 per pivot (`decision-record.md` OD-001, OD-002) |
+| Session save | Done | operator decisions written to decision-record.md |
 
 ### Deviations and findings
 

@@ -20,6 +20,7 @@
       "completed run extension tasks",
       "completed run extension acceptance criteria",
       "completed run extension goal",
+      "001-completed-run-extension operator decisions",
       "completed run extension implementation summary"
     ],
     "key_topics": [
@@ -44,6 +45,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/commands/deep/research.md",
       ".skilled/commands/deep/review.md",
@@ -79,6 +81,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -188,18 +196,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A completed deep-research run halts on `oncompletedsession`, and a completed deep-review run re-synthesizes but adds no iterations (defect D11)",
     "created_at": "2026-11-17T14:35:15Z",
-    "last_save_at": "2026-11-17T14:40:57.993Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-17T16:57:05.687Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -207,15 +209,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b0c9955e14b2cd02e008930de6d3e0b2fe9b9d5dc512d3786599579b59516291",
+    "source_fingerprint": "sha256:355b8651a8bf06158968b36b4e97d19581943988369cfeccd57b9cc4f212765a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6023967371624257036e63668a4388a647d3ff8919e3327b234fffc6f99a0f17",
       "plan.md": "32b6a65d0bf026c2f23ecd195499e948377b36db8ab79eae874a098861e02b66",
       "tasks.md": "59f401fe7225cd15ce38a0218062aa48a1ea4304b07564c8dbe9c8d30858a006",
-      "implementation-summary.md": "45654e87b5e986a267d193bcf54c445797f5e2129bc68c7ecb509a3ee4dc5f7d"
+      "decision-record.md": "beea4130739bb6f0c5245ae8df3520eb54ae8ea2d5669734be68f220a9cae9f5",
+      "implementation-summary.md": "9e3e24ac12f30cc4b3939e4ea7a190daab83ae1010c3901631e8127ef3131e8a"
     },
     "last_active_at": null
   }

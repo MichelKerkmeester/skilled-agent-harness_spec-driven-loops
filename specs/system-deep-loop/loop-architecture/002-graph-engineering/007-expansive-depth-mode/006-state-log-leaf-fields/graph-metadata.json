@@ -197,8 +197,8 @@
     ],
     "causal_summary": "The research gateway upcast at `legacy-compatibility.ts:643-660` builds `iterationcompleted` data from `status`, `newInfoRatio`, `ruledOut`, `focus` and `answeredQuestions` only, so every other leaf field is dropped before the state log is projected",
     "created_at": "2026-11-17T14:35:02Z",
-    "last_save_at": "2026-11-17T16:54:20.875Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-17T16:57:05.577Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5b3f6f0419737902b07a7655211e4525ba838286b9db797b496b0b4608242ed",
+    "source_fingerprint": "sha256:79c2fea7acaa2c2f98c23dcb15f3112d60fc60f1840b8637b748e5f30b037f78",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "05d3b7af05884fbac654dfe5d4bc06a9257da1b4242b5df23f7721698525b540",
       "plan.md": "a8b0c869cbce5909ba0e5ea404af3f0a150d40acb3ff714d29f405c19fb2ea6e",
       "tasks.md": "4ec456657a9df6c2f279809e300e6915cab827d5d320150c512bb695747fcb76",
-      "decision-record.md": "9ef3647723ec834895a76f038809f77b2532183ef16a815affcac049d9f89612",
-      "implementation-summary.md": "e188af009f9cf592b8b8a52f9fb8da8c3afd35174c4d61d06928e6974bdd4082"
+      "decision-record.md": "94932713b2d828ee66cafa91dfdc0d42dfe340bfd69874a418b5b6fd40880430",
+      "implementation-summary.md": "04f39a474433f99cfe640aa3341676abe3b12135cc18a64f72b532ec02aceb2d"
     },
     "last_active_at": null
   }

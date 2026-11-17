@@ -141,6 +141,9 @@ _memory:
 |----|---------|-----|------------|------------|
 | OD-001 | 2026-11-17: cap council seat outputs per pivot, 3 per pivot; `maxPivots: 3` still caps the run | A failed or resumed pivot no longer shrinks later pivots | ADR-001 Proposed status | `plan.md`, `tasks.md` T003 |
 | OD-002 | 2026-11-17: "Retry gets its own 3". Each council attempt gets 3 seat outputs, with at most one retry per pivot on a quorum failure, so one pivot uses at most 6; `maxPivots: 3` still caps the run | A per-pivot cap of 3 left no room for the planned retry; giving the retry its own 3 keeps the retry and bounds it | OD-001's 3-per-pivot value, now 3 per council attempt | `plan.md`, `tasks.md` T003 and T004, `spec.md` REQ-002 and REQ-005 |
+| Q001 | No decision: the operator asked what council meant; the question was re-asked as 012 pivot after clarifying it is divergent mode three-seat vote, not the deprecated ai-council mode. | Not stated. | None | 012-pivot-hygiene/decision-record.md |
+| Q002 | Cap divergent-pivot council seat outputs per pivot instead of for the whole run; maxPivots 3 still caps the run. | Not stated. | None | 012-pivot-hygiene/decision-record.md OD-001 |
+| Q003 | Each council attempt gets its own 3 seat outputs with at most one retry per pivot, so one pivot uses at most 6 seats. | Not stated. | None | 012-pivot-hygiene/decision-record.md OD-002, spec.md REQ-002, tasks.md T004 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -160,6 +163,65 @@ Each appendix item uses the same id as its operator decision. The options are in
 
 - Asked: a retry costs three more seat outputs, which a per-pivot cap of 3 refuses. Does the retry stay, and under what budget?
 - Operator answer: "Retry gets its own 3". Each council attempt gets 3 seat outputs, with at most one retry per pivot on a quorum failure, so one pivot uses at most 6; `maxPivots` 3 still caps the run.
+
+### Q001
+<!-- source: claude:94a4cf06-5c71-4a49-952f-6bbffe1f9b56:toolu_01AqJKf7Vpa3evWkpgH9i7hX:2 -->
+
+Question:
+```text
+Phase 012: should the council's 9-seat output limit for divergent pivots apply per pivot or across the whole run?
+```
+
+Options:
+```text
+Per pivot (Recommended)
+Lifetime (keep today)
+```
+
+Answer:
+```text
+council? ai-council? what are you referencing that mode was deprecated
+```
+
+### Q002
+<!-- source: claude:94a4cf06-5c71-4a49-952f-6bbffe1f9b56:toolu_016ahKw23mhaAYpNvw4LzVEX:0 -->
+
+Question:
+```text
+Phase 012 is about divergent mode's built-in three-seat vote, not the deprecated ai-council mode. When a run with --convergence-mode=divergent wants to stop, divergent-pivot.ts sends three @deep-research seats to propose a new direction (up to 3 pivots per run). Today the seat outputs are capped at 9 for the whole run, so a pivot that is resumed or retried eats budget it never completes. What should 012 do?
+```
+
+Options:
+```text
+Cap per pivot (Recommended)
+Keep run-wide cap
+Drop 012 entirely
+```
+
+Answer:
+```text
+Cap per pivot (Recommended)
+```
+
+### Q003
+<!-- source: claude:94a4cf06-5c71-4a49-952f-6bbffe1f9b56:toolu_01Uf1aXUtrE9A3oKe65hACWL:0 -->
+
+Question:
+```text
+Phase 012 conflict: you chose a cap of 3 council seat outputs per pivot, but 012 also plans one retry when a pivot's three-seat vote fails to reach quorum, and that retry needs 3 more seats (6 for that pivot). Which should give way?
+```
+
+Options:
+```text
+Retry gets its own 3 (Recommended)
+Drop the retry
+```
+
+Answer:
+```text
+Retry gets its own 3 (Recommended)
+```
+
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---

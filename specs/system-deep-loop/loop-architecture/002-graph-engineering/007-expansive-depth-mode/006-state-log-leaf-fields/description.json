@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields",
   "description": "Restore the research leaf fields the state-log projection drops (D7, D9), after an operator decision",
   "keywords": [
@@ -12,7 +13,7 @@
     "operator",
     "decision"
   ],
-  "lastUpdated": "2026-11-17T14:35:02.204Z",
+  "lastUpdated": "2026-11-17T16:56:36.483Z",
   "specId": "006",
   "folderSlug": "state-log-leaf-fields",
   "parentChain": [
@@ -21,7 +22,8 @@
     "002-graph-engineering",
     "007-expansive-depth-mode"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-11-26_17-56__ran-deep-research-generation-2-5-cli-devin-swe-2.md"
+  ]
 }

@@ -138,6 +138,7 @@ The research gateway drops every leaf field outside `status`, `newInfoRatio`, `r
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
 | OD-001 | 2026-11-17: option 1, widen the upcast, stem schema, type and projection | Best UX and logic: one source of truth, and iteration state records carry route-proof fields as the command contract requires | ADR-001 Proposed status | `plan.md`, `tasks.md` T003-T006 |
+| Q001 | Widen the research upcast, stem schema and type so leaf route-proof, telemetry, findingsCount and keyQuestions reach the state log. | Operator asked for the best UX and logic; widening honors the command contract that iteration state records carry route-proof fields, where reading from the delta only works around it. | None | 006-state-log-leaf-fields/decision-record.md ADR-001, spec.md REQ-005 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -152,6 +153,26 @@ Each appendix item uses the same id as its operator decision. The options are in
 - Asked: where should the research findings gate and the `focusAlignment` guard read leaf fields?
 - Offered: option 1, widen the upcast, stem schema, type and projection; option 2, keep the ledger narrow and read leaf fields from the delta.
 - Operator answer: "the best UX and logic". Recorded choice: option 1.
+
+### Q001
+<!-- source: claude:94a4cf06-5c71-4a49-952f-6bbffe1f9b56:toolu_01AqJKf7Vpa3evWkpgH9i7hX:0 -->
+
+Question:
+```text
+Phase 006 (D7/D9): the research upcast drops iteration fields such as route proof, findingsCount and keyQuestions from the state log. How should that be fixed? Either way, two checks that never run today (focusAlignment and findings-not-enumerated) start running on every research run.
+```
+
+Options:
+```text
+Read from delta (Recommended)
+Widen the upcast
+```
+
+Answer:
+```text
+we want best ux and logic
+```
+
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---

@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene",
   "description": "Divergent pivot hygiene: seat cap scope, dead minRemainingIterations guard, one council retry",
   "keywords": [
@@ -15,7 +16,7 @@
     "council",
     "retry"
   ],
-  "lastUpdated": "2026-11-17T14:35:15.610Z",
+  "lastUpdated": "2026-11-17T16:56:43.985Z",
   "specId": "012",
   "folderSlug": "pivot-hygiene",
   "parentChain": [
@@ -24,7 +25,8 @@
     "002-graph-engineering",
     "007-expansive-depth-mode"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-11-26_17-56__ran-deep-research-generation-2-5-cli-devin-swe-2.md"
+  ]
 }

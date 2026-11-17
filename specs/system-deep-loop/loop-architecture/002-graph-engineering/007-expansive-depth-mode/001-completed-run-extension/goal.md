@@ -74,6 +74,7 @@ and findings belong here.
 |------|-------|----------|
 | Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` written from `../research/research.md` §19 and §20 |
 | Implementation | Pending | Not started |
+| Session save | Done | operator decisions written to decision-record.md |
 
 ### Deviations and findings
 

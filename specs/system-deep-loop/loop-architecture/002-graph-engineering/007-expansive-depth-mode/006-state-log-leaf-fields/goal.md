@@ -74,6 +74,7 @@ and findings belong here.
 |------|-------|----------|
 | Phase docs authored | Done | `spec.md`, `plan.md`, `tasks.md`, `decision-record.md` |
 | ADR-001 operator decision | Done | 2026-11-17: option 1, widen the upcast (`decision-record.md` OD-001) |
+| Session save | Done | operator decisions written to decision-record.md |
 
 ### Deviations and findings
 

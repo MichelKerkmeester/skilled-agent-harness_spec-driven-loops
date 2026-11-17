@@ -222,7 +222,7 @@
     ],
     "causal_summary": "The deep-research and deep-review loops converge on the three to five questions seeded at init and stop once novelty drops, so a broad target such as \"research the last 100 commits for bugs, drift and improvements\" or \"analyze system-skill-advisor for chat-time auto-utilization\" gets a narrow, shallow answer",
     "created_at": "2026-11-17T07:53:58Z",
-    "last_save_at": "2026-11-17T16:56:11.448Z",
+    "last_save_at": "2026-11-17T16:56:44.047Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -243,6 +243,7 @@
       "implementation-summary.md": "2088c1e4437f3061bd63975059960c6ebb10e14588be75e53898d13f9a592446",
       "research/research.md": "388f865f2096176f5124d2d49da58ef45c08c4c78a63a1293ccc05b0592f3de0"
     },
-    "last_active_at": null
+    "last_active_child_id": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene",
+    "last_active_at": "2026-11-17T16:56:44.047Z"
   }
 }

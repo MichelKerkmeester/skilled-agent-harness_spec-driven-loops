@@ -8,16 +8,25 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields"
-    last_updated_at: "2026-11-17T18:00:00Z"
-    last_updated_by: "operator-decision"
-    recent_action: "Recorded the operator decision in decision-record.md"
-    next_safe_action: "Capture the REQ-007 baseline (T002)"
+    last_updated_at: "2026-11-17T16:56:36Z"
+    last_updated_by: "generate-context"
+    recent_action: "13 build phases authored; decisions recorded"
+    next_safe_action: "Plan and build 001-completed-run-extension"
+    packet_purpose: "Purpose: With the ledger upcast widened to carry the leaf fields, the research findings gate and the `focusAlignment` guard both run on real data, and every changed default behavior is stated in the changelog."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "operator-decision-006-state-log-leaf-fields"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "94a4cf06-5c71-4a49-952f-6bbffe1f9b56"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-17T16:56:36Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 0
     open_questions: []
     answered_questions: []

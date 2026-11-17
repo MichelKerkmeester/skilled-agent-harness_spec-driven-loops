@@ -138,6 +138,7 @@ _memory:
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
 | OD-001 | 2026-11-17: support custom dimensions in `buildDimensionCoverage` | Best UX and logic, even if it takes more time: every configured dimension is tracked and can be covered | ADR-001 Proposed status | `plan.md`, `tasks.md` T005-T007, T009, T010; `../011-review-frontier-mode/` dependency |
+| Q001 | Support custom review dimensions in buildDimensionCoverage instead of enforcing only the four built-ins. | Operator asked for the best UX and logic even if it takes more time; 011-review-frontier-mode now depends on 008. | None | 008-review-dimension-coverage/decision-record.md ADR-001, 011-review-frontier-mode/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -152,6 +153,26 @@ Each appendix item uses the same id as its operator decision. The options are in
 - Asked: enforce the four canonical review dimension names in code, or support custom dimensions?
 - Offered: enforce in code; support custom dimensions; filter unknown names with a warning.
 - Operator answer: "the best UX and logic, even if it takes more time". Recorded choice: support custom dimensions.
+
+### Q001
+<!-- source: claude:94a4cf06-5c71-4a49-952f-6bbffe1f9b56:toolu_01AqJKf7Vpa3evWkpgH9i7hX:1 -->
+
+Question:
+```text
+Phase 008 (D10): a review dimension outside the four built-ins (correctness, security, traceability, maintainability) can never be marked covered. Which fix?
+```
+
+Options:
+```text
+Enforce the four (Recommended)
+Support custom ones
+```
+
+Answer:
+```text
+we want best uxc and logic, even if it takes more time
+```
+
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---
