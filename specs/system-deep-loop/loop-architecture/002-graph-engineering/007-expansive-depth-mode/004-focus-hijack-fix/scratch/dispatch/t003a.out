@@ -1,0 +1,25 @@
+**Changed path:** `.skilled/skills/system-deep-loop/runtime/tests/unit/continuity-thread.vitest.ts` (only file touched; no source files modified)
+
+**CHECK:** `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/continuity-thread.vitest.ts` — exit code **1**
+
+```
+    172|     });
+    173|
+    174|     expect(focus).toBe('Inspect the review twin');
+       |                   ^
+    175|   });
+    176|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 9 passed (12)
+   Start at  20:48:37
+   Duration  133ms (transform 20ms, setup 24ms, import 7ms, tests 16ms, environment 0ms)
+EXIT=1
+```
+
+**Deviation from EXPECTED:** 3 failed / 9 passed, not 5 failed. Failing: (a) non-question drop, (c) resolved-question drop, (d) leaf-beats-thread. Passing: (b), (e), (f), plus the 6 pre-existing cases.
+
+Why (b) and (e) are green now: `buildCarriedForwardOpenQuestions` ignores `registryQuestions`, and `deriveNextFocusFromContinuity` ignores `resolvedQuestions`/`leafNextFocus`, so each asserts the value the current code already returns (`['Map the reducer chain']` for b, `'Old thread?'` for e). They are truthful tests of the intended behavior and will still hold after the change, but they are not failing-first cases — the parameter additions are not observable through them alone.

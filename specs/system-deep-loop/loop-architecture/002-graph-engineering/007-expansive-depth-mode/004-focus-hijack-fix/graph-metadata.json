@@ -18,7 +18,9 @@
       "focus hijack fix plan",
       "focus hijack fix tasks",
       "focus hijack fix goal",
-      "004-focus-hijack-fix operator decisions"
+      "004-focus-hijack-fix operator decisions",
+      "carried forward question filter",
+      "first uncovered dimension next focus"
     ],
     "key_topics": [
       "focus",
@@ -42,12 +44,14 @@
       "tasks.md",
       "goal.md",
       "decision-record.md",
-      ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "implementation-summary.md",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs",
+      ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
       ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/continuity-thread.vitest.ts",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts"
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts",
+      "scratch/baseline.txt"
     ],
     "entities": [
       {
@@ -81,9 +85,9 @@
         "source": "derived"
       },
       {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -93,9 +97,9 @@
         "source": "derived"
       },
       {
-        "name": "deep-research-reduce-state.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
@@ -105,9 +109,21 @@
         "source": "derived"
       },
       {
+        "name": "deep-research-reduce-state.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "deep-review-state-reducer.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
         "source": "derived"
       },
       {
@@ -181,23 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "both",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "On research runs, a leaf's free text under `## Questions Remaining` becomes a carried-forward question, and `deriveNextFocusFromContinuity` returns the latest one ahead of every machine question, so an iteration's status sentence can become the next focus verbatim (defect D5, parent `research/research.md` §13 and §14)",
     "created_at": "2026-11-17T14:43:29.301Z",
-    "last_save_at": "2026-11-17T18:12:41.883Z",
+    "last_save_at": "2026-11-17T19:58:35.912Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,15 +209,17 @@
       "plan.md",
       "tasks.md",
       "goal.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1f712a703d791344829faeb4956a349b79a697a204588b3fb2c5f05e197e0ea3",
+    "source_fingerprint": "sha256:37df960d2476a5332c3079649976e192730b1bdc382fcbcfc2011bdd41a29f9b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "078640c5c19f80fbe22a25f8a0ac722057bd1c81040e8e98d019b9906e90ec00",
       "plan.md": "f4eda21c88069900c5258544433ee83934111bf3c4fc47dfb82450d40a61f7c8",
-      "tasks.md": "00d74e593883edd4b09ca9ccd803d026d442b5d2f25a38e006840e45fb833161",
-      "decision-record.md": "959a4e28667d159c84e3ef254789b0f9f7bafe94e7134d394ac2a293ed944ed2"
+      "tasks.md": "d21eb37c16d53aa07a6fc8f43f0fbf89a5ef9f3d8bc8e3fdab93216d3e0857cc",
+      "decision-record.md": "959a4e28667d159c84e3ef254789b0f9f7bafe94e7134d394ac2a293ed944ed2",
+      "implementation-summary.md": "285c4ddfcc63f6287d01f8463361a24692d44be9dd3a5c3a3f06331544e9f4fc"
     },
     "last_active_child_id": null,
     "last_active_at": null

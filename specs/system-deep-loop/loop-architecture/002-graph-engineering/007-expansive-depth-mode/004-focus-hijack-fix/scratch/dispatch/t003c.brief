@@ -1,0 +1,17 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/462-ed-004-focus-hijack-fix
+Every read, write and command uses this root. Your environment block may name a different "Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix (pre-approved). Proceed directly. Do not print A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt only after three failures on the same file. Your task is complete only when the file is changed on disk and the check below has been run.
+
+PERSONA: You are a senior implementation engineer. Make exactly the change described, in the allowed file only, matching the file's existing style. Do not refactor or reformat anything else. Verify by running the CHECK and report honestly.
+
+TASK T003c: Add one failing-first test case to the review reducer suite. The reducer changes later; this case is EXPECTED TO FAIL now. Do not change any source file.
+FILE: .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts
+MODEL: read the existing cases in this file that build a review fixture and assert on the strategy `## 11. NEXT FOCUS` text or the dashboard; reuse the same helpers and fixture shape.
+EDIT: add one case, 'names the first uncovered dimension when the leaf next focus names no dimension', after the last existing case in the main describe block. Fixture: one completed review iteration that covers only the 'security' dimension (so 'correctness', 'traceability' and 'maintainability' are uncovered), whose iteration markdown has a next-focus section containing the free text 'Look at the release notes wording' (use the same heading the existing fixtures use for the leaf next focus). No pivot and no blocked stop. Assert: the strategy section after '## 11. NEXT FOCUS' (up to the next '<!--' or end) contains 'correctness' and does not contain 'Look at the release notes wording'; and the dashboard's Next Focus line contains 'correctness'. Keep every existing case unchanged.
+ALLOWED WRITE PATHS: .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file, edits outside ALLOWED WRITE PATHS, regenerating compiled contracts, editing any spec-folder doc.
+COMMENTS: keep the durable WHY; never put spec paths, phase numbers or REQ/ADR/task ids in code or test names.
+CHECK: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/deep-review-state-reducer.vitest.ts
+EXPECTED: every pre-existing case passes; the new case fails because the free text wins today.
+RETURN: the changed path, the CHECK's last 15 lines and its exit code. Nothing else.

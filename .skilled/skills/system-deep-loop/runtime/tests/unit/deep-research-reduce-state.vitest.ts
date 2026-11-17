@@ -1495,6 +1495,104 @@ describe('deep-research reduce-state delta iteration merge', () => {
     expect(result.registry.metrics?.openQuestions).toBe(1);
   });
 
+  it('drops a resolved question that a later iteration lists as remaining', () => {
+    const specFolder = writeResolvedQuestionLeafFixture([
+      '# Iteration 002: follow up',
+      '',
+      '## Questions Remaining',
+      '',
+      '- Which delta merge path resolves?',
+      '',
+    ]);
+
+    const result = reduceResearchState(specFolder, { write: false });
+
+    expect((result.registry.carriedForwardOpenQuestions ?? []).map((question) => question.text))
+      .not.toContain('Which delta merge path resolves?');
+    expect(result.registry.metrics?.carriedForwardOpenQuestions).toBe(0);
+    expect(sectionText(result.strategy, '## 11A. CARRIED-FORWARD OPEN QUESTIONS', '## 11. NEXT FOCUS'))
+      .not.toContain('Which delta merge path resolves?');
+    expect(sectionText(result.strategy, '## 11. NEXT FOCUS', '<!--'))
+      .not.toContain('Which delta merge path resolves?');
+  });
+
+  it('drops a status sentence listed under Questions Remaining', () => {
+    const specFolder = writeResolvedQuestionLeafFixture([
+      '# Iteration 002: follow up',
+      '',
+      '## Questions Remaining',
+      '',
+      '- Iteration 1 mapped the reducer chain.',
+      '',
+    ]);
+
+    const result = reduceResearchState(specFolder, { write: false });
+
+    expect((result.registry.carriedForwardOpenQuestions ?? []).map((question) => question.text))
+      .not.toContain('Iteration 1 mapped the reducer chain.');
+    expect(result.registry.metrics?.carriedForwardOpenQuestions).toBe(0);
+    expect(sectionText(result.strategy, '## 11A. CARRIED-FORWARD OPEN QUESTIONS', '## 11. NEXT FOCUS'))
+      .not.toContain('Iteration 1 mapped the reducer chain.');
+    expect(sectionText(result.strategy, '## 11. NEXT FOCUS', '<!--'))
+      .not.toContain('Iteration 1 mapped the reducer chain.');
+  });
+
+  it('reads the latest leaf Recommended Next Focus and skips it when it is resolved', () => {
+    const recommended = reduceResearchState(writeResolvedQuestionLeafFixture([
+      '# Iteration 002: follow up',
+      '',
+      '## Recommended Next Focus',
+      '',
+      'Trace the merge writer',
+      '',
+    ]), { write: false });
+
+    expect(sectionText(recommended.strategy, '## 11. NEXT FOCUS', '<!--'))
+      .toContain('Trace the merge writer');
+
+    const resolved = reduceResearchState(writeResolvedQuestionLeafFixture([
+      '# Iteration 002: follow up',
+      '',
+      '## Recommended Next Focus',
+      '',
+      'Which delta merge path resolves?',
+      '',
+    ]), { write: false });
+
+    expect(sectionText(resolved.strategy, '## 11. NEXT FOCUS', '<!--'))
+      .not.toContain('Which delta merge path resolves?');
+  });
+
+  it('does not let a rejected pattern return through the leaf recommendation', () => {
+    const specFolder = writeResolvedQuestionLeafFixture([
+      '# Iteration 002: follow up',
+      '',
+      '## Recommended Next Focus',
+      '',
+      'Trace the merge writer',
+      '',
+    ]);
+    appendFileSync(
+      join(specFolder, 'research', 'deep-research-state.jsonl'),
+      `${JSON.stringify({
+        type: 'event',
+        event: 'ideaRejected',
+        mode: 'research',
+        run: 1,
+        pattern: 'Trace the merge writer',
+        category: 'next-focus',
+        reason: 'operator rejected this focus',
+        timestamp: '2026-06-28T00:00:00.000Z',
+      })}\n`,
+      'utf8',
+    );
+
+    const result = reduceResearchState(specFolder, { write: false });
+
+    expect(sectionText(result.strategy, '## 11. NEXT FOCUS', '<!--'))
+      .not.toContain('Trace the merge writer');
+  });
+
   it('keeps state-log status and newInfoRatio when the delta iteration row disagrees', () => {
     const specFolder = makeTempSpec();
     writeState(specFolder, `${JSON.stringify({
@@ -1561,6 +1659,76 @@ describe('deep-research reduce-state delta iteration merge', () => {
     const totalReferences = Number(/Total references\*\*: (\d+)/.exec(resourceMap)?.[1] ?? '0');
     expect(totalReferences).toBeGreaterThan(0);
   });
+
+  // Iteration 1 answers the first strategy question through its delta row, so the
+  // registry keeps exactly one machine question open and the next-focus chain has a
+  // fallback. The leaf markdown is the only input each case varies.
+  function writeResolvedQuestionLeafFixture(leafLines: string[]): string {
+    const specFolder = makeTempSpec();
+    writeStrategyWithQuestions(specFolder, [
+      '- [ ] Which delta merge path resolves?',
+      '- [ ] Which delta merge path stays open?',
+    ]);
+    const iterationDir = join(specFolder, 'research', 'iterations');
+    mkdirSync(iterationDir, { recursive: true });
+    writeFileSync(join(iterationDir, 'iteration-002.md'), leafLines.join('\n'), 'utf8');
+    writeState(specFolder, [
+      JSON.stringify({
+        type: 'iteration',
+        iteration: 1,
+        run: 1,
+        status: 'complete',
+        newInfoRatio: 0.5,
+        ruledOut: [],
+        timestamp: '2026-06-28T00:00:00.000Z',
+      }),
+      JSON.stringify({
+        type: 'iteration',
+        iteration: 2,
+        run: 2,
+        status: 'complete',
+        newInfoRatio: 0.4,
+        focus: 'follow up',
+        timestamp: '2026-06-28T00:05:00.000Z',
+      }),
+      '',
+    ].join('\n'));
+    writeDeltaRows(specFolder, 'iter-001.jsonl', [
+      {
+        type: 'iteration',
+        iteration: 1,
+        run: 1,
+        status: 'complete',
+        newInfoRatio: 0.5,
+        focus: 'delta merge',
+        answeredQuestions: ['Which delta merge path resolves?'],
+      },
+    ]);
+    writeDeltaRows(specFolder, 'iter-002.jsonl', [
+      {
+        type: 'iteration',
+        iteration: 2,
+        run: 2,
+        status: 'complete',
+        newInfoRatio: 0.4,
+        focus: 'follow up',
+        timestamp: '2026-06-28T00:05:00.000Z',
+      },
+    ]);
+    return specFolder;
+  }
+
+  // Slicing to one block keeps an assertion honest: the same text sitting in a
+  // neighbouring section must not satisfy it, and a missing block fails loudly
+  // instead of shrinking the haystack to nothing.
+  function sectionText(strategy: string, heading: string, boundary: string): string {
+    const start = strategy.indexOf(heading);
+    const end = start === -1 ? -1 : strategy.indexOf(boundary, start + heading.length);
+    if (end === -1) {
+      throw new Error(`Missing strategy block "${heading}" bounded by "${boundary}"`);
+    }
+    return strategy.slice(start + heading.length, end);
+  }
 });
 
 describe('an extension reopens a completed run', () => {

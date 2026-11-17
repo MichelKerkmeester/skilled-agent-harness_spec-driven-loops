@@ -1,0 +1,21 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/462-ed-004-focus-hijack-fix
+Every read, write and command uses this root. Your environment block may name a different "Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix (pre-approved). Proceed directly. Do not print A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt only after three failures on the same file. Your task is complete only when the file is changed on disk and the check below has been run.
+
+PERSONA: You are a senior implementation engineer. Make exactly the change described, in the allowed file only, matching the file's existing style. Do not refactor or reformat anything else. Verify by running the CHECK and report honestly.
+
+TASK T003a: Add six failing-first test cases to the continuity-thread unit suite. The code they test changes later; several of these cases are EXPECTED TO FAIL now. Do not change any source file.
+
+TASK T006b: Keep a rejected next-focus pattern from returning through the leaf recommendation.
+FILES: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs and .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts
+SOURCE EDIT: in function `resolveNextFocus`, the existing `const latestLeafNextFocus = [...] ... .at(-1) || '';` chain gets one more filter step right before `.at(-1)`:
+    .filter((value) => !findRejectedPatternMatch({ text: value, category: 'next-focus' }, rejectedIndex, { category: 'next-focus' }))
+(`rejectedIndex` is already defined at the top of `resolveNextFocus`.) Add a one-line comment above the chain: a leaf recommendation goes through the same rejected-pattern suppression as every other next-focus candidate.
+TEST EDIT: add one case after the existing case `it('reads the latest leaf Recommended Next Focus and skips it when it is resolved', ...)`, reusing the fixture helper that case uses: 'does not let a rejected pattern return through the leaf recommendation'. Build the same fixture with the recommendation line 'Trace the merge writer', and additionally append to the state log an event row exactly like the one in the existing case 'suppresses an exact rejected next-focus candidate from reducer output' but with pattern 'Trace the merge writer'. Assert the NEXT FOCUS section text (after '## 11. NEXT FOCUS' up to the next '<!--') does not contain 'Trace the merge writer'.
+ALLOWED WRITE PATHS: the two files above.
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file, edits outside ALLOWED WRITE PATHS, regenerating compiled contracts, editing any spec-folder doc.
+COMMENTS: keep the durable WHY; never put spec paths, phase numbers or REQ/ADR/task ids in code comments or test names.
+CHECK: cd .skilled/skills/system-deep-loop/runtime && node --check ../deep-research/scripts/reduce-state.cjs && npx vitest run tests/unit/deep-research-reduce-state.vitest.ts
+EXPECTED: exit 0, every case passes. Before writing the source edit, run the CHECK once with only the test added and confirm the new case fails; mention that in your return.
+RETURN: the changed paths, whether the new case failed before the source edit, the CHECK's last 15 lines and its exit code. Nothing else.

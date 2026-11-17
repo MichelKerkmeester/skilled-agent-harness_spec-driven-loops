@@ -1,0 +1,31 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/462-ed-004-focus-hijack-fix
+Every read, write and command uses this root. Your environment block may name a different "Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix (pre-approved). Proceed directly. Do not print A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt only after three failures on the same file. Your task is complete only when the file is changed on disk and the check below has been run.
+
+PERSONA: You are a senior implementation engineer. Make exactly the change described, in the allowed file only, matching the file's existing style. Do not refactor or reformat anything else. Verify by running the CHECK and report honestly.
+
+TASK T003a: Add six failing-first test cases to the continuity-thread unit suite. The code they test changes later; several of these cases are EXPECTED TO FAIL now. Do not change any source file.
+
+TASK T006: Pass the resolved questions and the latest leaf next focus into the continuity helpers in the research reducer.
+FILE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs
+ANCHORS AND EDITS (two call sites in this one file):
+1. In function `buildRegistry`, the call `const carriedForwardOpenQuestions = buildCarriedForwardOpenQuestions({ iterationFiles, iterationRecords, machineOpenQuestions: openQuestions, });` gains two properties:
+     registryQuestions: keyedQuestions,
+     resolvedQuestions: keyedQuestions.filter((question) => question.resolved),
+2. In function `resolveNextFocus`, the call `const continuityFocus = deriveNextFocusFromContinuity({ ... machineOpenQuestions: filteredInputs.openQuestions, });` gains two properties:
+     leafNextFocus: latestLeafNextFocus,
+     resolvedQuestions: Array.isArray(registry.resolvedQuestions) ? registry.resolvedQuestions : [],
+   and, just before that call, define:
+     const latestLeafNextFocus = [...(Array.isArray(filteredInputs.iterationFiles) ? filteredInputs.iterationFiles : [])]
+       .sort((left, right) => (left.run || 0) - (right.run || 0))
+       .map((iteration) => iteration.nextFocus)
+       .filter((value) => typeof value === 'string' && value.trim())
+       .at(-1) || '';
+Nothing else changes: the pivot branch and the blocked-stop branch keep their place above.
+ALLOWED WRITE PATHS: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file, edits outside ALLOWED WRITE PATHS, regenerating compiled contracts, editing any spec-folder doc or any test file.
+COMMENTS: keep the durable WHY; never put spec paths, phase numbers or REQ/ADR/task ids in code comments.
+CHECK: cd .skilled/skills/system-deep-loop/runtime && node --check ../deep-research/scripts/reduce-state.cjs && npx vitest run tests/unit/deep-research-reduce-state.vitest.ts tests/unit/continuity-thread.vitest.ts
+EXPECTED: exit 0, every case passes.
+RETURN: the changed path, the CHECK's last 15 lines and its exit code. Nothing else.

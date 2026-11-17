@@ -1,0 +1,13 @@
+Changed: `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs`
+
+CHECK: `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/continuity-thread.vitest.ts`
+```
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/462-ed-004-focus-hijack-fix/.skilled/skills/system-deep-loop/runtime
+
+
+ Test Files  1 passed (1)
+      Tests  12 passed (12)
+   Start at  20:53:04
+   Duration  232ms (transform 51ms, setup 70ms, import 18ms, tests 5ms, environment 0ms)
+```
+Exit code: 0

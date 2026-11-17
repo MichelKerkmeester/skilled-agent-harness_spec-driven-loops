@@ -1,0 +1,15 @@
+Changed path: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`
+
+CHECK (last 15 lines):
+```
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/462-ed-004-focus-hijack-fix/.skilled/skills/system-deep-loop/runtime
+
+
+ Test Files  1 passed (1)
+      Tests  19 passed (19)
+   Start at  20:52:13
+   Duration  204ms (transform 25ms, setup 24ms, import 25ms, tests 58ms, environment 0ms)
+```
+EXIT CODE: 0
+
+Note (deviation, reported not absorbed): T003a was not performed — it targets a test file, which `BANNED OPERATIONS` forbids and `ALLOWED WRITE PATHS` excludes. Its six continuity cases are already present uncommitted in `tests/unit/continuity-thread.vitest.ts`, so no work was left undone there.

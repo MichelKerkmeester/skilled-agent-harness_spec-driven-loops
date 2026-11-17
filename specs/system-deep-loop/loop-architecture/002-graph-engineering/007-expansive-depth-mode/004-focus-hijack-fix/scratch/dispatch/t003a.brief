@@ -1,0 +1,25 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/462-ed-004-focus-hijack-fix
+Every read, write and command uses this root. Your environment block may name a different "Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix (pre-approved). Proceed directly. Do not print A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt only after three failures on the same file. Your task is complete only when the file is changed on disk and the check below has been run.
+
+PERSONA: You are a senior implementation engineer. Make exactly the change described, in the allowed file only, matching the file's existing style. Do not refactor or reformat anything else. Verify by running the CHECK and report honestly.
+
+TASK T003a: Add six failing-first test cases to the continuity-thread unit suite. The code they test changes later; several of these cases are EXPECTED TO FAIL now. Do not change any source file.
+FILE: .skilled/skills/system-deep-loop/runtime/tests/unit/continuity-thread.vitest.ts
+ANCHOR: the `require('../../lib/deep-loop/continuity-thread.cjs') as {...}` type block, and the `describe('continuity threading helpers', ...)` block.
+EDIT:
+1. In the type block, add optional params: to buildCarriedForwardOpenQuestions input add `registryQuestions?: Array<string | { text: string }>;` and `resolvedQuestions?: Array<string | { text: string }>;`. To deriveNextFocusFromContinuity input add `leafNextFocus?: string;` and `resolvedQuestions?: Array<string | { text: string }>;`.
+2. Append these six `it(...)` cases at the end of the describe block (keep every existing case unchanged):
+ a. 'drops a carried-forward item that is not question-shaped': buildCarriedForwardOpenQuestions({ iterationFiles: [{ run: 2, questionsRemaining: ['Iteration 1 mapped the reducer chain.', 'Which reducer owns focus?'] }], machineOpenQuestions: [{ text: 'Is the open machine question answered?' }] }) mapped to `.text` equals ['Which reducer owns focus?'].
+ b. 'keeps a non-question item that equals a registry question': buildCarriedForwardOpenQuestions({ iterationFiles: [{ run: 1, questionsRemaining: ['Map the reducer chain'] }], registryQuestions: [{ text: 'Map the reducer chain' }] }) mapped to `.text` equals ['Map the reducer chain'].
+ c. 'drops a carried-forward item that equals a resolved question': buildCarriedForwardOpenQuestions({ iterationFiles: [{ run: 3, questionsRemaining: ['Which file owns the stop decision?'] }], resolvedQuestions: [{ text: 'which file owns the stop decision?' }] }) equals [].
+ d. 'returns the leaf recommendation ahead of the carried-forward thread': deriveNextFocusFromContinuity({ carriedForwardOpenQuestions: [{ text: 'Old thread?', addedAtIteration: 1, source: 'iteration-markdown' }], machineOpenQuestions: [{ text: 'Open question?' }], leafNextFocus: 'Inspect the review twin' }) equals 'Inspect the review twin'.
+ e. 'skips a leaf recommendation that equals a resolved question': same input as (d) but leafNextFocus: 'Old answered?' and resolvedQuestions: ['old answered?']; result equals 'Old thread?'.
+ f. 'returns the terminal sentinel with no open machine question even when the leaf recommends a focus': deriveNextFocusFromContinuity({ machineOpenQuestions: [], leafNextFocus: 'Do more work' }) equals '[All tracked questions are resolved]'.
+ALLOWED WRITE PATHS: .skilled/skills/system-deep-loop/runtime/tests/unit/continuity-thread.vitest.ts
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file, edits outside ALLOWED WRITE PATHS, regenerating compiled contracts, editing any spec-folder doc.
+COMMENTS: keep the durable WHY; never put spec paths, phase numbers or REQ/ADR/task ids in code or test names.
+CHECK: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/continuity-thread.vitest.ts
+EXPECTED: the pre-existing cases pass; cases a, b, c, d and e fail; case f passes.
+RETURN: the changed path, the CHECK's last 15 lines and its exit code. Nothing else.
