@@ -64,6 +64,14 @@ const CLOSE_STATUSES = new Set([
   'pruned',
 ]);
 
+// A node closed with one of these never answered its question: the branch ran
+// out, or it was dropped. The graph projection has to keep that visible.
+const UNANSWERED_CLOSE_STATUSES = new Set([
+  'blocked',
+  'exhausted',
+  'abstained',
+]);
+
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ───────────────────────────────────────────────────────────────────
@@ -338,6 +346,74 @@ function closeNode({ artifactDir, nodeId, status, reason = null, iteration }) {
   return row;
 }
 
+// Question coverage and source diversity divide by every QUESTION node, so a
+// node that closed unanswered would hold both signals down for the rest of the
+// run. It is re-kinded to a CLAIM marked closed instead: CLAIM feeds only the
+// claim-verification rate, which counts a closed claim as settled.
+function buildFrontierGraphEvents(nodes) {
+  const rows = Array.from(nodes ?? [])
+    .filter((row) => isPlainObject(row) && isNonEmptyString(row.nodeId))
+    .sort((left, right) => (left.nodeId < right.nodeId ? -1 : left.nodeId > right.nodeId ? 1 : 0));
+
+  const written = new Set();
+  const nodeEvents = [];
+  const edgeEvents = [];
+
+  for (const row of rows) {
+    // A pruned proposal never entered the run, so it never reaches the graph.
+    if (row.status === 'pruned') continue;
+
+    const baseMetadata = {
+      frontierNodeId: row.nodeId,
+      depth: row.depth,
+      scope: row.scope,
+      status: row.status,
+    };
+    const closed = UNANSWERED_CLOSE_STATUSES.has(row.status);
+
+    nodeEvents.push({
+      type: 'node',
+      id: `frontier-${row.nodeId}`,
+      kind: closed ? 'CLAIM' : 'QUESTION',
+      name: row.question,
+      iteration: normalizeIteration(row.iteration),
+      metadata: closed
+        ? { ...baseMetadata, reason: row.reason, verification_status: 'closed' }
+        : baseMetadata,
+    });
+    written.add(row.nodeId);
+  }
+
+  for (const row of rows) {
+    if (!written.has(row.nodeId)) continue;
+    if (row.parentId === 'root' || !written.has(row.parentId)) continue;
+    edgeEvents.push({
+      type: 'edge',
+      id: `frontier-${row.nodeId}-derived-from-${row.parentId}`,
+      sourceId: `frontier-${row.nodeId}`,
+      targetId: `frontier-${row.parentId}`,
+      relation: 'DERIVED_FROM',
+    });
+  }
+
+  return nodeEvents.concat(edgeEvents);
+}
+
+function writeFrontierGraph({ artifactDir, output }) {
+  const storePath = path.join(artifactDir, NODE_STORE_FILE);
+  const events = buildFrontierGraphEvents(readNodeStore(storePath).values());
+  const body = events.map((event) => `${JSON.stringify(event)}\n`).join('');
+
+  fs.mkdirSync(path.dirname(path.resolve(output)), { recursive: true });
+  fs.writeFileSync(output, body, 'utf8');
+
+  return {
+    nodes: events.filter((event) => event.type === 'node').length,
+    edges: events.filter((event) => event.type === 'edge').length,
+    output,
+  };
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 5. CLI
 // ───────────────────────────────────────────────────────────────────
@@ -350,6 +426,7 @@ const VALUE_FLAGS = new Set([
   'node-id',
   'status',
   'reason',
+  'output',
 ]);
 
 function parseArgs(argv) {
@@ -449,11 +526,17 @@ function runCli(argv) {
   const args = parseArgs(argv);
   const command = args.command;
 
-  if (command !== 'seed' && command !== 'admit' && command !== 'close') {
-    throw new Error(`unknown command: ${command === null ? '(none)' : command}; expected seed, admit or close`);
+  if (command !== 'seed' && command !== 'admit' && command !== 'close' && command !== 'graph') {
+    throw new Error(`unknown command: ${command === null ? '(none)' : command}; expected seed, admit, close or graph`);
   }
 
   const artifactDir = requireFlag(args, 'artifactDir', 'artifact-dir');
+
+  if (command === 'graph') {
+    const output = requireFlag(args, 'output', 'output');
+    return writeFrontierGraph({ artifactDir, output });
+  }
+
   const iteration = parseIterationArg(args.iteration);
   const knownTexts = args.knownTexts === undefined ? [] : readKnownTexts(args.knownTexts);
 
@@ -500,5 +583,6 @@ module.exports = {
   admitProposals,
   seedNodes,
   closeNode,
+  buildFrontierGraphEvents,
   main,
 };

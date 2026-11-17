@@ -24,6 +24,11 @@ import { fileURLToPath } from 'node:url';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
+import {
+  computeResearchQuestionCoverageFromData,
+  computeResearchSourceDiversityFromData,
+} from '../../lib/coverage-graph/coverage-graph-signals.js';
+
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
@@ -37,7 +42,14 @@ const FRONTIER_ADMIT_SCRIPT = resolve(
   'frontier-admit.cjs',
 );
 
-const { checkProposal, admitProposals, seedNodes, closeNode, readNodeStore } = require(FRONTIER_ADMIT_SCRIPT) as {
+const {
+  checkProposal,
+  admitProposals,
+  seedNodes,
+  closeNode,
+  readNodeStore,
+  buildFrontierGraphEvents,
+} = require(FRONTIER_ADMIT_SCRIPT) as {
   checkProposal: (proposal: unknown, nodes: Map<string, NodeRow>, caps: Caps, knownTexts?: string[]) => string | null;
   admitProposals: (options: {
     artifactDir: string;
@@ -59,6 +71,7 @@ const { checkProposal, admitProposals, seedNodes, closeNode, readNodeStore } = r
     iteration?: number;
   }) => NodeRow;
   readNodeStore: (storePath: string) => Map<string, NodeRow>;
+  buildFrontierGraphEvents: (nodes: Iterable<NodeRow>) => FrontierGraphEvent[];
 };
 
 const CONFIG_FILE = 'deep-research-config.json';
@@ -326,5 +339,172 @@ describe('frontier-admit', () => {
     expect(result.status).toBe(0);
     const output = JSON.parse(String(result.stdout).trim()) as AdmissionResult;
     expect(output.admitted).toHaveLength(1);
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// 5. GRAPH PROJECTION
+// ───────────────────────────────────────────────────────────────────
+
+interface FrontierGraphNodeEvent {
+  type: 'node';
+  id: string;
+  kind: string;
+  name: unknown;
+  iteration: number;
+  metadata: Record<string, unknown>;
+}
+
+interface FrontierGraphEdgeEvent {
+  type: 'edge';
+  id: string;
+  sourceId: string;
+  targetId: string;
+  relation: string;
+}
+
+type FrontierGraphEvent = FrontierGraphNodeEvent | FrontierGraphEdgeEvent;
+
+describe('frontier graph close rule', () => {
+  const BASE_NODES = [
+    { id: 'q-base', kind: 'QUESTION' },
+    { id: 'f1', kind: 'FINDING' },
+    { id: 'f2', kind: 'FINDING' },
+    { id: 's1', kind: 'SOURCE' },
+    { id: 's2', kind: 'SOURCE' },
+  ];
+
+  const BASE_EDGES = [
+    { id: 'e1', sourceId: 'f1', targetId: 'q-base', relation: 'ANSWERS' },
+    { id: 'e2', sourceId: 'f2', targetId: 'q-base', relation: 'ANSWERS' },
+    { id: 'e3', sourceId: 'f1', targetId: 's1', relation: 'CITES' },
+    { id: 'e4', sourceId: 'f2', targetId: 's2', relation: 'CITES' },
+  ];
+
+  const openRow: NodeRow = {
+    nodeId: 'F-1-001',
+    parentId: 'root',
+    depth: 1,
+    scope: 'lib',
+    question: 'A?',
+    status: 'open',
+    reason: null,
+    iteration: 1,
+  };
+
+  const prunedRow: NodeRow = {
+    nodeId: 'F-2-002',
+    parentId: 'F-1-001',
+    depth: 2,
+    scope: 'lib',
+    question: 'B?',
+    status: 'pruned',
+    reason: 'depth',
+    iteration: 1,
+  };
+
+  function withEvents(events: FrontierGraphEvent[]): { nodes: NodeRow[]; edges: NodeRow[] } {
+    const nodes: NodeRow[] = [...BASE_NODES];
+    const edges: NodeRow[] = [...BASE_EDGES];
+
+    for (const event of events) {
+      if (event.type === 'node') {
+        nodes.push({ id: event.id, kind: event.kind, metadata: JSON.stringify(event.metadata) });
+        continue;
+      }
+      edges.push({
+        id: event.id,
+        sourceId: event.sourceId,
+        targetId: event.targetId,
+        relation: event.relation,
+      });
+    }
+
+    return { nodes, edges };
+  }
+
+  function nodeEventsOf(events: FrontierGraphEvent[]): FrontierGraphNodeEvent[] {
+    return events.filter((event): event is FrontierGraphNodeEvent => event.type === 'node');
+  }
+
+  it('never writes a pruned node', () => {
+    const events = buildFrontierGraphEvents([openRow, prunedRow]);
+
+    const nodeEvents = nodeEventsOf(events);
+    expect(nodeEvents).toHaveLength(1);
+    expect(nodeEvents[0]).toMatchObject({ id: 'frontier-F-1-001', kind: 'QUESTION' });
+    expect(events.filter((event) => event.type === 'edge')).toHaveLength(0);
+  });
+
+  it('an open frontier QUESTION lowers coverage until it closes', () => {
+    const baseCoverage = computeResearchQuestionCoverageFromData(BASE_NODES, BASE_EDGES);
+    const graph = withEvents(buildFrontierGraphEvents([openRow]));
+
+    expect(computeResearchQuestionCoverageFromData(graph.nodes, graph.edges)).toBeLessThan(baseCoverage);
+  });
+
+  it('an exhausted node is re-kinded so coverage and source diversity return to the base values', () => {
+    const events = buildFrontierGraphEvents([{ ...openRow, status: 'exhausted', reason: 'stuck' }]);
+
+    const [nodeEvent] = nodeEventsOf(events);
+    expect(nodeEvent.kind).toBe('CLAIM');
+    expect(nodeEvent.metadata.verification_status).toBe('closed');
+
+    const graph = withEvents(events);
+    expect(computeResearchQuestionCoverageFromData(graph.nodes, graph.edges))
+      .toBe(computeResearchQuestionCoverageFromData(BASE_NODES, BASE_EDGES));
+    expect(computeResearchSourceDiversityFromData(graph.nodes, graph.edges))
+      .toBe(computeResearchSourceDiversityFromData(BASE_NODES, BASE_EDGES));
+  });
+
+  it('links a child to its parent with DERIVED_FROM', () => {
+    const childRow: NodeRow = {
+      nodeId: 'F-2-003',
+      parentId: 'F-1-001',
+      depth: 2,
+      scope: 'lib',
+      question: 'C?',
+      status: 'open',
+      reason: null,
+      iteration: 2,
+    };
+
+    const events = buildFrontierGraphEvents([openRow, childRow]);
+
+    expect(events).toContainEqual({
+      type: 'edge',
+      id: 'frontier-F-2-003-derived-from-F-1-001',
+      sourceId: 'frontier-F-2-003',
+      targetId: 'frontier-F-1-001',
+      relation: 'DERIVED_FROM',
+    });
+  });
+
+  it('the graph CLI writes JSONL events', () => {
+    const artifactDir = makeArtifactDir();
+    const { admitted } = admitProposals({
+      artifactDir,
+      iteration: 1,
+      proposals: [makeProposal('what does the graph projection show')],
+    });
+    expect(admitted).toHaveLength(1);
+
+    const outputPath = join(artifactDir, 'frontier-graph-events.jsonl');
+    const result = spawnSync(process.execPath, [
+      FRONTIER_ADMIT_SCRIPT,
+      'graph',
+      '--artifact-dir',
+      artifactDir,
+      '--output',
+      outputPath,
+    ], { encoding: 'utf8' });
+
+    expect(result.status).toBe(0);
+    const summary = JSON.parse(String(result.stdout).trim()) as { nodes: number; output: string };
+    expect(summary.nodes).toBe(1);
+
+    const lines = readJsonl(outputPath);
+    expect(lines).toHaveLength(1);
+    expect(lines[0].kind).toBe('QUESTION');
   });
 });
