@@ -50,7 +50,7 @@ import type { EmbedderAdapter } from '../embedders/adapter.js';
 // 1. TYPES
 // ───────────────────────────────────────────────────────────────
 
-export type SkillFamily = 'cli' | 'mcp' | 'sk-code' | 'sk-hub' | 'deep-loop' | 'sk-util' | 'system';
+export type SkillFamily = 'cli' | 'mcp' | 'sk-code' | 'sk-hub' | 'deep-loop' | 'sk-util' | 'documentation' | 'design' | 'system';
 
 export type SkillEdgeType =
   | 'depends_on'
@@ -186,6 +186,8 @@ const ALLOWED_FAMILIES: readonly SkillFamily[] = [
   'sk-hub',
   'deep-loop',
   'sk-util',
+  'documentation',
+  'design',
   'system',
 ];
 

@@ -4,7 +4,7 @@ description: "Design parent hub. Routes one design identity to the mode that own
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 3.0.2.0
 metadata:
-  family: sk-design
+  family: design
 ---
 
 <!-- Keywords: design, style reference, design.md, extract design tokens, chart, diagram, flowchart -->

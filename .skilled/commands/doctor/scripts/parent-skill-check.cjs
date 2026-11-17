@@ -82,7 +82,7 @@ const REPO_ROOT = findRepoRoot(__dirname);
 // Families the skill-graph compiler accepts for a discoverable identity.
 // Mirrors ALLOWED_FAMILIES in skill_graph_compiler.py / skill-graph-db.ts;
 // a family outside this set makes the hub undiscoverable.
-const ALLOWED_FAMILIES = ['cli', 'mcp', 'sk-code', 'sk-hub', 'deep-loop', 'sk-util', 'system'];
+const ALLOWED_FAMILIES = ['cli', 'mcp', 'sk-code', 'sk-hub', 'deep-loop', 'sk-util', 'documentation', 'design', 'system'];
 
 // The advisor reaches a mode through one of these classes; the registry
 // declares it per mode so the projection maps stay auditable. 'metadata' is the

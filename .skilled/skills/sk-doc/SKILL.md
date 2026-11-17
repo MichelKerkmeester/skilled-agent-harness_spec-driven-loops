@@ -4,7 +4,7 @@ description: "Documentation & component authoring hub: skills, agents, commands,
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 2.10.0.0
 metadata:
-  family: sk-util
+  family: documentation
 ---
 
 <!-- Keywords: sk-doc, documentation, markdown, authoring, parent-hub, mode-registry, hub-router, workflowmode, packetkind, sk-create-skill, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-frontmatter, sk-create-goal, sk-create-with-human-voice, sk-create-quality-control, human-voice-rules, hvr, shared-backbone, create-quality-control-pipeline -->

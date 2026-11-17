@@ -51,7 +51,7 @@ function identKeys(region: string): Set<string> {
 // intentionally fixed to `sk-hub`; read that authoritative sentence when
 // present instead of treating the next unrelated `]` as a delimiter.
 function pipePlaceholder(src: string, anchor: string): Set<string> {
-  const legalValues = src.match(/Legal family values are\s+(.+?)[.;]\s+parent hubs use\s+sk-hub\b/i)?.[1];
+  const legalValues = src.match(/Legal family values are\s+(.+?)[.;]\s+a parent hub keeps its domain family\b/i)?.[1];
   if (legalValues) {
     return new Set(
       legalValues
@@ -77,7 +77,7 @@ const DRIFT_GUARD = '.skilled/skills/system-skill-advisor/runtime/tests/routing-
 const ADVISOR_PY = '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py';
 const GRAPH_CAUSAL = '.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/graph-causal.ts';
 
-const CANON_FAMILY = new Set(['cli', 'mcp', 'sk-code', 'sk-hub', 'deep-loop', 'sk-util', 'system']);
+const CANON_FAMILY = new Set(['cli', 'mcp', 'sk-code', 'sk-hub', 'deep-loop', 'sk-util', 'documentation', 'design', 'system']);
 const CANON_EDGE = new Set(['depends_on', 'enhances', 'siblings', 'conflicts_with', 'prerequisite_for']);
 const CANON_ROUTING = new Set(['lexical', 'alias-fold', 'metadata', 'command-bridge']);
 const CANON_PACKETKIND = new Set(['workflow', 'surface', 'transport']);

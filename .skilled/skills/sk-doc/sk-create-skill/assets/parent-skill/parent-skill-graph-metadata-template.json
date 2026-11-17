@@ -1,5 +1,5 @@
 {
-  "_template": "Parent-skill hub graph-metadata.json scaffold. Replace every [bracketed] placeholder. This is the one advisor identity node for the hub; packet folders do not carry graph-metadata.json. The canonical live example is sk-code/graph-metadata.json. Legal family values are cli, mcp, sk-code, sk-hub, deep-loop, sk-util, and system; parent hubs use sk-hub.",
+  "_template": "Parent-skill hub graph-metadata.json scaffold. Replace every [bracketed] placeholder. This is the one advisor identity node for the hub; packet folders do not carry graph-metadata.json. The canonical live example is sk-code/graph-metadata.json. Legal family values are cli, mcp, sk-code, sk-hub, deep-loop, sk-util, documentation, design, and system; a parent hub keeps its domain family (sk-code, mcp, cli, documentation, design) and uses sk-hub only when no domain family fits.",
   "schema_version": 2,
   "skill_id": "[parent-skill-name]",
   "family": "sk-hub",

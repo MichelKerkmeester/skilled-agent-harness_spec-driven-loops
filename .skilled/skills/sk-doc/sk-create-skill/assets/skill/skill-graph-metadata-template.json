@@ -1,5 +1,5 @@
 {
-  "_template": "Standalone-skill graph-metadata.json scaffold — the advisor identity for a class-S root (init_skill.py writes an equivalent one automatically; use this when authoring or repairing by hand). Replace every [bracketed] placeholder. skill_id MUST equal the folder name; family MUST be one of the advisor's SkillFamily values (cli, mcp, sk-code, sk-hub, deep-loop, sk-util, system) — sk-util is the common standalone default. Do NOT add description.json next to this on a standalone root: the contract forbids it there, and hub roots use the parent-skill templates instead.",
+  "_template": "Standalone-skill graph-metadata.json scaffold — the advisor identity for a class-S root (init_skill.py writes an equivalent one automatically; use this when authoring or repairing by hand). Replace every [bracketed] placeholder. skill_id MUST equal the folder name; family MUST be one of the advisor's SkillFamily values (cli, mcp, sk-code, sk-hub, deep-loop, sk-util, documentation, design, system) — use the domain family when one fits, and sk-util as the standalone default. Do NOT add description.json next to this on a standalone root: the contract forbids it there, and hub roots use the parent-skill templates instead.",
   "schema_version": 2,
   "skill_id": "[skill-name]",
   "family": "sk-util",
