@@ -59,7 +59,7 @@ contextType: "general"
 - [x] T010 Rerun the link check and every consumer test (`plan.md` affected surfaces). Verify: `readme_links.py` prints `0 problems`, `check-markdown-links.cjs` prints `0 broken` and each consumer prints its pass line. Evidence: `0 problems` over 62 links, `15212 links checked, 0 broken`, `goal-doc-contract.test.cjs` `pass 5` and `PARITY PASS`.
 - [B] T011 Run the sk-doc suite (`run-script-tests.sh`). Verify: it exits 0. Blocked: `bash .skilled/skills/sk-doc/scripts/tests/run-script-tests.sh` exits 1 with `FAIL test_check_changelog_shape.py`, caused by commit `14926d78a37` in `.skilled/changelog/skilled/v4.0.2.1.md`, outside this phase. 57 other tests pass.
 - [x] T012 Record before and after numbers and close the packet docs (`implementation-summary.md`). Verify: `validate.sh --strict` on this folder prints `RESULT: PASSED`. Evidence: the before and after numbers are in `implementation-summary.md`.
-- [ ] T013 Commit, merge origin/main and push under sk-git (`git log -1`). Verify: `git rev-parse HEAD origin/main` prints the same hash twice.
+- [x] T013 Commit, merge origin/main and push under sk-git (`git log -1`). Verify: `git rev-parse HEAD origin/main` prints the same hash twice. Evidence: commit `4e3f71442ae` was pushed to origin/main, and `git merge-base --is-ancestor 4e3f71442ae origin/main` exits 0. Later commits from other sessions now sit on top of it.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -70,7 +70,7 @@ contextType: "general"
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [x] Manual verification passed: every reviewer finding is applied or rejected with a reason
-- [ ] The phase commit is on origin/main
+- [x] The phase commit is on origin/main
 <!-- /ANCHOR:completion -->
 
 ---
@@ -154,7 +154,7 @@ A blocked task is marked `[B]` with the failing command and its output beside it
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files live in the scratchpad, never in the repository
-- [ ] CHK-051 [P1] `git status --short` after the commit shows only paths this program does not own
+- [x] CHK-051 [P1] `git status --short` after the commit shows only paths this program does not own. Evidence: `git status --short` over the eight 005 folders and this packet prints nothing
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -165,7 +165,7 @@ A blocked task is marked `[B]` with the failing command and its output beside it
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 7 | 5/7 |
-| P1 Items | 9 | 8/9 |
+| P1 Items | 9 | 9/9 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-11-17

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "These folders are where a runtime picks up the repository's hooks and plugins, and their READMEs tell a maintainer which entry is a link, a re-export or a real plugin",
     "created_at": "2026-11-16T15:20:16Z",
-    "last_save_at": "2026-11-17T13:13:51.181Z",
+    "last_save_at": "2026-11-17T16:55:35.881Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a312c495bd255de1b28160b5239b9024295d44581ba3718c461c9294184b9bc",
+    "source_fingerprint": "sha256:31e8e9eaaba78f80cce3c26edc0705c578ca8897d4add4a6c1a65adcdf2906ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6ec0788a36b8c79c281b51d41e73be3bb28a85c37bf326144a9593b70c87cc92",
       "plan.md": "e9bceb05d90966bb1129f99bcb76dae8cba3f8c65c4098b4f71ca651d152d5f3",
-      "tasks.md": "87b1428641889b73ab2ac967042e751ee208e70704a024be94e6af180f8e7bda",
+      "tasks.md": "5cff63c961e3b9a02a4f2472aca92b77b8a982b8a639e67f9bff89739b63b647",
       "implementation-summary.md": "7f93e270d2e67f4fe05139f1b61076a7c061264c4fbdc283c2fee6bbd81d8970"
     },
     "last_active_at": null

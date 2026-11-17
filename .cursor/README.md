@@ -9,7 +9,7 @@ trigger_phrases:
 
 # Cursor CLI in Skilled
 
-> Cursor finds this repository's agents and commands as links into the shared trees, and it reads one routing rule that explains how Skilled expects work to flow.
+> Cursor reaches this repository's agents and guards through links into the shared trees, so a guard fix needs no copy step.
 
 ---
 
@@ -17,18 +17,18 @@ trigger_phrases:
 
 ### At a Glance
 
-| Aspect | What you get |
+| Aspect | What it gives you |
 |---|---|
-| **Use it for** | Working on this repository in the Cursor CLI with the shared agents, commands and routing guidance |
-| **Start with** | Run `cursor-agent` in this checkout, then type `/` to see the commands |
+| **Use it for** | Working on this repository in the Cursor CLI, with the shared agents and the guards that back them |
+| **Start with** | Run `cursor-agent` in this checkout, then type `/` to list the commands |
 | **Works on** | Cursor CLI sessions started from this checkout |
 | **Checked by** | `/doctor-runtime-mirrors` and the commands in section 5 |
 
-### What You Get
+### What It Gives You
 
-Cursor finds agents and commands by file convention, so this folder places a link at each path Cursor scans. Commands link into `.skilled/commands/`. Agents link to the Claude copies in `.claude/agents/`, because Cursor reads the `tools:` list that dialect uses.
+Cursor finds agents and commands by file convention. This folder places a link at each path Cursor scans, so the agent and command content stays in `.skilled/` and `.claude/` and neither is a second copy.
 
-The routing rule and the native `/goal-cursor` command are authored for Cursor alone. Devin reads the same routing rule, so one edit reaches both runtimes.
+The hooks work the same way. `hooks.json` names real adapters under `.skilled/`, and most entries carry a fallback message for an adapter that is missing. A rule change in a shared guard therefore reaches a Cursor session at once. The routing rule and the `/goal-cursor` command are authored here rather than linked, and Devin reads the same rule.
 
 ---
 
@@ -36,23 +36,20 @@ The routing rule and the native `/goal-cursor` command are authored for Cursor a
 
 | Piece | How Cursor gets it |
 |---|---|
-| Instructions | The routing rule, [`rules/skill-routing.md`](./rules/skill-routing.md). Its Gate 1 block is a pointer generated from the root `AGENTS.md` |
-| Skills | No skills folder here. Cursor has its own skill system under `~/.cursor/skills-cursor/`. A command or rule that names a Skilled skill points at its folder in `.skilled/skills/` |
-| Agents | Each shared agent in `agents/` is a link to `.claude/agents/<name>.md` |
-| Commands | Links into `.skilled/commands/`, flattened into one folder, so the `research` command in the `deep` family becomes `deep-research.md`. The native `goal-cursor.md` sits beside them |
-| Hooks and guards | `hooks.json`, rendered from the shared registry. The hooks cover the spec-folder gate, the dispatch lint, the MCP route guard, the overlay guard, the sk-git message gate and preflight advisory, and goal injection |
-| Advisor | The per-prompt advisor brief would arrive through `beforeSubmitPrompt`, but that hook does not fire under the tested CLI build. The routing rule carries static guidance in its place |
-| Goals | `goal-cursor.md`, the native goal command, and the goal injection hook |
-| MCP | `mcp.json`, which holds its own copy of the Code Mode setup. See section 6 |
-| Dispatch | [`cli-cursor`](../.skilled/skills/cli-external-orchestration/cli-cursor/README.md) hands work to Cursor from another runtime |
+| Instructions | [`rules/skill-routing.md`](./rules/skill-routing.md), marked `alwaysApply: true`. Two pointer blocks in it come from the root `AGENTS.md` |
+| Skills | No skills folder here. The rule points at the routing packets under `.skilled/skills/` for code, design, docs and specs, git, prompts, deep loops and Cursor dispatch |
+| Agents | One link per shared agent, each to `.claude/agents/<name>.md`, whose `tools:` list Cursor accepts |
+| Commands | One link per shared command into `.skilled/commands/`, flattened so `.skilled/commands/deep/research.md` becomes `deep-research.md`. [`goal-cursor.md`](./commands/goal-cursor.md) is written here |
+| Hooks and guards | [`hooks.json`](./hooks.json), rendered from the shared hook registry. The entries cover the spec-folder gate, the dispatch guard, the git message gate and preflight advisory, the MCP route guard, the env-secret guard and goal injection |
+| MCP | [`mcp.json`](./mcp.json), which registers the `code_mode` server through `.skilled/bin/mcp-code-mode-launcher.cjs` |
 
 ---
 
 ## 3. GETTING STARTED
 
-1. Open this checkout in the Cursor CLI. Cursor reads `rules/skill-routing.md` and the linked agents and commands from this folder.
-2. Type `/` to list the commands. Each keeps its family in its file name, so `deep-research.md` belongs to the `deep` family.
-3. Run `/doctor-runtime-mirrors` when you want to know whether the links and the hook file still match `.skilled/`. It reports and writes nothing.
+1. Open this checkout in the Cursor CLI. The rule file is marked `alwaysApply: true`, so it applies from the first prompt.
+2. Type `/` to list the commands. Each one keeps its family in the flat file name, so `deep-research.md` is the `research` command from the `deep` family.
+3. Run the checks in section 5 after you change a shared file.
 
 ---
 
@@ -60,16 +57,17 @@ The routing rule and the native `/goal-cursor` command are authored for Cursor a
 
 | Path | Kind | Notes |
 |---|---|---|
-| `agents/*.md` | Links | Each points at `.claude/agents/<name>.md`. A real file here would be a silent fork, and the mirror checks reject it |
-| `commands/*.md` | Links, plus one authored file | Flattened links into `.skilled/commands/`. `goal-cursor.md` is authored here |
-| `hooks.json` | Generated | Rendered from `hook-registry.json` in Cursor's camelCase dialect |
-| `hooks/` | Links | A discovery mirror of the hook scripts |
-| `rules/skill-routing.md` | Authored, with one generated block | The Gate 1 pointer block is generated from the root `AGENTS.md` |
-| `mcp.json` | Authored file, not a link | Holds the same Code Mode setup as `.claude/mcp.json`. `/doctor:mcp` checks that each file registers Code Mode, but nothing compares the two |
+| `agents/*.md` | Links | Each points at `.claude/agents/<name>.md`. A real file here would be a silent fork |
+| `commands/*.md` | Links, plus one authored file | Flattened links into `.skilled/commands/`. `goal-cursor.md` is written here |
+| `hooks/` | Links | A discovery mirror. `hooks.json` names the real adapter under `.skilled/` |
+| `hooks.json` | Generated | Rendered from `hook-registry.json` by `sync-hook-registrations.cjs`. Both sit in `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/` |
+| `rules/skill-routing.md` | Authored, with generated blocks | The Gate 1 and Gate 2 pointer blocks come from the root `AGENTS.md` |
+| `mcp.json` | Authored | Registers the `code_mode` server. It is not a link |
+| `cli.json` | Authored | A permissions deny list for dotenv reads and writes |
 | `repo-rules`, `manual-testing-playbook` | Links | The rule files and the `cli-cursor` playbook |
 | `README.md`, `SYNC.md` | Authored | The documentation |
 
-**The one rule:** never edit a linked agent or command here, because each link points at its source. Change `hook-registry.json` for hooks, then rerun `sync-hook-registrations.cjs`. For the rule's pointer block, change the Gate 1 line in `AGENTS.md`, then rerun `sync-gate1-pointers.cjs`.
+**The one rule:** never edit a link here, because each one points at its source. Change the hook registry and rerun `sync-hook-registrations.cjs` for `hooks.json`. Change the Gate 1 line in the root `AGENTS.md` and rerun `sync-gate1-pointers.cjs` for the pointer blocks. The [sync manifest](./SYNC.md) lists every surface with its source.
 
 ---
 
@@ -82,24 +80,31 @@ node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-poin
 node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs
 ```
 
-The first three print a `PASS` line. The roster check ends with `STATUS=OK`. Each exits 0. `/doctor:runtime-mirrors` runs every runtime's checks at once and writes nothing.
+- The mirror check ends with `[runtime-mirror-sync] PASS: 260 mirrors across 10 trees are in sync.`
+- The hook check prints `[hook-registration-sync] PASS: 4 registration files match the 36-hook registry; 22 Pi extensions resolve.`
+- The pointer check prints `[gate1-pointer-sync] PASS: 1 instruction files carry the root Gate 1 and Gate 2 pointers.`
+- The roster check ends with `STATUS=OK agent-roster-mirror: every runtime covers the canonical roster`
+
+Each command exits 0 and writes nothing. `/doctor-runtime-mirrors` runs the mirror and roster checks from a session. The hook-registration and pointer checks run from the shell.
 
 ---
 
 ## 6. LIMITS AND KNOWN GAPS
 
-- **`mcp.json` is a copy, not a link.** It matches `.claude/mcp.json` today. `/doctor:mcp` confirms that each file registers Code Mode, but nothing compares the two, so edit both until it becomes a link again. The `SYNC.md` manifest still lists it as a symlink, which the repository no longer matches.
-- **`beforeSubmitPrompt` does not fire.** The routing rule covers part of the gap, not the per-prompt brief.
-- **A hand edit to `hooks.json` does not last.** The next sync overwrites it.
-- **The packet list in the routing rule has no generator.** A new skill packet does not appear there on its own. Only the Gate 1 block is generated.
+- **`mcp.json` is a copy, not a link.** It matches `.claude/mcp.json` today, and the mirror check does not compare the two, so an edit to one file leaves the other stale.
+- **`beforeSubmitPrompt` does not fire.** The routing rule says the adapter is registered but dormant under the tested CLI build, so the per-prompt advisor brief never arrives. The static rule carries routing guidance in its place.
+- **A hand edit to `hooks.json` does not last.** The next `sync-hook-registrations.cjs` run rewrites it from the registry.
+- **The packet list in the routing rule has no generator.** `sync-gate1-pointers.cjs --check` covers the two pointer blocks only, so a new skill packet does not appear in the list on its own.
+- **`/goal-cursor` reads a goal and cannot set one.** Cursor's command surface carries no session identity, so every action except `packet` and `packet-log` fails with `code=UNSUPPORTED_SESSION_BINDING`.
 
 ---
 
 ## 7. RELATED
 
-- [`SYNC.md`](./SYNC.md): the surface inventory and drift checks
+- [`SYNC.md`](./SYNC.md): the surface inventory, format contract and drift checks
 - [`rules/skill-routing.md`](./rules/skill-routing.md): the routing rule Cursor and Devin share
-- [`hooks/README.md`](./hooks/README.md): why `hooks/` is a discovery mirror
+- [`hooks/README.md`](./hooks/README.md): the link index and what each entry runs
 - [`.skilled/hooks/README.md`](../.skilled/hooks/README.md): the hook cores and the coverage matrix
 - [`.devin/README.md`](../.devin/README.md): the Devin runtime, which inherits the routing rule
+- [the cli-cursor skill](../.skilled/skills/cli-external-orchestration/cli-cursor/README.md): dispatching Cursor from another runtime
 - [`README.md`](../README.md): the repository overview
