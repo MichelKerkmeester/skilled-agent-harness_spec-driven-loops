@@ -229,6 +229,58 @@ describe('deep_*_auto.yaml CLI branches route through the audited wrapper', () =
     assertReceiptsProduced(dispatchId);
   });
 
+  it('claude-code research branch: the audit record and the child both carry the configured config dir', () => {
+    const args = [
+      '-p',
+      'CLAUDE-RESEARCH-PROMPT',
+      '--model',
+      'opus',
+      // A research dispatch is read-only, so its sandbox maps to plan mode.
+      '--permission-mode',
+      'plan',
+      '--output-format',
+      'text',
+    ];
+    const dispatchId = 'research-i3-claude-code';
+
+    const dump = captureChildDump(() => {
+      runAuditedExecutorCommand({
+        command: NODE,
+        // `--` forwards the branch's own flags (-p / --model / --permission-mode) verbatim.
+        args: ['-e', RECORDER, '--', ...args],
+        cwd: dir,
+        timeoutSeconds: 10,
+        stateLogPath,
+        executor: {
+          ...makeBaseExecutor('cli-claude-code'),
+          model: 'opus',
+          configDir: '/claude/research-account',
+          sandboxMode: 'read-only',
+        },
+        iteration: 3,
+        guardContext: {
+          env: { ...cleanGuardEnv(), CLAUDE_CONFIG_DIR: '/claude/research-account' },
+          ancestryCmdlines: [],
+          statePaths: [],
+        },
+        receiptDir,
+        dispatchId,
+      });
+    });
+
+    // (a) identical dispatch behavior.
+    expect(dump.forwardedArgs).toEqual(args);
+    expect(dump.claudeConfigDir).toBe('/claude/research-account');
+
+    // (b) the audit record names the same account the child ran under, so a
+    // research dispatch is attributable to its configured config dir.
+    const intent = JSON.parse(readFileSync(join(receiptDir, `dispatch-${dispatchId}.intent.json`), 'utf8'));
+    expect(intent.facts.executor.configDir).toBe('/claude/research-account');
+    expect(intent.facts.executor.kind).toBe('cli-claude-code');
+
+    assertReceiptsProduced(dispatchId);
+  });
+
   it('opencode branch style (run subcommand + positional message, EOF stdin): argv verbatim, receipts produced', () => {
     const model = 'glm-5.2';
     // Mirrors the route-proof preamble + prompt body the YAML assembles.

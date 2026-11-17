@@ -54,10 +54,10 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/dispatch-iteration.vitest.ts tests/executor-audit-cli-branch-receipts.test.ts tests/unit/executor-branch-contract.vitest.ts` exits 0 with the new research config-dir cases.
-- [ ] The new research config-dir case in `dispatch-iteration.vitest.ts` fails against the pre-change `dispatch-iteration.cjs`.
-- [ ] `grep -n "claude-config-dir" .skilled/commands/deep/assets/deep-research.yaml` prints the `if_cli_claude_code` command line.
-- [ ] `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/research` exits 0.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/dispatch-iteration.vitest.ts tests/executor-audit-cli-branch-receipts.test.ts tests/unit/executor-branch-contract.vitest.ts` exits 0 with the new research config-dir cases.
+- [x] The new research config-dir case in `dispatch-iteration.vitest.ts` fails against the pre-change `dispatch-iteration.cjs`.
+- [x] `grep -n "claude-config-dir" .skilled/commands/deep/assets/deep-research.yaml` prints the `if_cli_claude_code` command line.
+- [x] `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/research` exits 0.
 - [ ] The `runtime/manual-testing-playbook` index lists a research config-dir scenario written by `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
 
@@ -76,6 +76,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md` written 2026-11-17; implementation not started |
+| Baseline (T001) | Done | 2026-11-17 on integration tip `c898b3ad9a3`: the three suites 3 files, 23 passed. Full suite: the integration gate on that tip (3136 passed, 9 skipped, 1 load-sensitive `fanout-pool` failure that passes alone) |
+| Implementation | Done | 2026-11-17, branch `worktrees/465-ed-002-research-claude-config-dir`: commits `510e0906284` (script and tests) and the YAML/contract commit. Three suites 27 passed + 2 skipped in-session, all 10 dispatch cases pass detached; criteria 1-4 checked. Criterion 5 (playbook) waits for @markdown in integration |
 
 ### Deviations and findings
 
@@ -83,4 +85,6 @@ and findings belong here.
 |------|------|
 | Inherited `CLAUDE_CONFIG_DIR` with no configured dir | Open question: should research strip it? Not in scope, because stripping it changes every default research run. |
 | Plan review amendments 2026-11-17 | Applied the Fable 5.2 plan review: the test homes moved from the stress, `cli-matrix` and `combo-matrix` suites, which never run `dispatch-iteration.cjs`, to `dispatch-iteration.vitest.ts` and `executor-audit-cli-branch-receipts.test.ts`; a review required-flag reference case is added first; the test command runs from `runtime/`; the research contract is regenerated; the playbook scenario goes through `/create:manual-testing-playbook`. |
+| Claude ancestry and the shim cases | The recursion guard refuses a nested cli-claude-code dispatch whenever `claude` is in the process ancestry, so the two recorder-shim cases skip under a Claude Code session (`it.skipIf(underClaudeAncestry)`) and pass in a run detached from that tree. Criterion 1's suite exits 0 either way. |
+| Missing-dir wording | `validateClaudeConfigDir` checks the location (`~/.claude*` or a repo-local `.claude*`), not existence, for both loops. The REQ-005 case therefore uses a dir outside those roots; research now refuses exactly what review refuses. |
 <!-- /ANCHOR:log -->
