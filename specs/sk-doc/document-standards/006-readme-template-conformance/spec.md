@@ -57,7 +57,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-16 |
 | **Branch** | `main` |
 | **Parent Spec** | None, this is a phase parent in the `sk-doc/document-standards` sub-track |
@@ -130,11 +130,11 @@ Per-phase file lists and their baselines live in each child's `plan.md`.
 |-------|--------|-------|--------|
 | 1 | 001-skill-readmes/ | Rewrite the 13 skill READMEs to the skill README template and write one for `sk-design` | Complete |
 | 2 | 002-mode-packet-readmes/ | Rewrite the 41 mode packet READMEs to the skill README template | Complete |
-| 3 | 003-hook-folder-readmes/ | Rewrite the 26 hook folder READMEs around the runtime coverage table | Pending |
-| 4 | 004-hook-runtime-readmes/ | Rewrite the 47 runtime adapter READMEs to the runtime folder scaffold | Pending |
-| 5 | 005-runtime-plugin-readmes/ | Rewrite the 8 plugin, extension and hook mirror READMEs | Pending |
-| 6 | 006-runtime-folder-readmes/ | Rewrite 7 runtime folder READMEs and 8 SYNC docs, and write `.vibe/README.md` | Pending |
-| 7 | 007-hook-code-folder-readmes/ | Rewrite the 31 hook code folder READMEs and the hooks library README to the code-folder template | Pending |
+| 3 | 003-hook-folder-readmes/ | Rewrite the 26 hook folder READMEs around the runtime coverage table | Complete |
+| 4 | 004-hook-runtime-readmes/ | Rewrite the 47 runtime adapter READMEs to the runtime folder scaffold | Complete |
+| 5 | 005-runtime-plugin-readmes/ | Rewrite the 8 plugin, extension and hook mirror READMEs | Complete |
+| 6 | 006-runtime-folder-readmes/ | Rewrite 7 runtime folder READMEs and 8 SYNC docs, and write `.vibe/README.md` | Complete |
+| 7 | 007-hook-code-folder-readmes/ | Rewrite the 31 hook code folder READMEs and the hooks library README to the code-folder template | Complete |
 
 ### Phase Transition Rules
 

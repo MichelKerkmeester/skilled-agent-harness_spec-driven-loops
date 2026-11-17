@@ -44,7 +44,7 @@
       "packet"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -55,6 +55,7 @@
       ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-folder-template.md",
       ".skilled/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
       ".skilled/skills/sk-design/README.md",
+      ".vibe/README.md",
       ".skilled/hooks/README.md",
       ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
@@ -140,12 +141,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -170,6 +165,12 @@
         "source": "derived"
       },
       {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Human Voice Rules",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -183,6 +184,12 @@
       },
       {
         "name": "Flash Max",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -204,17 +211,11 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Operator Decisions",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The root README and its five root guides now read in a plain human voice, and the `sk-create-readme` templates were rewritten to match",
     "created_at": "2026-11-16T15:20:12Z",
-    "last_save_at": "2026-11-17T17:07:56.519Z",
+    "last_save_at": "2026-11-17T21:58:09.813Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,10 +223,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:8344c25a96b5d10883bb92f868a49a15820cdf0904b0aa34b79972b768e727fa",
+    "source_fingerprint": "sha256:14673464b99d1ce70201654d4e66bbab8ba3be977dbb23113051676f7be3caf5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "78a6332a59eb50a00126081512d8b1c4e735917f21afba1efb1766f87ba01045",
+      "spec.md": "05de99d0dd040ba8c936db6d6e87d71a356d651b8a642226c5c4b025043a9825",
       "decision-record.md": "3f3fc09fbcd3e7fd7b992b3f59e3c3641fe7f3c4946f426daf16458611d6a62c"
     },
     "last_active_child_id": "sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes",
