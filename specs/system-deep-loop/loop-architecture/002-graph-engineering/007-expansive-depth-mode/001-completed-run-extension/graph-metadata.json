@@ -38,7 +38,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,12 +48,18 @@
       "decision-record.md",
       "implementation-summary.md",
       ".skilled/agents/deep-research.md",
+      "scratch/run-resumed-sites.txt",
+      "scratch/baseline.txt",
+      "scratch/confirm-branch-trace.md",
       ".skilled/commands/deep/assets/deep-research.yaml",
       ".skilled/commands/deep/assets/deep-review.yaml",
       ".skilled/commands/deep/research.md",
       ".skilled/commands/deep/review.md",
       ".skilled/agents/deep-review.md",
-      "tests/deep-review-auto-restart-contract.vitest.ts"
+      "codex/sync-agents.cjs",
+      "pi/sync-agents-pi.cjs",
+      "dsh/sync-agents-dsh.cjs",
+      "vibe/sync-agents-vibe.cjs"
     ],
     "entities": [
       {
@@ -105,6 +111,24 @@
         "source": "derived"
       },
       {
+        "name": "run-resumed-sites.txt",
+        "kind": "file",
+        "path": "scratch/run-resumed-sites.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "confirm-branch-trace.md",
+        "kind": "doc",
+        "path": "scratch/confirm-branch-trace.md",
+        "source": "derived"
+      },
+      {
         "name": "deep-research.yaml",
         "kind": "config",
         "path": ".skilled/commands/deep/assets/deep-research.yaml",
@@ -129,9 +153,27 @@
         "source": "derived"
       },
       {
-        "name": "deep-review-auto-restart-contract.vitest.ts",
-        "kind": "test",
-        "path": "tests/deep-review-auto-restart-contract.vitest.ts",
+        "name": "sync-agents.cjs",
+        "kind": "file",
+        "path": "codex/sync-agents.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-pi.cjs",
+        "kind": "file",
+        "path": "pi/sync-agents-pi.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-dsh.cjs",
+        "kind": "file",
+        "path": "dsh/sync-agents-dsh.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-vibe.cjs",
+        "kind": "file",
+        "path": "vibe/sync-agents-vibe.cjs",
         "source": "derived"
       },
       {
@@ -147,6 +189,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -157,53 +205,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Known Context",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose An",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Event",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A completed deep-research run halts on `oncompletedsession`, and a completed deep-review run re-synthesizes but adds no iterations (defect D11)",
     "created_at": "2026-11-17T14:35:15Z",
-    "last_save_at": "2026-11-17T18:12:34.335Z",
+    "last_save_at": "2026-11-17T19:25:34.589Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:35d00d62cc75da7864b3065ecd31f0c6bdf3c23129b8bb835d683904752b7eb1",
+    "source_fingerprint": "sha256:6ccd9443b553a2d0b57fcce49d16a3eb1c22338ced89cfa8a4a22164130b26fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8357d308c194013292fedfb30f721a05cff0e8611bd85d2e856837207456bb1d",
+      "spec.md": "25b601c11e318cc1d6aa07de681c2e2e8909df248171032abbf9d40976f07c7d",
       "plan.md": "8ee43e36580eb91d7626a7cb6437ffa38e77f2979c2f47de8677bf6db858b7bf",
-      "tasks.md": "c0c778026bb47ca19e3d192ad7de13fb1389983716da411c9b6bd0f58efd8316",
+      "tasks.md": "8b21b22a2f48e15220cf45737e008ee994461b0b71b89181b93f6e4bee192471",
       "decision-record.md": "fa05ab8fc24c58bddf8f0347f5026530d43bbb17d332790d3f6239c8919f9567",
-      "implementation-summary.md": "89e0a0a96fda5aac9d05ddc996b989f3193e559f83acdf1f4e1556802d149ec5"
+      "implementation-summary.md": "074a7ee5c941ec5856506a485240ffa46884c1dd9e3c009fecf3796b9a81fe4b"
     },
     "last_active_at": null
   }

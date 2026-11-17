@@ -10,7 +10,7 @@ trigger_phrases:
   - "ruled out research directions"
 importance_tier: normal
 contextType: planning
-version: 1.14.0.19
+version: 1.14.1.0
 ---
 
 # Deep Research Strategy - Session Tracking Template
@@ -176,7 +176,8 @@ Do not inline full source bodies. Do not dispatch the retired standalone context
 - Per-iteration budget: [from config.maxToolCallsPerIteration] tool calls, [from config.maxMinutesPerIteration] minutes
 - Progressive synthesis: true (default)
 - research/research.md ownership: workflow-owned canonical synthesis output
-- Lifecycle branches: `resume`, `restart` (live); `fork`, `completed-continue` (deferred, not runtime-wired)
+- Lifecycle branches: `resume`, `restart`, `completed-continue` through `--extend=N` (live)
+- Deferred lifecycle branch: `fork` (not runtime-wired)
 - Machine-owned sections: reducer controls Sections 3, 6, 7-11A, including Section 10A pivot lineage
 - Question injection surface: `{spec_folder}/research/inbox.jsonl`
 - Question conflict owner: reducer registry; `question_conflict` events surface inbox/registry disagreements for operator decision

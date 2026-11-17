@@ -103,6 +103,7 @@ export const DEEP_REVIEW_EVENT_ROUTING = Object.freeze({
   'deep_review.run_initialized': Object.freeze(['reviewLoop', 'status']),
   'deep_review.run_resumed': Object.freeze(['status']),
   'deep_review.run_restarted': Object.freeze(['status']),
+  'deep_review.run_extended': Object.freeze(['reviewLoop', 'status']),
   'deep_review.scope_resolved': Object.freeze(['reviewLoop', 'status']),
   'deep_review.dimension_ordered': Object.freeze(['reviewLoop', 'status']),
   'deep_review.protocol_plan_recorded': Object.freeze(['reviewLoop', 'status']),
@@ -494,6 +495,15 @@ function foldRun(
     || event.payload.stem === 'deep_review.run_restarted') {
     return { ...state.run, generation: event.payload.scope.generation };
   }
+  if (event.payload.stem === 'deep_review.run_extended') {
+    const payload = payloadFor(event, 'deep_review.run_extended');
+    // The extension raises the run's iteration ceiling; the projection follows it.
+    return {
+      ...state.run,
+      generation: event.payload.scope.generation,
+      maxIterations: payload.data.extension.newMaxIterations,
+    };
+  }
   return state.run;
 }
 
@@ -708,6 +718,7 @@ function foldReviewLoopEvent(
     case 'deep_review.run_initialized':
     case 'deep_review.run_resumed':
     case 'deep_review.run_restarted':
+    case 'deep_review.run_extended':
     case 'deep_review.pause_recorded':
     case 'deep_review.recovery_started':
     case 'deep_review.synthesis_started':
@@ -1416,6 +1427,7 @@ function artifactFromEvent(
     case 'deep_review.run_initialized':
     case 'deep_review.run_resumed':
     case 'deep_review.run_restarted':
+    case 'deep_review.run_extended':
     case 'deep_review.scope_resolved':
     case 'deep_review.dimension_ordered':
     case 'deep_review.protocol_plan_recorded':
@@ -1614,6 +1626,7 @@ function transitionForEvent(
       return { ...base, state: 'planned' };
     case 'deep_review.run_resumed':
     case 'deep_review.run_restarted':
+    case 'deep_review.run_extended':
     case 'deep_review.scope_resolved':
     case 'deep_review.dimension_ordered':
     case 'deep_review.protocol_plan_recorded':

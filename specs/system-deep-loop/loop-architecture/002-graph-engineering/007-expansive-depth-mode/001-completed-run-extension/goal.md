@@ -59,7 +59,7 @@ Frozen choices. Changing one is an amendment.
 
 - [ ] `rg -c '\| Unmet \|' acceptance-criteria.md` in this folder prints nothing, so each of its 19 rows is `Met`, `Waived` or `Superseded`.
 - [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run` prints no failure that is absent from `scratch/baseline.txt`, and `check-ledger-stem-producers.cjs`, `check-projection-coverage.cjs` and `check-contract-drift.cjs` all exit 0.
-- [ ] `/doctor:runtime-mirrors` reports no drift for the `deep-research` and `deep-review` agents.
+- [x] `/doctor:runtime-mirrors` reports no drift for the `deep-research` and `deep-review` agents.
 - [ ] Each of `deep-research/manual-testing-playbook` and `deep-review/manual-testing-playbook` lists an `--extend=N` scenario written by `/create:manual-testing-playbook`.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` on this folder with `--strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
@@ -79,7 +79,9 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` written from `../research/research.md` §19 and §20 |
-| Implementation | Pending | Not started |
+| Implementation | Done on the phase branch | 2026-11-17, worktree 456: commits `32d56a21455`, `2c80c64f391`, `dc00a20a8dd`, `ac4151f027f` and a closing commit. Phase suites pass (ledger-schema 76, typed reducers 144, state reducers 51, legacy seam 6, restart lifecycle 34, heartbeat 5, YAML/doc readers 442, system-spec-kit 18), typecheck exit 0, the three guard scripts exit 0 |
+| Mirrors | Done | Every checker `/doctor:runtime-mirrors` lists exits 0 after the generators and the hand-maintained `.claude/agents` twins were updated |
+| Open | Waiting on integration | AC-004 and AC-019 (T028 playbooks, `@markdown` only), AC-010 (T031 catalog line, `@markdown` only), whole-suite run (T027) |
 | Session save | Done | operator decisions written to decision-record.md |
 
 ### Deviations and findings
@@ -87,6 +89,8 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Stem-producer table disagreement | The producer table marks `deep_research.run_resumed` as having no writer, while `on_resume` appends a `resumed` row that the upcast maps to that stem (verification log V3). Check it when T005 edits the table. |
+| Catalog line (T031) | 2026-11-17: `/create:feature-catalog` stops at a Phase 0 `@markdown` self-check (`create-feature-catalog-presentation.txt:10`) and the task forbids a hand edit. The parent log defers playbooks and changelogs to the integration worktree for the same reason, but not the catalog, so this deferral needs an operator yes. |
+| In-step value check | 2026-11-17: the extension step now refuses a non-positive-integer `--extend` or `--extend-minutes` after the lock, beside the prose preflight check, so the refusal is tested (CHK-023, CHK-031). |
 | Open questions | Decided 2026-11-17: the operator accepted all four recommended defaults in `spec.md` §10, recorded as ADR-001 to ADR-004 in `decision-record.md` (T003 done). CHK-004 still waits on the T004 `:confirm` trace. |
 | Plan review amendments 2026-11-17 | Applied the Fable 5.2 plan review: presentation bindings, the five legacy-name lifecycle sites and the projected `extended` row, fan-out rejection (D6 added), wider deferred-wording sweep including the runtime mirrors, compiled-contract regeneration, mirror sync, test homes and command forms, and playbook scenarios through `/create:manual-testing-playbook`. Acceptance criteria grew from 13 to 19 rows. |
 <!-- /ANCHOR:log -->

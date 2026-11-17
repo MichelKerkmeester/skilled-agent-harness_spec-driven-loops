@@ -2242,7 +2242,7 @@ function buildLineageState(config, eventRecords) {
     ? config.lineage
     : {};
   const latestLifecycleEvent = eventRecords
-    .filter((record) => record.event === 'resumed' || record.event === 'restarted')
+    .filter((record) => record.event === 'resumed' || record.event === 'restarted' || record.event === 'extended')
     .at(-1);
   const eventContinuedFromRun = latestLifecycleEvent
     ? latestLifecycleEvent.continuedFromRun ?? latestLifecycleEvent.fromIteration
@@ -2291,7 +2291,7 @@ function buildTerminalStopState(records) {
   const latestSynthesisIndex = records.lastIndexOf(latestSynthesisComplete);
   const latestIterationIndex = Math.max(
     records.findLastIndex((record) => record?.type === 'iteration'),
-    records.findLastIndex((record) => record?.type === 'event' && (record?.event === 'resumed' || record?.event === 'restarted')),
+    records.findLastIndex((record) => record?.type === 'event' && (record?.event === 'resumed' || record?.event === 'restarted' || record?.event === 'extended')),
   );
   if (latestSynthesisIndex < latestIterationIndex) {
     return null;

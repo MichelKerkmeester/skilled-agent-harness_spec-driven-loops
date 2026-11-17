@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.6.0
+version: 1.11.7.0
 ---
 
 # deep-review
@@ -138,7 +138,8 @@ The packet lives under `{spec_folder}/review/`. A root-spec target writes there 
 | `review-report.md` | The nine-section report, written at synthesis |
 | `iterations/iteration-NNN.md` | One write-once file per iteration |
 
-The lineage block carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun` and `releaseReadinessState`. A first run is mode `new`. `resume` continues the same lineage without changing generation. `restart` opens a new generation and archives the prior packet. `fork` and `completed-continue` are reserved and deferred, so the runtime neither emits nor accepts them. `releaseReadinessState` starts at `in-progress`. It moves to `release-blocking` while any unresolved P0 remains. It moves to `converged` when the run stops converged with a PASS or CONDITIONAL verdict.
+The lineage block carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun` and `releaseReadinessState`. A first run is mode `new`. `resume` continues the same lineage without changing generation. `restart` opens a new generation and archives the prior packet. `completed-continue` is set by `--extend=N`, which reopens a completed run in the same session and generation and records `continuedFromRun`.
+`fork` is reserved and deferred, so the runtime neither emits nor accepts it. `releaseReadinessState` starts at `in-progress`. It moves to `release-blocking` while any unresolved P0 remains. It moves to `converged` when the run stops converged with a PASS or CONDITIONAL verdict.
 
 ### Convergence and the Stop Gates
 

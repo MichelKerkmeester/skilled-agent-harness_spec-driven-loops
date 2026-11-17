@@ -3411,3 +3411,31 @@ describe('deep-review reducers and projections', () => {
   });
 
 });
+
+describe('run_extended', () => {
+  it('raises the projected iteration ceiling and keeps the run live', () => {
+    const extended = event(
+      'deep_review.run_extended',
+      2,
+      { runId: 'run-1', sessionId: 'session-1', generation: 1 },
+      {
+        priorTailDigest: digest('extension-tail'),
+        continuedFromRun: 4,
+        extension: {
+          addedIterations: 3,
+          priorMaxIterations: 4,
+          newMaxIterations: 7,
+          priorMaxDurationMinutes: 120,
+          newMaxDurationMinutes: 420,
+          elapsedMinutesAtExtension: 300,
+        },
+      },
+    );
+    const result = foldDeepReviewEvents([runInitialized(), extended]);
+
+    expect(result.outcome).toBe('projected');
+    if (result.outcome !== 'projected') return;
+    expect(result.projection.run.maxIterations).toBe(7);
+    expect(result.projection.status.terminal).toBe(false);
+  });
+});

@@ -108,17 +108,14 @@ describe('deep-review reducer and schema contract', () => {
       expect(content, `${docPath} workflow should carry release readiness through synthesis`).toContain(
         'releaseReadinessState',
       );
-      // Retraction (042 closing audit, Lane 3 + Lane 5)
-      // the `completed-continue` lifecycle branch is now deferred, so the
-      // report-guidance passage no longer promises snapshot-and-reopen as a
-      // live runtime behavior. The assertion mirrors the retracted prose and
-      // still pins the "machine-owned markers" contract that the reducer
-      // depends on for idempotent re-runs.
+      // The report-guidance passage pins the "machine-owned markers" contract
+      // the reducer depends on for idempotent re-runs, and names the snapshot an
+      // extension keeps before it re-synthesizes over the prior report.
       expect(content, `${docPath} workflow should preserve machine-owned report markers`).toContain(
         'Preserve machine-owned markers so the reducer-owned registry, dashboard, and strategy anchors can be refreshed on re-run without mutating prior synthesis.',
       );
-      expect(content, `${docPath} workflow should document completed-continue as deferred`).toContain(
-        '`completed-continue` lineage branch is deferred',
+      expect(content, `${docPath} workflow should name the extension snapshot`).toContain(
+        'extension keeps the prior',
       );
     }
   });

@@ -39,6 +39,13 @@ const { reduceReviewState } = nodeRequire('../../scripts/reduce-state.cjs') as {
         line?: number | null;
         lastSeen?: number;
       }[];
+      terminalStop: {
+        stopReason: string | null;
+        totalIterations: number | null;
+        timestamp: string | null;
+      } | null;
+      continuedFromRun: number | null;
+      lineageMode: string;
     };
     dashboard: string;
   };
@@ -568,5 +575,24 @@ describe('reduceReviewState — re-verified findings at shifted lines', () => {
 
     // The reused id with a different title is a different finding, so both survive.
     expect(rows.filter((finding) => finding.findingId === 'R1-P1-002')).toHaveLength(2);
+  });
+});
+
+describe('reduceReviewState: an extension reopens a completed run', () => {
+  it('keeps continuedFromRun and reports no terminal stop when an extended row follows synthesis_complete', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 5, reviewTarget: 'extension-proof', lineageMode: 'completed-continue', continuedFromRun: 2, status: 'initialized' }));
+    const rows = [
+      { type: 'iteration', iteration: 1, run: 1, status: 'complete', focus: 'correctness', newFindingsRatio: 0.5, findingsSummary: { P0: 0, P1: 0, P2: 0 } },
+      { type: 'iteration', iteration: 2, run: 2, status: 'complete', focus: 'security', newFindingsRatio: 0.2, findingsSummary: { P0: 0, P1: 0, P2: 0 } },
+      { type: 'event', event: 'synthesis_complete', stopReason: 'converged', totalIterations: 2, timestamp: '2026-11-17T00:00:00Z' },
+      { type: 'event', event: 'extended', sessionId: 's-1', generation: 1, lineageMode: 'completed-continue', continuedFromRun: 2, timestamp: '2026-11-17T01:00:00Z' },
+    ];
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${rows.map((row) => JSON.stringify(row)).join('\n')}\n`);
+    writeFileSync(join(reviewDir, 'deep-review-strategy.md'), '# Deep Review Strategy\n\nNo machine sections here at all.\n');
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    expect(result.registry.terminalStop).toBeNull();
+    expect(result.registry.continuedFromRun).toBe(2);
+    expect(result.registry.lineageMode).toBe('completed-continue');
   });
 });

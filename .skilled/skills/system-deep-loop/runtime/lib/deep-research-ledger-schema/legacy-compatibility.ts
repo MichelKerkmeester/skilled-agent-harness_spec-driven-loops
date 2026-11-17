@@ -32,6 +32,7 @@ const LEGACY_UPCASTER_FINGERPRINT = sha256Bytes(canonicalBytes(
 const LEGACY_EVENT_STEMS = Object.freeze({
   resumed: 'deep_research.run_resumed',
   restarted: 'deep_research.run_restarted',
+  extended: 'deep_research.run_extended',
   blocked_stop: 'deep_research.convergence_blocked',
   question_registered: 'deep_research.question_registered',
   spec_check_result: 'deep_research.spec_check_result',
@@ -618,6 +619,26 @@ export function upcastLegacyDeepResearchRecord(
         recoveryReceiptRef: `legacy-jsonl:${recordDigest}`,
       };
       break;
+    case 'deep_research.run_extended': {
+      const budget = input.extension;
+      const budgetFields = [
+        'addedIterations', 'priorMaxIterations', 'newMaxIterations',
+        'priorMaxDurationMinutes', 'newMaxDurationMinutes', 'elapsedMinutesAtExtension',
+      ] as const;
+      // A budget with a missing or non-integer field cannot be replayed, so the
+      // row is refused rather than extended with a guessed ceiling.
+      if (!isObject(budget) || !budgetFields.every((field) => Number.isSafeInteger(budget[field]) && (budget[field] as number) >= 0)) {
+        return refusedUpcast(compatibility, 'run-extended-budget-missing');
+      }
+      data = {
+        priorTailDigest: context.prevEventHash,
+        sessionId: stringValue(input.sessionId, context.scope.runId),
+        generation: positiveInteger(input.generation, 1),
+        continuedFromRun: positiveInteger(input.continuedFromRun, 0),
+        extension: Object.fromEntries(budgetFields.map((field) => [field, budget[field] as number])) as JsonObject,
+      };
+      break;
+    }
     case 'deep_research.iteration_started':
       if (iteration === null) return refusedUpcast(compatibility, 'iteration-scope-missing');
       // The opening row names only its iteration and the executor that runs it,

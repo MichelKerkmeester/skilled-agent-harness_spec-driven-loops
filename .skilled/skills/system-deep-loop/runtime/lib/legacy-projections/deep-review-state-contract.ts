@@ -158,6 +158,19 @@ export function createDeepReviewStateProjectionContract(
           reason: typeof data.restartReason === 'string' ? data.restartReason : 'restarted',
           timestamp: occurredAt,
         };
+      } else if (stem === 'deep_review.run_extended') {
+        row = {
+          type: 'event',
+          event: 'extended',
+          sessionId: typeof scope.runId === 'string' ? scope.runId : '',
+          generation: typeof scope.generation === 'number' ? scope.generation : 1,
+          lineageMode: 'completed-continue',
+          continuedFromRun: typeof data.continuedFromRun === 'number' ? data.continuedFromRun : 0,
+          extension: (data.extension && typeof data.extension === 'object')
+            ? (data.extension as JsonObject)
+            : {},
+          timestamp: occurredAt,
+        };
       } else if (stem === 'deep_review.dimension_pass_completed') {
         if (!EMIT_ITERATION_ROWS) {
           return { rows: state.rows };

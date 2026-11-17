@@ -123,7 +123,9 @@ Runtime-supported lifecycle modes:
 | `resume` | Continue the active lineage and append a typed `resumed` JSONL event |
 | `restart` | Archive the existing research tree, mint a fresh `sessionId`, increment `generation`, and append a typed `restarted` event |
 
-Deferred modes `fork` and `completed-continue` are reserved but not runtime-supported.
+`completed-continue` is set by `--extend=N`: it reopens a completed run in the same session and generation, raises the iteration cap to the runs so far plus N, and appends a typed `run_extended` event.
+
+The deferred mode `fork` is reserved but not runtime-supported.
 
 ### Code-Graph Readiness TrustState Surface
 

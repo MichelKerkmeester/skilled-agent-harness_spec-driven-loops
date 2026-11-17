@@ -10,7 +10,7 @@ trigger_phrases:
   - "research synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.14.9.0
+version: 1.14.10.0
 ---
 
 # Loop Protocol Reference
@@ -118,13 +118,32 @@ If state files already exist from a prior session:
 
 ### Lifecycle Branch Contract (current release)
 
-The runtime supports three lineage modes today. `fork` and `completed-continue` were described in earlier drafts but have no workflow wiring in this release, so they MUST NOT be exposed to operators. If the long-form lineage feature is picked up later it will arrive with first-class event emission, reducer ancestry handling, and replay fixtures; until then treat the contract below as canonical.
+The runtime supports four lineage modes. `completed-continue` is live through `--extend=N`, which reopens a completed run in the same session and generation.
+`fork` is deferred: it has no workflow wiring, so it MUST NOT be exposed to operators. If the long-form lineage feature is picked up later it will arrive with first-class event emission, reducer ancestry handling, and replay fixtures. Until then treat the contract below as canonical.
 
 | Mode | Session id | Generation | Archive | JSONL event | When to pick |
 |------|-----------|-----------|---------|-------------|--------------|
 | `new` | fresh | 1 | n/a | implicit (config record) | no existing state |
 | `resume` | same | same | none | `resumed` (see example above) | operator wants to continue the current lineage boundary |
 | `restart` | fresh | `prior + 1` | prior `research/` tree moved under `research_archive/{timestamp}/` | `restarted` (same field set plus `archivedPath`) | operator wants to clear the workspace and replay with a new angle |
+| `completed-continue` | same | same | none; the prior synthesis is copied to `research/synthesis-v{generation}-r{continuedFromRun}.md` | `extended` (see below) | a completed run needs N more iterations: pass `--extend=N` |
+
+#### Completed-run extension
+
+`--extend=N` (and optionally `--extend-minutes=M`) continues a run whose config has `status: "complete"`. Under the loop lock and before session classification, `step_extend_completed_run`:
+
+1. Counts `continuedFromRun` as the distinct runs among the iteration records, error and timeout rows included.
+2. Sets `maxIterations` to `continuedFromRun + N`, so a run stopped at 7 of 10 and extended by 3 ends at 10.
+3. Sets `maxDurationMinutes` to `max(prior budget, minutes elapsed since createdAt) + M`. `M` defaults to the prior budget, and a run with no duration budget keeps none unless `--extend-minutes` is passed. `createdAt` is never re-stamped, because the duration check counts wall-clock time, idle time included.
+4. Appends `deep_research.run_extended` through the append gateway, which projects an `extended` row into the state log, and only then replaces the config with `status: "initialized"`, `lineageMode: "completed-continue"` and `continuedFromRun`. A failed append leaves the run complete and untouched.
+
+Classification then lands on resume. The workflow writes no `resumed` row for an extension, and the reducers treat an `extended` row like `resumed`, so the run is live again. Before the first new dispatch, `step_snapshot_extended_synthesis` copies the prior synthesis to `research/synthesis-v{generation}-r{continuedFromRun}.md` and refuses to overwrite an existing snapshot, so a second extension of the same generation keeps its own copy. `--extend` refuses a run that is not complete (use `--lineage-mode=resume`), refuses fan-out before any lineage spawns, and accepts positive integers only.
+
+The extended row carries `{"type":"event","event":"extended","sessionId","generation","lineageMode":"completed-continue","continuedFromRun","extension","timestamp"}`, where `extension` holds `addedIterations`, `priorMaxIterations`, `newMaxIterations`, `priorMaxDurationMinutes`, `newMaxDurationMinutes` and `elapsedMinutesAtExtension`. It has no `archivedPath` or `parentSessionId`, so the field rule below covers `resumed` and `restarted` only.
+
+**Convergence window.** Under `stopPolicy: convergence`, an extension with nothing new to cover re-stops on `all_questions_answered` at the first convergence check. The extension step prints a warning when this is likely; to keep the run going, pass `--convergence-mode=off`, use `stopPolicy: max-iterations`, or add questions to `research/inbox.jsonl`.
+
+**Consecutive failures.** A run that completed on consecutive failures re-stops at the consecutive-failure check even under `--convergence-mode=off`, because that check runs before the `off` branch and the trailing failed iterations are still in the log.
 
 **Contract for every persisted lifecycle event**:
 
@@ -143,7 +162,7 @@ The runtime supports three lineage modes today. `fork` and `completed-continue` 
 }
 ```
 
-Every field in the contract MUST be present on every persisted lifecycle event. `archivedPath` is null for `resumed` and set to the archive destination for `restarted`. `continuedFromRun` is the number of completed iteration records before the lifecycle boundary. Reducer parity tests ensure the dashboard `Lifecycle` section reads exactly those fields.
+Every field in the contract MUST be present on every persisted `resumed` and `restarted` event. `archivedPath` is null for `resumed` and set to the archive destination for `restarted`. `continuedFromRun` is the number of completed iteration records before the lifecycle boundary. Reducer parity tests ensure the dashboard `Lifecycle` section reads exactly those fields.
 
 ---
 
@@ -559,7 +578,7 @@ Compile all iteration findings into final research/research.md. The synthesis wo
      - This section documents negative knowledge (what was tried and why it failed)
      - Treat as primary research output - not an appendix or afterthought
      - Place after Section 11 (Recommendations) and before Section 12 (Open Questions)
-4. **If reopening a completed packet later**: snapshot this file as `research/synthesis-v{generation}.md` before any `completed-continue` flow
+4. **Extension snapshot**: an extension keeps the prior synthesis. Before its first dispatch, `step_snapshot_extended_synthesis` copies this file to `research/synthesis-v{generation}-r{continuedFromRun}.md` and never overwrites an existing snapshot
 5. **Update config status**: Set `status: "complete"` in config.json
 6. **Final JSONL entry**: `{"type":"event","event":"synthesis_complete","totalIterations":N,"answeredCount":A,"totalQuestions":Q,"stopReason":"converged"}`
 

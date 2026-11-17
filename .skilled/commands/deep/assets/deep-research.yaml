@@ -65,7 +65,9 @@ mode_overrides:
 user_inputs:
   research_topic: "[RESEARCH_TOPIC] - Topic to investigate deeply. REQUIRED."
   spec_folder: "[SPEC_FOLDER] - Spec folder path. REQUIRED."
-  lineage_mode: "[auto|resume|restart] - Session lifecycle intent. Default: auto. `resume` keeps the same sessionId and archives nothing. `restart` opens a new sessionId at generation+1 and archives the prior research/ packet."
+  lineage_mode: "[auto|resume|restart|completed-continue] - Session lifecycle intent. Default: auto. `resume` keeps the same sessionId and archives nothing. `restart` opens a new sessionId at generation+1 and archives the prior research/ packet. `completed-continue` comes from --extend=N and extends a completed run in place by N iterations, same sessionId and generation."
+  extend: "[EXTEND] - Positive integer N from --extend=N. Sets lineage_mode to completed-continue and adds N iterations to a completed run. Default: unset."
+  extend_minutes: "[EXTEND_MINUTES] - Positive integer M from --extend-minutes=M, the minutes added to the duration budget on an extension. Only valid with --extend. Default: unset, which adds the prior maxDurationMinutes."
   max_iterations: "[MAX_ITERATIONS] - Maximum loop iterations. Default: 10."
   convergence_threshold: "[CONVERGENCE_THRESHOLD] - Stop threshold. Default: 0.05."
   convergence_mode: "[default|off|sliding-window|divergent] - Convergence policy modifier. Default: default."
@@ -324,6 +326,18 @@ workflow:
       - lineage_mode: "restart"
     on_fail: "Halt with STATUS=FAIL; do not continue as resume or auto."
 
+  step_reject_extend_with_fanout:
+    description: "Refuse --extend on a fan-out config before any lineage spawns"
+    skip_when: "lineage_mode != 'completed-continue' or config.fanout is absent"
+    instructions: |
+      A fan-out run jumps from step_fanout_spawn to phase_synthesis and never
+      reaches the lock, the pre-classify extension step or the classifier, so an
+      extension there would change nothing and report no error. Refuse the
+      combination here, before step_fanout_spawn, so no lineage spawns.
+    halt: true
+    status: "FAIL"
+    message: "Usage error (extend-with-fanout): --extend extends a single-executor research run only. This config has fanout executors, so nothing was spawned and the run is unchanged."
+
   step_fanout_spawn:
     description: "Spawn fan-out lineages; skip and proceed to phase_init normally when single-executor"
     skip_when: "config.fanout is absent"
@@ -371,6 +385,7 @@ workflow:
           - spec_folder_is_within: "specs/ or .opencode/specs/ (canonicalize alias roots before validation)"
           - unresolved_placeholders: "FAIL if any user-facing template references placeholders not produced by earlier steps"
           - tool_contract: "FAIL if executable steps reference tools outside the command allowlist"
+          - extend_values: "When extend is bound it must be a positive integer (digits only, no sign, at least 1), and extend_minutes when bound likewise. extend_minutes without extend, or extend with a lineage_mode other than auto or completed-continue, is a usage error. Each fails here, before step_acquire_lock, with a usage error that names the flag."
         on_fail: "Halt with STATUS=FAIL and report the missing binding or unsupported contract reference"
 
       step_create_directories:
@@ -424,6 +439,131 @@ workflow:
           action: "Release the lock as the final step of any workflow exit path (success or failure)"
           command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}; idempotent, safe to invoke when already released"
 
+      step_extend_completed_run:
+        action: "Extend a completed run in place, under the lock and before classification, so the classifier sees a resumable run"
+        skip_when: "lineage_mode != 'completed-continue'"
+        dry_run_boundary: "state-mutation"
+        note: |
+          --extend=N continues a finished run in the same session and generation. The
+          duration clock counts wall-clock time since createdAt, idle time included, so the
+          new budget starts from whichever is later, the old budget or the time already
+          spent, and createdAt is never re-stamped. The event is appended before the
+          config is replaced, so a failed append leaves the run complete and untouched.
+        command: |
+          GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+          [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+          WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deep-research-extend.XXXXXX")"
+          node -e '
+            const fs = require("fs"), crypto = require("crypto"), path = require("path");
+            const [configPath, stateLogPath, inboxPath, extendRaw, extendMinutesRaw, workDir] = process.argv.slice(1);
+            const fail = (message) => { console.error(message); process.exit(2); };
+            const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+            // The preflight check refuses these first; this keeps a bad value from reaching the config.
+            if (!/^[1-9][0-9]*$/.test(String(extendRaw))) {
+              fail("--extend needs a positive integer, and got " + JSON.stringify(String(extendRaw)) + ".");
+            }
+            const minutesRaw = String(extendMinutesRaw);
+            if (minutesRaw !== "" && !minutesRaw.startsWith("{") && !/^[1-9][0-9]*$/.test(minutesRaw)) {
+              fail("--extend-minutes needs a positive integer, and got " + JSON.stringify(minutesRaw) + ".");
+            }
+            if (config.status !== "complete") {
+              fail("--extend needs a completed run, and this run has status " + config.status + ". Use --lineage-mode=resume to continue an unfinished run.");
+            }
+            const stateBytes = fs.readFileSync(stateLogPath);
+            const rows = stateBytes.toString("utf8").split("\n").filter(Boolean).flatMap((line) => {
+              try { return [JSON.parse(line)]; } catch { return []; }
+            });
+            // One run per iteration number, error and timeout rows included.
+            const continuedFromRun = new Set(rows
+              .filter((row) => row && row.type === "iteration")
+              .map((row) => row.run ?? row.iteration)).size;
+            const addedIterations = Number(extendRaw);
+            const priorMaxIterations = Number(config.maxIterations) || 0;
+            const priorMaxDurationMinutes = Number(config.maxDurationMinutes) || 0;
+            const createdMs = Date.parse(config.createdAt);
+            const elapsedMinutesAtExtension = Number.isFinite(createdMs)
+              ? Math.max(0, Math.floor((Date.now() - createdMs) / 60000))
+              : 0;
+            // An unset flag renders as an empty or unexpanded value, never as digits.
+            const hasMinutes = /^[1-9][0-9]*$/.test(String(extendMinutesRaw));
+            const addedMinutes = hasMinutes ? Number(extendMinutesRaw) : priorMaxDurationMinutes;
+            // A run with no duration budget keeps none unless --extend-minutes asks for one.
+            const newMaxDurationMinutes = priorMaxDurationMinutes > 0 || hasMinutes
+              ? Math.max(priorMaxDurationMinutes, elapsedMinutesAtExtension) + addedMinutes
+              : priorMaxDurationMinutes;
+            const newMaxIterations = continuedFromRun + addedIterations;
+            const lineage = config.lineage || {};
+            const sessionId = lineage.sessionId;
+            const lineageId = lineage.parentSessionId || sessionId;
+            const generation = Number(lineage.generation) || 1;
+            const event = {
+              stem: "deep_research.run_extended",
+              scope: { runId: sessionId, lineageId },
+              data: {
+                priorTailDigest: crypto.createHash("sha256").update(stateBytes).digest("hex"),
+                sessionId,
+                generation,
+                continuedFromRun,
+                extension: {
+                  addedIterations,
+                  priorMaxIterations,
+                  newMaxIterations,
+                  priorMaxDurationMinutes,
+                  newMaxDurationMinutes,
+                  elapsedMinutesAtExtension,
+                },
+              },
+            };
+            const next = {
+              ...config,
+              status: "initialized",
+              maxIterations: newMaxIterations,
+              maxDurationMinutes: newMaxDurationMinutes,
+              lineage: { ...lineage, lineageMode: "completed-continue", continuedFromRun },
+            };
+            fs.writeFileSync(path.join(workDir, "event.json"), JSON.stringify(event));
+            fs.writeFileSync(path.join(workDir, "config.json"), JSON.stringify(next, null, 2) + "\n");
+            let pendingInbox = 0;
+            try {
+              pendingInbox = fs.readFileSync(inboxPath, "utf8").split("\n").filter((line) => line.trim() !== "").length;
+            } catch (error) {
+              if (error.code !== "ENOENT") throw error;
+            }
+            const stopPolicy = config.antiConvergence && config.antiConvergence.stopPolicy || "convergence";
+            const warning = stopPolicy === "convergence" && pendingInbox === 0
+              ? "This run stops on convergence and has no pending inbox question, so it may re-stop on all_questions_answered right away. Pass --convergence-mode=off, use stopPolicy max-iterations, or add questions to research/inbox.jsonl to keep it running."
+              : null;
+            console.log(JSON.stringify({ continuedFromRun, newMaxIterations, newMaxDurationMinutes, warning }));
+          ' "{state_paths.config}" "{state_paths.state_log}" "{state_paths.packet_dir}/inbox.jsonl" "{extend}" "{extend_minutes}" "$WORK_DIR" > "$WORK_DIR/result.json" || { rm -rf "$WORK_DIR"; exit 2; }
+          node "$GATEWAY" --mode research --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$WORK_DIR/event.json" || { rm -rf "$WORK_DIR"; exit 1; }
+          mv "$WORK_DIR/config.json" "{state_paths.config}" || { rm -rf "$WORK_DIR"; exit 1; }
+          cat "$WORK_DIR/result.json"
+          rm -rf "$WORK_DIR"
+        outputs:
+          - continued_from_run: "continuedFromRun from the JSON output"
+          - max_iterations: "newMaxIterations from the JSON output; it replaces the command default so the loop cap and the convergence script read the same ceiling"
+          - extension_pending: "true"
+          - extension_warning: "warning from the JSON output, null when none"
+        on_warning: "When extension_warning is not null, print it and continue. It never refuses the extension."
+        on_fail: "Exit 2 is a usage error, such as a run that is not complete: halt with that message through step_release_lock and leave the config untouched. Any other failure halts with STATUS=FAIL through step_release_lock."
+
+      step_snapshot_extended_synthesis:
+        action: "Keep the prior synthesis before the extension's first dispatch, so re-synthesis cannot overwrite it"
+        skip_when: "extension_pending != true"
+        dry_run_boundary: "state-mutation"
+        command: |
+          GENERATION="$(node -p 'const c = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8")); Number((c.lineage || c).generation) || 1' "{state_paths.config}")" || exit 1
+          SNAPSHOT="{state_paths.packet_dir}/synthesis-v${GENERATION}-r{continued_from_run}.md"
+          if [ -e "$SNAPSHOT" ]; then
+            echo "The synthesis snapshot $SNAPSHOT is already there." >&2
+            exit 1
+          fi
+          if [ -f "{state_paths.research_output}" ]; then
+            cp "{state_paths.research_output}" "$SNAPSHOT"
+          fi
+        note: "Keyed by generation and continuedFromRun, so a second extension of the same generation writes its own snapshot."
+        on_fail: "Halt with STATUS=FAIL through step_release_lock. Never overwrite an existing snapshot."
+
       step_classify_session:
         action: "Classify the session before writing files"
         inspect:
@@ -435,6 +575,7 @@ workflow:
           resume: "Config, JSONL, and strategy all exist and agree on topic/spec folder; missing wait-checkpoint fields are read as nextRunAt:null and remainingDelayMs:null"
           completed-session: "Resume artifacts exist and config.status == 'complete'"
           invalid-state: "Any partial, missing, or contradictory combination"
+        extension_rule: "When extension_pending == true, step_extend_completed_run has just set status initialized and appended run_extended, so a synthesis_complete row followed by an extended row is consistent: classify as resume, never as invalid-state or completed-session."
         outputs:
           - session_state: "fresh | resume | completed-session | invalid-state"
         on_resume:
@@ -444,6 +585,7 @@ workflow:
           gate3_rationale: "resume produces iteration-NNN.md writes and JSONL state-log appends"
           log: "Auto-resume: state artifacts are complete and consistent. Continue the same lineage (sessionId unchanged, generation unchanged, no archive)."
           append_jsonl: '{"type":"event","event":"resumed","mode":"research","sessionId":"{session_id}","parentSessionId":"{session_id}","lineageMode":"resume","continuedFromRun":{iteration_count},"generation":{generation},"archivedPath":null,"timestamp":"{ISO_8601_NOW}"}'
+          extension_override: "When extension_pending == true, skip this append_jsonl: step_extend_completed_run already recorded the lifecycle action as run_extended, so the ledger carries one event per action. Keep lineage_mode completed-continue and skip_to phase_loop."
           skip_to: phase_loop
           confirm_choice:
             applies_to: confirm
@@ -459,6 +601,7 @@ workflow:
                 parent_session_id: "{session_id}"
               append_jsonl: '{"type":"event","event":"resumed","mode":"research","sessionId":"{session_id}","parentSessionId":"{session_id}","lineageMode":"resume","continuedFromRun":{iteration_count},"archivedPath":null,"timestamp":"{ISO_8601_NOW}","generation":{generation}}'
               skip_to: gate_init_approval
+              extension_override: "When extension_pending == true, do not set lineage_mode to resume and do not append the resumed row, because run_extended already records this extension. Keep lineage_mode completed-continue and skip_to gate_init_approval."
             on_restart_choice:
               dry_run_boundary: "state-mutation"
               bind_prior_lineage:
@@ -511,7 +654,8 @@ workflow:
               message: "Research session preserved. Manually archive or edit research/ before re-running."
         on_restart:
           action: "Nothing is archived here. step_apply_lifecycle_request archived the packet before the lock was taken, so a restart run reaches this step as fresh and continues as on_fresh."
-        note_deferred_branches: "fork and completed-continue are deferred and no longer runtime-supported in this release. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are live. See deep-research/references/protocol/loop-protocol.md §Lifecycle Branch Contract for the one-session contract."
+        note_deferred_branches: "fork is deferred and not runtime-supported in this release."
+        note_live_branches: "completed-continue is live through --extend=N: step_extend_completed_run reopens a completed run before classification, so it lands here as resume. The live modes are new, resume, restart and completed-continue. See deep-research/references/protocol/loop-protocol.md §Lifecycle Branch Contract for the one-session contract."
         on_completed_session:
           log: "Prior session already completed. Do not route directly to synthesis; archive the completed research/ tree or start a fresh packet instead."
           halt: true
@@ -1820,7 +1964,7 @@ workflow:
             5. If `resource_map_present` is true, cite `{spec_folder}/resource-map.md` in References; otherwise omit any placeholder map citation
             6. After the mandatory `## Eliminated Alternatives` section and before Section 12 Open Questions, add `## Divergence Map` with saturated directions, pivots taken, evidence and Council artifact references, pivot failures and audited overrides, and the remaining frontier from `{state_paths.registry}`.
           Divergence Map documents breadth. Never claim the topic converged merely because divergent mode broadened the investigated frontier.
-          Preserve machine-owned markers so the reducer-owned registry, dashboard, and strategy anchors can be refreshed on re-run without mutating prior synthesis. (Note: `completed-continue` lineage branch is deferred — see `deep-research/references/protocol/loop-protocol.md §Lifecycle Branch Contract`.)
+          Preserve machine-owned markers so the reducer-owned registry, dashboard, and strategy anchors can be refreshed on re-run without mutating prior synthesis. (Note: a `completed-continue` extension keeps the prior synthesis as `synthesis-v{generation}-r{continuedFromRun}.md` before re-synthesis. See `deep-research/references/protocol/loop-protocol.md §Lifecycle Branch Contract`.)
         output: "{state_paths.research_output}"
 
       step_convergence_report:

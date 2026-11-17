@@ -112,18 +112,18 @@ function readWorkspaceFile(relativePath: string): string {
       );
     }
 
-    // Retraction (042 closing audit, F010/F011/F012): the runtime
-    // only persists lineage events for `resume` and `restart`. `fork` and
-    // `completed-continue` are deferred with an explicit note. The parity
-    // test mirrors the shipped contract by asserting the live branches exist
-    // and the retraction note is present, rather than pinning the legacy
+    // Only `fork` stays deferred, with an explicit note. The completed-run
+    // extension is live: a step before classification reopens the run, so the
+    // classifier lands on resume and no separate branch is needed. The parity
+    // test asserts the live branches and both notes rather than pinning a
     // four-option list.
     const workflowContent = readWorkspaceFile(commandAssets[0]);
     expect(workflowContent).toContain('on_restart:');
     expect(workflowContent).toContain('note_deferred_branches:');
     expect(workflowContent).not.toContain('on_fork:');
     expect(workflowContent).toContain('options: [resume, restart, cancel]');
-    expect(workflowContent).toContain('fork and completed-continue are deferred');
+    expect(workflowContent).toContain('note_deferred_branches: "fork is deferred');
+    expect(workflowContent).toContain('note_live_branches: "completed-continue is live through --extend=N');
   });
 
   it('never eagerly creates the archive root at init and archives lazily on restart (121/006)', () => {

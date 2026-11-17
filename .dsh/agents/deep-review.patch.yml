@@ -367,7 +367,8 @@
       
       ### Lifecycle + Reducer Contract
       
-      - The workflow owns the lifecycle branches (`new`, `resume`, `restart`, with `fork` and `completed-continue` deferred) and writes their events. This leaf copies `sessionId`, `generation` and `lineageMode` from config into its record.
+      - The workflow owns the lifecycle branches (`new`, `resume`, `restart`, and `completed-continue` after `--extend=N` reopens a completed run) and writes their events.
+      - `fork` is deferred and never appears in `lineageMode`. This leaf copies `sessionId`, `generation` and `lineageMode` from config into its record.
       - Canonical event contract: `deep-review/references/protocol/loop-protocol.md §Lifecycle Branches (current release)` in the system-deep-loop skill (in this repository: `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md`).
       
       Required read-only lineage metadata: `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`.

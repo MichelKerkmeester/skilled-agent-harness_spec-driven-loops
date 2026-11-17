@@ -79,6 +79,7 @@ type DataFieldKind =
   | 'code-array'
   | 'counts'
   | 'digest'
+  | 'extension-budget'
   | 'finite-number'
   | 'identifier'
   | 'identifier-array'
@@ -275,6 +276,13 @@ const DATA_FIELD_RULES = Object.freeze({
     generation: 'uint32',
     compatibilityDecision: COMPATIBILITY_DECISION_RULE,
     recoveryReceiptRef: 'reference',
+  },
+  'deep_research.run_extended': {
+    priorTailDigest: 'digest',
+    sessionId: 'identifier',
+    generation: 'uint32',
+    continuedFromRun: 'uint32',
+    extension: 'extension-budget',
   },
   'deep_research.question_registered': {
     normalizedQuestionDigest: 'digest',
@@ -740,6 +748,7 @@ const SCOPE_FIELDS = Object.freeze({
   'deep_research.run_initialized': ['runId', 'lineageId'],
   'deep_research.run_resumed': ['runId', 'lineageId'],
   'deep_research.run_restarted': ['runId', 'lineageId'],
+  'deep_research.run_extended': ['runId', 'lineageId'],
   'deep_research.question_registered': ['runId', 'lineageId', 'questionId'],
   'deep_research.branch_planned': ['runId', 'lineageId', 'questionId', 'branchId'],
   'deep_research.branch_selected': ['runId', 'lineageId', 'questionId', 'branchId'],
@@ -1001,6 +1010,19 @@ function isFieldValue(rule: DataFieldRule, value: unknown): boolean {
         && Object.values(value).every(isUint32);
     case 'digest':
       return typeof value === 'string' && HASH_PATTERN.test(value);
+    case 'extension-budget':
+      // Every field bounds a run's ceiling, so a missing or malformed one would
+      // let a recording extend a run past what this runtime allows.
+      return isObject(value)
+        && hasExactFields(value, [
+          'addedIterations',
+          'priorMaxIterations',
+          'newMaxIterations',
+          'priorMaxDurationMinutes',
+          'newMaxDurationMinutes',
+          'elapsedMinutesAtExtension',
+        ])
+        && Object.values(value).every(isUint32);
     case 'finite-number':
       return typeof value === 'number' && Number.isFinite(value);
     case 'identifier':

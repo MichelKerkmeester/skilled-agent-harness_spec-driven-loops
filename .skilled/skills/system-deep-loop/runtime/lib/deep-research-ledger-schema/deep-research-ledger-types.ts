@@ -149,6 +149,25 @@ export interface RunRestartedData extends JsonObject {
   readonly recoveryReceiptRef: string;
 }
 
+// The budget an extension grants, carried as one row so replay can compare the
+// ceiling the run was extended from against the ceiling it now runs under.
+export interface RunExtensionBudget extends JsonObject {
+  readonly addedIterations: Uint32;
+  readonly priorMaxIterations: Uint32;
+  readonly newMaxIterations: Uint32;
+  readonly priorMaxDurationMinutes: Uint32;
+  readonly newMaxDurationMinutes: Uint32;
+  readonly elapsedMinutesAtExtension: Uint32;
+}
+
+export interface RunExtendedData extends JsonObject {
+  readonly priorTailDigest: Digest;
+  readonly sessionId: LineageId;
+  readonly generation: Uint32;
+  readonly continuedFromRun: Uint32;
+  readonly extension: RunExtensionBudget;
+}
+
 export interface QuestionRegisteredData extends JsonObject {
   readonly normalizedQuestionDigest: Digest;
   readonly dependencyQuestionIds: string[];
@@ -687,6 +706,7 @@ export const DeepResearchEventStems = Object.freeze([
   'deep_research.run_initialized',
   'deep_research.run_resumed',
   'deep_research.run_restarted',
+  'deep_research.run_extended',
   'deep_research.question_registered',
   'deep_research.branch_planned',
   'deep_research.branch_selected',
@@ -759,6 +779,7 @@ export const DEEP_RESEARCH_STEM_PRODUCERS = Object.freeze({
   'deep_research.run_initialized': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research.yaml'] },
   'deep_research.run_resumed': { status: 'reserved', reason: 'No writer emits it today: resume rebuilds the flat config and state in place. The resume step would speak it once a resumed run records its compatibility decision as an event.' },
   'deep_research.run_restarted': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research.yaml'] },
+  'deep_research.run_extended': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research.yaml'] },
   'deep_research.question_registered': { status: 'reserved', reason: 'No writer emits it today: questions are flat rows in the state log. A question step would speak it once registration appends its dependency and source-class contract.' },
   'deep_research.branch_planned': { status: 'reserved', reason: 'No writer emits it today: branch plans live in strategy prose. A branch step would speak it once a planned branch and its budget are appended.' },
   'deep_research.branch_selected': { status: 'reserved', reason: 'No writer emits it today: selection is a strategy update. A branch step would speak it once the selected branch and its rationale are appended.' },
@@ -820,6 +841,7 @@ export const DeepResearchWireEventTypes = Object.freeze({
   'deep_research.run_initialized': 'deep-research.ledger.run-initialized',
   'deep_research.run_resumed': 'deep-research.ledger.run-resumed',
   'deep_research.run_restarted': 'deep-research.ledger.run-restarted',
+  'deep_research.run_extended': 'deep-research.ledger.run-extended',
   'deep_research.question_registered': 'deep-research.ledger.question-registered',
   'deep_research.branch_planned': 'deep-research.ledger.branch-planned',
   'deep_research.branch_selected': 'deep-research.ledger.branch-selected',
@@ -884,6 +906,7 @@ export interface DeepResearchPayloadMap {
   readonly 'deep_research.run_initialized': RunInitializedData;
   readonly 'deep_research.run_resumed': RunResumedData;
   readonly 'deep_research.run_restarted': RunRestartedData;
+  readonly 'deep_research.run_extended': RunExtendedData;
   readonly 'deep_research.question_registered': QuestionRegisteredData;
   readonly 'deep_research.branch_planned': BranchDecisionData;
   readonly 'deep_research.branch_selected': BranchDecisionData;
@@ -945,6 +968,7 @@ export interface DeepResearchScopeMap {
   readonly 'deep_research.run_initialized': DeepResearchBaseScope;
   readonly 'deep_research.run_resumed': DeepResearchBaseScope;
   readonly 'deep_research.run_restarted': DeepResearchBaseScope;
+  readonly 'deep_research.run_extended': DeepResearchBaseScope;
   readonly 'deep_research.question_registered': DeepResearchQuestionScope;
   readonly 'deep_research.branch_planned': DeepResearchBranchScope;
   readonly 'deep_research.branch_selected': DeepResearchBranchScope;

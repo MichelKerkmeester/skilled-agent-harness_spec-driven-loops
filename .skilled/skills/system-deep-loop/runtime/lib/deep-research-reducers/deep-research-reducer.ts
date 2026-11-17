@@ -105,6 +105,7 @@ export const DEEP_RESEARCH_EVENT_ROUTING = Object.freeze({
   'deep_research.run_initialized': Object.freeze(['run', 'status']),
   'deep_research.run_resumed': Object.freeze(['run', 'status']),
   'deep_research.run_restarted': Object.freeze(['run', 'status']),
+  'deep_research.run_extended': Object.freeze(['run', 'status']),
   'deep_research.question_registered': Object.freeze(['researchPlan', 'status']),
   'deep_research.branch_planned': Object.freeze(['researchPlan', 'status']),
   'deep_research.branch_selected': Object.freeze(['researchPlan', 'status']),
@@ -505,6 +506,15 @@ function foldRun(
     case 'deep_research.run_restarted': {
       const payload = payloadFor(event, 'deep_research.run_restarted');
       return { ...run, generation: Math.max(run.generation, payload.data.generation) };
+    }
+    case 'deep_research.run_extended': {
+      const payload = payloadFor(event, 'deep_research.run_extended');
+      // The extension raises the run's iteration ceiling; the projection follows it.
+      return {
+        ...run,
+        generation: Math.max(run.generation, payload.data.generation),
+        maxIterations: payload.data.extension.newMaxIterations,
+      };
     }
     default:
       return run;
@@ -1337,6 +1347,7 @@ function artifactFromEvent(
     case 'deep_research.run_initialized':
     case 'deep_research.run_resumed':
     case 'deep_research.run_restarted':
+    case 'deep_research.run_extended':
     case 'deep_research.question_registered':
     case 'deep_research.branch_planned':
     case 'deep_research.branch_selected':
@@ -1431,6 +1442,7 @@ function statusTransitionForEvent(
       return { ...base, state: 'planned' };
     case 'deep_research.run_resumed':
     case 'deep_research.run_restarted':
+    case 'deep_research.run_extended':
     case 'deep_research.branch_selected':
     case 'deep_research.iteration_started':
       return { ...base, state: 'active' };
@@ -1898,6 +1910,7 @@ function applyEvent(
     case 'deep_research.run_initialized':
     case 'deep_research.run_resumed':
     case 'deep_research.run_restarted':
+    case 'deep_research.run_extended':
     case 'deep_research.synthesis_started':
     case 'deep_research.synthesis_committed':
     case 'deep_research.run_now_requested':

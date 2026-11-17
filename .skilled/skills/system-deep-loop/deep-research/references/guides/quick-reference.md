@@ -10,7 +10,7 @@ trigger_phrases:
   - "research progress visualization"
 importance_tier: normal
 contextType: general
-version: 1.14.3.0
+version: 1.14.4.0
 ---
 
 # Deep Research Quick Reference
@@ -102,7 +102,8 @@ Operator contract source of truth for this page:
 | Iterations | `research/iterations/iteration-NNN.md` | Markdown | Per-iteration findings |
 | Output | `research/research.md` | Markdown | Workflow-owned progressive synthesis output |
 
-> **Live lifecycle branches:** `resume`, `restart`. (`fork` and `completed-continue` are deferred and not runtime-wired.) `progressiveSynthesis` defaults to `true`, so `research/research.md` is updated during the loop and finalized at synthesis.
+> **Live lifecycle branches:** `resume`, `restart`, and `completed-continue` through `--extend=N`.
+> `fork` is deferred and not runtime-wired. `progressiveSynthesis` defaults to `true`, so `research/research.md` is updated during the loop and finalized at synthesis.
 
 > **Path contract:** root-spec runs write directly to `{spec_folder}/research/`; child-phase and sub-phase first runs use the local `{spec_folder}/research/` directory directly, with `{ownerSlug}-pt-NN` allocated only when prior non-matching content already exists.
 

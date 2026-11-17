@@ -31,11 +31,11 @@
     "allowedModes": [
       "new",
       "resume",
-      "restart"
+      "restart",
+      "completed-continue"
     ],
     "deferredModes": [
-      "fork",
-      "completed-continue"
+      "fork"
     ],
     "generation": 1,
     "continuedFromRun": null

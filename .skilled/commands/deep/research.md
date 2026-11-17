@@ -1,6 +1,6 @@
 ---
 description: "Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm."
-argument-hint: "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--dry-run] [--restart]"
+argument-hint: "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--dry-run] [--restart] [--extend=N]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch
 ---
 
@@ -106,7 +106,9 @@ into `config`.
 | `--no-resource-map` | no value | Suppresses the `research/resource-map.md` write; `research.md` still emits. |
 | `--dry-run` | no value | See Dry-Run Flag below. |
 | `--restart` | no value | Shorthand that selects `restart`: opens a new `sessionId` at generation+1 and archives the prior `research/`. |
-| `--lineage-mode` | `auto` \| `resume` \| `restart` | Session lifecycle intent, default `auto`. `resume` keeps the same `sessionId` and archives nothing. `restart` opens a new `sessionId` at generation+1 and archives the prior `research/`. `fork` and `completed-continue` are deferred and rejected. |
+| `--lineage-mode` | `auto` \| `resume` \| `restart` | Session lifecycle intent, default `auto`. `resume` keeps the same `sessionId` and archives nothing. `restart` opens a new `sessionId` at generation+1 and archives the prior `research/`. `fork` is not accepted. |
+| `--extend` | positive integer, as `--extend=N` | Extends a completed run in place by `N` iterations, lineage mode `completed-continue`. The run keeps its `sessionId` and generation, records one `run_extended` ledger event and keeps the prior synthesis as `research/synthesis-v{generation}-r{continuedFromRun}.md`. The run must be complete, so use `--lineage-mode=resume` for an unfinished one. Refused with fan-out. Under `stopPolicy: convergence` an extension with nothing new can re-stop on `all_questions_answered` at once: pass `--convergence-mode=off`, use `stopPolicy: max-iterations` or add questions to `research/inbox.jsonl`. |
+| `--extend-minutes` | positive integer, as `--extend-minutes=M` | Minutes added to the duration budget on an extension, default the prior `maxDurationMinutes`. The new budget is `max(prior, elapsed) + M`, because the clock counts idle time since `createdAt`, so an extension started after the old budget still runs. Valid only with `--extend`. |
 | `--executor` | `TYPE` | Selects the executor kind, and is repeatable. Each occurrence opens a group accepting `--model=X`, `--config-dir=PATH`, `--reasoning-effort=LEVEL`, `--service-tier=TIER`, `--executor-timeout=SECONDS`, `--iters=N`, `--count=N` and `--label=X`. Which of those a given kind supports, and the fail-fast on an unsupported pairing, are in the presentation asset. |
 | `--executors` | `JSON` | Declares the executor matrix in one value; one expanded lineage selects `config.executor`, while two or more select `config.fanout`. |
 | `--concurrency` | `N` | Caps concurrent lineages in the fan-out pool. Default `2`. |
