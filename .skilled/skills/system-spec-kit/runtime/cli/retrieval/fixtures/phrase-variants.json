@@ -1,5 +1,5 @@
 {
-  "manifestHash": "385f3ca6abf5c00c521304914f62c1a10ffa4dd97d01f659d9f57f88dbf138cd",
+  "manifestHash": "b57e1aab891416d85f570f19a9612aeeba30de2893655449a371532b10f58ed2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14371,6 +14371,9 @@
     "bare worktree dist warning": [
       "bare worktree dist warning"
     ],
+    "barter cannot apply state": [
+      "barter cannot-apply state"
+    ],
     "barter frontend proposals for skilled": [
       "barter frontend proposals for skilled"
     ],
@@ -16602,6 +16605,9 @@
     ],
     "candidate verification": [
       "candidate verification"
+    ],
+    "cannot apply overlay state": [
+      "cannot-apply overlay state"
     ],
     "cannot find module spec kit shared": [
       "cannot find module spec-kit shared"
@@ -52023,6 +52029,27 @@
     "fix rerank sidecar reaper": [
       "fix rerank sidecar reaper"
     ],
+    "fix review findings in json entry set restore": [
+      "fix review findings in json entry set restore"
+    ],
+    "fix review findings in json entry set restore decision record": [
+      "fix review findings in json entry set restore decision record"
+    ],
+    "fix review findings in json entry set restore goal": [
+      "fix review findings in json entry set restore goal"
+    ],
+    "fix review findings in json entry set restore implementation summary": [
+      "fix review findings in json entry set restore implementation summary"
+    ],
+    "fix review findings in json entry set restore plan": [
+      "fix review findings in json entry set restore plan"
+    ],
+    "fix review findings in json entry set restore tasks": [
+      "fix review findings in json entry set restore tasks"
+    ],
+    "fix review findings in json entry set restore timeline": [
+      "fix review findings in json entry set restore timeline"
+    ],
     "fix script filesystem scope": [
       "fix script filesystem scope"
     ],
@@ -58158,6 +58185,9 @@
     "handover to barter repin limits": [
       "handover to barter repin limits"
     ],
+    "handover to barter set restore review fixes": [
+      "handover to barter set restore review fixes"
+    ],
     "handover to barter stale capture after scan": [
       "handover to barter stale capture after scan"
     ],
@@ -63319,6 +63349,9 @@
     ],
     "json conversation placeholder block": [
       "json conversation placeholder block"
+    ],
+    "json entry restore item identity check": [
+      "json entry restore item identity check"
     ],
     "json first save workflow": [
       "json-first save workflow"
@@ -82844,6 +82877,9 @@
     ],
     "phase 13 dsh live contract pin": [
       "phase 13 dsh live contract pin"
+    ],
+    "phase 13 fix review findings in json entry": [
+      "phase 13 fix review findings in json entry"
     ],
     "phase 13 killer test spawn race": [
       "phase 13 killer test spawn race"

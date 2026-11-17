@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6874,
-    "ok": 19453,
+    "ok": 19461,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27954,
+  "documentsScanned": 27962,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "385f3ca6abf5c00c521304914f62c1a10ffa4dd97d01f659d9f57f88dbf138cd",
+  "manifestHash": "b57e1aab891416d85f570f19a9612aeeba30de2893655449a371532b10f58ed2",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44632,
+      "ok": 44644,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -61222,6 +61222,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/scratch",
       "reason": "excluded directory"
     },
     {
