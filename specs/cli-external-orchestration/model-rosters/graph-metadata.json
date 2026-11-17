@@ -9,7 +9,8 @@
     "cli-external-orchestration/model-rosters/003-gpt-6-luna-sol-cutover",
     "cli-external-orchestration/model-rosters/004-claude-5-5-roster-and-effort-levels",
     "cli-external-orchestration/model-rosters/005-gpt-6-1-terra-roster",
-    "cli-external-orchestration/model-rosters/006-remove-llmgateway-luna-route"
+    "cli-external-orchestration/model-rosters/006-remove-llmgateway-luna-route",
+    "cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster"
   ],
   "manual": {
     "depends_on": [],
