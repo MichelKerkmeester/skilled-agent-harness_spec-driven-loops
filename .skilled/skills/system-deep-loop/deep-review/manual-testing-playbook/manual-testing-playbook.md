@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.11.5.0
+version: 1.13.0.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 62 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (43 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (7 scenarios under DRV-058..063 and DRV-075), and §17 covers fan-out dispatch (5 scenarios under DRV-064..067 and DRV-071). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 69 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (50 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (7 scenarios under DRV-058..063 and DRV-075), and §17 covers fan-out dispatch (6 scenarios under DRV-064..067, DRV-071 and DRV-082). DRV-076 to DRV-082 cover the opt-in expansive depth flag for review. Default runs differ from the pre-change baseline only by the expansive-only agent paragraph, which is waived pending operator ratification. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -126,7 +126,7 @@ Keep global verdict logic in this root playbook. Put feature-specific acceptance
 
 ## 7. ENTRY POINTS AND MODES
 
-This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DRV-001 | Auto mode deep-review kickoff
 
@@ -180,11 +180,24 @@ Expected signals: One `run_extended` event projected as one `extended` row, the 
 #### Test Execution
 > **Feature File:** [DRV-070](../manual-testing-playbook/entry-points-and-modes/extend-completed-review-run.md)
 
+### DRV-076 | Expansive depth flag and default byte identity
+
+#### Description
+Verify that `--depth-mode` defaults to `default`, that a review run without the flag matches the pre-change baseline on every compared artifact and that only the expansive-only agent paragraph differs on CLI lineage prompts.
+
+#### Scenario Contract
+Prompt: `Check that --depth-mode defaults to default and that a review run without the flag matches the pre-change baseline byte for byte, except for the expansive-only agent paragraph. Name any byte that differs. Return a PASS or FAIL verdict with the reason.`
+
+Expected signals: The flag row and the config both name `default`, and the golden suite passes 14 of 14 cases over seven artifacts, with the expansive-only persona paragraph as the only text the comparison strips.
+
+#### Test Execution
+> **Feature File:** [DRV-076](../manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md)
+
 ---
 
 ## 8. INITIALIZATION AND STATE SETUP
 
-This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 6 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DRV-004 | Fresh review initialization creates canonical state files
 
@@ -251,11 +264,24 @@ Expected signals: The setup rule accepts and normalizes the custom name, the red
 #### Test Execution
 > **Feature File:** [DRV-074](../manual-testing-playbook/initialization-and-state-setup/custom-dimension-setup-and-universe.md)
 
+### DRV-077 | Expansive seed writes depth-one nodes before iteration one
+
+#### Description
+Verify that an expansive review run writes its depth-one sub-target nodes before iteration one, through the seed step on a plain run and before fan-out spawns on a fan-out run, and that the seed writes no inbox.
+
+#### Scenario Contract
+Prompt: `Check that an expansive deep-review run writes its depth-one sub-target nodes before iteration one, on a plain run and on a fan-out run, and that the seed creates no inbox file. Return a PASS or FAIL verdict with the reason.`
+
+Expected signals: The seed case admits two open depth-one rows with no inbox file, the two placement cases pass, and the workflow carries both seed steps.
+
+#### Test Execution
+> **Feature File:** [DRV-077](../manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md)
+
 ---
 
 ## 9. ITERATION EXECUTION AND STATE DISCIPLINE
 
-This category covers 9 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 11 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DRV-008 | Review iteration reads state before review
 
@@ -374,11 +400,37 @@ Expected signals: The review reducer case for the first uncovered dimension pass
 #### Test Execution
 > **Feature File:** [DRV-073](../manual-testing-playbook/iteration-execution-and-state-discipline/review-next-focus-first-uncovered-dimension.md)
 
+### DRV-078 | Frontier admission prunes each proposal with its reason
+
+#### Description
+Verify that each failing admission check prunes a review proposal with that check's own reason, and that a seed candidate arriving with a prune reason is settled as pruned under that reason.
+
+#### Scenario Contract
+Prompt: `Check that each failing deep-review admission check prunes its proposal with that check's own reason, and that a seed candidate with a prune reason is recorded as pruned with that reason. Return a PASS or FAIL verdict with the reason.`
+
+Expected signals: The seven per-check prune cases pass, the seed settlement case records one `merge-no-own-diff` row, and the workflow names `merge-no-own-diff` and `generated-artifact` as seed prune reasons. No case names `generated-artifact` itself.
+
+#### Test Execution
+> **Feature File:** [DRV-078](../manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md)
+
+### DRV-079 | Frontier focus and per-node dimension coverage
+
+#### Description
+Verify that an open review node is answered only after every configured dimension is covered for it, that the active node's next uncovered dimension steers the iteration and that the dashboard reports the frontier metrics.
+
+#### Scenario Contract
+Prompt: `Check that an open deep-review frontier node with two of four dimensions covered stays open, that the next uncovered dimension of the active node steers the next iteration, and that the dashboard reports the frontier metrics. Return a PASS or FAIL verdict with the reason.`
+
+Expected signals: The node stays open at two of four covered and answers at four, Next Focus names the active node with the pivot and blocked-stop overrides ahead of it, the flag-gated steering takes its dimension from the active node, and the dashboard reports frontier size, pruned nodes, revisits and budget.
+
+#### Test Execution
+> **Feature File:** [DRV-079](../manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-and-node-dimension-coverage.md)
+
 ---
 
 ## 10. CONVERGENCE AND RECOVERY
 
-This category covers 11 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 14 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DRV-030 | Stop on max iterations
 
@@ -538,6 +590,32 @@ Expected signals: The iteration-2 candidate returns `CONTINUE` with `minIteratio
 
 #### Test Execution
 > **Feature File:** [DRV-072](../manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md)
+
+### DRV-080 | Frontier open veto holds a review stop, hard stops included
+
+#### Description
+Verify that an open or active review frontier node turns a stop candidate into `CONTINUE` under the expansive mode, the clean stop that is a hard stop included, and that the cap, the floor, stuck recovery, convergence off and the max-iterations policy still decide first.
+
+#### Scenario Contract
+Prompt: `Check that under expansive depth mode a review stop candidate continues while frontier nodes are open, including the clean stop, and that the cap, the floor, stuck recovery, convergence off and the max-iterations policy still decide first. Return a PASS or FAIL verdict with the reason.`
+
+Expected signals: The eight-row veto table and the composite case pass, the open-node row returns `CONTINUE` with `frontierOpen`, and the guard line makes every review candidate vetoable.
+
+#### Test Execution
+> **Feature File:** [DRV-080](../manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md)
+
+### DRV-081 | Review pivot waits for a terminal frontier
+
+#### Description
+Verify that the review divergent pivot refuses to run while a frontier node stays open, seeds one `frontier-unanswered` direction per closed sub-target the frontier left uncovered and leaves a default run untouched.
+
+#### Scenario Contract
+Prompt: `Check that the deep-review divergent pivot refuses to run while a frontier node is open, seeds one revisit direction for each closed sub-target the frontier left uncovered, and leaves a default run untouched. Return a PASS or FAIL verdict with the reason.`
+
+Expected signals: The three review pivot cases pass, the workflow gate case passes, and the pivot script labels revisit seeds `frontier-unanswered`.
+
+#### Test Execution
+> **Feature File:** [DRV-081](../manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md)
 
 ---
 
@@ -706,6 +784,7 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 - DRV-001: [Auto-mode deep-review kickoff](../manual-testing-playbook/entry-points-and-modes/auto-mode-deep-review-kickoff.md)
 - DRV-002: [Confirm-mode checkpointed review](../manual-testing-playbook/entry-points-and-modes/confirm-mode-checkpointed-review.md)
 - DRV-003: [Parameterized invocation: max iterations + convergence](../manual-testing-playbook/entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md)
+- DRV-076: [Expansive depth flag and default byte identity](../manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md)
 
 ### INITIALIZATION AND STATE SETUP
 
@@ -714,6 +793,7 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 - DRV-006: [Invalid or contradictory review state halts for repair](../manual-testing-playbook/initialization-and-state-setup/invalid-or-contradictory-review-state-halts-for-repair.md)
 - DRV-007: [Scope discovery and dimension ordering](../manual-testing-playbook/initialization-and-state-setup/scope-discovery-and-dimension-ordering.md)
 - DRV-074: [Configured custom dimension joins the review dimension set](../manual-testing-playbook/initialization-and-state-setup/custom-dimension-setup-and-universe.md)
+- DRV-077: [Expansive seed writes depth-one nodes before iteration one](../manual-testing-playbook/initialization-and-state-setup/expansive-seed-writes-depth-one-nodes.md)
 
 ### ITERATION EXECUTION AND STATE DISCIPLINE
 
@@ -725,6 +805,8 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 - DRV-013: [Review dashboard generation after iteration](../manual-testing-playbook/iteration-execution-and-state-discipline/review-dashboard-generation-after-iteration.md)
 - DRV-014: [Severity classification in JSONL](../manual-testing-playbook/iteration-execution-and-state-discipline/severity-classification-in-jsonl.md)
 - DRV-015: [Review iterations emit structured graphEvents](../manual-testing-playbook/iteration-execution-and-state-discipline/graph-events-review.md)
+- DRV-078: [Frontier admission prunes each proposal with its reason](../manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md)
+- DRV-079: [Frontier focus and per-node dimension coverage](../manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-and-node-dimension-coverage.md)
 
 ### CONVERGENCE AND RECOVERY
 
@@ -739,6 +821,8 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 - DRV-034: [Review reducer fails closed on corruption and missing anchors](../manual-testing-playbook/convergence-and-recovery/fail-closed-reducer.md)
 - DRV-068: [Cross-mode anti-convergence contract](../manual-testing-playbook/convergence-and-recovery/cross-mode-anti-convergence-contract.md)
 - RV-069: [Divergent convergence mode](../manual-testing-playbook/convergence-and-recovery/divergent-convergence-mode.md)
+- DRV-080: [Frontier open veto holds a review stop, hard stops included](../manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md)
+- DRV-081: [Review pivot waits for a terminal frontier](../manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md)
 
 ### PAUSE, RESUME, AND FAULT TOLERANCE
 
@@ -781,6 +865,10 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 - DRV-062: [graphlessFallbackGate STOP blocker](../manual-testing-playbook/review-depth-v2-rollout/stop-gate-graphless-fallback.md)
 - DRV-063: [Ledger-led graph vocabulary upserts (BUG_CLASS / INVARIANT / PRODUCER / CONSUMER / TEST)](../manual-testing-playbook/review-depth-v2-rollout/graph-vocabulary.md)
 - DRV-075: [Covered custom dimension reaches the all-dimensions-clean stop](../manual-testing-playbook/review-depth-v2-rollout/stop-gate-custom-dimension-coverage.md)
+
+### FAN-OUT
+
+- DRV-082: [Review fan-out deals seeded frontier nodes round-robin](../manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md)
 
 ---
 
@@ -916,7 +1004,7 @@ Expected signals: The convergence case stops clean with performance covered, the
 
 ## 17. FAN-OUT
 
-This category covers 5 scenarios validating the opt-in fan-out dispatch layer added in the review loop: CLI lineage pool dispatch, strongest-restriction verdict binding, native sequential command dispatch, single-executor parity, and merged coverage surfaces.
+This category covers 6 scenarios validating the opt-in fan-out dispatch layer added in the review loop: CLI lineage pool dispatch, strongest-restriction verdict binding, native sequential command dispatch, single-executor parity, merged coverage surfaces, and the expansive frontier partition.
 
 ### DRV-064 | Fan-out review with two CLI lineages
 
@@ -982,3 +1070,17 @@ Expected signals: The merge exits 0, the six surfaces are built from both lineag
 
 #### Test Execution
 > **Feature File:** [DRV-071](../manual-testing-playbook/fanout/fan-out-merged-coverage-surfaces.md)
+
+### DRV-082 | Review fan-out deals seeded frontier nodes round-robin
+
+#### Description
+Verify that a review fan-out run under the expansive mode deals its depth-one nodes round-robin across its lineages, writes each lineage store without an inbox and fails the merge guard when a dealt node reaches no lineage.
+
+#### Scenario Contract
+Prompt: `Check that a review fan-out run under expansive depth mode deals its depth-one nodes round-robin across its lineages, writes each lineage store without an inbox and fails the merge guard when a dealt node reaches no lineage. Return a PASS or FAIL verdict with the reason.`
+
+Expected signals: Seven nodes deal across three lineages in node-id order, each lineage store is written with no inbox, a default lineage prompt gains no depth-mode bytes, and the merge guard names a dealt node that no lineage reports.
+
+#### Test Execution
+> **Feature File:** [DRV-082](../manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md)
+

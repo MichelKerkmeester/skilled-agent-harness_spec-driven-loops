@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 011-review-frontier-mode |
-| **Completed** | Built 2026-11-17 on `worktrees/469-ed-011-review-frontier-mode`; not closed: the target-1 pilot, the full suite, the playbook and the changelog run at integration |
+| **Completed** | Built 2026-11-17 on `worktrees/469-ed-011-review-frontier-mode`; the playbook and the changelog were written 2026-11-18; not closed: the target-1 pilot and the full suite run at integration |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 <!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
-With `--depth-mode=expansive`, a review run seeds depth-1 sub-target nodes from its target, keeps their status in `review/frontier-nodes.jsonl`, works the active node's next uncovered dimension each iteration and refuses a stop candidate while any node is open. Without the flag, every review output is unchanged: a golden test pins seven default-path artifacts to bytes captured before the build.
+With `--depth-mode=expansive`, a review run seeds depth-1 sub-target nodes from its target, keeps their status in `review/frontier-nodes.jsonl`, works the active node's next uncovered dimension each iteration and refuses a stop candidate while any node is open. Without the flag, a review writes what it wrote before, except for one expansive-only paragraph in CLI lineage prompts, which is waived pending operator ratification. A golden test pins seven default-path artifacts to bytes captured before the build.
 
 T002, 008's support decision: "Support custom dimensions in `buildDimensionCoverage` (ADR-001, OD-001) | Operator choice: every configured dimension is tracked and can be covered", so the per-node dimension universe is the configured `reviewDimensions` list.
 
@@ -67,6 +67,9 @@ The admission helper gained a review target mode (no inbox, review config caps, 
 | `deep-review/assets/deep-review-config.json`, `prompt-pack-iteration.md.tmpl` | Modify | Config keys and lock, `{frontier_block}` slot |
 | `.skilled/agents/deep-review.md` and five mirrors | Modify | `frontier_proposal` leaf-contract row |
 | Review reference docs, `SKILL.md`, `README.md`, `review-mode-contract.yaml` | Modify | Flag documentation |
+| `deep-review/manual-testing-playbook/` (index and scenarios DRV-076 to DRV-082) | Modify and create | Expansive review scenarios, indexed and counted |
+| `deep-review/changelog/v1.13.0.0.md` | Create | Release entry for the review flag |
+| `deep-review/SKILL.md`, `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown` | Modify | Version 1.13.0.0 and the regenerated review contract |
 | `runtime/tests/unit/review-depth-mode-golden.vitest.ts`, `tests/fixtures/golden-review-default/`, `frontier-admit-review.vitest.ts` | Create | Golden baseline and review admission suite |
 | Review reducer, stop-decision, yaml-contract, prompt-pack, deltas-contract, divergent-pivot, fan-out and optimizer suites | Modify | New cases |
 <!-- /ANCHOR:what-built -->
@@ -102,8 +105,10 @@ Setup ran natively: dependency merges confirmed, the golden review baseline capt
 | Check | Result |
 |-------|--------|
 | Golden review default path | `npx vitest run review-depth-mode-golden.vitest`: 14 of 14 (lineage prompt with the one stripped paragraph) |
+| Review playbook validator (2026-11-18) | `validate-playbook-package.cjs --package` on `deep-review/manual-testing-playbook`: PASS, 69 scenarios across 10 categories, violations 0 |
+| Changelog shape and parent-skill doctor (2026-11-18) | `check_changelog_shape.py`: PASS; `parent-skill-check.cjs` on system-deep-loop: OK, 0 warnings |
 | Phase suites | See `goal.md` log and `tasks.md` evidence; final named-suite run recorded there |
-| Spec validation | `validate.sh --strict`: RESULT: PASSED (final run in `goal.md` log) |
+| Spec validation | `validate.sh --strict` on this folder: see the 2026-11-18 row in the `goal.md` log |
 <!-- /ANCHOR:verification -->
 
 ---
