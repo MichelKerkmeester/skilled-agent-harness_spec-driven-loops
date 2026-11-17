@@ -60,7 +60,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0 after the review compiled contract is regenerated.
 - [x] `rg -n -i 'all (4|four) dimensions|four review dimensions' .skilled/skills/system-deep-loop/deep-review/references .skilled/skills/system-deep-loop/deep-review/README.md` prints nothing.
 - [x] `/doctor:runtime-mirrors` reports all five `deep-review` agent mirrors in sync with `.skilled/agents/deep-review.md`.
-- [ ] `rg -l 'performance' .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` lists a custom-dimension scenario written through `/create:manual-testing-playbook`.
+- [x] `rg -l 'performance' .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` lists a custom-dimension scenario written through `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,12 +80,17 @@ and findings belong here.
 | Phase docs authored | Done | `spec.md`, `plan.md`, `tasks.md`, `decision-record.md` |
 | ADR-001 operator decision | Done | 2026-11-17: support custom dimensions (`decision-record.md` OD-001) |
 | Session save | Done | operator decisions written to decision-record.md |
+| Playbook, changelog and version carrier (T017, T018) | Done | 2026-11-17, `@markdown` in integration: `DRV-074` (`initialization-and-state-setup/custom-dimension-setup-and-universe.md`) and `DRV-075` (`review-depth-v2-rollout/stop-gate-custom-dimension-coverage.md`) are indexed in the root playbook; `validate-playbook-package.cjs` PASS with 62 scenarios and 0 violations. Changelog `deep-review v1.12.0.0` (minor bump, shape PASS, DQI 89). `deep-review/SKILL.md` version 1.11.18.0 to 1.12.0.0. `compile-command-contracts.cjs` regenerated both contracts: the review contract changed (its SKILL.md digest); the research contract was unchanged. `check-contract-drift.cjs` prints `OK commands=2`; the two contract suites pass 26. |
 | Build 2026-11-17 (autonomous) | Done | Go lane, worktree 468, commits `45462106508` to `a762572c909`. Baseline: 8 suites 93 passed; the four REQ-004 suites 42. After: 100 and 48. Every custom case fails against the pre-change reducer. Contract drift OK, snapshot check OK, all agent mirrors in sync. Playbook and changelog wait for `@markdown` in integration. |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| Playbook workflow spec-doc step | The playbook workflow's step 1b would create Level 2 `acceptance-criteria.md` inside this Level 1 phase. Skipped on purpose: the operator named the playbook, changelog and this phase's log as the outputs. Gate 3 was pre-resolved to this folder. |
+| Changelog bump | `auto` with a `Feature` change type maps to minor, so `v1.11.18.0` becomes `v1.12.0.0`. The operator named no version. Packet carrier: only `deep-review/SKILL.md`, the one carrier the workflow names for a packet with no hub files. |
+| Playbook categories | One scenario per category (`DRV-074`, `DRV-075`), because a feature file lives in one category folder. |
+| Playbook root version | `1.11.4.0` to `1.11.5.0`, as the precedent did for each added scenario. |
 | Review pivot test home | No review-pivot vitest suite exists today; the support branch adds its case to `divergent-pivot.vitest.ts`. |
 | Plan review 2026-11-17 | `../scratch/fable-5-2-plan-review.md` F008-1 to F008-3, X-1, X-2, X-6, X-7 and F014-2 applied: every four-name surface added, contract regeneration, mirror sync, changelog and playbook tasks, the enforce-option rollback trigger replaced, task and REQ ids renumbered. |
 <!-- /ANCHOR:log -->

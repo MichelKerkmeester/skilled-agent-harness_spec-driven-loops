@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage"
     last_updated_at: "2026-11-17T16:56:40Z"
     last_updated_by: "generate-context"
-    recent_action: "Built and verified on worktrees/468-ed-008-review-dimension-coverage"
-    next_safe_action: "Merge into integration; @markdown writes the playbook scenario and changelog entry"
+    recent_action: "Built and verified on worktrees/468-ed-008-review-dimension-coverage; playbook scenarios DRV-074 and DRV-075 and changelog v1.12.0.0 written in integration"
+    next_safe_action: "Merge into integration"
     packet_purpose: "Purpose: A configured custom dimension is covered like any canonical one, so no review run can silently lose its clean stop."
     blockers: []
     key_files:
@@ -27,7 +27,7 @@ _memory:
       savedAt: "2026-11-17T16:56:40Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 008-review-dimension-coverage |
-| **Completed** | 2026-11-17, code, tests and docs; playbook and changelog wait for integration |
+| **Completed** | 2026-11-17, code, tests, docs, playbook and changelog |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -70,6 +70,9 @@ The reducer builds one dimension set: the four canonical names in risk order, th
 | `deep-review/README.md`, `convergence.md`, `loop-protocol.md`, `quick-reference.md` | Modified | "All 4 dimensions" becomes "every configured dimension (the four by default)" |
 | `compiled/deep-review.contract.markdown` | Regenerated | Digest sources changed |
 | Five runtime test files | Modified | Reducer, prompt-pack, stop-path, pivot and fan-out focus cases |
+| `deep-review/changelog/v1.12.0.0.md` | Created | Changelog entry for the custom-dimension release |
+| `deep-review/manual-testing-playbook/` | Modified | Scenarios DRV-074 (`initialization-and-state-setup/`) and DRV-075 (`review-depth-v2-rollout/`), with their root index entries and the root version |
+| `deep-review/SKILL.md` | Modified | Version 1.11.18.0 to 1.12.0.0, the packet's only version carrier |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -110,6 +113,10 @@ Built 2026-11-17 in worktree 468 on the OpenCode Go lane with DeepSeek V4.1 Flas
 | Agent mirrors | four `sync-agents*.cjs --check` exit 0; `check-agent-mirror-sync.cjs` all comparable mirrors in sync |
 | Related readers | six suites, 272 passed |
 | REQ-006 grep | prints nothing |
+| Playbook package validator | PASS, 62 scenarios, 0 violations; warnings are the three existing advisory ones |
+| Changelog entry | `validate_document.py` 0 issues, DQI 89, `check_changelog_shape.py` PASS |
+| Compiled contracts | Review contract regenerated (SKILL.md digest); research contract unchanged; drift check `OK commands=2` |
+| Agent mirrors | `check-agent-mirror-sync.cjs` all comparable mirrors in sync |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,7 +124,7 @@ Built 2026-11-17 in worktree 468 on the OpenCode Go lane with DeepSeek V4.1 Flas
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Playbook scenario and changelog entry (T017, T018)** are written by `@markdown` in the integration worktree after merge, because those commands run only as that agent.
+1. **Playbook scenarios and changelog entry (T017, T018)** were written in the integration worktree, not in the build worktree, as the plan named. The playbook workflow was followed directly, so its Level 2 spec-doc step was skipped, as recorded in `goal.md`.
 2. **Full runtime suite** runs at the integration merge gate, not in this worktree.
 3. **The snapshot renderer does not print `customDimensionRule`.** Its check passes, but the snapshot shows only the four list entries.
 <!-- /ANCHOR:limitations -->

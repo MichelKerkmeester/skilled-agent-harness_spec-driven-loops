@@ -63,8 +63,8 @@ contextType: "general"
 - [x] T014 Add the custom dimension stop-path case (`R/tests/integration/review-depth-convergence.vitest.ts`). Verify: the case asserts `missingDimensions` excludes `performance` once covered and the run reaches `all_dimensions_clean`, and passes. Done in `8b44a506edb`: the reducer-built registry covers `performance`, the stop decision does not list it missing, and `reasonDetail` is `all_dimensions_clean`; the case fails against the pre-change reducer.
 - [x] T015 Add a review-pivot case with a covered custom dimension (`R/tests/integration/divergent-pivot.vitest.ts`). Verify: the case accepts `all_dimensions_clean` and seeds no `unswept-dimension` for `performance`. Done in `a762572c909`: the pivot accepts `all_dimensions_clean` and returns no unswept-dimension candidate for `performance`; the case fails against the pre-change reducer. `divergent-pivot` passes 15.
 - [x] T016 Run the spec-kit parity suites. Verify: `cd .skilled/skills/system-spec-kit && npx vitest run --project cli deep-review-contract-parity deep-review-reducer-schema` exits 0. Done: `deep-review-contract-parity`, `deep-review-reducer-schema` and `deep-review-auto-restart-contract` pass 18 (run with `--config ../../vitest.config.ts --project cli` from `system-spec-kit/runtime/cli`).
-- [B] T017 Write the changelog entry stating custom review dimensions are supported, how they are ordered and that canonical-only runs are unchanged (`DR/changelog/`). Verify: `rg -l 'custom' DR/changelog` lists the new entry. written by @markdown in integration after merge.
-- [B] T018 Write the manual testing playbook scenario for a review run with `review_dimensions: correctness,performance` through `/create:manual-testing-playbook system-deep-loop update --path .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` (`DR/manual-testing-playbook/`). Verify: `rg -l 'performance' DR/manual-testing-playbook` lists the new scenario. written by @markdown in integration after merge.
+- [x] T017 Write the changelog entry stating custom review dimensions are supported, how they are ordered and that canonical-only runs are unchanged (`DR/changelog/`). Verify: `rg -l 'custom' DR/changelog` lists the new entry. Done 2026-11-17: `deep-review/changelog/v1.12.0.0.md` in compact format, minor bump for a feature change. `validate_document.py` reports 0 issues, DQI 89, and `check_changelog_shape.py` passes. The `rg` prints that entry.
+- [x] T018 Write the manual testing playbook scenario for a review run with `review_dimensions: correctness,performance` through `/create:manual-testing-playbook system-deep-loop update --path .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook` (`DR/manual-testing-playbook/`). Verify: `rg -l 'performance' DR/manual-testing-playbook` lists the new scenario. Done 2026-11-17: DRV-074 in `initialization-and-state-setup/` and DRV-075 in `review-depth-v2-rollout/`, one scenario per category because a scenario file lives in one category folder. The update workflow was followed directly, not through a command dispatch. `validate-playbook-package.cjs` passes with 62 scenarios and no violations.
 - [x] T019 Rerun the T002 suites and compare with the baseline (`R/tests/`). Verify: the same command exits 0 and the pass count rose only by the new cases. Done: the eight T002 suites pass 100 = 93 + 7 new cases, exit 0; the four REQ-004 suites pass 48 = 42 + 6 with no fixture file changed. Six related readers pass 272.
 <!-- /ANCHOR:phase-3 -->
 
@@ -73,8 +73,8 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
 - [x] The T019 rerun matches the baseline plus the new cases (100 = 93 + 7)
 <!-- /ANCHOR:completion -->
 

@@ -36,16 +36,16 @@ The operator chose to support custom dimensions (`decision-record.md` ADR-001, 2
 
 ### Definition of Ready
 - [x] `decision-record.md` ADR-001 is `Accepted` with support named
-- [ ] `rg -n "REQUIRED_DIMENSIONS" .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` still lists the sites at :24, :1215, :1225, :1246, :2173, :2178, :2185, :2272, :2301 and :2763
-- [ ] The REQ-004 suites and the contract suites pass on the unchanged tree (baseline captured)
-- [ ] `../004-focus-hijack-fix/` has landed, or the overlap on `reduce-state.cjs:2173-2187` and `:2271-2274` is planned
+- [x] `rg -n "REQUIRED_DIMENSIONS" .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` still lists the sites at :24, :1215, :1225, :1246, :2173, :2178, :2185, :2272, :2301 and :2763. Checked before the build; the briefs anchored on function names because 004 had already shifted the line numbers
+- [x] The REQ-004 suites and the contract suites pass on the unchanged tree (baseline captured). T002: the 8-suite baseline is 93 passed, 42 in the four REQ-004 suites
+- [x] `../004-focus-hijack-fix/` has landed, or the overlap on `reduce-state.cjs:2173-2187` and `:2271-2274` is planned. 004's integration merge `227d594603e` is an ancestor of the 008 branch tip `7f0995f4e37`
 
 ### Definition of Done
-- [ ] Every P0 requirement in `spec.md` is met
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/review-depth-convergence.vitest.ts tests/integration/review-stop-path-replay.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts tests/unit/prompt-pack.vitest.ts tests/integration/divergent-pivot.vitest.ts` passes with the new cases
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` passes after the contract regeneration
-- [ ] The workflow line at `deep-review.yaml:654` and the reference docs match the code (REQ-006)
-- [ ] The agent mirrors are in sync, and the changelog entry and playbook scenario exist
+- [x] Every P0 requirement in `spec.md` is met. All tasks are ticked, and integration gate `4d0b12723eb` passed with 186 files, 3192 tests and 0 failures
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/review-depth-convergence.vitest.ts tests/integration/review-stop-path-replay.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts tests/unit/prompt-pack.vitest.ts tests/integration/divergent-pivot.vitest.ts` passes with the new cases
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` passes after the contract regeneration
+- [x] The workflow line at `deep-review.yaml:654` and the reference docs match the code (REQ-006)
+- [x] The agent mirrors are in sync, and the changelog entry and playbook scenario exist
 <!-- /ANCHOR:quality-gates -->
 
 ---

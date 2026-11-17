@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.11.4.0
+version: 1.11.5.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 60 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (42 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063), and §17 covers fan-out dispatch (5 scenarios under DRV-064..067 and DRV-071). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 62 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (43 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (7 scenarios under DRV-058..063 and DRV-075), and §17 covers fan-out dispatch (5 scenarios under DRV-064..067 and DRV-071). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -184,7 +184,7 @@ Expected signals: One `run_extended` event projected as one `extended` row, the 
 
 ## 8. INITIALIZATION AND STATE SETUP
 
-This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DRV-004 | Fresh review initialization creates canonical state files
 
@@ -237,6 +237,19 @@ Expected signals: The scope discovery step has resolution rules for each target 
 
 #### Test Execution
 > **Feature File:** [DRV-007](../manual-testing-playbook/initialization-and-state-setup/scope-discovery-and-dimension-ordering.md)
+
+### DRV-074 | Configured custom dimension joins the review dimension set
+
+#### Description
+Verify that a custom review dimension named at setup is normalized, ordered after the four canonical dimensions, and listed in the review prompt.
+
+#### Scenario Contract
+Prompt: `Start a deep review with review_dimensions: correctness,performance and confirm that performance is accepted as a custom dimension, ordered after the four canonical dimensions, and listed in the review prompt.`
+
+Expected signals: The setup rule accepts and normalizes the custom name, the reducer universe lists the four canonical dimensions followed by each configured custom name, and the prompt-pack case renders the dimension line with performance last.
+
+#### Test Execution
+> **Feature File:** [DRV-074](../manual-testing-playbook/initialization-and-state-setup/custom-dimension-setup-and-universe.md)
 
 ---
 
@@ -700,6 +713,7 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 - DRV-005: [Resume classification from valid prior review state](../manual-testing-playbook/initialization-and-state-setup/resume-classification-from-valid-prior-review-state.md)
 - DRV-006: [Invalid or contradictory review state halts for repair](../manual-testing-playbook/initialization-and-state-setup/invalid-or-contradictory-review-state-halts-for-repair.md)
 - DRV-007: [Scope discovery and dimension ordering](../manual-testing-playbook/initialization-and-state-setup/scope-discovery-and-dimension-ordering.md)
+- DRV-074: [Configured custom dimension joins the review dimension set](../manual-testing-playbook/initialization-and-state-setup/custom-dimension-setup-and-universe.md)
 
 ### ITERATION EXECUTION AND STATE DISCIPLINE
 
@@ -766,6 +780,7 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 - DRV-061: [candidateCoverageGate STOP blocker](../manual-testing-playbook/review-depth-v2-rollout/stop-gate-candidate-coverage.md)
 - DRV-062: [graphlessFallbackGate STOP blocker](../manual-testing-playbook/review-depth-v2-rollout/stop-gate-graphless-fallback.md)
 - DRV-063: [Ledger-led graph vocabulary upserts (BUG_CLASS / INVARIANT / PRODUCER / CONSUMER / TEST)](../manual-testing-playbook/review-depth-v2-rollout/graph-vocabulary.md)
+- DRV-075: [Covered custom dimension reaches the all-dimensions-clean stop](../manual-testing-playbook/review-depth-v2-rollout/stop-gate-custom-dimension-coverage.md)
 
 ---
 
@@ -834,7 +849,7 @@ Verify that only the reducer mutates reducer-owned files (registry, dashboard, s
 
 ## 16. REVIEW DEPTH V2 ROLLOUT
 
-This category covers 6 scenarios that validate the review-depth v2 contract rollout: validator warn/strict modes, reducer search-debt persistence, stop-gate blockers, graphless fallback, and ledger-led graph vocabulary upserts. Tests carry standard DRV- IDs since they live inside the deep-review release surface.
+This category covers 7 scenarios that validate the review-depth v2 contract rollout: validator warn/strict modes, reducer search-debt persistence, stop-gate blockers, graphless fallback, and ledger-led graph vocabulary upserts. Tests carry standard DRV- IDs since they live inside the deep-review release surface.
 
 ### DRV-058 | Validator warn rollout for legacy unversioned records
 
@@ -883,6 +898,19 @@ Verify ledger-led upserts emit the canonical graph vocabulary (BUG_CLASS, INVARI
 
 #### Test Execution
 > **Feature File:** [DRV-063](../manual-testing-playbook/review-depth-v2-rollout/graph-vocabulary.md)
+
+### DRV-075 | Covered custom dimension reaches the all-dimensions-clean stop
+
+#### Description
+Verify that a configured custom review dimension, once covered, lets the review stop with `all_dimensions_clean`, and that the review pivot seeds no `unswept-dimension` candidate for it.
+
+#### Scenario Contract
+Prompt: `Run a deep review with review_dimensions: correctness,performance, cover performance on one iteration, and confirm the run stops with all_dimensions_clean rather than holding open on a missing performance dimension.`
+
+Expected signals: The convergence case stops clean with performance covered, the pivot case seeds no unswept-dimension for performance, and the convergence script sets the all_dimensions_clean reason on the clean-stop candidate.
+
+#### Test Execution
+> **Feature File:** [DRV-075](../manual-testing-playbook/review-depth-v2-rollout/stop-gate-custom-dimension-coverage.md)
 
 ---
 
