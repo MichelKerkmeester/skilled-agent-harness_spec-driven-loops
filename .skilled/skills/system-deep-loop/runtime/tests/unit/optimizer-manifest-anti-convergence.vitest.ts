@@ -30,6 +30,7 @@ type InvariantConstraint = {
 
 type InvariantGroup = {
   key: string;
+  products: string[];
   rejectBeforeScoring: boolean;
   lockedFields: string[];
   fieldAliases: Record<string, string[]>;
@@ -56,6 +57,14 @@ const manifestPath = resolve(
   'cli',
   'optimizer',
   'optimizer-manifest.json',
+);
+const reviewConfigPath = resolve(
+  repoRoot,
+  'skills',
+  'system-deep-loop',
+  'deep-review',
+  'assets',
+  'deep-review-config.json',
 );
 
 // ───────────────────────────────────────────────────────────────────
@@ -134,6 +143,17 @@ describe('optimizer manifest anti-convergence contract', () => {
     expect(tunableNames).not.toContain('antiConvergence.depthMode');
     expect(lockedNames).toContain('antiConvergence.depthMode');
     expect(group.lockedFields).toContain('antiConvergence.depthMode');
+  });
+
+  it('locks the review depthMode key for deep-review and in the review config asset', () => {
+    const group = antiConvergenceGroup(readManifest());
+    // The review config carries its own copy of the lock list, so a drift between the two
+    // registries would silently let the optimizer retune review depth.
+    const reviewConfig = JSON.parse(readFileSync(reviewConfigPath, 'utf8')) as Record<string, unknown>;
+
+    expect(group.products).toContain('deep-review');
+    expect(readPath(reviewConfig, '_optimizerManaged.lockedFields')).toContain('antiConvergence.depthMode');
+    expect(readPath(reviewConfig, 'antiConvergence.depthMode')).toBe('default');
   });
 
   it('declares the iteration-floor invariant as a pre-scoring rejection gate', () => {
