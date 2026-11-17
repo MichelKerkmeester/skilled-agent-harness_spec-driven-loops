@@ -16,7 +16,8 @@
     "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode",
     "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode",
     "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene",
-    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration"
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration",
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -29,12 +30,14 @@
       "expansive depth sub mode for deep research",
       "expansive depth mode plan",
       "expansive depth mode tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "007-expansive-depth-mode operator decisions",
       "expansive depth mode implementation summary",
       "depth-mode expansive",
-      "frontier veto",
-      "completed-continue extension",
-      "deep loop change slices"
+      "frontier veto"
     ],
     "key_topics": [
       "expansive",
@@ -45,10 +48,10 @@
       "research",
       "plan",
       "tasks",
-      "007-expansive-depth-mode",
-      "operator",
-      "decisions",
-      "implementation"
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -56,6 +59,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
@@ -63,16 +67,15 @@
       "research/iterations/iteration-001.md",
       "research/resource-map.md",
       "research/deep-research-strategy.md",
+      "scratch/cross-phase-handoff.md",
       "research/deep-research-state.jsonl",
-      "scratch/fable-5-2-review.md",
-      "scratch/opus-verification-log.md",
-      ".skilled/commands/deep/research.md",
-      ".skilled/agents/deep-research.md",
-      "hooks/claude/user-prompt-submit.ts",
-      "research_archive/20261117T103614Z/iterations/iteration-001.md",
-      "research_archive/20261117T103614Z/research.md",
-      "scratch/research-fable-5-2-draft.md",
-      ".skilled/commands/deep/assets/deep-research.yaml"
+      "001-completed-run-extension/goal.md",
+      "002-research-claude-config-dir/goal.md",
+      "003-review-min-iterations-floor/goal.md",
+      "004-focus-hijack-fix/goal.md",
+      "005-prompt-pack-contract-alignment/goal.md",
+      "006-state-log-leaf-fields/goal.md",
+      "007-source-diversity-quality-class/goal.md"
     ],
     "entities": [
       {
@@ -91,6 +94,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -130,45 +139,15 @@
         "source": "derived"
       },
       {
+        "name": "cross-phase-handoff.md",
+        "kind": "doc",
+        "path": "scratch/cross-phase-handoff.md",
+        "source": "derived"
+      },
+      {
         "name": "deep-research-state.jsonl",
         "kind": "file",
         "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "fable-5-2-review.md",
-        "kind": "doc",
-        "path": "scratch/fable-5-2-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "opus-verification-log.md",
-        "kind": "doc",
-        "path": "scratch/opus-verification-log.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.md",
-        "kind": "doc",
-        "path": ".skilled/agents/deep-research.md",
-        "source": "derived"
-      },
-      {
-        "name": "user-prompt-submit.ts",
-        "kind": "code",
-        "path": "hooks/claude/user-prompt-submit.ts",
-        "source": "derived"
-      },
-      {
-        "name": "research-fable-5-2-draft.md",
-        "kind": "doc",
-        "path": "scratch/research-fable-5-2-draft.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/deep/assets/deep-research.yaml",
         "source": "derived"
       },
       {
@@ -218,32 +197,57 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Iterative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-research and deep-review loops converge on the three to five questions seeded at init and stop once novelty drops, so a broad target such as \"research the last 100 commits for bugs, drift and improvements\" or \"analyze system-skill-advisor for chat-time auto-utilization\" gets a narrow, shallow answer",
     "created_at": "2026-11-17T07:53:58Z",
-    "last_save_at": "2026-11-17T16:56:44.047Z",
+    "last_save_at": "2026-11-17T18:31:05.018Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ffb9bfe5269da7757770da32c1444ccc03a39b6ce31f38b8a1f987b81615faf0",
+    "source_fingerprint": "sha256:1348411cb2b0b1e618147f67615fb28887b9ea4d69f06abd2a23808f7b005895",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "42798bf071d0393de728f9e0803f5626d61dd103be467f5660aaf875c9cf61c1",
+      "spec.md": "bd09633818cec3f1f06bb870c6dbb7d096cace055177e69f7f636c42056803ed",
       "plan.md": "6a56a3aaa01f0331b6c583bb878c61d031938abfeddad6ebb39c9e3ea0cac9fd",
       "tasks.md": "2bd96d25454ae3e7bf9fea94cadc73dac0e5379c35aaeb83792afd7a17257727",
-      "decision-record.md": "59a05e6443aaa20c7e149d591c40e500f158e48ce8d646f534fca79d39c16b33",
+      "decision-record.md": "3412a35e38ba63aa2749a328052d083fadecbdffa74aa4aa6c0977af62beb05a",
       "implementation-summary.md": "2088c1e4437f3061bd63975059960c6ebb10e14588be75e53898d13f9a592446",
-      "research/research.md": "388f865f2096176f5124d2d49da58ef45c08c4c78a63a1293ccc05b0592f3de0"
+      "research/research.md": "61dd84d418760ab868525bb8721fa08de577e7b052ac9e894296fe0ea9bf78d6"
     },
-    "last_active_child_id": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene",
-    "last_active_at": "2026-11-17T16:56:44.047Z"
+    "last_active_child_id": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix",
+    "last_active_at": "2026-11-17T18:12:41.938Z"
   }
 }

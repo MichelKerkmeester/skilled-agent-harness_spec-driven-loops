@@ -8,7 +8,7 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor"
-    last_updated_at: "2026-11-17T14:34:34Z"
+    last_updated_at: "2026-11-17T17:15:00Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
@@ -22,9 +22,9 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal: Apply the configured review minIterations floor in convergence
 
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 <!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
 
@@ -42,7 +42,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The proving case uses a floor above 2; no iteration-1 case is written, because real loop state cannot produce one. |
+| D1 | The new proving case uses a floor above 2 and is built from real loop state, which cannot produce an iteration-1 candidate; the existing direct-input iteration-1 case in `stop-decision.vitest.ts` is inverted, not added. |
 | D2 | The shipped floor value in `deep-review-config.json` is not changed. |
 | D3 | No other slice is a prerequisite. |
 
@@ -50,13 +50,14 @@ Frozen choices. Changing one is an amendment.
 
 ---
 
-
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `npx vitest run` over `review-depth-convergence.vitest.ts` and `review-stop-path-replay.vitest.ts` exits 0 with the configured-floor case.
-- [ ] The configured-floor case fails against the pre-change `convergence.cjs`.
+- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/review-depth-convergence.vitest.ts tests/integration/review-stop-path-replay.vitest.ts tests/unit/stop-decision.vitest.ts` exits 0 with the configured-floor case and the inverted review case.
+- [ ] The configured-floor case and the inverted `stop-decision.vitest.ts` case fail against the pre-change `convergence.cjs`, and the full runtime suite shows one case changed and no new failure.
+- [ ] `grep -n 'minIterationsNotReached' .skilled/commands/deep/assets/deep-review.yaml` prints the stop-order line, and `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/review` exits 0.
+- [ ] The `deep-review/manual-testing-playbook` index lists a review floor scenario written by `/create:manual-testing-playbook`.
 - [ ] `grep -n "loopType === 'research' && minIterations" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` prints nothing.
 <!-- /ANCHOR:completion -->
 
@@ -80,5 +81,5 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| None yet | No deviation from the directive recorded. |
+| Plan review amendments 2026-11-17 | Applied the Fable 5.2 plan review: `stop-decision.vitest.ts:905-913` asserts the old research-only gate and is inverted (D1 reworded to match); the review stop order and README name the floor; the review contract is regenerated; test commands run from `runtime/`; the playbook scenario goes through `/create:manual-testing-playbook`. |
 <!-- /ANCHOR:log -->

@@ -25,7 +25,7 @@ contextType: "general"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-`R` is `.skilled/skills/system-deep-loop/runtime`. Run every `npm test` from `R`. `D` is `R/lib/deep-loop/divergent-pivot.ts`.
+`R` is `.skilled/skills/system-deep-loop/runtime`. `D` is `R/lib/deep-loop/divergent-pivot.ts`. Every test command runs as `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/...` from the repository root. No agent definition changes, so no mirror sync is needed.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -33,8 +33,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Get the operator's answer on per-pivot or lifetime seat cap and record it as ADR-001 `Accepted` with one Operator Decisions row (`decision-record.md`). Verify: `rg -n 'Accepted' decision-record.md` prints the ADR-001 status line. Done 2026-11-17: per pivot (OD-001), then 3 per council attempt with at most one retry per pivot (OD-002).
-- [ ] T002 Capture the baseline of the REQ-006 suites (`R/tests/`). Verify: `npm test -- tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts tests/unit/divergent-pivot-cli.vitest.ts` exits 0 and the pass count is written in `goal.md` section 4.
+- [x] T001 Get the operator's answer on the seat-cap scope and record it as ADR-001 `Accepted` (`decision-record.md`). Verify: `rg -n 'Accepted' decision-record.md` prints the ADR-001 status line. Done 2026-11-17: per pivot (OD-001), then 3 per council attempt with at most one retry per pivot (OD-002).
+- [ ] T002 Capture the baseline of the REQ-006 and contract suites (`R/tests/`). Verify: `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts tests/unit/divergent-pivot-cli.vitest.ts tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0 and the pass count is written in `goal.md` section 4.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -42,12 +42,15 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Cap council seat outputs at 3 per council attempt: set the default to 3, count only the current attempt in the seat-cap check and reset usage per pivot (`D`). Verify: the REQ-005 per-pivot case passes in `tests/integration/divergent-pivot.vitest.ts`.
-- [ ] T004 Mark a first-attempt quorum failure retryable in finalize, at most once per pivot, reopen the same pivot with its own 3 fresh seat ids in prepare, and record the real seat count (3 or 6) in usage (`D`). Verify: the REQ-002 and REQ-003 cases pass.
-- [ ] T005 Carry the retry signal through the `prepare` and `finalize` subcommands (`R/scripts/divergent-pivot.cjs`). Verify: `npm test -- tests/unit/divergent-pivot-cli.vitest.ts` passes with a case where `finalize` prints a retryable result and a second `prepare` returns three missing seats.
-- [ ] T006 Re-enter `step_prepare_divergent_pivot` once when finalize returns retryable (`.skilled/commands/deep/assets/deep-research.yaml`). Verify: `rg -n "retryable" .skilled/commands/deep/assets/deep-research.yaml` prints the new branch, and a second failure still reaches the fail-closed log line.
-- [ ] T007 Add the same one-time re-entry to the review pivot branch (`.skilled/commands/deep/assets/deep-review.yaml`). Verify: `rg -n "retryable" .skilled/commands/deep/assets/deep-review.yaml` prints the new branch.
-- [ ] T008 [P] Drop the unreachable `minRemainingIterations` comparison while keeping the field accepted in config and persisted limits (`D`). Verify: the REQ-004 case passes and `rg -n "remainingIterations < config" R/lib/deep-loop/divergent-pivot.ts` prints nothing.
+- [ ] T003 [P] Drop the unreachable `minRemainingIterations` comparison while keeping the field accepted in config and persisted limits (`D`). Verify: the REQ-004 case passes and `rg -n "remainingIterations < config" R/lib/deep-loop/divergent-pivot.ts` prints nothing.
+- [ ] T004 Cap council seat outputs at 3 per council attempt: set the default to 3 (:286) and count only the current attempt in the seat-cap check (:736), and run that check only when an attempt is opened, not when `prepare` resumes an open attempt (:1244, :1284) (`D`). Verify: the REQ-005 cases pass in `tests/integration/divergent-pivot.vitest.ts`, including a resume of an attempt that holds 2 seat returns.
+- [ ] T005 Scope the seat count to the current pivot id and attempt in both pivot scripts (`.skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:420`, `.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts:405`). Verify: the REQ-008 two-pivot case passes.
+- [ ] T006 Give the attempt an identity: attempt-2 seat event ids (`seatEventId`, :600-601), seat output paths (`buildPivotCouncilPaths`, :807-830), attempt-scoped event lookups in place of `eventByName` (:596-598), and an `attempt` field with `invariants.rounds` of 1 or 2 in the persisted config (:1130-1165). Attempt 1 keeps today's ids and paths; seat ids stay `seat-001` to `seat-003` (`D`). Verify: the REQ-007 case passes, including a pre-change pivot fixture that still loads.
+- [ ] T007 Mark a first-attempt quorum failure retryable in finalize, at most once per pivot, writing a distinct non-terminal per-attempt failure event instead of `pivot_failed` (:1295, :1441), with the matching `PivotEventName` (:146-153) and `PIVOT_LIFECYCLE_STATES` (:290-297) entries; reopen the same pivot as attempt 2 in prepare; record the real seat count (3 or 6) in usage (:1485-1486) (`D`). Verify: the REQ-002 and REQ-003 cases pass.
+- [ ] T008 Carry the retry signal and the attempt number through the `prepare` and `finalize` subcommands (`R/scripts/divergent-pivot.cjs`). Verify: `npx vitest run tests/unit/divergent-pivot-cli.vitest.ts` passes with a case where `finalize` prints a retryable result and a second `prepare` returns attempt 2 with three missing seats.
+- [ ] T009 Re-enter `step_prepare_divergent_pivot` once when finalize returns retryable, passing the attempt number to the seat dispatch and record steps (`.skilled/commands/deep/assets/deep-research.yaml`, pivot branch :1056-1112). Verify: `rg -n "retryable" .skilled/commands/deep/assets/deep-research.yaml` prints the new branch, and a second failure still reaches the fail-closed log line.
+- [ ] T010 Add the same one-time re-entry to the review pivot branch (`.skilled/commands/deep/assets/deep-review.yaml`, :1158-1206). Verify: `rg -n "retryable" .skilled/commands/deep/assets/deep-review.yaml` prints the new branch.
+- [ ] T011 Regenerate both compiled contracts, last of the implementation tasks (`.skilled/commands/deep/assets/compiled/deep-research.contract.markdown`, `deep-review.contract.markdown`). Verify: `node R/scripts/compile-command-contracts.cjs --command deep/research --write` and `node R/scripts/compile-command-contracts.cjs --command deep/review --write` each print their contract path, and `npx vitest run tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0. Regenerate again after each merge instead of resolving digest lines by hand.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +58,11 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Add a case that a retried round dispatches three fresh seats with new ids (`R/tests/council/multi-seat-dispatch.vitest.ts`). Verify: the case passes.
-- [ ] T010 Typecheck the runtime (`R/tsconfig.json`). Verify: `npm run typecheck` exits 0.
-- [ ] T011 Rerun the T002 suites and compare with the baseline (`R/tests/`). Verify: the same command exits 0 and the pass count rose only by the new cases.
+- [ ] T012 Add the retry case: attempt 2 dispatches three seats under the same seat ids, and its event ids and seat files do not collide with attempt 1 (`R/tests/integration/divergent-pivot.vitest.ts`). Verify: the case passes. `tests/council/multi-seat-dispatch.vitest.ts` is not edited, because the workflow, not `dispatchCouncilSeats`, drives the pivot's seats.
+- [ ] T013 Typecheck the runtime (`R/tsconfig.json`). Verify: `cd .skilled/skills/system-deep-loop/runtime && npm run typecheck` exits 0.
+- [ ] T014 Write the changelog entry stating that `maxCouncilSeatOutputs` now means 3 per council attempt, that a quorum failure gets one retry, and that the worst-case run cost is 18 (`.skilled/skills/system-deep-loop/changelog/`). Verify: `rg -l 'maxCouncilSeatOutputs' .skilled/skills/system-deep-loop/changelog` lists the new entry.
+- [ ] T015 Write the manual testing playbook scenario for a divergent run whose first council attempt fails quorum and whose retry completes, through `/create:manual-testing-playbook system-deep-loop update --path .skilled/skills/system-deep-loop/runtime/manual-testing-playbook` (`.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/`). Verify: `rg -l 'retry' .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council` lists the new scenario.
+- [ ] T016 Rerun the T002 suites and compare with the baseline (`R/tests/`). Verify: the same command exits 0 and the pass count rose only by the new cases.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -67,7 +72,7 @@ contextType: "general"
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
-- [ ] The T011 rerun matches the baseline plus the new cases
+- [ ] The T016 rerun matches the baseline plus the new cases
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,7 +82,7 @@ contextType: "general"
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Decision record**: See `decision-record.md` (ADR-001 gates T003 through T007)
+- **Decision record**: See `decision-record.md` (ADR-001, Accepted, sets the seat cap and the retry)
 <!-- /ANCHOR:cross-refs -->
 
 ---

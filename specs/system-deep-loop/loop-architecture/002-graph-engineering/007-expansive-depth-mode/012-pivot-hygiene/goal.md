@@ -8,7 +8,7 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene"
-    last_updated_at: "2026-11-17T14:35:15Z"
+    last_updated_at: "2026-11-17T17:15:00Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
@@ -22,9 +22,9 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal: Divergent pivot hygiene: seat cap scope, dead minRemainingIterations guard, one council retry
 
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 <!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
 
@@ -32,6 +32,7 @@ _memory:
 
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
+<!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Keep only the newest n archives on request. WEAK: Improve the script. -->
 
 **Objective:** Make the divergent pivot's limits mean what they say: a seat cap with a stated scope, no guard that can never fire, and one retry for a transient council failure.
 
@@ -44,24 +45,29 @@ Frozen choices. Changing one is an amendment.
 | D1 | The seat-cap and retry tasks wait for `decision-record.md` ADR-001 to be Accepted. |
 | D2 | `minRemainingIterations` stays readable in configs and persisted limits; only its unreachable check goes. |
 | D3 | `council_agreement_failed` is never retried unless the operator widens it in ADR-001. |
+| D4 | The retry is attempt 2 of the same pivot: seat ids stay `seat-001` to `seat-003`, attempt 1 keeps today's event ids and paths, and attempt 2 gets its own. |
 
 <!-- /ANCHOR:directive -->
 
 ---
 
-
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
+<!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
 - [ ] `rg -n 'Accepted' decision-record.md` prints the ADR-001 status line.
-- [ ] `npm test -- tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts tests/unit/divergent-pivot-cli.vitest.ts` exits 0 with the new cases.
-- [ ] `npm run typecheck` in `.skilled/skills/system-deep-loop/runtime` exits 0.
+- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts tests/unit/divergent-pivot-cli.vitest.ts` exits 0 with the new retry, attempt-identity, scoped-count, agreement and persisted-limit cases.
+- [ ] `cd .skilled/skills/system-deep-loop/runtime && npm run typecheck` exits 0.
+- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0 after both compiled contracts are regenerated.
+- [ ] `rg -l 'maxCouncilSeatOutputs' .skilled/skills/system-deep-loop/changelog` lists a changelog entry that states the per-attempt meaning.
+- [ ] `rg -l 'retry' .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council` lists a retry scenario written through `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
 
 ---
 
 <!-- ANCHOR:log -->
 ## 4. LOG
+<!-- FILL: Record each step with its command output. Keep this table current. GOOD: T001 Done. `ls logs/archive | wc -l` printed 3. WEAK: Progress is good. -->
 
 Everything below is VOLATILE. It is not part of the directive, it is not copied
 into the objective, and it is expected to grow. Progress, evidence, deviations
@@ -79,5 +85,6 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
+| Plan review 2026-11-17 | `../scratch/fable-5-2-plan-review.md` F012-1 to F012-3, X-1, X-4, X-7 and F014-2 applied: seat counting in both pivot scripts, the attempt identity for event ids, seat paths and the persisted config, the retry test moved to `divergent-pivot.vitest.ts`, both contracts regenerated, changelog and playbook tasks, decision leftovers fixed. No X-2 task: no agent changes. |
 | Retry scope | Parent section 20 Slice L says one retry for `council_*` refusals. This phase retries only the three quorum failures (`failureReasonForQuorum`, `divergent-pivot.ts:719-728`), because agreement failure is a verdict, not a transient error. |
 <!-- /ANCHOR:log -->

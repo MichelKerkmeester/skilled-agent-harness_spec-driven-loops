@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Forward the Claude config dir on single-executor research cli-claude-code dispatch"
-description: "Let research accept an optional --claude-config-dir in dispatch-iteration.cjs, bind it as CLAUDE_CONFIG_DIR in runClaude, and forward config.executor.configDir from the research YAML. Proven by new research cases in the cli-claude-code and cli-matrix suites."
+description: "Let research accept an optional --claude-config-dir in dispatch-iteration.cjs, bind it as CLAUDE_CONFIG_DIR in runClaude, and forward config.executor.configDir from the research YAML. Proven by new research cases in dispatch-iteration.vitest.ts and the executor-audit receipts suite."
 trigger_phrases:
   - "research claude config dir plan"
 importance_tier: "normal"
@@ -27,7 +27,7 @@ contextType: "general"
 | **Testing** | Vitest |
 
 ### Overview
-The change widens the `cli-claude-code` config-dir path in `dispatch-iteration.cjs` from review-only to review plus optional research. The research YAML then forwards `config.executor.configDir` with the render hint review already uses. New research cases in `cli-claude-code.vitest.ts` and `cli-matrix.vitest.ts` prove the forward, the override of an inherited env value and the unchanged default.
+The change widens the `cli-claude-code` config-dir path in `dispatch-iteration.cjs` from review-only to review plus optional research. The research YAML then forwards `config.executor.configDir` with the render hint review already uses. New research cases in `dispatch-iteration.vitest.ts`, which spawns the changed script, and in `executor-audit-cli-branch-receipts.test.ts` prove the forward, the override of an inherited env value, the audit row and the unchanged default. The research compiled contract is regenerated after the YAML edit.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -43,7 +43,8 @@ The change widens the `cli-claude-code` config-dir path in `dispatch-iteration.c
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] `npx vitest run` over the three suites named in `spec.md` SC-001 exits 0, and the new research config-dir case fails against the pre-change script
+- [ ] The `spec.md` SC-001 command exits 0, the new research config-dir case fails against the pre-change script, and `check-contract-drift.cjs --command deep/research` exits 0
+- [ ] The playbook scenario is written through `/create:manual-testing-playbook`
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -71,7 +72,7 @@ Other: widen one executor branch.
 ## 4. IMPLEMENTATION PHASES
 <!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup reads `scripts/rotate-logs.sh` and counts the archives. Implementation adds `--keep` to `scripts/rotate-logs.sh`. Verification runs `scripts/rotate-logs.sh --keep 3` and counts 3. WEAK: See tasks. -->
 
-Setup reads the review config-dir path in `dispatch-iteration.cjs` and records the baseline suite results. Implementation widens `validateFlags` and `runClaude` and forwards the dir from `deep-research.yaml`. Verification runs the three suites with the new research cases. Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+Setup reads the review config-dir path in `dispatch-iteration.cjs` and records the baseline suite results. Implementation widens `validateFlags` and `runClaude` and forwards the dir from `deep-research.yaml`. Verification runs the three suites with the new research cases, regenerates the research contract, runs the drift check and writes the playbook scenario through the create command. Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -80,7 +81,7 @@ Setup reads the review config-dir path in `dispatch-iteration.cjs` and records t
 ## 5. TESTING STRATEGY
 <!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
-Run `npx vitest run runtime/tests/stress/cli-adapter/cli-claude-code.vitest.ts runtime/tests/unit/cli-matrix.vitest.ts runtime/tests/unit/combo-matrix.vitest.ts` from `.skilled/skills/system-deep-loop/`. It must exit 0. New cases: research with a configured dir, research with an inherited `CLAUDE_CONFIG_DIR` overridden, research with `--claude-config-dir ""`, research with a missing dir, and `cli-codex` research still rejecting the flag.
+Run `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/dispatch-iteration.vitest.ts tests/executor-audit-cli-branch-receipts.test.ts tests/unit/executor-branch-contract.vitest.ts`. It must exit 0. Run from `.skilled/skills/system-deep-loop/` instead, Vitest finds no config and no test files and exits 1. New cases in `dispatch-iteration.vitest.ts`: the review required-flag reference case (written first, since no test pins it today), research with a configured dir, research with an inherited `CLAUDE_CONFIG_DIR` overridden (a recorder `claude` shim first on `PATH`, spawned with a clean env), research with `--claude-config-dir ""`, research with a missing dir, and `cli-codex` research still rejecting the flag. New case in `executor-audit-cli-branch-receipts.test.ts`: the research audit row carries the configured dir. `executor-branch-contract.vitest.ts` must stay green after the YAML edit. Then `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/research` exits 0. Manual: one playbook scenario under `runtime/manual-testing-playbook/executor/`, written through `/create:manual-testing-playbook`.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -98,7 +99,7 @@ None. No new package, and no other slice must land first (research §20).
 ## 7. ROLLBACK PLAN
 <!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-Trigger: a default research run without a configured dir fails or changes account routing. Revert the one commit that touches `dispatch-iteration.cjs` and `deep-research.yaml`.
+Trigger: a default research run without a configured dir fails or changes account routing. Revert the one commit that touches `dispatch-iteration.cjs`, `deep-research.yaml` and the regenerated research contract, then rerun `check-contract-drift.cjs`.
 <!-- /ANCHOR:rollback -->
 
 ---

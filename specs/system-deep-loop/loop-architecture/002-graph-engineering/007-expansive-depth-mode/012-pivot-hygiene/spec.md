@@ -26,8 +26,8 @@ contextType: "general"
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | None. This slice ships in any order with the other defect slices. |
-| **Successor** | None. No other slice depends on it. |
-| **Source** | Parent `research/research.md` §12 item 4, §18 pivot yield, Eliminated Alternatives (`minRemainingIterations`), §20 Slice L |
+| **Successor** | `../010-research-frontier-mode/` and `../011-review-frontier-mode/`. Both gate the pivot branch this slice rewrites for the retry (research `deep-research.yaml:1056-1112`, review `deep-review.yaml:1158-1206`), and 011 also edits `divergent-review-pivot.ts`, so land this slice before either. |
+| **Source** | Parent `research/research.md` §12 item 4, §18 pivot yield, Eliminated Alternatives (`minRemainingIterations`), §20 Slice L; plan review `../scratch/fable-5-2-plan-review.md` F012-1 to F012-3, X-1, X-4, X-7, X-9, F014-2 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -64,9 +64,10 @@ The seat check adds 3 per pivot against a total of 9. The remaining-iterations c
 
 ### In Scope
 - Record the operator's choices on the seat-cap scope in `decision-record.md`: 3 seat outputs per council attempt, at most one retry per pivot, so at most 6 per pivot (decided 2026-11-17).
-- Apply that scope in the limit check at `divergent-pivot.ts:736` and in how usage is accumulated (:1485-1486).
+- Apply that scope in the limit check at `divergent-pivot.ts:736`, in how usage is accumulated (:1485-1486), and where usage is counted: `divergent-research-pivot.ts:420` and `divergent-review-pivot.ts:405` count every `pivot_seat_returned` event the run ever wrote (`readPivotEvents(artifactRoot)`), a lifetime number. Both counts are scoped to the current pivot id and attempt.
 - Stop enforcing `minRemainingIterations` while still accepting it in configs and persisted pivot limits (:463, :1025-1032).
-- Retry the council round once on a quorum failure, never on `council_agreement_failed`.
+- Retry the council round once on a quorum failure, never on `council_agreement_failed`, with an attempt number (1 or 2) carried in event ids, seat output paths and the persisted pivot config.
+- Regenerate both compiled contracts, add a changelog entry for the new seat-cap meaning and a manual testing playbook scenario for the retry.
 
 ### Out of Scope
 - `maxPivots` and its default of 3.
@@ -77,12 +78,17 @@ The seat check adds 3 per pivot against a total of 9. The remaining-iterations c
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` | Modify | Seat-cap scope per ADR-001 (:286, :736, :1485-1486); drop the :739 check while keeping the field readable; let finalize report a quorum failure as retryable once and let prepare open a second seat round for the same pivot |
-| `.skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs` | Modify | Carry the retry signal through the `prepare` and `finalize` subcommands, the workflow-facing seam |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` | Modify | Seat-cap scope per ADR-001 (:286, :736, :1485-1486); drop the :739 check while keeping the field readable; let finalize report a quorum failure as retryable once and let prepare open a second attempt for the same pivot. The attempt needs an identity everywhere the code fixes one today: seat event ids (`seatEventId`, :600-601), the `pivot_failed` and `pivot_deliberation_completed` ids (:1295, :1423, :1441), `eventByName` (:596-598, returns the first match), seat output paths (`buildPivotCouncilPaths`, :807-830, fixed `seat-001.md` to `seat-003.md`) and the persisted config check `invariants.rounds === 1` (:1130-1165). Seat ids stay `seat-001` to `seat-003`, because `REQUIRED_SEAT_IDS` (:283) is enforced by index (:500-501) |
+| `.skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs` | Modify | Carry the retry signal and the attempt number through the `prepare` and `finalize` subcommands, the workflow-facing seam |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts` | Modify | Scope the seat count at :420 to the current pivot id and attempt. `../010-research-frontier-mode/` may also edit this file |
+| `.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` | Modify | Scope the seat count at :405 to the current pivot id and attempt. `../011-review-frontier-mode/` also edits this file |
 | `.skilled/commands/deep/assets/deep-research.yaml` | Modify | In the pivot failure branch after `step_finalize_divergent_pivot` (:1112-1207), go back to `step_prepare_divergent_pivot` once when finalize marks the failure retryable |
 | `.skilled/commands/deep/assets/deep-review.yaml` | Modify | The same one-time re-entry after its `step_finalize_divergent_pivot` (:1206) |
-| `.skilled/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts` | Modify | Cases for the seat scope, the retry and the persisted-limits read |
-| `.skilled/skills/system-deep-loop/runtime/tests/council/multi-seat-dispatch.vitest.ts` | Modify | A case that a retried round dispatches three fresh seats |
+| `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown`, `deep-review.contract.markdown` | Regenerate | Both YAMLs are digest sources: `node .skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs --command deep/research --write` and `--command deep/review --write` |
+| `.skilled/skills/system-deep-loop/changelog/` | Create | A changelog entry stating the new meaning of `maxCouncilSeatOutputs` (3 per council attempt) and the one retry |
+| `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/` | Modify | A retry scenario through `/create:manual-testing-playbook system-deep-loop update` |
+| `.skilled/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts` | Modify | Cases for the seat scope, the retry (attempt-2 event ids and seat paths do not collide with attempt 1), the persisted-limits read and the scoped seat count |
+| `.skilled/skills/system-deep-loop/runtime/tests/council/multi-seat-dispatch.vitest.ts` | Baseline only | Unchanged. It tests `dispatchCouncilSeats` with any seat ids; the workflow, not that module, drives the pivot's seats, so a retry case there would not touch the changed code |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -96,7 +102,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The operator's seat-cap choice is recorded before the cap changes. | `decision-record.md` ADR-001 shows `Accepted` and names per-pivot or lifetime, with one Operator Decisions row. |
+| REQ-001 | The operator's seat-cap choice is recorded before the cap changes. | `decision-record.md` ADR-001 shows `Accepted` and names 3 seat outputs per council attempt with at most one retry per pivot; OD-001 and OD-002 carry the decision. |
 | REQ-002 | A council quorum failure is retried once, and the retry attempt gets its own 3 seat outputs. | A `divergent-pivot.vitest.ts` case: first attempt returns 2 of 3 seats, the retry attempt returns 3 valid seats; the pivot completes and records 6 seat outputs. A second consecutive quorum failure fails closed with the original reason, and no third attempt is opened. |
 | REQ-003 | `council_agreement_failed` is not retried. | A case where three valid seats disagree fails closed after one round with `council_agreement_failed` and records 3 seat outputs. |
 | REQ-004 | Persisted pivot limits that carry `minRemainingIterations` still load. | A case reading a persisted config with `minRemainingIterations: 1` parses without error, and no pivot is refused with `insufficient_remaining_iterations`. |
@@ -105,8 +111,11 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | The seat cap follows ADR-001: 3 seat outputs per council attempt, at most one retry per pivot. | A case where pivot 1 used 6 seats (with retry) still allows pivot 2, and no pivot records more than 6 seat outputs. |
+| REQ-005 | The seat cap follows ADR-001: 3 seat outputs per council attempt, at most one retry per pivot. | A case where pivot 1 used 6 seats (with retry) still allows pivot 2, no pivot records more than 6 seat outputs, and resuming an open attempt that holds 2 seat returns is not refused by the cap. |
 | REQ-006 | Default runs are unaffected. | `divergent-pivot.vitest.ts`, `divergent-pivot-cli.vitest.ts` and `multi-seat-dispatch.vitest.ts` pass; the divergent path runs only under `--convergence-mode divergent`. |
+| REQ-007 | The retry attempt has its own identity. | A `divergent-pivot.vitest.ts` case: after a retried pivot, the state log holds attempt-1 and attempt-2 seat events with distinct event ids, both attempts' seat files exist, the persisted config parses, and a pivot written before this change (attempt 1 ids, `invariants.rounds: 1`) still loads. A first-attempt quorum failure writes no terminal `pivot_failed`. |
+| REQ-008 | The seat count is scoped. | A case with two pivots in one artifact root: the usage that `divergent-research-pivot.ts` and `divergent-review-pivot.ts` pass for pivot 2 counts 0 seat outputs, not pivot 1's. |
+| REQ-009 | Generated and documented surfaces stay in step. | `check-contract-drift.vitest.ts` and `compile-command-contracts.vitest.ts` pass after both contracts are regenerated; a changelog entry and a council playbook retry scenario exist. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -114,7 +123,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `npm test -- tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts tests/unit/divergent-pivot-cli.vitest.ts` from `.skilled/skills/system-deep-loop/runtime` passes, including the new cases.
+- **SC-001**: `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts tests/unit/divergent-pivot-cli.vitest.ts` passes, including the new cases.
 - **SC-002**: `rg -n "insufficient_remaining_iterations" lib/deep-loop/divergent-pivot.ts` shows the reason kept only in the reason set for reading older events, with no live check producing it.
 <!-- /ANCHOR:success-criteria -->
 
@@ -126,10 +135,13 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | The seat round is driven by the workflow, not by code: the YAML runs prepare, three seat dispatches, record-seat and finalize. A retry built only in `divergent-pivot.ts` would never run. | Med | The retry is a one-time YAML re-entry into prepare, signalled by finalize; both YAMLs change together |
-| Dependency | Operator decision on parent §12 item 4 | The seat-cap and retry tasks wait for ADR-001; the dead-guard task does not | T001 first; T008 can proceed in parallel |
+| Dependency | Operator decision on parent §12 item 4 | None now: ADR-001 is Accepted (OD-001, OD-002), so no task waits on it | T001 is done |
+| Dependency | `../010-research-frontier-mode/` and `../011-review-frontier-mode/` change the same pivot branches and pivot scripts | Same-function conflicts in both YAMLs and both pivot scripts | Land this slice first; regenerate both compiled contracts after each merge |
 | Risk | Default-path risk is LOW: the pivot runs only in `divergent` convergence mode, which is opt-in (`.skilled/commands/deep/research.md:103`). | Low | REQ-006 suites |
 | Risk | Each retry costs three more seat outputs, so a run's worst-case seat cost rises from 9 to 18. | Low | The retry fires only on a quorum failure and at most once per pivot (ADR-001) |
 | Risk | Removing the field outright would break reads of persisted pivot limits, which list it as required (:1025). | Med | Keep the field accepted on read; only the check is dropped (REQ-004) |
+| Risk | `prepare` reruns the preflight cap check on a resume (`divergent-pivot.ts:1244`, :1284), so a per-attempt count would refuse a resumed attempt that already holds seat returns | High if missed | Run the seat-cap check only when an attempt is opened; a REQ-005 case resumes an attempt with 2 seat returns |
+| Risk | Attempt 2 reuses the fixed ids and paths: `${pivotId}:pivot_seat_returned:${seatId}`, `seats/seat-00N.md`, `${pivotId}:pivot_failed`, and `eventByName` returns the first match, so attempt 2 would read attempt 1's events | High if missed | Carry the attempt number in every id and path; keep attempt-1 ids unchanged so older pivots load (REQ-007) |
 <!-- /ANCHOR:risks -->
 
 ---

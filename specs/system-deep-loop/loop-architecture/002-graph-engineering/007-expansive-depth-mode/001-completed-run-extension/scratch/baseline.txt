@@ -1,0 +1,9 @@
+Runtime suite baseline, 2026-11-17, main at c9d8ff4 (dirty only outside system-deep-loop)
+Command: cd .skilled/skills/system-deep-loop/runtime && npx vitest run
+Result: exit 0. Test Files 185 passed (185). Tests 3095 passed | 9 skipped (3104).
+Failing tests at baseline: NONE. Any failure after this phase is new.
+
+Gate scripts (.skilled/skills/system-deep-loop/runtime/scripts): check-ledger-stem-producers.cjs exit 0 (ok, 0 violations); check-projection-coverage.cjs exit 0 (ok, 0 violations); check-contract-drift.cjs exit 0 ([CONTRACT DRIFT] OK commands=2).
+
+system-spec-kit suites: cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/deep-review-contract-parity.vitest.ts tests/deep-review-reducer-schema.vitest.ts tests/deep-review-auto-restart-contract.vitest.ts
+Result: Test Files 3 passed (3). Tests 17 passed (17).

@@ -26,7 +26,7 @@ contextType: "general"
 | **Created** | 2026-11-17 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Predecessor** | `../004-focus-hijack-fix/spec.md` |
+| **Predecessor** | `../004-focus-hijack-fix/spec.md` (numbering order; this phase builds before 004, see Risks) |
 | **Successor** | `../006-state-log-leaf-fields/spec.md` |
 <!-- /ANCHOR:metadata -->
 
@@ -68,11 +68,12 @@ The first command finds the list header and no `research/research.md` entry. In 
 ## 3. SCOPE
 
 ### In Scope
-- Add `research/research.md` to the pack's allowed-write list with the agent's own condition: only when `progressiveSynthesis` is `true` in the run config.
+- Add the progressive-synthesis file to the pack's allowed-write list with the agent's own condition: only when `progressiveSynthesis` is `true` in `{state_paths_config}`. The entry names the file relative to the run's artifact directory, not as the static path `research/research.md`: it is the `research.md` beside the `iterations/` directory that `{state_paths_iteration_pattern}` names. In a fan-out lineage that directory is the lineage directory, where the file is `${lineageDir}/research.md` (`runtime/scripts/fanout-run.cjs:742-745`), and the pack's own lineage rule (`prompt-pack-iteration.md.tmpl:48`) already sends every lineage write there. The wording is static text, so detached executors that read the raw template see the same rule.
 - Rename the pack's narrative heading `Next Focus` to `Recommended Next Focus`, the spelling the reducer and the agent definition already use.
-- Regenerate the compiled research command contract, which records a sha256 of the template (`.skilled/commands/deep/assets/compiled/deep-research.contract.markdown:74-75`), so the contract-drift check stays green.
+- Regenerate the compiled research command contract, which records a sha256 of the template (`.skilled/commands/deep/assets/compiled/deep-research.contract.markdown:74-75`), so the contract-drift check stays green. Regenerate again after each merge that touches a digested source, and never resolve its digest lines by hand: `../006-state-log-leaf-fields/` also edits this template and rewrites the same contract.
 - Add a lockstep case that fails when the agent definition and the research pack disagree on the progressive-synthesis write rule or on the iteration narrative's next-focus heading.
 - Check the review side and record that it needs no change: the review pack, agent and reducer already agree.
+- Write the manual testing playbook scenario for the changed pack rule through `/create:manual-testing-playbook`. Phase `../014-docs-playbooks-alignment/` only verifies and aligns it.
 
 ### Out of Scope
 - Changing the agent definition or its runtime mirrors (`.claude/agents/`, `.opencode/agents/`) - the agent is the contract owner in the chosen direction, so it stays as is (see Open Questions for the reverse option).
@@ -83,10 +84,11 @@ The first command finds the list header and no `research/research.md` entry. In 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` | Modify | One conditional allowed-write entry for `research/research.md`; heading list `Next Focus` becomes `Recommended Next Focus` |
-| `.skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts` | Modify | Rendered-pack case for both changes plus the agent/pack lockstep case |
+| `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` | Modify | One conditional allowed-write entry for the run's `research.md`, worded relative to the `iterations/` directory; heading list `Next Focus` becomes `Recommended Next Focus` |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts` | Modify | Rendered-pack case for both changes, a lineage render case, and the agent/pack lockstep case |
 | `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown` | Regenerate | `node .skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs --command deep/research --write` refreshes the template digest |
-| `.skilled/agents/deep-research.md` | Check only | Source of the rule the pack must match (`:58`, `:228`, `:309-310`, `:316`) |
+| `.skilled/agents/deep-research.md` | Check only | Source of the rule the pack must match (`:58`, `:228`, `:309-310`, `:316`). Not edited, so no runtime mirror sync is needed |
+| `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/prompt-rendering/` | Modify | One scenario, written by `/create:manual-testing-playbook system-deep-loop update --path .skilled/skills/system-deep-loop/runtime/manual-testing-playbook` |
 | `.skilled/commands/deep/assets/deep-research.yaml`, `deep-review.yaml` (`render_prompt_pack`) | Check only | No new render variable is needed, so the YAMLs stay unchanged; only the research compiled contract is regenerated, for the template digest |
 <!-- /ANCHOR:scope -->
 
@@ -101,17 +103,19 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The research pack's allowed-write list names `research/research.md` under the `progressiveSynthesis` condition | `rg -n "research/research.md.*progressiveSynthesis" .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` prints one line inside the ALLOWED WRITE PATHS list |
+| REQ-001 | The research pack's allowed-write list names the run's `research.md` under the `progressiveSynthesis` condition, relative to the run's artifact directory | `rg -n "research\.md.*progressiveSynthesis" .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` prints one line inside the ALLOWED WRITE PATHS list, and that line does not contain the literal `research/research.md` |
 | REQ-002 | The pack's narrative heading list uses `Recommended Next Focus` | `rg -n "Questions Remaining, Recommended Next Focus" .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` prints one line, and `rg -n ", Next Focus\." <same file>` prints nothing |
-| REQ-003 | A lockstep test fails when the agent definition and the pack disagree | A `prompt-pack.vitest.ts` case reads `.skilled/agents/deep-research.md` and the research template and asserts both name `research/research.md` with `progressiveSynthesis` and both name `Recommended Next Focus`; deleting either line from the pack in a scratch copy makes the case fail |
+| REQ-003 | A lockstep test fails when the agent definition and the pack disagree | A `prompt-pack.vitest.ts` case reads `.skilled/agents/deep-research.md` and the research template and asserts that both have a line naming `research.md` together with `progressiveSynthesis`, and that both name `Recommended Next Focus`; deleting either line from the pack in a scratch copy makes the case fail |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-004 | A pack-compliant narrative is parsed by the research reducer | A `deep-research-reduce-state` or `prompt-pack` case feeds a narrative with the headings the pack names and gets a non-empty parsed `nextFocus` |
-| REQ-005 | Existing suites stay green, including the compiled-contract drift checks | `npx vitest run prompt-pack deep-research-deltas-contract deep-review-deltas-contract check-documentation-drift check-contract-drift compile-command-contracts` from `.skilled/skills/system-deep-loop/runtime` exits 0 |
+| REQ-005 | Existing suites stay green, including the compiled-contract drift checks | `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/prompt-pack.vitest.ts tests/unit/deep-research-reduce-state.vitest.ts tests/unit/deep-research-deltas-contract.vitest.ts tests/unit/deep-review-deltas-contract.vitest.ts tests/unit/check-documentation-drift.vitest.ts tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0 |
 | REQ-006 | The review side is unchanged | `git diff --stat` after the change lists no file under `deep-review/`, neither agent definition, and no compiled contract other than `deep-research.contract.markdown` |
+| REQ-007 | A fan-out lineage is told to write its own `research.md` | A `prompt-pack.vitest.ts` case renders the research pack with `state_paths_iteration_pattern` set to a lineage path (`<lineageDir>/iterations/iteration-002.md`) and asserts that the rendered ALLOWED WRITE PATHS list carries that lineage iteration path, that its `research.md` entry points at the directory holding that path's `iterations/` folder, and that the list holds no `research/research.md` literal, which would send a lineage write to the parent run |
+| REQ-008 | The changed pack rule has a playbook scenario | `/create:manual-testing-playbook system-deep-loop update --path .skilled/skills/system-deep-loop/runtime/manual-testing-playbook` has written one scenario, and `rg -l "progressiveSynthesis" .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/prompt-rendering` lists it |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -120,7 +124,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The rendered research prompt pack and `.skilled/agents/deep-research.md` state the same progressive-synthesis write rule and the same next-focus heading, and a test proves it.
-- **SC-002**: `npx vitest run prompt-pack deep-research-deltas-contract deep-review-deltas-contract check-documentation-drift check-contract-drift compile-command-contracts` exits 0.
+- **SC-002**: `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/prompt-pack.vitest.ts tests/unit/deep-research-reduce-state.vitest.ts tests/unit/deep-research-deltas-contract.vitest.ts tests/unit/deep-review-deltas-contract.vitest.ts tests/unit/check-documentation-drift.vitest.ts tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -131,8 +135,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | Default-path behavior changes: with `progressiveSynthesis: true` by default, research leaves on normal runs are now told they may update `research/research.md`, which the pack forbade before | Low-Medium | The rule matches what the agent definition already allows; state the change in the phase changelog note |
-| Risk | Detached CLI executors read the raw template, not a rendered one (`runtime/scripts/fanout-run.cjs:1617-1619`), so an unrendered placeholder would reach them verbatim | Medium if a render variable were used | The entry is static text that names the config key, so no new placeholder exists; REQ-001 checks the literal line |
+| Risk | Detached CLI executors read the raw template, not a rendered one (`runtime/scripts/fanout-run.cjs:1617-1625`), so an unrendered placeholder would reach them verbatim | Medium if a render variable were used | The entry is static text that names the config key, so no new placeholder exists; REQ-001 checks the literal line |
 | Dependency | None. This phase has no prerequisite slice (parent §20 order) | None | Not applicable |
+| Dependency | This phase lands before `../004-focus-hijack-fix/`, whose leaf-recommendation reader only sees pack-compliant narratives once the heading is `Recommended Next Focus` | 004's reader stays inert if this phase slips | Land this phase first |
+| Risk | `../006-state-log-leaf-fields/` and `../010-research-frontier-mode/` edit the same template, and every edit changes the research contract digest | Merge conflicts on the digest lines | Regenerate the contract after each merge; never hand-resolve the digest lines |
 | Dependency | This phase is a prerequisite of `../010-research-frontier-mode/` (parent §20, Slice J depends on E; §10 requires the frontier pack block to keep the write list consistent with the agent) | The frontier pack block would extend an inconsistent list | Land this phase before 010 starts |
 <!-- /ANCHOR:risks -->
 

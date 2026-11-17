@@ -98,7 +98,7 @@ The decision was recorded in the spec documents only. No code was written, and n
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No runtime change yet.** `divergent-pivot.ts` is untouched until T003 lands.
+1. **No runtime change yet.** `divergent-pivot.ts`, both pivot scripts and both YAMLs are untouched until T003 to T011 land.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -16,7 +16,9 @@
       "sourcediversity cannot pass",
       "slice g quality class",
       "source diversity quality class plan",
-      "source diversity quality class tasks"
+      "source diversity quality class tasks",
+      "source diversity quality class goal",
+      "007-source-diversity-quality-class operator decisions"
     ],
     "key_topics": [
       "source",
@@ -38,13 +40,14 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
+      "decision-record.md",
       ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts",
       ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-graph-upsert.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts",
-      ".skilled/agents/deep-research.md"
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts"
     ],
     "entities": [
       {
@@ -63,6 +66,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -102,12 +117,6 @@
         "source": "derived"
       },
       {
-        "name": "deep-research.md",
-        "kind": "doc",
-        "path": ".skilled/agents/deep-research.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -138,7 +147,7 @@
         "source": "derived"
       },
       {
-        "name": "Open Questions",
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -184,30 +193,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`computeResearchSourceDiversityFromData` counts distinct `metadata.qualityclass` values on SOURCE nodes cited by each question's answering findings (`runtime/lib/coverage-graph/coverage-graph-signals.ts:653-690`)",
     "created_at": "2026-11-17T14:43:29.967Z",
-    "last_save_at": "2026-11-17T14:43:29.967Z",
+    "last_save_at": "2026-11-17T18:10:50.738Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "goal.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:c1524f583cf4caa5ba87d316cc04ebefc4e690aaf66e5ed122c8ff0ed9a23338",
+    "source_fingerprint": "sha256:ddb1dffa67b778743e4550b780c4429163590afc17a3d39e02c8a77afe6cf33b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "84e1d13792102f42a9f48a5893c46d4349cebf0126f1f7c492fcf53ae6344479",
-      "plan.md": "ba0ecec433a3e0d32daf61533c3dcfdb9ce07afd301913b91a80152d3fb12cca",
-      "tasks.md": "0340d3f6e3b7ef4748863d6e951ec2e6a85178236a0605f7cfbd342f0d999498"
+      "spec.md": "75da24d950c24c9e14c413d15a084572d0e11bb918fe5eab909fc94419408733",
+      "plan.md": "55e0476191dc9c46bfe48e01e0dbcac2c80350826189f0bb61760b58ccc05efe",
+      "tasks.md": "760f77a14cdcebab1430c2bc9674fc3b8afe4274249b791742fa5d378dd5c3a7",
+      "decision-record.md": "7899e44b9f3785d069df45b9dffb5a7b75f78b1a8167c6653474fcf78b006ecb"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -47,10 +47,13 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".skilled/agents/deep-research.md",
+      ".skilled/commands/deep/assets/deep-research.yaml",
+      ".skilled/commands/deep/assets/deep-review.yaml",
       ".skilled/commands/deep/research.md",
       ".skilled/commands/deep/review.md",
-      ".skilled/agents/deep-research.md",
-      ".skilled/agents/deep-review.md"
+      ".skilled/agents/deep-review.md",
+      "tests/deep-review-auto-restart-contract.vitest.ts"
     ],
     "entities": [
       {
@@ -96,21 +99,39 @@
         "source": "derived"
       },
       {
-        "name": "review.md",
-        "kind": "doc",
-        "path": ".skilled/commands/deep/review.md",
-        "source": "derived"
-      },
-      {
         "name": "deep-research.md",
         "kind": "doc",
         "path": ".skilled/agents/deep-research.md",
         "source": "derived"
       },
       {
+        "name": "deep-research.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
         "name": "deep-review.md",
         "kind": "doc",
         "path": ".skilled/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto-restart-contract.vitest.ts",
+        "kind": "test",
+        "path": "tests/deep-review-auto-restart-contract.vitest.ts",
         "source": "derived"
       },
       {
@@ -178,29 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A completed deep-research run halts on `oncompletedsession`, and a completed deep-review run re-synthesizes but adds no iterations (defect D11)",
     "created_at": "2026-11-17T14:35:15Z",
-    "last_save_at": "2026-11-17T16:57:05.687Z",
+    "last_save_at": "2026-11-17T18:12:34.335Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:355b8651a8bf06158968b36b4e97d19581943988369cfeccd57b9cc4f212765a",
+    "source_fingerprint": "sha256:35d00d62cc75da7864b3065ecd31f0c6bdf3c23129b8bb835d683904752b7eb1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6023967371624257036e63668a4388a647d3ff8919e3327b234fffc6f99a0f17",
-      "plan.md": "32b6a65d0bf026c2f23ecd195499e948377b36db8ab79eae874a098861e02b66",
-      "tasks.md": "59f401fe7225cd15ce38a0218062aa48a1ea4304b07564c8dbe9c8d30858a006",
-      "decision-record.md": "beea4130739bb6f0c5245ae8df3520eb54ae8ea2d5669734be68f220a9cae9f5",
-      "implementation-summary.md": "9e3e24ac12f30cc4b3939e4ea7a190daab83ae1010c3901631e8127ef3131e8a"
+      "spec.md": "8357d308c194013292fedfb30f721a05cff0e8611bd85d2e856837207456bb1d",
+      "plan.md": "8ee43e36580eb91d7626a7cb6437ffa38e77f2979c2f47de8677bf6db858b7bf",
+      "tasks.md": "c0c778026bb47ca19e3d192ad7de13fb1389983716da411c9b6bd0f58efd8316",
+      "decision-record.md": "fa05ab8fc24c58bddf8f0347f5026530d43bbb17d332790d3f6239c8919f9567",
+      "implementation-summary.md": "89e0a0a96fda5aac9d05ddc996b989f3193e559f83acdf1f4e1556802d149ec5"
     },
     "last_active_at": null
   }
