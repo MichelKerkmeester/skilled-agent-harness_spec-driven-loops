@@ -62,7 +62,7 @@ Frozen choices. Changing one is an amendment.
 - [x] A rerun of apply after a failed regenerate step reruns that step, and a later drop of the item it added removes the item, in a passing test.
 - [x] A status run with no readable upstream checkout prints a `NOTE` line naming the skipped stale-root check, in a passing test.
 - [x] `validate.sh --strict` on this folder prints `RESULT: PASSED`.
-- [ ] The commit is on origin/main, and the vendoring project is told which commit to re-pin to.
+- [x] The commit is on origin/main, and the vendoring project is told which commit to re-pin to.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -87,6 +87,7 @@ and findings belong here.
 | Barter read-only status | Done | RESULT unchanged (PASSED), Barter's state files and git status unchanged; two false cross-check lines and two duplicate notes found |
 | Regenerate outputs skipped by the cross-check, untracked lines name their target | Done | Four tests failed first at their own assertions, then passed |
 | Final suite | Done | tests 1234, pass 1234, fail 0, exit 0; quality gate 0 findings |
+| Barter re-pin to 25b09c99a35 | Done | Before apply: the ten predicted notes. After one apply and the declared output: state version 2, status 131 of 131 with eight notes, engine tests 184 of 184. mcp-tooling graph-metadata left unlisted because the generator leaves it as the pin has it |
 
 ### Deviations and findings
 

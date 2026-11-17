@@ -39,7 +39,7 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,11 +47,12 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/sk-git/scripts/hooks/README.md",
+      ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
+      ".skilled/hooks/spec-gate/README.md",
       ".skilled/hooks/shared/README.md",
       ".skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md",
-      ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
-      ".skilled/skills/sk-git/scripts/hooks/README.md",
-      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
       ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
       ".claude/settings.json",
@@ -59,8 +60,7 @@
       ".cursor/hooks.json",
       ".devin/hooks.v1.json",
       ".vibe/hooks.toml",
-      ".opencode/plugins/tests/goal-doc-contract.test.cjs",
-      ".skilled/skills/system-spec-kit/runtime/tests/completion-evidence-sentinel.vitest.ts"
+      ".opencode/plugins/tests/goal-doc-contract.test.cjs"
     ],
     "entities": [
       {
@@ -102,19 +102,19 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/hooks/shared/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "hook-readme-template.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md",
+        "path": ".skilled/skills/sk-git/scripts/hooks/README.md",
         "source": "derived"
       },
       {
         "name": "skill-advisor-hook.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-readme-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md",
         "source": "derived"
       },
       {
@@ -160,12 +160,6 @@
         "source": "derived"
       },
       {
-        "name": "completion-evidence-sentinel.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-spec-kit/runtime/tests/completion-evidence-sentinel.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A hook folder README tells a maintainer which runtimes run a concern and where each adapter really lives",
     "created_at": "2026-11-16T15:20:14Z",
-    "last_save_at": "2026-11-16T19:27:04.846Z",
+    "last_save_at": "2026-11-17T06:18:17.038Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1cf049627ae8972f0b27ab8fbf66ea88a0f6263cd4ec2bd38f4a80f69210de76",
+    "source_fingerprint": "sha256:f92c47b145f3ced91702364146d618a2e303aa333612200454d930a2b75adb41",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2f3b5a59f6334cbc10b7acdf4336246dfe20fa494004879f718153addf8dea29",
-      "plan.md": "eb9d73979d0fb983730692ef6440e4e10d492cf711b837dd27b795313e7b9a03",
-      "tasks.md": "992104aced89700f69cb532f7a870b26fffa7c308b951ca9c0d2aa15a220a550",
-      "implementation-summary.md": "1af97023ba527d93ba8ab5d9194f65712d6ebe90570b568a6ad75080ef817adc"
+      "spec.md": "b3137b4a5b67de572df0a6c71047a692fe683a2fe62943ac109d2e251dba6cfc",
+      "plan.md": "cb7c8c4d3e4a78672137bc008269fc1989b72a028724885a95fa715df5376206",
+      "tasks.md": "8f1cad1c2941fcce9151b388e04ff0d1a076cd9d5342ba94c2109f450ee2da91",
+      "implementation-summary.md": "3531b4b651316d77d2a876d032c24a9317984266375ad438738a88dd99150dcf"
     },
     "last_active_at": null
   }

@@ -1,6 +1,6 @@
 ---
 title: "Git Primary Reconcile: Live-Checkout Convergence"
-description: "SessionStart primitive that converges the primary checkout onto its live branch, fast-forwarding when behind and rebase-publishing local commits when ahead, across Claude, Codex, Cursor, Devin, DSH, Pi, OpenCode and Vibe."
+description: "Reconciles the primary checkout with its live branch at session start for Claude, Codex, Cursor, Devin, OpenCode, Pi, DSH and Vibe."
 trigger_phrases:
   - "primary checkout reconcile"
   - "live branch reconcile"
@@ -25,104 +25,77 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-`git-primary-reconcile/` indexes the script that keeps the primary checkout current on its live branch. A session that commits in the primary can leave it behind origin, ahead of it or both. The next session then opens against a diverged checkout.
+Runtime hooks start `.skilled/bin/git-primary-reconcile.sh` to reconcile the primary checkout with its configured live branch. Each of the six runtime directories contains a symlink to that script. Runtime startup paths reach the script directly or through a shared plugin, not through those symlinks.
 
-The script converges that checkout. It fast-forwards when the checkout is behind. It rebase-publishes local commits when the checkout is ahead. The primary never rests in a half-merged state.
-
-It acts only in the main checkout, only on the resolved live branch and only when tracked files are clean. It never loses a commit. A rebase conflict aborts back to the exact pre-rebase HEAD. A pre-existing rebase is refused rather than touched. A blocked push leaves local commits preserved but unpublished. Every internal failure exits 0, so session start always continues.
-
-Six folders here hold a link into `.skilled/bin/`. No registration names a path in this folder, so nothing loads through them. Claude, Codex, Cursor and Devin call the real script from their hook file. Pi and DSH call it from their session-start adapters. OpenCode starts it from its plugin in `session-cleanup/`. Vibe reaches it through that same plugin, from its `session_start` hook.
+The concern key is `primary-reconcile`, which differs from the folder name. `SYSTEM_PRIMARY_RECONCILE_DISABLED` disables this concern. `SYSTEM_LIVE_SYNC_DISABLED` disables it with the live-sync concern. `SYSTEM_HOOKS_DISABLED` is the master switch.
 
 ---
 
 ## 2. HOW IT WORKS
 
-`git-primary-reconcile.sh` runs one flow at session start. Every branch exits 0.
+The script resolves Git's directory and common directory first. A linked worktree has different paths, so the script exits before it reads flags or fetches. It then sources `.skilled/hooks/shared/hook-flags.sh` and checks the `live-sync` and `primary-reconcile` switches.
 
-1. **Worktree gate.** The script resolves `git-dir` and `git-common-dir`. A linked worktree has `git-dir != git-common-dir` and exits at once. A worktree shares refs with the primary but belongs to a separate session. Moving its branch here would cross that ownership boundary. This gate precedes flags, logging, locking and fetch.
-2. **Kill-switches.** It sources the shared `hook-flags.sh` fail-open. A missing resolver warns and leaves the concern enabled. `hook_enabled live-sync` and `hook_enabled primary-reconcile` each record a skip and exit when disabled.
-3. **Single-flight lock.** It takes a lock file in the common dir with a 45-second TTL. A stale lock is reclaimed. A held lock records a skip and exits.
-4. **Live-branch resolution.** It reads the current branch. With `SPECKIT_LIVE_BRANCH` unset, only `skilled/v*` release branches count as live. Anything else skips. The current branch must match the resolved live branch.
-5. **Dirty check.** It captures tracked-only dirty state from `git diff` and `git diff --cached`. Untracked build output is ignored on purpose.
-6. **Bounded fetch.** It runs `git fetch <REMOTE> <LIVE>` under a network timeout, 12 seconds by default. A failed or timed-out fetch skips and leaves the checkout unchanged.
-7. **Reconcile.** It compares the local and remote tips.
+`try_acquire_lock()` keeps two runs from reconciling at once. `SPECKIT_PRIMARY_RECONCILE_LOCK_TTL` sets the stale-lock age. It defaults to 45 seconds. When `SPECKIT_LIVE_BRANCH` is unset, the script accepts a current branch matching `skilled/v*`. When set, the configured branch must match the current branch.
 
-   | Situation | Action |
-   |---|---|
-   | Tips equal | Skip, already up to date |
-   | Local is behind | `git merge --ff-only`. `ADVANCE` on success, `BLOCK` on a dirty collision or a refused fast-forward |
-   | Local is ahead, clean tree, no rebase in progress | `git rebase <REMOTE_TIP>` then `git push <REMOTE> HEAD:<LIVE>`. `PUBLISH` on success |
-   | Local is ahead, dirty tree | `SKIP`. A rebase needs a clean tree, so local commits stay unpublished |
-   | Local is ahead, rebase already in progress | `BLOCK`. It refuses to rebase or abort a rebase it did not start |
-   | Histories diverged, no local commits to rebase | `BLOCK`. It cannot reconcile automatically |
+`bounded_run()` caps fetch and push with `SPECKIT_PRIMARY_RECONCILE_TIMEOUT`, which defaults to 12 seconds. The script tries `timeout` first. It falls back to `gtimeout`. Perl `alarm` is the last option. Without a bounded runner, the script skips network work.
 
-8. **Rebase safety.** A failed rebase is aborted. The script then asserts HEAD landed on the exact pre-rebase commit, forcing `reset --hard` when it did not. It also asserts no leftover rebase state and a clean tree. A failed assertion is `CRITICAL BLOCK`. A clean abort records a plain `BLOCK` instead, keeps the local commits unpublished and prints a resolve hint.
-9. **Push gates.** A rejected push is classified from the push output, and the script prints the fix.
+Equal local and remote tips record `skip`. A branch behind the remote tries `git merge --ff-only`. Fast-forwards preserve nonconflicting tracked edits. A conflict records `block`. The dirty check ignores untracked files.
 
-   | Gate | Fix |
-   |---|---|
-   | `mass-deletion` | `After inspection: SPECKIT_ALLOW_MASS_DELETION=1 git push <REMOTE> HEAD:<LIVE>` |
-   | `skill-root-metadata` | `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix` |
-   | `remote-create` | `Creating a branch on origin is a decision: SPECKIT_ALLOW_REMOTE_PUSH=<branch> git push <REMOTE> HEAD:<LIVE>` |
-   | `remote-permission` | `After explicit approval, retry that one push with SPECKIT_ALLOW_REMOTE_PUSH=1.` |
-   | `test-suites` | `Fix the reported test failure or use only the documented operator policy.` |
-   | `push-rejected` (default) | `git push <REMOTE> HEAD:<LIVE>` |
+When a branch is ahead, tracked edits defer the rebase and leave local commits unpublished. A clean checkout with no rebase in progress rebases onto the remote tip and pushes to the live branch. A pre-existing rebase is left untouched.
 
-Every outcome is one tab-separated line in `<common-dir>/git-primary-reconcile.log`. The line holds a timestamp, the event, the branch, the live branch and a detail. The events are `skip`, `advance`, `block` and `publish`.
+If a rebase fails, the script aborts it and checks that HEAD returned to the original commit. If it did not, the script tries `git reset --hard` to that commit. It then checks that no rebase state or tracked edits remain.
 
-Fetch and push run under `timeout`, `gtimeout` or `perl alarm`. With no bounded runner the script refuses network access and skips.
-
-Every internal failure exits 0. A missing git binary warns and skips. A checkout that is not a Git repository exits 0 with no output. Unresolvable Git directories warn and skip. A missing local or remote tip skips. Session start always continues.
-
-These boundaries hold on every path:
-
-- **Scope.** Runs only in the main checkout, only on the resolved live branch. A linked worktree exits before any flag, lock or network call.
-- **Uncommitted work.** Cleanliness is tracked-only, so untracked build output is ignored. A dirty tree blocks the rebase and publish path. A dirty collision blocks the fast-forward.
-- **Commits.** A rebase conflict aborts back to the exact pre-rebase HEAD. A pre-existing rebase is refused, never aborted. A blocked push leaves local commits intact.
-- **Bounded.** Fetch and push run under the network timeout. The single-flight lock prevents concurrent runs.
-- **Imports.** Bash only. It sources the shared `hook-flags.sh` fail-open and nothing outside the repository.
+`classify_push_gate()` maps a rejected push to a gate name and a fix hint. After the script resolves the primary checkout's Git common directory, it records outcomes in `<common-dir>/git-primary-reconcile.log`. The exit handler returns 0 so a reconcile failure does not stop session start.
 
 ---
 
 ## 3. RUNTIME COVERAGE
 
-| Runtime | Event | Entry in this folder | Real file | What the runtime shows |
+| Runtime | Event | Runtime entry | Real file | What the runtime shows |
 |---|---|---|---|---|
-| Claude | `SessionStart [id git-primary-reconcile, timeout 3]` | `claude/git-primary-reconcile.sh` | `.skilled/bin/git-primary-reconcile.sh` | Nothing. Both streams are discarded. |
-| Codex | `SessionStart [id git-primary-reconcile, timeout 3]` | `codex/git-primary-reconcile.sh` | `.skilled/bin/git-primary-reconcile.sh` | Nothing. Both streams are discarded. |
-| Cursor | `sessionStart [id git-primary-reconcile, timeout 10]` | `cursor/git-primary-reconcile.sh` | `.skilled/bin/git-primary-reconcile.sh` | Nothing. Both streams are discarded. |
-| Devin | `SessionStart [id git-primary-reconcile, timeout 3]` | `devin/git-primary-reconcile.sh` | `.skilled/bin/git-primary-reconcile.sh` | Nothing. Both streams are discarded. |
-| DSH | `agent/created` | `dsh/git-primary-reconcile.sh` | `.skilled/bin/git-primary-reconcile.sh` | Nothing. The adapter spawns it detached. |
-| Pi | `session_start` | `pi/git-primary-reconcile.sh` | `.skilled/bin/git-primary-reconcile.sh` | Nothing. The adapter backgrounds it. |
-| OpenCode | `session.created` | None | `.opencode/plugins/session-cleanup.js` | Nothing. The plugin spawns it detached. |
-| Vibe | `session_start` | None | `.vibe/plugins/repo-guards/session-cleanup.mjs` | Nothing from the script. |
+| Claude | `SessionStart` | `.claude/settings.json` | `.skilled/bin/git-primary-reconcile.sh` | Background run. Both output streams are discarded. |
+| Codex | `SessionStart` | `.codex/hooks.json` | `.skilled/bin/git-primary-reconcile.sh` | Background run. Both output streams are discarded. |
+| Cursor | `sessionStart` | `.cursor/hooks.json` | `.skilled/bin/git-primary-reconcile.sh` | Background run. Both output streams are discarded. |
+| Devin | `SessionStart` | `.devin/hooks.v1.json` | `.skilled/bin/git-primary-reconcile.sh` | Background run. Both output streams are discarded. |
+| OpenCode | `session.created` | `.opencode/plugins/session-cleanup.js` | `.skilled/bin/git-primary-reconcile.sh` | Detached run. The plugin logs launch failures. |
+| Pi | `session_start` | `.pi/extensions/session-start-advisories.ts` | `.skilled/bin/git-primary-reconcile.sh` | Background run. Both output streams are discarded. |
+| DSH | `agent/created` on startup | `.dsh/plugins/repo-guards/index.mjs` | `.skilled/bin/git-primary-reconcile.sh` | Detached run. Both output streams are ignored. |
+| Vibe | `session_start` | `.vibe/hooks.toml` | `.skilled/bin/git-primary-reconcile.sh` | Detached run. Reconcile output is ignored. |
 
-Claude, Codex, Cursor and Devin register the script in `hook-registry.json` under the id `git-primary-reconcile`. Claude, Codex and Devin give it 3 seconds and Cursor gives it 10. Each one backgrounds the run and discards both streams, so session start never waits on the network.
+Claude registers `SessionStart` in [its settings file](../../../.claude/settings.json) with a 3-second timeout. Codex uses [its hooks file](../../../.codex/hooks.json) with the same event and timeout. Cursor registers `sessionStart` in [its hooks file](../../../.cursor/hooks.json) with a 10-second timeout. Devin registers `SessionStart` in [its hooks file](../../../.devin/hooks.v1.json) with a 3-second timeout.
 
-Pi runs the script at `session_start` with the reason `startup` or `new`. The adapter in `session-start-advisories.ts` backgrounds it under the concern `session-lifecycle` and throws its output away. DSH runs it at `agent/created` with source `startup` only, when both `session-lifecycle` and `primary-reconcile` are on. That adapter spawns it detached and ignores both streams. A fan-out leaf skips it, because a disposable child must not own background git work.
+OpenCode loads [the session-cleanup plugin](../../../.opencode/plugins/session-cleanup.js) from the `.opencode/plugins/*.js` glob. Its `session.created` handler starts the reconcile script detached with both streams ignored.
 
-OpenCode starts the script from `.opencode/plugins/session-cleanup.js`. The plugin's `event` handler starts it on `session.created`, once per session id, detached with both streams ignored. The plugin runs only while the `session-cleanup` concern is on.
+Pi loads [the extension entry](../../../.pi/extensions/session-start-advisories.ts), which re-exports [the shared Pi adapter](../../../.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts). The adapter starts this check for `startup` and `new` session reasons. It redirects both streams and backgrounds the command.
 
-Vibe runs the script at `session_start`. Its `.vibe/hooks.toml` entry calls `.skilled/hooks/session-lifecycle/vibe/session-start.mjs`, which runs `.vibe/plugins/repo-guards/session-cleanup.mjs`. That hook reuses `.opencode/plugins/session-cleanup.js`, fires its `session.created` event and returns the other guards' warnings as `additional_context`. It skips when the `session-cleanup` concern is off.
+DSH registers session-start advisories in [the repo-guards bundle](../../../.dsh/plugins/repo-guards/index.mjs). The adapter runs at `agent/created` for source `startup` and skips fan-out leaves. It starts the reconcile script detached with ignored streams.
 
-A failed launch is logged by the OpenCode plugin and ignored by DSH and Pi. Claude, Codex, Cursor and Devin discard both streams, so a launch failure prints nothing there. On every runtime the reconcile log is the only trace of a run.
+Vibe registers [the session-start hook](../../../.vibe/hooks.toml) to call [the shared session-start adapter](../../../.skilled/hooks/session-lifecycle/vibe/session-start.mjs). That adapter calls [the Vibe guard](../../../.vibe/plugins/repo-guards/session-cleanup.mjs), which starts reconcile through the OpenCode session-cleanup plugin.
+
+The direct shell hooks discard both streams. Pi and DSH also hide reconcile output. OpenCode logs a launch failure. The script records its outcomes in `git-primary-reconcile.log` under Git's common directory.
 
 ---
 
 ## 4. DIRECTORY TREE
 
-```text
+~~~text
 git-primary-reconcile/
 +-- README.md
-+-- claude/   git-primary-reconcile.sh -> ../../../bin/git-primary-reconcile.sh
-+-- codex/    git-primary-reconcile.sh -> ../../../bin/git-primary-reconcile.sh
-+-- cursor/   git-primary-reconcile.sh -> ../../../bin/git-primary-reconcile.sh
-+-- devin/    git-primary-reconcile.sh -> ../../../bin/git-primary-reconcile.sh
-+-- dsh/      git-primary-reconcile.sh -> ../../../bin/git-primary-reconcile.sh
-`-- pi/       git-primary-reconcile.sh -> ../../../bin/git-primary-reconcile.sh
-```
++-- claude/
+|   `-- git-primary-reconcile.sh -> ../../../bin/git-primary-reconcile.sh
++-- codex/
+|   `-- git-primary-reconcile.sh -> ../../../bin/git-primary-reconcile.sh
++-- cursor/
+|   `-- git-primary-reconcile.sh -> ../../../bin/git-primary-reconcile.sh
++-- devin/
+|   `-- git-primary-reconcile.sh -> ../../../bin/git-primary-reconcile.sh
++-- dsh/
+|   `-- git-primary-reconcile.sh -> ../../../bin/git-primary-reconcile.sh
+`-- pi/
+    `-- git-primary-reconcile.sh -> ../../../bin/git-primary-reconcile.sh
+~~~
 
-Each runtime folder holds one link into `.skilled/bin/`. The link is relative, so it survives a move of the checkout.
+There is no `opencode/` or `vibe/` subfolder. Those runtimes use shared plugins.
 
 ---
 
@@ -130,59 +103,52 @@ Each runtime folder holds one link into `.skilled/bin/`. The link is relative, s
 
 | File | Responsibility |
 |---|---|
-| `.skilled/bin/git-primary-reconcile.sh` | The reconcile script. Worktree gate, kill-switches, single-flight lock, live-branch resolution, bounded fetch, fast-forward or rebase-publish, rebase-abort assertion, push-gate classification and tab-separated logging. Always exits 0. |
-| `.opencode/plugins/session-cleanup.js` | The OpenCode session-start plugin. It launches this script on `session.created`. |
-| `.skilled/hooks/shared/hook-flags.sh` | The shared shell kill-switch resolver. The script sources it fail-open and asks for `hook_enabled live-sync` and `hook_enabled primary-reconcile`. |
-| `.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts` | The Pi adapter. It backgrounds the script at `session_start` under `session-lifecycle`. |
-| `.skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs` | The DSH adapter. It spawns the script detached at `agent/created` under `primary-reconcile`. |
-| `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` | Holds the `git-primary-reconcile` entry for Claude, Codex, Cursor and Devin. It also names the Pi extension `session-start-advisories.ts`. |
+| `.skilled/bin/git-primary-reconcile.sh` | Resolves the live branch, reconciles its tips and writes the run log. |
+| `.skilled/hooks/shared/hook-flags.sh` | Reads the master and per-concern switches for this shell script. |
+| `.pi/extensions/session-start-advisories.ts` | Re-exports Pi's shared session-start adapter. |
+| `.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts` | Starts the reconcile command from Pi's `session_start` event. |
+| `.dsh/plugins/repo-guards/index.mjs` | Registers DSH's session-start advisories adapter. |
+| `.dsh/plugins/repo-guards/adapters/session-start-advisories.mjs` | Connects the DSH bundle to the shared DSH adapter. |
+| `.skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs` | Starts the reconcile command for DSH. |
+| `.opencode/plugins/session-cleanup.js` | Starts reconcile on OpenCode's `session.created` event. |
+| `.skilled/hooks/session-lifecycle/vibe/session-start.mjs` | Calls the Vibe startup guards from the `session_start` hook. |
+| `.vibe/plugins/repo-guards/session-cleanup.mjs` | Runs the Vibe startup path through the shared session-cleanup plugin. |
 
 ---
 
 ## 6. CONFIGURATION
 
-The concern is on by default. A switch is on when its value is `1`, `true`, `yes` or `on`, in any case.
+The concern is on by default. A per-concern disable switch turns the concern off when its value is truthy. The resolver treats `1`, `true`, `yes` or `on` as truthy in any case.
 
 | Variable | Effect |
 |---|---|
-| `SYSTEM_PRIMARY_RECONCILE_DISABLED=1` | Canonical kill-switch. Turns off this leg alone, and the rest of the live-sync loop stays active. |
-| `SYSTEM_LIVE_SYNC_DISABLED=1` | Disables the whole live-sync loop, which includes this leg. Checked before the per-concern flag. |
-| `SYSTEM_HOOKS_DISABLED=1` | Master switch. Disables this concern along with every other repo hook. |
-| `SPECKIT_LIVE_REMOTE=<name>` | Remote to fetch and push. The default is `origin`. |
-| `SPECKIT_LIVE_BRANCH=<name>` | Live branch to reconcile. When unset, only `skilled/v*` release branches auto-resolve. |
-| `SPECKIT_PRIMARY_RECONCILE_TIMEOUT=<s>` | Network timeout for fetch and push. The default is `12`. |
-| `SPECKIT_PRIMARY_RECONCILE_LOCK_TTL=<s>` | Single-flight lock TTL. The default is `45`. |
+| `SYSTEM_PRIMARY_RECONCILE_DISABLED=1` | Turns off this concern. |
+| `SYSTEM_LIVE_SYNC_DISABLED=1` | Turns off the live-sync concern, including this check. |
+| `SYSTEM_HOOKS_DISABLED=1` | Turns off repository hooks. |
+| `SPECKIT_LIVE_REMOTE=<name>` | Remote for fetch and push. Defaults to `origin`. |
+| `SPECKIT_LIVE_BRANCH=<name>` | Branch to reconcile. When unset, only a current `skilled/v*` branch is accepted. |
+| `SPECKIT_PRIMARY_RECONCILE_TIMEOUT=<seconds>` | Fetch and push timeout. Defaults to 12 seconds. |
+| `SPECKIT_PRIMARY_RECONCILE_LOCK_TTL=<seconds>` | Lock age before reclaim. Defaults to 45 seconds. |
 
-Set a switch inline for one command or export it for a session. To keep it, write it in `.skilled/hooks/hook-flags.env`, a gitignored copy of `hook-flags.env.example`. The environment wins over the file, so a persisted default can be overridden for one session.
+Set a switch in your environment for one session. To keep it, use `.skilled/hooks/hook-flags.env`. The environment wins over that file. Start from [the example config](../hook-flags.env.example).
 
 ---
 
 ## 7. VALIDATION
 
-Run from the repository root.
+Run this syntax check from the repository root.
 
-```bash
-bash .skilled/bin/git-primary-reconcile.sh; echo "exit: $?"
-```
+~~~bash
+bash -n .skilled/bin/git-primary-reconcile.sh
+~~~
 
-Expected result: `exit: 0`. In a linked worktree the script exits at once, before any output. From the primary checkout every outcome writes one line to `<common-dir>/git-primary-reconcile.log`.
-
-Only some outcomes also print a `[primary-reconcile] ...` line on stderr. A fetch or tip failure prints one. So does a dirty-tree skip. The ADVANCE, BLOCK and PUBLISH outcomes print one too. The status word is `SKIP`, `ADVANCE`, `BLOCK` or `PUBLISH`.
-
-A missing git binary or an unresolvable Git directory warns before the log file exists. A failed flag resolver warns and continues with the concern enabled.
-
-```bash
-SYSTEM_PRIMARY_RECONCILE_DISABLED=1 bash .skilled/bin/git-primary-reconcile.sh; echo "exit: $?"
-```
-
-Expected result: `exit: 0`, a recorded `skip` for `SYSTEM_PRIMARY_RECONCILE_DISABLED` and no network call.
+Expected result: no output and exit status 0. This checks shell syntax and does not run reconciliation.
 
 ---
 
 ## 8. RELATED
 
-- [`../README.md`](../README.md): the hooks tree, with the switch index and the coverage matrix.
-- [`../session-cleanup/README.md`](../session-cleanup/README.md): the OpenCode session-start plugin that also launches this script.
-- [`../git-hooks-check/README.md`](../git-hooks-check/README.md): the installed-hook verification concern.
-- [`../shared/README.md`](../shared/README.md): the switch resolver this script sources.
-- [`../../bin/git-primary-reconcile.sh`](../../bin/git-primary-reconcile.sh): the reconcile script's real home.
+- [The hooks overview](../README.md): the hook tree and runtime coverage matrix.
+- [The shared helpers](../shared/README.md): the switch resolver used by shell hooks.
+- [The reconcile script](../../bin/git-primary-reconcile.sh): the script runtime hooks start.
+

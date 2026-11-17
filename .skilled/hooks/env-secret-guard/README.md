@@ -16,7 +16,7 @@ version: 1.2.0.0
 
 ## 1. OVERVIEW
 
-`env-secret-guard/` keeps dotenv values out of the model's context. A dotenv file is any file named `.env` or `.env.<suffix>`, except the committed template `.env.example`. A symlink whose real target is a dotenv file counts too, and so does a hard link to one under any name.
+`env-secret-guard/` keeps dotenv values out of the model's context. A dotenv file is any file named `.env` or `.env.<suffix>`, except the committed template `.env.example`. A symlink whose real target is a dotenv file counts too, and so does a hard link to one under any name, when the link sits in the dotenv file's folder or the dotenv file sits in the project root.
 
 The guard denies two kinds of call. A file tool call (read, write, edit, delete, patch or grep) is denied when any path it names is a dotenv file. A shell call is denied when a reading program is handed a dotenv file. Those programs include `cat`, `grep`, `head` and `cp`. A redirection that reads from or writes into one is denied too.
 
@@ -24,7 +24,7 @@ Running an app that loads its own dotenv file stays allowed. A `node --env-file=
 
 An agent that needs to know what a dotenv file holds gets three answers that carry no value. They are the keys it defines, the lines that fail to parse and an HMAC-SHA256 fingerprint of one value. Two equal fingerprints mean two equal values. The fingerprint is keyed by `ENV_SECRET_GUARD_PEPPER` from the environment, so a short secret cannot be brute-forced from its digest. With no pepper set, no fingerprint is produced.
 
-The guard also judges the result of a shell call, because a call's text does not show everything it does. Before a shell call it records every dotenv file in the project, to three folders deep. After the call it puts back any that changed, were deleted or were created. It also looks for a dotenv value in the output.
+The guard also judges the result of a shell call, because a call's text does not show everything it does. Before a shell call it records up to 40 dotenv files in the project, to three folders deep. After the call it puts back any that changed, were deleted or were created. It also looks for a dotenv value in the output.
 
 On OpenCode and Pi a found value is replaced before the model reads it. On Claude Code, Codex, Cursor, Devin and DSH the hook runs after the output is delivered. There it can only tell the model and the user that the value reached the session and should be rotated.
 
@@ -51,10 +51,10 @@ Every adapter imports the core. The core imports nothing from the adapters and w
  Vibe ──────── .vibe/plugins/repo-guards/env-secret-guard.mjs ────┤      listKeys() validate() fingerprint()
  any shell ─── cli/env-secret.cjs keys|validate|fingerprint ──────┘
 
- every adapter except Vibe, after any call ──▶ lib/env-secret-watch.cjs  reviewToolResult()
+ every adapter except Vibe, after a registered call ──▶ lib/env-secret-watch.cjs  reviewToolResult()
 ```
 
-The core judges a call by its text. A route the text does not show gets through, so the after-call watch judges the result instead. `lib/env-secret-watch.cjs` records every dotenv file before a shell call and compares them after it. It also scans the output for a value the project's dotenv files define.
+The core judges a call by its text. A route the text does not show gets through, so the after-call watch judges the result instead. `lib/env-secret-watch.cjs` records the project's dotenv files before a shell call and compares them after it. It records up to 40 files of 1 MB or less, to three folders deep. It skips hidden folders and folders named `node_modules`, `vendor`, `dist`, `build` or `target`. It also scans the output for a value the project's dotenv files define.
 
 ### Limits
 
@@ -64,11 +64,11 @@ A substitution that only echoes text, such as `$(printf .env)`, is judged by wha
 
 The after-call check catches those routes, and it has limits of its own. A write is undone only for a shell call. It covers only dotenv files within three folders of the project root. It runs only when the record taken before the call is under an hour old. A process left running in the background can write after the check has run.
 
-The output scan knows a value only as the dotenv file spells it. A value printed encoded, reversed or split is not found. It skips values shorter than 12 characters, a single plain word and a local address. On Claude Code, Codex, Cursor, Devin and DSH it reports a leak after the model has already read it.
+The output scan knows a value only as the dotenv file spells it. A value printed encoded, reversed or split is not found. It skips values shorter than 12 characters, a single plain word and a value that starts with `localhost`, `127.0.0.1` or `0.0.0.0`, with or without a scheme. On Claude Code, Codex, Cursor, Devin and DSH it reports a leak after the model has already read it.
 
 The rule that an agent may not change the guard covers file tools and shell redirections. A program such as `sed -i`, `cp` or `rm` aimed at the guard's folder is not judged. Nothing stops an agent from editing a runtime's hook registration.
 
-The loaded-environment rule on DSH reads the command text. A script file that prints the environment gets past it. Inline code that dumps every variable without naming one gets past it too. So does a program that echoes its arguments. The after-call scan still reports a value of 12 characters or more.
+The loaded-environment rule on DSH reads the command text. A script file that prints the environment gets past it. Inline code that dumps every variable without naming one gets past it too. So does a program that echoes its arguments. The after-call scan still reports a value that passes the output scan limits above.
 
 The runtime deny rules are each runtime's own feature. A live check on a dummy project found the following. Claude Code refused `Read`, `Edit` and `cat` with permissions bypassed, and let `python3 -c` read the file.
 
@@ -89,7 +89,7 @@ The guard and the deny rules both judge a tool call. Neither can stop a program 
 | Infisical | no dotenv file | `infisical run -- npm start` |
 | macOS Keychain | no dotenv file | `API_KEY=$(security find-generic-password -s my-app -w) npm start`, typed by you |
 
-Run those commands yourself or from a script the agent starts and cannot read the output of. An agent that runs `op run -- printenv` sees the values, which is the case the after-call scan exists for.
+Run those commands yourself or from a script the agent starts and cannot read the output of. An agent that runs `op run -- printenv` sees the values. The after-call scan does not catch that, because it only knows values a dotenv file spells out.
 
 **Let the operating system refuse the read.** A sandbox applies to every process the shell starts, scripts included.
 
@@ -114,15 +114,15 @@ These are not shipped in the checkout. A sandbox also blocks ordinary work, so i
 | DSH | `tools/pre-execute`, `tools/post-execute` | `dsh/env-secret-guard.mjs` | `.skilled/hooks/env-secret-guard/dsh/env-secret-guard.mjs` | `{ kind: 'deny', reason }`, else an additional context |
 | Vibe | `pre_tool` | `vibe/env-secret-guard.mjs` | `.vibe/plugins/repo-guards/env-secret-guard.mjs` | `{ decision: 'deny', reason }` on stdout, exit 0 |
 
-Claude Code, Codex, Cursor and Devin are registered in `hook-registry.json`. The renderer writes `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json` and `.devin/hooks.v1.json`. OpenCode loads the plugin from its own plugin folder. Pi loads a one-line entry file in `.pi/extensions/`. DSH registers the adapter in `.dsh/plugins/repo-guards/index.mjs`. Vibe registers the hook in `.vibe/hooks.toml` as a strict `pre_tool` hook matching `re:bash|process_start|read_file|write_file|edit`.
+Claude Code, Codex, Cursor and Devin are registered in `hook-registry.json`. The renderer writes `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json` and `.devin/hooks.v1.json`. OpenCode loads the plugin from its own plugin folder. Pi loads a one-line entry file in `.pi/extensions/`. DSH registers the adapter in `.dsh/plugins/repo-guards/index.mjs`. Vibe registers the hook in `.vibe/hooks.toml` as a strict `pre_tool` hook matching `re:bash|process_start|process_write|read_file|write_file|edit`.
 
 Claude Code denies with `permissionDecision: deny` and judges `Read`, `Write`, `Edit`, `MultiEdit`, `NotebookEdit`, `Grep` and `Bash`. Codex denies with `permissionDecision: deny` and judges `exec`, `Bash`, `apply_patch`, `edit` and `read_file`. Cursor judges every tool in the core and denies with `permission: deny` and exit 2, chosen by `hook_event_name: preToolUse`, `conversation_id` or `workspace_roots`. Devin denies with `permissionDecision: deny` and judges `read`, `edit`, `write`, `multiedit`, `patch`, `apply_patch`, `apply-patch`, `grep`, `exec`, `bash`, `run-command` and `run_command`.
 
-OpenCode denies by throwing an error and judges `read`, `write`, `edit`, `multiedit`, `patch`, `apply_patch`, `grep` and `bash`. Pi denies with `{ block: true, reason }` and judges `read`, `write`, `edit`, `grep`, `bash` and `powershell`. DSH denies with `{ kind: 'deny', reason }` and judges `read`, `write`, `edit`, `apply_patch`, `grep` and `bash`. Vibe denies with `{ decision: 'deny', reason }` and judges `bash`, `process_start`, `read_file`, `write_file` and `edit`.
+OpenCode denies by throwing an error and judges `read`, `write`, `edit`, `multiedit`, `patch`, `apply_patch`, `grep` and `bash`. Pi denies with `{ block: true, reason }` and judges `read`, `write`, `edit`, `grep`, `bash` and `powershell`. DSH denies with `{ kind: 'deny', reason }` and judges `read`, `write`, `edit`, `apply_patch`, `grep` and `bash`. Vibe denies with `{ decision: 'deny', reason }` and judges `bash`, `process_start`, `process_write`, `read_file`, `write_file` and `edit`.
 
 OpenCode also registers the tools `env_secret_list_keys`, `env_secret_validate` and `env_secret_fingerprint`. On the other runtimes the deny message names the CLI instead.
 
-The write undo runs on shell calls only, and the output scan runs on every result the runtime hands the hook. The Codex hook installer identifies a hook by its script path. That is why the after-call registration has its own entry file.
+The write undo runs on shell calls only, and the output scan runs on every result the runtime hands the hook. Claude Code, Codex and Devin register the after-call hook for shell tools only. Cursor registers it for every tool. The Codex hook installer identifies a hook by its script path. That is why the after-call registration has its own entry file.
 
 Vibe runs the before-call check only, with no dotenv record, write undo or output scan.
 
@@ -135,7 +135,6 @@ Three runtimes can refuse a dotenv file themselves, before any hook runs. The ch
 | Claude Code | `.claude/settings.json`, `permissions.deny` | `Read` and `Edit` of `.env` and `.env.*` at any depth, with `.env.example` carved out. Also covers the shell commands Claude Code recognises as file reads and writes, such as `cat`, `head`, `sed` and a redirect |
 | Devin | `.devin/config.json`, `permissions.deny` | `Read` of the named dotenv files at any depth, by the file tools, `grep` and `cat`. Not in `dangerous` mode, and the `Write` entries did not stop a write when tried |
 | Cursor | `.cursor/cli.json`, `permissions.deny` | the same list as Devin |
-| Cursor | `.cursorignore` | nothing new. Cursor hides `.env*` by default, and this file gives `.env.example` back |
 
 Devin and Cursor match a file name exactly, so their lists name `.env`, `.env.local`, `.env.development`, `.env.production`, `.env.staging`, `.env.test` and `.env.*.local`. A dotenv file under another name is covered by the guard only. Codex, OpenCode, Pi, DSH and Vibe have no stable rule of this kind, so the guard is their only layer.
 
@@ -172,6 +171,8 @@ env-secret-guard/
 │   └── env-secret-guard.mjs        # linked into .dsh/plugins/repo-guards/adapters/
 ├── opencode/
 │   └── env-secret-guard.js         # link to .opencode/plugins/env-secret-guard.js
+├── vibe/
+│   └── env-secret-guard.mjs        # link to .vibe/plugins/repo-guards/env-secret-guard.mjs
 └── tests/
     └── dsh-env-secret-guard.test.mjs
 ```
@@ -202,7 +203,7 @@ node .skilled/hooks/env-secret-guard/cli/env-secret.cjs validate .env.local
 ENV_SECRET_GUARD_PEPPER=... node .skilled/hooks/env-secret-guard/cli/env-secret.cjs fingerprint .env API_KEY
 ```
 
-Each prints one JSON object. Exit 0 is an answer, 1 a refusal or a missing key, 2 bad usage. Only a dotenv file or `.env.example` inside the current directory can be inspected.
+Each prints one JSON object. Exit 0 is an answer and 2 is bad usage. Exit 1 is any failed inspection: a refusal, a missing key, an unset pepper or an unreadable file. Only a dotenv file or `.env.example` inside the current directory can be inspected.
 
 Make a pepper once with `openssl rand -base64 32` and export it from your shell profile. Never write it into a file in a repository.
 
@@ -217,11 +218,11 @@ Make a pepper once with `openssl rand -base64 32` and export it from your shell 
 | `ENV_SECRET_GUARD_WRITE_CHECK` | `restore` | `report` names a changed dotenv file and leaves it as the call left it |
 | `ENV_SECRET_GUARD_STATE_DIR` | `$XDG_STATE_HOME/env-secret-guard`, else `~/.local/state/env-secret-guard` | where the record and the backups live |
 
-The record holds a backup copy of each dotenv file, so it sits outside the checkout in a folder only its owner can read. A version the guard undid is kept in a `rejected` folder inside the project's record folder, so an edit you made yourself is not lost.
+The record holds a backup copy of each dotenv file it records, so it sits outside the checkout in a folder only its owner can read. A version the guard undid is kept in a `rejected` folder inside the project's record folder, so an edit you made yourself is not lost.
 
 When a tool you run through the agent is meant to write a dotenv file, set `ENV_SECRET_GUARD_WRITE_CHECK=report` or run that command yourself. A command that pulls env values from a host is the common case.
 
-A refusal and an after-call finding are also appended to `.skilled/skills/.state/env-secret-guard.log` when the project has that folder. A line holds a tool name and a path, never a value.
+A refusal and an after-call finding are also appended to `.skilled/skills/.state/env-secret-guard.log` when the project has that folder. A refusal line holds the tool name and the refused path or command. An after-call line holds the file path and the key name. No line holds a value.
 
 ---
 
@@ -237,6 +238,8 @@ node --test .opencode/plugins/tests/env-secret-guard.test.cjs
 node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check
 node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check
 ```
+
+Expected result: each test suite reports `fail 0`, each sync check prints a `PASS` line and every command exits 0.
 
 ---
 
