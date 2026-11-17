@@ -156,6 +156,7 @@ describe('prompt-pack', () => {
       pivot_lineage: 'Pivot pivot-1-fed654cba321 selected candidate-001 from source iteration 3.',
       saturated_directions: '- traceability',
       review_focus_block: '',
+      review_dimensions_list: 'correctness, security, traceability, maintainability',
       unfinished_core_protocols_block: '',
     });
 
@@ -273,5 +274,53 @@ describe('research prompt pack and agent definition lockstep', () => {
     } finally {
       rmSync(tempDir, { recursive: true, force: true });
     }
+  });
+});
+
+describe('review prompt pack dimension list', () => {
+  const reviewTemplatePath = join(deepLoopRootDir, 'deep-review', 'assets', 'prompt-pack-iteration.md.tmpl');
+
+  function reviewBindings(reviewDimensionsList: string): Record<string, string | number> {
+    return {
+      state_summary: 'Review summary block',
+      current_iteration: 3,
+      max_iterations: 6,
+      max_tool_calls_per_iteration: 24,
+      next_dimension: 'traceability',
+      review_target: 'lib/deep-loop',
+      review_scope_files: 'file-a.ts, file-b.ts',
+      p0_count: 0,
+      p1_count: 1,
+      p2_count: 2,
+      state_paths_config: '.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json',
+      state_paths_state_log: '.skilled/skills/system-deep-loop/deep-review/runtime/state.jsonl',
+      state_paths_findings_registry: '.skilled/skills/system-deep-loop/deep-review/runtime/findings.json',
+      state_paths_strategy: '.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md',
+      state_paths_iteration_pattern: '.skilled/skills/system-deep-loop/deep-review/runtime/iteration-003.md',
+      state_paths_delta_pattern: '.skilled/skills/system-deep-loop/deep-review/runtime/deltas/iter-003.jsonl',
+      pivot_lineage: 'Pivot pivot-1-fed654cba321 selected candidate-001 from source iteration 3.',
+      saturated_directions: '- traceability',
+      review_focus_block: '',
+      review_dimensions_list: reviewDimensionsList,
+      unfinished_core_protocols_block: '',
+    };
+  }
+
+  it('renders the default dimension line byte for byte', () => {
+    const rendered = renderPromptPack(
+      reviewTemplatePath,
+      reviewBindings('correctness, security, traceability, maintainability'),
+    );
+
+    expect(rendered).toContain('## REVIEW DIMENSIONS\n\ncorrectness, security, traceability, maintainability\n');
+  });
+
+  it('renders a configured custom dimension after the canonical four', () => {
+    const rendered = renderPromptPack(
+      reviewTemplatePath,
+      reviewBindings('correctness, security, traceability, maintainability, performance'),
+    );
+
+    expect(rendered).toContain('## REVIEW DIMENSIONS\n\ncorrectness, security, traceability, maintainability, performance\n');
   });
 });

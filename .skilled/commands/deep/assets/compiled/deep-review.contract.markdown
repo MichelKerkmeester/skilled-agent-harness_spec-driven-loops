@@ -67,7 +67,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "dc0c8afab13e8a65d0d538d936680116b90bd6544f1a9b0085b3cef683b18c3b",
+      "sha256": "9642f5d7741f79bdf91a41676132f675ce83e000a821a0d60b2ef106fcda179f",
       "section": "full"
     },
     {
