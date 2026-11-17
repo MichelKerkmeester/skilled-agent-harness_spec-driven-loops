@@ -1101,4 +1101,51 @@ describe('frontierOpen veto', () => {
     }, graph);
     expect(Object.prototype.hasOwnProperty.call(withoutFrontier.research ?? {}, 'frontierOpen')).toBe(false);
   });
+
+  describe('focusAlignment under expansive depth', () => {
+    const offFocusRecords = [
+      {
+        answeredQuestions: ['Which caps does admission read?'],
+        keyQuestions: ['What should be checked?'],
+      },
+    ];
+
+    it('an off-focus frontier answer alone never stops the run', () => {
+      const decision = buildStopDecision(
+        composite({ research: { frontierOpen: 0, iterationRecords: offFocusRecords } }),
+      );
+
+      expect(decision.decision).toBe('CONTINUE');
+      expect(decision.reasonDetail).toBe('qualityGuardFailed');
+      expect(decision.blockedBy).toEqual(['focusAlignment']);
+    });
+
+    it('open frontier nodes continue before the guard is consulted', () => {
+      const decision = buildStopDecision(
+        composite({ research: { frontierOpen: 2, iterationRecords: offFocusRecords } }),
+      );
+
+      expect(decision.decision).toBe('CONTINUE');
+      expect(decision.reasonDetail).toBe('frontierOpen');
+    });
+
+    it('a frontier answer listed in keyQuestions passes the guard', () => {
+      const decision = buildStopDecision(
+        composite({
+          research: {
+            frontierOpen: 0,
+            iterationRecords: [
+              {
+                answeredQuestions: ['Which caps does admission read?'],
+                keyQuestions: ['Which caps does admission read?', 'What should be checked?'],
+              },
+            ],
+          },
+        }),
+      );
+
+      expect(decision.decision).toBe('STOP');
+      expect(decision.reasonDetail).toBe('composite_converged');
+    });
+  });
 });
