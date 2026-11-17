@@ -2338,3 +2338,4 @@ reference_only_appendix:
       - "Check whether 3+ independent unanswered questions justify a wave."
       - "Dispatch up to 3 parallel agents on distinct questions."
       - "Score wave results by median newInfoRatio and promote top branches."
+      - "Live breadth growth is the opt-in --depth-mode=expansive frontier (step_frontier_seed, step_frontier_admit); waves stay reference-only."

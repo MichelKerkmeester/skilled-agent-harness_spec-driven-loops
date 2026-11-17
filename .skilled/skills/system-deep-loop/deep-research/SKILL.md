@@ -86,6 +86,15 @@ Carrying threshold expectations across siblings will cause unexpected iteration 
 - Each pass compares `maxDurationMinutes` with the config `createdAt`. At the limit the loop skips the dispatch and goes to synthesis with stop reason `maxDurationReached`.
 - `deep-research/scripts/reduce-state.cjs` is the research reducer and the only writer of the dashboard.
 
+### Expansive Depth Mode
+
+- `--depth-mode=expansive` keeps a depth-capped frontier of follow-up questions beside the seeded key questions. An absent flag means `default`, which renders the same bytes as before.
+- `step_frontier_seed` writes 3 to 6 depth-1 nodes before iteration 1 through `runtime/scripts/frontier-admit.cjs seed`, after `step_create_config`, or before `step_fanout_spawn` on a fan-out run.
+- `step_frontier_admit` runs before `step_reduce_state` and prunes a `frontier_proposal` on the first failed check among relevance, dedupe, depth, fan-out, budget and cycle. Admitted nodes land in `research/inbox.jsonl` with `origin: "frontier"`.
+- Next Focus reads the shallowest open node first, then the least visited, then the oldest, and writes `Frontier node <id> (depth N, scope S): <question>`.
+- After the `minIterations` floor an open or active node turns a soft stop into CONTINUE with reasonDetail `frontierOpen`. It never creates a stop and never outranks the iteration cap, consecutive failures, stuck recovery, `--convergence-mode=off` or `--stop-policy=max-iterations`.
+- A fan-out run deals the seeded depth-1 nodes round-robin across lineages and merges them back under a partition guard, so no dealt node goes unreported.
+
 ### Invocation Contract
 
 This skill is invoked exclusively through `/deep:research:auto` or `/deep:research:confirm` -- the command YAML owns state, dispatch, convergence, and synthesis. Never simulate the loop with ad hoc shell dispatch, nested CLI loops, direct `@deep-research` Task dispatch, `/tmp` prompt files, or state outside the resolved local research packet.

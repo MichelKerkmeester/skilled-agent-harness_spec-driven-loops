@@ -9,7 +9,7 @@ trigger_phrases:
   - "research convergence decision order"
 importance_tier: important
 contextType: implementation
-version: 1.14.3.0
+version: 1.14.4.0
 ---
 
 # Convergence Detection Reference
@@ -62,6 +62,14 @@ The shared convergence runtime accepts four values. The workflow keeps hard term
 | `off` | Skips convergence-driven STOP candidates. Max iterations, pause or cancellation, manual stop, recovery halt, and unrecoverable error behavior remain active. |
 | `sliding-window` | Uses a bounded graph-novelty window, defaulting to 5 snapshots, while preserving the ordinary legal-stop and synthesis path. |
 | `divergent` | Computes convergence normally, but translates an eligible legal STOP into a three-seat direction-selection pivot and continues from the selected focus. |
+
+#### Expansive Depth Mode
+
+`--depth-mode=expansive` grows a frontier of follow-up questions beside the questions seeded at init. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, `budgetSplit` 0.5/0.35/0.15 for depths 1, 2 and 3, and `maxFrontierNodes`, which defaults to `maxIterations`. An absent flag means `default`, which renders the same bytes as before; `research-depth-mode-golden.vitest` proves it.
+
+After the `minIterations` floor, an expansive run with open or active frontier nodes turns a soft stop candidate into CONTINUE with reasonDetail `frontierOpen`. The veto never creates a stop of its own and never outranks the iteration cap, consecutive failures, stuck recovery, `--convergence-mode=off` or `--stop-policy=max-iterations`. Under `--convergence-mode=divergent` the pivot becomes eligible only once no frontier node is open or active.
+
+Tested in `stop-decision.vitest`.
 
 #### Divergent Pivot Contract
 
