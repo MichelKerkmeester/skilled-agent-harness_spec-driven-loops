@@ -1,0 +1,23 @@
+CHANGED PATH: `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` (only this file; `prompt-pack.vitest.ts` was already modified before my run, not touched by me)
+
+CHECK — last 15 lines:
+```
+    345|     const row = stateLog.find((entry) => entry.type === 'iteration');
+    346|     expect(row, appended.stderr + appended.rawStdout).toBeDefined();
+    347|     expect(row).toMatchObject({
+       |                 ^
+    348|       iteration: 1,
+    349|       target_agent: 'deep-research',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 66 passed (67)
+   Start at  21:13:03
+   Duration  15.32s (transform 321ms, setup 58ms, import 355ms, tests 21.25s, environment 0ms)
+```
+
+EXIT CODES: `npm run typecheck` → **0**; `npx vitest run …` → **1**
+
+The single failure is the new leaf-fields case, and it is the expected one: the append to the gateway exits 0 (its `expect(appended.exitCode).toBe(0)` passes, so the schema accepts the row with the leaf fields), and only the state-log row assertion fails because the projection does not yet write those fields. Direct upcast verification confirms the copy itself works: `status: migrated` with the data carrying `target_agent`, `resolved_route`, `noveltyJustification`, `focusTrack`, `edgeCase`, `agent_definition_loaded`, `findingsCount`, `keyQuestions`, `toolsUsed`, `sourcesQueried`; a mistyped row (`findingsCount: -1`, `agent_definition_loaded: 'yes'`, `toolsUsed: ['Read','']`, `resolved_route: 7`) omits exactly those fields instead of defaulting them. All 66 pre-existing cases pass.

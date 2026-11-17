@@ -482,6 +482,37 @@ function iterationFromContext(context: LegacyUpcastContext): number | null {
   return typeof candidate === 'number' && candidate > 0 ? candidate : null;
 }
 
+// The leaf's route proof, gate inputs and telemetry must survive the upcast, or
+// the state log cannot feed the findings gate and the focus guard. A field of
+// the wrong shape is left out rather than defaulted, like an empty focus.
+const LEAF_PROSE_FIELDS = Object.freeze([
+  'target_agent', 'resolved_route', 'noveltyJustification', 'focusTrack', 'edgeCase',
+] as const);
+const LEAF_PROSE_ARRAY_FIELDS = Object.freeze([
+  'keyQuestions', 'toolsUsed', 'sourcesQueried',
+] as const);
+const MAX_LEAF_COUNT = 0xffff_ffff;
+
+function optionalLeafFields(input: Record<string, unknown>): JsonObject {
+  const fields: JsonObject = {};
+  for (const field of LEAF_PROSE_FIELDS) {
+    if (isNonEmptyString(input[field])) fields[field] = input[field] as string;
+  }
+  if (typeof input.agent_definition_loaded === 'boolean') {
+    fields.agent_definition_loaded = input.agent_definition_loaded;
+  }
+  if (Number.isInteger(input.findingsCount)
+    && (input.findingsCount as number) >= 0
+    && (input.findingsCount as number) <= MAX_LEAF_COUNT) {
+    fields.findingsCount = input.findingsCount as number;
+  }
+  for (const field of LEAF_PROSE_ARRAY_FIELDS) {
+    const values = stringArray(input[field]);
+    if (values !== null) fields[field] = values;
+  }
+  return fields;
+}
+
 function currentStem(value: unknown): DeepResearchEventStem | null {
   return typeof value === 'string'
     && (DeepResearchEventStems as readonly string[]).includes(value)
@@ -678,6 +709,7 @@ export function upcastLegacyDeepResearchRecord(
             && question.trim().length > 0)
           ? { answeredQuestions: input.answeredQuestions }
           : {}),
+        ...optionalLeafFields(input),
       };
       warnings.push('Trusted evidence yield was absent and remains explicitly zero.');
       break;

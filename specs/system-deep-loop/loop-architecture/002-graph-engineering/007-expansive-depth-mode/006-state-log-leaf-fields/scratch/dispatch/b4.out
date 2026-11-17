@@ -1,0 +1,25 @@
+Changed path: `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts` (+12 lines; ten conditional spreads plus a two-line durable WHY comment, `timestamp: occurredAt` kept last).
+
+CHECK output (last 15 lines, all stages):
+
+```
+> @deep-loop/runtime@1.5.0 typecheck
+> ../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.json
+TYPECHECK_EXIT=0
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/463-ed-006-state-log-leaf-fields/.skilled/skills/system-deep-loop/runtime
+
+GREEN: {"claimsCount":2,"sourcesCount":1}
+RED: {"claimsCount":0,"sourcesCount":1}
+RESTORE: {"claimsCount":2,"sourcesCount":1}
+
+ Test Files  3 passed (3)
+      Tests  19 passed (19)
+   Start at  21:14:11
+   Duration  5.70s (transform 284ms, setup 78ms, import 300ms, tests 8.08s, environment 0ms)
+
+VITEST_EXIT=0
+{"ok":true,"projectable":14,"covered":6,"uncovered":8,"violations":[],"info":[],"breakdown":{"modeOwned":{"total":6,"uncovered":0,"uncoveredSurfaceIds":[]},"infrastructure":{"total":8,"uncovered":8}}}
+COVERAGE_EXIT=0
+```
+
+Overall exit code: `0`

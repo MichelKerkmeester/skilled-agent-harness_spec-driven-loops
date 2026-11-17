@@ -1,0 +1,19 @@
+**Changed paths**
+- `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts`
+
+**New case failed before the template edit:** yes. Run of CHECK with only the test edit: `Tests 1 failed | 15 passed (16)`, exit `1`, failing at `expect(rendered).toContain('"findingsCount"')` (`tests/unit/prompt-pack.vitest.ts:257`).
+
+**CHECK (after both edits), last 15 lines:**
+```
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/463-ed-006-state-log-leaf-fields/.skilled/skills/system-deep-loop/runtime
+
+
+ Test Files  1 passed (1)
+      Tests  16 passed (16)
+   Start at  21:09:48
+   Duration  254ms (transform 24ms, setup 24ms, import 77ms, tests 59ms, environment 0ms)
+```
+(Fewer than 15 lines exist; that is the full tail.)
+
+**Exit code:** 0

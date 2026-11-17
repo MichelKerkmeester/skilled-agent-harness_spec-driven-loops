@@ -1,0 +1,15 @@
+Changed path: `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts`
+
+CHECK output (last 15 lines):
+```
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/463-ed-006-state-log-leaf-fields/.skilled/skills/system-deep-loop/runtime
+
+
+ Test Files  1 passed (1)
+      Tests  60 passed (60)
+   Start at  21:10:06
+   Duration  15.15s (transform 321ms, setup 28ms, import 368ms, tests 14.65s, environment 0ms)
+```
+Exit code: **0**
+
+Both named cases pass: baseline was `1 failed | 59 passed` with `'accepts an iteration_completed event carrying the leaf fields'` throwing `EnvelopeValidationError`, and after the edit it passes alongside `'still rejects an unlisted iteration_completed data field'`. The file diff contains only the ten optional-field entries plus the two-line WHY comment.

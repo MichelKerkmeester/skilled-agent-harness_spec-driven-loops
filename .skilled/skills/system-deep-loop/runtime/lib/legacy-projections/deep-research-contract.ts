@@ -335,6 +335,18 @@ export function createDeepResearchProjectionContract(
           focus: typeof data.focus === 'string' ? data.focus : '',
           mode: 'research',
           answeredQuestions: Array.isArray(data.answeredQuestions) ? data.answeredQuestions : [],
+          // Leaf-only fields are spread conditionally so ledgers written before the
+          // leaf emitted them keep projecting the exact rows they always did.
+          ...(typeof data.target_agent === 'string' ? { target_agent: data.target_agent } : {}),
+          ...(typeof data.agent_definition_loaded === 'boolean' ? { agent_definition_loaded: data.agent_definition_loaded } : {}),
+          ...(typeof data.resolved_route === 'string' ? { resolved_route: data.resolved_route } : {}),
+          ...(typeof data.findingsCount === 'number' ? { findingsCount: data.findingsCount } : {}),
+          ...(Array.isArray(data.keyQuestions) ? { keyQuestions: data.keyQuestions } : {}),
+          ...(typeof data.noveltyJustification === 'string' ? { noveltyJustification: data.noveltyJustification } : {}),
+          ...(typeof data.focusTrack === 'string' ? { focusTrack: data.focusTrack } : {}),
+          ...(typeof data.edgeCase === 'string' ? { edgeCase: data.edgeCase } : {}),
+          ...(Array.isArray(data.toolsUsed) ? { toolsUsed: data.toolsUsed } : {}),
+          ...(Array.isArray(data.sourcesQueried) ? { sourcesQueried: data.sourcesQueried } : {}),
           timestamp: occurredAt,
         };
       } else if (stem === 'deep_research.convergence_blocked') {

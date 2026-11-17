@@ -212,11 +212,30 @@ interface IterationCompletedCoreData extends JsonObject {
 
 // Legacy iteration rows may omit either field, so model each persisted shape without optional
 // properties that would fall outside JsonObject's JsonValue index contract.
-export type IterationCompletedData =
+type IterationCompletedShape =
   | IterationCompletedCoreData
   | (IterationCompletedCoreData & { readonly focus: string })
   | (IterationCompletedCoreData & { readonly answeredQuestions: string[] })
   | (IterationCompletedCoreData & { readonly focus: string; readonly answeredQuestions: string[] });
+
+// The research leaf writes its attribution and evidence bookkeeping flat on the completion
+// row, and a row written without one of them simply omits it. The leaf fields therefore
+// intersect the persisted shapes once: enumerating every combination of them instead would
+// multiply the union by every subset a writer might leave out.
+interface IterationCompletedLeafFields {
+  readonly target_agent?: string;
+  readonly agent_definition_loaded?: boolean;
+  readonly resolved_route?: string;
+  readonly findingsCount?: number;
+  readonly keyQuestions?: string[];
+  readonly noveltyJustification?: string;
+  readonly focusTrack?: string;
+  readonly edgeCase?: string;
+  readonly toolsUsed?: string[];
+  readonly sourcesQueried?: string[];
+}
+
+export type IterationCompletedData = IterationCompletedShape & IterationCompletedLeafFields;
 
 export interface SourceCapturedData extends JsonObject {
   readonly sourceIdentityDigest: Digest;

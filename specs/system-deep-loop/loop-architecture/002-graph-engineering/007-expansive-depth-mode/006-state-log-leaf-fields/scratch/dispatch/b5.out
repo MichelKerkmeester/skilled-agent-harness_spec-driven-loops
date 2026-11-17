@@ -1,0 +1,15 @@
+**Changed path:** `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs`
+
+CHECK last 15 lines (exit code **0**):
+
+```
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/463-ed-006-state-log-leaf-fields/.skilled/skills/system-deep-loop/runtime
+
+
+ Test Files  2 passed (2)
+      Tests  102 passed (102)
+   Start at  21:15:01
+   Duration  23.24s (transform 512ms, setup 159ms, import 521ms, tests 22.68s, environment 0ms)
+
+EXIT=0
+```

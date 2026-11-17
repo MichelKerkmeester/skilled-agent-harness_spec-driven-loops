@@ -497,10 +497,11 @@ function verify(loopType, artifactDir, iteration) {
     }
   }
 
-  // 2. Canonical state-log record for this iteration. Existence must come from the
-  // projection -- the gateway is its only writer -- but the route proof may not: the
-  // ledger upcast keeps no leaf dispatch fields, so every re-projection rebuilds the
-  // state log without them. The leaf's own delta record always carries them.
+  // 2. Canonical state-log record for this iteration. Existence and the route proof both
+  // come from the projection -- the gateway is its only writer -- because the projected
+  // state row now carries the leaf's route-proof fields. The delta stays as a fallback
+  // for rows written before the projection carried them: the leaf's own delta record
+  // always has the fields it sent.
   const stateLogPath = path.join(artifactDir, stateLogName);
   const stateLog = readJsonlRecordsDetailed(stateLogPath);
   if (stateLog.malformedLines.length > 0) {
@@ -564,7 +565,7 @@ function verify(loopType, artifactDir, iteration) {
     };
   }
   if (stateRouteReason) {
-    routeWarnings.push(`route proof for iteration ${iteration} came from deltas/iter-${pad3(iteration)}.jsonl; the ${stateLogName} projection carries no leaf dispatch fields`);
+    routeWarnings.push(`route proof for iteration ${iteration} came from deltas/iter-${pad3(iteration)}.jsonl; the ${stateLogName} state row lacked route proof, so the delta carried it`);
   }
 
   // 5. Executor provenance for a run the config gives a non-native executor.

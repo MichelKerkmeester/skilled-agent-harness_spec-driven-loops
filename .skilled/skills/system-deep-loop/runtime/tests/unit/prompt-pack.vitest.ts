@@ -248,6 +248,16 @@ describe('research prompt pack and agent definition lockstep', () => {
     expect(block).not.toContain('research/research.md');
   });
 
+  it('asks the leaf for findingsCount and keyQuestions in the iteration record', () => {
+    const rendered = renderPromptPack(
+      researchPackPath,
+      researchBindings('specs/demo/research/iterations/iteration-002.md'),
+    );
+
+    expect(rendered).toContain('"findingsCount"');
+    expect(rendered).toContain('"keyQuestions"');
+  });
+
   it('a narrative using the headings the pack names yields a parsed nextFocus', () => {
     const { parseIterationFile } = nodeRequire('../../../deep-research/scripts/reduce-state.cjs');
     const pack = readFileSync(researchPackPath, 'utf8');
