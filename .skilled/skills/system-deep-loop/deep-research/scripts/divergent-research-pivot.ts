@@ -9,6 +9,8 @@ import { dirname, join } from 'node:path';
 import type {
   PivotCandidate,
 } from '../../runtime/lib/deep-loop/pivot-candidates.ts';
+import { derivePivotId } from '../../runtime/lib/deep-loop/divergent-pivot.ts';
+
 import type {
   PivotConfigInput,
   PivotIdentityInput,
@@ -415,22 +417,28 @@ export function buildResearchPivotPreparationInput(
       mandate: 'Pragmatic: select the most evidence-efficient next direction that can produce material information within the remaining iterations.',
     },
   ];
+  const identity: PivotIdentityInput = {
+    sessionId,
+    generation,
+    loopType: 'research',
+    sourceIteration: options.currentIteration,
+    normalizedTrigger: `research saturation: ${options.triggerReason}`,
+    ordinal: completedEvents.length + 1,
+  };
+  const currentPivotId = derivePivotId(identity);
+  const currentAttempt = pivotEvents.some((event) => event.pivotId === currentPivotId && event.event === 'pivot_attempt_failed') ? 2 : 1;
   const usage: PivotUsage = {
     completedPivots: completedEvents.length,
-    councilSeatOutputs: pivotEvents.filter((event) => event.event === 'pivot_seat_returned').length,
+    // Seat outputs are capped per council attempt, so only the pivot about to be prepared counts.
+    councilSeatOutputs: pivotEvents.filter((event) => event.event === 'pivot_seat_returned'
+      && event.pivotId === currentPivotId
+      && (event.attempt ?? 1) === currentAttempt).length,
     remainingIterations: Math.max(0, options.maxIterations - options.currentIteration),
   };
 
   return {
     artifactRoot: options.artifactRoot,
-    identity: {
-      sessionId,
-      generation,
-      loopType: 'research',
-      sourceIteration: options.currentIteration,
-      normalizedTrigger: `research saturation: ${options.triggerReason}`,
-      ordinal: usage.completedPivots + 1,
-    },
+    identity,
     config: config as unknown as PivotConfigInput,
     usage,
     seats,

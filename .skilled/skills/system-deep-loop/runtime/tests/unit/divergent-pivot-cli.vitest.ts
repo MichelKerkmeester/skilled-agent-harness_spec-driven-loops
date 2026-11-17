@@ -8,11 +8,14 @@
 // the command it wanted, so a malformed step never looks like a transaction
 // that ran and failed.
 
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 
 import { spawnSync } from 'node:child_process';
-import { dirname, resolve } from 'node:path';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import { createHermeticEnv, type HermeticEnv } from '../helpers/spawn-cjs.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const CLI_PATH = resolve(here, '..', '..', 'scripts', 'divergent-pivot.cjs');
@@ -64,5 +67,154 @@ describe('divergent-pivot CLI usage failures', () => {
     ]);
 
     expect(result.status).toBe(64);
+  });
+});
+
+const environments: HermeticEnv[] = [];
+
+afterEach(() => {
+  while (environments.length > 0) {
+    environments.pop()?.cleanup();
+  }
+});
+
+interface ResearchFixture {
+  artifactRoot: string;
+  configPath: string;
+  registryPath: string;
+  strategyPath: string;
+  stateLogPath: string;
+}
+
+function writeText(path: string, content: string): void {
+  mkdirSync(dirname(path), { recursive: true });
+  writeFileSync(path, content, 'utf8');
+}
+
+function writeJson(path: string, value: unknown): void {
+  writeText(path, `${JSON.stringify(value, null, 2)}\n`);
+}
+
+function writeResearchFixture(artifactRoot: string): ResearchFixture {
+  const configPath = join(artifactRoot, 'deep-research-config.json');
+  writeJson(configPath, {
+    topic: 'Divergent pivot CLI retry contract',
+    lineage: { sessionId: 'session-cli-retry', generation: 1 },
+  });
+  const registryPath = join(artifactRoot, 'deep-research-findings-registry.json');
+  writeJson(registryPath, {
+    keyFindings: ['First in-scope finding'],
+  });
+  const strategyPath = join(artifactRoot, 'deep-research-strategy.md');
+  writeText(strategyPath, [
+    '# Deep Research Strategy',
+    '',
+    '## 11. NEXT FOCUS',
+    '',
+    'Current saturated focus',
+    '',
+  ].join('\n'));
+  const stateLogPath = join(artifactRoot, 'deep-research-state.jsonl');
+  writeText(stateLogPath, '');
+  return { artifactRoot, configPath, registryPath, strategyPath, stateLogPath };
+}
+
+function prepareArgs(fixture: ResearchFixture): string[] {
+  return [
+    'prepare',
+    '--loop-type',
+    'research',
+    '--artifact-root',
+    fixture.artifactRoot,
+    '--config',
+    fixture.configPath,
+    '--state-log',
+    fixture.stateLogPath,
+    '--strategy',
+    fixture.strategyPath,
+    '--registry',
+    fixture.registryPath,
+    '--current-iteration',
+    '3',
+    '--max-iterations',
+    '10',
+    '--trigger-reason',
+    'saturated',
+  ];
+}
+
+function parseStdout(result: CliResult): Record<string, any> {
+  return JSON.parse(result.stdout.trim()) as Record<string, any>;
+}
+
+describe('divergent-pivot CLI retry contract', () => {
+  it('finalize prints a retryable quorum failure and a second prepare returns attempt 2 with three missing seats', () => {
+    const env = createHermeticEnv('divergent-pivot-cli-retry');
+    environments.push(env);
+    const fixture = writeResearchFixture(env.tmpDir);
+
+    const prepared = runCli(prepareArgs(fixture));
+    expect(prepared.status).toBe(0);
+    expect(prepared.stderr).toBe('');
+    const first = parseStdout(prepared);
+    expect(first.status).toBe('pending');
+    expect(first.attempt).toBe(1);
+    expect(first.missingSeats).toHaveLength(3);
+
+    const candidates = first.dispatchContext.candidates as Array<{ id: string }>;
+    expect(candidates.length).toBeGreaterThan(0);
+    const selectedCandidateId = candidates[0].id;
+
+    for (const seat of first.missingSeats as Array<{ id: string; mandate: string }>) {
+      const rejected = seat.id === 'seat-003';
+      const envelope = {
+        paths: first.paths,
+        pivotId: first.pivotId,
+        seat,
+        status: rejected ? 'rejected' : 'fulfilled',
+        output: rejected
+          ? null
+          : {
+            seatId: seat.id,
+            selectedCandidateId,
+            materialEndorsement: true,
+            rationale: 'The selected direction is materially supported by the supplied evidence',
+            blockers: [],
+          },
+        error: rejected ? { name: 'Error', message: 'seat unavailable' } : null,
+        startedAtIso: '2026-11-17T12:00:00.000Z',
+        completedAtIso: '2026-11-17T12:00:01.000Z',
+        durationMs: 1000,
+      };
+      const recorded = runCli(['record-seat'], JSON.stringify(envelope));
+      expect(recorded.status).toBe(0);
+      expect(recorded.stderr).toBe('');
+    }
+
+    const finalized = runCli([
+      'finalize',
+      '--paths-json',
+      JSON.stringify(first.paths),
+      '--pivot-id',
+      String(first.pivotId),
+      '--resumed',
+      'false',
+    ]);
+    expect(finalized.status).toBe(0);
+    const failed = parseStdout(finalized);
+    expect(failed.status).toBe('failed');
+    expect(failed.retryable).toBe(true);
+    expect(failed.attempt).toBe(1);
+    expect(failed.failureReason).toBe('council_return_quorum_failed');
+
+    const retried = runCli(prepareArgs(fixture));
+    expect(retried.status).toBe(0);
+    expect(retried.stderr).toBe('');
+    const second = parseStdout(retried);
+    expect(second.status).toBe('pending');
+    expect(second.attempt).toBe(2);
+    expect(second.missingSeats).toHaveLength(3);
+    expect(Object.keys(second.seatPrompts)).toHaveLength(3);
+    expect((second.paths.seatPaths as string[])[0]).toContain('/attempt-2/');
   });
 });
