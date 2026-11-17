@@ -33,8 +33,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Record the green baseline of the seven suites (`RT/tests/`). Verify: `cd RT && npx vitest run SUITES` exits 0 and its pass count is written in `scratch/baseline.txt`.
-- [ ] T002 Confirm no test asserts the old `Next Focus` narrative heading of the research pack (`RT/tests/`). Verify: `rg -n "Questions Remaining, Next Focus" .skilled/skills/system-deep-loop/runtime/tests` prints nothing.
+- [x] T001 Record the green baseline of the seven suites (`RT/tests/`). Verify: `cd RT && npx vitest run SUITES` exits 0 and its pass count is written in `scratch/baseline.txt`. Done: 7 files, 85 passed, exit 0 (`scratch/baseline.txt`).
+- [x] T002 Confirm no test asserts the old `Next Focus` narrative heading of the research pack (`RT/tests/`). Verify: `rg -n "Questions Remaining, Next Focus" .skilled/skills/system-deep-loop/runtime/tests` prints nothing. Done: the rg printed nothing (exit 1).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -42,10 +42,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Add the lockstep case, the rendered-pack case and the REQ-007 lineage render case before editing the template (`RT/tests/unit/prompt-pack.vitest.ts`). Verify: `cd RT && npx vitest run tests/unit/prompt-pack.vitest.ts` reports the new cases failing and every existing case passing.
-- [ ] T004 Add the conditional entry for the `research.md` beside the `iterations/` directory of `{state_paths_iteration_pattern}` to the ALLOWED WRITE PATHS list, as static text naming `progressiveSynthesis` (`PACK`). Verify: `rg -n "research\.md.*progressiveSynthesis" PACK` prints one line between line 42 and the next list item, that line has no `research/research.md` literal, and the REQ-007 lineage case passes.
-- [ ] T005 Rename the narrative heading `Next Focus` to `Recommended Next Focus` (`PACK`). Verify: `rg -n "Questions Remaining, Recommended Next Focus" PACK` prints one line.
-- [ ] T006 Regenerate the research compiled contract for the new template digest as the last implementation step, and again after any merge that changes a digested source; never hand-resolve digest lines (`COMPILED`). Verify: `node RT/scripts/compile-command-contracts.cjs --command deep/research --write` prints the `COMPILED` path, and `shasum -a 256 PACK` matches the digest on the template's entry in `COMPILED`.
+- [x] T003 Add the lockstep case, the rendered-pack case and the REQ-007 lineage render case before editing the template (`RT/tests/unit/prompt-pack.vitest.ts`). Verify: `cd RT && npx vitest run tests/unit/prompt-pack.vitest.ts` reports the new cases failing and every existing case passing. Done: 4 new cases failed on assertions, 11 existing passed.
+- [x] T004 Add the conditional entry for the `research.md` beside the `iterations/` directory of `{state_paths_iteration_pattern}` to the ALLOWED WRITE PATHS list, as static text naming `progressiveSynthesis` (`PACK`). Verify: `rg -n "research\.md.*progressiveSynthesis" PACK` prints one line between line 42 and the next list item, that line has no `research/research.md` literal, and the REQ-007 lineage case passes. Done: one line at :45 inside the list, no `research/research.md` literal; the lineage case passes.
+- [x] T005 Rename the narrative heading `Next Focus` to `Recommended Next Focus` (`PACK`). Verify: `rg -n "Questions Remaining, Recommended Next Focus" PACK` prints one line. Done: the rg prints line 62; `, Next Focus.` prints nothing.
+- [x] T006 Regenerate the research compiled contract for the new template digest as the last implementation step, and again after any merge that changes a digested source; never hand-resolve digest lines (`COMPILED`). Verify: `node RT/scripts/compile-command-contracts.cjs --command deep/research --write` prints the `COMPILED` path, and `shasum -a 256 PACK` matches the digest on the template's entry in `COMPILED`. Done: compile exit 0; `shasum -a 256` of the pack equals the contract digest; drift check `OK commands=2`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -53,10 +53,11 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Run the seven suites from the final state (`RT/tests/`). Verify: `cd RT && npx vitest run SUITES` exits 0 and the pass count is the baseline plus the new cases.
-- [ ] T008 Prove the lockstep case catches drift (`scratch/`). Verify: a scratch copy of `PACK` with the T004 line removed, pointed at by the case's path override, makes the case fail; the scratch copy is then deleted.
-- [ ] T009 Write one playbook scenario for the changed pack rule through `/create:manual-testing-playbook system-deep-loop update --path RT/manual-testing-playbook` (category `prompt-rendering/`). Verify: `rg -l "progressiveSynthesis" RT/manual-testing-playbook/prompt-rendering` lists the new scenario.
-- [ ] T010 Confirm the change stayed on the research pack (`git diff --stat`). Verify: the stat lists only `PACK`, `COMPILED`, `RT/tests/unit/prompt-pack.vitest.ts` and files under `RT/manual-testing-playbook/`.
+- [x] T007 Run the seven suites from the final state (`RT/tests/`). Verify: `cd RT && npx vitest run SUITES` exits 0 and the pass count is the baseline plus the new cases. Done: 7 files, 89 passed (85 + 4), exit 0.
+- [x] T008 Prove the lockstep case catches drift (`scratch/`). Verify: a scratch copy of `PACK` with the T004 line removed, pointed at by the case's path override, makes the case fail; the scratch copy is then deleted. Done: the scratch pack without the entry failed the lockstep case; the copy was deleted.
+- [B] T009 Write one playbook scenario for the changed pack rule through `/create:manual-testing-playbook system-deep-loop update --path RT/manual-testing-playbook` (category `prompt-rendering/`). Verify: `rg -l "progressiveSynthesis" RT/manual-testing-playbook/prompt-rendering` lists the new scenario. Blocked: the command hard-blocks at its Phase 0 self-check unless run as the `@markdown` agent, which this phase worker cannot start.
+- [B] T011 Write the changelog entry for the default-path pack change through `/create:changelog` under `.skilled/skills/system-deep-loop/deep-research/changelog/` (cross-phase handoff §3). Verify: the entry names the `Recommended Next Focus` heading and the `research.md` write rule. Blocked: same `@markdown` gate as T009.
+- [x] T010 Confirm the change stayed on the research pack (`git diff --stat`). Verify: the stat lists only `PACK`, `COMPILED`, `RT/tests/unit/prompt-pack.vitest.ts` and files under `RT/manual-testing-playbook/`. Done: the stat lists the pack, the compiled contract, `prompt-pack.vitest.ts` and this folder only.
 <!-- /ANCHOR:phase-3 -->
 
 ---
