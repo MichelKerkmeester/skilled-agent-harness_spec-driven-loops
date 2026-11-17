@@ -1,5 +1,5 @@
 {
-  "manifestHash": "28b95d5bb401ed2f5d53a22f23dbb87e17cdbb3e6848d57e38d23b5bffd2ba51",
+  "manifestHash": "e5ad307cccf0a707d20841bdfa8e77503ced8bc3a59302e061832f102a8f6eab",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -91,6 +91,9 @@
     ],
     "001 code readmes implementation summary": [
       "001-code-readmes implementation summary"
+    ],
+    "001 completed run extension operator decisions": [
+      "001-completed-run-extension operator decisions"
     ],
     "001 continuity memory runtime changelog index": [
       "001-continuity-memory-runtime changelog index"
@@ -1854,6 +1857,9 @@
     ],
     "007 docs and readmes rollup": [
       "007-docs-and-readmes rollup"
+    ],
+    "007 expansive depth mode operator decisions": [
+      "007-expansive-depth-mode operator decisions"
     ],
     "007 fix stress test coverage gap followup plan": [
       "007-fix-stress-test-coverage-gap-followup plan"
