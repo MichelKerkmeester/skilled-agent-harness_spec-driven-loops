@@ -383,6 +383,15 @@ export function buildReviewPivotPreparationInput(
   if (!sessionId) throw new TypeError('Review config sessionId is required for a pivot.');
   if (!normalizeText(config.reviewTarget)) throw new TypeError('Review config reviewTarget is required for boundary validation.');
 
+  // The stop veto already keeps the run going while frontier nodes are open, so a
+  // pivot reaching this point with one still open means the caller skipped it. An
+  // accepted direction re-enters breadth through frontier admission as a frontier
+  // proposal, which is why the pivot itself needs a closed queue.
+  const frontierOpen = expansiveFrontierNodes(config, registry)
+    .some((node) => ['open', 'active'].includes(normalizeText(node.status)));
+  if (frontierOpen) {
+    throw new TypeError('A review pivot under the expansive depth mode needs a terminal frontier; open frontier nodes remain.');
+  }
   const latestIteration = stateRecords.filter((record) => record.type === 'iteration').at(-1);
   const strategyFocus = extractSection(strategy, ['12. NEXT FOCUS', '11. NEXT FOCUS']);
   const previousFocus = normalizeText(strategyFocus) || normalizeText(latestIteration?.focus);

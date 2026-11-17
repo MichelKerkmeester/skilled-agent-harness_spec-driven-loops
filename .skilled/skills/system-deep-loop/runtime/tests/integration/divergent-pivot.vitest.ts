@@ -768,3 +768,164 @@ describe('review divergent pivot with a configured custom dimension', () => {
     expect(unsweptPerformanceSeeds).toEqual([]);
   });
 });
+describe('review divergent pivot under the expansive depth mode', () => {
+  const tempDirs: string[] = [];
+  const iterationRecords = [
+    {
+      type: 'iteration',
+      iteration: 1,
+      run: 1,
+      status: 'complete',
+      focus: 'correctness',
+      dimensions: ['correctness'],
+      newFindingsRatio: 0.2,
+      findingsSummary: { P0: 0, P1: 0, P2: 0 },
+    },
+    {
+      type: 'iteration',
+      iteration: 2,
+      run: 2,
+      status: 'complete',
+      focus: 'performance',
+      dimensions: ['performance'],
+      newFindingsRatio: 0.1,
+      findingsSummary: { P0: 0, P1: 0, P2: 0 },
+    },
+  ];
+
+  afterEach(() => {
+    while (tempDirs.length > 0) {
+      rmSync(tempDirs.pop() as string, { recursive: true, force: true });
+    }
+  });
+
+  function fixture(
+    expansive: boolean,
+    frontierNodes: readonly Record<string, unknown>[] = [],
+  ): { readonly dir: string; readonly reviewDir: string; readonly registryPath: string } {
+    const dir = mkdtempSync(join(tmpdir(), 'review-frontier-pivot-'));
+    tempDirs.push(dir);
+    const reviewDir = join(dir, 'review');
+    mkdirSync(reviewDir, { recursive: true });
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      sessionId: `review-frontier-${expansive ? 'expansive' : 'default'}`,
+      generation: 1,
+      reviewTarget: 'src',
+      maxIterations: 6,
+      reviewDimensions: ['correctness', 'performance'],
+      ...(expansive ? { antiConvergence: { depthMode: 'expansive' } } : {}),
+    }), 'utf8');
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), iterationRecords
+      .map((record) => JSON.stringify(record)).join('\n') + '\n', 'utf8');
+    writeFileSync(join(reviewDir, 'deep-review-strategy.md'), '## 11. NEXT FOCUS\n\nperformance\n', 'utf8');
+    if (frontierNodes.length > 0) {
+      writeFileSync(join(reviewDir, 'frontier-nodes.jsonl'), frontierNodes
+        .map((node) => JSON.stringify(node)).join('\n') + '\n', 'utf8');
+    }
+    const reduced = reduceReviewState(dir, { write: true, artifactDir: reviewDir });
+    return { dir, reviewDir, registryPath: reduced.registryPath };
+  }
+
+  function frontierStatuses(registryPath: string): Record<string, string> {
+    const registry = JSON.parse(readFileSync(registryPath, 'utf8')) as {
+      frontier?: { nodes?: Array<{ nodeId: string; status: string }> };
+    };
+    return Object.fromEntries((registry.frontier?.nodes ?? [])
+      .map((node) => [node.nodeId, node.status]));
+  }
+
+  function buildInput(
+    target: { readonly dir: string; readonly reviewDir: string; readonly registryPath: string },
+    configFile = 'deep-review-config.json',
+  ) {
+    return buildReviewPivotPreparationInput({
+      artifactRoot: target.dir,
+      configPath: join(target.reviewDir, configFile),
+      stateLogPath: join(target.reviewDir, 'deep-review-state.jsonl'),
+      strategyPath: join(target.reviewDir, 'deep-review-strategy.md'),
+      registryPath: target.registryPath,
+      currentIteration: 2,
+      maxIterations: 6,
+      triggerReason: 'all_dimensions_clean',
+    });
+  }
+
+  const openNode = {
+    nodeId: 'frontier-001',
+    depth: 1,
+    scope: ['src/cache'],
+    question: 'Does the cache evict on the lifetime boundary?',
+    status: 'open',
+    iteration: 2,
+  };
+  const exhaustedNode = {
+    nodeId: 'frontier-002',
+    depth: 1,
+    scope: ['src/cache', 'src/scheduler'],
+    question: 'Is the cache write path bounded?',
+    status: 'exhausted',
+    iteration: 2,
+  };
+  const answeredNode = {
+    nodeId: 'frontier-003',
+    depth: 1,
+    scope: 'src/cache/lifetime',
+    question: 'Is the lifetime bounded?',
+    status: 'answered',
+    iteration: 2,
+  };
+
+  it('refuses a pivot while an open frontier node remains', () => {
+    const target = fixture(true, [openNode]);
+    expect(frontierStatuses(target.registryPath)['frontier-001']).toBe('open');
+
+    expect(() => buildInput(target)).toThrow(/terminal frontier/u);
+  });
+
+  it('seeds one frontier-unanswered direction per closed sub-target the frontier left uncovered', () => {
+    const target = fixture(true, [exhaustedNode, answeredNode]);
+    expect(frontierStatuses(target.registryPath)).toEqual({
+      'frontier-002': 'exhausted',
+      'frontier-003': 'answered',
+    });
+
+    const prepared = buildInput(target);
+    const frontierSeeds = [
+      ...prepared.candidates.map((entry) => ({
+        source: entry.seatProvenance.join(' '),
+        title: entry.title,
+        focus: entry.focus,
+      })),
+      ...prepared.boundaryRejections.map((entry) => ({
+        source: entry.source,
+        title: entry.title,
+        focus: entry.focus,
+      })),
+    ].filter((entry) => entry.source.includes('frontier-unanswered'));
+
+    expect(frontierSeeds).toHaveLength(1);
+    expect(frontierSeeds[0].title).toBe('Revisit exhausted frontier node frontier-002');
+    expect(frontierSeeds[0].focus).toContain('exhausted frontier sub-target frontier-002 (src/cache, src/scheduler)');
+    expect(frontierSeeds.some((entry) => `${entry.title} ${entry.focus}`.includes('frontier-003'))).toBe(false);
+  });
+
+  it('leaves a default run untouched even when the registry still carries an open frontier node', () => {
+    const target = fixture(true, [openNode]);
+    writeFileSync(join(target.reviewDir, 'deep-review-config-default.json'), JSON.stringify({
+      sessionId: 'review-frontier-default',
+      generation: 1,
+      reviewTarget: 'src',
+      maxIterations: 6,
+      reviewDimensions: ['correctness', 'performance'],
+    }), 'utf8');
+    expect(frontierStatuses(target.registryPath)['frontier-001']).toBe('open');
+
+    const prepared = buildInput(target, 'deep-review-config-default.json');
+    const frontierSeeds = [
+      ...prepared.candidates.map((entry) => entry.seatProvenance.join(' ')),
+      ...prepared.boundaryRejections.map((entry) => entry.source),
+    ].filter((source) => source.includes('frontier-unanswered'));
+
+    expect(frontierSeeds).toEqual([]);
+  });
+});

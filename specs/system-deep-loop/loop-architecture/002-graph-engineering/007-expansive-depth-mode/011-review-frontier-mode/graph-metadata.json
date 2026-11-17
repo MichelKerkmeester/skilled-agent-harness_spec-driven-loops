@@ -47,12 +47,12 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".skilled/commands/deep/assets/deep-review.yaml",
+      ".skilled/agents/deep-review.md",
       ".skilled/commands/deep/review.md",
       ".skilled/commands/deep/assets/deep-review-presentation.txt",
       ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
       ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
-      ".skilled/commands/deep/assets/deep-review.yaml",
-      ".skilled/agents/deep-review.md",
       ".claude/agents/deep-review.md",
       ".codex/agents/deep-review.toml",
       ".pi/agents/deep-review.md",
@@ -105,6 +105,18 @@
         "source": "derived"
       },
       {
+        "name": "deep-review.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
         "name": "review.md",
         "kind": "doc",
         "path": ".skilled/commands/deep/review.md",
@@ -126,18 +138,6 @@
         "name": "optimizer-manifest.json",
         "kind": "config",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/deep/assets/deep-review.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.md",
-        "kind": "doc",
-        "path": ".skilled/agents/deep-review.md",
         "source": "derived"
       },
       {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The review coverage universe is `reviewDimensions`, normalized once at init and locked, and the review reducer has no `inbox`, `keyQuestions` or `openQuestions` surface, so nothing a leaf discovers can become counted review work",
     "created_at": "2026-11-17T14:34:38Z",
-    "last_save_at": "2026-11-17T22:43:59.251Z",
+    "last_save_at": "2026-11-17T22:45:57.141Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:87288cc8e9eb989fb90c44c827b9433c41421cc59a792def368b729cc5177ae5",
+    "source_fingerprint": "sha256:33f9864e5a992d47b8c85aca0cf6a0a98045c638bb67e2f4d331a690b5c0340b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "be1fa21a271a1889502208f01d0389cda2ffb2573c5d7207c40935a2017ac567",
       "plan.md": "efd6636f21b940bb625666b660ab1cdd69666da3355612a74bf4e1cbc289de87",
-      "tasks.md": "bad8eaaf548de94254f5f806f63393551c51796385c27e36f1060fce1d542c41",
+      "tasks.md": "4018a4ede571b0623f6443dfeb3e6c16a391fa610158400932774119ef7edde3",
       "decision-record.md": "e34efe0a034060a5c306b2e5047e8a65f69d35c80c471a0434bfbf87328da6e4",
-      "implementation-summary.md": "d661fe9dd34b31b9830d04dac7301a0fd36839ffc2bf37117ab820faa1682f3e"
+      "implementation-summary.md": "6f7afa79e2648b196a5163535f12a2c90df176b4bb9f001f528fbf559dda44d6"
     },
     "last_active_at": null
   }

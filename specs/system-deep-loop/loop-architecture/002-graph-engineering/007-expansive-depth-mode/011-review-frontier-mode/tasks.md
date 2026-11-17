@@ -87,7 +87,7 @@ Mark the task `[B]`, name the blocking phase, file or failing check on the same 
 - [x] T017 Steer dispatch: add the `active_frontier_node` extract from `registry.frontier` to `step_read_state` and a flag-gated case in the `next_dimension` rule that returns that node's next uncovered dimension, and fill `frontier_block` from the node (`Y`, per ADR-004). Verify: `stop-decision-yaml-contract` finds the flag-gated case in the `next_dimension` rule and the unchanged default rule (a wording check), and a reducer case shows the active node and its next uncovered dimension in `registry.frontier`. step_read_state extracts active_frontier_node and the flag-gated next_dimension case (default sentence verbatim); step_frontier_activate marks the node active before dispatch; frontier_block is bound by node id; reducer case shows activeNodeId and activeNextDimension.
 - [x] T018 Apply the `frontierOpen` veto to review STOP candidates, after the review floor (`$D/runtime/scripts/convergence.cjs`). Verify: `$R tests/unit/stop-decision.vitest.ts tests/integration/review-depth-convergence.vitest.ts` exits 0 with review veto rows for `all_dimensions_clean` and composite candidates, a case asserting the echo is unchanged when `--depth-mode default` is passed, and `'echoes the input unchanged'` passing unedited. Pi dispatch: stopDecisionReviewFacts reports frontierOpen; the veto now also applies to review hard stop candidates (all_dimensions_clean is hardStop true), still after cap, failures, stuck, off, max-iterations and the review floor. stop-decision + review-depth-convergence: 95 passed; 'echoes the input unchanged' unedited.
 - [x] T019 Add the expansive review STUCK_RECOVERY sub-branch that calls `frontier-admit.cjs close --target review --status exhausted` and keeps `deep_review.recovery_started` (`Y`). Verify: `stop-decision-yaml-contract` finds the close call and the event in the sub-branch (a wording check), and a review close case shows the node `exhausted` after the call. if_stuck_recovery.if_expansive_open_node closes the active node exhausted (close --target review) and keeps pending_stop_event stuck_recovery, which step_normalize_pause_events appends as deep_review.recovery_started; yaml-contract case passes; review close case in frontier-admit-review.
-- [ ] T020 Gate the review pivot on a terminal frontier, seed from `exhausted` and `blocked` nodes and route accepted candidates through admission, on the pivot code and branch as 012 left them (`$D/deep-review/scripts/divergent-review-pivot.ts`, `Y` divergent branch). Verify: `$R tests/integration/divergent-pivot.vitest.ts` exits 0 with a gating case, and default seed output matches the T003 baseline byte for byte.
+- [x] T020 Gate the review pivot on a terminal frontier, seed from `exhausted` and `blocked` nodes and route accepted candidates through admission, on the pivot code and branch as 012 left them (`$D/deep-review/scripts/divergent-review-pivot.ts`, `Y` divergent branch). Verify: `$R tests/integration/divergent-pivot.vitest.ts` exits 0 with a gating case, and default seed output matches the T003 baseline byte for byte. Pi dispatch: under the expansive mode buildCandidateSeeds adds a 'frontier-unanswered' seed per exhausted or blocked node and buildReviewPivotPreparationInput refuses an open frontier; the YAML eligibility contract carries frontier_gate and routes an accepted candidate through admission; divergent-pivot + golden review 40 passed (gating, seed and default cases), default pivot seeds byte-identical; typecheck exit 0.
 - [ ] T021 Add the review fan-out path in `fanout-run.cjs`: `config.depthMode` in review lineage params only when the value is `expansive`, the `frontier_scope:` binding beside `review_focus` with round-robin depth-1 partition, the partition recorded in `orchestration-summary.json`, each lineage's nodes written into `lineages/<label>/review/frontier-nodes.jsonl` before spawn, and the frontier rules in the review detached `leafContract` (`$D/runtime/scripts/fanout-run.cjs`). Verify: `$R tests/unit/fanout-run.vitest.ts` exits 0 with a review partition case, a store-written-before-spawn case and a no-flag case and a `--depth-mode default` case without a `frontier_scope:` or `depthMode` line.
 - [x] T022 Pass `--depth-mode {depth_mode}` on the review `fanout-run.cjs` command in `step_fanout_spawn_cli` (`Y`). Verify: `stop-decision-yaml-contract` finds the argument on that command. step_fanout_spawn_cli passes --depth-mode {depth_mode}; the yaml-contract case 'passes the depth mode to the review fan-out runner' passes.
 - [x] T023 Add the merged review `frontier` to the return of `mergeReviewRegistries` and the review fan-in guard over the recorded partition and the phase-009 merged coverage (`$D/runtime/scripts/fanout-merge.cjs`). Verify: `$R tests/unit/fanout-merge.vitest.ts` exits 0 with a merged-frontier case and a case that fails when one depth-1 node is missing. Pi dispatch: mergeReviewRegistries returns the merged frontier with the partition guard read from orchestration-summary frontier_partition, and the review merge output carries frontier_partition_guard; fanout-merge.vitest 88 passed incl. merged-frontier and missing-node cases.
@@ -151,9 +151,9 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Phases 003, 004, 008, 009, 010 and 012 merged, per T001
+- [x] CHK-001 [P0] Requirements documented in spec.md spec.md REQ-001 to REQ-015, unchanged by the build.
+- [x] CHK-002 [P0] Technical approach defined in plan.md plan.md ADR-001 to ADR-004 Accepted; build decisions in decision-record.md.
+- [x] CHK-003 [P1] Phases 003, 004, 008, 009, 010 and 012 merged, per T001 T001: all six merge commits are on branch 469.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -163,8 +163,8 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 
 - [ ] CHK-010 [P0] `node --check` exits 0 on every changed `.cjs` file and `tsc --noEmit` passes for changed `.ts` files
 - [ ] CHK-011 [P0] No new branch is reachable when `depthMode` is absent or `default`
-- [ ] CHK-012 [P1] Malformed proposal rows are pruned with a reason, not thrown
-- [ ] CHK-013 [P1] Code comments carry the durable why and no spec, phase or task ids
+- [x] CHK-012 [P1] Malformed proposal rows are pruned with a reason, not thrown checkProposal returns 'relevance' for a non-object or a row without evidence or scope; the review admit suite prunes each malformed row with its reason and never throws.
+- [x] CHK-013 [P1] Code comments carry the durable why and no spec, phase or task ids git diff 5e583331cc9 over changed .cjs/.ts/.yaml finds no task, REQ, ADR, CHK, spec-path or phase id in an added comment.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -186,7 +186,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 - [ ] CHK-FIX-001 [P0] Not a fix packet; every shared-file edit is classed `cross-consumer` and covered by the golden test.
 - [ ] CHK-FIX-002 [P0] Same-class producer inventory from plan.md affected surfaces completed.
 - [ ] CHK-FIX-003 [P0] Consumer inventory completed for `searchDebt`, `candidateCoverage`, `frontier_scope` and `depthMode`.
-- [ ] CHK-FIX-004 [P0] Admission table covers malformed, duplicate, too-deep, over-fan-out, budget-growing and cyclic proposals.
+- [x] CHK-FIX-004 [P0] Admission table covers malformed, duplicate, too-deep, over-fan-out, budget-growing and cyclic proposals. frontier-admit-review covers malformed (no evidence), out-of-target scope, duplicate, too-deep, over-fan-out, budget-growing and cyclic proposals, one reason each.
 - [ ] CHK-FIX-005 [P1] Matrix axes from plan.md listed with their row count before completion is claimed.
 - [ ] CHK-FIX-006 [P1] No test reads process-wide state without restoring it.
 - [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA.
@@ -197,9 +197,9 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No credential is read or written by any changed file
-- [ ] CHK-031 [P0] Review leaves cannot write coverage surfaces or `review/frontier-nodes.jsonl`; only `frontier-admit.cjs` and the reducer do
-- [ ] CHK-032 [P1] Proposal scope must intersect the configured review target, so neither a leaf nor the pivot can expand it
+- [x] CHK-030 [P0] No credential is read or written by any changed file No changed file reads or writes a credential; the changes are state files, workflow prose and tests.
+- [x] CHK-031 [P0] Review leaves cannot write coverage surfaces or `review/frontier-nodes.jsonl`; only `frontier-admit.cjs` and the reducer do The leaf contract paragraph forbids writing review/frontier-nodes.jsonl, searchDebt or any coverage surface; frontier-admit.cjs is the only store writer and the reducer derives debt and coverage.
+- [x] CHK-032 [P1] Proposal scope must intersect the configured review target, so neither a leaf nor the pivot can expand it scopeInsideReviewTarget prunes a proposal scoped outside a file-list review target as relevance (frontier-admit-review case); the pivot's boundary regexes and target ban are unchanged.
 <!-- /ANCHOR:security -->
 
 ---
@@ -208,7 +208,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 ## Documentation
 
 - [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] `review.md` command flag table and the review agent definition describe the same flag and row
+- [x] CHK-041 [P1] `review.md` command flag table and the review agent definition describe the same flag and row review.md flag row and the review agent's frontier_proposal paragraph name the same flag and row.
 - [ ] CHK-042 [P2] The review synthesis names frontier-derived `deferred` entries as follow-up work
 - [ ] CHK-043 [P1] Reference docs, playbook scenarios and the changelog entry name `--depth-mode`, per T025-T027
 - [ ] CHK-044 [P1] The review compiled contract is regenerated and the agent mirrors show no drift, per T009 and T028
@@ -244,8 +244,8 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 
 - [x] CHK-100 [P0] ADR-001 to ADR-004 in `plan.md` are Accepted or replaced in T000, before any Phase 2 task runs. Accepted as proposed 2026-11-17.
 - [x] CHK-101 [P1] All ADRs have status (Proposed/Accepted). Each reads Accepted since 2026-11-17.
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
-- [ ] CHK-103 [P2] No migration needed: an absent key reads as default
+- [x] CHK-102 [P1] Alternatives documented with rejection rationale plan.md ADR-001 to ADR-004 each list rejected alternatives; decision-record.md build decisions each name a rollback.
+- [x] CHK-103 [P2] No migration needed: an absent key reads as default An absent antiConvergence.depthMode reads as default in step_read_state, the reducer, convergence.cjs and fanout-run.cjs; the golden absent-key variant passes.
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -253,7 +253,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:perf-verify -->
 ## L3+: Performance Verification
 
-- [ ] CHK-110 [P1] NFR-P01: no new process per iteration; the admission suite runs inside the existing vitest run
+- [x] CHK-110 [P1] NFR-P01: no new process per iteration; the admission suite runs inside the existing vitest run Admission runs as one frontier-admit.cjs call per iteration inside the existing step order; the review admit suite runs inside the vitest run.
 - [ ] CHK-111 [P1] Pilot iteration count stays within its stated `maxIterations`
 - [ ] CHK-112 [P2] Frontier size per depth recorded from the pilot dashboard
 - [ ] CHK-113 [P2] Budget spent per depth recorded from the pilot dashboard
@@ -265,7 +265,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 ## L3+: Deployment Readiness
 
 - [ ] CHK-120 [P0] Rollback is `git revert` of this phase's commits; confirmed by running the golden test on the reverted tree
-- [ ] CHK-121 [P1] `--depth-mode` documented in the command flag table
+- [x] CHK-121 [P1] `--depth-mode` documented in the command flag table review.md flag table row for --depth-mode.
 - [ ] CHK-123 [P1] Pilot run steps recorded in `implementation-summary.md`
 - [ ] CHK-124 [P2] Operator reviewed the pilot result
 <!-- /ANCHOR:deploy-ready -->
@@ -275,10 +275,10 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:compliance-verify -->
 ## L3+: Compliance Verification
 
-- [ ] CHK-130 [P1] No new dependency added
-- [ ] CHK-131 [P1] No license changed
-- [ ] CHK-132 [P2] N/A: no web surface
-- [ ] CHK-133 [P2] N/A: no personal data handled
+- [x] CHK-130 [P1] No new dependency added No package.json or lockfile change; no new require of an external module.
+- [x] CHK-131 [P1] No license changed No license file changed.
+- [x] CHK-132 [P2] N/A: no web surface N/A: no web surface.
+- [x] CHK-133 [P2] N/A: no personal data handled N/A: no personal data handled.
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -287,9 +287,9 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 ## L3+: Documentation Verification
 
 - [ ] CHK-140 [P1] All spec documents synchronized
-- [ ] CHK-141 [P1] Review pack allowed-write list matches the review agent definition
-- [ ] CHK-142 [P2] User-facing docs beyond the command doc are listed in T025-T027
-- [ ] CHK-143 [P2] N/A: knowledge lives in this packet and the parent research
+- [x] CHK-141 [P1] Review pack allowed-write list matches the review agent definition frontier_proposal rows go inside the existing delta file, so the pack's STATE FILES list and the agent's writable files (iteration file, strategy, write-once delta) still agree; neither gained a write target.
+- [x] CHK-142 [P2] User-facing docs beyond the command doc are listed in T025-T027 T025 lists the reference docs, SKILL.md, README.md and review-mode-contract.yaml; T026 and T027 own the playbook and changelog.
+- [x] CHK-143 [P2] N/A: knowledge lives in this packet and the parent research N/A: knowledge lives in this packet and the parent research.
 <!-- /ANCHOR:docs-verify -->
 
 ---
