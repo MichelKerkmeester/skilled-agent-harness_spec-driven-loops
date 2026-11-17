@@ -22,12 +22,12 @@ _memory:
       parent_session_id: null
     completion_pct: 100
     open_questions:
-      - "Item 2: which plain-status or re-pin change, if any"
-      - "Item 1: rewrite the hub-routing pages or exempt them"
-      - "Item 3 bullet 4: which validator exemptions to adopt"
-      - "Item 4: which script changes to adopt"
       - "Item 6: hub family values or the template sentence"
-    answered_questions: []
+    answered_questions:
+      - "Item 2: a missing-path NOTE in plain status"
+      - "Item 1: rewrite the 21 hub-routing pages"
+      - "Item 3 bullet 4: run-file exemption, rule type, fixed example pages, no alias"
+      - "Item 4: stage-one fallback, bounded stale wait, 14-skill generator"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary
@@ -57,6 +57,10 @@ A prompt such as "check the health of the gaia-services pods" no longer routes t
 ### Phase 15: barter-overlay-upstream-intake
 
 The re-pin report was not a copy defect. The five dist-freshness links were already upstream at the project's base pin `5474fd9695` and did not change through `d97c051`. The project's own vendoring commit `37ad8100c` held the five READMEs but not the links. A re-pin copies only the paths upstream changed between the two pins, as `references/overlays.md` says, so it never saw them. The vibe link survived because upstream added it after the base pin, in `add10613130`, and a re-pin diff carried it in. How the vendoring commit lost the links is UNKNOWN: their targets were present, and that step is the project's own.
+
+### Operator answers built
+
+The operator answered four of the five open questions, and each answer is built in its own commit. Plain `status` now prints one note for unowned upstream paths missing from the tree (`36f16fa6b0f`). The 21 hub-routing playbook pages sit on the `playbook_feature` template with their prompts and gold unchanged (`89eaaee43c5`). The checkers changed in `6f946452805`: a run-file exemption, a `rule` type for `repo-rules/`, seven example pages with an overview, a stage-one fallback and a bounded stale wait in the reach check, and the 14-skill intent-signal generator with its 27-phrase write.
 
 ### Files Changed
 
@@ -111,7 +115,11 @@ Each claim was checked against the code or history it named before any edit. The
 | `validate_document.py` on the two Markdown files | PASS: 0 issues each |
 | `bash -n` and `shellcheck` on `mcp-roundtrip.sh` | PASS: both exit 0 |
 | `ci-router-vocabulary-reach.cjs --hub mcp-tooling` | Before the `ROUTER.md` mirror: FAIL with one row, "figma mcp" outranked by sk-code, same as baseline. After it: NOT RUN, every probe returned `probe-error` because the advisor stayed `stale` on a watcher reindex for over three minutes, and `advisor_rebuild` needs `--trusted` |
-| Doctor suite | 1234 tests, 1234 pass, 0 fail before and after |
+| Doctor suite | 1234 tests, 1234 pass, 0 fail before the note; 1237 tests, 1237 pass, 0 fail after it |
+| `validate_document.py --type playbook_feature` on the 21 hub-routing pages | PASS: `Total issues: 0` on all 21; admission 16 pass for mcp-tooling and 7 pass for cli-external-orchestration, the same as before |
+| `validate_document.py` on the 10 `repo-rules/` files and the 28 example pages | PASS: 0 issues on all 10 rule files; all 28 example pages valid, the 7 fixed ones with one `document_type_fallback` warning each |
+| `ci-router-vocabulary-reach-stale.test.cjs` | PASS: 3 of 3; the same three fail against the previous script |
+| Advisor routing regression, before and after the 27-phrase write | No change: labeled corpus 117 of 195 top-1 correct and 5 gold-none false fires both times; regression set 84 of 84 both times |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -119,7 +127,8 @@ Each claim was checked against the code or history it named before any edit. The
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The project's tree can still hold upstream paths that are missing.** A re-pin does not see an unowned path upstream left alone. Run `/doctor:overlay status --audit` after a vendoring step until the operator decides the item 2 question.
+1. **A re-pin still does not restore a missing upstream path.** Plain `status` now names such a path, but restoring it is by hand from the pinned commit.
+2. **The live reach check was not rerun.** The advisor stayed stale for this whole session and its rebuild needs `--trusted`, so stage one for the 27 new phrases was measured only through the Python scorer.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -61,6 +61,11 @@ contextType: "general"
 - [x] T011 Run mcp-tooling admission (`.skilled/bin/compiled-route-admission.cjs`). Verify: it prints `16 pass, 0 drift, 0 stale`.
 - [x] T012 Run the compiled-route tests (`.skilled/bin/tests`). Verify: `node --test .skilled/bin/tests/*.test.cjs` prints `fail 0`.
 - [x] T013 Rerun the doctor suite (`.skilled/commands/doctor/scripts/tests`). Verify: it prints `fail 0` with 1234 tests.
+- [x] T014 Build the missing-path note with a failing test first (`.skilled/commands/doctor/scripts/overlay-engine.cjs`). Verify: the doctor suite prints `tests 1237`, `fail 0`.
+- [x] T015 Rewrite the 21 hub-routing pages (`manual-testing-playbook/hub-routing/`). Verify: `validate_document.py --type playbook_feature` prints `Total issues: 0` for each of the 21.
+- [x] T016 Add the run-file exemption and the `rule` type (`.skilled/skills/sk-doc/shared/scripts/validate_document.py`). Verify: `python3 -m pytest -q .skilled/skills/sk-doc/scripts/tests` prints `passed` with no failure.
+- [x] T017 Add the stage-one fallback and the bounded stale wait (`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs`). Verify: `node --test` on `ci-router-vocabulary-reach-stale.test.cjs` prints `pass 3`.
+- [x] T018 Write the 27 missing intent signals (`.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs`). Verify: `--check` prints `missing=0`, and the corpus prints `top1_correct: 117` before and after.
 <!-- /ANCHOR:phase-3 -->
 
 ---
