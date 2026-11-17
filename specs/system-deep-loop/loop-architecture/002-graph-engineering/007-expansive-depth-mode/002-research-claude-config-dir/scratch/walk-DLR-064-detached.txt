@@ -1,0 +1,19 @@
+# Walk of DLR-064 run detached from Claude Code: the shell was double-forked and reparented to launchd (ppid of the runner below), so the Claude ancestry guard sees no Claude ancestor.
+runner pid 97942 ppid 1 at 2026-11-17T22:50:53Z, HEAD f8c334b9c39
+$ cd .skilled/skills/system-deep-loop/runtime && npx vitest run dispatch-iteration.vitest
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+exit=0
+$ cd .skilled/skills/system-deep-loop/runtime && npx vitest run executor-audit-cli-branch-receipts.test
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+exit=0
+$ rg -n "claude-config-dir" .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs
+44:    + ' --timeout-seconds <n> [--claude-config-dir <dir>] [--spec-folder <dir>]';
+132:  'claude-config-dir',
+217:    throw new UsageError("missing required flag '--claude-config-dir'");
+221:      "flag '--claude-config-dir' is only valid with --executor cli-claude-code",
+$ rg -n "optional_claude_config_dir_flag" .skilled/commands/deep/assets/deep-research.yaml
+1665:            node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-claude-code {cli_dispatch_args}{optional_claude_config_dir_flag}  # adds --claude-config-dir "<dir>" only when config.executor.configDir is set
+1670:            optional_claude_config_dir_flag: |
+DONE

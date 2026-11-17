@@ -49,6 +49,7 @@
       ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/executor/research-claude-config-dir.md",
       "scratch/walk-DLR-064.txt",
+      "scratch/walk-DLR-064-detached.txt",
       ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md"
     ],
     "entities": [
@@ -137,6 +138,12 @@
         "source": "derived"
       },
       {
+        "name": "walk-DLR-064-detached.txt",
+        "kind": "file",
+        "path": "scratch/walk-DLR-064-detached.txt",
+        "source": "derived"
+      },
+      {
         "name": "v2.1.6.0.md",
         "kind": "doc",
         "path": ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md",
@@ -189,17 +196,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A single-executor deep-research run on `cli-claude-code` silently drops a configured `config.executor.configDir`, and an explicit `--claude-config-dir` makes `dispatch-iteration.cjs` raise a UsageError, because the flag is accepted only for `--loop-type review`",
     "created_at": "2026-11-17T14:34:21Z",
-    "last_save_at": "2026-11-17T21:21:08.883Z",
+    "last_save_at": "2026-11-17T22:51:26.679Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +210,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b0b147b757b4fe6ab086e8f4c4d198535ec9fab5e5ba61c2bf10e07ff7c6609",
+    "source_fingerprint": "sha256:3dfec670f5f6472dd380daf560471a1f2d14a0f302b5c41a5b1cca152c917fae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b4b10388e6881c0e759dff2bc02cf068158beb64999005a3ccac171226aa6e6f",
       "plan.md": "0adb0cf51221ad96e07dd62412bad13af9fdb62f5ad9d9b7a8fd749c420ccaf8",
-      "tasks.md": "813f39ea6a2307f4103b35015aeca2a4f31d1753849587542f44e13f352e7aaa",
+      "tasks.md": "b6c8dc85265fc3c1d1d0d561a95763550dff8e2d7eeb05fd64ac05a37a9d58a6",
       "implementation-summary.md": "b29b09edf77eaee536015eae94dc071b10a6dec087fb1176adfd46b29550e93d"
     },
     "last_active_at": null
