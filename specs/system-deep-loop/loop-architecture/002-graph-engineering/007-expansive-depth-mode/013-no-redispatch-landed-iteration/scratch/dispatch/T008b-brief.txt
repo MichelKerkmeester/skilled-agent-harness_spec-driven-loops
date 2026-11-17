@@ -1,0 +1,37 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/466-ed-013-no-redispatch-landed
+Every read, write and command uses this root. Your environment block may name a different "Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration (pre-approved). Proceed directly. Do not print A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt only after three failures on the same file. Your task is complete only when the file is changed on disk and the check below has been run.
+
+PERSONA: You are a code implementation agent. Make exactly the one change below, in the named file only, matching the surrounding code style (TypeScript vitest, 2-space indent, single quotes). Do not refactor or touch anything else. Verify by running the CHECK and report honestly.
+
+NOTE: this environment blocks you from running node or vitest. Make the edit, then report the CHECK as not run; the orchestrator runs it.
+
+TASK T008b: pin what the research reducer shows when a landed iteration is followed by the still-fails error row for the same run.
+FILE: .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts
+ANCHOR: directly after the existing it('counts duplicated iteration rows once and selects the highest run as latest', ...) case, inside the same describe block.
+EDIT: insert this case verbatim (makeTempSpec, writeState and reduceResearchState already exist in the file):
+
+  it('shows a landed run as error when the still-fails row follows it', () => {
+    // A landed iteration that fails verification with a reason that skips the redispatch
+    // still gets the workflow's error row, and the later row replaces the landed one.
+    const specFolder = makeTempSpec();
+    writeState(specFolder, [
+      { type: 'iteration', run: 1, status: 'complete', focus: 'first', newInfoRatio: 0.4, findingsCount: 1 },
+      { type: 'iteration', run: 2, status: 'complete', focus: 'landed focus', newInfoRatio: 0.3, findingsCount: 2 },
+      { type: 'iteration', run: 2, status: 'error', focus: 'landed focus', newInfoRatio: 0.0, findingsCount: 0 },
+    ].map((record) => JSON.stringify(record)).join('\n') + '\n');
+
+    const result = reduceResearchState(specFolder, { write: false });
+
+    expect(result.registry.metrics.iterationsCompleted).toBe(2);
+    expect(result.registry.metrics.convergenceScore).toBe(0);
+    expect(result.dashboard).toContain('| 2 | landed focus | - | 0.00 | 0 | error |');
+    expect(result.dashboard).toContain('Latest iteration reported error status.');
+  });
+
+ALLOWED WRITE PATHS: .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file, edits outside ALLOWED WRITE PATHS, regenerating compiled contracts, editing tasks.md, implementation-summary.md, spec.md or any spec-folder doc.
+COMMENTS: keep the durable WHY; never put spec paths, phase numbers or REQ/ADR/task ids in code.
+CHECK (orchestrator runs it): cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/deep-research-reduce-state.vitest.ts
+RETURN: the changed path and one line confirming the insertion point. Nothing else.

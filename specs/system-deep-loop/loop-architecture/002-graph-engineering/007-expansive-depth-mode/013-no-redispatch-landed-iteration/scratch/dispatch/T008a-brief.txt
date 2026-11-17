@@ -1,0 +1,34 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/466-ed-013-no-redispatch-landed
+Every read, write and command uses this root. Your environment block may name a different "Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration (pre-approved). Proceed directly. Do not print A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt only after three failures on the same file. Your task is complete only when the file is changed on disk and the check below has been run.
+
+PERSONA: You are a code implementation agent. Make exactly the one change below, in the named file only, matching the surrounding code style (TypeScript vitest, 2-space indent, single quotes). Do not refactor or touch anything else. Verify by running the CHECK and report honestly.
+
+NOTE: this environment blocks you from running node or vitest. Make the edit, then report the CHECK as not run; the orchestrator runs it.
+
+TASK T008a: pin what deriveLoopCounters counts when a landed iteration is followed by the still-fails error row for the same iteration number.
+FILE: .skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts
+ANCHOR: inside describe('deriveLoopCounters', ...), directly after the existing it('counts a redispatched run once, by its latest row', ...) case.
+EDIT: insert this case verbatim:
+
+  it('lets the still-fails error row supersede a landed iteration with the same number', () => {
+    // A landed iteration that fails verification with a reason that skips the redispatch
+    // still gets the workflow's error row; the later row wins, so the run counts as a failure.
+    const counters = deriveLoopCounters(
+      [
+        { type: 'iteration', iteration: 1, status: 'complete', newInfoRatio: 0.4 },
+        { type: 'iteration', iteration: 2, status: 'complete', newInfoRatio: 0.01, findingsCount: 2 },
+        { type: 'iteration', iteration: 2, status: 'error', findingsCount: 0, newInfoRatio: 0.0 },
+      ],
+      { loopType: 'research' },
+    );
+
+    expect(counters).toEqual({ stuckCount: 0, consecutiveFailureCount: 1 });
+  });
+
+ALLOWED WRITE PATHS: .skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file, edits outside ALLOWED WRITE PATHS, regenerating compiled contracts, editing tasks.md, implementation-summary.md, spec.md or any spec-folder doc.
+COMMENTS: keep the durable WHY; never put spec paths, phase numbers or REQ/ADR/task ids in code.
+CHECK (orchestrator runs it): cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/loop-counters-derivation.vitest.ts
+RETURN: the changed path and one line confirming the insertion point. Nothing else.

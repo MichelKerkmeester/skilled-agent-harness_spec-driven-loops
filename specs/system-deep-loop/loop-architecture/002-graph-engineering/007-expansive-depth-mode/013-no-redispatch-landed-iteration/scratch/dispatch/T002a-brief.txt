@@ -1,0 +1,33 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/466-ed-013-no-redispatch-landed
+Every read, write and command uses this root. Your environment block may name a different "Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration (pre-approved). Proceed directly. Do not print A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt only after three failures on the same file. Your task is complete only when the file is changed on disk and the check below has been run.
+
+PERSONA: You are a code implementation agent. Make exactly the one change below, in the named file only, matching the surrounding code style (TypeScript vitest, 2-space indent, single quotes). Do not refactor or touch anything else. Verify by running the CHECK and report honestly.
+
+TASK T002a: add one vitest case proving executor_missing is returned only when the narrative, the state record and the delta are all present.
+FILE: .skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts
+ANCHOR: inside the describe block 'verify-iteration executor provenance', directly after the existing it('fails executor_missing when a non-native iteration names no executor anywhere', ...) case.
+EDIT: insert this case verbatim:
+
+  it('returns executor_missing only for a landed iteration: removing any artifact changes the reason', () => {
+    const landed = reviewRun('landed', nonNative, [reviewRecord(1)]);
+    expect(verify('review', landed, 1).reason).toBe('executor_missing');
+
+    const noNarrative = reviewRun('no-narrative', nonNative, [reviewRecord(1)]);
+    fs.rmSync(path.join(noNarrative, 'iterations', 'iteration-001.md'));
+    expect(verify('review', noNarrative, 1).reason).toBe('iteration_file_missing');
+
+    const noRecord = reviewRun('no-record', nonNative, [{ type: 'event', iteration: 1 }]);
+    expect(verify('review', noRecord, 1).reason).toBe('state_record_missing');
+
+    const noDelta = reviewRun('no-delta', nonNative, [reviewRecord(1)]);
+    fs.rmSync(path.join(noDelta, 'deltas', 'iter-001.jsonl'));
+    expect(verify('review', noDelta, 1).reason).toBe('delta_file_missing');
+  });
+
+ALLOWED WRITE PATHS: .skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file, edits outside ALLOWED WRITE PATHS, regenerating compiled contracts, editing tasks.md, implementation-summary.md, spec.md or any spec-folder doc.
+COMMENTS: keep the durable WHY; never put spec paths, phase numbers or REQ/ADR/task ids in code.
+CHECK: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/verify-iteration.vitest.ts
+RETURN: the changed path, the CHECK's last 15 lines and its exit code. Nothing else.
