@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-16 |
 | **Branch** | `worktrees/425-repin-engine-limits-intake` |
 | **Parent Spec** | ../spec.md |
@@ -104,9 +104,11 @@ overlay-engine.cjs at 969335a6380:
 |-----------|-------------|-------------|
 | `.skilled/commands/doctor/scripts/overlay-engine.cjs` | Modify | The nine fixes |
 | `.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs` | Modify | Tests for the apply, status and data-safety items |
-| `.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs` | Modify | The cross-check on a re-pin |
+| `.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs` | Unchanged | Planned for the cross-check on a re-pin. The cross-check runs in `status` only, so a re-pin has no new output to test |
+| `.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs` | Modify | The manifest write through a rename, reached through adopt |
 | `.skilled/skills/system-skilled-doctor/references/overlays.md` | Modify | The new `NOTE` lines, the cross-check and the `pin.checkout` resolution |
 | `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt` and `assets/doctor-overlay-{apply,status}.yaml` | Modify | The rerun advice and the new status lines |
+| `handover-to-barter.md` | Create | What a Barter re-pin to this phase changes |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -129,11 +131,11 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |----|-------------|---------------------|
 | REQ-004 | When the pinned copy is readable, a json-entry result that differs from the entry set applied to the pinned text is reported | A test with a dropped `setKeyOnItem` prints a cross-check line naming the destination |
 | REQ-005 | A status with no readable checkout says what it skipped | A test with no checkout prints one `NOTE` line naming the stale-root check |
-| REQ-006 | A relative `pin.checkout` resolves against the tree root | A test runs status from another directory and reads the checkout |
+| REQ-006 | A relative `pin.checkout` resolves against the tree root | A test runs status from another directory and reads the checkout. `repin --stage` reads only its `--upstream` checkout, so the manifest's `pin.checkout` is not read there; a later `status --root <stage>` resolves a relative one beside the staged copy, as `overlays.md` says |
 | REQ-007 | A malformed entry set blocks only its own overlay and names its file | A test with broken JSON in one entry set still reports the other overlays and names `entry.source` |
 | REQ-008 | An operation the engine cannot track gets a non-failing `NOTE` line | A test with `setKeyOnItem` and an indexed `set` prints a `NOTE` for each and exits 0 |
 | REQ-009 | The state file is schema version 2, a version 1 file is upgraded on load, and a record with a bad shape is refused with a fix | A test loads a version 1 file and writes version 2, and a test with a record lacking `path` exits 2 and names the record |
-| REQ-010 | The state file and the manifest are written atomically | A test checks that each write goes through a temporary file and a rename |
+| REQ-010 | The state file and the manifest are written atomically | A test checks that each write goes through a temporary file and a rename. The state writer and one manifest writer, the one adopt reaches, are tested; the other two manifest writers call the same `writeFileAtomic` |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -162,9 +164,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Item 7: should keys an older engine wrote, which carry `added: false`, be refused once, or should the first apply on the new engine mark them? Answered 2026-11-16: refuse once, with a message that names the fix.
-- Item 8: bump the state `schemaVersion` to 2 with a migration, or keep version 1 and print a note when a manifest holds json-entry sets the state has no key for? Answered 2026-11-16: bump to version 2, with a loader that upgrades a version 1 file.
+- Item 7: should keys an older engine wrote, which carry `added: false`, be refused once, or should the first apply on the new engine mark them? Answered 2026-11-17: refuse once, with a message that names the fix.
+- Item 8: bump the state `schemaVersion` to 2 with a migration, or keep version 1 and print a note when a manifest holds json-entry sets the state has no key for? Answered 2026-11-17: bump to version 2, with a loader that upgrades a version 1 file.
 - Item 4: does Barter's manifest give `pin.checkout` as a relative path today? Answered 2026-11-16: no. `barter-overlays/overlay-manifest.json` gives the absolute path `/Users/michelkerkmeester/MEGA/Development/Skilled`, so resolving a relative path against the tree root does not change Barter's runs.
+- Barter check: a read-only status on Barter showed two false cross-check lines on `graph-metadata.json` files a regenerate step writes, and two pairs of identical untracked-operation lines. Answered 2026-11-17: skip the cross-check on any destination a regenerate step lists in `outputs`, reword the line to name an undeclared regenerate output as a possible cause, and name the key and matched item, or the inserted keys, in each untracked-operation line.
 <!-- /ANCHOR:questions -->
 
 ---

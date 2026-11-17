@@ -46,8 +46,8 @@ Frozen choices. Changing one is an amendment.
 | D2 | The pinned-copy cross-check only reports a difference. It does not become the write path in this phase. |
 | D3 | Item 2 lands before item 3, because item 3's fix reads the state item 2 writes early. |
 | D4 | Each engine change starts with a test that fails on `969335a6380`. |
-| D5 | A dropped key whose record says the overlay did not add it is refused once, with a message naming the fix, never deleted. The operator chose this on 2026-11-16. |
-| D6 | The state file moves to schema version 2, and the loader upgrades a version 1 file. The operator chose this on 2026-11-16. |
+| D5 | A dropped key whose record says the overlay did not add it is refused once, with a message naming the fix, never deleted. The operator chose this on 2026-11-17. |
+| D6 | The state file moves to schema version 2, and the loader upgrades a version 1 file. The operator chose this on 2026-11-17. |
 
 <!-- /ANCHOR:directive -->
 
@@ -58,10 +58,10 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `node --test .skilled/commands/doctor/scripts/tests` prints fail 0 with at least 1230 tests.
-- [ ] A rerun of apply after a failed regenerate step reruns that step, and a later drop of the item it added removes the item, in a passing test.
-- [ ] A status run with no readable upstream checkout prints a `NOTE` line naming the skipped stale-root check, in a passing test.
-- [ ] `validate.sh --strict` on this folder prints `RESULT: PASSED`.
+- [x] `node --test .skilled/commands/doctor/scripts/tests` prints fail 0 with at least 1230 tests.
+- [x] A rerun of apply after a failed regenerate step reruns that step, and a later drop of the item it added removes the item, in a passing test.
+- [x] A status run with no readable upstream checkout prints a `NOTE` line naming the skipped stale-root check, in a passing test.
+- [x] `validate.sh --strict` on this folder prints `RESULT: PASSED`.
 - [ ] The commit is on origin/main, and the vendoring project is told which commit to re-pin to.
 <!-- /ANCHOR:completion -->
 
@@ -80,10 +80,20 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase scaffolded | Done | Spec, plan and tasks filled from `../013-fix-review-findings-in-json-entry-set-restore/scratch/fable-harden-ux-answer.md` |
+| Baseline | Done | Unchanged engine: tests 1220, pass 1220, fail 0 |
+| Red run | Done | The 11 new or changed sync tests failed on the unchanged engine: tests 65, pass 54, fail 11 |
+| Engine items 1 to 10 | Done | Suite after the first build: tests 1230, fail 0 |
+| Skipped-check note for a checkout without the pinned commit | Done | The new test fails with the commit check removed and passes with it |
+| Barter read-only status | Done | RESULT unchanged (PASSED), Barter's state files and git status unchanged; two false cross-check lines and two duplicate notes found |
+| Regenerate outputs skipped by the cross-check, untracked lines name their target | Done | Four tests failed first at their own assertions, then passed |
+| Final suite | Done | tests 1234, pass 1234, fail 0, exit 0; quality gate 0 findings |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Fable's line citations | Written before phase 13's round three and merge; re-anchored to function names at `969335a6380` in `spec.md` |
+| D4 for the manifest-write test | The manifest writers already went through `writeFileAtomic` when the test was written, so it never failed first. It passed on its first run |
+| Two operator answers after the Barter check | Skip declared regenerate outputs in the cross-check and reword the line; name each untracked operation's target. Recorded in `spec.md` open questions, not as frozen decisions |
+| Barter's undeclared output | `system-skilled-doctor/graph-metadata.json` still prints a cross-check line until Barter lists it in a regenerate step's `outputs`; the handover says so |
 <!-- /ANCHOR:log -->
