@@ -38,7 +38,7 @@
       "veto"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,19 +47,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".skilled/commands/deep/research.md",
-      ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
-      ".skilled/commands/deep/assets/deep-research.yaml",
-      ".skilled/agents/deep-research.md",
       ".claude/agents/deep-research.md",
       ".codex/agents/deep-research.toml",
-      ".pi/agents/deep-research.md",
-      ".vibe/agents/deep-research.toml",
       ".dsh/agents/deep-research.patch.yml",
-      ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
-      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts"
+      ".pi/agents/deep-research.md",
+      ".skilled/agents/deep-research.md",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+      ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      ".skilled/commands/deep/assets/deep-research.yaml",
+      ".skilled/commands/deep/research.md",
+      ".skilled/skills/system-deep-loop/deep-research/README.md",
+      ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+      ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl"
     ],
     "entities": [
       {
@@ -105,33 +105,9 @@
         "source": "derived"
       },
       {
-        "name": "deep-research-presentation.txt",
-        "kind": "file",
-        "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-config.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
-        "source": "derived"
-      },
-      {
-        "name": "optimizer-manifest.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/deep/assets/deep-research.yaml",
-        "source": "derived"
-      },
-      {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".skilled/agents/deep-research.md",
+        "path": ".claude/agents/deep-research.md",
         "source": "derived"
       },
       {
@@ -147,15 +123,45 @@
         "source": "derived"
       },
       {
-        "name": "prompt-pack-iteration.md.tmpl",
+        "name": "deep-research.contract.markdown",
         "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
         "source": "derived"
       },
       {
-        "name": "prompt-pack.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts",
+        "name": "deep-research-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack-iteration.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
         "source": "derived"
       },
       {
@@ -183,13 +189,13 @@
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Research",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -199,17 +205,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A deep-research run stops on `allquestionsanswered` or `compositeconverged` as soon as the questions written at init are answered, however narrowly",
     "created_at": "2026-11-17T14:34:22Z",
-    "last_save_at": "2026-11-17T22:04:25.818Z",
+    "last_save_at": "2026-11-17T22:10:19.453Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ed7f25d7f3681b249a040f99874c115f1a3dc2f30b9cd39886f6b21d9e2ee15",
+    "source_fingerprint": "sha256:a15c168865393835f45f5a1030b1b07772d1a9aa9d704a26acd79595eb675a92",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "50340ebf91365cc6cdc46ec8687c360b04e0b0e65091a5c6877aca9f442564d2",
+      "spec.md": "fa77cd7265fbdc158c2588eacbd72848d31dec45699ce25cae65d0b4970a7fcd",
       "plan.md": "888c8f9174744791fc36841b8908e9f7de4435b8693d1063f1f0c386d86bd727",
-      "tasks.md": "e333b6d8143c71dc0b164b33924a04efcdec23e0258b165a81f059b8821a2720",
-      "decision-record.md": "3fe4f41ac6a30613026be6fc7d58b1648c5629ecd28ccccb2b1a1266453bc325",
-      "implementation-summary.md": "b1e17d47a246aa2e7a2bb9d9c175984430ffc0d8857e0252bdc9eb9da6645e1e"
+      "tasks.md": "778e06c9313ea13190506cfa87d053a05278baa8f0dbbeb54f5e6cda90981560",
+      "decision-record.md": "3c931f99dae5999637a9b590e9befea4ca48d6f20d1555667617e7b9e2b08e44",
+      "implementation-summary.md": "c4cde718fe88b25b02debb65ce5e5f5861e97ebcd53889b17e845b19f357aed0"
     },
     "last_active_at": null
   }

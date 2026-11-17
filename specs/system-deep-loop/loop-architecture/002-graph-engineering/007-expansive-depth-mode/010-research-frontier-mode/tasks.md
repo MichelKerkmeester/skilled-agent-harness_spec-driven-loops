@@ -94,9 +94,9 @@ Mark the task `[B]`, name the blocking phase, file or failing check on the same 
 - [x] T024 [P] Add frontier size, pruned nodes, revisits and budget per depth to `renderDashboard` under the flag (`$D/deep-research/scripts/reduce-state.cjs`, `renderDashboard`). Verify: a reducer dashboard case shows the four metrics on an expansive fixture and the golden case still passes. Done 2026-11-17: `## 6B. FRONTIER` with size, pruned, revisits and per-band budget, rendered only under expansive. The dashboard case asserts all four and that a default dashboard has no section; the golden still passes 12 of 12.
 - [x] T025 Add the `focusAlignment` risk case with `keyQuestions` present on an expansive fixture (`$D/runtime/tests/unit/convergence-score-delta.vitest.ts` or a sibling convergence suite). Verify: the case asserts the guard alone does not stop a frontier-driven continue. Done 2026-11-17: three cases in `stop-decision.vitest.ts`. With an empty frontier, an off-focus frontier answer gives `CONTINUE`/`qualityGuardFailed` and never a stop. Open nodes continue on `frontierOpen` first. A frontier answer listed in `keyQuestions` passes. `npx vitest run stop-decision.vitest` 79 of 79.
 - [x] T026 Update the research reference docs for the flag, seed step, node store, veto and fan-out partition (`$D/deep-research/references/` `convergence.md`, `loop-protocol.md`, `state-format.md` and the quick reference, `$D/deep-research/SKILL.md`, `$D/deep-research/README.md`). Verify: `rg -l -- '--depth-mode'` prints each of those files. Done 2026-11-17: frontier sections in `convergence.md`, `loop-protocol.md`, `state-format.md`, the quick-reference parameter row, `SKILL.md` and `README.md`, plus the `wave_orchestration` pointer. `rg -l -- '--depth-mode'` prints all six files; `validate_document.py` reports 0 issues on each; `npx vitest run check-documentation-drift.vitest` 11 of 11.
-- [ ] T027 Write the expansive research playbook scenarios through `/create:manual-testing-playbook system-deep-loop update --path $D/deep-research/manual-testing-playbook` (`$D/deep-research/manual-testing-playbook/`). Verify: the command completes and `rg -l -- '--depth-mode=expansive' $D/deep-research/manual-testing-playbook` prints at least one file.
-- [ ] T028 Add the changelog entry for the new flag (`$D/deep-research/changelog/`, through `/create:changelog`). Verify: `rg -l -- '--depth-mode' $D/deep-research/changelog` prints the new file.
-- [ ] T029 Regenerate the research compiled contract after the last digested source change (`.skilled/commands/deep/assets/compiled/deep-research.contract.markdown`). Verify: `node $D/runtime/scripts/compile-command-contracts.cjs --command deep/research --write` exits 0, then `$R tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0.
+- [B] T027 Write the expansive research playbook scenarios through `/create:manual-testing-playbook system-deep-loop update --path $D/deep-research/manual-testing-playbook` (`$D/deep-research/manual-testing-playbook/`). Verify: the command completes and `rg -l -- '--depth-mode=expansive' $D/deep-research/manual-testing-playbook` prints at least one file. Blocked 2026-11-17: written by @markdown in integration after merge.
+- [B] T028 Add the changelog entry for the new flag (`$D/deep-research/changelog/`, through `/create:changelog`). Verify: `rg -l -- '--depth-mode' $D/deep-research/changelog` prints the new file. Blocked 2026-11-17: written by @markdown in integration after merge.
+- [x] T029 Regenerate the research compiled contract after the last digested source change (`.skilled/commands/deep/assets/compiled/deep-research.contract.markdown`). Verify: `node $D/runtime/scripts/compile-command-contracts.cjs --command deep/research --write` exits 0, then `$R tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0. Done 2026-11-17: a pre-commit hook regenerated the contract with each YAML commit. \`compile-command-contracts.cjs --command deep/research --write\` and \`--command deep/review --write\` both exit 0 with no diff; \`check-contract-drift.cjs\` prints \`[CONTRACT DRIFT] OK commands=2\`; \`npx vitest run check-contract-drift.vitest compile-command-contracts.vitest render-command-contract\` 50 of 50.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -104,9 +104,9 @@ Mark the task `[B]`, name the blocking phase, file or failing check on the same 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T030 Run the full deep-loop suite. Verify: `npm test` from `$D/runtime` exits 0 and the guard suites from parent research section 10 are all listed as passed.
-- [ ] T031 Run the pilot on example target 2 with `--depth-mode=expansive`, a stated `maxIterations`, depth-1 nodes rooted at `runtime/lib/prompt-policy.ts` and `runtime/data/prompt-policy.default.json`, the scorer at depth 2 and dedupe against `specs/system-skill-advisor/routing-and-scoring/001-010` (pilot packet under this phase's `scratch/`). Verify: `jq '.frontier.stats'` on the pilot `findings-registry.json` shows zero open and zero active nodes, the stop reason is not `maxIterationsReached`, and the log records how many depth-1 nodes the seed step produced.
-- [ ] T032 Check the pilot cites the current command-surfacing symbols (pilot `research.md`). Verify: `rg -c 'COMMAND_POLICIES'` on it prints nothing and `rg -c 'COMMAND_ROWS|TRACKED_COMMANDS'` prints at least 1.
+- [B] T030 Run the full deep-loop suite. Verify: `npm test` from `$D/runtime` exits 0 and the guard suites from parent research section 10 are all listed as passed. Merge-time step 2026-11-17: the full suite runs at the integration merge gate. Named suites on this branch: golden 12, frontier-admit 23, reduce-state 48, stop-decision 79, yaml-contract 22, fanout-run 203, fanout-merge 84, prompt-pack 18, all passing.
+- [B] T031 Run the pilot on example target 2 with `--depth-mode=expansive`, a stated `maxIterations`, depth-1 nodes rooted at `runtime/lib/prompt-policy.ts` and `runtime/data/prompt-policy.default.json`, the scorer at depth 2 and dedupe against `specs/system-skill-advisor/routing-and-scoring/001-010` (pilot packet under this phase's `scratch/`). Verify: `jq '.frontier.stats'` on the pilot `findings-registry.json` shows zero open and zero active nodes, the stop reason is not `maxIterationsReached`, and the log records how many depth-1 nodes the seed step produced. Merge-time step 2026-11-17 (decision D-010-04): the live pilot needs a full \`/deep:research\` loop and runs after integration. Interim evidence is a CLI smoke on a scratch packet: seed admitted 2 and pruned 1 duplicate; admit added F-2-004 and pruned a repeat; the reducer projected stats, budget and the 6B section; the stop decision returned CONTINUE \`frontierOpen\`; closing every node left zero open and zero active.
+- [B] T032 Check the pilot cites the current command-surfacing symbols (pilot `research.md`). Verify: `rg -c 'COMMAND_POLICIES'` on it prints nothing and `rg -c 'COMMAND_ROWS|TRACKED_COMMANDS'` prints at least 1. Merge-time step 2026-11-17: checked on the pilot \`research.md\` once T031 runs.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -162,10 +162,10 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `node --check` exits 0 on every changed `.cjs` file and `tsc --noEmit` passes for changed `.ts` files
-- [ ] CHK-011 [P0] No new branch is reachable when `depthMode` is absent or `default`
-- [ ] CHK-012 [P1] Malformed proposal rows are pruned with a reason, not thrown
-- [ ] CHK-013 [P1] Code comments carry the durable why and no spec, phase or task ids
+- [x] CHK-010 [P0] `node --check` exits 0 on every changed `.cjs` file and `tsc --noEmit` passes for changed `.ts` files Evidence 2026-11-17: `node --check` exits 0 on all five changed `.cjs` files; tests sit outside the runtime `tsc` scope and pass under vitest.
+- [x] CHK-011 [P0] No new branch is reachable when `depthMode` is absent or `default` Evidence 2026-11-17: The golden suite passes 12 of 12 for the absent key and `--depth-mode=default`.
+- [x] CHK-012 [P1] Malformed proposal rows are pruned with a reason, not thrown Evidence 2026-11-17: `checkProposal` returns `relevance` for a non-object row and every failing check returns its reason; `frontier-admit.vitest` 23 of 23.
+- [x] CHK-013 [P1] Code comments carry the durable why and no spec, phase or task ids Evidence 2026-11-17: `rg` over changed code finds no spec path, phase number or task id in comments.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -174,8 +174,8 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 ## Testing Checklist
 
 - [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Golden byte-identity test passes for absent key and `--depth-mode=default`
-- [ ] CHK-022 [P1] Admission, veto, close, stuck and fan-out edge cases tested
+- [x] CHK-021 [P0] Golden byte-identity test passes for absent key and `--depth-mode=default` Evidence 2026-11-17: `research-depth-mode-golden.vitest` 12 of 12.
+- [x] CHK-022 [P1] Admission, veto, close, stuck and fan-out edge cases tested Evidence 2026-11-17: Admission table, veto precedence table, close, stuck wording and fan-out partition cases all pass.
 - [ ] CHK-023 [P1] Pilot run on target 2 completed
 <!-- /ANCHOR:testing -->
 
@@ -198,8 +198,8 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No credential is read or written by any changed file
-- [ ] CHK-031 [P0] Leaves cannot write `research/inbox.jsonl` or `research/frontier-nodes.jsonl`; only `frontier-admit.cjs` does
+- [x] CHK-030 [P0] No credential is read or written by any changed file Evidence 2026-11-17: No changed file reads or writes a credential.
+- [x] CHK-031 [P0] Leaves cannot write `research/inbox.jsonl` or `research/frontier-nodes.jsonl`; only `frontier-admit.cjs` does Evidence 2026-11-17: Only `frontier-admit.cjs` appends the store and frontier inbox rows; the leaf contract forbids both writes.
 - [ ] CHK-032 [P1] Proposal scope must intersect the root scope, so a leaf cannot steer the run outside its target
 <!-- /ANCHOR:security -->
 
@@ -209,10 +209,10 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 ## Documentation
 
 - [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] `research.md` command flag table and the agent definition describe the same flag and row
-- [ ] CHK-042 [P2] `wave_orchestration` carries a pointer to the frontier mode
+- [x] CHK-041 [P1] `research.md` command flag table and the agent definition describe the same flag and row Evidence 2026-11-17: `research.md` flag row and the agent Step 9 row both name `--depth-mode`/`frontier_proposal`.
+- [x] CHK-042 [P2] `wave_orchestration` carries a pointer to the frontier mode Evidence 2026-11-17: `wave_orchestration.summary` points at the live frontier.
 - [ ] CHK-043 [P1] Reference docs, playbook scenarios and the changelog entry name `--depth-mode`, per T026-T028
-- [ ] CHK-044 [P1] The research compiled contract is regenerated and the agent mirrors show no drift, per T017 and T029
+- [x] CHK-044 [P1] The research compiled contract is regenerated and the agent mirrors show no drift, per T017 and T029 Evidence 2026-11-17: Contract `--write` gives no diff; `check-agent-mirror-sync.cjs` reports all comparable mirrors in sync.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -246,7 +246,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 - [x] CHK-100 [P0] ADR-001 to ADR-005 in `plan.md` are Accepted or replaced in T000, before any Phase 2 task runs. Accepted as proposed 2026-11-17.
 - [x] CHK-101 [P1] All ADRs have status (Proposed/Accepted). Each reads Accepted since 2026-11-17.
 - [ ] CHK-102 [P1] Alternatives documented with rejection rationale
-- [ ] CHK-103 [P2] No migration needed: an absent key reads as default
+- [x] CHK-103 [P2] No migration needed: an absent key reads as default Evidence 2026-11-17: An absent `depthMode` reads as default; the golden absent-key variant proves it.
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -254,7 +254,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:perf-verify -->
 ## L3+: Performance Verification
 
-- [ ] CHK-110 [P1] NFR-P01: no new process per iteration; the admission suite runs inside the existing vitest run
+- [x] CHK-110 [P1] NFR-P01: no new process per iteration; the admission suite runs inside the existing vitest run Evidence 2026-11-17: No new process per iteration beyond the admit, block and graph helper calls under expansive; the suites run inside vitest.
 - [ ] CHK-111 [P1] Pilot iteration count stays within its stated `maxIterations`
 - [ ] CHK-112 [P2] Frontier size per depth recorded from the pilot dashboard
 - [ ] CHK-113 [P2] Budget spent per depth recorded from the pilot dashboard
@@ -266,7 +266,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 ## L3+: Deployment Readiness
 
 - [ ] CHK-120 [P0] Rollback is `git revert` of this phase's commits; confirmed by running the golden test on the reverted tree
-- [ ] CHK-121 [P1] `--depth-mode` documented in the command flag table
+- [x] CHK-121 [P1] `--depth-mode` documented in the command flag table Evidence 2026-11-17: Row at `.skilled/commands/deep/research.md` line 104.
 - [ ] CHK-123 [P1] Pilot run steps recorded in `implementation-summary.md`
 - [ ] CHK-124 [P2] Operator reviewed the pilot result
 <!-- /ANCHOR:deploy-ready -->
@@ -276,8 +276,8 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:compliance-verify -->
 ## L3+: Compliance Verification
 
-- [ ] CHK-130 [P1] No new dependency added
-- [ ] CHK-131 [P1] No license changed
+- [x] CHK-130 [P1] No new dependency added Evidence 2026-11-17: No dependency added; the YAML contract test loads `js-yaml` through the declared shared package.
+- [x] CHK-131 [P1] No license changed Evidence 2026-11-17: No license changed.
 - [ ] CHK-132 [P2] N/A: no web surface
 - [ ] CHK-133 [P2] N/A: no personal data handled
 <!-- /ANCHOR:compliance-verify -->

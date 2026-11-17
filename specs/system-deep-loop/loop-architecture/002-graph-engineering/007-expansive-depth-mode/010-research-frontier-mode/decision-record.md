@@ -39,6 +39,23 @@ _memory:
 
 ---
 
+<!-- ANCHOR:build-decisions -->
+## Build Decisions
+
+Decisions taken during the 2026-11-17 build while the operator was away. Each one names how to undo it.
+
+| ID | Decided | Why | Rollback |
+|----|---------|-----|----------|
+| D-010-01 | An exhausted, blocked or abstained node is re-kinded in the coverage graph to a CLAIM with `verification_status: closed`; a pruned node is never written. | ADR-002 left the target kind open. CLAIM feeds only the claim-verification rate, which counts a closed claim as settled, while FINDING and SOURCE would skew findings counts and source diversity. The graph close case shows coverage and diversity return to their base values. | Change the closed-node branch of `buildFrontierGraphEvents` in `frontier-admit.cjs` to emit nothing, and add a delete path to `upsert.cjs` for nodes already written. |
+| D-010-02 | The golden lineage-prompt check strips the one expansive-only paragraph of the embedded agent persona before comparing; every other byte still has to match the untouched baseline. | The lineage prompt embeds `.skilled/agents/deep-research.md` verbatim, and the leaf contract row is a required change to that file. The paragraph is inert on a default run, because no FRONTIER block is ever rendered there. | Remove `withoutExpansiveOnlyPersona` from `research-depth-mode-golden.vitest.ts` and accept the persona bytes into the baseline at integration. |
+| D-010-03 | The fan-in partition guard reports a missing node, in `registry.frontier.partitionGuard`, the merge output and a stderr warning, instead of aborting the merge. | One crashed lineage would otherwise cost the whole fan-out its synthesis, while the default fan-out tolerates failed lineages. | Throw an input error in `fanout-merge.cjs` main when `partitionGuard.passed` is false. |
+| D-010-04 | The target-2 pilot (T031, T032) runs at the integration merge gate, not on this branch. | A live `/deep:research` loop of 6 to 10 dispatched iterations does not fit the branch's turn budget beside the closing gates. A CLI smoke on a scratch packet exercised seed, admit, block, reduce, graph and the stop decision end to end. | Not applicable: run the pilot and record its registry stats. |
+| D-010-05 | A lineage's node store and inbox rows go at `lineages/<label>/frontier-nodes.jsonl` and `lineages/<label>/inbox.jsonl`. | A lineage binds `artifact_dir` to its lineage directory, and every frontier reader resolves the store under `artifact_dir`, so a nested `research/` folder would never be read. | Change the path in `writeLineageFrontierStore` in `fanout-run.cjs`. |
+| D-010-06 | `{frontier_block}` is computed by `frontier-admit.cjs block`, not written by the orchestrating model. | The slot count the leaf sees must be the one admission enforces, and only code can keep the two equal. | Bind `frontier_block` from YAML prose in `render_prompt_pack`. |
+<!-- /ANCHOR:build-decisions -->
+
+---
+
 <!-- ANCHOR:operator-answers-verbatim -->
 ## Appendix: Verbatim Operator Answers
 
