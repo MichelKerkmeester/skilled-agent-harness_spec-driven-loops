@@ -90,6 +90,7 @@ function renderReviewIteration(reviewFocusBlock: string): string {
     p2_count: 0,
     pivot_lineage: 'none yet',
     saturated_directions: 'none yet',
+    frontier_block: '',
     review_focus_block: reviewFocusBlock,
     review_dimensions_list: 'correctness, security, traceability, maintainability',
     unfinished_core_protocols_block: '',

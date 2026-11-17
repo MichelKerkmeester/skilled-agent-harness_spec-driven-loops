@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "b96c3110da9b99e30b1f92174942f9d38b1642b4fbe09977ed2a38d57fb6141e",
+      "sha256": "2a951e14e05569fe5ae326a2b5482985cd668f94e3181a72b2d534beee5cf5e0",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "122253662aaf1094013d54b816802e4afb6433bbfbb952b2450519a18569d775",
+      "sha256": "2bb9bda3b118e86e6e04fca2d8d43cd152a6831b5fc60c912ade784f0257d0b6",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "2173915360c7d37381a0b2ddac6c9e216ddffe758e7d3b49fc30e47a261fed10",
+      "sha256": "286843f8b5ac0c24bad90e7958cb589b8570c30f3d574bda48f7415d981ec29b",
       "section": "full"
     },
     {
@@ -37,42 +37,42 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "8f42b0a06def05413f69a1d92dc7b6e231b5464026b87c759b5325f4684db53d",
+      "sha256": "54c93de980304b60758f8a857474b096d5ca86193ffb8c549edc7a9a39eb88fd",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "2b9fc8c5b861d5fab6ca5ae580f4b74369c06e665579a7acc62211b43a6ec0aa",
+      "sha256": "304fecbc7bfc7117bb816f28c64e637e2971e8798d6c185f1a3bca8f61db5603",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "sha256": "aa9ebc442e8192f25a79706a40455f089a0a4946749f0d78450ea999491d923e",
+      "sha256": "d34693f1ece4afc81e1d4e2503df45c6957bb2f8c330e91439930218c8ae23f6",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
-      "sha256": "b542890dd094fbdae7f29b0c3d37262f2f17220e4030a1d2a5ce19d9a9ea7de0",
+      "sha256": "e14b36c96dd7945a9a147ff8a8c407c3ca3940af5b04619347ed71c034c59f61",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "b354c09a15433af3fbc799db3d6fd54ad0c7d8943075c254bc338e38e4c1842e",
+      "sha256": "991d5858aa201ad13a65c4ed6cbf424d33dab6be015f31232345bc07f4902ebf",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
-      "sha256": "d0d4715bf781985515e4ced469c9b12ff8f4c5b481f9ffe9b8f706987f42a438",
+      "sha256": "398c2b9753b5535f9eda0629a574fdaba80b26ea7a0c733cda0611830339f952",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "9642f5d7741f79bdf91a41676132f675ce83e000a821a0d60b2ef106fcda179f",
+      "sha256": "96ed8e08e58791ca94e6367c0140c1ab4a89b50edaede8a9c87c66580721d18d",
       "section": "full"
     },
     {
       "path": ".skilled/agents/deep-review.md",
-      "sha256": "1d57624f9e7cfe6b3fbf76f9494a3b235817e944ce8ded3f8ec4117d556cc5f6",
+      "sha256": "cd0048d86e07843fb161f9f48b56b02384ea438da6b5eecd5c04d818b488cc4c",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "910a42ac0dc8f7a5ce49cf2916f83028942e1d728de78d220549c44686076a04"
+  "compiledBodyDigest": "1fdfe69a3a2876296127b3b19369740ea437fdf716e38efbd41a975effcc80ad"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -179,6 +179,7 @@ PRE-BOUND SETUP ANSWERS:
   maxIterations: 10
   convergenceThreshold: 0.10
   convergence_mode: default  # default | off | sliding-window | divergent
+  depth_mode: default  # default | expansive (opt-in frontier growth)
   stop_policy: convergence  # one of: convergence | max-iterations
   executor: native  # one of: native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi | cli-deepseek-harness | cli-mistral-vibe, the last one fan-out only (`EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
   executor_model: ""  # optional, executor-specific (cli-opencode e.g. llmgateway/glm-5.3-flash, minimax-coding-plan/MiniMax-M2.7-highspeed)
@@ -214,6 +215,7 @@ Rules:
 | `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default | `7` | N |
 | `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or default | `0.10` | N |
 | `convergence_mode` | Y | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default | `default` | N |
+| `depth_mode` | Y | flag `--depth-mode=default|expansive`, marker `depth_mode`, or default `default` | `default` | N |
 | `stop_policy` | Y | flag `--stop-policy=convergence|max-iterations`, marker `stop_policy`, or default | `convergence` | N |
 | `executor` | N | flag `--executor`, marker `executor`, config file, or default | `native` | N |
 | `executor_model` | N | flag `--model`, marker `executor_model`, or executor-specific validation | none | N |
@@ -263,6 +265,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --max-iterations=N -> maxIterations = N
    |-- --convergence=N -> convergenceThreshold = N
    |-- --convergence-mode=default|off|sliding-window|divergent -> antiConvergence.convergenceMode = value
+   |-- --depth-mode=default|expansive -> antiConvergence.depthMode = value
    |-- --stop-policy=convergence|max-iterations -> stop_policy = value
    |-- --review-focus="TEXT" -> review_focus = TEXT (optional, carried into every iteration prompt)
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
@@ -303,6 +306,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - `--service-tier` -> `config.executor.serviceTier`
    - `--executor-timeout` -> `config.executor.timeoutSeconds`
    - `--convergence-mode` -> `antiConvergence.convergenceMode`
+   - `--depth-mode` -> `antiConvergence.depthMode`
 
    Validation hook:
    - `parseExecutorConfig` from `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` runs at config-write time
@@ -379,6 +383,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - maxIterations = [from Q3 or flag or default 7]
    - convergenceThreshold = [from flag or default 0.10]
    - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
+   - depth_mode = [from flag, marker, or default `default`; one of `default`, `expansive`]
    - stop_policy = [from flag, marker, or default convergence]
     - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.kind/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
 
@@ -394,7 +399,7 @@ NEVER split questions into multiple prompts
 **Phase Output:**
 
 - `review_target` | `review_target_type` | `review_dimensions` | `review_focus`
-- `spec_choice` | `spec_path` | `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode` | `stop_policy`
+- `spec_choice` | `spec_path` | `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode` | `depth_mode` | `stop_policy`
 - `lineage_mode`
 - `config.fanout_lineage_artifact_dir` when present
 ~~~

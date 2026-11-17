@@ -17,6 +17,30 @@ import { join } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
+// The expansive projection the review reducer derives from the frontier node
+// store. Only the fields the assertions read are modelled.
+type FrontierNode = {
+  nodeId: string;
+  parentId: string | null;
+  depth: number;
+  scope: string[] | string | null;
+  question: string | null;
+  status: string;
+  reason: string | null;
+  iteration: number | null;
+  coveredDimensions: string[];
+  nextDimension: string | null;
+  visits: number;
+};
+
+type FrontierProjection = {
+  nodes: FrontierNode[];
+  stats: Record<string, number>;
+  budget: Record<string, { allotted: number; spent: number }>;
+  activeNodeId: string | null;
+  activeNextDimension: string | null;
+};
+
 const nodeRequire = createRequire(import.meta.url);
 const { reduceReviewState } = nodeRequire('../../scripts/reduce-state.cjs') as {
   reduceReviewState: (
@@ -46,8 +70,28 @@ const { reduceReviewState } = nodeRequire('../../scripts/reduce-state.cjs') as {
       } | null;
       continuedFromRun: number | null;
       lineageMode: string;
+      candidateCoverage: {
+        covered: string[];
+        ruledOut: string[];
+        deferred: string[];
+        blocked: string[];
+        byBugClass: Record<string, { covered: boolean; ruledOut: boolean; deferred: boolean; blocked: boolean; iterations: number[] }>;
+      };
+      searchDebt: {
+        id: string;
+        iteration: number;
+        targetRefs: string[];
+        bugClass: string;
+        disposition: string;
+        rationale: string;
+        evidenceRefs: string[];
+        reason?: string;
+        frontier?: boolean;
+      }[];
+      frontier?: FrontierProjection;
     };
     dashboard: string;
+    strategy: string;
   };
 };
 
@@ -804,5 +848,399 @@ describe('reduceReviewState: configured custom dimensions', () => {
     const coverage = asCoverageRegistry(result).dimensionCoverage;
 
     expect(Object.keys(coverage)).toEqual(['correctness', 'security', 'traceability', 'maintainability']);
+  });
+});
+
+describe('reduceReviewState expansive frontier', () => {
+  // The expansive depth mode is the only thing that makes the reducer read the
+  // node store, so every case here writes the mode into the config.
+  function writeExpansiveConfig(reviewDir: string) {
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      maxIterations: 10,
+      reviewTarget: 'expansive-frontier',
+      reviewDimensions: ['correctness', 'security'],
+      antiConvergence: { depthMode: 'expansive' },
+    }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), '');
+  }
+
+  function writeStore(reviewDir: string, rows: Record<string, unknown>[]) {
+    writeFileSync(
+      join(reviewDir, 'frontier-nodes.jsonl'),
+      `${rows.map((row) => JSON.stringify(row)).join('\n')}\n`,
+    );
+  }
+
+  function nodeRow(overrides: Record<string, unknown>): Record<string, unknown> {
+    return {
+      parentId: null,
+      depth: 1,
+      scope: ['src'],
+      question: 'Does the stop path keep its reason?',
+      status: 'open',
+      reason: null,
+      iteration: 1,
+      ...overrides,
+    };
+  }
+
+  function iterationRecord(iteration: number, focus: string, dimensions: string[], extra: Record<string, unknown> = {}) {
+    return JSON.stringify({
+      type: 'iteration',
+      iteration,
+      run: iteration,
+      status: 'complete',
+      focus,
+      dimensions,
+      newFindingsRatio: 0.5,
+      findingsSummary: { P0: 0, P1: 0, P2: 0 },
+      ...extra,
+    });
+  }
+
+  // A missing projection would otherwise surface as a confusing `undefined`
+  // property read in every assertion below.
+  function readFrontier(result: ReturnType<typeof reduceReviewState>): FrontierProjection {
+    const frontier = result.registry.frontier;
+    if (!frontier) throw new Error('expected the expansive depth mode to project a frontier');
+    return frontier;
+  }
+
+  // The machine-owned sections are seeded the way a live strategy file carries
+  // them, so an untouched anchor cannot quiet a next-focus assertion.
+  function writeStrategy(reviewDir: string) {
+    writeFileSync(join(reviewDir, 'deep-review-strategy.md'), [
+      '# Deep Review Strategy',
+      '',
+      '<!-- ANCHOR:review-dimensions -->',
+      '## 3. REVIEW DIMENSIONS (remaining)',
+      '- [ ] correctness',
+      '- [ ] security',
+      '- [ ] traceability',
+      '- [ ] maintainability',
+      '<!-- /ANCHOR:review-dimensions -->',
+      '',
+      '<!-- ANCHOR:completed-dimensions -->',
+      '## 4. COMPLETED DIMENSIONS',
+      '[None yet]',
+      '<!-- /ANCHOR:completed-dimensions -->',
+      '',
+      '<!-- ANCHOR:running-findings -->',
+      '## 5. RUNNING FINDINGS',
+      '- P0 (Blockers): 0',
+      '<!-- /ANCHOR:running-findings -->',
+      '',
+      '<!-- ANCHOR:exhausted-approaches -->',
+      '## 9. EXHAUSTED APPROACHES (do not retry)',
+      '[None yet]',
+      '<!-- /ANCHOR:exhausted-approaches -->',
+      '',
+      '## 11. RULED OUT DIRECTIONS',
+      '[None yet]',
+      '',
+      '<!-- ANCHOR:next-focus -->',
+      '## 11. NEXT FOCUS',
+      '[None yet]',
+      '<!-- /ANCHOR:next-focus -->',
+      '',
+    ].join('\n'));
+  }
+
+  // A leaf focus naming an uncovered dimension is what the base pick would
+  // otherwise hand the next iteration, so it is the candidate to lose.
+  function writeLeafFocus(reviewDir: string, focus: string) {
+    mkdirSync(join(reviewDir, 'iterations'), { recursive: true });
+    writeFileSync(join(reviewDir, 'iterations', 'iteration-001.md'), [
+      '# Iteration 1: Correctness',
+      '',
+      '## Recommended Next Focus',
+      '',
+      focus,
+      '',
+    ].join('\n'));
+  }
+
+  it('projects one open node into the frontier and one deferred search-debt entry', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeStore(reviewDir, [nodeRow({ nodeId: 'F-1-001' })]);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const frontier = readFrontier(result);
+
+    expect(frontier.nodes).toHaveLength(1);
+    expect(frontier.activeNodeId).toBe('F-1-001');
+    expect(frontier.activeNextDimension).toBe('correctness');
+    expect(result.registry.searchDebt).toHaveLength(1);
+    expect(result.registry.searchDebt[0]).toMatchObject({
+      id: 'frontier-F-1-001',
+      bugClass: 'frontier:F-1-001',
+      disposition: 'deferred',
+      reason: 'frontier node open',
+      frontier: true,
+      targetRefs: ['src'],
+      evidenceRefs: ['frontier-nodes.jsonl#F-1-001'],
+    });
+    expect(result.registry.candidateCoverage.deferred).toEqual(['frontier:F-1-001']);
+    expect(result.registry.candidateCoverage.byBugClass['frontier:F-1-001'].deferred).toBe(true);
+  });
+
+  it('reduces the same store to byte-identical frontier and search debt', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    // Rows are written out of nodeId order so the projection's own ordering, not
+    // the file's, is what the two runs have to agree on.
+    writeStore(reviewDir, [
+      nodeRow({ nodeId: 'F-1-002', depth: 2, iteration: 2, scope: ['src', 'lib'] }),
+      nodeRow({ nodeId: 'F-1-001' }),
+    ]);
+
+    const first = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const second = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+
+    expect(JSON.stringify(second.registry.frontier)).toBe(JSON.stringify(first.registry.frontier));
+    expect(JSON.stringify(second.registry.searchDebt)).toBe(JSON.stringify(first.registry.searchDebt));
+  });
+
+  it('closes an exhausted node and derives an answered one, reporting neither as debt', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeStore(reviewDir, [
+      nodeRow({ nodeId: 'F-1-001', status: 'exhausted', reason: 'budget', iteration: 2 }),
+      nodeRow({ nodeId: 'F-1-002', question: 'Is the parser covered on all sides?' }),
+    ]);
+    // The review universe is the canonical four plus any configured extras, so
+    // an answered node has to carry evidence for all four of them.
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${[
+      iterationRecord(1, 'parser pass one', ['correctness', 'security'], { frontierNodeId: 'F-1-002' }),
+      iterationRecord(2, 'parser pass two', ['traceability', 'maintainability'], { frontierNodeId: 'F-1-002' }),
+    ].join('\n')}\n`);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const frontier = readFrontier(result);
+
+    expect(frontier.nodes.map((node) => [node.nodeId, node.status])).toEqual([
+      ['F-1-001', 'exhausted'],
+      ['F-1-002', 'answered'],
+    ]);
+    expect(frontier.nodes[1].coveredDimensions).toEqual(['correctness', 'security', 'traceability', 'maintainability']);
+    expect(result.registry.searchDebt.filter((entry) => entry.frontier)).toEqual([]);
+    expect(result.registry.candidateCoverage.deferred.filter((bugClass) => bugClass.startsWith('frontier:'))).toEqual([]);
+    expect(result.registry.candidateCoverage.blocked.filter((bugClass) => bugClass.startsWith('frontier:'))).toEqual([]);
+    expect(result.registry.candidateCoverage.covered).toContain('frontier:F-1-002');
+  });
+
+  it('attributes a reworded focus through the store and keeps a longer node id out', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    // The node was seeded open, then marked active on iteration 2 — that row is
+    // what attributes the reworded focus, which never echoed the marker.
+    writeStore(reviewDir, [
+      nodeRow({ nodeId: 'F-1-001', iteration: 1 }),
+      nodeRow({ nodeId: 'F-1-001', status: 'active', iteration: 2 }),
+    ]);
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${[
+      iterationRecord(2, 'went over the parser edge cases', ['correctness']),
+      iterationRecord(3, 'Review of Frontier node F-1-001: security', ['security']),
+      iterationRecord(4, 'Frontier node F-1-0012 maintainability sweep', ['maintainability']),
+    ].join('\n')}\n`);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const [node] = readFrontier(result).nodes;
+
+    expect(node.status).toBe('active');
+    expect(node.coveredDimensions).toEqual(['correctness', 'security']);
+    expect(node.nextDimension).toBe('traceability');
+    expect(node.visits).toBe(2);
+  });
+
+  it('leaves the frontier out of a default run that happens to carry a store file', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      maxIterations: 10,
+      reviewTarget: 'default-frontier-absent',
+      reviewDimensions: ['correctness', 'security'],
+    }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), '');
+    writeStore(reviewDir, [nodeRow({ nodeId: 'F-1-001' })]);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+
+    expect('frontier' in result.registry).toBe(false);
+    expect(result.registry.searchDebt).toEqual([]);
+    expect(result.registry.candidateCoverage.deferred).toEqual([]);
+  });
+
+  it('hands next focus to the active frontier node, and keeps the pivot and blocked-stop overrides ahead of it', () => {
+    const frontierFocus = 'Frontier node F-1-001 (depth 1, scope src, lib): Does the stop path keep its reason? - review the correctness dimension';
+
+    // An open node outranks the leaf focus, which here names an uncovered
+    // dimension and would otherwise be picked verbatim.
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeStrategy(reviewDir);
+    writeLeafFocus(reviewDir, 'security');
+    writeStore(reviewDir, [nodeRow({ nodeId: 'F-1-001', scope: ['src', 'lib'] })]);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const strategyFocus = sectionAfter(result.strategy, '## 11. NEXT FOCUS', '<!--');
+    const dashboardFocus = sectionAfter(result.dashboard, '## 11. NEXT FOCUS', '<!--');
+
+    // A skipped strategy anchor would leave the authored text behind and let the
+    // next assertion pass for the wrong reason.
+    expect(result.strategyWarning).toBeNull();
+    expect(readFrontier(result).activeNodeId).toBe('F-1-001');
+    expect(strategyFocus).toContain(frontierFocus);
+    expect(strategyFocus).not.toContain('security');
+    expect(dashboardFocus).toContain(frontierFocus);
+
+    // A completed pivot's current focus is the run's own latest decision, so it
+    // outranks the node the frontier would dispatch.
+    const pivotFocus = 'pivot focus on the scheduler';
+    const pivotRun = makeReviewDir();
+    writeExpansiveConfig(pivotRun.reviewDir);
+    writeStrategy(pivotRun.reviewDir);
+    writeLeafFocus(pivotRun.reviewDir, 'security');
+    writeStore(pivotRun.reviewDir, [nodeRow({ nodeId: 'F-1-001', scope: ['src', 'lib'] })]);
+    mkdirSync(join(pivotRun.reviewDir, 'divergent', 'pivots', 'pivot-1-a1b2', 'council'), { recursive: true });
+    writeFileSync(
+      join(pivotRun.reviewDir, 'divergent', 'pivots', 'pivot-1-a1b2', 'council', 'state.jsonl'),
+      `${JSON.stringify({
+        event: 'pivot_completed',
+        pivotId: 'pivot-1-a1b2',
+        previousFocus: 'correctness',
+        currentFocus: pivotFocus,
+        selectedCandidate: null,
+      })}\n`,
+    );
+
+    const pivotResult = reduceReviewState(pivotRun.specFolder, { write: false, artifactDir: pivotRun.reviewDir });
+    const pivotStrategyFocus = sectionAfter(pivotResult.strategy, '## 11. NEXT FOCUS', '<!--');
+    const pivotDashboardFocus = sectionAfter(pivotResult.dashboard, '## 11. NEXT FOCUS', '<!--');
+
+    expect(readFrontier(pivotResult).activeNodeId).toBe('F-1-001');
+    expect(pivotStrategyFocus).toContain(pivotFocus);
+    expect(pivotStrategyFocus).not.toContain(frontierFocus);
+    expect(pivotDashboardFocus).toContain(pivotFocus);
+
+    // With every node terminal there is no node to dispatch, so the leaf focus
+    // returns. The frontier is still projected, which is what makes the absence
+    // of a node the reason the leaf wins rather than a missing projection.
+    const terminalRun = makeReviewDir();
+    writeExpansiveConfig(terminalRun.reviewDir);
+    writeStrategy(terminalRun.reviewDir);
+    writeLeafFocus(terminalRun.reviewDir, 'security');
+    writeStore(terminalRun.reviewDir, [nodeRow({ nodeId: 'F-1-001', status: 'exhausted', reason: 'budget' })]);
+
+    const terminalResult = reduceReviewState(terminalRun.specFolder, { write: false, artifactDir: terminalRun.reviewDir });
+    const terminalStrategyFocus = sectionAfter(terminalResult.strategy, '## 11. NEXT FOCUS', '<!--');
+    const terminalDashboardFocus = sectionAfter(terminalResult.dashboard, '## 11. NEXT FOCUS', '<!--');
+
+    expect(readFrontier(terminalResult).activeNodeId).toBeNull();
+    expect(terminalStrategyFocus).toContain('security');
+    expect(terminalStrategyFocus).not.toContain('Frontier node');
+    expect(terminalDashboardFocus).toContain('security');
+    expect(terminalDashboardFocus).not.toContain('Frontier node');
+
+    // A blocked stop is the loop's latest event, so it still outranks the node.
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${JSON.stringify({
+      type: 'event',
+      event: 'blocked_stop',
+      run: 2,
+      timestamp: '2026-06-19T00:30:00.000Z',
+      blockedBy: ['evidence_gate'],
+      recoveryStrategy: 'collect the missing evidence',
+    })}\n`);
+
+    const blockedResult = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const blockedFocus = sectionAfter(blockedResult.strategy, '## 11. NEXT FOCUS', '<!--');
+
+    expect(readFrontier(blockedResult).activeNodeId).toBe('F-1-001');
+    expect(blockedFocus).toContain('BLOCKED on:');
+    expect(blockedFocus).not.toContain(frontierFocus);
+  });
+
+  it('reports frontier size, pruned nodes, revisits and per-band budget on the dashboard', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeStore(reviewDir, [
+      nodeRow({ nodeId: 'F-1-001', scope: ['src', 'lib'], iteration: 1 }),
+      nodeRow({
+        nodeId: 'F-1-002',
+        depth: 2,
+        scope: 'src/parser',
+        question: 'Is the parser covered on all sides?',
+        status: 'pruned',
+        reason: 'duplicate',
+        iteration: 2,
+      }),
+    ]);
+    // Two visits that covered the same dimension are depth spent twice on ground
+    // the run had already walked, which is what the revisit count has to show.
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${[
+      iterationRecord(1, 'Frontier node F-1-001: correctness', ['correctness'], { frontierNodeId: 'F-1-001' }),
+      iterationRecord(2, 'Frontier node F-1-001: correctness again', ['correctness'], { frontierNodeId: 'F-1-001' }),
+    ].join('\n')}\n`);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const frontier = readFrontier(result);
+    const section = sectionAfter(result.dashboard, '## 10B. FRONTIER', '<!--');
+
+    expect(section).toContain('- Frontier size: 2 nodes (1 open, 0 active, 0 answered, 0 exhausted, 0 blocked)');
+    expect(section).toContain('- Pruned nodes: 1');
+    expect(section).toContain('- Revisits: 1');
+    expect(section).toContain('- Budget depth1: 2 of 5 iterations spent');
+    expect(section).toContain('- Active node: F-1-001 (security)');
+    expect(frontier.budget.depth1).toEqual({ allotted: 5, spent: 2 });
+  });
+
+  // A node owes one pass per configured dimension, so a partly reviewed node must
+  // stay open and keep steering until the last of them lands.
+  it('keeps a node open with two of four dimensions covered and answers it at four', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      maxIterations: 20,
+      reviewTarget: 'expansive-frontier',
+      reviewDimensions: ['correctness', 'security', 'traceability', 'maintainability'],
+      antiConvergence: { depthMode: 'expansive' },
+    }));
+    writeStore(reviewDir, [nodeRow({ nodeId: 'F-1-001' })]);
+    const partial = [
+      iterationRecord(1, 'Frontier node F-1-001: correctness', ['correctness']),
+      iterationRecord(2, 'Frontier node F-1-001: security', ['security']),
+    ];
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${partial.join('\n')}\n`);
+    const halfway = readFrontier(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }));
+    expect(halfway.nodes[0]).toMatchObject({
+      status: 'open',
+      coveredDimensions: ['correctness', 'security'],
+      nextDimension: 'traceability',
+    });
+    expect(halfway.activeNextDimension).toBe('traceability');
+
+    const all = partial.concat([
+      iterationRecord(3, 'Frontier node F-1-001: traceability', ['traceability']),
+      iterationRecord(4, 'Frontier node F-1-001: maintainability', ['maintainability']),
+    ]);
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${all.join('\n')}\n`);
+    const done = readFrontier(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }));
+    expect(done.nodes[0]).toMatchObject({ status: 'answered', nextDimension: null });
+    expect(done.activeNodeId).toBeNull();
+  });
+
+  it('renders no frontier section into a default run', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      maxIterations: 10,
+      reviewTarget: 'default-no-frontier-section',
+      reviewDimensions: ['correctness', 'security'],
+    }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), '');
+    writeStore(reviewDir, [nodeRow({ nodeId: 'F-1-001' })]);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+
+    expect(result.dashboard).not.toContain('10B. FRONTIER');
+    expect(result.dashboard).not.toContain('ANCHOR:frontier');
   });
 });

@@ -1,0 +1,107 @@
+{
+  "artifactRoot": "<SPEC>/review",
+  "identity": {
+    "sessionId": "golden-review-session",
+    "generation": 1,
+    "loopType": "review",
+    "sourceIteration": 2,
+    "normalizedTrigger": "review saturation: all_dimensions_clean",
+    "ordinal": 1
+  },
+  "usage": {
+    "completedPivots": 0,
+    "councilSeatOutputs": 0,
+    "remainingIterations": 5
+  },
+  "seats": [
+    {
+      "id": "seat-001",
+      "mandate": "Analytical: select the read-only review direction that closes the most consequential persisted coverage gap without expanding the configured target."
+    },
+    {
+      "id": "seat-002",
+      "mandate": "Critical: challenge candidate evidence, target-boundary safety, read-only compliance, and risk of re-entering swept dimensions."
+    },
+    {
+      "id": "seat-003",
+      "mandate": "Pragmatic: select the most evidence-efficient read-only review direction that can produce material findings within the remaining iterations."
+    }
+  ],
+  "candidates": [
+    {
+      "id": "review-unswept-dimension-06b00478de14",
+      "title": "Sweep configured review dimension: traceability",
+      "focus": "Perform a read-only review pass on the configured traceability dimension and report findings without changing the target.",
+      "evidenceRefs": [
+        "deep-review-config.json#reviewDimensions:traceability"
+      ],
+      "relevanceRationale": "The configured review dimension has not been marked covered by the reducer.",
+      "boundaryVerdict": {
+        "status": "within_boundary",
+        "rationale": "Derived from persisted review state inside the configured target. This direction authorizes no fix, target expansion, or file mutation; it is a read-only proposal for the next review pass."
+      },
+      "fingerprint": "06b00478de1411f5e900309e9f796fb67e7ddc93b9d841c67e59a501c25aaf24",
+      "seatProvenance": [
+        "review-state:unswept-dimension"
+      ]
+    },
+    {
+      "id": "review-unswept-dimension-a850dd21d2f0",
+      "title": "Sweep configured review dimension: maintainability",
+      "focus": "Perform a read-only review pass on the configured maintainability dimension and report findings without changing the target.",
+      "evidenceRefs": [
+        "deep-review-config.json#reviewDimensions:maintainability"
+      ],
+      "relevanceRationale": "The configured review dimension has not been marked covered by the reducer.",
+      "boundaryVerdict": {
+        "status": "within_boundary",
+        "rationale": "Derived from persisted review state inside the configured target. This direction authorizes no fix, target expansion, or file mutation; it is a read-only proposal for the next review pass."
+      },
+      "fingerprint": "a850dd21d2f05c77488b05de878bd0fc0be7cd4c99fc3df8736f25edbb0d7cf0",
+      "seatProvenance": [
+        "review-state:unswept-dimension"
+      ]
+    }
+  ],
+  "priorCandidates": [
+    {
+      "id": "review-current-focus-b86ab54f4151",
+      "title": "traceability <!-- /ANCHOR:next-focus -->",
+      "focus": "traceability <!-- /ANCHOR:next-focus -->",
+      "evidenceRefs": [
+        "deep-review-strategy.md#next-focus"
+      ],
+      "relevanceRationale": "This direction is already current, swept, ruled out, or previously selected.",
+      "boundaryVerdict": {
+        "status": "within_boundary",
+        "rationale": "Derived from persisted review state inside the configured target. This direction authorizes no fix, target expansion, or file mutation; it is a read-only proposal for the next review pass."
+      },
+      "fingerprint": "b86ab54f4151cef90bd7818cf991b94397a38e9e94afcdc8247d902bde0ff522",
+      "seatProvenance": [
+        "review-state:current-focus"
+      ]
+    },
+    {
+      "id": "review-swept-direction-b86ab54f4151",
+      "title": "traceability <!-- /ANCHOR:next-focus -->",
+      "focus": "traceability <!-- /ANCHOR:next-focus -->",
+      "evidenceRefs": [
+        "divergent/pivots#swept-1"
+      ],
+      "relevanceRationale": "This direction is already current, swept, ruled out, or previously selected.",
+      "boundaryVerdict": {
+        "status": "within_boundary",
+        "rationale": "Derived from persisted review state inside the configured target. This direction authorizes no fix, target expansion, or file mutation; it is a read-only proposal for the next review pass."
+      },
+      "fingerprint": "b86ab54f4151cef90bd7818cf991b94397a38e9e94afcdc8247d902bde0ff522",
+      "seatProvenance": [
+        "review-state:swept-direction"
+      ]
+    }
+  ],
+  "previousFocus": "traceability <!-- /ANCHOR:next-focus -->",
+  "saturatedDirections": [
+    "traceability <!-- /ANCHOR:next-focus -->"
+  ],
+  "boundaryRejections": []
+}

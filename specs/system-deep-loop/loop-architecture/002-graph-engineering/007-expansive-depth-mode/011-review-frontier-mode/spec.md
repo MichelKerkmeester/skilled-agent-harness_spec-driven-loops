@@ -34,7 +34,7 @@ A deep-review run covers four fixed dimensions over one configured target and ha
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-11-17 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |

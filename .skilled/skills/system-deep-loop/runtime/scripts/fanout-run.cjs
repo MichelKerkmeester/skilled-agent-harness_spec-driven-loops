@@ -323,11 +323,14 @@ function partitionFrontierNodes(baseArtifactDir, labels) {
 
 // A lineage starts from its own store and inbox. They are written only when the
 // lineage has no store yet, so a resumed lineage keeps the nodes it already closed.
-function writeLineageFrontierStore(lineageDir, nodes) {
+// Review carries no inbox: its nodes reach the leaf through the FRONTIER block, so
+// a seeded inbox would only hand the finding pipeline a file nothing reads.
+function writeLineageFrontierStore(lineageDir, nodes, options = {}) {
   const storePath = path.join(lineageDir, 'frontier-nodes.jsonl');
   if (fs.existsSync(storePath) || nodes.length === 0) return false;
   fs.mkdirSync(lineageDir, { recursive: true });
   fs.writeFileSync(storePath, nodes.map((node) => `${JSON.stringify(node)}\n`).join(''), 'utf8');
+  if (options.inbox === false) return true;
   const inboxRows = nodes.map((node) => JSON.stringify({ id: node.nodeId, text: node.question, source: 'frontier', origin: 'frontier', injectedAtIteration: 0 }));
   fs.appendFileSync(path.join(lineageDir, 'inbox.jsonl'), `${inboxRows.join('\n')}\n`, 'utf8');
   return true;
@@ -1685,6 +1688,13 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
       `- Expansive depth: work the frontier nodes bound as frontier_scope. Propose follow-up questions only as frontier_proposal delta rows under the node your focus names, at most the slots its FRONTIER block allows, and never write the inbox or the node store.`,
     );
   }
+  if (options.depthMode === 'expansive' && loopType === 'review' && leafContract.length > 0) {
+    leafContract.splice(
+      leafContract.length - 1,
+      0,
+      `- Expansive depth: work the frontier nodes bound as frontier_scope, one node and its next uncovered dimension per iteration as the FRONTIER block names it. Propose sub-targets only as frontier_proposal delta rows under that node, at most the slots its FRONTIER block allows, never outside the review target, and never write the node store or a coverage surface.`,
+    );
+  }
   const hasIterationCap = typeof lineage.iterations === 'number' && lineage.iterations > 0;
   const stopPolicy = options.stopPolicy || 'convergence';
   const stopClause = hasIterationCap && stopPolicy === 'max-iterations'
@@ -1732,6 +1742,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
           `review_target_type: ${options.reviewTargetType || 'spec-folder'}`,
           `review_dimensions: all`,
           ...(reviewFocus ? [`review_focus: ${reviewFocus}`] : []),
+          ...(options.depthMode === 'expansive' ? [`frontier_scope: ${(options.frontierScope || []).join(', ') || 'none'}`] : []),
           `spec_folder: ${specFolder}`,
           `execution_mode: AUTONOMOUS`,
           `lineage_mode: auto`,
@@ -3622,7 +3633,7 @@ async function main() {
   assertLineageTimeoutHoursOverrideWithinCeiling(lineageTimeoutHoursOverride);
   const stopPolicy = normalizeStopPolicy(args.stopPolicy);
   const convergenceMode = normalizeConvergenceMode(args.convergenceMode);
-  const depthMode = loopType === 'research' ? normalizeDepthMode(args.depthMode) : null;
+  const depthMode = normalizeDepthMode(args.depthMode);
   const containmentModeOverride = normalizeContainmentMode(args.containmentMode);
 
   const {
@@ -3892,7 +3903,7 @@ async function main() {
       const attempt = Number.isFinite(Number(context.attempt)) ? Number(context.attempt) : 1;
       const livenessKey = `${lineage.label}:${attempt}`;
       const lineageDir = path.join(lineagesDir, lineage.label);
-      if (frontierPartition) writeLineageFrontierStore(lineageDir, frontierPartition[lineage.label] || []);
+      if (frontierPartition) writeLineageFrontierStore(lineageDir, frontierPartition[lineage.label] || [], { inbox: loopType !== 'review' });
       const frontierScope = frontierPartition ? (frontierPartition[lineage.label] || []).map((node) => node.nodeId) : [];
 
       const budgetDecision = evaluateLineageBudgetCap({

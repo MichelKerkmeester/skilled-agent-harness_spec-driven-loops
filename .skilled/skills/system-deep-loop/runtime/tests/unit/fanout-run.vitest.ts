@@ -588,7 +588,12 @@ const {
     sessionId: string,
     lineage: { label: string; kind: string; model?: string; iterations?: number },
     researchTopic: string | null,
-    options?: { stopPolicy?: string; depthMode?: string | null; frontierScope?: string[] },
+    options?: {
+      stopPolicy?: string;
+      depthMode?: string | null;
+      frontierScope?: string[];
+      reviewFocus?: string;
+    },
   ) => string;
   buildNativeCommandInput: (
     loopType: 'research' | 'review',
@@ -602,7 +607,11 @@ const {
     baseArtifactDir: string,
     labels: string[],
   ) => Record<string, Array<{ nodeId: string }>>;
-  writeLineageFrontierStore: (lineageDir: string, nodes: Array<Record<string, unknown>>) => boolean;
+  writeLineageFrontierStore: (
+    lineageDir: string,
+    nodes: Array<Record<string, unknown>>,
+    options?: { inbox?: boolean },
+  ) => boolean;
 };
 const reviewWorkflowPath = resolve(
   runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-review.yaml',
@@ -6717,5 +6726,97 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
     expect(existsSync(join(baseDir, 'lineages', 'vibe-default', 'frontier-nodes.jsonl'))).toBe(false);
     const summary = JSON.parse(readFileSync(join(baseDir, 'orchestration-summary.json'), 'utf8')) as Record<string, unknown>;
     expect(Object.prototype.hasOwnProperty.call(summary, 'frontier_partition')).toBe(false);
+  });
+
+  // Review consumes the same partition as research, so the same round-robin deal has
+  // to hold: a seat's share cannot depend on which loop type asked for it.
+  it('deals seven review frontier nodes over three seats round-robin', () => {
+    const dir = makeTempDir('fanout-run-frontier-review-partition-');
+    writeNodeStore(dir, [
+      frontierNodeRow('F-1-005'),
+      frontierNodeRow('F-1-001'),
+      frontierNodeRow('F-1-007'),
+      frontierNodeRow('F-1-003'),
+      frontierNodeRow('F-1-006'),
+      frontierNodeRow('F-1-002'),
+      frontierNodeRow('F-1-004'),
+    ]);
+
+    const partition = partitionFrontierNodes(dir, ['left', 'center', 'right']);
+    expect(Object.fromEntries(
+      Object.entries(partition).map(([label, nodes]) => [label, nodes.map((node) => node.nodeId)]),
+    )).toEqual({
+      left: ['F-1-001', 'F-1-004', 'F-1-007'],
+      center: ['F-1-002', 'F-1-005'],
+      right: ['F-1-003', 'F-1-006'],
+    });
+  });
+
+  it('writes a review lineage store without an inbox', () => {
+    const lineageDir = makeTempDir('fanout-run-frontier-review-store-');
+    const nodes = [frontierNodeRow('F-1-001'), frontierNodeRow('F-1-002')];
+
+    expect(writeLineageFrontierStore(lineageDir, nodes, { inbox: false })).toBe(true);
+    expect(readFileSync(join(lineageDir, 'frontier-nodes.jsonl'), 'utf8').trim().split('\n')).toHaveLength(2);
+    // A review lineage has no inbox reader: the nodes reach its leaf through the
+    // FRONTIER block, so a seeded inbox would only leave a file nothing opens.
+    expect(existsSync(join(lineageDir, 'inbox.jsonl'))).toBe(false);
+  });
+
+  it('binds a review frontier scope beside review_focus under expansive', () => {
+    const prompt = buildLoopPrompt(
+      'review',
+      'specs/x',
+      '/tmp/x/review/lineages/a',
+      'sid',
+      { label: 'a', kind: 'cli-opencode', model: 'm', iterations: 2 },
+      null,
+      {
+        stopPolicy: 'convergence',
+        reviewFocus: 'error handling',
+        depthMode: 'expansive',
+        frontierScope: ['F-1-001', 'F-1-004'],
+      },
+    );
+
+    expect(prompt).toContain('  config.depthMode: expansive');
+    // The binding sits beside review_focus so the leaf reads one scoped setup block
+    // instead of hunting for the frontier list elsewhere in the prompt.
+    const lines = prompt.split('\n');
+    const focusIndex = lines.indexOf('review_focus: error handling');
+    expect(focusIndex).toBeGreaterThan(-1);
+    expect(lines[focusIndex + 1]).toBe('frontier_scope: F-1-001, F-1-004');
+    expect(prompt).toContain(
+      '- Expansive depth: work the frontier nodes bound as frontier_scope, one node and its next uncovered dimension per iteration as the FRONTIER block names it.',
+    );
+  });
+
+  it('adds no depth-mode bytes to a default review lineage prompt', () => {
+    const lineage = { label: 'a', kind: 'cli-opencode', model: 'm', iterations: 2 };
+    const baseline = buildLoopPrompt(
+      'review',
+      'specs/x',
+      '/tmp/x/review/lineages/a',
+      'sid',
+      lineage,
+      null,
+      { stopPolicy: 'convergence' },
+    );
+    const explicitDefault = buildLoopPrompt(
+      'review',
+      'specs/x',
+      '/tmp/x/review/lineages/a',
+      'sid',
+      lineage,
+      null,
+      { stopPolicy: 'convergence', depthMode: 'default', frontierScope: [] },
+    );
+
+    expect(explicitDefault).toBe(baseline);
+    for (const prompt of [baseline, explicitDefault]) {
+      expect(prompt).not.toContain('frontier_scope');
+      expect(prompt).not.toContain('depthMode');
+      expect(prompt).not.toContain('Expansive depth');
+    }
   });
 });

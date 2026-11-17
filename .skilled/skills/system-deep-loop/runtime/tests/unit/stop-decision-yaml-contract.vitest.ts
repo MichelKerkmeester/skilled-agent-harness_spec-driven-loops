@@ -116,6 +116,45 @@ describe('deep-research binds depth_mode beside convergence_mode', () => {
   });
 });
 
+// The review loop binds the same opt-in depth mode on every surface the
+// convergence mode reaches, so an expansive run can never hand convergence.cjs
+// an empty --depth-mode argument and silently fall back to the default depth.
+describe('deep-review binds depth_mode beside convergence_mode', () => {
+  const yaml = readFileSync(resolve(ASSETS, 'deep-review.yaml'), 'utf8');
+  const presentation = readFileSync(resolve(ASSETS, 'deep-review-presentation.txt'), 'utf8');
+
+  it('declares depth_mode in user_inputs and requires it in the preflight contract', () => {
+    expect(yaml).toMatch(/\n  depth_mode: "\[default|expansive\]/);
+    expect(yaml).toContain('convergence_mode, depth_mode, stop_policy]');
+  });
+
+  it('writes the depth mode at config creation and extracts it in step_read_state', () => {
+    expect(yaml).toContain('antiConvergence.depthMode: "{depth_mode}"');
+    expect(yaml).toMatch(/- depth_mode: "Extract antiConvergence\.depthMode/);
+  });
+
+  it('passes --depth-mode to the convergence.cjs stop decision', () => {
+    const invocation = yaml.split('\n').find((line) => line.includes('runtime/scripts/convergence.cjs') && line.includes('--stop-decision'));
+    expect(invocation).toContain('--convergence-mode "{convergence_mode}" --depth-mode "{depth_mode}"');
+  });
+
+  it('binds depth_mode in the presentation default, input table, resolution and bound values', () => {
+    expect(presentation).toContain('depth_mode: default  # default | expansive');
+    expect(presentation).toContain('| `depth_mode`');
+    expect(presentation).toContain('|-- --depth-mode=default|expansive -> antiConvergence.depthMode = value');
+    expect(presentation).toContain('- depth_mode = [from flag, marker, or default `default`');
+  });
+
+  it('passes the depth mode to the review fan-out runner', () => {
+    // The fan-out command is a YAML block scalar, so the flag is only visible
+    // once the document is parsed and the scalar is read back as text.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const doc = parseYaml(yaml) as any;
+    const command = doc.workflow.step_fanout_spawn.sub_steps.step_fanout_spawn_cli.command as string;
+    expect(command).toContain('--depth-mode {depth_mode}');
+  });
+});
+
 // Frontier growth only holds together while its steps keep their place: the seed
 // must land before any lineage split, admission before the reducer rewrites the
 // registry, and the graph mirror after the leaf upsert. Key order is the contract.
@@ -184,5 +223,85 @@ describe('deep-research wires the expansive frontier steps', () => {
     const command = wf.step_fanout_spawn.sub_steps.step_fanout_spawn_cli.command as string;
     expect(command).toContain('--depth-mode {depth_mode}');
     expect(command).toContain('--convergence-mode {convergence_mode} \\\n');
+  });
+});
+
+// The review loop grows the same opt-in frontier, so its steps keep the same
+// places: the seed must land before any lineage split, activation must precede
+// the dispatch, and admission must follow the proposed rows and precede the
+// reducer that rewrites the registry. Key order is the contract.
+describe('deep-review wires the expansive frontier steps', () => {
+  const yamlText = readFileSync(resolve(ASSETS, 'deep-review.yaml'), 'utf8');
+  // The workflow shape is checked key by key below, so the parsed tree stays loosely typed.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const doc = parseYaml(yamlText) as any;
+  const wf = doc.workflow;
+  const order = (map: Record<string, unknown>): string[] => Object.keys(map);
+  const extracts = (): Record<string, string> => {
+    const merged: Record<string, string> = {};
+    for (const entry of wf.phase_loop.steps.step_read_state.extract as Array<Record<string, string>>) {
+      Object.assign(merged, entry);
+    }
+    return merged;
+  };
+
+  it('seeds the review frontier before fan-out spawns', () => {
+    const steps = order(wf);
+    const seed = steps.indexOf('step_frontier_seed');
+    expect(seed).toBeGreaterThanOrEqual(0);
+    expect(steps[seed + 1]).toBe('step_fanout_spawn');
+    expect(wf.step_frontier_seed.enabled_when).toBe("depth_mode == 'expansive'");
+    expect(wf.step_frontier_seed.command).toContain('frontier-admit.cjs seed --target review');
+  });
+
+  it('seeds the single-executor review frontier right after the config exists', () => {
+    const steps = order(wf.phase_init.steps);
+    const seed = steps.indexOf('step_frontier_seed');
+    expect(seed).toBeGreaterThanOrEqual(0);
+    expect(steps[seed - 1]).toBe('step_create_config');
+    expect(wf.phase_init.steps.step_frontier_seed.skip_when).toContain('fanout_lineage_artifact_dir');
+  });
+
+  it('activates the active frontier node right before the dispatch', () => {
+    const steps = order(wf.phase_loop.steps);
+    const activate = steps.indexOf('step_frontier_activate');
+    expect(activate).toBeGreaterThanOrEqual(0);
+    expect(steps[activate + 1]).toBe('step_dispatch_iteration');
+    expect(wf.phase_loop.steps.step_frontier_activate.enabled_when).toContain('active_frontier_node');
+  });
+
+  it('admits proposals after the iteration lands and before the reducer runs', () => {
+    const steps = order(wf.phase_loop.steps);
+    const admit = steps.indexOf('step_frontier_admit');
+    expect(admit).toBeGreaterThanOrEqual(0);
+    expect(steps[admit + 1]).toBe('step_reduce_review_state');
+    expect(admit).toBeGreaterThan(steps.indexOf('step_dispatch_iteration'));
+    const step = wf.phase_loop.steps.step_frontier_admit;
+    expect(step.command).toContain('frontier-admit.cjs admit');
+    expect(step.command).toContain('--target review');
+    expect(JSON.stringify(step)).not.toContain('inbox');
+  });
+
+  it('closes the stuck review frontier node and keeps the stuckRecovery state', () => {
+    const stuck = wf.phase_loop.steps.step_handle_convergence.if_stuck_recovery;
+    expect(stuck).toBeDefined();
+    expect(stuck.set.pending_stop_event).toBe('stuck_recovery');
+    expect(stuck.if_expansive_open_node.command).toContain('frontier-admit.cjs close --target review');
+    expect(stuck.if_expansive_open_node.command).toContain('--status exhausted');
+  });
+
+  it('takes the next dimension from the active frontier node under expansive depth', () => {
+    const extract = extracts();
+    expect(extract.active_frontier_node).toContain('registry.frontier.activeNodeId');
+    expect(extract.next_dimension).toContain('registry.frontier.activeNextDimension');
+    expect(extract.next_dimension).toContain(
+      'Otherwise the next uncovered dimension from dimension_queue in strategy.md.',
+    );
+  });
+
+  it('gates the divergent pivot on a terminal review frontier', () => {
+    const contract =
+      wf.phase_loop.steps.step_handle_convergence.if_stop.if_divergent_eligible.eligibility_contract;
+    expect(contract.frontier_gate).toContain('no open or active node');
   });
 });

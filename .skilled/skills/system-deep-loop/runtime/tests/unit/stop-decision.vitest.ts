@@ -60,6 +60,7 @@ interface ReviewFacts {
   requiredBugClasses: string[];
   graphCoverageMode: 'graph' | 'graphless_fallback' | 'unavailable_blocked' | null;
   fallbackCoveredBugClasses: string[];
+  frontierOpen?: number;
 }
 
 interface StopDecisionInput {
@@ -1147,5 +1148,107 @@ describe('frontierOpen veto', () => {
       expect(decision.decision).toBe('STOP');
       expect(decision.reasonDetail).toBe('composite_converged');
     });
+  });
+});
+
+describe('review frontierOpen veto', () => {
+  const clean = (overrides: InputOverrides = {}): StopDecisionInput => reviewInput({
+    ...overrides,
+    config: { depthMode: 'expansive', ...(overrides.config ?? {}) },
+    review: { frontierOpen: 2, ...(overrides.review ?? {}) },
+  });
+
+  const composite = (overrides: InputOverrides = {}): StopDecisionInput => reviewInput({
+    ratios: [0.5, 0.02, 0.02],
+    ...overrides,
+    config: { depthMode: 'expansive', ...(overrides.config ?? {}) },
+    review: {
+      activeP1: 1,
+      evidenceBackedP0P1: 1,
+      frontierOpen: 2,
+      ...(overrides.review ?? {}),
+    },
+  });
+
+  const withoutInputs = (decision: StopDecision): Partial<StopDecision> => {
+    const copy: Partial<StopDecision> = { ...decision };
+    delete copy.inputs;
+    return copy;
+  };
+
+  const cases: Array<[string, InputOverrides, string, string]> = [
+    ['open nodes veto the clean stop', {}, 'CONTINUE', 'frontierOpen'],
+    ['an empty frontier lets the clean stop through', { review: { frontierOpen: 0 } }, 'STOP', 'all_dimensions_clean'],
+    ['no depth mode leaves the veto off', { config: { depthMode: undefined } }, 'STOP', 'all_dimensions_clean'],
+    ['the cap still wins', { iterationCount: 7 }, 'STOP', 'maxIterationsReached'],
+    ['convergence mode off still wins', { config: { depthMode: 'expansive', convergenceMode: 'off' } }, 'CONTINUE', 'convergenceModeOff'],
+    ['max-iterations policy still wins', { config: { depthMode: 'expansive', stopPolicy: 'max-iterations' } }, 'CONTINUE', 'stopPolicyMaxIterations'],
+    ['the floor still comes first', { iterationCount: 1, config: { minIterations: 3 } }, 'CONTINUE', 'minIterationsNotReached'],
+    ['stuck recovery still comes first', { stuckCount: 2 }, 'STUCK_RECOVERY', 'stuckThresholdReached'],
+  ];
+
+  it('the clean fixture stops on all_dimensions_clean without the veto', () => {
+    const decision = buildStopDecision(clean({ review: { frontierOpen: 0 } }));
+
+    expect(decision.decision).toBe('STOP');
+    expect(decision.reasonDetail).toBe('all_dimensions_clean');
+  });
+
+  it.each(cases)('expansive review candidate: %s', (_label, overrides, decision, reasonDetail) => {
+    const result = buildStopDecision(clean(overrides));
+
+    expect(result.decision).toBe(decision);
+    expect(result.reasonDetail).toBe(reasonDetail);
+  });
+
+  it('an empty frontier leaves the decision identical to a run without frontier facts', () => {
+    const drained = buildStopDecision(clean({ review: { frontierOpen: 0 } }));
+    const original = buildStopDecision(reviewInput());
+
+    expect(withoutInputs(drained)).toEqual(withoutInputs(original));
+  });
+
+  it('vetoes a composite review stop while the frontier is open', () => {
+    const vetoed = buildStopDecision(composite());
+    expect(vetoed.decision).toBe('CONTINUE');
+    expect(vetoed.reasonDetail).toBe('frontierOpen');
+
+    const drained = buildStopDecision(composite({ review: { frontierOpen: 0 } }));
+    expect(drained.decision).toBe('STOP');
+    expect(drained.reasonDetail).toBe('composite_converged');
+  });
+
+  it('carries depthMode into the review config only for expansive runs', () => {
+    const graph = { nodes: [], edges: [] };
+    const files = {
+      config: { maxIterations: 10 },
+      registry: { frontier: { nodes: [{ status: 'open' }] } },
+      stateLogRows: [],
+    };
+
+    const defaultInput = buildStopDecisionInput({ depthMode: 'default' }, 'review', files, graph);
+    expect(Object.prototype.hasOwnProperty.call(defaultInput.config, 'depthMode')).toBe(false);
+    expect(defaultInput.review?.frontierOpen).toBe(1);
+
+    const expansiveInput = buildStopDecisionInput({ depthMode: 'expansive' }, 'review', files, graph);
+    expect(expansiveInput.config.depthMode).toBe('expansive');
+    expect(expansiveInput.review?.frontierOpen).toBe(1);
+
+    const withoutFrontier = buildStopDecisionInput({ depthMode: 'expansive' }, 'review', {
+      config: { maxIterations: 10 },
+      registry: {},
+      stateLogRows: [],
+    }, graph);
+    expect(Object.prototype.hasOwnProperty.call(withoutFrontier.review ?? {}, 'frontierOpen')).toBe(false);
+  });
+
+  it('leaves the review config echo unchanged for a default run', () => {
+    const graph = { nodes: [], edges: [] };
+    const files = { config: { maxIterations: 10 }, registry: {}, stateLogRows: [] };
+
+    const flagged = buildStopDecisionInput({ depthMode: 'default' }, 'review', files, graph);
+    const bare = buildStopDecisionInput({}, 'review', files, graph);
+
+    expect(flagged.config).toEqual(bare.config);
   });
 });

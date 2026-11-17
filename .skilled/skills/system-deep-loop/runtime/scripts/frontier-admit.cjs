@@ -20,6 +20,10 @@
 // grows the counted question set mid-run. A pruned node is recorded in the store
 // and nowhere else.
 //
+// A review run reads the same store with the review config instead: an admitted
+// node is queued by the store alone, and relevance narrows to the review target,
+// so no counted question is invented where the run answers none.
+//
 // Leaves propose; they never call this module.
 
 'use strict';
@@ -38,6 +42,11 @@ const path = require('node:path');
 const NODE_STORE_FILE = 'frontier-nodes.jsonl';
 const INBOX_FILE = 'inbox.jsonl';
 const CONFIG_FILE = 'deep-research-config.json';
+const REVIEW_CONFIG_FILE = 'deep-review-config.json';
+
+// A target names the loop a call speaks for: which config file it reads and
+// whether an admitted node queues a question.
+const TARGETS = Object.freeze(['research', 'review']);
 
 const DEFAULT_MAX_DEPTH = 3;
 const DEFAULT_MAX_CHILDREN_PER_NODE = 6;
@@ -95,6 +104,13 @@ function normalizeIteration(value) {
 
 function capValue(value, fallback) {
   return Number.isFinite(value) && value > 0 ? Math.floor(value) : fallback;
+}
+
+function assertTarget(target) {
+  if (!TARGETS.includes(target)) {
+    throw new Error(`unknown target: ${String(target)}; expected ${TARGETS.join(' or ')}`);
+  }
+  return target;
 }
 
 function appendJsonlRow(filePath, row) {
@@ -195,14 +211,17 @@ function readNodeStore(storePath) {
   return nodes;
 }
 
-function readCaps(artifactDir) {
-  let config = null;
+function readTargetConfig(artifactDir, target) {
+  const configFile = target === 'review' ? REVIEW_CONFIG_FILE : CONFIG_FILE;
   try {
-    config = JSON.parse(fs.readFileSync(path.join(artifactDir, CONFIG_FILE), 'utf8'));
+    return JSON.parse(fs.readFileSync(path.join(artifactDir, configFile), 'utf8'));
   } catch {
-    config = null;
+    return null;
   }
+}
 
+function readCaps(artifactDir, target = 'research') {
+  const config = readTargetConfig(artifactDir, assertTarget(target));
   const source = isPlainObject(config) ? config : {};
   const expansive = isPlainObject(source.expansiveDepth) ? source.expansiveDepth : {};
   const runCap = capValue(expansive.maxFrontierNodes, capValue(source.maxIterations, DEFAULT_MAX_FRONTIER_NODES));
@@ -214,12 +233,53 @@ function readCaps(artifactDir) {
   };
 }
 
-function checkProposal(proposal, nodes, caps, knownTexts) {
+// A review target is a file list, and only those paths can hold a finding. The
+// './' prefix and trailing '/' a caller writes carry no meaning, so both sides
+// of the comparison are normalized before containment is tested.
+function normalizeTargetPath(value) {
+  return value.trim().replace(/^\.\//, '').replace(/\/+$/, '');
+}
+
+function splitTargetPaths(value) {
+  if (typeof value !== 'string') return [];
+  return value
+    .split(/[,\s]+/)
+    .map(normalizeTargetPath)
+    .filter((entry) => entry !== '');
+}
+
+function scopeEntries(scope) {
+  const list = Array.isArray(scope) ? scope : [scope];
+  return list
+    .filter((entry) => typeof entry === 'string')
+    .map(normalizeTargetPath)
+    .filter((entry) => entry !== '');
+}
+
+function scopeInsideReviewTarget(scope, config) {
+  const source = isPlainObject(config) ? config : {};
+  // Any target kind other than a file list is described in prose, so there is no
+  // path to be outside of and every scope stays relevant.
+  if (source.reviewTargetType !== 'files') return true;
+  if (typeof source.reviewTarget !== 'string') return true;
+
+  const allowed = splitTargetPaths(source.reviewTarget);
+  if (allowed.length === 0) return true;
+
+  return scopeEntries(scope).every((entry) => allowed.some((base) => entry === base || entry.startsWith(`${base}/`)));
+}
+
+function checkProposal(proposal, nodes, caps, knownTexts, options = {}) {
   if (!isPlainObject(proposal)) return 'relevance';
+
+  const reviewConfig = isPlainObject(options) ? options.reviewConfig : undefined;
 
   // 1. relevance
   if (!isNonEmptyString(proposal.evidence)) return 'relevance';
   if (!hasScope(proposal.scope)) return 'relevance';
+  // A review run only reads the paths its target names, so a node scoped
+  // elsewhere could never be answered by a finding.
+  if (reviewConfig !== undefined && !scopeInsideReviewTarget(proposal.scope, reviewConfig)) return 'relevance';
   if (proposal.parentId !== 'root' && !nodes.has(proposal.parentId)) return 'relevance';
 
   // 2. dedupe
@@ -256,18 +316,22 @@ function checkProposal(proposal, nodes, caps, knownTexts) {
   return checkCycle(proposal.parentId, nodes, caps);
 }
 
-function admitProposals({ artifactDir, iteration, proposals, knownTexts = [] }) {
+function admitProposals({ artifactDir, iteration, proposals, knownTexts = [], target = 'research' }) {
+  const mode = assertTarget(target);
   const storePath = path.join(artifactDir, NODE_STORE_FILE);
   const inboxPath = path.join(artifactDir, INBOX_FILE);
   const nodes = readNodeStore(storePath);
-  const caps = readCaps(artifactDir);
+  const caps = readCaps(artifactDir, mode);
+  // An unreadable review config must not silently widen the relevance check to
+  // every path, so it degrades to the no-target object rather than being skipped.
+  const reviewOptions = mode === 'review' ? { reviewConfig: readTargetConfig(artifactDir, mode) ?? {} } : {};
   const iterationValue = normalizeIteration(iteration);
   const admitted = [];
   const pruned = [];
   const list = Array.isArray(proposals) ? proposals : [];
 
   for (const proposal of list) {
-    const accept = checkProposal(proposal, nodes, caps, knownTexts);
+    const accept = checkProposal(proposal, nodes, caps, knownTexts, reviewOptions);
     const depth = depthFor(proposal, nodes);
     const nodeId = `F-${depth}-${String(nodes.size + 1).padStart(3, '0')}`;
     const safe = isPlainObject(proposal) ? proposal : {};
@@ -303,36 +367,71 @@ function admitProposals({ artifactDir, iteration, proposals, knownTexts = [] }) 
     };
     appendJsonlRow(storePath, row);
     nodes.set(nodeId, row);
-    appendJsonlRow(inboxPath, {
-      id: nodeId,
-      text: proposal.question,
-      source: 'frontier',
-      origin: 'frontier',
-      injectedAtIteration: iterationValue,
-    });
+    // A review run has no question inbox: the store alone queues its nodes, and
+    // an inbox row would add a counted question the review never asked.
+    if (mode !== 'review') {
+      appendJsonlRow(inboxPath, {
+        id: nodeId,
+        text: proposal.question,
+        source: 'frontier',
+        origin: 'frontier',
+        injectedAtIteration: iterationValue,
+      });
+    }
     admitted.push(nodeId);
   }
 
   return { admitted, pruned };
 }
 
-function seedNodes({ artifactDir, iteration = 0, candidates, knownTexts = [] }) {
+function seedNodes({ artifactDir, iteration = 0, candidates, knownTexts = [], target = 'research' }) {
   // Every seeded node sits at depth 1 against the run's synthetic root: the seed
   // sees only the topic, so it cannot justify a deeper placement on its own.
   // A run is seeded once. A re-run of the seed step (a restart that kept the
   // store, a repeated fan-out launch) would otherwise add a reworded second
   // decomposition beside the first, and a fan-out partition would then name
   // nodes no lineage holds.
-  const existing = readNodeStore(path.join(artifactDir, NODE_STORE_FILE));
+  const mode = assertTarget(target);
+  const storePath = path.join(artifactDir, NODE_STORE_FILE);
+  const existing = readNodeStore(storePath);
   if ([...existing.values()].some((node) => node.depth === 1)) {
     return { admitted: [], pruned: [], skipped: 'already-seeded' };
   }
 
-  const proposals = (Array.isArray(candidates) ? candidates : []).map((candidate) => (
-    isPlainObject(candidate) ? { ...candidate, parentId: 'root' } : candidate
-  ));
+  const pruned = [];
+  const proposals = [];
 
-  return admitProposals({ artifactDir, iteration, proposals, knownTexts });
+  for (const candidate of Array.isArray(candidates) ? candidates : []) {
+    const pruneReason = mode === 'review' && isPlainObject(candidate) ? candidate.pruneReason : undefined;
+    if (!isNonEmptyString(pruneReason)) {
+      proposals.push(isPlainObject(candidate) ? { ...candidate, parentId: 'root' } : candidate);
+      continue;
+    }
+
+    // A reviewed sub-target can arrive already settled: a merged duplicate, a
+    // generated artifact, a file with no diff of its own. The seed knows that
+    // before any proposal exists, so the row is pruned here rather than through
+    // an admission check that would have to reach the same conclusion.
+    const nodeId = `F-1-${String(existing.size + 1).padStart(3, '0')}`;
+    const row = {
+      nodeId,
+      parentId: 'root',
+      depth: 1,
+      scope: candidate.scope === undefined ? null : candidate.scope,
+      question: candidate.question === undefined ? null : candidate.question,
+      status: 'pruned',
+      reason: pruneReason,
+      iteration: normalizeIteration(iteration),
+      dedupeKey: dedupeKey(candidate.question),
+    };
+    appendJsonlRow(storePath, row);
+    existing.set(nodeId, row);
+    pruned.push({ nodeId, reason: pruneReason });
+  }
+
+  const result = admitProposals({ artifactDir, iteration, proposals, knownTexts, target: mode });
+
+  return { admitted: result.admitted, pruned: [...pruned, ...result.pruned] };
 }
 
 function closeNode({ artifactDir, nodeId, status, reason = null, iteration }) {
@@ -357,39 +456,58 @@ function closeNode({ artifactDir, nodeId, status, reason = null, iteration }) {
 
 // The block is computed, not written by the orchestrating model, so the slot count
 // the leaf sees is the one admission will enforce.
-function renderFrontierBlock({ artifactDir, focus }) {
-  if (typeof focus !== 'string' || focus === '') return '';
+function renderFrontierBlock({ artifactDir, focus, nodeId, dimension, target = 'research' }) {
+  const mode = assertTarget(target);
+  let resolvedId;
 
-  const match = /^Frontier node (\S+) /.exec(focus);
-  if (!match) return '';
+  if (mode === 'review') {
+    // A review leaf is dispatched to one node, so its id is handed in whole and
+    // there is no focus string to parse back into one.
+    resolvedId = typeof nodeId === 'string' ? nodeId : '';
+  } else {
+    if (typeof focus !== 'string' || focus === '') return '';
 
-  const nodeId = match[1];
+    const match = /^Frontier node (\S+) /.exec(focus);
+    if (!match) return '';
+
+    resolvedId = match[1];
+  }
+
   const nodes = readNodeStore(path.join(artifactDir, NODE_STORE_FILE));
-  const node = nodes.get(nodeId);
+  const node = nodes.get(resolvedId);
   if (!node) return '';
   // A closed node's block would invite proposals admission can only prune.
   if (node.status !== 'open' && node.status !== 'active') return '';
 
-  const caps = readCaps(artifactDir);
+  const caps = readCaps(artifactDir, mode);
   const depth = Number.isFinite(node.depth) ? node.depth : 0;
   const scope = Array.isArray(node.scope) ? node.scope.join(', ') : (node.scope || 'unscoped');
   const slots = Math.max(0, Math.min(
-    caps.maxChildrenPerNode - countLiveChildren(nodes, nodeId),
+    caps.maxChildrenPerNode - countLiveChildren(nodes, resolvedId),
     caps.maxFrontierNodes - countLiveNodes(nodes),
   ));
+  const dimensionLabel = isNonEmptyString(dimension) ? dimension : 'the dispatched dimension';
 
   const lines = [
     'FRONTIER (expansive depth)',
-    `Current node: ${nodeId} at depth ${depth} of ${caps.maxDepth}, scope ${scope}.`,
+    mode === 'review'
+      ? `Current node: ${resolvedId} at depth ${depth} of ${caps.maxDepth}, scope ${scope}. Review dimension for this node: ${dimensionLabel}.`
+      : `Current node: ${resolvedId} at depth ${depth} of ${caps.maxDepth}, scope ${scope}.`,
     `Copy the Focus Area line exactly into this iteration record's "focus", so the run can tell which node this iteration worked.`,
   ];
+
+  if (mode === 'review') {
+    lines.push(`Set this iteration record's "focus" to "Frontier node ${resolvedId}: ${dimensionLabel}" and add "frontierNodeId":"${resolvedId}" to it, so the run can tell which node this iteration worked.`);
+  }
 
   if (depth >= caps.maxDepth) {
     lines.push('This node is at the depth cap, so do not propose children.');
   } else if (slots === 0) {
     lines.push('This node has no child slots left, so do not propose children.');
+  } else if (mode === 'review') {
+    lines.push(`You may append up to ${slots} \`frontier_proposal\` rows to this iteration's delta with "parentId":"${resolvedId}", one per sub-target your evidence opened inside this node. Each row needs "question" (what to review), "scope" (paths inside the review target) and "evidence". The admission step prunes duplicates, anything outside the review target and anything past the depth, fan-out or budget caps. Never write review/frontier-nodes.jsonl or a coverage surface yourself.`);
   } else {
-    lines.push(`You may append up to ${slots} \`frontier_proposal\` rows to this iteration's delta with "parentId":"${nodeId}", one per follow-up question your evidence opened inside this node. Each row needs "question", "scope" and "evidence". The admission step prunes duplicates and anything past the depth, fan-out or budget caps.`);
+    lines.push(`You may append up to ${slots} \`frontier_proposal\` rows to this iteration's delta with "parentId":"${resolvedId}", one per follow-up question your evidence opened inside this node. Each row needs "question", "scope" and "evidence". The admission step prunes duplicates and anything past the depth, fan-out or budget caps.`);
   }
 
   return `\n\n${lines.join('\n')}`;
@@ -477,6 +595,8 @@ const VALUE_FLAGS = new Set([
   'reason',
   'output',
   'focus',
+  'target',
+  'dimension',
 ]);
 
 function parseArgs(argv) {
@@ -582,6 +702,7 @@ function runCli(argv) {
   }
 
   const artifactDir = requireFlag(args, 'artifactDir', 'artifact-dir');
+  const target = assertTarget(args.target === undefined ? 'research' : args.target);
 
   if (command === 'graph') {
     const output = requireFlag(args, 'output', 'output');
@@ -591,7 +712,12 @@ function runCli(argv) {
   // The block is prompt text, so it goes to stdout verbatim rather than through
   // the JSON envelope the record-shaped commands return.
   if (command === 'block') {
-    process.stdout.write(renderFrontierBlock({ artifactDir, focus: requireFlag(args, 'focus', 'focus') }));
+    // A review leaf carries its node id, while the research block recovers the
+    // node from the focus string the reducer wrote.
+    const blockOptions = target === 'review'
+      ? { artifactDir, nodeId: requireFlag(args, 'nodeId', 'node-id'), dimension: args.dimension, target }
+      : { artifactDir, focus: requireFlag(args, 'focus', 'focus'), target };
+    process.stdout.write(renderFrontierBlock(blockOptions));
     return undefined;
   }
 
@@ -600,12 +726,12 @@ function runCli(argv) {
 
   if (command === 'seed') {
     const candidates = readSeedCandidates(requireFlag(args, 'input', 'input'));
-    return seedNodes({ artifactDir, iteration, candidates, knownTexts });
+    return seedNodes({ artifactDir, iteration, candidates, knownTexts, target });
   }
 
   if (command === 'admit') {
     const proposals = readProposalRows(requireFlag(args, 'input', 'input'));
-    return admitProposals({ artifactDir, iteration, proposals, knownTexts });
+    return admitProposals({ artifactDir, iteration, proposals, knownTexts, target });
   }
 
   const nodeId = requireFlag(args, 'nodeId', 'node-id');
@@ -637,6 +763,7 @@ module.exports = {
   dedupeKey,
   readNodeStore,
   readCaps,
+  scopeInsideReviewTarget,
   checkProposal,
   admitProposals,
   seedNodes,

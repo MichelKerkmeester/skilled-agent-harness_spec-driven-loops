@@ -198,6 +198,16 @@ function ledgerEvidence(row: JsonRecord): string[] {
   ])];
 }
 
+// The frontier queue only exists under the expansive depth mode, so a run that
+// never asked for it projects no nodes and every frontier-aware branch below
+// stays on its default path.
+function expansiveFrontierNodes(config: JsonRecord, registry: JsonRecord): JsonRecord[] {
+  const antiConvergence = isRecord(config.antiConvergence) ? config.antiConvergence : {};
+  if (antiConvergence.depthMode !== 'expansive') return [];
+  const frontier = isRecord(registry.frontier) ? registry.frontier : {};
+  return Array.isArray(frontier.nodes) ? frontier.nodes.filter(isRecord) : [];
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 3. CANDIDATE GENERATION
 // ───────────────────────────────────────────────────────────────────
@@ -287,6 +297,26 @@ function buildCandidateSeeds(
     });
   });
 
+  // A frontier node the run closed without answering is review depth it already
+  // paid for, and revisiting that sub-target is read-only work inside the same
+  // configured target, so it seeds a fresh direction instead of being dropped.
+  expansiveFrontierNodes(config, registry).forEach((node) => {
+    const status = normalizeText(node.status);
+    if (status !== 'exhausted' && status !== 'blocked') return;
+    const nodeId = normalizeText(node.nodeId);
+    const scope = (Array.isArray(node.scope)
+      ? readStringList(node.scope).join(', ')
+      : normalizeText(node.scope)) || 'unscoped';
+    add({
+      source: 'frontier-unanswered',
+      title: `Revisit ${status} frontier node ${nodeId}`,
+      focus: `Read-only review of the ${status} frontier sub-target ${nodeId} (${scope}) and report findings without expanding the review target.`,
+      evidenceRefs: [`frontier-nodes.jsonl#${nodeId}`],
+      relevanceRationale: `The frontier closed this sub-target ${status} without covering every configured dimension.`,
+      scopeGrounded: true,
+    });
+  });
+
   return seeds;
 }
 
@@ -353,6 +383,15 @@ export function buildReviewPivotPreparationInput(
   if (!sessionId) throw new TypeError('Review config sessionId is required for a pivot.');
   if (!normalizeText(config.reviewTarget)) throw new TypeError('Review config reviewTarget is required for boundary validation.');
 
+  // The stop veto already keeps the run going while frontier nodes are open, so a
+  // pivot reaching this point with one still open means the caller skipped it. An
+  // accepted direction re-enters breadth through frontier admission as a frontier
+  // proposal, which is why the pivot itself needs a closed queue.
+  const frontierOpen = expansiveFrontierNodes(config, registry)
+    .some((node) => ['open', 'active'].includes(normalizeText(node.status)));
+  if (frontierOpen) {
+    throw new TypeError('A review pivot under the expansive depth mode needs a terminal frontier; open frontier nodes remain.');
+  }
   const latestIteration = stateRecords.filter((record) => record.type === 'iteration').at(-1);
   const strategyFocus = extractSection(strategy, ['12. NEXT FOCUS', '11. NEXT FOCUS']);
   const previousFocus = normalizeText(strategyFocus) || normalizeText(latestIteration?.focus);

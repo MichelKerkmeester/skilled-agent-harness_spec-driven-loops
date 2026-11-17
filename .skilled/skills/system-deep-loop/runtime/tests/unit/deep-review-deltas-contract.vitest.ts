@@ -179,4 +179,48 @@ describe('deep-review-deltas projection surface', () => {
     expect(byId.get('F001')?.severity).toBe('P1');
     expect(byId.get('F002')?.severity).toBe('P0');
   });
+
+  it('reads a delta carrying a frontier_proposal row without corruption and with unchanged findings', () => {
+    // The leaf contract lets an expansive run append a proposal row next to the
+    // findings it already writes. The reducer treats every non-finding row as
+    // inert, so the same delta must fold to the same registry either way.
+    const surface = createDeepReviewDeltasProjectionContract();
+    const folded = foldLegacyProjectionSurface(surface, deltaFixtureEvents(), fakeHead);
+
+    function reduceWithProposal(proposal: JsonObject | null) {
+      const specFolder = mkdtempSync(join(tmpdir(), 'review-deltas-frontier-'));
+      scratchDirs.push(specFolder);
+      const reviewDir = join(specFolder, 'review');
+      const deltasDir = join(reviewDir, 'deltas');
+      mkdirSync(deltasDir, { recursive: true });
+      writeFileSync(
+        join(reviewDir, 'deep-review-config.json'),
+        JSON.stringify({ maxIterations: 5, reviewTarget: 'deltas-frontier-proof' }),
+      );
+      writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), '');
+
+      for (const artifact of folded) {
+        const rows = parseJsonl(artifact.bytes);
+        // The iteration record is line one, so the proposal lands directly after it.
+        if (proposal && basename(artifact.relativePath) === 'iter-001.jsonl') rows.splice(1, 0, proposal);
+        writeFileSync(join(deltasDir, basename(artifact.relativePath)), rows.map((row) => `${JSON.stringify(row)}\n`).join(''));
+      }
+
+      return reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    }
+
+    const baseline = reduceWithProposal(null);
+    const withProposal = reduceWithProposal({
+      type: 'frontier_proposal',
+      parentId: 'node-1',
+      question: 'Does the error path renumber the stop-reason gate ids?',
+      scope: 'src/stop.cjs',
+      evidence: 'src/stop.cjs:12',
+    });
+
+    expect(withProposal.hasCorruption).toBe(false);
+    expect(withProposal.corruptionWarnings).toHaveLength(0);
+    expect(withProposal.registry.openFindingsCount).toBe(baseline.registry.openFindingsCount);
+    expect(withProposal.registry.openFindings).toEqual(baseline.registry.openFindings);
+  });
 });

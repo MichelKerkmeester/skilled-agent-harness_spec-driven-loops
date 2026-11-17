@@ -1,0 +1,403 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Frontier Admission Review Target Tests
+// ───────────────────────────────────────────────────────────────────
+//
+// A review run shares the node store with a research run but none of its
+// counting: there is no question inbox, and relevance is bounded by the review
+// target rather than by an open question set. So the facts worth pinning are the
+// ones a caller cannot see from the return value alone: which check pruned a
+// proposal, that an admitted node never invents an inbox row, that a seed can
+// settle a sub-target before admission runs, and that the block is keyed by node
+// id instead of a focus string. Each row below leaves a single check broken and
+// asserts the reason it produces, and the CLI case covers the delta-file read
+// that turns ledger rows into proposals.
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
+import { spawnSync } from 'node:child_process';
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { tmpdir } from 'node:os';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+import { afterEach, describe, expect, it } from 'vitest';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
+const require = createRequire(import.meta.url);
+const FRONTIER_ADMIT_SCRIPT = resolve(
+  dirname(fileURLToPath(import.meta.url)),
+  '..',
+  '..',
+  'scripts',
+  'frontier-admit.cjs',
+);
+
+const {
+  checkProposal,
+  admitProposals,
+  seedNodes,
+  closeNode,
+  renderFrontierBlock,
+  readNodeStore,
+  scopeInsideReviewTarget,
+} = require(FRONTIER_ADMIT_SCRIPT) as {
+  checkProposal: (
+    proposal: unknown,
+    nodes: Map<string, NodeRow>,
+    caps: Caps,
+    knownTexts?: string[],
+    options?: { reviewConfig?: NodeRow },
+  ) => string | null;
+  admitProposals: (options: {
+    artifactDir: string;
+    iteration?: number;
+    proposals: unknown[];
+    knownTexts?: string[];
+    target?: string;
+  }) => AdmissionResult;
+  seedNodes: (options: {
+    artifactDir: string;
+    iteration?: number;
+    candidates: unknown[];
+    knownTexts?: string[];
+    target?: string;
+  }) => AdmissionResult;
+  closeNode: (options: {
+    artifactDir: string;
+    nodeId: string;
+    status: string;
+    reason?: string | null;
+    iteration?: number;
+  }) => NodeRow;
+  renderFrontierBlock: (options: {
+    artifactDir: string;
+    focus?: string;
+    nodeId?: string;
+    dimension?: string;
+    target?: string;
+  }) => string;
+  readNodeStore: (storePath: string) => Map<string, NodeRow>;
+  scopeInsideReviewTarget: (scope: unknown, config: unknown) => boolean;
+};
+
+const CONFIG_FILE = 'deep-research-config.json';
+const REVIEW_CONFIG_FILE = 'deep-review-config.json';
+const STORE_FILE = 'frontier-nodes.jsonl';
+const INBOX_FILE = 'inbox.jsonl';
+
+const CONFIG = {
+  maxIterations: 10,
+  expansiveDepth: { maxDepth: 3, maxChildrenPerNode: 2, maxFrontierNodes: 5 },
+};
+
+const REVIEW_CONFIG = {
+  maxIterations: 10,
+  reviewTarget: 'src/a, src/b',
+  reviewTargetType: 'files',
+  expansiveDepth: { maxDepth: 3, maxChildrenPerNode: 2, maxFrontierNodes: 5 },
+};
+
+const CAPS: Caps = { maxDepth: 3, maxChildrenPerNode: 2, maxFrontierNodes: 5 };
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
+type NodeRow = Record<string, unknown>;
+
+interface Caps {
+  maxDepth: number;
+  maxChildrenPerNode: number;
+  maxFrontierNodes: number;
+}
+
+interface AdmissionResult {
+  admitted: string[];
+  pruned: Array<{ nodeId: string; reason: string }>;
+}
+
+interface PruneCase {
+  label: string;
+  reason: string;
+  proposal: NodeRow;
+  nodes: Map<string, NodeRow>;
+  knownTexts: string[];
+}
+
+const tempDirs: string[] = [];
+
+function makeArtifactDir(): string {
+  const dir = mkdtempSync(join(tmpdir(), 'frontier-admit-review-'));
+  tempDirs.push(dir);
+  writeFileSync(join(dir, CONFIG_FILE), JSON.stringify(CONFIG), 'utf8');
+  return dir;
+}
+
+function makeReviewArtifactDir(): string {
+  const dir = mkdtempSync(join(tmpdir(), 'frontier-admit-review-'));
+  tempDirs.push(dir);
+  writeFileSync(join(dir, REVIEW_CONFIG_FILE), JSON.stringify(REVIEW_CONFIG), 'utf8');
+  return dir;
+}
+
+function makeReviewProposal(question: string): NodeRow {
+  return { parentId: 'root', question, scope: 'src/a', evidence: 'src/a/handler.ts:10' };
+}
+
+function nodeRow(
+  nodeId: string,
+  parentId: string | null,
+  depth: number,
+  question: string,
+  extra: NodeRow = {},
+): NodeRow {
+  return { nodeId, parentId, depth, question, status: 'open', reason: null, iteration: 0, ...extra };
+}
+
+function readJsonl(filePath: string): NodeRow[] {
+  const content = readFileSync(filePath, 'utf8');
+  return content
+    .split('\n')
+    .filter((line) => line.trim() !== '')
+    .map((line) => JSON.parse(line) as NodeRow);
+}
+
+afterEach(() => {
+  for (const dir of tempDirs.splice(0)) rmSync(dir, { recursive: true, force: true });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// 4. REVIEW ADMISSION CHECKS
+// ───────────────────────────────────────────────────────────────────
+
+describe('frontier-admit review target', () => {
+  const pruneCases: PruneCase[] = [
+    {
+      label: 'evidence is empty',
+      reason: 'relevance',
+      proposal: { ...makeReviewProposal('which sub-target does the empty evidence claim'), evidence: '' },
+      nodes: new Map(),
+      knownTexts: [],
+    },
+    {
+      label: 'scope sits outside the review target',
+      reason: 'relevance',
+      proposal: { ...makeReviewProposal('which sub-target does the out-of-target scope name'), scope: 'lib/x' },
+      nodes: new Map(),
+      knownTexts: [],
+    },
+    {
+      label: 'question restates a known text',
+      reason: 'dedupe',
+      proposal: makeReviewProposal('how does the review frontier prune'),
+      nodes: new Map(),
+      knownTexts: ['How does the review frontier prune?'],
+    },
+    {
+      label: 'parent already sits at the depth ceiling',
+      reason: 'depth',
+      proposal: { ...makeReviewProposal('what does the deeper review child probe show'), parentId: 'F-3-001' },
+      nodes: new Map([
+        ['F-3-001', nodeRow('F-3-001', 'root', 3, 'how deep does the review tree already go', { scope: 'src/a' })],
+      ]),
+      knownTexts: [],
+    },
+    {
+      label: 'parent already has its full child budget',
+      reason: 'fanout',
+      proposal: makeReviewProposal('which third review branch would the fan-out open'),
+      nodes: new Map([
+        ['F-1-001', nodeRow('F-1-001', 'root', 1, 'the first review branch under the root', { scope: 'src/a' })],
+        ['F-1-002', nodeRow('F-1-002', 'root', 1, 'the second review branch under the root', { scope: 'src/b' })],
+      ]),
+      knownTexts: [],
+    },
+    {
+      label: 'child claims more budget than its parent',
+      reason: 'budget',
+      proposal: { ...makeReviewProposal('which review probe would spend the wider budget'), parentId: 'F-1-001', budget: 5 },
+      nodes: new Map([
+        ['F-1-001', nodeRow('F-1-001', 'root', 1, 'how much budget does the review parent hold', { budget: 2, scope: 'src/a' })],
+      ]),
+      knownTexts: [],
+    },
+    {
+      label: 'parent chain loops back on itself',
+      reason: 'cycle',
+      proposal: { ...makeReviewProposal('which review branch closes the loop'), parentId: 'A' },
+      nodes: new Map([
+        ['A', nodeRow('A', 'B', 1, 'the first review node in the loop', { scope: 'src/a' })],
+        ['B', nodeRow('B', 'A', 1, 'the second review node in the loop', { scope: 'src/b' })],
+      ]),
+      knownTexts: [],
+    },
+  ];
+
+  it.each(pruneCases)('prunes with $reason when that check fails first', ({ label, reason, proposal, nodes, knownTexts }) => {
+    expect(checkProposal(proposal, nodes, CAPS, knownTexts, { reviewConfig: REVIEW_CONFIG }), label).toBe(reason);
+  });
+
+  it('leaves the scope test unchanged when no review config is passed', () => {
+    const proposal = { ...makeReviewProposal('which branch reads a path no target names'), scope: 'lib/x' };
+
+    expect(checkProposal(proposal, new Map(), CAPS, [])).toBeNull();
+  });
+
+  it('normalizes ./ and trailing slashes on both sides of the review target test', () => {
+    const config = { reviewTargetType: 'files', reviewTarget: 'src/a, src/b' };
+
+    expect(scopeInsideReviewTarget('./src/a/', config)).toBe(true);
+    expect(scopeInsideReviewTarget('src/a/handler.ts', config)).toBe(true);
+    expect(scopeInsideReviewTarget(['src/a', 'src/b/deep/file.ts'], config)).toBe(true);
+    expect(scopeInsideReviewTarget('src/a-other', config)).toBe(false);
+    expect(scopeInsideReviewTarget('lib/x', config)).toBe(false);
+  });
+
+  it('keeps every scope relevant when the target is not a file list', () => {
+    const config = { reviewTargetType: 'skill', reviewTarget: 'the review skill' };
+
+    expect(scopeInsideReviewTarget('lib/anything', config)).toBe(true);
+    expect(scopeInsideReviewTarget(['lib/x', 'src/z'], config)).toBe(true);
+  });
+
+  it('admits a review proposal into the store and creates no inbox', () => {
+    const artifactDir = makeReviewArtifactDir();
+
+    const { admitted, pruned } = admitProposals({
+      artifactDir,
+      iteration: 2,
+      proposals: [makeReviewProposal('what does the admitted review probe show')],
+      target: 'review',
+    });
+
+    expect(pruned).toEqual([]);
+    expect(admitted).toHaveLength(1);
+
+    const rows = readJsonl(join(artifactDir, STORE_FILE));
+    expect(rows).toHaveLength(1);
+    expect(rows[0]).toMatchObject({ nodeId: admitted[0], status: 'open', depth: 1, iteration: 2 });
+    expect(existsSync(join(artifactDir, INBOX_FILE))).toBe(false);
+  });
+
+  it('seeds a review run, settling a candidate that carries its own prune reason', () => {
+    const artifactDir = makeReviewArtifactDir();
+    const candidates = [
+      { ...makeReviewProposal('how does the merged duplicate close'), pruneReason: 'merge-no-own-diff' },
+      makeReviewProposal('what does the first seeded review probe show'),
+      makeReviewProposal('what does the second seeded review probe show'),
+    ];
+
+    const { admitted, pruned } = seedNodes({ artifactDir, iteration: 0, candidates, target: 'review' });
+
+    expect(admitted).toHaveLength(2);
+    expect(pruned).toEqual([{ nodeId: expect.any(String), reason: 'merge-no-own-diff' }]);
+
+    const rows = readJsonl(join(artifactDir, STORE_FILE));
+    const prunedRows = rows.filter((row) => row.status === 'pruned');
+    expect(prunedRows).toHaveLength(1);
+    expect(prunedRows[0]).toMatchObject({ depth: 1, parentId: 'root', reason: 'merge-no-own-diff' });
+
+    const openRows = rows.filter((row) => row.status === 'open');
+    expect(openRows).toHaveLength(2);
+    for (const row of openRows) expect(row.depth).toBe(1);
+    expect(existsSync(join(artifactDir, INBOX_FILE))).toBe(false);
+  });
+
+  it('ignores a prune reason on a research seed', () => {
+    const artifactDir = makeArtifactDir();
+    const candidates = [
+      { ...makeReviewProposal('how does the research seed treat a prune reason'), scope: 'runtime/lib', pruneReason: 'merge-no-own-diff' },
+    ];
+
+    const { admitted, pruned } = seedNodes({ artifactDir, iteration: 0, candidates });
+
+    expect(pruned).toEqual([]);
+    expect(admitted).toHaveLength(1);
+    expect(readJsonl(join(artifactDir, STORE_FILE))).toHaveLength(1);
+  });
+
+  it('the CLI admit command reads review proposals from a delta file and writes no inbox', () => {
+    const artifactDir = makeReviewArtifactDir();
+    const deltaPath = join(artifactDir, 'delta.jsonl');
+    writeFileSync(
+      deltaPath,
+      [
+        JSON.stringify({ type: 'iteration', iteration: 1 }),
+        JSON.stringify({ type: 'frontier_proposal', ...makeReviewProposal('what does the cli review probe show') }),
+      ].join('\n'),
+      'utf8',
+    );
+
+    const result = spawnSync(process.execPath, [
+      FRONTIER_ADMIT_SCRIPT,
+      'admit',
+      '--artifact-dir',
+      artifactDir,
+      '--iteration',
+      '1',
+      '--target',
+      'review',
+      '--input',
+      deltaPath,
+    ], { encoding: 'utf8' });
+
+    expect(result.status).toBe(0);
+    const output = JSON.parse(String(result.stdout).trim()) as AdmissionResult;
+    expect(output.admitted).toHaveLength(1);
+    expect(readJsonl(join(artifactDir, STORE_FILE))).toHaveLength(1);
+    expect(existsSync(join(artifactDir, INBOX_FILE))).toBe(false);
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// 5. REVIEW FRONTIER BLOCK
+// ───────────────────────────────────────────────────────────────────
+
+describe('frontier block review target', () => {
+  function admitOneReviewProposal(question: string): { artifactDir: string; nodeId: string } {
+    const artifactDir = makeReviewArtifactDir();
+    const { admitted } = admitProposals({ artifactDir, iteration: 1, proposals: [makeReviewProposal(question)], target: 'review' });
+    return { artifactDir, nodeId: admitted[0] };
+  }
+
+  it('renders a review block from the node id, its dimension and the frontierNodeId instruction', () => {
+    const { artifactDir, nodeId } = admitOneReviewProposal('what does the review block show');
+
+    const block = renderFrontierBlock({ artifactDir, nodeId, dimension: 'error handling', target: 'review' });
+
+    expect(block.startsWith('\n\nFRONTIER (expansive depth)\nCurrent node: F-1-001 at depth 1 of 3')).toBe(true);
+    expect(block).toContain('Review dimension for this node: error handling.');
+    expect(block).toContain('Set this iteration record\'s "focus" to "Frontier node F-1-001: error handling"');
+    expect(block).toContain('"frontierNodeId":"F-1-001"');
+    expect(block).toContain('up to 2 `frontier_proposal` rows');
+    expect(block).toContain('Never write review/frontier-nodes.jsonl');
+  });
+
+  it('falls back to the dispatched dimension when the caller names none', () => {
+    const { artifactDir, nodeId } = admitOneReviewProposal('what does the undimensioned review probe show');
+
+    const block = renderFrontierBlock({ artifactDir, nodeId, target: 'review' });
+
+    expect(block).toContain('Review dimension for this node: the dispatched dimension.');
+  });
+
+  it('returns an empty block for an unknown or missing node id', () => {
+    const artifactDir = makeReviewArtifactDir();
+
+    expect(renderFrontierBlock({ artifactDir, nodeId: 'F-9-999', dimension: 'error handling', target: 'review' })).toBe('');
+    expect(renderFrontierBlock({ artifactDir, target: 'review' })).toBe('');
+  });
+
+  it('returns an empty block once the review node has closed', () => {
+    const { artifactDir, nodeId } = admitOneReviewProposal('what does the exhausted review block probe show');
+    closeNode({ artifactDir, nodeId, status: 'exhausted', reason: 'budget', iteration: 2 });
+
+    expect(renderFrontierBlock({ artifactDir, nodeId, dimension: 'error handling', target: 'review' })).toBe('');
+  });
+});

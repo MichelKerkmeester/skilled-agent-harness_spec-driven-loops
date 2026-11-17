@@ -232,6 +232,16 @@ The stuck count and the consecutive failure count are rebuilt from the state log
 
 Each pass also compares `maxDurationMinutes` with the config `createdAt`. When the limit is reached the loop skips the dispatch and goes to synthesis with stop reason `maxDurationReached`.
 
+### Expansive Depth Mode
+
+- `--depth-mode=expansive` keeps a depth-capped frontier of sub-target nodes beside the review target. An absent flag means `default`, which runs exactly as before.
+- The flag writes `antiConvergence.depthMode` and the caps in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split across the depth bands, and `maxFrontierNodes`, set to `maxIterations` at config creation. Both are locked against the optimizer.
+- `step_frontier_seed` writes the depth-1 nodes before iteration 1 through `runtime/scripts/frontier-admit.cjs seed --target review`, after `step_create_config` or before `step_fanout_spawn` on a fan-out run. A merge with no diff of its own is pruned `merge-no-own-diff` and an index rebuild `generated-artifact`.
+- `step_frontier_admit` runs before the reducer and prunes a `frontier_proposal` on the first failed check among relevance, dedupe, depth, fan-out, budget and cycle. Node status lives in `review/frontier-nodes.jsonl`, written only by `frontier-admit.cjs`; review has no inbox.
+- `step_read_state` reads the active node and sets `next_dimension` to its next uncovered dimension, `step_frontier_activate` marks it active before dispatch, and the prompt pack's `{frontier_block}` names the node. Next Focus takes the blocked stop, then the pivot, then the node, then the leaf focus, then the first uncovered dimension.
+- While a node stays open the frontier veto turns a stop candidate into `CONTINUE` with reasonDetail `frontierOpen`. It never outranks the iteration cap, consecutive failures, stuck recovery, pause, `--convergence-mode=off`, `--stop-policy=max-iterations` or the review floor, and stuck recovery closes the active node `exhausted`.
+- A fan-out run deals the depth-1 nodes round-robin in node-id order, binds `frontier_scope:` beside `review_focus:`, records the partition in `orchestration-summary.json` and returns a partition guard for any node no lineage reports. Size `--max-iterations` so half of it covers `ceil(nodes / lineages) * dimensions`.
+
 ---
 
 ## 4. RULES
