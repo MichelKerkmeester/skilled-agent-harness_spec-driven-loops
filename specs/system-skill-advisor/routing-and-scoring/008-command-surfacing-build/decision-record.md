@@ -147,6 +147,7 @@ Q069 to Q073 above, as asked.
 | Q086 | Run the full loop: fix every P1 from the final alignment run and review pass twelve, the mention check ones included, then rerun review and alignment. | Not stated. | None | 040-final-alignment-loop REQ-001 to REQ-005 |
 | Q087 | Ask a fresh Opus agent for an independent read before choosing how to close the mention check loop. | Not stated. | None | review/review-report.md pass fourteen, 040 T011 |
 | Q088 | Stop patching the mention check, record the no-lead refusal or question class as a known limit graded P2 for new wordings, fix the generic advisor phrases and run the final alignment. | Not stated. | None | 040 implementation-summary Known Limitations, REQ-005, the alignment lane and critic rules |
+| Q089 | Amend the goal's review and alignment criterion to 0 P0 with every P1 fixed or accepted by the operator, with Q088 and phase 040 ADR-002 as the acceptance. | Not stated. Asked after the Stop-hook evaluator held the goal on the 0 P1 wording that Q088 had already set aside. | The review and alignment criterion's 0 P1 wording | goal.md section 3, 040 decision-record ADR-002 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---

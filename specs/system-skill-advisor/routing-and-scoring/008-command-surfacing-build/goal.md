@@ -91,7 +91,7 @@ string, not these files.
 - [ ] Strict validation prints `RESULT: PASSED` for this parent and every phase folder, each Complete.
 - [ ] The advisor suite (`npx vitest run`) reports 0 failed, typed recall is at least 24 of 44 and false offers 0 of 35.
 - [ ] The behaviour summary prints a before and after start rate for claude, codex, opencode, pi, devin and dsh, and each unsafe start after has a fix or reason in this log.
-- [ ] A `/deep:review` loop over the packet code has converged with 0 open P0 and P1 findings, and `/local-skilled-alignment` on the branch reports 0 P0 and 0 P1.
+- [ ] A `/deep:review` loop over the packet code and `/local-skilled-alignment` on the branch each report 0 P0, and every P1 is fixed or accepted by the operator in `decision-record.md`.
 - [ ] A `/deep:research` loop on UX, performance and cross-CLI usefulness has converged, each recommendation built in a new phase or declined with a reason.
 - [ ] The workflow summary prints a followed rate with its range per runtime and arm, the capture prints sealed reach and fit counts, and this log states for each a target and whether the printed value meets it, or states the outcome as not shown with the item waiting on the operator.
 - [ ] The branch sits on `origin/main`, clean and unpushed, with each item waiting on the operator in this log.
@@ -414,6 +414,7 @@ and findings belong here.
 | Waiting on operator | Open | push the branch and open the PR (D2); v4.0.2.1 release-note range (D2); Vibe gaps in packet 004; deep-loop clean-review convergence defect (convergence.cjs buildReviewSignals); 040 ADR-002 items: seven routing probes and advisor ROUTER and feature-catalog coverage of the measurement tooling and Vibe; open P2 lists in review/review-report*.md; scratch folders, scratchpad/orphan-dist-backup, the... |
 | Merge origin/main 23b0c3c70b6 | Done | 3 commits, another packet's spec docs and the trigger index only, no code; trigger index regenerated and checked |
 | Final checks | Done | criterion 5 converged on coverage only (segment five: ux-5 converged, performance-5 and cross-cli-5 hit the cap, 0.05 never reached, every rank built or declined); withdrawal rule over-reach recorded as 040 known limit 3 (P2 under Q088); alignment builders kept in 040/scratch/alignment-prompts; orphan answer sessions listed in 040/scratch/orphan-answer-sessions.txt for the operator |
+| Q089 criterion amendment | Done | operator chose to amend the review and alignment criterion to 0 P0 with every P1 fixed or accepted (Q088, 040 ADR-002); all 40 phases Complete with strict RESULT: PASSED |
 
 ### Deviations and findings
 
