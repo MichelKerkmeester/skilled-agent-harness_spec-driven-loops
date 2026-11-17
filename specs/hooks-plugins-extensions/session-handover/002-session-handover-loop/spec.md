@@ -157,6 +157,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 51 | 051-handover-doc-alignment-3/ | A third doc alignment run over 87 hand-over docs: `.vibe` added to the linked-folder lists, Cursor's command named right and every wrapper variable listed in the env reference | Complete |
 | 52 | 052-duplicate-hop-title-numbers/ | A hop strips every trailing number from the sender's name before adding its own, and a fresh wrapper starts its hop count at 0, so names never stack as `ENGINE LIMITS (2) (4)` | Complete |
 | 53 | 053-handover-and-history-deep-review/ | Five-iteration deep review of handover logic and history search on every runtime: FAIL from the coverage gate, 0 P0, 0 P1, 4 P2 | Complete |
+| 54 | 054-handover-review-remediation/ | The deep review's four P2 fixes: one withdraw-on-prompt helper that logs its failures, called by all five adapters, and three hook docs corrected | Complete |
 
 ### Phase Transition Rules
 
@@ -221,6 +222,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 050-handover-doc-alignment-2 | 051-handover-doc-alignment-3 | Phase 50 is Complete and pushed, so the third check reads its fixed docs | `validate.sh 050-handover-doc-alignment-2 --strict` RESULT: PASSED |
 | 051-handover-doc-alignment-3 | 052-duplicate-hop-title-numbers | Phase 51 is Complete, so the naming fix starts from the aligned hand-over docs | `validate.sh 051-handover-doc-alignment-3 --strict` RESULT: PASSED |
 | 052-duplicate-hop-title-numbers | 053-handover-and-history-deep-review | A relaunched session carries one hop number and a fresh wrapper counts from 0 | `review/review-report.md` holds a script-computed verdict over five completed iterations |
+| 053-handover-and-history-deep-review | 054-handover-review-remediation | `review/review-report.md` holds a script-computed verdict over five completed iterations | Node suite 1055 pass, hooks vitest 509 passed |
 <!-- /ANCHOR:phase-map -->
 
 ---

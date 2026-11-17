@@ -102,6 +102,7 @@ Every file in `lib/`:
 - The preview centers on the matched identifier, so a fragment match shows what it matched.
 - A model turn is indexed and previewed as its blocks in order: text as written, and each tool call as its name and arguments, such as `read_file {"path":"docs/design.md"}`. A tool call's id is not searchable.
 - A query with no terms returns nothing unless it carries a `files`, `tools` or `failed` filter, which then lists the matching turns.
+- `files` keeps a turn only when every listed path equals, character for character, a path one of the turn's tool calls passed as `path`, `file`, `files`, `filepath` or `file_path`. Paths are not normalized, so `docs/a.md`, `./docs/a.md` and an absolute path are three different values.
 
 ---
 
