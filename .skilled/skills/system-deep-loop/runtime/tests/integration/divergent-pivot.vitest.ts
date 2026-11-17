@@ -159,6 +159,25 @@ describe('divergent pivot identity and paths', () => {
       'artifactRoot must not be inside an ai-council artifact tree',
     );
   });
+
+  it('gives attempt 2 its own seat and deliberation paths and keeps attempt 1 paths', () => {
+    const env = environment('pivot-attempt-paths');
+    const pivotId = derivePivotId(identity());
+    const first = buildPivotCouncilPaths(env.tmpDir, pivotId);
+    const second = buildPivotCouncilPaths(env.tmpDir, pivotId, 2);
+
+    expect(second.configPath).toBe(first.configPath);
+    expect(second.statePath).toBe(first.statePath);
+    expect(second.reportPath).toBe(first.reportPath);
+    expect(second.seatPaths).not.toEqual(first.seatPaths);
+    expect(second.seatPaths.every((path) => path.includes('/attempt-2/'))).toBe(true);
+    expect(second.deliberationPath).not.toBe(first.deliberationPath);
+    expect(second.deliberationPath).toContain('/attempt-2/');
+    expect(first.seatPaths[0].endsWith(join('council', 'seats', 'seat-001.md'))).toBe(true);
+    expect(() => buildPivotCouncilPaths(env.tmpDir, pivotId, 3 as never)).toThrow(
+      'attempt must be 1 or 2',
+    );
+  });
 });
 
 describe('divergent pivot quorum and agreement', () => {
@@ -245,6 +264,27 @@ describe('divergent pivot quorum and agreement', () => {
     const splitEvents = stateEvents(finalized.paths.statePath);
     expect(splitEvents.filter((event) => event.event === 'pivot_seat_returned')).toHaveLength(3);
     expect(splitEvents.at(-1)).toMatchObject({ event: 'pivot_completed' });
+  });
+
+  it('keeps attempt-1 seat event ids and loads a config written before attempts existed', async () => {
+    const env = environment('pivot-pre-attempt-config');
+    const result = await runDivergentPivot(options(env.tmpDir));
+
+    expect(result.status).toBe('completed');
+    const seatEvents = stateEvents(result.paths.statePath)
+      .filter((event) => event.event === 'pivot_seat_returned');
+    expect(seatEvents.map((event) => event.eventId)).toEqual([
+      `${result.pivotId}:pivot_seat_returned:seat-001`,
+      `${result.pivotId}:pivot_seat_returned:seat-002`,
+      `${result.pivotId}:pivot_seat_returned:seat-003`,
+    ]);
+    expect(seatEvents.some((event) => Object.prototype.hasOwnProperty.call(event, 'attempt'))).toBe(false);
+
+    const persisted = JSON.parse(readFileSync(result.paths.configPath, 'utf8')) as Record<string, unknown>;
+    expect(Object.prototype.hasOwnProperty.call(persisted, 'attempt')).toBe(false);
+    expect((persisted.invariants as Record<string, unknown>).rounds).toBe(1);
+
+    expect(finalizePivotTransaction({ paths: result.paths, pivotId: result.pivotId }).status).toBe('completed');
   });
 
   it('fails closed when only 2/3 seats fulfill', async () => {
@@ -356,15 +396,9 @@ describe('divergent pivot preflight and resume', () => {
     },
     {
       name: 'maxCouncilSeatOutputs',
-      config: { maxCouncilSeatOutputs: 4 },
-      usage: { completedPivots: 0, councilSeatOutputs: 2, remainingIterations: 2 },
+      config: { maxCouncilSeatOutputs: 2 },
+      usage: { completedPivots: 0, councilSeatOutputs: 0, remainingIterations: 2 },
       reason: 'max_council_seat_outputs_exceeded',
-    },
-    {
-      name: 'minRemainingIterations',
-      config: { minRemainingIterations: 2 },
-      usage: { completedPivots: 0, councilSeatOutputs: 0, remainingIterations: 1 },
-      reason: 'insufficient_remaining_iterations',
     },
   ])('rejects $name before dispatch', async ({ config, usage, reason }) => {
     const env = environment(`pivot-preflight-${reason}`);
@@ -378,6 +412,54 @@ describe('divergent pivot preflight and resume', () => {
 
     expect(result).toMatchObject({ status: 'failed', failureReason: reason });
     expect(dispatchSeat).not.toHaveBeenCalled();
+  });
+
+  it('keeps accepting a persisted minRemainingIterations limit without refusing on it', async () => {
+    const env = environment('pivot-min-remaining-accepted');
+    const result = await runDivergentPivot(options(env.tmpDir, {
+      identity: identity({ normalizedTrigger: 'min remaining accepted' }),
+      config: { antiConvergence: { divergent: { minRemainingIterations: 2 } } },
+      usage: { completedPivots: 0, councilSeatOutputs: 0, remainingIterations: 1 },
+    }));
+
+    expect(result.status).toBe('completed');
+    const persisted = JSON.parse(readFileSync(result.paths.configPath, 'utf8')) as { limits: Record<string, unknown> };
+    expect(persisted.limits.minRemainingIterations).toBe(2);
+    const replayed = finalizePivotTransaction({ paths: result.paths, pivotId: result.pivotId });
+    expect(replayed.status).toBe('completed');
+  });
+
+  it('allows a later pivot after an earlier pivot used six seat outputs', async () => {
+    const env = environment('pivot-cap-later-pivot');
+    const result = await runDivergentPivot(options(env.tmpDir, {
+      identity: identity({ ordinal: 2, normalizedTrigger: 'second pivot after a retried first' }),
+      usage: { completedPivots: 1, councilSeatOutputs: 6, remainingIterations: 2 },
+    }));
+
+    expect(result.status).toBe('completed');
+  });
+
+  it('does not refuse a resumed attempt that already holds two seat returns', async () => {
+    const env = environment('pivot-cap-resume-two');
+    const dispatchSeat = vi.fn(async (seat: PivotSeatMandate) => seatReport(seat.id));
+    let interrupted = false;
+    await expect(runDivergentPivot(options(env.tmpDir, {
+      dispatchSeat,
+      afterEventPersisted(event) {
+        if (!interrupted && event.event === 'pivot_seat_returned' && event.seatId === 'seat-002') {
+          interrupted = true;
+          throw new Error('simulated interruption after two seats');
+        }
+      },
+    }))).rejects.toThrow('simulated interruption after two seats');
+
+    const resumed = await runDivergentPivot(options(env.tmpDir, {
+      dispatchSeat,
+      usage: { completedPivots: 0, councilSeatOutputs: 2, remainingIterations: 2 },
+    }));
+
+    expect(resumed).toMatchObject({ status: 'completed', resumed: true });
+    expect(dispatchSeat).toHaveBeenCalledTimes(4);
   });
 
   it('rejects a nested adapter invocation through the runtime recursion guard', async () => {

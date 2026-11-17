@@ -71,6 +71,8 @@ export interface PivotSeatReport {
   readonly blockers: readonly PivotSeatBlocker[];
 }
 
+export type PivotAttempt = 1 | 2;
+
 export type PivotSeatReportParseResult =
   | { readonly valid: true; readonly report: PivotSeatReport }
   | { readonly valid: false; readonly reason: string };
@@ -283,7 +285,7 @@ const { dispatchCouncilSeats } = require('../council/multi-seat-dispatch.cjs') a
 const REQUIRED_SEAT_IDS = ['seat-001', 'seat-002', 'seat-003'] as const;
 const DEFAULT_DIVERGENT_CONFIG: NormalizedDivergentConfig = {
   maxPivots: 3,
-  maxCouncilSeatOutputs: 9,
+  maxCouncilSeatOutputs: 3,
   minRemainingIterations: 1,
   candidateSimilarityThreshold: DEFAULT_CANDIDATE_SIMILARITY_THRESHOLD,
 };
@@ -597,8 +599,16 @@ function eventByName(store: EventStore, name: PivotEventName): PivotEvent | unde
   return store.events.find((event) => event.event === name);
 }
 
-function seatEventId(pivotId: string, seatId: string): string {
-  return `${pivotId}:pivot_seat_returned:${seatId}`;
+function seatEventId(pivotId: string, seatId: string, attempt: PivotAttempt = 1): string {
+  return attempt === 2
+    ? `${pivotId}:attempt-2:pivot_seat_returned:${seatId}`
+    : `${pivotId}:pivot_seat_returned:${seatId}`;
+}
+
+function deliberationEventId(pivotId: string, attempt: PivotAttempt): string {
+  return attempt === 2
+    ? `${pivotId}:attempt-2:pivot_deliberation_completed`
+    : `${pivotId}:pivot_deliberation_completed`;
 }
 
 function candidateRejectionEventId(
@@ -729,15 +739,15 @@ function failureReasonForQuorum(quorum: PivotQuorumResult): PivotFailureReason {
 function preflightFailure(
   config: NormalizedDivergentConfig,
   usage: PivotUsage,
+  openingAttempt: boolean,
 ): PivotFailureReason | null {
   if (usage.completedPivots >= config.maxPivots) {
     return 'max_pivots_exceeded';
   }
-  if (usage.councilSeatOutputs + 3 > config.maxCouncilSeatOutputs) {
+  // The cap bounds one council attempt. An attempt holds no seat outputs when it opens,
+  // and a resumed attempt already passed this check when it opened.
+  if (openingAttempt && 3 > config.maxCouncilSeatOutputs) {
     return 'max_council_seat_outputs_exceeded';
-  }
-  if (usage.remainingIterations < config.minRemainingIterations) {
-    return 'insufficient_remaining_iterations';
   }
   return null;
 }
@@ -804,7 +814,14 @@ export function derivePivotId(input: PivotIdentityInput): string {
 }
 
 /** Build and validate the isolated artifact paths for one pivot Council transaction. */
-export function buildPivotCouncilPaths(artifactRoot: string, pivotId: string): PivotCouncilPaths {
+export function buildPivotCouncilPaths(
+  artifactRoot: string,
+  pivotId: string,
+  attempt: PivotAttempt = 1,
+): PivotCouncilPaths {
+  if (attempt !== 1 && attempt !== 2) {
+    throw new TypeError('attempt must be 1 or 2.');
+  }
   const rootInput = nonEmptyString(artifactRoot, 'artifactRoot');
   if (!/^pivot-[1-9][0-9]*-[a-f0-9]{12}$/u.test(pivotId)) {
     throw new TypeError('pivotId must match pivot-<ordinal>-<12 lowercase hex characters>.');
@@ -815,7 +832,8 @@ export function buildPivotCouncilPaths(artifactRoot: string, pivotId: string): P
   }
   const pivotRoot = join(canonicalRoot, 'divergent', 'pivots', pivotId);
   const councilRoot = join(pivotRoot, 'council');
-  const seatsRoot = join(councilRoot, 'seats');
+  const attemptRoot = attempt === 2 ? join(councilRoot, 'attempt-2') : councilRoot;
+  const seatsRoot = join(attemptRoot, 'seats');
   return {
     artifactRoot: canonicalRoot,
     pivotRoot,
@@ -828,7 +846,7 @@ export function buildPivotCouncilPaths(artifactRoot: string, pivotId: string): P
       join(seatsRoot, 'seat-002.md'),
       join(seatsRoot, 'seat-003.md'),
     ],
-    deliberationPath: join(councilRoot, 'deliberation.md'),
+    deliberationPath: join(attemptRoot, 'deliberation.md'),
     reportPath: join(councilRoot, 'report.md'),
   };
 }
@@ -938,6 +956,7 @@ export interface PivotPendingResult {
   readonly pivotId: string;
   readonly paths: PivotCouncilPaths;
   readonly resumed: boolean;
+  readonly attempt: PivotAttempt;
   readonly missingSeats: readonly PivotSeatMandate[];
   readonly dispatchContext: PivotDispatchContext;
 }
@@ -995,7 +1014,8 @@ interface PersistedPivotConfig {
   readonly schemaVersion: 1;
   readonly pivotId: string;
   readonly identity: PivotIdentityInput;
-  readonly invariants: { readonly rounds: 1; readonly seats: 3; readonly depth: 1; readonly recursionAllowed: false };
+  readonly attempt: PivotAttempt;
+  readonly invariants: { readonly rounds: PivotAttempt; readonly seats: 3; readonly depth: 1; readonly recursionAllowed: false };
   readonly limits: NormalizedDivergentConfig;
   readonly usageAtStart: PivotUsage;
   readonly seats: readonly PivotSeatMandate[];
@@ -1141,8 +1161,12 @@ function parsePersistedPivotConfig(value: unknown, pivotId: string): PersistedPi
     }
     return direction.trim();
   });
+  const attempt = value.attempt === undefined ? 1 : value.attempt;
+  if (attempt !== 1 && attempt !== 2) {
+    throw new Error('Persisted pivot attempt must be 1 or 2.');
+  }
   if (!isRecord(value.invariants)
-    || value.invariants.rounds !== 1
+    || value.invariants.rounds !== attempt
     || value.invariants.seats !== 3
     || value.invariants.depth !== 1
     || value.invariants.recursionAllowed !== false) {
@@ -1152,7 +1176,8 @@ function parsePersistedPivotConfig(value: unknown, pivotId: string): PersistedPi
     schemaVersion: 1,
     pivotId,
     identity: parsePersistedIdentity(value.identity),
-    invariants: { rounds: 1, seats: 3, depth: 1, recursionAllowed: false },
+    attempt,
+    invariants: { rounds: attempt, seats: 3, depth: 1, recursionAllowed: false },
     limits: parsePersistedLimits(value.limits),
     usageAtStart: parsePersistedUsage(value.usageAtStart),
     seats: parsePersistedSeats(value.seats),
@@ -1186,7 +1211,7 @@ export async function preparePivotTransaction(
   const identity = validateIdentity(options.identity);
   const pivotId = derivePivotId(identity);
   const paths = buildPivotCouncilPaths(options.artifactRoot, pivotId);
-  const usage = normalizeUsage(options.usage);
+  const requestedUsage = normalizeUsage(options.usage);
   const config = normalizeConfig(options.config);
   const seats = normalizeSeats(options.seats);
   const previousFocus = nonEmptyString(options.previousFocus, 'previousFocus');
@@ -1194,7 +1219,7 @@ export async function preparePivotTransaction(
     nonEmptyString(direction, `saturatedDirections[${index}]`));
   const now = options.now ?? (() => new Date());
 
-  if (usage.insidePivot || pivotExecutionContext.getStore() === true) {
+  if (requestedUsage.insidePivot || pivotExecutionContext.getStore() === true) {
     return {
       status: 'failed',
       pivotId,
@@ -1220,6 +1245,14 @@ export async function preparePivotTransaction(
     return failedResultFromEvent(failedEvent, paths, true);
   }
 
+  // A resume keeps the counts recorded when the pivot opened, so replaying its
+  // config and pivot_started event cannot conflict with the counts reported now.
+  const resumed = eventByName(store, 'pivot_started') !== undefined;
+  const persistedConfig = resumed ? readPersistedConfig(paths.configPath, pivotId) : null;
+  const usage = persistedConfig?.usageAtStart ?? requestedUsage;
+  const limits = persistedConfig?.limits ?? config;
+  const attempt: PivotAttempt = 1;
+
   const candidateSet = deduplicatePivotCandidates(
     options.candidates,
     options.priorCandidates ?? [],
@@ -1229,8 +1262,9 @@ export async function preparePivotTransaction(
     schemaVersion: 1,
     pivotId,
     identity,
-    invariants: { rounds: 1, seats: 3, depth: 1, recursionAllowed: false },
-    limits: config,
+    attempt,
+    invariants: { rounds: attempt, seats: 3, depth: 1, recursionAllowed: false },
+    limits,
     usageAtStart: usage,
     seats,
     acceptedCandidates: candidateSet.accepted,
@@ -1239,9 +1273,13 @@ export async function preparePivotTransaction(
     saturatedDirections,
   };
   mkdirSync(paths.councilRoot, { recursive: true });
-  persistConfig(paths.configPath, configRecord as unknown as Record<string, unknown>);
+  // An attempt-1 config predates the attempt field and must stay byte-identical to one.
+  const { attempt: recordAttempt, ...persistedRecord } = configRecord;
+  persistConfig(
+    paths.configPath,
+    (recordAttempt === 1 ? persistedRecord : configRecord) as unknown as Record<string, unknown>,
+  );
 
-  const resumed = eventByName(store, 'pivot_started') !== undefined;
   appendEvent(
     store,
     paths.statePath,
@@ -1281,7 +1319,14 @@ export async function preparePivotTransaction(
     );
   });
 
-  const preflightReason = preflightFailure(config, usage);
+  const durableSeatEvents = new Map<string, PivotEvent>();
+  for (const seat of seats) {
+    const event = store.byId.get(seatEventId(pivotId, seat.id, attempt));
+    if (event) {
+      durableSeatEvents.set(seat.id, event);
+    }
+  }
+  const preflightReason = preflightFailure(limits, usage, durableSeatEvents.size === 0);
   const earlyFailureReason = preflightReason
     ?? (candidateSet.accepted.length === 0 ? 'no_valid_candidates' : null);
   if (earlyFailureReason) {
@@ -1303,13 +1348,6 @@ export async function preparePivotTransaction(
     return failedResultFromEvent(failed, paths, resumed);
   }
 
-  const durableSeatEvents = new Map<string, PivotEvent>();
-  for (const seat of seats) {
-    const event = store.byId.get(seatEventId(pivotId, seat.id));
-    if (event) {
-      durableSeatEvents.set(seat.id, event);
-    }
-  }
   if (durableSeatEvents.size > 0) {
     mkdirSync(paths.seatsRoot, { recursive: true });
     seats.forEach((seat, index) => {
@@ -1326,6 +1364,7 @@ export async function preparePivotTransaction(
     pivotId,
     paths,
     resumed,
+    attempt,
     missingSeats,
     dispatchContext: {
       pivotId,
@@ -1345,6 +1384,7 @@ export function recordPivotSeatResult(options: RecordPivotSeatResultOptions): Pi
   const { paths, pivotId, seat, outcome } = options;
   const now = options.now ?? (() => new Date());
   const persistedConfig = readPersistedConfig(paths.configPath, pivotId);
+  const attempt = persistedConfig.attempt;
   const seatIndex = persistedConfig.seats.findIndex((entry) => entry.id === seat.id);
   if (seatIndex < 0) {
     throw new Error(`Seat "${seat.id}" is not part of pivot "${pivotId}".`);
@@ -1363,7 +1403,7 @@ export function recordPivotSeatResult(options: RecordPivotSeatResultOptions): Pi
     now,
     options.afterEventPersisted,
     {
-      eventId: seatEventId(pivotId, seat.id),
+      eventId: seatEventId(pivotId, seat.id, attempt),
       event: 'pivot_seat_returned',
       lifecycle: { from: 'COUNCIL_RUNNING', to: 'COUNCIL_RUNNING' },
       seatId: seat.id,
@@ -1375,6 +1415,7 @@ export function recordPivotSeatResult(options: RecordPivotSeatResultOptions): Pi
       startedAtIso: outcome.startedAtIso,
       completedAtIso: outcome.completedAtIso,
       durationMs: outcome.durationMs,
+      ...(attempt === 2 ? { attempt } : {}),
     },
   );
 
@@ -1389,6 +1430,7 @@ export function finalizePivotTransaction(options: FinalizePivotTransactionOption
   const resumed = options.resumed ?? true;
   const now = options.now ?? (() => new Date());
   const persistedConfig = readPersistedConfig(paths.configPath, pivotId);
+  const attempt = persistedConfig.attempt;
   const store = readEventStore(paths.statePath, pivotId);
 
   const completedEvent = eventByName(store, 'pivot_completed');
@@ -1403,7 +1445,7 @@ export function finalizePivotTransaction(options: FinalizePivotTransactionOption
   }
 
   const orderedSeatEvents = persistedConfig.seats
-    .map((seat) => store.byId.get(seatEventId(pivotId, seat.id)))
+    .map((seat) => store.byId.get(seatEventId(pivotId, seat.id, attempt)))
     .filter((event): event is PivotEvent => event !== undefined);
   const quorum = quorumFromSeatEvents(orderedSeatEvents);
   const reports = orderedSeatEvents
@@ -1420,7 +1462,7 @@ export function finalizePivotTransaction(options: FinalizePivotTransactionOption
     now,
     options.afterEventPersisted,
     {
-      eventId: `${pivotId}:pivot_deliberation_completed`,
+      eventId: deliberationEventId(pivotId, attempt),
       event: 'pivot_deliberation_completed',
       lifecycle: { from: 'COUNCIL_RUNNING', to: 'COUNCIL_RUNNING' },
       quorum,

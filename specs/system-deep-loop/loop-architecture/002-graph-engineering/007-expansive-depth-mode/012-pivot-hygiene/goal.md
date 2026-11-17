@@ -80,6 +80,8 @@ and findings belong here.
 | Phase docs authored | Done | `spec.md`, `plan.md`, `tasks.md`, `decision-record.md` |
 | ADR-001 operator decision | Done | 2026-11-17: 3 seat outputs per council attempt, at most one retry, so at most 6 per pivot (`decision-record.md` OD-001, OD-002) |
 | Session save | Done | operator decisions written to decision-record.md |
+| Baseline (T002) | Done | 2026-11-17, worktree 464 on integration tip `c898b3ad9a3`: `npx vitest run tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts tests/unit/divergent-pivot-cli.vitest.ts tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` 5 files, 50 passed; `npm run typecheck` exit 0 |
+| T003, T004, T006 | Done | Go dispatches; divergent-pivot + CLI + multi-seat suites 28 passed, typecheck 0 |
 
 ### Deviations and findings
 
