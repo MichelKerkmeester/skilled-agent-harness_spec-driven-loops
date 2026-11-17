@@ -210,13 +210,15 @@ function validateFlags(values) {
   if (values.loopType !== 'research' && values.loopType !== 'review') {
     throw new UsageError(`unknown loop type '${values.loopType}'. Supported: research, review`);
   }
-  const claudeReview = values.executor === 'cli-claude-code' && values.loopType === 'review';
+  // Review always names a config dir; research may, and an empty value means none.
+  const claude = values.executor === 'cli-claude-code';
+  const claudeReview = claude && values.loopType === 'review';
   if (claudeReview && !hasFlag(values, 'claudeConfigDir')) {
     throw new UsageError("missing required flag '--claude-config-dir'");
   }
-  if (!claudeReview && hasFlag(values, 'claudeConfigDir')) {
+  if (!claude && hasFlag(values, 'claudeConfigDir')) {
     throw new UsageError(
-      "flag '--claude-config-dir' is only valid with --executor cli-claude-code --loop-type review",
+      "flag '--claude-config-dir' is only valid with --executor cli-claude-code",
     );
   }
   const harness = values.executor === 'cli-deepseek-harness';
@@ -350,9 +352,9 @@ function dispatchWithContainment({
 // ───────────────────────────────────────────────────────────────────
 
 function runClaude(context) {
-  // The review inline body validated the config dir before it read the prompt, so an
-  // unusable config directory fails before any prompt or persona file is touched.
-  const configDir = context.loopType === 'review' && context.claudeConfigDir
+  // Both loops validate the config dir before the prompt is read, so an unusable
+  // config directory fails before any prompt or persona file is touched.
+  const configDir = context.claudeConfigDir
     ? validateClaudeConfigDir(context.claudeConfigDir)
     : '';
   const promptBody = readPrompt(context);
@@ -407,6 +409,7 @@ function runClaude(context) {
   const executor = {
     kind: 'cli-claude-code',
     model: context.model,
+    configDir: configDir || null,
     reasoningEffort: context.reasoningEffort,
     serviceTier: context.serviceTier,
     sandboxMode: context.sandboxMode,
@@ -426,6 +429,13 @@ function runClaude(context) {
     args.push('--effort', executor.reasoningEffort);
   }
 
+  // CLAUDE_CONFIG_DIR rides through guardContext.env; the CLAUDE_ prefix is on the
+  // cli-claude-code env allowlist so buildExecutorDispatchEnv admits it.
+  const parentEnv = { ...process.env };
+  if (configDir) {
+    parentEnv.CLAUDE_CONFIG_DIR = configDir;
+  }
+
   return runAuditedExecutorCommand({
     command: 'claude',
     args,
@@ -434,6 +444,7 @@ function runClaude(context) {
     stateLogPath: context.stateLogPath,
     executor,
     iteration: context.iteration,
+    guardContext: { env: parentEnv },
     receiptDir: context.receiptDir,
     dispatchId: context.dispatchId,
     sessionId: context.sessionId,
