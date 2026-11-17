@@ -8,7 +8,7 @@ trigger_phrases:
   - "review coverage trend"
 importance_tier: normal
 contextType: general
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # Deep Review Dashboard - Session Overview
@@ -66,7 +66,7 @@ Provides a compact, human-readable summary of the current review session. Serves
 - **P1 (Major):** [N] active, [N] new this iteration, [N] upgrades, [N] resolved
 - **P2 (Minor):** [N] active, [N] new this iteration, [N] upgrades, [N] resolved
 - **Repeated findings:** [N]
-- **Dimensions covered:** [correctness, security, traceability, maintainability]
+- **Dimensions covered:** [correctness, security, traceability, maintainability, then any configured custom dimension]
 - **Convergence score:** [0.00-1.00]
 <!-- MACHINE-OWNED: END -->
 

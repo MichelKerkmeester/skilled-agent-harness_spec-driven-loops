@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.13.0
+version: 1.11.14.0
 ---
 
 # Deep Review Loop Protocol
@@ -203,7 +203,7 @@ Convergence signals and weights:
 |--------|--------|-------------|
 | Rolling Average | 0.30 | Last 2 severity-weighted `newFindingsRatio` values average below `rollingStopThreshold` |
 | MAD Noise Floor | 0.25 | Latest ratio within noise floor derived from historical ratios |
-| Dimension Coverage | 0.45 | All 4 dimensions plus required traceability protocols covered, with stabilization |
+| Dimension Coverage | 0.45 | Every configured dimension (the four by default) plus required traceability protocols covered, with stabilization |
 
 **P0 override**: Any new P0 finding sets `newFindingsRatio >= 0.50`, blocking convergence regardless of composite score.
 

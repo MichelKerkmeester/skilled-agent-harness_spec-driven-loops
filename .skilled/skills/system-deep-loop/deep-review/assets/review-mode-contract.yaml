@@ -83,6 +83,14 @@ contract:
       checks: Validate codebase patterns, documentation quality, clarity, and ease of safe follow-on changes.
       requiredForSeverityCoverage: false
 
+  # A configured name outside the four above is a custom dimension. It is tracked
+  # and covered like the others, ordered after them, and judged by its own name.
+  customDimensionRule:
+    priority: after-canonical
+    order: configured
+    checks: Review the target for the property the configured name states, under the shared P0/P1/P2 severity doctrine.
+    requiredForSeverityCoverage: false
+
   # Severity contract stays stable across review outputs.
   severities:
     - id: P0

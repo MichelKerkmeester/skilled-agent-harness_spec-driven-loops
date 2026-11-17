@@ -8,12 +8,12 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.8.0
+version: 1.11.9.0
 ---
 
 # deep-review
 
-> Audit code across four review dimensions in separate passes and end with a release-readiness verdict you can act on.
+> Audit code across correctness, security, traceability and maintainability, plus any custom dimension you configure, in separate passes and end with a release-readiness verdict you can act on.
 
 ---
 
@@ -42,7 +42,7 @@ This skill splits the audit by dimension and puts the stop decision on a weighte
 
 ### The Review Dimensions
 
-All four dimensions are configured by default. All four are required for coverage, so the loop can stop clean only after each one has been audited. Correctness and security are the two the mode contract marks as required for severity coverage.
+The four canonical dimensions are configured by default. Every configured dimension is required for coverage, so the loop can stop clean only after each one has been audited. A custom dimension you configure, such as `performance`, is reviewed after the canonical four. Correctness and security are the two the mode contract marks as required for severity coverage.
 
 | Dimension | What the skill audits |
 |---|---|

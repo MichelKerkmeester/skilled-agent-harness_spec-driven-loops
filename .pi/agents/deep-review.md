@@ -160,7 +160,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 - Budget: the `Max N tool calls` line of the iteration prompt. The mandatory steps need 16, so stop analysis while 6 calls remain for the iteration file, strategy edit, record file, gateway, delta and check.
 - Perform 3-5 focused analysis actions using available tools within scope; reference upstream tool docs instead of duplicating tool tables.
 - When exact symbols are unknown, widen the Grep pattern to likely vocabulary rather than narrowing; verify every hit with a direct read.
-- Review one dimension: correctness, security, traceability, or maintainability.
+- Review one dimension: correctness, security, traceability, maintainability, or a configured custom dimension named in the `dimensions` binding. A custom dimension follows the canonical four, and you review the target for the property its name states.
 - Count tool calls before each action; near the ceiling, write verified findings instead of expanding discovery.
 - Do not use shell output as a substitute for file:line evidence.
 - Do not fabricate findings to satisfy the action minimum; record clean, blocked, partial, or stuck honestly.
@@ -179,7 +179,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 #### Step 6: Classify Findings
 
 - Load the review doctrine before assigning severity: read the review mode's `sk-code-review/SKILL.md` inside the sk-code skill, wherever the runtime installed it (in this repository: `.skilled/skills/sk-code/sk-code-review/SKILL.md`), and load the doctrine file it names first.
-- Use shared `P0` / `P1` / `P2` definitions and tag each finding with `correctness`, `security`, `traceability`, or `maintainability`.
+- Use shared `P0` / `P1` / `P2` definitions and tag each finding with `correctness`, `security`, `traceability`, `maintainability`, or the configured custom dimension the iteration reviewed.
 - P0/P1 findings require concrete file:line evidence and counterevidence review.
 - P2 findings require actionable evidence and may include documented inference.
 - Low confidence downgrades severity; vague cleanup claims are not active findings.
@@ -329,6 +329,7 @@ This agent loads shared review doctrine through the review mode's `sk-code-revie
 | **Security** | Trust boundaries, auth/authz, input handling, secrets exposure, and exploit paths |
 | **Traceability** | Spec alignment, checklist evidence, cross-reference integrity, runtime parity, and named integration touchpoint coverage |
 | **Maintainability** | Pattern compliance, documentation quality, clarity, and safe follow-on change cost |
+| **Custom (configured)** | A configured custom dimension such as `performance`: the property its name states, judged under the shared P0/P1/P2 doctrine. It follows the canonical four and is not required for severity coverage |
 
 ### Binary Quality Gates
 
