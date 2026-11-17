@@ -982,7 +982,7 @@ function collapseFindingsByDedupKey(findingEntries) {
   return [...byKey.values()];
 }
 
-function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = []) {
+function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [], universe = REQUIRED_DIMENSIONS) {
   const findingById = new Map();
   const claimAdjudicationByFinding = buildClaimAdjudicationByFinding(iterationRecords);
 
@@ -1029,6 +1029,7 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
         dimension: deriveDimension(
           { ...finding, severity: canonicalSeverity },
           iteration,
+          universe,
         ),
         firstSeen: run,
         lastSeen: run,
@@ -1211,9 +1212,23 @@ function compareFindings(left, right) {
   return left.findingId.localeCompare(right.findingId);
 }
 
-function deriveDimension(finding, iteration) {
+// The canonical four come first in risk order; configured custom names follow in configured order.
+function buildDimensionUniverse(config) {
+  const universe = [...REQUIRED_DIMENSIONS];
+  const raw = config && config.reviewDimensions;
+  const configured = Array.isArray(raw) ? raw : (typeof raw === 'string' ? raw.split(',') : []);
+  for (const entry of configured) {
+    const name = String(entry).trim().toLowerCase();
+    if (name && name !== 'all' && !universe.includes(name)) {
+      universe.push(name);
+    }
+  }
+  return universe;
+}
+
+function deriveDimension(finding, iteration, universe = REQUIRED_DIMENSIONS) {
   const focus = `${iteration.focus} ${finding.title} ${finding.description}`.toLowerCase();
-  for (const dimension of REQUIRED_DIMENSIONS) {
+  for (const dimension of universe) {
     if (focus.includes(dimension)) {
       return dimension;
     }
@@ -1221,9 +1236,9 @@ function deriveDimension(finding, iteration) {
   return iteration.dimensionsAddressed[0] || 'correctness';
 }
 
-function buildDimensionCoverage(iterationRecords, strategyDimensions) {
+function buildDimensionCoverage(iterationRecords, strategyDimensions, universe = REQUIRED_DIMENSIONS) {
   const covered = {};
-  for (const dimension of REQUIRED_DIMENSIONS) {
+  for (const dimension of universe) {
     covered[dimension] = false;
   }
 
@@ -1244,7 +1259,7 @@ function buildDimensionCoverage(iterationRecords, strategyDimensions) {
       continue;
     }
     const normalized = entry.text.toLowerCase();
-    for (const dimension of REQUIRED_DIMENSIONS) {
+    for (const dimension of universe) {
       if (normalized.includes(dimension)) {
         covered[dimension] = true;
       }
@@ -1934,8 +1949,9 @@ function validateReviewRecordFields(records) {
 function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, config, corruptionWarnings = [], deltaRecords = [], eventRecords = iterationRecords) {
   const terminalStop = buildTerminalStopState(iterationRecords);
   const lineage = buildLineageState(config, iterationRecords, terminalStop);
-  const { openFindings, resolvedFindings } = buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords);
-  const dimensionCoverage = buildDimensionCoverage(iterationRecords, strategyDimensions);
+  const dimensionUniverse = buildDimensionUniverse(config);
+  const { openFindings, resolvedFindings } = buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords, dimensionUniverse);
+  const dimensionCoverage = buildDimensionCoverage(iterationRecords, strategyDimensions, dimensionUniverse);
   const findingsBySeverity = buildFindingsBySeverity(openFindings);
   const convergenceScore = computeConvergenceScore(iterationRecords);
   const graphConvergence = buildGraphConvergenceRollup(iterationRecords);
@@ -2156,7 +2172,7 @@ function upsertHeadingSectionBefore(content, heading, body, beforeHeading, optio
 // A free-text leaf focus must not hide a required dimension the run has not covered yet.
 function pickReviewBaseFocus(iterationFiles, registry) {
   const leafFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1) || '';
-  const uncovered = REQUIRED_DIMENSIONS.filter((dimension) => !registry.dimensionCoverage[dimension]);
+  const uncovered = Object.keys(registry.dimensionCoverage).filter((dimension) => !registry.dimensionCoverage[dimension]);
   const leafKey = String(leafFocus).toLowerCase().trim();
   if (leafFocus && (uncovered.length === 0 || uncovered.some((dimension) => leafKey.includes(dimension)))) {
     return leafFocus;
@@ -2182,12 +2198,12 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, option
     `- Resolved: ${registry.resolvedFindingsCount}`,
   ].join('\n');
 
-  const completedDimensions = REQUIRED_DIMENSIONS
+  const completedDimensions = Object.keys(registry.dimensionCoverage)
     .filter((dimension) => registry.dimensionCoverage[dimension])
     .map((dimension) => `- [x] ${dimension}`)
     .join('\n') || '[None yet]';
 
-  const remainingDimensions = REQUIRED_DIMENSIONS
+  const remainingDimensions = Object.keys(registry.dimensionCoverage)
     .filter((dimension) => !registry.dimensionCoverage[dimension])
     .map((dimension) => `- [ ] ${dimension}`)
     .join('\n') || '[All dimensions complete]';
@@ -2306,7 +2322,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     })
     .join('\n') || '| 0 | none yet | - | 0.00 | 0/0/0 | initialized |';
 
-  const dimensionRows = REQUIRED_DIMENSIONS
+  const dimensionRows = Object.keys(registry.dimensionCoverage)
     .map((dimension) => {
       const covered = registry.dimensionCoverage[dimension];
       const status = covered ? 'covered' : 'pending';
