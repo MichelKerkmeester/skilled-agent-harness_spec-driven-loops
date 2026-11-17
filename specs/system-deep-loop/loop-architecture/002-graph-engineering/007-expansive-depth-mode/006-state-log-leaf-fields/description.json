@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields",
+  "description": "Restore the research leaf fields the state-log projection drops (D7, D9), after an operator decision",
+  "keywords": [
+    "restore",
+    "research",
+    "leaf",
+    "fields",
+    "state-log",
+    "projection",
+    "drops",
+    "operator",
+    "decision"
+  ],
+  "lastUpdated": "2026-11-17T14:35:02.204Z",
+  "specId": "006",
+  "folderSlug": "state-log-leaf-fields",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "002-graph-engineering",
+    "007-expansive-depth-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

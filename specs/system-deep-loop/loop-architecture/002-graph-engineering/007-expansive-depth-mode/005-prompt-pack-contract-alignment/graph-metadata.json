@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment",
+  "spec_folder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment",
+  "parent_id": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "prompt pack contract alignment",
+      "progressive synthesis write conflict",
+      "recommended next focus heading",
+      "slice e prompt pack",
+      "prompt pack contract alignment plan",
+      "prompt pack contract alignment tasks"
+    ],
+    "key_topics": [
+      "prompt",
+      "pack",
+      "contract",
+      "alignment",
+      "progressive",
+      "synthesis",
+      "write",
+      "conflict",
+      "recommended",
+      "next",
+      "focus",
+      "heading"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".skilled/agents/deep-review.md",
+      ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+      ".skilled/agents/deep-research.md",
+      ".skilled/commands/deep/assets/deep-research.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack-iteration.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Next Focus",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommended Next Focus",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Questions Remaining",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A research leaf gets two contradicting write rules: `.skilled/agents/deep-research.md:58` allows `research/research.md` when `progressiveSynthesis == true`, while the prompt pack's \"ALLOWED WRITE PATHS\" list (`deep-research/assets/prompt-pack-iteration.md.tmpl:42-45`) names only the iteration narrative, the delta and the gateway writes (defect D6, seen on 12 of 12 iterations across both generations of the parent run)",
+    "created_at": "2026-11-17T14:43:29.630Z",
+    "last_save_at": "2026-11-17T14:46:18.199Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:c4c9154a3ae8d0368b88331da1f89edc130bcfa0f45a78ad6537793c427e7eaa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f9d858af57d53c2b7b97c2f2b5f33eafb4206d66a9d86630f82e89a5b545949c",
+      "plan.md": "e586ee0783413044cd05681ca3ccac0db458f2912237b38b99c06fb0382358ea",
+      "tasks.md": "d047253403caaffac411f884d2720cd5f29c4690a9f244704865aea8566714d4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

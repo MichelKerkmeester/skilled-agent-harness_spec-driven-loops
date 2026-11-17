@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode",
+  "spec_folder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode",
+  "parent_id": "system-deep-loop/loop-architecture/002-graph-engineering",
+  "children_ids": [
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/001-completed-run-extension",
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/002-research-claude-config-dir",
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor",
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix",
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment",
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields",
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class",
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/008-review-dimension-coverage",
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/009-fanout-review-coverage-merge",
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode",
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode",
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene",
+    "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "expansive depth mode",
+      "expansive depth sub mode for deep research",
+      "expansive depth mode plan",
+      "expansive depth mode tasks",
+      "expansive depth mode implementation summary",
+      "depth-mode expansive",
+      "frontier veto",
+      "completed-continue extension",
+      "deep loop change slices"
+    ],
+    "key_topics": [
+      "expansive",
+      "depth",
+      "mode",
+      "sub",
+      "deep",
+      "research",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "depth-mode",
+      "frontier"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/inbox.jsonl",
+      "research/iterations/iteration-001.md",
+      "research/resource-map.md",
+      "research/deep-research-strategy.md",
+      "research/deep-research-state.jsonl",
+      "scratch/fable-5-2-review.md",
+      "scratch/opus-verification-log.md",
+      ".skilled/commands/deep/research.md",
+      ".skilled/agents/deep-research.md",
+      "hooks/claude/user-prompt-submit.ts",
+      "research_archive/20261117T103614Z/iterations/iteration-001.md",
+      "research_archive/20261117T103614Z/research.md",
+      "scratch/research-fable-5-2-draft.md",
+      ".skilled/commands/deep/assets/deep-research.yaml",
+      ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "inbox.jsonl",
+        "kind": "file",
+        "path": "research/inbox.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "fable-5-2-review.md",
+        "kind": "doc",
+        "path": "scratch/fable-5-2-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "opus-verification-log.md",
+        "kind": "doc",
+        "path": "scratch/opus-verification-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "research-fable-5-2-draft.md",
+        "kind": "doc",
+        "path": "scratch/research-fable-5-2-draft.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "loop-protocol.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-research and deep-review loops converge on the three to five questions seeded at init and stop once novelty drops, so a broad target such as \"research the last 100 commits for bugs, drift and improvements\" or \"analyze system-skill-advisor for chat-time auto-utilization\" gets a narrow, shallow answer",
+    "created_at": "2026-11-17T07:53:58Z",
+    "last_save_at": "2026-11-17T16:54:18.192Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:0429fa4f76a9f2fabd224d3b300f086bbbd36bdd09c1163ce17c7428e54b5831",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "42798bf071d0393de728f9e0803f5626d61dd103be467f5660aaf875c9cf61c1",
+      "plan.md": "6a56a3aaa01f0331b6c583bb878c61d031938abfeddad6ebb39c9e3ea0cac9fd",
+      "tasks.md": "2bd96d25454ae3e7bf9fea94cadc73dac0e5379c35aaeb83792afd7a17257727",
+      "implementation-summary.md": "2088c1e4437f3061bd63975059960c6ebb10e14588be75e53898d13f9a592446",
+      "research/research.md": "388f865f2096176f5124d2d49da58ef45c08c4c78a63a1293ccc05b0592f3de0"
+    },
+    "last_active_at": null
+  }
+}

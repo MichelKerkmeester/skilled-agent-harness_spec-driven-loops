@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/009-fanout-review-coverage-merge",
+  "description": "Carry the review coverage surfaces through the fan-out registry merge (D12)",
+  "keywords": [
+    "carry",
+    "review",
+    "coverage",
+    "surfaces",
+    "fan-out",
+    "registry",
+    "merge",
+    "d12"
+  ],
+  "lastUpdated": "2026-11-17T14:35:13.477Z",
+  "specId": "009",
+  "folderSlug": "fanout-review-coverage-merge",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "002-graph-engineering",
+    "007-expansive-depth-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

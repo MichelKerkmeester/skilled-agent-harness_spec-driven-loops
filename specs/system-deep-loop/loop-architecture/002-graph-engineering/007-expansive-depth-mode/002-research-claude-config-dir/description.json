@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/002-research-claude-config-dir",
+  "description": "Forward the Claude config dir on single-executor research cli-claude-code dispatch",
+  "keywords": [
+    "forward",
+    "claude",
+    "config",
+    "dir",
+    "single-executor",
+    "research",
+    "cli-claude-code",
+    "dispatch"
+  ],
+  "lastUpdated": "2026-11-17T14:34:21.429Z",
+  "specId": "002",
+  "folderSlug": "research-claude-config-dir",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "002-graph-engineering",
+    "007-expansive-depth-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene",
+  "spec_folder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene",
+  "parent_id": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pivot hygiene",
+      "maxCouncilSeatOutputs per pivot",
+      "slice l pivot hygiene",
+      "pivot hygiene plan",
+      "pivot hygiene tasks",
+      "pivot hygiene goal",
+      "pivot hygiene decision record",
+      "pivot hygiene implementation summary"
+    ],
+    "key_topics": [
+      "pivot",
+      "hygiene",
+      "maxcouncilseatoutputs",
+      "per",
+      "slice",
+      "plan",
+      "tasks",
+      "goal",
+      "decision",
+      "record",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs",
+      ".skilled/commands/deep/assets/deep-research.yaml",
+      ".skilled/commands/deep/assets/deep-review.yaml",
+      ".skilled/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/council/multi-seat-dispatch.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "divergent-pivot.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "divergent-pivot.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "divergent-pivot.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "multi-seat-dispatch.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/council/multi-seat-dispatch.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eliminated Alternatives",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bounded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The divergent pivot (`runtime/lib/deep-loop/divergent-pivot.ts`) has three hygiene gaps",
+    "created_at": "2026-11-17T14:35:15Z",
+    "last_save_at": "2026-11-17T16:54:27.404Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fc1eb3efdca494ee9c8644772050495dde4b5e0f706ca87a4758489c0690729c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "884f0e410b065eb58260e31cdf4ad725ebf7f643c98dfebfeb356d8c9b7ed3c6",
+      "plan.md": "8747ebcd88533fdb51f8197b3e914b7c307254bbd94710554f05583d02d2e8c4",
+      "tasks.md": "cb52509fa5cc47d76778f3d8cbdfdcbc012b4524a91a1694a5a1ac9e00beea97",
+      "decision-record.md": "c878ba22182075add16ed71b33a371b000fefb9224d863f875dfaab3bd9abd97",
+      "implementation-summary.md": "17b70980bd8c7724e77e30f98346c86a0ce6c1b5b048653d04c93be94915a7e2"
+    },
+    "last_active_at": null
+  }
+}

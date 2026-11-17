@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class",
+  "description": "Derive SOURCE quality_class at the upsert choke point from a closed vocabulary",
+  "keywords": [
+    "derive",
+    "source",
+    "upsert",
+    "choke",
+    "point",
+    "closed",
+    "vocabulary"
+  ],
+  "lastUpdated": "2026-11-17T14:43:29.728Z",
+  "specId": "007",
+  "folderSlug": "source-diversity-quality-class",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "002-graph-engineering",
+    "007-expansive-depth-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

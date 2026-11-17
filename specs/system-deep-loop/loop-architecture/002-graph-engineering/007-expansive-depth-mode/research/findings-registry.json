@@ -1,0 +1,1525 @@
+{
+  "sessionId": "2026-11-17T10:36:36.000Z",
+  "parentSessionId": "2026-11-17T07:52:43.000Z",
+  "lineageMode": "restart",
+  "generation": 2,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-adversarially-verify-the-generation-1-design-8-10-of-the-archived-research-md",
+      "inboxId": null,
+      "text": "Q1: Adversarially verify the generation-1 design (§8, §10 of the archived research.md) and defects D1-D9 against the current code. Which claims hold, which are wrong or overstated, and what are the corrected statements with file:line evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-q2-on-the-review-side-how-do-divergent-review-pivot-ts-the-deep-review-reducer-t",
+      "inboxId": null,
+      "text": "Q2: On the review side, how do divergent-review-pivot.ts, the deep-review reducer, the review prompt pack and fanout-merge.cjs internals keep review runs narrow, and what does the frontier sub-mode need to change there that generation 1 did not map?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-how-many-extra-iterations-does-a-divergent-pivot-after-all-questions-answered",
+      "inboxId": null,
+      "text": "Q3: How many extra iterations does a divergent pivot after all_questions_answered actually buy (trace the code path end to end), and what is the honest fix for D1: who should produce coverage-graph quality_class, from what closed vocabulary, enforced where?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-for-example-target-2-skill-advisor-auto-utilization-while-chatting-what-do-th",
+      "inboxId": null,
+      "text": "Q4: For example target 2 (skill-advisor auto-utilization while chatting), what do the scorer (df-idf.ts and its callers) and the prompt-policy gate actually do with casual chat prompts, and does the generation-1 frontier decomposition for that target survive contact with the code?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-q5-turn-the-generation-1-recommendations-into-concrete-independently-shippable-c",
+      "inboxId": null,
+      "text": "Q5: Turn the generation-1 recommendations into concrete, independently shippable change slices: for each slice the files, the behavior change, the tests that prove it (existing and new), the default-path risk, and the ordering dependencies.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-6-q6-design-completed-run-extension-for-deep-research-and-deep-review-today-a-comp",
+      "inboxId": "inbox-001",
+      "text": "Q6: Design completed-run extension for deep-research and deep-review. Today a completed packet halts (step_classify_session on_completed_session) and the completed-continue lineage mode is deferred, so the only way to add iterations is --restart, which archives the registry, strategy and questions. How should an in-place extension work (completed-continue or an --extend=N flag): which config fields change, which ledger event records it, how the reducer, convergence floor and synthesis treat pre- and post-extension iterations, and which files and tests change?",
+      "origin": "operator",
+      "source": "operator note 2026-11-17: if extension is not supported we should add it",
+      "injectedAtIteration": 2,
+      "promotedQuestionId": null,
+      "addedAtIteration": 2,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-q1-adversarially-verify-the-generation-1-design-8-10-of-the-archived-research-md",
+      "inboxId": null,
+      "text": "Q1: Adversarially verify the generation-1 design (§8, §10 of the archived research.md) and defects D1-D9 against the current code. Which claims hold, which are wrong or overstated, and what are the corrected statements with file:line evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-for-example-target-2-skill-advisor-auto-utilization-while-chatting-what-do-th",
+      "inboxId": null,
+      "text": "Q4: For example target 2 (skill-advisor auto-utilization while chatting), what do the scorer (df-idf.ts and its callers) and the prompt-policy gate actually do with casual chat prompts, and does the generation-1 frontier decomposition for that target survive contact with the code?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-2-q2-on-the-review-side-how-do-divergent-review-pivot-ts-the-deep-review-reducer-t",
+      "inboxId": null,
+      "text": "Q2: On the review side, how do divergent-review-pivot.ts, the deep-review reducer, the review prompt pack and fanout-merge.cjs internals keep review runs narrow, and what does the frontier sub-mode need to change there that generation 1 did not map?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-3-q3-how-many-extra-iterations-does-a-divergent-pivot-after-all-questions-answered",
+      "inboxId": null,
+      "text": "Q3: How many extra iterations does a divergent pivot after all_questions_answered actually buy (trace the code path end to end), and what is the honest fix for D1: who should produce coverage-graph quality_class, from what closed vocabulary, enforced where?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-5-q5-turn-the-generation-1-recommendations-into-concrete-independently-shippable-c",
+      "inboxId": null,
+      "text": "Q5: Turn the generation-1 recommendations into concrete, independently shippable change slices: for each slice the files, the behavior change, the tests that prove it (existing and new), the default-path risk, and the ordering dependencies.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-6-q6-design-completed-run-extension-for-deep-research-and-deep-review-today-a-comp",
+      "inboxId": "inbox-001",
+      "text": "Q6: Design completed-run extension for deep-research and deep-review. Today a completed packet halts (step_classify_session on_completed_session) and the completed-continue lineage mode is deferred, so the only way to add iterations is --restart, which archives the registry, strategy and questions. How should an in-place extension work (completed-continue or an --extend=N flag): which config fields change, which ledger event records it, how the reducer, convergence floor and synthesis treat pre- and post-extension iterations, and which files and tests change?",
+      "origin": "operator",
+      "source": "operator note 2026-11-17: if extension is not supported we should add it",
+      "injectedAtIteration": 2,
+      "promotedQuestionId": null,
+      "addedAtIteration": 2,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q1 residual: D4 (`normalizeQuestionOrigin` fallback), D8 (loop-lock pid-liveness), §8/§10 design spot-checks.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: review-side pivot adapter, deep-review reducer, review prompt pack, fanout-merge internals.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: concrete change slices with tests, risks, ordering.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: skill-advisor scorer (`df-idf.ts`) and prompt-policy gate on casual chat.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: pivot-after-`all_questions_answered` yield; D1 honest fix (quality_class producer + closed vocabulary).",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Open sub-question surfaced by this iteration: whether `maxCouncilSeatOutputs: 9` should be per-pivot rather than lifetime — a resumed pivot currently burns lifetime seat budget.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: skill-advisor scorer (`df-idf.ts`) + prompt-policy gate on casual chat.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 residual: D4 (`normalizeQuestionOrigin` fallback), D8 (loop-lock pid-liveness), §8/§10 spot-checks.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6 (operator-injected at iteration 2): completed-run extension design.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: review side — `divergent-review-pivot.ts`, deep-review reducer, review prompt pack, `fanout-merge.cjs` internals.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4 (skill-advisor scorer + prompt-policy gate), Q5 (change slices — now includes review-side slices for findings 1-6), Q6 (completed-run extension), Q1 residual (D4/D8), open sub-question on per-pivot `maxCouncilSeatOutputs`.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4 (unanswered, scoped): the four reads listed in Finding 4 — `prompt-policy.ts:80-223`, `prompt-policy.default.json` thresholds, the `fire:false` call-site consequence, and whether gen-1's target-2 decomposition names the gate or the scorer.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 residual (unanswered): D4 (`normalizeQuestionOrigin` fallback, `reduce-state.cjs:128,:204`) and D8 (`loop-lock.cjs:183-186`) — folded into Slices D and A as verification tasks.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Open sub-question: per-pivot vs lifetime `maxCouncilSeatOutputs` (Slice L decision point).",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q1: Adversarially verify the generation-1 design (§8, §10 of the archived research.md) and defects D1-D9 against the current code. Which claims hold, which are wrong or overstated, and what are the corrected statements with file:line evidence?",
+    "Q4: For example target 2 (skill-advisor auto-utilization while chatting), what do the scorer (df-idf.ts and its callers) and the prompt-policy gate actually do with casual chat prompts, and does the generation-1 frontier decomposition for that target survive contact with the code?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-d1-confirmed-verbatim-sourcediversity-counts-distinct-metadata-quality-class-str",
+      "text": "**D1 CONFIRMED, verbatim.** `sourceDiversity` counts distinct `metadata.quality_class` strings per question; `coverage-graph-signals.ts:680` accepts any non-empty string with no vocabulary check. Only test files produce the value (`convergence-script.vitest.ts:49-50,70-71,112`, `coverage-graph-signals.vitest.ts:67-68`); no runtime producer exists. The prompt-pack node shape still has no `metadata` field (this run's own OUTPUT CONTRACT defines nodes as `{type,id,kind,label}` only). Sharpened detail: `upsert.cjs:235` forwards leaf-supplied `n.metadata` verbatim onto the node — that passthrough is exactly what made the generation-1 iteration-7 gaming demonstration possible. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:680] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:235] [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts:49]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/research.md` (full)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:680`, `coverage-graph-query.ts:131`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:235`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts:49-50,70-71,112`; `tests/unit/coverage-graph-signals.vitest.ts:67-68`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:352,1051,1073,1159,1347,1739`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:154,213-220,355,385-386,407`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:14,255-271,560-563`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:779-783,3962,3995`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1440-1448`; `deep-review.yaml:1517-1531`",
+        "`.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:12`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1922-1944,2420-2600`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs:76-130,172`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` (grep — cited fields absent)",
+        "`research/deep-research-state.jsonl` (live projection, this run)"
+      ]
+    },
+    {
+      "id": "finding-1-2-d2-confirmed-verbatim-all-four-sub-claims-with-current-lines-dispatch-iteration-",
+      "text": "**D2 CONFIRMED, verbatim — all four sub-claims with current lines.** `dispatch-iteration.cjs:213-220`: `claudeReview = executor === 'cli-claude-code' && loopType === 'review'`; an explicit `--claude-config-dir` on a research run throws `UsageError: flag '--claude-config-dir' is only valid with --executor cli-claude-code --loop-type review`. `dispatch-iteration.cjs:355`: the config dir is validated only `loopType === 'review'`; the research branch (`:407` onward) builds the executor with no `configDir` field. `deep-research.yaml:1440-1442` invokes `dispatch-iteration.cjs --executor cli-claude-code {cli_dispatch_args}` with no `--claude-config-dir`, so a configured `configDir` is silently dropped on single-executor research. `deep-review.yaml:1519` forwards `--claude-config-dir \"{optional_claude_config_dir}\"`. `fanout-run.cjs:3962,3995` injects `CLAUDE_CONFIG_DIR` for `lineage.kind === 'cli-claude-code' && lineage.configDir` with no loop-type condition — fan-out research lineages unaffected, as claimed. Inherited `CLAUDE_CONFIG_DIR` reaches the child through the env allowlist per the code comment at `dispatch-iteration.cjs:385-386`. Sub-claim not re-verified: `executor-audit.ts:155,:284` (research audit record omits `configDir`) — the core mechanism is fully confirmed without it. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:213] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:355] [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1442] [SOURCE: .skilled/commands/deep/assets/deep-review.yaml:1519] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3962] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3995]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/research.md` (full)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:680`, `coverage-graph-query.ts:131`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:235`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts:49-50,70-71,112`; `tests/unit/coverage-graph-signals.vitest.ts:67-68`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:352,1051,1073,1159,1347,1739`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:154,213-220,355,385-386,407`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:14,255-271,560-563`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:779-783,3962,3995`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1440-1448`; `deep-review.yaml:1517-1531`",
+        "`.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:12`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1922-1944,2420-2600`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs:76-130,172`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` (grep — cited fields absent)",
+        "`research/deep-research-state.jsonl` (live projection, this run)"
+      ]
+    },
+    {
+      "id": "finding-1-3-d3-confirmed-verbatim-deep-review-config-json-12-sets-anticonvergence-miniterati",
+      "text": "**D3 CONFIRMED, verbatim.** `deep-review-config.json:12` sets `antiConvergence.minIterations: 2`. `convergence.cjs:1347-1348` reads `config.minIterations ?? antiConvergence.minIterations` for both loop types, so the value is loaded — but the floor check at `convergence.cjs:1159` is `if (loopType === 'research' && minIterations > 1 && iterationCount < minIterations)`. A review run can therefore still stop at iteration 1. [SOURCE: .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:12] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1159] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1347]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/research.md` (full)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:680`, `coverage-graph-query.ts:131`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:235`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts:49-50,70-71,112`; `tests/unit/coverage-graph-signals.vitest.ts:67-68`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:352,1051,1073,1159,1347,1739`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:154,213-220,355,385-386,407`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:14,255-271,560-563`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:779-783,3962,3995`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1440-1448`; `deep-review.yaml:1517-1531`",
+        "`.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:12`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1922-1944,2420-2600`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs:76-130,172`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` (grep — cited fields absent)",
+        "`research/deep-research-state.jsonl` (live projection, this run)"
+      ]
+    },
+    {
+      "id": "finding-1-4-d5-confirmed-no-reader-upgraded-from-grep-inference-to-confirmed-for-the-researc",
+      "text": "**D5 CONFIRMED — \"no reader\" upgraded from grep-INFERENCE to CONFIRMED for the research path.** `reduce-state.cjs:1927,1939` parses the free-text `## Questions Remaining` section into `questionsRemaining`; `reduce-state.cjs:1930` also parses `## Recommended Next Focus` into `iteration.nextFocus`. `continuity-thread.cjs:86-106` feeds `questionsRemaining` (file records) and `record.openQuestions`/`record.questionsRemaining` (state records) into carried-forward candidates, deduplicating only against *open* machine questions — answered questions are never filtered, so stale free text keeps steering. A full-lib grep for `nextFocus`/`deriveNextFocusFromContinuity` returns only the definition (`continuity-thread.cjs:130`) and export (`:172`): the parsed `nextFocus` field has no consumer on the research focus path. `resolveNextFocus` precedence confirmed: pivot focus → blocked-stop recovery → continuity → promoted idea (`reduce-state.cjs:2427-2473`). [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1927] [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1930] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs:86] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs:130] [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2420]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/research.md` (full)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:680`, `coverage-graph-query.ts:131`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:235`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts:49-50,70-71,112`; `tests/unit/coverage-graph-signals.vitest.ts:67-68`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:352,1051,1073,1159,1347,1739`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:154,213-220,355,385-386,407`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:14,255-271,560-563`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:779-783,3962,3995`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1440-1448`; `deep-review.yaml:1517-1531`",
+        "`.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:12`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1922-1944,2420-2600`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs:76-130,172`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` (grep — cited fields absent)",
+        "`research/deep-research-state.jsonl` (live projection, this run)"
+      ]
+    },
+    {
+      "id": "finding-1-5-d6-confirmed-live-in-this-run-the-agent-definition-step-10-directs-updating-rese",
+      "text": "**D6 CONFIRMED LIVE in this run.** The agent definition (Step 10) directs updating `research/research.md` when `progressiveSynthesis == true`, and this run's config sets `\"progressiveSynthesis\": true` — yet this iteration's rendered prompt pack lists exactly three allowed write paths (iteration narrative, delta file, gateway writes) and `research/research.md` is not among them. The two contracts still conflict, so progressive synthesis cannot happen; the conflict was recorded as a scope_violation finding (below) instead of writing. [SOURCE: .skilled/agents/deep-research.md] [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-config.json:15]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/research.md` (full)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:680`, `coverage-graph-query.ts:131`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:235`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts:49-50,70-71,112`; `tests/unit/coverage-graph-signals.vitest.ts:67-68`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:352,1051,1073,1159,1347,1739`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:154,213-220,355,385-386,407`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:14,255-271,560-563`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:779-783,3962,3995`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1440-1448`; `deep-review.yaml:1517-1531`",
+        "`.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:12`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1922-1944,2420-2600`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs:76-130,172`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` (grep — cited fields absent)",
+        "`research/deep-research-state.jsonl` (live projection, this run)"
+      ]
+    },
+    {
+      "id": "finding-1-6-d7-confirmed-live-this-iteration-s-submitted-record-carried-target-agent-resolve",
+      "text": "**D7 CONFIRMED LIVE.** This iteration's submitted record carried `target_agent`, `resolved_route`, `agent_definition_loaded`, `runId`, `sessionId`, `lineageId`, `keyQuestions`, `graphEvents`, `toolsUsed`, `sourcesQueried`, `focusTrack`, `edgeCase`, `findingsCount`, `noveltyJustification`. The gateway-refreshed `deep-research-state.jsonl` projection kept only `{type, iteration, run, status, newInfoRatio, ruledOut, focus, mode, answeredQuestions, timestamp}` — every route-proof and telemetry field was dropped. `verify-iteration.cjs:255-271` checks the four route-proof fields and `:560-563` reports failure only if they fail \"in both the state record and deltas/iter-NNN.jsonl\" — the delta fallback is the only pass path, as generation 1 claimed. **Stale-reference correction:** `legacy-compatibility.ts` no longer contains `keyQuestions`, `verificationGaps`, `graphEvents`, `resolved_route`, `target_agent`, or `agent_definition_loaded` at all — the cited `:643` seam has moved (INFERENCE: the dropping now happens in the gateway's projection writer; the exact module is unlocated this iteration). [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-state.jsonl] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:256] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:560]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/research.md` (full)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:680`, `coverage-graph-query.ts:131`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:235`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts:49-50,70-71,112`; `tests/unit/coverage-graph-signals.vitest.ts:67-68`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:352,1051,1073,1159,1347,1739`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:154,213-220,355,385-386,407`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:14,255-271,560-563`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:779-783,3962,3995`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1440-1448`; `deep-review.yaml:1517-1531`",
+        "`.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:12`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1922-1944,2420-2600`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs:76-130,172`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` (grep — cited fields absent)",
+        "`research/deep-research-state.jsonl` (live projection, this run)"
+      ]
+    },
+    {
+      "id": "finding-1-7-d9-confirmed-live-same-probe-keyquestions-was-present-in-the-submitted-record-an",
+      "text": "**D9 CONFIRMED LIVE** (same probe). `keyQuestions` was present in the submitted record and absent from the projected row, so the `focusAlignment` guard's input (state-log `keyQuestions` per generation-1's `convergence.cjs:1594` citation) still never materializes. Harmless today; it would start firing only if the projection ever kept the field — same caveat generation 1 gave. [SOURCE: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-state.jsonl]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/research.md` (full)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:680`, `coverage-graph-query.ts:131`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:235`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts:49-50,70-71,112`; `tests/unit/coverage-graph-signals.vitest.ts:67-68`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:352,1051,1073,1159,1347,1739`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:154,213-220,355,385-386,407`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:14,255-271,560-563`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:779-783,3962,3995`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1440-1448`; `deep-review.yaml:1517-1531`",
+        "`.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:12`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1922-1944,2420-2600`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs:76-130,172`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` (grep — cited fields absent)",
+        "`research/deep-research-state.jsonl` (live projection, this run)"
+      ]
+    },
+    {
+      "id": "finding-1-8-new-minor-finding-narrative-heading-contract-mismatch-this-run-s-prompt-pack-req",
+      "text": "**NEW minor finding — narrative heading contract mismatch.** This run's prompt pack requires narrative headings named \"Next Focus\", while the reducer parses `Recommended Next Focus` (`reduce-state.cjs:1930`) and `Questions Remaining` (`reduce-state.cjs:1927`). A leaf that follows the prompt pack's literal heading list (\"Next Focus\") produces a section the `Recommended Next Focus` parser may or may not match depending on `extractSection`'s matching rule (INFERENCE — `extractSection` implementation unread). This iteration used `## Recommended Next Focus` to satisfy both contracts. Adjacent to D5's free-text seam. [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1930]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/research.md` (full)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:680`, `coverage-graph-query.ts:131`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:235`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts:49-50,70-71,112`; `tests/unit/coverage-graph-signals.vitest.ts:67-68`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:352,1051,1073,1159,1347,1739`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:154,213-220,355,385-386,407`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:14,255-271,560-563`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:779-783,3962,3995`",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1440-1448`; `deep-review.yaml:1517-1531`",
+        "`.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:12`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1922-1944,2420-2600`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs:76-130,172`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` (grep — cited fields absent)",
+        "`research/deep-research-state.jsonl` (live projection, this run)"
+      ]
+    },
+    {
+      "id": "finding-2-1-a-pivot-only-fires-on-a-clean-eligible-stop-behind-a-long-conjunction-and-this-r",
+      "text": "**A pivot only fires on a clean eligible STOP behind a long conjunction — and this run's own config disables it twice over.** The workflow branch runs only when `convergence_mode == 'divergent'` AND `stop_decision.reasonDetail ∈ {composite_converged, all_questions_answered}` [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1056]. The stop must first survive every earlier return in `convergence.cjs`: `maxIterationsReached` (terminal, :1115), `consecutiveFailures` (:1126), `stuckThresholdReached` (:1130), `convergenceMode 'off'` → CONTINUE (:1134), **`stopPolicy 'max-iterations'` → CONTINUE before any stop candidate is even formed (:1138–1140)**, `minIterationsNotReached` (:1159), and `qualityGuardFailed` → CONTINUE (:1167–1168). A graph-vetoed `blockedStop` and every non-eligible reason fail closed to the terminal path (yaml:1061). This packet's config sets `stopPolicy: 'max-iterations'` (config:97) and `convergenceMode: 'default'` (config:7), so the pivot path is unreachable here twice — once at the mode gate, once before a candidate exists. Generation 1's \"existing levers add duration only\" is confirmed mechanically: `max-iterations` doesn't just decline to stop early, it structurally removes the only signal that could trigger a pivot.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts` (full, 443 lines)",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1100-1229` (+ grep hits :55, :1150, :1713, :1859)",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1020-1210` (+ grep hits :26, :42-60, :1056)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:275-314` (+ grep hits :95, :110, :227, :455-483, :733-739, :1024-1042, :1259-1261, :1485)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:640-729`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts:100-169`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:200-279`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs:198` (grep)",
+        "`.skilled/skills/system-deep-loop/ARCHITECTURE.md:97` (grep)",
+        "`.skilled/skills/system-deep-loop/runtime/references/integration-points.md:47,60` (grep)",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-config.json` (run config)",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-state.jsonl` (live projection)",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-strategy.md`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/findings-registry.json`"
+      ]
+    },
+    {
+      "id": "finding-2-2-an-accepted-pivot-buys-min-maxiterations-triggeriteration-remaining-pivot-budget",
+      "text": "**An accepted pivot buys `min(maxIterations − triggerIteration, remaining pivot budget)` iterations — not \"about one\".** The corrected mechanics: a pivot converts a STOP into CONTINUE; it never extends `maxIterations`, and the cap at `convergence.cjs:1115` is evaluated before the pivot-eligible reasons and is excluded from pivoting (yaml:1061). On success the workflow sets `next_focus` to `restoredFocus`, re-runs the reducer, and proceeds to `step_rejected_pattern_cache` → the next iteration dispatches (yaml:1163–1169). Because the pivot re-picks focus from *existing* state and never adds questions to the registry, `all_questions_answered` stays true forever after it first fires — **every subsequent stop consumes another pivot**. The lifetime budget is `maxPivots: 3` (`divergent-pivot.ts:285`; refusal `max_pivots_exceeded` at :733) and `maxCouncilSeatOutputs: 9` (:286) caps total seat dispatches across all pivots — three pivots × three seats exactly saturates it, so a resumed pivot silently eats lifetime budget. `minRemainingIterations: 1` (:287, enforced :739) is nearly dead code: `remainingIterations == 0` means `iterationCount >= maxIterations`, which the cap catches earlier at :1115 — prepare never sees it. Generation 1's \"buys only about one iteration\" is **wrong as a general claim**; it holds only in the corner where the trigger lands at `maxIterations − 1`. [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1163-1169] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:285-288,733,739] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1115,1149-1150]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts` (full, 443 lines)",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1100-1229` (+ grep hits :55, :1150, :1713, :1859)",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1020-1210` (+ grep hits :26, :42-60, :1056)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:275-314` (+ grep hits :95, :110, :227, :455-483, :733-739, :1024-1042, :1259-1261, :1485)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:640-729`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts:100-169`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:200-279`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs:198` (grep)",
+        "`.skilled/skills/system-deep-loop/ARCHITECTURE.md:97` (grep)",
+        "`.skilled/skills/system-deep-loop/runtime/references/integration-points.md:47,60` (grep)",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-config.json` (run config)",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-state.jsonl` (live projection)",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-strategy.md`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/findings-registry.json`"
+      ]
+    },
+    {
+      "id": "finding-2-4-candidate-starvation-is-not-the-binding-constraint-council-agreement-is-seeds-de",
+      "text": "**Candidate starvation is not the binding constraint — council agreement is.** Seeds derive only from existing state: registry `openQuestions` + `carriedForwardOpenQuestions`, `questionConflicts`, per-record `verificationGaps`/`contradictions`/`missingSourceClasses`/`alternateEvidenceMethods`/`unansweredAdjacentQuestions`, CONTRADICTS graph edges, and — critically — `registry.keyFindings.slice(-3)` cross-check seeds, which regenerate from the *newest* findings every stop (adapter:198–285). Non-goal conflicts and priorCandidate dedupe (saturated directions, ruled-out, rejected, previously selected) filter them (:354–359, :361–402). With ≥1 finding the seed pool is effectively non-empty each round, so `no_valid_candidates` is rare; the failure modes that actually bind are the `council_*` family (:298–307) — parse failures, quorum failures, `insufficient_endorsement` — each of which fails closed with no same-iteration retry. [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:198-285,354-359,361-402] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:298-307]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts` (full, 443 lines)",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1100-1229` (+ grep hits :55, :1150, :1713, :1859)",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1020-1210` (+ grep hits :26, :42-60, :1056)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:275-314` (+ grep hits :95, :110, :227, :455-483, :733-739, :1024-1042, :1259-1261, :1485)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:640-729`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts:100-169`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:200-279`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs:198` (grep)",
+        "`.skilled/skills/system-deep-loop/ARCHITECTURE.md:97` (grep)",
+        "`.skilled/skills/system-deep-loop/runtime/references/integration-points.md:47,60` (grep)",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-config.json` (run config)",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-state.jsonl` (live projection)",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-strategy.md`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/findings-registry.json`"
+      ]
+    },
+    {
+      "id": "finding-2-5-d1-honest-fix-derive-quality-class-at-the-single-ingest-choke-point-from-verifia",
+      "text": "**D1 honest fix: derive `quality_class` at the single ingest choke point from verifiable source attributes — never trust the leaf's assertion.** The consumer counts distinct `metadata.quality_class` strings per question over ANSWERS→CITES paths (`coverage-graph-signals.ts:680–687`). Today that value can only be leaf-asserted: `upsert.cjs:235` copies `n.metadata` verbatim with no schema check, `SAFE_METADATA_KEYS` (`coverage-graph-query.ts:123–136`) allowlists the *key* but no *value* vocabulary exists, and grep confirms zero runtime producers — only test fixtures emit it. `upsert.cjs` is the sole graph mutation entry point (ARCHITECTURE.md:97; `iteration-graph-upsert.cjs:198` is just a spawn wrapper; both workflow YAMLs call it directly per integration-points.md:47,60). The honest design: **the graph layer produces the class, not the leaf.** Concretely — a deterministic `deriveQualityClass(source)` in the coverage-graph lib keyed on attributes the leaf already supplies and can't freely invent (`path`: repo-relative top-level segment + file type; URL → host/doc class; missing → `unclassified`), stamped during the upsert node-validation loop (`upsert.cjs:211–245`), with leaf-supplied `quality_class` stripped or overwritten at the same point. Vocabulary: a frozen const beside `SAFE_METADATA_KEYS`, e.g. `{repo-code, repo-test, repo-spec, skill-doc, ledger-state, external-doc, external-other, unclassified}` — enumerable and auditable. An equally honest alternative deletes the field entirely and derives the class inside `computeResearchSourceDiversityFromData` at query time — this removes the gaming surface instead of policing it, at the cost of losing the stored label for `query.cjs` display. Residual gaming surface under either design: the leaf can still cite more varied sources to inflate diversity, but cited sources are real paths/URLs that SOURCE_TAGS validation can resolve — the signal becomes \"distinct evidence classes actually cited,\" which is the honest quantity. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:653-691] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts:123-136] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:211-245] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs:198] [SOURCE: .skilled/skills/system-deep-loop/ARCHITECTURE.md:97] [SOURCE: .skilled/skills/system-deep-loop/runtime/references/integration-points.md:47,60]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts` (full, 443 lines)",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1100-1229` (+ grep hits :55, :1150, :1713, :1859)",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1020-1210` (+ grep hits :26, :42-60, :1056)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:275-314` (+ grep hits :95, :110, :227, :455-483, :733-739, :1024-1042, :1259-1261, :1485)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:640-729`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts:100-169`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:200-279`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs:198` (grep)",
+        "`.skilled/skills/system-deep-loop/ARCHITECTURE.md:97` (grep)",
+        "`.skilled/skills/system-deep-loop/runtime/references/integration-points.md:47,60` (grep)",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-config.json` (run config)",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-state.jsonl` (live projection)",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-strategy.md`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/findings-registry.json`"
+      ]
+    },
+    {
+      "id": "finding-2-3-under-execution-mode-auto-a-successful-pivot-is-adopted-with-no-operator-in-the-",
+      "text": "**Under `execution_mode: auto` a successful pivot is adopted with no operator in the loop.** `gate_divergent_pivot_choice` is `applies_to: confirm` (yaml:1132), so auto mode skips it and runs the branch's `set`/`command`/`proceed_to` unconditionally — the Council-selected candidate becomes the next focus automatically. The override gate for failed pivots is likewise `applies_to: confirm` (yaml:1172) plus an `insufficient_endorsement` condition (yaml:1175): under auto, a failed pivot simply fails closed to synthesis (yaml:1206–1207). This is consistent with `rules_never: auto_approve_on_behalf_of_user` (yaml:60) — the gate is skipped by design, not auto-answered. So in unattended runs the only binding constraints on yield are `maxPivots`, `maxCouncilSeatOutputs`, `maxIterations`, and council agreement. [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:46,60,1131-1135,1171-1176,1206-1207]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts` (full, 443 lines)",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1100-1229` (+ grep hits :55, :1150, :1713, :1859)",
+        "`.skilled/commands/deep/assets/deep-research.yaml:1020-1210` (+ grep hits :26, :42-60, :1056)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:275-314` (+ grep hits :95, :110, :227, :455-483, :733-739, :1024-1042, :1259-1261, :1485)",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:640-729`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts:100-169`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:200-279`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs:198` (grep)",
+        "`.skilled/skills/system-deep-loop/ARCHITECTURE.md:97` (grep)",
+        "`.skilled/skills/system-deep-loop/runtime/references/integration-points.md:47,60` (grep)",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-config.json` (run config)",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-state.jsonl` (live projection)",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-strategy.md`",
+        "`specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/findings-registry.json`"
+      ]
+    },
+    {
+      "id": "finding-3-5-fanout-merge-cjs-merges-findings-and-debt-but-drops-every-coverage-surface-the-m",
+      "text": "**`fanout-merge.cjs` merges findings and debt but drops every coverage surface — the merged review registry cannot represent per-lineage coverage.** `mergeReviewRegistries` output = `openFindings`/`resolvedFindings`/`findingsBySeverity`/`searchDebt`/`failedRequiredGateIds`/`mergedVerdict` only (`:981-996`); `dimensionCoverage`, `traceability`, `searchCoverage`, `candidateCoverage`, `divergence`, `ruledOutCandidates` are never read. Generation 1's proposed \"merge-time coverage guard\" has no merged coverage map to read, and a `frontier_scope` partition (gen-1 plan: model on `review_focus`) cannot express frontier coverage today. Mechanics: only `disposition ?? status === 'active'` findings merge (`:894`); resolved findings suppressed while active in any lineage (`:917-919`); dedup key `findingId || title` plus optional title-token near-dup buckets (`:344-398`, `:898-904`); canonical record = highest `SEVERITY_RANK` (`:587-617`); `searchDebt` unioned by `bugClass || id`, first lineage's record wins (`:945-955`); verdict via `deriveReviewVerdict` strongest-restriction (`:958-964`). [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:869] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:981] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:587]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` (full)",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:24,355,379,1190-1269,2160-2259` + whole-file inbox/question grep",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1090-1199,1520-1599`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1-60,869-1008` + structural grep",
+        "`.skilled/commands/deep/assets/deep-review.yaml` (targeted greps: prompt pack, frontier, reviewDimensions)",
+        "`.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:37,95` (via grep)"
+      ]
+    },
+    {
+      "id": "finding-3-1-custom-reviewdimensions-make-all-dimensions-clean-unreachable-and-disable-the-re",
+      "text": "**Custom `reviewDimensions` make `all_dimensions_clean` unreachable AND disable the review pivot entirely — a new defect beyond D1-D9.** `buildDimensionCoverage` only ever writes the four hard-coded `REQUIRED_DIMENSIONS` keys: the map is initialized to exactly those keys (`reduce-state.cjs:1225-1227`), the iteration-record loop sets `covered[normalized] = true` only `if (normalized in covered)` (`:1233-1237`), and the strategy-checklist loop flips a key only when the entry text *contains* a required dimension name (`:1246-1247`). Convergence, however, computes `missingDimensions` as every `config.reviewDimensions` entry with `coverage[dim] !== true` (`convergence.cjs:1540-1556`). A configured dimension outside the 4 can therefore never be covered → `cleanReviewStop` (`:1106-1111`) never fires → `all_dimensions_clean` (`:1145`) never emitted → the adapter throws for any other `triggerReason` (`divergent-review-pivot.ts:338-340`), so the pivot path is dead too. A review run with custom dimensions silently degrades to `composite_converged`-or-cap. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:24] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1223] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1540] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1106] [SOURCE: .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts:338]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` (full)",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:24,355,379,1190-1269,2160-2259` + whole-file inbox/question grep",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1090-1199,1520-1599`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1-60,869-1008` + structural grep",
+        "`.skilled/commands/deep/assets/deep-review.yaml` (targeted greps: prompt pack, frontier, reviewDimensions)",
+        "`.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:37,95` (via grep)"
+      ]
+    },
+    {
+      "id": "finding-3-2-review-has-no-question-surface-at-all-generation-1-s-inbox-jsonl-registry-fronti",
+      "text": "**Review has no question surface at all — generation 1's `inbox.jsonl`/`registry.frontier` admission design is research-shaped and has no review-side target.** No `inbox`, `keyQuestions`, `openQuestions`, `uncoveredQuestions`, or `reviewQuestions` exists anywhere in `reduce-state.cjs` (whole-file grep, 0 hits). The review coverage universe is `reviewDimensions`, normalized once at init (`deep-review.yaml:645` \"Normalize reviewDimensions once during init for config + JSONL reuse\"; also in `lockedFields`, `deep-review-config.json:95`). The only growable review registry surfaces are exactly the ones the pivot mines: `searchDebt`, `candidateCoverage`, `ruledOutCandidates`, `cleanSearchProof`, `traceability.results` (`divergent-review-pivot.ts:203-289`). A review frontier sub-mode therefore needs a *dimension/candidate admission surface* (frontier nodes admitted into `candidateCoverage`/`searchDebt`, or a `registry.frontier` the review nextFocus chain reads) — not an inbox row. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1] [SOURCE: .skilled/commands/deep/assets/deep-review.yaml:645] [SOURCE: .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts:203]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` (full)",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:24,355,379,1190-1269,2160-2259` + whole-file inbox/question grep",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1090-1199,1520-1599`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1-60,869-1008` + structural grep",
+        "`.skilled/commands/deep/assets/deep-review.yaml` (targeted greps: prompt pack, frontier, reviewDimensions)",
+        "`.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:37,95` (via grep)"
+      ]
+    },
+    {
+      "id": "finding-3-3-review-nextfocus-chain-leaf-free-text-outranks-the-uncovered-dimension-fallback-",
+      "text": "**Review nextFocus chain: leaf free text outranks the uncovered-dimension fallback — the D5 hijack exists verbatim on review.** `nextFocus = latest iteration-file \"Recommended Next Focus\" || first uncovered REQUIRED_DIMENSION || '[All dimensions covered]'`, then `registry.divergence.currentFocus` overrides it, then a most-recent blocked-stop pins recovery text (`reduce-state.cjs:2184-2215`; free text extracted at `:355`/`:379`). The pivot's `previousFocus` is re-read from that same strategy section (`divergent-review-pivot.ts:355-356`). A leaf's free text can pin focus indefinitely, and the structured fallback can only ever name one of the 4 dimensions. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2184] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:355] [SOURCE: .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts:355]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` (full)",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:24,355,379,1190-1269,2160-2259` + whole-file inbox/question grep",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1090-1199,1520-1599`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1-60,869-1008` + structural grep",
+        "`.skilled/commands/deep/assets/deep-review.yaml` (targeted greps: prompt pack, frontier, reviewDimensions)",
+        "`.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:37,95` (via grep)"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-review-pivot-s-seed-vocabulary-is-closed-and-re-derivational-it-can-re-sweep",
+      "text": "**The review pivot's seed vocabulary is closed and re-derivational — it can re-sweep obligations but never widen the target.** Exactly five seed sources: unswept `config.reviewDimensions` (`:213-223`), `registry.searchDebt` (`:225-237`), v2-ledger method gaps for `producer_consumer_trace`/`negative_test_inspection` — only on `reviewDepthSchemaVersion === 2` records (`:239-268`) — and non-pass `traceability.results` (`:271-286`). Boundary regexes reject seeds implying implement/modify/rewrite/expand-scope (`:172-184`), and all three fixed seat mandates require closing \"persisted coverage gap *without expanding the configured target*\" (`:398-402`). Combined with finding 1, custom dimensions produce a permanent `unswept-dimension` seed on every pivot while never being coverable. [SOURCE: .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts:203] [SOURCE: .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts:172] [SOURCE: .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts:398]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` (full)",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:24,355,379,1190-1269,2160-2259` + whole-file inbox/question grep",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1090-1199,1520-1599`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1-60,869-1008` + structural grep",
+        "`.skilled/commands/deep/assets/deep-review.yaml` (targeted greps: prompt pack, frontier, reviewDimensions)",
+        "`.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:37,95` (via grep)"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-review-prompt-pack-exposes-frontier-only-as-pivot-candidate-frontier-there-i",
+      "text": "**The review prompt pack exposes frontier only as pivot-candidate frontier — there is no `frontier_proposal` channel for the review leaf (partially verified).** The dispatch renders via `render_prompt_pack` (`deep-review.yaml:1450`); every \"frontier\" occurrence in the yaml binds to the pivot adapter's persisted candidate frontier (`:1239`, `:1289-1290`) or to reducer-rendered divergence output (`:2098`); grep over the file finds no `frontier_proposal`/`expansive` wiring. Generation 1's leaf-proposal delta row was specified for the research pack only; the review pack's proposal surface would have to be added too. Confidence is partial: the pack body was not read in full, but the enumerated frontier hits cover the mechanism. [SOURCE: .skilled/commands/deep/assets/deep-review.yaml:1450] [SOURCE: .skilled/commands/deep/assets/deep-review.yaml:1239] [SOURCE: .skilled/commands/deep/assets/deep-review.yaml:2098]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` (full)",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:24,355,379,1190-1269,2160-2259` + whole-file inbox/question grep",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1090-1199,1520-1599`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1-60,869-1008` + structural grep",
+        "`.skilled/commands/deep/assets/deep-review.yaml` (targeted greps: prompt pack, frontier, reviewDimensions)",
+        "`.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:37,95` (via grep)"
+      ]
+    },
+    {
+      "id": "finding-4-6-completed-continue-is-already-the-reserved-name-adopt-it-rather-than-inventing-a",
+      "text": "**`completed-continue` is already the reserved name — adopt it rather than inventing a parallel flag.** It sits in `lineage.deferredModes` in this run's config, is named \"deferred and rejected\" in the flag docs (`research.md:109`, `deep-review.yaml:58`), and is named in both `note_deferred_branches` strings (`deep-research.yaml:514`, `deep-review.yaml:538`) and the Lifecycle Branch Contract (`loop-protocol.md:119-146`). Implementing it = moving it from `deferredModes` to `allowedModes`, adding `--lineage-mode=completed-continue` (with `--extend=N` as the ergonomic spelling that also carries the addend), and wiring one classify branch. An `--extend=N` flag without the mode would still need the same event+config machinery while diverging the vocabulary. [SOURCE: .skilled/commands/deep/research.md:108-109; .skilled/commands/deep/assets/deep-research.yaml:68,514; .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:119-146; deep-research-config.json lineage block]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/deep/assets/deep-research.yaml:240-535,545-604,882-902,1700-1989`",
+        "`.skilled/commands/deep/assets/deep-review.yaml:240-607,709-714,932-951,1860-1899,2165`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:95-214`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1040-1169`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:253-349`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:25-104,560-669`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:620-702`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs`",
+        "`.skilled/commands/deep/research.md:3,17,20,108-109` and `deep/assets/compiled/deep-*.contract.markdown` lineage surfaces"
+      ]
+    },
+    {
+      "id": "finding-4-2-a-confirm-mode-extension-path-already-exists-inside-the-loop-the-design-only-nee",
+      "text": "**A confirm-mode extension path already exists inside the loop — the design only needs to extend it past `status:\"complete\"`.** `gate_pre_synthesis.on_B` = \"Run more iterations (increase max)… raise maxDurationMinutes in the config too, or the duration check stops the loop again\" → `phase_loop` (`deep-research.yaml:1766-1771`, mirrored at `deep-review.yaml:1878-1883`). This proves two things: the workflow already treats `maxIterations`/`maxDurationMinutes` as mutable despite `fileProtection.\"deep-research-config.json\": \"immutable\"` (config field protection binds the LEAF and the optimizer `_optimizerManaged.lockedFields`, not the workflow itself — `step_update_config_status` already `edit`s the config), and the workflow already knows the duration clock must be raised alongside the iteration budget. [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1766-1771,1923-1927; .skilled/commands/deep/assets/deep-review.yaml:1883; research config fileProtection block]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/deep/assets/deep-research.yaml:240-535,545-604,882-902,1700-1989`",
+        "`.skilled/commands/deep/assets/deep-review.yaml:240-607,709-714,932-951,1860-1899,2165`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:95-214`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1040-1169`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:253-349`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:25-104,560-669`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:620-702`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs`",
+        "`.skilled/commands/deep/research.md:3,17,20,108-109` and `deep/assets/compiled/deep-*.contract.markdown` lineage surfaces"
+      ]
+    },
+    {
+      "id": "finding-4-9-edge-extension-under-stoppolicy-convergence-re-stops-immediately-if-no-questions",
+      "text": "**Edge: extension under `stopPolicy:convergence` re-stops immediately if no questions were added.** `all_questions_answered` (`convergence.cjs:1149-1150`) is still true after extension when the question set is unchanged; quality guards may CONTINUE it, but the honest contract is: an extension should be coupled with inbox question injection (`research/inbox.jsonl` for research — the review side has no question surface, per iteration 3's finding) or documented to need `--convergence-mode=off`/`stopPolicy=max-iterations` for the extension window. This is the single largest behavioral subtlety of the feature. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1149-1150; iteration-003 findings]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/deep/assets/deep-research.yaml:240-535,545-604,882-902,1700-1989`",
+        "`.skilled/commands/deep/assets/deep-review.yaml:240-607,709-714,932-951,1860-1899,2165`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:95-214`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1040-1169`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:253-349`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:25-104,560-669`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:620-702`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs`",
+        "`.skilled/commands/deep/research.md:3,17,20,108-109` and `deep/assets/compiled/deep-*.contract.markdown` lineage surfaces"
+      ]
+    },
+    {
+      "id": "finding-4-10-files-and-tests-that-change-docs-flags-skilled-commands-deep-research-md-review-",
+      "text": "**Files and tests that change.** Docs/flags: `.skilled/commands/deep/{research.md,review.md}` argument tables (un-reject `completed-continue`, add `--extend`); `deep-{research,review}.yaml` `lineage_mode` param descriptions (:68/:58), `note_deferred_branches` (:514/:538), new `completed-continue` handling (pre-classify config mutation step + gateway append, or `on_completed_continue` branch; review's `on_completed_session` must check lineage_mode before `skip_to: phase_synthesis`); regenerated `deep-{research,review}.contract.markdown` + `-presentation.txt`. Schemas: `deep-research-ledger-schema.ts` (`DATA_FIELD_RULES`, `SCOPE_FIELDS`, wire types), `deep-research-ledger-types.ts`, `legacy-compatibility.ts` (`LEGACY_EVENT_STEMS.extended` + upcast case + `ReducerReadRowShape`), `deep-review-ledger-types.ts` + its schema (new `deep_review.run_extended`, status `spoken`). Protocol: `loop-protocol.md` Lifecycle Branch Contract row + event contract; deep-review protocol §Lifecycle Branches. Config assets: `deep-review-config.json` asset and the research config template for `allowedModes`. Tests: `runtime/tests/unit/workflow-restart-lifecycle.vitest.ts` (extend ordering coverage), `system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts`, ledger-schema + upcast vitest suites, reducer parity tests for the dashboard Lifecycle section (`loop-protocol.md:146` mandates parity), a manual-testing-playbook entry, and a telemetry test that two `completed` terminal rows for one sessionId are tolerated (`step_telemetry_heartbeat_terminal`, `deep-research.yaml:1929-1937`). Synthesis path needs no change: `step_read_all_iterations` globs `iteration-*.md` and `step_update_config_status` re-marks complete; the spec.md fence write-back is a whole-block replace and is idempotent. [INFERENCE: consolidated from findings 1-9]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/deep/assets/deep-research.yaml:240-535,545-604,882-902,1700-1989`",
+        "`.skilled/commands/deep/assets/deep-review.yaml:240-607,709-714,932-951,1860-1899,2165`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:95-214`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1040-1169`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:253-349`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:25-104,560-669`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:620-702`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs`",
+        "`.skilled/commands/deep/research.md:3,17,20,108-109` and `deep/assets/compiled/deep-*.contract.markdown` lineage surfaces"
+      ]
+    },
+    {
+      "id": "finding-4-5-ledger-vocabulary-is-closed-an-extended-event-needs-a-new-stem-per-mode-research",
+      "text": "**Ledger vocabulary is closed; an `extended` event needs a new stem per mode.** Research legacy rows upcast through `LEGACY_EVENT_STEMS` (`legacy-compatibility.ts:32-71`) into `deep_research.run_resumed`/`run_restarted` (schema `DATA_FIELD_RULES` at `deep-research-ledger-schema.ts:263-278`; scope fields `['runId','lineageId']` at :741-742); unknown event names are refused by the upcaster. Review appends canonical stems directly (`deep_review.run_resumed` at `deep-review.yaml:469,484`; `run_restarted` at :777; `run_initialized` at :748). Both schemas lack any extension stem; `deep_review.run_completed` is *reserved* (deep-review-ledger-types.ts:646 — \"closure is the reducer inference from flat rows\"), so there is no run-termination event today either — `status:\"complete\"` lives only in config. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:32-71,601-620; .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:263-278,741-742; .skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:620-653]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/deep/assets/deep-research.yaml:240-535,545-604,882-902,1700-1989`",
+        "`.skilled/commands/deep/assets/deep-review.yaml:240-607,709-714,932-951,1860-1899,2165`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:95-214`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1040-1169`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:253-349`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:25-104,560-669`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:620-702`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs`",
+        "`.skilled/commands/deep/research.md:3,17,20,108-109` and `deep/assets/compiled/deep-*.contract.markdown` lineage surfaces"
+      ]
+    },
+    {
+      "id": "finding-4-7-recommended-event-config-shape-record-through-the-gateway-a-new-stem-deep-resear",
+      "text": "**Recommended event+config shape.** Record through the gateway a new stem `deep_research.run_extended` / `deep_review.run_extended` (mirroring `run_resumed` fields: `priorTailDigest`, `sourceLineageId`=same sessionId, `generation`=same, `continuedFromRun`=completed iteration count, plus `extension:{addedIterations, priorMaxIterations, newMaxIterations, priorMaxDurationMinutes, newMaxDurationMinutes, priorStatus:\"complete\"}`). Config mutation, same sessionId/generation/createdAt: `status:\"complete\"`→`\"active\"` (any value ≠ `complete` so next classify lands `resume`); `maxIterations += N` (cumulative — convergence counts all rows); `maxDurationMinutes += M`; `lineage.continuedFromRun = <count>`; optional `lineage.extensionCount += 1`. Placement: extend `step_apply_lifecycle_request`-adjacent processing BEFORE `step_classify_session` (pre-classify mutation makes classify land `resume` naturally), or add an `on_completed_continue` classify branch — the pre-classify mutation is the smaller diff but the distinct event must still be appended through the gateway so the dashboard Lifecycle section can show the top-up. `lifecycle-taxonomy.cjs` needs no change (extension is not a STOP_REASONS value). [INFERENCE: based on findings 1-6]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/deep/assets/deep-research.yaml:240-535,545-604,882-902,1700-1989`",
+        "`.skilled/commands/deep/assets/deep-review.yaml:240-607,709-714,932-951,1860-1899,2165`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:95-214`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1040-1169`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:253-349`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:25-104,560-669`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:620-702`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs`",
+        "`.skilled/commands/deep/research.md:3,17,20,108-109` and `deep/assets/compiled/deep-*.contract.markdown` lineage surfaces"
+      ]
+    },
+    {
+      "id": "finding-4-8-segment-seam-exists-but-is-unwired-current-segment-extraction-reads-latest-segme",
+      "text": "**Segment seam exists but is unwired.** `current_segment` extraction reads \"Latest segment_start event segment, else 1\" (`deep-research.yaml:1737`) and iteration rows may carry `\"segment\":1` (`convergence-reference-only.md:46`), yet nothing in the runtime emits `segment_start`. If the `extended` event carries `segment:<n>` (or doubles as the segment marker), the prompt-pack `Segment: N` display and reducer ancestry get the pre/post boundary for free; post-extension iteration rows could then carry `segment:2`. Cheapest honest version: keep all iterations in one segment and let the `extended` event itself be the boundary marker in the dashboard. [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1737; .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-reference-only.md:46]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/deep/assets/deep-research.yaml:240-535,545-604,882-902,1700-1989`",
+        "`.skilled/commands/deep/assets/deep-review.yaml:240-607,709-714,932-951,1860-1899,2165`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:95-214`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1040-1169`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:253-349`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:25-104,560-669`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:620-702`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs`",
+        "`.skilled/commands/deep/research.md:3,17,20,108-109` and `deep/assets/compiled/deep-*.contract.markdown` lineage surfaces"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-cap-and-floor-need-no-code-change-for-a-raised-maxiterations-convergence-cjs",
+      "text": "**The cap and floor need no code change for a raised `maxIterations`.** `convergence.cjs:1049` reads `config.maxIterations`; `iterationCount >= maxIterations` at :1115-1124 is the terminal STOP that outranks every veto. `minIterations` (1051) is a CONTINUE floor evaluated only when a stop candidate exists and only for `loopType === 'research'` (:1159-1161). Raising `maxIterations` in place re-arms the loop correctly because the reducer counts every `type===\"iteration\"` row in the log — pre- and post-extension iterations are one continuous count, which is exactly the desired semantics. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1049-1051,1115-1124,1159-1161]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/deep/assets/deep-research.yaml:240-535,545-604,882-902,1700-1989`",
+        "`.skilled/commands/deep/assets/deep-review.yaml:240-607,709-714,932-951,1860-1899,2165`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:95-214`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1040-1169`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:253-349`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:25-104,560-669`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:620-702`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs`",
+        "`.skilled/commands/deep/research.md:3,17,20,108-109` and `deep/assets/compiled/deep-*.contract.markdown` lineage surfaces"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-completed-session-branches-are-asymmetric-and-the-q6-premise-is-half-wrong-r",
+      "text": "**The completed-session branches are asymmetric, and the Q6 premise is half wrong.** Research `on_completed_session` halts and releases the lock (`deep-research.yaml:515-519`: \"Archive or replace the existing research/ tree\"). Review `on_completed_session` does `skip_to: phase_synthesis` (`deep-review.yaml:584-587`) — a completed review re-synthesizes in place but cannot add iterations. `status:\"complete\"` is stamped late by `step_update_config_status` after synthesis and spec write-back (`deep-research.yaml:1923-1927`, `deep-review.yaml:2165`; initial value `initialized`, `deep-research.yaml:565`). [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:515-519,565,1923-1927; .skilled/commands/deep/assets/deep-review.yaml:584-587,2165]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/deep/assets/deep-research.yaml:240-535,545-604,882-902,1700-1989`",
+        "`.skilled/commands/deep/assets/deep-review.yaml:240-607,709-714,932-951,1860-1899,2165`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:95-214`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1040-1169`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:253-349`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:25-104,560-669`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:620-702`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs`",
+        "`.skilled/commands/deep/research.md:3,17,20,108-109` and `deep/assets/compiled/deep-*.contract.markdown` lineage surfaces"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-max-duration-clock-is-the-trap-the-q6-prompt-predicted-step-check-max-durati",
+      "text": "**The max-duration clock is the trap the Q6 prompt predicted.** `step_check_max_duration` computes `elapsedMinutes = floor((now − Date.parse(config.createdAt))/60000)` and stops at `>= config.maxDurationMinutes` (`deep-research.yaml:882-902`, `deep-review.yaml:932-951`). Its own note: \"The clock starts at the createdAt of the current generation's config. A resume keeps it and a restart resets it, so paused and waiting time counts.\" An in-place extension keeps `createdAt`, so a packet that completed near its 120-minute ceiling re-stops on the FIRST post-extension duration check unless `maxDurationMinutes` is raised (or `createdAt` re-stamped, which would erase elapsed-time audit). Design: raise `maxDurationMinutes` by a bounded addend, never re-stamp `createdAt`. [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:882-902; .skilled/commands/deep/assets/deep-review.yaml:932-951]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/deep/assets/deep-research.yaml:240-535,545-604,882-902,1700-1989`",
+        "`.skilled/commands/deep/assets/deep-review.yaml:240-607,709-714,932-951,1860-1899,2165`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:95-214`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1040-1169`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:253-349`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:25-104,560-669`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:620-702`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs`",
+        "`.skilled/commands/deep/research.md:3,17,20,108-109` and `deep/assets/compiled/deep-*.contract.markdown` lineage surfaces"
+      ]
+    },
+    {
+      "id": "finding-5-2-behavior-extend-n-extend-minutes-m-on-a-completed-packet-mutates-config-in-place",
+      "text": "Behavior: `--extend=N [--extend-minutes=M]` on a completed packet mutates config in place (status→active, `maxIterations += N`, `maxDurationMinutes += M`, `lineage.continuedFromRun = <completed count>`), appends `run_extended` through the gateway, and classify lands `resume` on next entry. Never re-stamp `createdAt`. Edge contract: under `stopPolicy:convergence` an extension with no new questions re-stops on `all_questions_answered`; document coupling to inbox injection or `--convergence-mode=off` for the extension window. [SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1766-1771; .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1149]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-15-behavior-answered-questions-can-no-longer-steer-focus-via-stale-questions-remain",
+      "text": "Behavior: answered questions can no longer steer focus via stale `Questions Remaining` text; review fallback ordering unchanged otherwise.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-24-behavior-projection-keeps-target-agent-resolved-route-agent-definition-loaded-ru",
+      "text": "Behavior: projection keeps `target_agent`, `resolved_route`, `agent_definition_loaded`, `runId`, `sessionId`, `lineageId`, `keyQuestions`, `graphEvents`, `toolsUsed`, `sourcesQueried`; D9's `focusAlignment` guard input materializes.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-4-default-path-risk-low-opt-in-mode-the-real-risk-is-schema-upcast-drift-breaking-",
+      "text": "Default-path risk: LOW — opt-in mode; the real risk is schema/upcast drift breaking existing projections (mitigated by `check-ledger-stem-producers.vitest.ts`, `check-projection-coverage.vitest.ts`).",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-1-files-skilled-commands-deep-research-md-review-md-argument-tables-un-reject-comp",
+      "text": "Files: `.skilled/commands/deep/research.md` + `review.md` argument tables (un-reject `completed-continue`, add `--extend`); `deep-research.yaml` `lineage_mode` param (:68), `note_deferred_branches` (:514), new pre-`step_classify_session` config-mutation step + gateway append for `deep_research.run_extended`; `deep-review.yaml` same surfaces (:58, :538) plus `on_completed_session` (:584–587) must check `lineage_mode` BEFORE `skip_to: phase_synthesis`; `deep-research-ledger-schema.ts` (`DATA_FIELD_RULES`, `SCOPE_FIELDS`, wire types); `deep-research-ledger-types.ts`; `legacy-compatibility.ts` (`LEGACY_EVENT_STEMS.extended` + upcast case + `ReducerReadRowShape`); `deep-review-ledger-types.ts` + its schema (`deep_review.run_extended`); `loop-protocol.md` Lifecycle Branch Contract row; config assets (`allowedModes`) for both loops; regenerated contract/presentation outputs. [SOURCE: iteration-004 findings 5–10]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-10-files-convergence-cjs-1159-drop-or-widen-looptype-research-so-review-honors-anti",
+      "text": "Files: `convergence.cjs:1159` — drop or widen `loopType === 'research'` so review honors `antiConvergence.minIterations: 2` (`deep-review-config.json:12`). [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1159]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-6-files-dispatch-iteration-cjs-relax-the-213-220-guard-to-allow-the-flag-for-resea",
+      "text": "Files: `dispatch-iteration.cjs` (relax the `:213-220` guard to allow the flag for research `cli-claude-code`; `:355` validate on research too; `:407` research branch gains `configDir`), `deep-research.yaml:1440-1442` (forward `--claude-config-dir`), `executor-audit.ts` (add `configDir` to research audit record). [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:213; .skilled/commands/deep/assets/deep-research.yaml:1442]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-48-files-divergent-pivot-ts-285-288-decide-per-pivot-vs-lifetime-maxcouncilseatoutp",
+      "text": "Files: `divergent-pivot.ts:285-288` — decide per-pivot vs lifetime `maxCouncilSeatOutputs: 9` (resumed pivot currently burns lifetime seats); `:287,:739` dead `minRemainingIterations` (unreachable — cap outranks it); council fail-closed single retry for `council_*` refusals. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:285]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-36-files-fanout-merge-cjs-869-997-mergereviewregistries-carry-dimensioncoverage-tra",
+      "text": "Files: `fanout-merge.cjs:869-997` `mergeReviewRegistries` — carry `dimensionCoverage`, `traceability`, `searchCoverage`, `candidateCoverage`, `divergence`, `ruledOutCandidates` into the merged output. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:981]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-32-files-reduce-state-cjs-1225-1247-builddimensioncoverage-must-track-every-normali",
+      "text": "Files: `reduce-state.cjs:1225-1247` — `buildDimensionCoverage` must track every normalized `config.reviewDimensions` entry, not only the four `REQUIRED_DIMENSIONS` keys; `convergence.cjs:1540-1556` already computes `missingDimensions` over the configured set. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1225; .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1540]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-19-files-render-prompt-pack-blocks-in-both-yamls-skilled-agents-deep-research-revie",
+      "text": "Files: `render_prompt_pack` blocks in both YAMLs, `.skilled/agents/deep-{research,review}.md` Step 10/allowed-write list vs `progressiveSynthesis`; unify heading vocabulary — either reducer `extractSection` accepts `Next Focus` or the packs render `Recommended Next Focus` (`reduce-state.cjs:1930`). [SOURCE: iteration-001 findings 5, 8]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-28-files-upsert-cjs-211-245-stamp-derivequalityclass-source-in-the-node-validation-",
+      "text": "Files: `upsert.cjs:211-245` (stamp `deriveQualityClass(source)` in the node-validation loop; strip/overwrite leaf-supplied `quality_class`), coverage-graph lib (new `deriveQualityClass` + frozen vocabulary const beside `SAFE_METADATA_KEYS`, `coverage-graph-query.ts:123-136`; vocabulary e.g. `{repo-code, repo-test, repo-spec, skill-doc, ledger-state, external-doc, external-other, unclassified}`). Alternative: delete the stored field and derive inside `computeResearchSourceDiversityFromData` at query time — removes the gaming surface but loses the stored label for `query.cjs`. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:235; .skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:680]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-14-files-research-reduce-state-cjs-1927-1939-parse-sites-continuity-thread-cjs-86-1",
+      "text": "Files: research `reduce-state.cjs:1927-1939` (parse sites), `continuity-thread.cjs:86-106` (filter answered machine questions out of carried-forward candidates), `reduce-state.cjs:2427-2473` (`resolveNextFocus` precedence); review `reduce-state.cjs:2184-2215` (same chain; free-text extraction `:355`/`:379`). [SOURCE: iteration-001 finding 4; iteration-003 finding 3]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-40-files-research-prompt-pack-frontier-proposal-delta-rows-deep-research-yaml-new-s",
+      "text": "Files: research prompt pack (`frontier_proposal` delta rows), `deep-research.yaml` new `step_frontier_admit` (relevance+evidence anchor, dedupe, depth ≤ 3, ≤ 6 children/node, ≤ 40 total, monotone budget, acyclic) writing `research/inbox.jsonl` `origin: frontier` rows, `deep-research/scripts/reduce-state.cjs` (`registry.frontier` projection + Next Focus lowest-depth pick), `convergence.cjs` `frontierOpen` veto inserted after the minIterations floor, depth budget constants (50/35/15), `fanout-run.cjs` `frontier_scope` partition. [SOURCE: strategy §12 gen-1 design summary; iteration-002/003 mechanics]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-44-files-review-prompt-pack-proposal-channel-iter-3-finding-6-review-admission-surf",
+      "text": "Files: review prompt pack proposal channel (iter-3 finding 6), review admission surface into `candidateCoverage`/`searchDebt` or a `registry.frontier` the review nextFocus chain reads (iter-3 finding 2 — inbox.jsonl is ruled out), `divergent-review-pivot.ts` seed-vocabulary extension (:203-289 closed seeds), `deep-review.yaml` admit step. [SOURCE: iteration-003 findings 2, 4, 6]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-23-files-the-projection-writer-downstream-of-legacy-compatibility-ts-the-643-seam-m",
+      "text": "Files: the projection writer downstream of `legacy-compatibility.ts` (the `:643` seam moved — first task is locating the current dropping module, likely in the gateway projection path), `verify-iteration.cjs:255-271,560-563`. [SOURCE: iteration-001 findings 6–7]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-43-ordering-after-d-focus-precedence-e-pack-contract-g-diversity-signal-honest-and-",
+      "text": "Ordering: AFTER D (focus precedence), E (pack contract), G (diversity signal honest), and F (projection carries new fields) — frontier composes all four.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-47-ordering-last-needs-h-coverage-map-can-represent-custom-dims-i-merged-coverage-e",
+      "text": "Ordering: LAST — needs H (coverage map can represent custom dims), I (merged coverage exists), and J (pattern proven on research).",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-31-ordering-none-technically-land-before-slice-j-so-the-frontier-veto-reads-trustwo",
+      "text": "Ordering: none technically; land before Slice J so the frontier veto reads trustworthy diversity.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-13-ordering-none-keep-ordered-before-the-frontier-veto-insertion-slice-j-so-floor-s",
+      "text": "Ordering: none; keep ordered before the frontier veto insertion (Slice J) so floor semantics land first in the same function.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-22-ordering-none-land-before-slice-j-frontier-adds-a-pack-row-one-contract-not-two",
+      "text": "Ordering: none; land before Slice J (frontier adds a pack row — one contract, not two).",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-18-ordering-none-land-before-slice-j-frontier-next-focus-pick-composes-with-this-pr",
+      "text": "Ordering: none; land before Slice J (frontier Next-Focus pick composes with this precedence).",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-9-ordering-none",
+      "text": "Ordering: none.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-27-ordering-none",
+      "text": "Ordering: none.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-51-ordering-none",
+      "text": "Ordering: none.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-5-ordering-none-self-contained-touches-no-code-the-other-slices-touch",
+      "text": "Ordering: none. Self-contained; touches no code the other slices touch.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-39-ordering-prerequisite-for-slice-k-merge-time-coverage-guard-needs-a-merged-map",
+      "text": "Ordering: prerequisite for Slice K (merge-time coverage guard needs a merged map).",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-35-ordering-strict-prerequisite-for-slice-k",
+      "text": "Ordering: strict prerequisite for Slice K.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-8-risk-low-additive-flag-acceptance-fan-out-already-injects-claude-config-dir-loop",
+      "text": "Risk: LOW — additive flag acceptance; fan-out already injects `CLAUDE_CONFIG_DIR` loop-type-blind (`fanout-run.cjs:3962,3995`), so this only closes the single-dispatch gap.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-38-risk-low-additive-output-fields-merge-consumers-that-ignore-the-keys-are-unaffec",
+      "text": "Risk: LOW — additive output fields; merge consumers that ignore the keys are unaffected.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-50-risk-low-config-semantics-clarification",
+      "text": "Risk: LOW — config-semantics clarification.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-26-risk-low-field-additive-to-consumers-that-select-keys-verify-no-reducer-section-",
+      "text": "Risk: LOW — field-additive to consumers that select keys; verify no reducer section keys off field absence.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-34-risk-low-medium-bugfix-restoring-designed-behavior-runs-using-only-the-4-default",
+      "text": "Risk: LOW-MEDIUM — bugfix restoring designed behavior; runs using only the 4 default dimensions are unchanged.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-30-risk-low-medium-signal-semantics-tighten-stored-historical-nodes-keep-old-labels",
+      "text": "Risk: LOW-MEDIUM — signal semantics tighten; stored historical nodes keep old labels, so dashboards mixing generations show both classes (document it).",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-21-risk-low-medium-touches-the-leaf-contract-both-sides-must-change-in-lockstep-or-",
+      "text": "Risk: LOW-MEDIUM — touches the leaf contract; both sides must change in lockstep or synthesis stays unreachable.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-12-risk-medium-default-review-runs-gain-up-to-one-extra-iteration-before-stopping-t",
+      "text": "Risk: MEDIUM — default review runs gain up to one extra iteration before stopping; that is the configured intent, but it changes default-path stop timing and cost.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-17-risk-medium-observable-focus-changes-in-running-packets-behavior-only",
+      "text": "Risk: MEDIUM — observable focus changes in running packets; behavior-only.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-42-risk-medium-opt-in-depth-mode-expansive-so-the-default-path-is-unchanged-the-rea",
+      "text": "Risk: MEDIUM — opt-in (`--depth-mode=expansive`) so the default path is unchanged; the real risk is inbox-write authorization bypassing the gateway and unbounded frontier growth — both addressed inside the admit step.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-46-risk-medium-same-opt-in-posture-plus-finding-4-s-permanent-unswept-dimension-see",
+      "text": "Risk: MEDIUM — same opt-in posture; plus finding 4's permanent `unswept-dimension` seed on custom dims must be deduped or it spams every pivot.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-25-tests-append-mode-event-cli-vitest-ts-append-mode-event-legacy-seam-vitest-ts-ch",
+      "text": "Tests: `append-mode-event-cli.vitest.ts`, `append-mode-event-legacy-seam.vitest.ts`, `check-projection-coverage.vitest.ts`, `deep-research-projections-contract.vitest.ts` + a regression asserting the 4 route-proof fields survive projection.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-29-tests-coverage-graph-signals-vitest-ts-integration-convergence-script-vitest-ts-",
+      "text": "Tests: `coverage-graph-signals.vitest.ts`, `integration/convergence-script.vitest.ts` (existing fixtures at :49-50,:70-71,:112 assert leaf-supplied values — fixtures must change to derived expectations), `integration/upsert-script.vitest.ts`, `deep-research-graph-upsert.vitest.ts`.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-20-tests-deep-research-deltas-contract-vitest-ts-deep-review-deltas-contract-vitest",
+      "text": "Tests: `deep-research-deltas-contract.vitest.ts`, `deep-review-deltas-contract.vitest.ts`, `check-documentation-drift.vitest.ts`.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-33-tests-deep-research-reduce-state-vitest-ts-review-half-integration-review-depth-",
+      "text": "Tests: `deep-research-reduce-state.vitest.ts` (review half), `integration/review-depth-convergence.vitest.ts` + new case: custom-dimension config reaches a clean stop.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-16-tests-deep-research-reduce-state-vitest-ts-continuity-thread-vitest-ts-new-answe",
+      "text": "Tests: `deep-research-reduce-state.vitest.ts`, `continuity-thread.vitest.ts` + new answered-filter cases on both loop types.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-45-tests-deep-review-deltas-contract-vitest-ts-review-admit-step-suite-review-depth",
+      "text": "Tests: `deep-review-deltas-contract.vitest.ts`, review admit-step suite, `review-depth-convergence.vitest.ts` frontier cases.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-37-tests-fanout-review-focus-vitest-ts-new-merged-coverage-case",
+      "text": "Tests: `fanout-review-focus.vitest.ts` + new merged-coverage case.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-49-tests-integration-divergent-pivot-vitest-ts-council-multi-seat-dispatch-vitest-t",
+      "text": "Tests: `integration/divergent-pivot.vitest.ts`, `council/multi-seat-dispatch.vitest.ts`.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-11-tests-integration-review-depth-convergence-vitest-ts-integration-review-stop-pat",
+      "text": "Tests: `integration/review-depth-convergence.vitest.ts`, `integration/review-stop-path-replay.vitest.ts` + new case: review stop at iteration 1 is vetoed to CONTINUE.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-7-tests-stress-cli-adapter-cli-claude-code-vitest-ts-cli-matrix-vitest-ts-combo-ma",
+      "text": "Tests: `stress/cli-adapter/cli-claude-code.vitest.ts`, `cli-matrix.vitest.ts`, `combo-matrix.vitest.ts` + one new unit case: research executor receives `configDir`.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-3-tests-extend-runtime-tests-unit-workflow-restart-lifecycle-vitest-ts-ordering-sy",
+      "text": "Tests: extend `runtime/tests/unit/workflow-restart-lifecycle.vitest.ts` (ordering), `system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts`, `deep-research-ledger-schema.vitest.ts` + upcast suites, `append-mode-event-legacy-seam.vitest.ts`, reducer Lifecycle-section parity test (`loop-protocol.md:146` mandates parity), telemetry test tolerating two `completed` terminal rows per sessionId (`deep-research.yaml:1929-1937`), manual-playbook entry.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    },
+    {
+      "id": "finding-5-41-tests-new-admit-step-unit-suite-each-rule-rejection-reducer-projection-tests-con",
+      "text": "Tests: new admit-step unit suite (each rule + rejection), reducer projection tests, convergence veto tests (`deep-research-convergence-floor.vitest.ts` extension), fanout partition tests, `deep-research-authority-composition.vitest.ts` for inbox-write authorization.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/.../007-expansive-depth-mode/research/iterations/iteration-001.md` through `iteration-004.md` (full — all verified file:line evidence)",
+        "`specs/.../007-expansive-depth-mode/research/deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/**/*.vitest.ts` (glob — existing suite names per slice)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:1-70`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:1-80`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts`, `advisor-fixtures/skippedShortCasual.json` (grep hits)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-74b48d1c0819",
+      "text": "\"Pivot buys ~1 iteration\" as a general claim — contradicted by the re-fire mechanics: `all_questions_answered` persists after a pivot (no new questions are added), every later stop re-enters the branch, and the lifetime cap is `maxPivots: 3`, not 1. The claim survives only at trigger iteration = `maxIterations − 1`.",
+      "contentHash": "74b48d1c0819",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-4afd9383ac63",
+      "text": "`maxCouncilSeatOutputs: 9` is a shared lifetime cap — worth recording because a partial/resumed pivot consumes seat budget without completing, silently shrinking the effective pivot count below 3.",
+      "contentHash": "4afd9383ac63",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-9cb681c24d5c",
+      "text": "`minRemainingIterations` as a meaningful guard — `remainingIterations == 0` is unreachable because `maxIterationsReached` outranks the pivot branch.",
+      "contentHash": "9cb681c24d5c",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-380872e3b7ce",
+      "text": "Candidate exhaustion as the yield limiter — `keyFindings.slice(-3)` cross-check seeds regenerate whenever new findings land.",
+      "contentHash": "380872e3b7ce",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-3dfcf08f3398",
+      "text": "Admitting frontier nodes through `research/inbox.jsonl` on the review side — the review reducer has no question surface to project it into; nothing reads an inbox row (finding 2).",
+      "contentHash": "3dfcf08f3398",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-772859935807",
+      "text": "**`--extend=N` as a standalone flag divorced from the lineage mode**: needs identical machinery (classify branch, event, config mutation) while splitting the documented vocabulary — rejected in favor of `lineage_mode=completed-continue` with `--extend` as its spelling.",
+      "contentHash": "772859935807",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-c6edcc868fe6",
+      "text": "**Emitting the extension as a plain `resumed` event**: cheaper (no schema change) but makes a budget top-up indistinguishable from an ordinary resume in the ledger and dashboard — violates the provenance the ledger exists to carry.",
+      "contentHash": "c6edcc868fe6",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-99e64c853d68",
+      "text": "**Re-stamping `createdAt` to reset the duration clock**: erases elapsed-time audit and breaks `elapsedMinutes` telemetry; raising `maxDurationMinutes` is the honest budget bump the confirm gate already prescribes.",
+      "contentHash": "99e64c853d68",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-461d55b595d3",
+      "text": "A separate `--extend` implementation path that skips the ledger event — rejected in iteration 4 (plain `resumed` destroys provenance); reaffirmed here.",
+      "contentHash": "461d55b595d3",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-04b21def6513",
+      "text": "Shipping the frontier sub-mode as one large change — the defect layer is independently shippable and de-risks the surfaces frontier composes (focus precedence, pack contract, projection fields, diversity signal).",
+      "contentHash": "04b21def6513",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-87d9f6559958",
+      "text": "Treating Q4's gate as the df-idf scorer — the scorer never sees casual chat because `prompt-policy.ts` gates fire/skip upstream.",
+      "contentHash": "87d9f6559958",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 2,
+    "resolvedQuestions": 4,
+    "carriedForwardOpenQuestions": 14,
+    "keyFindings": 80,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.85,
+    "coverageBySources": {
+      "code": 36,
+      "other": 54
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

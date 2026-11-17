@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/001-completed-run-extension",
+  "description": "Completed-run extension for deep research and deep review: expose the completed-continue lineage mode as --extend=N with a run_extended ledger event",
+  "keywords": [
+    "completed-run",
+    "extension",
+    "deep",
+    "research",
+    "review",
+    "expose",
+    "completed-continue",
+    "lineage",
+    "mode",
+    "extend",
+    "ledger",
+    "event"
+  ],
+  "lastUpdated": "2026-11-17T14:35:16.023Z",
+  "specId": "001",
+  "folderSlug": "completed-run-extension",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "002-graph-engineering",
+    "007-expansive-depth-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

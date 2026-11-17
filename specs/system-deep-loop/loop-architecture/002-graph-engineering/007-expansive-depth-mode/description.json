@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode",
+  "description": "Expansive-depth sub-mode for deep-research and deep-review",
+  "keywords": [
+    "expansive-depth",
+    "sub-mode",
+    "deep-research",
+    "deep-review"
+  ],
+  "lastUpdated": "2026-11-17T11:51:35.089Z",
+  "specId": "007",
+  "folderSlug": "expansive-depth-mode",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "002-graph-engineering"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "17-11-26_09-40__deep-research-on-the-expansive-depth-sub-mode.md",
+    "17-11-26_12-51__deep-research-generation-2-5-cli-devin-swe-2-max.md"
+  ]
+}

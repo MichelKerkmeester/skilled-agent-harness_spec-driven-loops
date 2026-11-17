@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration",
+  "description": "Stop redispatch_once from re-running an iteration that already landed",
+  "keywords": [
+    "stop",
+    "re-running",
+    "iteration",
+    "already",
+    "landed"
+  ],
+  "lastUpdated": "2026-11-17T14:34:36.528Z",
+  "specId": "013",
+  "folderSlug": "no-redispatch-landed-iteration",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "002-graph-engineering",
+    "007-expansive-depth-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

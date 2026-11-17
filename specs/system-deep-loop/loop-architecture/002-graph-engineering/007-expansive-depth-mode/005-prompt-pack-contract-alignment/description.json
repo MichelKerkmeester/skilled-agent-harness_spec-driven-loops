@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment",
+  "description": "Align the research prompt pack write list and next-focus heading with the agent definition",
+  "keywords": [
+    "align",
+    "research",
+    "prompt",
+    "pack",
+    "write",
+    "list",
+    "next-focus",
+    "heading",
+    "agent",
+    "definition"
+  ],
+  "lastUpdated": "2026-11-17T14:43:29.385Z",
+  "specId": "005",
+  "folderSlug": "prompt-pack-contract-alignment",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "002-graph-engineering",
+    "007-expansive-depth-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
