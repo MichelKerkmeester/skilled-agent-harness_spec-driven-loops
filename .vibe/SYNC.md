@@ -150,7 +150,7 @@ The header names the source file. `description` is copied, and `agent_type` is a
 | Prompt stubs match their commands | `node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs --check` | 0 in sync, 1 on drift |
 | Agent profiles match their sources | `node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs --check` | 0 in sync, 1 on drift |
 | Every runtime carries the agent roster | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 covered, 1 on drift, 2 on a checker error |
-| Every runtime at once | `/doctor:runtime-mirrors` | read-only |
+| Mirror, generator and roster checks for every runtime | `/doctor:runtime-mirrors`, from a Claude Code, OpenCode, Codex, Cursor or Pi session | read-only |
 
 The three tree checks print a `PASS` line and exit 0 in sync. The roster check ends with `STATUS=OK`. None of the four writes.
 

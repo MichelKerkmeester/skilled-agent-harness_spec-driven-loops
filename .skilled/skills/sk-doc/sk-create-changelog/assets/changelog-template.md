@@ -9,7 +9,7 @@ trigger_phrases:
   - "changelog omission rules"
 importance_tier: normal
 contextType: general
-version: 1.4.0.0
+version: 1.4.1.0
 ---
 
 # Changelog & Release Notes Templates - Format Reference
@@ -30,11 +30,11 @@ The `/create:changelog` workflow reads this template at step 4. Section 5 picks 
 
 Three published entries show the house style. Each one teaches something different, so read all three before writing.
 
-- `.skilled/changelog/skilled/v4.0.2.1.md` is the model for the layout. Copy its four-part opening of lead sentences and bullets, its breaking-change box and its glance table. Copy its one-paragraph section openings, its short bullets and its warning boxes. Copy its folded blocks for smaller fixes, the costs, the tests, the upgrade groups and the spec folders. It is also the model for sentence length, plain words, feature detail and How It Was Checked.
+- `.skilled/changelog/skilled/v4.1.0.0.md` is the model for the layout. Copy its four-part opening of lead sentences and bullets, its breaking-change box and its glance table. Copy its one-paragraph section openings, its short bullets and its warning boxes. Copy its folded blocks for smaller fixes, the costs, the tests, the upgrade groups and the spec folders. It is also the model for sentence length, plain words, feature detail and How It Was Checked.
 - `.skilled/changelog/skilled/v4.0.1.0.md` is the model for selection. It keeps what a reader would notice and cuts items rather than sections. Its layout is older: bold lead-in bullets, one paragraph per item and inline breaking markers. Do not copy that layout.
 - `.skilled/changelog/skilled/v4.0.0.0.md` is the model for voice and for how a major release frames a large change. Copy that framing, never its length or its layout.
 
-When this template and a model entry disagree on how a section reads, v4.0.2.1 wins. When they disagree on how long an entry runs, this template's length guidance wins (section 4). Record the discrepancy either way. Older entries in the same folders predate this style, so do not copy them.
+When this template and a model entry disagree on how a section reads, v4.1.0.0 wins. When they disagree on how long an entry runs, this template's length guidance wins (section 4). Record the discrepancy either way. Older entries in the same folders predate this style, so do not copy them.
 
 ---
 
@@ -365,7 +365,7 @@ Existing `changelog-<packet>-root.md` and `changelog-<packet>-<phase-folder>.md`
 
 ## 8. RELATED RESOURCES
 
-- `.skilled/changelog/skilled/v4.0.2.1.md` - the model for the layout, sentence length, plain words, feature detail and the How It Was Checked section
+- `.skilled/changelog/skilled/v4.1.0.0.md` - the model for the layout, sentence length, plain words, feature detail and the How It Was Checked section
 - `.skilled/changelog/skilled/v4.0.1.0.md` - the model for selection in a release with many changes
 - `.skilled/changelog/skilled/v4.0.0.0.md` - the model for voice and for how a major release opens
 - [check_changelog_shape.py](../scripts/check_changelog_shape.py) - the shape check that enforces the glance order, the spec-folder line and the sentence ceilings

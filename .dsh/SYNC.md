@@ -84,21 +84,17 @@ Each tree generator ends with a `Wrote` line under its own tag. That line states
 Then check that the patches still compose. The run prints the composed config and makes no model call.
 
 ```bash
-H=$(mktemp -d); W=$(mktemp -d); R="$PWD/.dsh/patches"
-(cd "$W" && DSH_HOME="$H" dsh --profile headless \
-  --patch "$R/route-llmgateway-deepseek.patch.yml" \
-  --patch "$R/lineage.patch.yml" --dump-config </dev/null)
+H=$(mktemp -d); DSH_HOME="$H" dsh --profile headless --patch .dsh/patches/route-llmgateway-deepseek.patch.yml --patch .dsh/patches/lineage.patch.yml --dump-config </dev/null
 ```
+
+Keep the command on one line and name each patch file as written. The dispatch preflight reads the command text, so a continued line or a patch behind a shell variable is parsed as a dispatch and denied.
 
 The run exits 0 with nothing on stderr. `agent-default-model` names the provider and model the route patch declares. `session-telemetry-otel` reads `mode: DISABLED`. Repeat it with `route-opencode-go-deepseek.patch.yml`, which names its own provider and model. Any stderr line about an unmatched patch target is a failure.
 
 To compose with the guard bundle, add the guards patch after the lineage patch.
 
 ```bash
-H=$(mktemp -d); W=$(mktemp -d); R="$PWD/.dsh/patches"
-(cd "$W" && DSH_HOME="$H" dsh --profile headless \
-  --patch "$R/route-llmgateway-deepseek.patch.yml" \
-  --patch "$R/lineage.patch.yml" --patch "$R/guards.patch.yml" --dump-config </dev/null)
+H=$(mktemp -d); DSH_HOME="$H" dsh --profile headless --patch .dsh/patches/route-llmgateway-deepseek.patch.yml --patch .dsh/patches/lineage.patch.yml --patch .dsh/patches/guards.patch.yml --dump-config </dev/null
 ```
 
 The run exits 0 with nothing on stderr. The config carries a `repo-guards` row and a `repo-guards-lineage-leaf` row.
@@ -139,7 +135,7 @@ Every line of the agent body follows the indicator, indented by six spaces. The 
 | Every adapter behaves | `node --test .skilled/hooks/*/tests/dsh-*.test.mjs .skilled/skills/system-skill-advisor/hooks/tests/dsh-*.test.mjs .dsh/plugins/repo-guards/tests/` | 0 pass, 1 fail |
 | Every runtime covers the agent roster | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 covered, 1 on drift, 2 on a checker error |
 | The patches still compose | the `--dump-config` runs in section 5 | 0 composed. Read stderr for an unmatched target |
-| Every runtime at once | `/doctor:runtime-mirrors` | read-only |
+| Mirror, generator and roster checks for every runtime | `/doctor:runtime-mirrors`, from a Claude Code, OpenCode, Codex, Cursor or Pi session | read-only |
 
 Each `--check` command prints a `PASS` line and exits 0 when in sync. On drift the three tree generators print a `FAIL` line and all four commands exit 1. The mirror writer prints `[runtime-mirror-sync] Drift detected:` with one line per drift item instead. The test output reports `fail 0`. The roster check prints a final `STATUS=OK` line.
 

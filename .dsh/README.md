@@ -128,7 +128,7 @@ Exit 0 with nothing on stderr. `agent-default-model` reads `provider: llmgateway
 
 This run prints the composed config and makes no model call. Keep the command on one line, and name the route patch as written. The dispatch preflight reads the command text, so a route patch behind a shell variable is denied with `route-patch-required`.
 
-`/doctor:runtime-mirrors` runs the same mirror comparison across every runtime folder.
+`/doctor:runtime-mirrors` runs the same mirror comparison across every runtime folder, from a Claude Code, OpenCode, Codex, Cursor or Pi session, because dsh has no command loader.
 
 ---
 

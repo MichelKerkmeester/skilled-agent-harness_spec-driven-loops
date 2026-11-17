@@ -97,7 +97,7 @@ Existing packet-local files such as `changelog-<packet>-root.md` stay where they
 
 ## 5. CHANGELOG FORMAT CONTRACT
 
-Read `assets/changelog-template.md` before generating global content. It owns the compact and expanded shapes (section 2), what to leave out and the say-it-once rule (section 3), voice and length (section 4) and format selection (section 5). Every entry must read in the layout of `.skilled/changelog/skilled/v4.0.2.1.md`, at whatever length the template's ceilings allow. That entry also models sentence length, plain words, feature detail and the testing section. `.skilled/changelog/skilled/v4.0.1.0.md` models selection, and `.skilled/changelog/skilled/v4.0.0.0.md` models voice and how a major release opens. Neither of those two is a layout model.
+Read `assets/changelog-template.md` before generating global content. It owns the compact and expanded shapes (section 2), what to leave out and the say-it-once rule (section 3), voice and length (section 4) and format selection (section 5). Every entry must read in the layout of `.skilled/changelog/skilled/v4.1.0.0.md`, at whatever length the template's ceilings allow. That entry also models sentence length, plain words, feature detail and the testing section. `.skilled/changelog/skilled/v4.0.1.0.md` models selection, and `.skilled/changelog/skilled/v4.0.0.0.md` models voice and how a major release opens. Neither of those two is a layout model.
 
 The contract in one pass:
 
@@ -396,7 +396,7 @@ The workflow succeeds when:
 
 1. The file lands at its global component path, and a `--nested` request is refused with a global entry offered instead.
 2. Global versioning is sequential, unique and four-part, and an untagged `skilled` release is extended rather than followed by a second untagged entry.
-3. The entry follows the template's compact or expanded shape in the v4.0.2.1 layout: why first, short bullets under short paragraphs, benefit-led headings, short plain sentences, how each feature works, every fix, the evidence in How It Was Checked and each fact said once.
+3. The entry follows the template's compact or expanded shape in the v4.1.0.0 layout: why first, short bullets under short paragraphs, benefit-led headings, short plain sentences, how each feature works, every fix, the evidence in How It Was Checked and each fact said once.
 4. A release body uses the entry and appends the full changelog path, and a published release never shows older text than its entry.
 5. Validation passes, or the remaining issue is escalated with exact evidence.
 6. No other file changes unless the user asked for it.

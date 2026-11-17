@@ -126,7 +126,7 @@ The body of each shared agent file follows its twin, and `Explore.md` has none (
 | Hook registrations match the registry | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check` | 0 in sync, 1 on drift, 2 on a registry it cannot render |
 | Links match their sources | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 in sync, 1 on drift |
 | Every runtime covers the roster | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 covered, 1 on drift, 2 on a checker error |
-| Every runtime at once | `/doctor:runtime-mirrors` | read-only |
+| Mirror, generator and roster checks for every runtime | `/doctor:runtime-mirrors` | read-only |
 
 Each check ends with a verdict line. The agent check ends with an `OK` line and the mirror check prints a `PASS` line with its mirror and tree counts. The registration check prints a `PASS` line with the registry count, and the roster check ends with `STATUS=OK`.
 

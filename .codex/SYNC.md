@@ -137,7 +137,7 @@ The translation is one way. `sandbox_mode` collapses to `workspace-write` or `re
 | Hook links | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 in sync / 1 drift |
 | Command asset references | `node .skilled/commands/scripts/validate-command-references.cjs` | 0 ok / 1 violation |
 | User-global hook file | `node .skilled/bin/install-codex-hooks.mjs --check` | 0 clean / 1 a copy or orphan remains |
-| Everything at once | `/doctor-runtime-mirrors` | read-only |
+| Mirror, generator and roster checks for every runtime | `/doctor-runtime-mirrors` | read-only |
 
 A pass prints a PASS line from each check, and the link check prints a visibility line before its own. The agent check begins `[codex-agent-sync] PASS:`, the prompt check begins `[codex-prompt-sync] PASS:`, and the registration check begins `[hook-registration-sync] PASS:`. The link check ends with a `[runtime-mirror-sync] PASS:` line, the reference check begins `OK  command references resolve`, and the installer prints `install-codex-hooks: OK` and the path to `~/.codex/hooks.json`. None of them writes.
 
@@ -148,7 +148,7 @@ A pass prints a PASS line from each check, and the link check prints a visibilit
 - **A hand edit to `hooks.json` is lost.** It is rendered from `hook-registry.json`, so the next registration run overwrites the file. Change the registry file instead.
 - **`config.toml` has no drift check.** No generator writes it and no drift check compares it with a source. `/doctor:mcp` does check that it registers the Code Mode launcher and the `.utcp_config.json` path.
 - **A top-level folder link is unchecked.** `repo-rules` and `manual-testing-playbook` are relative links and nothing reads them, so a dangling link shows up only when a reader follows it.
-- **The installer check can go silent.** `SYSTEM_HOOKS_DISABLED=1` or `MK_HOOK_INSTALL_DISABLED=1` returns the installer before it reads either file, so `--check` prints nothing and exits 0.
+- **The installer check can go silent.** `SYSTEM_HOOKS_DISABLED=1` or `SYSTEM_HOOK_INSTALL_DISABLED=1`, with the legacy `MK_HOOK_INSTALL_DISABLED=1` still read, returns the installer before it reads either file, so `--check` prints nothing and exits 0.
 - **Prompt staleness is quiet at runtime.** A stub that points at a deleted command is still a valid prompt file, and nothing checks its path when it loads. Only the checks above compare it with the command tree.
 - **Nothing reads this table.** A row that stops matching the disk is caught only when a reader compares it with the folder listing.
 

@@ -86,7 +86,7 @@ A write run prints one line, `[runtime-mirror-sync] Linked <added>, removed <pru
 | Command links match the source tree | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 in sync, 1 on drift |
 | Every entry resolves | `for e in .opencode/* .opencode/commands/*; do [ -e "$e" ] || echo "BROKEN $e"; done` | 0, and each dead link prints one `BROKEN` line |
 | The inventory matches the disk | `node --test .skilled/bin/tests/opencode-compat-layout.test.cjs` | 0 pass, 1 fail |
-| Every runtime at once | `/doctor:runtime-mirrors` | read-only |
+| Mirror, generator and roster checks for every runtime | `/doctor:runtime-mirrors` | read-only |
 
 The synchronizer prints one `PASS:` line with its mirror count and its tree count, or one drift line per problem. The loop prints nothing when every entry resolves. The suite prints one pass line per inventory row. None of them writes.
 

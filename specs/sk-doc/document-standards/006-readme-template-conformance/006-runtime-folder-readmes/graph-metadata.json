@@ -39,7 +39,7 @@
       "waves"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "blocked",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".opencode/SYNC.md",
+      ".vibe/README.md",
+      ".pi/SYNC.md",
+      ".dsh/SYNC.md",
       ".claude/README.md",
-      ".claude/SYNC.md",
       ".codex/README.md",
       ".cursor/README.md",
-      ".cursor/mcp.json",
-      ".claude/mcp.json",
       ".devin/README.md",
-      ".devin/SYNC.md",
       ".dsh/README.md",
       ".opencode/README.md",
       ".pi/README.md",
+      ".claude/SYNC.md",
       ".codex/SYNC.md",
-      ".cursor/SYNC.md"
+      ".cursor/SYNC.md",
+      ".devin/SYNC.md"
     ],
     "entities": [
       {
@@ -100,21 +100,15 @@
         "source": "derived"
       },
       {
-        "name": "SYNC.md",
-        "kind": "doc",
-        "path": ".opencode/SYNC.md",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
-        "path": ".claude/README.md",
+        "path": ".vibe/README.md",
         "source": "derived"
       },
       {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".cursor/mcp.json",
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".pi/SYNC.md",
         "source": "derived"
       },
       {
@@ -202,6 +196,12 @@
         "source": "derived"
       },
       {
+        "name": "Review Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Each runtime folder has a README for a person setting it up and a `SYNC.md` that records what is generated, linked or authored and how drift is caught",
     "created_at": "2026-11-16T15:20:17Z",
-    "last_save_at": "2026-11-17T16:55:35.881Z",
+    "last_save_at": "2026-11-17T17:09:08.203Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5d4f5c78d16d87159195b1cbea8347d3a2df200ccec46550b9b10fd25a1fdf8",
+    "source_fingerprint": "sha256:47865a5e9da77f4d62785d3f83b6957dfd5677b0a322624c6ed7fe17523f61fc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "44a8570dd5f504b4453c99ff2bf3113637d62ccf6368ea9a6f064ab78e7b710b",
+      "spec.md": "653ef532b7051200165342cbb61122a082733cb44ac33c5320566601aff2f7a0",
       "plan.md": "e31d5debcccaff17933fe742b32915ed2e0a7c74b0a0ce1f2ba246ec9991fcba",
-      "tasks.md": "c371a60a29cc405908ac311ab1888bc96bf06092e0b9239f6a778dd4132e2632",
-      "implementation-summary.md": "f9d8b4922228cc87af15c0de1a0b2fc643db92d2aab1e4679aa21024c87dcee6"
+      "tasks.md": "9de9dc2ed480177ee84cc32685f29d52db1aab91b7f92b8a78944d00731a181d",
+      "implementation-summary.md": "83fbbc4fc1f9b77a692899a822ffd27d25efb34482f51ec37db2ab547de4c923"
     },
     "last_active_at": null
   }

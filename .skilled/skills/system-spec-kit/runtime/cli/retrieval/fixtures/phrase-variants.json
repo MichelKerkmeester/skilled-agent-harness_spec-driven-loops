@@ -1,5 +1,5 @@
 {
-  "manifestHash": "909d17c401984497ae11e73d38b284bdf04ec77bd8c6e42cd11bc04d84a72d1f",
+  "manifestHash": "69345c91c6394ac1c55afd2ef9c1e65c194b0edfcc9ed4b85df90b110ebaad17",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -85905,6 +85905,9 @@
     "phase 9 reference restructure": [
       "phase 9 reference restructure"
     ],
+    "phase 9 release notes layout default": [
+      "phase 9 release notes layout default"
+    ],
     "phase 9 rename rule and test root fixes": [
       "phase 9 rename rule and test root fixes"
     ],
@@ -95802,6 +95805,18 @@
     ],
     "release notes evidence": [
       "release notes evidence"
+    ],
+    "release notes layout default": [
+      "release notes layout default"
+    ],
+    "release notes layout default implementation summary": [
+      "release notes layout default implementation summary"
+    ],
+    "release notes layout default plan": [
+      "release notes layout default plan"
+    ],
+    "release notes layout default tasks": [
+      "release notes layout default tasks"
     ],
     "release notes spacing": [
       "release notes spacing"
@@ -111352,6 +111367,9 @@
     "sk create changelog 1 5 4 0": [
       "sk-create-changelog 1.5.4.0"
     ],
+    "sk create changelog 1 6 0 0": [
+      "sk-create-changelog 1.6.0.0"
+    ],
     "sk create changelog concise default": [
       "sk-create-changelog concise default"
     ],
@@ -111471,6 +111489,9 @@
     ],
     "sk create changelog v1 5 4 0": [
       "sk-create-changelog v1.5.4.0"
+    ],
+    "sk create changelog v1 6 0 0": [
+      "sk-create-changelog v1.6.0.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -117850,8 +117871,8 @@
     "skilled v4 0 2 0": [
       "skilled v4.0.2.0"
     ],
-    "skilled v4 0 2 1": [
-      "skilled v4.0.2.1"
+    "skilled v4 1 0 0": [
+      "skilled v4.1.0.0"
     ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
@@ -131639,8 +131660,8 @@
     "v4 0 2 1 handover release notes": [
       "v4.0.2.1 handover release notes"
     ],
-    "v4 0 2 1 release notes": [
-      "v4.0.2.1 release notes"
+    "v4 1 0 0 release notes": [
+      "v4.1.0.0 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"

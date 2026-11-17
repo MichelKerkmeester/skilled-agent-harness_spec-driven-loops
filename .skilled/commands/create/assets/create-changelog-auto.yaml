@@ -313,7 +313,7 @@ changelog_template:
   #     newline into a line break
   #   - No Oxford commas, em dashes, or semicolons
   #
-  # Model entries: .skilled/changelog/skilled/v4.0.2.1.md for the layout,
+  # Model entries: .skilled/changelog/skilled/v4.1.0.0.md for the layout,
   # .skilled/changelog/skilled/v4.0.1.0.md for selection and
   # .skilled/changelog/skilled/v4.0.0.0.md for voice and how a major release
   # opens. Length comes from the template's ceilings, never from an entry.
@@ -583,7 +583,7 @@ workflow:
             ## What's New at a Glance
             - {One change, as one short sentence.}
 
-          EXPANDED FORMAT (the layout of .skilled/changelog/skilled/v4.0.2.1.md):
+          EXPANDED FORMAT (the layout of .skilled/changelog/skilled/v4.1.0.0.md):
             ## Why This Release
               {One short paragraph on the gap}, then one short bullet per gap
             ## What's New at a Glance
