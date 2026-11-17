@@ -75,6 +75,21 @@ describe('orphan sweeper temp-path orphans', () => {
     expect(results).toEqual(['reap', 'reap', 'reap', 'keep', 'keep', 'keep', 'keep', 'keep']);
   });
 
+  // A relative script started from inside a scratch folder names no temp path in its
+  // command line; only its working folder shows where it runs.
+  it('reaps a relative script by its temp working folder, and keeps one whose folder is not temp', () => {
+    const cwdStub = (cwd: string) => `lsof() { printf 'p4242\\nfcwd\\nn%s\\n' ${JSON.stringify(cwd)}; }`;
+    const results = runHarness([
+      cwdStub('/private/tmp/claude-501/session/scratchpad/b008'),
+      verdict('1', SIX_HOURS, 'R', 'Python gen.py'),
+      verdict('4100', SIX_HOURS, 'R', 'Python gen.py'),
+      verdict('1', SIX_HOURS - 1, 'R', 'Python gen.py'),
+      cwdStub(`${HOME}/projects/app`),
+      verdict('1', SIX_HOURS, 'R', 'Python gen.py'),
+    ]);
+    expect(results).toEqual(['reap', 'keep', 'keep', 'keep']);
+  });
+
   it('does not let a TCP listener preserve a temp-path orphan, but still preserves an MCP daemon', () => {
     const results = runHarness([
       `if preserve_reason 4242 "$TEMP_PROCESS_CLASS" ${SIX_HOURS} "python -m http.server 8099"; then :; else echo none; fi`,

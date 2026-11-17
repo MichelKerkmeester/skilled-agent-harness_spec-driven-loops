@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Orphan MCP Sweeper
+# ───────────────────────────────────────────────────────────────
 # Sweep stale MCP helper processes and temporary dispatch artifacts.
 #
 # Usage:
@@ -268,18 +271,30 @@ EOF
   return 1
 }
 
-# The cheap string test runs first, because this is asked of every process on the box.
+process_cwd() {
+  local pid="$1"
+  lsof -a -p "$pid" -d cwd -Fn 2>/dev/null | sed -n 's/^n//p' | head -n 1 || true
+}
+
+# A script started as `cd <scratch> && python gen.py` names no temp path in its
+# command line, so its working folder counts too. The shape tests run first because
+# this is asked of every process on the box, and lsof is reached only by a process
+# that has already outlived its parent past the age floor.
 is_temp_path_orphan() {
   local pid="$1"
   local ppid="$2"
   local age="$3"
   local stat="$4"
   local cmd="$5"
-  local owner
-  command_uses_temp_path "$cmd" || return 1
+  local owner cwd
   [[ "$ppid" = "1" ]] || return 1
   case "$stat" in *Z*) return 1 ;; esac
   [[ "$age" -ge $((TEMP_PROCESS_AGE_HOURS * 3600)) ]] 2>/dev/null || return 1
+  if ! command_uses_temp_path "$cmd"; then
+    cwd="$(process_cwd "$pid")"
+    [[ -n "$cwd" ]] || return 1
+    command_uses_temp_path "$cwd/" || return 1
+  fi
   owner="$(ps -p "$pid" -o uid= 2>/dev/null | tr -d ' ' || true)"
   [[ "$owner" = "$(id -u)" ]]
 }
@@ -548,7 +563,7 @@ scan_processes() {
   while read -r pid _ppid etime rss _stat command; do
     [[ -n "${pid:-}" ]] || continue
     class="$(classify_command "${command:-}" 2>/dev/null || true)"
-    if [[ -z "$class" ]] && command_uses_temp_path "${command:-}" \
+    if [[ -z "$class" ]] \
       && is_temp_path_orphan "$pid" "$_ppid" "$(etime_to_seconds "$etime")" "$_stat" "${command:-}"; then
       class="$TEMP_PROCESS_CLASS"
     fi
