@@ -117,7 +117,7 @@ export interface PivotUsage {
 
 export interface PivotDispatchContext {
   readonly pivotId: string;
-  readonly round: 1;
+  readonly round: PivotAttempt;
   readonly depth: 1;
   readonly insidePivot: true;
   readonly recursionAllowed: false;
@@ -141,6 +141,7 @@ export type PivotLifecycleState =
   | 'LEGAL_STOP'
   | 'PIVOT_PENDING'
   | 'COUNCIL_RUNNING'
+  | 'COUNCIL_RETRY_PENDING'
   | 'PIVOT_SELECTED'
   | 'PIVOT_COMPLETED'
   | 'CONTINUE';
@@ -152,6 +153,7 @@ export type PivotEventName =
   | 'pivot_deliberation_completed'
   | 'pivot_selected'
   | 'pivot_completed'
+  | 'pivot_attempt_failed'
   | 'pivot_failed';
 
 export interface PivotLifecycleTransition {
@@ -218,6 +220,8 @@ export interface PivotFailedResult {
   readonly resumed: boolean;
   readonly failureReason: PivotFailureReason;
   readonly durable: boolean;
+  readonly retryable?: true;
+  readonly attempt?: PivotAttempt;
   readonly quorum?: PivotQuorumResult;
   readonly agreement?: PivotAgreementResult;
   readonly failedEvent?: PivotEvent;
@@ -293,6 +297,7 @@ const PIVOT_LIFECYCLE_STATES = new Set<string>([
   'LEGAL_STOP',
   'PIVOT_PENDING',
   'COUNCIL_RUNNING',
+  'COUNCIL_RETRY_PENDING',
   'PIVOT_SELECTED',
   'PIVOT_COMPLETED',
   'CONTINUE',
@@ -398,6 +403,7 @@ function parsePivotEventName(value: unknown): PivotEventName | null {
     case 'pivot_deliberation_completed':
     case 'pivot_selected':
     case 'pivot_completed':
+    case 'pivot_attempt_failed':
     case 'pivot_failed':
       return value;
     default:
@@ -417,7 +423,7 @@ function parsePersistedPivotEvent(value: unknown, pivotId: string, index: number
     throw new Error(`Pivot state line ${index + 1} does not match the pivot event contract.`);
   }
   const event = parsePivotEventName(value.event);
-  if (event === null || (event === 'pivot_failed'
+  if (event === null || ((event === 'pivot_failed' || event === 'pivot_attempt_failed')
     && (typeof value.reason !== 'string' || !PIVOT_FAILURE_REASONS.has(value.reason)))) {
     throw new Error(`Pivot state line ${index + 1} does not match the pivot event contract.`);
   }
@@ -609,6 +615,10 @@ function deliberationEventId(pivotId: string, attempt: PivotAttempt): string {
   return attempt === 2
     ? `${pivotId}:attempt-2:pivot_deliberation_completed`
     : `${pivotId}:pivot_deliberation_completed`;
+}
+
+function attemptFailedEventId(pivotId: string): string {
+  return `${pivotId}:attempt-1:pivot_attempt_failed`;
 }
 
 function candidateRejectionEventId(
@@ -1231,18 +1241,22 @@ export async function preparePivotTransaction(
   }
 
   const store = readEventStore(paths.statePath, pivotId);
+  const attempt: PivotAttempt = store.byId.has(attemptFailedEventId(pivotId)) ? 2 : 1;
+  const attemptPaths = attempt === 2
+    ? buildPivotCouncilPaths(options.artifactRoot, pivotId, 2)
+    : paths;
   const completedEvent = eventByName(store, 'pivot_completed');
   const failedEvent = eventByName(store, 'pivot_failed');
   if (completedEvent && failedEvent) {
     throw new Error('Pivot state contains both completed and failed outcomes.');
   }
   if (completedEvent) {
-    writeMarkdownIfConsistent(paths.reportPath, renderReportArtifact(completedEvent));
-    return completedResultFromEvent(completedEvent, paths, true);
+    writeMarkdownIfConsistent(attemptPaths.reportPath, renderReportArtifact(completedEvent));
+    return completedResultFromEvent(completedEvent, attemptPaths, true);
   }
   if (failedEvent) {
-    writeMarkdownIfConsistent(paths.reportPath, renderReportArtifact(failedEvent));
-    return failedResultFromEvent(failedEvent, paths, true);
+    writeMarkdownIfConsistent(attemptPaths.reportPath, renderReportArtifact(failedEvent));
+    return failedResultFromEvent(failedEvent, attemptPaths, true);
   }
 
   // A resume keeps the counts recorded when the pivot opened, so replaying its
@@ -1251,7 +1265,6 @@ export async function preparePivotTransaction(
   const persistedConfig = resumed ? readPersistedConfig(paths.configPath, pivotId) : null;
   const usage = persistedConfig?.usageAtStart ?? requestedUsage;
   const limits = persistedConfig?.limits ?? config;
-  const attempt: PivotAttempt = 1;
 
   const candidateSet = deduplicatePivotCandidates(
     options.candidates,
@@ -1274,11 +1287,26 @@ export async function preparePivotTransaction(
   };
   mkdirSync(paths.councilRoot, { recursive: true });
   // An attempt-1 config predates the attempt field and must stay byte-identical to one.
-  const { attempt: recordAttempt, ...persistedRecord } = configRecord;
-  persistConfig(
-    paths.configPath,
-    (recordAttempt === 1 ? persistedRecord : configRecord) as unknown as Record<string, unknown>,
-  );
+  const openingConfig: PersistedPivotConfig = {
+    ...configRecord,
+    attempt: 1,
+    invariants: { ...configRecord.invariants, rounds: 1 },
+  };
+  const { attempt: _openingAttempt, ...openingRecord } = openingConfig;
+  if (attempt === 2 && persistedConfig?.attempt === 1) {
+    // The attempt-1 record must still replay unchanged before the retry rewrites it.
+    persistConfig(paths.configPath, openingRecord as unknown as Record<string, unknown>);
+    writeStateIfChangedAtomic(
+      paths.configPath,
+      configRecord,
+      new Map<string, string>(),
+    );
+  } else {
+    persistConfig(
+      paths.configPath,
+      (attempt === 1 ? openingRecord : configRecord) as unknown as Record<string, unknown>,
+    );
+  }
 
   appendEvent(
     store,
@@ -1344,16 +1372,16 @@ export async function preparePivotTransaction(
         recoverableByOverride: false,
       },
     );
-    writeMarkdownIfConsistent(paths.reportPath, renderReportArtifact(failed));
-    return failedResultFromEvent(failed, paths, resumed);
+    writeMarkdownIfConsistent(attemptPaths.reportPath, renderReportArtifact(failed));
+    return failedResultFromEvent(failed, attemptPaths, resumed);
   }
 
   if (durableSeatEvents.size > 0) {
-    mkdirSync(paths.seatsRoot, { recursive: true });
+    mkdirSync(attemptPaths.seatsRoot, { recursive: true });
     seats.forEach((seat, index) => {
       const event = durableSeatEvents.get(seat.id);
       if (event) {
-        writeMarkdownIfConsistent(paths.seatPaths[index], renderSeatArtifact(event));
+        writeMarkdownIfConsistent(attemptPaths.seatPaths[index], renderSeatArtifact(event));
       }
     });
   }
@@ -1362,13 +1390,13 @@ export async function preparePivotTransaction(
   return {
     status: 'pending',
     pivotId,
-    paths,
+    paths: attemptPaths,
     resumed,
     attempt,
     missingSeats,
     dispatchContext: {
       pivotId,
-      round: 1,
+      round: attempt,
       depth: 1,
       insidePivot: true,
       recursionAllowed: false,
@@ -1473,6 +1501,39 @@ export function finalizePivotTransaction(options: FinalizePivotTransactionOption
 
   if (!quorum.passed || !agreement.converged || agreement.selectedCandidateId === null) {
     const reason = quorum.passed ? 'council_agreement_failed' : failureReasonForQuorum(quorum);
+    if (!quorum.passed && attempt === 1) {
+      // A missed quorum is transient, so the council gets one more attempt; disagreement is a verdict and is not retried.
+      const attemptFailed = appendEvent(
+        store,
+        paths.statePath,
+        pivotId,
+        now,
+        options.afterEventPersisted,
+        {
+          eventId: attemptFailedEventId(pivotId),
+          event: 'pivot_attempt_failed',
+          lifecycle: { from: 'COUNCIL_RUNNING', to: 'COUNCIL_RETRY_PENDING', next: 'COUNCIL_RUNNING' },
+          attempt: 1,
+          reason,
+          quorum,
+          agreement,
+          retryable: true,
+        },
+      );
+      return {
+        status: 'failed',
+        pivotId,
+        paths,
+        resumed,
+        failureReason: reason,
+        durable: true,
+        retryable: true,
+        attempt: 1,
+        quorum,
+        agreement,
+        failedEvent: attemptFailed,
+      };
+    }
     const failed = appendEvent(
       store,
       paths.statePath,
@@ -1525,7 +1586,7 @@ export function finalizePivotTransaction(options: FinalizePivotTransactionOption
       event: 'pivot_completed',
       lifecycle: { from: 'PIVOT_SELECTED', to: 'PIVOT_COMPLETED', next: 'CONTINUE' },
       pivotCount: persistedConfig.usageAtStart.completedPivots + 1,
-      councilSeatOutputs: persistedConfig.usageAtStart.councilSeatOutputs + 3,
+      councilSeatOutputs: persistedConfig.usageAtStart.councilSeatOutputs + 3 * attempt,
       saturatedDirections: persistedConfig.saturatedDirections,
       selectedFrontier: persistedConfig.acceptedCandidates,
       selectedCandidate,
@@ -1556,58 +1617,66 @@ export async function runDivergentPivot(
     throw new TypeError('dispatchSeat must be a function.');
   }
 
-  const prepared = await preparePivotTransaction(options);
-  if (prepared.status !== 'pending') {
-    return prepared;
-  }
-
   const now = options.now ?? (() => new Date());
-  if (prepared.missingSeats.length > 0) {
-    const dispatchResult = await pivotExecutionContext.run(true, () => dispatchCouncilSeats({
-      roundId: `${prepared.pivotId}-round-001`,
-      seats: prepared.missingSeats,
-      dispatchSeat: options.dispatchSeat,
-      context: prepared.dispatchContext,
-      now,
-    }));
+  for (let round = 0; round < 2; round += 1) {
+    const prepared = await preparePivotTransaction(options);
+    if (prepared.status !== 'pending') {
+      return prepared;
+    }
 
-    dispatchResult.results.forEach((result) => {
-      const seatIndex = prepared.missingSeats.findIndex((seat) => seat.id === result.seat_id);
-      if (seatIndex < 0) {
-        throw new Error(`Council dispatcher returned unknown seat "${result.seat_id}".`);
-      }
-      const seat = prepared.missingSeats[seatIndex];
-      const outcome: PivotSeatDispatchOutcome = result.status === 'fulfilled'
-        ? {
-          status: 'fulfilled',
-          output: result.output,
-          startedAtIso: result.started_at_iso,
-          completedAtIso: result.completed_at_iso,
-          durationMs: result.duration_ms,
-        }
-        : {
-          status: 'rejected',
-          error: result.error,
-          startedAtIso: result.started_at_iso,
-          completedAtIso: result.completed_at_iso,
-          durationMs: result.duration_ms,
-        };
-      recordPivotSeatResult({
-        paths: prepared.paths,
-        pivotId: prepared.pivotId,
-        seat,
-        outcome,
+    if (prepared.missingSeats.length > 0) {
+      const dispatchResult = await pivotExecutionContext.run(true, () => dispatchCouncilSeats({
+        roundId: `${prepared.pivotId}-round-00${prepared.attempt}`,
+        seats: prepared.missingSeats,
+        dispatchSeat: options.dispatchSeat,
+        context: prepared.dispatchContext,
         now,
-        afterEventPersisted: options.afterEventPersisted,
-      });
-    });
-  }
+      }));
 
-  return finalizePivotTransaction({
-    paths: prepared.paths,
-    pivotId: prepared.pivotId,
-    resumed: prepared.resumed,
-    now,
-    afterEventPersisted: options.afterEventPersisted,
-  });
+      dispatchResult.results.forEach((result) => {
+        const seatIndex = prepared.missingSeats.findIndex((seat) => seat.id === result.seat_id);
+        if (seatIndex < 0) {
+          throw new Error(`Council dispatcher returned unknown seat "${result.seat_id}".`);
+        }
+        const seat = prepared.missingSeats[seatIndex];
+        const outcome: PivotSeatDispatchOutcome = result.status === 'fulfilled'
+          ? {
+            status: 'fulfilled',
+            output: result.output,
+            startedAtIso: result.started_at_iso,
+            completedAtIso: result.completed_at_iso,
+            durationMs: result.duration_ms,
+          }
+          : {
+            status: 'rejected',
+            error: result.error,
+            startedAtIso: result.started_at_iso,
+            completedAtIso: result.completed_at_iso,
+            durationMs: result.duration_ms,
+          };
+        recordPivotSeatResult({
+          paths: prepared.paths,
+          pivotId: prepared.pivotId,
+          seat,
+          outcome,
+          now,
+          afterEventPersisted: options.afterEventPersisted,
+        });
+      });
+    }
+
+    const finalized = finalizePivotTransaction({
+      paths: prepared.paths,
+      pivotId: prepared.pivotId,
+      resumed: prepared.resumed,
+      now,
+      afterEventPersisted: options.afterEventPersisted,
+    });
+    // A retryable attempt failure reopens the pivot as attempt 2; anything else is terminal.
+    if (finalized.status === 'failed' && finalized.retryable === true && round === 0) {
+      continue;
+    }
+    return finalized;
+  }
+  throw new Error('Divergent pivot exceeded its two council attempts.');
 }

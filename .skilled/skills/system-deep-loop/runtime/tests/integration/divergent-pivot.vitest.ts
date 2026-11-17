@@ -334,6 +334,141 @@ describe('divergent pivot quorum and agreement', () => {
     });
   });
 
+  it('retries a first-attempt quorum failure once and completes on the second attempt', async () => {
+    const env = environment('pivot-attempt-retry');
+    const calls = new Map<string, number>();
+    const dispatchSeat = vi.fn(async (seat: PivotSeatMandate) => {
+      const count = (calls.get(seat.id) ?? 0) + 1;
+      calls.set(seat.id, count);
+      if (seat.id === 'seat-003' && count === 1) {
+        throw new Error('seat unavailable on the first attempt');
+      }
+      return seatReport(seat.id);
+    });
+    const result = await runDivergentPivot(options(env.tmpDir, { dispatchSeat }));
+
+    expect(result.status).toBe('completed');
+    if (result.status !== 'completed') {
+      throw new Error(`Expected a completed pivot, got "${result.status}".`);
+    }
+    expect(dispatchSeat).toHaveBeenCalledTimes(6);
+    expect(result.completedEvent.councilSeatOutputs).toBe(6);
+
+    const events = stateEvents(result.paths.statePath);
+    const attemptFailures = events.filter((event) => event.event === 'pivot_attempt_failed');
+    expect(attemptFailures).toHaveLength(1);
+    expect(attemptFailures[0]).toMatchObject({ attempt: 1, retryable: true });
+    expect(events.filter((event) => event.event === 'pivot_failed')).toHaveLength(0);
+    const seatEvents = events.filter((event) => event.event === 'pivot_seat_returned');
+    expect(seatEvents).toHaveLength(6);
+    expect(seatEvents.map((event) => event.eventId)).toEqual([
+      `${result.pivotId}:pivot_seat_returned:seat-001`,
+      `${result.pivotId}:pivot_seat_returned:seat-002`,
+      `${result.pivotId}:pivot_seat_returned:seat-003`,
+      `${result.pivotId}:attempt-2:pivot_seat_returned:seat-001`,
+      `${result.pivotId}:attempt-2:pivot_seat_returned:seat-002`,
+      `${result.pivotId}:attempt-2:pivot_seat_returned:seat-003`,
+    ]);
+    expect(seatEvents.slice(3).every((event) => event.attempt === 2)).toBe(true);
+
+    const root = result.paths.artifactRoot;
+    expect(buildPivotCouncilPaths(root, result.pivotId).seatPaths.every(
+      (path) => existsSync(path),
+    )).toBe(true);
+    expect(buildPivotCouncilPaths(root, result.pivotId, 2).seatPaths.every(
+      (path) => existsSync(path),
+    )).toBe(true);
+
+    const persisted = JSON.parse(readFileSync(result.paths.configPath, 'utf8')) as Record<string, unknown>;
+    expect(persisted.attempt).toBe(2);
+    expect((persisted.invariants as Record<string, unknown>).rounds).toBe(2);
+    expect(finalizePivotTransaction({ paths: result.paths, pivotId: result.pivotId }).status).toBe('completed');
+  });
+
+  it('fails closed when the retry also misses quorum and opens no third attempt', async () => {
+    const env = environment('pivot-attempt-retry-exhausted');
+    const dispatchSeat = vi.fn(async (seat: PivotSeatMandate) => {
+      if (seat.id === 'seat-003') throw new Error('seat unavailable');
+      return seatReport(seat.id);
+    });
+    const result = await runDivergentPivot(options(env.tmpDir, { dispatchSeat }));
+
+    expect(result).toMatchObject({
+      status: 'failed',
+      failureReason: 'council_return_quorum_failed',
+    });
+    expect(Object.prototype.hasOwnProperty.call(result, 'retryable')).toBe(false);
+    expect(dispatchSeat).toHaveBeenCalledTimes(6);
+    const events = stateEvents(result.paths.statePath);
+    expect(events.filter((event) => event.event === 'pivot_attempt_failed')).toHaveLength(1);
+    expect(events.filter((event) => event.event === 'pivot_failed')).toHaveLength(1);
+  });
+
+  it('does not retry an agreement failure', async () => {
+    const env = environment('pivot-agreement-terminal');
+    const candidates = [candidate(1), candidate(2), candidate(3)];
+    const dispatchSeat = vi.fn(async (seat: PivotSeatMandate) => {
+      const selected = candidates[Number(seat.id.slice(-1)) - 1];
+      return seatReport(seat.id, selected.id);
+    });
+    const result = await runDivergentPivot(options(env.tmpDir, { candidates, dispatchSeat }));
+
+    expect(result).toMatchObject({
+      status: 'failed',
+      failureReason: 'council_agreement_failed',
+    });
+    expect(dispatchSeat).toHaveBeenCalledTimes(3);
+    const events = stateEvents(result.paths.statePath);
+    expect(events.filter((event) => event.event === 'pivot_attempt_failed')).toHaveLength(0);
+    expect(events.filter((event) => event.event === 'pivot_seat_returned')).toHaveLength(3);
+  });
+
+  it('reopens a quorum-failed pivot as attempt 2 through prepare, record and finalize', async () => {
+    const env = environment('pivot-attempt-retry-split');
+    const baseOptions = options(env.tmpDir, {
+      identity: identity({ normalizedTrigger: 'retry across the step api boundary' }),
+    });
+
+    const prepared = await preparePivotTransaction(baseOptions);
+    if (prepared.status !== 'pending') {
+      throw new Error(`Expected a pending prepare result, got "${prepared.status}".`);
+    }
+    expect(prepared.attempt).toBe(1);
+
+    const rejectedSeat = prepared.missingSeats.find((seat) => seat.id === 'seat-003');
+    if (!rejectedSeat) {
+      throw new Error('Expected seat-003 to still be missing.');
+    }
+    recordPivotSeatResult({
+      paths: prepared.paths,
+      pivotId: prepared.pivotId,
+      seat: rejectedSeat,
+      outcome: {
+        status: 'rejected',
+        error: { name: 'Error', message: 'seat unavailable' },
+        startedAtIso: '2026-07-10T12:00:00.000Z',
+        completedAtIso: '2026-07-10T12:00:01.000Z',
+        durationMs: 1000,
+      },
+    });
+
+    const firstFinalize = finalizePivotTransaction({
+      paths: prepared.paths,
+      pivotId: prepared.pivotId,
+      resumed: prepared.resumed,
+      now: baseOptions.now,
+    });
+    expect(firstFinalize).toMatchObject({ status: 'failed', retryable: true, attempt: 1 });
+
+    const reopened = await preparePivotTransaction(baseOptions);
+    expect(reopened).toMatchObject({ status: 'pending', attempt: 2 });
+    if (reopened.status !== 'pending') {
+      throw new Error(`Expected a pending prepare result, got "${reopened.status}".`);
+    }
+    expect(reopened.missingSeats.map((seat) => seat.id)).toEqual(['seat-001', 'seat-002', 'seat-003']);
+    expect(reopened.paths.seatPaths[0]).toContain('/attempt-2/');
+  });
+
   it('distinguishes material agreement, non-agreement, and a high blocker veto', () => {
     const agreed = evaluatePivotAgreement([
       seatReport('seat-001'),
