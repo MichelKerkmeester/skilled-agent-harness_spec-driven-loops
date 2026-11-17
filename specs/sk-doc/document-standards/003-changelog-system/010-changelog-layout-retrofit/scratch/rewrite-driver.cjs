@@ -361,6 +361,14 @@ async function writeWithGlm(prompt, tag) {
   return { ok: res.code === 0 && !res.timedOut, reply: res.output, output: res.output, usage: null, outcome: res.timedOut ? 'timed out' : `exit ${res.code}`, family: 'glm', model: 'devin:glm-5-2' };
 }
 
+function withOriginalFrontmatter(draft, oldText) {
+  if (!draft) return draft;
+  const [front] = splitFrontmatter(oldText);
+  if (!front) return draft;
+  const [draftFront, draftBody] = splitFrontmatter(draft);
+  return front + (draftFront ? draftBody : draft.replace(/^\n+/, '\n'));
+}
+
 // The reply is one fenced block. A reply that holds the file without the fence
 // is not accepted, because a stray preamble would land in the changelog.
 function extractFile(reply) {
@@ -480,7 +488,10 @@ async function processFile(file, writer) {
       history.push({ attempt, problem: `writer did not finish (${w.outcome})` });
       continue;
     }
-    const text = extractFile(w.reply);
+    // The frontmatter must stay byte for byte, so the original block replaces
+    // whatever the model wrote there. A model that tidies one word of a
+    // description would otherwise fail every attempt on a line it may not touch.
+    const text = withOriginalFrontmatter(extractFile(w.reply), oldText);
     if (!text) {
       history.push({ attempt, problem: 'reply held no fenced file' });
       items = ['Your reply held no file. Reply with the whole file inside one ~~~markdown fenced block and nothing else.'];
