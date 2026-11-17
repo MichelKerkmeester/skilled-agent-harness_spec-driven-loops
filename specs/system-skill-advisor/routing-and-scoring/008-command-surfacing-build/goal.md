@@ -412,6 +412,7 @@ and findings belong here.
 | Criterion 4 review convergence | Not met at 0 P1 | passes ten to fourteen each found P1 in the mention check; the operator accepted the no-lead refusal class as a known limit (Q088); last pass fourteen: data-14 converged, mention-14 hit maxIterationsReached |
 | Criterion 6 alignment 0 P0 and 0 P1 | Not met at 0 P1 | closing run 0 P0, 11 P1: 2 fixed after the run, 9 operator items (040 ADR-002) |
 | Waiting on operator | Open | push the branch and open the PR (D2); v4.0.2.1 release-note range (D2); Vibe gaps in packet 004; deep-loop clean-review convergence defect (convergence.cjs buildReviewSignals); 040 ADR-002 items: seven routing probes and advisor ROUTER and feature-catalog coverage of the measurement tooling and Vibe; open P2 lists in review/review-report*.md; scratch folders, scratchpad/orphan-dist-backup, the... |
+| Merge origin/main 23b0c3c70b6 | Done | 3 commits, another packet's spec docs and the trigger index only, no code; trigger index regenerated and checked |
 
 ### Deviations and findings
 

@@ -1,0 +1,640 @@
+{
+  "sessionId": "2026-11-17T06:46:29Z",
+  "parentSessionId": "2026-11-17T06:45:14Z",
+  "generation": 3,
+  "lineageMode": "restart",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "History search files filter is exact string equality, with an undocumented format",
+      "file": ".skilled/hooks/session-handover/history/lib/navigator.ts",
+      "line": 559,
+      "description": "",
+      "findingClass": "contract-gap",
+      "deltaStatus": null,
+      "scopeProof": "one predicate in HistoryNavigator.matchesFilters",
+      "affectedSurfaceHints": [
+        ".skilled/hooks/session-handover/history/lib/navigator.ts",
+        ".skilled/hooks/session-handover/history/README.md"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "state-files.md leaves Vibe out of the runtimes whose operator prompt withdraws a record",
+      "file": ".skilled/hooks/session-handover/state-files.md",
+      "line": null,
+      "description": "",
+      "findingClass": "doc-code drift, enumeration omission",
+      "deltaStatus": null,
+      "scopeProof": "One sentence in state-files.md; the withdraw call in every adapter was read and Vibe is the only runtime missing from line 43.",
+      "affectedSurfaceHints": [
+        ".skilled/hooks/session-handover/state-files.md:43"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Withdraw-on-prompt wrapper hand-copied into five adapters; OpenCode and Pi copies drop follow-up error reporting",
+      "file": ".skilled/hooks/session-handover/opencode/session-handover.js",
+      "line": 306,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "troubleshooting.md gives an incomplete cause for killer-lock-stale",
+      "file": ".skilled/hooks/session-handover/troubleshooting.md",
+      "line": null,
+      "description": "",
+      "findingClass": "doc drift, symptom table narrower than the code path",
+      "deltaStatus": null,
+      "scopeProof": "One killer-lock-stale emitter (killer.cjs:576), reached after the expiry-aware gate at killer.cjs:487.",
+      "affectedSurfaceHints": [
+        ".skilled/hooks/session-handover/troubleshooting.md:67"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 6,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": [
+      "coverage"
+    ]
+  },
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 4
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.75,
+  "graphConvergenceScore": 0.788,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "count": 10,
+      "description": "Dimension coverage (75%) is below threshold (80%). 10 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "severity": "blocking",
+      "type": "uncovered_dimensions"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0.75,
+    "evidenceDensity": 0,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.788
+  },
+  "candidateCoverage": {
+    "covered": [
+      "contract_gap",
+      "cross_adapter_duplication"
+    ],
+    "ruledOut": [
+      "boundary_value",
+      "command_injection",
+      "doc_code_drift",
+      "input_escaping",
+      "path_traversal",
+      "privilege_escalation",
+      "signal_targeting",
+      "state_transition"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "contract_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "boundary_value": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "input_escaping": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "signal_targeting": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "privilege_escalation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "cross_adapter_duplication": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "doc_code_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop",
+        ".skilled/hooks/session-handover/lib/relaunch-core.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "every approved branch re-reads the record under the withdraw lock",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:1388",
+        ".skilled/hooks/session-handover/bin/session-handover.cjs:812",
+        ".skilled/hooks/session-handover/bin/session-handover.cjs:588"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/lib/relaunch-core.cjs"
+      ],
+      "bugClass": "input_escaping",
+      "disposition": "ruled_out",
+      "rationale": "escape set covers double-quote context",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/lib/relaunch-core.cjs:1897"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "boundary_value",
+      "disposition": "ruled_out",
+      "rationale": "documented intent",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/runtime-behavior.md:73"
+      ],
+      "reason": "documented at runtime-behavior.md:73"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/lib/killer.cjs"
+      ],
+      "bugClass": "signal_targeting",
+      "disposition": "ruled_out",
+      "rationale": "guards present on the only signal path",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/lib/killer.cjs:784",
+        ".skilled/hooks/session-handover/lib/killer.cjs:839"
+      ],
+      "reason": "verified by direct read; pid-reuse residual acknowledged in code"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/bin/session-handover.cjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "all four containment checks present",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/bin/session-handover.cjs:166",
+        ".skilled/hooks/session-handover/bin/session-handover.cjs:829"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "privilege_escalation",
+      "disposition": "ruled_out",
+      "rationale": "guard requires operator's own launch flag",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:266"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/claude",
+        ".skilled/hooks/session-handover/codex",
+        ".skilled/hooks/session-handover/vibe",
+        ".skilled/hooks/session-handover/pi",
+        ".skilled/hooks/session-handover/lib"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "no shell spawn exists",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/claude/handover-stop-arm.mjs:62",
+        ".skilled/hooks/session-handover/lib/killer.cjs:689"
+      ],
+      "reason": "verified by exhaustive exact search"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/handoff-protocol.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "split is documented",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/handoff-protocol.md:115",
+        ".skilled/hooks/session-handover/handoff-protocol.md:177"
+      ],
+      "reason": "handoff-protocol.md:115 and :177 match the code"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop",
+        ".skilled/hooks/session-handover/lib/relaunch-core.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "every approved branch re-reads the record under the withdraw lock",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:1388",
+        ".skilled/hooks/session-handover/bin/session-handover.cjs:812",
+        ".skilled/hooks/session-handover/bin/session-handover.cjs:588"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/lib/relaunch-core.cjs"
+      ],
+      "bugClass": "input_escaping",
+      "disposition": "ruled_out",
+      "rationale": "escape set covers double-quote context",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/lib/relaunch-core.cjs:1897"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "boundary_value",
+      "disposition": "ruled_out",
+      "rationale": "documented intent",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/runtime-behavior.md:73"
+      ],
+      "proof": "documented at runtime-behavior.md:73"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/lib/killer.cjs"
+      ],
+      "bugClass": "signal_targeting",
+      "disposition": "ruled_out",
+      "rationale": "guards present on the only signal path",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/lib/killer.cjs:784",
+        ".skilled/hooks/session-handover/lib/killer.cjs:839"
+      ],
+      "proof": "verified by direct read; pid-reuse residual acknowledged in code"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/bin/session-handover.cjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "all four containment checks present",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/bin/session-handover.cjs:166",
+        ".skilled/hooks/session-handover/bin/session-handover.cjs:829"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "privilege_escalation",
+      "disposition": "ruled_out",
+      "rationale": "guard requires operator's own launch flag",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:266"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-2-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/claude",
+        ".skilled/hooks/session-handover/codex",
+        ".skilled/hooks/session-handover/vibe",
+        ".skilled/hooks/session-handover/pi",
+        ".skilled/hooks/session-handover/lib"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "no shell spawn exists",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/claude/handover-stop-arm.mjs:62",
+        ".skilled/hooks/session-handover/lib/killer.cjs:689"
+      ],
+      "proof": "verified by exhaustive exact search"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/handoff-protocol.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "split is documented",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/handoff-protocol.md:115",
+        ".skilled/hooks/session-handover/handoff-protocol.md:177"
+      ],
+      "proof": "handoff-protocol.md:115 and :177 match the code"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "cross_adapter_duplication",
+      "doc_code_drift"
+    ],
+    "covered": [
+      "cross_adapter_duplication"
+    ],
+    "ruledOut": [
+      "doc_code_drift"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 0,
+      "partial": 2,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 1,
+      "gatingFailures": 1
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/hooks/session-handover/goal-carry-over.md:29",
+          ".skilled/hooks/session-handover/lib/killer.cjs:26",
+          ".skilled/hooks/session-handover/lib/relaunch-core.cjs:2165",
+          ".skilled/hooks/session-handover/bin/session-handover.cjs:991",
+          ".skilled/hooks/session-handover/troubleshooting.md:67"
+        ],
+        "evidenceRefs": [
+          ".skilled/hooks/session-handover/lib/killer.cjs:487",
+          ".skilled/hooks/session-handover/bin/session-handover.cjs:922"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "summary": "goal-carry-over.md lock contract, bin/README.md CLI surface and troubleshooting.md killer events match code except one P2 drift; claude/, pi/, lib/ READMEs not reached."
+      },
+      {
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "summary": "Target is source and hook docs, not a spec packet with a checklist."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/hooks/session-handover/lib/withdraw.cjs:55",
+          ".skilled/hooks/session-handover/vibe/handover-parts.mjs:105",
+          ".skilled/hooks/session-handover/pi/session-handover.ts:686"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "agent_cross_runtime",
+        "status": "partial",
+        "summary": "All five adapters withdraw through the same shared call with reason user-message; the relaunch-log event names differ (withdrawn vs arm-cancelled) and no doc pins them."
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "spec_code"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

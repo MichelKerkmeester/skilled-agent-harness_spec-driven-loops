@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e658a1cf2c16df6c404ed2e634a1e4b6b433d90e89306fb02b939e2e6fa0541e",
+  "manifestHash": "866971d1cc3af764ab14ef117fe403c6397809c1b2245f2e6980c88786f5c3b6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7261,6 +7261,9 @@
     ],
     "053 ci workflow efficiency": [
       "053 ci workflow efficiency"
+    ],
+    "053 handover and history deep review operator decisions": [
+      "053-handover-and-history-deep-review operator decisions"
     ],
     "053 mk spec memory rename remediation": [
       "053 mk-spec-memory rename remediation"
@@ -39099,6 +39102,9 @@
     "deep review sealed artifacts tasks": [
       "deep review sealed artifacts tasks"
     ],
+    "deep review session handover all runtimes": [
+      "deep review session handover all runtimes"
+    ],
     "deep review severity activation": [
       "deep review severity activation"
     ],
@@ -58275,8 +58281,26 @@
     "handover anchor tasks": [
       "handover anchor tasks"
     ],
+    "handover and history deep review": [
+      "handover and history deep review"
+    ],
+    "handover and history deep review implementation summary": [
+      "handover and history deep review implementation summary"
+    ],
+    "handover and history deep review plan": [
+      "handover and history deep review plan"
+    ],
+    "handover and history deep review tasks": [
+      "handover and history deep review tasks"
+    ],
     "handover bound freshness": [
       "handover bound freshness"
+    ],
+    "handover deep review report": [
+      "handover deep review report"
+    ],
+    "handover deep review strategy": [
+      "handover deep review strategy"
     ],
     "handover doc alignment": [
       "handover doc alignment"
@@ -84993,6 +85017,9 @@
     "phase 53 final commit live proof": [
       "phase 53 final commit live proof"
     ],
+    "phase 53 handover deep review": [
+      "phase 53 handover deep review"
+    ],
     "phase 54 v4 0 0 13 changelog opencode": [
       "phase 54 v4 0 0 13 changelog opencode"
     ],
@@ -106048,6 +106075,9 @@
     ],
     "session health schema bypass": [
       "session_health schema bypass"
+    ],
+    "session history search review": [
+      "session history search review"
     ],
     "session id dfs bound": [
       "session id dfs bound"

@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6896,
-    "ok": 19618,
+    "missing-frontmatter": 6914,
+    "ok": 19627,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28141,
+  "documentsScanned": 28168,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "e658a1cf2c16df6c404ed2e634a1e4b6b433d90e89306fb02b939e2e6fa0541e",
+  "manifestHash": "866971d1cc3af764ab14ef117fe403c6397809c1b2245f2e6980c88786f5c3b6",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44895,
+      "ok": 44905,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -36322,6 +36322,114 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review-archive/20261117T064455Z/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review-archive/20261117T064455Z/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review-archive/20261117T064629Z/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review-archive/20261117T064629Z/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review-archive/20261117T064629Z/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review-archive/20261117T064629Z/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/research.md",
       "reason": "no opening frontmatter delimiter"
@@ -57214,6 +57322,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/052-duplicate-hop-title-numbers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/scratch",
       "reason": "excluded directory"
     },
     {
