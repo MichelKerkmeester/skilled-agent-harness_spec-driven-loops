@@ -55,10 +55,10 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `rg -n 'Accepted' decision-record.md` prints the ADR-001 status line.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts tests/unit/divergent-pivot-cli.vitest.ts` exits 0 with the new retry, attempt-identity, scoped-count, agreement and persisted-limit cases.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npm run typecheck` exits 0.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0 after both compiled contracts are regenerated.
+- [x] `rg -n 'Accepted' decision-record.md` prints the ADR-001 status line.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts tests/unit/divergent-pivot-cli.vitest.ts` exits 0 with the new retry, attempt-identity, scoped-count, agreement and persisted-limit cases.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npm run typecheck` exits 0.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0 after both compiled contracts are regenerated.
 - [ ] `rg -l 'maxCouncilSeatOutputs' .skilled/skills/system-deep-loop/changelog` lists a changelog entry that states the per-attempt meaning.
 - [ ] `rg -l 'retry' .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council` lists a retry scenario written through `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
@@ -82,6 +82,7 @@ and findings belong here.
 | Session save | Done | operator decisions written to decision-record.md |
 | Baseline (T002) | Done | 2026-11-17, worktree 464 on integration tip `c898b3ad9a3`: `npx vitest run tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts tests/unit/divergent-pivot-cli.vitest.ts tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` 5 files, 50 passed; `npm run typecheck` exit 0 |
 | T003, T004, T006 | Done | Go dispatches; divergent-pivot + CLI + multi-seat suites 28 passed, typecheck 0 |
+| T005, T007-T013, T016, T017 | Done | 2026-11-17: the T002 suites plus `divergent-pivot-seat-scope.vitest.ts` 6 files, 61 passed (50 baseline + 11 new); typecheck 0; YAML suites pass; `check-contract-drift.cjs` OK. Criteria 1-4 checked. Criteria 5 and 6 (changelog, playbook) wait for @markdown in integration after merge |
 
 ### Deviations and findings
 
