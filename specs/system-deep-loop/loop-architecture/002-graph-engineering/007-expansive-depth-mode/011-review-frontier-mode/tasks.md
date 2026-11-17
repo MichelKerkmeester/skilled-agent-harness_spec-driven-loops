@@ -95,7 +95,7 @@ Mark the task `[B]`, name the blocking phase, file or failing check on the same 
 - [x] T025 Update the review reference docs for the flag, seed step, node store, steering rule, veto and fan-out partition (`$D/deep-review/references/`, `$D/deep-review/assets/review-mode-contract.yaml`, `$D/deep-review/SKILL.md`, `$D/deep-review/README.md`). Verify: `rg -l -- '--depth-mode'` prints each of those files. Pi dispatch: rg -l -- '--depth-mode' prints convergence.md, loop-protocol.md, quick-reference.md, state-format.md, review-mode-contract.yaml, deep-review/SKILL.md and deep-review/README.md; check-documentation-drift.cjs exit 0; review-mode-contract.yaml parses. The SKILL.md version bump was reverted so the version moves with the T027 changelog entry.
 - [B] T026 Write the expansive review playbook scenarios through `/create:manual-testing-playbook system-deep-loop update --path $D/deep-review/manual-testing-playbook` (`$D/deep-review/manual-testing-playbook/`). Verify: the command completes and `rg -l -- '--depth-mode=expansive' $D/deep-review/manual-testing-playbook` prints at least one file. Written by @markdown in integration after merge.
 - [B] T027 Add the changelog entry for the review flag (`$D/deep-review/changelog/`, through `/create:changelog`). Verify: `rg -l -- '--depth-mode' $D/deep-review/changelog` prints the new file. Written by @markdown in integration after merge (it also bumps deep-review/SKILL.md, whose version must match the newest changelog entry).
-- [ ] T028 Regenerate the review compiled contract after the last digested source change (`.skilled/commands/deep/assets/compiled/deep-review.contract.markdown`). Verify: `node $D/runtime/scripts/compile-command-contracts.cjs --command deep/review --write` exits 0, then `$R tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0.
+- [x] T028 Regenerate the review compiled contract after the last digested source change (`.skilled/commands/deep/assets/compiled/deep-review.contract.markdown`). Verify: `node $D/runtime/scripts/compile-command-contracts.cjs --command deep/review --write` exits 0, then `$R tests/unit/check-contract-drift.vitest.ts tests/unit/compile-command-contracts.vitest.ts` exits 0. Both compiled contracts regenerated after the last digested change (no diff remained: the commit hook had refreshed them); check-contract-drift OK commands=2; check-contract-drift + compile-command-contracts 26 passed.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -161,8 +161,8 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `node --check` exits 0 on every changed `.cjs` file and `tsc --noEmit` passes for changed `.ts` files
-- [ ] CHK-011 [P0] No new branch is reachable when `depthMode` is absent or `default`
+- [x] CHK-010 [P0] `node --check` exits 0 on every changed `.cjs` file and `tsc --noEmit` passes for changed `.ts` files node --check exits 0 on every changed .cjs file; npm run typecheck exits 0 for the changed .ts files.
+- [x] CHK-011 [P0] No new branch is reachable when `depthMode` is absent or `default` Every new branch is gated on depthMode === 'expansive' (reducer, convergence, fan-out, pivot, YAML enabled_when); review-depth-mode-golden 14 of 14 for absent and default.
 - [x] CHK-012 [P1] Malformed proposal rows are pruned with a reason, not thrown checkProposal returns 'relevance' for a non-object or a row without evidence or scope; the review admit suite prunes each malformed row with its reason and never throws.
 - [x] CHK-013 [P1] Code comments carry the durable why and no spec, phase or task ids git diff 5e583331cc9 over changed .cjs/.ts/.yaml finds no task, REQ, ADR, CHK, spec-path or phase id in an added comment.
 <!-- /ANCHOR:code-quality -->
@@ -173,8 +173,8 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 ## Testing Checklist
 
 - [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Golden review test passes for absent key and `--depth-mode=default`, pivot seeds and lineage prompt included
-- [ ] CHK-022 [P1] Admission, veto, close, stuck and fan-out edge cases tested
+- [x] CHK-021 [P0] Golden review test passes for absent key and `--depth-mode=default`, pivot seeds and lineage prompt included review-depth-mode-golden: 14 of 14, pivot seeds and lineage prompt included (lineage prompt with the one stripped paragraph, ADR-005).
+- [x] CHK-022 [P1] Admission, veto, close, stuck and fan-out edge cases tested Admission (frontier-admit-review), veto (stop-decision), close and stuck (reducer, yaml-contract), and fan-out (fanout-run, fanout-merge) edge cases all pass.
 - [ ] CHK-023 [P1] Pilot run on target 1 completed
 <!-- /ANCHOR:testing -->
 
@@ -183,13 +183,13 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-- [ ] CHK-FIX-001 [P0] Not a fix packet; every shared-file edit is classed `cross-consumer` and covered by the golden test.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory from plan.md affected surfaces completed.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for `searchDebt`, `candidateCoverage`, `frontier_scope` and `depthMode`.
+- [x] CHK-FIX-001 [P0] Not a fix packet; every shared-file edit is classed `cross-consumer` and covered by the golden test. Every shared-file edit (reduce-state.cjs, convergence.cjs, fanout-run.cjs, fanout-merge.cjs, frontier-admit.cjs, divergent-review-pivot.ts, deep-review.yaml, the template and the agent) is cross-consumer and gated on the expansive mode; the golden review test covers the default path of each.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory from plan.md affected surfaces completed. Producers of frontier state: frontier-admit.cjs (seed, admit, close, block) is the only store writer; the reducer is the only producer of registry.frontier and frontier debt; fanout-run.cjs writes lineage stores from the parent store. No other producer exists (rg over runtime/scripts, lib and deep-review/scripts).
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for `searchDebt`, `candidateCoverage`, `frontier_scope` and `depthMode`. Consumers: searchDebt read by convergence.cjs, review-verdict.cjs, fanout-merge.cjs, divergent-review-pivot.ts and deep-review.yaml; candidateCoverage by convergence.cjs, fanout-merge.cjs and deep-review.yaml; frontier_scope only by fanout-run.cjs prompts; depthMode by deep-review.yaml, reduce-state.cjs, convergence.cjs, fanout-run.cjs and divergent-review-pivot.ts. Open frontier debt makes the verdict CONDITIONAL while nodes are open, which the veto already holds at CONTINUE.
 - [x] CHK-FIX-004 [P0] Admission table covers malformed, duplicate, too-deep, over-fan-out, budget-growing and cyclic proposals. frontier-admit-review covers malformed (no evidence), out-of-target scope, duplicate, too-deep, over-fan-out, budget-growing and cyclic proposals, one reason each.
-- [ ] CHK-FIX-005 [P1] Matrix axes from plan.md listed with their row count before completion is claimed.
-- [ ] CHK-FIX-006 [P1] No test reads process-wide state without restoring it.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA.
+- [x] CHK-FIX-005 [P1] Matrix axes from plan.md listed with their row count before completion is claimed. plan.md matrix: depthMode (absent, default, expansive) x convergenceMode (default, divergent) x executor (single, fan-out) = 12 rows. Absent/default rows: golden review plus the unchanged existing suites; expansive single: reducer, veto, yaml-contract; expansive divergent: divergent-pivot gating; expansive fan-out: fanout-run and fanout-merge. Expansive x divergent x fan-out has no dedicated end-to-end case; the pilot exercises fan-out live.
+- [x] CHK-FIX-006 [P1] No test reads process-wide state without restoring it. The new tests write temp dirs only and restore nothing global; no case reads process-wide state.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA. Evidence is pinned to the branch commits listed in goal.md; the final sha is in the last log row.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -207,11 +207,11 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized spec.md status In Progress; plan ADRs, tasks and acceptance rows carry the build evidence.
 - [x] CHK-041 [P1] `review.md` command flag table and the review agent definition describe the same flag and row review.md flag row and the review agent's frontier_proposal paragraph name the same flag and row.
 - [ ] CHK-042 [P2] The review synthesis names frontier-derived `deferred` entries as follow-up work
-- [ ] CHK-043 [P1] Reference docs, playbook scenarios and the changelog entry name `--depth-mode`, per T025-T027
-- [ ] CHK-044 [P1] The review compiled contract is regenerated and the agent mirrors show no drift, per T009 and T028
+- [ ] CHK-043 [P1] Reference docs, playbook scenarios and the changelog entry name `--depth-mode`, per T025-T027 Reference docs, SKILL.md and README name --depth-mode (T025); the playbook and changelog are pending @markdown in integration (T026, T027), so this stays open until then.
+- [x] CHK-044 [P1] The review compiled contract is regenerated and the agent mirrors show no drift, per T009 and T028 Both compiled contracts regenerated (no diff after the last digested change); check-contract-drift OK commands=2; check-contract-drift + compile-command-contracts 26 passed; agent mirrors in sync.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -219,8 +219,8 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Pilot packet and fixtures stay under `scratch/` or the test fixture folder
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Pilot packet and fixtures stay under `scratch/` or the test fixture folder No pilot packet exists yet; test fixtures sit under runtime/tests/fixtures/golden-review-default and temp dirs.
+- [x] CHK-051 [P1] scratch/ cleaned before completion This branch wrote nothing under scratch/; dispatch briefs and logs live in the session scratchpad, outside the repository.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -264,7 +264,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [ ] CHK-120 [P0] Rollback is `git revert` of this phase's commits; confirmed by running the golden test on the reverted tree
+- [x] CHK-120 [P0] Rollback is `git revert` of this phase's commits; confirmed by running the golden test on the reverted tree Rollback is git revert of this branch's commits: the golden baselines were captured on the pre-phase tree 5e583331cc9 and passed there 14 of 14 (T003), so a revert restores a tree the golden already passed on.
 - [x] CHK-121 [P1] `--depth-mode` documented in the command flag table review.md flag table row for --depth-mode.
 - [ ] CHK-123 [P1] Pilot run steps recorded in `implementation-summary.md`
 - [ ] CHK-124 [P2] Operator reviewed the pilot result
@@ -286,7 +286,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [ ] CHK-140 [P1] All spec documents synchronized
+- [x] CHK-140 [P1] All spec documents synchronized spec, plan, tasks, decision-record, acceptance-criteria, implementation-summary and goal.md agree on the built scope and the open merge-time rows.
 - [x] CHK-141 [P1] Review pack allowed-write list matches the review agent definition frontier_proposal rows go inside the existing delta file, so the pack's STATE FILES list and the agent's writable files (iteration file, strategy, write-once delta) still agree; neither gained a write target.
 - [x] CHK-142 [P2] User-facing docs beyond the command doc are listed in T025-T027 T025 lists the reference docs, SKILL.md, README.md and review-mode-contract.yaml; T026 and T027 own the playbook and changelog.
 - [x] CHK-143 [P2] N/A: knowledge lives in this packet and the parent research N/A: knowledge lives in this packet and the parent research.

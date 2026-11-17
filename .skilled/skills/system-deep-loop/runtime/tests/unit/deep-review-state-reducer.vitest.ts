@@ -1194,6 +1194,40 @@ describe('reduceReviewState expansive frontier', () => {
     expect(frontier.budget.depth1).toEqual({ allotted: 5, spent: 2 });
   });
 
+  // A node owes one pass per configured dimension, so a partly reviewed node must
+  // stay open and keep steering until the last of them lands.
+  it('keeps a node open with two of four dimensions covered and answers it at four', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      maxIterations: 20,
+      reviewTarget: 'expansive-frontier',
+      reviewDimensions: ['correctness', 'security', 'traceability', 'maintainability'],
+      antiConvergence: { depthMode: 'expansive' },
+    }));
+    writeStore(reviewDir, [nodeRow({ nodeId: 'F-1-001' })]);
+    const partial = [
+      iterationRecord(1, 'Frontier node F-1-001: correctness', ['correctness']),
+      iterationRecord(2, 'Frontier node F-1-001: security', ['security']),
+    ];
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${partial.join('\n')}\n`);
+    const halfway = readFrontier(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }));
+    expect(halfway.nodes[0]).toMatchObject({
+      status: 'open',
+      coveredDimensions: ['correctness', 'security'],
+      nextDimension: 'traceability',
+    });
+    expect(halfway.activeNextDimension).toBe('traceability');
+
+    const all = partial.concat([
+      iterationRecord(3, 'Frontier node F-1-001: traceability', ['traceability']),
+      iterationRecord(4, 'Frontier node F-1-001: maintainability', ['maintainability']),
+    ]);
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${all.join('\n')}\n`);
+    const done = readFrontier(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }));
+    expect(done.nodes[0]).toMatchObject({ status: 'answered', nextDimension: null });
+    expect(done.activeNodeId).toBeNull();
+  });
+
   it('renders no frontier section into a default run', () => {
     const { specFolder, reviewDir } = makeReviewDir();
     writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
