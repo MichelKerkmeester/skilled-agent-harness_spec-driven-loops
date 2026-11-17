@@ -128,6 +128,7 @@ const IDEA_REJECTED_RESET_EVENTS = new Set(['idea_rejected_reset', 'ideaRejected
 const VALID_QUESTION_ORIGINS = new Set([
   'angle-bank',
   'analyst-strategy',
+  'frontier',
   'operator',
   LEGACY_IMPORT_ORIGIN,
 ]);
@@ -1418,6 +1419,7 @@ function buildQuestionFields(question) {
     resolvedAtIteration: question.resolvedAtIteration,
     ...(question.operatorDecision ? { operatorDecision: question.operatorDecision } : {}),
     ...(question.conflictId ? { conflictId: question.conflictId } : {}),
+    ...(question.frontierStatus ? { frontierStatus: question.frontierStatus } : {}),
   };
 }
 
@@ -2417,6 +2419,111 @@ function getTimestampValue(timestamp) {
   return Number.isFinite(value) ? value : Number.NEGATIVE_INFINITY;
 }
 
+// The frontier node store is append-only and the last row per node wins, so a
+// reduce rebuilds the same node list every time it reads the same file.
+function readFrontierNodeStore(storePath) {
+  if (!fs.existsSync(storePath)) return [];
+  const byId = new Map();
+  for (const line of readUtf8(storePath).split('\n')) {
+    if (!line.trim()) continue;
+    let row;
+    try { row = JSON.parse(line); } catch { continue; }
+    if (!row || typeof row !== 'object' || typeof row.nodeId !== 'string' || !row.nodeId) continue;
+    byId.set(row.nodeId, row);
+  }
+  return [...byId.values()].sort((left, right) => left.nodeId.localeCompare(right.nodeId));
+}
+
+const FRONTIER_STATUSES = ['open', 'active', 'answered', 'blocked', 'exhausted', 'abstained', 'pruned'];
+
+// A node the store still holds open is answered once its question resolves in
+// the registry, so the status is derived here instead of written back.
+function buildFrontierProjection(frontierInput, keyedQuestions) {
+  const resolvedByNode = new Map();
+  for (const question of keyedQuestions) {
+    if (question.inboxId) resolvedByNode.set(question.inboxId, question.resolved);
+  }
+  const nodes = frontierInput.nodes.map((node) => {
+    const stillOpen = node.status === 'open' || node.status === 'active';
+    const status = stillOpen && resolvedByNode.get(node.nodeId) === true ? 'answered' : node.status;
+    return {
+      nodeId: node.nodeId,
+      parentId: node.parentId ?? null,
+      depth: node.depth,
+      scope: node.scope ?? null,
+      question: node.question ?? null,
+      status,
+      reason: status === node.status ? (node.reason ?? null) : null,
+      iteration: node.iteration ?? null,
+    };
+  });
+  const stats = { total: nodes.length };
+  for (const status of FRONTIER_STATUSES) stats[status] = nodes.filter((node) => node.status === status).length;
+  return { nodes, stats, ...(frontierInput.budget ? { budget: frontierInput.budget } : {}) };
+}
+
+// The frontier focus names the node and never repeats its question text: a
+// question resolves when an iteration's focus equals its text, so echoing the
+// text would close a node just by visiting it.
+function frontierNodeVisits(nodeId, iterationRecords) {
+  const prefix = `Frontier node ${nodeId} `;
+  return (Array.isArray(iterationRecords) ? iterationRecords : [])
+    .filter((record) => typeof record?.focus === 'string' && record.focus.startsWith(prefix))
+    .length;
+}
+
+function pickFrontierFocus(frontier, iterationRecords) {
+  const open = (Array.isArray(frontier?.nodes) ? frontier.nodes : [])
+    .filter((node) => node.status === 'open' || node.status === 'active');
+  if (open.length === 0) return '';
+  // Breadth first: the shallowest node, then one not yet visited, then the oldest.
+  const ranked = open
+    .map((node) => ({ node, visits: frontierNodeVisits(node.nodeId, iterationRecords) }))
+    .sort((left, right) => (left.node.depth - right.node.depth)
+      || (left.visits - right.visits)
+      || ((left.node.iteration ?? 0) - (right.node.iteration ?? 0))
+      || left.node.nodeId.localeCompare(right.node.nodeId));
+  const chosen = ranked[0].node;
+  const scope = Array.isArray(chosen.scope) ? chosen.scope.join(', ') : (chosen.scope || 'unscoped');
+  return `Frontier node ${chosen.nodeId} (depth ${chosen.depth}, scope ${scope}): ${chosen.question}`;
+}
+
+// Depth bands share maxIterations 50/35/15 by default (depths 0-1, 2, 3). A band's
+// unspent share rolls down to the next band only once the band has no open node,
+// and never up. When a band's spend reaches its share, its open nodes close as
+// exhausted with reason budget, so the run stops waiting on work it cannot fund.
+function applyFrontierBudget(nodes, iterationRecords, maxIterations, budgetSplit) {
+  const split = budgetSplit && typeof budgetSplit === 'object' ? budgetSplit : {};
+  const shares = [
+    Number.isFinite(split.depth1) ? split.depth1 : 0.5,
+    Number.isFinite(split.depth2) ? split.depth2 : 0.35,
+    Number.isFinite(split.depth3) ? split.depth3 : 0.15,
+  ];
+  const cap = Number.isFinite(maxIterations) && maxIterations > 0 ? maxIterations : 10;
+  const bandOf = (depth) => (depth <= 1 ? 0 : depth === 2 ? 1 : 2);
+  const spent = [0, 0, 0];
+  for (const node of nodes) {
+    const visits = frontierNodeVisits(node.nodeId, (Array.isArray(iterationRecords) ? iterationRecords : [])
+      .filter((record) => !['error', 'failed', 'failure', 'timeout'].includes(String(record?.status || '').toLowerCase())));
+    spent[bandOf(node.depth)] += visits;
+  }
+  let result = nodes.map((node) => ({ ...node }));
+  const budget = {};
+  let carry = 0;
+  for (let band = 0; band < 3; band += 1) {
+    const allotted = cap * shares[band] + carry;
+    if (spent[band] >= allotted) {
+      result = result.map((node) => (bandOf(node.depth) === band && (node.status === 'open' || node.status === 'active')
+        ? { ...node, status: 'exhausted', reason: 'budget' }
+        : node));
+    }
+    const bandOpen = result.some((node) => bandOf(node.depth) === band && (node.status === 'open' || node.status === 'active'));
+    carry = bandOpen ? 0 : Math.max(0, allotted - spent[band]);
+    budget[`depth${band + 1}`] = { allotted: Math.round(allotted * 100) / 100, spent: spent[band] };
+  }
+  return { nodes: result, budget };
+}
+
 function resolveNextFocus(registry, iterationFiles, iterationRecords) {
   const rejectedIndex = registry.rejectedPatternIndex;
   const latestBlockedStop = Array.isArray(registry.blockedStopHistory)
@@ -2449,6 +2556,13 @@ function resolveNextFocus(registry, iterationFiles, iterationRecords) {
         ].join('\n');
       }
     }
+  }
+
+  // Under expansive depth mode an open frontier node outranks the continuity
+  // focus; the pivot focus and blocked-stop recovery above still come first.
+  if (registry.frontier) {
+    const frontierFocus = pickFrontierFocus(registry.frontier, iterationRecords);
+    if (frontierFocus) return frontierFocus;
   }
 
   const filteredInputs = filterNextFocusInputs(registry, iterationFiles, iterationRecords);
@@ -2492,6 +2606,15 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     return !['error', 'failed', 'failure', 'stuck', 'thought'].includes(status);
   });
 
+  // A frontier node that closed without an answer (exhausted, blocked, abstained,
+  // pruned) or one the store marks answered stops counting as an open question.
+  const FRONTIER_TERMINAL = new Set(['answered', 'blocked', 'exhausted', 'abstained', 'pruned']);
+  const frontierCloseByNode = new Map(
+    (reducerState.frontier ? reducerState.frontier.nodes : [])
+      .filter((node) => FRONTIER_TERMINAL.has(node.status))
+      .map((node) => [node.nodeId, node]),
+  );
+
   const keyedQuestions = strategyQuestions.map((question, index) => {
     const normalized = normalizeText(question.text);
     const resolutionRecord = questionCoverageRecords.find((record) => {
@@ -2505,7 +2628,8 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
         || (answeredQuestions.length > 0 && keyQuestions.length === 1 && keyQuestions[0] === normalized)
         || normalizeOptionalText(record.focus) === normalized;
     });
-    const resolved = question.checked || Boolean(resolutionRecord);
+    const frontierClose = question.inboxId ? frontierCloseByNode.get(normalizeQuestionId(question.inboxId)) : undefined;
+    const resolved = question.checked || Boolean(resolutionRecord) || Boolean(frontierClose);
     const id = normalizeQuestionId(question.id);
     const promotedQuestionId = normalizeQuestionId(question.promotedQuestionId);
     const inboxId = normalizeQuestionId(question.inboxId);
@@ -2523,7 +2647,10 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
       ...(operatorDecision ? { operatorDecision } : {}),
       ...(conflictId ? { conflictId } : {}),
       addedAtIteration: injectedAtIteration,
-      resolvedAtIteration: resolved ? readIterationNumber(resolutionRecord) ?? 0 : null,
+      resolvedAtIteration: resolved
+        ? readIterationNumber(resolutionRecord) ?? (frontierClose ? normalizeQuestionIteration(frontierClose.iteration) : 0)
+        : null,
+      ...(frontierClose ? { frontierStatus: frontierClose.status } : {}),
       resolved,
     };
   });
@@ -2666,6 +2793,7 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
       failedPivots: divergence.failed.length,
       pivotOverrides: divergence.overrides.length,
     },
+    ...(reducerState.frontier ? { frontier: buildFrontierProjection(reducerState.frontier, keyedQuestions) } : {}),
   };
 }
 
@@ -2932,6 +3060,21 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles, sta
         '<!-- /ANCHOR:rejected-pattern-cache -->',
       ]
     : [];
+  // Frontier metrics exist only on an expansive run; a default run renders no section.
+  const frontierSection = registry.frontier
+    ? [
+      '<!-- ANCHOR:frontier -->',
+      '## 6B. FRONTIER',
+      `- Frontier size: ${registry.frontier.stats.total} nodes (${registry.frontier.stats.open} open, ${registry.frontier.stats.active} active, ${registry.frontier.stats.answered} answered, ${registry.frontier.stats.exhausted} exhausted, ${registry.frontier.stats.blocked} blocked, ${registry.frontier.stats.abstained} abstained)`,
+      `- Pruned nodes: ${registry.frontier.stats.pruned}`,
+      `- Revisits: ${registry.frontier.nodes.reduce((total, node) => total + Math.max(0, frontierNodeVisits(node.nodeId, iterationRecords) - 1), 0)}`,
+      ...(registry.frontier.budget
+        ? Object.entries(registry.frontier.budget).map(([band, value]) => `- Budget ${band}: ${value.spent} of ${value.allotted} iterations spent`)
+        : ['- Budget: not recorded']),
+      '',
+      '<!-- /ANCHOR:frontier -->',
+    ]
+    : [];
   const divergenceSection = [
     '<!-- ANCHOR:divergent-pivots -->',
     '## 6A. DIVERGENT PIVOTS',
@@ -3055,6 +3198,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles, sta
     '',
     '<!-- /ANCHOR:dead-ends -->',
     ...divergenceSection,
+    ...frontierSection,
     ...ideasBacklogSection,
     ...rejectedPatternSection,
     '<!-- ANCHOR:next-focus -->',
@@ -3193,6 +3337,14 @@ function reduceResearchState(specFolder, options = {}) {
     questionConflicts: questionResolution.questionConflicts,
     rejectedPatternFuzzyThreshold: resolveRejectedPatternFuzzyThreshold(config),
     minIdeaObservations: resolveMinIdeaObservations(config),
+    frontier: config?.antiConvergence?.depthMode === 'expansive'
+      ? applyFrontierBudget(
+        readFrontierNodeStore(path.join(researchDir, 'frontier-nodes.jsonl')),
+        records,
+        Number(config.maxIterations),
+        config.expansiveDepth?.budgetSplit,
+      )
+      : null,
   });
   // Expose corruptionWarnings as a top-level registry field for parity with
   // deep-review.
@@ -3392,6 +3544,8 @@ if (require.main === module) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
+  applyFrontierBudget,
+  buildFrontierProjection,
   buildGraphConvergenceRollup,
   buildLineageState,
   buildTerminalStopState,
@@ -3403,9 +3557,12 @@ module.exports = {
   filterRejectedIdeaCandidates,
   findRejectedPatternMatch,
   formatTrendAdvisoryEvent,
+  frontierNodeVisits,
   parseIterationFile,
   parseJsonl,
   parseJsonlDetailed,
+  pickFrontierFocus,
+  readFrontierNodeStore,
   reduceResearchState,
   renderSparkline,
   readStateLogForReduction,

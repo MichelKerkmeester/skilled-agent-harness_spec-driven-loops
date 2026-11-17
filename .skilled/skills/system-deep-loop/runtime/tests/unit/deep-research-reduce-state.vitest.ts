@@ -1830,3 +1830,270 @@ describe('an extension reopens a completed run', () => {
     expect(buildTerminalStopState(records)).toBeNull();
   });
 });
+
+describe('deep-research reduce-state expansive frontier', () => {
+  type FrontierNode = {
+    nodeId: string;
+    parentId?: string | null;
+    depth: number;
+    scope?: string | string[] | null;
+    question?: string | null;
+    status: string;
+    reason?: string | null;
+    iteration?: number | null;
+  };
+  type FrontierProjection = {
+    nodes: FrontierNode[];
+    stats: Record<string, number>;
+    budget?: Record<string, { allotted: number; spent: number }>;
+  };
+  type FrontierKeyQuestion = {
+    text: string;
+    inboxId?: string | null;
+    origin?: string;
+    frontierStatus?: string;
+  };
+
+  // The registry shape is declared narrow above, so the frontier projection is
+  // read through a local cast instead of widening the shared declaration.
+  function frontierOf(registry: unknown): FrontierProjection {
+    return (registry as { frontier?: FrontierProjection }).frontier as FrontierProjection;
+  }
+
+  function keyQuestionsOf(registry: unknown): FrontierKeyQuestion[] {
+    return (registry as { keyQuestions?: FrontierKeyQuestion[] }).keyQuestions ?? [];
+  }
+
+  function expansiveSpec(depthMode = 'expansive'): string {
+    const specFolder = makeTempSpec();
+    writeFileSync(
+      join(specFolder, 'research', 'deep-research-config.json'),
+      `${JSON.stringify({
+        topic: 'Frontier reducer test',
+        createdAt: '2026-06-19T00:00:00.000Z',
+        status: 'running',
+        maxIterations: 10,
+        resource_map: { emit: false },
+        antiConvergence: { convergenceMode: 'default', depthMode },
+        expansiveDepth: {
+          maxDepth: 3,
+          maxChildrenPerNode: 6,
+          budgetSplit: { depth1: 0.5, depth2: 0.35, depth3: 0.15 },
+        },
+      }, null, 2)}\n`,
+      'utf8',
+    );
+    writeStrategyWithQuestions(specFolder, ['- [ ] What should be checked?']);
+    writeInbox(specFolder, [
+      {
+        id: 'F-1-001',
+        text: 'Which module owns admission?',
+        source: 'frontier',
+        origin: 'frontier',
+        injectedAtIteration: 1,
+      },
+      {
+        id: 'F-2-002',
+        text: 'Which caps does admission read?',
+        source: 'frontier',
+        origin: 'frontier',
+        injectedAtIteration: 1,
+      },
+    ]);
+    return specFolder;
+  }
+
+  function writeNodes(specFolder: string, rows: Array<Record<string, unknown>>): void {
+    writeFileSync(
+      join(specFolder, 'research', 'frontier-nodes.jsonl'),
+      `${rows.map((row) => JSON.stringify(row)).join('\n')}\n`,
+      'utf8',
+    );
+  }
+
+  function node(
+    nodeId: string,
+    depth: number,
+    parentId: string,
+    question: string,
+    status = 'open',
+    extra: Record<string, unknown> = {},
+  ): Record<string, unknown> {
+    return {
+      nodeId,
+      parentId,
+      depth,
+      scope: 'runtime/lib',
+      question,
+      status,
+      reason: null,
+      iteration: 1,
+      dedupeKey: question.toLowerCase(),
+      ...extra,
+    };
+  }
+
+  function twoOpen(): Array<Record<string, unknown>> {
+    return [
+      node('F-1-001', 1, 'root', 'Which module owns admission?'),
+      node('F-2-002', 2, 'F-1-001', 'Which caps does admission read?'),
+    ];
+  }
+
+  function iterationRow(
+    run: number,
+    focus: string,
+    answeredQuestions: string[] = [],
+  ): Record<string, unknown> {
+    return {
+      type: 'iteration',
+      run,
+      iteration: run,
+      status: 'complete',
+      focus,
+      findingsCount: 1,
+      newInfoRatio: 0.4,
+      answeredQuestions,
+      timestamp: `2026-06-19T00:${String(10 + run).padStart(2, '0')}:00.000Z`,
+    };
+  }
+
+  function visit(nodeId: string, depth: number, question: string): string {
+    return `Frontier node ${nodeId} (depth ${depth}, scope runtime/lib): ${question}`;
+  }
+
+  function stateOf(rows: Array<Record<string, unknown>>): string {
+    return `${rows.map((row) => JSON.stringify(row)).join('\n')}\n`;
+  }
+
+  it('keeps the frontier origin and projects the node store', () => {
+    const specFolder = expansiveSpec();
+    writeNodes(specFolder, twoOpen());
+    writeState(specFolder, stateOf([iterationRow(1, 'What should be checked?', ['What should be checked?'])]));
+
+    const { registry } = reduceResearchState(specFolder, { write: false });
+
+    const keyQuestion = keyQuestionsOf(registry)
+      .find((entry) => entry.text === 'Which module owns admission?');
+    expect(keyQuestion?.origin).toBe('frontier');
+    expect(frontierOf(registry).nodes).toHaveLength(2);
+    expect(frontierOf(registry).stats.open).toBe(2);
+  });
+
+  it('rebuilds the same frontier on a second reduce', () => {
+    const specFolder = expansiveSpec();
+    writeNodes(specFolder, twoOpen());
+    writeState(specFolder, stateOf([iterationRow(1, 'What should be checked?', ['What should be checked?'])]));
+
+    const first = JSON.stringify(reduceResearchState(specFolder, { write: false }).registry);
+    const second = JSON.stringify(reduceResearchState(specFolder, { write: false }).registry);
+
+    expect(second).toBe(first);
+  });
+
+  it('picks the shallowest open node and a visit does not resolve it', () => {
+    const specFolder = expansiveSpec();
+    writeNodes(specFolder, twoOpen());
+    writeState(specFolder, stateOf([
+      iterationRow(1, 'What should be checked?', ['What should be checked?']),
+      iterationRow(2, visit('F-1-001', 1, 'Which module owns admission?')),
+    ]));
+
+    const { registry, strategy } = reduceResearchState(specFolder, { write: false });
+
+    const nextFocus = /<!-- ANCHOR:next-focus -->([\s\S]*?)<!-- \/ANCHOR:next-focus -->/.exec(strategy)?.[1] ?? '';
+    expect(nextFocus).toContain('Frontier node F-1-001');
+    expect(nextFocus).not.toMatch(/^Which module owns admission\?$/m);
+    expect(registry.openQuestions?.some((question) => question.text === 'Which module owns admission?'))
+      .toBe(true);
+  });
+
+  it('resolves a frontier question when its node closes exhausted, so every question can resolve', () => {
+    const specFolder = expansiveSpec();
+    writeNodes(specFolder, [
+      ...twoOpen(),
+      node('F-1-001', 1, 'root', 'Which module owns admission?', 'exhausted', {
+        reason: 'no-yield',
+        iteration: 2,
+      }),
+      node('F-2-002', 2, 'F-1-001', 'Which caps does admission read?', 'answered', { iteration: 2 }),
+    ]);
+    writeState(specFolder, stateOf([iterationRow(1, 'What should be checked?', ['What should be checked?'])]));
+
+    const { registry } = reduceResearchState(specFolder, { write: false });
+
+    expect(registry.openQuestions ?? []).toHaveLength(0);
+    expect(registry.resolvedQuestions?.some((question) => question.text === 'Which module owns admission?'))
+      .toBe(true);
+    const closed = keyQuestionsOf(registry)
+      .find((entry) => entry.text === 'Which module owns admission?');
+    expect(closed?.frontierStatus).toBe('exhausted');
+  });
+
+  it('rolls an unspent depth-1 share down to depth 2', () => {
+    const specFolder = expansiveSpec();
+    writeNodes(specFolder, [
+      node('F-1-001', 1, 'root', 'Which module owns admission?', 'answered'),
+      node('F-2-002', 2, 'F-1-001', 'Which caps does admission read?'),
+    ]);
+    writeState(specFolder, stateOf([
+      iterationRow(1, visit('F-1-001', 1, 'Which module owns admission?')),
+      iterationRow(2, visit('F-1-001', 1, 'Which module owns admission?')),
+      iterationRow(3, visit('F-2-002', 2, 'Which caps does admission read?')),
+      iterationRow(4, visit('F-2-002', 2, 'Which caps does admission read?')),
+      iterationRow(5, visit('F-2-002', 2, 'Which caps does admission read?')),
+      iterationRow(6, visit('F-2-002', 2, 'Which caps does admission read?')),
+      iterationRow(7, visit('F-2-002', 2, 'Which caps does admission read?')),
+      iterationRow(8, visit('F-2-002', 2, 'Which caps does admission read?')),
+    ]));
+
+    const { registry } = reduceResearchState(specFolder, { write: false });
+    const frontier = frontierOf(registry);
+
+    // Depth 1 spent 2 of its 5 iterations and closed, so the unspent 3 follow the
+    // depth-2 band and six visits stay inside 3.5 + 3 instead of exhausting it.
+    expect(frontier.nodes.find((entry) => entry.nodeId === 'F-2-002')?.status).toBe('open');
+    expect(frontier.budget?.depth2.allotted).toBe(6.5);
+  });
+
+  it('never rolls a share up: a spent depth-1 band closes its open node as budget-exhausted', () => {
+    const specFolder = expansiveSpec();
+    writeNodes(specFolder, twoOpen());
+    writeState(specFolder, stateOf([
+      iterationRow(1, visit('F-1-001', 1, 'Which module owns admission?')),
+      iterationRow(2, visit('F-1-001', 1, 'Which module owns admission?')),
+      iterationRow(3, visit('F-1-001', 1, 'Which module owns admission?')),
+      iterationRow(4, visit('F-1-001', 1, 'Which module owns admission?')),
+      iterationRow(5, visit('F-1-001', 1, 'Which module owns admission?')),
+    ]));
+
+    const { registry } = reduceResearchState(specFolder, { write: false });
+    const frontier = frontierOf(registry);
+    const spent = frontier.nodes.find((entry) => entry.nodeId === 'F-1-001');
+
+    expect(spent?.status).toBe('exhausted');
+    expect(spent?.reason).toBe('budget');
+    expect(frontier.budget?.depth1.allotted).toBe(5);
+  });
+
+  it('renders the frontier metrics on an expansive dashboard only', () => {
+    const expansiveFolder = expansiveSpec();
+    writeNodes(expansiveFolder, twoOpen());
+    writeState(expansiveFolder, stateOf([iterationRow(1, 'What should be checked?', ['What should be checked?'])]));
+
+    const expansive = reduceResearchState(expansiveFolder, { write: false });
+    expect(expansive.dashboard).toContain('## 6B. FRONTIER');
+    expect(expansive.dashboard).toContain('- Frontier size: 2 nodes');
+    expect(expansive.dashboard).toContain('- Pruned nodes: 0');
+    expect(expansive.dashboard).toContain('- Revisits: ');
+    expect(expansive.dashboard).toContain('- Budget depth1: ');
+
+    const defaultFolder = expansiveSpec('default');
+    writeNodes(defaultFolder, twoOpen());
+    writeState(defaultFolder, stateOf([iterationRow(1, 'What should be checked?', ['What should be checked?'])]));
+
+    const defaulted = reduceResearchState(defaultFolder, { write: false });
+    expect(Object.prototype.hasOwnProperty.call(defaulted.registry, 'frontier')).toBe(false);
+    expect(defaulted.dashboard).not.toContain('6B. FRONTIER');
+  });
+});
