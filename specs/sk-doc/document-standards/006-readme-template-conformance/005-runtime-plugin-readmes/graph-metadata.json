@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "blocked",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -51,14 +51,16 @@
       ".opencode/plugins/README.md",
       ".dsh/plugins/repo-guards/README.md",
       ".vibe/plugins/README.md",
-      ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md",
       ".claude/hooks/README.md",
       ".codex/hooks/README.md",
       ".cursor/hooks/README.md",
       ".devin/hooks/README.md",
-      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
-      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-      ".opencode/plugins/tests/goal-doc-contract.test.cjs"
+      ".cursor/hooks.json",
+      ".skilled/changelog/skilled/v4.0.2.1.md",
+      ".pi/settings.json",
+      ".cursor/SYNC.md",
+      "hooks/README.md",
+      ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md"
     ],
     "entities": [
       {
@@ -104,27 +106,33 @@
         "source": "derived"
       },
       {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.2.1.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.2.1.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".cursor/SYNC.md",
+        "source": "derived"
+      },
+      {
         "name": "runtime-plugin-readme-template.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "baseline-readme-verdicts.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-index.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-        "source": "derived"
-      },
-      {
-        "name": "goal-doc-contract.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/goal-doc-contract.test.cjs",
         "source": "derived"
       },
       {
@@ -198,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "These folders are where a runtime picks up the repository's hooks and plugins, and their READMEs tell a maintainer which entry is a link, a re-export or a real plugin",
     "created_at": "2026-11-16T15:20:16Z",
-    "last_save_at": "2026-11-16T19:27:07.793Z",
+    "last_save_at": "2026-11-17T13:13:51.181Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59b9d812d14ed3d2af1b5eece4505746b354d1b6258e8f085bec2344e0bc954a",
+    "source_fingerprint": "sha256:0a312c495bd255de1b28160b5239b9024295d44581ba3718c461c9294184b9bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d630524e71a6dc70313c1866ff26a7a64f30cdb39a6dae69fae7b342a364f1df",
+      "spec.md": "6ec0788a36b8c79c281b51d41e73be3bb28a85c37bf326144a9593b70c87cc92",
       "plan.md": "e9bceb05d90966bb1129f99bcb76dae8cba3f8c65c4098b4f71ca651d152d5f3",
-      "tasks.md": "ff436e29787eaae869995732eff943aa5a559ed0f34ee17676f83d45489adb8e",
-      "implementation-summary.md": "bbc1a384cb4c3e56ccd4e01e3f1fcb6cef9d8537c0461d45ffe5c44ab65f1b4a"
+      "tasks.md": "87b1428641889b73ab2ac967042e751ee208e70704a024be94e6af180f8e7bda",
+      "implementation-summary.md": "7f93e270d2e67f4fe05139f1b61076a7c061264c4fbdc283c2fee6bbd81d8970"
     },
     "last_active_at": null
   }

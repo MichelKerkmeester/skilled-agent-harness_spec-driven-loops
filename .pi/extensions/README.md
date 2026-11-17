@@ -13,189 +13,203 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.pi/extensions/` is Pi's discovery mirror for this repository's hook extensions. Pi auto-discovers every `*.ts` entry here with no `.pi/settings.json` registration required, and calls each file's default export once at session start with an `ExtensionAPI` handle. Every `*.ts` entry is a **one-line file that re-exports the real adapter** in its owner's tree; Pi discovers the adapter through that entry, so it loads from its real folder and its imports are relative to that folder. The real files live with their owners:
+`.pi/extensions/` is where Pi finds the hook adapters this repository registers. Pi scans the top-level `*.ts` files in the folder and calls each file's default export with an `ExtensionAPI` handle. Nothing here needs a line in the `extensions` list of [`.pi/settings.json`](../settings.json).
 
-| Entry here | Real file |
-|---|---|
-| `dispatch-preflight-lint.ts`, `dispatch-audit.ts` | `.skilled/hooks/cli-dispatch/pi/` |
-| `task-dispatch-guard.ts` | `.skilled/hooks/subagent-dispatch-guard/pi/` |
-| `mcp-route-guard.ts` | `.skilled/hooks/mcp-route-guard/pi/` |
-| `env-secret-guard.ts` | `.skilled/hooks/env-secret-guard/pi/` |
-| `post-edit-quality.ts` | `.skilled/hooks/post-edit-quality/pi/` |
-| `classifier-injection-screen.ts` | `.skilled/hooks/classifier-injection-screen/pi/` |
-| `decision-capture.ts` | `.skilled/hooks/decision-capture/pi/` |
-| `ask-surface-guard.ts` | `.skilled/hooks/ask-surface-guard/pi/` |
-| `overlay-guard.ts` | `.skilled/hooks/overlay-guard/pi/` |
-| `session-handover.ts` | `.skilled/hooks/session-handover/pi/` |
-| `spec-gate-{classify,enforce}.ts`, `session-{start,stop,compact}-context.ts`, `session-start-advisories.ts`, `completion-evidence.ts` | `.skilled/skills/system-spec-kit/runtime/hooks/pi/` |
-| `lib/claude-hook-adapter.ts` (not an entry: a symlink) | `.skilled/skills/system-spec-kit/runtime/hooks/pi/lib/` |
-| `prompt-advisor.ts` | `.skilled/skills/system-skill-advisor/hooks/pi/` |
-| `git-preflight-advisory.ts`, `git-message-gate.ts` | `.skilled/skills/sk-git/scripts/hooks/pi/` |
-| `goal-context.ts` | `.skilled/hooks/goal/pi/goal-context.ts` |
+All 22 entries are real one-line files that re-export an adapter. The adapter holds the handlers. An entry edited in place changes only which adapter loads, so a behavior change belongs in the adapter or in the core it calls. The folder holds one symlink, `lib/claude-hook-adapter.ts`, and Pi never loads it as an entry. The two session bridges import the same adapter at its real path under `.skilled/`, so the link is there for browsing only.
 
-Each file is a thin adapter: it registers a handler against one of Pi's lifecycle events (`pi.on(event, handler)`). `goal-context.ts` is the one exception to the adapter shape: it registers a command as well as lifecycle handlers, because Pi is the only runtime here where the goal surface is both an injection and a management command in the same extension. The 15 tool_call/tool_result/input adapters delegate to shared, runtime-neutral core modules under `.skilled/` that the sibling runtimes' bridges under the same concern folders also import, except `prompt-advisor.ts` below. Two of the five session-lifecycle adapters (`session-start-context.ts`, `session-stop-context.ts`) proxy into the Claude lifecycle-hook dist files under `system-spec-kit/runtime/dist/hooks/claude/` via `lib/claude-hook-adapter.ts` -- the same lifecycle owner devin and cursor already proxy into via their own runtime-specific `spawnSync` adapters, so state and transcript semantics never drift across runtimes. The other three do their own work in-process: `session-start-advisories.ts` runs the repository's own checks through `ctx.exec()`, `session-compact-context.ts` is a native port of the devin post-compaction recovery chain, and `session-handover.ts` calls its own shared relaunch core. `prompt-advisor.ts` is the exception: it imports the compiled advisor lifecycle module (`system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js`) directly and calls `handleClaudeUserPromptSubmit()` in-process, because Pi awaits `input` handlers before agent processing begins and the old two-process `spawnSync` bridge blocked every send. Its visible contribution is lifecycle-deduped: the advisor brief and Pi dispatch reminder render in full on the first message and after `session_start`/`session_compact`, while a proven same-content repeat returns no transform and leaves the raw turn byte-identical (`SPECKIT_PI_DIRECTIVE_DEDUP`, default ON; `0`/`false`/`off` restores always-full). The separate tool-call preflight still enforces dispatch authorization on every turn. Every handler wraps its call in try/catch and fails open: a guard-core or lifecycle-bridge bug must never block or alter work it only observes. `git-message-gate.ts` is the one deliberate blocker beside the dispatch preflight: it returns `{ block: true, reason }` when the shared sk-git gate refuses a commit message, PR description or branch name, and it fails open only when the gate itself cannot load.
+The adapters live with the concern that owns them. The guard adapters sit under `.skilled/hooks/<concern>/pi/`, and the rest sit in a `pi/` folder under the skill that owns them. The shared cores and the link folders are indexed in the [hook library README](../../.skilled/hooks/README.md).
+
+Most adapters are thin. `goal-context.ts` also registers the `goal-pi` command, so goal state can be read and changed from the prompt. `prompt-advisor.ts` calls the compiled advisor module in process, because Pi waits for `input` handlers and a spawned hook would stall every prompt. `session-compact-context.ts` ports the recovery chain for the same in-process reason, and its `session_compact` event already carries the summary a spawned hook would have to rebuild.
+
+The rule every entry follows: a handler that throws returns `undefined` and the call proceeds. `git-message-gate` is the exception: when the sk-git rulebook exists but cannot be read, it refuses the command. Six entries can refuse a call, and each one is named in section 5.
+
+Two local packages sit beside the entries. `pi-cache-optimizer/` and `pi-fast-mode-w-subagent-support/` are full plugins with their own code and README. Pi loads each one through the `packages` list in [`.pi/settings.json`](../settings.json), not through the folder scan.
 
 ---
 
-## 2. DIRECTORY TREE
+## 2. ARCHITECTURE
+
+```text
+Pi event (input, tool_call, tool_result, session_start, ...)
+        |
+        v
+.pi/extensions/<entry>.ts          one-line re-export
+        |
+        v
+.skilled/.../pi/<adapter>.ts       registers pi.on(event, handler)
+        |
+        +--> shared guard core under .skilled/hooks/     allow, block or warn
+        |
+        +--> Claude hook dist file, spawned with stdin   text or JSON envelope
+        |
+        +--> in-process work (command, port, ctx.exec)
+        |
+        v
+undefined (fail open), { block, reason }, an appended block or pi.sendMessage()
+```
+
+Dependency direction: entry, then adapter, then core. An adapter never imports another concern's adapter, and no entry imports anything but its one target.
+
+The folder has two chains. A guard chain builds a payload and asks a shared core, which returns the decision. A lifecycle chain either spawns a Claude hook dist file through `lib/claude-hook-adapter.ts` or runs the equivalent work in process. The core or the dist file owns the policy in every case.
+
+---
+
+## 3. DIRECTORY TREE
 
 ```text
 extensions/
-+-- spec-gate-enforce.ts        # Blocks a mutation the spec gate denies
-+-- spec-gate-classify.ts       # Opens the gate silently; appends the one-shot deferral instruction when no dialog UI is attached
-+-- dispatch-preflight-lint.ts  # Blocks or warns on a bash dispatch hard-rule violation
-+-- dispatch-audit.ts           # Records a completed bash dispatch to the audit log
-+-- post-edit-quality.ts        # Appends post-edit quality findings to an edit/write result
-+-- completion-evidence.ts      # Queues the completion-evidence sentinel advisory onto the next turn when a claim lacks evidence
-+-- classifier-injection-screen.ts  # Appends the Jev injection-screen advisory to a fetch_content result
-+-- decision-capture.ts         # Queues each answered question for the decision record; shows the pending count at turn end
-+-- ask-surface-guard.ts        # Sends a prose option menu back as a follow-up so it is asked through the question tool
-+-- mcp-route-guard.ts          # Attaches route warnings to a native mcp_* tool call
-+-- env-secret-guard.ts         # Blocks a read, write, edit, grep, bash or powershell call that would expose a dotenv file, then undoes a dotenv write and redacts a dotenv value from the result
-+-- overlay-guard.ts            # Blocks an edit or write to a file a vendored tree's overlay owns
-+-- task-dispatch-guard.ts      # Returns the dispatch-guard text for a direct subagent call (advisory)
-+-- session-start-context.ts    # Bridges session-prime's SessionStart context into the session
-+-- session-start-advisories.ts # Runs the SessionStart advisory checks devin/cursor wire in
-+-- session-stop-context.ts     # Bridges session-stop's autosave/state-cleanup on quit
-+-- prompt-advisor.ts           # Bridges the skill-advisor's UserPromptSubmit recommendation (in-process)
-+-- session-handover.ts         # Nudges a context-limit handoff and arms the relaunch record
-+-- session-compact-context.ts  # Rehydrates spec-folder continuity after a compaction
-+-- goal-context.ts             # Injects the bound goal each turn and registers the `goal-pi` management command
-+-- git-preflight-advisory.ts   # Warn-only git-outcome advisories on bash git commands
-+-- git-message-gate.ts         # Blocks a commit message, PR description or branch name that breaks the sk-git templates
++-- README.md                      # this file
++-- spec-gate-enforce.ts           # Refuses a mutation the spec gate denies
++-- spec-gate-classify.ts          # Opens the gate and asks nothing
++-- dispatch-preflight-lint.ts     # Blocks or warns on a dispatch hard-rule breach
++-- dispatch-audit.ts              # Records a completed dispatch
++-- post-edit-quality.ts           # Appends post-edit findings and a stale-dist banner
++-- completion-evidence.ts         # Queues an unevidenced claim onto the next prompt
++-- classifier-injection-screen.ts # Appends the injection-screen advisory
++-- decision-capture.ts            # Queues each answer and counts what is pending
++-- ask-surface-guard.ts           # Sends a prose option menu back to be asked properly
++-- mcp-route-guard.ts             # Returns MCP route warnings on the call
++-- env-secret-guard.ts            # Refuses dotenv access and cleans up after a write
++-- overlay-guard.ts               # Refuses a write to an overlay-owned file
++-- task-dispatch-guard.ts         # Returns the dispatch-guard text for a subagent call
++-- session-start-context.ts       # Bridges session-prime context
++-- session-start-advisories.ts    # Runs the startup advisory checks
++-- session-stop-context.ts        # Runs the quit autosave and state cleanup
++-- session-handover.ts            # Nudges a handover and arms the relaunch record
++-- session-compact-context.ts     # Rehydrates continuity after a compaction
++-- prompt-advisor.ts              # Appends the advisor brief to the visible prompt
++-- goal-context.ts                # Injects the goal brief and registers goal-pi
++-- git-preflight-advisory.ts      # Appends sk-git advisories to a git command
++-- git-message-gate.ts            # Refuses a message or branch that breaks the templates
 +-- lib/
-|   `-- claude-hook-adapter.ts  # Pi-specific spawnSync proxy into the Claude lifecycle-hook dist files
-`-- README.md                   # (this file, lib/README.md and every *.ts entry are real files; only lib/claude-hook-adapter.ts is a symlink)
+|   +-- claude-hook-adapter.ts    # Symlink to the Pi spawn proxy
+|   `-- README.md                  # The adapter's own README
++-- pi-cache-optimizer/            # Local package, loaded from settings
+`-- pi-fast-mode-w-subagent-support/   # Local package, loaded from settings
 ```
 
 ---
 
-## 3. KEY FILES
+## 4. ENTRY MAP
 
-| File | Pi event | Delegates to |
-|---|---|---|
-| `spec-gate-enforce.ts` | `tool_call` (bash/write/edit) | `system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` `evaluateMutation()` |
-| `spec-gate-classify.ts` | `input` | `system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` `classifyIntent()` |
-| `dispatch-preflight-lint.ts` | `tool_call` (bash) | `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` `readHardRules()`/`evaluate()` |
-| `dispatch-audit.ts` | `tool_result` (bash) | `.skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs` `recordDispatch()` |
-| `post-edit-quality.ts` | `tool_result` (edit/write) | `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` `resolveDispatch()`/`runChecks()` |
-| `completion-evidence.ts` | `turn_end` | `system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs` `detectCompletionClaim()`/`resolveSpecFolderFromText()`/`evaluateCompletionEvidence()`; a completion claim the sentinel cannot evidence becomes a `nextTurn` advisory message, never a block |
-| `env-secret-guard.ts` | `tool_call` (read/write/edit/grep/bash/powershell), `tool_result` (a dotenv write after a shell call; a leaked value from any tool) | `.skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs` `evaluateToolCall()`; returns `{ block: true, reason }` on a dotenv file, and `.skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs` `snapshotDotenv()` records dotenv files before a shell call. `reviewToolResult()` then undoes a dotenv write it recorded first and redacts a dotenv value out of the result, appending the reason as a message |
-| `mcp-route-guard.ts` | `tool_call` (`mcp_*`) | `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs` `evaluateNativeMcpCall()` |
-| `overlay-guard.ts` | `tool_call` (edit/write) | `.skilled/hooks/overlay-guard/lib/overlay-guard.cjs` `fileFieldPath()`/`evaluateWrite()`; returns `{ block: true, reason }` when a vendored tree's overlay owns the target file |
-| `classifier-injection-screen.ts` | `tool_result` (`fetch_content`) | `.skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs` `fetchedText()`/`screenAdvisory()`; appends the advisory to the tool result |
-| `decision-capture.ts` | `tool_result` (`ask_user_question`, `question`), `turn_end` | `.skilled/hooks/decision-capture/bin/sweep-pi.mjs` `recoveredRecords()` and `.skilled/hooks/decision-capture/lib/capture-core.mjs` `appendRecords()`/`takeNudge()`; never changes a tool result |
-| `ask-surface-guard.ts` | `agent_end` | `.skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs` `evaluateTurn()`/`markTurn()`/`repromptFor()`; starts one more turn that asks through the question tool in place of a prose option menu, and only when a UI is attached |
-| `task-dispatch-guard.ts` | `tool_call` (`subagent`) | `.skilled/hooks/subagent-dispatch-guard/lib/subagent-dispatch-guard.cjs` `evaluateDispatch()`; returns the guard's text as an advisory (`~ partial`: direct calls only) |
-| `session-start-context.ts` | `session_start` | `system-spec-kit/runtime/dist/hooks/claude/session-prime.js` (via `lib/claude-hook-adapter.ts`) |
-| `session-start-advisories.ts` | `session_start` | `worktree-guard.sh`, `check-git-hooks.sh`, `git-primary-reconcile.sh`, `git-live-follow.sh --start`, `check-dist-staleness.sh --all`, `install-codex-hooks.mjs --check` (direct `ctx.exec()`, each gated by its own concern) |
-| `session-stop-context.ts` | `session_shutdown` (reason `quit`) | `system-spec-kit/runtime/dist/hooks/claude/session-stop.js` (via `lib/claude-hook-adapter.ts`) |
-| `prompt-advisor.ts` | `input` | `system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js` `handleClaudeUserPromptSubmit()` (in-process dynamic import); full first + boundaries, no transform on proven repeats (`SPECKIT_PI_DIRECTIVE_DEDUP`) |
-| `session-handover.ts` | `message_end`, `before_agent_start`, `agent_start`, `turn_end` (steers a held nudge into a running loop whose tools ran), `agent_end`, `agent_settled`, `tool_call` (refuses the `question` and `ask_user_question` dialogs while this session's record can still be armed), `session_compact` | `.skilled/hooks/session-handover/lib/relaunch-core.cjs` `readRelaunchFile()`/`armableRecord()`/`arm()`, with `context-usage.cjs`, `nudge.cjs` and `withdraw.cjs`; ships off until `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED`, or with that unset or blank `SYSTEM_SESSION_HANDOVER_ENABLED`, is truthy |
-| `session-compact-context.ts` | `session_compact` | Native port of `system-spec-kit/runtime/hooks/devin/post-compaction.cjs`'s recovery chain (shared tmpdir state file) |
-| `goal-context.ts` | `input`, `session_start`, `turn_end`, and the `goal-pi` command | `.skilled/hooks/goal/lib/goal-core.cjs` `readGoalRecord()`/`renderGoalBrief()`/`verifyGoalHeuristic()`; the `turn_end` nudge uses `deliverAs: "nextTurn"` and never re-queues, steers or blocks a turn |
-| `git-preflight-advisory.ts` | `tool_call` (bash `git`), `tool_result` (bash) | `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` `readHardRules()`/`evaluate()` with `sk-git/scripts/lib/git-rule-checks.mjs` and `git-context.mjs`; the advisory is queued at `tool_call` and appended at `tool_result`, because Pi reads a `tool_call` return only for `.block` |
-| `git-message-gate.ts` | `tool_call` (bash) | `sk-git/scripts/hooks/git-message-gate.mjs` `evaluateCommand()`; returns `{ block: true, reason }` when a commit message, PR description or branch name breaks the templates; no kill switch, by design |
-
-Paths without a leading `.skilled/` are relative to `.skilled/skills/`. The four `.skilled/hooks/` cores are the fully-portable guard cores relocated out of their owning skill; see [`../../.skilled/hooks/README.md`](../../.skilled/hooks/README.md) for why those four moved and the rest did not.
+| Entry | Event | Real file or core | Effect |
+|---|---|---|---|
+| `spec-gate-enforce.ts` | `tool_call` on `bash`, `write` and `edit` | `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` | The first `write` or `edit` opens the A/B/C/D dialog when a UI is attached. A denied call returns `{ block: true, reason }`. |
+| `spec-gate-classify.ts` | `input` | `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` | Opens the gate on a write-intent turn and asks nothing. With no UI it appends the one-shot deferral instruction to the prompt. |
+| `dispatch-preflight-lint.ts` | `input`, `tool_call` on `bash` | `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` | Blocks a dispatch that breaks a hard rule in the target skill's `SKILL.md`, and returns a warning as a `reason` when the rule only warns. |
+| `dispatch-audit.ts` | `tool_result` on `bash` | `.skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs` | Writes a redacted record of a completed dispatch to the shared audit log and leaves the result alone. |
+| `post-edit-quality.ts` | `tool_result` on `edit` and `write` | `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` | Appends the routed checks' findings and a stale-dist banner to the tool result. |
+| `completion-evidence.ts` | `turn_end` | `.skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs` | Holds a claim that lacks evidence and sends it as context with the next prompt. Never blocks. |
+| `classifier-injection-screen.ts` | `tool_result` on `fetch_content` | `.skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs` | Appends one advisory block when fetched text reads like instructions aimed at the agent. |
+| `decision-capture.ts` | `tool_result` on `question` and `ask_user_question`, `turn_end` | `.skilled/hooks/decision-capture/bin/sweep-pi.mjs`, `.skilled/hooks/decision-capture/lib/capture-core.mjs` | Queues each answer for the decision record. At the end of an interactive turn it notifies the number of answers still pending. |
+| `ask-surface-guard.ts` | `agent_end` | `.skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs` | When a run ends in a typed option menu and no question tool ran, starts one follow-up turn that asks through it. Requires a UI. |
+| `mcp-route-guard.ts` | `tool_call` on `mcp_*` | `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs` | Returns the route warnings as a `reason` on the call. |
+| `env-secret-guard.ts` | `tool_call`, `tool_result` | `.skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs`, `.skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs` | Refuses a call that would touch a dotenv file. It also undoes a dotenv write and redacts a dotenv value out of the result. |
+| `overlay-guard.ts` | `tool_call` on `edit` and `write` | `.skilled/hooks/overlay-guard/lib/overlay-guard.cjs` | Refuses a write to a file a vendored tree's overlay owns. |
+| `task-dispatch-guard.ts` | `tool_call` on `subagent` | `.skilled/hooks/subagent-dispatch-guard/lib/subagent-dispatch-guard.cjs` | Returns the guard's text as a `reason` and always lets the call run. Direct `subagent` calls only. |
+| `session-start-context.ts` | `session_start` | `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js` through `lib/claude-hook-adapter.ts` | Adds the session-prime context to model context with `display: false`. |
+| `session-start-advisories.ts` | `session_start` on `startup` and `new` | six checks under `.skilled/bin/` and `.skilled/skills/sk-code/sk-code-quality/scripts/` | Runs each check through `ctx.exec()` and shows a warning through the UI. Silent in print mode. |
+| `session-stop-context.ts` | `session_shutdown` with reason `quit` | `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js` through `lib/claude-hook-adapter.ts` | Runs the autosave and state cleanup. Adds no context. |
+| `session-handover.ts` | `message_end`, `before_agent_start`, `turn_end`, `agent_end`, `agent_settled`, `agent_start`, `tool_call`, `session_compact` | `.skilled/hooks/session-handover/lib/relaunch-core.cjs` | Nudges a handover near the context limit, steers a held nudge into a running loop, refuses a question dialog while the record can be armed and arms the record. |
+| `session-compact-context.ts` | `session_compact` | in-process port that reads `.skilled/skills/system-spec-kit/runtime/dist/lib/spec/packet-purpose.js` | Adds the compaction summary and the packet purpose to model context with `display: false`, followed by the active spec folder. |
+| `prompt-advisor.ts` | `input`, with a reset on `session_start` and `session_compact` | `.skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js` | Appends the advisor brief to the visible prompt on the first turn and after a boundary. A proven same-content repeat is left untouched. |
+| `goal-context.ts` | `input`, `session_start`, `turn_end`, and the `goal-pi` command | `.skilled/hooks/goal/lib/goal-core.cjs` | Appends the goal brief to the visible prompt and restores it at session start. The verify nudge waits for the next prompt. |
+| `git-preflight-advisory.ts` | `tool_call` and `tool_result` on `bash` | `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` with `.skilled/skills/sk-git/scripts/lib/git-rule-checks.mjs` and `git-context.mjs` | Appends sk-git advisories to a completed `git` command. Queued at the call, delivered on the result. |
+| `git-message-gate.ts` | `tool_call` on `bash` | `.skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs` | Refuses a commit message, PR description or branch name that breaks the sk-git templates. |
 
 ---
 
-## 3A. CONFIRMED NON-GAPS
-
-Two devin/cursor hooks have no Pi equivalent because Pi's own architecture does not have the gap they close, not because they were skipped:
-
-| Hook | Why it does not apply to Pi |
-|---|---|
-| `permission-request-policy.mjs` (devin) | Composes the same `spec-gate-core.isExemptTargetPath` and `dispatch-rule-checks.evaluate` cores `spec-gate-enforce.ts` and `dispatch-preflight-lint.ts` already call at `tool_call` time. Pi's real, type-confirmed event API (`dist/core/extensions/types.d.ts`) has no separate approval-gate event distinct from the block-capable `tool_call` -- the functional intent is already covered at the same decision point. |
-| `spec-gate-prebind.mjs` (cursor) | Exists only because Cursor does not deliver its prompt-classification event under the CLI, so SessionStart is the only place to establish gate state before the mutation guard runs. Pi's `input` event genuinely is that classification point (already bridged by `spec-gate-classify.ts`), so Pi never had the limitation this hook works around. |
-
-`completion-evidence-stop.cjs` remains deliberately deferred, unchanged from the original hook-extension-layer phase. The `task-dispatch-guard` is wired as an advisory `tool_call` guard: it matches the native `subagent` tool and is `~ partial` — direct `subagent` calls only, workflow-nested (`runs.run`) dispatches are not covered.
-
----
-
-## 4. BOUNDARIES AND FLOW
+## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
 |---|---|
-| Imports | Each file imports only `ExtensionAPI` (type-only) plus its one shared guard-core module (dynamic `import()`) or `lib/claude-hook-adapter.ts` (static import), resolved via a relative path. Each entry is a one-line re-export, so Pi 1.5.0 and Pi 1.5.2 both load the adapter from its real folder. |
-| Exports | Exactly one default-exported `ExtensionFactory` per file. No named exports. |
-| Ownership | Guard decisions belong to the shared `.mjs`/`.cjs` core modules under `.skilled/`. Session-lifecycle decisions belong to the Claude hook dist files under `system-spec-kit/runtime/dist/hooks/claude/`. These files own only event registration, payload construction, and the fail-open wrapper. |
-| Fail-open | Every handler body is wrapped in try/catch. A caught error returns `undefined` (`prompt-advisor.ts`, all others) or `{ action: "continue" }` (`spec-gate-classify.ts` only) for `input` handlers, never a block. |
-| Output shape | `session-prime.js` writes plain text to stdout. `session-stop.js` writes nothing (side effects only, no top-level stdout emission). `user-prompt-submit.js` writes a `{ hookSpecificOutput: { additionalContext } }` JSON envelope. `lib/claude-hook-adapter.ts`'s `extractAdditionalContext()` only applies to the last one. `session-start-context.ts` uses `session-prime.js`'s raw stdout text directly. `prompt-advisor.ts` reads the same envelope from the in-process return value instead of spawned stdout. |
+| Imports | An adapter imports Pi's types from the `@earendil-works/pi-coding-agent` package and its own core by relative path. The git advisory also imports the cli-dispatch rule checks. It never reaches into another concern's adapter. |
+| Ownership | A guard decision belongs to the core under `.skilled/hooks/`. A lifecycle decision belongs to the Claude dist file, or to the ported chain in `session-compact-context.ts`. An adapter owns the registration and the fail-open wrapper. |
+| Failure | Every handler body is wrapped in try/catch. A throw returns `undefined` and the call proceeds, except in `git-message-gate.ts`, which blocks when the sk-git rulebook exists but cannot be read. `spec-gate-classify.ts` returns `{ action: "continue" }`. `env-secret-guard.ts` also writes the error to stderr, so a broken core cannot leave calls unguarded in silence. |
+| Refusals | Six entries can refuse a call: `spec-gate-enforce.ts`, `dispatch-preflight-lint.ts`, `env-secret-guard.ts`, `overlay-guard.ts`, `git-message-gate.ts` and the `tool_call` handler in `session-handover.ts`. Every other entry advises, records or injects. |
+| Delivery | An `input` transform and an appended tool-result block reach the model. `pi.sendMessage` with `display: false` keeps text out of the visible chat. Pi's agent core keeps a `tool_call` return only for `block`, so a bare `reason` changes nothing on its own. |
 
-Two main flows:
+The last rule matters for every advisory that never blocks. `mcp-route-guard.ts` and `task-dispatch-guard.ts` return a `reason` without a `block`, and the warn path in `dispatch-preflight-lint.ts` does the same, so that text never reaches the model. The call still runs. The other advisory entries deliver their text on a channel Pi reads, such as an appended tool result or `sendMessage`.
 
-```text
-Guard-core adapters (tool_call / tool_result / input):
-Pi lifecycle event -> pi.on(event, handler) -> dynamic import() of the shared guard-core
-  module -> guard-core decision (allow / block / warn) -> handler returns the decision,
-  or undefined on any error (fail open)
-
-Session-lifecycle adapters that spawn a Claude hook (session_start / session_shutdown only;
-  the other session adapters -- advisories, compaction, relaunch -- run in-process):
-Pi lifecycle event -> pi.on(event, handler) -> lib/claude-hook-adapter.ts spawns the
-  matching Claude hook dist file with a synthesized payload on stdin -> raw text or
-  JSON envelope read back -> pi.sendMessage() (or ctx.exec()/ctx.ui.notify() for the
-  plain CLI checks), or undefined on any error (fail open)
-
-In-process advisor (input, the exception):
-Pi input event -> pi.on("input", handler) -> dynamic import of the compiled advisor
-  hook module -> handleClaudeUserPromptSubmit(payload) -> envelope read from the
-  return value -> { action: "transform" } with the complete advisor and dispatch
-  contribution on first/boundary delivery, or undefined for a proven repeat or
-  any error. No adapter/shim subprocess runs on this path — the advisor's own
-  bounded python subprocess still runs on cache misses.
-```
-
+`git-message-gate.ts` has no kill switch, by design. No surface offers a bypass for its rules. `prompt-advisor.ts` reads no switch of its own, and a proven repeat is suppressed through `SPECKIT_PI_DIRECTIVE_DEDUP` instead.
 
 ---
 
-## 5. ENTRYPOINTS
+## 6. CONFIGURATION
 
-| Entrypoint | Type | Purpose |
-|---|---|---|
-| `specGateEnforce` | Default export | Registers the `tool_call` spec-gate enforcement handler. |
-| `specGateClassify` | Default export | Registers the `input` spec-gate classification handler. |
-| `dispatchPreflightLint` | Default export | Registers the `tool_call` dispatch hard-rule lint handler. |
-| `dispatchAudit` | Default export | Registers the `tool_result` dispatch audit-log handler. |
-| `postEditQuality` | Default export | Registers the `tool_result` post-edit quality handler. |
-| `envSecretGuard` | Default export | Registers the `tool_call` dotenv block and the `tool_result` pass that undoes a dotenv write and redacts its value. |
-| `mcpRouteGuard` | Default export | Registers the `tool_call` MCP route-guard handler. |
-| `overlayGuard` | Default export | Registers the `tool_call` guard that blocks an edit or write to a file a vendored tree's overlay owns. |
-| `classifierInjectionScreen` | Default export | Registers the `tool_result` injection-screen handler for `fetch_content`. |
-| `taskDispatchGuard` | Default export | Registers the advisory `tool_call` dispatch guard for `subagent`. |
-| `decisionCapture` | Default export | Registers the `tool_result` capture of answered questions for the decision record and the `turn_end` pending-count notice. |
-| `completionEvidence` | Default export | Registers the `turn_end` advisory that queues a claim lacking evidence onto the next turn. |
-| `askSurfaceGuard` | Default export | Registers the `agent_end` guard that sends a prose option menu back as a follow-up asked through the question tool. |
-| `sessionStartContext` | Default export | Registers the `session_start` session-prime context bridge. |
-| `sessionStartAdvisories` | Default export | Registers the `session_start` advisory-check sweep. |
-| `sessionStopContext` | Default export | Registers the `session_shutdown` autosave/state-cleanup bridge. |
-| `sessionHandover` | Default export | Registers the `message_end`, `before_agent_start`, `agent_start`, `turn_end`, `agent_end`, `agent_settled`, `tool_call` and `session_compact` handlers that nudge a context-limit handoff, steer the held nudge into a run whose tools finished, refuse a question dialog while the record can still be armed, and arm the relaunch record. |
-| `promptAdvisor` | Default export | Registers the `input` skill-advisor recommendation bridge. |
-| `sessionCompactContext` | Default export | Registers the `session_compact` spec-folder continuity rehydration. |
-| `goalContext` | Default export | Registers the `input`, `session_start` and `turn_end` goal injection handlers plus the `goal-pi` management command. |
-| `gitPreflightAdvisory` | Default export | Registers the `tool_call` git advisory queued on a bash `git` command and appended at `tool_result`. |
-| `gitMessageGate` | Default export | Registers the `tool_call` gate that blocks a commit message, PR description or branch name that breaks the sk-git templates. |
-| `runClaudeHookAdapter`, `extractAdditionalContext` | Named exports | `lib/claude-hook-adapter.ts`'s spawnSync proxy and JSON-envelope parser, imported by the session-lifecycle adapters (session-start/stop); `prompt-advisor.ts` no longer uses it. |
+Most switches below resolve through `.skilled/hooks/shared/hook-flags.cjs`.
+
+| Switch | Effect |
+|---|---|
+| `SYSTEM_HOOKS_DISABLED=1` | Master off switch for every adapter that reads a hook flag. |
+| `SYSTEM_ASK_SURFACE_DISABLED=1` | Stops the follow-up turn. |
+| `SYSTEM_INJECTION_SCREEN_DISABLED=1` | Stops the fetch advisory. |
+| `SYSTEM_DECISION_CAPTURE_DISABLED=1` | Stops the decision queue and the pending count. |
+| `CLI_DISPATCH_AUDIT_DISABLED=1` | Stops the dispatch audit record. |
+| `SYSTEM_DISPATCH_GUARD_DISABLED=1` | Stops the dispatch lint. |
+| `SYSTEM_ENV_SECRET_GUARD_DISABLED=1` | Stops the dotenv guard. |
+| `SYSTEM_OVERLAY_GUARD_DISABLED=1` | Stops the overlay guard. |
+| `SYSTEM_TASK_DISPATCH_DISABLED=1` | Stops the dispatch advisory. |
+| `MCP_ROUTE_GUARD_DISABLED=1` | Stops the MCP route warnings. |
+| `SYSTEM_COMPLETION_DISABLED=1` | Stops the completion advisory. |
+| `SK_CODE_POST_EDIT_QUALITY_DISABLED=1` | Stops the post-edit findings. |
+| `SYSTEM_SESSION_LIFECYCLE_DISABLED=1` | Stops every session-lifecycle adapter. |
+| `SYSTEM_SPEC_GATE_ENFORCE=1` | Read by the spec-gate core. Turns an open gate into a block on `write` and `edit`. |
+| `OPENCODE_GOAL_DISABLED=1` | Stops the goal handlers. |
+| `SYSTEM_SESSION_HANDOVER_ENABLED=1` | Turns the handover on. The global name works for every runtime. It ships off for Pi. |
+| `SYSTEM_SESSION_HANDOVER_PI_ENABLED=1` | Turns the handover on for Pi alone. It answers before the global name. |
+| `SYSTEM_SESSION_HANDOVER_DISABLED=1` | Turns the handover off. |
+| `SK_GIT_PREFLIGHT_DISABLED=1` | Stops the git advisories. |
+| `SKGIT_ADVISORY=0` | Read by the sk-git advisory. Silences it without disabling the entry. |
+| `SKGIT_ADVISORY_SKIP=<rule-id>` | Read by the sk-git advisory. Silences one advisory id, or the ids that extend it with a dash. |
+| `SPECKIT_PI_DIRECTIVE_DEDUP=0` | Restores the full advisor brief on every turn. |
+
+The `packages` list in `.pi/settings.json` is the other setting this folder depends on. It names the two local packages by folder, and Pi loads the `pi.extensions` entry of each `package.json` from there.
 
 ---
 
-## 6. VALIDATION
+## 7. VALIDATION
 
-Run from the repository root. A live Pi session that starts without a startup error confirms every extension loaded and parsed correctly. An invalid export fails the whole session.
+Run from the repository root. The first command covers the goal entry and its command.
 
 ```bash
-pi --offline --approve -p "list your available tools"
+node --test .skilled/hooks/goal/pi/goal-pi.test.mjs
 ```
 
-Expected result: the session completes and lists Pi's available tools, with no extension-load error in the output.
+Expected result: `pass 29` and `fail 0`, with exit code 0.
+
+The second command runs five of the Pi suites that sit under `.skilled/hooks/`, where the hooks config collects them.
+
+```bash
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts \
+  .skilled/hooks/ask-surface-guard/pi/ask-surface-guard.test.ts \
+  .skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.test.ts \
+  .skilled/hooks/decision-capture/pi/decision-capture.test.ts \
+  .skilled/hooks/cli-dispatch/pi/dispatch-preflight-lint.test.ts \
+  .skilled/hooks/cli-dispatch/pi/directive-dedup.test.ts
+```
+
+Expected result: `Test Files 5 passed (5)` and `Tests 295 passed (295)`.
+
+The third command proves that every entry still resolves. It reads the hook registry, compares the Pi bindings with this folder and checks that each entry is a single re-export of an existing adapter.
+
+```bash
+node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check
+```
+
+Expected result: `[hook-registration-sync] PASS: 4 registration files match the 36-hook registry; 22 Pi extensions resolve.` with exit code 0.
 
 ---
 
-## 7. RELATED
+## 8. RELATED
 
-- [`../../.skilled/skills/cli-external-orchestration/cli-pi/references/pi-tools.md`](../../.skilled/skills/cli-external-orchestration/cli-pi/references/pi-tools.md): how this extension surface compares to `cli-cursor`'s `hooks.json` and `cli-devin`'s `hooks.v1.json`
-- [`../../.skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md`](../../.skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md): confirmed-vs-open discovery and lifecycle-event details
-- [`../../.skilled/skills/sk-code/sk-code-skilled/SKILL.md`](../../.skilled/skills/sk-code/sk-code-skilled/SKILL.md): TypeScript standards this folder follows
-- [`../../.skilled/hooks/injection-contract.md`](../../.skilled/hooks/injection-contract.md): what each bridged hook actually injects, the visibility difference between Pi's `[MSG]` chat-transform bridges and every other runtime's `[SYS]` model-only channel, and how to inspect injected content per runtime
+- [Pi settings](../settings.json): the `packages` list and the empty `extensions` list.
+- [The Pi extension sync manifest](../SYNC.md): what in this folder is generated, linked or authored.
+- [The lib adapter README](lib/README.md): the spawn proxy the two session bridges import.
+- [The hook library README](../../.skilled/hooks/README.md): the shared cores and the coverage matrix.
+- [The injection contract](../../.skilled/hooks/injection-contract.md): what each bridge injects and how visible it is per runtime.
+- [The spec-kit Pi hook README](../../.skilled/skills/system-spec-kit/runtime/hooks/pi/README.md): the adapters for the gate and the session.
+- [The sk-git Pi hook README](../../.skilled/skills/sk-git/scripts/hooks/pi/README.md): the message gate and the git advisory.
+- [The cache optimizer README](pi-cache-optimizer/README.md): the local cache package.
+- [The fast mode README](pi-fast-mode-w-subagent-support/README.md): the local fast-mode package.
+- [The Pi runtime reference](../../.skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md): discovery details for this extension surface.

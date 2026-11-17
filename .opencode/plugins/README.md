@@ -1,131 +1,68 @@
 ---
-title: "OpenCode Plugin Entrypoints"
-description: "JavaScript plugin entrypoints for context injection, lifecycle handling, policy guards, runtime tools and post-action checks. OpenCode discovers these via a flat glob over .opencode/plugins/, and each module default-exports the object `{ id, setup, server }`."
+title: "OpenCode Plugins: The Events They Answer and the Cores They Call"
+description: "The local plugin entries OpenCode loads from this folder, the shared cores each entry calls, the switches that silence them and the suites that prove each one still registers."
 trigger_phrases:
   - "OpenCode plugins"
   - "plugin entrypoints"
   - "OpenCode hook events"
 ---
 
-# OpenCode Plugin Entrypoints
-
-> JavaScript plugin entrypoints for context injection, lifecycle handling, policy guards, runtime tools and post-action checks.
+# OpenCode Plugins: The Events They Answer and the Cores They Call
 
 ---
 
 ## 1. OVERVIEW
 
-`.opencode/plugins/` contains the JavaScript modules OpenCode discovers as local plugins. Each module default-exports one plain object `{ id, setup, server }`: `setup` is the OpenCode 2 (recommended) entry and `server` the OpenCode 1 (fallback) entry. Source plugins build that object with `dualPlugin(id, server)` from `lib/v2-bridge.js`, so the v1 factory stays the single implementation and the bridge derives the v2 leg from it. OpenCode loads plugins by a flat glob over this folder (it does not recurse), so every loadable plugin lives directly here. The `lib/` and `tests/` subfolders are not plugin sources.
+`.opencode/plugins/` holds the local plugins an OpenCode session loads. Each `.js` file at the top of the folder is one plugin. `opencode.json` names no plugin path, so the folder itself is the registration, and the subfolders hold no entries.
 
-Every plugin here runs on both OpenCode majors. OpenCode 2 calls `setup(ctx)` and OpenCode 1 calls `server(input)`, and neither host calls the other's entry, so a plugin that exported only one entry would do nothing on the other host. On 2026-10-19 the 17 plugin files then present were verified on OpenCode 2.0.32 and OpenCode 1.19.3: the doctor battery reported all 17 active on 2.0.32 and discovered all 17 on 1.19.3. On 2026-10-20 a live run of every plugin showed each one's effect on both versions. One of those plugins has since been removed, and `decision-capture.js` was added later through the same bridge without a rerun of that battery. `env-secret-guard.js` was added the same way and has no live battery run yet; on 2026-11-08 a live OpenCode 2.2.5 session showed its section and redeemed the printed command, and a live OpenCode 1.19.4 session did the same. `overlay-guard.js` was added the same way and has no live battery run yet. [ARCHITECTURE.md](./ARCHITECTURE.md) explains the dual export, the bridge and what has no OpenCode 2 equivalent.
+Every entry default-exports the object that `dualPlugin(id, server)` builds in `lib/v2-bridge.js`. `server` is the unchanged OpenCode 1 factory and `setup` is the OpenCode 2 leg. The folder is an ES module package, because `.opencode/package.json` sets `"type": "module"`.
 
-<!-- readme-check
-allow-count 17 plugin files | a dated count of the files present at the 2026-10-19 battery, not the current folder
-allow-count 17 plugins | a dated count of the files present at the 2026-10-19 battery, not the current folder
--->
+An entry is a thin adapter that translates one OpenCode event into a call on a core outside this folder, with one exception. `opencode-goal.js` is a full plugin. It holds the goal state machine and its tools, and calls the goal helpers under `.opencode/hooks/goal/`.
 
-The directory inventory is authoritative for the auto-loaded plugin surface. Shared policy cores stay under their owning skill (`system-spec-kit`, `system-skill-advisor`, `sk-git`, `sk-code`, `system-completion`, `system-deep-loop`). Most files here are **transport adapters** that translate OpenCode events into those cores and keep terminal output out of the TUI. `opencode-goal.js` is the exception: it implements the goal state machine and goal tools itself and shares only selected helpers. The single shared boundary every plugin honors in normal operation: **never write to stdout or stderr**, because OpenCode overlays those onto the TUI prompt line and corrupts the interactive session. Findings are injected via `experimental.chat.system.transform`, returned from tool handlers or persisted to bounded workspace logs.
-
-Most plugins honor a per-concern kill switch through the shared `hook-flags.cjs` resolver (`isHookEnabled('<concern>')`), plus the master `SYSTEM_HOOKS_DISABLED`. A disabled plugin stops its main work.
-
-Most become full no-ops, while the goal tools and the advisor status tool stay registered and report that they are disabled. All advisory checks fail open.
-
-Four plugins reject by default by throwing from `tool.execute.before`: `sk-git-message-gate.js`, the dispatch guard in `cli-dispatch-audit.js`, `env-secret-guard.js`, which refuses a read or write of a dotenv file, and `overlay-guard.js`, which refuses a write to a file a vendored tree's overlay owns. Other rejection is opt-in: `SYSTEM_SPEC_GATE_ENFORCE` for spec-gate deny, and `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` or `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` for the deep-loop guard, which otherwise only warns.
-
-One plugin is an exception. `sk-git-message-gate.js` has no switch, because the commit, PR and branch rules carry no bypass on any surface.
+The rule every entry keeps is silence on stdout, and on stderr outside two error paths named below. OpenCode paints plugin output onto the TUI prompt line. A finding reaches the session through `experimental.chat.system.transform` or through a tool return. A note with no reader there goes to a bounded log file in the workspace.
 
 ---
 
-## 2. WHAT'S HERE / INVENTORY
-
-| File | Concern | Hook surface | Responsibility |
-|---|---|---|---|
-| `ask-surface-guard.js` | `ask-surface` | `event` (`session.idle`) | When a turn ends in a typed option menu and called no `question` tool, sends the turn back once through `session.promptAsync` with an instruction to ask through `question`. Writes nothing to stdout or stderr, fails open, and stays off under `SYSTEM_ASK_SURFACE_DISABLED=1`. |
-| `classifier-injection-screen.js` | `injection-screen` | `tool.execute.after` for `webfetch`, `experimental.chat.system.transform` | Screens fetched `webfetch` text for instructions aimed at the agent. Buffers up to 20 advisories per session and drains them on the next transform, the model call that reads the fetch result. Never writes stdout/stderr. |
-| `cli-dispatch-audit.js` | `dispatch`, `dispatch-guard` | `tool.execute.before` and `tool.execute.after` for Bash | `tool.execute.before` blocks a CLI dispatch that breaks a hard rule declared in the target skill's `SKILL.md` by throwing, and fails open on its own errors. `tool.execute.after` records redacted dispatch telemetry after completed CLI calls, recognizes an `opencode` or `opencode2` invocation and appends a bounded audit record. |
-| `codex-hooks-watchdog.js` | `codex-watchdog` | `event` (`session.created`) | Watches Codex hook installation and reports drift. Never affects the guarded session. |
-| `decision-capture.js` | `decision-capture` | `tool.execute.after` for `question`, `experimental.chat.system.transform` | Queues each answered `question` call for the next full-auto save under the same key as the save-time sweep, and pushes one system line when the count of answers still waiting for a decision record rises. Fails open and never changes the tool output. |
-| `env-secret-guard.js` | `env-secret-guard` | `tool.execute.before`, `tool` (`env_secret_list_keys`, `env_secret_validate`, `env_secret_fingerprint`) | Refuses a file tool or shell command that would read or write a dotenv file by throwing, through the shared core in `../hooks/env-secret-guard/`. Its three tools list keys, check syntax and fingerprint one value without returning any value. Fails open on its own errors. |
-| `mcp-route-guard.js` | `mcp-route-guard` | `tool.execute.before` | Advises when native MCP calls should use Code Mode. Persists to a bounded, rotated workspace log. |
-| `overlay-guard.js` | `overlay-guard` | `tool.execute.before` for write tools | Refuses a write tool that names a file a vendored tree's overlay owns, by throwing, through the shared core in `../hooks/overlay-guard/`. The reason names the overlay file to edit instead. A write it cannot judge is allowed, and its notes go to a bounded, rotated log because OpenCode paints stdout and stderr onto the prompt line. |
-| `opencode-goal.js` | `goal` | `event` (`session.created`/`status`/`idle`/`deleted`, `message.updated`/`message.part.updated`, `permission.asked`/`replied`, `question.asked`/`replied`/`rejected`), `experimental.chat.system.transform`, `tool` (goal tools) | Holds a text goal or binds a session to a packet `goal.md` and injects the objective slice built from it (via `../hooks/goal/lib/goal-slice.cjs`). Largest plugin in this folder. Owns the goal state machine, supervisor, continuation, capabilities and the goal tool surface including `bind`, `resent` and `packet`. |
-| `session-cleanup.js` | `session-cleanup` | `event` (`session.created`/`deleted`), `experimental.chat.system.transform`, `dispose` | Performs bounded session and host cleanup. Startup guards and teardown cleanup. Reaps MCP helper processes via `session-cleanup.sh`. |
-| `session-handover.js` | `session-handover` | `event` (`message.updated`/`message.part.updated`/`session.created`/`session.updated`/`session.deleted`/`session.compacted`/`session.idle`), `tool.execute.before` for `question`, `experimental.chat.system.transform` | Tracks usage and seed text, and tracks child sessions so a sub-agent's own fill, nudge or idle never hands off or ends the parent's runtime. Inside `skilled-loop`, while this session has no matching relaunch record, it pushes the active nudge on every request. Outside the loop the nudge asks for a note and `keep` instead of `prepare`, because only the wrapper can relaunch the session. While a matching seed's note is open, it injects the seed on each request, then a claimed reminder once the note is claimed. It arms the record on `session.idle`. On `session.compacted` it resets the spent nudge level and seeds the session from the open note's detail. `tool.execute.before` refuses a `question` dialog while this session's record can still be armed, because the dialog holds the session busy until the operator answers. The plugin runs the detached killer with `node` because OpenCode hosts plugins on Bun. |
-| `sk-code-post-edit-quality.js` | `post-edit-quality` | `tool.execute.before`, `tool.execute.after`, `experimental.chat.system.transform` | Runs bounded post-edit quality checks. `tool.execute.before` stashes the edited path keyed by callID, because the after hook has no file path. `tool.execute.after` runs the router core. Findings drain on the next transform and are recorded to a workspace log. |
-| `sk-git-message-gate.js` | `git-message-gate` (no kill switch) | `tool.execute.before` for `bash` | Refuses a `git commit` message, `gh pr` description or new branch name that breaks the repository's own sk-git templates by throwing. Allows what the shared gate cannot parse, but refuses when the repository's rules exist and cannot be read. It has no kill switch, because the commit and push rules carry no bypass on any surface. |
-| `sk-git-preflight-advisory.js` | `git-preflight` | `tool.execute.before` for `bash`, `experimental.chat.system.transform` | Advises on Git command scope before execution. Buffers at most 20 advisory events and drains them on the next transform. Never prints. |
-| `system-completion-sentinel.js` | `completion` | `event` (`session.created`/`idle`) | Checks completion evidence at session lifecycle points. On `session.idle`, resolves completion state via `ctx.client.session.messages()` (guarded, fail-open). Throttled-sweeps the shared state dir on `session.created`. |
-| `system-deep-loop-guard.js` | `task-dispatch` | `event` (`session.created`), `tool.execute.before` | Checks deep-loop Task dispatches and repeat handoffs. Sweeps stale loop-guard state on `session.created`. |
-| `system-dist-freshness-guard.js` | `dist-freshness` | `tool.execute.before`, `event` (`session.created`/`deleted`), `experimental.chat.system.transform` | Reports stale compiled outputs and invalidates diagnostics. Short-circuits the whole plugin at factory entry when disabled. |
-| `system-skill-advisor.js` | `skill-advisor` | `experimental.chat.system.transform`, `event`, `tool` (`spec_kit_skill_advisor_status`) | Injects skill-routing guidance per prompt and exposes advisor status. Spawns the advisor subprocess only on a cache miss, behind a TTL+LRU prompt cache with in-flight dedup. |
-| `system-spec-gate.js` | `spec-gate` | `experimental.chat.system.transform`, `tool.execute.before`, `event` | Classifies and evaluates mutation-gate state. Classify best-effort fetches the last user message via `ctx.client`. Enforce throws `system-spec-gate:` on deny (OpenCode's deny signal). |
-| `system-speckit-completion.js` | `completion` | `tool` (read-only completion evidence) | Exposes read-only completion evidence. Checks the `completion` concern at factory entry. |
-
----
-
-## 3. SHARED LIB MODULES
-
-`lib/` holds the modules the entry files import. None of them is a plugin source, and the loader never registers one on its own.
-
-| File | Responsibility |
-|---|---|
-| `lib/v2-bridge.js` | Builds the dual export. `dualPlugin(id, server)` returns `{ id, setup, server }`: `setup` maps its hooks (event stream, `tool.execute.before`/`after`, `experimental.chat.system.transform`, tool definitions) onto OpenCode 2 registrations and returns a cleanup function, while `server` stays the unchanged OpenCode 1 factory. It reports v2 `shell` and `subagent` calls under their v1 names, announces each session once with `session.created`, and fills the message events v1 plugins read. Hook keys the bridge does not map are reported through `cleanup.skippedKeys`. |
-| `lib/tool-identity.js` | Identity helper for tool definitions. `tool(definition)` returns the definition unchanged, and `tool.schema` is zod, so one definition serves the v1 `tool` hook and the bridge's v2 tool registration. |
-| `lib/opencode-message-identity.js` | Stable transform identity and dedup state. `system-skill-advisor.js` uses it when `deduplicateTransforms` is on. |
-| `lib/skill-advisor-render.js` | Advisor fallback and compiled-route renderers, shared by the advisor plugin and its tests. |
-| `lib/classifier-injection-screen-core.js` | Constants and the session-id resolver for the injection-screen plugin. |
-| `lib/completion-sentinel-core.js` | Re-export of the completion-evidence sentinel core under `skills/system-spec-kit`. |
-| `lib/opencode-goal-core.js` | WeakMap registry that binds a goal plugin module's helpers to its server, so both entries read the same state. |
-| `lib/sk-code-post-edit-quality-core.js` | Constants, the callID-to-filePath correlation map and the finding formatter for the post-edit-quality plugin. |
-
-The bridge mapping is exercised against stub contexts in the test suites. On 2026-10-19 the doctor battery confirmed that all 17 plugins load on 1.19.3 and show active on 2.0.32. On 2026-10-20 a probe plugin on a private OpenCode 2.0.32 host received `session.created` and `session.deleted` under those names for sessions created and removed through the server API, and received `location.shutdown` instead of `server.instance.disposed` or `global.disposed`. The probe did not start a session with `opencode run`, and v2 can deliver session traffic before `session.created`, so the bridge synthesizes a `session.created` the first time it sees traffic for a session and drops a later duplicate (`specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/024-plugin-inventory-guards/scratch/v2-events/README.txt`). `tests/plugin-inventory.json` lists every event name a bridged plugin handles that the bridge neither maps nor aliases, grouped as observed, not delivered or unverified. The `plugin-utilization` playbook in `cli-opencode` checks each plugin's effect in a live session; on 2026-10-20 all 17 acted on OpenCode 1.19.3 and 2.0.32.
-
----
-
-## 4. TEST SUITES
-
-`tests/` holds the regression suites for the entry files. They run on the Node built-in test runner with hermetic stubs. The v2 suites are:
-
-| File | Covers |
-|---|---|
-| `tests/v2-bridge.test.cjs` | The bridge itself: event aliases and mappings, the v1 client adapters, hook registration and cleanup, tool result conversion and the `tool` identity contract. |
-| `tests/v2-hard-plugins.test.cjs` | Selected hard cases, not the plugin list: expected v2 registrations for `system-completion-sentinel`, `system-spec-gate`, `system-skill-advisor` and `opencode-goal` through a stub v2 context, plus behavior cases for the first four. It also requires a case for every native-dual exception in the inventory. |
-| `tests/v2-registration.test.cjs` | The dual export shape, at least one v2 registration and the cleanup function for every bridged plugin the inventory finds. |
-| `tests/plugin-inventory.test.cjs` | The inventory itself: every `.js` file is bridged or a listed native-dual exception, every bridged plugin maps all its hooks, and every event name a bridged plugin compares against is mapped, aliased or listed in `tests/plugin-inventory.json`. The event names come from parsing each plugin's `type` comparisons, `switch` statements on the event type and literal collections; any other kind of event check, such as `eventType.endsWith('.disposed')`, must be listed under `unscannedEventChecks` with a reason. |
-
-The plugin list comes from the folder, not from a hand-written list. `tests/helpers/plugin-inventory.cjs` treats a file as bridged when its source contains `dualPlugin('<file stem>'`, and `tests/v2-registration.test.cjs` then checks that its default export has the dual shape, and `tests/plugin-inventory.json` names the exceptions, with an empty `nativeDual` list. A new plugin file that is neither bridged nor listed fails `tests/plugin-inventory.test.cjs`.
-
-The remaining `*.test.cjs` files cover v1 behavior and adjacent contracts. `tests/README.md` indexes every suite, and `tests/helpers/` holds the shared fixtures.
-
----
-
-## 5. DIRECTORY TREE
+## 2. ARCHITECTURE
 
 ```text
-plugins/
-+-- README.md                              # this index
-+-- ARCHITECTURE.md                        # dual-version design, bridge and limits
-+-- ask-surface-guard.js
-+-- classifier-injection-screen.js
-+-- cli-dispatch-audit.js
-+-- codex-hooks-watchdog.js
-+-- decision-capture.js
-+-- env-secret-guard.js
-+-- mcp-route-guard.js
-+-- overlay-guard.js
-+-- opencode-goal.js
-+-- session-cleanup.js
-+-- session-handover.js
-+-- sk-code-post-edit-quality.js
-+-- sk-git-message-gate.js
-+-- sk-git-preflight-advisory.js
-+-- system-completion-sentinel.js
-+-- system-deep-loop-guard.js
-+-- system-dist-freshness-guard.js
-+-- system-skill-advisor.js
-+-- system-spec-gate.js
-+-- system-speckit-completion.js
-+-- lib/
+╭───────────────────────────╮
+│ OpenCode event or tool    │
+╰─────────────┬─────────────╯
+              ▼
+┌───────────────────────────┐
+│ lib/v2-bridge.js setup    │
+└─────────────┬─────────────┘
+              ▼
+┌───────────────────────────┐
+│ the entry's v1 factory    │
+└─────────────┬─────────────┘
+              ▼
+┌───────────────────────────┐
+│ the shared core           │
+└─────────────┬─────────────┘
+              ▼
+╭───────────────────────────╮
+│ refusal, finding or none  │
+╰───────────────────────────╯
+```
+
+Runtime direction: host ───▶ `setup` ───▶ `server` ───▶ core.
+
+The bridge carries the transport for every entry. When an entry registers an event hook, the bridge subscribes to the session event stream for it, turns the rest of the v1 factory's hooks into OpenCode 2 registrations, and returns the cleanup function that disposes them. It also renames `shell` to `bash` and `subagent` to `task` before a v1 hook reads them, and it aliases `session.execution.succeeded` to `session.idle` and `session.compaction.ended` to `session.compacted`. A hook key it cannot map is listed in `cleanup.skippedKeys` rather than dropped in silence.
+
+The architecture note covers the synthesized `session.created` and the message events the bridge fills for v1 plugins. It also lists the OpenCode 1 features with no OpenCode 2 equivalent. Read [the architecture note](./ARCHITECTURE.md) before changing the bridge.
+
+---
+
+## 3. DIRECTORY TREE
+
+```text
+.opencode/plugins/
++-- README.md                             # this index
++-- ARCHITECTURE.md                       # the dual export and the bridge limits
++-- <plugin>.js                           # one entry file per row in the entry map
++-- lib/                                  # helpers the entries import, never entries
 |   +-- classifier-injection-screen-core.js
 |   +-- completion-sentinel-core.js
 |   +-- opencode-goal-core.js
@@ -135,121 +72,113 @@ plugins/
 |   +-- tool-identity.js
 |   `-- v2-bridge.js
 `-- tests/
-    +-- README.md
-    +-- helpers/
-    +-- plugin-inventory.test.cjs
-    +-- plugin-inventory.json
-    +-- v2-bridge.test.cjs
-    +-- v2-hard-plugins.test.cjs
-    +-- v2-registration.test.cjs
-    `-- *.test.cjs                         # the remaining plugin suites
+    +-- README.md                         # what each suite pins
+    +-- plugin-inventory.json             # the exceptions and the known event names
+    +-- helpers/                          # shared fixtures
+    `-- *.test.cjs                        # the regression suites
 ```
 
 ---
 
-## 6. KEY FILES
+## 4. ENTRY MAP
 
-| File | Responsibility |
-|---|---|
-| `opencode-goal.js` | The largest plugin. Owns the goal state machine, supervisor, continuation, capabilities and the goal tool surface. Hooks session, message, permission and question events, `experimental.chat.system.transform` and a family of goal tools. |
-| `system-skill-advisor.js` | Spawns the skill-advisor subprocess on a prompt-cache miss, manages a TTL+LRU prompt cache with in-flight dedup, integrates transform-dedup where the opt-in same-message dedup bases its decision on the full advisor block before directive-lifecycle reduction and suppresses a repeated transform for the same message and exposes `spec_kit_skill_advisor_status`. Its recommendation mapper keeps each CLI row's `command`, `policy`, `ownerSkillId` and `needsMode` under the names `renderAdvisorBrief` reads, so an OpenCode brief names the same command and policy as a hook brief. |
-| `system-spec-gate.js` | Maps OpenCode's transport onto the runtime-neutral spec-gate core. Classify best-effort fetches the last user message via `ctx.client`. Enforce throws `system-spec-gate:` on deny. `event` sweeps, advances and evicts state. |
-| `sk-code-post-edit-quality.js` | Correlates `tool.execute.before` file paths to `tool.execute.after` callIDs, runs the post-edit router core and drains findings on the next transform. |
-| `lib/v2-bridge.js` | Builds the dual export for every bridged plugin. `server` is the unchanged v1 factory, and `setup` maps its hooks onto OpenCode 2 registrations and returns a cleanup function. |
-| `lib/tool-identity.js` | The `tool` identity helper. Returns a v1 tool definition unchanged and carries zod as `tool.schema`. |
-| `lib/opencode-message-identity.js` | Shared stable transform identity and dedup state used by the advisor plugin. |
+One row per file at the top of the folder. The Event column names the hook the entry registers. The Real file or core column names the code that makes the decision, and the path is relative to this folder unless it starts with a dot.
 
----
-
-## 7. CONFIGURATION
-
-Every plugin except `session-handover.js` is enabled by default. Truthy disable values are `1`, `true`, `yes` and `on` (case-insensitive) for the shared resolver. Each plugin that honors a switch checks `isHookEnabled('<concern>')` at entry (some at factory entry, some per-hook) and stops its main work when disabled. Housekeeping can still run, such as the deep-loop guard's stale-state sweep on `session.created`. The one exception named in the overview does not.
-
-| Variable | Effect |
-|---|---|
-| `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables every plugin in this folder that reads `hook-flags.cjs`, along with every other repo hook. It does not reach `sk-git-message-gate.js`. |
-| Per-concern switch | The default name is `SYSTEM_<CONCERN>_DISABLED` (e.g. `SYSTEM_SPEC_GATE_DISABLED`, `SYSTEM_SKILL_ADVISOR_DISABLED`). Six concerns use another canonical name: `OPENCODE_GOAL_DISABLED`, `CLI_DISPATCH_AUDIT_DISABLED`, `MCP_ROUTE_GUARD_DISABLED`, `CODEX_HOOKS_WATCHDOG_DISABLED`, `SK_GIT_PREFLIGHT_DISABLED` and `SK_CODE_POST_EDIT_QUALITY_DISABLED`. |
-| Older aliases | `hook-flags.cjs` still honors older names, e.g. `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` and `OPENCODE_GOAL_PLUGIN_DISABLED`. See each plugin's own README. |
-| `SYSTEM_SESSION_HANDOVER_OPENCODE_ENABLED`, `SYSTEM_SESSION_HANDOVER_ENABLED` | Turn on `session-handover.js`, which ships off. A non-empty OpenCode flag decides for OpenCode (`1` on, `0` off), and the global flag decides otherwise. `SYSTEM_SESSION_HANDOVER_DISABLED=1` and the master switch still win. Also read from `.skilled/hooks/hook-flags.env`. |
-
-Optional tuning: `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` (default 3000, owned by `system-skill-advisor`), `SYSTEM_OPENCODE_TRANSFORM_DEDUP=1` (opt-in transform dedup for the advisor plugin), plus per-plugin cache/budget/timeout envs documented in each plugin's README.
-
-Set a flag inline for one command, export it for a session or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session. Only switches read through `hook-flags.cjs` can be persisted there.
+| Entry | Kind | Event | Real file or core | Effect |
+|---|---|---|---|---|
+| `ask-surface-guard.js` | Thin adapter | `event` (`session.idle`) | `../hooks/ask-surface-guard/lib/ask-surface-core.cjs` | Sends a finished turn back once through `session.promptAsync` when the turn ends in a typed option menu and called no `question` tool. |
+| `classifier-injection-screen.js` | Thin adapter | `tool.execute.after` for `webfetch`, `experimental.chat.system.transform` | `../hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs` | Screens fetched text for instructions aimed at the agent, buffers up to 20 advisories per session and drains them on the next transform. |
+| `cli-dispatch-audit.js` | Thin adapter | `tool.execute.before` and `tool.execute.after` for `bash` | `../hooks/cli-dispatch/lib/dispatch-audit.mjs` | Before blocks a dispatch that breaks a hard rule in the target skill's `SKILL.md` by throwing. After appends one redacted audit line to a JSONL log. |
+| `codex-hooks-watchdog.js` | Thin adapter | `event` (`session.created`) | `.skilled/bin/install-codex-hooks.mjs --check` | Records Codex hook drift in `.skilled/logs/codex-hooks-watchdog.log`. The guarded session never changes. |
+| `decision-capture.js` | Thin adapter | `tool.execute.after` for `question`, `experimental.chat.system.transform` | `.skilled/hooks/decision-capture/lib/capture-core.mjs` | Queues each answered question under the key the save-time sweep uses, then adds one system line while answers still wait for a decision record. |
+| `env-secret-guard.js` | Thin adapter | `tool.execute.before`, `tool.execute.after`, `tool` | `../hooks/env-secret-guard/lib/env-secret-guard.cjs` | Refuses a dotenv read or write by throwing, takes a dotenv value out of a later result, and registers the `env_secret_*` tools that never return a value. |
+| `mcp-route-guard.js` | Thin adapter | `tool.execute.before` | `../hooks/mcp-route-guard/lib/mcp-route-guard.cjs` | Appends one advisory to a bounded rotated log when a native MCP call has a Code Mode manual for its family. This entry never refuses. |
+| `overlay-guard.js` | Thin adapter | `tool.execute.before` for `write`, `edit`, `multiedit`, `patch` and `apply_patch` | `../hooks/overlay-guard/lib/overlay-guard.cjs` | Refuses a write to a file a vendored tree's overlay owns, and names the overlay file to edit instead. A write it cannot judge is allowed. |
+| `opencode-goal.js` | Full plugin | `event` (session, message, permission and question types), `experimental.chat.system.transform`, `tool` | Its own state machine, plus the helpers in `../hooks/goal/lib/` | Holds a text goal or binds a session to a packet `goal.md` and injects the objective slice. Registers `opencode_goal` and `opencode_goal_status`. |
+| `session-cleanup.js` | Thin adapter | `event` (`session.created`, `session.deleted`), `experimental.chat.system.transform`, `dispose` | `.skilled/scripts/session-cleanup.sh` and the guard scripts in `.skilled/bin/` | Runs the bounded startup guards, reports their warnings once, then runs teardown when the host unloads the plugin. |
+| `session-handover.js` | Thin adapter | `event` (session and message types), `experimental.chat.system.transform`, `tool.execute.before` for `question` | `../hooks/session-handover/lib/nudge.cjs` | Pushes the fill nudge, seeds a relaunched session from its open note, arms the relaunch record on idle and refuses a `question` dialog while that record can still arm. |
+| `sk-code-post-edit-quality.js` | Thin adapter | `tool.execute.before`, `tool.execute.after`, `experimental.chat.system.transform` | `../hooks/post-edit-quality/lib/post-edit-router.cjs` | Stashes the edited path by callID, runs the router once the edit has landed and drains its findings into the next transform. |
+| `sk-git-message-gate.js` | Thin adapter | `tool.execute.before` for `bash` | `../skills/sk-git/scripts/hooks/git-message-gate.mjs` | Refuses a commit message, PR description or branch name that breaks the repository's own templates. It has no kill switch. |
+| `sk-git-preflight-advisory.js` | Thin adapter | `tool.execute.before` for `bash`, `experimental.chat.system.transform` | `../skills/sk-git/scripts/lib/git-rule-checks.mjs` | Buffers up to 20 Git advisories and drains them into the next transform. The command still runs. |
+| `system-completion-sentinel.js` | Thin adapter | `event` (`session.created`, `session.idle`) | `lib/completion-sentinel-core.js` | Resolves the last assistant text through `ctx.client.session.messages()`, checks a completion claim against its packet and writes one advisory line. |
+| `system-deep-loop-guard.js` | Thin adapter | `event` (`session.created`), `tool.execute.before` for `task` | `../hooks/subagent-dispatch-guard/lib/subagent-dispatch-guard.cjs` | Flags a Deep Route mode mismatch and a repeated dispatch to the same loop executor, then sweeps stale guard state at startup. |
+| `system-dist-freshness-guard.js` | Thin adapter | `tool.execute.before`, `event` (`session.created`, `session.deleted`), `experimental.chat.system.transform` | `../skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs` | Names each package whose compiled output is stale, in system context and in a bounded log. |
+| `system-skill-advisor.js` | Thin adapter | `experimental.chat.system.transform`, `event`, `tool` | `../bin/skill-advisor.cjs`, which runs the `system-skill-advisor` core | Injects the routing brief from a prompt cache, spawns the advisor only on a cache miss and exposes `spec_kit_skill_advisor_status`. |
+| `system-spec-gate.js` | Thin adapter | `experimental.chat.system.transform`, `tool.execute.before`, `event` | `../skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` | Opens the session gate on mutation intent, relays the deferral once and records each open-gate mutation. It denies only with a switch. |
+| `system-speckit-completion.js` | Thin adapter | `tool` | `../skills/system-spec-kit/runtime/cli/lib/completion-state.cjs` | Registers `system_speckit_completion`, which returns one merged payload: the inferred level with its checklist evidence gaps, plus the placeholder percentage. |
 
 ---
 
-## 8. BOUNDARIES AND FLOW
+## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
 |---|---|
-| Transport only | Plugin files own the OpenCode transport boundary. Shared policy and runtime-neutral logic belongs under the owning skill. |
-| Dual export | Every plugin file default-exports one plain object `{ id, setup, server }`: `setup` is the OpenCode 2 (recommended) entry and `server` the OpenCode 1 (fallback) entry. `lib/` modules are shared helpers, never plugin sources. |
-| No stdout/stderr | Plugins do not print to stdout or stderr in normal operation. The only writes are opt-in debug output, such as the goal plugin's debug env. OpenCode overlays those onto the TUI prompt line and corrupts the interactive session. Findings go through `experimental.chat.system.transform`, tool returns or bounded workspace logs. |
-| Fail-open | All advisory checks fail open. A missing payload, a subprocess timeout, a parse failure or any internal error resolves to a no-op, or for the read-only completion tool to a payload that marks the missing sections unavailable. The skill advisor is the exception to the no-op because on a subprocess timeout, a parse failure, a missing prompt or an internal error it injects its status-headed fallback (an `Advisor: outage (...)` or `Advisor: prompt skipped.` line above the directives block) and never blocks the prompt. The git message gate and the dispatch guard reject by default. Spec-gate rejection is opt-in through `SYSTEM_SPEC_GATE_ENFORCE`, and deep-loop guard rejection through `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` or `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1`. |
-| Kill-switch | Every plugin except the one named in the overview honors its per-concern kill-switch via the shared `hook-flags.cjs` resolver plus the master `SYSTEM_HOOKS_DISABLED`. A disabled plugin stops its main work, and the goal and advisor status tools stay registered to report that. Housekeeping such as the deep-loop guard's stale-state sweep can still run. |
-| Bounded | Subprocess spawns, pending-event buffers and workspace logs are bounded, as is the skill advisor's TTL+LRU prompt cache (per-plugin limits documented in each plugin's README). The advisor's workspace-surface cache instead keeps one entry per workspace directory the process has seen, so it is not capped. |
-| Tests | Plugin tests stay under `tests/`. |
+| Imports | An entry imports the bridge and the core it adapts. A tool definition also comes through `lib/tool-identity.js`. `lib/` holds shared helpers and `tests/` holds the suites. Neither one is an entry. |
+| Ownership | Transport lives here. Policy lives in the core. A rule that should hold on another runtime changes in the core, not in this folder. |
+| Failure | Advisory checks fail open, so a missing payload or an internal error becomes a no-op, as does a subprocess timeout. These entries refuse by default, by throwing from a hook: `cli-dispatch-audit.js` for a hard-rule dispatch, `env-secret-guard.js` for a dotenv read or write, `overlay-guard.js` for an overlay-owned file, `session-handover.js` for a `question` dialog while the relaunch record can still arm, and `sk-git-message-gate.js` for a message or branch that breaks the templates. Two more refuse only with a switch: `system-deep-loop-guard.js` through `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` or `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1`, and `system-spec-gate.js` through `SYSTEM_SPEC_GATE_ENFORCE=1`. The advisor is the one no-op exception. On a timeout or a parse failure it injects its fallback line instead of nothing. |
+| Output | No entry writes to stdout. Two can write one stderr line: `opencode-goal.js` when `OPENCODE_GOAL_DEBUG` is set, and `system-skill-advisor.js` when its trusted-root rule module fails to load. A finding goes into system context or into a tool return. A note with no reader there goes to a bounded log under the checkout's log folder. |
+| Bounded | Every subprocess timeout and pending buffer carries a limit, as does each log file. The advisor's prompt cache carries a TTL and an entry count. |
+| Tests | The suites read the folder instead of a hand-written list, so a new file is covered the moment it lands. |
 
 ---
 
-## 9. HOOK MODEL
+## 6. CONFIGURATION
 
-Plugin factories register some subset of:
+Every entry is on by default except `session-handover.js`. A switch is truthy as `1`, `true`, `yes` or `on`, in any case. The resolver reads the live environment first and the config file second.
 
-- `tool`: tools exposed to the model (e.g. `spec_kit_skill_advisor_status`, the goal tools, the read-only completion-evidence tool).
-- `tool.execute.before`: pre-tool evaluation (spec-gate enforce, dispatch guard, env-secret-guard, git message gate, git-preflight, mcp-route-guard, post-edit-quality path stash, deep-loop guard).
-- `tool.execute.after`: post-tool evaluation (cli-dispatch-audit, post-edit-quality run, injection screen).
-- `experimental.chat.system.transform`: per-turn system-context injection (advisor, spec-gate classify, goal, session-cleanup, session-handover nudge and seed, git-preflight drain, post-edit-quality drain, dist-freshness and injection-screen drain).
-- `event`: lifecycle and activity handlers (`session.created`/`status`/`idle`/`deleted`/`resumed`/`compacted`/`compact`, `message.updated`/`message.part.updated`, the goal plugin's permission and question events, `server.instance.disposed`/`global.disposed`).
-- `dispose`: teardown when the host unloads the plugin (session-cleanup).
+| Switch | Effect |
+|---|---|
+| `SYSTEM_HOOKS_DISABLED=1` | Master. Silences every entry that reads `hook-flags.cjs`, and `env-secret-guard.js` through its own core, from the environment only. `sk-git-message-gate.js` ignores it. |
+| `SYSTEM_<CONCERN>_DISABLED=1` | One concern, in the default shape. `SYSTEM_SPEC_GATE_DISABLED` and `SYSTEM_SKILL_ADVISOR_DISABLED` follow it. |
+| `OPENCODE_GOAL_DISABLED=1` | The goal plugin. `OPENCODE_GOAL_PLUGIN_DISABLED` still works. |
+| `CLI_DISPATCH_AUDIT_DISABLED=1` | The dispatch audit. `SYSTEM_DISPATCH_DISABLED` still works and also silences the guard beside it. |
+| `MCP_ROUTE_GUARD_DISABLED=1` | The MCP route advisory. |
+| `CODEX_HOOKS_WATCHDOG_DISABLED=1` | The Codex hook watchdog. |
+| `SK_GIT_PREFLIGHT_DISABLED=1` | The Git preflight advisory. |
+| `SK_CODE_POST_EDIT_QUALITY_DISABLED=1` | The post-edit quality router. |
+| `SYSTEM_ENV_SECRET_GUARD_DISABLED=1` | The dotenv guard, read by its own core rather than the shared resolver. |
+| `SYSTEM_SESSION_HANDOVER_OPENCODE_ENABLED=1` | Turns the hand-over plugin on for OpenCode, which ships off. `SYSTEM_SESSION_HANDOVER_ENABLED` answers when the OpenCode switch is blank, and `SYSTEM_SESSION_HANDOVER_DISABLED=1` still wins. |
+| `SYSTEM_SPEC_GATE_ENFORCE=1` | Turns the spec-gate deny on. Without it the gate advises and records. |
+| `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` | Refuses a Deep Route mode mismatch. Without it the guard only warns. |
+| `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` | Refuses a repeated dispatch to the same loop executor. Without it the guard only warns. |
 
-The bridge in `lib/v2-bridge.js` maps that set onto OpenCode 2 registrations: `event` to the event stream, `tool.execute.before`/`after` to the tool execute hooks, `experimental.chat.system.transform` to the session context hook and `tool` definitions to the tool transform. A key outside the set is reported through `cleanup.skippedKeys`.
-
----
-
-## 10. VALIDATION
-
-Run the Node regression command from the repository root:
-
-```bash
-node --test .opencode/plugins/tests/*.test.cjs
-```
-
-Expected result: Node discovers every current CJS test file and reports the suite result. A failing test is a validation failure.
-
-```bash
-(
-  rc=0
-  for f in .opencode/plugins/*.js
-  do node --check "$f" || rc=1
-  done
-  exit "$rc"
-)
-```
-
-Expected result: exit status 0, with no syntax errors across every plugin. Any failing file makes the command exit 1. `node --check` checks syntax only and does not resolve imports.
-
-Check both OpenCode versions with the doctor battery:
-
-```bash
-node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v1
-node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
-```
-
-Expected result: each exits 0, reporting all plugin files active on OpenCode 2 (recommended) and all discovered on OpenCode 1 (fallback). The v2 run starts its own private server.
+Set a switch inline for one command, or export it for a session. To keep it, persist it in `.opencode/hooks/hook-flags.env`. The env-secret guard is the exception, because it reads its switches from the environment only. Copy that file from `.opencode/hooks/hook-flags.env.example`, which is tracked while the copy is gitignored. The environment wins over the file, so a persisted default can still be overridden for one session. [The hooks index](../hooks/README.md) carries the full switch list across every runtime.
 
 ---
 
-## 11. RELATED
+## 7. VALIDATION
 
-- [`ARCHITECTURE.md`](./ARCHITECTURE.md): the dual-version design, the bridge, the kill switches and the known limits.
-- [`tests/README.md`](./tests/README.md): the plugin regression suites.
-- [`tests/helpers/README.md`](./tests/helpers/README.md): the shared test helpers.
-- [`../hooks/README.md`](../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix. Plugins are mirrored there as the OpenCode adapter for their concern (`spec-gate`, `skill-advisor`, `git-preflight`, `git-message-gate`, `session-cleanup`, `injection-screen`).
-- [`../skills/`](../skills/): the shared skill cores these plugins adapt.
+Run from the repository root.
 
-<!-- readme-check
-allow-count four plugins | the sentence counts the plugins that reject by default by behavior, not the plugin files in this folder
-allow-count 17 plugin files | the sentence reports the 2026-10-19 battery run and names the plugins added since
-allow-count 17 plugins | the sentence reports the 2026-10-19 battery run, not the current folder
--->
+```bash
+node --test .opencode/plugins/tests/v2-registration.test.cjs .opencode/plugins/tests/plugin-inventory.test.cjs
+```
+
+Expected result: `ℹ pass 75`, `ℹ fail 0` and exit status 0. The first suite proves that every bridged entry returns a cleanup function and at least one OpenCode 2 registration. The second proves that every `.js` file in the folder is bridged or listed, and that every event name an entry compares against resolves through the bridge or appears in `tests/plugin-inventory.json`.
+
+```bash
+rc=0
+for f in .opencode/plugins/*.js
+do node --check "$f" || rc=1
+done
+echo "exit=$rc"
+```
+
+Expected result: one line, `exit=0`, with nothing printed above it. `node --check` reads syntax only and resolves no import.
+
+```bash
+node --test .opencode/plugins/tests/v2-bridge.test.cjs .opencode/plugins/tests/v2-hard-plugins.test.cjs
+```
+
+Expected result: `ℹ fail 0` and exit status 0, on a stub host context. These suites cover the bridge mapping and the plugins whose registration is hardest to fake.
+
+---
+
+## 8. RELATED
+
+- [`ARCHITECTURE.md`](./ARCHITECTURE.md): the dual export, the bridge and the known limits.
+- [`tests/README.md`](./tests/README.md): what each suite pins.
+- [`tests/helpers/README.md`](./tests/helpers/README.md): the shared fixtures.
+- [`../hooks/README.md`](../hooks/README.md): the hook cores, the switch index and the coverage matrix.
+- [`../skills/`](../skills/): the skill trees the cores live under.
+- [`../../opencode.json`](../../opencode.json): the runtime config, which names no plugin path.

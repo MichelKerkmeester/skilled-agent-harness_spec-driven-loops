@@ -39,7 +39,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "A runtime adapter README tells a maintainer how one runtime runs one concern: the event, the file that registers the adapter and how it fails",
     "created_at": "2026-11-16T15:20:15Z",
-    "last_save_at": "2026-11-17T10:59:59.907Z",
+    "last_save_at": "2026-11-17T13:12:49.193Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,12 +217,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40551e1fd62cfbd7d0e49022bb3890061f70091f6a27afc683526038597c5d6d",
+    "source_fingerprint": "sha256:536b4079a2b46ab74b908d3ce660daa543d4b31656f828c61080bf2f4db68bf6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d241757980f326ac1f11a8afa1061a35bea404e21c934cb4ef06a8d1afff41b2",
       "plan.md": "95e5d2f4454d74fbfe1329126353ad37a8bbc8ae2b2e0ae16ff1fead7e2df83e",
-      "tasks.md": "df0549bb29eeb264cd0dff5763b4dc0d0e0fa6404fb3ef86232bc837b5b171b8",
+      "tasks.md": "279057985ef5133766277d25de529839e6d5a68406fd72b91810d50687d7c415",
       "implementation-summary.md": "a70fd608f394a5a4e16707b9abeae051c45bd465b279ea13ce1f7168d77c17e7"
     },
     "last_active_at": null

@@ -77,11 +77,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Drive | Done | A canary on `.cursor/hooks`, then the other 7 in waves of three, each reviewed by a separate session. 1,329 claims checked, 25 findings applied, 0 rejected |
+| Close | Blocked | 8 of 8 `✅ VALID` with `hard=0`, `readme_links.py` `0 problems`, `goal-doc-contract.test.cjs` `pass 5`, `PARITY PASS`. The sk-doc suite exits 1 on `test_check_changelog_shape.py`, broken by another session's commit `14926d78a37` in the v4.0.2.1 changelog. The operator chose to commit with that criterion blocked |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| sk-doc suite criterion | The completion criterion asks the sk-doc suite to exit 0. It exits 1 on a changelog test another session's commit broke, which no README here touches and D3 forbids fixing by hand. The operator chose to commit the phase with that criterion blocked rather than hold it |
+| Compiled ESM caveat | The older mirror READMEs said a compiled ESM entry cannot run through its symlink. `isMainModule` in `esm-entry.ts` resolves both paths, so the caveat was removed as false |
 <!-- /ANCHOR:log -->
