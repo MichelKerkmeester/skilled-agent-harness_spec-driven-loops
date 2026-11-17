@@ -154,24 +154,6 @@
             }
         },
         {
-            "name": "magnific",
-            "call_template_type": "mcp",
-            "config": {
-                "mcpServers": {
-                    "magnific": {
-                        "transport": "stdio",
-                        "command": "npx",
-                        "args": [
-                            "-y",
-                            "mcp-remote",
-                            "https://mcp.magnific.com"
-                        ],
-                        "env": {}
-                    }
-                }
-            }
-        },
-        {
             "name": "mobbin",
             "call_template_type": "mcp",
             "config": {
