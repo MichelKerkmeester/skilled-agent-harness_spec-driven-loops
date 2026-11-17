@@ -118,6 +118,10 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   'production website': [['mcp-tooling', 0.65]],
   'production url': [['mcp-tooling', 0.65]],
   'browser console': [['mcp-tooling', 0.75]],
+  // The bare `mcp` and `context` token boosts outweigh a hub that declares the
+  // exact two-word phrase, so these anchors hand the phrase back to its owner.
+  'figma mcp': [['mcp-tooling', 0.65], ['sk-code', -0.5]],
+  'ruleset context': [['sk-code', 0.65], ['system-spec-kit', -0.5]],
   'cleaner prompt': [['sk-prompt', 1]],
   'code review': [['sk-code', 1]],
   'review the routing': [['sk-code', 0.6]],
