@@ -118,7 +118,7 @@ Each row identifies one child phase and its purpose.
 | 6 | `006-remove-release-size-limit/` | Remove the file-total line ceiling so an entry runs as long as its release needs | Complete |
 | 7 | `007-changelog-voice-rewrite/` | Rewrite the 1,571 skill and release changelogs to the Human Voice Rules with shorter sentences | Complete |
 | 8 | `008-spec-line-position-gates/` | Make the changelog checklists and the shape check enforce that the spec-folder line closes the entry | Complete |
-| 9 | `009-release-notes-layout-default/` | Make the v4.0.2.1 release-notes layout the default template and fix the old spec-folder lines | In Progress |
+| 9 | `009-release-notes-layout-default/` | Make the v4.1.0.0 release-notes layout the default template and fix the old spec-folder lines | Complete |
 
 ### Phase Transition Rules
 

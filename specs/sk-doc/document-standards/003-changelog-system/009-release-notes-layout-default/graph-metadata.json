@@ -32,7 +32,7 @@
       "paragraphs"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -140,12 +140,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -159,6 +153,12 @@
       },
       {
         "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,8 +196,8 @@
     ],
     "causal_summary": "The v4.0.2.1 release notes use short bullets under short paragraphs, a linked glance table, alert boxes and folded blocks",
     "created_at": "2026-11-17T16:57:21Z",
-    "last_save_at": "2026-11-17T17:05:27.866Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-17T18:10:04.037Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c0d4e1e52b42957f3865a4ba1e962fa41283f64abc594d8d876fc997662e729",
+    "source_fingerprint": "sha256:e04572ac4508e47362e1f7a1964f7517d73ff94bc48bfaf4853681b496c8d11e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5934a816c2eeb42d7f76c8a8b43894f0e46dc84ef9e822189fac9fcbe6dff830",
-      "plan.md": "ed5aeaad89d6740e76b94901d2d01504fef4db2a02dec6b0e58ab52987d3a691",
-      "tasks.md": "555e71c47ea8c03d580c8a8213792cbffea73a6138a92ca2289d683e92d57bea",
-      "implementation-summary.md": "7fb9b4e8c0b6175736876326b9c8f9115a8a492aa45423e66991fce97cfc6461"
+      "spec.md": "ecaf7a7bb8e6ed411ab30806093c6311f03cd9e76ae5757522542f6437f9623e",
+      "plan.md": "680f9f135f696c71843efcd09bcaeaa4295516967f767fe4dca0a0f80f3dd5fc",
+      "tasks.md": "2cc87cb2ac2e5d44fb33ae99417b17e357939d8a4efe0b0448b6ade012a7dca7",
+      "implementation-summary.md": "686745c51848e417fecbf004f9f496a885ab0cce1af8aea663a57ceca68feef9"
     },
     "last_active_at": null
   }

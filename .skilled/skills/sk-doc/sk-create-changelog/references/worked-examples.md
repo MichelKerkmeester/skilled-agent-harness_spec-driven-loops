@@ -1,6 +1,6 @@
 ---
 title: Changelog Worked Examples
-description: Filled-in changelog entries in the v4 narrative style, with annotations explaining why each is shaped the way it is.
+description: Filled-in changelog entries using the v4 release layout, with notes explaining each choice.
 trigger_phrases:
   - "changelog creation examples"
   - "global changelog example"
@@ -9,12 +9,12 @@ trigger_phrases:
   - "annotated changelog sample"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.3.0.0
 ---
 
 # Changelog Worked Examples
 
-Filled-in changelog entries in the v4 narrative style, annotated to explain the choices.
+These examples use real release facts.
 
 ---
 
@@ -22,19 +22,19 @@ Filled-in changelog entries in the v4 narrative style, annotated to explain the 
 
 ### Purpose
 
-These examples apply [../assets/changelog-template.md](../assets/changelog-template.md) to real content. For the expanded shape, read `.skilled/changelog/skilled/v4.0.1.0.md`. For the voice and opening of a major release, read `.skilled/changelog/skilled/v4.0.0.0.md`. The workflow in [../SKILL.md](../SKILL.md) stays authoritative.
+These examples apply the [changelog template](../assets/changelog-template.md) to real release content. Use `.skilled/changelog/skilled/v4.1.0.0.md` as the layout model. The workflow in [../SKILL.md](../SKILL.md) remains authoritative.
 
 ### When to Use
 
-- Modeling a new global entry on a filled-in example rather than a blank template.
-- Checking what the selection rules leave out of a compact entry.
-- Seeing how an expanded section reads before writing one.
+- Model a global entry from a filled example.
+- See what compact entries leave out by default.
+- Compare compact and expanded example layouts.
 
 ---
 
 ## 2. COMPACT GLOBAL ENTRY
 
-A compact entry for a release under 10 changes with no breaking change. It is a leaner rewrite of this packet's published v1.3.1.0 entry, showing what the selection rules in template section 3 leave out. The frontmatter block comes first, per the Frontmatter Contract in SKILL.md section 5, and an editorial title H1 may follow it.
+This compact entry models fewer than ten changes without a breaking change. It shows which details the selection rules leave out.
 
 ```markdown
 ---
@@ -50,14 +50,15 @@ contextType: "general"
 
 # v1.3.1.0, Hubs Resolve to Their Own Changelogs
 
-`/create:changelog` now writes a hub's changelog where the hub keeps it. A hub such as `sk-doc` holds one link per mode plus `parent` and no entry of its own, so the workflow used to find no version there and would have written beside the links.
+`/create:changelog` now finds the changelog that owns each hub change. Previously, it found no version and could write beside the hub's links.
 
 &nbsp;
 
 ## What's New at a Glance
 
-- **A change lands in the changelog of the mode it belongs to.** A change inside one mode's packet goes to that mode's link, and anything else under the hub goes to `parent`.
-- **The next version follows the hub's own history.** The version reader reads the resolved link, so it no longer comes back empty.
+- Changes inside a mode packet go to that mode's changelog.
+- Other changes under the hub go to `parent`.
+- Version checks follow the resolved changelog's history.
 
 &nbsp;
 
@@ -70,51 +71,81 @@ No migration required.
 > Spec folder: `specs/sk-doc/document-standards/003-changelog-system/003-skilled-release-changelog/003-adjacent-alignment`
 ```
 
-**Annotations**:
+Annotations:
 
-- The summary says what changed and why in two sentences, with no file paths or counts.
-- Each glance bullet adds something the summary did not say: where a mode's change lands, and where the next version comes from.
-- The source also recorded two new playbook scenarios, a README and command-doc catch-up and a note that identity phrases keep the skill's name. None of them changes what a user of the workflow sees, so the entry leaves them in the spec packet.
-- An `&nbsp;` line sits before each H2, the glance section and the Upgrade line alike.
-- The spec-folder line closes the entry, after one more `&nbsp;` line, so the reader meets the change first.
-- The Upgrade line is only the action. The published entry added a sentence that repeated the first bullet, and the lean version drops it.
+- The summary names the change and its old failure.
+- Each glance bullet adds one routing detail.
+- The source also records two playbook scenarios and README updates.
+- No reader sees those, so the entry leaves them in the spec packet.
+- The final spec line follows an `&nbsp;` separator.
+- The upgrade sentence carries only the required action.
 
 ---
 
 ## 3. EXPANDED FORMAT EXCERPT
 
-For 10 or more changes, a major bump or a breaking change. The excerpt condenses one topical section in the style of the model entries, without quoting either one.
+Expanded entries suit major releases or breaking changes. This excerpt shows retrieval work and upgrade actions.
 
 ```markdown
 &nbsp;
 
 ## Retrieval
 
-Retrieval became something you can reason about instead of something you debug.
+Retrieval now has a clear lookup path and smaller templates.
 
-#### The Index Replaces the Engine
+#### Frontmatter Builds a Clean Index <a id="c-frontmatter-builds-a-clean-index"></a>
 
-The SQLite database, the embedder and the daemon were decommissioned end to end. A trigger index generated from every document's frontmatter replaced them. A lookup script reads it with no daemon, and ripgrep recipes cover free text. A miss is now a clean no-hit rather than a degraded guess.
+- Every document's frontmatter builds a trigger index.
+- A lookup script reads the index without a daemon.
+- Ripgrep recipes cover free-text searches.
 
-#### Smaller Templates, Same Output
+> [!WARNING]
+> The SQLite database, embedder and daemon are removed.
+> Use the trigger index and free-text recipes instead.
 
-The spec, plan and task templates consolidated into one shared core with level-gated addenda. A Level 1 research doc renders at 175 lines instead of 944, and what the templates produce is identical.
+#### Templates Keep Their Output <a id="c-templates-keep-their-output"></a>
+
+- Spec, plan and task templates share one core.
+- Level-gated addenda preserve each document's needed detail.
+- Level 1 research docs render 175 lines, down from 944.
+- Generated output remains identical.
+
+<details>
+<summary><b>Smaller fixes</b></summary>
+
+- A miss returns a clean no-hit instead of a degraded guess.
+
+</details>
 
 &nbsp;
 
 ## Upgrade Notes
 
-- **Anything pinned to `memory_search` or `memory_save`:** move it to `/speckit:search` and the continuity writer.
-- **Runtime configs that load the spec-memory MCP server:** remove the server.
+Update memory references before using search or saves.
+
+#### Before You Start <a id="c-before-you-start"></a>
+
+1. Replace `memory_search` pins with `/speckit:search`.
+2. Replace `memory_save` pins with the continuity writer.
+
+<details>
+<summary><b>Retrieval</b></summary>
+
+- Remove the spec-memory MCP server from runtime configs.
+
+</details>
 ```
 
-**Annotations**:
+Annotations:
 
-- The H2 names the domain it changes (Retrieval), not a change type such as `New Features`.
-- The section intro says what neither item says, so nothing is stated twice.
-- Each H4 heading states the fact or the gain in four or five words, and each item runs one paragraph: what was there, what replaced it and why it matters.
-- An `&nbsp;` line sits before each H2, nothing separates the H4 items and no `---` rule appears.
-- The Upgrade Notes carry only the actions, with the names the reader must change. Each bullet opens with the reader's situation and follows the order of the sections. Why the engine left belongs to the section above.
+- The H2 names the changed area: retrieval.
+- Its opening states the shared effect in one sentence.
+- Each H4 gives one benefit and an anchor.
+- Short bullets separate each feature's facts.
+- The warning names the removed engine and its replacement.
+- Smaller fixes folds the no-hit behavior at section end.
+- Upgrade Notes starts with shared actions, then folds configuration work.
+- Numbering shows the order for search and save references.
 
 ---
 
@@ -132,5 +163,6 @@ Existing files such as `changelog-<packet>-root.md` stay as history and still va
 - [version-bump-rules.md](version-bump-rules.md) - choosing and calculating the global four-part version
 - [topology-edge-cases.md](topology-edge-cases.md) - placement, back-dating, source conflicts and release edge cases
 - [../SKILL.md](../SKILL.md) - authoritative packet workflow
-- `.skilled/changelog/skilled/v4.0.1.0.md` - the model for length, selection and a release with many changes
+- `.skilled/changelog/skilled/v4.1.0.0.md` - the layout model
+- `.skilled/changelog/skilled/v4.0.1.0.md` - the model for selection in a release with many changes
 - `.skilled/changelog/skilled/v4.0.0.0.md` - the model for voice and how a major release opens

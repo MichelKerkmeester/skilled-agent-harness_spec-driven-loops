@@ -45,9 +45,9 @@ contextType: "general"
 - [x] T005 Update the contract, rules and validation lists (`.skilled/skills/sk-doc/sk-create-changelog/SKILL.md`). Verify: `validate_document.py` reports 0 issues.
 - [x] T006 Update both workflows (`create-changelog-auto.yaml`, `create-changelog-confirm.yaml`). Verify: both parse as YAML.
 - [x] T007 Update the skill README, scripts README and playbook scenario (`README.md`, `scripts/README.md`, `check-expanded-shape.md`). Verify: the playbook's `sed` copy fails with `[glance-order]`.
-- [ ] T008 Rewrite the worked examples in the new layout (`references/worked-examples.md`). Verify: each example passes the shape check.
-- [ ] T009 Move the spec-folder line to the end of the five entries with content after it. Verify: the checker prints no `content follows` line.
-- [ ] T010 Insert the missing `&nbsp;` line before the spec-folder line, in its own commit. Verify: the checker prints no `[spec-position]` line over every entry.
+- [x] T008 Rewrite the worked examples in the new layout (`references/worked-examples.md`). Verify: each example passes the shape check.
+- [x] T009 Move the spec-folder line to the end of the five entries with content after it. Verify: the checker prints no `content follows` line.
+- [x] T010 Insert the missing `&nbsp;` line before the spec-folder line, in its own commit. Verify: the checker prints no `[spec-position]` line over every entry.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,8 +55,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T011 Run the changelog tests (`.skilled/skills/sk-doc/scripts/tests/`). Verify: pytest reports 47 passed and no failure.
-- [ ] T012 Validate the packet (`009-release-notes-layout-default/`). Verify: `validate.sh --strict` prints `RESULT: PASSED`.
+- [x] T011 Run the changelog tests (`.skilled/skills/sk-doc/scripts/tests/`). Verify: pytest reports 48 passed and no failure.
+- [x] T012 Validate the packet (`009-release-notes-layout-default/`). Verify: `validate.sh --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -64,9 +64,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

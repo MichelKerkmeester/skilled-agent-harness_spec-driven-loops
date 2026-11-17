@@ -40,9 +40,9 @@ The template, SKILL.md and both workflows change to the v4.0.2.1 layout. The sha
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
+- [x] All acceptance criteria met
 - [x] `python3 -m pytest -q .skilled/skills/sk-doc/scripts/tests/ -k changelog` passes with no failure
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

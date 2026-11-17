@@ -8,17 +8,25 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default"
-    last_updated_at: "2026-11-17T16:57:21Z"
-    last_updated_by: "template-author"
-    recent_action: "Made the v4.0.2.1 layout the template default and taught the shape check its table"
-    next_safe_action: "Rewrite the worked examples, then fix the old spec-folder lines"
+    last_updated_at: "2026-11-17T18:10:04Z"
+    last_updated_by: "generate-context"
+    recent_action: "Closed the release-notes layout phase"
+    next_safe_action: "Plan the 010 retroactive layout rewrite"
+    packet_purpose: "Purpose: A changelog written from the template reads like the v4.0.2.1 release notes and passes every gate."
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:51c76b700457ccc41ee7227ed7264a1ae2f1a1c8dfbc8d496c14175746ea48e3"
       session_id: "scaffold-009-release-notes-layout-default"
       parent_session_id: null
-    completion_pct: 70
+    session_ref:
+      runtime: "claude"
+      sessionId: "cbc62a39-7ca8-4b5a-989f-a86fdea260ea"
+      workspace: "/Users/michelkerkmeester/worktrees/public/452-changelog-layout-default"
+      savedAt: "2026-11-17T18:10:04Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 009-release-notes-layout-default |
-| **Completed** | In progress (2026-11-17) |
+| **Completed** | 2026-11-17 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -103,7 +111,9 @@ The phase 8 checker was run on v4.0.2.1 and on every changelog first. The checke
 | Check | Result |
 |-------|--------|
 | Shape check on v4.0.2.1 | PASS with no note. Its mean is 9.37 words a sentence |
-| Changelog tests | PASS: 47 passed, against a baseline of 39 passed and 1 failed |
+| Changelog tests | PASS: 48 passed, against a baseline of 39 passed and 1 failed |
+| Spec-position rule over every changelog | PASS: 0 `[spec-position]` lines across 3,282 paths, and a second script run changed nothing |
+| Worked examples | The compact example passes the shape check. The expanded excerpt fails only on the How It Was Checked section an excerpt leaves out |
 | New tests on the phase 8 checker | 5 fail, the 4 new tests and the model-entry test |
 | `hvr_scan.py` on the template and SKILL.md | 0 new hard blockers. SKILL.md keeps one semicolon it had before |
 | Both workflow YAML files parse | PASS |
@@ -114,8 +124,8 @@ The phase 8 checker was run on v4.0.2.1 and on every changelog first. The checke
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The worked examples still show the older layout.** Rewriting them is the next task.
-2. **Old spec-folder lines are not fixed yet.** 5 entries have content after the line and 266 skill and release entries lack the `&nbsp;` line. Packet-local entries add 3 and 1,654.
+1. **Older entries keep their old layout.** Only the spec-folder line moved in them. A full rewrite into the new layout is the next phase.
+2. **Older entries still fail other shape rules.** The shape check runs on drafts, so an old entry that breaks the sentence ceilings keeps working.
 <!-- /ANCHOR:limitations -->
 
 ---
