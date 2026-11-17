@@ -731,7 +731,7 @@ function durationCheck(file: string, config: string): Record<string, unknown> {
   return lastJsonLine(result.stdout);
 }
 
-function appendReviewIteration(dir: string, run: number): void {
+function appendReviewIteration(dir: string, run: number, runValue: number | string = run): void {
   const eventPath = join(dir, '..', `iteration-${run}.json`);
   writeFileSync(eventPath, JSON.stringify({
     type: 'iteration',
@@ -740,7 +740,7 @@ function appendReviewIteration(dir: string, run: number): void {
     target_agent: 'deep-review',
     agent_definition_loaded: true,
     resolved_route: 'Resolved route: mode=review target_agent=deep-review',
-    run,
+    run: runValue,
     status: 'complete',
     focus: 'correctness',
     dimensions: ['correctness'],
@@ -909,6 +909,47 @@ describe('completed-run extension', () => {
     const after = readJson(run.config);
     expect(after.maxDurationMinutes).toBeGreaterThanOrEqual(330);
     expect(after.maxDurationMinutes).toBeLessThan(340);
+  });
+
+  // The review prompt pack has the leaf write the run id string in `run`, so the
+  // extension must count runs by the integer iteration, as the state reader does.
+  it('review: runs are counted by iteration when the leaf writes a run id string', () => {
+    const dir = join(makeTempDir('extend-review-run-id-'), 'review');
+    mkdirSync(dir, { recursive: true });
+    const config = join(dir, 'deep-review-config.json');
+    const stateLog = join(dir, 'deep-review-state.jsonl');
+    writeFileSync(config, JSON.stringify({
+      topic: 'Review: the extension',
+      mode: 'review',
+      sessionId: '2026-11-17T00:00:00Z',
+      parentSessionId: null,
+      lineageMode: 'new',
+      generation: 1,
+      reviewTarget: 'the extension',
+      reviewTargetType: 'files',
+      reviewDimensions: ['correctness'],
+      maxIterations: 2,
+      maxDurationMinutes: 120,
+      createdAt: minutesAgo(30),
+      antiConvergence: { convergenceMode: 'default', divergent: {}, stopPolicy: 'convergence' },
+      stopPolicy: 'convergence',
+    }));
+    const init = runShell(render(stepCommand('deep-review.yaml', 'step_create_state_log'), {
+      '{state_paths.config}': config,
+      '{state_paths.state_log}': stateLog,
+    }));
+    expect(init.status, String(init.stdout) + String(init.stderr)).toBe(0);
+    for (let run = 1; run <= 2; run += 1) appendReviewIteration(dir, run, '2026-11-17T00:00:00Z');
+    writeFileSync(config, JSON.stringify({ ...readJson(config), status: 'complete' }));
+
+    const result = runShell(render(stepCommand('deep-review.yaml', 'step_extend_completed_run'), {
+      '{state_paths.config}': config,
+      '{state_paths.state_log}': stateLog,
+      '{extend}': '3',
+      '{extend_minutes}': '',
+    }));
+    expect(result.status, String(result.stdout) + String(result.stderr)).toBe(0);
+    expect(readJson(config)).toMatchObject({ maxIterations: 5, continuedFromRun: 2 });
   });
 
   it('review: an extension raises the cap from the counted runs and the budget from the time spent', () => {

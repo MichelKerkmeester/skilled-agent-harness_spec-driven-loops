@@ -494,10 +494,13 @@ workflow:
             const rows = stateBytes.toString("utf8").split("\n").filter(Boolean).flatMap((line) => {
               try { return [JSON.parse(line)]; } catch { return []; }
             });
-            // One run per iteration number, error and timeout rows included.
+            // One run per iteration number, error and timeout rows included. The integer
+            // iteration counts first and a numeric run is the fallback, as the state reader
+            // counts them, because a leaf may write its run id string in run.
             const continuedFromRun = new Set(rows
               .filter((row) => row && row.type === "iteration")
-              .map((row) => row.run ?? row.iteration)).size;
+              .map((row) => (Number.isInteger(row.iteration) ? row.iteration : Number(row.run)))
+              .filter((run) => Number.isInteger(run))).size;
             const addedIterations = Number(extendRaw);
             const priorMaxIterations = Number(config.maxIterations) || 0;
             const priorMaxDurationMinutes = Number(config.maxDurationMinutes) || 0;

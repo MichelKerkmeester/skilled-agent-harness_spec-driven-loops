@@ -151,7 +151,7 @@ A blocked task is marked `[B]` with the blocker named on the line; a `[B]` task 
 ## Testing Checklist
 
 - [ ] CHK-020 [P0] All acceptance criteria met Open: AC-004, AC-010 and AC-019 are Unmet.
-- [ ] CHK-021 [P0] Playbook entry walked for both loops. DR-065 (research) walked live 2026-11-17, PASS (`scratch/dr-065-walk.md`); DRV-070 (review) live walk pending.
+- [ ] CHK-021 [P0] Playbook entry walked for both loops. DR-065 (research) walked live 2026-11-17, PASS (`scratch/dr-065-walk.md`). DRV-070 (review) walked live and FAILED its count: the extension step counted runs with `row.run ?? row.iteration`, and review leaves write the run id string in `run`, so 2 iterations counted as 1 run. Fixed in both workflow YAMLs (integer iteration first, numeric run fallback) with a regression case in `workflow-restart-lifecycle.vitest.ts` that reproduces the walk's row shape (failed before, passes after). A DRV-070 re-walk on the fixed tree closes this item.
 - [x] CHK-022 [P1] Duration-ceiling and second-extension cases pass workflow-restart-lifecycle 34 of 34.
 - [x] CHK-023 [P1] Non-complete run and invalid-value cases rejected non-complete run exits 2 with the config untouched; `0`, `-2`, `abc`, `1.5` for `--extend` and `0`, `ten` for `--extend-minutes` exit 2 from the extension step. The test fails against the step without its validation.
 - [x] CHK-024 [P1] Fan-out rejection and not-terminal-before-first-iteration cases pass (T034, T035) T034 51 of 51, T035 in the 34 cases.
