@@ -662,9 +662,21 @@ const OPTIONAL_DATA_FIELD_RULES: Readonly<
   'deep_research.iteration_started': Object.freeze({
     executor: 'json',
   }),
+  // The leaf's route proof, gate inputs and telemetry ride on the event so the
+  // state log can be rebuilt from the ledger alone.
   'deep_research.iteration_completed': Object.freeze({
     focus: 'prose',
     answeredQuestions: 'prose-array',
+    target_agent: 'prose',
+    agent_definition_loaded: 'boolean',
+    resolved_route: 'prose',
+    findingsCount: 'uint32',
+    keyQuestions: 'prose-array',
+    noveltyJustification: 'prose',
+    focusTrack: 'prose',
+    edgeCase: 'prose',
+    toolsUsed: 'prose-array',
+    sourcesQueried: 'prose-array',
   }),
   // The idea rows are hand-written, so beyond the idea text they carry only the
   // fields their writer gave them; the projection writes back exactly those.

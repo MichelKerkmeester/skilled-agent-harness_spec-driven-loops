@@ -1093,6 +1093,42 @@ describe('deep-research typed ledger schema', () => {
     )).toThrow();
   });
 
+  // The research leaf writes one iteration row with every field an operator reads
+  // back from the state log. The stem lists those fields, so one it does not list
+  // still fails closed instead of entering the ledger.
+  const iterationLeafFields = {
+    target_agent: 'deep-research',
+    agent_definition_loaded: true,
+    resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+    findingsCount: 2,
+    keyQuestions: ['Which file owns the stop?'],
+    noveltyJustification: 'two new sources',
+    focusTrack: 'stop-path',
+    edgeCase: 'none',
+    toolsUsed: ['Read'],
+    sourcesQueried: ['src/stop.ts:12'],
+  };
+
+  it('accepts an iteration_completed event carrying the leaf fields', () => {
+    const registry = createDeepResearchEventRegistry();
+    const input = eventInput('deep_research.iteration_completed', 8, '0'.repeat(64));
+    const data = { ...input.data, ...iterationLeafFields };
+    expect(() => prepareDeepResearchEvent({
+      ...input,
+      data: data as DeepResearchPayloadMap['deep_research.iteration_completed'],
+    }, registry)).not.toThrow();
+  });
+
+  it('still rejects an unlisted iteration_completed data field', () => {
+    const registry = createDeepResearchEventRegistry();
+    const input = eventInput('deep_research.iteration_completed', 8, '0'.repeat(64));
+    const data = { ...input.data, ...iterationLeafFields, surpriseField: 'x' };
+    expect(() => prepareDeepResearchEvent({
+      ...input,
+      data: data as DeepResearchPayloadMap['deep_research.iteration_completed'],
+    }, registry)).toThrow();
+  });
+
   it('rejects whitespace-only source and passage locator selectors before append', async () => {
     const harness = createHarness();
     const blankSelectors = [' ', '\u00a0'.repeat(2)];

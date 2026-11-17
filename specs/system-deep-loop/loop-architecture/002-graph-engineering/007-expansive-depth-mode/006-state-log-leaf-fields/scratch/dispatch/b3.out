@@ -1,0 +1,14 @@
+Changed path: `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts`
+
+CHECK (`cd .skilled/skills/system-deep-loop/runtime && npm run typecheck`) last 15 lines:
+
+```
+> @deep-loop/runtime@1.5.0 typecheck
+> ../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.json
+
+EXIT=0
+```
+
+Exit code: **0** (no output errors; baseline before the edit was identical).
+
+Additional evidence (in-memory compile, nothing written to disk): an object literal carrying all ten leaf fields on `IterationCompletedCoreData` is accepted, and the same value assigns to `JsonObject` and to `DeepResearchPayloadMap['deep_research.iteration_completed']`; a leaf-free row still typechecks; misuse is rejected with typed errors (`findingsCount: 'three'` → "string is not assignable to number", `toolsUsed: 'Read'` → "string is not assignable to string[]", `agent_definition_loaded: 'yes'` → "string is not assignable to boolean | undefined"), so the fields are declared rather than absorbed by the `JsonValue` index signature. No `any`, `JsonObject` unchanged, and the persisted-shape union stays four members (`IterationCompletedShape`), intersected once with `IterationCompletedLeafFields`. No other file touched.

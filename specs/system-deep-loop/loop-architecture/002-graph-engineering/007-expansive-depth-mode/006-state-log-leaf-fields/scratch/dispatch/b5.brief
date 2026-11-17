@@ -1,0 +1,25 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/463-ed-006-state-log-leaf-fields
+Every read, write and command uses this root. Your environment block may name a different "Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields (pre-approved). Proceed directly. Do not print A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt only after three failures on the same file. Your task is complete only when the file is changed on disk and the check below has been run.
+
+PERSONA: You are a senior implementation engineer. Make exactly the change described, in the allowed file only, matching the file's existing style. Do not refactor or reformat anything else. Verify by running the CHECK and report honestly.
+
+CONTEXT (shared): The research leaf writes one flat iteration record through the append gateway (.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs). Its shape is in .skilled/agents/deep-research.md "Step 8": {"type":"iteration","iteration":N,"runId":...,"sessionId":...,"lineageId":...,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","run":N,"status":"complete","focus":"...","findingsCount":N,"newInfoRatio":0.5,"noveltyJustification":"...","keyQuestions":[...],"answeredQuestions":[...],"ruledOut":[],"focusTrack":"...","edgeCase":"none","toolsUsed":["Read"],"sourcesQueried":["src/file.ts:42"]}. Today the gateway upcast and projection DROP these ten fields: target_agent, agent_definition_loaded, resolved_route, findingsCount, keyQuestions, noveltyJustification, focusTrack, edgeCase, toolsUsed, sourcesQueried. The source fix comes later in separate tasks; your test must FAIL on today's code because those fields are dropped. The working model for driving the real gateway in a test is the case 'appends run_extended after the run opens and projects an extended row into the state log' in .skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts (runCli with --mode deep-research --run-directory <runDir> --event-json <file>, env DEEP_LOOP_AUTHORITY_ROOT, open the run with canonicalRunInitializedEvent, then read <runDir>/research/deep-research-state.jsonl). Copy the helpers you need into your test file; do not import from another test file.
+
+TASK B5: Scope focusAlignment to the latest record carrying both lists, and ignore a leading question-id prefix.
+FILE: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs
+ANCHOR: the block starting with the comment "Only a record that names both lists can prove alignment" that builds `alignedRecords`, `focusViolations` and `focusAlignment`.
+EDIT: replace that block's logic so that:
+  - `alignedRecords` stays the filter of records with both arrays.
+  - Only the LAST element of `alignedRecords` is evaluated (a run recovers once a later iteration is aligned).
+  - Comparison normalizes both sides: trim, collapse whitespace, lowercase, and strip one leading question-id prefix matching /^q\d+\s*[:.)-]\s*/i. Add a small helper `normalizeQuestionForAlignment(text)` next to the block.
+  - A violation is an answered question whose normalized text is not among the latest record's normalized keyQuestions; the violation list carries the original answered text.
+  - `notEvaluated` when there is no record with both lists, as today.
+Update the comment to state the two rules and why: one off-focus iteration must not hold the run at CONTINUE forever, and a leaf that writes "Q1: " ids must not fail against the bare strategy text.
+ALLOWED WRITE PATHS: .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs
+CHECK: cd .skilled/skills/system-deep-loop/runtime && node --check scripts/convergence.cjs && npx vitest run tests/integration/convergence-script.vitest.ts tests/unit/stop-decision.vitest.ts
+EXPECTED: exit 0, every case passes.
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file, edits outside ALLOWED WRITE PATHS, regenerating compiled contracts, editing any test file or spec-folder doc.
+COMMENTS: keep the durable WHY; never put spec paths, phase numbers or REQ/ADR/task ids in code comments.
+RETURN: the changed path, the CHECK's last 15 lines and its exit code. Nothing else.

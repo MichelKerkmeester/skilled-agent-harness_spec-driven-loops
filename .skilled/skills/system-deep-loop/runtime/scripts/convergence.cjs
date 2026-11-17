@@ -846,6 +846,18 @@ function guardOutcome(status, violations) {
   return { status, passed: status !== 'failed', violations };
 }
 
+// A leaf may label questions with their strategy id ("Q1: ...") while the
+// strategy itself writes the bare text, so alignment compares the question
+// body: trimmed, single-spaced, lowercased, with one leading id prefix gone.
+function normalizeQuestionForAlignment(text) {
+  return String(text ?? '')
+    .trim()
+    .replace(/\s+/g, ' ')
+    .toLowerCase()
+    .replace(/^q\d+\s*[:.)-]\s*/i, '')
+    .trim();
+}
+
 function evaluateResearchQualityGuards(args = {}) {
   const options = args && typeof args === 'object' ? args : {};
   const { answeredQuestionSourceCounts, iterationRecords } = options;
@@ -867,17 +879,24 @@ function evaluateResearchQualityGuards(args = {}) {
   }
 
   // Only a record that names both lists can prove alignment; a record with
-  // one side missing is no evidence either way.
+  // one side missing is no evidence either way. Two rules keep the verdict
+  // honest across a long run: only the newest such record is judged, because a
+  // run recovers once a later iteration is back on focus and one off-focus
+  // iteration must not hold it at CONTINUE forever; and the comparison ignores
+  // a leading question-id prefix, so a leaf that writes "Q1: ..." ids still
+  // matches the bare strategy text instead of failing on formatting alone.
   const records = Array.isArray(iterationRecords) ? iterationRecords : [];
   const alignedRecords = records.filter(
     (record) => record
       && Array.isArray(record.answeredQuestions)
       && Array.isArray(record.keyQuestions),
   );
+  const latestAligned = alignedRecords[alignedRecords.length - 1];
   const focusViolations = [];
-  for (const record of alignedRecords) {
-    for (const question of record.answeredQuestions) {
-      if (!record.keyQuestions.includes(question)) focusViolations.push(question);
+  if (latestAligned) {
+    const keyQuestions = new Set(latestAligned.keyQuestions.map(normalizeQuestionForAlignment));
+    for (const question of latestAligned.answeredQuestions) {
+      if (!keyQuestions.has(normalizeQuestionForAlignment(question))) focusViolations.push(question);
     }
   }
   const focusAlignment = alignedRecords.length === 0

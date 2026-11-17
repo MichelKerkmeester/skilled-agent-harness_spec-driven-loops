@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { spawnSync } from 'node:child_process';
 import * as fs from 'node:fs';
 import * as os from 'node:os';
 import * as path from 'node:path';
@@ -11,6 +12,7 @@ import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 const { verify, REASONS } = require('../../scripts/verify-iteration.cjs');
+const GATEWAY_CLI = require.resolve('../../scripts/append-mode-event.cjs');
 
 // Minimal valid review iteration record mirroring the leaf output contract:
 // type=iteration + route-proof fields + the numeric iteration key.
@@ -870,5 +872,177 @@ describe('verify-iteration executor provenance', () => {
     expect(verify('review', reviewRun('review/lineages/cli', nonNative, [reviewRecord(1)]), 1).reason).toBe('executor_missing');
     expect(verify('review', reviewRun('review/lineages/native', { executor: { kind: 'native' } }, [reviewRecord(1)]), 1).ok).toBe(true);
     expect(verify('review', reviewRun('review/lineages/no-block', { mode: 'review' }, [reviewRecord(1)]), 1).ok).toBe(true);
+  });
+});
+
+// The research leaf records one flat iteration row through the append gateway, so
+// the state row verify() reads here is the row the gateway projects back rather
+// than a fixture that already carries every field the leaf wrote. Anything the
+// projection drops is invisible to the gate, which is what these cases pin: the
+// findings count and the route proof must survive the round trip as they were sent.
+describe('verify-iteration on a gateway-projected research row', () => {
+  let root: string;
+  const previousAuthorityRoot = process.env.DEEP_LOOP_AUTHORITY_ROOT;
+  const RUN_ID = 'run-projected-001';
+  const LINEAGE_ID = 'lineage-projected-001';
+  const digest = '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef';
+
+  type GatewayResult = { exitCode: number | null; stderr: string; stdout: string };
+
+  beforeEach(() => {
+    root = fs.mkdtempSync(path.join(os.tmpdir(), 'verify-iter-projected-'));
+    // The gateway is handed a private authority root per case; the ledger and
+    // watermark cross-checks root themselves in the host checkout's authority
+    // state, so they are switched off rather than read against the wrong root.
+    process.env.DEEP_LOOP_LEDGER_BACKING_GATE = '0';
+  });
+
+  afterEach(() => {
+    fs.rmSync(root, { recursive: true, force: true });
+    if (previousAuthorityRoot === undefined) delete process.env.DEEP_LOOP_AUTHORITY_ROOT;
+    else process.env.DEEP_LOOP_AUTHORITY_ROOT = previousAuthorityRoot;
+    delete process.env.DEEP_LOOP_LEDGER_BACKING_GATE;
+  });
+
+  function gateway(args: string[], authorityRoot: string): GatewayResult {
+    const result = spawnSync(process.execPath, [GATEWAY_CLI, ...args], {
+      encoding: 'utf8',
+      env: { ...process.env, DEEP_LOOP_AUTHORITY_ROOT: authorityRoot },
+    });
+    return {
+      exitCode: result.status,
+      stderr: result.stderr ?? '',
+      stdout: (result.stdout ?? '').trim(),
+    };
+  }
+
+  function writeEvent(runDir: string, payload: Record<string, unknown>): string {
+    const eventPath = path.join(runDir, 'event.json');
+    fs.writeFileSync(eventPath, JSON.stringify(payload), 'utf8');
+    return eventPath;
+  }
+
+  // A run has to be open before an iteration can be recorded against it, so each
+  // case opens one with the canonical stem the workflow speaks.
+  function openResearchRun(name: string): { artifactDir: string; runDir: string; authorityRoot: string } {
+    const runDir = path.join(root, name);
+    const authorityRoot = path.join(root, `${name}-authority`);
+    fs.mkdirSync(runDir, { recursive: true });
+    fs.mkdirSync(authorityRoot, { recursive: true });
+    const opened = gateway(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, {
+        stem: 'deep_research.run_initialized',
+        scope: { runId: RUN_ID, lineageId: LINEAGE_ID },
+        data: {
+          generation: 1,
+          charterDigest: digest,
+          configDigest: digest,
+          executorFingerprint: digest,
+          replayFingerprint: digest,
+          maxIterations: 10,
+          convergencePolicyVersion: '1.0.0',
+        },
+      })],
+      authorityRoot,
+    );
+    expect(opened.exitCode, opened.stderr + opened.stdout).toBe(0);
+    return { artifactDir: path.join(runDir, 'research'), runDir, authorityRoot };
+  }
+
+  function appendThroughGateway(runDir: string, authorityRoot: string, record: Record<string, unknown>): void {
+    const appended = gateway(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, record)],
+      authorityRoot,
+    );
+    expect(appended.exitCode, appended.stderr + appended.stdout).toBe(0);
+  }
+
+  // The flat row the research leaf hands the gateway: route proof plus the count
+  // and focus bookkeeping the state log is read back for after the run.
+  function leafIterationRecord(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+    return {
+      type: 'iteration',
+      iteration: 1,
+      runId: RUN_ID,
+      sessionId: RUN_ID,
+      lineageId: LINEAGE_ID,
+      mode: 'research',
+      target_agent: 'deep-research',
+      agent_definition_loaded: true,
+      resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+      run: 1,
+      status: 'complete',
+      focus: 'findings enumeration and route proof',
+      findingsCount: 0,
+      newInfoRatio: 0.5,
+      noveltyJustification: 'The iteration opened a file no earlier pass had read.',
+      keyQuestions: [],
+      answeredQuestions: [],
+      ruledOut: [],
+      focusTrack: 'correctness',
+      edgeCase: 'none',
+      toolsUsed: ['Read'],
+      sourcesQueried: ['src/file.ts:42'],
+      ...overrides,
+    };
+  }
+
+  function writeLeafArtifacts(artifactDir: string, record: Record<string, unknown>, narrative: string): void {
+    fs.mkdirSync(path.join(artifactDir, 'iterations'), { recursive: true });
+    fs.mkdirSync(path.join(artifactDir, 'deltas'), { recursive: true });
+    fs.writeFileSync(path.join(artifactDir, 'iterations', 'iteration-001.md'), narrative);
+    fs.writeFileSync(path.join(artifactDir, 'deltas', 'iter-001.jsonl'), `${JSON.stringify(record)}\n`);
+  }
+
+  it('runs the findings gate on a findingsCount that arrives through the gateway', () => {
+    const { artifactDir, runDir, authorityRoot } = openResearchRun('count-only');
+    const record = leafIterationRecord({ findingsCount: 3 });
+    appendThroughGateway(runDir, authorityRoot, record);
+    writeLeafArtifacts(artifactDir, record, '# Iteration 1\n\n## Findings\n\nNone enumerated.\n');
+
+    const r = verify('research', artifactDir, 1);
+    expect(r.ok).toBe(false);
+    expect(r.reason).toBe('findings_not_enumerated');
+  });
+
+  it('passes route proof from the projected state row itself', () => {
+    const { artifactDir, runDir, authorityRoot } = openResearchRun('route-proof');
+    const record = leafIterationRecord({ findingsCount: 1 });
+    appendThroughGateway(runDir, authorityRoot, record);
+    writeLeafArtifacts(artifactDir, record, [
+      '# Iteration 1',
+      '',
+      '## Findings',
+      '',
+      '- **F1**: The runner owns the stop decision - `runner.cjs:42`',
+      '',
+    ].join('\n'));
+
+    const r = verify('research', artifactDir, 1);
+    expect(r.ok).toBe(true);
+    expect((r.warnings ?? []).join(' ')).not.toMatch(/came from deltas/i);
+  });
+
+  it('keeps a passing verdict when findings are enumerated and answered questions sit in the key questions', () => {
+    const { artifactDir, runDir, authorityRoot } = openResearchRun('questions');
+    const question = 'Which file owns the stop?';
+    const record = leafIterationRecord({
+      findingsCount: 2,
+      keyQuestions: [question],
+      answeredQuestions: [question],
+    });
+    appendThroughGateway(runDir, authorityRoot, record);
+    writeLeafArtifacts(artifactDir, record, [
+      '# Iteration 1',
+      '',
+      '## Findings',
+      '',
+      '- **F1**: The runner owns the stop decision - `runner.cjs:42`',
+      '- **F2**: The plan records the stop through the same file - `plan.cjs:11`',
+      '',
+    ].join('\n'));
+
+    const r = verify('research', artifactDir, 1);
+    expect(r.ok).toBe(true);
   });
 });

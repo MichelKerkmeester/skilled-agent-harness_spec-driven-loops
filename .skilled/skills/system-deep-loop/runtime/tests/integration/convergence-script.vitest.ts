@@ -1166,3 +1166,247 @@ describe('convergence.cjs stop-decision', () => {
     expect('stop_decision' in result.json).toBe(false);
   });
 });
+
+describe('convergence.cjs research focus alignment guard', () => {
+  const fs = requireCjs('node:fs') as typeof import('node:fs');
+  const { spawnSync } = requireCjs('node:child_process') as typeof import('node:child_process');
+  const gatewayScript = resolve(runtimeRoot, 'scripts', 'append-mode-event.cjs');
+  const tempDirs: string[] = [];
+
+  const RUN_ID = 'run-focus-alignment-001';
+  const LINEAGE_ID = 'lineage-focus-alignment-001';
+  const DIGEST = '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef';
+
+  type StopDecisionFixture = {
+    dir: string;
+    configPath: string;
+    stateLogPath: string;
+    registryPath: string;
+  };
+
+  type GatewayResult = {
+    exitCode: number | null;
+    json: Record<string, unknown>;
+    stdout: string;
+    stderr: string;
+  };
+
+  // The stop decision refuses a state log outside the repository root, so every
+  // scratch directory here sits under the suite's own temp directory.
+  function makeTempDir(prefix: string): string {
+    const base = fileURLToPath(new URL('../.tmp/', import.meta.url));
+    fs.mkdirSync(base, { recursive: true });
+    const dir = fs.mkdtempSync(join(base, prefix));
+    tempDirs.push(dir);
+    return dir;
+  }
+
+  afterEach(() => {
+    while (tempDirs.length > 0) {
+      const dir = tempDirs.pop();
+      if (dir) fs.rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  // The opening event the research workflow sends before any leaf record, so the
+  // ledger holds the identity and iteration budget the later appends extend.
+  function runInitializedEvent(): Record<string, unknown> {
+    return {
+      stem: 'deep_research.run_initialized',
+      scope: { runId: RUN_ID, lineageId: LINEAGE_ID },
+      data: {
+        generation: 1,
+        charterDigest: DIGEST,
+        configDigest: DIGEST,
+        executorFingerprint: DIGEST,
+        replayFingerprint: DIGEST,
+        maxIterations: 10,
+        convergencePolicyVersion: '1.0.0',
+      },
+    };
+  }
+
+  // The flat record the research leaf hands the gateway carries no stem and no
+  // event_type, so the legacy upcast and the state projection decide which of
+  // its fields survive to the log the guard reads.
+  function researchIterationRecord(
+    iteration: number,
+    lists: { keyQuestions: string[]; answeredQuestions: string[] },
+  ): Record<string, unknown> {
+    return {
+      type: 'iteration',
+      iteration,
+      runId: RUN_ID,
+      sessionId: RUN_ID,
+      lineageId: LINEAGE_ID,
+      mode: 'research',
+      target_agent: 'deep-research',
+      agent_definition_loaded: true,
+      resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+      run: iteration,
+      status: 'complete',
+      focus: 'Which file owns the stop?',
+      findingsCount: 1,
+      newInfoRatio: 0.4,
+      noveltyJustification: 'First pass over the stop decision path.',
+      keyQuestions: lists.keyQuestions,
+      answeredQuestions: lists.answeredQuestions,
+      ruledOut: [],
+      focusTrack: 'stop decision',
+      edgeCase: 'none',
+      toolsUsed: ['Read'],
+      sourcesQueried: ['scripts/convergence.cjs:1'],
+    };
+  }
+
+  function appendThroughGateway(
+    runDir: string,
+    authorityRoot: string,
+    event: Record<string, unknown>,
+  ): GatewayResult {
+    const label = typeof event.iteration === 'number' ? String(event.iteration) : 'open';
+    const eventPath = join(runDir, `event-${label}.json`);
+    fs.writeFileSync(eventPath, JSON.stringify(event), 'utf8');
+    const result = spawnSync(
+      process.execPath,
+      [gatewayScript, '--mode', 'deep-research', '--run-directory', runDir, '--event-json', eventPath],
+      {
+        cwd: runtimeRoot,
+        env: { ...process.env, DEEP_LOOP_AUTHORITY_ROOT: authorityRoot },
+        encoding: 'utf8',
+      },
+    );
+    const stdout = (result.stdout ?? '').trim();
+    const lastLine = stdout.split(/\r?\n/).filter(Boolean).at(-1) ?? '{}';
+    let json: Record<string, unknown> = {};
+    try {
+      json = JSON.parse(lastLine) as Record<string, unknown>;
+    } catch {
+      json = { raw: lastLine };
+    }
+    return { exitCode: result.status, json, stdout, stderr: (result.stderr ?? '').trim() };
+  }
+
+  // The guard judges the iteration records the append path actually kept, so
+  // each case builds its log by opening a run and appending the leaf records.
+  function researchRunWithIterations(
+    iterations: Array<{ keyQuestions: string[]; answeredQuestions: string[] }>,
+  ): string {
+    const runDir = makeTempDir('dlr-focus-run-');
+    const authorityRoot = makeTempDir('dlr-focus-authority-');
+
+    const opened = appendThroughGateway(runDir, authorityRoot, runInitializedEvent());
+    expect(opened.exitCode, opened.stderr + opened.stdout).toBe(0);
+
+    iterations.forEach((lists, index) => {
+      const appended = appendThroughGateway(runDir, authorityRoot, researchIterationRecord(index + 1, lists));
+      expect(appended.exitCode, appended.stderr + appended.stdout).toBe(0);
+    });
+
+    return runDir;
+  }
+
+  // The stop decision reads three files from one place, so the projection the
+  // gateway wrote is copied in beside the config and registry it also needs.
+  function fixtureFromGatewayRun(runDir: string): StopDecisionFixture {
+    const dir = makeTempDir('dlr-focus-fixture-');
+    const configPath = join(dir, 'config.json');
+    const stateLogPath = join(dir, 'state.jsonl');
+    const registryPath = join(dir, 'registry.json');
+    fs.writeFileSync(configPath, JSON.stringify({
+      maxIterations: 10,
+      convergenceThreshold: 0.05,
+      stopPolicy: 'convergence',
+      stuckThreshold: 3,
+    }), 'utf8');
+    fs.writeFileSync(registryPath, JSON.stringify({
+      metrics: { resolvedQuestions: 1, openQuestions: 0 },
+    }), 'utf8');
+    fs.copyFileSync(join(runDir, 'research', 'deep-research-state.jsonl'), stateLogPath);
+    return { dir, configPath, stateLogPath, registryPath };
+  }
+
+  function stopDecisionArgs(namespace: ScriptNamespace, fixture: StopDecisionFixture): string[] {
+    return [
+      ...namespaceArgs(namespace),
+      '--stop-decision',
+      '--config-path',
+      fixture.configPath,
+      '--state-log',
+      fixture.stateLogPath,
+      '--registry-path',
+      fixture.registryPath,
+    ];
+  }
+
+  function focusAlignmentFor(fixture: StopDecisionFixture): { status: string; violations: string[] } {
+    const namespace = uniqueNamespace('convergence', 'research');
+    namespaces.push(namespace);
+
+    const result = runScript('convergence', stopDecisionArgs(namespace, fixture));
+    expect(result.exitCode, result.stderr).toBe(0);
+
+    const stopDecision = result.json.stop_decision as {
+      gates: {
+        qualityGuards: { guards: { focusAlignment: { status: string; violations: string[] } } };
+      };
+    };
+    return stopDecision.gates.qualityGuards.guards.focusAlignment;
+  }
+
+  it('fails focusAlignment when the latest record answers outside its key questions', () => {
+    const fixture = fixtureFromGatewayRun(researchRunWithIterations([
+      {
+        keyQuestions: ['Which file owns the stop?'],
+        answeredQuestions: ['Which file writes the ledger?'],
+      },
+    ]));
+
+    const focusAlignment = focusAlignmentFor(fixture);
+
+    expect(focusAlignment.status).toBe('failed');
+  });
+
+  it('recovers focusAlignment after a later aligned iteration', () => {
+    const fixture = fixtureFromGatewayRun(researchRunWithIterations([
+      {
+        keyQuestions: ['Which file owns the stop?'],
+        answeredQuestions: ['Which file writes the ledger?'],
+      },
+      {
+        keyQuestions: ['Which file owns the stop?'],
+        answeredQuestions: ['Which file owns the stop?'],
+      },
+    ]));
+
+    const focusAlignment = focusAlignmentFor(fixture);
+
+    expect(focusAlignment.status).toBe('passed');
+  });
+
+  it('passes focusAlignment for Q-prefixed key questions matching bare answered text', () => {
+    const fixture = fixtureFromGatewayRun(researchRunWithIterations([
+      {
+        keyQuestions: ['Q1: Which file owns the stop?'],
+        answeredQuestions: ['Which file owns the stop?'],
+      },
+    ]));
+
+    const focusAlignment = focusAlignmentFor(fixture);
+
+    expect(focusAlignment.status).toBe('passed');
+  });
+
+  it('passes focusAlignment when answered questions sit in the key questions', () => {
+    const fixture = fixtureFromGatewayRun(researchRunWithIterations([
+      {
+        keyQuestions: ['Which file owns the stop?'],
+        answeredQuestions: ['Which file owns the stop?'],
+      },
+    ]));
+
+    const focusAlignment = focusAlignmentFor(fixture);
+
+    expect(focusAlignment.status).toBe('passed');
+  });
+});

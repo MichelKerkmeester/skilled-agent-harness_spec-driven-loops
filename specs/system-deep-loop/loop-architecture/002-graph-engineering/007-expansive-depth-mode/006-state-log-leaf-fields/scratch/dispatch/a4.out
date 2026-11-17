@@ -1,0 +1,54 @@
+**Changed path:** `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-projections-contract.vitest.ts` (only file modified; `git status` confirms)
+
+**New case:** `projects the leaf dispatch, gate and telemetry fields onto the iteration row` — **FAILS** on today's code (drives the real gateway `append-mode-event.cjs` with `--mode deep-research`, opens the run with a canonical run-open event, appends the flat leaf `type:'iteration'` record carrying all ten fields, then reads `research/deep-research-state.jsonl`). The diff shows exactly the ten dropped keys: `agent_definition_loaded`, `edgeCase`, `findingsCount`, `focusTrack`, `keyQuestions`, `noveltyJustification`, `resolved_route`, `sourcesQueried`, `target_agent`, `toolsUsed`.
+
+**Pre-existing cases:** all 3 **PASS** (registry byte proof, stable JSON bytes, GREEN→RED→RESTORE negative control — contract source restored, `expect(after).toBe(before)` holds).
+
+**CHECK** (`cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/deep-research-projections-contract.vitest.ts`), last 20 lines, **exit code 1**:
+
+```
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |parallel| tests/unit/deep-research-projections-contract.vitest.ts > deep-research-projections projection surface — state-log leaf fields > projects the leaf dispatch, gate and telemetry fields onto the iteration row
+AssertionError: expected { type: 'iteration', …(9) } to match object { iteration: 1, run: 1, …(14) }
+(4 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "agent_definition_loaded": true,
+    "answeredQuestions": [
+      "Which file owns the stop?",
+    ],
+-   "edgeCase": "none",
+-   "findingsCount": 2,
+    "focus": "stop path",
+-   "focusTrack": "stop-path",
+    "iteration": 1,
+-   "keyQuestions": [
+-     "Which file owns the stop?",
+-   ],
+    "newInfoRatio": 0.5,
+-   "noveltyJustification": "two new sources",
+-   "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+    "run": 1,
+-   "sourcesQueried": [
+-     "src/stop.ts:12",
+-   ],
+    "status": "complete",
+-   "target_agent": "deep-research",
+-   "toolsUsed": [
+-     "Read",
+-   ],
+  }
+
+ ❯ tests/unit/deep-research-projections-contract.vitest.ts:531:17
+    529|     const row = readStateLogRows(runDir).find((entry) => entry.type ==…
+    530|     expect(row).toBeDefined();
+    531|     expect(row).toMatchObject({
+       |                 ^
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+```

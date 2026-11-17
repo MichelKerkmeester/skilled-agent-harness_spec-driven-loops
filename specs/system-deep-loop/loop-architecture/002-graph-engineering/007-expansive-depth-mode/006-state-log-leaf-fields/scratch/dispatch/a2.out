@@ -1,0 +1,29 @@
+**Changed path:** `.skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts` (new `describe('convergence.cjs research focus alignment guard')` at end; drives the real append gateway to build the research state log, copies its projection into the stop-decision fixture, asserts `gates.qualityGuards.guards.focusAlignment.status`).
+
+**New cases — all 4 FAIL today (each received `notEvaluated`):**
+- `fails focusAlignment when the latest record answers outside its key questions` — expected `failed`, got `notEvaluated`
+- `recovers focusAlignment after a later aligned iteration` — expected `passed`, got `notEvaluated`
+- `passes focusAlignment for Q-prefixed key questions matching bare answered text` — expected `passed`, got `notEvaluated`
+- `passes focusAlignment when answered questions sit in the key questions` — expected `passed`, got `notEvaluated`
+
+**Pre-existing cases:** 34/34 pass.
+
+**CHECK** `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/convergence-script.vitest.ts` — exit code **1**:
+
+```
+ ❯ tests/integration/convergence-script.vitest.ts:1410:35
+    1408|     const focusAlignment = focusAlignmentFor(fixture);
+    1409|
+    1410|     expect(focusAlignment.status).toBe('passed');
+       |                                   ^
+    1411|   });
+    1412| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 34 passed (38)
+   Start at  21:04:48
+   Duration  17.91s (transform 42ms, setup 17ms, import 43ms, tests 17.79s, environment 0ms)
+```

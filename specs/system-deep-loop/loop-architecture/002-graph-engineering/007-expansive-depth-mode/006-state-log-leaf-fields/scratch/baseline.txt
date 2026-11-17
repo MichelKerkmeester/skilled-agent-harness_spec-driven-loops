@@ -1,0 +1,15 @@
+Baseline 2026-11-17 on integration tip c898b3ad9a3 (worktree 463): the ten REQ-006 suites, Test Files 10 passed, Tests 237 passed, exit 0.
+
+Fail-before after the test briefs, before any source edit:
+     × projects the leaf dispatch, gate and telemetry fields onto the iteration row 1140ms
+     × runs the findings gate on a findingsCount that arrives through the gateway 1114ms
+     × passes route proof from the projected state row itself 934ms
+     × carries the leaf dispatch, gate and telemetry fields of a legacy iteration row through the gateway 1012ms
+     × accepts an iteration_completed event carrying the leaf fields 7ms
+     × fails focusAlignment when the latest record answers outside its key questions 771ms
+     × recovers focusAlignment after a later aligned iteration 1100ms
+     × passes focusAlignment for Q-prefixed key questions matching bare answered text 788ms
+     × passes focusAlignment when answered questions sit in the key questions 850ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+ Test Files  5 failed | 5 passed (10)
+      Tests  9 failed | 242 passed (251)

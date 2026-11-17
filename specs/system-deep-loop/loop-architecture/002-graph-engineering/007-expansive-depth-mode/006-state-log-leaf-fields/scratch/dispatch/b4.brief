@@ -1,0 +1,30 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/463-ed-006-state-log-leaf-fields
+Every read, write and command uses this root. Your environment block may name a different "Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields (pre-approved). Proceed directly. Do not print A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt only after three failures on the same file. Your task is complete only when the file is changed on disk and the check below has been run.
+
+PERSONA: You are a senior implementation engineer. Make exactly the change described, in the allowed file only, matching the file's existing style. Do not refactor or reformat anything else. Verify by running the CHECK and report honestly.
+
+CONTEXT (shared): The research leaf writes one flat iteration record through the append gateway (.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs). Its shape is in .skilled/agents/deep-research.md "Step 8": {"type":"iteration","iteration":N,"runId":...,"sessionId":...,"lineageId":...,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","run":N,"status":"complete","focus":"...","findingsCount":N,"newInfoRatio":0.5,"noveltyJustification":"...","keyQuestions":[...],"answeredQuestions":[...],"ruledOut":[],"focusTrack":"...","edgeCase":"none","toolsUsed":["Read"],"sourcesQueried":["src/file.ts:42"]}. Today the gateway upcast and projection DROP these ten fields: target_agent, agent_definition_loaded, resolved_route, findingsCount, keyQuestions, noveltyJustification, focusTrack, edgeCase, toolsUsed, sourcesQueried. The source fix comes later in separate tasks; your test must FAIL on today's code because those fields are dropped. The working model for driving the real gateway in a test is the case 'appends run_extended after the run opens and projects an extended row into the state log' in .skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts (runCli with --mode deep-research --run-directory <runDir> --event-json <file>, env DEEP_LOOP_AUTHORITY_ROOT, open the run with canonicalRunInitializedEvent, then read <runDir>/research/deep-research-state.jsonl). Copy the helpers you need into your test file; do not import from another test file.
+
+TASK B4: Write the ten leaf fields into the projected research iteration row.
+FILE: .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts
+ANCHOR: the branch `} else if (stem === 'deep_research.iteration_completed') {` that builds `row = { type: 'iteration', ... answeredQuestions: ..., timestamp: occurredAt, }`.
+EDIT: inside that row object, after `answeredQuestions`, add conditional spreads so each key appears only when the event data carries it with the right type (legacy rows without them project byte-identically to today):
+  ...(typeof data.target_agent === 'string' ? { target_agent: data.target_agent } : {}),
+  ...(typeof data.agent_definition_loaded === 'boolean' ? { agent_definition_loaded: data.agent_definition_loaded } : {}),
+  ...(typeof data.resolved_route === 'string' ? { resolved_route: data.resolved_route } : {}),
+  ...(typeof data.findingsCount === 'number' ? { findingsCount: data.findingsCount } : {}),
+  ...(Array.isArray(data.keyQuestions) ? { keyQuestions: data.keyQuestions } : {}),
+  ...(typeof data.noveltyJustification === 'string' ? { noveltyJustification: data.noveltyJustification } : {}),
+  ...(typeof data.focusTrack === 'string' ? { focusTrack: data.focusTrack } : {}),
+  ...(typeof data.edgeCase === 'string' ? { edgeCase: data.edgeCase } : {}),
+  ...(Array.isArray(data.toolsUsed) ? { toolsUsed: data.toolsUsed } : {}),
+  ...(Array.isArray(data.sourcesQueried) ? { sourcesQueried: data.sourcesQueried } : {}),
+Keep `timestamp: occurredAt` last. Add the casts the file's style needs for typecheck (the file already uses `as JsonObject` for executor).
+ALLOWED WRITE PATHS: .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts
+CHECK: cd .skilled/skills/system-deep-loop/runtime && npm run typecheck && npx vitest run tests/unit/deep-research-projections-contract.vitest.ts tests/unit/append-mode-event-legacy-seam.vitest.ts tests/unit/check-projection-coverage.vitest.ts && node scripts/check-projection-coverage.cjs
+EXPECTED: all exit 0, every case passes.
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file, edits outside ALLOWED WRITE PATHS, regenerating compiled contracts, editing any test file or spec-folder doc.
+COMMENTS: keep the durable WHY; never put spec paths, phase numbers or REQ/ADR/task ids in code comments.
+RETURN: the changed path, the CHECK's last 15 lines and its exit code. Nothing else.

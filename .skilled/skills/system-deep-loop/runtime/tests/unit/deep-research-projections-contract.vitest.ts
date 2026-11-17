@@ -11,7 +11,7 @@
 // ledger does not carry. The negative-control toggle proves the claims
 // assertion can go red.
 
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import {
   mkdtempSync,
   readFileSync,
@@ -396,5 +396,155 @@ describe('deep-research-projections projection surface — negative control', ()
     expect(after).toContain('const EMIT_CLAIMS = true;');
     expect(after).not.toContain('const EMIT_CLAIMS = false;');
     expect(after).toBe(before);
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// (c) STATE-LOG LEAF FIELDS — the flat iteration record's round trip
+// ───────────────────────────────────────────────────────────────────
+
+const APPEND_CLI_PATH = resolve(runtimeRoot, 'scripts', 'append-mode-event.cjs');
+const RUN_ID = 'run-canonical-001';
+const LINEAGE_ID = 'lineage-canonical-001';
+
+interface CliResult {
+  readonly exitCode: number | null;
+  readonly json: JsonObject;
+  readonly rawStdout: string;
+  readonly stderr: string;
+}
+
+// Each case drives the real append gateway in a subprocess, so a pass is a
+// statement about the script and its projection refresh rather than about a
+// mock of either. Authority is isolated per case so the host checkout's durable
+// authority state cannot decide the outcome.
+function runAppendCli(args: string[], environmentOverlay: NodeJS.ProcessEnv = {}): CliResult {
+  const result = spawnSync(process.execPath, [APPEND_CLI_PATH, ...args], {
+    encoding: 'utf8',
+    env: { ...process.env, ...environmentOverlay },
+  });
+  const stdout = (result.stdout ?? '').trim();
+  const lastLine = stdout.split(/\r?\n/).filter(Boolean).at(-1) ?? '{}';
+  let json: JsonObject = {};
+  try {
+    json = JSON.parse(lastLine) as JsonObject;
+  } catch {
+    json = { raw: lastLine };
+  }
+  return {
+    exitCode: result.status,
+    json,
+    rawStdout: stdout,
+    stderr: result.stderr ?? '',
+  };
+}
+
+function createScratchDir(prefix: string): string {
+  const dir = mkdtempSync(join(tmpdir(), `research-proj-${prefix}-`));
+  scratchDirs.push(dir);
+  return dir;
+}
+
+function writeEvent(dir: string, payload: JsonObject): string {
+  const path = join(dir, 'event.json');
+  writeFileSync(path, JSON.stringify(payload), 'utf8');
+  return path;
+}
+
+// The ledger refuses an iteration row until the run it belongs to exists, so
+// every case opens its run first with a canonical run-open event.
+function runOpenEvent(): JsonObject {
+  const digest = '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef';
+  return {
+    stem: 'deep_research.run_initialized',
+    scope: { runId: RUN_ID, lineageId: LINEAGE_ID },
+    data: {
+      generation: 1,
+      charterDigest: digest,
+      configDigest: digest,
+      executorFingerprint: digest,
+      replayFingerprint: digest,
+      maxIterations: 10,
+      convergencePolicyVersion: '1.0.0',
+    },
+  };
+}
+
+// The leaf record the research agent writes: one flat iteration row carrying its
+// dispatch, gate and telemetry fields beside the counters the projection already
+// keeps. Both the upcast and the projection have to carry all of them, because
+// the state log is where a dashboard reads the iteration back from.
+function leafIterationRecord(): JsonObject {
+  return {
+    type: 'iteration',
+    iteration: 1,
+    runId: RUN_ID,
+    sessionId: RUN_ID,
+    lineageId: LINEAGE_ID,
+    mode: 'research',
+    target_agent: 'deep-research',
+    agent_definition_loaded: true,
+    resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+    run: 1,
+    status: 'complete',
+    focus: 'stop path',
+    findingsCount: 2,
+    newInfoRatio: 0.5,
+    noveltyJustification: 'two new sources',
+    keyQuestions: ['Which file owns the stop?'],
+    answeredQuestions: ['Which file owns the stop?'],
+    ruledOut: [],
+    focusTrack: 'stop-path',
+    edgeCase: 'none',
+    toolsUsed: ['Read'],
+    sourcesQueried: ['src/stop.ts:12'],
+  };
+}
+
+function readStateLogRows(runDir: string): JsonObject[] {
+  return readFileSync(join(runDir, 'research', 'deep-research-state.jsonl'), 'utf8')
+    .split('\n')
+    .filter((line) => line.length > 0)
+    .map((line) => JSON.parse(line) as JsonObject);
+}
+
+describe('deep-research-projections projection surface — state-log leaf fields', () => {
+  it('projects the leaf dispatch, gate and telemetry fields onto the iteration row', () => {
+    const runDir = createScratchDir('leaf-fields');
+    const authorityRoot = createScratchDir('leaf-fields-auth');
+    const env = { DEEP_LOOP_AUTHORITY_ROOT: authorityRoot };
+
+    const opened = runAppendCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, runOpenEvent())],
+      env,
+    );
+    expect(opened.exitCode, opened.stderr + opened.rawStdout).toBe(0);
+
+    const appended = runAppendCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, leafIterationRecord())],
+      env,
+    );
+    expect(appended.exitCode, appended.stderr + appended.rawStdout).toBe(0);
+
+    const row = readStateLogRows(runDir).find((entry) => entry.type === 'iteration');
+    expect(row).toBeDefined();
+    expect(row).toMatchObject({
+      iteration: 1,
+      run: 1,
+      status: 'complete',
+      focus: 'stop path',
+      newInfoRatio: 0.5,
+      answeredQuestions: ['Which file owns the stop?'],
+      target_agent: 'deep-research',
+      agent_definition_loaded: true,
+      resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+      findingsCount: 2,
+      keyQuestions: ['Which file owns the stop?'],
+      noveltyJustification: 'two new sources',
+      focusTrack: 'stop-path',
+      edgeCase: 'none',
+      toolsUsed: ['Read'],
+      sourcesQueried: ['src/stop.ts:12'],
+    });
   });
 });
