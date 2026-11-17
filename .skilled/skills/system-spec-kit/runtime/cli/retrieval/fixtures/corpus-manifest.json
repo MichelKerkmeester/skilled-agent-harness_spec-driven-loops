@@ -1,5 +1,5 @@
 {
-  "corpusHash": "76c1d9f4edae454bbd7253ed22997841a7473fde1f61761ad28d9e5d24ab9573",
+  "corpusHash": "48bd19300f0f6dff5681837a619a80e27af0f21931df61cec9889e0f472a9cfb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27995,
+  "includedPathCount": 28000,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12978,6 +12978,11 @@
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/review-report.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/research.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
@@ -28027,7 +28032,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8c450e0ff080b863e4a05dddc7b56667ab4523fd8dc14bed9868cfa5b1ee3361",
+  "manifestHash": "54708bdad047757f43fba799d202c2eae3d52e37a831fe9b02325c4e249cf86e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32435,6 +32440,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {

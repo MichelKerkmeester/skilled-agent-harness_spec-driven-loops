@@ -60,23 +60,13 @@ function logEvent(event, fields) {
 function withdrawOnOperatorPrompt(eventName, sessionId) {
   const loopId = process.env.SKILLED_LOOP_ID;
   if (eventName !== 'UserPromptSubmit' || !loopId) return false;
-  try {
-    const withdrawn = withdraw.withdrawHandOver({
-      loopId,
-      sessionId,
-      reason: 'user-message',
-      env: process.env,
-      onError: (stage, error) => {
-        logEvent('context-nudge-error', { stage, message: error.message });
-      },
-    });
-    if (withdrawn === null) return false;
-  } catch (error) {
-    logEvent('context-nudge-error', { stage: 'withdraw', message: error.message });
-    return false;
-  }
-  logEvent('withdrawn', { loopId, sessionId, reason: 'user-message' });
-  return true;
+  return withdraw.withdrawOnPrompt({
+    loopId,
+    sessionId,
+    env: process.env,
+    log: logEvent,
+    withdrawnEvent: 'withdrawn',
+  });
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

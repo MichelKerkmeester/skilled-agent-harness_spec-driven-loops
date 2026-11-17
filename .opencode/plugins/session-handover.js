@@ -304,19 +304,13 @@ function titleSeedSession(client, sessionID) {
 // record an idle could not arm is withdrawn here too, rather than armed by a later idle.
 // Returns whether an arm was withdrawn, so the caller can drop what the hand-over made stale.
 function withdrawArmForUserMessage(loopId, sessionID) {
-  try {
-    const withdrawn = withdraw.withdrawHandOver({
-      loopId,
-      sessionId: sessionID,
-      reason: 'user-message',
-      env: process.env,
-    });
-    if (withdrawn === null) return false;
-    logEvent('arm-cancelled', { loopId, sessionId: sessionID, reason: 'user-message' });
-    return true;
-  } catch {
-    return false;
-  }
+  return withdraw.withdrawOnPrompt({
+    loopId,
+    sessionId: sessionID,
+    env: process.env,
+    log: logEvent,
+    withdrawnEvent: 'arm-cancelled',
+  });
 }
 
 // What a compaction tells the session about its open note. A note whose hand-over was

@@ -40,7 +40,7 @@ The arm event is `Stop` on Claude and Codex, `agent_settled` on Pi and `session.
 
 A record whose hop count already reached `SESSION_HANDOVER_MAX_HOPS` ends with reason `hop-cap`. A record past its age limit ends with reason `stale`. The killer sends no signal for either of those two reasons.
 
-A new turn in the arming session ends an armed or deferred record with reason `user-message` on Pi and OpenCode. An operator prompt over an armed or deferred record ends it the same way on Claude and Codex.
+A new turn in the arming session ends an armed or deferred record with reason `user-message` on Pi and OpenCode. An operator prompt over an armed or deferred record ends it the same way on Claude, Codex and Vibe.
 
 `cancel` ends a pending or armed record with reason `cancelled`. `should-relaunch` reports both of those reasons as `withdrawn` and every other record that is not armed as `not-armed`.
 

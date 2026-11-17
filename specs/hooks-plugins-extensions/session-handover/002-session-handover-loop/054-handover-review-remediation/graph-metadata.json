@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "handover review remediation",
+      "phase 54 handover review remediation",
+      "withdrawOnPrompt shared helper",
+      "withdraw on prompt error logging",
+      "handover review remediation plan",
+      "handover review remediation tasks",
+      "054-handover-review-remediation operator decisions",
+      "handover review remediation implementation summary"
+    ],
+    "key_topics": [
+      "handover",
+      "review",
+      "remediation",
+      "phase",
+      "withdrawonprompt",
+      "shared",
+      "helper",
+      "withdraw",
+      "prompt",
+      "error",
+      "logging",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/plugins/session-handover.js",
+      "lib/README.md",
+      ".skilled/hooks/session-handover/lib/withdraw.cjs",
+      ".skilled/hooks/session-handover/tests/withdraw.test.cjs",
+      ".skilled/hooks/session-handover/state-files.md",
+      ".skilled/hooks/session-handover/lib/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-handover.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "withdraw.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/lib/withdraw.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "withdraw.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/tests/withdraw.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "state-files.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-handover/state-files.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Each runtime adapter carried its own copy of the code that withdraws a hand-over when the operator sends a prompt",
+    "created_at": "2026-11-17T07:34:31Z",
+    "last_save_at": "2026-11-17T08:03:20.089Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:89f474a029c4c9721e6f13a4a59d34bb5cb1125970be88eb682741b41fd239fb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d1b4571cd76f4ab18f02fef586c01c968476438a1e9fea226768b44ea5c56895",
+      "plan.md": "51880058c1e15d43d037cd14ad55d1665b4eeb93ca0953b68ef7d73496831a9b",
+      "tasks.md": "c4ce779d4cda38e4cc37ff475a6c2818569adc2ce83b8ae6a1510b2e1129e1dc",
+      "decision-record.md": "07681221b336b538b4c7d7fbbbb47c2051b3c271105b29154f2534a62d2dcb38",
+      "implementation-summary.md": "da1ec30bdffa6c53905938a2f104208f242e1bc28f0a4d5b2ab47401784d0b4a"
+    },
+    "last_active_at": null
+  }
+}

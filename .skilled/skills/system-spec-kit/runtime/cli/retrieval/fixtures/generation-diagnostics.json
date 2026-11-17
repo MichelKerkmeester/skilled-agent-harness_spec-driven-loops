@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6892,
-    "ok": 19476,
+    "ok": 19481,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27995,
+  "documentsScanned": 28000,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "8c450e0ff080b863e4a05dddc7b56667ab4523fd8dc14bed9868cfa5b1ee3361",
+  "manifestHash": "54708bdad047757f43fba799d202c2eae3d52e37a831fe9b02325c4e249cf86e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44666,
+      "ok": 44673,
       "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
@@ -57194,6 +57194,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {
