@@ -1583,14 +1583,19 @@ workflow:
             - "Fails closed before any dispatch receipt is written; the pre_dispatch_audit provenance row for the attempted executor remains"
         if_cli_claude_code:
           command: |
-            node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-claude-code {cli_dispatch_args}
+            node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-claude-code {cli_dispatch_args}{optional_claude_config_dir_flag}  # adds --claude-config-dir "<dir>" only when config.executor.configDir is set
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
+          render_hint:
+            optional_claude_config_dir_flag: |
+              If config.executor.configDir is set and non-null, expand a leading ~ to HOME and render ` --claude-config-dir "<that path>"` with its leading space.
+              Otherwise render nothing, so an unset config dir passes no flag and the research dispatch runs as before.
           notes:
             - "sandboxMode maps to permission-mode: read-only -> plan, workspace-write -> acceptEdits, danger-full-access -> bypassPermissions"
             - "claude-code has no serviceTier flag"
             - "claude-code supports --effort for reasoning depth"
+            - "CLAUDE_CONFIG_DIR is forwarded through guardContext.env (CLAUDE_ prefix is allowlisted) so a configured Claude account is used for research as it is for review"
         if_cli_cursor:
           command: |
             node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-cursor {cli_dispatch_args}
