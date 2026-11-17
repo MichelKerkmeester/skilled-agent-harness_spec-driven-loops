@@ -81,4 +81,26 @@ describe('deep-review auto restart command contract', () => {
     expect(autoWorkflow).toContain('skip_when: "lineage_mode != \'restart\'"');
     expect(autoWorkflow).toContain('do not continue as resume or auto');
   });
+
+  // A completed review used to re-synthesize through on_completed_session and add
+  // no iteration. The extension reopens the run before classification instead, so
+  // classification lands on resume and the completed-session branch never sees it.
+  it('extends a completed run before classification, and refuses fan-out before the spawn', () => {
+    const autoWorkflow = readWorkspaceFile('.skilled/commands/deep/assets/deep-review.yaml');
+    const lockIndex = autoWorkflow.indexOf('\n      step_acquire_lock:\n');
+    const extendIndex = autoWorkflow.indexOf('\n      step_extend_completed_run:\n');
+    const classifyIndex = autoWorkflow.indexOf('\n      step_classify_session:\n');
+    expect(lockIndex).toBeGreaterThan(-1);
+    expect(extendIndex).toBeGreaterThan(lockIndex);
+    expect(classifyIndex).toBeGreaterThan(extendIndex);
+
+    const completedAt = autoWorkflow.indexOf('        on_completed_session:\n');
+    const completedBranch = autoWorkflow.slice(completedAt, autoWorkflow.indexOf('        on_invalid_state:\n', completedAt));
+    expect(completedBranch).toContain('skip_to: phase_synthesis');
+    expect(completedBranch).not.toContain('extend');
+
+    const guardIndex = autoWorkflow.indexOf('\n  step_reject_extend_with_fanout:\n');
+    expect(guardIndex).toBeGreaterThan(-1);
+    expect(guardIndex).toBeLessThan(autoWorkflow.indexOf('\n  step_fanout_spawn:\n'));
+  });
 });

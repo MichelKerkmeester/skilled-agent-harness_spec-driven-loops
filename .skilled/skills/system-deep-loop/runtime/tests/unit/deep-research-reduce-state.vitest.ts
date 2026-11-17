@@ -14,12 +14,20 @@ import { createHermeticEnv, type HermeticEnv } from '../helpers/spawn-cjs';
 
 const nodeRequire = createRequire(import.meta.url);
 const {
+  buildTerminalStopState,
   deriveRejectedPatternIndex,
   filterRejectedIdeaCandidates,
   emitFanoutResourceMap,
   parseIterationFile,
   reduceResearchState,
 } = nodeRequire('../../../deep-research/scripts/reduce-state.cjs') as {
+  buildTerminalStopState: (records: Array<Record<string, unknown>>) => {
+    stopReason: string | null;
+    totalIterations: number | null;
+    answeredCount: number | null;
+    totalQuestions: number | null;
+    timestamp: string | null;
+  } | null;
   deriveRejectedPatternIndex: (eventRecords: Array<Record<string, unknown>>, options?: {
     fuzzyThreshold?: number;
   }) => {
@@ -1552,5 +1560,19 @@ describe('deep-research reduce-state delta iteration merge', () => {
     expect(resourceMap).toContain('src/a.ts');
     const totalReferences = Number(/Total references\*\*: (\d+)/.exec(resourceMap)?.[1] ?? '0');
     expect(totalReferences).toBeGreaterThan(0);
+  });
+});
+
+describe('an extension reopens a completed run', () => {
+  it('reports no terminal stop when an extended row follows synthesis_complete', () => {
+    const records = [
+      { type: 'iteration', run: 1, status: 'complete' },
+      { type: 'iteration', run: 2, status: 'complete' },
+      { type: 'event', event: 'synthesis_complete', stopReason: 'converged', totalIterations: 2, timestamp: '2026-11-17T00:00:00Z' },
+      { type: 'event', event: 'extended', sessionId: 's-1', generation: 1, lineageMode: 'completed-continue', continuedFromRun: 2, timestamp: '2026-11-17T01:00:00Z' },
+    ];
+    // Without the extended row the same log is terminal, which proves the row is what reopens it.
+    expect(buildTerminalStopState(records.slice(0, 3))).not.toBeNull();
+    expect(buildTerminalStopState(records)).toBeNull();
   });
 });

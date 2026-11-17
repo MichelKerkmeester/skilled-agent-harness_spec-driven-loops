@@ -1767,3 +1767,36 @@ describe('deep-research reducers and projections', () => {
     })).toThrow();
   });
 });
+
+describe('run_extended', () => {
+  it('raises the projected iteration ceiling and keeps the run active', () => {
+    const hash = digest('extension-fixture');
+    const initialized = createEvent('deep_research.run_initialized', 1, baseScope(), {
+      generation: 1,
+      charterDigest: hash,
+      configDigest: hash,
+      executorFingerprint: hash,
+      replayFingerprint: hash,
+      maxIterations: 7,
+      convergencePolicyVersion: 'convergence@1',
+    });
+    const extended = createEvent('deep_research.run_extended', 2, baseScope(), {
+      priorTailDigest: hash,
+      sessionId: RUN_ID,
+      generation: 1,
+      continuedFromRun: 7,
+      extension: {
+        addedIterations: 3,
+        priorMaxIterations: 7,
+        newMaxIterations: 10,
+        priorMaxDurationMinutes: 120,
+        newMaxDurationMinutes: 420,
+        elapsedMinutesAtExtension: 300,
+      },
+    });
+    const result = projected([initialized, extended]);
+
+    expect(result.projection.run.maxIterations).toBe(10);
+    expect(result.projection.status).toMatchObject({ state: 'active', terminal: false });
+  });
+});

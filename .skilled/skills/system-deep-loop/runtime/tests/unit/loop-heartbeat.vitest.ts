@@ -167,4 +167,30 @@ describe('loop-heartbeat.cjs', () => {
     expect(rows).toHaveLength(1);
     expect(rows[0]?.event).toBe('completed');
   });
+
+  // An extended run completes twice in one session: once before the extension and
+  // once after the added iterations. The second terminal row must be accepted.
+  it('accepts a second completed terminal row for the same session after an extension', () => {
+    const fixture = createFixture('terminal-after-extension');
+    const terminalArgs = (reason: string) => [
+      '--phase', 'terminal',
+      '--config', fixture.configPath,
+      '--state-log', join(fixture.packetDir, 'deep-research-state.jsonl'),
+      '--status-ledger', fixture.statusLedgerPath,
+      '--packet-dir', fixture.packetDir,
+      '--timestamp', TIMESTAMP,
+      '--session-id', SESSION_ID,
+      '--generation', GENERATION,
+      '--reason', reason,
+      '--execution-mode', 'auto',
+    ];
+
+    const first = runHeartbeat(terminalArgs('converged'));
+    expect(first.exitCode, first.stderr).toBe(0);
+    const second = runHeartbeat(terminalArgs('maxIterationsReached'));
+    expect(second.exitCode, second.stderr).toBe(0);
+
+    const rows = readLedgerRows(fixture);
+    expect(rows.filter((row) => row.event === 'completed')).toHaveLength(2);
+  });
 });

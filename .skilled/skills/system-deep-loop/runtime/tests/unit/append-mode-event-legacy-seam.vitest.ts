@@ -10,7 +10,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -210,5 +210,86 @@ describe('append-mode-event legacy deep-research upcast seam', () => {
     // The throw precedes any append, so the deep-review frames dir the ledger
     // constructor created stays empty.
     expect(readdirSync(framesDirectory(runDir, 'deep-review-ledger')).length).toBe(0);
+  });
+
+  it('appends run_extended after the run opens and projects an extended row into the state log', () => {
+    const runDir = createTempDir('extended');
+    const authorityRoot = createTempDir('extended-auth');
+    const env = { DEEP_LOOP_AUTHORITY_ROOT: authorityRoot };
+
+    const opened = runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, canonicalRunInitializedEvent())],
+      env,
+    );
+    expect(opened.exitCode).toBe(0);
+
+    const digest = '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef';
+    const extension = {
+      addedIterations: 3, priorMaxIterations: 10, newMaxIterations: 10,
+      priorMaxDurationMinutes: 120, newMaxDurationMinutes: 420, elapsedMinutesAtExtension: 300,
+    };
+    const extended = runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, {
+        stem: 'deep_research.run_extended',
+        scope: { runId: 'run-canonical-001', lineageId: 'lineage-canonical-001' },
+        data: {
+          priorTailDigest: digest,
+          sessionId: 'run-canonical-001',
+          generation: 1,
+          continuedFromRun: 7,
+          extension,
+        },
+      })],
+      env,
+    );
+    expect(extended.exitCode, extended.stderr + extended.rawStdout).toBe(0);
+
+    const receipt = extended.json.receipt as Record<string, unknown>;
+    expect(receipt.sequence).toBe(2);
+    expect(receipt.eventType).toBe('deep-research.ledger.run-extended');
+
+    // The projection writes the ledger event back as the legacy state row the
+    // dashboards already read, so the continued budget stays visible there.
+    const stateLog = readFileSync(join(runDir, 'research', 'deep-research-state.jsonl'), 'utf8')
+      .split('\n')
+      .filter(Boolean)
+      .map((line) => JSON.parse(line));
+    const row = stateLog.find((entry) => entry.event === 'extended');
+    expect(row).toMatchObject({
+      type: 'event',
+      event: 'extended',
+      lineageMode: 'completed-continue',
+      continuedFromRun: 7,
+      extension,
+    });
+  });
+
+  it('upcasts a legacy extended row through the gateway', () => {
+    const runDir = createTempDir('extended-legacy');
+    const authorityRoot = createTempDir('extended-legacy-auth');
+    const env = { DEEP_LOOP_AUTHORITY_ROOT: authorityRoot };
+
+    expect(runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, legacyConfigRow())],
+      env,
+    ).exitCode).toBe(0);
+
+    const result = runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, {
+        type: 'event',
+        event: 'extended',
+        sessionId: 's1',
+        generation: 1,
+        continuedFromRun: 2,
+        extension: {
+          addedIterations: 1, priorMaxIterations: 3, newMaxIterations: 3,
+          priorMaxDurationMinutes: 0, newMaxDurationMinutes: 0, elapsedMinutesAtExtension: 5,
+        },
+      })],
+      env,
+    );
+    expect(result.exitCode, result.stderr + result.rawStdout).toBe(0);
+    expect((result.json.receipt as Record<string, unknown>).eventType)
+      .toBe('deep-research.ledger.run-extended');
   });
 });
