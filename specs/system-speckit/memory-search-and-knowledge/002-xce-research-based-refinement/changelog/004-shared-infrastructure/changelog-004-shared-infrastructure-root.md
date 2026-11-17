@@ -24,4 +24,6 @@ Top rollup for the `004-shared-infrastructure/` themed track. Each row links to 
 | `004-shared-infrastructure/008` mcp config alignment reelection default | [changelog-004-008-mcp-config-alignment-reelection-default.md](./changelog-004-008-mcp-config-alignment-reelection-default.md) |
 | `004-shared-infrastructure/009` code graph code only indexing | [changelog-004-009-code-graph-code-only-indexing.md](./changelog-004-009-code-graph-code-only-indexing.md) |
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure` (Phase Parent)

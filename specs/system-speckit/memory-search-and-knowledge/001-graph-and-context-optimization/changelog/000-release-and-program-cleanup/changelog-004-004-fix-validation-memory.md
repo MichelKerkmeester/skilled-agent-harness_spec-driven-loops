@@ -97,5 +97,7 @@ Thirteen surgical fixes close all findings. Each fix is the smallest change that
 - Extend the workspace-root allowlist beyond repo root and `os.tmpdir()` if caller environments outside both prefixes are identified in a future audit.
 - Tighten `CheckpointSnapshotSchema` to validate referential consistency between edge rows and memory ids at restore time, not only row shape.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/004-fix-validation-memory` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

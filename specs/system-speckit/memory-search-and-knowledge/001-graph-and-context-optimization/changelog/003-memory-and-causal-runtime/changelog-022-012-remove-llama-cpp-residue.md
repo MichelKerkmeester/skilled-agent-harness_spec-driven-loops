@@ -78,5 +78,7 @@ None.
 - Confirm whether `node-llama-cpp` still appears as a dependency in `package.json` or `package-lock.json`. A separate dep-prune pass would be needed to fully remove it. Verify that no transitive consumer remains before pruning.
 - Confirm whether any runtime code still respects `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA`. The env var was removed from documentation only. Arc 018 was expected to be the last consumer. No action expected but confirm before closing.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/012-remove-llama-cpp-residue`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

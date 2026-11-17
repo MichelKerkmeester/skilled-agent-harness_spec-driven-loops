@@ -71,5 +71,7 @@ None.
 - Three borderline residue candidates were observed but not fixed here: the `deep-loop-runtime/lib/deep-loop/README.md` "Rerank sidecar" line, the `system-spec-kit/manual_testing_playbook.md` "CCC stubs/trio" naming, the `sidecar-client.ts:170` cross-encoder comment. All three are tracked for a future pass. None is a live coupling.
 - The gitignored `database/skill-graph.json` sync is local-only. It self-heals on the next compile or daemon restart. The committed source in `scripts/` is clean.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/015-remediate-cross-surface-residue` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`

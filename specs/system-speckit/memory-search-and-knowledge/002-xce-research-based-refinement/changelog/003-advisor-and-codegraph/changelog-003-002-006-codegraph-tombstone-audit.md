@@ -56,5 +56,7 @@ Code graph cleanup can now retain bounded deletion lineage when `SPECKIT_CODE_GR
 
 - Tombstones are audit-only and bounded; they do not restore deleted nodes or edges.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`

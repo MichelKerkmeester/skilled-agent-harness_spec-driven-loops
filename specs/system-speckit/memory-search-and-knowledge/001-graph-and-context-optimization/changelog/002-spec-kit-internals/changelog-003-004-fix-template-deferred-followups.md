@@ -73,5 +73,7 @@ Ten items deferred from the round-3 Gate 7 sweep of the manifest-template-implem
 - Residual Gate E annotation remains partially addressed: the live sentinel path for historical packet validation does not exist in the working tree and reports two warnings under strict validation.
 - Full validation of all historical spec-kit packets was deferred. Only sentinel checks and the required A through D gates were executed.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/004-fix-template-deferred-followups` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

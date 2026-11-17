@@ -40,5 +40,7 @@ _No file-level detail recorded._
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/003-sk-doc-type-validation-alignment` (Level unknown)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent`

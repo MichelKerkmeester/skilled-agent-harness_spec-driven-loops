@@ -78,5 +78,7 @@ All four pytest cases passed. install.sh exited 0. The smoke run confirmed apple
 - Consider adding `POST /rerank/batch` for batching multiple query/document pairs in one HTTP call once phase 004 benchmark establishes per-request latency characteristics.
 - Verify `pyproject.toml` dep versions remain aligned with cocoindex after any upstream torch or sentence-transformers updates.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

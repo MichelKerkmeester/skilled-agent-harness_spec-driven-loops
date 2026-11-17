@@ -82,5 +82,7 @@ Phase 1 ran an 11-size reproduction harness against the real GGUF model. The cro
 - Add consumer-side token-bound preflight in `lib/search/embedding-expansion.ts:268` to prevent the 8-synonym concatenation from relying solely on the worker-level truncation fallback. This is 034 scope.
 - Investigate V8 sufficiency gate evidence-counter regression found during Phase 5 live verification. The primary and support counters returned zero on a rich document. Tracked as 041 scope.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

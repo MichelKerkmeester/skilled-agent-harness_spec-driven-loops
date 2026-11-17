@@ -58,5 +58,7 @@ The semantic_shadow cosine lane had shipped shadow-only in a prior phase, produc
 - The known plugin-bridge Vitest baseline failure (forced-local fail-open expectation) was not addressed in this packet.
 - A weight-vector sweep harness for automated candidate evaluation is deferred to follow-on work.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`

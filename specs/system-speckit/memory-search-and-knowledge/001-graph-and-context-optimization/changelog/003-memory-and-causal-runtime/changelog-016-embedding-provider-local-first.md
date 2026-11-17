@@ -68,4 +68,6 @@ The shared embeddings factory had three provider-order definitions: `auto-select
 - **Live daemon recycle deferred.** The running daemon (pid 69984) loaded the pre-rebuild `shared/dist` and already runs on persisted ollama. The behavioral change affects only the fallback path until a recycle. Batched with the pending 015 launcher-`.cjs` restart decision (user-gated).
 - **Downstream consumer.** Packet `131-doctor-install-alignment` (relocated: `006-operator-tooling/006-doctor-install-alignment`) documents embeddings as `Ollama default → HF → OpenAI/Voyage (cloud opt-in)`, consuming this change as ground truth.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/016-embedding-provider-local-first` (Level 2)

@@ -65,5 +65,7 @@ Closed `derived.status` to a shared `z.enum`, added the first-class `GENERATED_M
 - The scoped migration that restamps the legacy files preceded that graduation.
 - The path-prefix invariant the rule asserts depends on the shared identity resolver from a sibling phase, so a prefixed path reported under the grandfather window until that resolver landed.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/036-metadata-validator-status-enum` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

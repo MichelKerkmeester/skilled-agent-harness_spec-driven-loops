@@ -34,5 +34,7 @@ This phase turns on the dark deep-loop substrate: it builds the append gateway a
 
 Complete. All eight modes read `new_authoritative_final` from stored records; the whole-system gate passes; legacy writers are retired and guarded. Pending only the operator ff-merge gate.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement` (Phase Parent)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation`

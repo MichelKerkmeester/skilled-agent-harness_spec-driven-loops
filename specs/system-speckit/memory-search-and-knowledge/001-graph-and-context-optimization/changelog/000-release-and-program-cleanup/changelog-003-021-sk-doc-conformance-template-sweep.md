@@ -81,5 +81,7 @@ A four-tier bounded-wave sweep used deterministic sed/awk for mechanical relabel
 - Open a follow-on packet to fix the sk-doc validator `missing_toc` classifier quirk that misclassifies per-feature catalog snippets as readme type. This affects the entire repo, not just this sweep.
 - Refresh the `mcp-click-up/manual_testing_playbook/` CLU-001..CLU-012 scenarios when the mcp-click-up parent skill directory is restored to the tree.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

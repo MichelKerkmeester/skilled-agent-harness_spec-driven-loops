@@ -76,5 +76,7 @@ None.
 - `Z_SCORE_THRESHOLD` in `evidence-gap-detector.ts` remains at 1.3. That floor was tuned for the no-reranker-available baseline. With `RERANKER_LOCAL=true` always available the threshold could potentially rise back to 1.5. Out of scope for this packet.
 - If a cloud reranker is ever reintroduced the correct pattern is an explicit `RERANKER_PROVIDER=voyage|cohere|local` env var rather than API-key-gated auto-resolution.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/013-remove-voyage-cohere-residue` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

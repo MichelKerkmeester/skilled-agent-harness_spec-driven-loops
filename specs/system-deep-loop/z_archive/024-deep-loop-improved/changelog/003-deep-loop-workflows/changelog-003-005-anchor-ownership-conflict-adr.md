@@ -55,5 +55,7 @@ Added resolveQuestionConflicts() to deep-research reduce-state.cjs and treat key
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/005-anchor-ownership-conflict-adr` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

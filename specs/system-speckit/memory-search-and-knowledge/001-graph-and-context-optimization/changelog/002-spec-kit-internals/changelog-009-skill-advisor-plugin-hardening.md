@@ -59,5 +59,7 @@ Packet 008 hardened the OpenCode skill-advisor plugin across three deferred P2 i
 - Global package build still fails in unrelated files outside this packet scope.
 - Copilot hook wiring mismatch still deferred from earlier packets.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

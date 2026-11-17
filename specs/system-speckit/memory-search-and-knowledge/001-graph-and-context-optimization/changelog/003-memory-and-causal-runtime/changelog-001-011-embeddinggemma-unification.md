@@ -64,5 +64,7 @@ This phase unified both embedding surfaces on EmbeddingGemma-300m. The memory si
 - Investigate document-side prompt support in the CocoIndex indexing path. The current asymmetry costs an estimated 5 to 10 points of recall on code queries. Addressing this is likely scoped to the `027/001-cocoindex-complete-fork` packet.
 - Evaluate q8 quantization as the post-012 memory default for EmbeddingGemma ONNX to reduce RAM footprint while preserving 768-dim parity.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/011-embeddinggemma-unification` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

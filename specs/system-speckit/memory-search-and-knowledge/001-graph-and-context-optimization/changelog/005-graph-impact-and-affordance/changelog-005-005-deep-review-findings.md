@@ -91,5 +91,7 @@ The work covered: wiring `detect_changes` as a callable MCP tool across 4 code t
 - Run sk-doc DQI checks on the 5 sub-phase docs that carry OPERATOR-PENDING DQI rows.
 - Confirm the `affordances` DEFER decision holds when route/tool/shape contract safety work (ADR-012-003) is revisited in a later packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/005-deep-review-findings` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance`

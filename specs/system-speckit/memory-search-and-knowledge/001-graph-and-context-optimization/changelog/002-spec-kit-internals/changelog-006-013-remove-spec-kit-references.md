@@ -69,5 +69,7 @@ None.
 - The final grep still reports current sibling advisor references and out-of-scope script and test fixture hits. Those are not stale live doc instructions and require no further action.
 - Parallel-session dirty files were left untouched and must not be included in the scoped commit.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/013-remove-spec-kit-references` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

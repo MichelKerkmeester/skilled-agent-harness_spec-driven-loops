@@ -62,5 +62,7 @@ This phase finished the playbook run by delegating compat, auto-update-daemon, a
 - Findings are recorded but not fixed. The accuracy regression, PC-005 doc gap (missing --dataset flag), semantic_shadow drift (live weight 0.05 vs scenario assumption of shadow-only), and bridge native-route failure are all out of scope and flagged for a follow-on remediation packet.
 - Working-tree graph-metadata churn (~1296 files) from routine context-server daemon activity during the session. These are timestamp bumps, not source edits, and were left untouched to avoid reverting 1296 files.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/004-shell-python-daemon` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation`

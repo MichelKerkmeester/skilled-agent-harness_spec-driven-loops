@@ -86,5 +86,7 @@ A line-cited audit of 51 files was run against sk-code-skilled. Concrete violati
 - Update sk-code-skilled to allow feature-ID-prefixed prompt template filenames when IDs are declared in a sibling manifest. The F1 through F14 template names are intentional manifest addressing.
 - Add TypeScript CLI output guidance to sk-code-skilled documenting `process.stdout.write` and `process.stderr.write` as the preferred pattern over `console.log` for CLI reporters.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass`

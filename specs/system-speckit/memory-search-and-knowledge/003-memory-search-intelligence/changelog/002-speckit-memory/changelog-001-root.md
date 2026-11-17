@@ -80,4 +80,6 @@ This root rollup tracks the Memory MCP child phases for packet 028. The parent r
 
 - Keep future rollups tied to child phase evidence rather than generated placeholder summaries.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory` (Level 2)

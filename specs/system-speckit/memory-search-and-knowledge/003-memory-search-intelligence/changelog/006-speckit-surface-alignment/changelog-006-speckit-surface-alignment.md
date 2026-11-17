@@ -79,4 +79,6 @@ The 008 remediation packet converted the surface-alignment research into a docum
 
 - Metadata files for the newly authored docs remain handled separately by the metadata pipeline, per operator instruction.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment` (Phase Parent)

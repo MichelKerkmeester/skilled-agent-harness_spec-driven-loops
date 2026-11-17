@@ -50,5 +50,7 @@ _No file-level detail recorded in the generated changelog._
 - Promote render-stage serialization only with a golden baseline.
 - Reopen the identity-hardening pair only if the subsystem becomes multi-writer.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

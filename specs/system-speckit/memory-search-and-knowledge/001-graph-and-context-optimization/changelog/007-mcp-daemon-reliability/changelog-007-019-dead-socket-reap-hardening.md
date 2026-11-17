@@ -58,5 +58,7 @@ A busy daemon no longer gets killed for being briefly slow. Before this, the lea
 - mk-spec-memory only. This hardens the mk-spec-memory lease-holder check. mk-code-index reuses the shared probeDaemon but its bridge upgrade is a separate phase.
 - Operator overrides own their timing. Setting a large SPECKIT_LEASE_PROBE_RETRIES can push total probe time past the grace ceiling; the default is the safe value.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/019-dead-socket-reap-hardening` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

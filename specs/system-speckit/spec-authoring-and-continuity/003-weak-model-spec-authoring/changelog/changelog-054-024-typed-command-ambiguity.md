@@ -73,5 +73,7 @@ A typed /deep:research :auto prompt now routes to system-deep-loop with no ambig
 - A related uncertainty bump keeps the floor noise. fusion.ts adds 0.04 uncertainty when adjacent candidates' confidences are within 0.05, which floored skills still trigger.
 - cli-classifier replay baselines will move. They build clusters from ambiguousWith; refresh them on their next run.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/024-typed-command-ambiguity` (Level 2)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

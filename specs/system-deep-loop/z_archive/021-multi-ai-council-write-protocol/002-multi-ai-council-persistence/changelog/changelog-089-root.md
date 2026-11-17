@@ -66,4 +66,6 @@ _No file-level detail recorded._
 - Generate nested changelog via nested-changelog.js
 - Run /memory:save via generate-context.js
 
+&nbsp;
+
 > Spec folder: `specs/skilled-agent-orchestration/089-multi-ai-council-persistence` (Level 3)

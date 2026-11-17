@@ -54,5 +54,7 @@ Three drift issues that surfaced during a routine analysis pass on system-skill-
 - Embeddings module resolution regression in `lib/shared/embeddings/` symlink path needs investigation, owned by follow-on packet 040 per spec §3 Out of Scope.
 - Regression fixture reconciliation remains on the future-work list.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/003-fix-documentation-config-drift` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation`

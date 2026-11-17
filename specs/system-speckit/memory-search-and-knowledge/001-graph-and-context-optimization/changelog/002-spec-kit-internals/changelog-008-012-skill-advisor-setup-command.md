@@ -79,5 +79,7 @@ You can now run /doctor:skill-advisor to interactively analyze every skill in yo
 - Token-collision detection is per-pair, not transitive. Phase 2 cross-checks each proposed token against existing TOKEN_BOOSTS for OTHER skills. It does not detect three-way collisions where two newly-proposed tokens for different skills would themselves collide. In practice this is rare because Phase 2 generates proposals one skill at a time.
 - Dry-run output writes to /tmp, not to a versioned scratch path. /tmp/skill-advisor-proposal-{timestamp}.md survives only until the next reboot. Users wanting to retain dry-run output should redirect or copy the file before exiting the session.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

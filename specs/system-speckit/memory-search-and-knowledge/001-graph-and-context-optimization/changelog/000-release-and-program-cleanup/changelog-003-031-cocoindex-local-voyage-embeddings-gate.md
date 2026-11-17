@@ -81,5 +81,7 @@ The daemon was killed and its stale runtime files removed. The per-user config a
 - Fix the indexer crash-loop on a missing `.workflow-lock` file in a separate packet. The `RotatingFileHandler` caps future log growth but the underlying crash path in the fork's path-walker remains.
 - Evaluate updating `settings.py:112-118` `default_user_settings()` to emit `provider: litellm` as the default if Voyage becomes the canonical default across machines.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/031-cocoindex-local-voyage-embeddings-gate` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

@@ -63,5 +63,7 @@ None.
 - The advisor package Vitest suite remains partially red. Remaining 7 failures are pre-existing and outside the scope of this packet. A future packet should investigate and close them.
 - The worktree contained unrelated pre-existing changes at dispatch time. Review whether any are related to advisor path behavior before the next refactor pass.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/009-fix-script-filesystem-scope` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

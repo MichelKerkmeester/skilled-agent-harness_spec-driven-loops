@@ -52,5 +52,7 @@ Added single-flight acquisition decision logic to loop-lock.ts per the phase sco
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/008-loop-lock-single-flight-decision` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

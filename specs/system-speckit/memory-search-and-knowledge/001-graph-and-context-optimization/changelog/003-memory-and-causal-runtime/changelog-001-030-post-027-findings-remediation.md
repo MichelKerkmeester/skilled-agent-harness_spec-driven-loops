@@ -40,5 +40,7 @@ _No file-level detail recorded._
 
 - All six workstreams require implementation: profile identity and dtype contract, provider fallback correctness, profile-keyed DB naming cleanup, operator docs and catalog drift, fixture refresh, and legacy dependency and comment residue.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/030-post-027-findings-remediation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

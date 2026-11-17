@@ -57,5 +57,7 @@ None.
 - Run 003-comparison-measure against this fixture to produce per-difficulty recall scores for each embedder candidate.
 - Revalidate fixture paths after any large-scale repo rename or restructure because `fixture-validate.sh` catches drift at run time, not at author time.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

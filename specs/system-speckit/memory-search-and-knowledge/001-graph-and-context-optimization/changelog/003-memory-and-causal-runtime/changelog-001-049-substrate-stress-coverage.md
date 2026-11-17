@@ -73,5 +73,7 @@ The 045 shared-daemon MCP runner was promoted into `mcp_server/stress_test/subst
 - Harness smoke requires live Memory and CocoIndex daemons for scenarios 403/404/407/410. Pure-logic files remain deterministic and can run without daemon startup.
 - Over-budget base queries are preserved by current query-expansion code. The stress test documents this as worker-side token preflight handoff rather than a bug.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/049-substrate-stress-coverage` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

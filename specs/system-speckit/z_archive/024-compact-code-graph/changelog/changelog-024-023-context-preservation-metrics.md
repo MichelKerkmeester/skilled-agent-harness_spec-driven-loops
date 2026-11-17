@@ -103,4 +103,6 @@ We claimed different runtimes had different levels of context preservation -- Cl
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/023-context-preservation-metrics/`

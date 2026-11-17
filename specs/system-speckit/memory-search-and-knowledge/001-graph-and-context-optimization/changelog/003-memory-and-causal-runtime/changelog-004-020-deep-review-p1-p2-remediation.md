@@ -89,5 +89,7 @@ All nine P1 findings were fixed in commit `d4ca904a54` and all 31 P2 findings we
 - Sequential-thinking MCP was unavailable throughout this packet. Five-point preflight thoughts were recorded inline per batch as a fallback.
 - Query expansion RCA is derived from existing rerank-score trace evidence, not a fresh controlled experiment. A fresh experiment is appropriate if opt-in default changes.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

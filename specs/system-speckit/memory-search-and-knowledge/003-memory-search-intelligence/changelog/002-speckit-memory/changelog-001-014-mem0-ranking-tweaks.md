@@ -48,5 +48,7 @@ _Detailed file-level changes live in the phase spec and tasks._
 - Resolve the lemmatizer dependency before touching FTS tokenization.
 - Keep entity-store boost deferred until an entity vector index exists.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/014-mem0-ranking-tweaks` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

@@ -50,5 +50,7 @@ Audit-confirmed P0 documentation bugs were identified in system-skill-advisor th
 - Verify link integrity with grep stale paths check
 - Run validate.sh --strict after fixes land
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/002-fix-documentation-bugs` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor`

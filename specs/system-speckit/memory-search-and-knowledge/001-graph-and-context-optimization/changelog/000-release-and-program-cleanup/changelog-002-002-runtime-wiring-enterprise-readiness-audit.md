@@ -81,5 +81,7 @@ Phase G wired all five workstreams into a request-scoped `SearchDecisionEnvelope
 - W6 overfetch promotion remains deferred. The envelope reports `recommendedMultiplier` but `effectiveLimit` still follows the existing opt-in flag path. Promotion requires a separate measurement decision.
 - Audit retention relies on file rotation only. JSONL rotation caps file size, but dashboards and long-term retention policy are future enterprise-readiness work.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/002-runtime-wiring-enterprise-readiness-audit` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`

@@ -96,5 +96,7 @@ A 10-phase remediation train repaired all eight defects and extended the pipelin
 - The `COMPLEXITY_MATCH` strict-validator warning on the parent packet (`Tasks (3) below minimum (4) for Level 2`) is a historical content-shape warning not targeted by any of the 22 deep-review findings. Remains open.
 - Title-family overlap threshold in `find-predecessor-memory.ts` is set to 50%. Tune if edge cases surface in mixed-topic folders.
 
+&nbsp;
+
 > Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/002-fix-memory-quality` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

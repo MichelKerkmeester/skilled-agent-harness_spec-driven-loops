@@ -58,5 +58,7 @@ Lifecycle tracking now gives /goal enough runtime memory to govern budgets and p
 
 - Usage payload coverage is best-effort. If OpenCode does not include token counts on message.updated, the plugin records usageSource=unavailable and does not charge tokens.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/004-lifecycle-tracking` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`

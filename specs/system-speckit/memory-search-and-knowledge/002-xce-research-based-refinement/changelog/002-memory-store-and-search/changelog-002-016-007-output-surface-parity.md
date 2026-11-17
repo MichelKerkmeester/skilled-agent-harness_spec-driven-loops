@@ -50,5 +50,7 @@ The same result rendered differently across models, so the output was not compar
 
 - The live cross-model A/B (DeepSeek, Kimi and MiMo render-consistency under the new contract) is the documented follow-up and cannot be run from the implementing session.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/007-output-surface-parity` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

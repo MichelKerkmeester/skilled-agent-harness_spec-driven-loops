@@ -71,5 +71,7 @@ Commits outside the spec-folder path range (under `mcp_server/`). Packet-level r
 - **Cached-summary consumer.** SessionStart cached-summary fast path is deferred. Startup authority stays with session_bootstrap() and memory resume.
 - **Direct warning surface.** UserPromptSubmit and .claude/settings.local.json mutations remain follow-on work.
 
+&nbsp;
+
 > Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/001-cache-warning-hooks` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

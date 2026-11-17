@@ -51,5 +51,7 @@ The write-safety and guards lane closed all backlog entries with evidence-backed
 
 - Waived P2 entries are deliberate non-fixes with recorded reasons.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/001-write-safety-and-guards` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation`

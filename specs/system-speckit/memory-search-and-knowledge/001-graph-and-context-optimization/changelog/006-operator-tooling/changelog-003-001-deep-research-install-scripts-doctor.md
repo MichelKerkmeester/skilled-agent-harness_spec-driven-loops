@@ -60,5 +60,7 @@ None. Research-only phase.
 - Verify the latent `config.ts:14` `defaultDir` mismatch against the documented `.spec-kit/code-graph/database` default and file a targeted fix if the discrepancy survives current HEAD.
 - Re-bless the 197-prompt routing corpus and address `fusion.ts` dead bonus branches once a scorer-owner follow-up packet is scoped.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/001-deep-research-install-scripts-doctor` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment`

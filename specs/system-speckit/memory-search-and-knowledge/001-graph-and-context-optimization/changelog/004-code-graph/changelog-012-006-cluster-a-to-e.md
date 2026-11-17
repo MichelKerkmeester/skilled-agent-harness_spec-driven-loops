@@ -79,5 +79,7 @@ Commits: `bf98a38d5` (cluster A-E), `944e8a06a` (caveats), `ee2e84400` (verify p
 - Phase 012/007 caught one more class of issue that this cluster did not surface: the bash WASM grammar's missing `external_scanner_reset` symbol caused a different cascade entirely. That phase shipped the skip-list workaround.
 - The `parse_diagnostics.recentErrors` field is currently capped at five most recent. A future packet can add pagination if operators need historical data.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

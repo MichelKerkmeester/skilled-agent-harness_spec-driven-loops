@@ -67,5 +67,7 @@ Wave 2 activated the handoff and pre-execution groups in the shared advisory con
 - Direct `sk-code/SKILL.md`, debug-delegation template and scaffold-script edits are flagged for a future scope-approved pass.
 - Gates remain optional/advisory with no runtime validator enforcement.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption`

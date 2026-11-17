@@ -65,5 +65,7 @@ This milestone is the flag-resolution reckoning that closed the keep-off experim
 - Add the coupling guard on the kept calibration pair so `absolute_relevance_calibration=false` with `confidence_calibration=true` degrades to identity rather than silently mis-calibrating.
 - Track the within-noise graph-channel harm on the separate pre-028 graph flags `useGraph`, `SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST` as a follow-up out of 028 scope. `SPECKIT_TEMPORAL_EDGES` stays default-on for its prod-path displacement protection, the graph-additive reorder that protects the truncated prod top-3, so the harm does not belong to it.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence`

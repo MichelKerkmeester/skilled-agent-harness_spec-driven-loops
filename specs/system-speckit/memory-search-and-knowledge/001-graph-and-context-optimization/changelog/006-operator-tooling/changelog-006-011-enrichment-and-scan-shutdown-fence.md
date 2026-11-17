@@ -55,5 +55,7 @@ fatalShutdown fenced the file watcher and ingest worker before closeDb() precise
 
 - The 010 deep-review P2 backlog items (queue cap, failure aggregation, scheduler observability) remain deferred and are tracked as a follow-up packet (012).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/011-enrichment-and-scan-shutdown-fence` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`

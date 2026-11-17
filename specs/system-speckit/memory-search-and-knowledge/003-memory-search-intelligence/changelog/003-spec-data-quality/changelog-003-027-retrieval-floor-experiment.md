@@ -49,5 +49,7 @@ Status PLANNED. This phase is scaffolded and not yet implemented. No code change
 
 - Build per plan.md. This phase is foundational and the dependents sequenced behind it are listed in `028-governance-rollout`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

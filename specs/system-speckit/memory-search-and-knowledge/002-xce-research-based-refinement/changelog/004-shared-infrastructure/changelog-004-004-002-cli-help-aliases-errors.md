@@ -56,5 +56,7 @@ The three daemon CLI front doors gained a consistent UX layer for command discov
 
 - No tool logic or schemas changed; this phase only changed CLI presentation, aliases, and error recovery text.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/002-cli-help-aliases-errors` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux`

@@ -33,4 +33,6 @@ Wording-only changes across skill docs, runtime mirrors, wrapper prompts, and pa
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/007-sk-recursive-agent-wording-alignment/`

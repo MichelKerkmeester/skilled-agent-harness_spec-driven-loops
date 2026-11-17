@@ -46,6 +46,8 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 
 - Evidence gap: tasks.md records 42 of 43 checklist items checked. This index does not upgrade completion status.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/014-automatic-drift-self-healing` (Level recorded in phase evidence)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
 > Historical alias: `011-automatic-drift-self-healing`

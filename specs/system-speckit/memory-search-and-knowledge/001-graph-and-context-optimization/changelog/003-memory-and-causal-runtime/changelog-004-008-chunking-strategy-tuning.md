@@ -70,5 +70,7 @@ Note: The `mcp-coco-index` skill was subsequently removed in a later packet (`ch
 - Implement Stage B (CHUNK_SIZE 2000, per-language overrides TS=2000, MD=800, Python=1500) if Stage A benchmark confirms the estimated lift.
 - Evaluate cAST/tree-sitter integration in a follow-on packet once Stage A lift is validated.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/008-chunking-strategy-tuning`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

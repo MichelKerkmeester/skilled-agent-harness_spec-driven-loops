@@ -65,5 +65,7 @@ The `/goal` OpenCode plugin is now documented inside `system-spec-kit` as a know
 
 - Restart OpenCode before testing newly loaded plugin or command behavior after plugin edits.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/008-system-spec-kit-integration` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`

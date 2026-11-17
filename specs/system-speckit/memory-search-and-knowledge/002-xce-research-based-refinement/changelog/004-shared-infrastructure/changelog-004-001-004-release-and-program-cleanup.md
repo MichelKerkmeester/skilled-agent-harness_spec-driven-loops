@@ -71,5 +71,7 @@ The 028 documentation surface was fully aligned to the shipped dual-stack realit
 - Three out-of-028-scope defects reported but not fixed (scope lock): `.claude/agents/` frontmatter grants mismatch for `mk-spec-memory`; `launcher_lease.md` §1 wording vs `bridgeOrReportLeaseHeld()` behavior; typo "spec docss" in `speckit/implement.md`. Flagged for a follow-on packet.
 - T9xx transport-down drills tracked by the workstream phases; tri-daemon drill already passed under `003/002-hardening`
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/004-release-and-program-cleanup` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition`

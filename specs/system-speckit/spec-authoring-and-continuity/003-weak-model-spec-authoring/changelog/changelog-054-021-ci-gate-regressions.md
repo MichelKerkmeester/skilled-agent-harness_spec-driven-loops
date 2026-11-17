@@ -58,5 +58,7 @@ Phase 021 clears two CI gates that failed on main after packet 054 landed, both 
 - The live advisor still ranks spec-kit just above deep-loop for rr-iter3-168 (0.5744 against 0.5665), and prompts that name only Draft auto-repair no longer reach spec-kit. A scorer change that ignores `:auto` mode flags would fix both.
 - 244 lint problems remain in `runtime/`; they predate 054 and no CI step runs that lint.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/021-ci-gate-regressions` (Level 2)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

@@ -95,5 +95,7 @@ Implementation commit: `62640cb8b`. Pt-02 re-review verdict PASS.
 - Per-run rollback script auto-invoke is on build/edit failure only. Test-failure rollback is offered at the post_phase_4 gate (option B) in confirm mode but not auto-executed. Intentional: a regressed test may still be a desirable proposal that needs targeted investigation.
 - Command was later moved from `/spec_kit:skill-advisor` to `/doctor:skill-advisor` in commit `40d3d1b3c`. The migration is reflected in the current command path, older docs that still cite the `spec_kit` namespace are stale.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

@@ -52,5 +52,7 @@ A two-stage phase: (1) a three-model deep research over the closed 026 program (
 - Remaining measurement experiments (q8/fp16 bench, cloud-vs-local A/B, RSS calibration, advisor calibration) are deferred; tracked in research/measurement-backlog.md. The q8/fp16 and RSS items are blocked on a missing onnxruntime-common dep.
 - Watcher-rename embedding-loss defect (live folder renames bypass reconcileMoves via watcher unlink+add path, destroying embeddings) is documented in the fan-out experiment but not fixed in this phase.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup`

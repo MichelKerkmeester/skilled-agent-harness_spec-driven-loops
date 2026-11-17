@@ -61,5 +61,7 @@ The fix adds a parent-owned PID guard to `mk-skill-advisor-launcher.cjs`. The la
 - The `ps` process-count smoke verification was blocked by the codex sandbox `EPERM` restriction. Capture explicit `ps -A | grep mk-skill-advisor-launcher | wc -l` evidence in a non-sandboxed environment to close the literal evidence gap.
 - No change was made to `.opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts` because the root cause was in the parent launcher acquisition gap, not the daemon SQLite lease code. Confirm this boundary holds in a future integration review.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/007-skill-advisor-zombie-launcher-fix` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

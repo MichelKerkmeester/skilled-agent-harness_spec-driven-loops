@@ -68,5 +68,7 @@ Three P1 gaps block a clean release-readiness claim. First, `memory_health` can 
 - Remediate P1-003: define and enforce an embedding-cache invalidation step inside the governed retention delete path so cached embeddings for deleted rows are cleared.
 - Remediate P2-001: add a BM25 index cleanup call to the memory delete path or document the accepted staleness window for operators.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/002-memory-data-integrity-audit` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`

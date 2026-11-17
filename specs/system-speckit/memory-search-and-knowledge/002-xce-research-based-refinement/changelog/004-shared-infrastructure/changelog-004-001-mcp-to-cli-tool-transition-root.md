@@ -99,4 +99,6 @@ See per-lane root changelogs and per-leaf changelogs for full file tables:
 - Final program-level multi-runtime transport-down drill remains as tracked follow-on work
 - Three out-of-028-scope defects reported not fixed: `.claude/agents/` frontmatter grant mismatch for `mk-spec-memory`; `launcher_lease.md` §1 wording vs `bridgeOrReportLeaseHeld()` behavior; typo "spec docss" in `speckit/implement.md`
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition` (Phase Parent)

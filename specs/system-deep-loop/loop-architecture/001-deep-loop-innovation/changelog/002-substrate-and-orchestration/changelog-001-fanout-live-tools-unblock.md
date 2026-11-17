@@ -16,5 +16,7 @@ contextType: "implementation"
 
 This phase shipped the early, backward-compatible fan-out live-tools unblock on `fanout-run.cjs`: a typed `liveTools.webSearch` policy, a fail-closed executor capability matrix, per-kind command adapters returning command/args/input plus an invocation fingerprint, and a models-by-branches-by-replicas manifest compiler. The change is dispatch-only and preserves every canonical persisted state and event shape. Status is Complete: the runtime change was implemented and verified (141 tests green, empty persistence-shape diff, strict spec validation pass). Cached search remains typed but rejected for every kind until a stable CLI contract exists, and the invocation fingerprint is not yet persisted as a durable receipt (deferred to phase 009).
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/001-fanout-live-tools-unblock` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration`

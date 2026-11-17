@@ -62,5 +62,7 @@ None. Research-only phase.
 - Plan targeted remediation packets from the P0 and P1 findings in `research/findings-registry.json`.
 - Cluster related findings by root cause before assigning to individual fix packets to avoid duplicated work across angles.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

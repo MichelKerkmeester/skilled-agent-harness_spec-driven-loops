@@ -64,5 +64,7 @@ This packet turns the completed 10-iteration research loop into an implementatio
 - No remediation implemented. This packet is read-only synthesis; the two P0 fixes (zero-node scan safety, parser-error persistence) belong in a follow-up remediation packet.
 - Parser OOB filenames remain unknown. The native artifacts preserved crash count and message, but not the affected file list.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/004-code-graph-bug-surface-research` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

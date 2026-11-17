@@ -93,5 +93,7 @@ Build passed after every task. Three test files needed a post-run fix-up. Target
 - Parallelize `code_graph_verify` probe execution. The 28-query battery runs serially. Parallelization is straightforward and deferred.
 - Automate drift baseline rotation. Operators currently set a baseline manually by passing `persistBaseline:true` on a canonical scan. Automatic aging or rotation is not yet implemented.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/003-code-graph-backend-resilience-implementation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor`

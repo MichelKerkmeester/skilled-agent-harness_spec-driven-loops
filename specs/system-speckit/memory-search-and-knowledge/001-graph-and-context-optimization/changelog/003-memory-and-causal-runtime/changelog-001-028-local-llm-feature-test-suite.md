@@ -72,5 +72,7 @@ During the post-014 remediation stream, 9 functional vitest groups and 4 perform
 - Add the migration-throughput performance benchmark that was removed when the llama-cpp surface was purged.
 - Validate the remaining performance benches under the nomic-only default stack once `029` work lands.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

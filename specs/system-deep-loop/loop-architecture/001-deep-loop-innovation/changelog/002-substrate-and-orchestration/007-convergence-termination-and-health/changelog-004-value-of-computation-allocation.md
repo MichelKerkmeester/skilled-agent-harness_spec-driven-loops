@@ -16,5 +16,7 @@ contextType: "implementation"
 
 This phase planned value-of-computation scoring and adaptive allocation that spends more iterations where marginal value is high, gated by the phase-007 typed budgets and remaining additive-dark. Per its implementation summary, the phase delivered replay-stable VOC assessment, greedy and proportional allocation, typed admission, rank-only fan-in handoff, and additive-dark ledger evidence. Status is complete.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/004-value-of-computation-allocation` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health`

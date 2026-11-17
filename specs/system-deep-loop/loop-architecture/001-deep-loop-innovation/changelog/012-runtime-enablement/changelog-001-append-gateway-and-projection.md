@@ -28,5 +28,7 @@ Delivered the canonical persistence boundary the deep-loop modes never had. A pl
 
 Complete. Authorization precedes the fence; projection refresh failure does not fail a durable append.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

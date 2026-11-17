@@ -64,5 +64,7 @@ The packet documented backend-only mode, schema v28 through v30, checkpoint rebu
 - Deep review later flagged README accuracy drift for historical `serverInfo` evidence and replay-boundary wording. Track corrections in the follow-up remediation packet.
 - Future runtime changes such as schema v31 or new front-proxy error codes need source-anchor re-verification before README edits.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/003-readme-cluster-update` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh`

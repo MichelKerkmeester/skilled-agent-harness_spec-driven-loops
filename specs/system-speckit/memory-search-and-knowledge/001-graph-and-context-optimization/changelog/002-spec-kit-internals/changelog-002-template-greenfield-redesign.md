@@ -74,5 +74,7 @@ Three commits touched this phase: `e933c152a7`, `79e97aec92`, `bdb739d973`.
 - **Phase 004 (deferred followups).** Addresses 10 Gate 7 items deferred from the 003 implementation.
 - **Phases 005-008.** Audit and alignment sweeps for skill references, command assets, fleet markers, and archive markers.
 
+&nbsp;
+
 > Spec folder: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

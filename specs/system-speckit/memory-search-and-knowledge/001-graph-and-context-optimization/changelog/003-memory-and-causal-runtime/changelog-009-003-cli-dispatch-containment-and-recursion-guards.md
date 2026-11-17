@@ -70,5 +70,7 @@ Deep-loop CLI dispatch paths used raw shell branches with inconsistent timeout h
 - The process-group integration fixture is skipped on Windows because POSIX negative-PID group signaling is the tested contract.
 - Phase 004 can build on the guarded dispatch surface to address deep-loop locks, JSONL state and recovery without re-scoping the CLI containment layer.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/003-cli-dispatch-containment-and-recursion-guards` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

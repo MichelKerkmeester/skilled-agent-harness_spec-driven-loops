@@ -51,5 +51,7 @@ The manual-testing playbook gained ten executable scenarios for release-hardenin
 
 - New scenarios were authored and structurally checked; later model-execution phases own running them end to end.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

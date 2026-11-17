@@ -67,5 +67,7 @@ The design fixture for the parent stress-test playbook. Locks corpus version v1.
 - Add a deterministic fallback prompt for Q1 when the structural code graph index is sparse (Q1/cli-opencode took 4 minutes on the first sweep falling back to grep)
 - Cap S2 result count to make scoring tractable for the Vague-class scenario
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`

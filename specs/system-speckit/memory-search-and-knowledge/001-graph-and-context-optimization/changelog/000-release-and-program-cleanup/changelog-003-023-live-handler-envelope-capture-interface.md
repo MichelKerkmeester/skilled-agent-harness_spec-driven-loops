@@ -57,5 +57,7 @@ The v1.0.3 stress test (Phase H) attempted to capture live `SearchDecisionEnvelo
 - TC-3 was originally shipped as a visible gap marker in this packet. Packet 025 wired `memory_search` to pass snapshot-derived `degradedReadiness` into `buildSearchDecisionEnvelope`, converting the marker into a normal passing assertion.
 - The advisor shadow JSONL sink is not exercised in this test. The advisor handler owns that path. The test file documents this boundary. Coverage of the shadow path remains a separate concern.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/023-live-handler-envelope-capture-interface` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

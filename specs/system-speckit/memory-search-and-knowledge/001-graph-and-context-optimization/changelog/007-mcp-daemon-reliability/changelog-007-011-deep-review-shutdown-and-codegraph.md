@@ -65,5 +65,7 @@ None. Review-only phase.
 - Verify at runtime whether only one DB connection is ever live. Several WS-1 and WS-4 P1s (WAL completeness, telemetry) may drop to P2 if the single-connection topology is confirmed.
 - Update line numbers in findings that may have shifted. A parallel session was actively editing the same surface during the review window.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

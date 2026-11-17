@@ -88,4 +88,6 @@ Built the complete evaluator-first MVP for bounded agent improvement. The phase 
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/001-sk-recursive-agent-mvp/`

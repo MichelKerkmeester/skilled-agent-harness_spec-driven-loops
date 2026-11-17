@@ -87,5 +87,7 @@ Shipped in commit `382059a468` (2026-05-19).
 - Close the full rerank-matrix re-bench to confirm no net regressions after 016 and 017 land via packet 018.
 - Add a "broad-scope scan with code-aware chunker verification" scenario to the manual testing playbook once the skill re-integration path is settled.
 
+&nbsp;
+
 > Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

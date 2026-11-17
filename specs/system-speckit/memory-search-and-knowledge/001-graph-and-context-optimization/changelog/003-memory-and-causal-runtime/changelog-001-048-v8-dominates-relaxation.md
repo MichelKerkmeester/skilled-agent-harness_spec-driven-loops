@@ -61,5 +61,7 @@ The patch introduced document-type-aware dominance thresholds and a cached direc
 - The direct-child allowlist covers direct numbered directories only. Deeper descendants still need their own current or ancestor path to be included in the allowed set.
 - The handover dominance threshold is deliberately lower than the decision-record and implementation-summary threshold to preserve the five-mention unrelated-spec failure case required by T047-04.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/048-v8-dominates-relaxation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

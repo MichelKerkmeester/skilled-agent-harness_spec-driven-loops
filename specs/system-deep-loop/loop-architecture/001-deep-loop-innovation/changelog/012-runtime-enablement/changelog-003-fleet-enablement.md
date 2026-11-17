@@ -28,5 +28,7 @@ Built the serial enablement driver and CLI that walk the frozen mode order one m
 
 Complete. The coordinator remains the proven pilot mechanism in `002`; the fleet used the registry-direct path the operator chose.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

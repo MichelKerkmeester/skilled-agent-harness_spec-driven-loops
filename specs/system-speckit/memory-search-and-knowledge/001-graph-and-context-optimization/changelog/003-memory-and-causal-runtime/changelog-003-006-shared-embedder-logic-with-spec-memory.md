@@ -82,5 +82,7 @@ The canonical adapter contract surface (interface, types, registry, Ollama adapt
 - Add behavior branching to the shared cascade for `contentType: 'code'` when a TypeScript code consumer materialises. Today the parameter is accepted but does not alter routing.
 - Collect live daemon smoke (cold start, pointer flip observation, semantic-shadow probe) to complete the final operator-side acceptance check.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack/006-shared-embedder-logic-with-spec-memory` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack`

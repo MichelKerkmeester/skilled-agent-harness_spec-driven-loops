@@ -77,5 +77,7 @@ Operator accepted the probe result. The auto-cascade now resolves Voyage then Op
 - A later packet purged the `llama-cpp` surface entirely and moved to a nomic-only local default. The auto-cascade and provider file changes from this phase were superseded by that decision.
 - A rank-stability fix would be required before reconsidering `llama-cpp` as the automatic default at a future point.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

@@ -67,5 +67,7 @@ Build and all 54 vitest tests passed. Three previously blocked scenarios (002, 0
 - Re-verify scenario 022 with a subject that has multi-hop transitive dependents to demonstrate that `transitive > nontransitive` holds for a deep topology.
 - Consider persisting quarantine state across process restarts as an operator-visibility enhancement (out of scope for this packet, no correctness impact).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/006-parser-quarantine-recovery` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`

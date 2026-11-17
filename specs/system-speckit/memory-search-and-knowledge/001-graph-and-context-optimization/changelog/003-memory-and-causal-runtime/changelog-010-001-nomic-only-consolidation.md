@@ -72,5 +72,7 @@ Local embedding menus listed eight stale models across registries, dimension map
 - Unlisted-model runtime-dim is verified headlessly with mocked vector length. A live unlisted model on a running daemon is the natural follow-up check.
 - Phases 002 through 006, the hf-local HTTP model-server work, remain spec-only and deferred.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/001-nomic-only-consolidation` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`

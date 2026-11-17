@@ -74,5 +74,7 @@ Twenty-one per-skill `graph-metadata.json` files were authored across all routab
 - Implement session bootstrap injection so the graph summary is pre-injected into session context rather than loaded lazily at first advisor call.
 - Investigate auto-generation of `graph-metadata.json` from SKILL.md analysis to reduce manual maintenance burden as skills are added or renamed.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/001-skill-graph-metadata-routing-boosts` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph`

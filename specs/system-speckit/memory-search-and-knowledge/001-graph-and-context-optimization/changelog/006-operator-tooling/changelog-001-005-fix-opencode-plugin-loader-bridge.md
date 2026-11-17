@@ -93,5 +93,7 @@ Two later phases extended the fix. Phase 4 remapped the skill-advisor plugin fro
 - Regenerate memory embeddings for this packet after an embedding provider becomes available. The `generate-context.js` run exited 0 but embedding-provider calls failed. Entries are BM25/FTS-searchable but not vector-searchable.
 - Review the module-global state design in the skill-advisor plugin. The current single-module cache and status object is adequate for one OpenCode session but may cause state leaks in multi-instance scenarios.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/005-fix-opencode-plugin-loader-bridge` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

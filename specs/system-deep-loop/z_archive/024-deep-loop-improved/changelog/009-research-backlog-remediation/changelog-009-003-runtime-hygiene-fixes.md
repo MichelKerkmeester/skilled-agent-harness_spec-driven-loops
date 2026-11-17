@@ -54,5 +54,7 @@ Ephemeral finding-id markers were left inside HTML comments across command and s
 
 - None. All P0 items closed with independent verification.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/003-runtime-hygiene-fixes` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

@@ -59,4 +59,6 @@ This top-level phase parent groups 9 child phase groups spanning 2026-05-16 to 2
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture` (Phase Parent)

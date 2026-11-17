@@ -50,5 +50,7 @@ A characterization benchmark that measured how four LLMs drive the `/memory:sear
 - Consider a standing red-team query for the `kubernetes` off-corpus false-relevance, where every model awarded a good verdict at 0.78 on an unrelated doc.
 - A follow-on running every model at both medium and high would separate the model from the reasoning tier, since gpt-5.5 ran at medium against a high trio.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

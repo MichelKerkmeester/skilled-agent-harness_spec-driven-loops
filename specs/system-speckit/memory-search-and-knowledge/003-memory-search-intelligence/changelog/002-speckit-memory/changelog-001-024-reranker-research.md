@@ -50,5 +50,7 @@ This phase is research, not a build, and it closes a 10-iteration deep research 
 - PREREQ-B: a corpus geometry that exhibits a reliable-negative distractor at fused rank 1 to 3 above a gold at fused rank 4 to 8, which occurs 0 of 6 on real data today.
 - A measured prod win waits on real ledger density plus that corpus geometry, the design is preserved and ready.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

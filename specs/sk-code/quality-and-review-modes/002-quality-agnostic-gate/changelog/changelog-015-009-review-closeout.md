@@ -77,5 +77,7 @@ The phase's changes sit on branch head 002c94662f as one uncommitted change set.
 - The baselines are reconstructed. No run was taken before the first source edit, so T001, T002 and CHK-003 rest on runs in a git archive HEAD copy of the unedited tree.
 - The packet changelog was cleaned by hand after generation. nested-changelog.js reads backtick spans in task evidence as file paths, so it wrote a few Files Changed rows holding command text in place of a path. Those rows were removed from changelog-015-009-review-closeout.md after the last run.
 
+&nbsp;
+
 > Spec folder: `specs/sk-code/015-quality-agnostic-gate/009-review-closeout` (Level 2)
 > Parent packet: `specs/sk-code/015-quality-agnostic-gate`

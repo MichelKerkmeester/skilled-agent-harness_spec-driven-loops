@@ -69,5 +69,7 @@ The 022 arc was fully closed. The validator is available for manual runs and rea
 - Update `install_guides/README.md` and CocoIndex docs to reflect current canonical defaults. The validator currently exits 1 on these files as expected per ADR-D.
 - Extend `MODEL_ORG_PREFIXES` array when new model providers are added to the canonical registry.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/010-adr-writing-and-doc-validator` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

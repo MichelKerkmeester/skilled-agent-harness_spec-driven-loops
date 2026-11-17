@@ -85,5 +85,7 @@ The shipped end state is `.opencode/commands/doctor/speckit.md` (argv-positional
 - Monitor advisor routing quality after reindex to confirm stale command descriptions are no longer surfaced.
 - Verify `.claude/commands/doctor/` auto-sync parity after any future git operations that touch `.opencode/commands/doctor/`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator`

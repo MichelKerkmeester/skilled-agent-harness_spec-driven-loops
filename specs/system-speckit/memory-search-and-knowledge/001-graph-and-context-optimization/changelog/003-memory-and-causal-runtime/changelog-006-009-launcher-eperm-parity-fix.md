@@ -64,5 +64,7 @@ A byte-equivalent `EPERM` branch was added to both launchers, mirroring the RCA-
 - Track artifact freshness asymmetry: `mk-skill-advisor-launcher` checks `latestSourceMtimeMs` but the other two only check artifact existence. This leaves room for stale dist to be served.
 - Track stale copied shared dist under `.opencode/skills/system-code-graph/dist/system-spec-kit/shared/embeddings/factory.js` where `ollama` is missing from `SUPPORTED_PROVIDERS`. This is a latent bug not in the active code path today.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/009-launcher-eperm-parity-fix` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

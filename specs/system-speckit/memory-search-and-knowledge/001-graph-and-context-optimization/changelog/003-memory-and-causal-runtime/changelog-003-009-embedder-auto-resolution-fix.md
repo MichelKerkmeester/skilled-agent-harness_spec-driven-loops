@@ -65,5 +65,7 @@ Phase 008 proved that `EMBEDDINGS_PROVIDER=auto` silently degraded to the unheal
 - The `node:sqlite` experimental warning is emitted by the runtime on each startup. Suppress it via `--no-warnings=ExperimentalWarning` or a process flag if the noise becomes a problem.
 - Manifest validation in `readActiveOllamaEmbedderFromDb` still calls `getOllamaManifest`. The generic shard path is forward-looking. Extend manifest validation to non-ollama providers in a follow-on packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

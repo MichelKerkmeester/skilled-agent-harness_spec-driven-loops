@@ -76,5 +76,7 @@ Lanes A and B shipped together. Lane C (hot-file breadcrumbs) shipped next. Lane
 - **T014 lexical fallback (deferred).** When tree-sitter fails to parse a file, a lexical regex fallback could recover some symbols. Deferred because the failure rate was under 1 percent and the cost of a regex parser for 10+ languages exceeded the benefit.
 - **T015 cluster/export (deferred).** Grouping edges by export cluster was deferred because the export data was not yet visible in the graph schema. A later packet will add the export cluster column.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

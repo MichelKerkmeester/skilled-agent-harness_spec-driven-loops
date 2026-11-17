@@ -61,5 +61,7 @@ This packet closed both gaps. SIGHUP and SIGQUIT now route to `fatalShutdown(...
 - Run CHK-023 to confirm the `fatalShutdown`/`vectorIndex` source-order regex assertion still passes after any future refactor.
 - Consider the slow-drain-starves-checkpoint residual risk when the fileWatcher drain takes close to the 5000ms deadline. Packet 010 (autocheckpoint and periodic TRUNCATE) mitigates the at-rest WAL growth but the deadline budget issue remains open.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/009-shutdown-durability` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

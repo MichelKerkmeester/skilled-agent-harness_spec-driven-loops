@@ -66,5 +66,7 @@ hf-local.ts was rewritten from an in-process `@huggingface/transformers` provide
 - Provisional default dim (768) is a startup convenience for the canonical nomic model. The server-reported dim is the runtime authority.
 - Live embed round-trip is deferred to phase 004. Readiness retry, 404 cascade, and dim adoption are covered by mocked-transport tests.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/003-hf-local-http-client` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`

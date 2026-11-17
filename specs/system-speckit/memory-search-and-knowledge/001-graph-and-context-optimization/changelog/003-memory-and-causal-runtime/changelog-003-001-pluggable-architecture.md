@@ -74,5 +74,7 @@ A skill-advisor-local `mcp_server/lib/embedders/` module was shipped that mirror
 - Resolve pre-existing vitest failures in `manual-testing-playbook.vitest.ts`, `advisor-corpus-parity.vitest.ts`, `advisor-graph-health.vitest.ts`, `python-ts-parity.vitest.ts` before the next full-suite green baseline.
 - Extract a shared `@spec-kit/embedders` package to replace the copy-adapt duplication between 016 mk-spec-memory and skill-advisor once a third consumer emerges.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack/001-pluggable-architecture`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack`

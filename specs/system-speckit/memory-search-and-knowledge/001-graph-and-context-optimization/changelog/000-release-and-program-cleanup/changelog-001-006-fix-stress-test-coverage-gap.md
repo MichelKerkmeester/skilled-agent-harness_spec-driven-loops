@@ -85,5 +85,7 @@ The stress suite grew from 38 files and 94 tests to 56 files and 159 tests, all 
 - The FIXME-tagged loose assertion in sa-011 (`syncDerivedMetadata` idempotence) requires a product change to sharpen. Track in a follow-on product packet.
 - Perform a flake-soak run if CI reports intermittent failures. A single clean run was accepted. Repeated runs were deferred.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/006-fix-stress-test-coverage-gap` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness`

@@ -69,5 +69,7 @@ Without a fixed corpus, rubric and dispatch matrix, a stress test of the system-
 - Evaluate extending cli-copilot coverage beyond gpt-5.4 to additional models in a v2 pass per the decision record.
 - Consider adding N=3 repetitions per scenario (REQ-009) to separate systematic failures from variance once baseline data exists.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/001-search-scenario-design` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`

@@ -59,4 +59,6 @@ None. Docs-only sync.
 - The unlisted `enrichment-state.ts` file is still not documented in this README. That gap is intentionally out of scope here and remains a candidate for a future doc-sync.
 - No code or test changes. This packet only re-aligns documentation with already-shipped behavior (packet 017).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/022-readme-doc-sync` (Level 1)

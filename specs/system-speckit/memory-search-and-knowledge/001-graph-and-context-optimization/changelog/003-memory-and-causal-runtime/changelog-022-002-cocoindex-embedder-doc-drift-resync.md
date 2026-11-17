@@ -64,5 +64,7 @@ All four embedder-side edits shipped in a single main-agent pass. The three `_NO
 - Update memory entry `project_2026_05_19_cocoindex_arc_shipped.md` post-arc to note that 023B promoted `Qwen/Qwen3-Reranker-0.6B` over `jina-reranker-v3` as the production reranker default.
 - Audit `README.md:217` and `INSTALL_GUIDE.md:563` embeddinggemma rows for a non-default marker. P2 informational finding deferred pending 002b closure.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/002-cocoindex-embedder-doc-drift-resync`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

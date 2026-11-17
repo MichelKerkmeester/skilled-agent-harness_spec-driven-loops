@@ -71,5 +71,7 @@ Architecture diagrams using Unicode box-drawing characters (`┌┐└┘──�
 
 - Four of the 17 target files (`mcp_server/code_graph/lib/README.md`, `mcp_server/code_graph/handlers/README.md`, `mcp_server/skill_advisor/README.md`, `mcp_server/code_graph/README.md`) were later extracted to their own skill packages (`system-code-graph`, `system-skill-advisor`). Verify that diagram coverage is maintained in those new locations.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

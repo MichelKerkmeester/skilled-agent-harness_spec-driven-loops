@@ -56,5 +56,7 @@ This phase-parent campaign standardized skill reference and asset frontmatter ac
 
 - Live advisor `matchedDocs` smoke depends on a fresh advisor session adopting the doc-trigger flag.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment` (Level 1, Phase Parent)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

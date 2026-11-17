@@ -58,5 +58,7 @@ This phase performed a hard clean rename that dropped the `_V1` version suffix f
 - The documented-dead `SPECKIT_PIPELINE_V2` was left as written. Its live-doc occurrences describe a removed flag by its historical name. Modernising that prose is a separate documentation decision.
 - The eval-harness `SPECKIT_EVAL_V2_OUTPUT`, `SPECKIT_EVAL_V2_KS` and `SPECKIT_EVAL_V2_LIMIT` knobs were left as written. They name the harness rather than a versioned feature flag.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/005-flag-name-cleanup` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

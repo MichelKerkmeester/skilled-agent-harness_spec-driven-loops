@@ -72,5 +72,7 @@ All ten reports were rolled up into `synthesis.md` (6 FAIL, 4 CONDITIONAL, P0=8,
 - Normal-shell hook verdicts remain operator-owned. The sandbox cannot produce the non-sandbox live runtime evidence requested by packet 045.
 - Tier gamma P1s require explicit operator direction: memory YAML contracts, memory-save defaults, embedding-cache retention policy, governed ingest and server-boundary validation are open design calls.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-release-readiness-findings-synthesis` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness`

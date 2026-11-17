@@ -70,5 +70,7 @@ One P0 finding was surfaced: the checked-in Copilot live hook wrapper does not i
 - Collect normal-shell live CLI verdicts for all five runtimes outside the sandbox to close the P1 evidence gap.
 - Document the Copilot fallback path in the hook contract so the gap cannot silently recur after remediation.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/005-cross-runtime-hook-parity-audit` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`

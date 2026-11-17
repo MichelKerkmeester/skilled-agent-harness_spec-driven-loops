@@ -78,5 +78,7 @@ This packet closed both P1 findings alongside three P2 items (F-002, F-008, F-00
 - Update catalog and playbook docs to note that `fallbackDecision` is now emitted by `context` as well as `query`. Deferred to Packet C (018).
 - Callers that switch on `requiredAction` must add an arm for `'rg'` alongside the existing `'code_graph_scan'` arm. No shipped caller is known to rely exclusively on the old value.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/016-degraded-readiness-envelope-parity` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

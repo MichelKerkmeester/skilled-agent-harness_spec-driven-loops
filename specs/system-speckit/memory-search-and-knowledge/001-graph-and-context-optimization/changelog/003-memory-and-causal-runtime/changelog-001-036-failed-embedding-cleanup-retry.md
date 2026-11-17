@@ -66,5 +66,7 @@ Baseline inspection found no explicit `failed` rows at the start: the database h
 - Pending and retry rows (741 pending, 18 retry at baseline) remain outside the `repair-failed-embeddings.mjs` selection predicate. A follow-on packet targeting the retry-manager backlog should drain those rows separately.
 - Monitor whether `failed` rows re-accumulate after normal embedding operations resume, since the prior high count (214 at the earlier Wave 1 run) suggests the worker was failing silently before the 037/039 fixes.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/036-failed-embedding-cleanup-retry` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

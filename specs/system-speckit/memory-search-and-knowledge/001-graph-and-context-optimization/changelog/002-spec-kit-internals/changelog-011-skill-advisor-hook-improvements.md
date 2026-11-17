@@ -75,5 +75,7 @@ Packet 014 delivered the implementation follow-through for the packet-02 researc
 - Global package build still blocked by unrelated pre-existing TypeScript errors.
 - Workspace reports stale advisor freshness during direct hook/bridge smokes.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

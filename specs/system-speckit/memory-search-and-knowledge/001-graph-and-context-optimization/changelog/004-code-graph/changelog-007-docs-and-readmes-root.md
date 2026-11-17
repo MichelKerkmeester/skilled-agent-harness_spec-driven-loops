@@ -56,4 +56,6 @@ This phase parent groups 6 child phases spanning 2026-04-25 to 2026-05-24. Each 
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes` (Level 2, Phase Parent)

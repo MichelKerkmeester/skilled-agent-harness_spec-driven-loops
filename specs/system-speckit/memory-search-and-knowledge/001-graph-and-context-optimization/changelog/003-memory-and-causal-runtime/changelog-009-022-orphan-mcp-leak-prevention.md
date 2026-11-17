@@ -86,5 +86,7 @@ All three layers are versioned in the repo. LaunchAgent activation and home-leve
 - Restore or regenerate the plist file (currently deleted from the repo) before attempting LaunchAgent activation.
 - Monitor dry-run output timing: process age is time-sensitive, so a fresh dry-run run early in a long session will capture freshest-young-MCP preserve logging that a late-session run misses.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

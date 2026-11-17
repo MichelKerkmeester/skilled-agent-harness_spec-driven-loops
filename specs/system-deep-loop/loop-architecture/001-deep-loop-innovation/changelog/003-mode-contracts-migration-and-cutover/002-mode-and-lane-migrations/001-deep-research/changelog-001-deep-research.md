@@ -28,6 +28,8 @@ This phase-parent coordinates the Deep Research migration over the shared typed 
 | `006-shadow-parity` | Define the shadow-parity harness that runs the ledger path beside the legacy emitter and diffs projections event-for-event. |
 | `007-rollback-and-mode-gate` | Define the fail-closed rollback switch and the independent mode-gate checklist that certifies this mode migrated. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research` (Level 2)
 
 ## 2026-08-16
@@ -41,5 +43,7 @@ The Deep Research migration lane is now Complete. All seven concern children rea
 - All 7 leaves Complete: typed-ledger schema, reducers/projections, sealed-artifacts, certificates, resume-adapter, shadow-parity, rollback-gate.
 - Shadow-parity verified green at 49/49.
 - Rollback-gate verified green at 79/79.
+
+&nbsp;
 
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research` (Level 2)

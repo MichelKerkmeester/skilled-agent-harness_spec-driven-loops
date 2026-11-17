@@ -56,6 +56,8 @@ _No file-level detail recorded._
 
 ---
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence` (Level 2)
 
 ## 2026-06-29
@@ -145,6 +147,8 @@ The 006 surface-alignment remediation converted the audit record into a closed d
 
 ---
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment` (Phase Parent)
 
 ## 2026-07-11
@@ -215,6 +219,8 @@ The former top-level `016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory` chang
 ### Follow-Ups
 
 - Strict packet validation may still report packet-wide issues outside this changelog-only write boundary. See `scratch/task-7c-changelog.md` for the exact outcome.
+
+&nbsp;
 
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence` (Phase Parent)
 

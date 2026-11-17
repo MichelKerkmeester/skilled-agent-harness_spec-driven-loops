@@ -74,5 +74,7 @@ The main agent applied 55 surgical edits across the 7 canonical READMEs. Ollama 
 - Phase label numbering gap in install guide: section numbers read 8, 9 REMOVED, 10, 11 after Ollama removal. A future restructure can renumber if the stylistic gap becomes a user complaint.
 - Confirm all 6 barter symlinks still resolve correctly after any future barter directory restructure.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/019-readme-resource-map` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

@@ -59,4 +59,6 @@ This phase parent groups 5 child phases spanning 2026-05-23 to 2026-05-23. Each 
 
 The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits b8a866de2f, c99f990897 and ada2c51ee8. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode` (Level 2, Phase Parent)

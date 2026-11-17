@@ -71,5 +71,7 @@ The final phase recorded the operational failure mode that matters when Kimi K2.
 - The manual testing playbook `CO-036` `kimi-k2.6` scenario was not updated. It was deferred to avoid disturbing the playbook's file-count self-check.
 - A linter normalized pre-existing 149/154 packet-id drift during this phase. That was a bonus side effect of touching packet metadata, not an authored goal of the phase.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/006-broad-scope-timeout-caveat` (Level 1)
 > Parent packet: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support`

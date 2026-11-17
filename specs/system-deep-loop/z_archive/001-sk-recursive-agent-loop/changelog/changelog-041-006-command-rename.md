@@ -38,4 +38,6 @@ Renamed the command entrypoint to `/speckit:recursive-agent` (later renamed agai
 
 No migration required. This rename was superseded by Phase 008's rename to `/deep:start-agent-improvement-loop`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/006-sk-recursive-agent-command-rename/`

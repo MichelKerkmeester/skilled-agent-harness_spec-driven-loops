@@ -57,5 +57,7 @@ None.
 - Test mocks in 8 vitest files still set the readiness functions to `() => true`. These are now unnecessary noise but do not break anything. Removal is mechanical and belongs in the same follow-up that retires the `db-state.ts` exports.
 - The "user cancelled MCP tool call" symptom seen in the v1.0.3 stress test was an MCP transport-layer cancellation from the orchestrator (Codex client), not a server-side bug. It was not caused by or addressed by this gate removal.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/005-vestigial-embedding-readiness-gate-removal` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

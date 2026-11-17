@@ -78,5 +78,7 @@ Phase 007 introduced canonical DB directory identity via `resolveCanonicalDbDir(
 - Read-path friction item 16 was deferred and remains out of scope for this phase. Track in a read-path or final regression packet.
 - Broader `system-code-graph` suite triage for the 31 pre-existing failures is handled separately in `011-system-code-graph-suite-triage`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

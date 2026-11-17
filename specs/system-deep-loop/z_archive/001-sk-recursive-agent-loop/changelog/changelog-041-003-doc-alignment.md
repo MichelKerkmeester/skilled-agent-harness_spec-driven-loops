@@ -38,4 +38,6 @@ Aligned the skill package documentation with sk-doc template structure. SKILL.md
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment/`

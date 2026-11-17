@@ -69,5 +69,7 @@ Live cleanup did not complete. The Metal backend failed to create a command queu
 - Prove idempotence after a successful repair run. The selection and status re-check logic is idempotent in theory, but the success path has not executed yet.
 - Consider adding a fail-fast path when the embedding provider cannot initialize, rather than logging the same provider error for every one of the 214 rows.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/004-failed-embedding-cleanup` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups`

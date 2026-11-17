@@ -58,5 +58,7 @@ The shared daemon can now be configured to outlive its owning session. Phase 017
 - Secondary ownership adoption is unproven, with a split-brain mechanism identified. After release, a secondary can bridge to the surviving daemon's socket, but full re-election of recycle ownership is not yet validated. Cross-validation pinned the exact blocker: the released daemon lease still records the exiting launcher's pid, so an adopter that liveness-checks the lease pid sees a dead pid, treats the lease as stale, and spawns a second daemon. Before the flag can be enabled, the release must rewrite the lease into an explicit released/ownerless state and the adopter must adopt rather than respawn.
 - Terminal death relies on the orphan sweeper. A released daemon reparents to pid 1; until ownership adoption and idle-death are validated, the orphan sweeper bounds any released-daemon leak.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

@@ -81,5 +81,7 @@ The embedding cache was deleted before the re-run to force cold re-embedding. Th
 - Populate `derived.intent_signals` plus `manual.depends_on`/`manual.related_to` across the 17 active skills. The 015/005 audit found these fields are universally absent. This is a separate intervention from description rewording.
 - Revisit the semantic weight recommendation if SKILL.md descriptions change materially outside this packet or a richer corpus is available.
 
+&nbsp;
+
 > Spec folder: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/004-metadata-fixes-and-seeded-sweep-rerun` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph`

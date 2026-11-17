@@ -74,5 +74,7 @@ The 18-probe corrected bench (three lanes) showed hit rate unchanged at 14/18 ac
 - Sequential-thinking MCP did not execute successfully across five attempts. The five calls are recorded as attempted. Future invocations should verify whether the tool is available in the active runtime context before depending on it.
 - Probes 1, 5, 12 and 15 remain genuine failures after mirror dedup. These are code-pipeline issues (chunking quality, query expansion) that packet 015 and 016 address.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

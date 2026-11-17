@@ -56,5 +56,7 @@ Two-phase promotion (accept vs ship) with branch-preserved failure + a new rollb
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/010-deep-improvement-accepted-vs-shipped` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

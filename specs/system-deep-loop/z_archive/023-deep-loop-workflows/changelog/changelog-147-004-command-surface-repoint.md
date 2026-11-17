@@ -52,5 +52,7 @@ This phase moved the `/deep` command surface off five old skill paths and onto t
 - CHK-020 Phase-003 `deep-loop-workflows` hub, mode packets and `mode-registry.json` exist before edits.
 - CHK-021 Per-mode `graph-metadata.json` files are absent. Only hub graph metadata survives.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/004-command-surface-repoint` (Level 2)
 > Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`

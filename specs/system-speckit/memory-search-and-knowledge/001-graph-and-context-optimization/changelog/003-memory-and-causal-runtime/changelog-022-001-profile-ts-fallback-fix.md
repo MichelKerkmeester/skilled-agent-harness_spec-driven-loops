@@ -64,5 +64,7 @@ All four `profile.ts` inline literals were replaced with `getCanonicalFallback(p
 - Dim-lookup at `profile.ts:225` retains `BAAI/bge-base-en-v1.5` as a backward-compatibility identifier in a registered-model-to-dim map. This is out of scope per the audit verdict and requires no change.
 - `profile.ts:133` retains `jina-embeddings-v3: 1024` in a dim-map registered-model lookup. Same reasoning applies.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/001-profile-ts-fallback-fix`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

@@ -72,5 +72,7 @@ This packet re-ran those deferred cells against a live environment. The first sc
 - Compaction recovery relevance scoring was not measured. A controlled trigger is needed to confirm that hook-cache content is not just formatted but actually relevant.
 - Parser crash file:line details are recorded at the class and count level only. Exact file:line citations should be extracted from the native raw transcript when fixing `structural-indexer.ts`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/002-native-deferred-trial-rerun` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

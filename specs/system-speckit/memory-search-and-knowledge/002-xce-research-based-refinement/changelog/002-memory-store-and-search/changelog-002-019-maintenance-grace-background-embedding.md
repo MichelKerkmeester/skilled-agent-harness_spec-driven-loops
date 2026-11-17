@@ -59,5 +59,7 @@ contextType: "implementation"
 - The marker keeps the daemon un-reaped while busy, but it does not make it responsive. A busy daemon cannot service a new launcher's bridge connection, so under heavy multi-launcher contention a fresh daemon can still be spawned. The complete fix is to make the heaviest synchronous scan and embedding phases cooperative through chunk-and-yield, as in 018, so the daemon stays responsive through them rather than only un-reaped.
 - Full-cycle live validation wants a clean single-launcher environment, so the post-scan burst can be observed end to end without a competing re-election in flight.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/019-maintenance-grace-background-embedding` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

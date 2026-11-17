@@ -71,5 +71,7 @@ Path A was used: the standalone `system-code-graph` package now declares `@model
 - `tsc --build --force` is blocked by shared dist permissions and fails with `EPERM` on `shared/dist/**`. The normal required build command exits 0 and is the correct gate.
 - Update `tests/context-server.vitest.ts` to remove the 74 stale topology assertions that still expect pre-ADR-002 co-resident code-graph tools in `system-spec-kit`. This is outside the scope of a dependency repair packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups`

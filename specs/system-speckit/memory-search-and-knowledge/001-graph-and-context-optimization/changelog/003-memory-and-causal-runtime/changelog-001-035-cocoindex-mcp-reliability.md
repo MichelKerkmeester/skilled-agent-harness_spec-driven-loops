@@ -73,5 +73,7 @@ None.
 - Evaluate making `refresh_index=false` the runtime default for MCP calls, splitting refresh from search into separate tool calls or adding a bounded progressive response strategy to prevent host-side timeout on long refresh cycles.
 - Capture a live msgspec decode stack trace with `COCOINDEX_CODE_IPC_DEBUG` enabled to confirm whether decode failures stem from malformed payloads, schema drift or transport truncation after host cancellation.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/035-cocoindex-mcp-reliability` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

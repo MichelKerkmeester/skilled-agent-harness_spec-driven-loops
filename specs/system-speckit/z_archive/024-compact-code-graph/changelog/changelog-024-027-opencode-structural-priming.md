@@ -86,4 +86,6 @@ Hookless runtimes needed a clearer answer than "the code graph exists". They nee
 
 No migration required. This phase is additive and contract-focused: it standardizes how hookless runtimes describe and recover structural context without changing the core graph tools themselves.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/027-opencode-structural-priming/`

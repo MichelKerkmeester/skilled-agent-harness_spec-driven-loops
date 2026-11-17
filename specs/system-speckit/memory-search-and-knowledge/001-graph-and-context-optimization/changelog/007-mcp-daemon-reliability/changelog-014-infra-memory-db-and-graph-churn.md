@@ -46,5 +46,7 @@ Two live-infra issues degraded the spec-memory subsystem. Memory writes failed d
 ### Follow-Ups
 - Graph-churn code fix deferred (agent idempotency draft builds + passes 41 tests but effectiveness unverified)
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn`

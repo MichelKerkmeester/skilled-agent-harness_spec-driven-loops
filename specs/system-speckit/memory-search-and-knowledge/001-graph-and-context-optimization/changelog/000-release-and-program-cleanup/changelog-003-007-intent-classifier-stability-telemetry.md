@@ -71,5 +71,7 @@ The live `memory_context` probe confirmed `emitIntentTelemetry()` runs in the de
 - Monitor paraphrase heuristic accuracy in production. Sorted-token grouping may miss semantic equivalences that embedding-based clustering would catch.
 - Restart the MCP-owning client after each dist rebuild to ensure live probes reflect the deployed binary rather than a stale child process.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/007-intent-classifier-stability-telemetry` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

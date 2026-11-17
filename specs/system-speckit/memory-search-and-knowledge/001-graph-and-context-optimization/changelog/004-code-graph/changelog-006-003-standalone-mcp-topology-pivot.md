@@ -78,5 +78,7 @@ All typechecks passed. The full 395-test Vitest suite passed. Strict packet vali
 
 - MCP children must be restarted before the new standalone server becomes visible to clients. The implementation-summary records this as a known limitation at handover.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/003-standalone-mcp-topology-pivot` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation`

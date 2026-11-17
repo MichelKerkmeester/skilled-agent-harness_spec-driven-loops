@@ -50,5 +50,7 @@ Copilot CLI 1.0.34 (and earlier versions back to 1.0.14) logged `Neither 'bash' 
 
 - Phase 007 (`copilot-writer-wiring`) replaces the no-op `bash: "true"` on `UserPromptSubmit` and `SessionStart` with the actual Copilot writer invocations so the managed block refreshes per-prompt.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 1)
 > Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

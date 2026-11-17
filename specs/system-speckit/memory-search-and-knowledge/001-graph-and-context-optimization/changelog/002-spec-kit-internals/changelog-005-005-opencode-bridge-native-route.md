@@ -53,5 +53,7 @@ The bridge was failing open to the python route even though the native compat mo
 - Replace the blanket fail-open catch with an accurate diagnostic
 - Confirm compat/index.js exports `probeAdvisorDaemon`, `readAdvisorStatus`, `handleAdvisorRecommend`, and `buildSkillAdvisorBrief`
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/005-opencode-bridge-native-route` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation`

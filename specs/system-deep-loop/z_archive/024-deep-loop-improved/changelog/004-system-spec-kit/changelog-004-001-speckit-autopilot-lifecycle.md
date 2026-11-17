@@ -55,5 +55,7 @@ Added an unattended :autopilot envelope + machine-readable terminal reason codes
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/004-system-spec-kit/001-speckit-autopilot-lifecycle` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/004-system-spec-kit`

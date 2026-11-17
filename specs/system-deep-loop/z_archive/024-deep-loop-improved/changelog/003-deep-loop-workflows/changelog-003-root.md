@@ -72,4 +72,6 @@ _No file-level detail recorded._
 
 - None recorded.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows` (Level 2)

@@ -60,5 +60,7 @@ A strong but isolated high-cosine hit could be capped at `medium` confidence bec
 
 - The real labeled set (roughly fifty to one hundred human-judged pairs from live `memory_search` traffic, joined to the raw score the pipeline assigned each pair) is the documented prerequisite before `SPECKIT_CONFIDENCE_CALIBRATION` can be enabled.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/004-confidence-calibration-labeled-set` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

@@ -64,5 +64,7 @@ None.
 - Re-apply CG-009 and CG-010 together after the recovery-procedures no-op vs errored-rollback distinction is added, enabling a precise `restored !== true` check.
 - Re-apply CG-037 dry-run rollback target fix alongside the apply-orchestrator changes once the CG-009/CG-010 pair are unblocked.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-deferred-wip-overlapping-findings` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`

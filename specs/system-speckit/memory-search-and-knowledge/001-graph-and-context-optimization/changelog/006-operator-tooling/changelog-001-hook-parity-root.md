@@ -67,4 +67,6 @@ This phase parent groups 17 child phases spanning 2026-04-21 to 2026-04-23. Each
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 1, Phase Parent)

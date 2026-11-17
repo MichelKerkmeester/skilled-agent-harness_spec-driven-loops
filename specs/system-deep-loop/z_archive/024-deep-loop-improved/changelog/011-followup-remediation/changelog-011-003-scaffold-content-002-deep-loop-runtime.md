@@ -46,5 +46,7 @@ All 18 leaf children of `002-deep-loop-runtime` had genuinely-authored `spec.md`
 
 - The uniform frontmatter defect this child produced was fixed here directly, and children 004/005's dispatch prompts were hardened with the exact pitfall list so it did not recur.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/003-scaffold-content-002-deep-loop-runtime` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`

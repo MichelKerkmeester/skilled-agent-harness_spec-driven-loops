@@ -92,5 +92,7 @@ Multiple commits across three sequential dispatch tracks. Iteration evidence pre
 - Dashboard-grade reranker telemetry: separate stale expiry from capacity eviction, expose reset/failure context, add provider-scoped counters.
 - Short-fragment content routing robustness: progress versus research, research versus metadata, and terse drop telemetry still drift on compact inputs.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

@@ -71,5 +71,7 @@ CocoIndex's hybrid fusion had inherited RRF defaults (`k=60`, `vec_weight=0.7`, 
 - ADR-020 rollback path uses `COCOINDEX_HYBRID_VECTOR_WEIGHT=0.7 COCOINDEX_HYBRID_FTS5_WEIGHT=0.7` env overrides to revert to pre-017 defaults without a code change.
 - The six consistently missed probes (5, 10, 12, 13, 14, 18) fail at the recall stage. Improving hit rate beyond 12/18 under bge-code-v1 requires a better candidate set, not RRF re-weighting. Track as input to a future embedder or chunking packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

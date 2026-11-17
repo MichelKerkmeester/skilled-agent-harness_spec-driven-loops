@@ -58,5 +58,7 @@ New observability-events.cjs (normalizeObservabilityEvent/appendObservabilityEve
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation/003-unified-observability-event-envelope` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation`

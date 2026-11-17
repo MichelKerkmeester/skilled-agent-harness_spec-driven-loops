@@ -87,5 +87,7 @@ A cli-codex dispatch authored the full package envelope in a single 11-minute wi
 - Populate `feature_catalog/` and `manual_testing_playbook/` with full mirror content in child 003 alongside source movement. The current one-entry seeds are illustrative placeholders only.
 - Revisit the three `references/` documents as child 003 implementation reveals constraints. The files were authored from ADR-001 principles without live runtime data.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/002-system-skill-advisor-package-scaffold` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

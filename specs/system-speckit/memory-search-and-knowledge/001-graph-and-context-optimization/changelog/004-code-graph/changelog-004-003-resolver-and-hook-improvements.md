@@ -89,5 +89,7 @@ Eight streams addressed those findings. The `calls_from` and `calls_to` query pa
 - Resolve pre-existing workspace-wide lint errors that block `npm run check --workspace=@spec-kit/mcp-server`. These are in untouched files outside this packet's scope.
 - Verify Copilot hook startup payload transport once a dedicated `hooks/copilot/session-prime.ts` path is established. The current copilot wiring routes through a shared test fixture.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/003-resolver-and-hook-improvements` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan`

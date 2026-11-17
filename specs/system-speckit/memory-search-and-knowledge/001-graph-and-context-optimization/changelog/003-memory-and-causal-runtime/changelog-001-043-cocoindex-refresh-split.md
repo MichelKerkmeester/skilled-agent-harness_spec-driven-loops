@@ -81,5 +81,7 @@ The patch flipped the `search.refresh_index` default in `server.py` from `true` 
 - Add background periodic refresh. A `COCOINDEX_CODE_BACKGROUND_REFRESH=true` flag with interval clamping and scheduler tests was deferred because it was not needed for the contract split.
 - Note that stale-index reads are possible after code changes. Operators should call `cocoindex_refresh_index` before a search batch. Passing `search(refresh_index=true)` provides a one-shot refresh-before-search alternative.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/043-cocoindex-refresh-split` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

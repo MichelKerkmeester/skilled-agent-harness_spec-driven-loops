@@ -25,4 +25,6 @@ This parent groups the related child phases that feed the deep-loop innovation p
 | `003-baseline-taxonomy-and-state-census` | Freezes one immutable BASE commit and the authoritative 5/7/8 deep-loop taxonomy, then captures runtime, state, schema, behavior-benchmark, replay-fixture, defect-contract, and rollback evidence for every later 036 phase (Complete). |
 | `004-architecture-coverage-and-transition-contract` | The last planning gate before implementation: ratifies the cross-mode spine, freezes all 178 recommendations into a bijective single-disposition ledger, and fixes the transition, versioning, compatibility, cutover, and rollback contract (Complete). |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture` (Level 3)

@@ -64,5 +64,7 @@ A 9-iteration autonomous deep-research loop converged on a C+F hybrid manifest-d
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

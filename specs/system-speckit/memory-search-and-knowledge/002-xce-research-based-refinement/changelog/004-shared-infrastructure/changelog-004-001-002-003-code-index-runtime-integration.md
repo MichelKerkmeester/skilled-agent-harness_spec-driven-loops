@@ -63,5 +63,7 @@ The code-index runtime integration wired warm-only CLI fallback into Claude and 
 - Dual-stack observation window remains open by design
 - Final program-level multi-runtime transport-down drill tracked outside this phase
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli`

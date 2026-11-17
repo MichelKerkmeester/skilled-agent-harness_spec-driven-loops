@@ -65,5 +65,7 @@ The shared embedding facade caught real provider failures, incremented the circu
 - Coordinate landing of 038 together with 037 and 039 as a single deployment unit. 038 surfaces failures. 039 prevents token-budget overflows. 037 reproduces and fixes the llama.cpp API contract.
 - After 037, 038 and 039 land, verify that save-heavy query-intelligence playbook scenarios no longer trip the circuit breaker.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/038-embedding-error-propagation`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

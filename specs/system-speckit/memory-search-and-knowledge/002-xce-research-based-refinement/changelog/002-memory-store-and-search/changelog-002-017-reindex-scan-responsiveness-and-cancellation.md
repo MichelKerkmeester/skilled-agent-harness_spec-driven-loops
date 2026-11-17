@@ -58,5 +58,7 @@ A background `memory_index_scan` with force on starved the memory daemon for ove
 
 - The launcher lease-heartbeat refresh fails under scan load or multi-launcher contention, and re-election recycles the daemon mid-scan, so a full force scan still does not run to completion. Making the heartbeat tolerate a busy maintenance scan, or moving the scan to an out-of-process worker, is the open follow-on. The index is functionally healthy without it.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

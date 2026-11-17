@@ -67,4 +67,6 @@ See per-phase changelogs for full file tables.
 - Dual-stack observation window remains open by design
 - Final program-level multi-runtime transport-down drill tracked at program level
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli` (Phase Parent)

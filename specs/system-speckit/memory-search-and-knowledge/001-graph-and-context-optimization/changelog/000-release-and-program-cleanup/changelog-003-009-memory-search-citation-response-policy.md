@@ -74,5 +74,7 @@ The 007 research isolated the root cause: weak retrieval was advisory, not contr
 - Add caller-side enforcement in CLI runtimes to honor `noCanonicalPathClaims` and emit `safeResponse` instead of hallucinating paths.
 - Consider a server-side `WARN` log line when `responsePolicy` fires, to support analytics on how often weak-quality retrieval triggers the refusal contract.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/009-memory-search-citation-response-policy` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

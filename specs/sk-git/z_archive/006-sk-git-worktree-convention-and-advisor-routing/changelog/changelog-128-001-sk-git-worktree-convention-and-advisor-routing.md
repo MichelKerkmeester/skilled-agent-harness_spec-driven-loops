@@ -55,5 +55,7 @@ Adopted one named-feature-worktree convention for sk-git — branch `wt/{NNNN}-{
 
 - Optional: align the ephemeral per-session wrapper (`worktree-session.sh`) branch namespace to `wt/` too — deferred (live shared infra; reaper is dir-keyed so it's reconnect-safe but not numbered). Stale feature worktrees (`0001`–`0005`) are merged and prunable on request.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/skilled-agent-orchestration/z_archive/103-sk-git-worktree-convention-and-advisor-routing` (Level 2)
 > Parent packet: `.opencode/specs/skilled-agent-orchestration` (track)

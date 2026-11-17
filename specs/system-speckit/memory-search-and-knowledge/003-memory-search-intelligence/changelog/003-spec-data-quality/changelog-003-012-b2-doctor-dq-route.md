@@ -47,5 +47,7 @@ Status is PLANNED. Nothing is built yet. This phase is a scaffold with a spec an
 - Build this retroactive automation per plan.md on the shared safe-fix engine in `026-shared-safe-fix-engine`.
 - CI stays report-only. Safe-class fixes apply only under an operator-local flag and are never auto-committed.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/002-retroactive-automation/012-doctor-dq-route` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

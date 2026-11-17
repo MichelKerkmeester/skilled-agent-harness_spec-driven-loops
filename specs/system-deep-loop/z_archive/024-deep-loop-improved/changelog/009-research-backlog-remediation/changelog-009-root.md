@@ -77,4 +77,6 @@ _See each leaf changelog in this directory for full file-level detail._
 - The default validate.sh invocation path does not read the shell rule registry at all, so both new rules added in this phase only run through explicit `SPECKIT_RULES` invocation, a real architectural gap worth its own follow-up phase.
 - Dozens of leaf children across phases 002 through 007 still carry genuine scaffold markers in their own plan.md or tasks.md, a known, deliberately deferred Tier 3 item this phase's own new detector surfaces but does not fix.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation` (Level 2, phase parent)

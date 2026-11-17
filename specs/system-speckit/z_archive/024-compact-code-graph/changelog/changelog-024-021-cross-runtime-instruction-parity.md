@@ -120,4 +120,6 @@ When this phase landed, Claude still had the strongest startup/recovery story an
 
 No migration required. The new trigger tables are passive documentation -- they guide AI behavior but do not change any runtime code or configuration. The `@context-prime` agent is additive and does not affect existing workflows.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity/`

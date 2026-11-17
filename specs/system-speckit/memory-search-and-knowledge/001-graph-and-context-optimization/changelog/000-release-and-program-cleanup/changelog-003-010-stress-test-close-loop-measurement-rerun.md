@@ -77,5 +77,7 @@ The v1.0.2 rerun dispatched all 30 cells (9 scenarios, 3 base CLIs, 3 ablation c
 - Tighten code-graph file-watcher debounce or add a freshness self-check to `code_graph_status`. Pre-flight detected 4-hour staleness that required a manual `code_graph_scan` recovery.
 - Run a higher-N variance pass (N=5) on the load-bearing I2/cli-opencode cell to confirm SC-003 closure is not a single-trial artifact (REQ-018 future work).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/010-stress-test-close-loop-measurement-rerun` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

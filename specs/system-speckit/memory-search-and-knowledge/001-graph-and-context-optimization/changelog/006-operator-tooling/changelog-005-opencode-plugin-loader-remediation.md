@@ -85,5 +85,7 @@ Running `opencode` in any directory under this repo terminated the TUI with `Typ
 - Module-global state refactor (P2): still deferred. Per-instance closure or WeakMap for multi-instance races.
 - In-flight bridge dedup (P2): still deferred.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

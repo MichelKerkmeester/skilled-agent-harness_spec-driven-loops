@@ -41,5 +41,7 @@ _No file-level detail recorded._
 
 - Actual code fixes for T1 and T2 are deferred to a follow-up phase implementing the unified design-conformance fix plan from research/research.md.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/027-launcher-concurrency-spawn-and-bridge-investigation` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

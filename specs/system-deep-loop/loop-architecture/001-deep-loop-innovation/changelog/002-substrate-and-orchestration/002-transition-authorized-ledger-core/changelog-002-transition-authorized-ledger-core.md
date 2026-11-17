@@ -25,4 +25,6 @@ This phase co-lands the core dark ledger substrate: the canonical versioned even
 | `003-replay-fingerprints` | Define independently versioned replay fingerprints over closed typed-ledger ranges with canonical replay dependencies, byte-stable outputs, and fail-closed mismatch detection. |
 | `004-transition-authorization-gateway` | Define the fail-closed gateway that authorizes every typed state transition before ledger append and records allow and deny verdicts as auditable ledger events. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core` (Level 2)

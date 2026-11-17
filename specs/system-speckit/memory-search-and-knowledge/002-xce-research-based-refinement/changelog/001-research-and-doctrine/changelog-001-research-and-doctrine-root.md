@@ -17,4 +17,6 @@ Top rollup for the `001-research-and-doctrine/` themed track. Each row links to 
 | `001-research-and-doctrine/001` peck teachings adoption (rollup) | [changelog-001-001-peck-teachings-adoption-root.md](./changelog-001-001-peck-teachings-adoption-root.md) |
 | `001-research-and-doctrine/002` gem team adoption (rollup) | [changelog-001-002-gem-team-adoption-root.md](./changelog-001-002-gem-team-adoption-root.md) |
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine` (Phase Parent)

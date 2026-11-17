@@ -74,5 +74,7 @@ Phases A and B shipped in a single cli-codex dispatch. The nine finetune helper 
 - Calibrate the anti-overfit-to-template gate threshold in Phase E: the structural-neighbor eval set approach is specified but the numeric cutoff is TBD.
 - Verify cross-machine artifact sharing if the fine-tuned model needs to leave this machine. Local-cache publishing is one-machine-only. An HF push is a separate follow-on.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc`

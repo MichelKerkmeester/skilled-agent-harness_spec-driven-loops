@@ -78,5 +78,7 @@ A new retention sweep was built end-to-end. A shared sweep core selects expired 
 - Run the full Vitest suite once packet constraints allow to confirm no cross-handler regressions.
 - Verify that `SPECKIT_RETENTION_SWEEP` is reflected in the operator runbook for production deployments.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/005-memory-retention-policy-sweep` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`

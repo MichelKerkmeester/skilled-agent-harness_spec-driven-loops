@@ -56,5 +56,7 @@ The live codebase is now clean of perishable comment labels. After packet 024 ma
 - F-notation stays review-owned. The checker does not flag F\d+, so genuine F finding labels rely on review.
 - No git pre-commit wiring yet. The checker runs through the PostToolUse hook. Wiring it into git pre-commit can land now that the live tree is clean, as a small follow-on, if blocking other sessions is acceptable.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/025-repo-wide-comment-hygiene-scrub` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

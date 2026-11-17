@@ -59,5 +59,7 @@ _No file-level detail recorded._
 - The root README's CREATE section still omits other existing commands and names /create:testing-playbook, which is not the current command.
 - The trigger index was not regenerated. The next regeneration from a clean tree picks up this phase's phrases.
 
+&nbsp;
+
 > Spec folder: `specs/sk-doc/060-create-goal-mode/011-cross-surface-references` (Level 2)
 > Parent packet: `specs/sk-doc/060-create-goal-mode`

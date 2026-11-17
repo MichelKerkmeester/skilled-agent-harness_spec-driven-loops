@@ -16,5 +16,7 @@ contextType: "implementation"
 
 This phase lands the 036 recommendations-implementation program on the moving mainline: integrate the latest origin in a clean worktree, re-census every touched contract against the parent scope and phase tree, reopen any earlier phase whose inputs drifted, rerun the complete phase-016 whole-system gate on the exact final SHA, and reconcile the parent packet's open items, changelogs, and generated metadata append-only without rewriting research inputs. Status is Planned: it is the final integration and closeout contract, and closing without an integrate-and-recensus pass would make the final claim stale. It may not declare completion from the pre-integration phase-016 result; the full gate must be rerun on the final SHA.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/002-integrate-latest-and-closeout` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift`

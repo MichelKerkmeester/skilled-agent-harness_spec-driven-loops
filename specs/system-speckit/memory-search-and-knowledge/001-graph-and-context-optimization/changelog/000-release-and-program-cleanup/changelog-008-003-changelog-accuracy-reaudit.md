@@ -42,5 +42,7 @@ _No file-level detail recorded._
 
 - Historical drift in the 13 sidecar-reaper changelogs (Cohort B) is out of scope for this phase; deferred to that track for cleanup.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit` (Level unknown)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup`

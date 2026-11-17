@@ -91,4 +91,6 @@ Phase 009's changelog explicitly deferred these 4 items rather than declaring th
 - Child 007 (sliding-window convergence mode, per ADR-001 in `009-research-backlog-remediation/009-convergence-design-and-hardening/decision-record.md`) has not started.
 - `system-speckit/030-validate-sh-dist-freshness-and-repo-remediation`'s bucket-3 report (54 folders across 17 packets, mostly `ai-systems/*`, that predate the current template-compliance contract) recommends extending `SPECKIT_GENERATED_METADATA_GRANDFATHER` into a general template-compliance grandfather mechanism — a policy decision still open, not implemented.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation` (Level 2)

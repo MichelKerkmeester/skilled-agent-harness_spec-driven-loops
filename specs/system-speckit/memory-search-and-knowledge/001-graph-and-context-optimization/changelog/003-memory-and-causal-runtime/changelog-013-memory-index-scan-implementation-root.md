@@ -64,4 +64,6 @@ The program delivered a self-maintaining memory index, file-based checkpoint dur
 
 - None recorded for the parent packet. Per-phase follow-ups live in the child changelogs.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation` (Level 2)

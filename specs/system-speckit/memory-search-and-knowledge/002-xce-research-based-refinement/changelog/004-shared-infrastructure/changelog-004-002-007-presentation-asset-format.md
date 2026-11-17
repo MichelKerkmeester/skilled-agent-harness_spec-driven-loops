@@ -53,5 +53,7 @@ All 24 command presentation assets were renamed from `.md` to `.txt` so they rem
 
 - Loader registration behavior takes full effect in a fresh session because the loader caches at session start.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/007-presentation-asset-format` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`

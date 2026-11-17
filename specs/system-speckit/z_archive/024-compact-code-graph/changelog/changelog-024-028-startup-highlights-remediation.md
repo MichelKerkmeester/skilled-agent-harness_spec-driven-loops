@@ -75,4 +75,6 @@ The startup brief already surfaced structural highlights, but the signal quality
 
 No migration required. The behavior change is intentionally narrow: startup highlights stay enabled, but now only after the query was cleaned up enough to meet the review quality bar.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/028-startup-highlights-remediation/`

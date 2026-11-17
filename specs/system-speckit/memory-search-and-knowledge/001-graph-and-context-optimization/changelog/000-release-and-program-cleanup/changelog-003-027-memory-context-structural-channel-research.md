@@ -79,5 +79,7 @@ None. Research-only phase.
 - Establish a confidence threshold for actionable operation planning before the routing layer dispatches `code_graph_query`.
 - Validate the split-payload shape against external MCP clients not visible in this repository.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/027-memory-context-structural-channel-research` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

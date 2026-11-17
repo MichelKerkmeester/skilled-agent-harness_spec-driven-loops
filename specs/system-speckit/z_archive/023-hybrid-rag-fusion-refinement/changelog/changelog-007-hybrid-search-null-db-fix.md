@@ -167,4 +167,6 @@ No migration required.
 
 If a deployment intentionally relies on access-scope enforcement for multi-tenant isolation, enable it explicitly in the environment. Deployments that did not set this flag were already affected by the original breakage and will return to expected behavior after the fix.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/007-hybrid-search-null-db-fix/` (Level 2)

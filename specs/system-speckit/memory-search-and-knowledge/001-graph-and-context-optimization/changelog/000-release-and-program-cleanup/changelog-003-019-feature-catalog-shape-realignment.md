@@ -63,5 +63,7 @@ None.
 - Broad repository grep still sees two sk-doc asset templates under a `feature_catalog` folder. Those files are documentation templates for catalog creation. They are not per-feature catalog snippets and remain untouched.
 - One published filename contains historical wording. The file was not renamed because stable catalog paths are part of the published reference surface.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/019-feature-catalog-shape-realignment` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

@@ -90,5 +90,7 @@ The broad system-spec-kit audit identified in-process retention risks across mem
 - Audit timer usage across `mcp_server/lib/**` and `mcp_server/context-server.ts` to confirm all long-lived timers route through the timer registry.
 - Confirm macOS parent-death polling behavior is preserved after the sidecar execution path retirement that followed this phase.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/009-spec-memory-runtime-retention-cleanup` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

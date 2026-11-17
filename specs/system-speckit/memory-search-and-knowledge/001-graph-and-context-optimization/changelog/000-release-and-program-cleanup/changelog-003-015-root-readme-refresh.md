@@ -63,5 +63,7 @@ Updated sections: count table, MCP FAQ, Code Mode table, agent network intro, co
 
 - The `advisor-tool-schemas.ts` file holds Zod input/output schemas. It is not the canonical count source on its own. The four public MCP advisor descriptors live in `skill_advisor/tools/*.ts` and are imported into `TOOL_DEFINITIONS`. Any future count update should count `TOOL_DEFINITIONS` entries directly.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/015-root-readme-refresh` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

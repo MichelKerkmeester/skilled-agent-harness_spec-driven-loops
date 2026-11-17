@@ -55,5 +55,7 @@ Memory recall now degrades to lexical search when the embedder is unavailable. A
 - Callers that used an embedder exception as the outage signal should read the metadata flag instead.
 - Recall quality during an outage is lexical-only until the embedder recovers.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

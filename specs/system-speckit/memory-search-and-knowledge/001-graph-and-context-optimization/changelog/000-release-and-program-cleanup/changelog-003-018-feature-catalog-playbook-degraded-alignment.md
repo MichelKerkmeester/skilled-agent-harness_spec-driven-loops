@@ -72,5 +72,7 @@ None.
 - Once packet 016 is fully landed, re-read the auto-trigger catalog page to confirm the `[^c016]` footnote wording is still accurate against 016's shipped contract. If 016 ships a different field name than `fallbackDecision`, queue a Packet C-prime single-edit patch.
 - Confirm `git diff --name-only` for the packet's working set shows no `.ts`, `.js`, `.py`, `.sh` files (REQ-004 and SC-004 evidence).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/018-feature-catalog-playbook-degraded-alignment` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

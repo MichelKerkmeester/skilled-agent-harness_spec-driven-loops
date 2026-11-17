@@ -70,5 +70,7 @@ The lane-mode command line now takes only --apply, --folder and --roots. The com
 - The flag removal rests on the operator's word. A search of this repository finds no caller, but a script elsewhere is not visible from here. If one exists, --mode and --json are now ignored, so --mode <name> --apply runs all five lane modes. Every mode acts only on proof, so that run is the default one and not a wrong one.
 - The corpus copy and the full run logs are not in the packet. They stayed in the session scratch area outside the repository, and scratch/ keeps only their summary lines.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/034-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification` (Level 2)
 > Parent packet: `specs/system-speckit/034-spec-folder-tooling`

@@ -74,5 +74,7 @@ Focused vitest suites across 4 test files passed (36 tests) and the TypeScript b
 - Copilot next-prompt freshness is an accepted transport limitation until upstream supports same-turn prompt mutation or stable ACP context injection.
 - Re-run strict packet validator against touched packets (008/007, 009/002, 006/008) after template-anchor debt is resolved in a separate hygiene pass.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-fix-additional-release-readiness-findings` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness`

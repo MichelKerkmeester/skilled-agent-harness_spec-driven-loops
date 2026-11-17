@@ -62,5 +62,7 @@ Phase 024 shipped the measurement machinery that Phases 020-023 deferred: a stat
 - Track 1 blocked: retry Codex config writes outside the sandbox.
 - Live-wrapper evidence must be collected from actual runtime sessions before routing-readiness can be claimed.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

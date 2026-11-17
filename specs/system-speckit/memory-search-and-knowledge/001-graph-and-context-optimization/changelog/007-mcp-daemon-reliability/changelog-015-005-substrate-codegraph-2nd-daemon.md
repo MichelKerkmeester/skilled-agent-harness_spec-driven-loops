@@ -61,5 +61,7 @@ The substrate stress runner now starts a second real daemon, the code-graph inde
 - SKIP is still tolerated for scenarios 403, 404 and 407. The vitest accepts PASS, SKIP or PARTIAL for those scenarios. An unpopulated code-graph database or a transient code-graph startup failure degrades to SKIP rather than failing. This is deliberate to avoid flake on a shared suite. A future hardening could require those scenarios to be non-SKIP, but that was not done here to keep CI stable in environments that do not pre-scan the graph. A genuine connect failure still surfaces as a runner-FAIL row that fails the test.
 - The scenarios depend on a populated code-graph database. They resolve real nodes only when `code-graph.sqlite` is populated (it is locally with 70278 nodes). The database is a gitignored generated artifact, so CI must run a `code_graph_scan` or accept the tolerated SKIP for scenarios 403, 404 and 407 to PASS rather than SKIP.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/005-substrate-codegraph-2nd-daemon` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`

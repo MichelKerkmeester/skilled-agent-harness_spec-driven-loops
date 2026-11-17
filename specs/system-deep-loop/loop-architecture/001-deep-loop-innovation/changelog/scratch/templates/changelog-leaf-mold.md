@@ -22,5 +22,7 @@ This folder is a leaf scaffolding mold, not a delivered 036 phase. It provides t
 
 Scaffolding template — no runtime history.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/scratch/templates/leaf-mold` (scaffolding template)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/scratch/templates`

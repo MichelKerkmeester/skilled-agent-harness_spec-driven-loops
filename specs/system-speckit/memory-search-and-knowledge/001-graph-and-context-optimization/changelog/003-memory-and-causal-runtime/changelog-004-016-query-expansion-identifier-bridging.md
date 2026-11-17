@@ -79,5 +79,7 @@ Bench results showed deterministic expansion regressed all three tested lanes ve
 - Investigate whether per-variant dense embedding can be batched to reduce latency when `DENSE_FANOUT=true` and variant count approaches the `MAX_VARIANTS` cap.
 - Confirm bench gate passes at the required hit-rate floor before promoting `COCOINDEX_QUERY_EXPANSION` to default-on.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

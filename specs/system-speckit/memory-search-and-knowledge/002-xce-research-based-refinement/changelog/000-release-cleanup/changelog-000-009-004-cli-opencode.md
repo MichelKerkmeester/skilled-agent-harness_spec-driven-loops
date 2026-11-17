@@ -61,5 +61,7 @@ cli-opencode's 9 reference/asset docs now carry exactly the canonical frontmatte
 | `.opencode/skills/cli-opencode/assets/prompt_quality_card.md` | Modified | Authored block; normal / planning (prompt composition) |
 | `.opencode/skills/cli-opencode/assets/prompt_templates.md` | Modified | Authored block; normal / implementation |
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/004-cli-opencode` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

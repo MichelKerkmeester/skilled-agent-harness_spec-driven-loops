@@ -78,5 +78,7 @@ All 10 review findings were closed. Typecheck, build, targeted vitest suites and
 - Run `codex hooks list` coverage when the Codex CLI exposes a stable hook-list command to replace the `.codex/settings.json` validity heuristic.
 - Add a cluster-export column to the code graph schema when that work ships, to close the deferred T015 item from the adjacent code-graph packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/001-fix-runtime-hook-parity-findings` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

@@ -73,5 +73,7 @@ All prior reranker comparisons were made on a broken retrieval pipeline (mirror 
 - `cocoindex_code/README.md` Rerankers section was not updated in this tranche. Update default and opt-in alternatives documentation once the skill relocates.
 - ADR cross-links from packets 013 through 017 into `decision-record.md` index are pending. Verify all six arc packets are visible in the ADR index.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

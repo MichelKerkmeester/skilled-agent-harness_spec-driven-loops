@@ -164,4 +164,6 @@ Three changes to how agent workflows handle priming.
 
 No migration required. The new `session_bootstrap` tool is additive. Existing `session_resume` calls continue to work unchanged -- the `minimal` parameter defaults to `false`. Agent file updates are backward-compatible.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/024-hookless-priming-optimization/`

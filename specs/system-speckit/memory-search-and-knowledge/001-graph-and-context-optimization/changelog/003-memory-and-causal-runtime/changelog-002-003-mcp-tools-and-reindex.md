@@ -86,5 +86,7 @@ Phase 003 wired the swap mechanism into three new MCP tools and a background orc
 - Cancel does not roll back partial writes to `vec_<newdim>`. Document that partial tables are safe to overwrite on retry. Add a cleanup sweep for orphaned partial tables on startup.
 - Large corpora above 100k memories may require tuning the default batch size of 50 via `EMBEDDER_REINDEX_BATCH_SIZE` to avoid OOM or timeout pressure.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/003-mcp-tools-and-reindex`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

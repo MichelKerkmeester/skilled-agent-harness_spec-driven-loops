@@ -67,5 +67,7 @@ One command now tells you, for Claude Code and Codex, how often a session needed
 - Pattern detection. Requested tables are a keyword heuristic, and the document bucket rarely fires.
 - Two runtimes. Devin, Cursor, Pi and OpenCode have no adapter yet.
 
+&nbsp;
+
 > Spec folder: `specs/agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation` (Level 2)
 > Parent packet: `specs/agents/016-repo-rule-advisor-surfacing`

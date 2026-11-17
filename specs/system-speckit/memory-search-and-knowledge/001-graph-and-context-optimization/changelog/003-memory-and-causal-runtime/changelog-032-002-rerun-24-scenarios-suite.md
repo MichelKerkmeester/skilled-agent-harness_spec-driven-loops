@@ -63,5 +63,7 @@ None.
 - Rerun `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.sh` once both blockers are resolved to produce an actual PASS/FAIL distribution against the post-fix substrate.
 - Decide whether the dependency repair belongs in sibling packet 003 or a new dedicated follow-up packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/002-rerun-24-scenarios-suite`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups`

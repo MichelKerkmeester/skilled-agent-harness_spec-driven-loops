@@ -26,5 +26,7 @@ Hardened shared-gateway identity resolution and rollback-certificate identity ve
 
 Complete. Additive-dark — no authority flipped.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/002-substrate-identity-fail-closed` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation`

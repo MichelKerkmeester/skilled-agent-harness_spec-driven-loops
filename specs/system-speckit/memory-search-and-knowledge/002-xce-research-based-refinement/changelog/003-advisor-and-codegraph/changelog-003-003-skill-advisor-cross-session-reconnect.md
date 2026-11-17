@@ -53,5 +53,7 @@ The skill-advisor launcher was the odd one out of the three daemon launchers. Th
 
 - Live adoption requires a fresh session (operator-gated), since the running launcher process keeps the pre-fix `.cjs` resident.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

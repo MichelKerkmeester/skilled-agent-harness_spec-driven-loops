@@ -28,6 +28,8 @@ This phase-parent migrates the shared deep-improvement evaluator-first loop, can
 | `006-shadow-parity` | Implement the shared shadow-parity harness with logical event pairing, independent projections, fault injection, and manifest-bound receipts. |
 | `007-rollback-and-mode-gate` | Deliver the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone without moving authority. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common` (Level 2)
 
 ## 2026-08-16
@@ -41,5 +43,7 @@ The Deep Improvement Common Services migration lane is now Complete, with all se
 - All 7 leaves Complete.
 - Certificates-and-receipts verified green at 22/22; resume-adapter at 23/23.
 - Shadow-parity at 27/27; rollback-gate at 37/37 after correcting a stale census-fixture path in the rollback-gate test.
+
+&nbsp;
 
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common` (Level 2)

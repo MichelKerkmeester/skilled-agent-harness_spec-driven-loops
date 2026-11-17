@@ -52,5 +52,7 @@ This phase collapsed advisor graph routing from five `deep-*` skill IDs into one
 - CHK-020 `family=deep-loop` for `deep-ai-council`, `deep-improvement` and the merged node.
 - CHK-021 Both routing-parity fixtures assert `deep-loop-workflows` and concrete mode. Vitest green.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/006-advisor-graph-mode-routing` (Level 2)
 > Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`

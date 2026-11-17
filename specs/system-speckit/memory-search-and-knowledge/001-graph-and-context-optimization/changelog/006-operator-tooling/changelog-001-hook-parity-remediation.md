@@ -65,5 +65,7 @@ The 2026-04-21 hook parity review found 10 runtime-hook defects. The highest ris
 
 - Phase 002 (Copilot hook parity), Phase 003 (Codex native hooks), and Phase 004 (Claude findings) address remaining runtime gaps not covered by this initial remediation.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

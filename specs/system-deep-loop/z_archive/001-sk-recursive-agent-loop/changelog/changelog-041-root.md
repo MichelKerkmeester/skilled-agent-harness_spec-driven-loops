@@ -157,4 +157,6 @@ These phases handled template fidelity, command path changes, and wording consis
 
 No migration required. The rename from `sk-recursive-agent` to `sk-improve-agent` was completed within Phase 008 with zero stale references remaining. All runtime mirrors, commands, YAML workflows, and skill advisor routing were updated atomically.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/` (Level 3)

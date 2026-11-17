@@ -63,5 +63,7 @@ None.
 - Add shard fallback for hf-local/voyage/openai if those providers gain a persisted `readActive*EmbedderFromDb` path. The Ollama pattern from packet 016 and the `__q8` shard suffix evidence here provide the implementation template.
 - Confirm quantized hf-local shard filename convention when adding any future non-Ollama resolver so the glob pattern covers suffixes beyond provider slug, model and dim.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/017-factory-shard-fallback-for-hf-voyage-openai` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

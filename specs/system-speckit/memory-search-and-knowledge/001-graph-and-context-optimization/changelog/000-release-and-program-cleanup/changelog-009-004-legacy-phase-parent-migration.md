@@ -76,5 +76,7 @@ Every touched parent now exposes the lean trio. Manual relationship blocks (`dep
 - Populate `derived.last_active_child_id` on migrated parents that have never been saved. The field fills naturally on the next per-parent memory save. No action required in 004.
 - Evaluate whether spec-collection roots (`.opencode/specs/system-spec-kit/`, `.opencode/specs/00--ai-systems/`) should receive a lightweight README equivalent. These folders trigger phase-parent detection but are directory containers, not spec packets. A separate "spec-roots README" packet can address this.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation`

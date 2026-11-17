@@ -60,5 +60,7 @@ The spec-memory CLI core shipped as a thin IPC client over the unchanged mk-spec
 
 - Dual-spawn races, dual-client parity, full 37-command invocation matrix, and runtime allowlists remain phase 002/003 work
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli`

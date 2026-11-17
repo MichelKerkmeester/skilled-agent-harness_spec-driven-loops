@@ -73,5 +73,7 @@ An opus deep review ran ten iterative passes loop-until-dry over the 010 graduat
 - The `code_graph_context` multi-hop traversal remains live-only. As-of traversal was deliberately deferred.
 - Unbounded history growth under the bitemporal flag (many generations of closed edges) is out of scope while the flag stays off.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/008-followup-deep-review` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

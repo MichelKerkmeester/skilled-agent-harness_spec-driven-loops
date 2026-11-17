@@ -66,5 +66,7 @@ None.
 
 - Playbook scenarios are authored but not executed in this packet. The catalog and playbook create reusable manual validation docs. Running the MCP scenarios against a live runtime is a separate verification step.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/012-code-graph-catalog-and-playbook` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

@@ -69,5 +69,7 @@ None. Research-only phase.
 - Fix Go AST labeling before adopting the Go detector pattern. The current `extract-go.ts` uses brace-tracking with regex but labels its output `confidence: "ast"`, which misrepresents the evidence type.
 - Supersede the lowest-quality saved memory with a new sanctioned save if retrieval quality becomes a problem. The newest snapshot carries a `has_topical_mismatch` flag and was intentionally left unmodified per memory-save rules.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline`

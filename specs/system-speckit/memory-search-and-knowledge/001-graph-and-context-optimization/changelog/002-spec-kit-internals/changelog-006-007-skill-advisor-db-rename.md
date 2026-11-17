@@ -73,5 +73,7 @@ The spec-kit skill metadata index was renamed to `graph-metadata-index.sqlite`. 
 - Memory MCP startup still logs a pre-existing `skill_id` versus folder-name mismatch warning for `system-skill-advisor/graph-metadata.json`. That warning is unrelated to DB filename paths and does not block startup.
 - Moving `skill_graph_*` MCP tools from `spec_kit_memory` to `system_skill_advisor` (Option A) was intentionally deferred. A future topology consolidation packet can evaluate that change independently.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/007-skill-advisor-db-rename` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

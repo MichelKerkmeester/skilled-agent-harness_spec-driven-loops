@@ -73,5 +73,7 @@ All five findings shipped in commit `611f8dac47`. Reindex startup now validates 
 - Sidecar worker processes are not restarted when the active adapter rotates. The credential-cache invalidation event is visible but force-restart of `sidecar-worker.ts` and `sidecar-client.ts` was explicitly out of scope. A follow-on packet should evaluate whether a restart is needed.
 - `cancelJob` remains a production export because `index.ts` is a frozen live barrel consumer. ADR-002 documents the cancellation lifecycle. A future cleanup pass can remove the export once the barrel is no longer frozen.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/005-fix-deferred-p2s-for-runtime-process-lifecycle` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes`

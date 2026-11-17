@@ -56,5 +56,7 @@ A pure-Node CommonJS local HTTP and Unix domain socket embedding model server wa
 - Live model load not exercised, tests use mock load with no real 274MB model or 15-30s cold start, live verification deferred to phase 004 supervision.
 - Single-resident-model constraint means requests for a different model than loaded return 404, multi-model residency is out of scope by design.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/002-hf-model-server` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`

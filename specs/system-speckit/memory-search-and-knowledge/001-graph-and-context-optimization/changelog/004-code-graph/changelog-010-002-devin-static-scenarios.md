@@ -82,5 +82,7 @@ Three dispatch batches ran sequentially. Scenarios 016, 017, 018, 020, 021 passe
 - Reconcile scenario 020 expected tool count from 11 to 8 in the playbook doc (F-020-1 follow-on).
 - Correct the playbook index label for scenario 021 from "unicode-normalization fix from 009" to "root dist cleanup verification" (F-021-1 follow-on).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/002-devin-static-scenarios` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`

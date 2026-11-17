@@ -80,5 +80,7 @@ Phase 027 shipped a unified advisor architecture across seven children in depend
 - Deprecate Python shim and plugin compatibility paths once a future packet confirms native-only routing is stable.
 - Run a follow-on strict validation pass after any future advisor schema migration to confirm additive rollback correctness.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/002-skill-graph-daemon-native-advisor-tools` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph`

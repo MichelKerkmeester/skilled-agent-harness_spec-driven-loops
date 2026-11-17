@@ -56,5 +56,7 @@ The quality gate now runs as one command in any repository. `quality-gate.cjs` r
 
 - A repository config that names its own checks came in the next phase.
 
+&nbsp;
+
 > Spec folder: `specs/sk-code/015-quality-agnostic-gate/002-builtin-runner` (Level 2)
 > Parent packet: `specs/sk-code/015-quality-agnostic-gate`

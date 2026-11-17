@@ -65,5 +65,7 @@ Cross-runtime proactive skill-advisor hook surface. Each `UserPromptSubmit` even
 - Copilot current-turn semantics differ from Claude/Gemini/Codex (writes to custom instructions, read on next prompt).
 - Level 3 checklist remains pending.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

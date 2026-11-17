@@ -55,5 +55,7 @@ Phase 015 took the speed benchmark's own task, a quiet flag for `recommend-level
 
 - None recorded.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization` (Level 2)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

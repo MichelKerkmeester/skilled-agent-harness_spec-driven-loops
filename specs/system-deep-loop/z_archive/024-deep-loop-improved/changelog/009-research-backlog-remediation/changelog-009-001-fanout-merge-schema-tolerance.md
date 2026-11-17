@@ -46,5 +46,7 @@ The fan-out merge script silently dropped an entire lineage's findings whenever 
 
 - The research-side counterpart for a fully missing registry file (not just a schema mismatch) was tracked separately and shipped later in this same phase as `009/011`'s `reconstructResearchRegistryFromState`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/001-fanout-merge-schema-tolerance` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

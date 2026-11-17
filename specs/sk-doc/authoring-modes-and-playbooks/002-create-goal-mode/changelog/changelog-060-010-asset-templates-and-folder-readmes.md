@@ -62,5 +62,7 @@ _No file-level detail recorded._
 - The v1.0.0.0 changelog keeps the older layout. v1.1.0.0 uses the current one.
 - sk-design admission drift remains. It predates this packet, and the sk-doc row passes.
 
+&nbsp;
+
 > Spec folder: `specs/sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes` (Level 2)
 > Parent packet: `specs/sk-doc/060-create-goal-mode`

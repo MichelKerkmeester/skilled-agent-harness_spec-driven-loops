@@ -80,5 +80,7 @@ None.
 - Treat control timings as lower bounds. Shell `rg` timings are faster than a real human orientation workflow and should be recalibrated with a live engineer baseline.
 - Replace token estimates with actual counts. Local tools did not expose model-token accounting. A live run can record real token usage.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/001-sandbox-usefulness-trials` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

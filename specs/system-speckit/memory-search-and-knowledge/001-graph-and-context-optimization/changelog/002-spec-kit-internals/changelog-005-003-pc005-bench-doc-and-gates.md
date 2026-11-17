@@ -51,5 +51,7 @@ The PC-005 benchmark scenario doc was missing the required `--dataset` flag, and
 
 - Cold-subprocess p95 needs host calibration before enforcing. It measures per-prompt process startup, so it stays advisory by default.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/003-pc005-bench-doc-and-gates` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation`

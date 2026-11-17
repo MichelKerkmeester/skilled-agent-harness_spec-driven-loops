@@ -86,5 +86,7 @@ mk-spec-memory had one outstanding retrieval failure blocking packet 008 closure
 - The 20-scenario PASS sample was preserved through a guarded regression proxy. A full manual replay of all 20 playbook scenarios remains a follow-on verification task.
 - ADR-012 ratification (jina-v3 vs gemma vs nomic with rescue) ran as a parallel codex dispatch and confirmed jina-v3 plus rescue as the production default. The comparison JSONL is in `evidence/embedder-comparison-with-rescue.jsonl`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

@@ -105,5 +105,7 @@ A repository can now commit .sk-code/quality.json to name its own checks, and th
 - The battery is slower. It took 33 seconds against 23 before the quality leg, most of it the quality suite. The design sets no budget, so the increase is reported and not gated.
 - A long file list can pass the argument limit. {files} passes every matching file of a group in one argv, and such a run reads ERROR. The reference names it.
 
+&nbsp;
+
 > Spec folder: `specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor` (Level 2)
 > Parent packet: `specs/sk-code/015-quality-agnostic-gate`

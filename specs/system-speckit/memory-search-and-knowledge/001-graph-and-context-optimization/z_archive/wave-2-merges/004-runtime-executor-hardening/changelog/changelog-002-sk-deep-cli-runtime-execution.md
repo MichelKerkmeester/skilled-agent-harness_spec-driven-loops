@@ -69,5 +69,7 @@ Two sub-phase commits plus CF-026 remediation commit. Consolidation at packet le
 - **cli-copilot `--allow-all-tools` blocker**: Copilot CLI requires broad tool permissions. Narrower permission surface is a future enhancement.
 - **Downstream remediation**: R1-R12 findings from dogfood pass closed in `002-cli-executor-remediation` packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening`

@@ -66,5 +66,7 @@ Production embedder authority moved to the Nomic CodeRankEmbed path under the la
 - Confirm the `benchmark-2026-05-18/` skill-local report under `mcp-coco-index` carries the erratum that the May 18 numbers were measured without the reranker firing.
 - Investigate whether `BAAI/bge-reranker-v2-m3` is appropriate for code retrieval given the lexical-cue demotion pattern documented in `pre-confirmation-margin-analysis.md` section 4.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion`

@@ -62,4 +62,6 @@ This rollup is the authoritative child inventory for 003/002, which is the reloc
 
 - Advisor doc-trigger harvest live adoption is operator-gated (fresh advisor session required to load the allowlist fix and index the harvested triggers).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph` (Level 2, Phase Parent)

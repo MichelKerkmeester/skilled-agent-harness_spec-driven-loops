@@ -63,5 +63,7 @@ Every import path was rewritten. The dispatcher was rewired to point at the new 
 
 - **Commit and git-history migration.** The filesystem migration is complete but the orchestrator must stage and commit the new-path files for git history to attach to the new location. Old-path git history is intact.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

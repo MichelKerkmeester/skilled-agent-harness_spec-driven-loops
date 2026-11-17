@@ -64,5 +64,7 @@ The packet is blocked on the declarative registry phase. No install guide or REA
 - Add the README embedder-choice pointer after the install guide section exists.
 - Run link-check, read-through and strict packet validation after documentation lands.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/006-install-guide-updates` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

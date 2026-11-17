@@ -56,5 +56,7 @@ The lexical fallback that backs search when the vector lane is unavailable was c
 
 - REQ-001 (warmup RSS under the 150MB budget) was unmet at this phase and was closed in phase 017 (bm25-warmup-churn-reduction) on the original process-RSS metric.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

@@ -24,5 +24,7 @@ Planned — operator-gated, not executed. This phase plans the deep-research pil
 
 Planned and operator-gated. Cutover is deliberately not performed: it requires explicit operator approval and the pilot mode's current zero-divergence shadow-parity certificate. No mode authority has been flipped.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/003-pilot-mode-cutover` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation`

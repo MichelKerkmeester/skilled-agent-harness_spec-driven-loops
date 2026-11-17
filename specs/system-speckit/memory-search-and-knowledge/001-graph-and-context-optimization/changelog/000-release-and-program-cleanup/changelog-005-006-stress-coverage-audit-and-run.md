@@ -74,5 +74,7 @@ Two `cli-codex` dispatches bracketed one `npm run stress` execution. Synthesis r
 - Add `--reporter=verbose` to the `npm run stress` invocation so future runs capture per-file timing alongside the total duration.
 - Add a known-issues section to `stress_test/README.md` to establish an explicit baseline for flakes and skips so future audit comparisons have a reference.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/006-stress-coverage-audit-and-run` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`

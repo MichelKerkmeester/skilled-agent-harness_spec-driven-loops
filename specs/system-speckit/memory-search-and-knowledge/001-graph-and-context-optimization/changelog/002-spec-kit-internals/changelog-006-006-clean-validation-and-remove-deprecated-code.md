@@ -85,5 +85,7 @@ Two P0 items remain blocked: package-local Vitest in the standalone advisor fold
 - Update hook test fixtures so the settings-driven suite no longer requires a Claude settings file outside the repo root.
 - Confirm `advisor_recommend` round-trip through Claude and Gemini runtimes once CLI listing issues are resolved. Both runtimes list the server in repo config but the CLI listing was inconclusive at ship time.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/006-clean-validation-and-remove-deprecated-code` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

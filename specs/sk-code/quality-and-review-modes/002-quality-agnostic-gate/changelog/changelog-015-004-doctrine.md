@@ -89,5 +89,7 @@ A repository with no declared surface can now finish the quality gate. Iron Law 
 - The committed trigger index still holds the two old trigger phrases. The retitle replaced them in the checklist, and the trigger-index rebuild workflow refreshes the index after the change reaches main.
 - Older punctuation stays in lines this phase did not touch. The frontmatter descriptions of two quality checklists and one sentence in sk-code-quality/SKILL.md section 3 still hold an em dash, and the validator accepts them.
 
+&nbsp;
+
 > Spec folder: `specs/sk-code/015-quality-agnostic-gate/004-doctrine` (Level 2)
 > Parent packet: `specs/sk-code/015-quality-agnostic-gate`

@@ -62,5 +62,7 @@ None. The rewrite was a voice and structure improvement, not a defect correction
 - Child 003 may flag remaining stylistic carries during its `validate_document.py --type readme` pass. Review any findings against the D1 resemblance rule before acting on them.
 - HVR score was not formally measured. D1 relaxed the strict score floor for this packet. A future operator may want to run the scorer and record the baseline for comparison.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/002-readme-problem-first-rewrite` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent`

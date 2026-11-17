@@ -83,5 +83,7 @@ After the fixes, a fresh daemon drained the retry queue at batch 100 per 5 secon
 - 22 genuine embedding failures remain in the store: 11 null-content rows and 11 provider-error rows from the flap era. These are not retention-scoped and were not addressed in this packet.
 - Live DB counts drifted across snapshots during the investigation. The operator runbook requires live preflight counts before any apply-mode reconcile run.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

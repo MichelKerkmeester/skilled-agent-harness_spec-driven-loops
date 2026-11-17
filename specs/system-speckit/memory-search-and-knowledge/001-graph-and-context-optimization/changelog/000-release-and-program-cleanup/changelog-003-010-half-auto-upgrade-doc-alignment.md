@@ -72,5 +72,7 @@ All four sub-tasks shipped in a single pass. Copilot docs in `hook_system.md` an
 - The feature flags table is generated from the source file at authoring time. Automated build-time generation is a future improvement.
 - `advisor_rebuild` skips a live status check unless `force:true` is passed. Auto-repair triggered by `advisor_status` was explicitly ruled out.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/010-half-auto-upgrade-doc-alignment` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

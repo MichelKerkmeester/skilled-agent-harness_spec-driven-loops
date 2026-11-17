@@ -54,4 +54,6 @@ This phase parent groups 4 child phases spanning 2026-05-18 to 2026-05-26. Each 
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion` (Level 1, Phase Parent)

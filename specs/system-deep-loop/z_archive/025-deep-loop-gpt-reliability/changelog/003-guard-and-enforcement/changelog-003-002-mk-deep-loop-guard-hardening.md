@@ -52,5 +52,7 @@ contextType: "implementation"
 - The phase-011 guard gap (`subagent_type="general"` making the existing mode-mismatch check a no-op for real orchestrate dispatches) flagged, not fixed here — resolved in phase 017 as part of the same identity-resolution work.
 - `prompt-improver` has no entry in `mode-registry.json` (both lineages independently noted this) — the eventual implementation needs a static fallback identity set for it, or a registry addition (still open).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening` (Level 1, research)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

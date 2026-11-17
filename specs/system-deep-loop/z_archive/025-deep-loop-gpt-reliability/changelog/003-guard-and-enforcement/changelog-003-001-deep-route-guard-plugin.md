@@ -65,5 +65,7 @@ Built `.opencode/plugins/deep-route-guard.js` (same day, renamed to `mk-deep-loo
 - Mismatch regex is a simple text match, not a structured parse (low but non-zero false-positive risk).
 - **Note (2026-07-01, later)**: this plugin's mode-mismatch check was hardened with prompt-text identity resolution and a second loop-repeat check in phase 017; the shared `.opencode/plugins/__tests__/` directory was subsequently renamed to `.opencode/plugins/tests/` by a concurrent cross-packet session (commit `1f20ab5e1a`) — the test file now lives at `.opencode/plugins/tests/mk-deep-loop-guard.test.cjs`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/001-deep-route-guard-plugin` (Level 2)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

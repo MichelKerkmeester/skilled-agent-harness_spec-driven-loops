@@ -80,5 +80,7 @@ The `graph_causal` lane now produces non-zero raw scores on fixture prompts. A `
 - Recheck the typecheck failure in `skill_advisor/tests/scorer/lane-weight-sweep.vitest.ts` once sibling lane-weight sweep work lands to confirm whether the TS2554 error is resolved by that packet.
 - Consider re-running the seeded sweep after the sibling 007 harder-corpus sweep completes to measure cumulative `graph_causal` lift from both packets combined.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/005-intent-signals-and-skill-relationships` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph`

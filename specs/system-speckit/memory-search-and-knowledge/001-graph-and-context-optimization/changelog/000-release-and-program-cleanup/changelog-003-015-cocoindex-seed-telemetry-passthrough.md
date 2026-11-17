@@ -77,5 +77,7 @@ Three source files were extended across the schema, type and handler layers to p
 - Surface `rankingSignals` in `textBrief` and `combinedSummary` narrative output deferred to a follow-on packet (spec §7 open question).
 - Telemetry adoption metrics deferred. No counter today tracks how many anchor consumers read the new fields.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/015-cocoindex-seed-telemetry-passthrough`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

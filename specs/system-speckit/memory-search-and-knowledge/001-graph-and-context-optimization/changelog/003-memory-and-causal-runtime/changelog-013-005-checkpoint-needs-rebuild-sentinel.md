@@ -57,5 +57,7 @@ Shipped and **deployed** the second deferred follow-up. After a checkpoint-v2 re
 
 - None required. The `.needs-rebuild` sentinel self-clears on the next successful boot/scan rebuild after a checkpoint restore.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/005-checkpoint-needs-rebuild-sentinel` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation`

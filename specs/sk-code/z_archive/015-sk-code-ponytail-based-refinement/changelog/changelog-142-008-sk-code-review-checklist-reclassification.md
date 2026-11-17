@@ -67,5 +67,7 @@ Phase 8 moved reusable `sk-code-review` checklist artifacts to the place the fra
 - The move is recorded in v1.5.0.0.
 - External links to a moved file should update to `sk-code-review/assets/<name>.md`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/008-sk-code-review-checklist-reclassification` (Level 1)
 > Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`

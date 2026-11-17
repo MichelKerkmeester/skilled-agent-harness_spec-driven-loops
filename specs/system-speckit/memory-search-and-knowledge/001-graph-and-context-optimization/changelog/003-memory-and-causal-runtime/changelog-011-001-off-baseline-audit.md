@@ -73,5 +73,7 @@ None.
 - Retain the Phase 2 and Phase 3 scaffolds for future re-evaluation if the OFF baseline degrades as the corpus grows.
 - Investigate the 16 stale `gold_memory_ids` in the fixture. They were scored against `gold_doc_ids` as a fallback, but updating the fixture to use current memory IDs would eliminate that ambiguity for future runs.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc`

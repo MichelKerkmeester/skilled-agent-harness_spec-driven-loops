@@ -57,4 +57,6 @@ None. Single one-line addition to an existing array.
 - No new tests added. The two pre-existing parity tests already cover this drift and now pass. The fix relies on the existing registry/map alignment assertions to prevent regression.
 - Single-tool fix. This packet only closes the `memory_causal_unlink` gap, and no other layer or tool was reviewed for drift.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/025-tool-layer-map-unlink` (Level 1)

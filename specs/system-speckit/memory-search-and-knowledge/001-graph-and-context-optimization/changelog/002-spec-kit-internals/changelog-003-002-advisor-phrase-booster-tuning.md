@@ -61,5 +61,7 @@ The skill advisor ship quality routing engine had 36 multi-word keys in its INTE
 - Benchmark harness p95 latency measurement was deferred. The change is data-only with no scoring logic modifications so latency impact is unlikely to exceed 5 percent. Re-measure only if a downstream user reports perceived slowdown.
 - The Barter repository skill advisor is out of sync with these Public-canonical changes. Barter has independent drift that needs a separate migration pass applying the same pattern.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine`

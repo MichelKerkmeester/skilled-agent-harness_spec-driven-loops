@@ -57,4 +57,6 @@ This phase parent groups 7 child phases spanning 2026-05-25 to 2026-05-25. Each 
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index` (Level <!-- SPECKIT_LEVEL: phase-parent -->, Phase Parent)

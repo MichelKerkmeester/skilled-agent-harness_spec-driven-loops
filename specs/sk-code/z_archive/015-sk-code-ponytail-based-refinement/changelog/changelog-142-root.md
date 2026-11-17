@@ -88,4 +88,6 @@ The packet shipped eight completed phase children. It added reviewer rows, a bou
 - Several guidance additions are intentionally behavioral, not machine-enforced.
 - Earlier phases were not committed at the time their summaries were captured, and their working-tree branch was `028-mcp-to-cli-tool-transition`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement` (Level Phase Parent)

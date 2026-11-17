@@ -65,4 +65,6 @@ None. Detail lives in the child phase changelogs.
 - Address the conditional deep review workstreams in a remediation packet: documentation accuracy, playbook executability, stress-test fidelity and packet metadata cleanup.
 - Keep future root rollups thin. Child phases own implementation detail.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh` (Level 2)

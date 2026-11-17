@@ -56,5 +56,7 @@ This phase shipped the default-off safe core for procedural reliability and left
 - Run one benefit micro-benchmark before any promotion decision.
 - Decide the bad-pattern host and the skill-induction build before promoting the sibling candidates.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

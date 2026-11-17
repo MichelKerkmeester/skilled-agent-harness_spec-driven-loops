@@ -79,5 +79,7 @@ Wave 1 of the gem-team adoption introduced an optional advisory agent I/O contra
 - No runtime parser or validator consumes the contract yet; existing markdown remains authoritative until a follow-on enforcement pass.
 - Broader command and deep-loop integration remain out of scope for this packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption`

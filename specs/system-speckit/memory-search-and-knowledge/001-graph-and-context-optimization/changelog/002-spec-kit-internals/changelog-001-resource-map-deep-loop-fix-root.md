@@ -56,4 +56,6 @@ This phase parent groups 6 child phases spanning 2026-04-24 to 2026-05-02. Each 
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix` (Level 3, Phase Parent)

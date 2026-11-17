@@ -55,5 +55,7 @@ The orphan sweep can now catch up and the corpus identity is repaired. The sweep
 - Deprecated rows still surface in search until phase 002 lands and a daemon reindex runs.
 - Rollback is the named backup `context-index.sqlite.pre-001-corpus-repair-20260703`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/001-orphan-sweep-cursor-and-corpus-identity-repair/` (Level 3)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

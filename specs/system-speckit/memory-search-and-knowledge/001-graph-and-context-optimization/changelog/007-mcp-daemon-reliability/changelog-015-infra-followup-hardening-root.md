@@ -57,4 +57,6 @@ This phase parent groups 7 child phases spanning 2026-06-01 to 2026-06-01. Each 
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening` (Level <!-- SPECKIT_LEVEL: phase -->, Phase Parent)

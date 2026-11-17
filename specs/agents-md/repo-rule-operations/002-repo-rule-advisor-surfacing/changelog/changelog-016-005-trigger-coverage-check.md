@@ -59,5 +59,7 @@ The router and the rules now have to agree on when a rule fires. Gate 5 loads ru
 - Lexical, not semantic. A bullet reworded with fresh synonyms can fail although covered, and a row sharing words by chance can pass.
 - Barter's copy of the checker was left untouched, so it still runs nine checks.
 
+&nbsp;
+
 > Spec folder: `specs/agents/016-repo-rule-advisor-surfacing/005-trigger-coverage-check` (Level 1)
 > Parent packet: `specs/agents/016-repo-rule-advisor-surfacing`

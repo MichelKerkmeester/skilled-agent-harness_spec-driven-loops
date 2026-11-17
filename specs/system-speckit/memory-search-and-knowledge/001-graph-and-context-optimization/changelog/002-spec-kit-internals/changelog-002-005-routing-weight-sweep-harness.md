@@ -54,5 +54,7 @@ Built the 015/003 lane-weight sweep harness and recommendation artifact. A 24-pr
 
 - Seed synthetic embeddings into the projection fixture or run the sweep against a fully-populated skill-graph.sqlite before drawing real weight tuning conclusions from future iterations.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/005-routing-weight-sweep-harness` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`

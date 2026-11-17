@@ -81,5 +81,7 @@ The 022 plan called for five batched cli-codex dispatches to purge Nomic/MiniLM/
 - Add circuit-breaker instrumentation to surface when and why it flaps under high retry load, tracked in `032/005-stability-instrumentation`.
 - Execute the original five-batch model-name-purge scope from 022 (Nomic, MiniLM, hardcoded sqlite paths, ONNX cleanup, generated-asset regeneration) as a separate audit packet once the substrate is stable.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

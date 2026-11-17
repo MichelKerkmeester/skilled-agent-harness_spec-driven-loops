@@ -68,5 +68,7 @@ A person who clones this repository now learns from the README that git hooks wi
 - The agent mirror gate has no switch of its own. Getting one commit past it turns off the whole pre-commit chain for that commit. A per-gate switch would need its own change to the gate.
 - The git hook bypasses are read from the environment only. They cannot be saved in hook-flags.env. Only SYSTEM_GIT_COMMIT_HOOKS_DISABLED and the master SYSTEM_HOOKS_DISABLED reach the pre-commit chain from that file.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure` (Level 1)
 > Parent packet: `specs/system-speckit/033-system-speckit-v4`

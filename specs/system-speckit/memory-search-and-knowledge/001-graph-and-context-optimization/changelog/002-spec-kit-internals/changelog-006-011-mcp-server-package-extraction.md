@@ -88,5 +88,7 @@ The advisor is now the sole runtime owner of skill graph code and lifecycle. Mem
 - Memory full-suite baseline remains red at core. The stale 011 fixture was fixed, but unrelated failures covering Copilot dist hooks, code-graph extraction leftovers, vector dimension mismatch, and workflow vocabulary invariance remain outside 011 scope.
 - `lib/utils/sqlite-integrity.ts` re-exports advisor freshness integrity and `lib/utils/skill-label-sanitizer.ts` re-exports advisor render sanitization. Both are candidates for future neutral `@spec-kit/shared` extraction in a dedicated follow-up packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/011-mcp-server-package-extraction` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

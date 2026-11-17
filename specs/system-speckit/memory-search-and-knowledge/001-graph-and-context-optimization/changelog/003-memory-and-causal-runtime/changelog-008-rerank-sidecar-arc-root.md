@@ -59,4 +59,6 @@ This phase parent groups 9 child phases spanning 2026-05-20 to 2026-05-21. Each 
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc` (Level <!-- SPECKIT_LEVEL: phase-parent -->, Phase Parent)

@@ -73,5 +73,7 @@ The CocoIndex side was prepped: the stale 2.0GB MiniLM `target_sqlite.db` was de
 - Sweep all `.opencode/skills/*/mcp_server/` venvs to confirm none point cross-repo after the Barter editable-install drift was found in this phase.
 - Investigate slow CocoIndex indexing rate. At roughly 10 rows per second the full repo takes hours rather than minutes. Daemon runs on Metal but shows only 5-9% CPU during indexing.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/004-vec-store-rebuild` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

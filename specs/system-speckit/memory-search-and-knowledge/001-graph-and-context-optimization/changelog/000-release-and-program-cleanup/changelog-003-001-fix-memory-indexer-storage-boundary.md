@@ -82,5 +82,7 @@ This phase added `isIndexableConstitutionalMemoryPath()` as a single-source-of-t
 - T25 remains open. The final validator task was not marked complete because the validator did not pass.
 - P2-002 is only partially closed. The 005 checklist has current-packet path cleanup, but a full every-row `file:line` normalization is still needed as part of the template repair pass.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/001-fix-memory-indexer-storage-boundary` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

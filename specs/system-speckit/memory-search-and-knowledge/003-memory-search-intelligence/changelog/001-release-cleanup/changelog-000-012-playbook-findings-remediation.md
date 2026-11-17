@@ -72,5 +72,7 @@ The daemon-skills playbook validation (packet 011) plus the core memory-search r
 - Run the full suite on branch wt/0008-findings-remediation and merge. The code is verified per cluster.
 - The advisor warm-latency gate question is surfaced honestly rather than closed, since E5 F5 made the bench fail loudly but left the latency unchanged and unfaked.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`

@@ -63,5 +63,7 @@ This sub-phase remediated the 34 memory store, search and save findings from the
 - T031: the retention-reducer helper is documented as staged. Wiring it into the sweep and correcting the sibling impl-summary claim was handled in the edge-tier honesty fix.
 - T004 and T032 were refuted with reason and intentionally not changed (re-stamping a system-merged row would mislabel it, and `codeHash()` is a correct used utility).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation`

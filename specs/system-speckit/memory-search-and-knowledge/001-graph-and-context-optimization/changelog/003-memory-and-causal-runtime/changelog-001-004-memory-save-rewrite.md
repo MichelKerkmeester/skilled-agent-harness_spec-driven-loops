@@ -90,5 +90,7 @@ The implementation shipped 43 of 43 tasks under v3.4.1.0. `/memory:save` is now 
 - Historical `[spec]/memory/` cleanup has a dry-run path. Apply mode remains deferred with operator-gated reopen criteria.
 - The four env flags are documented as orthogonal. A formal test suite validates no cascade behavior between them.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite` (Level 3+)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

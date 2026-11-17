@@ -58,5 +58,7 @@ Two fixes and one rescue. session-cleanup.sh no longer guesses its identity: wit
 - The shared-daemon owner-shutdown question (one session legitimately stopping the daemon others share) remains with the watchdog/respawn phases.
 - The new integrity gate takes effect from the next daemon start (dist rebuilt; daemon was down at ship time).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

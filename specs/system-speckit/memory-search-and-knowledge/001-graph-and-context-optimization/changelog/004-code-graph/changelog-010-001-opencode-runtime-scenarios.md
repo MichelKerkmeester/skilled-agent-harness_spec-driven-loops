@@ -75,5 +75,7 @@ Two additional findings were logged: F-RUNTIME-1 (scope-safety, `code_graph_scan
 - Update the playbook's scenario 011 verify sub-check to remove the stale `rating` field expectation (F-011-1).
 - Confirm that disposable workspaces live under the repo root (gitignored `tmp/`) rather than under `/tmp`. Update any playbook docs that imply `/tmp` is safe (F-RUNTIME-1).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`

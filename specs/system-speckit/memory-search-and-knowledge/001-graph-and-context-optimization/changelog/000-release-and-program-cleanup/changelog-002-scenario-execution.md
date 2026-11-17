@@ -69,5 +69,7 @@ The execution harness for the parent stress-test playbook. Defines the four-stag
 - Calibrate latency thresholds based on the observed distribution. Zero cells scored above 0 on latency in this sweep
 - If signal at N=1 proves noisy across multiple sweeps, expand to N=3 per cell per parent REQ-009
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`

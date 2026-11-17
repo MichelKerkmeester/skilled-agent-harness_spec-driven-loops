@@ -59,5 +59,7 @@ Route-proof validation now rejects schema-valid but wrong-mode dispatch records 
 - Council uses round records, not iteration/delta records — route-proof fields were added but never run through `validateIterationOutputs`.
 - Prior research remains unrecovered; downstream phases must not claim it was read.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/002-route-proof-validation` (Level 2)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

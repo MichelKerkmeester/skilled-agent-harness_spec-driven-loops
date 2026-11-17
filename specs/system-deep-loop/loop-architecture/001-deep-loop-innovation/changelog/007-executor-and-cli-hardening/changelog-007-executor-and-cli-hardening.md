@@ -28,4 +28,6 @@ This phase parent groups the CLI executor and hardening work under one thematic 
 | `006-residual-finding-closeouts` | A single planned home to plan, execute, and record evidence for three small deferred residuals from landed siblings 022 / 025 / 028. |
 | `007-cli-devin-executor-repair` | Repairs the cli-devin deep-loop executor adapter so cli-devin lineages run again on the installed devin CLI. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening` (Level 3)

@@ -69,5 +69,7 @@ All four items shipped in one bundle via mixed executors. Step 3 (opencode react
 - Bench-validate voyage `rerank-2.5` and cohere `rerank-v3.5` on the project fixture to confirm the vendor-documented defaults match actual performance before promoting them to bench-locked status.
 - Wire `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` env-var override into `lane-registry.ts` with a bench-diff to confirm zero behavior change when the env var is unset (deferred from this packet).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/011-arc-022-followons`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

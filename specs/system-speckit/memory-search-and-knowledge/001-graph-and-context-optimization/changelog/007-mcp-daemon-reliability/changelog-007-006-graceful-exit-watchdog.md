@@ -65,5 +65,7 @@ This phase added a periodic process-tree RSS monitor that rolls up memory across
 - Add a unit test for the `recycleViaGracefulSelfExit` mechanism and the `launcherShutdownInProgress` no-respawn guard, which are code-reviewed correct but exercised only on the default-off path.
 - Document the give-up reap pid-reuse residual: the before-death snapshot is at most one monitor tick old and the alive-gate bounds but does not fully eliminate reaping a reused pid.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

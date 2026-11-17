@@ -80,5 +80,7 @@ Two detection helpers were shipped: `is_phase_parent()` in `shell-common.sh` and
 - Sync AGENTS_Barter.md and AGENTS_example_fs_enterprises.md with the Phase Parent Mode block once those files are re-created or confirmed at a new path.
 - Add soft-deprecation warning for legacy phase parents that retain heavy docs. Tolerant policy preserves them today. A follow-on `migrate-phase-parent.sh` or validator warning can prompt cleanup.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/001-phase-parent-validator-docs` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation`

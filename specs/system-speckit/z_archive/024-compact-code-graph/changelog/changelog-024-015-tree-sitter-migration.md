@@ -111,4 +111,6 @@ This phase lays the foundation for tree-sitter WASM parsing -- a proper code par
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/015-tree-sitter-migration/`

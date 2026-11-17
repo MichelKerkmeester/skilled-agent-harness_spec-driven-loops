@@ -63,5 +63,7 @@ No advisor source was touched. No skill metadata, tests, runtime configs, nor la
 - ADR may need amendment if a later child phase discovers a blocker. Scaffold an amendment packet rather than rewriting ADR-001 in place.
 - Re-score ADR-001 alternatives after seeing actual migration friction in child 003-005.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

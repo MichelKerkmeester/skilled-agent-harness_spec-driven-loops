@@ -73,5 +73,7 @@ Six surgical doc edits, one per finding F-007-B2-01 through F-007-B2-06, resolve
 - Run `validate.sh --strict` on this packet and confirm exit 0 after the `cli-copilot` question is resolved.
 - Wave master `npm run stress` run to confirm no post-edit regression against the 163-test baseline.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/010-fix-cli-orchestrator-doc-drift` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

@@ -72,5 +72,7 @@ Three lightweight telemetry additions shipped together: a startup RSS log line e
 - Flap history is per-process memory. A daemon restart clears `transitionsInLast10Min`, which is appropriate for local stability diagnosis but not for long-term trend analysis. Persistent flap logging could be added in a follow-up observability packet.
 - The 1500 MB RSS threshold is documented in `resource-map.md` but not enforced. An automatic termination or alert path was out of scope for this packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups`

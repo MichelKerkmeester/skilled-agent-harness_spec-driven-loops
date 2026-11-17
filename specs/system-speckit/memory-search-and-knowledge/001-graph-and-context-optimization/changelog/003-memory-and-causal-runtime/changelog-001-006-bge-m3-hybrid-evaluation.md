@@ -63,5 +63,7 @@ None.
 - Record ship or don't-ship decision in implementation-summary based on whether hybrid beats baseline by 5pp MRR@10.
 - Packet may be incomplete. Verify execution results before publishing as shipped.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/006-bge-m3-hybrid-evaluation` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

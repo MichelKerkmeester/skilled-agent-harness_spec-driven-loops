@@ -51,5 +51,7 @@ The causal and memo lane closed its backlog entries with Fable verification, con
 
 - Waived P2 entries are recorded as deliberate non-fixes.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/002-causal-and-memo` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation`

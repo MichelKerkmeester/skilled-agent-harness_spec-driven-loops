@@ -58,5 +58,7 @@ The write-ingress guard could enforce the constitutional rule that an automated 
 
 - Two pre-existing guard-coverage gaps are unblocked by this tagging and tracked as follow-ons: same-path reindex-retire, and feedback auto-promotion lacking a source_kind ingress check.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/013-provenance-injection` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

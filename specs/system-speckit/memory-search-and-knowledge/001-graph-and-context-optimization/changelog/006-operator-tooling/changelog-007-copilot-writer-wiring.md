@@ -54,5 +54,7 @@ After phase 006 fixed the Copilot schema crash, the `userPromptSubmitted` hook s
 
 - Cross-runtime smoke matrix should be re-run now that both phases 006 and 007 are live.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 1)
 > Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

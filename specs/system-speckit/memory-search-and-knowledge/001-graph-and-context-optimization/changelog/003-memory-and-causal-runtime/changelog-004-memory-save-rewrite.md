@@ -94,5 +94,7 @@ Implementation spanned M1-M10 milestones. Deep-review commit set closed all 9 fi
 - **Historical memory-file cleanup.** PR-10 historical-migration dry-run exists. Apply mode remains deferred with operator-gated reopen criteria.
 - **Feature-flag orthogonality tests.** The four env flags are documented as orthogonal. A formal test suite validates no cascade behavior.
 
+&nbsp;
+
 > Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite` (Level 3+)
 > Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

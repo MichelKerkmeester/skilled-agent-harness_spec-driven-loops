@@ -67,5 +67,7 @@ Eight adversarial regression scenarios were added to the manual-testing playbook
 - Adversarial scenarios are review aids, not executable gates. They tell a manual reviewer which test must stay green; they do not themselves run in CI.
 - The named-assertion citations are coupled to test titles. Renaming a regression test title requires updating the matching scenario, which is the intended fail-loud behavior.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/004-adversarial-playbook-scenarios` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation`

@@ -76,5 +76,7 @@ The core loop ran eight iterations via `cli-copilot` `gpt-5.4` with `reasoning_e
 - Treat any future auditor's JSONL ingest as a guarded adapter with coverage counters. The JSONL format depends on an undocumented local format that can change silently (F16).
 - Require runtime validation before any rollout of the `UserPromptSubmit` blocking-flow UX. The post itself notes the UX still needs more thought (F5).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/001-claude-optimization-settings` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline`

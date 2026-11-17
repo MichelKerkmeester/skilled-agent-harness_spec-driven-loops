@@ -82,5 +82,7 @@ Six batches shipped on 2026-05-22: B1 closed lease/ledger race correctness findi
 - Restore DR009-TRC-005 RSS slope measurement when an environment with `ps` access and live CocoIndex daemon startup is available.
 - Add explicit environment allowlists for subprocess boundaries per ADR-002 once the new sidecar architecture stabilises.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

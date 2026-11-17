@@ -58,5 +58,7 @@ A model that copies a system-spec-kit example or follows the authoring checklist
 - The suite needs more than its default time bound on a loaded machine. Later runs set `SPECKIT_TEST_RUN_TIMEOUT_MS=1800000`.
 - The suite comparison reads summary lines only, so a differing line needs a read of the failing tests.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/002-template-and-example-defect-repair` (Level 3)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

@@ -52,4 +52,6 @@ This phase parent groups 2 child phases spanning 2026-06-01 to 2026-06-01. Each 
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn` (Level 1, Phase Parent)

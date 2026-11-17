@@ -66,5 +66,7 @@ None. Research-only phase.
 - Jina GGUF remains operationally ambiguous. It may be promising, but it requires a non-upstream Jina llama.cpp fork today.
 - Revisit if IBM publishes a direct MTEB English average or paraphrase/STS recall result that beats jina-v3. Also revisit if Jina releases a clean upstream path for v5 text-matching under 1 GB on Apple Silicon.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/004-newer-text-embedders-survey` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion`

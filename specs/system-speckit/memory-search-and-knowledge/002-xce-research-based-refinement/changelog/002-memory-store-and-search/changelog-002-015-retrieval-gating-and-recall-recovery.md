@@ -71,5 +71,7 @@ Two two-word searches that should have surfaced many on-topic specs came back `w
 - The remaining generic-query recall, request-quality aggregation, token-budget and output-contract gaps were researched in phase `016` and implemented in phase `017`.
 - The corpus reindex that restores the un-embedded rows is deferred and runs when the operator is home and confirms.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/015-retrieval-gating-and-recall-recovery` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

@@ -102,4 +102,6 @@ No migration required.
 
 Users should see cleaner multi-word FTS5 results, a more readable `/memory:search` dashboard, and clearer diagnostics when search initialization or DB-path state drifts away from the populated database.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/013-fts5-fix-and-search-dashboard` (Level 2)

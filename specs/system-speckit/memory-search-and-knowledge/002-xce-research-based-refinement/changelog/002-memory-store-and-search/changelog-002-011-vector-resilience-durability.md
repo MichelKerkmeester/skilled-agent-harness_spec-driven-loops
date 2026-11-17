@@ -58,5 +58,7 @@ Phase 002/008 made a malformed vector shard detectable and rebuildable, but the 
 
 - Live adoption requires a dist rebuild plus daemon recycle (operator-gated). The behavior is otherwise inert until then.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

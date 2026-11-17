@@ -99,5 +99,7 @@ Total: **22 files** (13 sources + 9 partial regression tests merged into existin
 - The 2 REFUTED headlines (hook-tests `specs/` symlink path; reconsolidation env-leak) are closed with no action owed — both are correct as-is.
 - Batch 2 closes the last 15 of the original 20-target scout; no further scouted targets remain from that scout batch.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train`

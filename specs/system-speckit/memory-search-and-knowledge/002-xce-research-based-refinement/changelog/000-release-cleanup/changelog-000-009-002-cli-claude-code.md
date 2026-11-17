@@ -55,5 +55,7 @@ cli-claude-code's 6 reference/asset docs now carry exactly the canonical frontma
 | `.opencode/skills/cli-claude-code/assets/prompt_quality_card.md` | Modified | Full contract block authored; tier normal |
 | `.opencode/skills/cli-claude-code/assets/prompt_templates.md` | Modified | Full contract block authored; tier normal |
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

@@ -61,5 +61,7 @@ The JSONL append concurrency test now races two child processes through the real
 - Concurrency is barrier-synchronized, not adversarially interleaved at a single byte. Both writers are released together and race their appends; the property verified is O_APPEND per-record atomicity across the full append run.
 - The harness depends on the tsx loader to import the TypeScript append fn from a child process. This matches the existing concurrent-merge test in the same file.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation`

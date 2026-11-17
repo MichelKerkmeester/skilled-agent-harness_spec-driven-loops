@@ -70,5 +70,7 @@ A `resolveDtype()` helper and `HF_EMBEDDINGS_DTYPE` env var were added to `hf-lo
 - Decide whether the sqlite filename-key should include a dtype suffix so fp32 and q4 vector stores can coexist without a forced reindex on dtype flip.
 - Investigate q4 cold-load latency on sustained-load macOS thermal conditions, as ARMv8 NEON quantization metadata initialization may throttle under heavy batch workloads.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/005-q4-quantization` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

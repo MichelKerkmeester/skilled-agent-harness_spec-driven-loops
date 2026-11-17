@@ -63,5 +63,7 @@ The causal graph is no longer 94 percent noise. Of 33,101 edges, 31,118 were aut
 - Code effects apply on the next daemon-lease restart. The two live data migrations are already in effect against the corpus.
 - The Louvain to label-propagation rename and a real weighted-modularity algorithm are deferred until phase 006's eval harness can measure them.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/008-causal-graph-hygiene-and-entity-linker-noise/` (Level 3)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

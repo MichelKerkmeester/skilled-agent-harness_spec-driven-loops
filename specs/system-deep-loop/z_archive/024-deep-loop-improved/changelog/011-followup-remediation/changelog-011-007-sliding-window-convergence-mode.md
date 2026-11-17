@@ -52,5 +52,7 @@ Implemented the parent packet ADR's opt-in `convergenceMode: "sliding-window"` f
 - Two pre-existing deep-loop-runtime suite failures (`dependency-seams.vitest.ts`, `executor-provenance-mismatch.vitest.ts`) predate this child and remain unowned repo debt.
 - Telemetry comparison data from the first sliding-window rollout cycle should inform whether the mode ever becomes a recommended default (parent ADR keeps it opt-in until then).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/007-sliding-window-convergence-mode` (Level 3)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`

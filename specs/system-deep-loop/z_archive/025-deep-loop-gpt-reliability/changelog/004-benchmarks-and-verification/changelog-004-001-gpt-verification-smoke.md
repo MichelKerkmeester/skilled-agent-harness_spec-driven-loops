@@ -53,5 +53,7 @@ contextType: "implementation"
 - A genuinely external, non-`cli-opencode` shell is needed for a clean pass — later resolved in phase 012 using the Claude Code shell itself.
 - Open question of whether to close as blocked or rerun externally — carried into phase 007's research and resolved by phase 012's benchmark.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification/001-gpt-verification-smoke` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

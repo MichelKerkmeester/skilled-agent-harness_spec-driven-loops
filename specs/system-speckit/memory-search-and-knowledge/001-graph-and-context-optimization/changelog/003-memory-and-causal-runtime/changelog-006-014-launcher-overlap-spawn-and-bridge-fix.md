@@ -66,5 +66,7 @@ This phase shipped two focused launcher-concurrency fixes. The launcher liveness
 - Level spec-memory's older socket-server copy up to the same hardened race-safe contract.
 - Consolidate the three `socket-server.ts` copies behind a shared module.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/014-launcher-overlap-spawn-and-bridge-fix` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

@@ -25,4 +25,6 @@ This phase freezes the shared mode boundary before the eight phase-013 migration
 | `003-mixed-version-fixtures` | Plan a sealed fixture corpus that mixes old and new event and state versions within one deep-loop run, exercising upcasters, mode reducers, replay, and shadow parity across realistic version drift. |
 | `004-write-set-conflict-graph` | Plan the executable dependency and write-set conflict graph for the eight phase-013 mode migrations, including canonical read/write resources, derived conflict edges, hard ordering fences, freshness checks, and orchestrator consumption. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures` (Level 2)

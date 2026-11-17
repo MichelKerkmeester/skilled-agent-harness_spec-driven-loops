@@ -95,5 +95,7 @@ None.
 - Resolve pre-existing Vitest failures in `scripts/tests/progressive-validation.vitest.ts` and `mcp_server/tests/progressive-validation.vitest.ts` before claiming full-suite green. The broad suite timed out at 600s and these hangs are confirmed as environment or path-dependent issues unrelated to readiness removal.
 - Confirm the `dist/` artifact is regenerated in CI. `npx tsc` exited 0 locally and produced zero stale readiness references, but no tracked dist diff was recorded for this packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/026-remove-readiness-scaffolding` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

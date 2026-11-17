@@ -61,5 +61,7 @@ Rows stop falling into the gap between indexed and actually embedded. Drains no 
 - About 9,817 rows remain without a model or a vector until their next embed.
 - Rollback is `context-index.sqlite.pre-004-model-backfill-20260703` or the `embedding_model_backfill_audit` table.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/004-embedding-coverage-and-vector-shard-consistency/` (Level 3)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

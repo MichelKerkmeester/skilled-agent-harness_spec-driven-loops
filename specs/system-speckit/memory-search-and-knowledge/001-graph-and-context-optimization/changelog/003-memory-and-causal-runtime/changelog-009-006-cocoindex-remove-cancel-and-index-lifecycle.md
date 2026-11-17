@@ -86,5 +86,7 @@ Phase 006 introduced a `lifecycle/` package with three new modules: `ActiveWorkR
 - Future index producers added to the daemon must opt into `DaemonTaskRegistry` explicitly. The registry does not auto-discover new spawn sites.
 - Full existing pytest coverage could not be run in this sandbox. Once a Python 3.11 environment with project dependencies is available, run the full suite to confirm no regressions.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/006-cocoindex-remove-cancel-and-index-lifecycle` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

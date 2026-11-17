@@ -16,5 +16,7 @@ contextType: "implementation"
 
 This phase bound promotion, rollback and council persistence to authenticated evidence and authorized roots: promotion checks `score.candidate`, `score.target` and `score.inputHash`, ship and rollback verify against an authenticated append-only acceptance receipt, evaluator identity resolves from the manifest profile rather than candidate frontmatter, and council persistence rejects packet-root and topic-id escapes before any `mkdir`. All 13 implementation findings landed on `skilled/v4.0.0.0` (ten as `9d258a879e`, the three-finding tail as `700cb92044`). Status is in progress: the evidence checklist remains unchecked and the ADR dispositions remain Proposed.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority` (Level 3)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening`

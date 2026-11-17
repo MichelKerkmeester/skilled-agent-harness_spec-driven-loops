@@ -81,5 +81,7 @@ The patch set resolved both defects by landing all six requirements in the vendo
 - Verify REQ-019 repro ("code graph traversal callers query") returns implementation source in top 3 after reindex.
 - Add `pytest` to the sandbox venv or run the test suite in a normal shell environment to close the blocked test gate.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/004-cocoindex-overfetch-dedup-rerank` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

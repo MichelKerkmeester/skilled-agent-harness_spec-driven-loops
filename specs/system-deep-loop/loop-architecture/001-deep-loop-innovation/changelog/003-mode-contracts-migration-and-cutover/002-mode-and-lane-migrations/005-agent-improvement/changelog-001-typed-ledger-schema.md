@@ -16,5 +16,7 @@ contextType: "implementation"
 
 The additive-dark Agent Improvement typed ledger extends the shared Deep Improvement Common Services schema with typed AgentIR, change-contract, mutation, causal-experiment, manifest, transfer, and behavioral-classification events. Per its implementation summary, the ledger extends all 35 closed deep-improvement-common events and adds 15 agent-improvement events for AgentIR, mutations, causal experiments, manifests, transfer, and typed behavioral adjudication. Status is complete.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement`

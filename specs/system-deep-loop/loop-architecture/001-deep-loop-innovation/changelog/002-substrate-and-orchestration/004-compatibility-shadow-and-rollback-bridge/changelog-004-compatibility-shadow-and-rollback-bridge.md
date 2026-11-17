@@ -26,4 +26,6 @@ This phase defines the five compatibility, shadow-parity, in-flight-state, and r
 | `004-inflight-state-classification` | Implement a total, fail-closed classification of every frozen phase-003 in-flight state row into upcast, pin, fork, migrate, or block before any phase-014 authority cutover. |
 | `005-rollback-drills` | Plan executable, mode-scoped rollback drills that simulate a test-lane authority flip, detect a controlled regression, restore legacy authority within the rollback window, and prove state integrity. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge` (Level 2)

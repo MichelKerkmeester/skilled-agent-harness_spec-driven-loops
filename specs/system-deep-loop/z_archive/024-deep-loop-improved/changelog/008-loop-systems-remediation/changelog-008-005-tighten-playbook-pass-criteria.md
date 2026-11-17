@@ -62,5 +62,7 @@ High-risk manual validation now has a real evidence bar: a PASS requires the rel
 - Root playbook validators are structural. They do not prove every leaf scenario's semantics, so grep checks were used to verify the old loophole wording was removed from the targeted categories.
 - Manual scenario execution remains operator-driven. The docs now require EXIT 0 test evidence, but future manual runs still need reviewers to capture and cite that output.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/005-tighten-playbook-pass-criteria` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation`

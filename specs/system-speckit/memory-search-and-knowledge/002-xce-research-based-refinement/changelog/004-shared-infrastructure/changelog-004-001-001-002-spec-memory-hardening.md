@@ -60,5 +60,7 @@ The spec-memory CLI hardening phase shipped four Vitest suites that regression-l
 
 - Full end-to-end multi-runtime transport-down behavior is intentionally deferred to `003-runtime-integration`
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli`

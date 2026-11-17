@@ -65,5 +65,7 @@ The complete design fixture for the parent stress-test playbook: 9 scenarios acr
 - bash -n scripts/*.sh syntax check passes
 - Smoke test: dispatch S1 against each CLI manually; verify output capture
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/002-search-scenario-design` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`

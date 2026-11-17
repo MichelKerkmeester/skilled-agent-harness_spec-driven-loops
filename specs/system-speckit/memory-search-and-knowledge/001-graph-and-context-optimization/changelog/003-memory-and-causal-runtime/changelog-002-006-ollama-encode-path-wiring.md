@@ -75,5 +75,7 @@ A shared `OllamaProvider` was added to `shared/embeddings/` implementing `IEmbed
 - Restart the live `context-server.js` daemon after deploying this packet so the new compiled dist loads and old llama-cpp module state is dropped.
 - Keep shared factory manifest rows and MCP registry manifest rows symmetric until a package-safe shared manifest source is established to avoid silent drift.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

@@ -72,4 +72,6 @@ This packet built the missing piece, a bounded, safe, reversible relation-infere
 - Structurally, `caused` stays below the 5% coverage target because `supports` dominates the inferred distribution. The two deterministic signals satisfy all P0 requirements but do not move `caused` to target on their own.
 - The backfill is invoked explicitly (no scheduled job). `backfillJob.name` retains `autonomous-causal-relation-backfill` to keep consumers stable, but the implementation is on-demand.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill` (Level 3)

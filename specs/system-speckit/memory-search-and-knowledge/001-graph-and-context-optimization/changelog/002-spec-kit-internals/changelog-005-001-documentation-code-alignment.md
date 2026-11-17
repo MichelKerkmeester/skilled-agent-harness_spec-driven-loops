@@ -66,5 +66,7 @@ Phase 020 shipped the skill-advisor hook surface but the skill-advisor package d
 ### Follow-Ups
 - Interactive runtime smoke testing remains manual. The playbook describes the Claude, Gemini, Copilot, and Codex smoke procedure, but this pass verified automated Phase 020 suites rather than launching each interactive runtime.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/001-documentation-code-alignment` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation`

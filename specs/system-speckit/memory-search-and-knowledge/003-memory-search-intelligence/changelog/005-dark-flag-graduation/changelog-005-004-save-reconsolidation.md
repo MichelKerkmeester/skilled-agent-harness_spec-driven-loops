@@ -55,5 +55,7 @@ This phase benchmarked `SPECKIT_RECONSOLIDATION_ENABLED`, the opt-in gate that l
 - The assistive reconsolidation shadow path `SPECKIT_ASSISTIVE_RECONSOLIDATION` is already graduated and advisory-only and already captures the non-destructive redundancy-flagging value. No re-measurement is needed.
 - The separation numbers are measured on one corpus snapshot under the `nomic-embed-text-v1.5` embedder. A different embedder with more spread between near-identical and merely-related documents could be re-evaluated but the CUT verdict holds for the shipped embedder.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/004-save-reconsolidation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

@@ -82,5 +82,7 @@ You can now run `/doctor:skill-advisor` to interactively analyze every skill in 
 - Token-collision detection is per-pair, not transitive. Phase 2 cross-checks each proposed token against existing TOKEN_BOOSTS for other skills but does not detect three-way collisions. In practice this is rare because Phase 2 generates proposals one skill at a time.
 - Confidence threshold is fixed at 0.40 (medium). Phase 2 emits confidence_by_skill per proposal and pre_phase_3 hard-blocks anything below 0.40. There is no flag to relax this for development or testing without editing the YAML directly.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/005-advisor-setup-command` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine`

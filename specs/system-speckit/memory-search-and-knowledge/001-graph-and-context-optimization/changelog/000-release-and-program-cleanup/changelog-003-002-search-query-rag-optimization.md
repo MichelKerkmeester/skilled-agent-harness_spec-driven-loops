@@ -76,5 +76,7 @@ F-001, F-020 and F-004 are closed. F-002 through F-019 are deferred to workstrea
 - Runtime regression measurement is deferred. The harness baseline proves infrastructure only. Future packets should run larger corpus measurements before changing ranking or rerank behavior.
 - Workstreams 3 through 7 remain planned. Composed RAG trust tree, conditional rerank, advisor learned weights, CocoIndex overfetch calibration and code graph degraded-readiness stress cells each need harness data before changes land.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/002-search-query-rag-optimization` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

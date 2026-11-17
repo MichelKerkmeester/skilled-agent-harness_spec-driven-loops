@@ -62,5 +62,7 @@ One commit: `e60b095416`.
 - **Phase 007 (fleet marker sweep).** Validate and clean fleet markers.
 - **Phase 008 (z_archive marker sweep).** Validate and clean archive markers.
 
+&nbsp;
+
 > Spec folder: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/005-skill-reference-asset-doc-alignment` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

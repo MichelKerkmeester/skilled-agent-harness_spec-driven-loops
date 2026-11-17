@@ -84,5 +84,7 @@ All three phases landed on the same day with 14, 17 and 19 passing tests respect
 - Investigate the force/incremental path not refreshing existing spec-doc rows that carry NULL `file_mtime_ms`: after the ollama re-index, docs already indexed as `alreadyIndexed` were not re-processed, leaving `handover.md` unindexed.
 - Re-embed 6 residual pre-existing failed index rows via `memory_embedding_reconcile` or a forced re-index (4 in `008-playbook-manual-test-run`, 2 in `026 resource-map.md`).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

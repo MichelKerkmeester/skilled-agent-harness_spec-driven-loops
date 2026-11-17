@@ -59,5 +59,7 @@ Non-active memory rows no longer leak into search. Read exclusion used to differ
 - Search-level archived exclusion takes effect on daemon restart, the same deploy pattern as phase 001.
 - Rollback of the tier data is via the audit trail. A full revert restores `context-index.sqlite.pre-002-archived-rebuild-20260703`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/002-archived-tier-and-tombstone-read-exclusions/` (Level 3)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

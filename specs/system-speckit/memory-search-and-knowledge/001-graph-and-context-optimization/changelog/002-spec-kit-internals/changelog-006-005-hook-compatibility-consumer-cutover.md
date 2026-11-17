@@ -80,5 +80,7 @@ All production consumers were inventoried and classified under one of five categ
 - Run `doctor:update --cleanup-legacy=false` against the standalone advisor path to verify the full mutation route end-to-end.
 - Smoke-test operator-facing install-guide examples against a clean environment.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/005-hook-compatibility-consumer-cutover` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

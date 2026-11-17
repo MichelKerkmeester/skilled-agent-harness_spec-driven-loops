@@ -64,5 +64,7 @@ The fifth batch of the scouted bugfix train closed out the verify-first round-3 
 - The cli-devin phantom "dangerous" permission rows target stays out-of-scope here — already shipped via parallel `130/014` cli-doc work.
 - vitest segfaults on Node v25 in this env; the phase-parent-pointer test runs green via `tsx` (known environment issue, not a fix problem).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/005-scouted-bugfix-batch-5` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train`

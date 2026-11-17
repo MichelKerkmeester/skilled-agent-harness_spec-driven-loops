@@ -71,5 +71,7 @@ A focused adversarial review caught a P0 defect in the initial implementation: t
 - The daemon-up path leaves the memory index stale until `memory_index_scan` runs. A future packet could automate that MCP call at the end of a daemon-up standalone save to close the freshness gap without reopening the second-writer risk.
 - PID-reuse false-positives are accepted as safe (deferred stale index rather than corruption). Adding `startedAt` cross-check parity with the launcher would eliminate the false-positive class entirely.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

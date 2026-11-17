@@ -63,5 +63,7 @@ A canonical rule file was created under `sk-doc/references/global/` defining the
 
 - Sweep older evergreen docs in generated feature catalog and playbook surfaces that still contain historical phase or packet labels. The audit documents these as deferred because broad generated-corpus rewrites need their own dedicated cleanup pass.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/013-evergreen-doc-packet-id-removal` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

@@ -57,5 +57,7 @@ This packet created the planning surface for a real-world usefulness campaign. I
 - Run each scenario across the required CLIs with at least three assisted trials per cell or document approved deferrals.
 - Execute S-CG-01 (caller lookup), S-CG-02 (module touch-map), and S-CG-03 (refactor blast-radius preview) trials after plan approval.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/001-usefulness-test-methodology` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

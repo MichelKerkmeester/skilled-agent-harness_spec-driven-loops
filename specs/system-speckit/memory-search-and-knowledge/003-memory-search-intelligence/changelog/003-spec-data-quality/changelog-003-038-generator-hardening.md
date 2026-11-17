@@ -66,5 +66,7 @@ Shipped three additive hardening behaviors over the already-idempotent graph-met
 
 - The phase shipped default-OFF, with the canonical freshness write in `generate-context.ts` left in place and a scoped migration named as the graduation step. `SPECKIT_GENERATOR_HARDENING` later GRADUATED to default-ON after the phase 039 migration was re-run with the flag set, which backfilled `source_fingerprint` tree-wide and cleared the missing-fingerprint mass-fail the benchmark measured.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/038-generator-hardening` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

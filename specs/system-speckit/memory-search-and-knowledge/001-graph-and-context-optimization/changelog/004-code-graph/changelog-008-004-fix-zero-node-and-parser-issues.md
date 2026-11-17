@@ -84,5 +84,7 @@ Shipped in commit `f7a3fbdf` (feat(012/004): code-graph P0+P1 remediation) and `
 - Address six alignment warnings in pre-existing `mcp_server/lib/*` files that `verify_alignment_drift.py` flagged as missing module headers. These files were not modified in this packet and the warnings are outside the fix scope.
 - Replace last-record failed-scan persistence with a bounded history table if operators need to review a sequence of consecutive scan failures rather than only the latest.
 
+&nbsp;
+
 > Spec folder: `026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/004-fix-zero-node-and-parser-issues` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

@@ -51,5 +51,7 @@ This foundation phase created the reference surface every later migration phase 
 - CHK-020 Phase plan, tasks, checklist and implementation summary exist and validate with no placeholders.
 - CHK-021 Source-surface manifest covers all five old skills, `deep-loop-runtime`, command surfaces and current OpenCode agent files.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr` (Level 2)
 > Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`

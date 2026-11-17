@@ -92,5 +92,7 @@ Six sub-phases. Sub-phase 001 (research) dispatched 6 Tier 1 iterations via `cli
 - **Tier 2/3 items**: Remain in backlog unless promoted by future findings.
 - **Advisor accuracy target**: 60.0% corpus accuracy reached. Further gains require training data or model changes.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening`

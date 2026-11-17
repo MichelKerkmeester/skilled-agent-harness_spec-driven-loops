@@ -61,4 +61,6 @@ The seven phases adopted all four peck teachings (T1-T4) plus three additional v
 - AC-format normalization in shared manifest templates (`spec.md.tmpl`, `checklist.md.tmpl`) remains deferred. It was outside the approved write paths for the acceptance-coverage-gate phase.
 - `CONTINUITY_FRESHNESS` and `AC_COVERAGE` are both default-off. Promotion to active enforcement requires separate decisions.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption` (Level 1, Phase Parent)

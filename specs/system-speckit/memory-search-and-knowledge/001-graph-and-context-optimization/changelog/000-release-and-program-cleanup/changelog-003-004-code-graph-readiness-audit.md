@@ -60,5 +60,7 @@ The release-readiness program needed a truth check for the post-032 code graph r
 - Update README to distinguish `canonicalReadiness` values (`ready`, `stale`, `missing`) from `trustState` values (`live`, `stale`, `absent`, `unavailable`) to resolve P1-001.
 - Add an integration test covering the same-root fresh-then-edit transition in the degraded stress suite to resolve P1-002.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/004-code-graph-readiness-audit`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`

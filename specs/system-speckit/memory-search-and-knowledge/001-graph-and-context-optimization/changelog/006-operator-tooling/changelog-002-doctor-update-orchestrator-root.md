@@ -54,4 +54,6 @@ This phase parent groups 4 child phases spanning 2026-05-09 to 2026-05-11. Each 
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator` (Level 1, Phase Parent)

@@ -218,4 +218,6 @@ All existing vitest tests continue to pass (226 out of 226). New tests added in 
 
 No migration required. The code graph schema v2 migration (adding `file_mtime_ms` column) runs automatically on first access. Existing hook state temp files from before SHA-256 hashing become inaccessible, which is acceptable since they are ephemeral and regenerated each session.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/014-hook-durability-auto-enrichment/`

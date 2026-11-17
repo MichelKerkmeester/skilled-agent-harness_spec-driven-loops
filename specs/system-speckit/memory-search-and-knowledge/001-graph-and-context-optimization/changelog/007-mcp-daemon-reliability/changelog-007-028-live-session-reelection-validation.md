@@ -58,5 +58,7 @@ The changelog for v3.5.0.4 said the full multi-session behavior of daemon re-ele
 - PID-recycle assumption. The reap signals a pid recorded in the lease, the same lease-freshness assumption as the existing dead-socket reap. No new risk class is introduced.
 - Activation needs a fresh session. The launcher reads its code at startup, so a launcher already running keeps the old behavior until the next session spawns it.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

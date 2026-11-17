@@ -57,5 +57,7 @@ The presentation/router split was extended to the deep command family. Six mode-
 
 - Two non-mode deep commands were verified as already thin and remained out of split scope.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/005-deep-commands` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`

@@ -73,5 +73,7 @@ The original packet framing promised a six-phase cache-warning rollout including
 - Introduce `.claude/settings.local.json` runtime enablement only after cached-summary consumer and warning consumer packets land.
 - Add normalized analytics reader, dashboard contract, token-observability publication as later follow-on packets.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/001-cache-warning-hooks` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

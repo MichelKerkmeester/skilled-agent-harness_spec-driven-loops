@@ -52,5 +52,7 @@ _Detailed file-level changes live in the phase implementation summary._
 - Resolve system-kind exclusion only with a substrate-only marker and live-database validation.
 - Keep the aggregate security gate as a sibling phase rather than claiming it here.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

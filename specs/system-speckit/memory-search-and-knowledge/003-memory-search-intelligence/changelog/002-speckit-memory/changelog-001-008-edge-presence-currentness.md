@@ -50,5 +50,7 @@ _No fixes recorded._
 - Keep current-mode recall byte-identical until a consumer is enabled.
 - Implement the read-side edge-presence filter with focused temporal tests.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

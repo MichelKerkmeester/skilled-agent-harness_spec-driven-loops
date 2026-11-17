@@ -74,5 +74,7 @@ All three defects were remediated in a single focused pass. The scanner now comp
 - Resolve AS-003 hook count parity: the user-global `$HOME/.claude/settings.json` SUPERSET hook adds a third `UserPromptSubmit` invocation that cannot be removed from project scope. Confirm final expected hook count once the global settings are reviewed by the user.
 - Resolve AS-004 live Claude session verification: the sandbox is unauthenticated. Run the stream-json harness fixture in an authenticated environment to confirm advisor prompts complete and `total_cost_usd` stays within budget.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/004-fix-claude-freshness-schema-harness` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

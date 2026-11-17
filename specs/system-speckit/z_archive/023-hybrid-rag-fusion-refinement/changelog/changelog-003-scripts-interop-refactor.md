@@ -111,4 +111,6 @@ No migration required.
 
 The scripts package keeps its existing outward contract. The release changes how safely it works with migrated sibling packages and how reliably session context can still be saved and recovered during that transition.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/003-scripts-interop-refactor` (Level 1)

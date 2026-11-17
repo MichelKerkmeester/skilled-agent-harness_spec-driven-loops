@@ -53,5 +53,7 @@ Phase 011 researched where spec authoring and upkeep spend model time and ranked
 - Ranks 4 to 8 and 10 to 12 wait for the 2026-10-26 timing run, because each needs measured evidence or would change an existing verdict.
 - Ranks 4 to 8 rest on word counts, not timed runs, until that run measures them.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/011-authoring-speed-research` (Level 1)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

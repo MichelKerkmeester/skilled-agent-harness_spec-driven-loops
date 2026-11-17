@@ -59,5 +59,7 @@ Multiple skill-advisor daemons could open the same SQLite database at once, and 
 - The full spawn-twice integration test is deferred. Unit tests substitute for `isLeaseHeld` semantics for now
 - The 24 hour zero-`.corrupt` soak (SC-001) is deferred to the operator, run after restart with the new launcher binary live
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/001-concurrent-daemon-corruption-fix`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

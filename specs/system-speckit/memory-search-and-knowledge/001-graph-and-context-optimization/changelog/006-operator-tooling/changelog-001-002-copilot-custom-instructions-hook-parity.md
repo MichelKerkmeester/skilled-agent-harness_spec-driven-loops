@@ -85,5 +85,7 @@ The implementation added a custom-instructions writer (`hooks/copilot/custom-ins
 - Fix memory indexing failure. `generate-context.js` refreshed graph metadata but canonical spec-doc indexing failed and the post-save reviewer returned `REVIEWER_ERROR (EISDIR)`. Investigate the indexing path.
 - Patch Superset wrapper generator conflict. The Superset wrapper at `~/.superset/bin/copilot` rewrites `.github/hooks/superset-notify.json` on every launch, bypassing the repo-local Spec Kit writer. A follow-on packet must either inject the writer command into the Claude wrapper entry or patch the Superset generator so the managed block refreshes per-prompt.
 
+&nbsp;
+
 > Spec folder: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

@@ -109,4 +109,6 @@ No migration required.
 
 Search now keeps intent and fallback behavior more safely through the retrieval path. The phase packet still expects a fresh-restart verification pass before it can claim fully closed rerun evidence.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/010-search-retrieval-quality-fixes/` (Level 2)

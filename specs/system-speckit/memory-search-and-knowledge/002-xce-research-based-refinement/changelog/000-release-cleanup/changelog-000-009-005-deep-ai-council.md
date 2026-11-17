@@ -62,5 +62,7 @@ deep-ai-council's 18 reference and asset docs now carry exactly the canonical fr
 | `assets/{deep_ai_council_dashboard,deep_ai_council_strategy}.md` | Modified | Added tier normal + contextType planning |
 | `assets/prompt_pack_round.md` | Modified | Net-new canonical frontmatter block authored |
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/005-deep-ai-council` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

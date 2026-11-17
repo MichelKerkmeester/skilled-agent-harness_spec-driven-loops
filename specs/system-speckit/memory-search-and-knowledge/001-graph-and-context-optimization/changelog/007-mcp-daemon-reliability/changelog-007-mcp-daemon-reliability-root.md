@@ -74,4 +74,6 @@ These infra-followup phase parents were renested into this track during the prog
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability` (Level 2, Phase Parent)

@@ -70,5 +70,7 @@ The memory index now promotes authored packet lineage metadata into causal edges
 - The promoter resolves packet ids to indexed memory rows. Unindexed targets produce warnings and no partial edge is created; this will self-resolve as those packets are indexed.
 - Three pre-existing out-of-scope alignment-verifier defects remain: `canonical-fingerprint.ts`, `memo.ts`, and `deploy-mcp.sh`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle`

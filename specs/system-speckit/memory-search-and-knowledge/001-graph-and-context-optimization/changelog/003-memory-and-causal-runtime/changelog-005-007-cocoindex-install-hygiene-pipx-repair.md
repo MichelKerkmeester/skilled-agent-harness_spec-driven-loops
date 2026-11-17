@@ -64,5 +64,7 @@ No pipx repair was performed in this scaffold. The packet blocks future implemen
 - Verify `direct_url.json`, `ccc --version` and the missing module imports before changing docs or benchmarks.
 - Record repair evidence in the packet summary, then run strict packet validation.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/007-cocoindex-install-hygiene-pipx-repair` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality`

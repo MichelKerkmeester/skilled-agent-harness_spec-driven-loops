@@ -81,5 +81,7 @@ Full `vitest run skill_advisor/tests/` recorded 6 unrelated failures from `.clau
 - The full Skill Advisor test directory is not green in this checkout. The 6 failing files are outside this packet's scope. Address `.claude/settings.local.json` repo-root drift and the missing `mcp-code-mode/graph-metadata.json` package reference in a dedicated health-fix pass.
 - Affordance evidence is intentionally weak by design. It improves candidate recall but does not override explicit author trigger signals. Consider a follow-on benchmark to measure the actual recall delta across a broader routing fixture corpus.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-skill-advisor-affordance-evidence` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance`

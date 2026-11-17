@@ -47,4 +47,6 @@ This phase put a proper verification layer under the hook and fallback rollout. 
 
 No migration required. The phase still leaves unrelated pre-existing test failures outside its scope.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/007-testing-validation/`

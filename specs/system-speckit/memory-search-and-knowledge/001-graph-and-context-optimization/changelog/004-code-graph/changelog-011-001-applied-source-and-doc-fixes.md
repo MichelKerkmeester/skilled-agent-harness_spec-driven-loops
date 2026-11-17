@@ -78,5 +78,7 @@ None.
 - Merge `cg-remediation` into main after BUG-04 and BUG-06 work-in-progress settles on the live tree.
 - Verify the 7 deferred findings (CG-002, CG-006 through CG-010 plus others overlapping BUG-04/BUG-06) once the WIP merges.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-applied-source-and-doc-fixes` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`

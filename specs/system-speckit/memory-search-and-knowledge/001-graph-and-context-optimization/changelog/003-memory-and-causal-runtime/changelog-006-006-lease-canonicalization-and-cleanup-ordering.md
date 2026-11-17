@@ -80,5 +80,7 @@ Phase 006 closes all 6 P1 findings and 5 of 6 P2 findings. Lease ownership now r
 - Restore or document P2-Seat4 in a follow-on packet. Direct edits to `system-code-graph/references/launcher-lease.md` and `system-spec-kit/references/launcher-lease.md` are deferred because the Phase 006 frozen scope explicitly excludes them.
 - Verify the `advisor_rebuild` static watcher wiring check covers the remaining P2-Seat5 surface. One static check remains alongside the runtime DB-pragma test.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/006-lease-canonicalization-and-cleanup-ordering` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

@@ -49,5 +49,7 @@ Fusion ordering does not always put the single most-relevant result first, becau
 
 - A cross-encoder reranker remains explicitly out of scope per the operator decision. The research framed it as an only-if-a-gap-remains path, not this phase.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/005-cosine-topn-reorder` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

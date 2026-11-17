@@ -58,5 +58,7 @@ This leaf added `feedback-retention-reducer.ts` and `edge-tier-basement.ts`. The
 - Active retention changes require external shadow-evaluation evidence to be supplied by callers; this gate has no automated bypass path.
 - Shadow audits should be reviewed before considering any transition to active mode in production.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers`

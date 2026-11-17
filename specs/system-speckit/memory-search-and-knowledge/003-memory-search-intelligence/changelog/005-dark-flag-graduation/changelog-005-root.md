@@ -59,4 +59,6 @@ _No file-level detail recorded._
 - The true-citation ledger stays at refine until live session-carrying traffic reaches the density floor the probe now reports.
 - The unset production tunables for the deep-loop gauges and the degree cap need defined values, and flipping any graduated default on stays a separate evidence-gated decision outside this program.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation` (Level 2)

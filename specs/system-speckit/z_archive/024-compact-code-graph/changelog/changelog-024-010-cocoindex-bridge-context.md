@@ -57,4 +57,6 @@ This phase connected semantic search to the new structural graph so the packet c
 
 No migration required. File-anchor fallback remains intentionally coarse when a hit cannot be resolved to a symbol.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/010-cocoindex-bridge-context/`

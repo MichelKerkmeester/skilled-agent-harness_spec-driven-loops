@@ -78,5 +78,7 @@ This phase ported the Claude reference implementation to a new `hooks/codex/` ad
 - Memory indexing is partially degraded. `generate-context.js` exited 0 and refreshed metadata, but semantic indexing hit `E_LINEAGE` and `candidate_changed` failures for several packet docs. Strict spec validation remains clean.
 - CocoIndex timed out during implementation. Future operators using this packet as a reference for hook authoring may want to wait for CocoIndex stability before relying on semantic search here.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-codex-native-startup-advisor-hooks` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

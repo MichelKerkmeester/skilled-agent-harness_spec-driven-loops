@@ -16,5 +16,7 @@ contextType: "implementation"
 
 This phase planned the Deep Research mode event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed run lifecycle, question and branch planning, evidence and claim provenance, convergence decisions, synthesis, and memory-save handoff events. It defines events and upcaster hooks only; reducers and projections belong to the next sibling. Per its implementation summary, the additive-dark Deep Research ledger boundary now exposes a typed event union, closed payload and scope contracts, and fail-closed legacy compatibility hooks for the reducer sibling. Status is complete.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/001-typed-ledger-schema` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research`

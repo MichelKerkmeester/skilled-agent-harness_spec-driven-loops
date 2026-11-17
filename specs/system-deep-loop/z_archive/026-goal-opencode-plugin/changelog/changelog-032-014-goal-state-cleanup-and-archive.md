@@ -52,6 +52,8 @@ This phase did not originate from either the security/correctness or documentati
 
 - Archive-then-prune and sweep helpers stay private (not exposed on `__test`) to keep the export-contract test's fixed 15-key surface stable; lifecycle tests verify the behavior through real plugin events instead of direct helper calls.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
 > Commit: `870da2e9e5` feat(mk-goal): archive-then-prune goal state, sweep orphaned sessions

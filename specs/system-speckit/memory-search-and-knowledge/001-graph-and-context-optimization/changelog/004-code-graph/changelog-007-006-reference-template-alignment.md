@@ -81,5 +81,7 @@ All 16 reference and stub files passed sk-doc blocking validation. The skill and
 - Historical changelogs and archived provenance files were not rewritten. Compatibility stubs preserve those links.
 - Future router updates should continue to target canonical subdomain references, not root stubs.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/006-reference-template-alignment` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`

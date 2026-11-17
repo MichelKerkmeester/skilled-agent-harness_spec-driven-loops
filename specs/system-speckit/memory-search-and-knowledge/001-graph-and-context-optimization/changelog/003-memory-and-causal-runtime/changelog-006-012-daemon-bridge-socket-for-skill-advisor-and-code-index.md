@@ -72,5 +72,7 @@ This packet mirrors the `mk-spec-memory` daemon-side bridge socket pattern into 
 - Add SQLite-table-level dead-PID reclaim for `skill_graph_daemon_lease`. The bridge fix does not address stale rows pointing at exited processes. The file-lease-level `kill(pid, 0)` probe blocks false-alive reads, but the table rows still accumulate. Tracked as a separate follow-on per packet 011 REQ-006.
 - Consolidate `socket-server.ts` from 3 workspace copies into a single shared source. D-001 documents the rationale for the copy approach. A future packet could introduce a shared library once the build-system cost is justified.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/012-daemon-bridge-socket-for-skill-advisor-and-code-index` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

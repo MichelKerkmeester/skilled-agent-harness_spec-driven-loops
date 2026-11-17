@@ -62,4 +62,6 @@ Leaf 003 locks in the feedback safety posture: forged reserved feedback types ar
 - Automated callers introduced in later phases must inject `__provenanceContext` to remain governed by the write-ingress provenance guard.
 - Active feedback reducers (ranking, retention, FSRS mutation) remain deferred pending ledger quality measurement in the 005 diagnostics-first children.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening` (Level 2, Phase Parent)

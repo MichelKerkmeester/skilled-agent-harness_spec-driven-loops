@@ -54,5 +54,7 @@ _No fixes recorded._
 - Measure the shipped levers with evaluation mode configured so the reorder actually runs.
 - Promote calibration only on held-out ECE improvement over identity.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

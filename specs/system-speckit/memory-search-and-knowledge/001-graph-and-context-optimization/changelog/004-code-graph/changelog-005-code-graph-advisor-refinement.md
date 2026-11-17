@@ -81,5 +81,7 @@ All 35 findings were closed. The advisor's daemon now starts reliably. The shim 
 
 - **Auto-promotion semantics test.** The retained-memory auto-promotion semantics test was excluded from the inventory in PR-3. A follow-up should add coverage for auto-promotion from normal to important tier.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

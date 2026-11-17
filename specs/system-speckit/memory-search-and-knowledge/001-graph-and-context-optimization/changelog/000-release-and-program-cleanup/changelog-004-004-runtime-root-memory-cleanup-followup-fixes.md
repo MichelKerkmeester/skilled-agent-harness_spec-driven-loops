@@ -74,5 +74,7 @@ All three were addressed. The resolver sentinel was tightened to the canonical a
 - Run a `VACUUM` on the indexed-continuity database after the auto-checkpoint is no longer needed for rollback. The checkpoint snapshot (84 MB) is inflating the reported database size.
 - Update singular-path test fixtures in the advisor test suite to plural paths. The 37 pre-existing failures from packet 096 remain until a dedicated fixture-sweep packet lands.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program`

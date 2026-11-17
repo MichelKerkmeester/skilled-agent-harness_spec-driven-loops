@@ -51,5 +51,7 @@ A search that returned one strong, clearly-best memory was reading `weak` and ea
 
 - The aggregation thresholds (0.8 top-dominant, 0.15 margin) are reasoned from the observed score distribution, not yet tuned against a labeled set. The labeled-set follow-up tracked under phase `004` would let these be fit rather than chosen.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/002-request-quality-aggregation` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

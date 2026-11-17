@@ -58,5 +58,7 @@ This phase shipped a pre-rendered verdict fragment, a conditionally-mandatory re
 - The default-on flip of the render mandate is a follow-on gated on a clean grandfather report over a captured render corpus. The flag has since GRADUATED to default-on after a fixture benchmark.
 - This phase enforces render fidelity for a correct verdict and does not touch the off-corpus false-relevance defect, which is a separate phase.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

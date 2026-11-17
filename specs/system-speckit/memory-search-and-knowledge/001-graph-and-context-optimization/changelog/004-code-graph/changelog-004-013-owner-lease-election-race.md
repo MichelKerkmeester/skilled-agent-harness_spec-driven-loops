@@ -63,5 +63,7 @@ A read-only investigation traced the full 4-layer election to exact line numbers
 - Run the empirical 2-launcher repro as part of the fix validation. The code-trace severity verdict is P2 but has not been confirmed by observation.
 - Verify whether the bootstrap-lock loser branch intentionally allows a second launcher to take over an already-built DB. Confirm the fix must preserve that behavior before implementing Option B.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/013-owner-lease-election-race` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph`

@@ -28,4 +28,6 @@ This phase plans the seven shared evidence and control services that make the tr
 | `006-locks-and-fencing` | Plan the shared concurrency-safety service for ledger append, projections, and per-lineage state via scoped leases and durable monotonic fencing tokens. |
 | `007-continuity-identities` | Plan stable lineage, claim, candidate, and mode-session identities that persist across resume, handover, replay, and cross-mode boundaries. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services` (Level 2)

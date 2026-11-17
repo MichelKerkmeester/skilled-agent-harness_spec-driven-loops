@@ -58,5 +58,7 @@ The `mk_code_index` (system-code-graph) MCP server crashed at startup with `MCP 
 
 - Live confirmation deferred. Unit test and code inspection confirm the fix. The live `mk_code_index` reconnect with no pre-created socket dir is verified in Phase 2, which requires the reconnect anyway.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/001-ipc-socket-dir-canonicalize` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

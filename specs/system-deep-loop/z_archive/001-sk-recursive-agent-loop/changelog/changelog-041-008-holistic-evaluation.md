@@ -121,4 +121,6 @@ Transformed the sk-improve-agent evaluation from structural keyword-checking (~1
 
 No migration required. The rename was atomic and verified with zero stale references. Legacy `--profile` scoring mode remains backward compatible.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/008-sk-recursive-agent-holistic-evaluation/`

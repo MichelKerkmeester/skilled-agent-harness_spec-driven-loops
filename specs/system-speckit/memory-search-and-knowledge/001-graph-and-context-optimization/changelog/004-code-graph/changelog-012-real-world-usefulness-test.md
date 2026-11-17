@@ -86,4 +86,6 @@ The 012 track has 7 child phases. Each has its own changelog:
 - **Usefulness verdict reevaluation.** The code-graph was downgraded to OVERHEAD in Phase 012/002 due to parser crashes. After the 012/007 fix, it was restored. A follow-up reevaluation with the post-fix system in day-to-day use over 2+ weeks is recommended.
 - **Quarterly skip-list review.** Files added to the parser skip-list at runtime do not auto-unskip. A quarterly operator review workflow should check if the upstream tree-sitter-bash bug has been fixed and `DELETE` the entries if so.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2, Phase Parent)

@@ -79,5 +79,7 @@ Future authors who copy any of these folders as patterns now inherit a clean pre
 - Confirm NC-004 receiver content against git history to determine if the original narrative needs restoring. A partial cli-codex run emptied the OVERVIEW and SCENARIO CONTRACT sections before being killed.
 - Update parent `000-release-cleanup/` `graph-metadata.json` field `derived.last_active_child_id` to point at this packet if not already set.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/028-documentation-alignment-readme-fill-in` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

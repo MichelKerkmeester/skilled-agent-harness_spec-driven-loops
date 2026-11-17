@@ -76,5 +76,7 @@ An unfilled value token can no longer hide behind a quoted code fence in a v2.3 
 - --track still follows a symlink. A track that exists as a link to another tree receives the packet there, by design. Remove the link first when that is not wanted.
 - The deep review's DeepSeek lineage did not exit. Its pi process stayed idle after writing its report and was stopped by hand; the fan-out runner's stall watchdog warns but does not end a lineage whose work is done.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/023-deep-review-remediation` (Level 2)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

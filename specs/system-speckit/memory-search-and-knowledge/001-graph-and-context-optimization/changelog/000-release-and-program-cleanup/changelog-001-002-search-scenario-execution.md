@@ -75,5 +75,7 @@ None. Research-only phase.
 - Calibrate Latency thresholds based on the observed distribution. Under v1.0.0, zero cells scored above 0 on Latency. v1.0.1 recalibration addresses this gap.
 - Expand to N=3 per cell if signal proves noisy across multiple sweeps, per parent REQ-009.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/002-search-scenario-execution` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`

@@ -68,5 +68,7 @@ Phase 004 let Skill Advisor use sanitized tool and resource affordance hints wit
 - Full Skill Advisor directory still had unrelated failures in local hook and metadata fixtures.
 - 008 research later found TypeScript and Python parity gaps around `conflicts_with`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`

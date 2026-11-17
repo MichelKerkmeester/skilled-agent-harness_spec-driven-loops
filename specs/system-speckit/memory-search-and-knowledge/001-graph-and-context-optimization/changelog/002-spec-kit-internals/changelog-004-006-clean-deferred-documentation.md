@@ -67,5 +67,7 @@ The documentation quality refactor phases 002 through 005 deferred a set of find
 - F35 catalog table of contents renumber, F36 numbering gap and F37 catalog-to-playbook asymmetry deferred per existing open questions
 - Three of five new reference documents deferred until a specific operator need surfaces
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor`

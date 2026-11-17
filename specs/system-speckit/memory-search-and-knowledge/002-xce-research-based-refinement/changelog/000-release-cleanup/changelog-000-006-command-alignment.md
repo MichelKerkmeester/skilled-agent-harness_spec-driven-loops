@@ -55,5 +55,7 @@ Command docs were aligned to shipped 027 runtime reality without restructuring c
 
 - The structural command router/presentation split was intentionally deferred to the 004/002 command-presentation workflow separation phases.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

@@ -54,5 +54,7 @@ Fourteen review findings across two lineages sat undispositioned, graph-metadata
 - The 2 genuinely active findings (session-id reuse into review-init bindings, leaf-agent naming and scope mismatch in the fan-out prompt) are real, unresolved gaps and remain open for a future phase.
 - codex's own registry aggregate summary fields (openFindingsCount, convergenceScore, graphDecision) were left unrecalculated since reconciling them requires understanding the deep-review reducer's own contract, out of scope for this backfill.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/006-review-registry-and-metadata-backfill` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

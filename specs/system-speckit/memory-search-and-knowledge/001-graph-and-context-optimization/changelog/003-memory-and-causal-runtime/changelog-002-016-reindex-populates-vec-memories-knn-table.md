@@ -67,5 +67,7 @@ Both layers were patched in one commit (`fix(016/002/016): reindex dual-write + 
 - Add a migration script under `database/migrations/` to remove the legacy top-level `vec_metadata` table from `context-index.sqlite` once the shard layout is fully deployed.
 - Other shards that were not backfilled inherit the dual-write behavior on their next reindex run. No manual backfill is needed for those shards.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

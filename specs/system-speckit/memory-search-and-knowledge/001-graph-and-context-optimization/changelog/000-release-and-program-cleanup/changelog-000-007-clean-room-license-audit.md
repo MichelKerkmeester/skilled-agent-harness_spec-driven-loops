@@ -60,5 +60,7 @@ Reset the packet status to blocked or conditional until `validate.sh --strict` p
 Normalize the phase numbering label (`010` vs `012`) in all visible titles, branch references, trigger phrases before handing this packet to downstream agents.
 Record an explicit approved exception with owner and date if strict validation cannot be fixed before downstream unblocking.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/007-clean-room-license-audit` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup`

@@ -56,5 +56,7 @@ Shipped and **deployed** the first deferred follow-up of the memory-index-scan r
 
 - None required. Monitor `post_insert_enrichment_status` distribution on live `memory_save` to confirm markers flip to `complete` and that no `pending`/`failed` rows accumulate.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation`

@@ -92,5 +92,7 @@ All 13 requirements closed in a single cli-codex dispatch (21 minutes). The caus
 - The `pnpm tsc --noEmit` wrapper is unavailable in `mcp_server/node_modules/.bin`. Add a package.json script or symlink so the standard invocation works without the absolute compiler path.
 - CocoIndex daemon probe uses filesystem liveness checks (PID, log, lock, socket) with a 30-second TTL. It cannot verify process arguments or environment values. A future packet could strengthen the probe if live HTTP healthcheck becomes available.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

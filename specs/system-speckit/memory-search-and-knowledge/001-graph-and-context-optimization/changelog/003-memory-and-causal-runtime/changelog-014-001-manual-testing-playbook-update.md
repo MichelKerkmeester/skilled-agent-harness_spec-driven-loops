@@ -66,5 +66,7 @@ The scenarios cover checkpoint v2 round trips, the `.needs-rebuild` self-heal pa
 - Deep review later flagged playbook executability issues around `EX-037` unsupported `includeEmbeddings`, the scratch-copy restore wording and `EX-039` move-reconciliation scope. Track those in the follow-up remediation packet.
 - Catalog cross-links were deferred to sibling phase 002 and are not part of this phase.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/001-manual-testing-playbook-update` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh`

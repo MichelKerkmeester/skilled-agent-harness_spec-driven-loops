@@ -67,5 +67,7 @@ All nine findings (F22, F28, F59, F66, F67, F72, F89, F103, F104) were closed in
 
 - The canonical bin Vitest runner path in the spec prompt was absent from this checkout. The equivalent local runner under `.opencode/skills/system-spec-kit/scripts/node_modules` was used and produced the same 37-pass result. Align the runner path reference in future specs with the installed location.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/003-fix-deferred-p2s-for-filesystem-durability` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes`

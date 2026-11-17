@@ -53,5 +53,7 @@ Captured the GPT deep-agent mis-routing problem as a spec packet and, via a 6-it
 - Plan child phase 002 (route-proof validation) first, closing the FIX-5 false-negative (F27).
 - **Doc-drift note**: this phase's own `implementation-summary.md` metadata still records Draft/0% completion, while the packet root `spec.md` phase table marks it "Complete (research)" based on the real 6-iteration/10-KQ output — the child doc was evidently never refreshed after the research finished. Recorded here for transparency rather than silently overwritten by this changelog pass.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration` (Level 1, research)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

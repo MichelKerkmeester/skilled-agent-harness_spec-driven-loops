@@ -67,5 +67,7 @@ Phase 017 acts on two findings from the benchmark. Authors misstated a script's 
 - Phases 015, 016 and 017 were built in one uncommitted tree and are committed together; the stamp v2.4 was set once for all five templates.
 - The work is committed as `62e4661e01` (code) and `ef939bf0ac` (docs).
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata` (Level 2)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

@@ -63,5 +63,7 @@ Packet 008 added a close-time WAL TRUNCATE for the main context index but left t
 - Evaluate a production flip to `synchronous=FULL` plus `fullfsync=ON` on main and shard connections if a broader daemon benchmark shows the fullfsync tail cost is tolerable under real save volume.
 - Confirm autocheckpoint and periodic TRUNCATE behavior holds under high write-volume stress beyond the 200-transaction copy benchmark.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

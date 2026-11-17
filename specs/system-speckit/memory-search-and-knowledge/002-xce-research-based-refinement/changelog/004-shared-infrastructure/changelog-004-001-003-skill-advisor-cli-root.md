@@ -69,4 +69,6 @@ See per-phase changelogs for full file tables.
 
 - Final multi-runtime transport-down drill tracked as program-level verification
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli` (Phase Parent)

@@ -62,5 +62,7 @@ Phase 2 documented a small escape hatch for intentional simplification. The `cei
 - No checker changed by design.
 - Not committed. Changes sat in the working tree on branch `028-mcp-to-cli-tool-transition`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/002-ceiling-comment-convention` (Level 1)
 > Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`

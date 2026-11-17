@@ -75,5 +75,7 @@ A new `config-defaults.ts` module was shipped with a single `CODE_GRAPH_DEFAULTS
 - Ten P2 audit findings were effectively closed by the consolidation pattern but were not individually documented. A follow-on pass should record the closure evidence for each P2 finding.
 - Pre-existing `TS6307` errors in `system-code-graph`'s own `tsc` (cross-project reference to `system-spec-kit/shared/embeddings/registry.ts` introduced in phase 005) are unrelated to this phase and do not affect `typecheck:root` or runtime behavior.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/007-code-graph-p1-config-extraction`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

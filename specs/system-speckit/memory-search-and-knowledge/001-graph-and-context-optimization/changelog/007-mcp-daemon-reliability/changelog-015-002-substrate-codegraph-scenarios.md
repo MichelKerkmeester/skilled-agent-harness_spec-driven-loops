@@ -55,5 +55,7 @@ Three substrate playbooks called code_graph_query(query, num_results), which was
 - The substrate vitest is red in this environment for a pre-existing unrelated reason. runner:mk-spec-memory fails to connect and 410 consequently SKIPs (the SQ1 connection-diagnostic condition from packet 032). This fix neither caused nor resolves that red state.
 - Not executed against a live Code-Graph daemon. Payload validity was verified against the tool schema only. queryMode neighborhood is the schema default, a future live run may tune per-scenario mode.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/002-substrate-codegraph-scenarios` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`

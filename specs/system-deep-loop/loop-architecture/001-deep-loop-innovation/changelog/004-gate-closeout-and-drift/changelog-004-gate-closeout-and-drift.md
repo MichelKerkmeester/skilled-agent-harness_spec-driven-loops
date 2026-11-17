@@ -24,4 +24,6 @@ This group covers the gate, closeout and drift spine of the 036 deep-loop innova
 | `002-integrate-latest-and-closeout` | Land the program on the moving mainline: integrate the latest origin in a clean worktree, re-census touched contracts, reopen phases whose inputs drifted, rerun the whole-system gate on the exact final SHA, and reconcile the parent packet's open items, changelogs, and generated metadata. |
 | `003-drift-census-and-plan-revalidation` | Census the 204 commits of drift between the 036 planning baseline and HEAD and return a per-phase verdict (still valid, needs refinement, or invalidated) for each implementation phase, with commit-level and path:line evidence. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift` (Level 3)

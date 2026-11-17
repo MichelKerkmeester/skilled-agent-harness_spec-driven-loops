@@ -46,5 +46,7 @@ The substrate stress harness wrote its evidence and scratch into `_sandbox/24--l
 
 - A standalone manual run leaves the evidence in place unless `--clean` is passed, by design, so an operator can inspect the summary TSV after a manual run.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

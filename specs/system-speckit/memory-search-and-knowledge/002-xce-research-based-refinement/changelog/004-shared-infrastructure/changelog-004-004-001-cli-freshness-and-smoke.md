@@ -55,5 +55,7 @@ The three daemon CLI shims now use content-hash freshness checks so mtime-only s
 
 - Broad alignment verifier still reported unrelated existing issues outside this sub-phase scope.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux`

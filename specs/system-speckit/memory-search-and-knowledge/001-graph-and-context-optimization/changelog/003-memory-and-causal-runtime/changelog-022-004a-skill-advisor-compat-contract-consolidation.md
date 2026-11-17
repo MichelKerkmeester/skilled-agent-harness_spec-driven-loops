@@ -56,5 +56,7 @@ The skill-advisor scorer carried the default confidence threshold (0.8) and unce
 - Waves 2 to 4 (RoutingCalibration interface expansion, env-var overrides, prompt-policy externalization) shipped in the follow-on 004b
 - Compiled `.js` files keep the old literals until the next `tsc` build, left to the natural build cycle
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004a-skill-advisor-compat-contract-consolidation`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

@@ -55,5 +55,7 @@ Bounded rejected-idea index with exact + fuzzy suppression and reversal events i
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/006-rejected-pattern-cache` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

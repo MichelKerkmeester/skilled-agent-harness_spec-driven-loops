@@ -76,5 +76,7 @@ The broad-scope code_graph_scan now completes cleanly across 9,300+ files. The b
 - Self-heal stays disabled by design; operator workflow is quarterly manual review of runtime skip-list rows.
 - Quarantine sentinel clears only through MCP server restart; no programmatic clear endpoint exists.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/008-tree-sitter-parser-crash-resilience` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

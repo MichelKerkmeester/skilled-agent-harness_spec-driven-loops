@@ -74,5 +74,7 @@ A 7-iteration deep-research loop using the cli-copilot executor (gpt-5.5, reason
 - Expose edge-weight tuning via `IndexerConfig`. Edge weights are compile-time constants in the indexer producer. Drift detection signals are documented but per-edge-class weights have no runtime knob.
 - Re-tune staleness age boundaries after 6 or more months of doctor apply-mode telemetry. The 8-hour and 24-hour thresholds are derived from Sourcegraph and ctags external evidence, not from this codebase's measured working-tree velocity.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor`

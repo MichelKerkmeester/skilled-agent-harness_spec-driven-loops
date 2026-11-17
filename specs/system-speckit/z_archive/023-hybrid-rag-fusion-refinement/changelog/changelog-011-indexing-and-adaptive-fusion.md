@@ -139,4 +139,6 @@ No migration required.
 
 Treat this changelog as a subtree summary: the parent `011` wrapper still expects fresh-session follow-up evidence, but the nested adaptive-fusion phases beneath it document substantial completed implementation and verification work.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion` (Level 1 parent with nested child phases)

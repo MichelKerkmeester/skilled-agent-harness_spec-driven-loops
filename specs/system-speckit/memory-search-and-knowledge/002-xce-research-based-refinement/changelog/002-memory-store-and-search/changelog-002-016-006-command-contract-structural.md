@@ -54,5 +54,7 @@ Weak models (Kimi always, MiMo intermittently) dropped the query and asked the s
 
 - The live confirmation (an A/B `--command` run on Kimi and MiMo measuring execute-rate under the new structure) is the documented follow-up and cannot be run from the implementing session.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/006-command-contract-structural` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

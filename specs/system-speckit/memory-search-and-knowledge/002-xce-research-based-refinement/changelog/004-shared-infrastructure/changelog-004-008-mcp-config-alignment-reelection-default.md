@@ -68,5 +68,7 @@ Daemon re-election was on only because the runtime configs set `SPECKIT_DAEMON_R
 - A combined five-iteration deep review of this phase and `009` ran after ship. Two of its findings touched these config and launcher surfaces (the stale reelection comment and the `_NOTE_INDEX_DEFAULTS` selectable-subset note) and were remediated in commit `ee11e5a2b9`, documented in the `009` changelog.
 - The `_NOTE_*` documentation keys in these configs were later de-numbered (for example `_NOTE_6_GET_VOYAGE_KEY` became `_NOTE_GET_VOYAGE_KEY`) and re-sorted into a logical per-server reading order in commit `83e754f6fd`, with the four configs kept aligned 1:1.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/008-mcp-config-alignment-reelection-default` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

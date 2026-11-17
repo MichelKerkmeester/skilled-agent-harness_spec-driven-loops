@@ -61,5 +61,7 @@ The fairness audit phase produced `evidence/playbook-fairness-audit.csv`, a 345-
 - Use `evidence/playbook-fairness-audit.csv` as source material for follow-on playbook expansion dispatches.
 - Regenerate the artifact after any bulk playbook scenario changes via `node ../evidence/generate-playbook-quality-audit.js`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/001-fairness-audit` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit`

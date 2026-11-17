@@ -47,5 +47,7 @@ The fleet-marker-validation-sweep phase scaffold was initialized as a Level 3 te
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/007-sweep-fleet-marker-validation` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

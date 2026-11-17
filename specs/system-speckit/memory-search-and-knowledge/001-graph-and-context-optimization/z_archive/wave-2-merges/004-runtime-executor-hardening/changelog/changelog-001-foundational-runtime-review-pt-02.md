@@ -67,5 +67,7 @@ None - review-only phase.
 - **P1 remediation backlog**: 5 P1 findings (Unicode sanitization incompleteness, session-resume residual gaps, traceability coherence, canonical save rollout, readiness-contract `assertNever`) are addressed in the 003-system-hardening sub-phases (NFKC unification, routing accuracy, canonical-save invariants).
 - **P2 advisory items**: 15 P2 findings flagged as `hasAdvisories=true` for future remediation cycles.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening` (Level 2, review-only)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening`

@@ -82,5 +82,7 @@ All 13 P1 findings were closed in one remediation packet. The launcher lease bou
 - Confirm the three pre-existing full-suite vitest failures (`skill-graph-diagnostic-redaction`, `lane-weight-sweep`, `manual-testing-playbook`) are tracked in their owning packets and closed there.
 - Verify manual smoke of duplicate-launch behavior when no active MCP daemon session is running to complement the subprocess vitest coverage.
 
+&nbsp;
+
 > Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/005-lease-correctness-and-arc-traceability` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

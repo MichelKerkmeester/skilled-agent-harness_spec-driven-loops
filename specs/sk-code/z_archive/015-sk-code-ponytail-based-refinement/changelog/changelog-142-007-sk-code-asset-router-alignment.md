@@ -72,5 +72,7 @@ Phase 7 made `sk-code` authoring assets conform to the `sk-doc` asset template a
 - The sk-code-review references-to-assets reclassification was deferred to a separate dedicated packet because its coupling spans changelogs, playbook source-anchors and runtime mirrors.
 - The reclassification table and coupling map are recorded in the approved plan.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/007-sk-code-asset-router-alignment` (Level 2)
 > Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`

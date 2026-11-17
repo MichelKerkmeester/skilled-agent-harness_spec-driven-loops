@@ -51,5 +51,7 @@ The system-spec-kit feature catalog gained 15 missing current-state entries for 
 
 - Unrelated root catalog drift outside the touched self-check remains documented as pre-existing scope.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

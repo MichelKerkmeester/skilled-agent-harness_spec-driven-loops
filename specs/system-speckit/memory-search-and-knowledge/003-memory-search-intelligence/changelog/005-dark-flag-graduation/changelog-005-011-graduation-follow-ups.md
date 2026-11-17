@@ -103,5 +103,7 @@ This phase parent rolled up the four production-readiness follow-ups that the 00
 - **Deep-loop (002):** The committed gauge defaults remain 0. Flipping them to the recommended production values (heartbeat 30s, lag-ceiling 120000ms) requires a separate graduation step that also migrates `executor-config.vitest.ts` lines 232-233 and the `fanout-run.cjs` silent-when-off test.
 - **Advisor (004):** The full advisor cli test pass runs after this phase before a parent-level completion claim.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/007-graduation-follow-ups` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

@@ -56,5 +56,7 @@ The skill-documentation pass corrected stale shipped-state claims in `system-spe
 
 - Historical manual-testing playbook entries that describe v30-era validation scenarios were intentionally not rewritten.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

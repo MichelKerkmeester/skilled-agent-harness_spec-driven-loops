@@ -62,5 +62,7 @@ This phase benchmarked `SPECKIT_TRUE_CITATION_EMITTER` against the 024 ledger-de
 - The handler firing-trigger still records a null session when the caller runs session-less. Lifting that residual gap requires the MCP client to supply a session on every search, which is outside this phase's two-file scope.
 - The 024 PREREQ-B corpus-geometry prerequisite is not measured here. That question is carried by the 024 research separately.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/003-true-citation-ledger` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

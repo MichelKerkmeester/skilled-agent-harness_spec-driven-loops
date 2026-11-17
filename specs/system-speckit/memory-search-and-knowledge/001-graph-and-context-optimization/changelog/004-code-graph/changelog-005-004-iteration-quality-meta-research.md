@@ -69,5 +69,7 @@ FIX-010-v2 closed all three P1 findings in a single targeted cycle by following 
 - Validate the inert-data boundary in both plan modes survives future prompt-contract refactors by adding a workflow-invariance test case that asserts the copied-command ban is present.
 - Promote the `affectedSurfaceHints` producer guidance from sk-code-review to the shared deep-review spec so all review loops inherit it without per-skill patching.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/004-iteration-quality-meta-research` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor`

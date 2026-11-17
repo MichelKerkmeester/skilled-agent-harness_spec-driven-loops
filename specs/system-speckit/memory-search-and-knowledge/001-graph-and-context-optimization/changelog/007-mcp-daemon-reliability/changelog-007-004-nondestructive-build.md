@@ -59,5 +59,7 @@ This is the first fix shipped from the 030 daemon-reliability roadmap.
 - Orphan `.js` files from deleted or renamed sources can linger without the auto-clean. The `dist-freshness` and orphan tests catch them. Run `npm run rebuild` to clear them on demand.
 - Only RC-4 is addressed. The remaining 030 root causes (sidecar OOM, no auto-respawn, bridge-to-dead-socket) are tracked in separate packets per the 030 roadmap.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/004-nondestructive-build` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

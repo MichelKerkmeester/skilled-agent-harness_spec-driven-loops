@@ -63,5 +63,7 @@ A push that leaves the committed trigger index stale is now repaired by CI inste
 - The working tree holds uncommitted workflow edits. At recording time the working copy of trigger-index-rebuild.yml differed from HEAD by 116 changed lines. CI has not run those edits. This phase's live evidence covers the committed version.
 - The changelog entry is written. The Phase Context asked for a refresh of this phase's changelog file. The entry is ../changelog/changelog-034-010-trigger-index-ci-rebuild.md in the parent's changelog folder, and the nested changelog generator wrote it from this packet.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild` (Level 1)
 > Parent packet: `specs/system-speckit/034-spec-folder-tooling`

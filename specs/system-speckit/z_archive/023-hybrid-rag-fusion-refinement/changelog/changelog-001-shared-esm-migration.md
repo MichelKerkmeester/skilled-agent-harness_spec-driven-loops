@@ -96,4 +96,6 @@ No migration required.
 
 This phase changes the internal loading contract of `@spec-kit/shared` so later migration phases can build on a stable package baseline. Users do not need to change commands or configuration for this phase alone.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/001-shared-esm-migration` (Level 1)

@@ -47,5 +47,7 @@ This phase fixed two measurement-fidelity defects in the per-flag retrieval benc
 - P1-3 left a production seam not a closed gate. The trigger lane still cannot be ablated through public options because the production guard was out of scope.
 - Any future benchmark re-run must re-confirm vector-lane health against a live embedder and DB before trusting the deltas.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation/001-eval-benchmark-fidelity` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation`

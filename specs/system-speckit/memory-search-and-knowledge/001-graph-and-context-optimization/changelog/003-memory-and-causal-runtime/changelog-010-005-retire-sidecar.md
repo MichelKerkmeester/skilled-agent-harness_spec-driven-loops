@@ -63,5 +63,7 @@ The dead sidecar execution path was removed. After hf-local became an HTTP clien
 - The collapsed router path is covered by focused vitest with mock transports but has not been exercised end-to-end through a live daemon and model server.
 - The sentence-transformers backend description in types.ts mentions a Python sidecar concept (an unimplemented backend kind) which is unrelated to the deleted hf-local sidecar files and was left unchanged.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/005-retire-sidecar` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`

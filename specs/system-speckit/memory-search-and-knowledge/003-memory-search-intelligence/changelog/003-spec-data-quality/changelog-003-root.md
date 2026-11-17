@@ -26,6 +26,8 @@ The data-quality lineage moved from research to shipped code. Beyond the 28-phas
 
 - The research scaffold 001 through 028 stays a future build plan, kept by operator intent. The shipped lineage is 029 through 040.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality` (Level 3)
 
 ## 2026-06-22
@@ -55,6 +57,8 @@ A round-2 deep review ran 30 iterations across 6 angles as parallel opus seats r
 
 - Build the minimal high-value subset first, 004 and 026 and 001 and 003, then read a prod-mode completeRecall@3/@5/@8 result before scaffolding any retrieval-tier or thin-novel build.
 - Keep every retrieval-class phase default-off until that prod read moves and holds NDCG@K and top1, because eval-mode gains do not transfer. The eval lens skips truncation while the prod path applies the cliff-conditional cut over the never-cut-below-3 minimum and the token budget.
+
+&nbsp;
 
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality` (Level 3)
 
@@ -153,6 +157,8 @@ _No file-level detail recorded._
 - Build the program in the order recorded in `028-governance-rollout`. The shared safe-fix engine and the prod-mode recall benchmark land before their dependents.
 - Every retrieval-class phase stays default-off until a prod-mode completeRecall@3/@5/@8 read moves and holds NDCG@K and top1, because eval-mode gains do not transfer. The eval lens skips truncation while the prod path applies the cliff-conditional confidence cut over the never-cut-below-3 minimum and the token budget. `DEFAULT_MIN_RESULTS = 3` is a floor not a cap.
 - Nothing in this track has shipped. Each child is a scaffold awaiting its build stage.
+
+&nbsp;
 
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality` (Level 3)
 

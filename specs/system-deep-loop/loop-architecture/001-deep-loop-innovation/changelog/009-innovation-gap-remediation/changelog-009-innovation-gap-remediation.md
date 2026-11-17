@@ -28,5 +28,7 @@ This phase closes the deep-loop-innovation (036) gap-analysis findings across fi
 
 Additive-dark throughout: no mode authority has been flipped and no legacy writer retired. The remaining cutover, retirement, and reconciliation work is gated for explicit operator approval.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation` (Phase Parent)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation`

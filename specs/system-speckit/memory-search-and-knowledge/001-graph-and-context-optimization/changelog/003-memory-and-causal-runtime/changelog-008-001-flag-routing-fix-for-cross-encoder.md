@@ -64,5 +64,7 @@ The fix swapped the gate order so `isCrossEncoderEnabled()` is checked first. A 
 - Phase 002 (`002-system-rerank-sidecar-skill`) must ship to make `SPECKIT_CROSS_ENCODER=true` observable beyond positional fallback. Nothing answers at `localhost:8765` until the sidecar is running.
 - Verify that no downstream consumer of `WEIGHT_RERANKER` or `hasRerankerSignal` in `confidence-scoring.ts` assumed the no-op shim's behavior after this precedence change.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

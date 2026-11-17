@@ -80,5 +80,7 @@ A lazy memory runtime guard now splits startup into two stages. The thin MCP boo
 - First memory-owning call pays initialization latency. This is the accepted trade-off from deep-research-005 iter-010 Finding 3. Document the latency profile if measurements reveal a p99 concern.
 - `memory_health` reports reduced DB-derived fields while cold. Evaluate whether callers that depend on DB-derived health fields need an explicit wait-for-ready option.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/011-lazy-startup-gating` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

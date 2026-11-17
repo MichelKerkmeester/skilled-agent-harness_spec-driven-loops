@@ -63,5 +63,7 @@ The cycle found 0 P0 findings. 55 P1 findings and 21 P2 advisories remained as c
 - Regenerate the package-lock after ONNX removal to eliminate the two P1 `onnxruntime-common` entries.
 - Refresh 017 packet `description.json` and `graph-metadata.json` to match the accepted ship state where llama-cpp became the no-cloud-key auto default.
 
+&nbsp;
+
 > Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/023-post-remediation-re-review` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

@@ -65,5 +65,7 @@ None. Research-only phase.
 - Conduct a transitive dependency audit for external MCP server binaries beyond the declared configs in `.utcp_config.json` as part of supply-chain hardening.
 - Add SBOM and SLSA provenance checks as a follow-on supply-chain hardening packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`

@@ -90,5 +90,7 @@ All 18 tasks passed. Four vitest fixtures cover the pointer-write, child bubble-
 - `check-anchors.sh`, `check-section-counts.sh` and `check-template-headers.sh` still expect the full Level-2 anchor set on a lean parent. This produces non-blocking errors. A follow-on should extend the phase-parent branch to those three rules.
 - No follow-on packet yet for soft deprecation of legacy heavy docs at phase parents. Tolerant policy preserves them. A future packet could introduce an opt-in `migrate-phase-parent.sh` once the lean policy stabilizes.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/002-phase-parent-generator-pointer-polish` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation`

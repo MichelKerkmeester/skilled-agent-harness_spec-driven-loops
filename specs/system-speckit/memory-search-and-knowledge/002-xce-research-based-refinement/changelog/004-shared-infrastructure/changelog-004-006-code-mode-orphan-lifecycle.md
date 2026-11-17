@@ -50,5 +50,7 @@ The Code Mode MCP server (`mcp-code-mode/mcp_server/index.ts`) connected its std
 
 - A no-EOF hard-kill orphan can live up to the 15-second watchdog interval — bounded, versus forever before.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/006-code-mode-orphan-lifecycle` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

@@ -79,4 +79,6 @@ _No packet-level file-level detail recorded. See each phase's own changelog for 
 - Phase 009 remains in progress under a separate session; this packet's rollup will need a further update once that phase lands.
 - `.opencode/plugins/tests/` (renamed from `__tests__` after the doc-staleness audit) is shared with `mk-deep-loop-guard`'s test suite, owned by a different packet; any future rename of this shared directory needs the same repo-wide sweep this session ran.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin` (Level 1)

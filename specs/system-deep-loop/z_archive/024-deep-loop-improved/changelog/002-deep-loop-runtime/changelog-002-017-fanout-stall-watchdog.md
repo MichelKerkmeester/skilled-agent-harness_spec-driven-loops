@@ -52,5 +52,7 @@ Opt-in stall watchdog in fanout-pool.cjs (abort handles + lag-ceiling abort-and-
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/017-fanout-stall-watchdog` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

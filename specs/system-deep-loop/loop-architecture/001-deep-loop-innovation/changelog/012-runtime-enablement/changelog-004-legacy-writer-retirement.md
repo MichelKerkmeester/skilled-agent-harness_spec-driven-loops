@@ -27,5 +27,7 @@ Retired direct-append write paths by routing workflow directives through the gat
 
 Complete. Retirement is achieved by mechanism and guard, not directive deletion; the guard fires on a real out-of-band append.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

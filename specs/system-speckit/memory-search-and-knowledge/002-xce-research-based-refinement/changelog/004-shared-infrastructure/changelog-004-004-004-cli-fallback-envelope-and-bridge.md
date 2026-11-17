@@ -57,5 +57,7 @@ Hook helpers now emit a shared warm-fallback envelope shape with `{ status, reas
 
 - A settings-driven invocation parity suite remained red in the source checkout because `.claude/settings.local.json` lacks the expected hooks block; that is out of this phase scope.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/004-cli-fallback-envelope-and-bridge` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux`

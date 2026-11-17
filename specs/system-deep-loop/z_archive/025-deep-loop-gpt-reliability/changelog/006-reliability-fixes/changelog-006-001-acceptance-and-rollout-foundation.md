@@ -49,5 +49,7 @@ Status: Planned. This child defines the acceptance-harness and rollout prerequis
 - Execute this child first before the rest of track 006.
 - Publish the corrected behavior-benchmark baseline before claiming any downstream cell flip.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes/001-acceptance-and-rollout-foundation` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

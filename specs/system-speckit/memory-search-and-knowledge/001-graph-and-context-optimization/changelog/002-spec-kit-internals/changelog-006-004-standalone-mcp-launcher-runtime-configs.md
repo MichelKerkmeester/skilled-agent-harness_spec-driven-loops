@@ -84,5 +84,7 @@ This packet completed step 3 of ADR-001's five-phase migration by creating `.ope
 - Resolve the full advisor package test suite. Failures are in out-of-scope child 005 consumer surfaces and legacy parity fixtures, not in the standalone server build or direct MCP smoke.
 - Complete child 005 consumer cutover: hooks, Python shim, plugin bridge and `spec_kit_memory` deprecation proxy are out of scope for this packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/004-standalone-mcp-launcher-runtime-configs` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

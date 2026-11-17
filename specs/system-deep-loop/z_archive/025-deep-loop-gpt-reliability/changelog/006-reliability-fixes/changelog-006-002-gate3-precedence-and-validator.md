@@ -49,5 +49,7 @@ Status: Planned. This child is the P0 reliability fix for GPT's repeated Gate-3 
 - Execute after `006-001` provides the rollout foundation.
 - Keep the validator load-bearing: autonomous satisfaction must depend on the predicate result, not on a caller label.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes/002-gate3-precedence-and-validator` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

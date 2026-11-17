@@ -64,5 +64,7 @@ _No file-level detail recorded._
 - One newcomer prompt reaches the mode only at the hub. Prompt 3 gets system-spec-kit from the advisor, so the joint count is 9 of 10.
 - Older drift remains. The sk-design admission drift and three generate-command-routers.cjs drifts on the speckit plan, implement and complete commands all predate this packet.
 
+&nbsp;
+
 > Spec folder: `specs/sk-doc/060-create-goal-mode/009-verification-and-closeout` (Level 2)
 > Parent packet: `specs/sk-doc/060-create-goal-mode`

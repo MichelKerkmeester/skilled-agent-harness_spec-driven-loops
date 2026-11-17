@@ -54,5 +54,7 @@ Prompt-time hook adapters for four command-line runtimes (Claude, Gemini, Codex 
 - The OpenCode plugin bridge native route remains unverified. The bridge reports `SYSTEM_SKILL_ADVISOR_UNAVAILABLE` and falls to the Python path even though the compat entry exists on disk. Root cause is the subprocess invocation of the native compat path, recorded for a follow-on packet.
 - Live interactive terminal behavior was not exercised. Devin `/hooks` listing, codex features list and stdin-over-argv precedence checks are documented optional manual steps that remain unrun.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/003-cli-hooks-and-plugin` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation`

@@ -16,5 +16,7 @@ contextType: "implementation"
 
 This phase planned stable lineage, claim, candidate, and mode-session identities that persist across resume, handover, replay, and cross-mode boundaries and are recorded on the typed event ledger. Per its implementation summary, stable typed continuity identities now survive retry, resume, handover, replay, fork, and cross-mode boundaries through an additive dark ledger service. Status is complete.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/007-continuity-identities` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services`

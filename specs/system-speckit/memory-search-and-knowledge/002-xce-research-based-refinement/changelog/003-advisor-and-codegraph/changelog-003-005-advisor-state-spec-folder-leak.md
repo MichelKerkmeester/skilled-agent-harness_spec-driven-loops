@@ -63,5 +63,7 @@ The skill-advisor resolves where to write its runtime state via `findAdvisorWork
 - A heavier, related artifact class remains: two research dirs still hold a full `.opencode/node_modules` opencode-plugin install (zod, effect, `@opencode-ai`). It is gitignored and out of scope here; a separate cleanup can remove it.
 - The exact reason post-fix-era dispatched `opencode run` seats still reached the fallback was not reproduced; the hoist makes it moot for this leak regardless of dispatch path.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/005-advisor-state-spec-folder-leak` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

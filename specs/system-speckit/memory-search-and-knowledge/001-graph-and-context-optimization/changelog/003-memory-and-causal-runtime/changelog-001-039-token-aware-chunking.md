@@ -59,5 +59,7 @@ contextType: "implementation"
 - Treat packets 037 and 039 as a single logical fix when reviewing or reverting. The original 039 patch used `model.tokenizer.tokenize` which crashed the real model at runtime. Packet 037 shipped the corrected call `model.tokenize` and the API hotfix narrative in `decision-record.md`.
 - Auto context can consume more VRAM than the prior fixed 512-token context. Document the `minContextSize: 512` floor and the explicit failure mode for memory-constrained hosts in the operator runbook.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/039-token-aware-chunking` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

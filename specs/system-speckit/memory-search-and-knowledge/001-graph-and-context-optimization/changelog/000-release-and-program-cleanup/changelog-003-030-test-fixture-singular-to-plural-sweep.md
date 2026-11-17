@@ -65,5 +65,7 @@ None.
 
 - Investigate the 4 residual advisor-suite failures: alias canonicalization in `scorer/native-scorer.vitest.ts`, Python-TS parity in `parity/python-ts-parity.vitest.ts`, Python compat harness wiring in the two `compat/` tests. Track under the skill-advisor backlog.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/030-test-fixture-singular-to-plural-sweep` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

@@ -66,5 +66,7 @@ Packet 037/005 had migrated only two filename-matching files into the stress fol
 - Mixed suites remain in `tests/`. This is intentional and documented in `migration-plan.md`.
 - The default test suite is not clean in this workspace. Unrelated failures across hook, graph metadata, modularization and code-graph suites preceded the hang. Verify those suites in a clean environment.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/004-stress-test-folder-completion` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`

@@ -57,5 +57,7 @@ The instrumentation landed and was unit-tested before any optimization edit. Thi
 - No live perf numbers. Batching and latch correctness are unit-proven (one POST for N texts, latch holds within TTL and re-probes after a reap), but absolute p50/p95, the optimal EMBEDDER_REINDEX_BATCH_SIZE, and end-to-end throughput need the real model, measured in phase 005.
 - Cache-into-reindex not shipped. Deferred to 005 with a shard-aware design (store into the active shard cache) and a measured hit-rate gate.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/004-perf-instrumentation-batching` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`

@@ -56,5 +56,7 @@ The code-graph database now lives inside its skill at .opencode/skills/system-co
 - A live DB inside the committed/symlinked skill folder must be treated as gitignored regenerable state; skill re-sync must not overwrite it. .gitignore and launcher migration-back handle this.
 - readiness-marker still resolves its base dir from process.cwd() (matches config when CWD == workspace root); sharing the canonical resolver from core/config is deferred due to fs-mock test breakage at module load.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/004-db-location-skill-local` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`

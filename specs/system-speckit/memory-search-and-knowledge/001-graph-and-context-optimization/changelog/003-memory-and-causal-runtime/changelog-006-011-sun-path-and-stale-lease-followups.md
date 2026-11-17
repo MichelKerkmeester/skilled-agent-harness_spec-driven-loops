@@ -68,5 +68,7 @@ Three phases of remediation shipped. Phase A (commit `9ae9a6f4e`) added `SPECKIT
 - Implement dead-PID auto-reclaim in the daemon-lease path. The `skill_graph_daemon_lease` reclaim guard should call `process.kill(pid, 0)` before treating a row as "held". Proposed as a follow-on packet (REQ-006).
 - Lift the `fs.mkdirSync(..., { recursive: true })` mkdir-on-listen pattern from `socket-server.ts:102` into `launcher-ipc-bridge.cjs` for `mk-skill-advisor` and `mk-code-index`. On a fresh boot those directories do not exist and `listen()` will fail with `ENOENT`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/011-sun-path-and-stale-lease-followups` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

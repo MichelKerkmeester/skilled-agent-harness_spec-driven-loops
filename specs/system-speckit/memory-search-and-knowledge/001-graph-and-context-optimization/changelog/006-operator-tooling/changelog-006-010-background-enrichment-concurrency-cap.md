@@ -56,5 +56,7 @@ The spec-memory daemon's background-enrichment scheduler had a concurrency cap t
 - Queue retention bound (deep-review P2, F-007): the fix caps concurrency but not queue size, so a large scan retains `parsed` payloads for the throttled drain. Deferred: store only `memoryId` and re-derive at run time, or bound the queue.
 - Idle-monitor enrichment blind spot (deep-review P2, F-005): a short idle timeout could shut the daemon mid-drain. Deferred as cross-cutting.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/010-background-enrichment-concurrency-cap` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`

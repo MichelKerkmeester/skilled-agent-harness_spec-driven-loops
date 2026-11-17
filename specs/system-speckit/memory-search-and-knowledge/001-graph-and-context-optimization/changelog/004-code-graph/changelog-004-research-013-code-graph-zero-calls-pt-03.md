@@ -66,5 +66,7 @@ Four findings were produced: F-001 (P0) the zero-edge result, F-002 (P1) the amb
 - **F-003 regression test correctness.** Existing tests expect the wrong behavior (first candidate deterministically). Tests should be updated to expect the implementation symbol, not the wrapper.
 - **F-004 systemic wrapper pattern.** All `handle*` symbols in index modules share the same wrapper ambiguity. A bulk audit should identify and rank affected symbols.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Research-only)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

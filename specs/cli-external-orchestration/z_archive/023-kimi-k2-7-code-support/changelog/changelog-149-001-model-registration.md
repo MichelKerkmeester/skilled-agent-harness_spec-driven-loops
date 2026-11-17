@@ -70,5 +70,7 @@ Kimi K2.7 Code became a first-class small model rather than a live provider slug
 - `--variant high` effect was unmeasured. The CLI accepted the variant at exit 0, but whether it improves output quality stayed benchmark-unverified and accepted-unverified until the bakeoff.
 - The smoke test was a liveness check, not a quality check. The `pong` dispatch proved the slug dispatches and bills correctly, but said nothing about coding-task quality.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/001-model-registration` (Level 1)
 > Parent packet: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support`

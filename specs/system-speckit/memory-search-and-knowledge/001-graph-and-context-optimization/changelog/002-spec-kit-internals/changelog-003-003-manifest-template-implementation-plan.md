@@ -89,5 +89,7 @@ Spec Kit now has one Level-driven template path instead of parallel rendered tem
 - Cross-session parent-session identifier existence checks remain deferred because lineage semantics are currently advisory.
 - Exit-code taxonomy cleanup remains deferred because it changes public CLI behavior across scripts.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/003-manifest-template-implementation-plan` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

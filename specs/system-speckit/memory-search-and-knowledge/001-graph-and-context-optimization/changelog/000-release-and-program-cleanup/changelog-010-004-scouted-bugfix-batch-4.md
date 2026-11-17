@@ -91,5 +91,7 @@ The fourth batch of the scouted bugfix train ran the scout → gpt-5.5-fast conf
 - Deploy: recycle the mk-spec-memory daemon after commit so the `token-metrics.ts`, `search-results.ts`, `format-helpers.ts`, `shadow-scoring.ts`, `context-server.ts`, and `adapter-common.ts` fixes take effect in the running daemon. `check-graph-metadata-shape.sh` and the two SKILL.md files do not need a daemon recycle; SKILL.md changes are live at next CLI dispatch.
 - 11 excluded candidates remain out-of-scope (policy/migration/unconfirmed). A fifth scout may surface additional targets if warranted.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/004-scouted-bugfix-batch-4` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train`

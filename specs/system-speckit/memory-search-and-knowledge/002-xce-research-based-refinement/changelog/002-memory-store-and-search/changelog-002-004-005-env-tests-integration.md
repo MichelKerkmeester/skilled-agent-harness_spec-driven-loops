@@ -50,5 +50,7 @@ This leaf closed out the phase with two deliverables. First, a cross-consumer in
 
 - Parent packet closeout can treat this child as the phase closeout gate. The aggregator has no flag; the three-flag count documented in ENV_REFERENCE is the authoritative record.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers`

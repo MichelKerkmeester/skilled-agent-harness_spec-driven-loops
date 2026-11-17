@@ -86,4 +86,6 @@ No migration required. Auto-priming activates automatically on the next MCP serv
 
 **3 items deferred to future phases (all P2):** sessionPrimed flag retry-on-failure (F045), CocoIndex path hardcoding (F046), and dual timestamp state consolidation (F047).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/018-non-hook-auto-priming/`

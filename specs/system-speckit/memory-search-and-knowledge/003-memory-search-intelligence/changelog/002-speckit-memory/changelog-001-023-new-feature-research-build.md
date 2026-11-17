@@ -56,5 +56,7 @@ This milestone is the TRACK B new-feature arc that ran after the flag-resolution
 - Fix the true-citation-emitter positive label with content-attribution so its clean shadow can be scored.
 - Retire the lane-champion-backfill candidate, redundant with RRF.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence`

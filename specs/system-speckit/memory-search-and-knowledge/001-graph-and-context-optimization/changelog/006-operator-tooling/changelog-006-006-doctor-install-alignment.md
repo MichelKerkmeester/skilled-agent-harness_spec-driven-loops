@@ -100,4 +100,6 @@ The `/doctor` command router, its per-target assets and the three subsystem inst
 - **Apply/rebuild paths for doctor routes**: the four subsystem doctor routes were downgraded to `read-only` to match current `doctor.sh` reality. The overstated `mutates` routes formerly promised apply/rebuild behavior that does not exist. Implementing these paths is separate feature work, intentionally out of scope for this alignment packet.
 - **Launcher `.cjs` UTF-8 fix deploy**: the install-guide wording now documents the front-proxy launcher correctly, but the launcher `.cjs` deploy itself remains a separate, user-gated action tracked outside this packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/006-doctor-install-alignment` (Level 2)

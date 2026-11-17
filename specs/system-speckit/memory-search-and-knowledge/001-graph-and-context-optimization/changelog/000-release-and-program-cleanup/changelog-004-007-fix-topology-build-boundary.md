@@ -81,5 +81,7 @@ Six surgical edits landed in a single commit on 2026-05-01. A `phase_path_gramma
 - Migrate the MJS plugin bridge to TypeScript when a build-step decision for that single file is made in a future packet.
 - Confirm `validate.sh --strict` exits 0 on this packet during final commit.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/007-fix-topology-build-boundary` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

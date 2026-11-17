@@ -57,5 +57,7 @@ Auto-generated alias projection from the mode-registry with a hash drift-guard, 
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/005-skill-interconnection/001-advisor-routing-projection` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/005-skill-interconnection`

@@ -65,5 +65,7 @@ System-spec-kit imported system-code-graph source directly, making the process b
 - `classifyQueryIntent` remains local in spec-kit because mk-code-index does not expose a classifier RPC. Follow-on packet candidate: `021-codegraph-rpc-surface`.
 - Marker freshness is snapshot-based. Runtime RPC can provide fresher status when a request path needs live data.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/020-spec-kit-codegraph-decoupling` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

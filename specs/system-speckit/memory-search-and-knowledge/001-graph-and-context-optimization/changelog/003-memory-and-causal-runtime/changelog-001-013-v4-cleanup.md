@@ -73,5 +73,7 @@ Six findings were closed in a single commit. The startup guard in `getStartupEmb
 - Apply the `.codex/config.toml` note patch from `scratch/codex-config-patch.md` manually when outside the sandbox TCC guard.
 - GitHub PAT rotation remains a user-managed manual action outside the scope of this packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/013-v4-cleanup` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

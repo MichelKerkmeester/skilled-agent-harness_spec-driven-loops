@@ -52,5 +52,7 @@ The `worktree-guard.sh` backstop script from packet 035 was wired into a live ho
 - The guard only WARNS, it cannot relocate an already-started session into a worktree. True isolation still requires the launch alias (`worktree-session.sh`), which is operator-machine and environment-specific and out of scope here.
 - `.claude/settings.local.json` is tracked in this repo. Operators who maintain a divergent local copy must merge the SessionStart change manually.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`

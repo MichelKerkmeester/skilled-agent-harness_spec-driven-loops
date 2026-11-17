@@ -25,4 +25,6 @@ This phase-parent group groups four related child phases so parent-level context
 | `003-staged-state-migration-and-authority-cutover` | Classify and migrate eligible in-flight state, then cut authority per mode under shadow-parity, rollback, and certificate gates. |
 | `004-legacy-writer-retirement` | Remove the old live emitters and logic replaced by the evidence-ledger spine only after every mode has a clean phase-014 cutover certificate, a closed rollback window, and zero-use telemetry. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover` (Level 3)

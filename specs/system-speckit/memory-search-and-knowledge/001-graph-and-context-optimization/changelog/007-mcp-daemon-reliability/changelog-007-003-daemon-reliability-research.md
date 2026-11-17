@@ -62,5 +62,7 @@ None. Research-only phase.
 - Implement F4: build to a temp directory and use atomic rename to replace `dist/`, eliminating rebuild-while-running crashes
 - Confirm RC-5 (IPC per-connection leak) with a reconnect-churn RSS trace before investing in F5. The adversarial pass refuted the original claim but a trace would close the question definitively.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/003-daemon-reliability-research` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

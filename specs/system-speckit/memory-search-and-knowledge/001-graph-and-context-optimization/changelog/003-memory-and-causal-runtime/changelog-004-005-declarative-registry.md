@@ -63,5 +63,7 @@ No runtime implementation has shipped yet. The packet records the target shape, 
 - Add `tests/test_registered_embedders.py` to enforce schema shape and default alignment.
 - Run the planned pytest, import smoke and strict packet validation once implementation lands.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/005-declarative-registry` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

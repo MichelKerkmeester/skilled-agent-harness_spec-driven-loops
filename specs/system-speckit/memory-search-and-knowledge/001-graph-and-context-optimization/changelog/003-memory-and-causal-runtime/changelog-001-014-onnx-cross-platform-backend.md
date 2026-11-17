@@ -84,5 +84,7 @@ None.
 - Add cross-platform CI runners for DirectML/CUDA/OpenVINO parity verification when a suitable ONNX export is identified.
 - Consider re-evaluating ONNX Runtime for non-Gemma model exports where the exported graph is better suited to the CoreML EP.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

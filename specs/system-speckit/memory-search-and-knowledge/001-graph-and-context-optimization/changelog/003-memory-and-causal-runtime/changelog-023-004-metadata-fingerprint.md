@@ -83,5 +83,7 @@ The mcp-coco-index fork supported multiple embedders and exposed 023C retrieval 
 - Full upstream `embedder_params.py` vendoring is out of scope for this packet. The local shape import keeps broader rebase work separate.
 - Fixture expansion and architecture-invariant probes remain owned by 023B.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`

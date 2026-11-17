@@ -53,5 +53,7 @@ Shipped checkpoint-v2 — a `VACUUM INTO` file-snapshot checkpoint/restore — a
 
 - The post-restore derived-rebuild self-heal (a `.needs-rebuild` sentinel) shipped separately as `013/005` — see `changelog-013-005-checkpoint-needs-rebuild-sentinel.md`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation`

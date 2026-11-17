@@ -64,5 +64,7 @@ The alignment audit left routing and documentation faults open, and this phase f
 - Some release phrasings, such as "cut v4.2.0 and push the tag" or "cut a new release of the package", find no skill or reach sk-doc, because none pairs a release action with a tag in the anchored form.
 - A pure report request, such as "report which GitHub Actions workflows are enabled", still holds the read-only floor.
 
+&nbsp;
+
 > Spec folder: `specs/sk-code/015-quality-agnostic-gate/011-alignment-fixes` (Level 2)
 > Parent packet: `specs/sk-code/015-quality-agnostic-gate`

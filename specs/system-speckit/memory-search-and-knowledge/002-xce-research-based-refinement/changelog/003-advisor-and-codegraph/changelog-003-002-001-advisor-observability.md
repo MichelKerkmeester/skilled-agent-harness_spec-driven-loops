@@ -56,5 +56,7 @@ The advisor now makes routing decisions debuggable without exposing prompt text.
 
 - MCP descriptor copy was outside this phase's allowed paths, so descriptor text was not updated here.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/001-advisor-observability` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`

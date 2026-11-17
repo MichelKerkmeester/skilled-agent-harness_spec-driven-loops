@@ -46,6 +46,8 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 
 - None in the allowed evidence set.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/012-query-channel-calibration` (Level recorded in phase evidence)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
 > Historical alias: `010-query-channel-calibration`

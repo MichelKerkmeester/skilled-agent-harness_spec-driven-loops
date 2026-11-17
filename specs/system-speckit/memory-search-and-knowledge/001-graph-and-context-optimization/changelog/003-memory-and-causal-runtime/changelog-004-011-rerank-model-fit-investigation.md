@@ -70,5 +70,7 @@ Phase 2 ran a full-18-probe bench across three lanes: baseline BGE, BGE with pat
 - Continue probe 1 and probe 12 investigation in the fixture audit packet (012) to determine whether those are genuine reranker failures or additional fixture-truth issues.
 - Verify `cocoindex_code/rerankers_jina_v3.py` and `tests/test_rerankers_jina_v3.py` are deleted because jina-v3 tied the baseline without improvement.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

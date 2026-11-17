@@ -55,5 +55,7 @@ sk-code's 88 reference and asset docs now carry exactly the canonical frontmatte
 - Live-daemon matchedDocs verification is deferred until every advisor-attached session ends and a fresh session respawns the daemon with the doc-trigger flag enabled.
 - The spec stub inventory overcounted assets (27 including READMEs vs. the checker's 20 in-scope). Scope and outcome are unaffected.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/014-sk-code` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

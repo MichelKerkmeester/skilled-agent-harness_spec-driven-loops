@@ -70,4 +70,6 @@ This phase parent ran a fresh-plus-regression deep-review of the whole 027 epic 
 - The three `.claude` and `.codex` agent-mirror edits flagged by the mirror-parity pre-commit guard remain a separate decision.
 - The deep-review verdict was CONDITIONAL; the conditions are addressed by this remediation, which closes every finding it raised.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation` (Phase Parent)

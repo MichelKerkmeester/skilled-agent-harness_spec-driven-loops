@@ -109,5 +109,7 @@ Skill advisor only fired when an AI explicitly invoked it in a shell command, le
 - Pre-existing test failures (transcript-planner-export.vitest.ts, deep-loop/prompt-pack.vitest.ts) need follow-up in their respective packets 015 and deep-loop, confirmed unrelated to Phase 020 via stash-test
 - Smart-router context-load efficacy measurement (do advisor briefs actually reduce context load for AI assistants) queued as a separate phase with OpenCode plugin architecture research using the working code-graph OpenCode plugin as reference
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/004-advisor-hook-surface-integration` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine`

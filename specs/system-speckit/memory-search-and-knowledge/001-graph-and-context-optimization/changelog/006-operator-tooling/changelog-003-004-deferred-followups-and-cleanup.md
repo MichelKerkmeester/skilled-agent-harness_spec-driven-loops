@@ -86,5 +86,7 @@ Five work streams were executed via cli-codex (gpt-5.5, high effort, fast reason
 - Verify whether `socket-server.ts` carries a genuine stale CocoIndex reference (Stream E attempted an edit there but was reverted. A separate source-review pass is needed to confirm).
 - Confirm whether `install_guides/MCP - CocoIndex Code.md` and the `changelog/{mcp-coco-index,sk-ai-council}` entries should be removed as a separate cleanup packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/004-deferred-followups-and-cleanup` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment`

@@ -81,5 +81,7 @@ None. This packet is purely additive.
 - Tighten playbook 272 query phrasing so "alternatives considered for caching" classifies as `find_decision` rather than `understand`. The code is correct. The playbook expectation is off by one hit out of five.
 - Telemetry state resets on restart. If long-running rate trends are needed, add a persistent store for the rolling 200-decision window.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing`

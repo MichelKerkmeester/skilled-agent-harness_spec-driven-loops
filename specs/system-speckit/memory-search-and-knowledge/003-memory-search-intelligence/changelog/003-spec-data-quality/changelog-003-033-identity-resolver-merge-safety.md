@@ -55,5 +55,7 @@ Shipped a shared `resolveSpecFolderIdentity` helper consumed by both the graph b
 - `SPECKIT_IDENTITY_MERGE_SAFETY` GRADUATED to default-ON after the scoped migration restamped the legacy prefixed-path folders.
 - The grandfather report listing that enumerates would-change folders before enforcement was the deferred follow-up that preceded graduation.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

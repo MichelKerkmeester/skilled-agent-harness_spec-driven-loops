@@ -103,5 +103,7 @@ Three commits touched this phase: `e933c152a7`, `79e97aec92`, `7beb807694`.
 - **Phase 007 (fleet marker sweep).** Validate and clean fleet markers across spec folders.
 - **Phase 008 (z_archive marker sweep).** Validate and clean archive markers.
 
+&nbsp;
+
 > Spec folder: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/003-manifest-template-implementation-plan` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

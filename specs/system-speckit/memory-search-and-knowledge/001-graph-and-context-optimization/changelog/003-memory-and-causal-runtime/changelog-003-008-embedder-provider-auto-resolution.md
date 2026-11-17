@@ -62,5 +62,7 @@ None. Research-only phase.
 - Add a regression test simulating a daemon PATH without `sqlite3`.
 - Revert the interim `EMBEDDINGS_PROVIDER=ollama` config pin to `auto` only after the fix lands and verifies.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/008-embedder-provider-auto-resolution` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

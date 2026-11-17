@@ -51,4 +51,6 @@ _No file-level detail recorded._
 
 - None recorded.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment` (Level unknown)

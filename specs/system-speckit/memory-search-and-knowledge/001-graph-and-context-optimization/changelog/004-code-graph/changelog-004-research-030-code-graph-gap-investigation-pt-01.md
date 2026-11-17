@@ -64,5 +64,7 @@ The investigation converged by iteration 4. The `newInfoRatio` crossed below 0.0
 - **Documentation cleanup packet.** A follow-on doc-and-validation cleanup packet is recommended before the next operator-facing release. The 13 missed surfaces are filed in the findings registry with specific file paths and section targets.
 - **Evidence chain repair.** The `applied/T-*.md` citation gaps should be closed by either creating the missing files or removing the dangling references.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Research-only)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

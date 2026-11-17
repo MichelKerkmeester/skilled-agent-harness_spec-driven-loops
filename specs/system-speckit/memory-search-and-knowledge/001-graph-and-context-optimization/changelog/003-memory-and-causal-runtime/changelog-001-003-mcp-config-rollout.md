@@ -75,5 +75,7 @@ Phase 3 solved both problems. The five configs (`.claude/mcp.json`, `.mcp.json`,
 - Verify the auto-resolver lands on `hf-local` by restarting all MCP runtimes and confirming the new vec store filename uses the `hf-local__onnx-community__embeddinggemma-300m-ONNX__768` prefix.
 - Investigate adding a warn-once egress guard in `factory.ts` that fires if `VOYAGE_API_KEY` reappears while the resolved provider is `hf-local`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/003-mcp-config-rollout` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

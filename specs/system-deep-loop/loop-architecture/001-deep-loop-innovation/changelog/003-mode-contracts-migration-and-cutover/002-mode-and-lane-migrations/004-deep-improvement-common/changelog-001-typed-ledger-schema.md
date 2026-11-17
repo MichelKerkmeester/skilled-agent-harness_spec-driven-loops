@@ -16,5 +16,7 @@ contextType: "implementation"
 
 This phase defines the additive-dark typed append-only event vocabulary for shared Deep Improvement services: candidate generation, evaluator observations, score normalization, canary analysis, and guarded promotion. Per its implementation summary, the additive-dark Deep Improvement Common ledger boundary exposes a 35-stem typed event union, closed evaluator/canary/promotion payloads, a pinned score backend, and fail-closed legacy compatibility hooks. Status is complete.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/001-typed-ledger-schema` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common`

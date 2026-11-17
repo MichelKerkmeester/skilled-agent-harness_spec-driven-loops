@@ -73,5 +73,7 @@ Spec-memory's `SPECKIT_CROSS_ENCODER` default remained off after Phase 005 locke
 - Test quantized Qwen (`Qwen3-Reranker-0.6B-Q4_K_M`), which would cut model memory ~3-4x. Requires a new model artifact and revalidation.
 - Implement per-model device assignment in the sidecar (Qwen on CPU for cocoindex, ms-marco on MPS for spec-memory opt-in). Not in scope for this packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

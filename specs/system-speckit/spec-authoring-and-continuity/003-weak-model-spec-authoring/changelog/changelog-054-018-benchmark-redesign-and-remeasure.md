@@ -58,5 +58,7 @@ Phase 018 measured packet 054 again on fair terms. The old benchmark task was th
 
 - None recorded.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure` (Level 2)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

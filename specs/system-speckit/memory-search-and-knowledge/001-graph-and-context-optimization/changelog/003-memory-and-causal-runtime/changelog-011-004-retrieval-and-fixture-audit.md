@@ -73,5 +73,7 @@ None.
 - Run handler-path parity outside a sandboxed executor to confirm whether direct-handler-replay and canonical daemon IPC produce identical top-20 results for the 5 sample probes.
 - Launch a retrieval pipeline audit arc (FTS5 tokenization, vector lane N and index configuration, RRF weight tuning, chunking strategy) as the next concrete step. The candidate coverage evidence confirms retrieval as the binding constraint.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/004-retrieval-and-fixture-audit` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc`

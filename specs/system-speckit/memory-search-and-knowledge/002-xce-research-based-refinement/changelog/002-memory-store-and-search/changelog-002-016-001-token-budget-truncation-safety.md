@@ -56,5 +56,7 @@ A search that found five good results was rendering only one. The token-budget t
 
 - Live confirmation that the originally weak two-word queries now render the full result set is gated on the daemon recycle and the deferred corpus reindex.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/001-token-budget-truncation-safety` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

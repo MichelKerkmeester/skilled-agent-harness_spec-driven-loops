@@ -72,5 +72,7 @@ The phase's changes sit on branch head f1732e4d95 as one uncommitted change set.
 - The ignored watch depends on one measurement. Task T023 repeats the ignored listing at both bounds on the landed tree. If the bounded cost exceeds the phase's 50 millisecond budget there, the target-repository boundary stands and runner-contract.md states that instead, as ADR-004 records.
 - The timing number is machine specific. The machine and the HEAD are recorded beside the five lines, and the measurement phase runs the same command, so a change reads as a delta rather than as a claim.
 
+&nbsp;
+
 > Spec folder: `specs/sk-code/015-quality-agnostic-gate/008-runner-limit-closeout` (Level 2)
 > Parent packet: `specs/sk-code/015-quality-agnostic-gate`

@@ -70,5 +70,7 @@ The INSTALL_GUIDE.md was updated to replace the cross-encoder description with S
 - Verify the `.claude` mirror stays in sync with `.opencode` doctor changes when future /doctor updates ship.
 - Confirm `test-council-matrix.sh` passes in CI after the `deep-ai-council` rename correction.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/002-operator-surface-realignment` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment`

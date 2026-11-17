@@ -75,5 +75,7 @@ Default-on promotion remains gated on an 18-pair fixture: p95 added latency unde
 - Run the p95 latency gate before default-on promotion: reranker-added latency must stay under 500ms.
 - Consider adding a live integration test that loads the actual GTE model once per CI run rather than relying solely on mocked fallback paths.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/007-reranker-integration`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

@@ -82,5 +82,7 @@ All vector query, mutation and cache paths qualify through `active_vec`. Tests c
 - Remove temporary unqualified `vec_memories` aliases from internal modules outside the primary query/mutation path once direct call sites migrate to qualified shard-table references.
 - Delete legacy backup files under `database/migrations/` after production verification confirms the split is stable.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/012-canonical-vector-shard-split` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

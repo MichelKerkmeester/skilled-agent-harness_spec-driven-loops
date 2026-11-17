@@ -72,5 +72,7 @@ Run 006 proved the first bakeoff was too easy, so this phase built the sharper t
 - Confidence is medium, not high. Three fixtures at 6 samples per cell clearly separate `rcaf` from the perfect tier, but a larger fixture set would tighten confidence on the within-tier ordering.
 - The result is model-specific. The leaderboard is for `kimi-for-coding/k2p7` on strict validators and should not be transferred to sibling models.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/004-discriminating-bakeoff` (Level 1)
 > Parent packet: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support`

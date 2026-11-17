@@ -79,5 +79,7 @@ A two-line code change in `auto-select.ts` and a one-line regex flip in the matc
 - Sweep deprecated `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA` references across approximately 3 to 5 files as a small follow-on packet. The variable references the 007 auto-migration path that was removed but the env key still appears in the README.
 - Existing daemons with persisted `vec_metadata.active_embedder_*` rows are not affected by ADR-014. Operators who want to migrate a persisted Voyage or OpenAI install to Ollama must clear `vec_metadata` or use the `embedder_set` MCP tool and rebuild the index. Consider adding a migration note to the operator runbook.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

@@ -67,5 +67,7 @@ Codex CLI sessions previously returned no startup context and no advisor brief. 
 
 - Codex hooks are still under development (`codex features list` reports `codex_hooks` as under development). Future releases may require contract re-verification.
 
+&nbsp;
+
 > Spec folder: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-codex-native-startup-advisor-hooks` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

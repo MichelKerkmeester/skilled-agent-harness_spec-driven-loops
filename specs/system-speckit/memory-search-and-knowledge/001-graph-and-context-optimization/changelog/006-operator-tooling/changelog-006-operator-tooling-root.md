@@ -55,4 +55,6 @@ This top-level phase parent groups 5 child phase groups spanning 2026-04-23 to 2
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling` (Phase Parent)

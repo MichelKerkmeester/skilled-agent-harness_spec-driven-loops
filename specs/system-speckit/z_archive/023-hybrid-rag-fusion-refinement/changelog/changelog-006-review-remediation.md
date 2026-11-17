@@ -220,4 +220,6 @@ No migration is required for users already on Node `20.11.0` or later.
 
 If a local environment still uses an older Node 20 release, upgrade to `20.11.0` or newer before rebuilding. No schema changes were introduced.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/006-review-remediation/` (Level 2)

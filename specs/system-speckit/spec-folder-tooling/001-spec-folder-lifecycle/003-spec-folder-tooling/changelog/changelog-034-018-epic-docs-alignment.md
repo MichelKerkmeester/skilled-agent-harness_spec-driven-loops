@@ -67,5 +67,7 @@ _No file-level detail recorded._
 - The CLI test suite creates temporary folders in the real specs/ root. Reported by the review, not rerun.
 - Two documentation gaps and one broken path. The spec README omits the completedAt manifest field that upgrade-legacy.mjs:494 writes. retrieval/lib/README.md line 23 names ../retrofit-convention.mjs, which does not exist. The file is runtime/cli/ops/retrofit-convention.mjs. The link checker reads markdown links only, so it does not catch a code-span path.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/034-spec-folder-tooling/018-epic-docs-alignment` (Level 2)
 > Parent packet: `specs/system-speckit/034-spec-folder-tooling`

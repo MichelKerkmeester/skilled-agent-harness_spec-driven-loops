@@ -70,5 +70,7 @@ Live RSS runs were blocked by the sandbox: `ps` is denied so the process-memory 
 - If live runs confirm growth above 10 MB per 50 iterations, open a follow-on packet for the underlying adapter memory leak.
 - Restore or relocate the benchmark scripts if the mcp-coco-index skill is reconstituted under a new path.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/012-adapter-resident-memory-benchmark` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

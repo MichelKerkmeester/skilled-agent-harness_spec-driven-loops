@@ -54,5 +54,7 @@ Confirmed the external-shell precondition that had blocked phase 005 (this Claud
 - GPT's inconsistent Command-only enforcement (refused a `deep-research` direct dispatch, allowed an identical `deep-review` one) observed but not root-caused.
 - ai-council's GPT-leg latency not separately re-timed this run.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark` (Level 2)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

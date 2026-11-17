@@ -57,5 +57,7 @@ This review-only packet audited MCP retrieval, unified context, trigger matching
 - Add scope authorization to causal graph tools that operate on bare IDs.
 - Validate causal edge targets before writers can create wrong-target or orphan edges.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`

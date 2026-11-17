@@ -57,5 +57,7 @@ The three runtime agent mirrors were normalized for shipped agent I/O and verifi
 
 - Running runtime sessions must restart to load changed agent definitions.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

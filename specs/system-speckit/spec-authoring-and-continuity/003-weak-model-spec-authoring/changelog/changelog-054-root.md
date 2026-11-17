@@ -69,4 +69,6 @@ _No file-level detail recorded._
 
 - None recorded.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring` (Level 2)

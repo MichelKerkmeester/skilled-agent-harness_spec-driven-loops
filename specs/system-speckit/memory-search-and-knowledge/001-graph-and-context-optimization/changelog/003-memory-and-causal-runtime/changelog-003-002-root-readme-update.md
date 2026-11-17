@@ -62,5 +62,7 @@ Root `README.md` still claimed llama-cpp and `google/embeddinggemma-300m` as the
 - Update `implementation-summary.md` completion metadata to reflect the shipped state (currently shows 0% pending).
 - Verify forward-reference cross-link `.opencode/skills/system-spec-kit/references/embedder-pluggability.md` resolves now that 021/003 has shipped.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/002-root-readme-update`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment`

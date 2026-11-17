@@ -70,5 +70,7 @@ The research converged after 12 iterations. Iterations 1 through 7 produced the 
 - **Phase B unblocked.** All four authoritative inputs are produced. The gating condition for `/doctor:code-graph` Phase B (apply mode) is met. Phase B implementation can proceed.
 - **Gold-query battery drift monitoring.** The battery should be rerun on a schedule to detect indexer regressions. A follow-up automation packet could wire periodic battery runs.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

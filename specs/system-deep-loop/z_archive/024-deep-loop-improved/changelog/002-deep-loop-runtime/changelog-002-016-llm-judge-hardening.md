@@ -52,5 +52,7 @@ Hardened the LLM judge in post-dispatch-validate.ts: retry, neutral fallback car
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/016-llm-judge-hardening` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

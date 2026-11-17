@@ -74,5 +74,7 @@ The verdict was Option B with guardrails. SQLite FTS5 preserves the RAG-fusion l
 - Measure live nDCG@5 and recall@10 for the 30 proposed golden queries once a safe non-production fixture runner exists. Predictions in iteration-003 are marked `REQUIRES_LIVE_TEST`.
 - Revisit Option C (permanent hybrid) if golden-query results show synonym or identifier recall regressions after the FTS5 default switch.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/013-bm25-fts5-rag-fusion-investigation` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

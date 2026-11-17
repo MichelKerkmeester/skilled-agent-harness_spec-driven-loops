@@ -59,5 +59,7 @@ The skill-advisor plugin held all runtime state at module scope, risking cross-i
 - This packet does not address the unrelated copilot-hook-wiring.vitest.ts mismatch deferred from packet 007.
 - If maxPromptBytes is configured below the fixed JSON metadata overhead, the prompt is clamped to an empty string while the metadata payload may still exceed that unrealistically small cap.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/002-advisor-plugin-hardening` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening`

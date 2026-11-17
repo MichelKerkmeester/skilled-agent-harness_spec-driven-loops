@@ -53,5 +53,7 @@ This phase updated the framework documentation so the docs named the shipped arc
 - CHK-020 Phase 007 dependency preflight is green.
 - CHK-021 `deep-loop-workflows` `mode-registry.json` is the terminology source.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/008-framework-docs-sweep` (Level 2)
 > Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`

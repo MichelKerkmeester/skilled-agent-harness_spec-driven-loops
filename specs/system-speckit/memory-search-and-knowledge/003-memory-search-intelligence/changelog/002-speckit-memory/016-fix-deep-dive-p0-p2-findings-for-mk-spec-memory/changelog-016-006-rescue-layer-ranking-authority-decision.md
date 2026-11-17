@@ -52,5 +52,7 @@ The benchmark can finally measure the real system. Eval reporting and ablation u
 - ADR-002 rescue authority stays Proposed and the rescue mode stays overwrite. Re-benchmark once the phase-004 vector reconcile has run daemon-side and the eval ground truth is refreshed.
 - Harness effects apply when the daemon restarts with the new dist.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/006-rescue-layer-ranking-authority-decision/` (Level 3)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

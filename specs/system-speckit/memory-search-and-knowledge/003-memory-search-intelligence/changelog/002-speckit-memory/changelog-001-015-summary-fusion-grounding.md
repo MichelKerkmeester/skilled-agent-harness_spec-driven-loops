@@ -53,6 +53,8 @@ _Detailed file-level changes live in the phase spec and tasks._
 - Retune the affected RRF weights against measured data.
 - Build the persistent world-summary hierarchy only in a schema-migration packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
 
@@ -69,6 +71,8 @@ The fused summary and community lane this phase shipped shadow-gated behind `SPE
 ### Follow-Ups
 
 - No further revisit planned, the question is closed with a measured negative result.
+
+&nbsp;
 
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

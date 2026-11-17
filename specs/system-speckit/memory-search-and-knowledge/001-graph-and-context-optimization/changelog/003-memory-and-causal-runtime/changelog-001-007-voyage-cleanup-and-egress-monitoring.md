@@ -72,5 +72,7 @@ On top of the cleanup, `factory.ts` gained a `warnIfVoyageDriftDetected()` helpe
 - User runs `bash scratch/tcpdump-verify.sh` for 24h post-merge to confirm zero packets to `api.voyageai.com`.
 - The egress guard logs but does not enforce. If a stricter policy becomes desirable in a later phase, upgrade from warn to throw and add a bypass env var.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/007-voyage-cleanup-and-egress-monitoring` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

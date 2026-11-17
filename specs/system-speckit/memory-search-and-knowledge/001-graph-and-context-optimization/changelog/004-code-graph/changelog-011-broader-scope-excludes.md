@@ -64,5 +64,7 @@ Commit: `49e5f48c6`.
 
 - Phase 012/007 later discovered that tree-sitter-bash.wasm itself ships with a missing exported symbol that causes a different kind of failure on certain bash content. That fix is independent of the path fix delivered here.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

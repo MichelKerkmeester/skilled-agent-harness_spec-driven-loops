@@ -69,5 +69,7 @@ The code graph now treats bad scans as untrusted candidates instead of authorita
 - Alignment warnings remain outside scope. verify_alignment_drift.py reported six missing module headers in unrelated existing files; this packet did not modify those files.
 - Failed-scan history is last-record only. The remediation persists the latest failed scan record in metadata rather than a full history table.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/005-fix-zero-node-and-parser-issues` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

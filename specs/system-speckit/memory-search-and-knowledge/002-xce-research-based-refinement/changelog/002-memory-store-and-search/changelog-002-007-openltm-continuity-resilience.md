@@ -65,5 +65,7 @@ This phase adapted the highest-fit OpenLTM session-resilience surfaces to fit ou
 - `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT=1` needs an `ENV_REFERENCE.md` entry; deferred out of this phase at user direction.
 - The alignment drift verifier reported three out-of-scope files (`canonical-fingerprint.ts`, `memo.ts`, `deploy-mcp.sh`) missing required headers; this phase did not touch them under the concurrency rule and they are not regressions from this work.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/007-openltm-continuity-resilience` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

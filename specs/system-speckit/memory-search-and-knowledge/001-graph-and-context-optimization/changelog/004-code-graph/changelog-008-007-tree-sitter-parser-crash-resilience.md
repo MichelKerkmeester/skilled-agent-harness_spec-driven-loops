@@ -79,5 +79,7 @@ Phase 2 delivered a SQLite skip-list seeded with 70 production bash files known 
 - Add a manual playbook scenario for broad-scope scan with skip-list verification to `manual_testing_playbook/02--manual-scan-verify-status/`. The implementation is live-verified so this is documentation, not a blocker.
 - Quarterly operator workflow: inspect `parser_skip_list` rows where `source='runtime'`, confirm the upstream bash WASM bug is fixed, then manually `DELETE` entries that are safe to re-attempt.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/007-tree-sitter-parser-crash-resilience` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

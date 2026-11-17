@@ -68,5 +68,7 @@ This cleanup applied six targeted documentation fixes, one for each P2 advisory,
 - Resolve the parent validator debt in packets 002-018 where `EVIDENCE_MARKER_LINT` ENOENT failures inflate the recursive exit code. Each child packet requires its own remediation pass.
 - Confirm that the `findings-rubric.json` schema remains stable as later stress-test packets add scoring dimensions.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/001-fix-mcp-stress-cycle-doc-observability` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`

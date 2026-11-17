@@ -76,5 +76,7 @@ Phase 007 ended this failure mode. Before bridging, `probeDaemon` now opens a th
 - Evaluate the `socketReadyAt` readiness marker (REQ-007) in a future phase. The probe's reply timeout already degrades slow cold starts gracefully so this is not blocking.
 - Monitor for respawn-lock pid-reuse edge case: the 60-second age backstop plus bootstrap-lock serialization bounds the window but a reused pid within that window remains theoretically possible.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

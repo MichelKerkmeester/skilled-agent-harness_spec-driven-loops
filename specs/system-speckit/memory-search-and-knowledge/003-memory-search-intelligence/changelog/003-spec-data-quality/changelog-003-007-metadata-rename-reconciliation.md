@@ -46,6 +46,8 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 
 - None in the allowed evidence set.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/007-metadata-rename-reconciliation` (Level recorded in phase evidence)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality`
 > Historical alias: `008-metadata-rename-reconciliation`

@@ -51,5 +51,7 @@ None - review-only phase.
 - Update stale release/checklist evidence.
 - Add a real or replayed Copilot host contract fixture.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

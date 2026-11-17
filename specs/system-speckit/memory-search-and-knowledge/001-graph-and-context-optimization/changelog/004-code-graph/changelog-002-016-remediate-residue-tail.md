@@ -58,5 +58,7 @@ The two remaining items were fixed. The `deep-loop-runtime/lib/deep-loop/README.
 - Decide whether the in-process cross-encoder (`cross-encoder.ts`, `SPECKIT_CROSS_ENCODER`) is dormant-dead or conditionally-live. That is a rerank-pipeline dead-code question outside this deprecation-residue scope and warrants a dedicated review if desired.
 - Resolve the `sidecar-client.ts:170` JSDoc that references the deleted `ensure-rerank-sidecar.cjs`. It was deferred because the cross-encoder subsystem is actively evolving under the 027-xce arc and the allowlist entry remains live. An operator should decide the correct edit once the arc stabilises.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/016-remediate-residue-tail` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`

@@ -65,5 +65,7 @@ Phase 003 made Code Graph impact output easier to audit. Edge metadata now carri
 - DQI scores for packet-local docs remain operator-pending in canonical Wave-3 evidence.
 - 008 research later recommended more tests around malformed metadata JSON and failure-fallback codes.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`

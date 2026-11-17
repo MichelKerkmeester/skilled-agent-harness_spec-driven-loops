@@ -57,5 +57,7 @@ Landed and verified the six search-quality fixes the 029 deep-research surfaced.
 - The deterministic-ranking flag ships default-off and unproven for recall. Graduating it to default-on needs a recall benchmark confirming that removing recency does not hurt ranking. That benchmark ran in `042-deterministic-ranking-benchmark` and returned STAY DEFAULT-OFF.
 - The aligned-query cap is conservative. The Stage-4 gap detector fires on the ambiguous one-word `graph` query and caps it to `weak`, banner and verdict in agreement. Whether the threshold should be that conservative on aligned one-word queries was a tuning question carried into `043-gap-threshold-calibration-benchmark`, which found the detector mis-designed not mis-tuned.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/041-search-quality-fixes` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

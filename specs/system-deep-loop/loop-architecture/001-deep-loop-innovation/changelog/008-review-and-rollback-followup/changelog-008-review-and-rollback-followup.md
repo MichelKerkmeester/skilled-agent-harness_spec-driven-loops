@@ -25,4 +25,6 @@ This group tracks the post-review follow-up on the 036 deep-loop innovation pack
 | `003-rollback-candidate-hash-hardening` | Enforce promoted-candidate-only rollback authority in the deep-improvement rollback path; `rollback-candidate.cjs` now requires the current target to equal the promoted candidate hash exclusively, with pre-ship rollback intentionally removed. |
 | `004-review-containment-exemption` | Exempt the runtime's own generated state (runtime/database telemetry plus `description.json`/`descriptions.json` memory-index metadata) from fatal write-containment reverts so fan-out reviews can run without the runtime's own writes failing the lineage. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup` (Level 3)

@@ -62,5 +62,7 @@ The harness was extended so a runner can return optional telemetry fields on `Se
 - Wire the harness to `handleMemorySearch` for live runtime telemetry capture. That connection is PP-1 scope deferred to packet 023.
 - Add runner-side envelope builder support so harness callers can construct envelopes without importing production builders directly.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/024-harness-telemetry-export-mode` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

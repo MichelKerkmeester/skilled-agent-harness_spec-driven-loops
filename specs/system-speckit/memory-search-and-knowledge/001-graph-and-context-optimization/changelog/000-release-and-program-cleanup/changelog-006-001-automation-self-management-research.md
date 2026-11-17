@@ -70,5 +70,7 @@ The loop converged with a recorded `newInfoRatio` sequence and stop reason. Runt
 - Wire empirical hook smoke tests for the runtimes confirmed as unwired in RQ5. This packet used documentation and code-trace evidence only.
 - Evaluate whether the 4-class taxonomy (auto, half, manual, aspirational) should be promoted to a shared reference so future research packets use consistent classification labels.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/001-automation-self-management-research` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research`

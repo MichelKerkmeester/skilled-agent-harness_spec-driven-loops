@@ -73,5 +73,7 @@ After four HOLD verdicts across the rerank arc, including a bge-v2-m3 trial that
 - Retrieval and fixture quality were intentionally out of scope. Revisit the 011/004 audit work if spec-memory reranking is opted back in by an operator.
 - Confirm that the `system-rerank-sidecar` skill SKILL.md update from the original commit persists after the subsequent skill removal in commit `ada2c51ee8`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/005-opt-in-only-closure` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc`

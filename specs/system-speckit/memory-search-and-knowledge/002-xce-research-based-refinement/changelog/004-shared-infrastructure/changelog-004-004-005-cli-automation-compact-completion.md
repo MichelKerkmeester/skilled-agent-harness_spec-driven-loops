@@ -57,5 +57,7 @@ The three daemon CLIs gained automation-friendly command discovery and generated
 
 - system-spec-kit alignment drift still reported two unrelated out-of-scope files in the source summary.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/005-cli-automation-compact-completion` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux`

@@ -52,5 +52,7 @@ Added time-decay weighting to coverage-graph-signals.ts so older coverage contri
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/013-coverage-graph-time-decay` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

@@ -66,5 +66,7 @@ Three surgical fixes were shipped: REQ-001 adds a status-commit UPDATE to the re
 - Move the context-server hardcoded retry interval and batch size (5 min / 5 rows) to call-time environment reads. Deferred from this packet.
 - Implement `memory_embedding_reconcile()` as a maintenance tool for future one-time backlog repairs. Currently only an emergency SQL fallback exists.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

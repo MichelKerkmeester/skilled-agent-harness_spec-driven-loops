@@ -76,4 +76,6 @@ Packet-local changelog generation now lives beside the existing implementation s
 - Nested changelog generation is workflow-aware, not a universal validator gate. This packet teaches the commands when to create packet changelogs, but it does not force every packet in the repository to have one.
 - Generated quality depends on packet document quality. If implementation-summary.md, tasks.md, or checklist.md are sparse, the changelog will fall back to simpler derived bullets.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/025-nested-changelog-per-spec` (Level 3)

@@ -57,5 +57,7 @@ Root `AGENTS.md` was reconciled to shipped governance reality without changing t
 
 - None for this child phase.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

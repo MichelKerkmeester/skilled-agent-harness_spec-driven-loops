@@ -78,5 +78,7 @@ The skill-advisor runtime had a fragmented threshold contract across OpenCode an
 
 - Full package build remains blocked by pre-existing TypeScript errors in `hooks/claude/hook-state.ts`, `lib/context/shared-payload.ts`, and `code-graph/lib/code-graph-context.ts` outside this packet scope. Resolution is outside the scope lock for this packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`

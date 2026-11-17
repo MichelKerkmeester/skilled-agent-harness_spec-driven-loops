@@ -89,5 +89,7 @@ The fix adds `@spec-kit/shared` as a local `file:` dependency in both affected p
 - The broken `.mcp.json` symlink remains separate config hygiene. The active Codex startup crash came from `@spec-kit/shared` package resolution in `opencode.json`-launched MCP servers. Confirm whether the symlink is an active launcher path before addressing.
 - Package manifests (`package.json`) are git-ignored in this repo. The runtime fix updates the local ignored files and the tracked lockfiles. A future packaging pass should decide whether these manifests should become tracked artifacts.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/001-mcp-shared-dependency-startup-fix` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph`

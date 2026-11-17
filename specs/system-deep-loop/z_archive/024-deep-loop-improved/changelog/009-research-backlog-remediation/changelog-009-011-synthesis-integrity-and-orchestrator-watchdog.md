@@ -54,5 +54,7 @@ A lineage could narrate synthesis complete while its registry and output files n
 
 - None identified. All 3 fixes are independently verified against the actual repo state, not accepted on the dispatch's own incomplete self-report.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/011-synthesis-integrity-and-orchestrator-watchdog` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

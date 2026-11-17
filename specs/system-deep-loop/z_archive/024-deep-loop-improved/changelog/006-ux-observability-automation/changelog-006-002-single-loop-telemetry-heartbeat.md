@@ -53,5 +53,7 @@ Added step_telemetry_heartbeat (started/progress/terminal lifecycle rows) to dee
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation/002-single-loop-telemetry-heartbeat` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation`

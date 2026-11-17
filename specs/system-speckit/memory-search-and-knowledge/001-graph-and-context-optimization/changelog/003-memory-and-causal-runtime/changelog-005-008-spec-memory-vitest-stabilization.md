@@ -90,5 +90,7 @@ A 3-wave cli-codex dispatch pattern resolved the suite. Wave 1 addressed 17 mech
 - Reactivate skip-annotated tests that cover the local-first embedder cascade once the post-016 test contracts are updated to match the new default.
 - Evaluate migration to a different test runner (bun test or similar) in a separate packet if vitest infrastructure churn continues.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/008-spec-memory-vitest-stabilization` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality`

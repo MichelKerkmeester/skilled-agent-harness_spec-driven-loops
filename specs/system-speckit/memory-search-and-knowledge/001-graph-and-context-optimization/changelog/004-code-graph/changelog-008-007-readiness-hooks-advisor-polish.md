@@ -71,5 +71,7 @@ Phase 006 implements the remaining P1 clusters from the real-world usefulness re
 - Broad tests/ suite still fails across unrelated dirty-worktree areas; scoped query fallback and structural scan regressions now pass.
 - Copilot README was restored/updated for F-012, but the wider deleted Copilot hook tree remains a separate workspace issue.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/007-readiness-hooks-advisor-polish` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

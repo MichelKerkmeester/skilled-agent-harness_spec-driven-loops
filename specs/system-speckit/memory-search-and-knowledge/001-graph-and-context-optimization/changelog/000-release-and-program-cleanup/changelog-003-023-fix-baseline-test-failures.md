@@ -71,5 +71,7 @@ None.
 - The validator's `key_files` check rejects directories. Skills that legitimately need to surface a directory stub need a different mechanism. This is out of scope for this packet.
 - Other unit-suite failures unrelated to packet 045 remain (see Verification table above). These are pre-existing and were escalated to the user for separate triage.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

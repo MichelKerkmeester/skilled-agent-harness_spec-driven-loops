@@ -60,5 +60,7 @@ The agent definition cleanup ran across the OpenCode, Claude and Codex agent mir
 - Leave agent bodies alone unless a future verification pass finds a concrete stale claim.
 - Treat corpus-wide voice restyling as separate work because this phase only rewrote confirmed stale prose.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/007-agents` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`

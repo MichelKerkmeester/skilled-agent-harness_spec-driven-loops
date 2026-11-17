@@ -46,5 +46,7 @@ _No file-level detail recorded._
 - If idle-reap confirmed: flag-gated default-off keepalive notification emitter in launcher-session-proxy.cjs
 - Confirm stdout hygiene: trace writeLeaseHeldDiagnostic reachability on the serving path and reroute to stderr if reachable
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/030-client-side-reconnect-survival` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

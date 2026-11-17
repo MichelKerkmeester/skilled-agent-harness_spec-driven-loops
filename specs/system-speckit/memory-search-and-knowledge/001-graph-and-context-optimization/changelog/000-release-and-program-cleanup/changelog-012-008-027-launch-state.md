@@ -61,5 +61,7 @@ None (review-only packet).
 - Regenerate 027 child metadata after renumbering so IDs, titles, trigger phrases and graph pointers agree.
 - Recompute graph derived status from current spec truth and pin the 026 completion surface that 027 builds on.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`

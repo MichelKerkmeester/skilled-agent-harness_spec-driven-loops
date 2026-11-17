@@ -75,5 +75,7 @@ This leaf advances the vector-index schema from v35 to v36 and adds a default-of
 - Near-duplicate advisory requires an embedding to be present; index scan can stamp rows without embeddings after they are enriched.
 - Receipt persistence is best-effort: if storage fails after a valid write, that specific write will not replay until a later successful store.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening`

@@ -73,5 +73,7 @@ All three MCP launchers have bridge mode. Daemon-side socket listener support sh
 - Run a live Unix-socket probe on a host that permits `net.listen()` to confirm socket lifecycle, secondary client attach and `SIGTERM` cleanup behavior end-to-end.
 - Scope a follow-up packet to add daemon-side IPC socket listeners for `system-code-index` and `system-skill-advisor` so those services gain full multi-client concurrency parity with spec-memory.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/010-multi-client-stdio-socket-bridge` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

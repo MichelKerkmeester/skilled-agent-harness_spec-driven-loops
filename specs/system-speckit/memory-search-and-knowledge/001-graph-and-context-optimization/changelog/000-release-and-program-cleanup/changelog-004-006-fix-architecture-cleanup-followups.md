@@ -104,5 +104,7 @@ The 046 deep-research audit flagged 15 P2 architectural violations split across 
 - Remove `runWithBusyRetry` from its dual location. The neutral seam at `skill_advisor/lib/utils/busy-retry.ts` re-exports the watcher's copy. A future packet can consolidate to a single source once existing watcher test imports are updated.
 - Investigate `gate-d-benchmark-memory-search` p95 latency flake in CI if it persists beyond the current machine. The flake is environmental but should be tracked to confirm it does not appear in CI.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/006-fix-architecture-cleanup-followups` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

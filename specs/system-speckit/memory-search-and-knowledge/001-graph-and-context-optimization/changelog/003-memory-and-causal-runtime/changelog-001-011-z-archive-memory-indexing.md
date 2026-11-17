@@ -67,5 +67,7 @@ The fix removed `compileSegmentPattern('z_archive')` from `EXCLUDED_FOR_MEMORY`.
 - Promote a code-graph z_archive policy if structural archive queries become valuable. `EXCLUDED_FOR_CODE_GRAPH` still excludes z_archive because code graph has no decay multiplier. This is not a regression but a deferred decision.
 - Verify the 12 doc fixes in `010-memory-indexer-invariants/` remain accurate over time as the index-scope design evolves.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/011-z-archive-memory-indexing` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

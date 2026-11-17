@@ -60,4 +60,6 @@ Schema version advanced from 33 to 34 in leaf 001 and was not bumped again in su
 - Live 768d false-positive, recall, latency, and cost evidence must be collected before union mode can be promoted. All four union promotion gates are currently BLOCKED.
 - The save-time trigger embedding hook (populate on write) was deferred in leaf 001 and remains unimplemented.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback` (Level 2, Phase Parent)

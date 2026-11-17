@@ -61,5 +61,7 @@ Five retrieval and causal-graph surfaces now respect the governed `{tenantId, us
 - Real MCP traffic can only pass causal graph scope fields after the contract-parity schema phase exposes `tenantId/userId/agentId` on `memory_drift_why` and `memory_causal_link`.
 - Central verification owns the deferred `mcp_server` typecheck and vitest run after concurrent edits settle.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/002-retrieval-scope-hardening`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`

@@ -75,5 +75,7 @@ A naming collision between "Code Graph" (structural index) and the memory causal
 - Implement caller-side enforcement so CLI runtimes honor `fallbackDecision.nextTool` automatically. This packet adds the routing field only. Callers still need their own contract.
 - Confirm whether `fallbackDecision` should also appear in autoprime and startup surfaces. The current scope is query and context only. The 007 §12 open question tracks this.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/005-code-graph-fail-fast-routing` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

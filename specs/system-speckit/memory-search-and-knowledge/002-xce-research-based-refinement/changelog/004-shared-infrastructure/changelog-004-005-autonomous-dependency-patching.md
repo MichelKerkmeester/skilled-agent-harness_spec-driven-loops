@@ -52,5 +52,7 @@ OpenCode skill package roots (system-spec-kit, system-skill-advisor, mcp-code-mo
 
 - CI or pre-commit integration of the audit entrypoint remains optional and undecided.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/005-autonomous-dependency-patching` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

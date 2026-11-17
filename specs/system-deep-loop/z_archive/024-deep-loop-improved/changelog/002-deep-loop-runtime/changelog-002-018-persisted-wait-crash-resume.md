@@ -53,5 +53,7 @@ Persist a wait-checkpoint at the pre-dispatch boundary plus a resume-waiting cra
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/018-persisted-wait-crash-resume` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

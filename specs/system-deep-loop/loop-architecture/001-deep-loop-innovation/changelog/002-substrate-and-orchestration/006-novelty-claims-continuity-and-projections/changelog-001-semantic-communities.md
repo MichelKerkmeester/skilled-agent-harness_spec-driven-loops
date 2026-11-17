@@ -16,5 +16,7 @@ contextType: "implementation"
 
 This phase defined a deterministic semantic-community projection over claim nodes so paraphrases resolve to one concept while legacy graph novelty remains authoritative, moving novelty and dedup to the concept level rather than string equality. Per its implementation summary, the phase delivered a verified additive semantic-community projection with deterministic replay, guarded cohesion, and shadow novelty. Status is complete.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/001-semantic-communities` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections`

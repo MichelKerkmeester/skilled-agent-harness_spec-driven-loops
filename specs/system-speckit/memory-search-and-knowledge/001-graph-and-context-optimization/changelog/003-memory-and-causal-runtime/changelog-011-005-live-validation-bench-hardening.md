@@ -67,5 +67,7 @@ The final phase of embedding-stack hardening shipped socket perimeter guards, de
 - Cache-into-reindex remains deferred pending resolution of a reindex-versus-query normalization divergence. The cache cannot hit in production until reindex keys and embeddings use the same normalized content that the query path uses.
 - Reindex-versus-query normalization divergence (pre-existing, surfaced by the review) needs its own follow-up packet. It also affects search-vector consistency beyond the cache.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`

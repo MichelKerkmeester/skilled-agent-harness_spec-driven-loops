@@ -71,5 +71,7 @@ None. Review-only phase.
 - Remediate P2 batch (F002/F004/F005/F006): regenerate `database/skill-graph.json`, remove `.gitignore:123` stale entry, collapse `embedder_pluggability.md` dead ccc columns, remove `doctor_deep-loop.yaml:97` coco glob.
 - Reconcile the external devin profile: `devin mcp list` shows a broken `spec_kit_memory` path and duplicate memory registrations in `~/.config/devin/`. Run `devin mcp remove spec_kit_memory` to resolve this.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/013-post-deprecation-deep-review` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`

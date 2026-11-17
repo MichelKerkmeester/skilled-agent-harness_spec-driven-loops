@@ -60,5 +60,7 @@ Two P2 findings (F44 and F109) had been deferred because the mcp-server embedder
 - Commit is intentionally left to the parent agent.
 - The broad `rg -l` inventory includes sibling `system-skill-advisor` shared-embedder shim references. Those are outside this packet and not affected by the `system-spec-kit` barrel cleanup.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/001-fix-deferred-p2s-for-test-only-and-shared-exports` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes`

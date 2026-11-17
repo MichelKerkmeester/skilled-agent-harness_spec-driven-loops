@@ -65,5 +65,7 @@ This sub-phase reconciled doc-truth, completion-claim and runtime-mirror drift a
 - Around twelve other scenario files still phrase a per-scenario PARTIAL and are a noted follow-up sweep (the root taxonomy is now self-consistent).
 - Where a fixed markdown status implies a derived-status JSON update, that refresh is a metadata follow-on (the canonical markdown is now correct).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation`

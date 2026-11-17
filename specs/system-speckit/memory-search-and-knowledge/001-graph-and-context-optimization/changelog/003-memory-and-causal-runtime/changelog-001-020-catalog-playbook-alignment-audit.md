@@ -84,5 +84,7 @@ Feature catalog and manual testing playbook entries across system-spec-kit and m
 - Keep `all-MiniLM-L6-v2` and `voyage-code-3` references in mcp-coco-index docs as documented alternatives framed clearly as non-default options.
 - Confirm Code Graph and Skill Advisor docs require no embedding-default update after any future provider cascade change. Neither subsystem owns embedding provider defaults.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

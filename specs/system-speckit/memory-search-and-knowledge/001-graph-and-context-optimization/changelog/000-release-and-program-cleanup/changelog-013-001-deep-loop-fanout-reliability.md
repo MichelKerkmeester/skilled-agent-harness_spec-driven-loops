@@ -60,5 +60,7 @@ The deep-loop fan-out runner now reports lineage failures truthfully. CLI non-ze
 
 - A path-scoped workspace-write sandbox for review lineages would be stronger than prompt-enforced write boundaries, but the CLIs do not expose that boundary today.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/001-deep-loop-fanout-reliability`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`

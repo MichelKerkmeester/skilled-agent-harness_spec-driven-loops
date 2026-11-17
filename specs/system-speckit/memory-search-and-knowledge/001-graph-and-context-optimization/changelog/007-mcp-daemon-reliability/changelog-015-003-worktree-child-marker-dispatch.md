@@ -54,5 +54,7 @@ The worktree-session wrapper (packet 035) detects orchestrated children by the `
 - The rule is advisory only. The wrapper structural backstop (`git --git-common-dir`) serves as a safety net when a dispatcher omits the variable. This closes the documentation gap but not the enforcement gap.
 - Operator-machine wiring (launch aliases, SessionStart guard-hook entries) remains out of scope as an environment-specific operator step.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`

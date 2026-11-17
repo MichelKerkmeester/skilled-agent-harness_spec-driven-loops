@@ -74,5 +74,7 @@ All three fixes landed in `run-substrate-stress-harness.mjs`. A new pure-logic v
 - Linux start-time detection uses `ps -o lstart=`. The `/proc` field-22 path was evaluated and not needed.
 - Mem-side clean-env (the 410-run full run) still requires stopping the operator memory daemon. The hermetic lever isolates only the code-index DB because `mk-spec-memory`'s lease path is not env-relocatable. The code-index clean-env path is fully verified.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

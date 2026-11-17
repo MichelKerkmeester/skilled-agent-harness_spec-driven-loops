@@ -65,5 +65,7 @@ Phase 6 shipped the two optional add-ons that were worth carrying into the skill
 - Two add-ons are deferred and operator-optional. They remain available on an explicit request.
 - Not committed. Changes sat in the working tree on branch `028-mcp-to-cli-tool-transition`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/006-optional-addons` (Level 1)
 > Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`

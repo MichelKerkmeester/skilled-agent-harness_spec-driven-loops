@@ -58,5 +58,7 @@ The deep-review of the skill advisor rename (015) left nine P2 advisories and D2
 - Runtime database files remain dirty in the worktree. They were already dirty at session start and are intentionally excluded from the commit.
 - Shared seam extraction is deferred. The two seams are documented as accepted-as-is. Moving source into a shared package remains a separate future change.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/016-fix-deep-review-p2-findings-for-package-extraction` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

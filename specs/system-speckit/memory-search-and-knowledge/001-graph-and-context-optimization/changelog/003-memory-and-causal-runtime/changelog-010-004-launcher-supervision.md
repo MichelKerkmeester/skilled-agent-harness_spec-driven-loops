@@ -63,5 +63,7 @@ The mk-spec-memory launcher now lazily spawns and supervises hf-model-server.cjs
 - Remaining P2 review notes (non-blocking): the async signal-teardown end-to-end path and the give-up-to-re-arm demand-listener path have thin behavioral coverage validated by code review rather than a dedicated test.
 - Sidecar still present. Both the old sidecar path and the new model-server path coexist until phase 005 retires the sidecar. SPECKIT_EMBEDDER_EXECUTION is still honored until then.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/004-launcher-supervision` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`

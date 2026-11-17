@@ -46,5 +46,7 @@ Three passes. First: a dual-executor `/deep:review` (deepseek-flash completed al
 
 An operator instruction misread mid-session led to a broken `git stash push`/`pop` sequence that briefly pulled in an unrelated stash meant for a different branch (`system-deep-loop/0129-036-remediation-execution`); caught immediately via diff-line-count matching, cleanly discarded with zero data loss (the original stash was never consumed). A second, similar conflict during a later rebase resolved the same way — both were the concurrent session's own superseded pre-commit drafts, already landed by their own subsequent commits.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/032-relocate-specs-folder/005-readme-migration-audit` (Level 1)
 > Parent packet: `specs/system-speckit/032-relocate-specs-folder`

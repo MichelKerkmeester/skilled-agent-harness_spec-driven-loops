@@ -237,4 +237,6 @@ No manual migration is required.
 
 Existing databases move to schema version 25 during the normal upgrade path, and older decision and discovery labels are rewritten as part of that step. If an environment still carries repeated rows from earlier forced rebuild runs, rerunning the rebuild on this patched version will settle the index under the new duplicate checks.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives` (Level 2)

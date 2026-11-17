@@ -54,4 +54,6 @@ This phase parent groups 4 child phases spanning 2026-04-27 to 2026-04-27. Each 
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation` (Level 2, Phase Parent)

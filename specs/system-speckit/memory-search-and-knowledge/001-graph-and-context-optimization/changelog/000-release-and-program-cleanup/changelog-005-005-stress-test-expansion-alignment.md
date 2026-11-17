@@ -68,5 +68,7 @@ An audit enumerated all TypeScript files, applied P0 and P1 alignment fixes acro
 - The standard `npx vitest run stress_test/` invocation is blocked by the repository Vitest exclude rule. Verification requires a temporary include-only stress config until the exclude rule is updated.
 - Handler-level and CLI-only feature catalog entries are mapped out of scope for stress_test. Dedicated handler test suites own those layers.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/005-stress-test-expansion-alignment` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`

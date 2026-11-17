@@ -82,5 +82,7 @@ A broad codebase scout surfaced 40 candidate defects with no single review havin
 - The remaining 35 scouted candidates from the 40-candidate backlog are deferred to later batches (002-scouted-bugfix-batch-2, 003-scouted-bugfix-batch-3).
 - Two pre-existing failures in `handler-memory-index.vitest.ts` remain in the `[deferred - requires DB test fixtures]` describe block; they predate and are unrelated to the heartbeat change. The cooldown suite (9/9) is the relevant gate for Fix 5.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train`

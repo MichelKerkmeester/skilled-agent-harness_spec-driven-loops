@@ -54,4 +54,6 @@ This phase turned the structural index into a usable service. Graph data now has
 
 No migration required. The storage layer is still single-writer by design and replaces file-level graph data atomically.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/009-code-graph-storage-query/`

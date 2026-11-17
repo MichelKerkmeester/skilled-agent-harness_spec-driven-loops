@@ -16,5 +16,7 @@ contextType: "implementation"
 
 This phase made the runtime-mirror and routing parity gates compare what actually differs: mirror comparison is now order-sensitive for load-bearing instructions and surface-sensitive for the tool allowlist, the route vocabulary includes every supported launcher, and the registry compiler resolves packet and leaf identities on disk instead of asserting them as strings. 7 of 8 scoped findings landed on `skilled/v4.0.0.0` as `e45e786cd5`; the Codex sandbox-mode derivation (`F-028-01`) was attempted and deferred. Status is complete with that finding deferred.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening`

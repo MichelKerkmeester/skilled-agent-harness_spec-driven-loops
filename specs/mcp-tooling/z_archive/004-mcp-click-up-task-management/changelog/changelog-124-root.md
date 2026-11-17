@@ -58,4 +58,6 @@ _No file-level detail recorded._
 - MCP requires Node.js/npx — Not auto-installed by install.sh. User must have Node.js installed separately.
 - Official MCP config — User must manually add config snippet to opencode.json; install.sh prints but does not apply it.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/mcp-tooling/004-mcp-click-up-task-management` (Level 3)

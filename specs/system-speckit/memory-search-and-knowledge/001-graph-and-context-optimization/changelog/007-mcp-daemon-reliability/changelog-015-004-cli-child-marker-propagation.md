@@ -59,5 +59,7 @@ The three remaining cli-* dispatcher skills now tell the calling AI to set AI_SE
 - The child-marker contract is advisory, not enforced. Nothing statically prevents a dispatcher from omitting AI_SESSION_CHILD=1. The wrapper's structural git --git-common-dir backstop serves as the safety net. This closes the documentation gap across the whole cli-* family.
 - Operator-machine launch aliases remain out of scope. Routing a runtime through worktree-session.sh by default (alias) is still the operator's environment-specific step. The companion SessionStart guard hook is handled by sibling child 006.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`

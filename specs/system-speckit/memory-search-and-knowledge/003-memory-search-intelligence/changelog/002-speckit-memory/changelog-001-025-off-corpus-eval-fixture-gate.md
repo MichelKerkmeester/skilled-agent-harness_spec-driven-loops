@@ -58,5 +58,7 @@ This phase shipped an `off_corpus` eval fixture (ids 98-103, kubernetes pinned a
 - The `SPECKIT_FALSE_CONFIRM_MAX_RATE` enforcement value stays open until the downstream verdict fix lands.
 - The 0.833 rate is embedder-scoped to nomic and should be re-measured on an embedder change.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/025-off-corpus-eval-fixture-gate` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

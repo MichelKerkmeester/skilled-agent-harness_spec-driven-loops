@@ -46,6 +46,8 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 
 - Evidence gap: tasks.md records 31 of 32 checklist items checked. This index does not upgrade completion status.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/009-validation-hardening-fixes` (Level recorded in phase evidence)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality`
 > Historical alias: `015-validation-hardening-fixes`

@@ -83,5 +83,7 @@ A deep-review Phase 2 verified the R1-R8 infrastructure. The final FIX-010-v2 cy
 - **Automated checklist enforcement.** The checklist is currently a document that agents must read. A follow-up could enforce it at the tool level by refusing to mark a task complete until all 8 items are checked.
 - **Historical fix trajectory replay.** The R1-R8 improvements were validated on the FIX-010-v2 cycle. A broader replay on 10+ historical fix trajectories would provide stronger evidence.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

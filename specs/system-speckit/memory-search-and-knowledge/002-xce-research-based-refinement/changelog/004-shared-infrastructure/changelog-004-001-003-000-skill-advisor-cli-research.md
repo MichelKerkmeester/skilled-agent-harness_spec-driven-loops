@@ -55,5 +55,7 @@ A single cli-codex lane (gpt-5.5 high, 10 forced iterations) delivered a GO verd
 - `advisor_rebuild` / `skill_graph_scan` wall-time under mutation not measured (read-only lane) — left to implementation packet
 - Live orphan recount blocked by sandbox; six-orphan precedent stands as recorded incident evidence
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli`

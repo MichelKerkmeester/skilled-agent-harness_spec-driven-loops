@@ -57,5 +57,7 @@ The goal plugin now has a conservative supervisor path for automatic completion.
 
 - Production verifier wiring is still deferred. Tests use an injected verifier function; the continuation phase should decide the actual model/prompt integration.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/005-completion-supervisor` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`

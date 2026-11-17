@@ -56,5 +56,7 @@ The question "should skill references/assets carry detailed frontmatter?" now ha
 | `tasks.md` | Modified | Executed task list with evidence pointers |
 | `implementation-summary.md` | Created | This summary and the pending operator decision |
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

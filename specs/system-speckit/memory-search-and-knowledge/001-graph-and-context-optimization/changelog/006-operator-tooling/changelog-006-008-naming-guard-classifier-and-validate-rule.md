@@ -55,5 +55,7 @@ This packet is opened, not implemented. The plan below describes the intended de
 - Companion fix required: `create.sh` placeholders at lines 588 and 1111 contain uppercase `PROVIDE-DESCRIPTIVE-SLUG` that would block a strict phase-child rule until lowercased.
 - Detection is retroactive, not preventive: a mis-located folder still gets created and is only surfaced on the next validation pass.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/008-naming-guard-classifier-and-validate-rule` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`

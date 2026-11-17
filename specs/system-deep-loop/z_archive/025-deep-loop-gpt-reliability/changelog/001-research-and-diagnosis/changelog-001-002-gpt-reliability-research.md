@@ -59,5 +59,7 @@ Completed the moved-in GPT reliability research campaign: 15/15 productive GPT-5
 - Re-run the relevant behavior-benchmark cells after each package with primary and secondary cause adjudication.
 - Treat `--variant xhigh` forwarding as accepted-unverified unless a later executor check proves it.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/002-gpt-reliability-research` (Level 2)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

@@ -63,5 +63,7 @@ The session-lifecycle shell scripts now work across every AI CLI runtime instead
 - Codex and Devin have no session-end primitive. Their orphaned MCP helpers are reclaimed by the age-based orphan-mcp-sweeper.sh, not an on-exit hook.
 - feature_catalog and manual_testing_playbook still reference the old script name. Deferred as a P2 follow-on. The README and all live wiring are updated.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`

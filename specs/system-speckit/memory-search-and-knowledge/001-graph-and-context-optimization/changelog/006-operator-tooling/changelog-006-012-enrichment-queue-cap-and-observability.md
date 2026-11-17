@@ -57,5 +57,7 @@ contextType: "implementation"
 - Dedicated flood-to-drop unit test: coverage is the regression suite + `memory_health`-edge test + reasoning; a deterministic harness for the drop path is a possible future addition.
 - Backlog recovery still relies on `memory_index_scan` / backfill; a dedicated enrichment-backfill tool was not added.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/012-enrichment-queue-cap-and-observability` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`

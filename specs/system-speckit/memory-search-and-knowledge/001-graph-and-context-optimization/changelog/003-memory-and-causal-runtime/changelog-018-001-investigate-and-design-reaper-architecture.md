@@ -71,5 +71,7 @@ None. Research-only phase.
 
 The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits b8a866de2f, c99f990897 and ada2c51ee8. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design/001-investigate-and-design-reaper-architecture` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design`

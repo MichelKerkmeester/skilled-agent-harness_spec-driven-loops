@@ -86,5 +86,7 @@ Additional checks:
 - Environmental skips remain intentionally skipped. The Unit H closure left infrastructure-blocked `// REASON:` cases alone because they need infrastructure changes, not test fixes.
 - Build verification is unavailable. `pnpm build` fails with `sh: tsc: command not found`. Vitest is the authoritative verification surface for this packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/002-vitest-baseline-recovery-followup` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program`

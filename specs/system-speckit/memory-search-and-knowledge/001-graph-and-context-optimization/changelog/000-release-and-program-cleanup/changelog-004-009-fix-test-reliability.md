@@ -74,5 +74,7 @@ Each finding from packet 046 iteration-015 section C5 (F-015-C5-01 through F-015
 - Add a dedicated unit test for `env-snapshot.ts` if a third consumer is added in a future packet.
 - Consider adding a CI lint step that detects literal home-directory paths in test files to prevent regressions of F-015-C5-01.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/009-fix-test-reliability`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

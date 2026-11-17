@@ -52,4 +52,6 @@ This phase parent groups 2 child phases spanning 2026-05-08 to 2026-05-11. Each 
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing` (Level 3, Phase Parent)

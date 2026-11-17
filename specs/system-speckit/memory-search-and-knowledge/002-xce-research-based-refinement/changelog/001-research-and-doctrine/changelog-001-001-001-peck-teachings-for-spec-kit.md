@@ -58,5 +58,7 @@ Five deep-research iterations mapped the external `gytis-ivaskevicius/peck` repo
 - Effort and risk estimates are qualitative. Per-teaching spec folders would size each one if adoption is pursued.
 - T1's `AC_COVERAGE` rule needs a warn-only rollout and per-level opt-in before it can safely gate completion. Adopted in leaf 007.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`

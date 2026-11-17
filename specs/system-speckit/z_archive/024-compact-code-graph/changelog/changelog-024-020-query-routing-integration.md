@@ -121,4 +121,6 @@ When a user asked a question about their codebase, they had to know which tool t
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/020-query-routing-integration/`

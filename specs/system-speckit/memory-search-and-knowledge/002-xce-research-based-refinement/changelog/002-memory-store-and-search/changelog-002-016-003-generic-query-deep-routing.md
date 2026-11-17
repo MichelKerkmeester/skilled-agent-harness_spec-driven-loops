@@ -56,5 +56,7 @@ A two or three word generic query carries real intent but little lexical anchor,
 
 - The synonym groups are seeded for the topics that surfaced in the research. Broader coverage should be driven by real low-recall query logs rather than hand-authored ahead of evidence.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/003-generic-query-deep-routing` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

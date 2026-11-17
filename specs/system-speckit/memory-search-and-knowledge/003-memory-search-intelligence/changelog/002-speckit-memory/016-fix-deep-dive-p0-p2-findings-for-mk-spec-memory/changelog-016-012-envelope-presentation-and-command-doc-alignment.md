@@ -60,5 +60,7 @@ The `memory_search` envelope was 17.6KB for five results. Every telemetry block 
 - The live envelope byte count is daemon-side. Run the live capture after the daemon leases restart.
 - Code effects apply on the next daemon-lease restart.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/012-envelope-presentation-and-command-doc-alignment/` (Level 2)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

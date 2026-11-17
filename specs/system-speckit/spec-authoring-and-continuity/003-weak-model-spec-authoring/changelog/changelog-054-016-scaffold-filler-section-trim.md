@@ -62,5 +62,7 @@ Phase 016 removed the sample rows that weak models kept as filler. In 12 graded 
 
 - None recorded.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/016-scaffold-filler-section-trim` (Level 2)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

@@ -93,5 +93,7 @@ The reducers for both deep-loop skills gained an explicit `--emit-resource-map` 
 - Investigate aligning `mcp_server/vitest.config.ts` to discover `mcp_server/scripts/tests/**` directly so the T030 command works without an explicit `--root .` override.
 - Consider adding interim per-iteration emission behind an `emit_interim: true` flag (P2 defer from spec REQ-011).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix`

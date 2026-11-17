@@ -61,5 +61,7 @@ This packet changed the reporter contract to say the backfill job is not impleme
 - Deploy with the front-proxy recycle hardening packet and verify `memory_causal_stats` shows the honest hint.
 - Build the actual semantic relation-inference backfill in a separate packet if the caused and contradicts targets should rise automatically.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

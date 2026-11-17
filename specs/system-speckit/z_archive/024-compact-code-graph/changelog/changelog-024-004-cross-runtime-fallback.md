@@ -57,4 +57,6 @@ This phase made the compact-context design usable outside Claude hooks. Runtime 
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/004-cross-runtime-fallback/`

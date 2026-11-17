@@ -57,5 +57,7 @@ The memory idempotency feature (`SPECKIT_MEMORY_IDEMPOTENCY`, default OFF) had c
 
 - Enablement gating (force-retry-conflict handling, receipt TTL) is the remaining work before the flag can be turned on.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

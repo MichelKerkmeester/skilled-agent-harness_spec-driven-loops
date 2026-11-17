@@ -84,5 +84,7 @@ The packet restructured the code-graph SKILL.md to the canonical 8-section shape
 - Tighten `tsconfig.json` `include` and `exclude` in the system-code-graph package so the build only emits its own output and stops mirroring compiled output for sibling packages into `dist/`.
 - Remove the deprecation banner and old hook paths from `system-skill-advisor/references/deferred-decisions.md` after the 90-day deprecation window expires on 2026-08-16.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/005-cross-skill-doc-polish` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`

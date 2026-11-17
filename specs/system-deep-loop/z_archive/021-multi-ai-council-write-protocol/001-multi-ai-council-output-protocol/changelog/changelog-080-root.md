@@ -64,4 +64,6 @@ _No file-level detail recorded._
 - CHK-081 Council dispatch round-trip <5 minutes for 3 seats at default models (NFR-P01)
 - CHK-090 Strict validation exit 0 on packet 080
 
+&nbsp;
+
 > Spec folder: `specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol` (Level 3)

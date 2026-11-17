@@ -71,5 +71,7 @@ Wave 3 extended the shared advisory contract with two new optional fields. A pla
 - `reviewer_focus` and `spec_drift` are advisory only; no runtime enforcement was added.
 - `_memory.continuity` schema is unchanged at Level 1; `ThinContinuityRecord` schema work is deferred.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption`

@@ -24,4 +24,6 @@ This phase-parent classifies and migrates eligible in-flight state, then cuts au
 | `002-per-mode-authority-flip` | Plan the fail-closed switch that makes the dark spine canonical for one mode at a time, after current shadow-parity and rollback-drill evidence pass, while all other modes remain legacy-authoritative. |
 | `003-cutover-certificate-and-rollback-window` | Plan the signed evidence bundle that authorizes a per-mode authority flip and the monitored rollback window that keeps the flip reversible until clean closure. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover` (Level 2)

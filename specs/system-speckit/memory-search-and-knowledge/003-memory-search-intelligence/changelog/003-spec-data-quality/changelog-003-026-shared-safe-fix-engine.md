@@ -48,5 +48,7 @@ Nothing is built yet. This phase is scaffolded only. The spec, plan, tasks and c
 
 - Build per plan.md. This phase is foundational and the dependents sequenced behind it are listed in `028-governance-rollout`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/026-shared-safe-fix-engine` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

@@ -64,5 +64,7 @@ ADR-002 Option A was implemented in `scope-governance.ts`: ephemeral retention i
 - Investigate `memory_search` lexical-only fallback for when the local llama-cpp embedding provider cannot initialize the Metal backend.
 - Run `npm run build` once the build pipeline constraint is lifted to replace the direct dist patch with a compiled output.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/001-governance-retention-decouple` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups`

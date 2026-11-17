@@ -64,5 +64,7 @@ Three Tier D documentation items from the 007 deferred decisions list were compl
 - OLD hook directory removal can proceed after the 90-day deprecation window elapses (target: 2026-08-16) once no remaining consumers point at the old paths
 - F35 and F36 remain status quo per deferred decisions document sections 5 and 6
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/008-tier-d-documentation-execution` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor`

@@ -76,5 +76,7 @@ Health telemetry in full `memory_health` reports switched from rough byte estima
 - Legacy unscoped lookups remain ambiguous when multiple profiles share the same content, model and dimension tuple. Callers outside the scoped save and search paths should migrate to the explicit options when convenient.
 - Embedding cache rows are recomputable from source text. A rollback that needs a clean cache can truncate `embedding_cache` and let the next run repopulate.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/009-byte-bounded-embedding-cache` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

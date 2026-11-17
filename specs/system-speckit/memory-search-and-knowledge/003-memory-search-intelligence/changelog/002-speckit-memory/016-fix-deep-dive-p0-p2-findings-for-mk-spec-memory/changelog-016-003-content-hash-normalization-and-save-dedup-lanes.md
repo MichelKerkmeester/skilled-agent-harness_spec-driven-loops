@@ -58,5 +58,7 @@ Saving an unchanged document no longer churns the corpus. `content_hash` used to
 - No batch migration ships. Legacy raw-hash rows match on the fly and store the normalized hash only on their next real re-save.
 - Search-level effects depend on the daemon running this code.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/003-content-hash-normalization-and-save-dedup-lanes/` (Level 3)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

@@ -72,5 +72,7 @@ The domain covers checkpoint v2 contention, schema v30 enrichment marker backfil
 - Optional larger soak counts and CI wiring remain deferred to a future orchestrator decision.
 - This domain does not measure throughput. A performance signal would need a separate benchmark domain.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/004-stress-test-durability-domain` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh`

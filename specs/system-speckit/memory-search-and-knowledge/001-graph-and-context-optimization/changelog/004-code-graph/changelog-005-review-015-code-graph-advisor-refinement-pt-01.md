@@ -64,5 +64,7 @@ All 7 findings were addressed in the B6 fix-up batch. The B6 batch also included
 
 - **Concurrent-first-query race.** The daemon startup path should be hardened with a mutex gate for concurrent first-query scenarios. Filed as a follow-up for a future daemon-hardening packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Review-only)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

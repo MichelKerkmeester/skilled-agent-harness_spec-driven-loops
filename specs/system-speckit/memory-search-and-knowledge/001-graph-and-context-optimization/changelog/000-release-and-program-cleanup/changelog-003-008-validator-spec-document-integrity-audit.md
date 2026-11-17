@@ -73,5 +73,7 @@ Review report: `008-validator-spec-document-integrity-audit/review-report.md`
 - Plan and execute validator remediation for P0-003: add an allowed-extra-header registry keyed by `contextType` so research packets with documented custom sections pass strict mode.
 - Decide release posture for `SPECKIT_VALIDATE_LINKS`: the P1 finding recommends keeping it default-off until the link scanner excludes unrelated skill docs.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/008-validator-spec-document-integrity-audit` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`

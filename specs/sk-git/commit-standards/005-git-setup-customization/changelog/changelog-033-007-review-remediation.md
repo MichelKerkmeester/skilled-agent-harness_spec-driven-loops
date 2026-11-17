@@ -77,5 +77,7 @@ The documented sk-git release check passes again, at 4,990 words against the 5,0
 - Adjacent defects, recorded and not fixed. .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs has no test and belongs to the 035 packet. The header that sync-skills-hermes.cjs writes into all 68 Hermes mirrors carries two semicolons, so .hermes/skills/sk-git/SKILL.md shows 2 HVR hard blockers that this phase cannot fix without editing the generator.
 - sk-create-command disagrees with itself on gate placement. SKILL.md Step 7 and references/argument-hints-and-modes.md:49 say the gate comes immediately after the frontmatter, and assets/command-router-template.md shows it after the H1. The template comment should say "immediately after the frontmatter, before the H1", to match Step 7.
 
+&nbsp;
+
 > Spec folder: `specs/sk-git/033-git-setup-customization/007-review-remediation` (Level 1)
 > Parent packet: `specs/sk-git/033-git-setup-customization`

@@ -47,5 +47,7 @@ Nothing is built in this phase yet. The folder is a PLANNED scaffold and the sec
 - Build this capability per plan.md as a report-only or additive seam that never mutates an authored document body.
 - It bypasses the 3-result truncation floor by construction, so it earns its keep on a non-retrieval metric of its own.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/004-novel-research/024-novel-freshness-decay-queue` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

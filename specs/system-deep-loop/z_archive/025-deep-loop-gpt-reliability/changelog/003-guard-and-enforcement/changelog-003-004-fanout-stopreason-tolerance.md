@@ -52,5 +52,7 @@ Fixed a fan-out false failure where a completed 10/10 lineage was marked failed 
 
 - Producer output still remains free-form by design. The consumer is tolerant, and the iteration-count check remains the authoritative completeness signal.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/004-fanout-stopreason-tolerance` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

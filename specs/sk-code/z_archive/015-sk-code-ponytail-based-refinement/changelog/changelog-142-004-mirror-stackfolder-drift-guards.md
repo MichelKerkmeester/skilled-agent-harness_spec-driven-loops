@@ -71,5 +71,7 @@ Phase 4 closed the gap between copied agent surfaces and the checks that keep th
 - Normalizer behavior was verified directly instead, with tamper control and the existing test reported green by the implementer.
 - Not committed. Changes sat in the working tree on branch `028-mcp-to-cli-tool-transition`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/004-mirror-stackfolder-drift-guards` (Level 1)
 > Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`

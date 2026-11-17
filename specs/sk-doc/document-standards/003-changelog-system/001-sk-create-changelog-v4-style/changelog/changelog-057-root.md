@@ -80,4 +80,6 @@ The /create:changelog skill now writes release notes in the narrative house styl
 - Frontmatter versions move at commit time. The build segment counts each doc's git edits, so the version tool needs a second pass once these edits are committed.
 - A mode's SKILL.md edit moves the sk-doc pin. The hub hashes every mode's SKILL.md as a routing input, so the concision pass left sk-doc on legacy routing in the working tree. The pre-commit route-remint gate re-mints and stages the manifest in the same commit.
 
+&nbsp;
+
 > Spec folder: `specs/sk-doc/057-sk-create-changelog-v4-style` (Level 1)

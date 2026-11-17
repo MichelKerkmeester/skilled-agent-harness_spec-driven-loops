@@ -93,5 +93,7 @@ The embedding-stack hardening program and older system-spec-kit modules accumula
 - No regression guard was added. A grep-based lint step or pre-commit hook would make the rule enforceable and prevent re-introduction. This is deferred as a separate decision.
 - Test-file comments were not swept. A handful of .vitest.ts and .test.* files carry ephemeral IDs in comments and remain out of scope.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`

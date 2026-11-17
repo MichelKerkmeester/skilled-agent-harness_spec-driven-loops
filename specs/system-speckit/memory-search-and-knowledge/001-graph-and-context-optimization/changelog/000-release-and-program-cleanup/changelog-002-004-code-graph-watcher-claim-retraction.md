@@ -55,5 +55,7 @@ The MCP server README had claimed real-time structural code-graph watching, but 
 - Runtime automation remains unchanged by design. Implementing a structural source watcher is a separate, out-of-scope decision.
 - Historical research artifacts in packets 012 and 013 may still reference the old watcher claim as recorded evidence. They are evidence records, not current operator guidance.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/004-code-graph-watcher-claim-retraction` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`

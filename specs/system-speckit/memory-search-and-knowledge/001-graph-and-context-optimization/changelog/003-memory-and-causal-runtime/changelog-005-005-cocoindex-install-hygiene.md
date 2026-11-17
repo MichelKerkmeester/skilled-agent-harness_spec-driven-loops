@@ -68,5 +68,7 @@ Codex confirmed the full diagnosis but hit a sandbox write blocker when attempti
 - Re-run the hybrid-plus-rerank bake-off with the hardened harness to produce results that reflect the correctly editable stack.
 - Track whether the follow-on packet `007-cocoindex-install-hygiene-pipx-repair` completed the full P1 requirements.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality`

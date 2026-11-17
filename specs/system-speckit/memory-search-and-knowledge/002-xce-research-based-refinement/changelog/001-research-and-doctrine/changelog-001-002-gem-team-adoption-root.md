@@ -72,4 +72,6 @@ This phase introduced a typed advisory agent I/O contract across three sequentia
 - No runtime parser or validator enforces the contract; enforcement is a follow-on concern.
 - `ThinContinuityRecord` schema work deferred beyond this phase.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption` (Phase Parent)

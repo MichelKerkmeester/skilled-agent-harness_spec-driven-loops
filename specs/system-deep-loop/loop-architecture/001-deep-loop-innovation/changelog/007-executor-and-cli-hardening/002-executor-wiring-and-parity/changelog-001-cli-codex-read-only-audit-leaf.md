@@ -16,5 +16,7 @@ contextType: "implementation"
 
 This phase makes a `cli-codex` deep-alignment leaf structurally incapable of writing so it can never use `apply_patch` and never trip the loop's tool-mediated-write halt. The leaf runs under `--sandbox read-only` and emits its audit result as a single structured final message, and the dispatch wrapper authors the three iteration artifacts from that message while injecting the route-proof fields itself; the written artifacts stay schema-identical. The motivating incident was a LUNA alignment run halting at iteration 3 with an `executor_contract_violation` after `apply_patch` wrote to a wrong-path artifact. The spec records its status as In Progress (~90%).
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/001-cli-codex-read-only-audit-leaf` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity`

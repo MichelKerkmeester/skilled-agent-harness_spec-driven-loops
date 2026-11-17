@@ -16,5 +16,7 @@ contextType: "implementation"
 
 This phase implements the additive-dark Deep AI Council rollback switch and independent mode gate for migration to the typed event-ledger substrate. Per its implementation summary, the additive-dark Council migration gate re-derives readiness and protects non-destructive rollback without moving authority. Status is implemented.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/007-rollback-and-mode-gate` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council`

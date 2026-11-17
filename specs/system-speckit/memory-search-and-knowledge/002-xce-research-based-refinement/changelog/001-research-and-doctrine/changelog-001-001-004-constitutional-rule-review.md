@@ -58,5 +58,7 @@ Adopted peck's T2 teaching (bounded reflection with promotion-on-recurrence) by 
 - This phase informs retirement decisions only. It does not change the constitutional tier's decay exemption or boost.
 - No automatic retirement is implemented. Stale output is a review signal for a human to act on.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/004-constitutional-rule-review` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`

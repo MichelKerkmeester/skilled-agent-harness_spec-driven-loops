@@ -62,5 +62,7 @@ The mk-spec-memory daemon no longer flaps when a session ends. Before this, an o
 - Orphan detection assumes the parent dies. If a disposal leaves a persistent wrapper as the launcher's parent, the ppid will not change and the gate falls back to prior behavior (no regression, but no help in that case). The complete fix is ownership re-election.
 - Only the dominant flap is fixed. Deferred to follow-up phases: daemon ownership re-election, the mk-code-index reconnecting proxy, dead-socket reap requiring N probe failures, CLAUDE_SESSION_PID flow and orphan-mcp-sweeper scheduling (the Stop-hook is currently a no-op and orphans accumulate), and a persistent launcher log for attributable future incidents.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

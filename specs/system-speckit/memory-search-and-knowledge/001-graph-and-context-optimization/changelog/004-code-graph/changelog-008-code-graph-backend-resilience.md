@@ -81,5 +81,7 @@ Final state: 99.8 percent test pass rate. All 5 backend resilience streams verif
 - **Test-isolation hardening for copilot-hook-wiring.** The pre-existing copilot-hook-wiring.vitest.ts failure is out of scope for this packet. A follow-up should add the same reset exports to that module.
 - **Mtime-based staleness in incremental scan.** The incremental scan path uses `mtime` comparison to skip fresh files. On filesystems with coarse mtime resolution, this can produce false-fresh results. A follow-up should add a content-hash fallback.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

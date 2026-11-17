@@ -73,5 +73,7 @@ Build plus type-check plus 11 smoke assertions (6 Node plus 5 Python) passed. Th
 - Refactor the three legacy `TASK_PREFIX` consumers (`shared/embeddings.ts`, `shared/index.ts`, `mcp_server/lib/providers/embeddings.ts`) to call `getPrefixFor()` directly. Retained for back-compat in this packet.
 - Sub-phase 002 requires EmbeddingGemma-300m download from a gated Hugging Face repo. User authentication or a fallback to `mixedbread-ai/mxbai-embed-large-v1` is needed before model installation can proceed.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

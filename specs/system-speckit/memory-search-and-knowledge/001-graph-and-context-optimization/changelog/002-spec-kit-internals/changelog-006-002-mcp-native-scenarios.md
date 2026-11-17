@@ -57,5 +57,7 @@ The native advisor surface works and is prompt-safe: 7 of 9 NC scenarios pass ou
 - NC-003 outcome-injection sub-step is not callable via MCP. The advisor_validate tool schema is additionalProperties:false and does not expose outcomeEvents, so the focused recordedThisRun == 3 check from the scenario cannot run through the MCP surface.
 - Accuracy regression is recorded, not fixed. Remediation (corpus skill-ID realignment + P0 routing) is out of scope for this run and flagged for a follow-on packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/002-mcp-native-scenarios` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation`

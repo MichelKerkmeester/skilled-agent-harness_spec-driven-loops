@@ -67,5 +67,7 @@ A single cli-opencode dispatch (deepseek-v4-pro, variant high, PID 37723, about 
 - Fill voyage and cohere entries in `RERANKER_CANONICAL` when canonical reranker model names are established. Current empty-string placeholders require callers to guard with `getRerankerFallback(provider) !== ''` before use.
 - Resolve pre-existing vitest failures for DB fixtures, tool count mismatch plus sidecar-hardening. These were confirmed unrelated to this phase but remain open.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/005-spec-memory-p1-registry-consolidation`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

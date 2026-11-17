@@ -92,5 +92,7 @@ The phase's changes landed on main as 7d6474c602 (this folder), f431355ac2 (the 
 - A code folder without a README is governed by audit_readmes.py, which derives every durable directory with its exemptions; a repo-wide run found 781 directories and 0 gaps.
 - Commit the working tree. Landed 2026-10-27 on main as 7d6474c602 (this folder), f431355ac2 (the fixes) and 554c8c8f78 (the version name), with the CI repairs c1fe3ae9b4 and 8c760290ff, and every CI run on 8c760290ff passed.
 
+&nbsp;
+
 > Spec folder: `specs/sk-code/015-quality-agnostic-gate/010-alignment-audit` (Level 2)
 > Parent packet: `specs/sk-code/015-quality-agnostic-gate`

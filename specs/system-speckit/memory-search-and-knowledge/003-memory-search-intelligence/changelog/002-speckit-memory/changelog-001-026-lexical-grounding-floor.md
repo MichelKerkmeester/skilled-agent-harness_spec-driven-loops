@@ -54,5 +54,7 @@ This phase shipped a lexical-grounding floor and a single-hit corroboration guar
 - The 0.833 to 0 `falseConfirmRate` delta was measured on `nomic-embed-text-v1.5` and the measured rate should be re-measured before graduating on a different embedder.
 - The lexical-grounding floor is held at zero, a future embedder with noisier lexical scores may warrant tuning it.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/026-lexical-grounding-floor` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

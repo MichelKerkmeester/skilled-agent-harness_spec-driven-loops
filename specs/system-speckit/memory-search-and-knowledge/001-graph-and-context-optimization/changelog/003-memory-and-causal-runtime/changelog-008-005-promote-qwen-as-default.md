@@ -63,5 +63,7 @@ None.
 - Tune CPU-to-MPS device selection for the Qwen3-Reranker-0.6B model before attempting a future promotion benchmark. Phase 004 made this a hard prerequisite.
 - Track CocoIndex sidecar deduplication separately. CocoIndex still loads its own Qwen in-process rather than routing to the shared sidecar.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

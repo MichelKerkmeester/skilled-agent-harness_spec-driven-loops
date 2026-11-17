@@ -73,5 +73,7 @@ Six commit phases (040-A through 040-E plus a follow-on) shipped the fix. system
 - Audit source-level `.d.ts` files in both skills to determine whether they are consumed externally. If unused, remove them.
 - Roll 040 contributions into a v1.0.3.0 changelog via the parallel agent owning version bumps.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/004-three-way-isolation-finalize` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation`

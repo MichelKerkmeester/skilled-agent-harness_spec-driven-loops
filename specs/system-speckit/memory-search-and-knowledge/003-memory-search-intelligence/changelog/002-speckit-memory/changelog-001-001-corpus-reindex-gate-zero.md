@@ -48,5 +48,7 @@ The benchmark gate now fails closed on embedding coverage before any recall numb
 - Treat the enrichment backlog as a separate operational concern. It is not blocking recall benchmark coverage.
 - Keep golden-id mapping available as the fallback if a later reindex changes parent identifiers.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

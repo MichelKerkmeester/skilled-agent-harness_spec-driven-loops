@@ -62,5 +62,7 @@ Devin now receives every hard blocker in AGENTS.md, the line that tells it to lo
 - 39 bytes of headroom. Any growth in §1, §2 or §4 trips the guard. That is intended: whoever grows those sections must decide what gives way.
 - The CI workflow runs the canary, not its test script. The fixture cases run locally through check-rule-copies.test.sh.
 
+&nbsp;
+
 > Spec folder: `specs/agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix` (Level 2)
 > Parent packet: `specs/agents/016-repo-rule-advisor-surfacing`

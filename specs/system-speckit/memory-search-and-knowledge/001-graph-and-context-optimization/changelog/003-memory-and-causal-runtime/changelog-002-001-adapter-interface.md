@@ -62,5 +62,7 @@ The mk-spec-memory MCP server had no abstraction over its embedding backend. Eve
 - Extend the registry with dimension-tagged vector schema selection once phase 016/002 ships.
 - Backfill `implementation-summary.md` with actual shipped state to retire the pre-execution stub.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/001-adapter-interface` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

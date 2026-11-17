@@ -60,5 +60,7 @@ An earlier hand-coded grep pass (packet 006) had caught roughly 10 percent of ep
 - `SPRINT N` labels are flagged as spec-folder references. They were fixed in this sweep where they appeared, but reasonable people could treat bare sprint labels as durable rather than ephemeral.
 - The scope was limited to `system-spec-kit` and `bin`. Other code surfaces (webflow, motion_dev) were not swept.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/007-ephemeral-pointer-guard-and-sweep` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`

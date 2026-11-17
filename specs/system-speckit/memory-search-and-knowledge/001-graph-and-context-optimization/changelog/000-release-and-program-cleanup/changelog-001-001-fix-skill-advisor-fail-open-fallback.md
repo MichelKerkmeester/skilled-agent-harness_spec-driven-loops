@@ -101,5 +101,7 @@ The full closure covers 18/18 source findings (3 P1 and 15 P2). Typecheck, build
 
 None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-skill-advisor-fail-open-fallback` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness`

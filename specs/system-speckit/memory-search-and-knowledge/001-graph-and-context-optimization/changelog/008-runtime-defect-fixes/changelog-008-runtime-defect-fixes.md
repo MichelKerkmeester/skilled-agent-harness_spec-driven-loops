@@ -42,4 +42,6 @@ Four live integration defects surfaced during internal MCP-reliability research 
 - Orphan sweep: parent-PID classification across 9 launchers — 6 live Claude sessions, 1 live OpenCode TUI; zero kills
 - Packet passes `validate.sh --strict` (0 errors, 0 warnings); independent gpt-5.5 xhigh review's P0/P1 findings all remediated
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-defect-fixes` (Level 1)

@@ -69,4 +69,6 @@ None. Additive opt-in collectors. The existing default `memory_causal_stats({ ba
 - Deep review (`review/review-report.md`) confirmed SEC-001: the opt-in `contradicts` collector can silently invalidate the `caused` edge on the same reciprocal lineage pair (and pre-existing valid edges). Until the remediation in packet 026 lands, do NOT enable `contradicts` in a non-dry run.
 - Both collectors remain OPT-IN. They do not run for default `memory_causal_stats({ backfill })` callers until the flags are passed.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/023-semantic-relation-inference` (Level 3)

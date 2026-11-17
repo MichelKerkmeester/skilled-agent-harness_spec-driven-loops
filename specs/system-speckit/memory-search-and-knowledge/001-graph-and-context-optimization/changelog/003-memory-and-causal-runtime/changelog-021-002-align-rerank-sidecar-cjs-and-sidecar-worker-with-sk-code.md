@@ -64,5 +64,7 @@ A documentation-only pass added the module header plus 10 section dividers plus 
 - The requested launcher vitest command path (`node_modules/vitest/vitest.mjs` under system-spec-kit root) was stale in this checkout. The installed runner path from `.opencode` is the correct invocation going forward.
 - Both source files were subsequently removed by a later refactor. Future style-alignment work targets the replacement modules introduced in that refactor.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2`

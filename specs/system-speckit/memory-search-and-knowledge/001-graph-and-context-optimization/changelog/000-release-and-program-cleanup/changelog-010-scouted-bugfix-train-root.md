@@ -55,4 +55,6 @@ This phase parent groups 5 child phases. Each batch ran the verify-first pipelin
 
 - The next batch lands as `004-scouted-bugfix-batch-4` under this train.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train` (Level 2, Phase Parent)

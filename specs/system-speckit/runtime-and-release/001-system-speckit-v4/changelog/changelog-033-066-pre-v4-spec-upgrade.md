@@ -77,5 +77,7 @@ A user upgrading from v3.x now runs one command and their old spec folders pass 
 - Broken YAML inside a closed block is read line by line. The library reads a block as key and value lines, so a block with both fences but, say, an unterminated quote counts as readable. Missing keys are then added below the broken line. The authored lines stay byte for byte, and the YAML stays as broken as it was.
 - The commit hook is stricter. Because a failed re-derive now exits non-zero, the pre-commit hook blocks a commit whose metadata cannot be re-derived. On 2026-09-24 that held for none of the 4,114 packets in this checkout. SPECKIT_SKIP_SPEC_REMINT=1 bypasses it.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade` (Level 2)
 > Parent packet: `specs/system-speckit/033-system-speckit-v4`

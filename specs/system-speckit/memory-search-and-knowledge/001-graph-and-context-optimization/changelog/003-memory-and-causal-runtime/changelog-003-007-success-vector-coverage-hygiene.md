@@ -65,5 +65,7 @@ The fix shipped as an opt-in `repairSuccessCoverage` flag on the existing `memor
 - Confirm the retry-manager drain is active after deployment so reset rows converge back to `success` status.
 - Monitor `coverage.successMissingActiveVector` count on subsequent runs to verify the repair path reduces the ~137-row backlog to zero.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/007-success-vector-coverage-hygiene` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

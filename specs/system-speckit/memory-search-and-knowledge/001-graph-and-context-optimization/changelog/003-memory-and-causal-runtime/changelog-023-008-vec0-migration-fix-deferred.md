@@ -55,5 +55,7 @@ The 023 arc reserved a follow-up slot for vec0 migration repair, but no implemen
 - Investigate the active vec0 schema and existing migration scripts before proposing a migration strategy.
 - Run strict validation on this child after future changes to confirm the scaffold remains conformant.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/008-vec0-migration-fix-deferred`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`

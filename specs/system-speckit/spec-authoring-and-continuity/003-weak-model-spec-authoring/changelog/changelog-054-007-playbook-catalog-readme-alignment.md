@@ -66,5 +66,7 @@ The phase copied eight scenario texts, four catalog leaves and 14 doc edits from
 - README.md said references/ (41 files). Phase 5 added the card, so the count is 42. Fixed by 9a0b4a935e, which sets the count to the real file total.
 - The catalog validator prints two baseline notes. They sit in session-relaunch-loop.md and spec-validation-rule-engine.md, files this phase does not own.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/007-playbook-catalog-readme-alignment` (Level 3)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

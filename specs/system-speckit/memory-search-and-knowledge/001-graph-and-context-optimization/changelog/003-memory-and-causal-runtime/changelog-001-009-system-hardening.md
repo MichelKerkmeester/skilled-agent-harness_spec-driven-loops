@@ -105,5 +105,7 @@ A research-first umbrella packet (019-system-hardening) coordinated the full wav
 - Calibrate advisor accuracy beyond 60.0 percent once the broader corpus labeling from packet 005 routing-accuracy converges.
 - Evaluate Tier 2 candidates (DR-2 runtime-matrix review, DR-3 018 adversarial, SSK-DR-2 boundary audit) against current system state to determine if any qualify for promotion.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/009-system-hardening` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

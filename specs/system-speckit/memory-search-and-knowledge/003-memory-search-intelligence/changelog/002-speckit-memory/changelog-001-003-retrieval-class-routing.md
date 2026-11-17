@@ -54,5 +54,7 @@ _No file-level detail recorded in the generated changelog._
 - Exercise the remaining flag-state matrix before promotion.
 - Keep the routing class, intent and complexity axes explicit in future tests.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

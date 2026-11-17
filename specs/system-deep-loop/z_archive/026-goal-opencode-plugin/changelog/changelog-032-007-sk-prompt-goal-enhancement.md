@@ -61,5 +61,7 @@ The goal plugin now turns raw `/goal set` input into a deterministic sk-prompt-s
 
 - Restart OpenCode before relying on the updated auto-loaded plugin in a new session.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/007-sk-prompt-goal-enhancement` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`

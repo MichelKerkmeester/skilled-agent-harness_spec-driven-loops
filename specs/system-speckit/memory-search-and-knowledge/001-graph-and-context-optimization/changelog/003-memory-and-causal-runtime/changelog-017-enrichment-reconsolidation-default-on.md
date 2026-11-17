@@ -76,5 +76,7 @@ The packet title includes reconsolidation, but the final reviewed state keeps sa
 - Existing docs still need re-save or pending-marker repair before they gain the new enrichment output.
 - Use `SPECKIT_POST_INSERT_ENRICHMENT_SYNC=true` when strict read-after-write graph freshness is required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/017-enrichment-reconsolidation-default-on` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

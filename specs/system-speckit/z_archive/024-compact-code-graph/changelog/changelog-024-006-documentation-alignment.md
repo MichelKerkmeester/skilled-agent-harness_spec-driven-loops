@@ -58,4 +58,6 @@ This phase documented the compact-code-graph rollout across the places users act
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/006-documentation-alignment/`

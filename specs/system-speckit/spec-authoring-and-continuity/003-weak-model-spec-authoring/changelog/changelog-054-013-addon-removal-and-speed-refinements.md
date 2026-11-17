@@ -66,5 +66,7 @@ Phase 013 dropped the before-after, roadmap and resource-map add-on templates an
 
 - None recorded.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/013-addon-removal-and-speed-refinements` (Level 2)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

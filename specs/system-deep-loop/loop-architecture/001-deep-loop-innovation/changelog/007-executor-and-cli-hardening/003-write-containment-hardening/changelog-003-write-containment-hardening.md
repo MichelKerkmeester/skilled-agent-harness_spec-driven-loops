@@ -24,4 +24,6 @@ This phase parent groups the write-containment guard hardening for the deep-loop
 | `002-fanout-containment-sibling` | Scope the fan-out containment guard away from sibling lineages, so a sibling's concurrent artifacts are never reverted by the leaf that trips the guard. |
 | `003-write-containment-concurrent-safety` | Stop the guard from irreversibly deleting untracked out-of-scope files it cannot attribute, so fan-out can run safely on a dirty, multi-actor working tree. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening` (Level 2)

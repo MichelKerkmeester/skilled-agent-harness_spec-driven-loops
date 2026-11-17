@@ -95,5 +95,7 @@ The focused regression set and the full code-graph suite passed. The TypeScript 
 - Restore the deleted Copilot hook tree in a separate workspace cleanup. The Copilot README was corrected for F-012 but the wider deleted hook files are out of scope here.
 - Confirm glob-aware fingerprint v3 behavior against a real persisted v2 store once the dirty-workspace deletions are repaired.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/006-readiness-hooks-advisor-polish` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

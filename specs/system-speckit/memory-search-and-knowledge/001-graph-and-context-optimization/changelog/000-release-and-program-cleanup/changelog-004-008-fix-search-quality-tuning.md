@@ -79,5 +79,7 @@ Five surgical product-code fixes shipped together in commit `f4a1ec92f41`. NDCG@
 - Wire NDCG@3 threshold assertions into specific W-tests once per-fixture targets are established from production data.
 - Consider a paginated rerank pattern for `cross-encoder.ts` for users with candidate sets wider than the provider maxDocuments window.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/008-fix-search-quality-tuning` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

@@ -51,4 +51,6 @@ This phase aligned the command and agent surfaces with the hook-aware recovery m
 
 No migration required. Duplicate-save protection is time-window based and still intentionally lightweight.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/005-command-agent-alignment/`

@@ -51,5 +51,7 @@ _No file-level detail recorded in the generated changelog._
 - Validate label-source routing with a live gate run.
 - Keep production flag promotion tied to clean multi-cycle evidence.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

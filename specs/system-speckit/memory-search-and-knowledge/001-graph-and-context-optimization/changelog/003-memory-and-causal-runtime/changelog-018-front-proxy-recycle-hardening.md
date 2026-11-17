@@ -68,5 +68,7 @@ Implementation and tests are complete in the packet artifacts. Deploy and post-d
 - Verify a new session connects and `memory_health` returns after deployment.
 - Defect (c), owner socket-path storage for rare worktree environment divergence, remains deferred because it touches lease schema.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/018-front-proxy-recycle-hardening` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

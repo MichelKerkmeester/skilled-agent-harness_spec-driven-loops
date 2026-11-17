@@ -50,5 +50,7 @@ This phase targets 1:1 alignment of system-skill-advisor documentation surfaces 
 - manual_testing_playbook/* alignment (parent plus 9 categories)
 - sk-doc validate per surface
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/004-sk-doc-type-validation-alignment` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor`

@@ -74,5 +74,7 @@ Ship commit: `a25b3bad` (2026-04-25), Wave-3 verification commit: `d4a53288` (20
 - Unskip the 3 SQL-mock tests in `tests/memory/trust-badges.test.ts` once T-E remediation (R-007-13 DI override or real-DB fixture) lands.
 - Fix template-section conformance warnings in `spec.md`, `plan.md`, `tasks.md` plus `checklist.md` to bring strict packet validation to exit 0.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-memory-causal-trust-display` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance`

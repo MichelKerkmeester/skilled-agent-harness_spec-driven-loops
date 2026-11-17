@@ -58,5 +58,7 @@ The four follow-ups from the anti-disconnection investigation are closed, and re
 - The plist hardcodes this machine's repo root and home. launchd needs absolute paths, so an operator on a different machine edits the two paths flagged in the header before installing.
 - Re-election stays machine-local under test. The flag is set in gitignored .env.local and is not a committed default; promotion waits for live multi-session validation.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

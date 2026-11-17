@@ -69,5 +69,7 @@ The newInfoRatio sequence was 0.82, 0.78, 0.86, 0.74, 0.12. Convergence (`newInf
 - Eight new gap-findings (session-manager cleanup, code graph freshness, skill_graph_scan/validate, memory_drift_why, learning_history loop, advisor_status freshness, code_graph_context auto-fire, memory_health diagnostic) are catalogued in the findings registry. Assign each to a downstream packet before starting 031.
 - No empirical hook smoke tests were run. The packet used documentation and code-trace only. Packets 034-035 (full-matrix execution) will provide the empirical coverage.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research` (Level 2, Research-only)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research`

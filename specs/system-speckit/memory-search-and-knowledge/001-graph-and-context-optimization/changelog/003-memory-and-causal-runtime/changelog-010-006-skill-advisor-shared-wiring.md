@@ -71,5 +71,7 @@ Both mk-spec-memory and skill-advisor already consumed the same @spec-kit/shared
 - Live two-launcher residency not exercised end-to-end. Single-winner, spawn-to-bind back-off, and pid round-trip are covered by injected-spawn/fake-http tests. A live daemon plus skill-advisor plus model server is the natural follow-up (shared with the 002 to 005 live-spawn deferral).
 - Respawn-lock lifetime differs from phase 004 by design. The demand lock is now held across the bind plus idle-listener window so a second launcher loses cleanly. The wx-open plus UDS-bind single-winner primitives themselves are unchanged.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`

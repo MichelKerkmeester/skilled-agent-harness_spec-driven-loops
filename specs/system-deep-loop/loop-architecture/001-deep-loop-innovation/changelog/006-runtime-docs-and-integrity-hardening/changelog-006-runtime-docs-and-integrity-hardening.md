@@ -32,4 +32,6 @@ This group covers the runtime-docs and integrity-hardening spine of the 036 deep
 | `010-docs-drift-and-p2-batch` | Batch the P2 backlog and the three doc-contract P1s in one sweep, replacing duplicated facts with links to one authoritative source so the drift cannot silently recur. Complete. |
 | `011-identity-and-lock-ownership-hardening` | Fail-closed identity binding and process-shared ownership boundaries for authorized transitions, staged leaf publication, append locks, and fresh loop-lock acquisition. Complete (5/5 landed). |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening` (Level 3)

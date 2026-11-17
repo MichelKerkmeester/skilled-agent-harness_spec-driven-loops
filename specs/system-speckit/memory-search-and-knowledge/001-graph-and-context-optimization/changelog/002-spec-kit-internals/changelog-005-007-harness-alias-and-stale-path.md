@@ -57,5 +57,7 @@ Both regression harnesses compared gold labels with strict string equality, so f
 - TypeScript abstains on P1-PHRASE-002 ("5d scoring") and P1-PHRASE-005 ("dynamic profile"). These still fail in the TypeScript harness but not from alias drift. The TypeScript scorer assigns them confidence below 0.8 and abstains, so there is no top result to alias-match. Python routes them via phrase boosters that TypeScript lacks. Closing this is a scorer-confidence parity change, which this phase explicitly excludes. Tracked as a separate parity item.
 - Remaining non-alias P1 cases (P1-MCP-002, P1-OPENCODE-001, P1-FULLSTACK-001, P1-REVIEW-004, P1-PHRASE-004, P1-PHRASE-007) are genuine routing or abstention cases unrelated to alias drift and out of this phase scope.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/007-harness-alias-and-stale-path` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation`

@@ -51,4 +51,6 @@ This phase parent groups 150 leaf changelogs that sit flat in this directory. Ea
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup` (Level 2, Phase Parent)

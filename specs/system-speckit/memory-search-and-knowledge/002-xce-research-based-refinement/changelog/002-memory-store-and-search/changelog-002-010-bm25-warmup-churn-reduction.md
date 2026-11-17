@@ -52,5 +52,7 @@ Phase 002/009's packed BM25 engine warmed a realistic 10,245-document, 69.2MB co
 
 - None. REQ-001 is closed on the original metric.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

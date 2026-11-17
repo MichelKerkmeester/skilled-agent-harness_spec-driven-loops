@@ -75,5 +75,7 @@ None.
 - The parity baseline accepts one TS-vs-Python drift row: `rr-iter3-146`. Monitor this drift in subsequent parity runs to confirm it does not widen.
 - The `mcp-coco-index` skill was subsequently removed from the repository. Verify no dangling references to its former adjacency edge remain in the skill graph after the removal.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/010-skill-id-field-rename` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

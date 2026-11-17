@@ -36,4 +36,6 @@ Top rollup for the `002-memory-store-and-search/` themed track. Each row links t
 | `002-memory-store-and-search/019` maintenance grace background embedding | [changelog-002-019-maintenance-grace-background-embedding.md](./changelog-002-019-maintenance-grace-background-embedding.md) |
 | `002-memory-store-and-search/020` cooperative heavy phases | [changelog-002-020-cooperative-heavy-phases.md](./changelog-002-020-cooperative-heavy-phases.md) |
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search` (Phase Parent)

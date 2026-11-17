@@ -152,4 +152,6 @@ This phase fixed 15 correctness bugs (2 critical, 11 must-fix, 2 improvements) f
 
 No migration required. The database schema version advances to v3 automatically on first use. All 226 existing tests pass without changes.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/013-correctness-boundary-repair/`

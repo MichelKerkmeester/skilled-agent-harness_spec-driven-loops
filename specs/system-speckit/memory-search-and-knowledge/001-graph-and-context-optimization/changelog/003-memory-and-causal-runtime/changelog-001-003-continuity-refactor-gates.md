@@ -69,5 +69,7 @@ Gate A removed template and recovery blockers. Gate B advanced the schema from v
 - Some root research and handover documents still use older phase-018 narrative language as historical context. These were left unchanged where the references are not structural folder-path truth.
 - Existing root research and review artifacts may need a follow-up normalization pass if stricter packet-integrity cleanup is required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

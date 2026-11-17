@@ -42,5 +42,7 @@ This phase defines the remediation contract for three storage-layer findings and
 - A later pass must confirm the cited facts and add migration-safety and concurrency tests before any completion claim.
 - Two seat confidence caveats carry from the review and must be reconfirmed against the broader codebase during execution. The lineage stale-key re-root coverage gap and the `codeGraphEdgeBitemporalReadsEnabled` zero-callers claim were both scoped to `lib/` only.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation/002-memory-schema-and-concurrency` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation`

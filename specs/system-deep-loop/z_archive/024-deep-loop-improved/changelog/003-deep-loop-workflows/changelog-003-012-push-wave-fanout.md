@@ -56,5 +56,7 @@ depends_on/touches/assignment_model schema in executor-config.ts + flat_pool gua
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/012-push-wave-fanout` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

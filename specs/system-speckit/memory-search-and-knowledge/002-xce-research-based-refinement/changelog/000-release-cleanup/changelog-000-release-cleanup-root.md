@@ -62,4 +62,6 @@ This rollup is the authoritative child inventory for 000. Unlike the pre-existin
 
 - 009 live adoption (advisor doc-trigger harvest indexing the aligned frontmatter) is operator-gated and requires a fresh advisor session.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup` (Level 2, Phase Parent)

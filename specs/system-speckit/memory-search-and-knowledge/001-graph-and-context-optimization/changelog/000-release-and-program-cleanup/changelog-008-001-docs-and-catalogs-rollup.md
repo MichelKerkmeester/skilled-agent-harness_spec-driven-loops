@@ -56,5 +56,7 @@ The umbrella docs and catalog indexes needed to reflect the capabilities spec 02
 
 - Code-graph and skill-advisor handler docs were left to the extracted system-code-graph and system-skill-advisor skills, so they are out of scope here
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup`

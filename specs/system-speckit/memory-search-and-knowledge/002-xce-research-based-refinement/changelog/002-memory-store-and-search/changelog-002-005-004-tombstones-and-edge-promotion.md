@@ -68,5 +68,7 @@ This leaf preserves existing hard-delete behavior by default while shipping the 
 - Cache invalidation for tombstoned rows and tombstone-on-expiry reaping semantics must be decided before operators enable the flag.
 - Causal graph callers that do not want similarity-derived support edges should pass `similarity:false`; entity and co-occurrence remain recall evidence only.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening`

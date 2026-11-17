@@ -71,5 +71,7 @@ Phase 001 produced `research/remediation-map.md` and `research/source-evidence-i
 - Build the phase 002 telemetry and process verification harness before making any runtime cleanup or memory-relief claims.
 - Adapter and sidecar resident-memory severity must not escalate without successful-search or fallback RSS benchmarks from the harness.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

@@ -51,5 +51,7 @@ The system-skill-advisor reference set was flat, kebab-case, and only partially 
 
 - Dirty worktree present. The repository already contains unrelated system-skill-advisor runtime and generated-file changes. This packet avoids reverting or modifying those unrelated changes.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/007-reference-template-alignment` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation`

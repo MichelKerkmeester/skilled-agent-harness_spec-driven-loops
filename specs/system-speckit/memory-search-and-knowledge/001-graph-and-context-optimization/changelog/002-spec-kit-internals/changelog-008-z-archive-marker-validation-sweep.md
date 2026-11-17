@@ -53,5 +53,7 @@ Two commits: `a5f06d201a`, `7beb807694`.
 
 - None. The template-levels track is complete through this sweep.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

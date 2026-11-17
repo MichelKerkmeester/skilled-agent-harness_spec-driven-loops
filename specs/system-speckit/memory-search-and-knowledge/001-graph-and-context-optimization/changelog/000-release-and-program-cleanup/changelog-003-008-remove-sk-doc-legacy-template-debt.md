@@ -69,5 +69,7 @@ Re-audit confirmed eligible HIGH findings dropped from 82 to 0. Explicit MED fin
 - Resolve the 45 remaining explicit MISALIGN-MEDIUM findings that require narrative rewrite, skill-doc restructuring or manual playbook source-file sections. These are grouped in the implementation-summary Tier 5 deferral table and need a dedicated Tier 5 pass.
 - Verify MED hidden-ref enumeration. The original audit summary reported 177 MED findings but the file body exposed only 142 concrete refs plus summarized `(+N more)` entries. A full enumeration pass would confirm whether hidden refs are covered by the Tier 5 group assignments.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/008-remove-sk-doc-legacy-template-debt` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

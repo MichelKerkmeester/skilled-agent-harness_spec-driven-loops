@@ -69,5 +69,7 @@ Three deliberate Tier-2 backlog items across the analytics + learning subsystems
 - The dropped PII rows are disposable telemetry and intentionally not recoverable — the drop IS the redaction.
 - Fix 3 stays shadow-only; promoting the volume-scaled boost to live ranking is a separate, out-of-scope decision.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup`

@@ -51,5 +51,7 @@ This phase moved shared deep-loop plumbing into `deep-loop-runtime` without chan
 - CHK-020 Phase-001 baseline manifest and runtime-ownership ADR are present before edits.
 - CHK-021 `deep-loop-runtime` contains promoted runtime-capabilities, artifact-root, loop-lock CLI and lifecycle-taxonomy contracts.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/002-runtime-backend-promotions` (Level 2)
 > Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`

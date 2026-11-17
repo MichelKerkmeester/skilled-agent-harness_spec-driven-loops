@@ -66,5 +66,7 @@ The hook registration was corrected to point at `.opencode/skills/system-spec-ki
 
 - Resolve the ownership-doc discrepancy: `deferred_decisions.md` and four `mcp_server/hooks/<runtime>/README.md` deprecation notices still cite the non-existent `system-code-graph/dist/system-spec-kit/...` artifact path. A follow-on packet should either build the hook to that path or correct those docs to match the system-spec-kit ownership that is now in production.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/004-hook-and-doc-fixes` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`

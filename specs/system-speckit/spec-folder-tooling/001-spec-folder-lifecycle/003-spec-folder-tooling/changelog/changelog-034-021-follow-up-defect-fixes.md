@@ -85,5 +85,7 @@ The recorded fixes address link handling, graph status derivation, changelog gen
 - The 016 child document pass and the 015 T022 corpus apply-twice run are recorded. The dry run inspected 4335 packets, with 4282 passing and 53 failing. 011 goal criterion 3 remains open by design. Evidence: scratch/evidence/lane-17-t022-corpus.txt:13, scratch/evidence/lane-17-t022-corpus.txt:30, scratch/evidence/lane-17-t022-corpus.txt:117 and scratch/evidence/lane-20-016-residual-boxes.txt:40.
 - The healer parser does not accept --flag=value for existing flags. The removed --mode and --json flags now receive specific messages. Evidence: scratch/evidence/lane-14-removed-flags.txt, parser note and Messages.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes` (Level 2)
 > Parent packet: `specs/system-speckit/034-spec-folder-tooling`

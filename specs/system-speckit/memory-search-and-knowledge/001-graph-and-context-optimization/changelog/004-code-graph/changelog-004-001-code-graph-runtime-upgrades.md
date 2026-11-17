@@ -77,5 +77,7 @@ Lanes A through E shipped in order. Two tasks (lexical fallback cascade and clus
 - Stage cluster metadata and export contracts behind explicit feature flags when trust and payload prerequisites are in place. Clustering, GraphML or Cypher export plus rationale-node support remain prototype-later per ADR-003.
 - Resume/bootstrap trust preservation stays with packet 011. Startup, compact plus response-surface routing nudges remain with packet 008.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/001-code-graph-runtime-upgrades` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan`

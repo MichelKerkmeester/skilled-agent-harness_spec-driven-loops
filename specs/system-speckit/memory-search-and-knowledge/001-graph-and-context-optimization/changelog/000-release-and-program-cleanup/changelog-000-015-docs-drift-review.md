@@ -63,5 +63,7 @@ This read-only packet reviewed user-facing docs against the shipped changes from
 - Confirm the low-confidence P2 items before changing them.
 - Keep skill `references/**` and `assets/**` review scope separate because this packet only covered README and SKILL surfaces for skills.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/015-docs-drift-review` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup`

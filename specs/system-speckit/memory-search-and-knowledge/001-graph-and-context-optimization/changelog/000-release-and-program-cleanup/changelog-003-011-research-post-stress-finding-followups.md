@@ -70,5 +70,7 @@ Four v1.0.2 stress-test follow-ups (cli-copilot `/memory:save` Gate 3 bypass, co
 - Implement the CocoIndex seed-fidelity passthrough proposed in Q-OPP: additive metadata passthrough of `raw_score`, `path_class`, `rankingSignals`, `dedupedAliases`, `uniqueResultCount` through `code_graph_context` with zero score or ordering changes. Estimated scope is 150-250 LOC across four schema and handler files.
 - Address the 2 P1 and 7 P2 cross-cutting findings from the review loop. The review-report recommends three remediation packets: Packet A (degraded-readiness envelope parity, P1 required), Packet B (cli-copilot dispatch test parity, P2), Packet C (catalog and playbook degraded alignment, P2).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

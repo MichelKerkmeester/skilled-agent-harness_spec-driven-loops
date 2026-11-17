@@ -49,5 +49,7 @@ A 10-angle read-only research study seeded by the 029 model benchmark, asking ho
 - The convergent fix is a lexical-grounding floor, a query-term or BM25 overlap requirement before awarding good or cite_results, gated behind the off-corpus fixture and CI metric that this study ranked first.
 - The off-corpus fixture is a precondition for every behavioral fix below rank 2, so it is the gating first build.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

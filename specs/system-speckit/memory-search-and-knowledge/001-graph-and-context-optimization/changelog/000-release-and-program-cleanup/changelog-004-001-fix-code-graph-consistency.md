@@ -87,5 +87,7 @@ Six new vitest files covering 20 targeted tests pin the new behaviors and ship a
 - Consider surfacing the `unavailable` subject-resolution kind through the MCP tool envelope so external `code_graph_context` consumers see the discriminated state, not just `null`.
 - Add metrics-level visibility into SQLite contention duration so operators tuning latency can distinguish a 50ms wait from a 4500ms wait under `busy_timeout`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/001-fix-code-graph-consistency` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

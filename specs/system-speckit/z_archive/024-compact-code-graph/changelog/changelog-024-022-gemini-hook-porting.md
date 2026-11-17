@@ -112,4 +112,6 @@ Gemini CLI has supported hooks since v0.33.1, but we never configured any -- mea
 
 No migration required. Gemini CLI users automatically benefit from the new hooks after updating. No changes needed for Claude Code, Codex, or Copilot users.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/022-gemini-hook-porting/`

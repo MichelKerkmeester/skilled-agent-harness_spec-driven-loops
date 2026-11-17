@@ -63,5 +63,7 @@ None. Research-only phase.
 - Include Skill Advisor as a distinct text-embedding surface when surveying text embedders in 004. Its registry already names `jina-embeddings-v3` and is not connected to mk-spec-memory.
 - Treat the research table as a snapshot of 2026-05-18. Any agent or command definition that changed after that date should be re-verified before acting on the scope guidance.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/001-indexer-surface-investigation` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion`

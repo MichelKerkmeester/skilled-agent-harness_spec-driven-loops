@@ -70,5 +70,7 @@ The three system-spec-kit docs carried 26 cross-skill references leftover from b
 - Mark all Phase 2 and Phase 3 tasks complete.
 - Verify no blocked tasks remain.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/005-cross-skill-documentation-decoupling` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation`

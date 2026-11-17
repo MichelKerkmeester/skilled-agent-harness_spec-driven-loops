@@ -78,5 +78,7 @@ A five-cell verdict matrix was produced. Four cells returned FAIL due to auth, k
 - Rerun the matrix on a host where all five CLIs are fully authenticated to confirm hook-code PASS verdicts.
 - Investigate why the Gemini CLI blocks at an interactive auth prompt rather than returning a nonzero exit code when credentials are absent.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

@@ -51,5 +51,7 @@ The deep-review iteration dispatch hands executors unrestricted filesystem write
 - Insert a scope_violation finding instruction for would-be out-of-scope mutations in the same template
 - Smoke-test with a cli-opencode plus deepseek-v4-pro dispatch and verify no surprise writes outside the review directory
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/009-harden-deep-review-iteration-prompts` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

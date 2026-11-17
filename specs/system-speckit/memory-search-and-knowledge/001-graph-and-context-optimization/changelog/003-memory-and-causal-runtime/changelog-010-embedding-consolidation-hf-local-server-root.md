@@ -57,4 +57,6 @@ This phase parent groups 7 child phases spanning 2026-06-01 to 2026-06-01. Each 
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server` (Level 2, Phase Parent)

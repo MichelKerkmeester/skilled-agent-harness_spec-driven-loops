@@ -28,4 +28,6 @@ This phase makes fan-out and fan-in durable over the canonical ledger, generaliz
 | `006-provenance-balanced-reduction` | Plan a deterministic fan-in reducer that deduplicates surviving results, balances contribution across provenance, preserves lineage, and escalates contested merges. |
 | `007-fanout-synthesis-lineage-aggregation` | Make deep-research fan-out synthesis consume lineage-owned state in place, repair empty-registry reconstruction, and publish byte-identical canonical and compatibility registries. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration` (Level 2)

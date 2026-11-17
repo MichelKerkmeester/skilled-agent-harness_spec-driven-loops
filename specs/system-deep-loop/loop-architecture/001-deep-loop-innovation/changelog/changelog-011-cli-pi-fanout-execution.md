@@ -29,5 +29,7 @@ Hardened the deep-loop fan-out runner for non-streaming cli-pi executors. Contro
 
 Complete. P0 requirements satisfied; research live run deferred by approval. Advisory `stall_detected` may still log for pi configs that buffer all disk writes to the end.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation`

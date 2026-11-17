@@ -16,5 +16,7 @@ contextType: "implementation"
 
 This phase planned the shared Deep Improvement Common Services certificate and receipt contract over the typed event-ledger substrate: per-run certificates, per-transition receipts, replay fingerprints, independent offline verification, and the evaluator, canary, and promotion services reused by the three benchmark variants. Per its implementation summary, the additive-dark shared contract now issues run certificates and transition receipts and independently verifies their authorized sealed dependency closure. Status is implemented.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/004-certificates-and-receipts` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common`

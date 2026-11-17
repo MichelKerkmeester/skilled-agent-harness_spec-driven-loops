@@ -56,4 +56,6 @@ The memory search system now observes how searches are used and records five typ
 - Use collected signals to improve search ranking once the dataset is large enough and validated
 - Revisit the session fallback approach if the system moves to multi-client connections (current design assumes one client at a time)
 
+&nbsp;
+
 > Spec folder: `system-spec-kit/023-hybrid-rag-fusion-refinement/014-feedback-signal-pipeline` (Level 2)

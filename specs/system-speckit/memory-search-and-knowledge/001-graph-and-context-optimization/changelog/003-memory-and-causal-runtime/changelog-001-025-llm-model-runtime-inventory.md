@@ -62,5 +62,7 @@ Two inventory documents were authored at the packet root, splitting every spec-k
 - Update the Skill Advisor classification if it ever gains its own embedding pipeline rather than routing through Memory MCP transit.
 - Exclude CocoIndex tokenizer warm-up models from the inventory scope if they are formally documented elsewhere.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/025-llm-model-runtime-inventory` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

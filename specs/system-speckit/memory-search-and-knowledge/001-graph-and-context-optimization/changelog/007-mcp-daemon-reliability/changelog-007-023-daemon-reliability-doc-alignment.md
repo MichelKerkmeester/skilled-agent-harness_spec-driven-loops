@@ -62,5 +62,7 @@ The daemon-reliability features are now discoverable. They shipped as code plus 
 - Phase 020 has no env flag. It is documented via the catalog/playbook and a README lifecycle row rather than an ENV_REFERENCE entry.
 - Count invariant is shared. The playbook file-count self-check is a hand-maintained number; a concurrent session adding a scenario would require re-bumping it (verified at 391 just before commit).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/023-daemon-reliability-doc-alignment` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

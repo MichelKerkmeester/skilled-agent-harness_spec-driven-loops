@@ -75,5 +75,7 @@ All four holes are now closed with localized fixes that keep the public daemon c
 - The lock format is forward-compatible but not backward-compatible. Old binaries reading the new `pid:acquiredAt:token` format treat missing tokens as un-owned and reclaim eagerly. Rolling upgrades are safe. Rolling downgrades lose token-ownership protection until both sides match.
 - The `sa-003b` mutex test parks reindex callbacks via `setTimeout` to reproduce the JS-level race shape. It does not directly stress SQLite. A combined watcher-plus-lease-plus-SQLite race test remains a larger follow-on.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/024-daemon-concurrency-fixes` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

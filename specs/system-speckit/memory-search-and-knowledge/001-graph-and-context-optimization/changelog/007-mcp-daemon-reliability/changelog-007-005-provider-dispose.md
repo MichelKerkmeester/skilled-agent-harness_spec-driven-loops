@@ -77,5 +77,7 @@ Builds, vitest and a 6-lens adversarial review all passed. Live-daemon RSS obser
 - Track SC-001/SC-002 completion as T011 before closing out the daemon-reliability track.
 - Consider adding an in-worker dispose protocol to `sidecar-worker.ts` as an alternative to process recycle if future profiling shows recycle latency is unacceptable.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

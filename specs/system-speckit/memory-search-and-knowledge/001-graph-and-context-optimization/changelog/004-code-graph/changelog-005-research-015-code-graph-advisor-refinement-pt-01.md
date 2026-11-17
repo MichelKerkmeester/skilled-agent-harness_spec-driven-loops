@@ -61,5 +61,7 @@ The investigation ran for the full 20-iteration budget. The `newInfoRatio` traje
 - **35 findings flow into Phase 005 implementation.** The 35 findings were clustered into 5 fix-up batches (B1-B5) plus the F35 calibration bench. All were addressed by the Phase 005 implementation.
 - **Unconverged surface area.** The investigation stopped at the 20-iteration cap with `newInfoRatio` above 0.55. Additional surface area may remain at deeper integration layers.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Research-only)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

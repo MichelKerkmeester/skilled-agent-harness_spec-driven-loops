@@ -58,5 +58,7 @@ Replaced the self-classification "Mode D" gate in all 7 surviving `/deep:*` comm
 - The dispatch-context check is still prose, not code — it can't be made fully deterministic.
 - `.opencode/commands/prompt.md` has the identical pre-fix pattern but is outside this phase's declared scope — flagged as a discovered-but-unfixed instance for a future phase.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/006-mode-d-ai-council-identity-fix` (Level 2)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

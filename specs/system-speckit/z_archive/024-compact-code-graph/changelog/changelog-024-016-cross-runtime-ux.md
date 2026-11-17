@@ -121,4 +121,6 @@ At the time this phase landed, the code graph and memory system worked well on C
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/016-cross-runtime-ux/`

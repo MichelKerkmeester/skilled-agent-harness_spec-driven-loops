@@ -48,5 +48,7 @@ _No file-level detail recorded._
 - Perform a grep sweep for stale top-level paths in canonical docs and a scoped commit verified via `git show --stat HEAD`.
 - Frozen research-log artifacts and the `028-...` git branch name retain old phase numbers by design; resolve ambiguity via `context-index.md`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/000-spec-tree-consolidation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

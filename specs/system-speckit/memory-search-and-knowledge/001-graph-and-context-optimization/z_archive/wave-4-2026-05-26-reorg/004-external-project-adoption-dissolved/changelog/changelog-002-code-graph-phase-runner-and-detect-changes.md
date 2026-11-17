@@ -66,5 +66,7 @@ Phase 002 built the Code Graph foundation for changed-impact analysis. `indexFil
 - Historical strict validator debt remains template-section style, not missing content.
 - 008 research later found a mixed-header diff path bypass for downstream remediation.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`

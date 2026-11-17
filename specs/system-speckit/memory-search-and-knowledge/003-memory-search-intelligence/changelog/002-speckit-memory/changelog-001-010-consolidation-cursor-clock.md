@@ -46,5 +46,7 @@ _No production file-level detail recorded._
 - Keep crash-safety work ordered ahead of quality scoring.
 - Run typecheck and focused consolidation tests after each implemented candidate.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/010-consolidation-cursor-clock` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

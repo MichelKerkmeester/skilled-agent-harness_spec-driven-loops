@@ -74,5 +74,7 @@ Three hard telemetry fields were added to `meta.tokenBudgetEnforcement` in `enfo
 - Verify the 005 Probe B repro (`actualTokens=65 / budgetTokens=3500`) returns `count > 0` in `data.content[0].text` after the daemon restart.
 - Consider extending `droppedAllResultsReason` with `parse_failed` and `no_survivor_fits` values if those degraded paths are encountered in follow-on stress runs.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/003-memory-context-truncation-telemetry-contract` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

@@ -58,5 +58,7 @@ The storage layer talked to better-sqlite3 directly from many call sites, which 
 - The seam is groundwork. A future move of the persistence layer can target the ports without touching consumers.
 - The residual direct-sqlite exceptions (hybrid lexical, BM25 side-index, vector lifecycle) remain by design. Turning the coupling grep into an enforced gate, once those idioms are portable, is future work.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/003-storage-adapter-ports` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

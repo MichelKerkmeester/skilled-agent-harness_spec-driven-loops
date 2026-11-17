@@ -26,4 +26,6 @@ This phase parent groups the executor-focused deep-loop fan-out work under one r
 | `004-devin-fanout-allowlist-parity` | Bring the runtime `cli-devin` allowlist and default model into parity with the curated catalog. |
 | `005-devin-allowlist-prune-and-deepseek` | Prune curated-out `cli-devin` aliases, add the missing DeepSeek ids, and add a CJS-mirror parity guard. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity` (Level 2)

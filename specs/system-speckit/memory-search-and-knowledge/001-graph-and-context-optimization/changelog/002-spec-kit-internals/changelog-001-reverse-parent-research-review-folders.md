@@ -78,5 +78,7 @@ Commits: `79e97aec92` (scaffold sweep), `30024e3bed` (fleet marker + validation)
 
 - None. The rollback contract, migration, and rebase are complete.
 
+&nbsp;
+
 > Spec folder: `system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders` (Level 2)
 > Parent packet: `system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix`

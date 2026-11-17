@@ -61,5 +61,7 @@ Plus a documentation pass that purged em-dashes from the code-graph README. Comm
 - Phase 012/005 broadened the zero-node guard to a full scope-fingerprint guard, closing the sneakier case where a scope mismatch could shrink an index without producing zero nodes.
 - Phase 012/006 wired the blocked-scan metadata into `lastFailedScan` so operators can see why a scan was rejected.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

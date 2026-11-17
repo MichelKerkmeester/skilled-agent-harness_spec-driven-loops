@@ -72,5 +72,7 @@ The corrected 18-probe fixture established a regression floor but could not meas
 - Wire CombMNZ and average fusion alternatives into production `query.py` after the full sweep confirms which lane wins.
 - Expose 023C diagnostic counters through the CLI search path so the taxonomy classifier receives populated data instead of empty diagnostics on smoke runs.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`

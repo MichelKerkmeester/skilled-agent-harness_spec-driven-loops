@@ -63,5 +63,7 @@ Added additive "Resolved route" headers before body prose in research/review/con
 - GPT smoke acceptance testing owned by the next phase (005).
 - Route headers (`@ai-council`) intentionally differ in format from phase 002's route-proof state fields.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/004-command-pre-route-headers` (Level 2)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

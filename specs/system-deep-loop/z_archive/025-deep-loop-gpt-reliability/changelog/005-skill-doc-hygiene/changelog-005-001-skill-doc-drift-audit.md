@@ -50,5 +50,7 @@ Ran a 10-iteration deep-review + 10-iteration deep-research dual fan-out (`cli-o
 
 - Findings-only phase; recommended follow-up phase `015-skill-doc-drift-remediation` to fix all 6 confirmed clusters (completed).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/001-skill-doc-drift-audit` (Level 2)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

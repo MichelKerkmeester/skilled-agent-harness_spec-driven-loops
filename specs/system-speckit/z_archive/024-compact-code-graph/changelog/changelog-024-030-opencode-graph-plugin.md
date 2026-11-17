@@ -88,4 +88,6 @@ Packet 030 turned the late packet-024 startup and structural-recovery work into 
 
 No migration is required. Packet 030 is additive: it extends packet-024 startup, recovery, and graph-readiness surfaces without replacing the existing memory or graph backends.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin/`

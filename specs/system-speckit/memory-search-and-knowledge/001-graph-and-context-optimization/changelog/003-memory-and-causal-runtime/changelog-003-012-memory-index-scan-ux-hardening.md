@@ -60,5 +60,7 @@ None. Research-only phase.
 - Implement the minimal first slice: caller-contract coalescing so a second scan returns the in-flight job instead of a raw E429, plus `memory_health.index` freshness block and bounded orphan sweep. A follow-on `/speckit:plan` consumes this research as input.
 - The reducer `keyFindings` count shows 0 due to a delta-type-mapping quirk. The findings are fully present in `research/research.md` and the per-iteration `deltas/iter-*.jsonl`. Verify the delta-type mapping before authoring the implementation plan.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

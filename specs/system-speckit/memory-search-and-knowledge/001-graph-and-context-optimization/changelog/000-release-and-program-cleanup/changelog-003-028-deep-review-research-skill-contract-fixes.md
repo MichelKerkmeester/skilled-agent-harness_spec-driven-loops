@@ -72,5 +72,7 @@ Two contract violations in the deep-review and deep-research skill output were i
 - The `git add {artifact_dir}` step runs unconditionally. Operators can run `git restore --staged {path}` to unstage any files they do not want in the commit.
 - Historical missing-iteration folders (for example `001-post-program-doc-and-state-cleanup-pt-01/` from commit `6a8095907`) are not migrated. New runs benefit from the fix.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/028-deep-review-research-skill-contract-fixes` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

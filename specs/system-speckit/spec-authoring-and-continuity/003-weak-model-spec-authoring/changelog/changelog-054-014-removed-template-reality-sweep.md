@@ -58,5 +58,7 @@ Phase 014 swept the tree after the 2.11.0.0 release. One audit found 19 stale li
 
 - None recorded.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/014-removed-template-reality-sweep` (Level 2)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

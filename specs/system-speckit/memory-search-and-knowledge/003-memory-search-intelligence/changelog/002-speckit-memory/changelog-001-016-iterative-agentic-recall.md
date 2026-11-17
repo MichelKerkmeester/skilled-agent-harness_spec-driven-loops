@@ -56,5 +56,7 @@ The gate-zero half of the agentic recall packet is built. A bounded loop governo
 - Run a seeded benchmark before any promotion decision.
 - Keep the flag default-off until latency, cost and determinism data support promotion.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

@@ -69,5 +69,7 @@ None. Research-only phase.
 - Verify the `mixed-corpus` worked example by running graphify against it directly. K26 documents that `external/worked/mixed-corpus/GRAPH_REPORT.md` does not show the multimodal evidence its README claims. K26 should be cited as evidence of release-discipline drift rather than proof that graphify cannot process mixed corpora at small sizes.
 - Measure real Claude tokenization counts for K1 using Anthropic's `count_tokens` API on the same corpus. The 71.5x token-reduction verdict relies on graphify's own `_estimate_tokens` heuristic (4 chars per token). Cite the three load-bearing assumptions explicitly rather than presenting 71.5x as a verified number.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/004-graphify` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline`

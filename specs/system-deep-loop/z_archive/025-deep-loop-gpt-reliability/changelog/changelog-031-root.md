@@ -78,4 +78,6 @@ _See the final task summary for the move/create/rewrite split._
 - Continue track 006 from Planned state.
 - Continue track 007 from In Progress state without claiming packet completion until both open tracks are resolved.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability` (phase parent with 7 themed tracks)

@@ -79,5 +79,7 @@ The consolidation shipped in commit `e76b578fc4` on 2026-05-19. All seven succes
 - The four `004-skill-local-benchmarks-format` docs still contain REQ-001 and REQ-002 lines that name old paths. These are historical statements true at time-of-ship, preserved per the "do not rewrite history" decision. The appended historical note in each file points readers to packet 006 as the relocation event.
 - No automated lint prevents a future `FORMAT.md` file from reappearing at the legacy path. A follow-on packet could add a `validate.sh` lint rule if needed.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/006-benchmark-format-to-sk-doc` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality`

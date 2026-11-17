@@ -69,5 +69,7 @@ Every `## ` section in the four core templates now carries one `<!-- FILL: ... -
 - Amended 2026-10-24 (second pass): on the operator's decision "Add them before 009", the five plan template sections that were left without an escape (phase dependencies, effort estimation, dependency graph, critical path and milestones) now carry "Write `N/A` with one reason, or delete the whole section." in their fill line. All five anchors are optional in the contract. The golden snapshot was regenerated for the 12 rendered fill lines that changed, and the plan rows equal the shipped lines.
 - A leftover fill comment is not a placeholder. The gate does not count it, so a filled document can still carry the line.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/004-template-section-fill-guidance` (Level 3)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

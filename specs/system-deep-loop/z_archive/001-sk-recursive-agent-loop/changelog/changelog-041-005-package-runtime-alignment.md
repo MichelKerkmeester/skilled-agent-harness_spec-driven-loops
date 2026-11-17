@@ -43,4 +43,6 @@ Tightened template fidelity for the skill package and renamed the runtime mutato
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/005-sk-recursive-agent-package-runtime-alignment/`

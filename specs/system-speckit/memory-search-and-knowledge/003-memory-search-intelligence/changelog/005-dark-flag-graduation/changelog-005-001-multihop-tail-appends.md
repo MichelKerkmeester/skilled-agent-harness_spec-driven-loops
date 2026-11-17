@@ -61,5 +61,7 @@ This phase benchmarked `SPECKIT_DETERMINISTIC_MULTIHOP` and `SPECKIT_LANE_CHAMPI
 - The legacy `searchWithFallback` path that still runs the append stages may be a retirement candidate now that the prod handler calls `executePipeline` exclusively.
 - Lifting an appended sibling into the top-K window would require rescoring it on its own merit, which is outside the additive-tail contract and a separate ranking question.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/001-multihop-tail-appends` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

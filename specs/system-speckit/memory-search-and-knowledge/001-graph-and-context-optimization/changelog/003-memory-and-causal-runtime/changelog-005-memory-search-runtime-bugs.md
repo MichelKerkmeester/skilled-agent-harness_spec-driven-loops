@@ -77,5 +77,7 @@ Packet-level reference: `7a987e8827`.
 - **CocoIndex daemon health** was not directly probed. REQ-012 verification blocked until daemon is runnable.
 - **Stability corpus** deferred. A 20-paraphrase corpus exists informally via the 80% accuracy test at intent-classifier.vitest.ts:T060.
 
+&nbsp;
+
 > Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/005-memory-search-runtime-bugs` (Level 1)
 > Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

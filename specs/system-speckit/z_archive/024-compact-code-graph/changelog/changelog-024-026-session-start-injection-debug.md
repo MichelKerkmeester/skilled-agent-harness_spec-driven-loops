@@ -85,4 +85,6 @@ Startup injection for hook runtimes was still too thin to orient the AI well at 
 
 No migration required. This phase improves startup orientation for hook runtimes only; hookless bootstrap contract changes remain in Phase 027.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/026-session-start-injection-debug/`

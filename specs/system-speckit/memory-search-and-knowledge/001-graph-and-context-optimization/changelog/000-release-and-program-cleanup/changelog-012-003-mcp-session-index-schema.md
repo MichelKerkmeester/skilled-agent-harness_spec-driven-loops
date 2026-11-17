@@ -57,5 +57,7 @@ This review-only packet audited MCP session lifecycle, indexing, ingest, embedde
 - Expose or remove governed ingest fields consistently across public schemas and runtime validators.
 - Refresh operator playbook and catalog examples to match current MCP call shapes.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`

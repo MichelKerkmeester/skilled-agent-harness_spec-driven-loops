@@ -57,5 +57,7 @@ Two-round, six-lineage deep-research investigation (GLM-5.2, GPT-5.5-fast, Claud
 - Mode-D magnitude confirmed-in-mechanism but not measured across all modes/models — deferred to phase 012's benchmark.
 - The entire phase 008-012 chain depends on the external-shell precondition, not yet confirmed at time of writing.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research` (Level 1, research)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

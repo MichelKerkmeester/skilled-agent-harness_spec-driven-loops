@@ -79,5 +79,7 @@ Findings closed: HIGH FINDING-009-A (pytest-cov), HIGH FINDING-013-B (fingerprin
 - Reranker license registry is local. The fingerprint reports known licenses for current built-in reranker prefixes and `unknown` for unregistered custom models. A future packet could add a plugin registry.
 - Fingerprint mismatch is warning-only. Search continues when hashes differ so operators can inspect results before deciding whether to reset or reindex. A future packet could add a hard-block mode.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/002-retrieval-observability`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`

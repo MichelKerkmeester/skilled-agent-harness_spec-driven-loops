@@ -71,5 +71,7 @@ The theoretical matrix ceiling is 294 cells (14 features x 7 executors x 3 scena
 - Record executor readiness, auth blockers, versions, models, reasoning effort and timeout defaults before the first full-feature batch.
 - Define the normalized cell-result JSONL schema so the meta-aggregator can ingest results from all per-feature runners.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

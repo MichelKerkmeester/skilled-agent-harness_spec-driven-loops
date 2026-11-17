@@ -83,5 +83,7 @@ All 6 phases shipped on main. A 4-iteration deep review surfaced 1 P0 claim mism
 - Flesh out `system-code-graph/SKILL.md` smart routing block and references section. Both are currently minimal placeholders from the Phase 002 scaffold.
 - Consider a thin Level 1 packet to record the operational MCP-restart outcome (`lsof` before/after, log output, post-cleanup file listing).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/001-system-code-graph-extraction` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation`

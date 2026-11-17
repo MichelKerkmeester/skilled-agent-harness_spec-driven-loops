@@ -68,5 +68,7 @@ When a new skill ships, other skills' `edges.enhances[]` lists had no mechanism 
 - No semantic or embedding-based detection. Deterministic rule matching only.
 - No continuous integration or pre-commit hook integration. Tool is operator-invoked.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/007-cross-skill-enhancement-edge-propagation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph`

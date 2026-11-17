@@ -64,5 +64,7 @@ The 028 playbook run exposed two genuine P0 scorer and routing failures. Low-inf
 - P1 alias drift remains for deep-research, deep-review, and deep-agent-improvement labels. The F1a alias fix covered advisor_validate but not these harnesses. Tracked separately.
 - lane-weight-sweep.vitest.ts fails on a stale 026-packet path. This is pre-existing and unrelated to this phase.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/002-scorer-p0-routing-fixes` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation`

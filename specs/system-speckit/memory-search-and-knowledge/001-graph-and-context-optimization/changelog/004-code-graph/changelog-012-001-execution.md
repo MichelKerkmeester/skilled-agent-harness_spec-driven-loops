@@ -66,5 +66,7 @@ Key signals from the synthesis:
 - **Stale skill-graph cache in advisor.** Deferred to Phase 012/002 native rerun.
 - **Gate 3 false positives on read-only prompts.** Deferred to Phase 012/003 deep-research sweep.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

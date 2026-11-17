@@ -74,5 +74,7 @@ The phase measured the gate phases 001 to 005 build, and every number it records
 - The operator read and the operator confirmation stay open. All seven transcripts are saved in full under evidence/transcripts/, so the read can happen at program end. The seven operator decisions in decision-record.md carry Accepted, pending operator confirmation at program end and wait for the same moment.
 - Intent recall carries no target, by design. The record sets targeted to false and the corpus row leaves met as null, because four prompts are too few to tune against (ADR-007). The rendered report states the result with no target rather than inventing one.
 
+&nbsp;
+
 > Spec folder: `specs/sk-code/015-quality-agnostic-gate/006-measurement` (Level 2)
 > Parent packet: `specs/sk-code/015-quality-agnostic-gate`

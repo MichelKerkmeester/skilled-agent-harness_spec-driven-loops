@@ -139,4 +139,6 @@ This phase brought `sk-deep-review` to the same lineage-aware, reducer-driven co
 
 No migration is required for consumers of the shipped deep-review packet. The main practical change is that the review contract is now unambiguous: one canonical set of artifact names, one lifecycle model, one reducer contract, and one set of runtime mirrors — all backed by executable Vitest guards.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements/`

@@ -54,5 +54,7 @@ Newly scaffolded specs now carry artifact-local self-check guidance in the three
 - `implementation-summary.md.tmpl` was excluded from this phase and remains a possible follow-up.
 - The parent changelog was not updated in this phase because it was outside the approved write paths.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/002-self-check-templates` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`

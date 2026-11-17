@@ -65,5 +65,7 @@ This packet rewrote the cli-copilot section of `cli-matrix.vitest.ts` to exercis
 - Ship sibling packet 016 (Degraded-readiness envelope parity, P1) to satisfy the 011 deep-review CONDITIONAL to PASS conversion. This packet is independent but required for the verdict flip.
 - Ship sibling packet 018 (Feature catalog and playbook degraded alignment, P2) to close findings F-005 and F-007. Tracked at the 011 phase-parent level.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/017-cli-copilot-dispatch-test-parity` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

@@ -67,5 +67,7 @@ The investigation stopped at the 10-iteration cap. The `newInfoRatio` trajectory
 - **F-005 detector summaries read path.** The write-only summaries need a query surface. A follow-up observability packet should add a read path.
 - **F-006 startup payload transport.** Addressed by the Phase 004 implementation's startup payload parity stream.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Research-only)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

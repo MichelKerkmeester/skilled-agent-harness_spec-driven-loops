@@ -75,5 +75,7 @@ Implemented the reviewer-prompt benchmark substrate for deep-improvement Lane B.
 - Live-LLM verdicts are nondeterministic. Only deterministic replay is suitable for blocking CI or pre-commit. Live-LLM reviewer runs stay opt-in and nightly by design.
 - `.github/workflows/` and `run-benchmark.cjs` were outside the approved write paths. CI seam and default runner internals were not directly modified.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`

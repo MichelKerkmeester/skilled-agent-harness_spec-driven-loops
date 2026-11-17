@@ -65,5 +65,7 @@ The review identified 28 P2 findings across architecture, correctness, robustnes
 - 022-dfidf-cold-start-cache: P-002.
 - 023-parent-doc-drift-refresh: D-001 and D-002.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/018-fix-followup-p2-findings-for-package-extraction` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

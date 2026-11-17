@@ -59,5 +59,7 @@ contextType: "implementation"
 - Matcher-side effects need the daemon running this code.
 - Rollback is `context-index.sqlite.pre-005-trigger-quality-20260703`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/005-trigger-phrase-quality-and-matcher-guards/` (Level 2)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

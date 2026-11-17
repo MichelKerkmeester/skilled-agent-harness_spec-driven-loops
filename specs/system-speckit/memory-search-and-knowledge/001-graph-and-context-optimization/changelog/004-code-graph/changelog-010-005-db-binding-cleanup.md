@@ -53,5 +53,7 @@ Playbook scenario 019 (F-019-1) reported the code-graph runtime bound to a legac
 - A live `code_graph_status` dispatch was not run after cleanup to avoid graph-metadata churn. Run one to confirm the canonical DB is healthy if graph behavior appears degraded.
 - Scenario 019 was not re-dispatched via the playbook runner. A targeted re-run of scenario 019 would formally close F-019-1 with a recorded PASS.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/005-db-binding-cleanup`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`

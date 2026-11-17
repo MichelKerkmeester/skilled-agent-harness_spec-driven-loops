@@ -67,5 +67,7 @@ Packet-156 deep review found the missing guard in phase 009. The headline B1 gat
 - CHK-065 Full phase-001 parity rerun is byte-identical for all five modes and seven commands.
 - CHK-030 No secrets introduced.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/009-old-skill-deletion-and-validation` (Level 2)
 > Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`

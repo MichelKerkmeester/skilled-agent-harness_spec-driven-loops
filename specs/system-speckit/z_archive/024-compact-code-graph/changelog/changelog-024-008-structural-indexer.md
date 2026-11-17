@@ -57,4 +57,6 @@ This phase added the structural code indexer that gives the packet its second re
 
 No migration required. Regex fallback remains less precise than tree-sitter and is intentionally retained as a backup path.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/008-structural-indexer/`

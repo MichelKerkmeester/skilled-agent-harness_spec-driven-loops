@@ -72,5 +72,7 @@ All three issues were fixed together. The router now targets `session-notes`, th
 - Resolve the 014 handover V8 quality advisory. The dry-run `would_pass:false` persists because the existing 014 handover document is cross-spec-heavy. The live planner route is blocker-free and targets `session-notes`. The V8 advisory is a separate cross-spec-content concern.
 - Fix the unrelated fault-injection dimension mismatch in the handler-memory-save test suite. The failure stems from `EMBEDDING_DIM` fixture drift and is not connected to the handover router change.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/047-handover-anchor-naming`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

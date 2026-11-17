@@ -63,5 +63,7 @@ The pre-mutation 4-runtime mirror-sync gate now verifies the runtime mirrors aga
 - Mirror-sync is token-set based. The gate inherits verifyMirrorSync's normalized-token comparison; semantically equivalent bodies with different tokenization could still register as drift. This phase did not change that contract.
 - New-agent promotions remain blocked at this gate. With no canonical and no mirrors, the gate falls back to the candidate and blocks on missing mirrors, matching the prior behavior.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/002-deep-improvement-promotion-safety` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation`

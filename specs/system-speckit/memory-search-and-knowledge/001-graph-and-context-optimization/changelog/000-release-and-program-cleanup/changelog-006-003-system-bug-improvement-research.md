@@ -69,5 +69,7 @@ None. Research-only phase.
 - Fix or deprecate `research/run_all.sh`: it uses `declare -A` which is unsupported in macOS bash 3.2. Replace the associative array with a portable `eval`/`mktemp` hash or mark it deprecated in favor of manual dispatch.
 - Validate the full packet with `validate.sh --strict` after changelog lands to close the PENDING verification row.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/003-system-bug-improvement-research` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research`

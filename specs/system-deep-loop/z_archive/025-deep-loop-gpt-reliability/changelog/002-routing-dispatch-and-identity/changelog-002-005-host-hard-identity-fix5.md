@@ -47,5 +47,7 @@ contextType: "implementation"
 
 - None outstanding — closed but explicitly reopenable: any future report of GPT semantic wrong-mode artifacts or a route-proof mismatch would warrant reopening this decision with fresh evidence.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/005-host-hard-identity-fix5` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

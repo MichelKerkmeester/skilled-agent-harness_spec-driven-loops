@@ -84,5 +84,7 @@ Operators can now route any of the 69 applicable external CLI cells through type
 - Create the F13 native/inline stress-cycle runner. Packet 040 owns this work.
 - Update packet 035 findings once real adapter runs produce outcomes. A later verification packet should consume these runners and publish new findings.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/011-cli-matrix-adapter-runners` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

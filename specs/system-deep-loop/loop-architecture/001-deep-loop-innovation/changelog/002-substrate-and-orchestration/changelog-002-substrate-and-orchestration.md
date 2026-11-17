@@ -28,4 +28,6 @@ This group covers the substrate and orchestration spine of the 036 deep-loop inn
 | `006-novelty-claims-continuity-and-projections` | Define the intelligence layer over the durable substrate: concept-level semantic communities, typed contradiction and supersession, stable claim continuity, next-focus semantics, and deterministic transactional projections and gauges. |
 | `007-convergence-termination-and-health` | Replace count-based stopping with path-covering termination, cycle detection, independent stopping clocks, value-of-computation allocation, and a generic health and degeneration harness. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration` (Level 3)

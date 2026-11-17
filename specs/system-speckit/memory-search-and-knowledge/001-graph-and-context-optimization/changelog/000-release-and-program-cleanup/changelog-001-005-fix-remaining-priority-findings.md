@@ -101,5 +101,7 @@ After packet 046 closed the release-blocking P0s, 24 P1 findings and 15 P2 findi
 - BM25 hardening, scoped link validation, plus protected local runtime config edits were deferred in `deferred-p2.md` because they require a design call or larger code changes.
 - The deep-review audited-wrapper port is partial. Failure reason taxonomy and schema validation were aligned but the full wrapper replacement exceeds the safe scope of this packet and needs a follow-up.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/005-fix-remaining-priority-findings` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness`

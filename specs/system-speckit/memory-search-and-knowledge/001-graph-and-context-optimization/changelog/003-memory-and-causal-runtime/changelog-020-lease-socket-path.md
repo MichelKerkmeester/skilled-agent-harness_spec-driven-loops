@@ -63,4 +63,6 @@ The lease now carries the owner's actual IPC socket path, and the shared launche
 - The stored path is point-in-time. If the owner relocates its socket after writing the lease without rewriting it, the path can go stale, and the `fs.existsSync` guard catches this and falls back to recompute.
 - The recorded 34 passed and 16 skipped is the at-ship snapshot. Packet 024 later un-skipped the launcher-lease integration suite, so a current re-run of these named suites reports 43 passed and 8 skipped.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/020-lease-socket-path` (Level 2)

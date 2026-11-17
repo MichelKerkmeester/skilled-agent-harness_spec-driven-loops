@@ -48,5 +48,7 @@ Status PLANNED. This phase is scaffolded and not yet implemented. No code change
 - Build this retrieval-class change per plan.md and keep it default-off.
 - It earns a promotion only after the prod-mode completeRecall@3 benchmark in `015-prodmode-recall-gate` shows a real move, because the truncation law makes eval-mode gains untransferable.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/017-metadata-fusion` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

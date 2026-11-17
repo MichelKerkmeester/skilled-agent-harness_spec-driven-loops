@@ -74,5 +74,7 @@ A mechanical Markdown pass aligned 120 advisor docs with `sk-doc` template expec
 - Complete packet-011 to finalize the `mcp_server/lib/skill-graph/` library boundary and remove the transitional note from `ARCHITECTURE.md`.
 - Resolve advisor regression harness failures against existing expected ids once runtime changes land.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/012-sk-doc-documentation-alignment` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

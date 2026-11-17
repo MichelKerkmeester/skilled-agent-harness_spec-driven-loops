@@ -58,5 +58,7 @@ sk-git's 10 reference and asset docs now carry exactly the canonical frontmatter
 - Live-daemon matchedDocs verification is deferred until every advisor-attached session ends and a fresh session respawns the daemon with the doc-trigger flag enabled.
 - Generic tokens inside authored phrases (e.g. "verification") co-surface sk-code at lower confidence alongside sk-git. sk-git ranks first, so routing remains correct, but later phases should avoid generic tail words where possible.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/017-sk-git` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

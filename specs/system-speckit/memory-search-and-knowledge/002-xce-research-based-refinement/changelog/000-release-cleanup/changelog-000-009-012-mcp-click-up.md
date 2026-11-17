@@ -51,5 +51,7 @@ mcp-click-up's 3 reference docs now carry exactly the canonical frontmatter cont
 
 - Live-daemon `matchedDocs` verification is deferred to a later campaign-level session cycle; the running advisor daemon predates the launcher allowlist fix and cannot observe doc triggers until restarted.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

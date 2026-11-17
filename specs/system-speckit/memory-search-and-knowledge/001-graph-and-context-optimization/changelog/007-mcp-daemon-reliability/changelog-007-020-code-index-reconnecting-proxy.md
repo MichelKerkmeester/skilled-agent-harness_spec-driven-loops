@@ -59,5 +59,7 @@ A code-index client no longer dies when its daemon's owner does. mk-spec-memory 
 - Replay set is conservative. Only known read-only code-graph tools replay; any new code-index tool defaults to non-replayable until explicitly added.
 - Inherits the proxy's known gaps. The secondary-index replay caveat documented for mk-spec-memory does not apply to code-graph reads, but any future idempotency gaps in the shared proxy affect both servers.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/020-code-index-reconnecting-proxy` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

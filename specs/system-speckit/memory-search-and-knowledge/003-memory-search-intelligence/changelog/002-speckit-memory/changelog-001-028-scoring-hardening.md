@@ -61,5 +61,7 @@ This phase landed five recommendations in the real scoring sources, four as defa
 - The grounding-signal flag was purely informational and has since been DELETED.
 - The corpus noise-floor is measured against a single embedder, a second embedder needs its own measured entry before it subtracts, and wiring the live active-embedder identity into the verdict call was deferred to graduation.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

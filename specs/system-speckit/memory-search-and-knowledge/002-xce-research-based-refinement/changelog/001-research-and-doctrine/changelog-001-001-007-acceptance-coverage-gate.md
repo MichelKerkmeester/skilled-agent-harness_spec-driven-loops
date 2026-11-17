@@ -70,5 +70,7 @@ Implemented the approved source-pass subset of the acceptance-criteria coverage 
 - Shared manifest-template normalization (`spec.md.tmpl`, `checklist.md.tmpl`) remains deferred because those files were outside the approved write scope.
 - ERROR promotion remains deferred. The shipped rule is default-off INFO, and `SPECKIT_AC_COVERAGE_ENFORCE` is documented as reserved.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/007-acceptance-coverage-gate` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`

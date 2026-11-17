@@ -58,5 +58,7 @@ cli-codex's 7 reference and asset docs now carry exactly the canonical frontmatt
 | `.opencode/skills/cli-codex/assets/prompt_quality_card.md` | Modified | Full block added; normal / implementation |
 | `.opencode/skills/cli-codex/assets/prompt_templates.md` | Modified | Full block added; normal / implementation |
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

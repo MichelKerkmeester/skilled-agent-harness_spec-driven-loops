@@ -70,5 +70,7 @@ A direct Node MCP client runner replaced that approach. The runner creates one `
 - Sync the substrate stress harness at `mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs` with the TSV output format until an automated mirror lands.
 - Consider disabling daemon stderr capture by default and requiring an explicit flag for operators who need startup diagnostics.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

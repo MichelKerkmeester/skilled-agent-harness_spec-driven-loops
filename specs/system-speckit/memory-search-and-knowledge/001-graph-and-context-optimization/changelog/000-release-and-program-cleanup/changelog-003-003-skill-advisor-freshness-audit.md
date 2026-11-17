@@ -63,5 +63,7 @@ No P0 evidence of silent stale-context fallback or runtime scoring corruption wa
 - Label the forced/local Python scoring path as a legacy degraded fallback with explicit non-equivalence documentation. Alternatively add golden parity tests against the native TS scorer.
 - Update the README and manual playbook lane-registry table to match the runtime weights in `lane-registry.ts` (derived lane is 0.15 at runtime, documented as 0.10 in several places).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/003-skill-advisor-freshness-audit` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`

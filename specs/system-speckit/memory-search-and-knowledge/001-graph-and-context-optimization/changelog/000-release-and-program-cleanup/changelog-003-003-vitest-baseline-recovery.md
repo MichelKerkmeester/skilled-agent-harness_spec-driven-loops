@@ -70,5 +70,7 @@ Note: Stop conditions were not met at packet close. 196 failures remain. The 152
 - Run `bash validate.sh 003-vitest-baseline-recovery --strict` after follow-up packet closes to confirm exit 0 as the final gate.
 - Add a `pnpm test:baseline-guard` script (REQ-008, deferred) to prevent silent regression count growth in future packets.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/003-vitest-baseline-recovery` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

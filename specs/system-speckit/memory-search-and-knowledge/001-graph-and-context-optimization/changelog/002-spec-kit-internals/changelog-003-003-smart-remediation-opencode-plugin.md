@@ -79,5 +79,7 @@ Phase 023 shipped six work areas from smart-router research and added the OpenCo
 - Telemetry is not enforcement. Runtime enforcement should wait until real compliance data has been collected from `.opencode/skills/.smart-router-telemetry/compliance.jsonl`.
 - Plugin rollout remains a deployment step. The plugin files are present and tested, but enabling them for users should be handled by the orchestrator or plugin marketplace/config workflow.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine`

@@ -63,5 +63,7 @@ First-party code README coverage was audited across 19 skills. Forty-two missing
 - Five existing READMEs remain below the compliance heuristic. Coverage is above target after adding missing READMEs.
 - One hundred eleven sampled sk-code findings are deferred into named follow-on packets for package-specific verification.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/026-sk-code-readme-audit` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

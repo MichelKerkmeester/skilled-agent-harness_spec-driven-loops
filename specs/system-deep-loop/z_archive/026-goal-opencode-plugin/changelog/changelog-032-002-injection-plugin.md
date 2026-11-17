@@ -55,5 +55,7 @@ Active goals now reach the assistant as passive system context. The plugin reads
 
 - Passive steering only. The injection block tells the assistant about the active goal, but this phase does not continue work automatically.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/002-injection-plugin` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`

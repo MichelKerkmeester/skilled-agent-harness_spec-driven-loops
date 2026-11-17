@@ -82,5 +82,7 @@ Five surgical edits closed all five findings. The watcher now computes additions
 - Consider routing aggregate counters through the existing `publishSkillGraphGeneration` pipeline when cross-process visibility is needed (currently in-process only).
 - Consider replacing the `console.warn` signal for `filesystem-fallback` with a structured diagnostics field on `AdvisorProjection` to avoid log scraping.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/005-resource-leaks-silent-errors` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

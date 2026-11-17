@@ -60,5 +60,7 @@ The skill advisor's multi-word phrase routing now actually works as designed. 24
 - Barter repo advisor is out of sync and needs its own migration pass.
 - REQ-020 bench latency not re-measured (data-only change, low p95 risk).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

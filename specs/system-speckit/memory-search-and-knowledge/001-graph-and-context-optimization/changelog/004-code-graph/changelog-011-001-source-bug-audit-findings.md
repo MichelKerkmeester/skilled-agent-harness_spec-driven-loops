@@ -57,5 +57,7 @@ This packet audited the system-code-graph skill, the standalone mk-code-index MC
 - Gate scan freshness on scanPromotable instead of MAX(indexed_at) so failed or non-promoted scans do not report fresh (scan.ts).
 - Feed candidate-manifest drift the on-disk candidate set instead of DB rows so newly added files are detected (ensure-ready.ts).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-source-bug-audit-findings` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`

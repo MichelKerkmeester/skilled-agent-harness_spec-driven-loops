@@ -67,5 +67,7 @@ Added a structured graph metadata system to all 20 routable skill folders plus s
 - No conflicts defined yet (all `conflicts_with` arrays are empty).
 - Session bootstrap injection not yet implemented.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

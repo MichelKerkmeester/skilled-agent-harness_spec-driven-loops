@@ -54,4 +54,6 @@ This phase parent groups 4 child phases spanning 2026-05-26 to 2026-05-26. Each 
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment` (Level 2, Phase Parent)

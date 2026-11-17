@@ -51,5 +51,7 @@ Benchmarked the 041 `SPECKIT_DETERMINISTIC_RANKING` flag against the real corpus
 - Revisiting deterministic ranking later would be a fresh implementation gated on a labeled-relevance benchmark showing it does not lose relevant results, not just a reproducibility argument.
 - The flag code is being removed in a subsequent change per the STAY DEFAULT-OFF verdict, since no measured win justifies carrying it. The opt-in reproducibility use is recorded so the deletion is a considered call rather than a loss of capability.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

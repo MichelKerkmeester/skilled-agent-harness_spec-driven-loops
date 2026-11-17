@@ -80,5 +80,7 @@ Four workstream commits: `bc7754ef0` (parent rollup normalization), `93c415203` 
 - **PR-11 lock hardening** deferred with documented reopen triggers.
 - **Parent strict validation** blocked by out-of-scope packet-root files.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

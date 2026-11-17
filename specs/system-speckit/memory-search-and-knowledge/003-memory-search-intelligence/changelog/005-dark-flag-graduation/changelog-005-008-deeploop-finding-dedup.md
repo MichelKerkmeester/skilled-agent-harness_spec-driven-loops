@@ -50,5 +50,7 @@ This phase benchmarked three default-off deep-loop fan-out capabilities on the p
 - The lag-ceiling threshold that best separates a healthy slow lineage from a stuck one is a configuration question the benchmark does not settle and depends on the deployment's lineage timeout budget.
 - The graduation flip for all three capabilities is a separate evidence-gated decision to be driven after the full suite verdicts land.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/008-deeploop-finding-dedup` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

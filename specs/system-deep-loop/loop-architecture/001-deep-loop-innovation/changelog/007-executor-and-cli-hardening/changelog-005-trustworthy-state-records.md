@@ -16,5 +16,7 @@ contextType: "implementation"
 
 This phase fixes two deep-loop state-record defects that surfaced in fan-out runs and cost completed analysis. It makes the recorded time the time something happened by stamping every state record through the shared appender (keeping the producer's claimed time as `reportedTimestamp` so fabrication stays auditable), and it judges completion by what a lineage produced rather than the event name, recognizing synthesis name variants and adding an artifact-based completion fallback. The spec records its status as Complete, with both fixes landed and covered by tests.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/005-trustworthy-state-records` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening`

@@ -77,5 +77,7 @@ Phase B wired the four prerequisite artifacts from the resilience research packe
 - Prune-excludes operates via `excludeGlobs` on the live scanner and is not config-persistent. A persistent scanner config schema was deferred to avoid introducing a new configuration surface in this packet.
 - Forensic SQLite `.recover` salvage is not shell-executed. CG-RP-001 preserves forensic copies and rebuilds from source with typed APIs. Manual `.recover --ignore-freelist` salvage remains a manual operator step when the typed rebuild path is insufficient.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/005-doctor-apply-mode-implementation` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor`

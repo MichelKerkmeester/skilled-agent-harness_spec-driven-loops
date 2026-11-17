@@ -89,5 +89,7 @@ Union promotion decision: BLOCKED. Live 768d evidence required before any promot
 - The synthetic goldens fixture proves machinery correctness only. It must not be cited as evidence for live recall behavior or false-positive rates.
 - The original scaffold named `__tests__/triggers/` as the test path. Implementation used the repository's `tests/*.vitest.ts` convention throughout this phase.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback`

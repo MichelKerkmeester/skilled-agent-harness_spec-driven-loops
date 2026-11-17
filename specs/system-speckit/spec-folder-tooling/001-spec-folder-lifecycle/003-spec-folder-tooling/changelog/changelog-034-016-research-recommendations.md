@@ -76,6 +76,8 @@ The 16 children here build the ranked recommendations of the auto-healing resear
 - The 30 recorded findings (27 SPEC_DOC_INTEGRITY and 3 TEMPLATE_SOURCE) are downgraded to warnings, not repaired, because their link targets no longer exist.
 - The phrase lint fails open when the linter, node or git is unavailable, and the atomic cleanup write is exercised on macOS only.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/034-spec-folder-tooling/016-research-recommendations` (Level 2)
 > Parent packet: `specs/system-speckit/034-spec-folder-tooling`
 
@@ -114,6 +116,8 @@ The operator-gated closeout: the real v3 upgrade runs on a fresh clone, the two 
 
 - Three packets stay failing on METADATA_DISK_PATH_CONSISTENCY after the apply: `027-xce-research-based-refinement`, `029-spec-root-resolution-hardening` and `030-rust-backend-rewrite-research`. They end the run at STATUS=PARTIAL for manual review.
 - The `/doctor:update compat` orchestrator with its prompted approvals is still unexercised on a real clone.
+
+&nbsp;
 
 > Spec folder: `specs/system-speckit/034-spec-folder-tooling/016-research-recommendations` (Level 2)
 > Parent packet: `specs/system-speckit/034-spec-folder-tooling`

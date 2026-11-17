@@ -25,4 +25,6 @@ This phase-parent groups the cutover blocker closeouts so parent-level context s
 | `003-legacy-compat-event-vocabulary` | Blocker 2: writes the six live compatibility vocabularies with full upcaster coverage so ordinary lifecycle records never block a log. |
 | `004-durable-write-boundaries` | Blocker 3: enforces fencing at the append boundary through a gateway-only mutation surface where direct `appendAuthorized` becomes internal-only. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/005-blocker-closeout` (Level 3)

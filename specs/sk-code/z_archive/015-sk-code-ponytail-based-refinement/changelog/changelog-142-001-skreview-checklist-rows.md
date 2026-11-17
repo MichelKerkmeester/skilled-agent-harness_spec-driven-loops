@@ -64,5 +64,7 @@ Phase 1 gave `sk-code-review` sharper language for the most common overbuild sme
 - The dry-run was by inspection. The new rows demonstrably catch the named smells, and a full review-agent dispatch was not proportionate for a three-row documentation change.
 - Not committed. Changes sat in the working tree on branch `028-mcp-to-cli-tool-transition`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/001-skreview-checklist-rows` (Level 2)
 > Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`

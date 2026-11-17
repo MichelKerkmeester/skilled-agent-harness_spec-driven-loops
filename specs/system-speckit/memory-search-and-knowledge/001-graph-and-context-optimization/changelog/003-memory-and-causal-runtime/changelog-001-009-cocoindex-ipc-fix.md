@@ -67,5 +67,7 @@ Explicit refresh/index remains blocked. The `cocoindex._internal.core.abi3.so` b
 - After the Rust-core fix lands, re-run `ccc index` and confirm `SELECT language, COUNT(*) FROM code_chunks_vec GROUP BY language` returns non-zero rows for at least three source-code languages (python, typescript, go).
 - The `mcp-coco-index` skill was removed in a later chore commit. Confirm the patched `daemon.py` and `client.py` source is preserved or re-integrated wherever the cocoindex skill resurfaces.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

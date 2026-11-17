@@ -35,6 +35,8 @@ The first graduation attempt flagged every query with the evidence-gap banner. P
 - `mcp_server/ENV_REFERENCE.md`: default true.
 - `044-relevance-aware-evidence-gap/scripts/gap-production-rebenchmark.mjs` and `results/production-metrics.json`: the production-path re-benchmark.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/044-relevance-aware-evidence-gap` (Level 2)
 
 ## 2026-06-23
@@ -85,6 +87,8 @@ Fixed the 043 finding that the Z-score evidence-gap detector measures peakedness
 - The graduation is a separate decision. This phase ships the fix default-off with a GRADUATE recommendation but does not flip `SPECKIT_RELEVANCE_AWARE_GAP` to default-on.
 - Off-corpus high-background queries still read `weak`. `kafka` (rawTop 0.76) and `terraform` (rawTop 0.79) subtract to about 0.61 and do not flag, consistent with the verdict, which also rates them `weak`. Catching them as true gaps is a noise-floor calibration question that affects the verdict banding identically and is its own benchmark.
 - Wiring a real embedder through the `Stage4Input.embedder` seam at the orchestrator would let the path resolve a corpus-specific floor rather than the default 0.15.
+
+&nbsp;
 
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/044-relevance-aware-evidence-gap` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

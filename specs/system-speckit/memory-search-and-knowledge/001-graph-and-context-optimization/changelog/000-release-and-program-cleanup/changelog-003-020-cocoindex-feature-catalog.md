@@ -68,5 +68,7 @@ The `mcp-coco-index` skill had no structured inventory of its capabilities. Oper
 - Catalog source anchors are point references citing the current line where each function, test or doc section begins, not an exhaustive line range. Update anchors when source files shift significantly.
 - Manual playbook scenario files remain separate. The catalog links validation anchors but does not duplicate scenario execution steps.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

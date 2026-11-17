@@ -56,5 +56,7 @@ Ran focused fix-vs-fallback probes on `gpt-fast-med` to test whether the compile
 - Add a setup-confirm carve-out for autonomous-precedence over-triggering on should-halt asks.
 - Consider runner-owned retry for leaf reliability, since the single-executor loop still depends on the model following re-dispatch instructions.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/003-generalization-probes` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

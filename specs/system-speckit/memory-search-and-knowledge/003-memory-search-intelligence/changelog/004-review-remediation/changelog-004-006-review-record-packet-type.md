@@ -52,5 +52,7 @@ This phase added an additive marker-gated review packet type to the feature-spec
 - Mark the remaining lean deep-review packets as review records. Only the 009 packet was marked here to demonstrate the path, so other lean review packets still carry their retrofitted docs until marked.
 - The 011 and 012 packets stay Level 1 by intent, they document feature work rather than review records.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation/006-review-record-packet-type` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation`

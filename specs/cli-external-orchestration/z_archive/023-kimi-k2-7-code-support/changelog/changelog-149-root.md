@@ -96,4 +96,6 @@ Spec 149 turned Kimi K2.7 Code from a live provider slug into a documented, rout
 - The manual testing playbook scenario `CO-036` still names `kimi-k2.6` and was deferred to avoid disturbing its file-count self-check.
 - Historical and archived references to old dash filenames were intentionally left as point-in-time records.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support` (Level Phase Parent)

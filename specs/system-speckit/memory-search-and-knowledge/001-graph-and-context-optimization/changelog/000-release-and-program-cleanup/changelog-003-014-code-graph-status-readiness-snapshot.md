@@ -70,5 +70,7 @@ A read-only `getGraphReadinessSnapshot()` helper was added to `ensure-ready.ts`,
 - Restart the MCP daemon and run a live `code_graph_status` probe to confirm the rebuilt `dist` loads the new helper (per packet 008 protocol).
 - Consider surfacing the readiness snapshot in other handlers (query, scan, context) if operators report value after the status change lands.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/014-code-graph-status-readiness-snapshot`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

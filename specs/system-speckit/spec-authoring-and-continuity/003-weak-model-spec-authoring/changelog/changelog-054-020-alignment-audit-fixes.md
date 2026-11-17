@@ -62,5 +62,7 @@ Phase 020 checks everything packet 054 touched against its standard and fixes wh
 - One advisor prompt, `repair derived metadata after editing docs`, still ranks sk-doc (0.8681) just above system-spec-kit (0.8622); sk-doc owns skill-root derived metadata, so the phrases were not widened.
 - Em dashes that were already in edited files stay; no added line holds one.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes` (Level 2)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

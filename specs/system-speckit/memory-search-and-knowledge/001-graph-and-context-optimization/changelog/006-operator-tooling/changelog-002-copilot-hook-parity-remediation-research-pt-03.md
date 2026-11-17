@@ -43,5 +43,7 @@ None. Research-only phase.
 
 - None.
 
+&nbsp;
+
 > Spec folder: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity/research/002-copilot-hook-followup-deep-review-remediation` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity`

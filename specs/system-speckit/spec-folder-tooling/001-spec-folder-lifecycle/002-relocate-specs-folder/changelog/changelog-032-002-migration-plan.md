@@ -35,5 +35,7 @@ Designed the topology-inversion migration and recorded two Accepted ADRs. ADR-00
 - All 21 registry entries' current precedence behavior confirmed against real code before scoping (not assumed).
 - Both ADRs accepted by the operator before phase 003 began.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/032-relocate-specs-folder/002-migration-plan` (Level 3)
 > Parent packet: `specs/system-speckit/032-relocate-specs-folder`

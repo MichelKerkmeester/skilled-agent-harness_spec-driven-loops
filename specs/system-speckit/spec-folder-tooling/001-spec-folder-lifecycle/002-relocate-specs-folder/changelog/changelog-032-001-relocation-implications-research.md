@@ -32,5 +32,7 @@ Answered whether the canonical spec-kit tree could move from `.opencode/specs/` 
 
 The `glm` lineage's first attempt failed on an org-policy restriction on autonomous mode; reproduced the real error directly against the CLI, then retried only after explicit operator approval for the elevated permission mode. Round 2's `sol` lineage was flagged by the orchestrator for an incidental write-containment violation (`.pi/modes.json`, cleanly reverted, zero residue) — investigated and confirmed benign before its findings were used.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/032-relocate-specs-folder/001-relocation-implications-research` (Level 1)
 > Parent packet: `specs/system-speckit/032-relocate-specs-folder`

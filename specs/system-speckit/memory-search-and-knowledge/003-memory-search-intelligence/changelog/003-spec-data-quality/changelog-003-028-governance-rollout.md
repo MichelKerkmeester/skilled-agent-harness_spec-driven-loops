@@ -48,5 +48,7 @@ Nothing has shipped yet. This phase is PLANNED and scaffolded only. The spec, pl
 
 - Build per plan.md. This phase is foundational and the dependents sequenced behind it are listed in `028-governance-rollout`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/028-governance-rollout` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

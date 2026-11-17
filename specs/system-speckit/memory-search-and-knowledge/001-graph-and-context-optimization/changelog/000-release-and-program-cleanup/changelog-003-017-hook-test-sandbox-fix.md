@@ -77,5 +77,7 @@ Prior findings in `016-runtime-hook-plugin-testing/findings.md` were amended to 
 
 - Obtain canonical live CLI verdicts by running `hook-tests` from a normal operator shell outside any sandbox to confirm all five runtimes produce `PASS` live-cli cells.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/017-hook-test-sandbox-fix` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

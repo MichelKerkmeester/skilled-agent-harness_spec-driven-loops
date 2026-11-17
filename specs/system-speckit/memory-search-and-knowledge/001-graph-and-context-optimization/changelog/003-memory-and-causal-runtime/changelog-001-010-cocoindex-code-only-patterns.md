@@ -67,5 +67,7 @@ Both the project-level `.cocoindex_code/settings.yml` and the source `DEFAULT_IN
 - Add `**/.{gemini,claude,codex}/skills/**` to default `exclude_patterns` to eliminate the 4-runtime skill-mirror duplication for any future indexing surface that does include markdown (separate packet).
 - Investigate why html, css and json appeared at low counts (34, 11, 6) in the pre-change index despite not being listed in `include_patterns`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/010-cocoindex-code-only-patterns` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

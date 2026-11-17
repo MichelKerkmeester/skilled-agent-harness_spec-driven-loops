@@ -79,5 +79,7 @@ Nine research findings from the 023 deep-research arc (008-A, 008-B, 008-C, 010-
 - Fingerprint status is daemon-dependent. Doctor returns INFO when the daemon status payload lacks the 023C fingerprint but still estimates reindex cost from local metadata when possible.
 - Default Jina v3 remains non-commercial. That is intentional from ADR-021 quality evidence. Commercial deployments should enable `COCOINDEX_COMMERCIAL_SAFE_PROFILE=true` or set `COCOINDEX_RERANK_MODEL=BAAI/bge-reranker-v2-m3`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/005-doctor-model-swap-ux` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`

@@ -45,5 +45,7 @@ Same scaffold-content debt as child 003, scoped to `003-deep-loop-workflows`'s 1
 
 - None. Confirms the improved dispatch-prompt pattern (explicit pitfall list + self-verification requirement) works.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/004-scaffold-content-003-deep-loop-workflows` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`

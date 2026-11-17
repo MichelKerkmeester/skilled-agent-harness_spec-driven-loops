@@ -109,4 +109,6 @@ No migration required.
 
 A few optional follow-up checklist items remain deferred by design, but all required closure work for this phase is complete.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/004-verification-and-standards/` (Level 1)

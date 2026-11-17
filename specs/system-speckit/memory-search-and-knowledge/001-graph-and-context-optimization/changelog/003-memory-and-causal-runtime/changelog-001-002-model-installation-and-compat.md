@@ -65,5 +65,7 @@ Both Setup A models were pre-downloaded to `~/.cache/huggingface/hub/`. The tran
 - Resolve symlink fragility: if `snapshot_download` installs a new revision the snapshot hash changes and the symlink points at the old directory. A startup hook in HfLocalProvider that re-creates the symlink on boot would eliminate the manual repair step.
 - Revoke and regenerate the HF token used for the gated Gemma license download. The token was visible in the session transcript and is stored at `~/.cache/huggingface/token` (mode 600). Regenerate at https://huggingface.co/settings/tokens.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/002-model-installation-and-compat` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

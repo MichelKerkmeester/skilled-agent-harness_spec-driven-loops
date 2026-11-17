@@ -68,5 +68,7 @@ Each SKILL.md gained an identical numbered ALWAYS rule titled "Code Standards Lo
 - Address `hook_contract.md` missing Overview H2 section. The `missing_required_section: overview` validator failure is pre-existing and was not introduced by this packet. A follow-on cleanup pass should add the missing section.
 - Refresh downstream copies of TEMPLATE 5. Local copies users may have made of cli-opencode TEMPLATE 5 still contain the old hardcoded mentions. The canonical template is fixed and consumers should refresh.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/022-cli-skills-baseline-overlay-contract` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

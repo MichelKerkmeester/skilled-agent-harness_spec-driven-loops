@@ -64,5 +64,7 @@ The memory learning loop had sixteen ways to learn the wrong thing and this phas
 - The MCP tool surface grew by two, so any doc stating a fixed tool count is stale. Phase 012 does the doc-alignment.
 - Code effects apply on the next daemon-lease restart. No live data was migrated.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/009-learning-feedback-loop-repair/` (Level 2)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

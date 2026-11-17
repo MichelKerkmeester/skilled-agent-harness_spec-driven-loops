@@ -27,4 +27,6 @@ This phase parent runs the six-phase program that makes the deep-loop fan-out ho
 | `005-combo-test-matrix` | Prove every cli/provider/model/mode combination end-to-end, log every credentials-gated skip, and close the ambient-config isolation boundary. |
 | `006-docs-and-closeout` | Reconcile the parent to Complete, record each phase's delivered outcome, and point executor docs at the frozen support matrix. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity` (Level 3)

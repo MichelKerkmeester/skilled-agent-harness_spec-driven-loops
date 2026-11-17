@@ -53,5 +53,7 @@ deep-loop-runtime's 4 reference docs now carry exactly the canonical frontmatter
 
 - Live-daemon `matchedDocs` verification is deferred to a later campaign-level session cycle; the running advisor daemon predates the launcher allowlist fix and cannot observe doc triggers until restarted.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/008-deep-loop-runtime` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

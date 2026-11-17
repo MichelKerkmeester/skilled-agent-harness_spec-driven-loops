@@ -70,5 +70,7 @@ Ten governance drift findings are resolved across sk-doc, sk-code and constituti
 - The spec-path hygiene pattern may miss numeric-only spec folders such as `specs/042/`. The constitutional examples all use hyphenated names, so that edge case stayed out of scope.
 - The doc now references `.github/workflows/comment-hygiene.yml`. The implementation summary notes the file's existence was not verified in-session and came from audit evidence.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/007-governance-alignment`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`

@@ -58,4 +58,6 @@ This packet un-skipped the suite, fixed the real root cause (copy the whole `lib
 
 - Stub daemon, not the real context-server. The socketPath bridge test binds a minimal JSON-RPC echo socket rather than booting the full `context-server.js`. That is sufficient to exercise the launcher lease plus bridge prefer-stored-path logic (what packet 020 changed). It does not exercise real daemon request handling.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/024-launcher-lease-integration-test` (Level 2)

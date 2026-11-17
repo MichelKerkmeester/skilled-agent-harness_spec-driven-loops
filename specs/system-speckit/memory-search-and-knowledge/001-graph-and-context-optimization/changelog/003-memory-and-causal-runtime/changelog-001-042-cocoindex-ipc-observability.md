@@ -73,5 +73,7 @@ This phase wires request-scoped correlation IDs through the FastMCP wrapper, dae
 - `COCOINDEX_CODE_IPC_DEBUG=true` can log payload prefixes. Operators should enable it only for short diagnostic runs and turn it off afterward.
 - A follow-on packet should decide whether to default `refresh_index` to false, whether to split refresh from search, whether to do both. Use the new observability data as evidence for that decision.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/042-cocoindex-ipc-observability` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

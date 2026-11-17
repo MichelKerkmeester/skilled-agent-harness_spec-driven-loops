@@ -71,5 +71,7 @@ Concurrent AI sessions sharing the main working tree and MCP databases caused re
 - Socket-dir override is required, not optional, on this layout. The worktree database path exceeds `sun_path`, so the daemon only boots with `SPECKIT_IPC_SOCKET_DIR` set. The wrapper sets it automatically but any hand-rolled launch into a worktree must do the same.
 - Cross-runtime child signal is best-effort. `AI_SESSION_CHILD=1` must be set at each dispatch site. The structural `git-common-dir` backstop catches the common case of a child already inside the parent worktree and unknowns default to isolate.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/005-worktree-per-session-automation` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`

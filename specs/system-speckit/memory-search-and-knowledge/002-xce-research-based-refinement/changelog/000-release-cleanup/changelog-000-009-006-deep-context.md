@@ -64,5 +64,7 @@ deep-context's 11 reference/asset docs now carry exactly the canonical frontmatt
 | `.opencode/skills/deep-context/references/state/state_reducer_registry.md` | Modified | Authored phrases; normal/implementation |
 | `.opencode/skills/deep-context/assets/context_report_template.md` | Modified | Authored phrases; normal/planning |
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/006-deep-context` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

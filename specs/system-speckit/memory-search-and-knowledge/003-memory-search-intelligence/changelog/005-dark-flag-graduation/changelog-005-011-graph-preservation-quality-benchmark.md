@@ -46,6 +46,8 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 
 - None in the allowed evidence set.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/011-graph-preservation-quality-benchmark` (Level recorded in phase evidence)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation`
 > Historical alias: `021-graph-preservation-quality-benchmark`

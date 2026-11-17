@@ -57,5 +57,7 @@ The skill-advisor CLI core shipped as a manifest-backed CLI layer over the exist
 
 - Facade reconciliation fixtures for `skill_advisor.py` remain phase 002 work
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/001-cli-core` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli`

@@ -80,5 +80,7 @@ Active causal-edge deletion now leaves an audit trail before the active row disa
 - Historical active edges have no tombstone history for deletes that happened before v32. Audit begins at the first post-migration delete.
 - Two pre-existing module-header defects in `canonical-fingerprint.ts` and `memo.ts` remain and are outside this phase's scope.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/002-causal-edge-tombstones` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle`

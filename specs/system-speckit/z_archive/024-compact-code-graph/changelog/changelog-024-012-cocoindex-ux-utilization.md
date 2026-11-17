@@ -156,4 +156,6 @@ CocoIndex Code is a powerful semantic code search tool that understands 28+ prog
 
 No migration required. The new MCP tools and routing changes are additive. If CocoIndex is not running, all hooks and tools degrade gracefully -- they skip CocoIndex sections and return informative errors without blocking other functionality.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/012-cocoindex-ux-utilization/`

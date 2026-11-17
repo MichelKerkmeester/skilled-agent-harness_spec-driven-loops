@@ -65,5 +65,7 @@ The investigation stopped at the 10-iteration cap. The `newInfoRatio` trajectory
 - **F-006 context deadline wiring.** Deadline contracts were defined but never wired. Addressed by the Phase 004 implementation's bounded-context contracts stream.
 - **Additional surface area.** The investigation stopped at the 10-iteration cap with `newInfoRatio` above 0.05. A follow-up investigation may cover the remaining surface.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Research-only)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

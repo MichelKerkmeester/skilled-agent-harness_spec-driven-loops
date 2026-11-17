@@ -52,5 +52,7 @@ _Detailed file-level changes live in the phase implementation summary._
 - Add chronology-driven invalidation only for conflicting relation pairs.
 - Keep transaction-time recall behind its default-off flag until benchmark evidence exists.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

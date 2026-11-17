@@ -58,5 +58,7 @@ The MCP-server security lane now has a named red-team probe gate. The gate exerc
 - Document the new named security lane in the security test README.
 - Keep probe scratch files under the packet scratch area and clean them before closeout.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

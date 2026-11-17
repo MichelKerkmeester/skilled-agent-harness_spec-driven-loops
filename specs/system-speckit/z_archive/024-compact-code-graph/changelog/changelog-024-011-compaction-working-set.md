@@ -133,4 +133,6 @@ When an AI session runs long and the context window fills up, Claude compacts th
 
 No migration required. The new pipeline is backward-compatible -- if Code Graph and CocoIndex are not configured, the system falls back to Memory-only behavior automatically.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/011-compaction-working-set/`

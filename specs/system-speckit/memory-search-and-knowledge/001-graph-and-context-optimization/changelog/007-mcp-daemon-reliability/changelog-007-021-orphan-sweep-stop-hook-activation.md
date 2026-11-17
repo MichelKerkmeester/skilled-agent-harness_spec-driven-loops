@@ -55,5 +55,7 @@ Leaked MCP daemons can finally be cleaned up on session end. The Stop hook runs 
 - Runtime-unverified reap. The gating is fully tested, but an actual live reap on session end is owed to an operator dry-run-then-enable pass; it cannot be safely exercised in-session.
 - Session-scoped cleanup still needs the pid. The precise, session-scoped kill remains gated on CLAUDE_SESSION_PID; this packet only adds the pid-independent orphan fallback, it does not make the harness provide a session pid.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/021-orphan-sweep-stop-hook-activation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

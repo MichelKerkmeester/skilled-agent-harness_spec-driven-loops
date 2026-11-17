@@ -65,5 +65,7 @@ Three code folders under `.opencode/skills/system-code-graph/mcp_server/` shippe
 - Apply the lesson learned here (cli-devin SWE 1.6 bundles need grep-verification of internal_imports and validation_commands before use) to the Pass 1 prompt for Phase B (008/024) and Phase C (014/054).
 - Track HVR score numeric values for all 3 READMEs once `validate_document.py --json` is confirmed available in the Phase B scope.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/003-code-folder-readmes-poc` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`

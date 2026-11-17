@@ -80,4 +80,6 @@ This phase parent groups 30 child phases spanning 2026-05-14 to 2026-05-31. Each
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction` (Level <!-- SPECKIT_LEVEL: phase -->, Phase Parent)

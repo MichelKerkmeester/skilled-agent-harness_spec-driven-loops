@@ -53,5 +53,7 @@ The Memory MCP now exposes the background enrichment backlog as read-side health
 - Treat effort as structural inference, not a benchmarked performance claim.
 - Keep the gauge read-only. It observes backlog age but does not retry, drain or steer the scheduler.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

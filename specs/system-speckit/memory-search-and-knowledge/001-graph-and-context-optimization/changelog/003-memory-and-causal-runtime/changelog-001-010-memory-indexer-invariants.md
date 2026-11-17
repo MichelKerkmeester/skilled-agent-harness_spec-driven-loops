@@ -89,5 +89,7 @@ Two save-path regressions shipped during the 026 optimization cycle: cross-file 
 - MCP restart is required before the new save, scan, update, checkpoint, code-graph, and cleanup-helper behavior is active for connected clients.
 - `npm run test:core` carryover: unrelated failures in `copilot-hook-wiring.vitest.ts` and `stage3-rerank-regression.vitest.ts` remain, both outside this packet's scope.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

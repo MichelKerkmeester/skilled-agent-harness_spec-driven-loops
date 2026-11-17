@@ -56,5 +56,7 @@ This leaf added `session-trace-causal-reducer.ts`, a deferred-only causal reduce
 - Live MCP and CLI wiring for the reducer is deferred to a later phase.
 - The reducer is available as an exported TypeScript maintenance function until explicit wiring is scoped.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers`

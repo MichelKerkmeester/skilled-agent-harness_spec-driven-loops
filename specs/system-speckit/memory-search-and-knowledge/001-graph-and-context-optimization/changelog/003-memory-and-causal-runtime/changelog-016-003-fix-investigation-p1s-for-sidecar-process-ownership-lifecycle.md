@@ -61,5 +61,7 @@ The sidecar lifecycle had two P1 findings from arc 010 deep-research: F79, where
 - Python implementation in `sidecar_ledger.py` still uses a string-based `process_liveness` return type and silent default-alive behavior. This parity gap is tracked for phase 004.
 - Monitor operator stderr output for unexpected `processLiveness` error codes to confirm the fail-open default-alive policy is appropriate in production.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle`

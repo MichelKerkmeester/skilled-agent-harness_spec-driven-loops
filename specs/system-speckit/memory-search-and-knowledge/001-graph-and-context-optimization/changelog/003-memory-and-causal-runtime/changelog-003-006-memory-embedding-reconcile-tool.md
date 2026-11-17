@@ -74,5 +74,7 @@ On the current DB the tool is a near-noop because the roughly 17k backlog was al
 - Implement a future prune/dedup tool for the masked `failed_masked_by_newer_latest_path_anchor_row` rows. Pruning is out of scope here and requires different safety checks per the acceptance contract.
 - Address success-rows-missing-active-vector hygiene in packet `007-success-vector-coverage-hygiene`, which reuses the active-shard verification pattern from `lib/embedders/embedding-reconcile.ts`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

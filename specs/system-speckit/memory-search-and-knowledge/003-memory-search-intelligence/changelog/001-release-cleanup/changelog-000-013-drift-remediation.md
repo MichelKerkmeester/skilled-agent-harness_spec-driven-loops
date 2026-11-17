@@ -35,5 +35,7 @@ A 50-iteration, multi-model drift audit of packet 028 converged 175 findings (6 
 
 This packet was relocated from `028/008-drift-remediation` to `028/000-release-cleanup/013-drift-remediation` so the drift remediation sits with the release-cleanup track. The remediation ledger is the per-finding source of truth.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`

@@ -54,5 +54,7 @@ _No file-level detail recorded._
 - Apply the graph-churn code fix (scope-to-folder, idempotency, archive-exclude, and a real test) in a stable session; re-derive from the agent draft at /tmp rather than trusting it blindly.
 - Scope every commit with explicit pathspecs until the graph-churn fix lands, since the daemon continues rewriting graph-metadata.json on save.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn`

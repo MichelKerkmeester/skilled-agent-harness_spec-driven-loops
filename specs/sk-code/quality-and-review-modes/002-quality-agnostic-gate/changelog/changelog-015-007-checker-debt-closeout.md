@@ -77,5 +77,7 @@ The checker and the ceiling report now read comment text one way, because the re
 - An unclosed literal or heredoc swallows the rest of the file. A template literal that never closes, or a heredoc whose word never appears, makes every line after it text, and the checker reports nothing there. Three readings stop short of what bash and JavaScript do, by design. A JavaScript if, while or for header split across lines keeps the division reading for a slash after its ). A {} / 2 reads as a regex literal, because } usually ends a block. A ((cd x; cat <<EOF) | wc) and a $((cat <<EOF) ) are read as arithmetic, so a comment inside that real heredoc body is reported.
 - Seven lines the TypeScript scanner calls comments go unflagged. All seven are scanner artifacts that the base checker misses too, so the gap sits between the two readers and not in the fix round. The whole-tree run still reports no finding.
 
+&nbsp;
+
 > Spec folder: `specs/sk-code/015-quality-agnostic-gate/007-checker-debt-closeout` (Level 2)
 > Parent packet: `specs/sk-code/015-quality-agnostic-gate`

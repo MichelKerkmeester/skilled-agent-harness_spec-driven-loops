@@ -70,5 +70,7 @@ The guard was broadened using a scope-fingerprint comparison. Before any full-sc
 - Glob narrowing remains a separate hardening item. The scope fingerprint does not include `includeGlobs` or `excludeGlobs`. The council marked that as a follow-on task.
 - Legacy DB first-scan behavior relies on `getStoredCodeGraphScope()` returning null to skip the guard. Verify this path is covered once the code-graph package has full isolation tests.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/005-scope-change-scan-guard` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

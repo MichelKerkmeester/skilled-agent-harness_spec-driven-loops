@@ -68,5 +68,7 @@ All seven findings (F6, F31, F52, F53, F58, F61, F74) were closed in a single su
 
 - Signal cleanup remains process-lifecycle best effort. The shared handler awaits `shutdownAllSidecars()` before re-signaling, but callers needing deterministic shutdown should call and await `shutdownAllSidecars()` directly rather than relying on signal interception.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode`

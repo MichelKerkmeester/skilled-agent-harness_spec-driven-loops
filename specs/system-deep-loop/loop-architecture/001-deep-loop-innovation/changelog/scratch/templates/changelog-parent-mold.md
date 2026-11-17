@@ -22,5 +22,7 @@ This folder is a phase-parent scaffolding mold, not a delivered 036 phase. It pr
 
 Scaffolding template — no runtime history.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/scratch/templates/parent-mold` (scaffolding template)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/scratch/templates`

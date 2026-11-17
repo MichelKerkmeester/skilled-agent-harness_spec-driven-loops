@@ -96,5 +96,7 @@ A change can no longer come back from @code as done with no gate evidence, and a
 - The yagni prose replay returns no recommendation at all. That is the same reason, recorded in ADR-003: at stage one the word pulled sk-code to 0.82 on a sentence about a life philosophy.
 - The comment hygiene prose replay is exempt, not clean. "write prose about comment hygiene for a newsletter" returns sk-code at 0.82, tied with sk-doc and system-spec-kit. The phrase has no sense outside code, so the tie is about code comments and the phrase stays at stage one.
 
+&nbsp;
+
 > Spec folder: `specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing` (Level 2)
 > Parent packet: `specs/sk-code/015-quality-agnostic-gate`

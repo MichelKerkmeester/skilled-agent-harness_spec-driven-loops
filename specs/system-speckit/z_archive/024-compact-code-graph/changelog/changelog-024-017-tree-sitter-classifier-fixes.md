@@ -166,4 +166,6 @@ Three items were deferred to future phases:
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/017-tree-sitter-classifier-fixes/`

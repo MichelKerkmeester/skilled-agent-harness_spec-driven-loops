@@ -51,5 +51,7 @@ _No fixes recorded._
 - Keep the default state shadow or dry-run.
 - Validate idempotency against the consolidation cursor and clock host before write-mode promotion.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

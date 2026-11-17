@@ -49,5 +49,7 @@ Status: Planned. This child defines two dispatch-integrity mechanisms for GPT re
 - Execute after the Gate-3 validator work or as the standalone receipt/progress mechanism once the rollout boundary is ready.
 - Re-run live acceptance cells after the compiled contract compiler wires these mechanisms into the live path.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes/003-dispatch-receipts-and-progress` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

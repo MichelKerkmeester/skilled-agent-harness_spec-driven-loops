@@ -62,5 +62,7 @@ Phase 3 made load-bearing wording observable. Instead of relying on memory that 
 - The workflow gates pull requests to `main`. It does not run on feature-branch pushes, matching the existing comment-hygiene gate scope.
 - Not committed. Changes sat in the working tree on branch `028-mcp-to-cli-tool-transition`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/003-wording-invariant-guards` (Level 1)
 > Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`

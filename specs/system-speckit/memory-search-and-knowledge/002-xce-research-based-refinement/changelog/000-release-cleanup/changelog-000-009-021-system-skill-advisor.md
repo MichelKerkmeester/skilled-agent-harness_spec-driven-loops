@@ -59,5 +59,7 @@ system-skill-advisor's 15 reference docs now carry exactly the canonical frontma
 - Live-daemon verification is campaign-level. The running advisor daemon predates the launcher allowlist fix, so matchedDocs cannot be observed live until every advisor-attached session cycles and a fresh session respawns it.
 - The five tier demotions are judgment calls. If a downstream consumer weighted on the old `important` values, restore the prior tiers via git history and re-run the coverage check.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

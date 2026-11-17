@@ -69,5 +69,7 @@ The Code Graph gold-query battery now matches the extracted system-code-graph an
 - Known parse warnings remain. Existing shell parser skip-list warnings are unrelated to this repair and remain non-blocking.
 - Deep-context packet remains limited evidence. The prior recovery packet was native-only and is not treated as a completed deep-context loop.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/014-gold-query-battery-repair` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph`

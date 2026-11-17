@@ -53,5 +53,7 @@ Completed `orchestrate.md`'s Priority table with the 2 missing deep-mode rows (`
 - No live dispatch test in this phase — deferred to phase 012's benchmark.
 - `@deep-context` vs `@context` / `@deep-review` vs `@review` disambiguation is documented in prose but not mechanically enforced — accepted residual risk.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/007-orchestrate-universal-routing` (Level 2)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

@@ -86,5 +86,7 @@ Commits: `083f74c814` (test playbooks), `79ea13374c` (bulk WIP commit).
 
 - T035 strict validator was deferred due to pre-existing packet-doc integrity drift in spec.md/plan.md plus an uncited line in research/research.md. These issues are outside the packet's implementation scope and do not block the feature.
 
+&nbsp;
+
 > Spec folder: `system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration` (Level 2)
 > Parent packet: `system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix`

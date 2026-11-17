@@ -57,5 +57,7 @@ The launcher now leaves a durable trace. Before this, log() wrote only to stderr
 - Text, not structured. Lines are human-readable text matching stderr, not JSON. Sufficient for attributing flaps; a structured format is out of scope.
 - Single-generation rotation. Only the most recent window plus one .prev.log is retained; older history is dropped by design to bound disk use.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/018-persistent-launcher-log` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

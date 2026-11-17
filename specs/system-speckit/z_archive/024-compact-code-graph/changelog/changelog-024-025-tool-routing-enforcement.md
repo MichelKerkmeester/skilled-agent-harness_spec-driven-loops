@@ -161,4 +161,6 @@ Four updates to instruction files and agent definitions that serve as the final 
 
 No migration required. All changes are additive enforcement layers. Existing tool behavior is unchanged -- the enforcement only guides the AI's tool selection, it does not block or modify any tool calls.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/025-tool-routing-enforcement/`

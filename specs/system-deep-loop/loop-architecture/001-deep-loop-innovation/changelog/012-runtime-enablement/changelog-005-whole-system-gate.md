@@ -27,5 +27,7 @@ Built and ran the frozen-SHA whole-system gate against the real finalized system
 
 Complete. The gate is the blocking verifier receipt for the enabled runtime; verdict PASS with proven negative controls on tree-clean, candidate-frozen, runtime-suite, and reader-contracts.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

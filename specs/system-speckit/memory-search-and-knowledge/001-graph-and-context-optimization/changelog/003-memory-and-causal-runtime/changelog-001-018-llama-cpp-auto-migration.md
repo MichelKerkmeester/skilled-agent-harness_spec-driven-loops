@@ -79,5 +79,7 @@ This packet is superseded. The live local-first path is now Ollama to hf-local N
 - The implementation contract referenced `mcp_server/src/context-server.ts`. The actual repo source is `mcp_server/context-server.ts`. Future spec authors should verify entrypoint paths before authoring.
 - This packet is superseded by the Ollama to hf-local Nomic cascade work. The auto-migration contract should be evaluated against the new default provider path if a similar gate is ever needed.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/018-llama-cpp-auto-migration` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

@@ -57,5 +57,7 @@ After packets 038 and 039 corrected the embedding pipeline error-propagation and
 - Monitor the retry-manager to confirm the 789 reset rows complete embedding generation under the 038 and 039 corrections.
 - Clean up the 10 orphan rows pointing at deleted files under `.opencode/specs/system-spec-kit/028-orphan-code-graph-db-cleanup/` in a dedicated orphan-cleanup packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/040-reset-stuck-embedding-rows` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

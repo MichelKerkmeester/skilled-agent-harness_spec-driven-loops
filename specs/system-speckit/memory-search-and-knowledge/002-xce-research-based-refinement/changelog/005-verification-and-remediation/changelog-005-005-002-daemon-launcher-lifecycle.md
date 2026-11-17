@@ -66,5 +66,7 @@ This sub-phase fixed all 15 daemon-launcher and lifecycle findings across eight 
 - The optional owner-lease helper hoist to `.opencode/bin/lib` was deferred as an anti-drift follow-up (the CAS block is an identical short patch in three files today).
 - Two pre-existing flaky live-spawn suites remain flaky and are orthogonal to this work.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation`

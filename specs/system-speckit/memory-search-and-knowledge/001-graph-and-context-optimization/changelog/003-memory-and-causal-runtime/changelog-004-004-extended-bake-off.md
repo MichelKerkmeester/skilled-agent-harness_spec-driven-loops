@@ -74,5 +74,7 @@ A same-evening erratum invalidated the "hybrid+rerank ON" framing. The pipx-inst
 - Restore CocoIndex daemon to jina-code baseline by running `pkill -KILL -f "ccc " && rm -f .cocoindex_code/lock.mdb && ccc reset --force && ccc index`.
 - Manually verify the 5 universal-ceiling probes (1, 6, 11, 12, 15) for correct expected paths in the fixture.
 
+&nbsp;
+
 > Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

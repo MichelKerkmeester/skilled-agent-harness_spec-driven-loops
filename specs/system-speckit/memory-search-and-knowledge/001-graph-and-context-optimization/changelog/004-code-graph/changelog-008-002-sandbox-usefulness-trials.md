@@ -68,5 +68,7 @@ This execution packet turns the parent campaign from a plan into partial empiric
 - Controls are lower bounds. rg command timings are faster than a real human orientation workflow.
 - Token counts are estimates. Local tools did not expose model-token metrics.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/002-sandbox-usefulness-trials` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

@@ -67,5 +67,7 @@ None. Research-only phase.
 - ADR-001 Q3 (MCP topology) is superseded by ADR-002 in 014/007. Verify downstream children reference the updated topology decision before executing child 004 rewire work.
 - Child 005 doc-migration judgment on the 33+30 category-22 docs split between code-graph core and shared context and hooks should be re-evaluated against the actual file list at migration time.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/002-extraction-design-and-decision-record` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation`

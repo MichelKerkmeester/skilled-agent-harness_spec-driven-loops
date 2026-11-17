@@ -65,5 +65,7 @@ Phase 006 rolled up the capabilities shipped by phases 002-005 into umbrella doc
 - Canonical DQI scoring still needs `validate_document.py` runs for numeric attestation.
 - Historical `012` labels remain in older docs as renumbering aliases.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`

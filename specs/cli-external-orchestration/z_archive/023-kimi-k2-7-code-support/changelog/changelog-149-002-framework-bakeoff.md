@@ -77,5 +77,7 @@ The first Kimi K2.7 Code prompt-framework bakeoff ran as a real model-under-test
 - The secondary `gpt-5.5` judge was subjective. It flagged some oracle-confirmed-correct code as buggy, a known LLM-judge failure mode, so it ranked perceived clarity and was not load-bearing for the verdict.
 - `kimi-k2.7-code` has `fallback_target: null`. The run completed on the `kimi-for-coding` pool without fallback, but a future re-run must defer rather than retry the same pool if it is exhausted.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/002-framework-bakeoff` (Level 1)
 > Parent packet: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support`

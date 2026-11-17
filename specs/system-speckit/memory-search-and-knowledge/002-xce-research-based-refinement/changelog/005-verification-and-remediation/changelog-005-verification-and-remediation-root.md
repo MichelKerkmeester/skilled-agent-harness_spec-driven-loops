@@ -21,4 +21,6 @@ Top rollup for the `005-verification-and-remediation/` themed track. Each row li
 | `005-verification-and-remediation/005` fresh-regression remediation (rollup) | [changelog-005-005-fresh-regression-remediation-root.md](./changelog-005-005-fresh-regression-remediation-root.md) |
 | `005-verification-and-remediation/006` deep-review 017-021 remediation | [changelog-005-006-deep-review-017-021-remediation.md](./changelog-005-006-deep-review-017-021-remediation.md) |
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation` (Phase Parent)

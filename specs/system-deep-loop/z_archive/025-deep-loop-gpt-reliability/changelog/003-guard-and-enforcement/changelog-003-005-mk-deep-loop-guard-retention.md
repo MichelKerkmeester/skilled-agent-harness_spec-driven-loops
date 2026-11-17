@@ -59,5 +59,7 @@ Added age-based retention to `mk-deep-loop-guard.js`'s `.loop-guard-state` direc
 - Existing live `.loop-guard-state` files were not manually migrated. The automatic sweep reconciles them on the next `session.created` event.
 - `guard-warnings.log` rotation reuses the mtime-gate pattern but was not independently regression-tested.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/005-mk-deep-loop-guard-retention` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

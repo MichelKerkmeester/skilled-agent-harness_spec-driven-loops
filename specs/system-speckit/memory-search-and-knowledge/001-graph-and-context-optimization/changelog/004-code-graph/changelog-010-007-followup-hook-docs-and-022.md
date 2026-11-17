@@ -63,5 +63,7 @@ Both follow-ups are now resolved. The five docs cite the real flat artifact `sys
 - Evaluate whether `blast_radius` should default to depth-1 (opt-in to full closure) rather than full closure (opt-in to transitive). F-022-1 documents this as a maintainer design decision. No consumer relied on the full-closure default per the phase 008 audit.
 - Confirm phase 008 (`008-blast-radius-transitive-flag`) resolved F-022-1 by making `includeTransitive` honor depth-1 vs full-closure semantics. Close this finding in the parent matrix after confirmation.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/007-followup-hook-docs-and-022` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`

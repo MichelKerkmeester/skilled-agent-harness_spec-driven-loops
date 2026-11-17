@@ -60,5 +60,7 @@ A `COMBINED_QUERY_CHAR_BUDGET` constant and a `buildBoundedCombinedQuery()` help
 - The cap is character-based rather than tokenizer-based. This was chosen deliberately for simplicity and to keep the patch minimal. Future retrieval evaluation can replace the character proxy with provider tokenizer plumbing if degradation evidence appears.
 - The `tests/stage1-candidate-gen.vitest.ts` filter referenced in the dispatch is absent from this checkout. The available regression `tests/stage1-expansion.vitest.ts` imports `stage1-candidate-gen.ts` and passed. The missing filename should be reconciled with the test suite when the stage1 test layout is next revised.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

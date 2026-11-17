@@ -58,4 +58,6 @@ This phase parent groups 8 child phases spanning 2026-05-26 to 2026-05-27. Each 
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening` (Level 2, Phase Parent)

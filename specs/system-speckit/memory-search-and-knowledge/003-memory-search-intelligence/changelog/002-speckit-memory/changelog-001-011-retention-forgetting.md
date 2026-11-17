@@ -60,5 +60,7 @@ This phase shipped two retention candidates behind the default-off `SPECKIT_RETE
 - Keep each ranking tweak flag-gated until a measured recall delta exists.
 - Move GDPR erasure behavior into its own packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

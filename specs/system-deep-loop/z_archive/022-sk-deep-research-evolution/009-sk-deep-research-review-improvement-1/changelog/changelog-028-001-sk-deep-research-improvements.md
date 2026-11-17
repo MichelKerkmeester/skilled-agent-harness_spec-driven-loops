@@ -191,4 +191,6 @@ This phase took the deep-research packet from a partly aligned documentation pas
 
 No migration is required for consumers of the shipped deep-research packet. The main practical change is that the packet contract is now both clearer and safer to maintain: helper execution, reducer refresh, runtime parity, and packet closeout all point at the same live surfaces.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements/`

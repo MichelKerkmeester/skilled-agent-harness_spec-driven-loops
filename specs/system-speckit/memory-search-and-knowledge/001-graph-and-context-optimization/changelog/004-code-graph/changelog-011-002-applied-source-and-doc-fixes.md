@@ -60,5 +60,7 @@ _No file-level detail recorded._
 - Not merged. Lives on branch cg-remediation; operator merges when BUG-04/BUG-06 WIP settles.
 - Baseline not green. The repo's own BUG-06 WIP fails 24 tests independently of this work.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`

@@ -67,5 +67,7 @@ None.
 - Consider bf16 bench only if a future model variant shows dtype-sensitive OOM behavior distinct from Qwen3-Reranker-0.6B.
 - Revisit fp16 on CUDA hardware if deployment target expands beyond single-user Apple Silicon.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

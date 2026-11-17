@@ -84,5 +84,7 @@ All three problems were resolved in one focused pass on 2026-04-23. The highligh
 - Complete `npm install` for the `ignore` package in a normal registry-backed environment. Package metadata is updated and the runtime prefers the direct dependency. The sandbox used a transitive ESLint copy as fallback.
 - Verify that AC-1 (zero `UNIQUE constraint failed` in `errors[]`) and AC-2 (`filesIndexed >= 1300`) hold after operator-driven MCP restart.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/002-fix-stale-highlights-and-scan-scope` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan`

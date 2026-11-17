@@ -54,5 +54,7 @@ Phase 019 fixes the two follow-ups the 054 closeout named. The goal-file manifes
 - No real speed-loop run rebuilt a sandbox, since a real run dispatches paid model runs; the harness covers the decision paths.
 - One P2 stays open: a failed `prepare.sh` can leave a half-built directory that the sandbox map never names.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/019-follow-up-fixes` (Level 1)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

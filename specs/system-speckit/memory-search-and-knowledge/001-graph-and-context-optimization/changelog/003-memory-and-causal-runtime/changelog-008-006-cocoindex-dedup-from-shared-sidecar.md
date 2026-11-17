@@ -85,5 +85,7 @@ Phase 006 added `HttpSidecarRerankerAdapter` to `mcp-coco-index`, wired `COCOIND
 - Document sigmoid score scale implications for operators running with path-class boost enabled. Boost is gated `false` by default for non-BGE adapters but operators who previously enabled it need to supply explicit recalibrated factors.
 - Address single-worker sidecar serialization: `asyncio.Lock` on `/rerank` means concurrent cocoindex searches queue at the sidecar. Not exercised in this packet's benchmark.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

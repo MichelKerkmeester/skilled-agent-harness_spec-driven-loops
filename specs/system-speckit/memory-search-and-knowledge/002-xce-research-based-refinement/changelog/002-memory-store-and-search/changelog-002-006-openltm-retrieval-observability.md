@@ -70,5 +70,7 @@ None. All changes are additive.
 - Process-local maintenance counters reset on MCP process restart. A future phase may introduce a lightweight persisted counter if last-run observability across restarts becomes necessary.
 - The root `tsconfig.json` (TS5058) was pre-existing and out of scope for this phase.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/006-openltm-retrieval-observability` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

@@ -65,5 +65,7 @@ The save-time hook and runtime matcher are intentionally out of scope. Default-o
 - The save-time hook (populating trigger embeddings on memory write) was deferred outside this leaf's approved write scope. It remains unimplemented until a later phase needs it.
 - The semantic matcher, hybrid handler behavior, and shadow/promotion evaluation are for child phases 002 through 004.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback`

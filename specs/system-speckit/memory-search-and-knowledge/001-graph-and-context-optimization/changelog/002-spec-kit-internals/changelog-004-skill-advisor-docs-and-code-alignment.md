@@ -62,5 +62,7 @@ Phase 022 brought the skill-advisor package into line with the hook surface that
 
 - Interactive runtime smoke remains manual per the new playbook.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

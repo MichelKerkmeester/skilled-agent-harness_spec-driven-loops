@@ -52,5 +52,7 @@ Added step_run_now_check to deep_research_auto.yaml: detect and consume a one-sh
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation/004-run-now-control` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation`

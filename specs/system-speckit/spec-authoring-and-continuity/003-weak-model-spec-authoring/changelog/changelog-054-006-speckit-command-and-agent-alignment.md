@@ -69,5 +69,7 @@ The speckit, create and deep commands and the doc-authoring agents now send a wr
 - The index premise is imprecise. At the start the index was not fresh because 3 documents were missing from it, not because any was stale. The set is unchanged by this phase, and the phase 006 changelog adds one more unindexed document.
 - The deep-review skill still says checklist.md. .skilled/skills/system-deep-loop/deep-review/SKILL.md has 3 mentions the rows do not cover, because the skill is outside this phase.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/006-speckit-command-and-agent-alignment` (Level 3)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

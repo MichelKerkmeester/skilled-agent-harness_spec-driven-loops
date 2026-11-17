@@ -66,4 +66,6 @@ This phase added the missing end-of-session bookkeeping for Claude hook flows. S
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/003-stop-hook-tracking/`

@@ -78,5 +78,7 @@ Step A applied a scoped mechanical rewrite across 97 files, canonicalizing all p
 - Hook compatibility, plugin bridge, Python shim, doctor:update consumer cutover all remain the responsibility of child 005.
 - Package-local typecheck needs a build-boundary decision in a later packet because `rootDir: "."` conflicts with shared Spec Kit imports. The required bridge typecheck passes in the interim.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/003-advisor-source-db-tests-migration` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

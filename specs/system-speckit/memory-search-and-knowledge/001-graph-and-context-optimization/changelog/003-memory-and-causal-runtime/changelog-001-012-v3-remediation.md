@@ -76,5 +76,7 @@ This phase remediated all of those findings in one commit (`42aa114e3d`). The me
 - The unloaded CocoIndex status direct-read depends on `sqlite_vec` import and load. If extension loading fails, the daemon falls back to a 0-count response and logs a prompt to call `ccc index` to refresh.
 - PAT rotation remains a user manual action and is intentionally out of scope.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/012-v3-remediation` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

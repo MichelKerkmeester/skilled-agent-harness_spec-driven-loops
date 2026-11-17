@@ -53,4 +53,6 @@ This phase turned SessionStart into a source-aware recovery surface instead of a
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/002-session-start-hook/`

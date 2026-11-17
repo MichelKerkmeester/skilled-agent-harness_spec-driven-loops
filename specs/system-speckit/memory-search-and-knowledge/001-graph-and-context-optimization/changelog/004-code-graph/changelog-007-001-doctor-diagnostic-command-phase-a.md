@@ -71,5 +71,7 @@ Phase A ships a diagnostic-only `/doctor:code-graph` command that covers the ful
 - Smoke-test the MCP tool fallback paths (git status and glob comparison) against a real degraded state where `code_graph_status` or `detect_changes` are unavailable.
 - Measure the install guide DQI baseline and record the score in the packet checklist.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/001-doctor-diagnostic-command-phase-a` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`

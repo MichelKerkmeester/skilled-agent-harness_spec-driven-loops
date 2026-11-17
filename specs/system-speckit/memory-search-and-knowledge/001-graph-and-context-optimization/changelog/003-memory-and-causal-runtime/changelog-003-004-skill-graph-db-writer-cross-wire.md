@@ -68,5 +68,7 @@ After 010/001 shipped the pluggable EmbedderAdapter layer, the read path in `ski
 - Cache adapter instances at module level if profiling shows repeated `getAdapter` calls during high-frequency refresh.
 - Update 010/002 swap-runbook to confirm the write-read parity is closed and the jina-v3 reindex path is now executable end-to-end.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack/004-skill-graph-db-writer-cross-wire`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack`

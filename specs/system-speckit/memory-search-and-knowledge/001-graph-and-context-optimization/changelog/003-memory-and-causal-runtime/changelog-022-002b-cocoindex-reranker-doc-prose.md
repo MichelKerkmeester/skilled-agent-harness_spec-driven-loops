@@ -55,5 +55,7 @@ CocoIndex reranker documentation still described `BAAI/bge-reranker-v2-m3` after
 
 - If a future CocoIndex version adds explicit reranker load tracing, the docs would need a forward-looking update. That would be a new change, not drift remediation
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/002b-cocoindex-reranker-doc-prose`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

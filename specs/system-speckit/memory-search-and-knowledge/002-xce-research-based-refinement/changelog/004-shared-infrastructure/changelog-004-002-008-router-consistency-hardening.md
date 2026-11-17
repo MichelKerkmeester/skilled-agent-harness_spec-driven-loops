@@ -53,5 +53,7 @@ Seven routers still carried bare or mixed MCP names in `allowed-tools`. They now
 
 - Section-header style still varies across command families and is documented as acceptable variation, not normalized here.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation`

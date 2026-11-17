@@ -56,5 +56,7 @@ Seed coverage-graph from code-graph at loop init: seed_source/seed_confidence DB
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/008-code-graph-coverage-bridge` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

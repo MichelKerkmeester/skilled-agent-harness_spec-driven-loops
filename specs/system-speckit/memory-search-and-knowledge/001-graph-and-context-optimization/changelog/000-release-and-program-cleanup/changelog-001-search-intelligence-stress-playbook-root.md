@@ -54,4 +54,6 @@ This phase parent groups 4 child phases spanning 2026-04-26 to 2026-05-18. Each 
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook` (Level 1, Phase Parent)

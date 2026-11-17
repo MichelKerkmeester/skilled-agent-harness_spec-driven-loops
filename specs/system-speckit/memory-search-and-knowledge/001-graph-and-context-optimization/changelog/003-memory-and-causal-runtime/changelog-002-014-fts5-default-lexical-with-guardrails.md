@@ -82,5 +82,7 @@ This packet implemented Option B atomically across six guardrails: a shared lexi
 - Evaluate whether a future packet should enable FTS5 `tokenchars` or Porter stemming if golden-query clustering shows failures concentrated in identifier or suffix-heavy classes.
 - Decide whether `packed-inmemory` remains in the same `SPECKIT_BM25_ENGINE` enum after its future implementation or moves behind a separate experimental flag.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/014-fts5-default-lexical-with-guardrails` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

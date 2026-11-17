@@ -70,5 +70,7 @@ Fix #1 reversed the prior consolidation (ADR-002/004/005) by moving the database
 - Confirm that skill re-sync tooling treats the skill-local database as gitignored regenerable state and does not overwrite it during skill updates. The `.gitignore` rules and launcher migration-back path handle this today but the behavior should be validated when skill-sync automation is added.
 - CG-013 (cwd-divergence) remains deferred. The `readiness-marker.ts` base directory still resolves from `process.cwd()` rather than from the shared canonical resolver in `core/config.ts`. Importing `core/config` at module load broke fs-mock tests in the suite. Resolve this when the fs-mock isolation strategy is updated.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-db-location-skill-local` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`

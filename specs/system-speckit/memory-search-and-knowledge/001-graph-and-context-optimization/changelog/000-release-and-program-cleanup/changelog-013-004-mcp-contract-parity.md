@@ -74,5 +74,7 @@ The public MCP contracts for four tools now match the runtime schemas and valida
 - Central verification should validate the additive `ingest_jobs.governance_json` migration and run the broader typecheck and vitest suite.
 - D3 test coverage reaches the handler boundary. A full end-to-end DB assertion is left for central integration coverage.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/004-mcp-contract-parity`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`

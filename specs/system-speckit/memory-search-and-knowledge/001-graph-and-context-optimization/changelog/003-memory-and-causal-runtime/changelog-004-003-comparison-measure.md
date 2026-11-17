@@ -64,5 +64,7 @@ jina-code and gemma tied at 7/18 top-3 hits after normalization, but jina-code p
 - Run a second sweep for CodeRankEmbed and bge-code only if future retrieval failures justify the additional 50 minutes of reindex time per candidate.
 - Investigate fixture search-surface noise where canonical docs and mirrored skill directories outrank the canonical `.opencode` source file. Consider a path-class filter or mirror-aware scoring in a future fixture revision.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

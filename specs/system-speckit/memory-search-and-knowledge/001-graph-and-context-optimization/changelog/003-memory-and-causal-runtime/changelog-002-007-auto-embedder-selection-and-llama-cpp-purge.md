@@ -79,5 +79,7 @@ The entire llama-cpp surface was purged from system-spec-kit: `llama-cpp-availab
 - Restart the spec-memory daemon (`mk-spec-memory`, formerly PID 4790) on the operator side to exercise `ensureActiveEmbedder()` against the live `vec_metadata` table and confirm `active_embedder_provider` is written correctly.
 - Delete legacy artifacts after the operator-side restart and reindex are confirmed: `context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite` (732M) and the GGUF files under `~/.cache/huggingface/gguf/embeddinggemma-300m/` (approx. 2.0G total).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

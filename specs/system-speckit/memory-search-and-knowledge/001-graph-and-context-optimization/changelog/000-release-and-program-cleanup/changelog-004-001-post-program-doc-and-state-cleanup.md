@@ -81,5 +81,7 @@ This cleanup packet resolved all work that fell inside the approved 026 write bo
 - Fix `check-phase-links.sh:39` undeclared `phase_dir` variable that causes `validate.sh:898` to run evidence-marker lint against a literal child-glob pattern. Requires editing `.opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh`, which was outside the approved 026 write boundary. Tracked as T016.
 - Address historical leaf-packet template debt in 011 child packets 010-017 after the validator variable leak is fixed. A separate broad hygiene packet will be needed to resolve missing evidence markers. Missing internal references and custom template headers are also in scope for that packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/001-post-program-doc-and-state-cleanup` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program`

@@ -60,5 +60,7 @@ After 018 made the background scan cooperative, a full reindex still could not r
 - The exact blocking tail phase on the live daemon is not yet pinned. The trigger-embedding-backfill's unbounded transaction is the static candidate, but its flag is off in this daemon, so it is not the confirmed cause. Making that phase cooperative through chunk-and-yield, so the daemon stays responsive through it rather than only unreaped, is the deeper follow-on. The unbounded trigger-backfill transaction should be chunked before that flag is ever enabled.
 - The marker is scoped to the scan job, so it does not cover the post-scan background-embedding queue. The scan defers embeddings, so the vector writes happen after the scan completes, and a live run saw a separate re-election fire during that post-scan burst and recycle the daemon. Search stayed functional and the deferred-embedding gap drains on the next queue pass, but extending the marker to the background-embedding queue, or making that queue cooperative, is the follow-on that makes a reindex re-election-proof end to end.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/018-maintenance-grace-daemon-survives-reelection` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

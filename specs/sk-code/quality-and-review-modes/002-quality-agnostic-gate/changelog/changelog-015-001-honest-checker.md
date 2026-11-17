@@ -99,5 +99,7 @@ Steps 1 to 4 of plan.md are built, and the Phase 3 verification tasks have run. 
 - A string statement in the middle of a Python body is data. Only a docstring in a place Python or its tools read one counts as comment text, so a triple-quoted string used as a block comment after other code is not checked.
 - The CI failure path has no live run. The ADR-010 amendment accepts actionlint and a local run of the step's script in its place.
 
+&nbsp;
+
 > Spec folder: `specs/sk-code/015-quality-agnostic-gate/001-honest-checker` (Level 2)
 > Parent packet: `specs/sk-code/015-quality-agnostic-gate`

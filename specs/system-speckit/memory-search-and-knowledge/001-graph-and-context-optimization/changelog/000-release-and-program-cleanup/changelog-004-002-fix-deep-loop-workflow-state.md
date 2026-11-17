@@ -68,5 +68,7 @@ Five surgical fixes addressed each finding with the smallest code or doc change 
 - The fallback record fix is additive. Track schema drift in `state_format.md` through periodic deep-review of the YAML assets to prevent fields drifting out of alignment again.
 - Resource-map flag plumbing covers the config writers only. If additional YAML paths write `resource_map.emit` directly, audit them against the same templating pattern.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/002-fix-deep-loop-workflow-state` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

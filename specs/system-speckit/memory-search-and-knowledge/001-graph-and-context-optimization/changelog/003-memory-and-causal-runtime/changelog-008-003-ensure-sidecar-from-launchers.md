@@ -76,5 +76,7 @@ A shared CommonJS helper was created at `.opencode/bin/lib/ensure-rerank-sidecar
 - Keep the Node and Python helper implementations in sync if the probe/spawn/warmup contract changes.
 - Verify `SPECKIT_CROSS_ENCODER=true` plus this phase results in `cross-encoder.ts` receiving sigmoid scores from the live sidecar via `memory_health` trace.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

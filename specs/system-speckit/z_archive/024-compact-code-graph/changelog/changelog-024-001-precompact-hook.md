@@ -66,4 +66,6 @@ This phase gave compacted Claude Code sessions a real memory handoff instead of 
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/001-precompact-hook/`

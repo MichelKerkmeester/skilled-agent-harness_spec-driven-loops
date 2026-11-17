@@ -84,4 +84,6 @@ Fixed 5 issues discovered during the Phase 009 self-test and promoted 6 candidat
 
 No migration required. The `plateauWindow` config field defaults to 3, matching the previous hardcoded behavior.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/010-sk-improve-agent-self-test-fixes/`

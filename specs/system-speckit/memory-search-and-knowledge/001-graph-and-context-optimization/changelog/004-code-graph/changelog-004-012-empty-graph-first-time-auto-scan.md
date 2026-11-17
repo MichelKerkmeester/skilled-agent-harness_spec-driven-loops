@@ -71,5 +71,7 @@ Six tests (4 predicate unit tests, 2 integration tests) were added. One existing
 - Opted-in scopes (this repo) keep the manual `code_graph_scan` gate by design. This repo's own empty graph still blocks until an explicit scan.
 - Scope is read from env at request time. Flipping `SPECKIT_CODE_GRAPH_INDEX_*` changes whether auto-establish applies on the next read.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/012-empty-graph-first-time-auto-scan` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph`

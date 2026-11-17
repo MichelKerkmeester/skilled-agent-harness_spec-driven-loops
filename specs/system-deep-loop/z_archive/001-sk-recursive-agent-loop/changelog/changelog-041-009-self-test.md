@@ -74,4 +74,6 @@ No code changes. This phase generated runtime artifacts:
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/009-sk-improve-agent-self-test/`

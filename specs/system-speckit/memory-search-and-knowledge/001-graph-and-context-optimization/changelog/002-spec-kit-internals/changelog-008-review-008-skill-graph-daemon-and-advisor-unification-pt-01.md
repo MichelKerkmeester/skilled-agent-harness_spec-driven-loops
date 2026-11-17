@@ -53,5 +53,7 @@ None - review-only phase.
 - Add authority gating to `skill_graph_scan`.
 - Add regression tests covering the three P1 invariants plus corruption recovery and path-leak hardening.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

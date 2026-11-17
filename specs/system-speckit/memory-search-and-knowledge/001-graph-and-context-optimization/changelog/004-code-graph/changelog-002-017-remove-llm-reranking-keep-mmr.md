@@ -82,5 +82,7 @@ None.
 
 - Run the full 528-file mcp_server Vitest suite when machine capacity allows to close the substitution gap documented in Known Limitations.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`

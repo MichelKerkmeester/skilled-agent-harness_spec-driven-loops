@@ -72,5 +72,7 @@ Three P1 gaps need remediation before the upgrade path is called ready. Node ins
 - Add explicit security context clarifying that permissive checked-in runtime configs (e.g. `.codex/config.toml`) are local developer profiles, not general install defaults.
 - Obtain or create a named old-DB fixture representing the 026/005-era schema to strengthen upgrade path evidence beyond test-derived migration coverage.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/010-upgrade-safety-operability-audit` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`

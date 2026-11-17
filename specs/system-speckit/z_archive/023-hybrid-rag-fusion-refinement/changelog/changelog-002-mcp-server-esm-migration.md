@@ -131,4 +131,6 @@ No migration required.
 
 This change stays inside `@spec-kit/mcp-server`, so downstream consumers do not need to rewrite their own imports for this phase. If the package is run directly, use Node.js 20.11.0 or newer so the supported runtime behavior matches the package contract.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/002-mcp-server-esm-migration` (Level 1)

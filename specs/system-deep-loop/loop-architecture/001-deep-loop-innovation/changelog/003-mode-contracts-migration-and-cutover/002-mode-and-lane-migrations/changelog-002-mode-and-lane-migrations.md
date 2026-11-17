@@ -29,4 +29,6 @@ This phase is the per-mode fan-out of the recommendations-implementation program
 | `007-skill-benchmark` | Migrate the skill-benchmark variant on the deep-improvement-common backbone; adds only skill-benchmark scenario and scoring logic. |
 | `008-deep-alignment` | Migrate the deep-alignment loop (per-lane conformance against a named authority); reuses the review-loop backbone shared with deep-review. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations` (Level 2)

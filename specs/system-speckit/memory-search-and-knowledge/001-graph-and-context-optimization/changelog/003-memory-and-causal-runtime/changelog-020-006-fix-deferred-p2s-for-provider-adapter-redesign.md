@@ -72,5 +72,7 @@ The `execution-router.ts` module carried a single-instantiation `DirectProviderA
 - The F48 random-ID flake appeared twice during full-suite runs. The final allowed retry passed. The flake remains a known non-deterministic test issue for a separate remediation packet.
 - Three arc 020 findings (outside all six bucket scopes) remain DEFERRED and require operator sign-off before closure.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/006-fix-deferred-p2s-for-provider-adapter-redesign` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes`

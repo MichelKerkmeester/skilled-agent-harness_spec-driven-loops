@@ -67,4 +67,6 @@ The public-facing documentation now matches what the packet actually shipped. `A
 
 - None. All findings this phase surfaced were in-scope and resolved.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/010-documentation-truth-audit` (Level 2)

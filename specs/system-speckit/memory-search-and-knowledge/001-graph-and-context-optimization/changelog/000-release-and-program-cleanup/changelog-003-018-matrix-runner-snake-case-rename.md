@@ -68,5 +68,7 @@ The runtime directory moved to `.opencode/skills/system-spec-kit/mcp_server/matr
 
 - Stage the filesystem move and all edited files outside the restricted sandbox session so the rename is reflected in the git index.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/018-matrix-runner-snake-case-rename` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

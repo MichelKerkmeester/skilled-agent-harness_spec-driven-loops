@@ -66,5 +66,7 @@ mk-code-index now exposes query-intent classification through code_graph_classif
 - The checked-in code-graph root .js siblings were updated alongside TypeScript for parity with the new handler.
 - opencode mcp tools mk_code_index is unavailable in the installed CLI, so live tool listing used a direct MCP SDK client against the same launcher.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/021-codegraph-rpc-surface` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

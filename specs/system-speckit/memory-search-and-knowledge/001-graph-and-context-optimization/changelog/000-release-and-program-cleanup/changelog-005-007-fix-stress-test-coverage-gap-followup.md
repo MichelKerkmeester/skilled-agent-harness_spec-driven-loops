@@ -84,5 +84,7 @@ Ten new stress test files were written via three sequential cli-codex batches (g
 - Ensure python3 is on PATH in CI environments to exercise sa-037 rather than skipping it.
 - Address P1 gaps (6 features: 3 code_graph and 3 skill_advisor with thin direct stress coverage) and P2 gaps (30 features with uncovered Maybe-required surfaces) in a follow-on release-readiness pass.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/007-fix-stress-test-coverage-gap-followup` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`

@@ -46,5 +46,7 @@ The shared fan-out prompt builder (`buildLoopPrompt`) told dispatched CLI subpro
 
 - None. This finding was fully closed by this child.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/002-fanout-leaf-identity-conflation` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`

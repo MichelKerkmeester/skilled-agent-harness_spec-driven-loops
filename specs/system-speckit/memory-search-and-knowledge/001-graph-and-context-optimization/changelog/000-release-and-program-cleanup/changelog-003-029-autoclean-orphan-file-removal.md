@@ -70,5 +70,7 @@ Note: the implementation-summary.md for this packet was not filled in before the
 - Run `memory_health({ autoRepair: true, confirmed: true, cleanFiles: true })` against the live DB after a MCP child restart. Capture before and after stats in `scratch/cleanup-before.json` and `scratch/cleanup-after.json` to confirm orphanedFiles drops to 0 (or fewer than 5) and `consistency.status` flips to `healthy`. Create a `checkpoint_create` snapshot before running against production data.
 - Fill `implementation-summary.md` with results once the live-DB verification run completes.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/029-autoclean-orphan-file-removal` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

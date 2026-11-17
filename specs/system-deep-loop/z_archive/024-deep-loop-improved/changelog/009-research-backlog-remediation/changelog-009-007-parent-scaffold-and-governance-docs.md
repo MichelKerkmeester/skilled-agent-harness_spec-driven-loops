@@ -54,5 +54,7 @@ Phase 008's own tasks.md, implementation-summary.md and plan.md were still raw, 
 
 - None for this phase's own scope. A later phase in this same remediation (010) independently discovered that one of 008's own children, `003-model-benchmark-reducer-ledger`, still has genuine scaffold docs, tracked as a known, deliberately deferred instance.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/007-parent-scaffold-and-governance-docs` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

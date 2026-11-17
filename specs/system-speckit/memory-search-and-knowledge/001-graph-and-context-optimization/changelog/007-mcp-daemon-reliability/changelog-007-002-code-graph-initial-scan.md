@@ -57,5 +57,7 @@ Phase 2 was set up to run one full `code_graph_scan` after the user reconnects `
 - Verify `code_graph_status` reports nodes > 0 and non-empty freshness.
 - Update implementation-summary with final node and edge counts once the scan completes.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/002-code-graph-initial-scan` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

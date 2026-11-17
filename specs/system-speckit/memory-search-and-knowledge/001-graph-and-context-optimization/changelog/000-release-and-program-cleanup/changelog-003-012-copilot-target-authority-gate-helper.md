@@ -73,5 +73,7 @@ This packet closes the bypass at the executor-config layer. A `buildCopilotPromp
 - Run a live cli-copilot dispatch on the next deep-research or deep-review run. Confirm the `## TARGET AUTHORITY` preamble appears in the rendered iteration prompt and zero unauthorized folder mutations occur.
 - If any consumer imports `executor-config` from a compiled `dist/` artifact, run `tsc -b` to rebuild parity. The YAML uses `--experimental-strip-types` to load TS directly, so the rebuild is not strictly required for the helper to take effect.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

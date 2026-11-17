@@ -26,4 +26,6 @@ This phase defines the intelligence layer over the durable deep-loop substrate: 
 | `004-next-focus-semantics` | Typed, deterministic next-focus semantics that rank coverage gaps, open contradictions, and under-covered semantic communities from ledger-derived novelty signals. |
 | `005-transactional-projections-and-gauges` | Deterministic transactional projections that apply each verified ledger event atomically across dashboards, registries, claim tables, and stream-fold gauges. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections` (Level 2)

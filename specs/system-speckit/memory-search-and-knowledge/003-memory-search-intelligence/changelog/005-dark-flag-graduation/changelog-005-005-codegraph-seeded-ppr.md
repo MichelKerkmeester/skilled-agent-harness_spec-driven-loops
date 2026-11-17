@@ -47,5 +47,7 @@ This phase benchmarked the removed dark mechanism `SPECKIT_CODE_GRAPH_SEEDED_PPR
 - A non-uniform edge weighting (resolved call targets, observed-versus-inferred provenance, real strength signals) would give PPR a centrality gradient to differentiate on and would change the question. This is a separate edge-quality design not measured here.
 - The flat walk could itself expand past 1 hop for impact queries. The pool ranker already shows a hop-stratified multi-hop order is well-formed. This is a separate enhancement this benchmark only motivates.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/005-codegraph-seeded-ppr` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

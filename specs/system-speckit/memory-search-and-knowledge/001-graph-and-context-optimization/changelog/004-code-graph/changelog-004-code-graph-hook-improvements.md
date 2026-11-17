@@ -83,5 +83,7 @@ Four deep-research investigations (28, 13-pt-02, 13-pt-03, 30) produced 22 findi
 - **Validator residuals.** The strict validator still reports pre-existing template/link issues in spec.md, plan.md, and tasks.md. These are immutable spec-doc issues that were out of scope for this packet. A follow-up doc-cleanup packet should address them.
 - **Research packet handoff.** The four deep-research investigations (phases 004-research-013-pt-02, 004-research-013-pt-03, 004-research-028, 004-research-030) produced 22 findings total. Findings not addressed by this implementation packet are filed as follow-up items in their respective sub-phase changelogs.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

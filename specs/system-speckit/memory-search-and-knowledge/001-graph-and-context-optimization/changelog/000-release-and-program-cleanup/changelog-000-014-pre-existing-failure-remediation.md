@@ -70,5 +70,7 @@ The pre-existing failures surfaced by the 013 central verification were reconcil
 - The advisor cap-ordering behavior and the corpus-parity 62 to 61 baseline are flagged as reversible judgment calls.
 - The advisor rendering change activates at runtime only after advisor dist rebuild and daemon recycle.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/014-pre-existing-failure-remediation` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup`

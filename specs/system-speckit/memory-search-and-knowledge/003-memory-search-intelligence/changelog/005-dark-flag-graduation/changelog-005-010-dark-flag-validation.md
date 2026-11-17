@@ -58,5 +58,7 @@ Nothing. No defects were introduced or corrected in production paths.
 - Three unset production tunables (degree-cap default 0, heartbeat cadence 0, lag ceiling 0) need defined values before flip.
 - Token-budget truncation at the MCP response-serialization boundary for multihop tail-appended rows (P1-001) warrants a follow-up `appendExempt` flag on the response serializer.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

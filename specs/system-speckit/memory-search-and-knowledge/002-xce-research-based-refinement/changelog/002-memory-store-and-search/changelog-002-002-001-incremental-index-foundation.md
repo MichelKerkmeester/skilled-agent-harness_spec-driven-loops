@@ -68,5 +68,7 @@ The memory store can now represent canonical input memo records, dependency edge
 
 - Handler scan behavior is intentionally unchanged. The `planMemoizedIndexing()` API is ready for the follow-on integration phase when scan behavior will call it.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle`

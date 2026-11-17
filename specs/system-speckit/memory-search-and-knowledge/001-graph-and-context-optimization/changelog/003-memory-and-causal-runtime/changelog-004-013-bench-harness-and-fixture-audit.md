@@ -77,5 +77,7 @@ Both harnesses now share an embedded `_extract_paths()` helper that strips all w
 - The sequential-thinking MCP was unavailable during implementation. All three call attempts returned a tool cancellation. Planning was documented visibly in the packet rather than relying on tool output.
 - Probe 5 recorded a hit-to-miss change in the corrected run. The delta file preserves this residual risk for downstream inspection rather than folding it into the harness-fix claim.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

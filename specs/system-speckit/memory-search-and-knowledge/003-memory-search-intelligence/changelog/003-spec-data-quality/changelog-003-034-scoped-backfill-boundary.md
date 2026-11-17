@@ -57,5 +57,7 @@ Shipped an explicit scoped backfill boundary so the CLI refreshes one packet by 
 - `SPECKIT_GENERATED_METADATA_Z_EXCLUSION` ships default-ON by construction as an opt-out, since trimming `z_*` from the descriptions cache cannot mass-fail the tree.
 - Graduating the broad migration of legacy prefixed-path and prose-status offenders is owned by the validator and status-enum phases, not this one.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/034-scoped-backfill-boundary` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

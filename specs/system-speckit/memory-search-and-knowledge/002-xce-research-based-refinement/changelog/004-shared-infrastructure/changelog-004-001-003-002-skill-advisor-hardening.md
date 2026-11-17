@@ -65,5 +65,7 @@ The skill-advisor hardening phase shipped parity, job-semantics, orphan-reaping,
 
 - Multi-runtime transport-down drill remains open in `003-runtime-integration`
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli`

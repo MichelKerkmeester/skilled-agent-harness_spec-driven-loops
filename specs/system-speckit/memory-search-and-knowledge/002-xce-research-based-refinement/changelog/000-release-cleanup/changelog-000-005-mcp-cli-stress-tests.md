@@ -55,5 +55,7 @@ Sandboxed stress coverage was added for release-cleanup surfaces. The suite cove
 
 - Broader live-daemon transport drills remain separate from this sandboxed stress scope.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

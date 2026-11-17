@@ -62,4 +62,6 @@ This phase parent groups 12 child phases spanning 2026-05-18 to 2026-05-20. Each
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency` (Level <!-- SPECKIT_LEVEL: phase-parent -->, Phase Parent)

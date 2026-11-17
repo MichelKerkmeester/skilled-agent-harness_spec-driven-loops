@@ -148,4 +148,6 @@ No migration required.
 
 If a local MCP server process is still running older code in memory, restart it once so the metadata-format repair is loaded. This release records that restart verification, not a full end-to-end follow-up search retest.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/008-spec-memory-compliance-audit` (Level 2)

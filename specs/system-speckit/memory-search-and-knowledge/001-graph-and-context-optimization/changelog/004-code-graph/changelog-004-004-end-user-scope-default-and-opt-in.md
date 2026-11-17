@@ -89,5 +89,7 @@ After a default full rescan the local graph measured 48 files, 646 nodes and 1,2
 - Extend scope opt-in to selected individual skills rather than all-or-nothing. The `includeSkills` field accepts `boolean | string[]`. The per-skill-list path is implemented in `index-scope.ts` but no UI or operator playbook covers it yet.
 - Evaluate CocoIndex semantic scope cleanup as a separate packet. Embeddings were generated under the old all-files default and will remain stale until a follow-up packet rebuilds the semantic index with the new scope boundary.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/004-end-user-scope-default-and-opt-in` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan`

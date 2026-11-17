@@ -65,5 +65,7 @@ This leaf advances the vector-index schema from v34 to v35 and makes write-ingre
 - Startup drift repair re-runs the backfill each boot: convergent and protection-only, but a candidate for optimization later.
 - Audit event key does not hash the mutated value: a follow-up could distinguish identical reasons that carry different values.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/001-provenance-and-audit` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening`

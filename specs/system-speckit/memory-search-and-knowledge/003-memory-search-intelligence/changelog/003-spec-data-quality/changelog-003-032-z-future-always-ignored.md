@@ -48,5 +48,7 @@ A scoped fix to the graph-metadata backfill generator so its tree walk unconditi
 - Add a `z_future`-exclusion case to `.opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts`, which covers `z_archive` inclusion but has no `z_future`-exclusion test.
 - Check whether other generators that walk the specs tree share the same default-enters-`z_future` shape and need the same guard.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/032-z-future-always-ignored` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

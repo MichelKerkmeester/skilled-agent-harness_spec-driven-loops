@@ -48,5 +48,7 @@ The skill advisor launcher, plugin bridge, and Python native bridge each inherit
 ### Follow-Ups
 - The allowlist intentionally does not cover unrelated subprocesses outside the three named surfaces.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/023-subprocess-environment-whitelist` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

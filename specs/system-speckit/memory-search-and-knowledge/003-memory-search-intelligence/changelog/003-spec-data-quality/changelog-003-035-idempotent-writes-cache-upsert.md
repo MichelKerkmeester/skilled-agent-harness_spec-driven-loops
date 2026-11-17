@@ -56,5 +56,7 @@ Shipped the description-side idempotent writes and a targeted global-cache upser
 - Live callers that currently rebuild were not yet rewired to prefer `upsertDescriptionCacheEntry` at ship time, that routing was part of graduation.
 - A dedicated would-rewrite grandfather reporter was folded into the graduation follow-on rather than built here.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/035-idempotent-writes-cache-upsert` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

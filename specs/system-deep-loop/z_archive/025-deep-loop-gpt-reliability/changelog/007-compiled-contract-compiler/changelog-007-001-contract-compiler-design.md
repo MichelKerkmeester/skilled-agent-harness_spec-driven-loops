@@ -47,5 +47,7 @@ Status: Planned within the active 7-track rollup. This child carries the design 
 
 - Approve and execute the compiled-contract build/retrofit phases before promoting this track beyond In Progress.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/001-contract-compiler-design` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

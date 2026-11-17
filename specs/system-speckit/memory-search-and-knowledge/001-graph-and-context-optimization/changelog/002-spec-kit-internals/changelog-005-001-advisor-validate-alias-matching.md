@@ -50,5 +50,7 @@ The advisor_validate gold matching logic compared recommended skill IDs against 
 - Eight drifted rows still fail after alias normalization, a prompt-quality vs scorer triage item, not an alias defect.
 - Alias-awareness in skill_advisor_regression.py and evaluateRegressionCases shipped later in phase 007.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/001-advisor-validate-alias-matching` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation`

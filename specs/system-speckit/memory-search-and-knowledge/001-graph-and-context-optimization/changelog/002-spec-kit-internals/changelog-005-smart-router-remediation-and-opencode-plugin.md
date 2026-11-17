@@ -71,5 +71,7 @@ Phase 023 shipped all six work areas from the 021 smart-router research packet a
 - Telemetry is not enforcement yet.
 - Plugin rollout remains a deployment step.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

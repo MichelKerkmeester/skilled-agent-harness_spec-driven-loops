@@ -68,5 +68,7 @@ Shipped a generated-metadata drift gate and one shared synopsis extractor that b
 
 - The phase shipped default-OFF and deferred the scoped migration and the hard flip. `SPECKIT_GENERATED_METADATA_DRIFT_GATE` later GRADUATED to default-ON after the phase 039 migration was re-run with the flag set, which wrote `source_doc_hashes` tree-wide and gave the gate the freshness baseline it enforces against. Drift now fails strict.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/037-drift-gate-synopsis-extractor` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

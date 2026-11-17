@@ -72,5 +72,7 @@ Cumulative fixture lift is estimated at 50% (9/18) when combined with the 011/00
 - Measure p95 query latency delta for hybrid versus vector-only mode at production corpus scale.
 - Promote `COCOINDEX_HYBRID` to default-on once fixture validation confirms the lift exceeds the baseline threshold.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

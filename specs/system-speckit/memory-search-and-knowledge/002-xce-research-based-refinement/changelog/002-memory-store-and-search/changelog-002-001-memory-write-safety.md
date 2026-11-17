@@ -82,5 +82,7 @@ Four P0 correctness gaps in the memory write path were closed before the learnin
 - Recency fields (`access_count` and `last_accessed`) are selected by the retention sweep for audit but do not confer protection; that policy decision is deferred to the learning-reducers phase.
 - A `render.ts` uncertainty-check short-circuit for the skill advisor (high-uncertainty records rendering mandate wording) is a related correctness surface scoped to the next advisor contract packet, not this phase.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

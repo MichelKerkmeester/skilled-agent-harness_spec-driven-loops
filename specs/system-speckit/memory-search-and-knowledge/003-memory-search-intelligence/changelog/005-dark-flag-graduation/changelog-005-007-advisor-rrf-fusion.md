@@ -61,5 +61,7 @@ This phase benchmarked the advisor RRF-fusion cluster (`SPECKIT_ADVISOR_RRF_FUSI
 - The self-recommendation guard CUT should be paired with deleting the guard code so the redundancy does not re-emerge if the generic explainer floor or un-flagged audit penalty changes in the future.
 - The one-prompt RRF lift is a narrow margin on a deterministic scorer. A larger or harder labeled set could widen or narrow it and is worth a follow-on measurement before the live flip.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/007-advisor-rrf-fusion` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

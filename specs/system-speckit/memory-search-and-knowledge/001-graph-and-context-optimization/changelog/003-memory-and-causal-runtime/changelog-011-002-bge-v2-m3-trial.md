@@ -67,5 +67,7 @@ All three failure classes are wide failures, not close calls. No source patch wa
 - Confirm whether the 16 stale `gold_memory_ids` in the current `memory_index` would materially affect recall scores if refreshed. The fixture was authored against an earlier index snapshot.
 - Phase 3 (fine-tune) uses bge-v2-m3 as the model to beat. The HOLD outcome establishes 0.12 hit-rate@5 and 10591 ms p95 as the off-the-shelf ceiling for this corpus.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc`

@@ -66,4 +66,6 @@ This phase parent groups 16 child phases spanning 2026-05-23 to 2026-05-24. Each
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc` (Level 2, Phase Parent)

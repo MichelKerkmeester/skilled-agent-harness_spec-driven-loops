@@ -55,5 +55,7 @@ The skill advisor scoring engine was investigated for a lane evidence damping me
 - Revisit damping with different function shapes or a larger real-telemetry corpus once the underlying suite baseline is clean.
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/008-routing-confidence-calibration` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`

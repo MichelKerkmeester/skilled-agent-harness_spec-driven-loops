@@ -72,5 +72,7 @@ Fix 2 corrected IPC socket validation. Once Fix 1 unblocked startup, `resolveIpc
 - A pre-existing mismatch between `config.ts` `defaultDir` fallback (`mcp_server/database`) and the documented canonical DB dir is already flagged in-code for a separate system-code-graph follow-up.
 - The on-path `.opencode` anchor assumes no `.opencode` segment nests on the module's own path. A deeper marker such as `.git` was considered and deferred.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/003-code-graph-workspace-root-fix` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph`

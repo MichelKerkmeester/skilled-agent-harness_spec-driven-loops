@@ -93,5 +93,7 @@ Four follow-on bugs discovered during end-to-end verification were also resolved
 - Per-folder tracked-file counts are not split out. The status `excludedTrackedFiles` field is preserved but separate counters for agents, commands, specs plus plugins were deferred.
 - When a function name exists in both a test fixture and production code, the cross-file resolver conservatively skips the rewrite. Queries on ambiguous duplicate names require using `symbolId` directly.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/005-broader-excludes-and-granular-skills` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan`

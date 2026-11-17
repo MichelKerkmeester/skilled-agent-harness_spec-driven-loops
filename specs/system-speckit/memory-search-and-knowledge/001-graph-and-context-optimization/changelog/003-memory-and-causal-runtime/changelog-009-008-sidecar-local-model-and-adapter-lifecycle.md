@@ -81,5 +81,7 @@ Resident-memory severity remains benchmark-gated because measured RSS growth und
 - Live sidecar HTTP integration tests cannot run in this sandbox due to localhost bind restrictions. Confirm passing status in a non-sandboxed environment before closing the arc.
 - Generic adapter cleanup does not call `torch.mps.empty_cache()`. A targeted test segfaulted inside PyTorch MPS cache clearing. Closing and dropping refs plus GC is the safe path for now.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/008-sidecar-local-model-and-adapter-lifecycle` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

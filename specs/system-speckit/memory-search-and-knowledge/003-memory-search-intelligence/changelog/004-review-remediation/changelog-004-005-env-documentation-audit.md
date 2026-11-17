@@ -45,5 +45,7 @@ This phase ran a ten-iteration opus deep review of the whole ENV-documentation s
 - A separate house-style pass should clean the eleven pre-existing em-dashes and the prose semicolons in ENV_REFERENCE.md, which are debt outside this change's scope.
 - The 144-flag raw gap is intentionally not fully documented, flags that are internal-only or not user-facing remain undocumented by design.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation/005-env-documentation-audit` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation`

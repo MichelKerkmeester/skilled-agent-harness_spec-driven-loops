@@ -87,5 +87,7 @@ The mk-spec-memory manual testing playbook had no coverage for session bootstrap
 - Update scenario 07/028 to remove the dataset selector or add a handler-supported empty-fixture path.
 - Update scenario 17/278 to use an allowed memory-root path or document the policy rejection as the expected outcome.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit`

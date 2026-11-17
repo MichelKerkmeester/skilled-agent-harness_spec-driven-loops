@@ -87,5 +87,7 @@ Five commits: `540f9329b` (packet scaffold), `671dbfe27` (7-iteration deep resea
 - **T022 manual playbook scenario.** A "broad-scope scan with skip-list verification" scenario for `manual_testing_playbook/02--manual-scan-verify-status/` is filed as a follow-up. The implementation is verified end-to-end via the live driver, so the playbook is documentation rather than a blocker.
 - **Test-isolation hardening.** The `__resetParserHealth` export was added in commit `08a6ec18b` after the audit caught the gap. Vitest cases that previously relied on `vi.resetModules()` for module-isolation can now call the explicit reset.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

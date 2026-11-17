@@ -56,5 +56,7 @@ This review-only packet audited the MCP memory mutation, save and embedding reco
 - Align reconcile dry-run counts with apply mutation predicates.
 - Replace stale `dryRun: false` operator examples with the live `mode: "apply"` call shape.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`

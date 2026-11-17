@@ -59,5 +59,7 @@ Both findings were closed in a single-file edit to `.opencode/bin/mk-skill-advis
 - Reviewers may still flag the `if (lockHeld)` gate as defensive coding given that `acquireBootstrapLock()` always returns true under current semantics. Removing the gate is intentionally out of scope to preserve safety against future changes to `acquireBootstrapLock()`.
 - A fresh deep-review on 008 could surface new P2 or P3 hygiene items. Addressing those is deferred to a future packet if the operator requests it.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/008-launcher-race-window-and-debug-log-hygiene` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

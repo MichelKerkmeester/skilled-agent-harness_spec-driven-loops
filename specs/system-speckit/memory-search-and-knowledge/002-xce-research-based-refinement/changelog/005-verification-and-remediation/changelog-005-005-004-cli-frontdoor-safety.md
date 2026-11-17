@@ -62,5 +62,7 @@ This sub-phase resolved all six CLI front-door findings across the three daemon-
 - The foreign-uid socket-owner branch is not exercised by an automated test (forcing a different file owner is not portable in CI); the symlink, perms and happy-path branches are covered and the owner check mirrors the tested server fence.
 - T002 was refuted by Round-2 (the trusted-mutation gate already exists); the added prompt-time block is defense-in-depth and changes no previously-passing behavior.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation`

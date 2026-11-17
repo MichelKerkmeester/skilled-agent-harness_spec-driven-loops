@@ -63,5 +63,7 @@ The Skill Advisor MCP server was registered as `system_skill_advisor`, which no 
 - Long-lived MCP sessions may need a restart or reconnect to drop cached `system_skill_advisor` entries.
 - Generated SQLite and runtime state files were dirtied by local MCP smoke and list commands, unrelated database churn was excluded from the scoped commit.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/015-mcp-server-mk-skill-advisor-rename` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

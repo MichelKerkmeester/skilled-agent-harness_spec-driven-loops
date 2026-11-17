@@ -54,5 +54,7 @@ The `memory_search` hot path had twelve measured hot spots and this phase batche
 - The headline p50 under 800ms target is not yet measured. Run the fixed-query harness after the daemon leases restart with this code. Mechanism-level baselines are recorded in `scratch/mechanism-baseline-2026-07-04.md`.
 - Code effects apply on the next daemon-lease restart.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/010-search-hot-path-performance/` (Level 2)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

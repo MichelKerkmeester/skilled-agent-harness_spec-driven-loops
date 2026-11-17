@@ -58,5 +58,7 @@ Daemon re-election is now on by default for every user, not just on the one mach
 - Activation needs a fresh session. A launcher reads the config flag at startup, so a daemon already running keeps the old behavior until the next session spawns it.
 - Orphan-sweep stays opt-in. Faster cleanup of an unadopted daemon needs SPECKIT_STOP_HOOK_ORPHAN_SWEEP; the idle timeout is the default bound.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

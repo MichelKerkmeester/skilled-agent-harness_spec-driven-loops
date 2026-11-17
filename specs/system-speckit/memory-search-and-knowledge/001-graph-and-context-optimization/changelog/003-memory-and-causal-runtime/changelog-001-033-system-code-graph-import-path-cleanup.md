@@ -67,5 +67,7 @@ All five P0 requirements passed: clean build exits 0, the orphan does not regene
 - Sibling MCP code for `system-code-graph` and `system-skill-advisor` is still bundled into `mcp_server/dist`. This packet removes the shared-package orphan, not the broader sibling bundle architecture. Removing those sibling emits would require source import boundary work and is outside this packet's scope.
 - The runtime health check is noisy at startup. Existing memory/template warnings appear in the background scan log. The command exits 0 and the required API-key/database evidence is present, but the warnings should be cleaned up in a follow-on packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/033-system-code-graph-import-path-cleanup` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

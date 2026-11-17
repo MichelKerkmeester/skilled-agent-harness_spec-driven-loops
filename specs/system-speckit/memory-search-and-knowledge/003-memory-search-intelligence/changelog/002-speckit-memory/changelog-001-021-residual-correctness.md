@@ -54,5 +54,7 @@ This phase shipped two always-on correctness residuals inside the 028 tree. Sear
 - Expect recall-confidence magnitudes to move because the scale is corrected by design.
 - Keep the maintenance refresh invariant in mind for any future synchronous phase that could run longer than half the TTL.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/021-residual-correctness` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

@@ -89,5 +89,7 @@ The full suite now passes: 57 files, 553 tests passed, zero failures. No new `.s
 
 - Confirm the `code-graph-context-cocoindex-telemetry-passthrough.vitest.ts` test suite replacement covers the telemetry fields added to `tool-schemas.ts`, now that CocoIndex decoupling removed the original file.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/011-system-code-graph-suite-triage` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

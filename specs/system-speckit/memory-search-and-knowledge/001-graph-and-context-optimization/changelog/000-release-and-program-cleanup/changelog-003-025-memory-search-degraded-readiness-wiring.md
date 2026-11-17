@@ -69,5 +69,7 @@ A shared `mapGraphReadinessToTelemetry()` helper was created in `mcp_server/lib/
 - Resolve out-of-scope `core/index.js` export drift (`isEmbeddingModelReady`, `setEmbeddingModelReady`, `waitForEmbeddingModel`) so `npx tsc --noEmit` can run clean across the full mcp_server surface. Those exports are used by `memory-crud*` and `shadow-evaluation-runtime`, which are outside the 025 target authority.
 - Snapshot telemetry is intentionally sparse. `memory_search` does not populate the `blocked`, `graphAnswersOmitted`, `requiredAction`, `fallbackDecision` fields because `getGraphReadinessSnapshot` does not own those semantics. A future packet can extend the richer payload path if operator demand arises.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/025-memory-search-degraded-readiness-wiring` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

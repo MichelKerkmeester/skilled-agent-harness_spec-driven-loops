@@ -61,5 +61,7 @@ None. Review-only phase.
 - Apply the five deferred P2 clarifications in `system-spec-kit/README.md` and `system-spec-kit/shared/README.md` to distinguish primary-default from fallback-cascade tiers.
 - Consider adding a lint rule that flags new occurrences of `embeddinggemma-300m` outside `changelog/` and `z_archive/` to prevent similar documentation rot on future embedder flips.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/001-skill-mds-audit` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment`

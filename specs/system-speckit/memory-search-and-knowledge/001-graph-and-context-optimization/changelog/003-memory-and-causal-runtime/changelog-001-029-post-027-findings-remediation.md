@@ -87,5 +87,7 @@ The 027 deep-review surfaced 21 P1 and 16 P2 findings against the post-014 local
 - Verify that `llama-cpp-availability.ts` extraction is no longer needed after the llama-cpp surface was purged in a subsequent packet and remove the file if it is now dead code.
 - Confirm `profile-db-filename.vitest.ts` assertions remain green after the nomic consolidation that followed this remediation batch.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/029-post-027-findings-remediation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

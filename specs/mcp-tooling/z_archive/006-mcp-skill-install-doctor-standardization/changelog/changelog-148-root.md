@@ -81,4 +81,6 @@ The `mcp-*` skills now meet users at the same install and diagnostic line. Each 
 - `mcp-open-design/SKILL.md` is 3 words over the recommended 3000. The cross-reference addition pushed it to 3003 words. This is a soft `package_skill` warning, not a failure.
 - Pre-existing em dashes remain in untouched files. `mcp-click-up/scripts/install.sh` and two unrelated lines of `doctor_mcp_install.yaml` carry em dashes from earlier work. They were left under scope lock because this packet did not author those lines.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/mcp-tooling/006-mcp-skill-install-doctor-standardization` (Level 2)

@@ -23,4 +23,6 @@ This phase parent groups the deep-alignment integrity work under one root: seali
 | `001-alignment-registry-sealing` | Mark the deep-alignment findings registry as sealed only at terminal synthesis, so a run that halts mid-loop no longer strands its fail-closed seed as an authoritative verdict. |
 | `002-deep-alignment-multi-executor` | Extend the autonomous deep-alignment command with a contained `cli-opencode` leaf and an option that disables early convergence. |
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity` (Level 2)

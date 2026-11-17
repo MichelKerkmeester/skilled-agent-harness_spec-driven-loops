@@ -56,5 +56,7 @@ observed/promoted/rejected idea events: leaf emits observed-only, the reducer pr
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/007-ideas-backlog-lifecycle` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

@@ -85,5 +85,7 @@ Post-review remediation of the combined `008` + `009` deep review (commit `ee11e
 - The change activates when the code-index daemon next loads the new launcher and dist (next session). A one-time full `code_graph_scan` then drops the existing `.md` `'doc'` rows from the live graph.
 - The default-scope change affects external users too: their own `.md` files stop being graphed. This is intended (the graph models code, not docs), and a caller can still re-add markdown for a specific scan via `includeGlobs`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/009-code-graph-code-only-indexing` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

@@ -55,5 +55,7 @@ _No fixes recorded._
 - Prove false-merge safety and recall lift after the reindex gate.
 - Keep synchronous insert behavior unchanged.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

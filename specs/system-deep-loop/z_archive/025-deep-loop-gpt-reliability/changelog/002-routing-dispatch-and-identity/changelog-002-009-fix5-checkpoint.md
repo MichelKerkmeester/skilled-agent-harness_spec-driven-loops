@@ -53,5 +53,7 @@ Applied research's cross-validated negative gate against phase 012's real benchm
 - The 2 `timeout_latency` cells from phase 012 were resolved by reasoning (FIX-5 wouldn't address raw model latency regardless), not by re-running the benchmark with a longer window — judged unnecessary since the outcome doesn't depend on which reading is correct.
 - Closure is explicitly reopenable if future evidence of semantic wrong-mode artifacts or a route-proof mismatch appears — not a permanent ban on host-identity work.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/009-fix5-checkpoint` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

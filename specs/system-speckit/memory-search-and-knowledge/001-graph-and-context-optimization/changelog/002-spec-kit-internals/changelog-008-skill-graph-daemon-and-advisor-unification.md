@@ -65,5 +65,7 @@ Phase 027 shipped a unified advisor architecture across seven child packets. The
 - Add authority gating to public `skill_graph_scan`.
 - Add regression tests for active invariants (unavailable fail-open, untrusted scan rejection, corruption rebuild, path redaction).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

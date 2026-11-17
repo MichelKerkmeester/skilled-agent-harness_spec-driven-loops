@@ -57,5 +57,7 @@ The manual testing packet validated 42 end-to-end Skill Advisor scenarios throug
 - Daemon lifecycle, Python shim and environment-manipulation scenarios remain INCONCLUSIVE because the OpenCode MCP surface cannot safely force those runtime states.
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/014-manual-testing-playbook-validation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

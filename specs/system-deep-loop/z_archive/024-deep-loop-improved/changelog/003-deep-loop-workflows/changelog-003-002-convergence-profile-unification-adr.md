@@ -54,5 +54,7 @@ Defined a shared convergence-profile schema (threshold/weight/role/direction/nor
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/002-convergence-profile-unification-adr` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

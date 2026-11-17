@@ -75,5 +75,7 @@ Sub-packets 001 through 011 changed runtime hook contracts, advisor delivery, pl
 
 - If `SPECKIT_CODEX_HOOK_TIMEOUT_MS` turns out to be internal-only after operator survey, consider moving it to a deprecated section or prefixing with "(internal)".
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

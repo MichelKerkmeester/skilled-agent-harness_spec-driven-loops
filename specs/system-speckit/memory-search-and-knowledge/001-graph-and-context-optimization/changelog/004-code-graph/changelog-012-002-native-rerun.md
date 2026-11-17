@@ -75,5 +75,7 @@ The final usefulness verdict: code-graph downgraded to OVERHEAD until the tree-s
 
 - **Code-graph OVERHEAD verdict restoration.** The code-graph is downgraded pending the tree-sitter parser crash fix. Phase 012/007 will address this. The verdict should be re-evaluated after the 012/007 fix lands.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

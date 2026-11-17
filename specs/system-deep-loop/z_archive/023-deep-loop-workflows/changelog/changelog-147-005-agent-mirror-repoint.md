@@ -52,5 +52,7 @@ This phase moved the five native deep-loop agent bodies to the merged `deep-loop
 - CHK-020 Phase 001 baseline manifest located and used. No new baseline invented.
 - CHK-021 Phase 003 `mode-registry.json` exists and carries `workflowMode`, `runtimeLoopType` and `backendKind`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/005-agent-mirror-repoint` (Level 2)
 > Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`

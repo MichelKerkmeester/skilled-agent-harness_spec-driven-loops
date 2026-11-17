@@ -42,5 +42,7 @@ This phase defines the P2 triage as a decision layer over the frozen review-repo
 - A later pass must confirm every P2 maps to a family, finalize each verdict and route each fix-now family to a follow-on owner before any completion claim.
 - The per-item enumeration is authoritative in review-report.md. The family counts are approximate and overlap where the tri-model pass and the deep-dive surfaced the same code.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation/004-p2-triage` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation`

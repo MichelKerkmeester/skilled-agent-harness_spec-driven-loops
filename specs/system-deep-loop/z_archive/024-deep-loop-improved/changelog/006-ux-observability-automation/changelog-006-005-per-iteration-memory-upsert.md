@@ -52,5 +52,7 @@ memory_save/upsert step after each iteration + memory_context refresh before the
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation/005-per-iteration-memory-upsert` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation`

@@ -51,5 +51,7 @@ This phase introduced the new public shape: `deep-loop-workflows/` as one hub sk
 - CHK-020 `deep-loop-workflows/` exists. Hub `SKILL.md` routes by mode with no per-mode logic, grep-verified.
 - CHK-021 Hub `graph-metadata.json` has `skill_id`, `name` and folder equal to `deep-loop-workflows`, with `family=deep-loop`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/003-merged-hub-and-mode-packets` (Level 2)
 > Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`

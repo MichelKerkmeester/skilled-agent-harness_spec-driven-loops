@@ -60,5 +60,7 @@ None. Research-only phase.
 - Clarify probe 18 query intent before changing its expected path. If the target is "only changed files" incremental accounting, update the query and path together in a dedicated patch.
 - Review side findings from the audit: probes 7 and 14 have stale `expected_symbol` values even though their source paths are correct. A fixture maintenance pass should update those symbols.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

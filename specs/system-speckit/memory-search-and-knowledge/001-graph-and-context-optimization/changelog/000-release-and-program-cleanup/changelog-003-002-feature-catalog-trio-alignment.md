@@ -71,5 +71,7 @@ This doc-only packet refreshed all three catalogs without touching runtime code.
 
 - No standalone code_graph feature catalog exists. The discovery gap is documented in `discovery-notes.md` and the existing system-spec-kit code-graph entry was updated in place. A future packet should create a dedicated `system-code-graph` feature catalog when the standalone catalog surface is established.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/002-feature-catalog-trio-alignment` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass`

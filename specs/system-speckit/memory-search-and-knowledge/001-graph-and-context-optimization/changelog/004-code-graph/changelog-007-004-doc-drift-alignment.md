@@ -69,5 +69,7 @@ None.
 - The `mcp_server_topology` field is free-form with no schema enum. Future drift back to `co-resident` would not be caught by validation. A follow-up packet should add an enum constraint to the graph-metadata schema.
 - Runtime `package.json` version stays at `1.0.0`. If skill-doc version and runtime package version need to converge, a separate packet should decide the convention.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/004-doc-drift-alignment` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`

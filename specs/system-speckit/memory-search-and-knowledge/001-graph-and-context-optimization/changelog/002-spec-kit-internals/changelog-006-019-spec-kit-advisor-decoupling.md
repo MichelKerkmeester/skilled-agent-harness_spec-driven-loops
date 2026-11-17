@@ -59,5 +59,7 @@ The spec-kit MCP server still contained advisor source imports after the initial
 - Spec-kit memory full suite remains baseline-red with 114 failed tests. The count is unchanged by decoupling, so those failures are documented and not fixed in this packet.
 - The worktree contains unrelated dirty files. Commit staging must include only decoupling-related files and exclude parallel-session drift.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/019-spec-kit-advisor-decoupling` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

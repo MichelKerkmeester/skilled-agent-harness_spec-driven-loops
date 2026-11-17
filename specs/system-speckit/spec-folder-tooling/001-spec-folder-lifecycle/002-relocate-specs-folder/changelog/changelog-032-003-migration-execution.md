@@ -39,5 +39,7 @@ Executed the 11-step runbook phase 002 designed. The canonical spec-kit tree mov
 
 A live concurrent session pushed real commits to this same branch mid-run; resolved via rebase with no data loss. Two later independent reviews (2026-08-08) found and fixed a genuine data-quality bug this step's own doc claims had missed: `check-no-spec-imports.cjs`'s durable no-spec-import guard only checked the legacy alias, and `memory-drift-marker.sh`'s `git diff-tree` pathspec matched only the symlink blob, never the real tree — see phase 005's changelog.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/032-relocate-specs-folder/003-migration-execution` (Level 3)
 > Parent packet: `specs/system-speckit/032-relocate-specs-folder`

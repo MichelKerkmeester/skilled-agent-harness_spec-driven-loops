@@ -64,5 +64,7 @@ None.
 - Run read-through with a new contributor framing to confirm swap-in-10-min test passes against the shipped doc.
 - Verify out-of-box matrix rows stay accurate if registered_embedders.py adds candidates in future packets.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/003-embedder-pluggability-narrative`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment`

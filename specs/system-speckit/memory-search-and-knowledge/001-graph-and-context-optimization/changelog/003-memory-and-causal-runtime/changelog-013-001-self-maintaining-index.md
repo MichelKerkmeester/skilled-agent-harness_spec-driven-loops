@@ -55,5 +55,7 @@ Shipped the self-maintaining `memory_index_scan` index in four gated phases (Pha
 
 - Checkpoint-v2 (item D) and MCP front-proxy (item E) were re-deferred from this packet and shipped separately (see `013/002` and `013/003`). Now complete.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation`

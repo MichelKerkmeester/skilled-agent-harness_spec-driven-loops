@@ -71,5 +71,7 @@ The spec-memory runtime integration wired warm-only CLI fallback into the Claude
 - REQ-005 dual-stack observation window remains in progress by design
 - Final program-level multi-runtime transport-down drill tracked outside this phase
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli`

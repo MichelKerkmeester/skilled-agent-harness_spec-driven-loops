@@ -60,5 +60,7 @@ The fix introduces an `effectiveDepth` gate inside the blast_radius branch that 
 - Any future caller that wants full-closure blast_radius must pass `includeTransitive:true`. Document this change in the code-graph operator guide so users are not surprised by the narrower default.
 - The phase-007 consumer audit only covered programmatic callers. An interactive-use survey (agent prompts that call blast_radius) would confirm no agent workflow silently depended on the old full-closure default.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`

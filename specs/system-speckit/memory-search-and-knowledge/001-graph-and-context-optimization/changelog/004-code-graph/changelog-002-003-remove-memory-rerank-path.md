@@ -44,5 +44,7 @@ _No file-level detail recorded._
 
 - Confirm operator decision on memory cross-encoder loss before execution.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/003-remove-memory-rerank-path` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`

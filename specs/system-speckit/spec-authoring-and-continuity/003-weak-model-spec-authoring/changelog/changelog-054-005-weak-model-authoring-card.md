@@ -69,5 +69,7 @@ The four authoring intents now load one 172-line card instead of the 1,200-line 
 - Three smoke runs detect only large effects. The card either lets a weak model finish a Level 1 packet or it does not. Phase 009 reports the range and the delta, not a significance claim.
 - The card does not repair the guide. The guide keeps its defects until phase 2 and phase 3 fix them, and this phase only changes which tier loads it.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card` (Level 3)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

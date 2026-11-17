@@ -58,4 +58,6 @@ This rollup is the authoritative child inventory for 004/002. The five children 
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation` (Level 2, Phase Parent)

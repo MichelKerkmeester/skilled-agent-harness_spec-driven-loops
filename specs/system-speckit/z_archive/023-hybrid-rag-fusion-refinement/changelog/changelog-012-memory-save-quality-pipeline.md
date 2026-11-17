@@ -116,4 +116,6 @@ No migration required.
 
 Structured saves now pass through a better normalization, synthesis, and quality path. The phase packet still expects fresh runtime evidence before it can claim final rerun closure.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/012-memory-save-quality-pipeline` (Level 3)

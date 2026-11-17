@@ -74,5 +74,7 @@ The command-facing SpecKit surface now matches the current validation and templa
 - Batch inline renderer mention omitted intentionally. It is internal and no in-scope command or YAML workflow had a natural behavior-facing place for it.
 - No runtime-manifest exemptions recorded. The banned-vocabulary grep returned zero command-scope hits, so there were no YAML runtime manifest terms to classify.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/006-command-markdown-yaml-workflow-alignment` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

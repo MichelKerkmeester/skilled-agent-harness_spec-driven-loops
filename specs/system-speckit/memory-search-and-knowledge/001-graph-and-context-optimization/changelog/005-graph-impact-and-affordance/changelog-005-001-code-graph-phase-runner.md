@@ -75,5 +75,7 @@ A typed phase-DAG runner (`phase-runner.ts`) was introduced with a `Phase<I, O>`
 - Combine `detect_changes` output with `code_graph_query({ operation: 'blast_radius' })` for full indirect-impact coverage. Symbol attribution in this phase uses pure line-range overlap only.
 - Resolve cosmetic `validate.sh --strict` failure caused by extra section headers in the per-sub-phase scaffold. Tracked as deferred P2 cleanup.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/001-code-graph-phase-runner` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance`

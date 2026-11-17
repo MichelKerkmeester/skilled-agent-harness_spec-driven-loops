@@ -59,5 +59,7 @@ This is a research/design packet, not an implementation. It delivers a feasibili
 - Mis-location detection is high-confidence for embedded sibling numbers but heuristic for generic slugs; false positives are possible.
 - Gemini has no checked-in project hook, so it receives no pre-write enforcement even under the recommended design.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`

@@ -60,5 +60,7 @@ The packet resolved a conflict between the sk-code-skilled JavaScript CommonJS r
 - Canonical save used deferred embedding fallback due to restricted network access, BM25 and FTS indexing remain available.
 - Post-save quality reviewer reported a non-blocking EISDIR error with no HIGH or MEDIUM issues to patch.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/003-advisor-standards-alignment` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening`

@@ -74,5 +74,7 @@ All four `FIXME(sa-*)` markers are gone. The full stress suite passes 56/56 file
 - Five pre-existing unit test failures (manual-testing-playbook content drift, advisor-corpus-parity file-content drift, advisor-graph-health workspace-state counts, plugin-bridge degraded health) were confirmed unrelated to this packet via `git stash`. They are tracked separately and should be addressed in a dedicated cleanup packet.
 - Run `validate.sh --strict` for the final packet state and commit the result to close out the 045 packet checklist.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/008-fix-audit-drift-findings` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`

@@ -48,6 +48,8 @@ Round-2 remediation of the 15-seat multi-model deep review is complete. All 18 P
 | Scrubber and error suites after Wave A | PASS: 30 scrubber and 88 error tests |
 | Deep-review verdict | Moved CONDITIONAL PASS to PASS, all P0/P1/P2 closed |
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation` (Level 1, Phase Parent)
 
 ## 2026-06-12
@@ -118,5 +120,7 @@ The most consequential shipped work is the L1 safety lane: a default-on single-w
 - L2, L5, L6, L7, and L9 still carry open code queues in disposition docs.
 - Launcher `.cjs` changes activate only in fresh launchers.
 - mk-code-index still carries a mirrored dual-writer hazard recorded for later lifecycle work.
+
+&nbsp;
 
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation` (Level 1, Phase Parent)

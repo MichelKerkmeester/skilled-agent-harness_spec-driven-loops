@@ -100,4 +100,6 @@ This phase parent groups 50 child phases spanning 2026-05-12 to 2026-05-16. Each
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation` (Level 2, Phase Parent)

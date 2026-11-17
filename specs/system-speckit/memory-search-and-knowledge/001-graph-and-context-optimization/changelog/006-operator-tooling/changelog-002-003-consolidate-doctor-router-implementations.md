@@ -69,5 +69,7 @@ Phase 1 shipped all new files alongside the existing ten commands. No legacy fil
 - Rebuild the Skill Advisor index after Phase 2 removes the old per-command descriptions.
 - Author `.claude/commands/doctor.md`, `.claude/commands/doctor/mcp.md`, `.codex/commands/doctor.toml` and `.codex/commands/doctor/mcp.toml` mirrors if not yet present (CHK-501 through CHK-506 remain unchecked).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator`

@@ -27,5 +27,7 @@ Ran the closeout claim sweep and reconciled epic documentation against the final
 
 Complete. Closeout reconciled against the finalized runtime; the operator-chosen registry-direct flip executed and was finalized by `010`, and the whole-system gate passes.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

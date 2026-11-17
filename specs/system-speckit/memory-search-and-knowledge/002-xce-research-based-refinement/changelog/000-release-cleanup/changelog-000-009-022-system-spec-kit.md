@@ -61,5 +61,7 @@ system-spec-kit's 45 reference and asset docs now carry exactly the canonical fr
 - Live-daemon verification is campaign-level. The running daemon adopts the doc-trigger flag only after every attached session cycles; live matchedDocs evidence is tracked at the campaign level.
 - Two unrelated worktree deletions share the directory. Another session's hyphen-to-underscore rename left `references/hooks/skill-advisor-hook*.md` deletions uncommitted, so the diff shows 47 paths with 45 belonging to this phase.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

@@ -51,5 +51,7 @@ Status PLANNED. This phase is scaffolded and not yet implemented. No code change
 - A4 is unconditional as a DECISION but the error flip is gated on backfill-to-zero. The live failing count is 16-to-24 today, not 0, and the real failing roots are `.opencode/specs/graph-metadata.json` (legacy two-key shape) plus three `026/022` packets failing on migration_source, a missing depends_on[].source and an out-of-enum save_lineage, not the 11 nested research-iteration text stubs the parent census named.
 - Land it default-off and warn first, then flip to error only after the corpus backfill re-measures to zero, per the four-beat migration sequence in `028-governance-rollout`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/004-schema-warn-to-error` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

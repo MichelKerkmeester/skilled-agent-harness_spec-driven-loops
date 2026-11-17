@@ -78,5 +78,7 @@ Five new behaviors shipped. The `by_relation` map now zero-fills all six valid r
 - Run a live burst probe against the cap fixture in a running MCP daemon session to confirm the 100-edge throttle fires in practice.
 - Evaluate whether the 80% dominance and 50-edge minimum thresholds need tuning based on production telemetry after the first rollout.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/006-causal-graph-relation-window-metrics` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

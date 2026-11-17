@@ -81,5 +81,7 @@ Four open findings from the 023-arc investigation were closed: prompt names beca
 - Unknown custom models still bypass registry policy in compatibility paths that previously tolerated unknown models. A follow-on packet could extend accessor coverage to those paths with an explicit allow-list pattern.
 - No git commit was created for the implementation per a user constraint. The changes are reflected in commit `443a7dd68c` which consolidated them with prior session work.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/006-prompt-license-registry` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`

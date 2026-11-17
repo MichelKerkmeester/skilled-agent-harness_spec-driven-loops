@@ -53,5 +53,7 @@ Deprecated the dead `deep-loop` primary router agent after compiled command cont
 - Historical spec artifacts still name the router as point-in-time records and were intentionally left alone.
 - The broader 14-agent pointer rewrite and AGENTS.md thinning remain separate follow-ups.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/002-deep-loop-router-deprecation` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

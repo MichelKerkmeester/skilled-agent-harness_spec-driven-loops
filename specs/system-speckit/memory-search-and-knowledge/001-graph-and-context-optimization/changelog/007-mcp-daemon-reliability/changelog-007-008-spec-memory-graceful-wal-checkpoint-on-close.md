@@ -66,5 +66,7 @@ The `mk-spec-memory` close path (`close_db` in `vector-index-store.ts`) was clos
 - Real elimination of the corruption window requires graceful-only kills at the harness level. The OpenCode/Claude harness MCP-reconnect kill behavior is external to this repo. Ensuring it sends SIGTERM with grace rather than SIGKILL would close the remaining gap.
 - A separate benign build gap remains: `dist/lib/errors/core.js` lazy-imports a non-existent `dist/lib/utils/retry.js` and degrades gracefully. This is tracked separately and was not addressed here.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

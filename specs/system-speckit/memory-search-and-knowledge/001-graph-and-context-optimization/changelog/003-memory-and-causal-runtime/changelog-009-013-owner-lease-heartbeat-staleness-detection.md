@@ -74,5 +74,7 @@ Phase 013 introduces `stale-heartbeat-reclaim` as a new `OwnerClassification` va
 - SC-003 operator verification uses `launcher-lease.vitest.ts` as harness-equivalent evidence. A manual non-disruptive live MCP verification script is documented in the implementation summary for operators who want production-parent disconnect evidence.
 - The launcher retains a mirrored CommonJS owner-lease classifier because it runs before TypeScript build and bootstrap can be assumed.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

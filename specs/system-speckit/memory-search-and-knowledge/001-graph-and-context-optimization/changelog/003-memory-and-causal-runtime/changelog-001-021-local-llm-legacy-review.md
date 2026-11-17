@@ -74,5 +74,7 @@ None. Review-only phase.
 - Confirm whether the Voyage cloud-fallback in factory.ts is intentional opt-in behavior via env or also residue from 014.
 - Run a confirmatory `/deep:start-review-loop:auto` pass after remediation 022 ships to confirm FAIL transitions to PASS.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/021-local-llm-legacy-review` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

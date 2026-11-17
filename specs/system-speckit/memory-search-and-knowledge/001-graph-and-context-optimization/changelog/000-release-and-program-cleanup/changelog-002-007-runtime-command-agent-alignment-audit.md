@@ -76,5 +76,7 @@ All editable runtimes were audited and corrected. Doctor command docs now cite t
 
 - Apply Codex TOML agent fixes outside the sandbox. Files `.codex/agents/context.toml`, `.codex/agents/deep-research.toml`, `.codex/agents/orchestrate.toml` and `.codex/agents/write.toml` still need the documented path and hook wording corrections that were blocked here by sandbox EPERM policy.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/007-runtime-command-agent-alignment-audit` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`

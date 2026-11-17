@@ -50,5 +50,7 @@ A hardcoded convergence-threshold fallback disagreed with deep-research's own do
 
 - None. The corrected, loop-type-aware fix is documented as an explicit amendment to the original spec framing.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/008-convergence-threshold-and-forced-depth-flag` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

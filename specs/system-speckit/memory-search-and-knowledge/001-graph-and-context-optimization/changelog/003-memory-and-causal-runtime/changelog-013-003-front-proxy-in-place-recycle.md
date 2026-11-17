@@ -56,5 +56,7 @@ Shipped and deployed the MCP front-proxy (item "E", Phases 1-5). The daemon RSS-
 
 - The reconnect-transparency follow-ups (#1 protocol-drift fail-closed re-handshake, #2 multi-client transparency for 2nd+ sessions) shipped separately — see `changelog-013-003-front-proxy-reconnect-hardening.md`.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy` (Level 3, base implementation)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation`

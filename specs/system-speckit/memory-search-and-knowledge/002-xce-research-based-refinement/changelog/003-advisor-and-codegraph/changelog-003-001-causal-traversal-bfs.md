@@ -54,5 +54,7 @@ Two recursive-CTE graph traversals in the causal-boost and memo read paths share
 
 - None. The shared BFS helper is the single traversal path for both read sites.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

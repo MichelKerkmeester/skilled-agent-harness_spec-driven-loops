@@ -86,5 +86,7 @@ All 10 priority findings from research were addressed in a four-batch dependency
 - Measure HVR score per doc using `validate_document.py` across all 11 in-scope files. Child 003 owns this pass.
 - Fix the 3 broken import paths in `mcp_server/plugin_bridges/README.md` by updating the bridge source to point at current module locations. Out of scope for child 001.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent`

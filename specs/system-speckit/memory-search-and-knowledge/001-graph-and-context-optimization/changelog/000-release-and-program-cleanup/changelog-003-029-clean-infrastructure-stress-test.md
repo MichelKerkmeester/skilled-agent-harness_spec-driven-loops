@@ -84,5 +84,7 @@ All measurement artifacts, the narrative findings document, the machine-readable
 - The v1.0.2 comparison is directional only because its 30-cell CLI matrix does not match the v1.0.4 12-case telemetry corpus cell-for-cell.
 - Shadow rows are harness-exported. A future cycle should verify that production `memory_search` traffic invokes advisor dispatch without harness mediation.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/029-clean-infrastructure-stress-test` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

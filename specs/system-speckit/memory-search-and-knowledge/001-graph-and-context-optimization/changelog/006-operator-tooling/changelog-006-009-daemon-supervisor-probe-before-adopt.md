@@ -55,5 +55,7 @@ The spec-memory daemon supervisor used to decide a released daemon was healthy f
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/009-daemon-supervisor-probe-before-adopt` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`

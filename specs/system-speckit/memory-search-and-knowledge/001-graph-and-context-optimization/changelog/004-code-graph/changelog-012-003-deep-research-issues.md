@@ -74,5 +74,7 @@ The sweep also identified test-coverage gaps: CocoIndex handoff tests were missi
 - **012/007 parser resilience.** Phase 012/007 addressed the reclassified P0 parser crash with skip-list and quarantine.
 - **Test-coverage gaps.** The identified CocoIndex handoff, readiness computation, and test-isolation gaps were filed for a future coverage-hardening packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

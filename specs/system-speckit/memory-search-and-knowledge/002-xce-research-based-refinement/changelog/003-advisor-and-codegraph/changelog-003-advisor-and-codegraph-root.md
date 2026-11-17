@@ -20,4 +20,6 @@ Top rollup for the `003-advisor-and-codegraph/` themed track. Each row links to 
 | `003-advisor-and-codegraph/004` skill advisor suite repair | [changelog-003-004-skill-advisor-suite-repair.md](./changelog-003-004-skill-advisor-suite-repair.md) |
 | `003-advisor-and-codegraph/005` advisor state spec-folder leak | [changelog-003-005-advisor-state-spec-folder-leak.md](./changelog-003-005-advisor-state-spec-folder-leak.md) |
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph` (Phase Parent)

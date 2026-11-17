@@ -72,5 +72,7 @@ A `getCanonicalFallback(provider: CanonicalProvider)` helper was added to `share
 - Cloud providers' canonical strings still live as inline constants inside `CLOUD_CANONICAL` (two entries). If a third cloud provider arrives or these models change canonical, the table needs a manual update.
 - Audit other subsystems (CocoIndex, skill-advisor, code-graph, rerank-sidecar) for similar hardcoded-default patterns. That sweep is deferred to a follow-on deep-research packet.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/020-embedder-default-drift-fix` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

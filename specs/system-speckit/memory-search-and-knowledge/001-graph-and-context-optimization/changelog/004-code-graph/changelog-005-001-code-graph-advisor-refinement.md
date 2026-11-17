@@ -77,5 +77,7 @@ Phase 5 executed all 10 PRs, covering corpus-path repair, Claude settings rewrit
 - Deferred: F36 bench items 1, 2, 3, 5 plus 6 moved to a future packet per research synthesis section 15. Phase 5 shipped F36 items 4, 7 plus 8 only.
 - The retained `mcp_server/tests/promotion-positive-validation-semantics.vitest.ts` test covers memory auto-promotion semantics. A follow-up should add explicit auto-promotion tier-escalation coverage.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/001-code-graph-advisor-refinement` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor`

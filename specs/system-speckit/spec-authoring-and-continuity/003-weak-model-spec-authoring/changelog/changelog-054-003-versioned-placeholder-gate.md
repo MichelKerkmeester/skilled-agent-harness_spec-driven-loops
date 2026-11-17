@@ -59,5 +59,7 @@ An unfilled template hint now fails strict validation once a new packet leaves D
 - `upgrade-level.sh` copies tokens into older docs, so a v2.2 doc that gains a template section then holds tokens that error.
 - `README.md` and the template mapping asset still say `[PLACEHOLDER]` and are left to the documentation phase.
 
+&nbsp;
+
 > Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/003-versioned-placeholder-gate` (Level 3)
 > Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

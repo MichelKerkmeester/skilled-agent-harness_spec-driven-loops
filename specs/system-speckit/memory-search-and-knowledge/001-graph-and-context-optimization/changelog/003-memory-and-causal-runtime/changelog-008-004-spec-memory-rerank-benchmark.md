@@ -82,5 +82,7 @@ A 50-probe fixture was authored by combining 10 probes from cat-24/409 with 12 f
 - Consider expanding the fixture to 100 or more probes to reduce confidence interval width if a future benchmark produces a borderline delta.
 - Add non-English paraphrase probes if spec-memory is extended to multi-language content.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

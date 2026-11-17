@@ -78,5 +78,7 @@ All five decisions are backed by measurement JSON that records baseline metrics,
 - Promote W6 to default-on if a production corpus confirms the duplicate-density precision gain without overfetch regressions. Current evidence is fixture-only.
 - `rerank-gate.ts` and `cocoindex-calibration.ts` were removed in a later cleanup pass that stripped vestigial CocoIndex integration from the memory stack. The W4 gate logic was absorbed into `stage3-rerank.ts` directly.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/004-search-rag-measurement-implementation` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

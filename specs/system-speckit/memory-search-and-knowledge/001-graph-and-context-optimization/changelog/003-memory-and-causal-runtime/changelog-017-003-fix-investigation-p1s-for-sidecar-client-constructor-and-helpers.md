@@ -68,5 +68,7 @@ All seven findings closed in commit `2ffca86be4`. `sidecar-client.ts` received s
 - Address remaining P2 findings in `execution-router.ts` that are outside this packet scope. Only the F20 duplicate `EmbedOptions` definer changed here.
 - The `EmbedderAdapter` shared contract still includes `ready()` for registry adapters. A follow-on packet should evaluate whether the registry adapter surface also warrants removal or a separate `ready()` contract.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode`

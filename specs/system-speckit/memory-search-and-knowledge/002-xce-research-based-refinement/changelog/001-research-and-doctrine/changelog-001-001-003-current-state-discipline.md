@@ -57,5 +57,7 @@ Adopted peck's T4 teaching by registering `CURRENT_STATE_DISCIPLINE` as a new IN
 
 - Wave 1 scans `implementation-summary.md` only. Ordinary `spec.md` files are deferred for a later rollout.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/003-current-state-discipline` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`

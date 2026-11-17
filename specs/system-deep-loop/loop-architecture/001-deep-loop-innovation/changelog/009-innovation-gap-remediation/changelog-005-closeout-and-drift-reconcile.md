@@ -24,5 +24,7 @@ Planned — not executed. This phase plans the final documentation and evidence 
 
 Planned. Deferred until the pilot and fleet authority cutovers land, since the final status reconciliation depends on their outcomes. No authority flipped.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/005-closeout-and-drift-reconcile` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation`

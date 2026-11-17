@@ -61,5 +61,7 @@ deep-research's 15 reference and asset docs now carry exactly the canonical fron
 - Live-daemon `matchedDocs` verification is deferred to a later campaign-level session cycle; the daemon requires a restart before doc-trigger routing takes effect.
 - Phrase distinctiveness is point-in-time. Later campaign phases author their own phrases; bare deep-research claims like "question entropy" and "mad noise floor" rely on those phases honoring the same prefix-when-generic rule to prevent routing collisions.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/009-deep-research` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

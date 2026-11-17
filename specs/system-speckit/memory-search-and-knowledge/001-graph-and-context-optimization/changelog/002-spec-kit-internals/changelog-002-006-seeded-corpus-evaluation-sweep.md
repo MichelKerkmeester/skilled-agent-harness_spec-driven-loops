@@ -56,5 +56,7 @@ The lane-weight sweep shipped in a prior phase ran with empty cosine embeddings 
 - Re-run the sweep with a compatible embedding provider when one becomes available to capture cosine-lane deltas.
 - Revisit the weight recommendation if skill descriptions change materially or the corpus expands.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/006-seeded-corpus-evaluation-sweep` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`

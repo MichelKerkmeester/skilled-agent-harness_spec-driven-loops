@@ -39,4 +39,6 @@ No code changes. This phase generated runtime evidence artifacts in the `improve
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/004-sk-recursive-agent-promotion-verification/`

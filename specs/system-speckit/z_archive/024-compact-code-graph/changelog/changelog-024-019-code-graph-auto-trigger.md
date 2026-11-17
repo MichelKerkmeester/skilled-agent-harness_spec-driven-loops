@@ -80,4 +80,6 @@ The code graph originally required a manual `code_graph_scan` command before que
 
 No migration required.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/019-code-graph-auto-trigger/`

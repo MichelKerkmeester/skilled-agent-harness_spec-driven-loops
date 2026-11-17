@@ -60,5 +60,7 @@ The recurring SQLITE_CONSTRAINT_PRIMARYKEY write failure now heals itself. The 0
 - The durable systemic fix (worktree-per-session isolation) removes the concurrent-launcher contention that triggers this root cause; it is intentionally deferred.
 - launcher-watchdog.vitest.ts > isRespawnLockStale fails on HEAD independently of this change and is not addressed here.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn`

@@ -64,5 +64,7 @@ A fresh Fable 5 debug seat empirically root-caused the persistent `[mk-code-grap
 - The plugin bridge's warm-probe budget is hardcoded at 100ms and under-provisioned under load; it should accept a probe-budget flag.
 - Live daemons adopt the new cap on their next natural respawn.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/007-ipc-client-cap-hardening` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

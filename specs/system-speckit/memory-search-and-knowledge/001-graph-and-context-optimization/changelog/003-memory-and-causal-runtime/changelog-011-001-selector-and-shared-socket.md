@@ -62,5 +62,7 @@ The hf-local embedder selector required a local Python installation with `senten
 - Cascade-probe-timeout divergence (documented): spec-memory probes the shared socket at 5000ms while skill-advisor uses 2500ms. Marginal impact since a local `/api/health` GET completes in under 50ms. `SPECKIT_CASCADE_PROBE_TIMEOUT_MS` aligns both. Threading an explicit shared timeout into the skill-advisor package is deferred.
 - Live selection not exercised end-to-end: the probe swap and five-runtime convergence are covered by unit tests with injected transports. A live Node-only daemon selecting hf-local with two launchers sharing one resident server is verified in phase 005.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/001-selector-and-shared-socket` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`

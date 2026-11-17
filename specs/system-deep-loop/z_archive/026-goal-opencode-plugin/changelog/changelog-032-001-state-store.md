@@ -60,5 +60,7 @@ The passive /goal milestone now has durable state. mk-goal.js persists one activ
 
 - Process-local queueing only. mutateGoal serializes mutations inside the current process; cross-process coordination relies on atomic rename rather than a distributed lock.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/001-state-store` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`

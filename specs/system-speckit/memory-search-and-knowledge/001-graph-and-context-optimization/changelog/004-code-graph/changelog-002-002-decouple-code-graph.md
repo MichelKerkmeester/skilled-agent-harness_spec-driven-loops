@@ -45,5 +45,7 @@ _No file-level detail recorded._
 
 - Confirm operator decisions on memory cross-encoder loss and HYBRID semantic policy before execution.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/002-decouple-code-graph` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`

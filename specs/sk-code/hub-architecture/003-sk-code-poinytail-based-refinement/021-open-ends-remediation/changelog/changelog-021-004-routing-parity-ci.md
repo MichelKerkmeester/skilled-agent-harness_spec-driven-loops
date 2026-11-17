@@ -63,5 +63,7 @@ A new disagreement between the advisor's Python and TypeScript scorers now fails
 - The version may collide at merge. Sibling phases bump system-skill-advisor in parallel, so the integrator may renumber 0.15.4.0.
 - Pre-existing advisor suite failures. Four test files fail in this worktree with or without this change: python-compat, advisor-corpus-parity, advisor-graph-health and skill-advisor-cli-parity. They are outside this phase's scope.
 
+&nbsp;
+
 > Spec folder: `specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci` (Level 1)
 > Parent packet: `specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation`

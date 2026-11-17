@@ -81,5 +81,7 @@ Eight surgical fixes landed in a single commit (`fix(026/049/003)`) without dist
 - Consider extending ambiguity clustering to sub-threshold candidates within the margin if a use case emerges for showing near-passing alternatives.
 - Graph-causal negative-score propagation is intentionally bounded to direct conflict edges only. The BFS queue still enqueues only signed > 0 neighbors. Revisit if a use case emerges for deep conflict chain propagation.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/003-fix-skill-advisor-quality` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

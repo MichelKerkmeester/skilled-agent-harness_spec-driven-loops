@@ -52,5 +52,7 @@ Typed fallback route config + routeGroupId/hopIndex trace + validateFallbackGrap
 - [Implement core feature 2]
 - [Implement core feature 3]
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/015-fallback-router-typed-reroute` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

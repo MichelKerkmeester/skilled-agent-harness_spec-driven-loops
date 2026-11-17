@@ -74,5 +74,7 @@ The Kimi support work exposed a naming drift in `sk-prompt-models`: house files 
 - The four model-profile filenames remain dashed by contract. They mirror external model ids enforced by the drift guard.
 - A future change that renames model-profile files would also need to teach the guard a dash and underscore translation.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/005-filename-underscore-alignment` (Level 1)
 > Parent packet: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support`

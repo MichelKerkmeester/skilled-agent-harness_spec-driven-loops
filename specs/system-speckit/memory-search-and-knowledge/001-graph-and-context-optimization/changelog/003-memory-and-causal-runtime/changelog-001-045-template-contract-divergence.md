@@ -63,5 +63,7 @@ During the 2026-05-14 substrate repair wave, canonical V2.2 spec documents were 
 - The dry-run was verified through the local handler rather than the live MCP tool because `memory_save` was not exposed in the authoring Codex session. The handler and the MCP tool share the same implementation path and response envelope.
 - No build artifact was produced. Typecheck and Vitest passed without a dist rebuild due to prior local context dist write-permission constraints.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/045-template-contract-divergence`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

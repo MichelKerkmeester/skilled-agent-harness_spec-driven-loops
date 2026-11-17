@@ -58,5 +58,7 @@ This phase created the Level 1 scaffold for acquisition-time stale-lease reclaim
 - Implement atomic acquisition-time stale lease reclaim in `acquireSkillGraphLease()`.
 - Add the two-launcher stale-row regression and preserve the existing live-owner and EPERM protections.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/013-launcher-lease-acquisition-reclaim` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

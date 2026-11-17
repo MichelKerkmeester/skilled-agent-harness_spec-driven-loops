@@ -51,5 +51,7 @@ The public root `README.md` was rewritten as the release capstone. It now descri
 
 - Monitor README drift as shipped surfaces evolve.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

@@ -51,5 +51,7 @@ The BM25 indexing fidelity lane closed a smaller backlog slice covering packed B
 
 - None beyond backlog-recorded dispositions.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/005-bm25-indexing-fidelity` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation`

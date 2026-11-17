@@ -68,5 +68,7 @@ None.
 - Test CPU device at cap=10 if a future packet determines the MPS buffer reservation is the sole constraint and CPU overhead is acceptable.
 - Investigate fp16 weights as an orthogonal memory lever (covered by packet 009).
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

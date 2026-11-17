@@ -71,5 +71,7 @@ Third, `launcher-ipc-bridge.cjs` raises `DEFAULT_PROBE_TIMEOUT_MS` from 2500 to 
 - Auto-recover is intentionally deferred. This packet ships detect-only. An automatic rebuild or index swap on a corrupt verdict is a follow-on with its own failure modes.
 - The crash marker can persist after a fatal dimension-mismatch boot loop. It survives until a clean close, costing one extra cheap read-only integrity-check per boot. Bounded and self-clearing with no false `corrupt` verdict.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

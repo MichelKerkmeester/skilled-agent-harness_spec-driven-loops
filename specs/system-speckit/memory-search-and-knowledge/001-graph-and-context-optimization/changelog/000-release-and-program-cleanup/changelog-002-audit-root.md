@@ -58,4 +58,6 @@ This phase parent groups 8 child phases spanning 2026-04-29 to 2026-05-15. Each 
 
 - None.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit` (Level 3, Phase Parent)

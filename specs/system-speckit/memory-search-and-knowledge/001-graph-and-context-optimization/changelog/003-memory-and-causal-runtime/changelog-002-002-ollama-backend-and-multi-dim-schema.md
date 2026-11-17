@@ -69,5 +69,7 @@ Phase 002 shipped two complementary pieces as a fully additive layer. `OllamaAda
 - Add a live integration test against a real Ollama daemon to complement the mocked HTTP suite.
 - Document `brew install ollama` and minimum required model names in the operator guide for contributors who run the full embedder stack locally.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/002-ollama-backend-and-multi-dim-schema`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

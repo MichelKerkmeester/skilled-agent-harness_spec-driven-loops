@@ -80,5 +80,7 @@ A parent goal sent in chat now carries only its directive. This packet's own par
 - A new Pi session reads the brief twice on its first turn. The session-start restore and the first turn's injection both carry it, as HEAD did and the goal hooks README documents.
 - The rename-tooling test needs a quiet checkout. It hashes the whole checkout and fails when anything writes to it during its run. It passes in an isolated clone, and other sessions write to the shared one.
 
+&nbsp;
+
 > Spec folder: `specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe` (Level 2)
 > Parent packet: `specs/sk-doc/060-create-goal-mode`

@@ -46,6 +46,8 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 
 - Evidence gap: tasks.md records 17 of 24 checklist items checked. This index does not upgrade completion status.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/008-search-index-integrity-sweep` (Level recorded in phase evidence)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
 > Historical alias: `007-search-index-integrity-sweep`

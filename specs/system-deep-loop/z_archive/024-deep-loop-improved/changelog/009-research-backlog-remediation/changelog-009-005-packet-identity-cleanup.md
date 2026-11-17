@@ -49,5 +49,7 @@ Live navigational fields across several phase folders still pointed at the packe
 
 - None. Every live reference is closed and every historical reference is preserved as-is.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/005-packet-identity-cleanup` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

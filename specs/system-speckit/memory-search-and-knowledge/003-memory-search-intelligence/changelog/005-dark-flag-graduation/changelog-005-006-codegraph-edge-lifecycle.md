@@ -63,5 +63,7 @@ This phase benchmarked the code-graph edge-lifecycle cluster of three default-of
 - Set `SPECKIT_CODE_GRAPH_REVERSE_DEP_DEGREE_CAP` to a sensible ceiling when flipping the staleness flag. The cost benchmark informs the tuning but does not fix the value.
 - Revisit `SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB` only if an untyped or external edge writer is ever added. Absent that path the CUT verdict stands.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/006-codegraph-edge-lifecycle` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

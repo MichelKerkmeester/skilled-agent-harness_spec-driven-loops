@@ -62,5 +62,7 @@ Commit: `2895f0eb4`.
 - Phase 012/006 added the F-019 contract that makes scope mismatch informational on read paths (verify and status), so reads do not block on drift while writes still respect the guard.
 - The `parse_diagnostics` table was added in phase 012/006 to expose blocked-scan details to status responses.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`

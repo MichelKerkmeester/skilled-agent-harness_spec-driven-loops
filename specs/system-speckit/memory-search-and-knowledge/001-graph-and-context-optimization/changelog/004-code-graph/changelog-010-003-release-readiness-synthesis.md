@@ -60,5 +60,7 @@ All P0 requirements were met. Triage for every non-PASS row is recorded in the m
 - Re-run scenarios 002, 005, 022, 024 after the tree-sitter parser quarantine (F-RUNTIME-2) is resolved.
 - Verify sequential_thinking enforcement in Devin output once positive trace visibility is available.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/003-release-readiness-synthesis` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`

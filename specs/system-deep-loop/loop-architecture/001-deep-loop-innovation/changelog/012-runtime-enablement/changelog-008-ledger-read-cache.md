@@ -27,5 +27,7 @@ Added an opt-in, default-off verified-events read cache on `AppendOnlyLedger` so
 
 Complete. New read-cache suite 6/6 green; authorized-ledger regression 52/53 with one pre-existing multiprocess flake causally excluded from this change.
 
+&nbsp;
+
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache` (Level 2)
 > Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

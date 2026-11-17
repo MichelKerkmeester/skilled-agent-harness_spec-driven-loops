@@ -46,5 +46,7 @@ This phase benchmarked the default-off `SPECKIT_RETRIEVAL_CLASS_ROUTING` flag on
 - The flat SingleHop suppression branch and the `SPECKIT_RETRIEVAL_CLASS_ROUTING` flag can be deleted. No production default was flipped in this phase.
 - An entity-density-aware suppression variant that keeps graph and degree on high-degree single-hop queries was noted as a plausible future refinement but was not pursued here, since the current flag shows no win to refine toward.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/002-retrieval-class-weights` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

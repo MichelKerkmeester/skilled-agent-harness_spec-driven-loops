@@ -72,5 +72,7 @@ This phase closed the drift left after the daemon bridge work. A canonical `@spe
 - Finish code-index unification by adding the `@spec-kit/shared` dependency and replacing its byte-identical local copy with an import.
 - Track the unrelated advisor shared-embeddings failure separately.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/015-socket-server-reconvergence-and-hardening` (Level 1)
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

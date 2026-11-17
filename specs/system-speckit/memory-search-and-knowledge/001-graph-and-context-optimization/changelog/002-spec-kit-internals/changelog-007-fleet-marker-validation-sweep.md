@@ -57,5 +57,7 @@ Two commits: `30024e3bed`, `79e97aec92`.
 
 - **Phase 008 (z_archive marker sweep).** Validate and clean archive markers in `z_archive/` directories.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

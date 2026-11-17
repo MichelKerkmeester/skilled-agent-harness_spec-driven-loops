@@ -46,6 +46,8 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 
 - None in the allowed evidence set.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/025-git-hooks-reinstall-and-guard` (Level recorded in phase evidence)
 > Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
 > Historical alias: `018-git-hooks-reinstall-and-guard`

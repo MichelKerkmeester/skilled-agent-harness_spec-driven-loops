@@ -51,5 +51,7 @@ This phase shipped the content-addressed derived ID for generated causal edges b
 - Reuse the existing canonical JSON helper rather than adding a new hash primitive.
 - Prove backfill on a real database copy before promoting the migration.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

@@ -56,5 +56,7 @@ Built and ran the Stage 4 before-and-after benchmark that decides which default-
 
 - The final reckoning of thirteen flags: twelve kept and one deleted. `SPECKIT_GROUNDING_SIGNAL_V1` was deleted as a measured-neutral formatter additive that earned no metric win. Of the kept flags, six graduated to their new defaults in this phase. The drift gate and generator hardening, which stayed off here for a missing field baseline, graduated after the phase 039 migration was re-run with their flags set, which wrote `source_doc_hashes` and `source_fingerprint` tree-wide.
 
+&nbsp;
+
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
