@@ -1,0 +1,3 @@
+rc=0 secs=31
+main-new: 
+wt-new:  M .skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts;

@@ -15,7 +15,8 @@
       "apply the configured review miniterations",
       "review min iterations floor plan",
       "review min iterations floor tasks",
-      "review min iterations floor goal"
+      "review min iterations floor goal",
+      "minIterationsNotReached review"
     ],
     "key_topics": [
       "review",
@@ -28,8 +29,8 @@
       "plan",
       "tasks",
       "goal",
-      "config",
-      "ships"
+      "miniterationsnotreached",
+      "config"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -38,13 +39,14 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "implementation-summary.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts",
-      ".skilled/skills/system-deep-loop/runtime/tests/integration/review-stop-path-replay.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts",
       ".skilled/commands/deep/assets/deep-review.yaml",
       ".skilled/skills/system-deep-loop/deep-review/README.md",
-      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown"
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+      ".skilled/skills/system-deep-loop/runtime/tests/integration/review-stop-path-replay.vitest.ts"
     ],
     "entities": [
       {
@@ -72,6 +74,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "convergence.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
@@ -81,12 +89,6 @@
         "name": "review-depth-convergence.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "review-stop-path-replay.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/integration/review-stop-path-replay.vitest.ts",
         "source": "derived"
       },
       {
@@ -111,6 +113,12 @@
         "name": "deep-review.contract.markdown",
         "kind": "file",
         "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "review-stop-path-replay.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/integration/review-stop-path-replay.vitest.ts",
         "source": "derived"
       },
       {
@@ -184,31 +192,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The review config ships `antiConvergence.minIterations: 2`, and `stopDecisionConfig` reads it for both loop types, but the floor check in `convergence.cjs` runs only when `loopType === 'research'`",
     "created_at": "2026-11-17T14:34:34Z",
-    "last_save_at": "2026-11-17T17:47:00.248Z",
+    "last_save_at": "2026-11-17T19:05:13.180Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:92e782af1e4aafaf61ea81242a630f9c9304af855c98059c3947fa665000a270",
+    "source_fingerprint": "sha256:2ee2eff0a3f01c8457941df4796af46ed988dd01f62e7cf5b44babb9273b7f94",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "14ef92db4f15c7699bf04c9808420b162934ac4f9f5c27b79d0189e98bed1682",
       "plan.md": "d5b8408c042028418d4665a7d9106bc7b506aefa753a2f23da87c334584af3d2",
-      "tasks.md": "03f25d2a6c32ac3842c0bec78ad334f69e9b53cbeee1a133a61230040637c284"
+      "tasks.md": "85423fa5963eed816149ed4746a4635c64dda6d7cbda209ce4157b95d73cdf8f",
+      "implementation-summary.md": "d31437629c5b1e79085386cbaffa39510f15a32432ed74b445dc9ec6dfec63e7"
     },
     "last_active_at": null
   }

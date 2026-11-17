@@ -54,11 +54,11 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/review-depth-convergence.vitest.ts tests/integration/review-stop-path-replay.vitest.ts tests/unit/stop-decision.vitest.ts` exits 0 with the configured-floor case and the inverted review case.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/review-depth-convergence.vitest.ts tests/integration/review-stop-path-replay.vitest.ts tests/unit/stop-decision.vitest.ts` exits 0 with the configured-floor case and the inverted review case.
 - [ ] The configured-floor case and the inverted `stop-decision.vitest.ts` case fail against the pre-change `convergence.cjs`, and the full runtime suite shows one case changed and no new failure.
-- [ ] `grep -n 'minIterationsNotReached' .skilled/commands/deep/assets/deep-review.yaml` prints the stop-order line, and `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/review` exits 0.
+- [x] `grep -n 'minIterationsNotReached' .skilled/commands/deep/assets/deep-review.yaml` prints the stop-order line, and `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/review` exits 0.
 - [ ] The `deep-review/manual-testing-playbook` index lists a review floor scenario written by `/create:manual-testing-playbook`.
-- [ ] `grep -n "loopType === 'research' && minIterations" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` prints nothing.
+- [x] `grep -n "loopType === 'research' && minIterations" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` prints nothing.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -75,11 +75,17 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md` written 2026-11-17; implementation not started |
+| Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md` written 2026-11-17 |
+| Baseline (T001, T002) | Done | Three suites at `21c4b325b5a`: 3 files, **69 passed**, exit 0. Full runtime suite from the parent goal log: 3095 passed, 0 failed |
+| Implementation | Done | 2026-11-17 in worktree `457-ed-003-review-min-iterations-floor`: floor check widened in `convergence.cjs`, loop-state case, inverted unit case, stop-order item `4a`, README sentence, review contract regenerated. Three suites plus the drift and YAML parity suites: 5 files, 83 passed, exit 0 |
+| Full runtime suite (T007) | Open | Runs once per merge in the integration worktree |
+| Playbook scenario (T011) | Blocked | `/create:manual-testing-playbook` hard-blocks at Phase 0 unless run as `@markdown` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| Changelog | Added T012 from the cross-phase handoff §3 (default-path change). Blocked by the same `@markdown` gate. |
+| Fail-before evidence | Before the fix the loop-state case got `BLOCKED` at iteration 2, which shows the run reached a stop candidate and ran the gates; the floor now runs before them. |
 | Plan review amendments 2026-11-17 | Applied the Fable 5.2 plan review: `stop-decision.vitest.ts:905-913` asserts the old research-only gate and is inverted (D1 reworded to match); the review stop order and README name the floor; the review contract is regenerated; test commands run from `runtime/`; the playbook scenario goes through `/create:manual-testing-playbook`. |
 <!-- /ANCHOR:log -->

@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.6.0
+version: 1.11.7.0
 ---
 
 # deep-review
@@ -152,7 +152,7 @@ Convergence is a weighted vote over three signals.
 
 The weighted score has to reach `compositeStopScore`, which defaults to 0.60, before the loop may consider a stop. Clearing the threshold is not enough on its own. Nine binary gates have to pass as well, and a failure writes a `blocked_stop` event with `blockedBy` and a per-gate `gateResults` record. The gate list and its criteria live in `references/convergence/convergence.md`.
 
-Any new P0 forces another iteration. The override sets `newFindingsRatio` to at least 0.50, so a fresh blocker cannot be averaged away. The shipped config adds `antiConvergence.minIterations` of 2 and a `stopPolicy` of `fail-closed`, and the runtime capability loader rejects a missing or permissive stop policy.
+Any new P0 forces another iteration. The override sets `newFindingsRatio` to at least 0.50, so a fresh blocker cannot be averaged away. The shipped config adds `antiConvergence.minIterations` of 2 and a `stopPolicy` of `fail-closed`, and the runtime capability loader rejects a missing or permissive stop policy. The floor holds a review run at `CONTINUE` with reason `minIterationsNotReached` until its iteration count reaches `minIterations`, even when every dimension is clean.
 
 ### Fan-out and Merged Verdicts
 

@@ -1,0 +1,3 @@
+rc=0 secs=32
+main-new: 
+wt-new:  M .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs;

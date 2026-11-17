@@ -1026,6 +1026,7 @@ workflow:
           3. if convergence_mode == "off": skip convergence stop candidates and continue.
           3a. if stop_policy == "max-iterations" AND iteration_count < max_iterations: the vote is telemetry only and the decision is CONTINUE.
           4. a STOP candidate exists when every dimension is clean (all_dimensions_clean) or the weighted vote passes (composite_converged). The vote cutoffs follow the configured convergenceThreshold.
+          4a. if iteration_count < min_iterations: CONTINUE (minIterationsNotReached). min_iterations is config.minIterations, else antiConvergence.minIterations, capped at max_iterations; like research, the floor runs on a candidate before the legal-stop gates.
           5. the nine legal-stop gates run on a candidate: convergenceGate, dimensionCoverageGate, p0ResolutionGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate, candidateCoverageGate, graphlessFallbackGate. Any failed gate gives BLOCKED (blockedStop).
           6. the graph decision settles the candidate: STOP_ALLOWED keeps STOP, STOP_BLOCKED gives BLOCKED, CONTINUE or a missing graph decision gives CONTINUE.
           Bind the outputs from stop_decision, where G is stop_decision.gates and I is stop_decision.inputs.review:

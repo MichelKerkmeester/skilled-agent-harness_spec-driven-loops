@@ -902,14 +902,14 @@ describe('order', () => {
     expect(decision.reasonDetail).toBe('minIterationsNotReached');
   });
 
-  it('does not apply the iteration floor to review', () => {
+  it('applies the review iteration floor after the candidate check', () => {
     const decision = buildStopDecision(
       reviewInput({ iterationCount: 1, config: { minIterations: 3 } }),
     );
 
-    expect(decision.decision).toBe('STOP');
-    expect(decision.stopReason).toBe('converged');
-    expect(decision.reasonDetail).toBe('all_dimensions_clean');
+    expect(decision.decision).toBe('CONTINUE');
+    expect(decision.stopReason).toBeNull();
+    expect(decision.reasonDetail).toBe('minIterationsNotReached');
   });
 });
 
