@@ -1,7 +1,7 @@
 ---
 title: "DRV-071 -- Fan-out merged review keeps its coverage surfaces"
 description: "This scenario validates that a merged two-lineage review fan-out keeps its coverage surfaces for `DRV-071`. It focuses on the six surfaces the merge now carries from the lineages instead of dropping them."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DRV-071 -- Fan-out merged review keeps its coverage surfaces
@@ -43,7 +43,7 @@ Operators run this as a real check against a two-lineage fan-out artifact, so th
 ### Commands
 
 1. `rg -n 'mergeReviewCoverageSurfaces|dimensionCoverage|divergenceByLineage' .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs`
-2. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-merge.vitest.ts tests/fanout-review-focus.vitest.ts`
+2. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run fanout-merge.vitest fanout-review-focus.vitest`
 3. `node .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs --loop-type review --artifact-dir <fixture-artifact-dir> | jq '{dimensionCoverage, traceability, searchCoverage, candidateCoverage, divergenceByLineage, ruledOutCandidates}'`
 4. `node .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs --loop-type review --artifact-dir <fixture-artifact-dir> | jq 'has("divergence")'`
 

@@ -1,7 +1,7 @@
 ---
 title: "DRV-072 -- Review run holds below its minIterations floor"
 description: "This scenario validates that a review run never stops before its configured minIterations floor for `DRV-072`. It focuses on a stop candidate below the floor returning CONTINUE with minIterationsNotReached."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DRV-072 -- Review run holds below its minIterations floor
@@ -44,7 +44,7 @@ Operators run this as a single check of the convergence decision with a floor se
 
 1. `rg -n 'minIterationsNotReached' .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs`
 2. `rg -n '4a\. if iteration_count' .skilled/commands/deep/assets/deep-review.yaml`
-3. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/review-depth-convergence.vitest.ts tests/unit/stop-decision.vitest.ts tests/integration/review-stop-path-replay.vitest.ts tests/unit/stop-policy-yaml-parity.vitest.ts`
+3. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run review-depth-convergence.vitest stop-decision.vitest review-stop-path-replay.vitest stop-policy-yaml-parity.vitest`
 
 ### Expected
 

@@ -1,7 +1,7 @@
 ---
 title: "DR-065 -- Completed-run extension with --extend"
 description: "This scenario validates `--extend=N` on a completed deep-research run for `DR-065`. It focuses on same-session continuation, the `run_extended` ledger event and the synthesis snapshot taken before the first new dispatch."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DR-065 -- Completed-run extension with --extend
@@ -44,7 +44,7 @@ Operators run this as a real orchestrator-led check against a completed fixture 
 
 1. `rg -n -- '--extend' .skilled/commands/deep/research.md .skilled/commands/deep/assets/deep-research.yaml`
 2. `rg -n 'run_extended' .skilled/skills/system-deep-loop/runtime/lib`
-3. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/append-mode-event-legacy-seam.vitest.ts tests/unit/workflow-restart-lifecycle.vitest.ts`
+3. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run append-mode-event-legacy-seam.vitest workflow-restart-lifecycle.vitest`
 4. `/deep:research "<fixture topic>" :auto --spec-folder=<completed-fixture-spec-folder> --extend=3`
 5. `rg -c '"run_extended"' <completed-fixture-spec-folder>/research/deep-research-state.jsonl`
 6. `jq '{sessionId, generation, maxIterations, lineageMode}' <completed-fixture-spec-folder>/research/deep-research-config.json`
