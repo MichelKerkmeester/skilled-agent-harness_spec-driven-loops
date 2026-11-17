@@ -91,4 +91,5 @@ and findings belong here.
 | Vibe child cannot run tests | The repository's Vibe hooks deny `node` and `vitest` inside the child, so each brief asked for the edit only, and the orchestrator ran every check. |
 | Plan review amendments 2026-11-17 | Applied the Fable 5.2 plan review: shared literal clause because the two rules differ today; `command_note` lines updated; `stop-policy-yaml-parity` dropped from the test plan; a landed-plus-error-row fixture pins the still-fails consequence; test commands run from `runtime/`; both contracts regenerated; the playbook scenario goes through `/create:manual-testing-playbook`. |
 | 2026-11-17 23:1x | DLR-063 walked live, PASS (T011 ticked): a landed iteration failing with `executor_missing` was not dispatched again (receipts unchanged at 10), and `delta_file_missing` still redispatches. |
+| 2026-11-18 00:1x | T006 closed at the integration gate `adedc72e930` (all phases 001-013 merged): 190 files, 3358 passed, 11 skipped, 0 failed, against baseline `c9d8ff4` with 3095 passed and 0 failed. |
 <!-- /ANCHOR:log -->

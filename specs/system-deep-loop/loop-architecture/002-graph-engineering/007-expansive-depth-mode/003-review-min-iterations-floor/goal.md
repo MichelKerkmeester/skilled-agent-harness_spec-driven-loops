@@ -55,7 +55,7 @@ Frozen choices. Changing one is an amendment.
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
 - [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/review-depth-convergence.vitest.ts tests/integration/review-stop-path-replay.vitest.ts tests/unit/stop-decision.vitest.ts` exits 0 with the configured-floor case and the inverted review case.
-- [ ] The configured-floor case and the inverted `stop-decision.vitest.ts` case fail against the pre-change `convergence.cjs`, and the full runtime suite shows one case changed and no new failure.
+- [x] The configured-floor case and the inverted `stop-decision.vitest.ts` case fail against the pre-change `convergence.cjs`, and the full runtime suite shows one case changed and no new failure. Fail-before: `BLOCKED` and `STOP` before the fix (T003, T008). Full suite: integration gate `adedc72e930` (all phases 001-013 merged): 190 files, 3358 passed, 11 skipped, 0 failed, against baseline `c9d8ff4` with 3095 passed and 0 failed.
 - [x] `grep -n 'minIterationsNotReached' .skilled/commands/deep/assets/deep-review.yaml` prints the stop-order line, and `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/review` exits 0.
 - [x] The `deep-review/manual-testing-playbook` index lists a review floor scenario written by `/create:manual-testing-playbook`.
 - [x] `grep -n "loopType === 'research' && minIterations" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` prints nothing.
@@ -88,4 +88,5 @@ and findings belong here.
 | Changelog | Added T012 from the cross-phase handoff §3 (default-path change). Blocked by the same `@markdown` gate. |
 | Fail-before evidence | Before the fix the loop-state case got `BLOCKED` at iteration 2, which shows the run reached a stop candidate and ran the gates; the floor now runs before them. |
 | Plan review amendments 2026-11-17 | Applied the Fable 5.2 plan review: `stop-decision.vitest.ts:905-913` asserts the old research-only gate and is inverted (D1 reworded to match); the review stop order and README name the floor; the review contract is regenerated; test commands run from `runtime/`; the playbook scenario goes through `/create:manual-testing-playbook`. |
+| 2026-11-18 00:1x | T007 and the last criterion closed at the integration gate `adedc72e930` (all phases 001-013 merged): 190 files, 3358 passed, 11 skipped, 0 failed, against baseline `c9d8ff4` with 3095 passed and 0 failed. |
 <!-- /ANCHOR:log -->

@@ -89,4 +89,5 @@ and findings belong here.
 | Changelog | Added T012 from the cross-phase handoff §3 (default-path change). Blocked by the same `@markdown` gate. |
 | T007 rg check | The strip cases send `quality_class: 'primary'` on purpose (REQ-001), so the T007 rg is clean only over the seeded fixtures. |
 | Plan review | The 2026-11-17 plan review findings were applied: derive from `path` first, wording changed from distinct sources to distinct derived classes, a code-only fixture that must pass, runnable test commands, and this phase's own playbook scenario. |
+| 2026-11-18 00:1x | Completion boxes in `tasks.md` closed: all tasks were ticked with evidence, and the integration gate `adedc72e930` (all phases 001-013 merged): 190 files, 3358 passed, 11 skipped, 0 failed, against baseline `c9d8ff4` with 3095 passed and 0 failed. |
 <!-- /ANCHOR:log -->

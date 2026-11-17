@@ -57,7 +57,7 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T006 Rerun the stop-path replay with the shipped floor (`I/review-stop-path-replay.vitest.ts`). Verify: it passes with no fixture change, and `git diff --stat` lists no fixture file under `S/runtime/tests/`. Done: the replay passes, and `git diff --stat` under `runtime/tests/` lists only the two changed test files, no fixture.
-- [B] T007 Run the full runtime vitest suite from the final state (`S/runtime`). Verify: `cd S/runtime && npx vitest run` shows one existing case changed (T008), N cases added and no failure absent from the T002 baseline. Open: the full runtime suite runs once per merge in the integration worktree, not in the phase worktree.
+- [x] T007 Run the full runtime vitest suite from the final state (`S/runtime`). Verify: `cd S/runtime && npx vitest run` shows one existing case changed (T008), N cases added and no failure absent from the T002 baseline. Open: the full runtime suite runs once per merge in the integration worktree, not in the phase worktree. Closed 2026-11-18 at the integration gate `adedc72e930` (all phases 001-013 merged): 190 files, 3358 passed, 11 skipped, 0 failed, against baseline `c9d8ff4` with 3095 passed and 0 failed. The full suite showed no failure absent from the baseline, and the one changed case is the inverted floor case (T008).
 - [x] T011 Write the playbook scenario through `/create:manual-testing-playbook system-deep-loop update --path S/deep-review/manual-testing-playbook`, landing under `convergence-and-recovery/`, then walk it. No hand edit to the package. Verify: the package index lists the new scenario, and the walk shows a `minIterations: 3` review run does not stop before iteration 3. Done 2026-11-17 through the update-mode steps of `create-manual-testing-playbook-auto.yaml` (`@markdown`): DRV-072 in `deep-review/manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md`, listed in the root index. `validate-playbook-package.cjs` PASS (59 scenarios, 0 violations). NOT DONE: the walk of a `minIterations: 3` run, which needs a live run.
 - [x] T012 Write the changelog entry for the default-path review floor through `/create:changelog` under `.skilled/skills/system-deep-loop/deep-review/changelog/` (cross-phase handoff §3). Verify: the entry says a review run holds at `CONTINUE` below its configured floor. Done 2026-11-17 through the update-mode steps of `create-changelog-auto.yaml` (`@markdown`): `.skilled/skills/system-deep-loop/deep-review/changelog/v1.11.18.0.md` (patch). The entry says a review stop candidate below its floor returns `CONTINUE` with `minIterationsNotReached`. validate_document VALID, DQI 89. Step 6 moved the packet SKILL.md version to 1.11.18.0; parent-skill-check PASS.
 <!-- /ANCHOR:phase-3 -->
@@ -67,9 +67,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] The configured-floor and inverted cases pass, the shipped-floor replay is unchanged, the review contract shows no drift, and the playbook scenario exists
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] The configured-floor and inverted cases pass, the shipped-floor replay is unchanged, the review contract shows no drift, and the playbook scenario exists (T003 to T008, the drift check `OK commands=2` at the merge gate, and the playbook scenario written in the wave-1 doc pass)
 <!-- /ANCHOR:completion -->
 
 ---

@@ -56,7 +56,7 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [B] T006 Rerun the four suites and the full runtime suite from the final state (`S/runtime/tests/unit/`). Verify: the T001 commands exit as at baseline, the four-suite pass count equals the baseline plus the new cases, the full suite shows no new failure, and the existing "append-only redispatch added a corrected one" case still passes. Partly done: the four suites pass 115 (baseline 108 plus 7 new cases), and the append-only redispatch case still passes. Blocked on: the full runtime suite runs in the integration merge gate.
+- [x] T006 Rerun the four suites and the full runtime suite from the final state (`S/runtime/tests/unit/`). Verify: the T001 commands exit as at baseline, the four-suite pass count equals the baseline plus the new cases, the full suite shows no new failure, and the existing "append-only redispatch added a corrected one" case still passes. Partly done: the four suites pass 115 (baseline 108 plus 7 new cases), and the append-only redispatch case still passes. Blocked on: the full runtime suite runs in the integration merge gate. Closed 2026-11-18: the full-suite half ran at the integration gate `adedc72e930` (all phases 001-013 merged): 190 files, 3358 passed, 11 skipped, 0 failed, against baseline `c9d8ff4` with 3095 passed and 0 failed, with no new failure.
 - [x] T007 Confirm both rules still cap the redispatch at one (`C/deep-research.yaml`). Verify: `grep -c 'Never re-dispatch a given iteration more than once' C/deep-research.yaml C/deep-review.yaml` prints 1 for each file. Done: `grep -c` prints 1 for each file.
 - [x] T011 Write the playbook scenario through `/create:manual-testing-playbook system-deep-loop update --path S/runtime/manual-testing-playbook`, landing under `executor/`, then walk it. No hand edit to the package. Verify: the package index lists the new scenario, and the walk shows an `executor_missing` failure on a landed iteration spends no second dispatch. Partly done: DLR-063 is written at `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/executor/landed-iteration-skips-redispatch.md` and listed in the package index. Blocked: a live run is needed where verify returns `executor_missing` on a landed iteration. The suite walk in `scratch/walk-DLR-063.txt` pins the reason table and the rule text only. Walked live 2026-11-17 (DLR-063), PASS: a real landed research iteration 5 passed verify, then, with its `iteration_start` row removed, failed with `executor_missing iteration 5 ran under executor kind 'cli-pi' but neither its iteration record nor its iteration_start row ... names an executor` (exit 1). Applying `redispatch_once` skipped the second dispatch: receipts stayed at 10 total (2 for i5), and the error row landed through the gateway (`deep-research.ledger.iteration-completed`, seq 19). Contrast: with the delta moved aside, verify returned `delta_file_missing`, which keeps its one redispatch.
 - [x] T012 Write the changelog entry for this operator-visible defect fix through `/create:changelog` in `S/changelog/` (cross-phase handoff §3). Verify: the folder holds a new entry naming the landed-iteration redispatch skip. Done: `.skilled/skills/system-deep-loop/changelog/v2.1.5.0.md`.
@@ -67,9 +67,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Both YAML rules carry the shared exclusion clause, the four suites pass, both contracts show no drift, and the playbook scenario exists
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Both YAML rules carry the shared exclusion clause, the four suites pass, both contracts show no drift, and the playbook scenario exists (four suites 115 of 115, drift check `OK commands=2`, DLR-063 written and walked live)
 <!-- /ANCHOR:completion -->
 
 ---

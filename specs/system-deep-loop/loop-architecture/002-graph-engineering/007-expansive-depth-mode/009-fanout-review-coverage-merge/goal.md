@@ -90,4 +90,5 @@ and findings belong here.
 | Task grouping | T003-T008 shipped as one helper dispatch plus one wiring dispatch, after the tests (T010) went in first, instead of six per-surface dispatches. Each surface still has its own named case. |
 | Changelog | Added T014 from the cross-phase handoff §3 (an operator-visible defect fix). Blocked by the same `@markdown` gate. |
 | Pivot state key | The merged registry carries `divergenceByLineage`, not `divergence`, because merging lineage-local pivot state into one object would invent a focus no lineage chose. |
+| 2026-11-18 00:1x | Completion boxes in `tasks.md` closed: all tasks were ticked with evidence, and the integration gate `adedc72e930` (all phases 001-013 merged): 190 files, 3358 passed, 11 skipped, 0 failed, against baseline `c9d8ff4` with 3095 passed and 0 failed. |
 <!-- /ANCHOR:log -->

@@ -66,9 +66,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] The four suites exit 0, no stored research SOURCE class falls outside the vocabulary, and the playbook scenario exists
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] The four suites exit 0, no stored research SOURCE class falls outside the vocabulary, and the playbook scenario exists. Every task is ticked with its Verify evidence, and the integration gate `adedc72e930` (all phases 001-013 merged): 190 files, 3358 passed, 11 skipped, 0 failed, against baseline `c9d8ff4` with 3095 passed and 0 failed.
 <!-- /ANCHOR:completion -->
 
 ---
