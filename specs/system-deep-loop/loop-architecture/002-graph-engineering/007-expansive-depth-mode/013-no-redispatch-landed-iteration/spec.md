@@ -149,8 +149,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 7. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- Should a landed iteration that fails with an excluded reason keep its record with a warning, instead of the still-fails `status: error` row that then counts as a failure? Recommended default: keep today's end state in this phase and pin it with the REQ-006 fixture; changing what the still-fails path writes is a separate change.
-- Does the leaf's no-overwrite rule make the route-proof redispatch a no-op as well? If a second leaf always refuses a landed iteration, route-proof failures waste the dispatch too. This phase leaves route-proof unchanged (REQ-005) and records the question.
+- Decided 2026-11-17 (`decision-record.md` OD-002): a landed iteration that fails with an excluded reason keeps today's still-fails `status: error` row, which supersedes the landed record and counts as a failure. The REQ-006 fixtures pin it. Changing what the still-fails path writes is a separate change.
+- Decided 2026-11-17 (`decision-record.md` OD-002): the route-proof redispatch stays unchanged (REQ-005). Whether the leaf's no-overwrite rule also makes that redispatch a no-op is left for a later change.
 - Decided 2026-11-17 by the operator (`decision-record.md` ADR-001): `findings_not_enumerated` and `ledger_backing_missing` also skip the redispatch, because both are returned after the delta check and the leaf refuses to overwrite a landed iteration. This closes the coupling with `../006-state-log-leaf-fields/`, which makes the research `findings_not_enumerated` gate live. `gateway_bypass_detected` has no return site and is not named.
 <!-- /ANCHOR:questions -->
 

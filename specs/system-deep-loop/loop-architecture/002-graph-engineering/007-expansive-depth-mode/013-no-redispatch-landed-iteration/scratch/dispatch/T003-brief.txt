@@ -1,0 +1,45 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/466-ed-013-no-redispatch-landed
+Every read, write and command uses this root. Your environment block may name a different "Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration (pre-approved). Proceed directly. Do not print A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt only after three failures on the same file. Your task is complete only when the file is changed on disk and the check below has been run.
+
+PERSONA: You are a code implementation agent. Make exactly the one change below, in the named file only, matching the surrounding code style (TypeScript vitest, 2-space indent, single quotes). Do not refactor or touch anything else. Verify by running the CHECK and report honestly.
+
+NOTE: this environment blocks you from running node or vitest. Do not try to work around it. Make the edit, then report the CHECK as not run; the orchestrator runs it.
+
+TASK T003: add a YAML-reading assertion over both workflow redispatch rules.
+FILE: .skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts
+ANCHOR: the very end of the file, after the closing `});` of the last describe block ('verify-iteration executor provenance'). Append a new top-level describe block there.
+EDIT: append this block verbatim (the file already imports `fs` and `path` as namespaces):
+
+// A landed iteration fails verification only with a reason returned after the delta check.
+// A second leaf refuses to overwrite a landed iteration, so redispatching it spends a full
+// dispatch for nothing; the workflow rule must name those reasons and skip the redispatch.
+describe('workflow redispatch rule skips reasons only a landed iteration returns', () => {
+  const assets = path.resolve(__dirname, '..', '..', '..', '..', '..', 'commands', 'deep', 'assets');
+  const skipClause = 'Skip this redispatch when the failure reason is executor_missing, findings_not_enumerated or ledger_backing_missing.';
+  const stillRedispatched = ['iteration_file_missing', 'state_record_missing', 'delta_file_missing', 'route_proof_missing', 'route_proof_mismatch'];
+
+  function redispatchRule(file: string): string {
+    const line = fs.readFileSync(path.join(assets, file), 'utf8')
+      .split(/\r?\n/)
+      .find((candidate) => candidate.trim().startsWith('redispatch_once:'));
+    expect(line, `${file} has a redispatch_once rule`).toBeDefined();
+    return line as string;
+  }
+
+  for (const file of ['deep-research.yaml', 'deep-review.yaml']) {
+    it(`${file} skips the redispatch for landed-iteration reasons and still caps it at one`, () => {
+      const rule = redispatchRule(file);
+      expect(rule).toContain(skipClause);
+      for (const reason of stillRedispatched) expect(rule).not.toContain(reason);
+      expect(rule).toContain('Never re-dispatch a given iteration more than once');
+    });
+  }
+});
+
+ALLOWED WRITE PATHS: .skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file, edits outside ALLOWED WRITE PATHS, editing either YAML file, regenerating compiled contracts, editing tasks.md, implementation-summary.md, spec.md or any spec-folder doc.
+COMMENTS: keep the durable WHY; never put spec paths, phase numbers or REQ/ADR/task ids in code.
+CHECK (orchestrator runs it): cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/verify-iteration.vitest.ts  (the two new cases are EXPECTED to fail until the YAMLs change)
+RETURN: the changed path and one line confirming the insertion point. Nothing else.

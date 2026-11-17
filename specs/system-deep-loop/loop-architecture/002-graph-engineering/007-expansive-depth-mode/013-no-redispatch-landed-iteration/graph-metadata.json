@@ -16,7 +16,9 @@
       "no redispatch landed iteration plan",
       "no redispatch landed iteration tasks",
       "no redispatch landed iteration goal",
-      "013-no-redispatch-landed-iteration operator decisions"
+      "013-no-redispatch-landed-iteration operator decisions",
+      "skip redispatch executor missing",
+      "landed iteration still fails"
     ],
     "key_topics": [
       "redispatch",
@@ -30,7 +32,7 @@
       "013-no-redispatch-landed-iteration",
       "operator",
       "decisions",
-      "verify-iteration"
+      "skip"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -40,11 +42,13 @@
       "tasks.md",
       "goal.md",
       "decision-record.md",
+      "implementation-summary.md",
       ".skilled/commands/deep/assets/deep-research.yaml",
       ".skilled/commands/deep/assets/deep-review.yaml",
       ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts"
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts"
     ],
     "entities": [
       {
@@ -78,6 +82,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "deep-research.yaml",
         "kind": "config",
         "path": ".skilled/commands/deep/assets/deep-research.yaml",
@@ -105,6 +115,12 @@
         "name": "loop-counters-derivation.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-reduce-state.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
         "source": "derived"
       },
       {
@@ -178,23 +194,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`verify-iteration.cjs` returns `executormissing` only after the narrative, state record and delta checks pass, so that reason means the iteration already landed",
     "created_at": "2026-11-17T14:34:36Z",
-    "last_save_at": "2026-11-17T18:10:57.213Z",
+    "last_save_at": "2026-11-17T19:58:03.405Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,15 +206,17 @@
       "plan.md",
       "tasks.md",
       "goal.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:809406d62c41c2547f2c673dd710a278baf02ba7f6216c37dbbc88e24674e7e3",
+    "source_fingerprint": "sha256:3a8f56a475954e31cc1906de594ddd24bbb2e3aa18d238d17986f653225f3fb2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a886dcf09c595cd40e76616917bde431a8fbf50f9df248b4f4f5b19528e4202b",
+      "spec.md": "3d3f0c75dd9db62c2142c68f1a41cdcc092a8872441f1806036a8b41696f98d6",
       "plan.md": "c1204b5df5836691f4dc93101ef1a572e890d8243a9d41fc42967ba812ae7721",
-      "tasks.md": "4e89204ca2dcfb5be186ca619d04d9d71330045cc170255c83e648462f4e3eec",
-      "decision-record.md": "087da1f8ef877d50badd481f09234a444e9582ddd4b8811c7b772672ab7b911f"
+      "tasks.md": "6803e9879c26f4463f66e5d6eb72cd939682a14018ac782609bcf5e3d2569dc5",
+      "decision-record.md": "09f8379a6dee6e98e93cd86f27b456c94f18e06a1830696564fb05f5cd28fb27",
+      "implementation-summary.md": "d91617859f2d932c81cd556a3e1f438db0d631d23314ab8666e09ca6a47f61a0"
     },
     "last_active_at": null
   }

@@ -131,6 +131,7 @@ _memory:
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
 | OD-001 | 2026-11-17: skip redispatch for `executor_missing`, `findings_not_enumerated` and `ledger_backing_missing` | Operator accepted the fix-agent planning call; closes the X-5 coupling with phase 006 | `spec.md` §7 "pending operator confirmation" | ADR-001, goal D2, REQ-001, `../006-state-log-leaf-fields/` T003 |
+| OD-002 | 2026-11-17: the two remaining `spec.md` §7 questions take their recommended defaults. The still-fails path keeps today's end state (the `status: error` row supersedes the landed record), pinned by fixtures. The route-proof redispatch stays unchanged | Operator handover for the build accepted the recommended defaults for 013's two open questions | `spec.md` §7 open questions 1 and 2 | REQ-005, REQ-006, T008 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -145,5 +146,11 @@ Each appendix item uses the same id as its operator decision.
 - Asked: whether to accept the fix-agent planning call in this phase's spec as an Accepted decision.
 - Operator answer, as relayed in the 2026-11-17 decision brief: "013 skip redispatch for executor_missing, findings_not_enumerated, ledger_backing_missing (close 013's open question on this and X-5 coupling with 006)"
 - Recorded as: ADR-001, Accepted.
+
+**OD-002** (2026-11-17, decider operator)
+
+- Asked: how to resolve 013's two open questions, the route-proof redispatch and the still-fails end state that `deriveLoopCounters` counts.
+- Operator answer, as relayed in the 2026-11-17 build handover: "013 spec §7 still has two open questions (the route-proof redispatch, and the deriveLoopCounters default); each has a recommended default." The session orchestrator then recorded: "013's two open questions take their recommended defaults."
+- Recorded as: OD-002; no ADR, because both defaults keep today's behavior.
 
 <!-- /ANCHOR:operator-answers-verbatim -->

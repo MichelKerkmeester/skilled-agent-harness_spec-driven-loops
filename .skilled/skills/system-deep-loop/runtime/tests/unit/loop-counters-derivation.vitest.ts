@@ -243,6 +243,21 @@ describe('deriveLoopCounters', () => {
     expect(counters).toEqual({ stuckCount: 0, consecutiveFailureCount: 0 });
   });
 
+  it('lets the still-fails error row supersede a landed iteration with the same number', () => {
+    // A landed iteration that fails verification with a reason that skips the redispatch
+    // still gets the workflow's error row; the later row wins, so the run counts as a failure.
+    const counters = deriveLoopCounters(
+      [
+        { type: 'iteration', iteration: 1, status: 'complete', newInfoRatio: 0.4 },
+        { type: 'iteration', iteration: 2, status: 'complete', newInfoRatio: 0.01, findingsCount: 2 },
+        { type: 'iteration', iteration: 2, status: 'error', findingsCount: 0, newInfoRatio: 0.0 },
+      ],
+      { loopType: 'research' },
+    );
+
+    expect(counters).toEqual({ stuckCount: 0, consecutiveFailureCount: 1 });
+  });
+
   it('thought leaves both counters unchanged, insight resets the stuck count', () => {
     const log: Array<Record<string, unknown>> = [
       { type: 'iteration', iteration: 1, status: 'complete', newInfoRatio: 0.01 },

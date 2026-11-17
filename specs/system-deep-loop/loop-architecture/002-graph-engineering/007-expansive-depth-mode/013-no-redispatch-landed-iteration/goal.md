@@ -54,10 +54,10 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `grep -n 'redispatch_once:.*executor_missing, findings_not_enumerated or ledger_backing_missing'` prints one line in each of `.skilled/commands/deep/assets/deep-research.yaml` and `deep-review.yaml`.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/verify-iteration.vitest.ts tests/unit/loop-counters-derivation.vitest.ts tests/unit/deep-research-reduce-state.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts` exits 0 with the new cases.
-- [ ] The YAML assertion in `verify-iteration.vitest.ts` fails against the pre-change YAMLs.
-- [ ] `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs` exits 0.
+- [x] `grep -n 'redispatch_once:.*executor_missing, findings_not_enumerated or ledger_backing_missing'` prints one line in each of `.skilled/commands/deep/assets/deep-research.yaml` and `deep-review.yaml`.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/verify-iteration.vitest.ts tests/unit/loop-counters-derivation.vitest.ts tests/unit/deep-research-reduce-state.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts` exits 0 with the new cases.
+- [x] The YAML assertion in `verify-iteration.vitest.ts` fails against the pre-change YAMLs.
+- [x] `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs` exits 0.
 - [ ] The `runtime/manual-testing-playbook` index lists a no-redispatch scenario written by `/create:manual-testing-playbook`.
 <!-- /ANCHOR:completion -->
 
@@ -75,12 +75,18 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md` written 2026-11-17; implementation not started |
+| Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md` written 2026-11-17 |
+| Baseline | Done | 2026-11-17 in worktree 466 at `c898b3ad9a3`: the four suites pass 108 in 4 files |
+| Implementation | Done | `fd802c23af4` (skip clause in both rules plus the verify-iteration cases) and `f58d2e58872` (command notes, landed-then-error fixtures, both contracts regenerated). The four suites pass 115. The grep prints `deep-research.yaml:1683` and `deep-review.yaml:1772`. `check-contract-drift.cjs` prints `OK commands=2` |
+| Fail before | Done | The YAML assertion printed `2 failed \| 43 passed` against the pre-change YAMLs |
+| Playbook and changelog | Pending | Written by `@markdown` in the integration worktree after merge (T011, T012) |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Other post-delta reasons | Amended 2026-11-17 (D2 and the objective): `findings_not_enumerated` and `ledger_backing_missing` join `executor_missing`. Phase 006 makes the research `findings_not_enumerated` gate live, both reasons are returned after the delta check (`verify-iteration.cjs:533-550`, `:582-590`), and both leaf definitions refuse to overwrite a landed iteration or delta file, so a redispatch for them is wasted. `gateway_bypass_detected` is declared but never returned and is not named. Confirmed by the operator 2026-11-17 (`decision-record.md` ADR-001), which also closes the X-5 coupling with phase 006. |
+| Open questions 2026-11-17 | Both `spec.md` §7 questions took their recommended defaults (`decision-record.md` OD-002): the route-proof redispatch is unchanged, and the still-fails error row keeps superseding the landed record. |
+| Vibe child cannot run tests | The repository's Vibe hooks deny `node` and `vitest` inside the child, so each brief asked for the edit only, and the orchestrator ran every check. |
 | Plan review amendments 2026-11-17 | Applied the Fable 5.2 plan review: shared literal clause because the two rules differ today; `command_note` lines updated; `stop-policy-yaml-parity` dropped from the test plan; a landed-plus-error-row fixture pins the still-fails consequence; test commands run from `runtime/`; both contracts regenerated; the playbook scenario goes through `/create:manual-testing-playbook`. |
 <!-- /ANCHOR:log -->

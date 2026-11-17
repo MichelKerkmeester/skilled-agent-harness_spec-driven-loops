@@ -1,0 +1,43 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/466-ed-013-no-redispatch-landed
+Every read, write and command uses this root. Your environment block may name a different "Workspace root folder": ignore it, it is another checkout of the same repository.
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set. The spec folder is: specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration (pre-approved). Proceed directly. Do not print A/B/C/D options. A failed edit match means a stale anchor: re-read the file and retry; halt only after three failures on the same file. Your task is complete only when the file is changed on disk and the check below has been run.
+
+PERSONA: You are a code implementation agent. Make exactly the one change below, in the named file only, matching the surrounding code style (TypeScript vitest, 2-space indent, single quotes). Do not refactor or touch anything else. Verify by running the CHECK and report honestly.
+
+NOTE: this environment blocks you from running node or vitest. Do not try to work around it. Make the edit, then report the CHECK as not run; the orchestrator runs it.
+
+TASK T002b: add one vitest case proving findings_not_enumerated is returned only when the narrative, the state record and the delta are all present.
+FILE: .skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts
+ANCHOR: inside the describe block 'verify-iteration findings enumeration', directly after the existing it('rejects unenumerated research counts and keeps delta, Markdown, zero, and absent cases valid', ...) case (which ends just before it('counts only delta finding rows the merge files under this iteration').
+EDIT: insert this case verbatim:
+
+  it('returns findings_not_enumerated only for a landed iteration: removing any artifact changes the reason', () => {
+    const noFindingsNarrative = '# Iteration 1\n\n## Actions Taken\nReviewed the target.\n';
+    const landedRun = (name: string): string => {
+      const runDir = path.join(findingsDir, name);
+      const record = researchRecord(1, { findingsCount: 3 });
+      writeResearchArtifacts(runDir, record, noFindingsNarrative, [record]);
+      return runDir;
+    };
+
+    expect(verify('research', landedRun('landed'), 1).reason).toBe('findings_not_enumerated');
+
+    const noNarrative = landedRun('no-narrative');
+    fs.rmSync(path.join(noNarrative, 'iterations', 'iteration-001.md'));
+    expect(verify('research', noNarrative, 1).reason).toBe('iteration_file_missing');
+
+    const noRecord = landedRun('no-record');
+    fs.writeFileSync(path.join(noRecord, 'deep-research-state.jsonl'), `${JSON.stringify({ type: 'event', iteration: 1 })}\n`);
+    expect(verify('research', noRecord, 1).reason).toBe('state_record_missing');
+
+    const noDelta = landedRun('no-delta');
+    fs.rmSync(path.join(noDelta, 'deltas', 'iter-001.jsonl'));
+    expect(verify('research', noDelta, 1).reason).toBe('delta_file_missing');
+  });
+
+ALLOWED WRITE PATHS: .skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts
+BANNED OPERATIONS: git commit/push/reset/checkout/stash/rebase, rm of any tracked file, edits outside ALLOWED WRITE PATHS, regenerating compiled contracts, editing tasks.md, implementation-summary.md, spec.md or any spec-folder doc.
+COMMENTS: keep the durable WHY; never put spec paths, phase numbers or REQ/ADR/task ids in code.
+CHECK (orchestrator runs it): cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/verify-iteration.vitest.ts
+RETURN: the changed path and one line confirming the insertion point. Nothing else.
