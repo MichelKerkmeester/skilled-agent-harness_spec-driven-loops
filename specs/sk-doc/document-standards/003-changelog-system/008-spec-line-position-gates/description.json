@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/document-standards/003-changelog-system/008-spec-line-position-gates",
+  "description": "Phase 8: spec-line-position-gates",
+  "keywords": [
+    "phase",
+    "spec-line-position-gates"
+  ],
+  "lastUpdated": "2026-11-17T16:14:08.747Z",
+  "specId": "008",
+  "folderSlug": "spec-line-position-gates",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-11-26_17-14__all-except-changelog-stuff.md"
+  ]
+}

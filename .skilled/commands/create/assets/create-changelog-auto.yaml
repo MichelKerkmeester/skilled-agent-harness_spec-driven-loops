@@ -657,7 +657,7 @@ workflow:
           [ ] Frontmatter block carries title, description, trigger_phrases, importance_tier and contextType in contract order
           [ ] trigger_phrases holds both identity phrases for the target path and at least one topic phrase
           [ ] Prose starts with the summary narrative after the frontmatter block and any editorial title H1 (a bare version header may not precede it)
-          [ ] Spec folder blockquote present when source is a spec folder
+          [ ] Spec folder blockquote present when source is a spec folder, closing the entry after the last section and an &nbsp; line and carrying the path only
           [ ] Summary narrative present (non-empty, leads with why)
           [ ] At-a-glance section present with bold lead-in bullets
           [ ] Expanded: Why This Release, topical H2 sections with H4 items, Upgrade Notes

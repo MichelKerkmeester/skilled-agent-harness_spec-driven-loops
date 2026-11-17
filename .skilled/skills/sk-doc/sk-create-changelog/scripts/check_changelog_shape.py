@@ -7,10 +7,11 @@
 The template in ../assets/changelog-template.md sets the ceilings. This script
 holds the same numbers, so a change to one is a change to both.
 
-Five rules, each an error:
+Six rules, each an error:
 
   glance-order  tagged glance bullets follow the order of the sections they name
   spec-line     the spec-folder line carries paths only, never a "(Level N)" label
+  spec-position the spec-folder line closes the entry, after an "&nbsp;" line
   checked-section  an expanded entry carries a "How It Was Checked" section
   sentence-max  no prose sentence runs past 22 words
   sentence-mean the prose averages at most 10 words a sentence
@@ -189,6 +190,30 @@ def check_glance_order(shape):
     return violations, False
 
 
+def check_spec_position(lines, offset, spec):
+    """Return violations for spec-folder lines that do not close the entry.
+
+    A reader meets the change before the bookkeeping, so the blockquote comes
+    last, after an `&nbsp;` line. Its continuation lines belong to it. An entry
+    with one block per dated section may follow each block with the next
+    section's heading.
+    """
+    violations = []
+    several = len(spec) > 1
+    for number, _line in spec:
+        index = number - offset - 1
+        end = index + 1
+        while end < len(lines) and lines[end].startswith(">"):
+            end += 1
+        rest = next((line for line in lines[end:] if line.strip()), None)
+        if rest is not None and not (several and H2.match(rest)):
+            violations.append(f"line {number}: content follows the spec-folder line. Move the line to the end of the entry")
+        before = next((line for line in reversed(lines[:index]) if line.strip()), None)
+        if before is None or before.strip() != "&nbsp;":
+            violations.append(f"line {number}: put an \"&nbsp;\" line before the spec-folder line")
+    return violations
+
+
 def check_entry(text):
     """Return (violations, notes) for one entry, each violation tagged with its rule."""
     offset, lines = split_body(text)
@@ -206,6 +231,8 @@ def check_entry(text):
         label = LEVEL_LABEL.search(line)
         if label:
             violations.append(("spec-line", f"line {number}: drop the {label.group(0)} label, the line carries paths only"))
+
+    violations.extend(("spec-position", message) for message in check_spec_position(lines, offset, shape["spec"]))
 
     if expanded and CHECKED_SECTION not in {name.lower() for name in shape["h2"]}:
         violations.append(

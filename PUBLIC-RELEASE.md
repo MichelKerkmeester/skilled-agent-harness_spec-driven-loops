@@ -164,7 +164,7 @@ Each release has one entry, `.skilled/changelog/skilled/vX.X.X.X.md`. The 4.x en
 
 Entries follow the [changelog template](.skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md), the same one every component changelog uses. [v4.0.0.0](.skilled/changelog/skilled/v4.0.0.0.md) is the house-style example.
 
-An entry opens with why the release matters, in plain words. It groups the changes into sections named for what they change and ends with upgrade notes. A release with fewer than ten changes and no breaking change uses the compact format. Ten or more changes, a major version or a breaking change calls for the expanded format, which adds a section on how the release was checked. The template holds the voice rules, the section order and the checklist. A shape check runs on the draft before the workflow writes it.
+An entry opens with why the release matters, in plain words. It groups the changes into sections named for what they change and closes with its spec-folder line after the upgrade notes. A release with fewer than ten changes and no breaking change uses the compact format. Ten or more changes, a major version or a breaking change calls for the expanded format, which adds a section on how the release was checked. The template holds the voice rules, the section order and the checklist. A shape check runs on the draft before the workflow writes it.
 
 &nbsp;
 

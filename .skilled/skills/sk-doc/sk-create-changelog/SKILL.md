@@ -282,14 +282,14 @@ Global changelog checks:
 1. The target is `.skilled/changelog/{component}/v{VERSION}.md` in an existing folder, and no file exists at that path. Extending an open `skilled` release is the one exception: the target is that release's existing entry.
 2. The version follows `vX.Y.Z.B` and is strictly greater than the latest one in the folder, counting its generation folders. An extension keeps the open release's version.
 3. The frontmatter carries `title`, `description`, `trigger_phrases`, `importance_tier` and `contextType` in contract order, with both identity phrases for the target path and at least one topic phrase. `validate_document.py` blocks an entry whose block, keys or phrases are missing.
-4. The prose opens with the summary narrative, and the spec-folder blockquote is present when the source is a spec folder.
+4. The prose opens with the summary narrative, and the spec-folder blockquote closes the entry when the source is a spec folder, after the last section and an `&nbsp;` line.
 5. The tier's sections are present: compact carries the summary, `## What's New at a Glance` and `## Upgrade`. Expanded carries the opening narrative, `## Why This Release`, `## What's New at a Glance`, at least one topical H2 with H4 items, `## How It Was Checked` and `## Upgrade Notes`.
 6. No Files Changed, Test Impact or Schema Changes section. Any table outside How It Was Checked passes the earned-evidence rule.
 7. Omission applied: no file inventories, process detail or housekeeping items, and no test counts outside How It Was Checked. No internal labels (task, requirement, scenario or finding IDs, packet or phase numbers) appear outside the spec-folder line.
 8. Each fact appears once: no sentence restates one from another section, and each glance bullet adds something the summary did not.
 9. The template's ceilings hold: opening within 5 paragraphs, prose near its word budgets (guidance, counted in words, never sentences), glance bullets one line each and H4 headings within 10 words. No line, H4 item or glance bullet ceiling applies.
 10. H4 headings are benefit-led and never numbered or sentence-length, and no H3 sits inside a topical section.
-11. `scripts/check_changelog_shape.py` passes the draft. It fails tagged glance bullets out of section order and a spec-folder line with a level label. It also fails a sentence past 22 words, an average past 10 words a sentence and an expanded entry with no `## How It Was Checked`.
+11. `scripts/check_changelog_shape.py` passes the draft. It fails tagged glance bullets out of section order, a spec-folder line with a level label and a spec-folder line that does not close the entry after an `&nbsp;` line. It also fails a sentence past 22 words, an average past 10 words a sentence and an expanded entry with no `## How It Was Checked`.
 
 Voice gate, run on the draft before writing:
 

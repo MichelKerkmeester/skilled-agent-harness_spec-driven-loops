@@ -1,7 +1,7 @@
 ---
 title: "Create Changelog Scripts: shape gate and release notes builder"
 description: "A Python gate that fails a global changelog entry whose shape breaks the template's ceilings, and a builder that turns an entry into its GitHub release body."
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # Create Changelog Scripts
@@ -32,7 +32,7 @@ The order rule reads the trailing `<!-- section: {Topical Domain} -->` comment o
 
 | File | Purpose |
 |------|---------|
-| `check_changelog_shape.py` | Gate for the glance order, the spec-folder line, the How It Was Checked section and the sentence length. |
+| `check_changelog_shape.py` | Gate for the glance order, the spec-folder line and its place at the end of the entry, the How It Was Checked section and the sentence length. |
 | `build_release_notes.py` | Builds a GitHub release body from an entry. It drops the frontmatter and the title H1 and appends the `Full changelog` pointer. The publish step uses it, and so does the step that keeps a published release in step with its entry. |
 
 ---
