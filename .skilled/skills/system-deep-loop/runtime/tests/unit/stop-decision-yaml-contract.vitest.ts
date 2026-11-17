@@ -225,3 +225,83 @@ describe('deep-research wires the expansive frontier steps', () => {
     expect(command).toContain('--convergence-mode {convergence_mode} \\\n');
   });
 });
+
+// The review loop grows the same opt-in frontier, so its steps keep the same
+// places: the seed must land before any lineage split, activation must precede
+// the dispatch, and admission must follow the proposed rows and precede the
+// reducer that rewrites the registry. Key order is the contract.
+describe('deep-review wires the expansive frontier steps', () => {
+  const yamlText = readFileSync(resolve(ASSETS, 'deep-review.yaml'), 'utf8');
+  // The workflow shape is checked key by key below, so the parsed tree stays loosely typed.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const doc = parseYaml(yamlText) as any;
+  const wf = doc.workflow;
+  const order = (map: Record<string, unknown>): string[] => Object.keys(map);
+  const extracts = (): Record<string, string> => {
+    const merged: Record<string, string> = {};
+    for (const entry of wf.phase_loop.steps.step_read_state.extract as Array<Record<string, string>>) {
+      Object.assign(merged, entry);
+    }
+    return merged;
+  };
+
+  it('seeds the review frontier before fan-out spawns', () => {
+    const steps = order(wf);
+    const seed = steps.indexOf('step_frontier_seed');
+    expect(seed).toBeGreaterThanOrEqual(0);
+    expect(steps[seed + 1]).toBe('step_fanout_spawn');
+    expect(wf.step_frontier_seed.enabled_when).toBe("depth_mode == 'expansive'");
+    expect(wf.step_frontier_seed.command).toContain('frontier-admit.cjs seed --target review');
+  });
+
+  it('seeds the single-executor review frontier right after the config exists', () => {
+    const steps = order(wf.phase_init.steps);
+    const seed = steps.indexOf('step_frontier_seed');
+    expect(seed).toBeGreaterThanOrEqual(0);
+    expect(steps[seed - 1]).toBe('step_create_config');
+    expect(wf.phase_init.steps.step_frontier_seed.skip_when).toContain('fanout_lineage_artifact_dir');
+  });
+
+  it('activates the active frontier node right before the dispatch', () => {
+    const steps = order(wf.phase_loop.steps);
+    const activate = steps.indexOf('step_frontier_activate');
+    expect(activate).toBeGreaterThanOrEqual(0);
+    expect(steps[activate + 1]).toBe('step_dispatch_iteration');
+    expect(wf.phase_loop.steps.step_frontier_activate.enabled_when).toContain('active_frontier_node');
+  });
+
+  it('admits proposals after the iteration lands and before the reducer runs', () => {
+    const steps = order(wf.phase_loop.steps);
+    const admit = steps.indexOf('step_frontier_admit');
+    expect(admit).toBeGreaterThanOrEqual(0);
+    expect(steps[admit + 1]).toBe('step_reduce_review_state');
+    expect(admit).toBeGreaterThan(steps.indexOf('step_dispatch_iteration'));
+    const step = wf.phase_loop.steps.step_frontier_admit;
+    expect(step.command).toContain('frontier-admit.cjs admit');
+    expect(step.command).toContain('--target review');
+    expect(JSON.stringify(step)).not.toContain('inbox');
+  });
+
+  it('closes the stuck review frontier node and keeps the stuckRecovery state', () => {
+    const stuck = wf.phase_loop.steps.step_handle_convergence.if_stuck_recovery;
+    expect(stuck).toBeDefined();
+    expect(stuck.set.pending_stop_event).toBe('stuck_recovery');
+    expect(stuck.if_expansive_open_node.command).toContain('frontier-admit.cjs close --target review');
+    expect(stuck.if_expansive_open_node.command).toContain('--status exhausted');
+  });
+
+  it('takes the next dimension from the active frontier node under expansive depth', () => {
+    const extract = extracts();
+    expect(extract.active_frontier_node).toContain('registry.frontier.activeNodeId');
+    expect(extract.next_dimension).toContain('registry.frontier.activeNextDimension');
+    expect(extract.next_dimension).toContain(
+      'Otherwise the next uncovered dimension from dimension_queue in strategy.md.',
+    );
+  });
+
+  it('gates the divergent pivot on a terminal review frontier', () => {
+    const contract =
+      wf.phase_loop.steps.step_handle_convergence.if_stop.if_divergent_eligible.eligibility_contract;
+    expect(contract.frontier_gate).toContain('no open or active node');
+  });
+});

@@ -45,7 +45,7 @@ const {
   };
   mergeReviewRegistries: (
     lineageData: LineageDataFixture[],
-    options?: { enableNearDuplicateDedup?: boolean },
+    options?: { enableNearDuplicateDedup?: boolean; frontierPartition?: Record<string, string[]> | null },
   ) => Record<string, unknown>;
   buildAttributionMd: (lineageData: unknown[], loopType: string) => string;
   reconstructReviewRegistryFromState: (
@@ -2141,5 +2141,61 @@ describe('research frontier merge', () => {
     });
     const frontier = merged.frontier as { partitionGuard?: { passed: boolean; missing: string[] } };
     expect(frontier.partitionGuard).toEqual({ passed: false, missing: ['F-1-004'] });
+  });
+});
+
+describe('review frontier merge', () => {
+  const frontierNode = (nodeId: string, status: string) => ({ nodeId, status });
+
+  const registryWithFrontier = (nodes: Array<{ nodeId: string; status: string }>) => ({
+    openFindings: [],
+    resolvedFindings: [],
+    frontier: { nodes, stats: {} },
+  });
+
+  const lineageA: LineageDataFixture = {
+    label: 'a',
+    registry: registryWithFrontier([frontierNode('F-1-001', 'open'), frontierNode('F-2-003', 'exhausted')]),
+  };
+  const lineageB: LineageDataFixture = {
+    label: 'b',
+    registry: registryWithFrontier([frontierNode('F-1-002', 'answered'), frontierNode('F-2-003', 'open')]),
+  };
+
+  const withoutFrontier = ({ label, registry }: LineageDataFixture): LineageDataFixture => {
+    const { frontier: _frontier, ...rest } = registry as Record<string, unknown>;
+    return { label, registry: rest };
+  };
+
+  it('merges each lineage frontier with its label and stats', () => {
+    const merged = mergeReviewRegistries([lineageA, lineageB]);
+    const frontier = merged.frontier as {
+      nodes: Array<{ nodeId: string; lineage: string }>;
+      stats: Record<string, number>;
+    };
+    expect(frontier.nodes).toHaveLength(4);
+    expect(frontier.nodes.filter((node) => node.nodeId === 'F-2-003').map((node) => node.lineage)).toEqual(['a', 'b']);
+    expect(frontier.stats).toMatchObject({ total: 4, open: 2, exhausted: 1, answered: 1 });
+  });
+
+  it('passes the guard when every partitioned node is reported', () => {
+    const merged = mergeReviewRegistries([lineageA, lineageB], {
+      frontierPartition: { a: ['F-1-001'], b: ['F-1-002'] },
+    });
+    const frontier = merged.frontier as { partitionGuard?: { passed: boolean; missing: string[] } };
+    expect(frontier.partitionGuard).toEqual({ passed: true, missing: [] });
+  });
+
+  it('fails the guard when a partitioned node is missing from every lineage', () => {
+    const merged = mergeReviewRegistries([lineageA, lineageB], {
+      frontierPartition: { a: ['F-1-001', 'F-1-004'], b: ['F-1-002'] },
+    });
+    const frontier = merged.frontier as { partitionGuard?: { passed: boolean; missing: string[] } };
+    expect(frontier.partitionGuard).toEqual({ passed: false, missing: ['F-1-004'] });
+  });
+
+  it('adds no frontier key when no review lineage has one', () => {
+    const merged = mergeReviewRegistries([withoutFrontier(lineageA), withoutFrontier(lineageB)]);
+    expect(Object.prototype.hasOwnProperty.call(merged, 'frontier')).toBe(false);
   });
 });

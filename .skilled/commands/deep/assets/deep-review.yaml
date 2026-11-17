@@ -316,6 +316,33 @@ workflow:
     status: "FAIL"
     message: "Usage error (extend-with-fanout): --extend extends a single-executor review run only. This config has fanout executors, so nothing was spawned and the run is unchanged."
 
+  step_frontier_seed:
+    description: "Seed the depth-1 review frontier before any fan-out lineage spawns"
+    enabled_when: "depth_mode == 'expansive'"
+    skip_when: "config.fanout is absent"
+    dry_run_boundary: "state-mutation"
+    instructions: |
+      Fan-out jumps from step_fanout_spawn to phase_synthesis and never reaches
+      phase_init, so the seed runs here or not at all. fanout-run.cjs then splits
+      the seeded depth-1 nodes round-robin across the lineages.
+      Decompose {review_target} into 3 to 8 depth-1 sub-targets that together
+      cover it: subsystems, directories or commit batches. For a commit-range
+      target, record the range end SHA as the pilot SHA in this step's log, mark
+      a merge commit with no diff of its own as
+      {"pruneReason":"merge-no-own-diff"} and a generated index rebuild as
+      {"pruneReason":"generated-artifact"}. Write them as a JSON array to
+      {artifact_dir}/frontier-seed.json, one object per sub-target:
+      {"question": "what to review in it", "scope": "<paths inside the review
+      target>", "evidence": "<path or commit that grounds it>"}. Then run the
+      command. frontier-admit.cjs is the only writer of the node store; never
+      write that file by hand, and never queue or hand-expand the admitted nodes
+      yourself.
+    command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --target review --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json"'
+    working_directory: "{repo_root}"
+    outputs:
+      - frontier_seed_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
+    on_failure: "Halt with the command's stderr line. A run that asked for expansive depth must not start without its seeded frontier."
+
   step_fanout_spawn:
     description: "Spawn fan-out lineages; skip and proceed to phase_init normally when single-executor"
     dry_run_boundary: "child-spawn"
@@ -868,6 +895,31 @@ workflow:
           executionMode: "{execution_mode}"
         output: "{state_paths.config}"
 
+      step_frontier_seed:
+        description: "Seed the depth-1 review frontier so iteration 1 already has open nodes"
+        enabled_when: "depth_mode == 'expansive'"
+        skip_when: "config.fanout_lineage_artifact_dir is present"
+        skip_reason: "A fan-out lineage receives its share of the parent's seeded nodes from fanout-run.cjs; seeding again would duplicate them."
+        dry_run_boundary: "state-mutation"
+        instructions: |
+          Decompose {review_target} into 3 to 8 depth-1 sub-targets that together
+          cover it: subsystems, directories or commit batches. For a commit-range
+          target, record the range end SHA as the pilot SHA in this step's log,
+          mark a merge commit with no diff of its own as
+          {"pruneReason":"merge-no-own-diff"} and a generated index rebuild as
+          {"pruneReason":"generated-artifact"}. Write them as a JSON array to
+          {artifact_dir}/frontier-seed.json, one object per sub-target:
+          {"question": "what to review in it", "scope": "<paths inside the
+          review target>", "evidence": "<path or commit that grounds it>"}. Then
+          run the command. frontier-admit.cjs is the only writer of the node
+          store; never write that file by hand, and never queue or hand-expand
+          the admitted nodes yourself.
+        command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --target review --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json"'
+        working_directory: "{repo_root}"
+        outputs:
+          - frontier_seed_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
+        on_failure: "Halt with the command's stderr line. A run that asked for expansive depth must not start without its seeded frontier."
+
       step_create_state_log:
         action: "Open the run in the ledger: record deep_review.run_initialized through the append gateway, which writes the state log's first row"
         dry_run_boundary: "state-mutation"
@@ -1052,7 +1104,7 @@ workflow:
           - last_focus: "Extract focus/dimension from latest iteration record, else 'none yet'"
           - ratio_prev: "Extract newFindingsRatio from second-latest iteration record, else 'N/A'"
           - ratio_latest: "Extract newFindingsRatio from latest iteration record, else 'N/A'"
-          - next_dimension: "When max_iterations >= 2, current_iteration == max_iterations and unfinished_core_protocols is non-empty, 'traceability': the last iteration under the cap finishes those core protocols. Otherwise the next uncovered dimension from dimension_queue in strategy.md."
+          - next_dimension: "When max_iterations >= 2, current_iteration == max_iterations and unfinished_core_protocols is non-empty, 'traceability': the last iteration under the cap finishes those core protocols. Otherwise, when depth_mode == 'expansive' and registry.frontier.activeNextDimension in {state_paths.findings_registry} is non-empty, that dimension: the active frontier node's next uncovered dimension. Otherwise the next uncovered dimension from dimension_queue in strategy.md."
           - dimensions_covered: "List of dimensions already reviewed"
           - dimensions_remaining: "List of dimensions not yet reviewed"
           - dimension_coverage: "covered / total dimensions"
@@ -1076,6 +1128,7 @@ workflow:
           - convergence_mode: "Extract antiConvergence.convergenceMode when it is one of 'default', 'off', 'sliding-window', or 'divergent'; default to 'default'"
           - convergence_mode_warning: "Boolean true when antiConvergence.convergenceMode is present with an unsupported value; use 'default'"
           - depth_mode: "Extract antiConvergence.depthMode when it is 'expansive'; any other or missing value is 'default'"
+          - active_frontier_node: "When depth_mode == 'expansive', registry.frontier.activeNodeId from {state_paths.findings_registry}; else, or when it is null, an empty string"
           - pivot_lineage: "Summarize registry.divergence.completed and registry.divergence.overrides with pivot ids, source iterations, and selected review direction; else 'none yet'"
           - saturated_directions: "List registry.divergence.saturatedDirections; else 'none yet'"
           - review_focus_block: "When deep-review-config.json reviewFocus is a non-empty string, return 'Operator review focus (cover it in addition to the dimension of this iteration, and say in the narrative how you addressed it): <reviewFocus>'. Else return an empty string."
@@ -1307,6 +1360,7 @@ workflow:
               eligible_reasons: [all_dimensions_clean]
               excluded_reasons: [maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached]
               fail_closed: "Any missing or ambiguous reason uses if_existing_terminal_path without preparing a pivot. The nine legal-stop gates have already run and remain unchanged."
+              frontier_gate: "Under depth_mode == 'expansive' the pivot is eligible only once registry.frontier holds no open or active node. The frontierOpen stop veto already returns CONTINUE while one is open, so this gate records the order rather than adding a second check. A candidate the pivot accepts re-enters breadth through step_frontier_admit as a frontier_proposal row, and the pivot may seed from nodes closed exhausted or blocked."
             steps:
               step_prepare_divergent_pivot:
                 action: "Generate state-grounded read-only review candidates and prepare or resume the pivot transaction"
@@ -1487,6 +1541,15 @@ workflow:
             pending_stop_event: "stuck_recovery"
             pending_stop_reason: "stuckRecovery"
             pending_stop_detail: "Recovery path activated after repeated no-progress iterations"
+          if_expansive_open_node:
+            when: "depth_mode == 'expansive' AND active_frontier_node is non-empty"
+            note: "The recovery path still sets pending_stop_event stuck_recovery, which step_normalize_pause_events appends as deep_review.recovery_started; that event projects to stuckRecovery and resets stuckCount, so the next low-yield iteration does not close the next node after one iteration."
+            command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs close --target review --artifact-dir "{artifact_dir}" --node-id "{active_frontier_node}" --status exhausted --reason stuck --iteration "{current_iteration}"'
+            then_command: "node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
+            working_directory: "{repo_root}"
+            log: "Stuck on frontier node {active_frontier_node}; closed it as exhausted and moved to the next open node."
+          if_no_open_node:
+            action: "Fall through to the global recovery below."
         if_continue:
           log: "Iteration {current_iteration}: Continuing. Dimension: {next_dimension}"
 
@@ -1577,6 +1640,15 @@ workflow:
         on_B: { action: "Update next_dimension to user's choice", proceed_to: step_dispatch_iteration }
         on_C: { set: { reason: "manualStop" }, run_first: record_terminal_gates, proceed_to: phase_synthesis }
         on_D: { action: "Cancel workflow", status: "CANCELLED", release_lock: step_release_lock }
+
+      step_frontier_activate:
+        description: "Mark the active frontier node before the iteration dispatches"
+        enabled_when: "depth_mode == 'expansive' AND active_frontier_node is non-empty"
+        dry_run_boundary: "state-mutation"
+        note: "Marking the node active at this iteration lets the reducer attribute the iteration to the node even when the leaf rewords its focus, so the node's own coverage keeps moving instead of the iteration sliding back onto the global dimension queue."
+        command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs close --target review --artifact-dir "{artifact_dir}" --node-id "{active_frontier_node}" --status active --iteration "{current_iteration}"'
+        working_directory: "{repo_root}"
+        on_failure: "Log the stderr line as a config_warning bookkeeping event and continue; the leaf's frontierNodeId and focus marker still attribute the iteration."
 
       step_dispatch_iteration:
         action: "Dispatch @deep-review agent for one review iteration"
@@ -1893,6 +1965,24 @@ workflow:
             rm -f "$EVENT_FILE"
             exit "$RECORD_STATUS"
           log: "Claim adjudication incomplete for new P0/P1 findings. Event persisted. The next iteration's step_check_convergence claim-adjudication pre-check will veto STOP while `passed: false` remains the latest event and active P0/P1 > 0."
+
+      step_frontier_admit:
+        action: "Admit this iteration's review frontier_proposal rows as sub-target nodes before the reducer runs"
+        enabled_when: "depth_mode == 'expansive'"
+        dry_run_boundary: "state-mutation"
+        instructions: |
+          The review leaf only proposes; this step decides. Before the command, write a
+          JSON array of strings to {artifact_dir}/frontier-known-texts.json holding every
+          frontier node question already in registry.frontier.nodes and every ruled-out
+          candidate rationale, so a proposal that repeats settled work is pruned as a
+          duplicate. An absent registry gives an empty array. The helper runs the six
+          admission checks in order and writes only node-store rows: a review run queues
+          its nodes from that store alone, with no separate question queue to append.
+        command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs admit --target review --artifact-dir "{artifact_dir}" --iteration "{current_iteration}" --input "{state_paths.delta_pattern with NNN = current_iteration}" --known-texts "{artifact_dir}/frontier-known-texts.json"'
+        working_directory: "{repo_root}"
+        outputs:
+          - frontier_admit_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
+        on_failure: "Log the stderr line as a config_warning bookkeeping event and continue to step_reduce_review_state; a failed admission leaves the frontier as it was and never blocks the iteration."
 
       step_reduce_review_state:
         action: "Run reducer to refresh the canonical findings registry before dashboard generation"

@@ -1120,6 +1120,12 @@ function mergeReviewRegistries(lineageData, options = {}) {
 
   const failedRequiredGateIds = [...new Set(lineageData.flatMap((lineage) => lineageFailedRequiredGateIds(lineage)))].sort();
 
+  // Both loops number their frontier nodes per lineage and split them the same way, so the
+  // review fan-in reuses the same merge and partition guard rather than re-deriving them.
+  const hasFrontier = lineageData.some(
+    ({ registry }) => registry && registry.frontier && Array.isArray(registry.frontier.nodes),
+  );
+
   // Search debt is one obligation per bug class the search path still owes, so a class
   // two lineages both owe is one debt rather than two; the first lineage's record of it
   // is kept and the union is ordered by that key so arrival order cannot move it.
@@ -1175,6 +1181,7 @@ function mergeReviewRegistries(lineageData, options = {}) {
     searchDebt: mergedSearchDebt,
     ...mergeReviewCoverageSurfaces(lineageData),
     ...(schemaWarnings.length > 0 ? { schema_mismatch: schemaWarnings } : {}),
+    ...(hasFrontier ? { frontier: mergeResearchFrontier(lineageData, options.frontierPartition) } : {}),
   };
 }
 
@@ -1712,7 +1719,10 @@ async function main() {
 
   let mergedRegistry;
   if (loopType === 'review') {
-    mergedRegistry = mergeReviewRegistries(lineagesWithRegistry, resolveMergeOptions(args));
+    mergedRegistry = mergeReviewRegistries(lineagesWithRegistry, {
+      ...resolveMergeOptions(args),
+      frontierPartition: orchestrationSummary.frontier_partition ?? null,
+    });
   } else {
     mergedRegistry = mergeResearchRegistries(lineagesWithRegistry, {
       ...resolveMergeOptions(args),
@@ -1758,7 +1768,7 @@ async function main() {
     attribution_path: attributionPath,
     ...(reconstructionWarnings.length > 0 ? { reconstruction_warnings: reconstructionWarnings } : {}),
     ...(loopType === 'review'
-      ? { merged_verdict: mergedRegistry.mergedVerdict, active_p0: mergedRegistry.activeP0, active_p1: mergedRegistry.activeP1, active_p2: mergedRegistry.activeP2, search_debt: mergedRegistry.searchDebt.length, failed_required_gate_ids: mergedRegistry.failedRequiredGateIds }
+      ? { merged_verdict: mergedRegistry.mergedVerdict, active_p0: mergedRegistry.activeP0, active_p1: mergedRegistry.activeP1, active_p2: mergedRegistry.activeP2, search_debt: mergedRegistry.searchDebt.length, failed_required_gate_ids: mergedRegistry.failedRequiredGateIds, ...(mergedRegistry.frontier?.partitionGuard ? { frontier_partition_guard: mergedRegistry.frontier.partitionGuard } : {}) }
       : {
         key_findings: mergedRegistry.keyFindings?.length ?? 0,
         ...(mergedRegistry.frontier?.partitionGuard ? { frontier_partition_guard: mergedRegistry.frontier.partitionGuard } : {}),

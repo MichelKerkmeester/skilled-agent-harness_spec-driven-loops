@@ -255,6 +255,10 @@ Never fall back to a direct write of the projection file.
 - Append structured finding, classification, traceability-check, graph-event, and ruled-out records after it, one JSON object per line.
 - Never overwrite an existing delta file.
 
+**Frontier proposals (expansive depth runs only).** When the iteration prompt carries a FRONTIER block, you may append `frontier_proposal` rows to the delta, at most the number that block allows, one per sub-target the evidence opened inside the node you were reviewing:
+`{"type":"frontier_proposal","parentId":"<the node id the prompt named>","question":"<what to review, not a restatement of an existing node>","scope":"<paths inside the review target>","evidence":"<file:line that opened it>","budget":<optional positive integer, never above the parent's>}`
+You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, sits outside the review target, repeats a known node, or would exceed the depth, fan-out or budget caps. Never write `review/frontier-nodes.jsonl`, `searchDebt` or any coverage surface, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block. When the block names a node, add `"frontierNodeId"` to the iteration record as the block says.
+
 #### Step 11: Verify Outputs
 
 - Verify the narrative contains focus, finding severity sections, traceability checks, edge cases, ruled-out section, and next focus.

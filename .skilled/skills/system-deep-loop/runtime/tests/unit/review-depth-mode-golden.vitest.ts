@@ -6,7 +6,10 @@
 // lineage prompt. A review run that never asks for it must render the same
 // bytes, so this suite renders those default-path artifacts for one fixed
 // review packet and compares them to baselines captured before any review
-// depth-mode code existed.
+// depth-mode code existed. One exception: the lineage prompt embeds the agent
+// persona, whose leaf contract gained a paragraph that applies only to
+// expansive runs. That paragraph alone is stripped before the lineage prompt is
+// compared; see withoutExpansiveOnlyPersona below.
 //
 // Regenerate the baselines only on a tree that predates the review depth-mode code:
 //   GOLDEN_UPDATE=1 npx vitest run review-depth-mode-golden.vitest
@@ -231,6 +234,18 @@ function normalize(text: string, specFolder: string): string {
   return text.split(specFolder).join('<SPEC>');
 }
 
+// The lineage prompt embeds the agent persona verbatim. The persona's leaf
+// contract carries one paragraph that applies only when an iteration prompt
+// holds a FRONTIER block, which a default run never renders. That paragraph
+// alone is removed before comparison; any other persona or prompt byte still
+// has to match the baseline.
+const EXPANSIVE_ONLY_PERSONA_PARAGRAPH =
+  /\n\n\*\*Frontier proposals \(expansive depth runs only\)\.\*\*[^\n]*\n[^\n]*\nYou only propose\.[^\n]*/;
+
+function withoutExpansiveOnlyPersona(prompt: string): string {
+  return prompt.replace(EXPANSIVE_ONLY_PERSONA_PARAGRAPH, '');
+}
+
 function renderArtifacts(variant: Variant): Record<Artifact, string> {
   const { specFolder, reviewDir } = writeFixture(variant);
   const config = JSON.parse(readFileSync(join(reviewDir, 'deep-review-config.json'), 'utf8'));
@@ -321,7 +336,9 @@ function renderArtifacts(variant: Variant): Record<Artifact, string> {
     'pivot-seeds.json': normalize(`${JSON.stringify({ ...pivotInput, config: undefined }, null, 2)}\n`, specFolder),
     // The lineage prompt names the repository checkout it runs from, which differs
     // per worktree, so the checkout path is tokenized like the spec folder.
-    'lineage-prompt.txt': `${lineagePrompt}\n--- native command input ---\n${nativeInput}\n`.split(process.cwd()).join('<CWD>'),
+    'lineage-prompt.txt': `${withoutExpansiveOnlyPersona(lineagePrompt)}\n--- native command input ---\n${nativeInput}\n`
+      .split(process.cwd())
+      .join('<CWD>'),
     'stop-decision-config.json': `${JSON.stringify(decisionInput.config, null, 2)}\n`,
   };
 }
