@@ -731,6 +731,38 @@ function durationCheck(file: string, config: string): Record<string, unknown> {
   return lastJsonLine(result.stdout);
 }
 
+function appendReviewIteration(dir: string, run: number): void {
+  const eventPath = join(dir, '..', `iteration-${run}.json`);
+  writeFileSync(eventPath, JSON.stringify({
+    type: 'iteration',
+    iteration: run,
+    mode: 'review',
+    target_agent: 'deep-review',
+    agent_definition_loaded: true,
+    resolved_route: 'Resolved route: mode=review target_agent=deep-review',
+    run,
+    status: 'complete',
+    focus: 'correctness',
+    dimensions: ['correctness'],
+    filesReviewed: ['scripts/example.cjs:1'],
+    findingsCount: 0,
+    findingsSummary: { P0: 0, P1: 0, P2: 0 },
+    findingsNew: [],
+    findingDetails: [],
+    traceabilityChecks: {},
+    newFindingsRatio: 0,
+    sessionId: '2026-11-17T00:00:00Z',
+    generation: 1,
+    lineageMode: 'new',
+    timestamp: '2026-11-17T00:40:00Z',
+    durationMs: 60000,
+  }));
+  const result = spawnSync(process.execPath, [
+    GATEWAY, '--mode', 'review', '--run-directory', dir, '--event-json', eventPath,
+  ], { cwd: REPO_ROOT, encoding: 'utf8' });
+  expect(result.status, String(result.stdout) + String(result.stderr)).toBe(0);
+}
+
 describe('completed-run extension', () => {
   for (const { label, file } of FILES) {
     it(`${label} binds --extend and --extend-minutes beside lineage_mode`, () => {
@@ -888,8 +920,7 @@ describe('completed-run extension', () => {
     }));
     expect(init.status, String(init.stdout) + String(init.stderr)).toBe(0);
     // The extension counts the iteration rows the log holds when it runs.
-    const iterations = [1, 2, 3, 4].map((run) => JSON.stringify({ type: 'iteration', iteration: run, run, status: 'complete' }));
-    writeFileSync(stateLog, `${readFileSync(stateLog, 'utf8')}${iterations.join('\n')}\n`);
+    for (let run = 1; run <= 4; run += 1) appendReviewIteration(dir, run);
     writeFileSync(config, JSON.stringify({ ...readJson(config), status: 'complete' }));
     const before = readJson(config);
 
@@ -912,5 +943,36 @@ describe('completed-run extension', () => {
     expect(durationCheck('deep-review.yaml', config)).toMatchObject({ reached: false });
     expect(lastJsonLine(result.stdout).warning).toContain('all_dimensions_clean');
     expect(stateRows(stateLog).some((row) => row.event === 'extended' && row.continuedFromRun === 4)).toBe(true);
+
+    const report = join(dir, 'review-report.md');
+    const snapshot = (continuedFromRun: string) => runShell(render(
+      stepCommand('deep-review.yaml', 'step_snapshot_extended_review_report'),
+      {
+        '{state_paths.config}': config,
+        '{state_paths.packet_dir}': dir,
+        '{state_paths.review_output}': report,
+        '{continued_from_run}': continuedFromRun,
+      },
+    ));
+    writeFileSync(report, '# First report\n');
+    expect(snapshot('4').status).toBe(0);
+
+    // A second extension of the same generation keeps its own snapshot.
+    appendReviewIteration(dir, 5);
+    writeFileSync(config, JSON.stringify({ ...readJson(config), status: 'complete' }));
+    writeFileSync(report, '# Second report\n');
+    const second = runShell(render(stepCommand('deep-review.yaml', 'step_extend_completed_run'), {
+      '{state_paths.config}': config,
+      '{state_paths.state_log}': stateLog,
+      '{extend}': '1',
+      '{extend_minutes}': '',
+    }));
+    expect(second.status, String(second.stderr)).toBe(0);
+    expect(readJson(config)).toMatchObject({ maxIterations: 6, continuedFromRun: 5 });
+    expect(snapshot('5').status).toBe(0);
+    expect(readFileSync(join(dir, 'review-report-v1-r4.md'), 'utf8')).toBe('# First report\n');
+    expect(readFileSync(join(dir, 'review-report-v1-r5.md'), 'utf8')).toBe('# Second report\n');
+    expect(snapshot('5').status).not.toBe(0);
+    expect(stateRows(stateLog).filter((row) => row.event === 'extended')).toHaveLength(2);
   });
 });

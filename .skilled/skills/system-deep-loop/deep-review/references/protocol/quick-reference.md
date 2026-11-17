@@ -9,7 +9,7 @@ trigger_phrases:
   - "review loop troubleshooting"
 importance_tier: normal
 contextType: general
-version: 1.11.3.0
+version: 1.11.4.0
 ---
 
 # Deep Review Quick Reference
@@ -104,7 +104,7 @@ Review mode stores its packet under the resolved local review path rooted at `{s
 | `resume` | Continue the current review lineage without resetting generation |
 | `restart` | Archive current review state and start a new generation |
 | `fork` (deferred) | Reserved. Start a sibling lineage branch with explicit parent linkage. Not runtime-wired. |
-| `completed-continue` (deferred) | Reserved. Snapshot the completed review and reopen it for amendment-only review deltas. Not runtime-wired. |
+| `completed-continue` | `--extend=N`: snapshot the completed review report as `review-report-v{generation}-r{continuedFromRun}.md` and reopen the run for N more iterations in the same session |
 
 ---
 

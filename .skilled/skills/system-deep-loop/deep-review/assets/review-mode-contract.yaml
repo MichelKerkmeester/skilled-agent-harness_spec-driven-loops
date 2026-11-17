@@ -176,8 +176,7 @@ contract:
       status: deferred
       description: Reserved compatibility branch. The current runtime does not emit or accept fork review lineages.
     - id: completed-continue
-      status: deferred
-      description: Reserved compatibility branch. The current runtime does not reopen completed sessions under a completed-continue lineage.
+      description: Reopen a completed review in the same session and generation through --extend=N, after snapshotting the prior review report.
 
   lineageFields:
     - sessionId

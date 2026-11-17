@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.8.0
+version: 1.14.9.0
 ---
 
 # deep-research
@@ -194,7 +194,8 @@ A: Each round writes `{spec_folder}/research/iterations/iteration-NNN.md` and a 
 
 **Q: What is the difference between resume and restart?**
 
-A: `resume` keeps the same `sessionId` and appends a `resumed` event. `restart` archives the current `research/` tree under `research_archive/`, mints a fresh `sessionId`, increments `generation` and appends a `restarted` event. `fork` and `completed-continue` are declared in the lifecycle vocabulary but not wired.
+A: `resume` keeps the same `sessionId` and appends a `resumed` event. `restart` archives the current `research/` tree under `research_archive/`, mints a fresh `sessionId`, increments `generation` and appends a `restarted` event. `completed-continue` comes from `--extend=N`: it reopens a completed run in the same session, raises the cap to the runs so far plus N, snapshots the prior synthesis and appends an `extended` event.
+`fork` is declared in the lifecycle vocabulary but not wired.
 
 **Q: Can I run each iteration through a CLI executor?**
 

@@ -97,7 +97,8 @@ Extract:
 - Remaining key questions
 - Exhausted approaches (DO NOT retry these)
 - Recommended next focus
-- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, or `restart`; `fork` and `completed-continue` are deferred -- see `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md §Lifecycle Branches`)
+- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, `restart`, or `completed-continue` after `--extend=N` reopens a completed run -- see `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md §Lifecycle Branches`)
+- `fork` is deferred and never appears in `lineageMode`
 
 **HARD BLOCK -- Missing or unreadable state**:
 - If `deep-research-config.json`, `deep-research-state.jsonl`, or `deep-research-strategy.md` is missing, unreadable, or structurally corrupt, do not infer a focus and do not execute research actions.

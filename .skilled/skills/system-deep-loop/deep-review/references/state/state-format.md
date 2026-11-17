@@ -9,7 +9,7 @@ trigger_phrases:
   - "review iteration file structure"
 importance_tier: important
 contextType: implementation
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # Deep Review State Format
@@ -136,7 +136,7 @@ Created during initialization. Not modified after creation.
 | resource_map_present | boolean | false | True only when `{specFolder}/resource-map.md` existed during init, enables the Resource Map Coverage audit pass and conditional report section |
 | sessionId | string | -- | Stable identifier for the current review lineage |
 | parentSessionId | string \| null | `null` | Parent lineage reference for restart flows |
-| lineageMode | string | `"new"` | `new`, `resume`, `restart`. `fork` and `completed-continue` are deferred and not emitted by the current runtime |
+| lineageMode | string | `"new"` | `new`, `resume`, `restart`, `completed-continue` (set by `--extend=N`). The current runtime never emits `fork` |
 | generation | number | 1 | Lineage generation number, incremented on `restart`, unchanged on `resume` |
 | continuedFromRun | number \| null | `null` | Count of completed iteration records at the lifecycle boundary (set on `resume` and `restart`) |
 | maxIterations | number | 7 | Hard cap on loop iterations |
