@@ -77,11 +77,16 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Setup | Done | The enumeration printed 47 lines. The refreshed baseline matched `baseline-004-before.tsv` line for line. `readme_links.py` printed `0 problems`, `check-markdown-links.cjs` printed `0 broken` and `hook-wiring-check.cjs --root .` printed `ok` for claude, codex, cursor and devin |
+| Canary | Done | `mcp-route-guard/pi` passed every check after the main session replaced its smoke command. Its reviewer checked 39 claims and found nothing |
+| Drive | Done | 46 files in waves of four, all written, reviewed by a separate session and triaged |
+| Close | Done | 47 of 47 `✅ VALID` with `hard=0` and `EXACT`, `readme_links.py` `0 problems`, `PARITY PASS`, sk-doc suite exit 0, `hook-wiring-check.cjs` exit 0. The blocking review's eight findings were confirmed and applied |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| VALIDATION in every file | The plan kept VALIDATION only where a test exists. D2 keeps all four sections, and D2 wins as a frozen decision. Every adapter has a real command: its own test, a test that drives it, a stdin smoke or the registration check |
+| Title matches the H1 | The scaffold's frontmatter title is the H1 text, and nothing in the repository keys on these titles, so each file's title now equals its H1 |
+| Master switch wording | A README calls `SYSTEM_HOOKS_DISABLED` the master switch only when its adapter reaches the shared hook-flags resolver, because phase 003 found adapters that check only their concern switch |
 <!-- /ANCHOR:log -->

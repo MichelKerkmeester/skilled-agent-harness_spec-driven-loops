@@ -1,5 +1,5 @@
 ---
-title: "Overlay Guard: Cursor preToolUse Adapter"
+title: "Cursor Overlay Guard: preToolUse Adapter"
 description: "Cursor adapter that refuses a Write to a file a vendored tree's overlay owns, using Cursor's own permission envelope and exit 2."
 trigger_phrases:
   - "cursor overlay guard"
@@ -8,48 +8,49 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# Overlay Guard: Cursor preToolUse Adapter
+# Cursor Overlay Guard: preToolUse Adapter
 
 ---
 
 ## 1. OVERVIEW
 
-`cursor/` holds the Cursor adapter for the overlay guard concern. `.cursor/hooks.json` wires it to `preToolUse` under the matcher `Write`, with a 10-second timeout. The registration carries no fallback chain, because Cursor blocks on the exit code.
+`.skilled/hooks/overlay-guard/cursor/` holds the Cursor adapter for the overlay guard concern. It runs before a write and refuses the call when the overlay engine owns the destination file. A file the engine does not own goes through, except under a manifest that sets `strictWrites`, where the engine can refuse an unowned vendored path.
 
-Cursor answers every call with its own permission envelope rather than a hook output. A refusal is the envelope `{permission: deny, user_message, agent_message}` followed by exit 2. A clean path returns `{permission: allow}` on stdout and exits 0.
+Cursor registers the adapter in `.cursor/hooks.json` under `preToolUse`, with the matcher `Write` and a 10-second timeout. That entry has no fallback chain, so a refusal reaches Cursor as exit 2.
 
-The adapter reads the workspace root from `workspace_roots[0]`. When that field is empty it uses its own working directory. The concern key is `overlay-guard`, whose switch is `SYSTEM_OVERLAY_GUARD_DISABLED`. The adapter reads that switch before it reads stdin, so a disabled concern parses no payload.
+The adapter reads the concern switch before it reads stdin. `SYSTEM_OVERLAY_GUARD_DISABLED` turns this concern off. `SYSTEM_HOOKS_DISABLED` is the master switch, reached through the shared resolver in `.skilled/hooks/shared/hook-flags.mjs`. A disabled concern writes `{"permission":"allow"}` and exits 0 without parsing a payload.
+
+A refusal writes an envelope with `permission: deny` and the engine reason in both message fields, then exits 2. Every other call writes `{"permission":"allow"}` and exits 0.
+
+Every failure ends in an allow. A payload that will not parse allows at once. A tool name other than `Write` allows too. So does a missing path. An engine error or a timeout prints one note line on stderr and then allows. A throw from `main` prints one `overlay-guard:` line on stderr and allows.
 
 ---
 
-## 2. FILES
+## 2. DIRECTORY TREE
 
 | File | Responsibility |
 |---|---|
-| `overlay-guard.mjs` | The Cursor adapter. It filters on `Write`, reads `tool_input.file_path`, runs `evaluateWrite()` and answers in Cursor's permission envelope. |
+| `overlay-guard.mjs` | The adapter. It checks the concern switch, keeps `Write` calls, reads `tool_input.file_path`, calls `evaluateWrite()` and answers in Cursor's permission envelope. |
 
-The adapter keeps only a `Write` call, so every other tool name exits 0 at once. An unreadable payload or a missing path takes the same allow path.
-
-`evaluateWrite()` returns a decision, a reason and a list of notes. The adapter prints each note of that list on stderr. A `deny` writes the reason into both `user_message` and `agent_message` and exits 2. Every other decision prints `{permission: allow}` on stdout and exits 0.
-
-The adapter fails open on every error path it owns. An engine error or a timeout allows the write and adds one note line. The entrypoint catches any throw from `main` and prints one `overlay-guard:` line on stderr. It then allows the write and exits 0.
+The folder is flat. `overlay-guard.mjs` is the only entry beside this README. Nothing in the folder is a symlink.
 
 ---
 
 ## 3. VALIDATION
 
-Run from the repository root.
+Run the command from the repository root.
 
 ```bash
 node --test .skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs
 ```
 
-Expected result: every case passes and the command exits 0. The suite covers the core and this adapter. It asserts the deny envelope with exit 2 and the allow envelope with exit 0. It also runs the registered command and checks that the deny arrives intact.
+Expected result: every test passes and the run prints `fail 0`. The two cursor cases drive `Write` against an owned path and an unowned path, then run the `.cursor/hooks.json` command and check that the deny envelope arrives with exit 2.
 
 ---
 
 ## 4. RELATED
 
-- [`../README.md`](../README.md): the overlay guard concern, its decision table and its per-runtime matrix.
-- [`../lib/overlay-guard.cjs`](../lib/overlay-guard.cjs): the shared core this adapter calls.
-- [`../../shared/hook-flags.mjs`](../../shared/hook-flags.mjs): the ESM kill-switch resolver.
+- [overlay guard folder](../README.md): the concern, its decision table and its runtime matrix.
+- [shared core](../lib/overlay-guard.cjs): the policy this adapter calls for each path.
+- [switch resolver](../../shared/hook-flags.mjs): the module that answers the concern switch and the master switch.
+- [Cursor hook registration](../../../../.cursor/hooks.json): the entry that runs this adapter at `preToolUse`.

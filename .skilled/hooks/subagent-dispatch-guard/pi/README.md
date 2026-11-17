@@ -1,5 +1,5 @@
 ---
-title: "Task Dispatch Hooks: Pi Adapter"
+title: "Pi Task Dispatch Guard: tool_call Adapter"
 description: "Pi extension that turns shared deep-loop dispatch verdicts into advisory reasons on subagent calls."
 trigger_phrases:
   - "pi task dispatch guard"
@@ -8,38 +8,51 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# Task Dispatch Hooks: Pi Adapter
+# Pi Task Dispatch Guard: tool_call Adapter
 
 ---
 
 ## 1. OVERVIEW
 
-`pi/` holds the Pi extension for the Task Dispatch concern. Pi registers it through `.pi/extensions/task-dispatch-guard.ts`, a one-line re-export of `task-dispatch-guard.ts`. Pi calls the extension on `tool_call` for the `subagent` tool.
+`.skilled/hooks/subagent-dispatch-guard/pi/` holds the Pi adapter for the Task Dispatch Guard concern. It runs at `tool_call` and turns the shared policy's verdict into advisory text on a `subagent` call. That text never blocks the call.
 
-Every verdict is advisory here. A reject returns a `reason` and never blocks the call. `SYSTEM_TASK_DISPATCH_DISABLED=1` turns the concern off. The extension then returns at once.
+Pi loads the adapter through [the Pi extension entry](../../../../.pi/extensions/task-dispatch-guard.ts). That entry is a re-export statement pointing at this folder's adapter, and it carries no fallback. If the target file is missing, the import fails. The entry names no event, so the adapter registers one itself with `pi.on('tool_call', ...)`. Its handler returns at once for any tool name other than `subagent`.
 
-The extension loads the shared core from `../lib/subagent-dispatch-guard.cjs`. The core returns the decision, the warnings and the audits.
+The adapter checks `isHookEnabled('task-dispatch')` before it registers a handler, so a disabled concern adds no handler at all. The call reaches `.skilled/hooks/shared/hook-flags.mjs`, the ESM facade over the CommonJS resolver, so `SYSTEM_HOOKS_DISABLED` is the master switch. The concern key is `task-dispatch` and its own switch is `SYSTEM_TASK_DISPATCH_DISABLED`.
 
-Claude, Cursor, Devin, DSH, OpenCode, Pi and Vibe each run the guard. The parent README names each registration.
+The handler reads `event.toolName` first. It then builds a request from `event.input`. A call with a string `action` or `resume` returns at once, and so does one with no prompt. The prompt is the first non-blank of `task` or `message`, with `workflowScript` after both. The target is the first non-blank of `agent` or `subagent_type`, and `subagentType` answers when those are blank.
+
+The request goes to `evaluateDispatch` with the session id from `ctx.sessionManager.getSessionId()` and `ctx.cwd` as the project directory. `process.env` arrives as the environment. The adapter resolves the state folder with `resolveGuardPaths(ctx.cwd)` and appends each audit through `appendRejectModeDegradedAudit` and each warning through `appendWarningLog`. Both write to `guard-warnings.log` under `.skilled/skills/.state/loop-guard/` in the project.
+
+A reject returns its detail as `reason` and appends that detail to the log. A warn returns the warnings joined with a newline. Every failure ends the same way. A throw returns nothing, so Pi runs the call with no advisory.
 
 ---
 
-## 2. FILES
+## 2. DIRECTORY TREE
+
+The folder is flat and holds no test of its own.
 
 | File | Responsibility |
 |---|---|
-| `task-dispatch-guard.ts` | The Pi extension. It registers the `tool_call` handler and returns the advisory as a `reason`. |
-
-The handler skips any tool other than `subagent`. It also skips a call that carries an `action` or `resume` string. The prompt comes from `task`, `message` or `workflowScript`. The target comes from `agent`, `subagent_type` or `subagentType`.
-
-The handler passes `sessionID`, `projectDir` and `env` to `evaluateDispatch`. It resolves the state directory through `resolveGuardPaths`. Each audit goes to `appendRejectModeDegradedAudit` and each warning to `appendWarningLog`.
-
-A reject returns its detail as the reason and appends it to the warning log. A warn returns the warnings joined with a newline. A throw returns nothing, so the dispatch proceeds.
+| `task-dispatch-guard.ts` | The adapter. It checks the concern switch, registers the `tool_call` handler and calls the shared core for a `subagent` call. |
 
 ---
 
-## 3. RELATED
+## 3. VALIDATION
 
-- [`../README.md`](../README.md): the Task Dispatch concern, its per-runtime table and its env flags.
-- [`../lib/subagent-dispatch-guard.cjs`](../lib/subagent-dispatch-guard.cjs): the shared policy core the extension calls.
-- [`../../../../.pi/extensions`](../../../../.pi/extensions): the Pi extension folder that loads it.
+Run the command from the repository root.
+
+```bash
+(cd .skilled/skills/system-spec-kit && npx vitest run --project root runtime/tests/hook-adapter-path-parity.vitest.ts)
+```
+
+Expected result: every test passes and the command exits 0. The suite follows each re-export entry in `.pi/extensions/`, this adapter's included, and fails when the file it re-exports is missing.
+
+---
+
+## 4. RELATED
+
+- [Task Dispatch Guard README](../README.md): the concern, its runtime table and its switches.
+- [Shared dispatch core](../lib/subagent-dispatch-guard.cjs): the policy core behind `evaluateDispatch`.
+- [Pi extension entry](../../../../.pi/extensions/task-dispatch-guard.ts): the re-export that Pi loads.
+- [Shared switch resolver](../../shared/hook-flags.mjs): the ESM facade over `hook-flags.cjs`.

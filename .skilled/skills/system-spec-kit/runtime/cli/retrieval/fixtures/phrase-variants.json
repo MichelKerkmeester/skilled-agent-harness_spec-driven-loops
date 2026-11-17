@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2a8d2ea3732029e130e764d42a094f65246f8f602ce83e55b9b7586488046210",
+  "manifestHash": "1df8306519af6fd8ec2ea9ccf2b47040bb10a4d6b6e074195477f2657d94fa05",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -40282,6 +40282,9 @@
     "deprecation tasks list": [
       "deprecation tasks list"
     ],
+    "depth mode expansive": [
+      "depth-mode expansive"
+    ],
     "depth thinking framework removed": [
       "depth thinking framework removed"
     ],
@@ -48923,6 +48926,21 @@
     "expanded retrieval fixture": [
       "expanded retrieval fixture"
     ],
+    "expansive depth mode": [
+      "expansive depth mode"
+    ],
+    "expansive depth mode implementation summary": [
+      "expansive depth mode implementation summary"
+    ],
+    "expansive depth mode plan": [
+      "expansive depth mode plan"
+    ],
+    "expansive depth mode tasks": [
+      "expansive depth mode tasks"
+    ],
+    "expansive depth sub mode for deep research": [
+      "expansive depth sub mode for deep research"
+    ],
     "expected 6a handoff": [
       "expected 6a handoff"
     ],
@@ -53770,6 +53788,9 @@
     ],
     "frontend web surface routing": [
       "frontend web surface routing"
+    ],
+    "frontier veto": [
+      "frontier veto"
     ],
     "frontmatter audit": [
       "frontmatter audit"

@@ -1,6 +1,6 @@
 ---
-title: "DSH Dispatch Hooks: Fail-Closed Preflight and Fail-Open Audit"
-description: "DeepSeek Harness adapters that deny a bash dispatch which breaks a blocking hard rule and record every completed bash command for the audit trail."
+title: "DSH Dispatch: tools/pre-execute and tools/post-execute Adapters"
+description: "DSH adapters that deny a bash dispatch which breaks a blocking hard rule and record each dispatch-shaped command after it runs."
 trigger_phrases:
   - "dsh dispatch preflight"
   - "dsh dispatch audit"
@@ -8,41 +8,54 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# DSH Dispatch Hooks: Fail-Closed Preflight and Fail-Open Audit
+# DSH Dispatch: tools/pre-execute and tools/post-execute Adapters
 
 ---
 
 ## 1. OVERVIEW
 
-`.skilled/hooks/cli-dispatch/dsh/` holds the DSH pair for the dispatch concern. It exports `registerDispatchPreflightLint` and `registerDispatchAudit`. Both resolve the checkout from this file's own path, not the working directory. A DSH session runs in a lineage or scratch folder.
+`.skilled/hooks/cli-dispatch/dsh/` holds the DSH adapters for the dispatch concern. The preflight runs at `tools/pre-execute`. It denies a `bash` dispatch that breaks a blocking hard rule and logs an advisory for a warning rule. The audit runs at `tools/post-execute`. It records a dispatch-shaped `bash` command after the call completes and leaves the tool result unchanged. The preflight calls `evaluateDispatch` in `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs`. The audit calls `recordDispatch` in `.skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs`.
 
-The preflight declares `ERROR_POLICY = 'fail-closed'`. The audit declares `ERROR_POLICY = 'fail-open'`. The `repo-guards` plugin bundle imports both adapters. `.dsh/plugins/repo-guards/index.mjs` calls both from `apply()`, through the links in `.dsh/plugins/repo-guards/adapters/`. DSH is the only runtime that runs this pair.
+DSH registers both adapters in `.dsh/plugins/repo-guards/index.mjs`. The bundle imports them through the `dispatch-preflight-lint.mjs` and `dispatch-audit.mjs` links under `.dsh/plugins/repo-guards/adapters/`. Its `apply()` calls `registerDispatchAudit` and `registerDispatchPreflightLint`.
 
-Two concern keys gate the pair. `dispatch-guard` gates the preflight and `dispatch` gates the audit.
+Each register function checks its switch first and returns without a handler when the concern is off. The preflight key is `dispatch-guard` and its switch is `SYSTEM_DISPATCH_GUARD_DISABLED`. The audit key is `dispatch` and its switch is `CLI_DISPATCH_AUDIT_DISABLED`. `SYSTEM_HOOKS_DISABLED` is the master switch. `SYSTEM_DISPATCH_DISABLED` also disables both concerns.
+
+Both adapters resolve the checkout from this folder's own path, not from the working directory. A DSH session can run in a lineage or scratch folder. The audit writes to `.skilled/logs/cli-dispatch-audit.log` in the checkout.
+
+The preflight fails closed. A throw from the shared rule check reaches `ctx.logger.error` and the call returns `{kind: 'deny'}` with a reason that says the rule check could not complete. A logging failure cannot change that deny. The audit fails open. A throw inside its record reaches `ctx.logger.warn` and the downstream result still returns.
 
 ---
 
-## 2. FILES
+## 2. DIRECTORY TREE
+
+The folder is flat. It holds the README and one adapter per event.
 
 | File | Responsibility |
 |---|---|
-| `dispatch-preflight-lint.mjs` | The `tools/pre-execute` adapter. It denies a `bash` dispatch that breaks a blocking hard rule. |
-| `dispatch-audit.mjs` | The `tools/post-execute` adapter. It records each completed `bash` command in the shared audit log. |
-
-**Preflight.** `registerDispatchPreflightLint` returns at once unless `isHookEnabled('dispatch-guard')` is true. A call that is not `bash` or that carries no command string passes to `next()`. Otherwise it calls `evaluateDispatch` against this checkout's skills. A `block` violation denies the call with `{kind: 'deny'}` and the joined reasons. A `warn` violation goes to `ctx.logger.warn` and does not deny. A `bash` call with no `block` violation also passes to `next()`.
-
-A throw from the rule check fails closed. The adapter logs the error through `ctx.logger.error` and returns `{kind: 'deny'}`. The reason says the shared rule check could not complete.
-
-**Audit.** `registerDispatchAudit` returns at once unless `isHookEnabled('dispatch')` is true. It awaits `next()` first, so the downstream result is in hand before it records anything. A call that is not `bash` or that carries no command string returns that result untouched. Otherwise it calls `recordDispatch` with the command, the log path and `runtime: 'dsh'`. The record also carries the session id, the call id, the output text, the byte count and the error metadata.
-
-A throw inside the record is logged through `ctx.logger.warn` and the downstream result still returns. The audit never changes a tool result.
+| `dispatch-preflight-lint.mjs` | The `tools/pre-execute` adapter. It evaluates a `bash` command against the shared hard rules and denies a blocking violation. |
+| `dispatch-audit.mjs` | The `tools/post-execute` adapter. It waits for the downstream result and records a dispatch-shaped command in the audit log. |
 
 ---
 
-## 3. RELATED
+## 3. VALIDATION
 
-- [`../README.md`](../README.md): the dispatch concern, the shared cores and the full rule list.
+Run the suite from the repository root.
+
+```bash
+node --test .skilled/hooks/cli-dispatch/tests/dsh-dispatch.test.mjs
+```
+
+Expected result: every test passes. The runner reports `fail 0` and exits 0.
+
+The suite checks shared-core parity for both adapters and the throw policy of each. One case runs the preflight from a folder outside the checkout and expects the deny.
+
+---
+
+## 4. RELATED
+
+- [`../README.md`](../README.md): the dispatch concern, its shared cores and its rule list.
 - [`../lib/dispatch-rule-checks.mjs`](../lib/dispatch-rule-checks.mjs): the hard-rule engine the preflight calls.
 - [`../lib/dispatch-audit.mjs`](../lib/dispatch-audit.mjs): the audit core the post-execute adapter calls.
-- [`../tests/dsh-dispatch.test.mjs`](../tests/dsh-dispatch.test.mjs): the parity and throw-policy tests for both adapters.
+- [`../tests/dsh-dispatch.test.mjs`](../tests/dsh-dispatch.test.mjs): the suite that drives both adapters.
 - [`../../../../.dsh/plugins/repo-guards/index.mjs`](../../../../.dsh/plugins/repo-guards/index.mjs): the bundle that registers both adapters.
+- [`../../shared/hook-flags.cjs`](../../shared/hook-flags.cjs): the switch resolver both adapters call.

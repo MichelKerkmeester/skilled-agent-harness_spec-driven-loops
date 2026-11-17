@@ -1,5 +1,5 @@
 ---
-title: "Pi Dispatch Hooks: Authorized Preflight and Audit Extensions"
+title: "Pi Dispatch: Input, Tool Call and Tool Result Adapters"
 description: "Pi extensions that authorize a bash dispatch from the operator's own request, lint it against hard rules and record the completed command."
 trigger_phrases:
   - "pi dispatch preflight"
@@ -8,34 +8,34 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# Pi Dispatch Hooks: Authorized Preflight and Audit Extensions
+# Pi Dispatch: Input, Tool Call and Tool Result Adapters
 
 ---
 
 ## 1. OVERVIEW
 
-`.skilled/hooks/cli-dispatch/pi/` holds the Pi extensions for the dispatch concern. Pi is the only runtime with an authorization layer on top of the hard-rule lint. A direct dispatch must be authorized by the operator's own request.
+`.skilled/hooks/cli-dispatch/pi/` holds the Pi adapters for the dispatch concern. The preflight checks that the operator's own request authorizes a `bash` dispatch, then checks the target skill's hard rules. The audit records a finished dispatch.
 
-The preflight captures the raw user input at `input` and evaluates the command at `tool_call`. The real TypeScript files live here, and `.pi/extensions/` holds the one-line entry files Pi discovers.
+Pi discovers the adapters through `.pi/extensions/dispatch-preflight-lint.ts` and `.pi/extensions/dispatch-audit.ts`. Each entry file re-exports the adapter from this folder on a single line. The preflight calls `pi.on('input', ...)` and `pi.on('tool_call', ...)`. The audit calls `pi.on('tool_result', ...)`.
 
-The hook registry names `dispatch-preflight-lint.ts` and `dispatch-audit.ts` as Pi's extension for the two dispatch hooks. The preflight runs while the `dispatch-guard` concern is on. The audit runs while `dispatch` is on.
+Both adapters read their switch first and return at once when the concern is off. The preflight checks `dispatch-guard`, whose switch is `SYSTEM_DISPATCH_GUARD_DISABLED`. The audit checks `dispatch`, whose switch is `CLI_DISPATCH_AUDIT_DISABLED`. `SYSTEM_DISPATCH_DISABLED` turns off both concerns. `SYSTEM_HOOKS_DISABLED` is the master switch, and these adapters reach it through the shared resolver at `.skilled/hooks/shared/hook-flags.mjs`.
+
+At `input` from an interactive or RPC source the preflight captures the operator's text for the session. At `tool_call` it reads the `bash` command, resolves the dispatch and checks the stored text. A capsule or spec gate suffix in that text is stripped before the check. The audit reads the command and output of a finished `bash` call.
+
+Every failure leaves the call alone. The preflight returns `undefined` when its own lint throws, so it blocks nothing. The audit swallows a throw, so a completed command is unaffected. A failed input capture is dropped and the turn continues.
 
 ---
 
-## 2. FILES
+## 2. DIRECTORY TREE
+
+The folder is flat. The table names every entry other than this README.
 
 | File | Responsibility |
 |---|---|
-| `dispatch-preflight-lint.ts` | The Pi `input` and `tool_call` extension. It captures the operator's text only from an interactive or RPC `input` event, authorizes the dispatch and then runs the hard rules. |
-| `dispatch-audit.ts` | The Pi `tool_result` extension. It records a finished `bash` dispatch through `recordDispatch` with the command, output, session and call ids, tagged `runtime: 'pi'`. |
-| `dispatch-preflight-lint.test.ts` | The `vitest` suite for the preflight. It covers dispatch recognition, the authorization rules, quoted and negated mentions and the block and warn paths. |
-| `directive-dedup.test.ts` | The `vitest` suite for the prompt advisor's directive dedup, which runs beside the preflight in a Pi session. |
-
-The preflight reads the command word, then unwraps a wrapper or a heredoc a shell runs. One resolved packet under a none reading is a direct dispatch. Several resolved packets leave it ambiguous, and zero packets leave it a non-dispatch the hook ignores.
-
-The preflight calls `shouldDenyPiDispatch`, then evaluates the hard rules of every resolved packet in the command. A deny returns `{block: true, reason}`. A warning returns `{reason}` and lets the command run. An authorized dispatch still answers to its skill's hard rules, so a missing stdin redirect blocks it.
-
-Both Pi files fail open. The preflight returns `undefined` when its own lint throws, so unrelated work is not blocked. The audit swallows a throw, so a completed command is unaffected.
+| `dispatch-preflight-lint.ts` | The preflight adapter. It registers the `input` and `tool_call` handlers, decides whether the dispatch is authorized and then evaluates each packet's hard rules. |
+| `dispatch-audit.ts` | The audit adapter. It registers the `tool_result` handler and passes a finished `bash` call to `recordDispatch` in `.skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs` with `runtime: 'pi'`. |
+| `dispatch-preflight-lint.test.ts` | The vitest suite for the preflight. It drives the extension through a fake Pi API and covers the deny matrix, refusal phrasings, reset forms, next-sentence retraction and the registered handler boundary. |
+| `directive-dedup.test.ts` | The vitest suite for the Pi prompt advisor's directive dedup. It imports the advisor at `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` and no dispatch adapter. |
 
 ---
 
@@ -44,17 +44,16 @@ Both Pi files fail open. The preflight returns `undefined` when its own lint thr
 Run from the repository root.
 
 ```bash
-.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/cli-dispatch/pi/dispatch-preflight-lint.test.ts .skilled/hooks/cli-dispatch/pi/directive-dedup.test.ts
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/cli-dispatch/pi/dispatch-preflight-lint.test.ts
 ```
 
-Expected result: every test passes.
+Expected result: every test passes and the command exits 0.
 
 ---
 
 ## 4. RELATED
 
-- [`../README.md`](../README.md): the dispatch concern, the shared cores and the full rule list.
-- [`../lib/dispatch-audit.mjs`](../lib/dispatch-audit.mjs): the audit core the preflight and audit import.
+- [`../README.md`](../README.md): the dispatch concern and its per-runtime table.
+- [`../lib/dispatch-audit.mjs`](../lib/dispatch-audit.mjs): the core that resolves a dispatch and records the audit line.
 - [`../lib/dispatch-rule-checks.mjs`](../lib/dispatch-rule-checks.mjs): the hard-rule engine the preflight calls.
-- [`../../../skills/system-skill-advisor/hooks/pi/prompt-advisor.ts`](../../../skills/system-skill-advisor/hooks/pi/prompt-advisor.ts): the advisor whose directive dedup the second suite covers.
-- [`../../../../.pi/extensions/README.md`](../../../../.pi/extensions/README.md): the entry files Pi discovers, one per extension.
+- [`../../../../.pi/extensions/README.md`](../../../../.pi/extensions/README.md): the Pi entry files, one per extension.

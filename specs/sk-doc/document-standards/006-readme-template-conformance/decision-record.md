@@ -39,6 +39,10 @@ _memory:
 | Q003 | README writers and reviewers run as DeepSeek V4.1 Flash at max through cli-opencode instead of Opus agents. | Not stated. | None | plan.md Key Components, implementation-summary.md Key Decisions, ../goal.md D4 |
 | Q004 | Phase 003 edits the skill-advisor symlink's target, .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md, in place to the hook template. | Not stated. | None | 003-hook-folder-readmes/plan.md |
 | Q005 | From the end of phase 002, README writers and reviewers run as GPT-6 Luna at max on the fast tier through cli-codex instead of DeepSeek V4.1 Flash. | Not stated. | Q003 | ../goal.md D4 |
+| Q006 | When the codex usage limit stopped phase 004 with a reset three hours away, writers and reviewers switch executor at once. The operator named the executor in chat as "deepseek flash max cli devin": DeepSeek V4.1 Flash Max (`deepseek-v4-1-flash-1017-max`) through cli-devin. | Not stated. | Q005 | ../goal.md D4, 004-hook-runtime-readmes/plan.md Key Components |
+| Q007 | Devin writers and reviewers run in `dangerous` permission mode, four sessions at a time, each killed by its own PID. | `auto` mode refuses the shell commands both roles need to run their checks. | None | 004-hook-runtime-readmes/plan.md Key Components |
+| Q008 | When devin's daily quota ran out at 08:19, the operator asked to keep DeepSeek Flash Max on devin. A probe of both DeepSeek Flash Max ids returned `resource_exhausted`, so the question was asked again. | Not stated. | None | Q009 |
+| Q009 | Writers and reviewers run DeepSeek V4.1 Flash at max through cli-opencode on the OpenCode Go route (`opencode-go/deepseek-v4.1-flash#max`). | Not stated. | Q006 | ../goal.md D4, 004-hook-runtime-readmes/plan.md Key Components |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -143,6 +147,91 @@ Mixed: Claude reviews only
 Answer:
 ```text
 use luna max fast cli codex
+```
+
+### Q006
+<!-- source: claude:8d8133eb-b573-4b60-8bba-186b349d3926:toolu_01B7cUUCd4wq1A8bbmxnqgCR:0 -->
+
+Question:
+```text
+The codex (GPT-6 Luna) usage limit stopped the phase 004 drive at 07:43. It resets at 10:38 AM. No writer changed a file. How should the 46 remaining runtime adapter READMEs proceed?
+```
+
+Options:
+```text
+Wait for reset (Recommended)
+Switch executor now
+Pause the program
+```
+
+Answer:
+```text
+Switch executor now
+```
+
+The follow-up question naming the executor was declined, and the operator typed the executor in chat instead:
+```text
+deepseek flash max cli devin
+```
+
+### Q007
+<!-- source: claude:8d8133eb-b573-4b60-8bba-186b349d3926:toolu_0127FSJZgx2or54fYeond3ZZ:0 -->
+
+Question:
+```text
+cli-devin's SKILL.md (§4 NEVER rule 1 and ALWAYS rule 15) needs two approvals for the 46 remaining phase 004 READMEs on deepseek-v4-1-flash-1017-max: (1) `--permission-mode dangerous` for writers and reviewers, because `auto` refuses the shell commands both need to run checks. Reviewers are told to write nothing, and I diff the tree after each wave. (2) Four devin sessions at once, in waves, each killed by its own PID. Approve both for this phase?
+```
+
+Options:
+```text
+Approve both (Recommended)
+Dangerous, one at a time
+Writers only dangerous
+```
+
+Answer:
+```text
+Approve both (Recommended)
+```
+
+### Q008
+<!-- source: claude:8d8133eb-b573-4b60-8bba-186b349d3926:toolu_01362k9N9MMSRVdAQ9GUzJaT:0 -->
+
+Question:
+```text
+Devin's daily usage quota ran out at 08:19, so DeepSeek V4.1 Flash Max can't run. 15 of the 47 phase 004 READMEs are written and reviewed; 32 remain, and no file was left half-written. Codex (GPT-6 Luna) resets at 10:38. How should the remaining 32 proceed?
+```
+
+Options:
+```text
+Codex at 10:38 (Recommended)
+Devin swe-2-max now
+Claude subagents now
+```
+
+Answer:
+```text
+Deepseek flash max cli devin
+```
+
+### Q009
+<!-- source: claude:8d8133eb-b573-4b60-8bba-186b349d3926:toolu_01DGKqEN8uRPnR78ko66edaz:0 -->
+
+Question:
+```text
+DeepSeek Flash Max on devin can't run right now. I just probed both deepseek-v4-1-flash-1017-max and deepseek-v4-flash-max, and both returned 'Your daily usage quota has been exhausted' (resource_exhausted), with no reset time. Devin says to buy on-demand usage or turn on auto-reload at https://app.devin.ai/settings/usage. What should I do?
+```
+
+Options:
+```text
+I'll top up devin
+Poll devin hourly
+Codex at 10:38 (Recommended)
+```
+
+Answer:
+```text
+Cli opencode with opencode go
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

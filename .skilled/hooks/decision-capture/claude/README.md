@@ -1,5 +1,5 @@
 ---
-title: "Claude Decision Capture: AskUserQuestion PostToolUse Adapter"
+title: "Claude Decision Capture: PostToolUse Adapter"
 description: "Claude Code PostToolUse adapter that queues each answered AskUserQuestion call so a later full-auto save can quote the operator's exact wording."
 trigger_phrases:
   - "claude decision capture"
@@ -8,19 +8,19 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# Claude Decision Capture: AskUserQuestion PostToolUse Adapter
+# Claude Decision Capture: PostToolUse Adapter
 
 ---
 
 ## 1. OVERVIEW
 
-`.skilled/hooks/decision-capture/claude/` holds the Claude Code adapter for the decision capture concern. It runs at `PostToolUse` for `AskUserQuestion` and normalizes the answered call into the shared queue. A later full-auto save can then quote the exchange instead of reconstructing it. It prints nothing, so the tool result Claude already has reaches the model unchanged.
+`.skilled/hooks/decision-capture/claude/` holds the Claude Code adapter for the decision capture concern. It runs at `PostToolUse` on an answered `AskUserQuestion` call and appends the exchange to the shared queue. A later full-auto save can then quote the operator's own wording. It prints nothing, so the tool result Claude already holds reaches the model unchanged.
 
-Claude registers the adapter in `.claude/settings.json` at `PostToolUse` with the matcher `AskUserQuestion`. The entry allows 5 seconds and carries a drift fallback. The registry mirror holds the same entry under the id `decision-capture`. No other runtime registers this file, so Devin and Pi keep their own adapters.
+Claude registers the adapter in `.claude/settings.json` under the `PostToolUse` event, with the matcher `AskUserQuestion`. The command changes into `${CLAUDE_PROJECT_DIR:-$PWD}` and exits 0 when `.skilled/hooks` is absent. It allows 5 seconds. If the adapter file is missing or node fails, the fallback prints a drift line on stderr and a `hookSpecificOutput` envelope that tells Claude to rebuild the runtime. No other runtime registers this file.
 
-The adapter reads `CLAUDE_PROJECT_DIR` first, then the payload `cwd`. With neither set, it exits 0 and writes nothing. It acts only when `tool_name` is `AskUserQuestion`, so any other tool name returns at once. `normalizeAskUserQuestion` drops a process question, so a scope menu never reaches the queue. `appendRecords` deduplicates by key and appends under a lock.
+The adapter checks the concern switch first, then reads the hook payload from stdin. It returns at once when the payload names another tool, or when it finds no project directory, checking `CLAUDE_PROJECT_DIR` before the payload `cwd`. `normalizeAskUserQuestion` maps the answers to queue records and `appendRecords` appends them under a lock. Both live in `.skilled/hooks/decision-capture/lib/capture-core.mjs`.
 
-The concern switch is `SYSTEM_DECISION_CAPTURE_DISABLED`, which turns the adapter off at once. `SYSTEM_HOOKS_DISABLED` is the master switch for every concern. Every failure exits 0 with no output. A missing payload, a parse error, a disabled switch or a queue write failure all end the same way.
+The concern key is `decision-capture`. Its switch is `SYSTEM_DECISION_CAPTURE_DISABLED`, and `SYSTEM_HOOKS_DISABLED` is the master switch. Every failure ends the same way: exit 0 with no output on either stream.
 
 ---
 
@@ -31,16 +31,17 @@ claude/
 +-- README.md
 +-- decision-capture-posttooluse.mjs
 +-- decision-capture-posttooluse.test.mjs
-`-- fixtures/   claude-posttooluse-askuserquestion.json
+`-- fixtures/
+    `-- claude-posttooluse-askuserquestion.json
 ```
 
 | File | Responsibility |
 |---|---|
-| `decision-capture-posttooluse.mjs` | The adapter. It checks the switch, parses the payload and appends the normalized answer. |
-| `decision-capture-posttooluse.test.mjs` | The `node --test` suite. It spawns the adapter on the recorded payload. |
-| `fixtures/` | The recorded `AskUserQuestion` payload the suite replays. |
+| `decision-capture-posttooluse.mjs` | The adapter. It checks the switch, reads the payload, normalizes the answer and appends the records. |
+| `decision-capture-posttooluse.test.mjs` | The `node --test` suite. It spawns the adapter on the recorded payload and reads what the run leaves on disk. |
+| `fixtures/` | Holds `claude-posttooluse-askuserquestion.json`, the recorded `AskUserQuestion` payload the suite replays. |
 
-The suite reads what the adapter leaves on disk and removes its own temporary directories.
+The folder holds one adapter and its test. It has no symlink.
 
 ---
 
@@ -52,13 +53,14 @@ Run the command from the repository root.
 node --test .skilled/hooks/decision-capture/claude/decision-capture-posttooluse.test.mjs
 ```
 
-Expected result: both cases pass. The first asserts exit 0, empty stdout and an untouched folder. The second asserts queue lines land under the payload `cwd`.
+Expected result: every test passes, the run reports `fail 0` and the command exits 0.
 
 ---
 
 ## 4. RELATED
 
-- [`../README.md`](../README.md): the decision capture concern folder.
-- [`../lib/capture-core.mjs`](../lib/capture-core.mjs): the shared queue core this adapter calls.
-- [`../bin/README.md`](../bin/README.md): the save-time sweeps, including the Claude transcript sweep.
-- [`../../README.md`](../../README.md): the hooks tree, with the switch index and the coverage matrix.
+- [the decision capture folder](../README.md): the concern README, with the core and the runtime coverage.
+- [the shared queue core](../lib/capture-core.mjs): the module this adapter imports for normalization and append.
+- [the switch resolver](../../shared/README.md): the shared helpers every adapter calls.
+- [the hooks tree](../../README.md): the switch index and the coverage matrix.
+- [the save-time sweeps](../bin/README.md): how the save command recovers answers from stored sessions.

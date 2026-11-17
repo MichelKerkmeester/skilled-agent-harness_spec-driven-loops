@@ -39,7 +39,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,12 +47,14 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".cursor/hooks.json",
+      ".pi/extensions/mcp-route-guard.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs",
       ".skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md",
       ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
       ".claude/settings.json",
       ".codex/hooks.json",
-      ".cursor/hooks.json",
       ".devin/hooks.v1.json",
       ".vibe/hooks.toml"
     ],
@@ -94,6 +96,24 @@
         "source": "derived"
       },
       {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.ts",
+        "kind": "code",
+        "path": ".pi/extensions/mcp-route-guard.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-tool-use.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs",
+        "source": "derived"
+      },
+      {
         "name": "hook-readme-template.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md",
@@ -115,12 +135,6 @@
         "name": "settings.json",
         "kind": "config",
         "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".codex/hooks.json",
         "source": "derived"
       },
       {
@@ -188,23 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Template",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A runtime adapter README tells a maintainer how one runtime runs one concern: the event, the file that registers the adapter and how it fails",
     "created_at": "2026-11-16T15:20:15Z",
-    "last_save_at": "2026-11-16T19:27:06.360Z",
+    "last_save_at": "2026-11-17T10:59:59.907Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c5b144105d651053d77a704dfdf9e1ed1024bee853171c88995f61b4ae992732",
+    "source_fingerprint": "sha256:40551e1fd62cfbd7d0e49022bb3890061f70091f6a27afc683526038597c5d6d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "278f099329d99d9ee7cd42b7f666a9faf2ef2678817f8fdef97663786005243c",
-      "plan.md": "428bbb4fed54fd0987d3e8664fe9fffb83a3d811ecfd2f50354815d894cb26b8",
-      "tasks.md": "611eeba6e7e341afc232bf99ba232d4fd01dfae689c09aed242fc5376336acd3",
-      "implementation-summary.md": "d32973243c1f7deb1f25576c7e5e873e469f3046185592ee8f7ed03cb40064c3"
+      "spec.md": "d241757980f326ac1f11a8afa1061a35bea404e21c934cb4ef06a8d1afff41b2",
+      "plan.md": "95e5d2f4454d74fbfe1329126353ad37a8bbc8ae2b2e0ae16ff1fead7e2df83e",
+      "tasks.md": "df0549bb29eeb264cd0dff5763b4dc0d0e0fa6404fb3ef86232bc837b5b171b8",
+      "implementation-summary.md": "a70fd608f394a5a4e16707b9abeae051c45bd465b279ea13ce1f7168d77c17e7"
     },
     "last_active_at": null
   }

@@ -39,8 +39,8 @@ _memory:
 
 **Packet:** sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes
 **Level:** 2
-**Status:** Draft
-**Date:** 2026-11-16
+**Status:** Complete
+**Date:** 2026-11-17
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,15 +53,15 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the 47 READMEs, When `h2model.py` and a read of the opening run on each, Then the H1 names the runtime, the concern and the event, and every H2 is numbered, ALL CAPS, one of OVERVIEW, DIRECTORY TREE, VALIDATION and RELATED, and preceded by `---` | `h2model.py` and a read of each opening, recorded per file in `implementation-summary.md` | Unmet | - |
-| AC-002 | REQ-002 | Given the 47 files, When `validate_document.py` runs on each, Then each prints `VALID` | The after run of the baseline script, one `✅ VALID` per line | Unmet | - |
-| AC-003 | REQ-003 | Given the 47 files, When `hvr_scan.py` runs on each, Then each reports `hard blockers: 0` | The after run of the baseline script, `hard=0` on all 47 lines | Unmet | - |
-| AC-004 | REQ-004 | Given the 47 files, When the link checker runs over them, Then it reports 0 problems for outbound links and for anchored links into them from the rest of the repository | `readme_links.py` prints `0 problems` | Unmet | - |
-| AC-005 | REQ-005 | Given a rewritten README, When a session that did not write it checks each path, command, count and list against the adapter, its tests and the file that registers it, Then every claim holds or was corrected | The review record in `implementation-summary.md`, one line per README | Unmet | - |
-| AC-006 | REQ-006 | Given the rewritten READMEs and the rebuilt verdict baseline, When hook-wiring-check.cjs --root ., the verdict parity test and the sk-doc suite run, Then all pass | The commands and their pass lines in `implementation-summary.md` | Unmet | - |
-| AC-007 | REQ-007 | Given a command block in a README, When a reader looks below it, Then the expected output or result is stated | Review of each README's code blocks, recorded with AC-005 | Unmet | - |
-| AC-008 | REQ-008 | Given the baseline ceilings, When the voice scan runs after the rewrite, Then no README's mechanical ceiling is lower than its baseline | Before and after ceilings side by side in `implementation-summary.md` | Unmet | - |
-| AC-009 | REQ-009 | Given the phase is done, When `implementation-summary.md` is read, Then it holds the before and after validator, voice and link results for all 47 files | `implementation-summary.md` Verification section | Unmet | - |
+| AC-001 | REQ-001 | Given the 47 READMEs, When `h2model.py` and a read of the opening run on each, Then the H1 names the runtime, the concern and the event, and every H2 is numbered, ALL CAPS, one of OVERVIEW, DIRECTORY TREE, VALIDATION and RELATED, and preceded by `---` | `h2model.py` printed `EXACT` for all 47 and `chk004.py` printed `OK`: each opens with an H1 naming the runtime, the concern and the event, and the title equals the H1 | Met | - |
+| AC-002 | REQ-002 | Given the 47 files, When `validate_document.py` runs on each, Then each prints `VALID` | `baseline-004-after.tsv`: 47 of 47 `✅ VALID` | Met | - |
+| AC-003 | REQ-003 | Given the 47 files, When `hvr_scan.py` runs on each, Then each reports `hard blockers: 0` | `baseline-004-after.tsv`: `hard=0` on all 47 lines | Met | - |
+| AC-004 | REQ-004 | Given the 47 files, When the link checker runs over them, Then it reports 0 problems for outbound links and for anchored links into them from the rest of the repository | `readme_links.py` printed `0 problems` over 260 outbound links | Met | - |
+| AC-005 | REQ-005 | Given a rewritten README, When a session that did not write it checks each path, command, count and list against the adapter, its tests and the file that registers it, Then every claim holds or was corrected | Review Record in `implementation-summary.md`, one line per README, plus the blocking review's eight confirmed fixes | Met | - |
+| AC-006 | REQ-006 | Given the rewritten READMEs and the rebuilt verdict baseline, When hook-wiring-check.cjs --root ., the verdict parity test and the sk-doc suite run, Then all pass | `hook-wiring-check.cjs --root .` exit 0, `PARITY PASS` and the sk-doc suite at exit 0, listed in `implementation-summary.md` | Met | - |
+| AC-007 | REQ-007 | Given a command block in a README, When a reader looks below it, Then the expected output or result is stated | `chk004.py` checked every command block over all 47, and `vrun.py` reran each one against its stated result | Met | - |
+| AC-008 | REQ-008 | Given the baseline ceilings, When the voice scan runs after the rewrite, Then no README's mechanical ceiling is lower than its baseline | Before and after ceilings in `implementation-summary.md`. None ends below its baseline | Met | - |
+| AC-009 | REQ-009 | Given the phase is done, When `implementation-summary.md` is read, Then it holds the before and after validator, voice and link results for all 47 files | `implementation-summary.md` Verification section | Met | - |
 
 ### Status values
 
@@ -87,7 +87,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-The rewrite has not started, so every criterion is still unmet.
+Every criterion is met, with its evidence in `implementation-summary.md`.
 <!-- /ANCHOR:closure -->

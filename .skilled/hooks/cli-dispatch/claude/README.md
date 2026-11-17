@@ -1,5 +1,5 @@
 ---
-title: "Claude Dispatch Hooks: Preflight Lint and Audit Pair"
+title: "Claude Dispatch: PreToolUse and PostToolUse Adapters"
 description: "Claude Code PreToolUse and PostToolUse adapters that lint a composed CLI dispatch against hard rules and record a scrubbed audit line after it runs."
 trigger_phrases:
   - "claude dispatch preflight"
@@ -8,40 +8,55 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# Claude Dispatch Hooks: Preflight Lint and Audit Pair
+# Claude Dispatch: PreToolUse and PostToolUse Adapters
 
 ---
 
 ## 1. OVERVIEW
 
-`.skilled/hooks/cli-dispatch/claude/` holds the Claude Code pair for the dispatch concern. The preflight runs at `PreToolUse` on `Bash` and reads every dispatch in the command. The audit runs at `PostToolUse` on `Bash` and records a dispatch that already ran.
+`.skilled/hooks/cli-dispatch/claude/` holds the Claude Code adapters for the dispatch concern. The preflight runs at `PreToolUse` and holds every dispatch in a `Bash` command to the hard rules of the skill it names. The audit runs at `PostToolUse` and appends one scrubbed line for a dispatch that already ran.
 
-The preflight holds each dispatch to the rules of the skill that dispatch names. Those rules sit in the `hard-rules.json` sidecar beside that skill's `SKILL.md`. A violation comes back as a denial or as an advisory.
+`.claude/settings.json` registers both. Its `hooks` object names the events `"PreToolUse"` and `"PostToolUse"`, and each group matches `Bash` with a 5-second timeout. When the adapter is missing or `node` fails, each entry prints a drift line on stderr and a context envelope that asks for a rebuild.
 
-The audit appends one scrubbed JSONL line to the rotated dispatch log. It observes a completed call and never decides, so it emits no permission decision.
+Both adapters check their switch before they read stdin. The preflight checks `dispatch-guard`, whose switch is `SYSTEM_DISPATCH_GUARD_DISABLED`. The audit checks `dispatch`, whose switch is `CLI_DISPATCH_AUDIT_DISABLED`. The checks reach the shared resolver through `hook-flags.mjs`, so `SYSTEM_HOOKS_DISABLED` turns off either adapter with the rest of the repository hooks.
 
-Both adapters call the runtime-neutral cores in `../lib/` rather than their own copy. Claude Code loads them from the `PreToolUse` and `PostToolUse` matchers in `.claude/settings.json`.
+Every failure ends in exit 0 with no output. The preflight reads that as an approval and the audit reads it as nothing to write.
+
+The preflight builds `skillsRoot` from `CLAUDE_PROJECT_DIR` or the working directory, then calls `evaluateDispatch` for the command. A `block` violation writes `permissionDecision: 'deny'` with each rule id in the reason. A `warn` violation writes `additionalContext` and leaves the permission decision to the normal flow. A command with no dispatch shape returns before either path.
+
+The audit calls `resolveAuditLogPath` and then `recordDispatch` with the command, the output, the session id, the tool call id and the tool response. It reads the project directory from `payload.cwd`. When that is absent it falls back to `CLAUDE_PROJECT_DIR` and the working directory. The record is tagged `runtime: 'claude'` and lands in `.skilled/logs/cli-dispatch-audit.log` at the repository root. The adapter emits no permission decision at any point.
 
 ---
 
-## 2. FILES
+## 2. DIRECTORY TREE
 
 | File | Responsibility |
 |---|---|
-| `dispatch-preflight-lint.mjs` | The `PreToolUse` gate on `Bash`. It stops a dispatch that breaks its skill's hard rules. |
-| `dispatch-audit-posttooluse.mjs` | The `PostToolUse` recorder on `Bash`. It writes one audit line for a dispatch that ran. |
+| `dispatch-preflight-lint.mjs` | The `PreToolUse` adapter. It denies a `block` violation and advises on a `warn` one. |
+| `dispatch-audit-posttooluse.mjs` | The `PostToolUse` adapter. It records a completed dispatch and never decides permission. |
 
-The preflight checks `isHookEnabled('dispatch-guard')`, calls `evaluateDispatch` and denies a `block` violation with `permissionDecision: 'deny'`. A `warn` violation adds `additionalContext` and leaves the permission decision alone.
-
-The audit checks `isHookEnabled('dispatch')` before it calls `recordDispatch`. `recordDispatch` returns early when `CLI_DISPATCH_AUDIT_DISABLED` is set to `1`, so no line is written. Otherwise it receives the command, the output, the session id, the tool call id and the tool response.
-
-The preflight fails open, so an internal error approves silently and never blocks a call. A non-dispatch command or a missing payload also exits 0 with no output. The audit emits no permission decision at all, because it only observes. On any error it exits 0 with no output, an audit write failure included.
+Both files are entry points. The shared cores they call live in `../lib/`.
 
 ---
 
-## 3. RELATED
+## 3. VALIDATION
 
-- [`../README.md`](../README.md): the dispatch concern, the shared cores and the full rule list.
-- [`../lib/dispatch-rule-checks.mjs`](../lib/dispatch-rule-checks.mjs): the hard-rule engine the preflight calls for every dispatch.
-- [`../lib/dispatch-audit.mjs`](../lib/dispatch-audit.mjs): the audit core the post-tool adapter calls to write its line.
-- [`../codex/README.md`](../codex/README.md): the Codex sibling pair for the same dispatch concern and the same cores.
+Run the command from the repository root.
+
+```bash
+node --test .skilled/hooks/shared/hook-stdin-deadline.test.mjs
+```
+
+Expected result: every test passes and the run ends with `fail 0`.
+
+The suite spawns this folder's adapters with stdin left open, then sends a flagged dispatch through each one.
+
+---
+
+## 4. RELATED
+
+- [`../README.md`](../README.md): the dispatch concern and its switches.
+- [`../lib/dispatch-rule-checks.mjs`](../lib/dispatch-rule-checks.mjs): the hard-rule engine the preflight calls.
+- [`../lib/dispatch-audit.mjs`](../lib/dispatch-audit.mjs): the audit core the post-tool adapter calls.
+- [`../../shared/hook-flags.cjs`](../../shared/hook-flags.cjs): the switch resolver behind both checks.
+- [`../../../../.claude/settings.json`](../../../../.claude/settings.json): the file that registers both adapters.

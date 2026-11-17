@@ -1,5 +1,5 @@
 ---
-title: "DSH Decision Capture: Live Answers and Idle Reminder"
+title: "DSH Decision Capture: tools/result, session/event and agent/status Adapters"
 description: "DSH adapter that queues answered questions, recovers late replies and injects one save reminder when captured answers wait."
 trigger_phrases:
   - "dsh decision capture"
@@ -8,55 +8,55 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# DSH Decision Capture: Live Answers and Idle Reminder
+# DSH Decision Capture: tools/result, session/event and agent/status Adapters
 
 ---
 
 ## 1. OVERVIEW
 
-`decision-capture.mjs` is the DSH adapter for the decision capture concern. It exports `registerDecisionCapture`, which registers one handler for each event it reads.
+`.skilled/hooks/decision-capture/dsh/` holds the DSH adapter for the decision capture concern. It appends each answered `ask_user_question` call to the queue for the next full-auto save. A successful capture prints nothing.
 
-The `tools/result` handler queues each answered `ask_user_question` call into the shared queue. The `session/event` handler recovers a late reply to a timed question from the session feed. The `agent/status` handler injects one save reminder when the agent goes idle.
+`.dsh/plugins/repo-guards/index.mjs` registers the adapter. Its `apply` function calls `registerDecisionCapture(ctx, options.decisionCapture)`, and the bundle entry `.dsh/plugins/repo-guards/adapters/decision-capture.mjs` is a relative link to this folder. The bundle names no event. The adapter declares each one in its own `ctx.on` call.
 
-The module declares `ERROR_POLICY = 'fail-open'`, and every handler catches its own error. The `repo-guards` plugin bundle imports this adapter from this folder. DSH loads the adapter through a link at `.dsh/plugins/repo-guards/adapters/decision-capture.mjs`. The bundle at `.dsh/plugins/repo-guards/index.mjs` calls `registerDecisionCapture` in its `apply` function.
+The `tools/result` handler reads a finished question call. The `session/event` handler recovers an answered late reply to a timed question. The `agent/status` handler runs at idle, calls `takeNudge` and injects one notice through `agent.inject` when the pending count has risen since the last report. That notice names the count and asks for a `/speckit:save` run with `--full-auto`.
 
-The concern key is `decision-capture`, and `SYSTEM_DECISION_CAPTURE_DISABLED=1` turns the adapter off.
+`registerDecisionCapture` reads the switch first. It calls `isEnabled('decision-capture')` and returns before it registers a handler when the concern is off. That resolver is `isHookEnabled` from `.skilled/hooks/shared/hook-flags.mjs`, so the concern switch is `SYSTEM_DECISION_CAPTURE_DISABLED`. `SYSTEM_HOOKS_DISABLED` is the master switch.
+
+Every handler catches a throw and calls `logFailure`. That helper writes one line through `ctx.logger.warn`, and a throw inside the logger is swallowed. The tool result or the turn continues unchanged. The module exports `ERROR_POLICY = 'fail-open'`.
 
 ---
 
-## 2. FILES
+## 2. DIRECTORY TREE
+
+The folder is flat. The adapter file sits beside this README.
 
 | File | Responsibility |
 |---|---|
-| `decision-capture.mjs` | The DSH adapter. It exports `registerDecisionCapture` and `ERROR_POLICY`. |
+| `decision-capture.mjs` | The adapter. It checks the switch, then registers the handlers for `tools/result` and `session/event`. Its `agent/status` handler injects the idle reminder. It builds records with `dshAnswerRecords` or `recoveredRecords` from `.skilled/hooks/decision-capture/bin/sweep-dsh.mjs`, tags each one `source: 'hook'` and appends the batch through `appendRecords` in `.skilled/hooks/decision-capture/lib/capture-core.mjs`. |
 
-The register function accepts the plugin context and an options object that tests override. The options carry the queue core, the switch resolver, the notice factory and a working directory.
-
-On `tools/result`, the adapter skips a call that is not `ask_user_question`. It also skips a result whose `isError` flag is set. It builds the session from the agent, then maps the answer with `dshAnswerRecords`. The live value is the same answer batch the result text spells. A live record and a swept one therefore share one key and never queue twice. The queue tags each record `source: 'hook'` and appends it through `appendRecords`.
-
-On `session/event`, the adapter reads only a `user/message` event whose source kind is `user-question-reply`. It maps that event with `recoveredRecords` and queues the result.
-
-On `agent/status`, the adapter acts only when the status is `idle`. It calls `takeNudge`, which returns the waiting count only when it has risen since the last report, and 0 otherwise. When the count is above zero, it injects a notice through `agent.inject`. The default notice factory builds the message with `createUserMessage` from `loadDshLlm()` and sets its source kind to `repo-guards`. The notice names the count and points at `/speckit:save` with `--full-auto`.
-
-Each handler wraps its work in a try block and calls `logFailure` on a throw. That helper writes one warning through `ctx.logger.warn` and swallows a logging failure. The tool result or the turn therefore continues unchanged.
+The bundle entry `.dsh/plugins/repo-guards/adapters/decision-capture.mjs` points at this file, so the bundle and this folder load one module. The register function takes an options object. A test can replace the queue core, the switch resolver, the notice factory and the working directory through it.
 
 ---
 
 ## 3. VALIDATION
 
-Run from the repository root.
+Run the command from the repository root.
 
 ```bash
 node --test .skilled/hooks/decision-capture/tests/dsh-decision-capture.test.mjs
 ```
 
-Expected result: every test passes, with `fail 0` in the summary. The suite covers the live answer queue and the answer read from result text. It also covers the skipped call, the late reply, the idle reminder and the fail-open throw policy.
+Expected result: every test passes. The runner prints `fail 0` and exits 0.
+
+The suite imports `decision-capture.mjs` from this folder and drives each handler through the fake plugin context in `.skilled/hooks/shared/tests/dsh-plugin-harness.mjs`. One case compares the live record key with the key a sweep would build, so a live record and a swept one never queue twice. The suite also covers a skipped call, the answered late reply, the idle reminder and the fail-open policy.
 
 ---
 
 ## 4. RELATED
 
-- [`../`](../): the decision capture concern README, with the queue core and the sweeps.
-- [`../lib/capture-core.mjs`](../lib/capture-core.mjs): the queue core the adapter appends through.
-- [`../bin/sweep-dsh.mjs`](../bin/sweep-dsh.mjs): the sweep that exports `dshAnswerRecords` and `recoveredRecords`.
-- [`../tests/dsh-decision-capture.test.mjs`](../tests/dsh-decision-capture.test.mjs): the tests for this adapter.
+- [the decision capture concern](../README.md): the queue core and the runtime coverage.
+- [the queue core](../lib/capture-core.mjs): `appendRecords` and `takeNudge`, which the adapter calls.
+- [the DSH sweep](../bin/sweep-dsh.mjs): `dshAnswerRecords` and `recoveredRecords`.
+- [the adapter suite](../tests/dsh-decision-capture.test.mjs): the cases that drive this adapter.
+- [the plugin bundle](../../../../.dsh/plugins/repo-guards/index.mjs): the `apply` function that registers the adapter.
+- [the switch resolver](../../shared/hook-flags.mjs): the `isHookEnabled` resolver the adapter calls.
