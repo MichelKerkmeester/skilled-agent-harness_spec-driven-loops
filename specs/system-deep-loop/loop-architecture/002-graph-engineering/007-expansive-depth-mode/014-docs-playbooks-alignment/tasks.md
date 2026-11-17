@@ -34,8 +34,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm phases 001-013 are complete (`../0*/goal.md`). Verify: `rg -c '^- \[ \]' ../0*/goal.md` lists no file except this phase's own `goal.md`.
-- [ ] T002 Rerun the two Measured Behavior commands from `spec.md` and record their output (`goal.md` §4). Verify: the output is in the log.
+- [ ] T001 Confirm phases 001-013 are complete (`../0*/goal.md`). Verify: `rg -c '^- \[ \]' ../0*/goal.md` lists no file except this phase's own `goal.md`. **Open 2026-11-18.** Not closed: 010 goal.md line 64 (target-2 pilot) and 011 goal.md lines 58 (golden case, operator waiver pending) and 64 (target-1 pilot) are still open. The brief said 010 also holds a golden criterion; its goal.md does not show one (recorded in goal.md section 4).
+- [x] T002 Rerun the two Measured Behavior commands from `spec.md` and record their output (`goal.md` §4). Verify: the output is in the log. **Done 2026-11-18.** Evidence: goal.md section 4, the unpiped rerun, 8 files and 3 files, both exit 0.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -43,9 +43,9 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Check playbook coverage for each row of the Feature to Playbook Map: `rg -l` for that row's flag or behavior over its category folder (`D/deep-research/manual-testing-playbook/`, `D/deep-review/manual-testing-playbook/`, `D/runtime/manual-testing-playbook/`). Verify: the coverage table in `goal.md` §4 names one scenario file per 001-013 row, and every file is reachable from its package index and the hub index `D/manual-testing-playbook/manual-testing-playbook.md`.
-- [ ] T004 Route each coverage gap to its owning phase, which adds the scenario through `/create:manual-testing-playbook system-deep-loop update --path <playbook dir>`, then recheck (`goal.md` §4). Verify: the coverage table has no empty row.
-- [ ] T005 Update the four feature catalogs (`D/deep-research/feature-catalog/`, `D/deep-review/feature-catalog/`, `D/runtime/feature-catalog/`, `D/feature-catalog/feature-catalog.md`). Verify: `/create:feature-catalog system-deep-loop update --path <catalog dir>` completes for each, `rg -l -- "--depth-mode"` and `rg -l -- "--extend="` print a file in the research and review catalogs, and `rg -il "custom review dimension" D/deep-review/feature-catalog` prints a file.
+- [x] T003 Check playbook coverage for each row of the Feature to Playbook Map: `rg -l` for that row's flag or behavior over its category folder (`D/deep-research/manual-testing-playbook/`, `D/deep-review/manual-testing-playbook/`, `D/runtime/manual-testing-playbook/`). Verify: the coverage table in `goal.md` §4 names one scenario file per 001-013 row, and every file is reachable from its package index and the hub index `D/manual-testing-playbook/manual-testing-playbook.md`. **Done 2026-11-18.** Evidence: coverage table in goal.md section 4, 13 rows and 18 files, each indexed and reachable through the hub section 9.
+- [x] T004 Route each coverage gap to its owning phase, which adds the scenario through `/create:manual-testing-playbook system-deep-loop update --path <playbook dir>`, then recheck (`goal.md` §4). Verify: the coverage table has no empty row. **Done 2026-11-18, no gap.** Every map row had a scenario, so none was added and none was written on a phase's behalf.
+- [x] T005 Update the four feature catalogs (`D/deep-research/feature-catalog/`, `D/deep-review/feature-catalog/`, `D/runtime/feature-catalog/`, `D/feature-catalog/feature-catalog.md`). Verify: `/create:feature-catalog system-deep-loop update --path <catalog dir>` completes for each, `rg -l -- "--depth-mode"` and `rg -l -- "--extend="` print a file in the research and review catalogs, and `rg -il "custom review dimension" D/deep-review/feature-catalog` prints a file. **Done 2026-11-18.** Evidence: 15 new leaves across the three packet catalogs and the hub, 4 root catalogs updated, strict catalog validator PASS, goal.md section 4 greps exit 0.
 <!-- /ANCHOR:phase-2 -->
 
 ---

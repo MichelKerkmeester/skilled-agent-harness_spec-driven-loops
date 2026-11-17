@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-review review-loop system."
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # deep-review: Feature Catalog
@@ -181,6 +181,54 @@ See [`loop-lifecycle/fanout-dispatch.md`](../feature-catalog/loop-lifecycle/fano
 
 ---
 
+### Completed-run extension (--extend)
+
+#### Description
+
+A completed deep-review run extends in place by N iterations under --extend=N, keeps its session identifier and generation, and keeps the prior review report as a snapshot before re-synthesis.
+
+#### How It Works
+
+The run continues under lineage mode `completed-continue`, keeps the prior review report as a snapshot before re-synthesis and takes `--extend-minutes=M` on the duration budget. Extension is refused with fan-out.
+
+#### Source Files
+
+See [`loop-lifecycle/completed-run-extension.md`](loop-lifecycle/completed-run-extension.md) for full implementation and validation file listings.
+
+---
+
+### Review minIterations floor
+
+#### Description
+
+A review run with a configured minIterations floor returns CONTINUE with minIterationsNotReached until its iteration count reaches the floor, so a review never stops before the floor.
+
+#### How It Works
+
+`convergence.cjs` returns `CONTINUE` with `minIterationsNotReached` below the floor, and the command's fixed stop order checks the floor before the gates. The shipped default is 2.
+
+#### Source Files
+
+See [`loop-lifecycle/min-iterations-floor.md`](loop-lifecycle/min-iterations-floor.md) for full implementation and validation file listings.
+
+---
+
+### Expansive depth mode (--depth-mode=expansive)
+
+#### Description
+
+Opt-in --depth-mode=expansive on deep-review seeds depth-one sub-target nodes from the review target, keeps node status in review/frontier-nodes.jsonl, and holds a review stop while nodes stay open.
+
+#### How It Works
+
+Node status lives in `review/frontier-nodes.jsonl`, open nodes count as `searchDebt`, and the divergent pivot waits for a terminal frontier. The live pilot runs are still open, so no pilot result is recorded here.
+
+#### Source Files
+
+See [`loop-lifecycle/expansive-depth-mode.md`](loop-lifecycle/expansive-depth-mode.md) for full implementation and validation file listings.
+
+---
+
 ## 3. STATE MANAGEMENT
 
 These entries describe the review packet files, how they change over time, and how reducer-owned state feeds the loop, dashboard, and synthesis surfaces.
@@ -297,6 +345,22 @@ See [`state-management/pause-sentinel.md`](../feature-catalog/state-management/p
 
 ---
 
+### Next Focus free-text guard
+
+#### Description
+
+Deep-review Next Focus names the first uncovered dimension when the latest leaf's free text names none, so free text cannot hijack the review focus.
+
+#### How It Works
+
+The strategy focus block and the dashboard apply the same rule in `reduce-state.cjs`.
+
+#### Source Files
+
+See [`state-management/focus-hijack-guard.md`](state-management/focus-hijack-guard.md) for full implementation and validation file listings.
+
+---
+
 ## 4. REVIEW DIMENSIONS
 
 These entries capture the four canonical audit dimensions that define loop coverage and shape findings, convergence, and the strategy checklist.
@@ -362,6 +426,22 @@ Maintainability is the fourth default dimension and covers patterns, documentati
 #### Source Files
 
 See [`review-dimensions/maintainability.md`](review-dimensions/maintainability.md) for full implementation and validation file listings.
+
+---
+
+### Custom review dimensions
+
+#### Description
+
+A review run accepts configured custom dimensions after the four canonical ones, tracks them in dimension coverage, and lets a covered custom dimension reach the all-dimensions-clean stop.
+
+#### How It Works
+
+Custom names are ordered after the four canonical dimensions, judged by their own name and not required for severity coverage.
+
+#### Source Files
+
+See [`review-dimensions/custom-review-dimensions.md`](review-dimensions/custom-review-dimensions.md) for full implementation and validation file listings.
 
 ---
 

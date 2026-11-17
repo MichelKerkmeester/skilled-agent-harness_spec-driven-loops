@@ -5,7 +5,7 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # runtime/: Feature Catalog
@@ -105,6 +105,38 @@ See [`executor/fallback-router-typed-reroute.md`](../feature-catalog/executor/fa
 
 ---
 
+### Research Claude config dir
+
+#### Description
+
+A deep-research iteration on cli-claude-code runs Claude under the configured config dir, and the executor audit records that dir.
+
+#### How It Works
+
+`--claude-config-dir` is optional for research and required for review on `cli-claude-code`. Every other executor refuses the flag.
+
+#### Source Files
+
+See [`executor/research-claude-config-dir.md`](../feature-catalog/executor/research-claude-config-dir.md) for full implementation and validation file listings.
+
+---
+
+### Landed iteration is not redispatched
+
+#### Description
+
+A research or review iteration that already landed is not dispatched a second time when its verify check fails with executor_missing, findings_not_enumerated or ledger_backing_missing.
+
+#### How It Works
+
+The `redispatch_once` filter in both command YAMLs skips these reasons, and no iteration is dispatched more than once.
+
+#### Source Files
+
+See [`executor/landed-iteration-no-redispatch.md`](../feature-catalog/executor/landed-iteration-no-redispatch.md) for full implementation and validation file listings.
+
+---
+
 ## 3. PROMPT RENDERING
 
 This entry covers prompt-pack template rendering and placeholder validation before iteration dispatch.
@@ -122,6 +154,22 @@ Template token extraction, strict variable names, missing-token failures, and re
 #### Source Files
 
 See [`prompt-rendering/prompt-pack.md`](../feature-catalog/prompt-rendering/prompt-pack.md) for full implementation and validation file listings.
+
+---
+
+### Research prompt pack contract
+
+#### Description
+
+The research prompt pack lists a conditional allowed write for the run's research/research.md and names the Recommended Next Focus heading the reducer parses.
+
+#### How It Works
+
+The template carries the conditional entry. The renderer substitutes tokens and throws on a missing variable.
+
+#### Source Files
+
+See [`prompt-rendering/research-prompt-pack-contract.md`](../feature-catalog/prompt-rendering/research-prompt-pack-contract.md) for full implementation and validation file listings.
 
 ---
 
@@ -525,6 +573,22 @@ See [`coverage-graph/coverage-graph-fuzzy-merge.md`](../feature-catalog/coverage
 
 ---
 
+### Source quality class
+
+#### Description
+
+Research SOURCE nodes carry a quality_class derived at the graph upsert from where the source lives, and the source-diversity signal reads that derived value.
+
+#### How It Works
+
+A leaf-supplied value is overwritten. The closed vocabulary is `SOURCE_QUALITY_CLASS` in `coverage-graph-query.ts`.
+
+#### Source Files
+
+See [`coverage-graph/source-quality-class.md`](../feature-catalog/coverage-graph/source-quality-class.md) for full implementation and validation file listings.
+
+---
+
 ## 8. SCRIPT ENTRY POINTS
 
 These entries cover the direct `.cjs` interfaces that replaced the removed `deep_loop_graph_*` MCP tools.
@@ -622,6 +686,22 @@ Runs seat executors in parallel for one council round; preserves seat result ord
 #### Source Files
 
 See [`council/multi-seat-dispatch.md`](../feature-catalog/council/multi-seat-dispatch.md) for full implementation and validation file listings.
+
+---
+
+### Divergent pivot seat cap and council retry
+
+#### Description
+
+A divergent pivot council runs at most three seats per attempt, and a retryable first-attempt quorum failure reopens the pivot once as attempt 2.
+
+#### How It Works
+
+The seat count is scoped to the current pivot id and attempt, and seat event ids include the attempt number.
+
+#### Source Files
+
+See [`council/divergent-pivot-seat-cap-and-retry.md`](../feature-catalog/council/divergent-pivot-seat-cap-and-retry.md) for full implementation and validation file listings.
 
 ---
 
@@ -760,6 +840,22 @@ Replays the fan-out merge's own near-line and cross-body pair decisions with ded
 #### Source Files
 
 See [`fanout/fanout-pair-replay.md`](../feature-catalog/fanout/fanout-pair-replay.md) for full implementation and validation file listings.
+
+---
+
+### Fan-out review coverage merge
+
+#### Description
+
+A merged review fan-out keeps the candidate, dimension and search coverage surfaces from its lineages instead of dropping them.
+
+#### How It Works
+
+`mergeReviewRegistries` in `fanout-merge.cjs` merges each coverage surface and returns it in the merged registry.
+
+#### Source Files
+
+See [`fanout/fanout-review-coverage-merge.md`](../feature-catalog/fanout/fanout-review-coverage-merge.md) for full implementation and validation file listings.
 
 ---
 

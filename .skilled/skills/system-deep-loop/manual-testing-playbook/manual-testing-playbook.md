@@ -1,7 +1,7 @@
 ---
 title: "system-deep-loop: Manual Testing Playbook"
 description: "Operator-facing reference for manually validating system-deep-loop hub routing, advisor integration, backend discrimination, state discipline, and per-mode artifact ownership against the live skill registry."
-version: "1.2.2.0"
+version: "1.2.3.0"
 ---
 
 # system-deep-loop: Manual Testing Playbook
@@ -217,3 +217,17 @@ that supplies the observed leaf addresses lives at
 **Total scenarios**: 11
 **Typed leaf-resource gold**: `MO-001`, `MO-002` (the two distinct-packet modes).
 **Categories**: 4
+
+---
+
+## 9. MODE PACKAGE INDEXES
+
+The three mode packages hold the remaining operator scenarios for this skill. Each package index links every one of its scenario files, so each scenario is reachable from this hub through its package root.
+
+| Package | Scenarios | Categories | Package Index |
+|---|---|---|---|
+| `deep-research` | 71 | 9 | [deep-research/manual-testing-playbook/manual-testing-playbook.md](../deep-research/manual-testing-playbook/manual-testing-playbook.md) |
+| `deep-review` | 69 | 10 | [deep-review/manual-testing-playbook/manual-testing-playbook.md](../deep-review/manual-testing-playbook/manual-testing-playbook.md) |
+| `runtime` | 56 | 12 | [runtime/manual-testing-playbook/manual-testing-playbook.md](../runtime/manual-testing-playbook/manual-testing-playbook.md) |
+
+The package counts above are outside the 11-scenario total in Section 8, which covers the hub's own routing scenarios only.

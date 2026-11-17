@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.13.0.0
+version: 1.13.1.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -679,7 +679,7 @@ Expected signals: Iteration files contain metadata matching JSONL fields, recons
 
 ## 12. SYNTHESIS, SAVE, AND GUARDRAILS
 
-This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 6 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DRV-025 | Review report synthesis has all 9 sections
 
@@ -733,6 +733,19 @@ Expected signals: Findings are compared across iterations by location and descri
 #### Test Execution
 > **Feature File:** [DRV-028](../manual-testing-playbook/synthesis-save-and-guardrails/finding-deduplication-and-registry.md)
 
+### DRV-029 | Resource map emission
+
+#### Description
+Verify synthesis emits `review/resource-map.md` from converged deltas and honors the opt-out path.
+
+#### Scenario Contract
+Prompt: `Validate deep-review resource-map emission and report whether --no-resource-map disables the write cleanly.`
+
+Expected signals: The synthesis workflow contains an emission step, the reducer supports `--emit-resource-map`, the shared extractor renders its ten built-in categories with finding counts, and config opt-out skips cleanly.
+
+#### Test Execution
+> **Feature File:** [DRV-029](../manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md)
+
 ### DRV-069 | Zero-iteration review report
 
 #### Description
@@ -784,6 +797,7 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 - DRV-001: [Auto-mode deep-review kickoff](../manual-testing-playbook/entry-points-and-modes/auto-mode-deep-review-kickoff.md)
 - DRV-002: [Confirm-mode checkpointed review](../manual-testing-playbook/entry-points-and-modes/confirm-mode-checkpointed-review.md)
 - DRV-003: [Parameterized invocation: max iterations + convergence](../manual-testing-playbook/entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md)
+- DRV-070: [Completed-run extension with --extend](../manual-testing-playbook/entry-points-and-modes/extend-completed-review-run.md)
 - DRV-076: [Expansive depth flag and default byte identity](../manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md)
 
 ### INITIALIZATION AND STATE SETUP
@@ -805,6 +819,7 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 - DRV-013: [Review dashboard generation after iteration](../manual-testing-playbook/iteration-execution-and-state-discipline/review-dashboard-generation-after-iteration.md)
 - DRV-014: [Severity classification in JSONL](../manual-testing-playbook/iteration-execution-and-state-discipline/severity-classification-in-jsonl.md)
 - DRV-015: [Review iterations emit structured graphEvents](../manual-testing-playbook/iteration-execution-and-state-discipline/graph-events-review.md)
+- DRV-073: [Review Next Focus names the first uncovered dimension](../manual-testing-playbook/iteration-execution-and-state-discipline/review-next-focus-first-uncovered-dimension.md)
 - DRV-078: [Frontier admission prunes each proposal with its reason](../manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md)
 - DRV-079: [Frontier focus and per-node dimension coverage](../manual-testing-playbook/iteration-execution-and-state-discipline/frontier-focus-and-node-dimension-coverage.md)
 
@@ -821,6 +836,7 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 - DRV-034: [Review reducer fails closed on corruption and missing anchors](../manual-testing-playbook/convergence-and-recovery/fail-closed-reducer.md)
 - DRV-068: [Cross-mode anti-convergence contract](../manual-testing-playbook/convergence-and-recovery/cross-mode-anti-convergence-contract.md)
 - RV-069: [Divergent convergence mode](../manual-testing-playbook/convergence-and-recovery/divergent-convergence-mode.md)
+- DRV-072: [Review run holds below its minIterations floor](../manual-testing-playbook/convergence-and-recovery/review-min-iterations-floor.md)
 - DRV-080: [Frontier open veto holds a review stop, hard stops included](../manual-testing-playbook/convergence-and-recovery/frontier-open-veto-holds-review-stop.md)
 - DRV-081: [Review pivot waits for a terminal frontier](../manual-testing-playbook/convergence-and-recovery/review-pivot-gates-on-terminal-frontier.md)
 
@@ -868,6 +884,11 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 
 ### FAN-OUT
 
+- DRV-064: [Fan-out review with two CLI lineages](../manual-testing-playbook/fanout/fanout-cli-lineages-review.md)
+- DRV-065: [Fan-out review strongest-restriction verdict](../manual-testing-playbook/fanout/fanout-strongest-restriction.md)
+- DRV-066: [Fan-out native sequential review dispatch](../manual-testing-playbook/fanout/fanout-native-sequential-review.md)
+- DRV-067: [Fan-out single-executor parity for review loop](../manual-testing-playbook/fanout/fanout-single-executor-parity-review.md)
+- DRV-071: [Fan-out merged review keeps its coverage surfaces](../manual-testing-playbook/fanout/fan-out-merged-coverage-surfaces.md)
 - DRV-082: [Review fan-out deals seeded frontier nodes round-robin](../manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md)
 
 ---

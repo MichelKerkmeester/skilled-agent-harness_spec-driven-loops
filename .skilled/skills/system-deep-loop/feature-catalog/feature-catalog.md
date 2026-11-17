@@ -6,8 +6,8 @@ trigger_phrases:
   - "system-deep-loop hub capabilities"
   - "deep-loop mode classification"
   - "system-deep-loop compiled routing"
-last_updated: "2026-07-21"
-version: 1.0.3.0
+last_updated: "2026-11-18"
+version: 1.0.4.0
 ---
 
 # system-deep-loop: Feature Catalog
@@ -37,6 +37,22 @@ Use this catalog as the current-state inventory for the `system-deep-loop` hub. 
 #### Source Files
 
 See [`deep-loop-mode-classification/deep-loop-mode-classification.md`](deep-loop-mode-classification/deep-loop-mode-classification.md) for the full discriminator and source anchors.
+
+---
+
+### Depth mode flag (--depth-mode)
+
+#### Description
+
+The --depth-mode flag on /deep:research and /deep:review selects default or expansive depth, and leaves the registry-driven workflowMode, runtimeLoopType and backendKind classification unchanged.
+
+#### How It Works
+
+`mode-registry.json` has no depth field, and only the expansive value reaches the runtime. The behavior is documented in the research and review catalogs.
+
+#### Source Files
+
+See [`deep-loop-mode-classification/depth-mode-flag.md`](deep-loop-mode-classification/depth-mode-flag.md) for full implementation and validation file listings.
 
 ---
 

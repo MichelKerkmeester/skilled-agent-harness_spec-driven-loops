@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.16.0.0
+version: 1.16.1.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -1043,4 +1043,4 @@ Expected signals: `RESOURCE_MAP` is the dominant intent; the loaded resource set
 
 ## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
 
-No dedicated `feature-catalog/` package exists under `.skilled/skills/system-deep-loop/deep-research/`. Use the live source anchors inside each per-feature file as the canonical implementation cross-reference surface.
+The deep-research feature catalog is at [`../feature-catalog/feature-catalog.md`](../feature-catalog/feature-catalog.md). Use the live source anchors inside each per-feature file as the canonical implementation cross-reference surface.

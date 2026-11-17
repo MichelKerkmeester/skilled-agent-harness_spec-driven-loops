@@ -15,7 +15,10 @@
       "expansive depth playbooks and catalogs",
       "docs playbooks alignment plan",
       "docs playbooks alignment tasks",
-      "docs playbooks alignment goal"
+      "docs playbooks alignment goal",
+      "docs playbooks alignment summary",
+      "expansive depth playbook coverage",
+      "feature catalog expansive depth"
     ],
     "key_topics": [
       "docs",
@@ -27,17 +30,26 @@
       "plan",
       "tasks",
       "goal",
-      "phases",
-      "extend",
-      "depth-mode"
+      "summary",
+      "playbook",
+      "coverage"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md",
       "manual-testing-playbook/manual-testing-playbook.md",
       "feature-catalog/feature-catalog.md"
     ],
@@ -67,15 +79,27 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "manual-testing-playbook.md",
         "kind": "doc",
-        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
         "name": "feature-catalog.md",
         "kind": "doc",
-        "path": "feature-catalog/feature-catalog.md",
+        "path": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "depth-mode-flag.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md",
         "source": "derived"
       },
       {
@@ -173,37 +197,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "both",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phases 001-013 add `--extend=N`, `--depth-mode=expansive` for deep-research and deep-review, custom review dimensions and defect fixes that change what an operator sees, but no system-deep-loop manual testing playbook or feature catalog mentions any of them",
     "created_at": "2026-11-17T17:06:39Z",
-    "last_save_at": "2026-11-17T17:53:16.544Z",
+    "last_save_at": "2026-11-17T23:47:19.753Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:58fc6210a0a3b1101ed73e99990feb63beb54579a40a9aee62cd8a26c324ff97",
+    "source_fingerprint": "sha256:afc116c29d5061f4593c27b9c3c857463e52949889181f355a06d5b5400e52c2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2ec251767f6e6f6b79942d914df991cd6426f37578140506f7d35797d8094918",
+      "spec.md": "2c249a194c56b848de1a14acf4ccefdc88eb2e25fca394a2c2972f8a0ea24039",
       "plan.md": "ea20eb9b2f27cda84da92a416d5f722b78894572294ce6e295911489bd9621aa",
-      "tasks.md": "8a801a0d7a35f92cb83c2d7b17529a5f80b77375c876195535ba42621a7b8cf6"
+      "tasks.md": "bd3edbaaa2032cff5c785b5fe773402bb14f014125456a6c381ba3b04006344e",
+      "implementation-summary.md": "b37c131196261be02cc694c2d4c1cd68851a7dc3a004cc32aa661ff7f36c5e9e"
     },
     "last_active_at": null
   }

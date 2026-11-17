@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-research autonomous research loop."
-version: 1.14.4.0
+version: 1.14.5.0
 ---
 
 # deep-research: Feature Catalog
@@ -196,6 +196,22 @@ See [`loop-lifecycle/resource-map-emission.md`](../feature-catalog/loop-lifecycl
 
 ---
 
+### Completed-run extension (--extend)
+
+#### Description
+
+A completed deep-research run extends in place by N iterations under --extend=N, keeps its session identifier and generation, and records one run_extended event.
+
+#### How It Works
+
+The run continues under lineage mode `completed-continue`, keeps the prior synthesis as a snapshot and takes `--extend-minutes=M` on the duration budget. Extension is refused with fan-out.
+
+#### Source Files
+
+See [`loop-lifecycle/completed-run-extension.md`](../feature-catalog/loop-lifecycle/completed-run-extension.md) for full implementation and validation file listings.
+
+---
+
 ## 3. STATE MANAGEMENT
 
 These entries describe the packet files that carry continuity across fresh-context iterations. Strategy tracking also covers the reducer-owned findings registry that stays in sync with the iteration trail.
@@ -328,6 +344,22 @@ See [`state-management/dashboard-sparkline-trend.md`](../feature-catalog/state-m
 
 ---
 
+### Next Focus free-text guard
+
+#### Description
+
+Deep-research Next Focus skips answered questions and status sentences and reads the latest leaf's Recommended Next Focus, so free text cannot hijack the next focus.
+
+#### How It Works
+
+The carried-forward question list drops answered keys and status sentences, and the focus reads the leaf's `Recommended Next Focus`.
+
+#### Source Files
+
+See [`state-management/focus-hijack-guard.md`](../feature-catalog/state-management/focus-hijack-guard.md) for full implementation and validation file listings.
+
+---
+
 ## 4. CONVERGENCE
 
 These entries cover the stop logic, recovery logic, guard rails, and graph-aware extension that control when research can end.
@@ -425,6 +457,22 @@ Turns an eligible, legally converged research direction into a bounded scope-exp
 #### Source Files
 
 See [`convergence/divergent-convergence-mode.md`](../feature-catalog/convergence/divergent-convergence-mode.md) for full implementation and validation file listings.
+
+---
+
+### Expansive depth mode (--depth-mode=expansive)
+
+#### Description
+
+Opt-in --depth-mode=expansive on deep-research seeds depth-one frontier nodes from the topic, admits proposals under caps, and keeps a convergence stop open while frontier nodes stay open.
+
+#### How It Works
+
+`default` is the value when the flag is absent and runs unchanged. `frontier-admit.cjs` admits proposals into the node store, and the iteration cap, the floor, stuck recovery, pause, convergence off and the max-iterations policy decide before the frontier veto. The live pilot runs are still open, so no pilot result is recorded here.
+
+#### Source Files
+
+See [`convergence/expansive-depth-mode.md`](../feature-catalog/convergence/expansive-depth-mode.md) for full implementation and validation file listings.
 
 ---
 
