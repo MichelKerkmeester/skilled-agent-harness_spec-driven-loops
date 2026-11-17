@@ -16,7 +16,7 @@ trigger_phrases:
   - "repo rule"
   - "frontmatter contract"
   - "document diff"
-version: 2.3.13.0
+version: 2.3.14.0
 ---
 
 # sk-doc
@@ -38,7 +38,7 @@ version: 2.3.13.0
 
 ### What It Does
 
-sk-doc is the front door for documentation and OpenCode component work. It resolves your request to one of fifteen workflow modes and loads that mode's packet. The authoring contract stays inside the packet, so a README task and a changelog task read only the rules they need.
+sk-doc is the front door for documentation and Skilled component work. It resolves your request to one of fifteen workflow modes and loads that mode's packet. The authoring contract stays inside the packet, so a README task and a changelog task read only the rules they need.
 
 The hub routes and the packets author. `mode-registry.json` names the packet, aliases and command for each mode. `hub-router.json` holds the vocabulary that picks one. The hub itself carries no per-packet logic.
 

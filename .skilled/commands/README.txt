@@ -22,7 +22,7 @@ Commands are organized into six groups:
 
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
-| **create** | `commands/create/` | 13 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
+| **create** | `commands/create/` | 13 | Scaffold Skilled components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
 | **deep** | `commands/deep/` | 2 | Deep research and review loops |
 | **doctor** | `commands/doctor/` | 17 | Setup overview, problem-to-command routing, spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, sk-code setup, CI workflow switches, skill format check, git hook and standards, MCP, release-update, project-repo symlink check, link and unlink, ordered install guide, vendored-tree overlay status, apply and re-pin, root instruction-file check and embed, and environment-switch diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
@@ -106,7 +106,7 @@ command/
 
 ### Create Commands
 
-Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:auto` and `:confirm` execution modes with corresponding YAML workflow files in `create/assets/`.
+Scaffold Skilled components using the `sk-doc` skill. Each command supports `:auto` and `:confirm` execution modes with corresponding YAML workflow files in `create/assets/`.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|

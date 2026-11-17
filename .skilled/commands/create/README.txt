@@ -1,6 +1,6 @@
 ---
 title: "Create Commands"
-description: "Slash commands for scaffolding OpenCode components, docs, changelogs, charts, diagrams, diffs and repo rules."
+description: "Slash commands for scaffolding Skilled components, docs, changelogs, charts, diagrams, diffs and repo rules."
 trigger_phrases:
   - "create command"
   - "scaffold component"
@@ -19,13 +19,13 @@ trigger_phrases:
 
 # Create Commands
 
-> Slash commands for scaffolding OpenCode components, documentation packages, changelog entries, charts, diagrams, diff reports and repo rules with proper templates and validation.
+> Slash commands for scaffolding Skilled components, documentation packages, changelog entries, charts, diagrams, diff reports and repo rules with proper templates and validation.
 
 ---
 
 ## 1. OVERVIEW
 
-The `create` command group scaffolds OpenCode components, documentation packages, changelog entries, and standalone visual and prose artifacts. All commands follow a structured YAML workflow and support `:auto` (no approval prompts) and `:confirm` (pause at each step) execution modes.
+The `create` command group scaffolds Skilled components, documentation packages, changelog entries, and standalone visual and prose artifacts. All commands follow a structured YAML workflow and support `:auto` (no approval prompts) and `:confirm` (pause at each step) execution modes.
 
 The table in section 3 lists every command in this folder. When a command file is added here, add its row there too; a missing row is the failure mode this index has hit before.
 

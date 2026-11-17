@@ -1,6 +1,6 @@
 ---
 title: "create-skill"
-description: "Scaffold, validate and package standalone OpenCode skills and two-axis parent hubs from vetted templates, for anyone building or repairing a skill under .skilled/skills/."
+description: "Scaffold, validate and package standalone Skilled skills and two-axis parent hubs from vetted templates, for anyone building or repairing a skill under .skilled/skills/."
 trigger_phrases:
   - "create skill"
   - "parent hub"
