@@ -1,0 +1,1250 @@
+{
+  "sessionId": "fanout-doctor-install-2-1794570021136-noekp0",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 6,
+    "timestamp": "2026-11-13T12:15:22.048Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "DR2-P2-004",
+      "severity": "P2",
+      "title": "The exit-3 contract has no branch for a restore that throws, so the route can misstate a partly written tree",
+      "file": ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml",
+      "line": 104,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR2-P2-005",
+      "severity": "P2",
+      "title": "The narrowed hook matcher reports a valid env node or bash -lc wrapper as hook-missing",
+      "file": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      "line": 133,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR2-P2-006",
+      "severity": "P2",
+      "title": "setup.md names SKILL_ADVISOR_DEBUG as the switch that turns hook-health records on, but the hook records every prompt by default",
+      "file": ".skilled/commands/doctor/setup.md",
+      "line": 82,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR2-P2-007",
+      "severity": "P2",
+      "title": "A10 counts report-only entries among the copies as expected",
+      "file": ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      "line": 651,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR2-P2-008",
+      "severity": "P2",
+      "title": "The embed route names the backup folder timestamp while the engine names it by plan digest and may fall back outside the repository",
+      "file": ".skilled/commands/doctor/_routes.yaml",
+      "line": 536,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 5
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "absent_repair_routing",
+      "backup_path_contract",
+      "command_summary_subset",
+      "convergence_vote",
+      "embedder_host_binding",
+      "false_clean_diagnostic",
+      "flag_value_swallow",
+      "holdout_hygiene",
+      "hook_health_message",
+      "hook_health_repair",
+      "malformed_router_row",
+      "mention_as_wiring",
+      "misleading_evidence",
+      "partial_write",
+      "pass_one_fix_replay",
+      "pointer_count",
+      "proof_contract",
+      "readme_child_count",
+      "report_only_count",
+      "restore_failure_contract",
+      "route_runtime_list",
+      "runtime_list_count",
+      "shared_spec_create",
+      "socket_mutation_boundary",
+      "state_integrity",
+      "symlink_exit_mapping",
+      "symlink_write_target",
+      "wrapper_false_negative"
+    ],
+    "ruledOut": [
+      "absent_repair_routing",
+      "command_summary_subset",
+      "convergence_vote",
+      "embedder_host_binding",
+      "false_clean_diagnostic",
+      "flag_value_swallow",
+      "holdout_hygiene",
+      "hook_health_message",
+      "malformed_router_row",
+      "mention_as_wiring",
+      "misleading_evidence",
+      "partial_write",
+      "pass_one_fix_replay",
+      "pointer_count",
+      "proof_contract",
+      "readme_child_count",
+      "route_runtime_list",
+      "runtime_list_count",
+      "shared_spec_create",
+      "socket_mutation_boundary",
+      "state_integrity",
+      "symlink_exit_mapping",
+      "symlink_write_target"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "partial_write": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "restore_failure_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "proof_contract": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "symlink_write_target": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "false_clean_diagnostic": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "misleading_evidence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "pointer_count": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "malformed_router_row": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "readme_child_count": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "mention_as_wiring": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "wrapper_false_negative": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "absent_repair_routing": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "symlink_exit_mapping": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "flag_value_swallow": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "runtime_list_count": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "embedder_host_binding": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "socket_mutation_boundary": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "hook_health_message": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "hook_health_repair": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "report_only_count": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "backup_path_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "route_runtime_list": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "command_summary_subset": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "shared_spec_create": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "pass_one_fix_replay": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "state_integrity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "convergence_vote": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "holdout_hygiene": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs"
+      ],
+      "bugClass": "partial_write",
+      "disposition": "ruled_out",
+      "rationale": "the fix holds and the owning test proves the tree digest returns to its pre-run value",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1425",
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1436"
+      ],
+      "reason": "write failure restores from the backup and exits 3"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs"
+      ],
+      "bugClass": "proof_contract",
+      "disposition": "ruled_out",
+      "rationale": "the foreign list is now consumed by plan and apply",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1377",
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1461"
+      ],
+      "reason": "the new foreign branch restores and exits 1, and the planted-foreign test passes"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs"
+      ],
+      "bugClass": "symlink_write_target",
+      "disposition": "ruled_out",
+      "rationale": "both new symlink tests pass and the link target stays unchanged",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs:819"
+      ],
+      "reason": "compose refuses a symlink whose action would write"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs"
+      ],
+      "bugClass": "false_clean_diagnostic",
+      "disposition": "ruled_out",
+      "rationale": "the new test reports symlink where none belongs",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs:713"
+      ],
+      "reason": "expectsAbsent precedes the symlink verdict"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs"
+      ],
+      "bugClass": "misleading_evidence",
+      "disposition": "ruled_out",
+      "rationale": "the printed claim matches namesRoot's some-line test",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs:740"
+      ],
+      "reason": "wording matches the condition proved"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs"
+      ],
+      "bugClass": "pointer_count",
+      "disposition": "ruled_out",
+      "rationale": "the count and the detail now agree",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs:650"
+      ],
+      "reason": "pointerMissing is subtracted and named"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs"
+      ],
+      "bugClass": "malformed_router_row",
+      "disposition": "ruled_out",
+      "rationale": "the new test names the malformed line and the rule is not reported missing",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs:824"
+      ],
+      "reason": "malformed rows are kept and reported"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/README.markdown"
+      ],
+      "bugClass": "readme_child_count",
+      "disposition": "ruled_out",
+      "rationale": "the row and the module header agree with defaultTools",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/README.markdown:102"
+      ],
+      "reason": "the README says four children"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/hook-wiring-check.cjs"
+      ],
+      "bugClass": "mention_as_wiring",
+      "disposition": "ruled_out",
+      "rationale": "the description-only test reports hook-missing",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/hook-wiring-check.cjs:114"
+      ],
+      "reason": "descriptions are never read as commands"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs"
+      ],
+      "bugClass": "absent_repair_routing",
+      "disposition": "ruled_out",
+      "rationale": "the repair exists and the setup text routes to it",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs:171"
+      ],
+      "reason": "absent entry prints the repair line"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-symlink-check.yaml"
+      ],
+      "bugClass": "symlink_exit_mapping",
+      "disposition": "ruled_out",
+      "rationale": "the output block maps all three hook exits",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-symlink-check.yaml:69"
+      ],
+      "reason": "the exit map is complete"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs"
+      ],
+      "bugClass": "flag_value_swallow",
+      "disposition": "ruled_out",
+      "rationale": "the new test exits 2 on --root --json",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs:58"
+      ],
+      "reason": "flag-like values are refused"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-install-presentation.txt"
+      ],
+      "bugClass": "runtime_list_count",
+      "disposition": "ruled_out",
+      "rationale": "the count phrase is gone and the manifest has six runtime keys",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-install-presentation.txt:78"
+      ],
+      "reason": "the list matches the manifest"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-016",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml"
+      ],
+      "bugClass": "embedder_host_binding",
+      "disposition": "ruled_out",
+      "rationale": "the mutating steps take the resolved host",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml:125"
+      ],
+      "reason": "both steps bind OLLAMA_HOST and the refusal precedes them"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-setup.yaml"
+      ],
+      "bugClass": "socket_mutation_boundary",
+      "disposition": "ruled_out",
+      "rationale": "the workflow boundary and the prose agree",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-setup.yaml:28"
+      ],
+      "reason": "both name the socket directory"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-setup.yaml"
+      ],
+      "bugClass": "hook_health_message",
+      "disposition": "ruled_out",
+      "rationale": "the YAML branch is present and the contract test pins it",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-setup.yaml:61"
+      ],
+      "reason": "the absent state is printed"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-022",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/_routes.yaml"
+      ],
+      "bugClass": "route_runtime_list",
+      "disposition": "ruled_out",
+      "rationale": "the runtime list lives in the install presentation and matches the manifest",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/_routes.yaml:512"
+      ],
+      "reason": "no route-level runtime mismatch"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-023",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/agents-md.md"
+      ],
+      "bugClass": "command_summary_subset",
+      "disposition": "ruled_out",
+      "rationale": "a subset statement is not a contradiction",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/agents-md.md:87"
+      ],
+      "reason": "the summary is a subset, not a false universal"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-024",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
+      ],
+      "bugClass": "shared_spec_create",
+      "disposition": "ruled_out",
+      "rationale": "the file is a shared spec-create surface with no doctor mutation",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:973"
+      ],
+      "reason": "no doctor route in the script"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-025",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+        ".skilled/commands/doctor/scripts/hook-wiring-check.cjs"
+      ],
+      "bugClass": "pass_one_fix_replay",
+      "disposition": "ruled_out",
+      "rationale": "no fix regressed",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1425"
+      ],
+      "reason": "all pass-one fixes hold with test evidence"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-026",
+      "dimension": "traceability",
+      "targetRefs": [
+        "deep-review-findings-registry.json",
+        "deep-review-state.jsonl",
+        "deep-review-strategy.md"
+      ],
+      "bugClass": "state_integrity",
+      "disposition": "ruled_out",
+      "rationale": "counts and focus agree",
+      "evidenceRefs": [
+        "deep-review-findings-registry.json"
+      ],
+      "reason": "state is internally consistent"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-027",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "deep-review-state.jsonl"
+      ],
+      "bugClass": "convergence_vote",
+      "disposition": "ruled_out",
+      "rationale": "the vote clears 0.60 with all dimensions covered and no P0/P1",
+      "evidenceRefs": [
+        "deep-review-state.jsonl"
+      ],
+      "reason": "legal STOP"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-028",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-scope.txt"
+      ],
+      "bugClass": "holdout_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "holdout files belong to accuracy-runner",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-scope.txt"
+      ],
+      "reason": "not applicable to this area"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs"
+      ],
+      "bugClass": "partial_write",
+      "disposition": "ruled_out",
+      "rationale": "the fix holds and the owning test proves the tree digest returns to its pre-run value",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1425",
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1436"
+      ],
+      "proof": "write failure restores from the backup and exits 3"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs"
+      ],
+      "bugClass": "proof_contract",
+      "disposition": "ruled_out",
+      "rationale": "the foreign list is now consumed by plan and apply",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1377",
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1461"
+      ],
+      "proof": "the new foreign branch restores and exits 1, and the planted-foreign test passes"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs"
+      ],
+      "bugClass": "symlink_write_target",
+      "disposition": "ruled_out",
+      "rationale": "both new symlink tests pass and the link target stays unchanged",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs:819"
+      ],
+      "proof": "compose refuses a symlink whose action would write"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs"
+      ],
+      "bugClass": "false_clean_diagnostic",
+      "disposition": "ruled_out",
+      "rationale": "the new test reports symlink where none belongs",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs:713"
+      ],
+      "proof": "expectsAbsent precedes the symlink verdict"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs"
+      ],
+      "bugClass": "misleading_evidence",
+      "disposition": "ruled_out",
+      "rationale": "the printed claim matches namesRoot's some-line test",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs:740"
+      ],
+      "proof": "wording matches the condition proved"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs"
+      ],
+      "bugClass": "pointer_count",
+      "disposition": "ruled_out",
+      "rationale": "the count and the detail now agree",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs:650"
+      ],
+      "proof": "pointerMissing is subtracted and named"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs"
+      ],
+      "bugClass": "malformed_router_row",
+      "disposition": "ruled_out",
+      "rationale": "the new test names the malformed line and the rule is not reported missing",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs:824"
+      ],
+      "proof": "malformed rows are kept and reported"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/README.markdown"
+      ],
+      "bugClass": "readme_child_count",
+      "disposition": "ruled_out",
+      "rationale": "the row and the module header agree with defaultTools",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/README.markdown:102"
+      ],
+      "proof": "the README says four children"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/hook-wiring-check.cjs"
+      ],
+      "bugClass": "mention_as_wiring",
+      "disposition": "ruled_out",
+      "rationale": "the description-only test reports hook-missing",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/hook-wiring-check.cjs:114"
+      ],
+      "proof": "descriptions are never read as commands"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs"
+      ],
+      "bugClass": "absent_repair_routing",
+      "disposition": "ruled_out",
+      "rationale": "the repair exists and the setup text routes to it",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs:171"
+      ],
+      "proof": "absent entry prints the repair line"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-symlink-check.yaml"
+      ],
+      "bugClass": "symlink_exit_mapping",
+      "disposition": "ruled_out",
+      "rationale": "the output block maps all three hook exits",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-symlink-check.yaml:69"
+      ],
+      "proof": "the exit map is complete"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs"
+      ],
+      "bugClass": "flag_value_swallow",
+      "disposition": "ruled_out",
+      "rationale": "the new test exits 2 on --root --json",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs:58"
+      ],
+      "proof": "flag-like values are refused"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-install-presentation.txt"
+      ],
+      "bugClass": "runtime_list_count",
+      "disposition": "ruled_out",
+      "rationale": "the count phrase is gone and the manifest has six runtime keys",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-install-presentation.txt:78"
+      ],
+      "proof": "the list matches the manifest"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-016",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml"
+      ],
+      "bugClass": "embedder_host_binding",
+      "disposition": "ruled_out",
+      "rationale": "the mutating steps take the resolved host",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml:125"
+      ],
+      "proof": "both steps bind OLLAMA_HOST and the refusal precedes them"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-setup.yaml"
+      ],
+      "bugClass": "socket_mutation_boundary",
+      "disposition": "ruled_out",
+      "rationale": "the workflow boundary and the prose agree",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-setup.yaml:28"
+      ],
+      "proof": "both name the socket directory"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-setup.yaml"
+      ],
+      "bugClass": "hook_health_message",
+      "disposition": "ruled_out",
+      "rationale": "the YAML branch is present and the contract test pins it",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-setup.yaml:61"
+      ],
+      "proof": "the absent state is printed"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-022",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/_routes.yaml"
+      ],
+      "bugClass": "route_runtime_list",
+      "disposition": "ruled_out",
+      "rationale": "the runtime list lives in the install presentation and matches the manifest",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/_routes.yaml:512"
+      ],
+      "proof": "no route-level runtime mismatch"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-023",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/agents-md.md"
+      ],
+      "bugClass": "command_summary_subset",
+      "disposition": "ruled_out",
+      "rationale": "a subset statement is not a contradiction",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/agents-md.md:87"
+      ],
+      "proof": "the summary is a subset, not a false universal"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-024",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
+      ],
+      "bugClass": "shared_spec_create",
+      "disposition": "ruled_out",
+      "rationale": "the file is a shared spec-create surface with no doctor mutation",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:973"
+      ],
+      "proof": "no doctor route in the script"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-025",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+        ".skilled/commands/doctor/scripts/hook-wiring-check.cjs"
+      ],
+      "bugClass": "pass_one_fix_replay",
+      "disposition": "ruled_out",
+      "rationale": "no fix regressed",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1425"
+      ],
+      "proof": "all pass-one fixes hold with test evidence"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-026",
+      "dimension": "traceability",
+      "targetRefs": [
+        "deep-review-findings-registry.json",
+        "deep-review-state.jsonl",
+        "deep-review-strategy.md"
+      ],
+      "bugClass": "state_integrity",
+      "disposition": "ruled_out",
+      "rationale": "counts and focus agree",
+      "evidenceRefs": [
+        "deep-review-findings-registry.json"
+      ],
+      "proof": "state is internally consistent"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-027",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "deep-review-state.jsonl"
+      ],
+      "bugClass": "convergence_vote",
+      "disposition": "ruled_out",
+      "rationale": "the vote clears 0.60 with all dimensions covered and no P0/P1",
+      "evidenceRefs": [
+        "deep-review-state.jsonl"
+      ],
+      "proof": "legal STOP"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-028",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-scope.txt"
+      ],
+      "bugClass": "holdout_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "holdout files belong to accuracy-runner",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-scope.txt"
+      ],
+      "proof": "not applicable to this area"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "pass_one_fix_replay",
+      "state_integrity",
+      "convergence_vote",
+      "holdout_hygiene"
+    ],
+    "covered": [
+      "pass_one_fix_replay",
+      "state_integrity",
+      "convergence_vote",
+      "holdout_hygiene"
+    ],
+    "ruledOut": [
+      "pass_one_fix_replay",
+      "state_integrity",
+      "convergence_vote",
+      "holdout_hygiene"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

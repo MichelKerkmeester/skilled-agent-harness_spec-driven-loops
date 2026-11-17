@@ -2,7 +2,7 @@
 name: system-skill-advisor
 description: Routes non-trivial requests to matching skills through the daemon-backed advisor CLI and stable advisor command ids.
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.0.0.0
+version: 1.1.0.0
 trigger_phrases:
   - "skill advisor"
   - "gate 2 routing"
@@ -105,7 +105,7 @@ Exit codes:
 - Reference and asset doc frontmatter `trigger_phrases` feed routing only when `SPECKIT_ADVISOR_DOC_TRIGGERS=true`.
 - Skill authors change routing vocabulary in `graph-metadata.json`.
 
-`advisor_status` reports `indexStaleness` on every successful call and, with `includeEmbeddingsHealth`, an opt-in `embeddingsHealth` covering provider resolution and the local model server.
+`advisor_status` reports `indexStaleness` on every successful call and, with `includeEmbeddingsHealth`, an opt-in `embeddingsHealth` covering provider resolution and the local model server. It adds `hookHealth` once a prompt hook has written a health record for the workspace.
 
 The advisor implementation, skill-graph library and package-local database live under this skill package, while memory remains focused on memory tools.
 
@@ -202,7 +202,7 @@ Current package state:
 
 Expected consumers:
 
-- Prompt-time adapters for Claude, Codex, Cursor and Devin live under `.skilled/skills/system-spec-kit/runtime/hooks/`. Pi and the OpenCode plugin (`.opencode/plugins/system-skill-advisor.js`) resolve the same brief builder. The plugin invokes `node .skilled/bin/skill-advisor.cjs` directly.
+- Prompt-time adapters for Claude, Codex, Cursor and Devin live under `.skilled/skills/system-spec-kit/runtime/hooks/`. Pi, DSH, Mistral Vibe (`hooks/vibe/prompt-advisor.mjs`, which also appends each offered command's document) and the OpenCode plugin (`.opencode/plugins/system-skill-advisor.js`) resolve the same brief builder. The plugin invokes `node .skilled/bin/skill-advisor.cjs` directly.
 - CLI callers that run `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` or `skill_graph_propagate_enhances`.
 - Daemon-backed CLI callers (`node .skilled/bin/skill-advisor.cjs <command>`) for doctor routes, scripts and CI, untrusted by default with `--trusted` for maintainer mutations.
 - Doctor workflows that validate advisor health and rebuild state.

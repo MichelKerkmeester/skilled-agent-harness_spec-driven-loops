@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/025-release-notes-and-doc-sync",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/025-release-notes-and-doc-sync",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "release notes and doc sync",
+      "phase 25 release notes and doc sync",
+      "advisor changelog v1.1.0.0 extension",
+      "release notes and doc sync plan",
+      "release notes and doc sync tasks",
+      "release notes and doc sync acceptance criteria",
+      "release notes and doc sync goal",
+      "release notes and doc sync implementation summary"
+    ],
+    "key_topics": [
+      "release",
+      "notes",
+      "doc",
+      "sync",
+      "phase",
+      "advisor",
+      "changelog",
+      "extension",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/release-facts.txt",
+      ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/README.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md",
+      "scratch/fact-check.txt",
+      "scratch/after.txt",
+      "scratch/verifier-changelog.txt",
+      "scratch/boundaries.txt",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-meaning-anchor.vitest.ts",
+      "runtime/lib/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "release-facts.txt",
+        "kind": "file",
+        "path": "scratch/release-facts.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-meaning-matching.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-command-routing.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "fact-check.txt",
+        "kind": "file",
+        "path": "scratch/fact-check.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "verifier-changelog.txt",
+        "kind": "file",
+        "path": "scratch/verifier-changelog.txt",
+        "source": "derived"
+      },
+      {
+        "name": "boundaries.txt",
+        "kind": "file",
+        "path": "scratch/boundaries.txt",
+        "source": "derived"
+      },
+      {
+        "name": "command-meaning-anchor.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-meaning-anchor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A reader of the advisor's release notes learns nothing about the offer guards, the head parity, the workflow measure or the Codex fix, because the open entry covers phases 014 to 018 only",
+    "created_at": "2026-11-14T10:51:51Z",
+    "last_save_at": "2026-11-15T07:52:34.842Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f9831f4cee0a39a6da7679733378c47a042fe4148e925dac6675691f90f560db",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a60ec789fbb50dc698f1992b7d01feebc8ae466183463770625187af9e1e4e1c",
+      "plan.md": "85d704f92c023377385670f912671316be7f7591a8b92600f193c6b278cc5765",
+      "tasks.md": "132b9837899277f4a14d2787d54db56d501949180cbf74d763659d1ab5d4f01c",
+      "implementation-summary.md": "9252a3e29a26193e37fe299acf622d420a5f60578aa2614163cd7251015f07cf"
+    },
+    "last_active_at": null
+  }
+}

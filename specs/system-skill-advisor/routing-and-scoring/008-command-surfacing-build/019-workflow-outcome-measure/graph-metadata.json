@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "workflow outcome measure",
+      "phase 19 workflow outcome measure",
+      "workflow path share",
+      "followed a real workflow against improvising",
+      "workflow outcome measure plan",
+      "workflow outcome measure tasks",
+      "workflow outcome measure acceptance criteria",
+      "workflow outcome measure implementation summary",
+      "workflow load rate per runtime"
+    ],
+    "key_topics": [
+      "workflow",
+      "outcome",
+      "measure",
+      "phase",
+      "path",
+      "share",
+      "followed",
+      "real",
+      "against",
+      "improvising",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "scratch/workflow-pre.json",
+      "scratch/workflow-final.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+      ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+      ".skilled/hooks/shared/session-readers/index.mjs",
+      ".claude/commands/create/readme.md",
+      ".skilled/skills/sk-doc/SKILL.md",
+      ".skilled/skills/sk-doc/ROUTER.md",
+      ".skilled/skills/system-spec-kit/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-command-transcripts.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-transcript-score.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-pre.json",
+        "kind": "config",
+        "path": "scratch/workflow-pre.json",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-final.json",
+        "kind": "config",
+        "path": "scratch/workflow-final.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-bridges.generated.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Markdown",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The scorer reports how often a command was offered, seen and started, but nothing it prints says whether the model loaded the command's own workflow or the owning skill's own workflow before it acted",
+    "created_at": "2026-11-13T23:30:09Z",
+    "last_save_at": "2026-11-14T07:21:57.472Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:195faa59fed8725c5f4db5e636f1af33f7128925348d0163af3228581b092777",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "dddbd1d33b3ec88c1b4d949edf4e34481ee19a179edb57746ab8bb6f65aaa7b4",
+      "plan.md": "52cbc6c1c3559a906ed327126b4ff526adbc4fa4671aa7422da40c401c1bfe20",
+      "tasks.md": "601cb7f97e0d224c4aa53a9d73806e7fbc43aa485310c1ba03ad279121b1621c",
+      "implementation-summary.md": "a5aef06f2c01a15a99f748e81c3b685f81f0f3696ca32281c32bdea24cb8ef9b"
+    },
+    "last_active_at": null
+  }
+}

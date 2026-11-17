@@ -1,0 +1,6 @@
+base for compare-probes.txt: git archive of origin/main 7aa0a1c66d90e4b4fa608f8b5d96026a77f4d545, merge base 3c15d3fde6af692ea64f2763578d6c3c19525e46
+mode inputs changed by the branch since the merge base:
+ .skilled/skills/sk-doc/hub-router.json    | 4 ++--
+ .skilled/skills/sk-doc/mode-registry.json | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+the two sk-doc changes rename /create:skill to /create:sk-skill and bump the version; aliases.ts is unchanged

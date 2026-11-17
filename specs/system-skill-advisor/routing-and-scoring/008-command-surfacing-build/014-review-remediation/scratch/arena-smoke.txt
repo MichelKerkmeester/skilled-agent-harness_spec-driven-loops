@@ -1,0 +1,8 @@
+$ prepare-behaviour-arena --source . --dest <tmp>/arena
+{"ok":true,"dest":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.2rEuIONPG0/arena","head":"320e7b64d40bf731bfb2a2a9445b5292c1a3848d","copied":[".opencode/node_modules",".pi/extensions/pi-cache-optimizer/node_modules",".pi/extensions/pi-fast-mode-w-subagent-support/node_modules",".skilled/node_modules",".skilled/skills/.state/advisor/skill-graph-daemon-lease.sqlite",".skilled/skills/mcp-code-mode/mcp-server/dist",".skilled/skills/sk-design/sk-design-md-generator/backend/dist",".skilled/skills/sk-design/sk-design-md-generator/backend/node_modules",".skilled/skills/sk-doc/node_modules",".s
+$ test -f <arena>/.git/skilled-behaviour-arena
+exit=0
+$ liveArmRefusal(<arena>)
+null
+$ test -e <the temporary folder>
+exit=1

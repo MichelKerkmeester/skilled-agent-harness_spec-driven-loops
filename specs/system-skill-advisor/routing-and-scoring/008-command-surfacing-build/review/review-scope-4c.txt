@@ -1,0 +1,5 @@
+# closing round of review pass four: git -c core.fsmonitor=false diff --name-only 48f03b5013 868b185e76 -- .skilled .opencode (row files excluded)
+# area<TAB>path; lineage scorer-attach-close-4c reviews area scorer-attach, accuracy-runner-close-4c reviews area accuracy-runner
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts

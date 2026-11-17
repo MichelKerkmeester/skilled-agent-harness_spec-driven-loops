@@ -1,0 +1,1031 @@
+{
+  "sessionId": "fanout-accuracy-runner-1794550137809-1ecgc7",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-11-13T06:41:10.458Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "iter1-P2-offer-reached-unknown",
+      "severity": "P2",
+      "title": "offerReached counts an unknown brief state as reached",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 1293,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter1-P2-readme-inventory-drift",
+      "severity": "P2",
+      "title": "Routing-accuracy README structure table and code-file count have drifted from the folder",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 29,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter2-P2-arena-precondition-unverified",
+      "severity": "P2",
+      "title": "Containment is inferred from no git remote with no assertion that the checkout is a prepared arena",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      "line": 986,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter3-P2-phase007-open-evidence",
+      "severity": "P2",
+      "title": "The packet phase map leaves the per-runtime behaviour proof open while marking later phases complete",
+      "file": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md",
+      "line": 120,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter3-P2-readme-restore-exit3",
+      "severity": "P2",
+      "title": "Runner README describes an unconditional restore and omits the exit code that skips it",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 113,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter4-P2-bench-runtime-matrix-incomplete",
+      "severity": "P2",
+      "title": "The hook-brief bench declares a seven-runtime matrix but defines two runtimes, and fails the moment benches are enabled",
+      "file": ".skilled/skills/system-skill-advisor/runtime/bench/hook-brief-signal-noise.bench.ts",
+      "line": 26,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter4-P2-g2-label-grammar-duplication",
+      "severity": "P2",
+      "title": "The started-command set row ids are a second source of truth for labels the scorer reconstructs from a regex",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 929,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter5-P2-credential-hardening-allowlist",
+      "severity": "P2",
+      "title": "A measured turn inherits every credential the runner carries except the GitHub trio",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      "line": 782,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter5-P2-holdout-secondary-split-publication",
+      "severity": "P2",
+      "title": "The in-corpus secondary holdout split is published per row and pinned by a recapture instruction",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs",
+      "line": 537,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "findingId": "iter1-P1-holdout-baseline-publication",
+      "severity": "P1",
+      "title": "Committed baseline publishes per-row holdout outcomes and a test pins them",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs",
+      "line": 537,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter2-P1-credential-reach-bypassed-permissions",
+      "severity": "P1",
+      "title": "A fully-permissioned measured turn inherits operator credentials and can reach hosts the repo-remote guard does not cover",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      "line": 782,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter1-P1-holdout-baseline-publication",
+      "severity": "P2",
+      "title": "Committed baseline publishes per-row outcomes of the in-corpus secondary holdout split and a test pins them",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs",
+      "line": 537,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter2-P1-credential-reach-bypassed-permissions",
+      "severity": "P2",
+      "title": "A fully-permissioned measured turn inherits credentials beyond the documented GitHub scrub",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      "line": 782,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 9
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 4,
+  "convergenceScore": 0.89,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "approval_bypass",
+      "credential_exposure",
+      "docs_vs_code",
+      "duplicated_source_of_truth",
+      "execution_containment",
+      "holdout_integrity",
+      "latent_test_defect",
+      "metric_denominator",
+      "missing_evidence",
+      "severity_inflation"
+    ],
+    "ruledOut": [
+      "brief_detection",
+      "dead_code",
+      "numeric_mismatch",
+      "orphan_fixture",
+      "path_traversal",
+      "restore_completeness",
+      "secrets_in_artifacts",
+      "stale_assertion",
+      "stale_claim",
+      "stale_test"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "holdout_integrity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "metric_denominator": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "docs_vs_code": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3,
+          5
+        ]
+      },
+      "restore_completeness": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "brief_detection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "live_turn_execution_evidence": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "credential_exposure": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          5
+        ]
+      },
+      "execution_containment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "approval_bypass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secrets_in_artifacts": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "live_execution_evidence": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "missing_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "numeric_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale_claim": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale_test": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "live_cross_runtime_proof": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "latent_test_defect": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5
+        ]
+      },
+      "duplicated_source_of_truth": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5
+        ]
+      },
+      "severity_inflation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dead_code": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "stale_assertion": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "bench_execution": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "orphan_fixture": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/worktree-restore.mjs:61-122",
+        "runtime/scripts/routing-accuracy/run-command-behaviour.mjs:994-1000"
+      ],
+      "bugClass": "restore_completeness",
+      "disposition": "ruled_out",
+      "rationale": "No reachable case where a turn write survives as a clean status.",
+      "evidenceRefs": [
+        "worktree-restore.mjs:61-84",
+        "worktree-restore.mjs:97-122",
+        "run-command-behaviour.mjs:994-1000"
+      ],
+      "reason": "Pre-turn dirty guard and HEAD-based restore close the reachable paths."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/command-offer.mjs:36,56-67",
+        "runtime/lib/render.ts:581-638"
+      ],
+      "bugClass": "brief_detection",
+      "disposition": "ruled_out",
+      "rationale": "No false-negative head shape or command shape found.",
+      "evidenceRefs": [
+        "render.ts:581-638",
+        "command-offer.mjs:36",
+        "command-offer.mjs:34"
+      ],
+      "reason": "Pattern coverage verified against the full renderer head set and corpus command set."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/worktree-restore.mjs:97-122"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "Git porcelain emits repository-relative paths only; a malformed name fails the restore rather than escaping it.",
+      "evidenceRefs": [
+        "worktree-restore.mjs:97-122"
+      ],
+      "reason": "Source of paths is git status output and every failure is surfaced as leftover/failure."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/command-offer.mjs:286-307",
+        "runtime/scripts/measure-brief-cost.mjs:99"
+      ],
+      "bugClass": "secrets_in_artifacts",
+      "disposition": "ruled_out",
+      "rationale": "The daemon warm-up is the measured environment itself; no artifact leaks a secret.",
+      "evidenceRefs": [
+        "command-offer.mjs:294-307",
+        "measure-brief-cost.mjs:99"
+      ],
+      "reason": "Writes are confined to the checkout the arm measures and no prompt or env value is persisted."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        "spec.md:144-149",
+        "runtime/scripts/routing-accuracy/command-routing-baseline.json"
+      ],
+      "bugClass": "numeric_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "All four claimed floors hold.",
+      "evidenceRefs": [
+        "command-routing-baseline.json"
+      ],
+      "reason": "Recomputed from the committed artifact; every floor met or exceeded."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "manual-testing-playbook/native-cli-tools/hub-command-attachment.md:98-101",
+        "runtime/lib/command-attach.ts:15,306",
+        "runtime/lib/scorer/projection.ts:893-900"
+      ],
+      "bugClass": "stale_claim",
+      "disposition": "ruled_out",
+      "rationale": "Chapter is executable as written.",
+      "evidenceRefs": [
+        "command-attach.ts:15",
+        "command-attach.ts:306",
+        "projection.ts:893-900"
+      ],
+      "reason": "Every triage symbol resolves in the current tree."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-016",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "tests/legacy/advisor-corpus-parity.vitest.ts",
+        "tests/legacy/advisor-observability.vitest.ts"
+      ],
+      "bugClass": "stale_assertion",
+      "disposition": "ruled_out",
+      "rationale": "All five in-scope legacy suites have live assertions.",
+      "evidenceRefs": [
+        "tests/legacy/advisor-corpus-parity.vitest.ts:101-110"
+      ],
+      "reason": "No skips or stale markers; each suite names a current behavior."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "measure-brief-cost.mjs:37",
+        "run-command-behaviour.mjs:66",
+        "score-command-transcripts.mjs:915",
+        "capture-command-routing-baseline.mjs:58"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "No silent failure mode.",
+      "evidenceRefs": [
+        "measure-brief-cost.mjs:37",
+        "score-command-transcripts.mjs:915"
+      ],
+      "reason": "Loud failure on a move; wait for a third consumer that shares further logic."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-018",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "scripts/fixtures/gate2-golden-prompts.jsonl",
+        "scripts/fixtures/skill-advisor-regression-cases.jsonl"
+      ],
+      "bugClass": "orphan_fixture",
+      "disposition": "ruled_out",
+      "rationale": "Both corpora are declared and gated.",
+      "evidenceRefs": [
+        "tests/parity/holdout-independent.vitest.ts:80-82,168-199"
+      ],
+      "reason": "Consumers exist and are declared in the independent-holdout gate."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/worktree-restore.mjs:61-122",
+        "runtime/scripts/routing-accuracy/run-command-behaviour.mjs:994-1000"
+      ],
+      "bugClass": "restore_completeness",
+      "disposition": "ruled_out",
+      "rationale": "No reachable case where a turn write survives as a clean status.",
+      "evidenceRefs": [
+        "worktree-restore.mjs:61-84",
+        "worktree-restore.mjs:97-122",
+        "run-command-behaviour.mjs:994-1000"
+      ],
+      "proof": "Pre-turn dirty guard and HEAD-based restore close the reachable paths."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/command-offer.mjs:36,56-67",
+        "runtime/lib/render.ts:581-638"
+      ],
+      "bugClass": "brief_detection",
+      "disposition": "ruled_out",
+      "rationale": "No false-negative head shape or command shape found.",
+      "evidenceRefs": [
+        "render.ts:581-638",
+        "command-offer.mjs:36",
+        "command-offer.mjs:34"
+      ],
+      "proof": "Pattern coverage verified against the full renderer head set and corpus command set."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/worktree-restore.mjs:97-122"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "Git porcelain emits repository-relative paths only; a malformed name fails the restore rather than escaping it.",
+      "evidenceRefs": [
+        "worktree-restore.mjs:97-122"
+      ],
+      "proof": "Source of paths is git status output and every failure is surfaced as leftover/failure."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/command-offer.mjs:286-307",
+        "runtime/scripts/measure-brief-cost.mjs:99"
+      ],
+      "bugClass": "secrets_in_artifacts",
+      "disposition": "ruled_out",
+      "rationale": "The daemon warm-up is the measured environment itself; no artifact leaks a secret.",
+      "evidenceRefs": [
+        "command-offer.mjs:294-307",
+        "measure-brief-cost.mjs:99"
+      ],
+      "proof": "Writes are confined to the checkout the arm measures and no prompt or env value is persisted."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        "spec.md:144-149",
+        "runtime/scripts/routing-accuracy/command-routing-baseline.json"
+      ],
+      "bugClass": "numeric_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "All four claimed floors hold.",
+      "evidenceRefs": [
+        "command-routing-baseline.json"
+      ],
+      "proof": "Recomputed from the committed artifact; every floor met or exceeded."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "manual-testing-playbook/native-cli-tools/hub-command-attachment.md:98-101",
+        "runtime/lib/command-attach.ts:15,306",
+        "runtime/lib/scorer/projection.ts:893-900"
+      ],
+      "bugClass": "stale_claim",
+      "disposition": "ruled_out",
+      "rationale": "Chapter is executable as written.",
+      "evidenceRefs": [
+        "command-attach.ts:15",
+        "command-attach.ts:306",
+        "projection.ts:893-900"
+      ],
+      "proof": "Every triage symbol resolves in the current tree."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-016",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "tests/legacy/advisor-corpus-parity.vitest.ts",
+        "tests/legacy/advisor-observability.vitest.ts"
+      ],
+      "bugClass": "stale_assertion",
+      "disposition": "ruled_out",
+      "rationale": "All five in-scope legacy suites have live assertions.",
+      "evidenceRefs": [
+        "tests/legacy/advisor-corpus-parity.vitest.ts:101-110"
+      ],
+      "proof": "No skips or stale markers; each suite names a current behavior."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "measure-brief-cost.mjs:37",
+        "run-command-behaviour.mjs:66",
+        "score-command-transcripts.mjs:915",
+        "capture-command-routing-baseline.mjs:58"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "No silent failure mode.",
+      "evidenceRefs": [
+        "measure-brief-cost.mjs:37",
+        "score-command-transcripts.mjs:915"
+      ],
+      "proof": "Loud failure on a move; wait for a third consumer that shares further logic."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-018",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "scripts/fixtures/gate2-golden-prompts.jsonl",
+        "scripts/fixtures/skill-advisor-regression-cases.jsonl"
+      ],
+      "bugClass": "orphan_fixture",
+      "disposition": "ruled_out",
+      "rationale": "Both corpora are declared and gated.",
+      "evidenceRefs": [
+        "tests/parity/holdout-independent.vitest.ts:80-82,168-199"
+      ],
+      "proof": "Consumers exist and are declared in the independent-holdout gate."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "docs_vs_code",
+      "holdout_integrity",
+      "credential_exposure",
+      "latent_test_defect",
+      "duplicated_source_of_truth",
+      "orphan_fixture"
+    ],
+    "covered": [
+      "docs_vs_code",
+      "holdout_integrity",
+      "credential_exposure",
+      "latent_test_defect",
+      "duplicated_source_of_truth"
+    ],
+    "ruledOut": [
+      "orphan_fixture"
+    ],
+    "deferred": [],
+    "blocked": [
+      "live_cross_runtime_proof"
+    ],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

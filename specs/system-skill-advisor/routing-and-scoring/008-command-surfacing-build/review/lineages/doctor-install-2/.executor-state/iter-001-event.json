@@ -1,0 +1,142 @@
+{
+  "type": "iteration",
+  "iteration": 1,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-doctor-install-2-1794570021136-noekp0",
+  "status": "complete",
+  "focus": "correctness",
+  "dimensions": ["correctness", "traceability"],
+  "filesReviewed": [
+    ".skilled/commands/doctor/scripts/agents-md-embed.cjs:644",
+    ".skilled/commands/doctor/scripts/agents-md-embed.cjs:819",
+    ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1052",
+    ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1308",
+    ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1343",
+    ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1623",
+    ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml:84",
+    ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt:240",
+    ".skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs:612",
+    ".skilled/commands/doctor/scripts/README.markdown:100"
+  ],
+  "findingsCount": 1,
+  "findingsSummary": { "P0": 0, "P1": 0, "P2": 1 },
+  "findingsNew": ["DR2-P2-004"],
+  "findingDetails": [
+    {
+      "id": "DR2-P2-004",
+      "severity": "P2",
+      "title": "The exit-3 contract has no branch for a restore that throws, so the route can misstate a partly written tree",
+      "file": ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml:104"
+    }
+  ],
+  "traceabilityChecks": {
+    "spec_code": "partial",
+    "checklist_evidence": "pending",
+    "skill_agent": "notApplicable",
+    "agent_cross_runtime": "partial",
+    "feature_catalog_code": "pending",
+    "playbook_capability": "notApplicable"
+  },
+  "newFindingsRatio": 1.0,
+  "noveltyJustification": "First pass on the remediation diff; the one finding is new and names a branch the pass-one write-failure fix introduced.",
+  "sessionId": "fanout-doctor-install-2-1794570021136-noekp0",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-13T12:01:13.000Z",
+  "durationMs": 180000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "21 changed doctor-install files plus shared docs; the embed engine mutates repository files and its exit contract changed",
+    "evidenceRefs": [".skilled/commands/doctor/scripts/agents-md-embed.cjs:1343", ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml:104"]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+      ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml",
+      ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt",
+      ".skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs",
+      ".skilled/commands/doctor/scripts/README.markdown"
+    ],
+    "selectionReason": "The only mutating engine in the doctor-install area and the route and tests that carry its new exit contract",
+    "discoveryMethods": ["direct_read", "exact_grep", "read_only_execution"],
+    "omittedHighRiskTargets": [],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": [".skilled/commands/doctor/scripts/agents-md-embed.cjs:1343"]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": ["partial_write", "restore_failure_contract", "proof_contract", "symlink_write_target"],
+    "covered": ["partial_write", "restore_failure_contract", "proof_contract", "symlink_write_target"],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [".skilled/commands/doctor/scripts/agents-md-embed.cjs"],
+      "bugClass": "partial_write",
+      "hypothesis": "a throw in the write loop leaves earlier targets mutated and prints no undo",
+      "searchActions": [
+        { "method": "direct_read", "queryOrPath": ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1413-1440", "result": "the write loop is wrapped; a throw restores, prints backup and undo, and returns 3", "evidenceRefs": [".skilled/commands/doctor/scripts/agents-md-embed.cjs:1425", ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1436"] }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "the fix holds and the owning test proves the tree digest returns to its pre-run value",
+      "ruledOutReason": "write failure restores from the backup and exits 3"
+    },
+    {
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml"],
+      "bugClass": "restore_failure_contract",
+      "hypothesis": "a second fault in the restore produces an exit-3 output the route does not describe",
+      "searchActions": [
+        { "method": "direct_read", "queryOrPath": ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml:104", "result": "the route branches on restored: and nothing was restored, not on the restore failed text", "evidenceRefs": [".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml:104"] },
+        { "method": "negative_test_inspection", "queryOrPath": ".skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs:744", "result": "the test produces ERROR: the restore failed with exit 3", "evidenceRefs": [".skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs:744"] }
+      ],
+      "disposition": "finding",
+      "rationale": "the route has no branch for the engine's third outcome",
+      "linkedFindingId": "DR2-P2-004"
+    },
+    {
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [".skilled/commands/doctor/scripts/agents-md-embed.cjs"],
+      "bugClass": "proof_contract",
+      "hypothesis": "the preservation proof's fourth claim is computed and never enforced",
+      "searchActions": [
+        { "method": "direct_read", "queryOrPath": ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1377-1388", "result": "apply fails on dropped or foreign before the backup, and rechecks the same proof after the write", "evidenceRefs": [".skilled/commands/doctor/scripts/agents-md-embed.cjs:1377", ".skilled/commands/doctor/scripts/agents-md-embed.cjs:1461"] }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "the foreign list is now consumed by plan and apply",
+      "ruledOutReason": "the new foreign branch restores and exits 1, and the planted-foreign test passes"
+    },
+    {
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [".skilled/commands/doctor/scripts/agents-md-embed.cjs"],
+      "bugClass": "symlink_write_target",
+      "hypothesis": "a symlinked router or Cursor mirror is written through",
+      "searchActions": [
+        { "method": "direct_read", "queryOrPath": ".skilled/commands/doctor/scripts/agents-md-embed.cjs:819-829", "result": "create, replace and remove refuse a symlink at the router or mirror path", "evidenceRefs": [".skilled/commands/doctor/scripts/agents-md-embed.cjs:819"] }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "both new symlink tests pass and the link target stays unchanged",
+      "ruledOutReason": "compose refuses a symlink whose action would write"
+    }
+  ],
+  "graphEvents": [
+    { "type": "node", "id": "dim-correctness-1", "kind": "DIMENSION", "label": "correctness iteration 1" },
+    { "type": "node", "id": "file-embed", "kind": "FILE", "label": "agents-md-embed.cjs" },
+    { "type": "node", "id": "finding-DR2-P2-004", "kind": "FINDING", "label": "exit 3 route gap" },
+    { "type": "edge", "id": "edge-001", "source": "dim-correctness-1", "target": "file-embed", "relation": "COVERS" },
+    { "type": "edge", "id": "edge-002", "source": "finding-DR2-P2-004", "target": "file-embed", "relation": "IN_FILE" }
+  ]
+}

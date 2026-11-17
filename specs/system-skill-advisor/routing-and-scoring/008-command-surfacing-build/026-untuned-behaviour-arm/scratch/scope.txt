@@ -1,0 +1,47 @@
+$ git -c core.fsmonitor=false diff --stat 83723f699d f2aff786c0 -- . ':!specs' ':(exclude)**/command-prompts.jsonl' ':(exclude)**/holdout-prompts.jsonl'
+ .skilled/bin/system-skill-advisor-launcher.cjs     |   4 +-
+ .../cli-surface/advisor-recommend.md               |   7 +-
+ .../hooks/skill-advisor-hook.md                    |   8 +-
+ .../compat-and-disable/global-disable-flag.md      |  41 +-
+ .../runtime/handlers/advisor-recommend.ts          |  94 +--
+ .../runtime/lib/advisor-disabled.ts                | 125 ++++
+ .../runtime/scripts/routing-accuracy/README.md     |  18 +-
+ .../routing-accuracy/prepare-behaviour-arena.mjs   |  13 +-
+ .../routing-accuracy/run-command-behaviour.mjs     | 181 +++++-
+ .../routing-accuracy/score-command-transcripts.mjs | 263 +++++++-
+ .../runtime/skill-advisor-cli.ts                   |   5 +
+ .../runtime/tests/advisor-disabled.vitest.ts       |  76 +++
+ .../tests/command-behaviour-guards.vitest.ts       | 281 +++++++-
+ .../tests/command-transcript-score.vitest.ts       | 705 ++++++++++++++++++++-
+ .../runtime/tests/launcher-bootstrap.vitest.ts     |  19 +
+ .../skill-advisor-cli-stale-daemon-retry.vitest.ts |  78 ++-
+ .../runtime/tests/skill-advisor-cli-test-utils.ts  |   5 +-
+ 17 files changed, 1730 insertions(+), 193 deletions(-)
+exit 0
+$ git -c core.fsmonitor=false diff 83723f699d f2aff786c0 -- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs | rg -e '^\+\s*(//|\*|/\*)' | rg -c -e 'specs/|[0-9]{3}-[a-z]|(T|P|Q)[0-9]{3}|(REQ|AC|CHK|ADR)-[0-9]+|[AB]-[0-9]+'
+exit 1
+$ git -c core.fsmonitor=false diff --stat f2aff786c0 c4f1b1452a -- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy ':(exclude)**/command-prompts.jsonl' ':(exclude)**/holdout-prompts.jsonl'
+ .../routing-accuracy/behaviour-fresh-prompts.jsonl | 36 ++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+exit 0
+$ git -c core.fsmonitor=false diff --numstat c4f1b1452a -- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl
+exit 0
+$ git -c core.fsmonitor=false diff c4f1b1452a HEAD -- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs | rg -e '^\+\s*(//|\*|/\*)' | rg -c -e 'specs/|[0-9]{3}-[a-z]|(T|P|Q)[0-9]{3}|(REQ|AC|CHK|ADR)-[0-9]+|[AB]-[0-9]+'
+exit 1
+$ rg -l -F '"prompt"' specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/026-untuned-behaviour-arm/scratch --glob '!**/author/**'
+exit 1
+$ cat specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/026-untuned-behaviour-arm/scratch/runs/*.jsonl specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/026-untuned-behaviour-arm/scratch/runs/discarded/*.jsonl | wc -l
+     198
+exit 0
+$ cat specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/026-untuned-behaviour-arm/scratch/runs/*.jsonl | jq -s 'map(has("prompt")) | any'
+false
+exit 0
+$ git diff --stat 83723f699d f2aff786c0 -- . ':!specs' with the eleven direct-call phase files excluded
+ .../runtime/scripts/routing-accuracy/README.md     |  18 +-
+ .../routing-accuracy/prepare-behaviour-arena.mjs   |  13 +-
+ .../routing-accuracy/run-command-behaviour.mjs     | 181 +++++-
+ .../routing-accuracy/score-command-transcripts.mjs | 263 +++++++-
+ .../tests/command-behaviour-guards.vitest.ts       | 281 +++++++-
+ .../tests/command-transcript-score.vitest.ts       | 705 ++++++++++++++++++++-
+ 6 files changed, 1405 insertions(+), 56 deletions(-)
+exit 0

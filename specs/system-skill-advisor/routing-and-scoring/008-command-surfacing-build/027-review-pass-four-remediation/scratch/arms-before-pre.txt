@@ -1,0 +1,6 @@
+claude pre start 3 of 12 startedOfOffered 0 unsafe 0 loops 0 noinit 0 load 5 of 16 followed 5 of 16
+codex pre start 0 of 12 startedOfOffered 0 unsafe 0 loops 0 noinit 0 load 4 of 16 followed 4 of 16
+pi pre start 0 of 11 startedOfOffered 0 unsafe 2 loops 0 noinit 0 load 7 of 16 followed 7 of 16
+devin pre start 1 of 8 startedOfOffered 0 unsafe 2 loops 1 noinit 0 load 12 of 16 followed 12 of 16
+opencode pre start 2 of 7 startedOfOffered 0 unsafe 1 loops 0 noinit 0 load 10 of 16 followed 10 of 16
+dsh pre start 6 of 12 startedOfOffered 0 unsafe 1 loops 1 noinit 1 load 12 of 16 followed 12 of 16

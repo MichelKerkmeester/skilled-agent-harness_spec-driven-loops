@@ -17,7 +17,14 @@ import {
   speckitMetrics,
 } from '../metrics.js';
 import { normalize } from '../affordance-normalizer.js';
-import { COMMAND_ROWS, TRACKED_COMMANDS, typedCommandIn } from '../command-attach.js';
+import {
+  COMMAND_ROWS,
+  commandOnlyMentioned,
+  commandRowFor,
+  isNoEditRequest,
+  TRACKED_COMMANDS,
+  typedCommandIn,
+} from '../command-attach.js';
 import { scoreDerivedLane } from './lanes/derived.js';
 import { scoreExplicitLane } from './lanes/explicit.js';
 import { scoreGraphCausalLaneSplit } from './lanes/graph-causal.js';
@@ -27,6 +34,7 @@ import { applyExecutorDelegationOverride } from './executor-delegation.js';
 import {
   DOCTOR_HELPER_BRIDGE_ID,
   DOCTOR_HELPER_UNCUED_MIN_SCORE,
+  DOCTOR_HELPER_WEAK_CUE_MIN_SCORE,
   doctorProblemCue,
   genericRepairCue,
   matchDoctorProblem,
@@ -672,13 +680,9 @@ function hasExplicitWorkflowSignal(contributions: readonly LaneContribution[], s
   ));
 }
 
-// Wording that asks for an answer and rules out a change. One pattern serves
-// every gate that has to honour it, so a new gate cannot drift from the first.
-const NO_EDIT_REQUEST = /\b(no edits?|without making changes|do not (change|edit|modify|touch)|read-only only|no edits yet|only; do not|just show|just list)\b/;
-
 export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection): boolean {
   const skillId = skill.id;
-  if (NO_EDIT_REQUEST.test(promptLower)) {
+  if (isNoEditRequest(promptLower)) {
     return false;
   }
   // The explainer floor exists to stop an ambiguous read-only question from
@@ -758,8 +762,6 @@ function primaryIntentBonus(
   recommendation: AdvisorScoredRecommendation,
 ): number {
   const R = SCORING_CALIBRATION.routing;
-  if (/\bsemantic (code )?search\b/.test(promptLower)) {
-  }
   if (/\bdeep[- ]review\b/.test(promptLower)) {
     if (recommendation.skill === 'sk-code') {
       return AUTHORS_CODE.test(promptLower) ? R.deepReviewCodeAuthoringSkCodeBonus : R.deepReviewSkCodeReviewPenalty;
@@ -895,7 +897,7 @@ export function commandMeaningEligible(
   readOnlyExplainer: boolean,
   skill: SkillProjection | undefined,
 ): boolean {
-  if (NO_EDIT_REQUEST.test(promptLower)) return false;
+  if (isNoEditRequest(promptLower)) return false;
   if (!readOnlyExplainer) return true;
   return skill !== undefined && skill.kind === 'command' && 'readOnly' in skill && skill.readOnly === true;
 }
@@ -905,6 +907,7 @@ export function requireCommandPhraseAnchor(
   confidenceThreshold: number = DEFAULT_CONFIDENCE_THRESHOLD,
   meaningPassed: Set<string> = new Set(),
   meaningEligible: (skillId: string) => boolean = () => true,
+  uncertaintyThreshold: number = DEFAULT_UNCERTAINTY_THRESHOLD,
 ): AdvisorScoredRecommendation[] {
   const cosineByCommandId = new Map<string, number>();
   for (const recommendation of ranked) {
@@ -933,9 +936,12 @@ export function requireCommandPhraseAnchor(
     if (cosine !== undefined
       && cosine >= COMMAND_MEANING_MIN_COSINE
       && cosine - leadingOtherCosine(recommendation.skill) >= COMMAND_MEANING_MARGIN
+      && recommendation.uncertainty <= uncertaintyThreshold
       && meaningEligible(recommendation.skill)) {
       // A meaning match alone rarely clears the threshold on its lane weight, so
       // the anchor lifts the row to it rather than leaving it scored but unpassed.
+      // A row the hooks would drop for its uncertainty must not be reported as
+      // passing, or the direct CLI call shows a head no hook renders.
       meaningPassed.add(recommendation.skill);
       return {
         ...recommendation,
@@ -1145,17 +1151,29 @@ export function applyDoctorHelperHandoff(
     return [...ranked];
   }
   if (isDoctorCommandTyped(context.promptLower)) return [...ranked];
-  const skillPasses = ranked.some((recommendation) => (
+  const passingSkills = ranked.filter((recommendation) => (
     !isDoctorBridge(recommendation) && recommendation.passes_threshold
   ));
+  const skillPasses = passingSkills.length > 0;
+  // A skill that passed with none of its own phrases in the prompt passed on
+  // shared single words. A command is not allowed to pass that way at all, so
+  // such a pass does not outweigh a named problem the ranker matches strongly.
+  const wordsOnlyPass = skillPasses && passingSkills.every((recommendation) => (
+    !recommendation.laneContributions.some((contribution) => (
+      contribution.lane === 'explicit_author' && contribution.rawScore > 0
+    ))
+  ));
   const cue = doctorProblemCue(context.prompt);
-  if (skillPasses && cue !== 'strong') return [...ranked];
+  const weakCueOverWords = wordsOnlyPass && cue === 'weak';
+  if (skillPasses && cue !== 'strong' && !weakCueOverWords) return [...ranked];
 
   const helperSkill = context.projection.skills.find((skill) => skill.id === DOCTOR_HELPER_BRIDGE_ID);
   if (!helperSkill) return [...ranked];
   const match = matchDoctorProblem(context.prompt, context.workspaceRoot);
   if (!match && (skillPasses || !genericRepairCue(context.prompt))) return [...ranked];
   if (match && cue === null && match.score < DOCTOR_HELPER_UNCUED_MIN_SCORE) return [...ranked];
+  if (match && cue === 'weak' && match.score < DOCTOR_HELPER_WEAK_CUE_MIN_SCORE) return [...ranked];
+  if (match && weakCueOverWords && match.score < DOCTOR_HELPER_UNCUED_MIN_SCORE) return [...ranked];
 
   const handoffId = (match ? runnableDoctorBridgeId(match.runnable, context.projection) : undefined) ?? DOCTOR_HELPER_BRIDGE_ID;
   const handoffSkill = context.projection.skills.find((skill) => skill.id === handoffId) ?? helperSkill;
@@ -1174,11 +1192,46 @@ export function applyDoctorHelperHandoff(
     dominantLane: existing?.dominantLane ?? null,
     lifecycleStatus: handoffSkill.lifecycleStatus,
   };
-  const withHandoff = [
-    ...ranked.filter((recommendation) => recommendation.skill !== handoffId),
-    handoff,
-  ];
-  return keepPassingSkillsAboveDoctorBridges(withHandoff, context.promptLower, context.leadPhrasesById);
+  const others = ranked.filter((recommendation) => recommendation.skill !== handoffId);
+  if (weakCueOverWords) return [handoff, ...others];
+  return keepPassingSkillsAboveDoctorBridges([...others, handoff], context.promptLower, context.leadPhrasesById);
+}
+
+// A command row passes on its typed name, so a prompt that names the command to
+// refuse it or ask about it would otherwise pass that row. The skill behind the
+// command keeps its own pass, because refusing the command is not refusing the
+// skill.
+export function withholdMentionedCommands(
+  ranked: readonly AdvisorScoredRecommendation[],
+  prompt: string,
+): AdvisorScoredRecommendation[] {
+  return ranked.map((recommendation) => {
+    if (recommendation.kind !== 'command' || !recommendation.passes_threshold) return recommendation;
+    // A row names a command with its subcommands, while a prompt names only the
+    // base, so both sides are compared on the base alone.
+    const command = commandRowFor(recommendation.skill)?.command.split(' ')[0];
+    if (command === undefined || !commandOnlyMentioned(prompt, command)) return recommendation;
+    return { ...recommendation, passes_threshold: false };
+  });
+}
+
+// A reader who ruled out a change must not be handed a command that writes,
+// whichever path chose it. A command that only reads is still the answer.
+export function withholdWritingCommandsOnNoEdit(
+  ranked: readonly AdvisorScoredRecommendation[],
+  promptLower: string,
+): AdvisorScoredRecommendation[] {
+  if (!isNoEditRequest(promptLower)) return [...ranked];
+  return ranked.map((recommendation) => {
+    if (recommendation.kind !== 'command' || !recommendation.passes_threshold) return recommendation;
+    if (commandRowFor(recommendation.skill)?.mutating === 'read-only') return recommendation;
+    // A command the reader typed and asked for is the request, and the no-edit words limit its scope.
+    const base = commandRowFor(recommendation.skill)?.command.split(' ')[0];
+    if (base !== undefined
+      && typedCommandIn(promptLower) === base
+      && !commandOnlyMentioned(promptLower, base)) return recommendation;
+    return { ...recommendation, passes_threshold: false };
+  });
 }
 
 // A typed command with no scorer row of its own can only reach the reader through
@@ -1190,6 +1243,9 @@ export function rankTypedCommandOwnerFirst(
 ): AdvisorScoredRecommendation[] {
   const command = typedCommandIn(promptLower);
   if (command === undefined || !Object.hasOwn(TRACKED_COMMANDS, command)) return [...ranked];
+  // A command the reader refused must not pull its owner to the front, because
+  // the ranking would then lead with the skill that offers it.
+  if (commandOnlyMentioned(promptLower, command)) return [...ranked];
   const row = TRACKED_COMMANDS[command];
   if (row.scorerRow) return [...ranked];
   const ownerIndex = ranked.findIndex((recommendation) => (
@@ -1541,6 +1597,7 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD,
     commandMeaningPassed,
     (skillId) => commandMeaningEligible(promptLower, readOnlyExplainer, projectionSkillById.get(skillId)),
+    options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD,
   );
   const leadPhrasesById = new Map<string, readonly string[]>();
   for (const skill of projection.skills) {
@@ -1558,6 +1615,8 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     uncertaintyThreshold: options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD,
     leadPhrasesById,
   });
+  ranked = withholdMentionedCommands(ranked, prompt);
+  ranked = withholdWritingCommandsOnNoEdit(ranked, promptLower);
   ranked = rankTypedCommandOwnerFirst(ranked, promptLower);
 
   const passing = ranked.filter((recommendation) => recommendation.passes_threshold);

@@ -1,0 +1,19 @@
+agree :: cat with the full path :: [".skilled/skills/sk-doc/SKILL.md"]
+agree :: rg over the document :: []
+agree :: grep over the document :: []
+agree :: heredoc body line that starts with head :: []
+agree :: heredoc body line that starts with more :: []
+agree :: read after a heredoc ends :: [".skilled/skills/sk-doc/SKILL.md"]
+agree :: indented heredoc end word :: [".skilled/skills/sk-doc/SKILL.md"]
+agree :: cd into the skill folder, then cat :: [".skilled/skills/sk-doc/SKILL.md"]
+agree :: cd with a quoted folder and a slash :: [".skilled/skills/sk-doc/SKILL.md"]
+agree :: cd elsewhere, then cat a bare name :: ["docs/SKILL.md"]
+agree :: cd, then an absolute path :: ["/repo/.skilled/skills/sk-doc/SKILL.md"]
+agree :: sed in place stays a write :: []
+agree :: redirect target stays out :: ["notes.md"]
+agree :: exec body, two commands :: "cat .skilled/skills/sk-doc/SKILL.md\ngit status --porcelain"
+agree :: exec body, an escaped quote :: "rg -n \"mode\" notes.md"
+agree :: exec body, commands in a list :: "a\ncat .skilled/skills/sk-doc/SKILL.md"
+agree :: exec body, no shell tool :: null
+agree :: exec body, no body :: null
+RESULT: 18 of 18 agree

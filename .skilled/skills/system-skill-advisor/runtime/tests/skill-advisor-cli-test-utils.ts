@@ -7,6 +7,8 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync } from 'node:f
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { ADVISOR_DISABLED_FLAGS } from '../lib/advisor-disabled.js';
+
 export interface CliRunResult {
   readonly exitCode: number;
   readonly stdout: string;
@@ -62,6 +64,9 @@ export function createIsolatedCliScope(label: string): IsolatedCliScope {
 
   const env: NodeJS.ProcessEnv = {
     ...process.env,
+    // A flags file named in the shell or present in the checkout would make every
+    // isolated call abstain, so the scope names one that does not exist.
+    HOOK_FLAGS_CONFIG: join(rootDir, 'no-such-hook-flags.env'),
     SPECKIT_IPC_SOCKET_DIR: socketDir,
     SPECKIT_DAEMON_REELECTION: 'on',
     SPECKIT_LEASE_PROBE_RETRIES: '1',
@@ -74,7 +79,8 @@ export function createIsolatedCliScope(label: string): IsolatedCliScope {
     SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED: '0',
     SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
   };
-  delete env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
+  // A switch exported in the shell would make every isolated call abstain.
+  for (const flag of ADVISOR_DISABLED_FLAGS) delete env[flag];
 
   return {
     rootDir,

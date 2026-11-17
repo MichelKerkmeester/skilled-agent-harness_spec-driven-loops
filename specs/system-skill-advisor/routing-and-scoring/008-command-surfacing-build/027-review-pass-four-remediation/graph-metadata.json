@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/027-review-pass-four-remediation",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/027-review-pass-four-remediation",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review pass four remediation",
+      "phase 27 review pass four remediation",
+      "or-list refusal mention reader",
+      "shell read command start",
+      "review pass four remediation plan",
+      "review pass four remediation tasks",
+      "review pass four remediation acceptance criteria",
+      "review pass four remediation goal",
+      "review pass four remediation implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "pass",
+      "four",
+      "remediation",
+      "phase",
+      "or-list",
+      "refusal",
+      "mention",
+      "reader",
+      "shell",
+      "read",
+      "command"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+      ".skilled/hooks/shared/session-readers/codex.mjs",
+      ".skilled/hooks/shared/session-readers/codex.d.mts.map",
+      ".skilled/hooks/shared/tests/session-readers/codex.test.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach-guards.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-offer.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-offer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-command-behaviour.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-behaviour-guards.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "score-command-transcripts.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-transcript-score.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "codex.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/codex.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "codex.d.mts.map",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/codex.d.mts.map",
+        "source": "derived"
+      },
+      {
+        "name": "codex.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/tests/session-readers/codex.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-routing-slice.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A reader who writes `do not run /create:agent or /create:readme` still gets `/create:readme (start)` on the top row, and a reader who asks `Is the /doctor:update command safe?` gets `/doctor:update (ask)`",
+    "created_at": "2026-11-14T16:35:21Z",
+    "last_save_at": "2026-11-14T20:06:12.940Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8ef2aea92acfc4f125450e07f4185d4a0aeab0224ce2a33b7b8416a5fca98b92",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4cb745059899514290d1677cd0963b41ec91fc3d63250dabae61e07148c1ee8f",
+      "plan.md": "4aafeb45b03aae83c48a99f45a79ed82c44254664a38f3fc144272cbe9f8fd4a",
+      "tasks.md": "6d8e83bae60416135973444fe885ac780a82538438191643db213d5eca3759eb",
+      "implementation-summary.md": "0890de21b1f480772b13db040393d6ee921d5a3757e06df728c791651dbc06e7"
+    },
+    "last_active_at": null
+  }
+}

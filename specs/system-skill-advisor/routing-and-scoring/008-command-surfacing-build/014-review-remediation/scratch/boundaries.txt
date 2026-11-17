@@ -1,0 +1,75 @@
+$ diff --quiet AGENTS.md parent spec.md scorer/text.ts
+exit=1
+$ label scan over the .skilled diff (prints nothing when clean)
+rg-exit=1
+$ label scan over the new test files
+done
+$ package.json and lock diff stat
+exit=0
+$ rg COMMAND_POLICIES .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:86:    expect('COMMAND_POLICIES' in await import('../lib/command-attach.js')).toBe(false);
+rg-exit=0
+$ git status --short -- .skilled
+ M .skilled/commands/doctor/assets/doctor-agents-md-embed.yaml
+ M .skilled/commands/doctor/assets/doctor-agents-md-presentation.txt
+ M .skilled/commands/doctor/assets/doctor-install-presentation.txt
+ M .skilled/commands/doctor/assets/doctor-install.yaml
+ M .skilled/commands/doctor/assets/doctor-setup-presentation.txt
+ M .skilled/commands/doctor/assets/doctor-setup.yaml
+ M .skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml
+ M .skilled/commands/doctor/assets/doctor-symlink-check.yaml
+ M .skilled/commands/doctor/scripts/README.markdown
+ M .skilled/commands/doctor/scripts/agents-md-check.cjs
+ M .skilled/commands/doctor/scripts/agents-md-embed.cjs
+ M .skilled/commands/doctor/scripts/codex-hook-approval-check.cjs
+ M .skilled/commands/doctor/scripts/hook-wiring-check.cjs
+ M .skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs
+ M .skilled/commands/doctor/scripts/tests/agents-md-embed.test.cjs
+ M .skilled/commands/doctor/scripts/tests/codex-hook-approval-check.test.cjs
+ M .skilled/commands/doctor/scripts/tests/doctor-install-contract.test.cjs
+ M .skilled/commands/doctor/scripts/tests/hook-wiring-check.test.cjs
+ M .skilled/commands/doctor/scripts/tests/skill-advisor-route-contract.test.cjs
+ M .skilled/commands/doctor/setup.md
+ M .skilled/hooks/shared/session-readers/README.md
+ M .skilled/hooks/shared/session-readers/claude.d.mts.map
+ M .skilled/hooks/shared/session-readers/claude.mjs
+ M .skilled/hooks/shared/session-readers/devin.d.mts.map
+ M .skilled/hooks/shared/session-readers/devin.mjs
+ M .skilled/hooks/shared/session-readers/dsh.d.mts.map
+ M .skilled/hooks/shared/session-readers/dsh.mjs
+ M .skilled/hooks/shared/session-readers/pi.d.mts.map
+ M .skilled/hooks/shared/session-readers/pi.mjs
+ M .skilled/hooks/shared/tests/session-readers/devin.test.mjs
+ M .skilled/hooks/shared/tests/session-readers/dsh.test.mjs
+ M .skilled/hooks/shared/tests/session-readers/pi.test.mjs
+ M .skilled/skills/system-skill-advisor/ARCHITECTURE.md
+ M .skilled/skills/system-skill-advisor/README.md
+ M .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md
+ M .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md
+ M .skilled/skills/system-skill-advisor/runtime/bench/hook-brief-signal-noise.bench.ts
+ M .skilled/skills/system-skill-advisor/runtime/lib/README.md
+ M .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+ M .skilled/skills/system-skill-advisor/runtime/lib/render.ts
+ M .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts
+ M .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts
+ M .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md
+ M .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+ M .skilled/skills/system-skill-advisor/runtime/tests/command-brief-golden.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/hooks/advisor-runtime-list-parity.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/render-child-session.vitest.ts
+?? .skilled/commands/doctor/scripts/tests/doctor-setup-contract.test.cjs
+?? .skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts
+?? .skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts
+?? .skilled/skills/system-skill-advisor/runtime/tests/subprocess-output-cap.vitest.ts
+notes, read by the coordinator:
+- the first check exits 1 because of the parent spec.md alone: its diff is 4 added lines, the phase map rows and handoff rows for phases 014 and 015 that planning wrote. AGENTS.md and scorer/text.ts each exit 0. No worker task edited the parent spec.md.
+- the one COMMAND_POLICIES hit is the test case that pins the table as absent (command-attach-guards.vitest.ts). No code or doc names it.
+- every path in the status list is named by a task of this phase.

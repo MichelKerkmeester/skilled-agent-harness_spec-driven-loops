@@ -4,6 +4,7 @@
     "leafScopes": [
       "feature-catalog",
       "hooks/claude/README.md",
+      "hooks/dsh/README.md",
       "hooks/lib/README.md",
       "hooks/pi/README.md",
       "hooks/skill-advisor-hook-validation.md",

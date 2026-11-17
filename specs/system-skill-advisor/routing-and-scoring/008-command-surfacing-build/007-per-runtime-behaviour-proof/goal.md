@@ -56,10 +56,10 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `runs-pre.jsonl` and `runs-post.jsonl` in this phase scratch folder each hold 24 lines for each of claude, codex, opencode, pi, devin and dsh.
-- [ ] `node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs --summary` over both logs prints a pre and a post start rate for all six runtimes.
-- [ ] In `.skilled/skills/system-skill-advisor/runtime`, `npx vitest run tests/command-transcript-score.vitest.ts` reports 0 failed.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof --strict` prints `RESULT: PASSED` with the phase status Complete.
+- [x] `runs-pre.jsonl` and `runs-post.jsonl` in this phase scratch folder each hold 24 lines for each of claude, codex, opencode, pi, devin and dsh.
+- [x] `node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs --summary` over both logs prints a pre and a post start rate for all six runtimes.
+- [x] In `.skilled/skills/system-skill-advisor/runtime`, `npx vitest run tests/command-transcript-score.vitest.ts` reports 0 failed.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof --strict` prints `RESULT: PASSED` with the phase status Complete.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,10 +77,15 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Goal authored | Done | `check-goal.cjs` passes on this folder |
+| Criterion 1, 24 lines per runtime | Met 2026-11-13 | `jq -s 'group_by(.runtime) \| map({r: .[0].runtime, n: length})'` prints 24 for each of the six runtimes in `runs-pre.jsonl` and in `runs-post.jsonl`. `runs-pre-dsh-rerun.jsonl` holds 24 dsh lines |
+| Criterion 2, start rates for six runtimes | Met 2026-11-13 | `score-command-transcripts.mjs --summary runs-pre.jsonl runs-post.jsonl --json` exits 0 and prints a pre and a post `startRate` for all six. Over `runs-pre.jsonl` dsh pre reads 4 of 12, over the rerun it reads 6 of 12 as in `summary.json` |
+| Criterion 3, scorer tests | Met 2026-11-13 | `npx vitest run tests/command-transcript-score.vitest.ts` printed `Tests 61 passed (61)`, exit 0 |
+| Criterion 4, strict validation | Met 2026-11-13 | `spec.md` Status is Complete and `validate.sh --strict` on this folder prints `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None | No deviation recorded |
+| Closing decisions | AC-004, AC-005 and AC-007 waived and AC-010 superseded by ADR-005 to ADR-008 in `decision-record.md`. The Codex-only arm waits on the operator (ADR-010) |
+| First DSH before arm | Ran with the advisor off. The summary uses the 24-row rerun |
 <!-- /ANCHOR:log -->

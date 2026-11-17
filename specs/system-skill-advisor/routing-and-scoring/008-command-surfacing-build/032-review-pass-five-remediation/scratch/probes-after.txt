@@ -1,0 +1,57 @@
+redirect      kinds=write unsafe=true loopInit=false
+sed -i        kinds=write unsafe=true loopInit=false
+perl -pi      kinds=write unsafe=true loopInit=false
+tee           kinds=write unsafe=true loopInit=false
+cp            kinds=write unsafe=true loopInit=false
+python write  kinds=shell unsafe=false loopInit=null
+decline row, cat doc then redirect startedCommand=/deep:review
+decline row, cat doc then sed -i   startedCommand=/deep:review
+quoted marker commandLines []
+quoted marker startedCommand null
+quoted marker startState {"started":false,"unsafe":false,"selfAuto":false}
+suffix pair commandLines [{"seq":0,"command":"/deep:review","state":"offered","count":2},{"seq":0,"command":"/deep:review:auto","state":"started","count":2}]
+same pair commandLines [{"seq":0,"command":"/deep:review","state":"offered","count":2},{"seq":0,"command":"/deep:review","state":"started","count":2}]
+turn 1 guard (the only call runTurn makes): null
+status paths before 0 after 0 (the restore sees no change)
+restoreTurn: {"restored":true,"leftoverPaths":[]}
+remotes after restore: "origin"
+guard if it ran before turn 2: {"ok":false,"code":"remote_present","remotes":["origin"]}
+turn 2 push through the surviving remote: exit 0
+guard with no remote: null
+push to an explicit URL with no remote: exit 0
+cleaned
+directive-only changed: false
+directive-only tail: "- When a save is due, run /speckit:save to record the session."
+headed changed: false
+parent_session_id set -> ""
+agent_id only -> "Advisor: sk-doc 0.91"
+== A: source edited and rebuilt, nothing committed
+{"ok":false,"code":"source_dirty","paths":["src.js"]}
+builder exit=2
+cat: /tmp/v5-arena-probe/arena-a/src.js: No such file or directory
+cat: /tmp/v5-arena-probe/arena-a/dist/out.js: No such file or directory
+cut: /tmp/v5-arena-probe/arena-a/.git/skilled-behaviour-arena: No such file or directory
+arena src.js:   arena dist/out.js:   marker head: 
+== B: source committed clean at v3, dist still holds the v2 build
+source status lines: 0
+{"ok":false,"code":"stale_build","stale":[{"path":"dist","source":"2026-11-15T21:32:54.101Z","build":"2026-11-15T21:32:54.016Z"}]}
+builder exit=2
+cat: /tmp/v5-arena-probe/arena-b/src.js: No such file or directory
+cat: /tmp/v5-arena-probe/arena-b/dist/out.js: No such file or directory
+arena src.js:   arena dist/out.js: 
+stat: /tmp/v5-arena-probe/arena-b/src.js: stat: No such file or directory
+stat: /tmp/v5-arena-probe/arena-b/dist/out.js: stat: No such file or directory
+mtime src.js   mtime dist/out.js   source src.js 1794778374.101718711  source dist/out.js 1794778374.016737880
+== C: a dist symlink that points outside the source
+{"ok":false,"code":"symlink_escape","links":[{"path":"dist/linked","target":"/private/tmp/v5-arena-probe/outside"}]}
+builder exit=2
+dist/linked in arena: not-a-link
+outside file readable from the arena: no
+cleaned: yes
+A exit=2 {"ok":false,"code":"source_dirty"} source-status-lines=1
+B exit=2 {"ok":false,"code":"stale_build"} source-status-lines=0
+C exit=2 {"ok":false,"code":"symlink_escape"} outside-readable=no
+D exit=0 {"ok":true,"code":null} marker-lines=3 marker-second-line=source_clean
+E exit=0 {"ok":true,"code":null,"trackedDotenv":[".env.example"]} arena-has-env-example=yes
+match=agents_spawn hook-missing vibe .vibe/hooks.toml exit=1
+match=main ok vibe exit=0

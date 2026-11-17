@@ -1,0 +1,2 @@
+{"type":"classification","iteration":4,"detail":"Line-level branch audit: no unreachable or shadowed branch; comment mismatches belong to R1-P1-001/002; wrapper matrix does not cover the newest request rows, recorded as an edge case."}
+{"type":"ruled_out","iteration":4,"direction":"A separate maintainability finding for comment accuracy","reason":"Both comments state the intent the two active P1s say the code fails; fixing either rule fixes the comment."}

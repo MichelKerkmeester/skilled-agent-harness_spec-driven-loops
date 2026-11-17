@@ -1,0 +1,113 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched planner. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are
+set in your environment, which this repository's AGENTS.md defines as the autonomous child-dispatch
+exemption. Nobody is at a prompt, so no answer can reach you. Do not print A/B/C/D options and do not
+stop to confirm anything. Your task is complete only when the files exist on disk and strict
+validation has been run on them.
+Spec folder: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build (pre-approved, skip Gate 3). Call it P below.
+
+ROLE: you are the planning architect for this packet. You plan, you do not implement.
+
+WRITE AUTHORITY (nothing else may change):
+- New phase folders under P, numbered from 020 upward, and every file inside them.
+- P/spec.md (phase map rows, open questions), P/goal.md (the directive, decisions, binding table and
+  completion criteria, and new log rows), P/decision-record.md (new entries only), and P/description.json
+  and P/graph-metadata.json only through the repair script named below.
+- You may NOT edit P/019-workflow-outcome-measure/ (the coordinator is building it now), any closed phase
+  folder 001 to 018, any file outside specs/, any code, test, AGENTS.md or README. If a closed phase or
+  phase 019 needs a change, plan it inside a new phase and say so.
+- Never run git commands that change state (no add, commit, checkout, stash, reset, merge). Run git as
+  `git -c core.fsmonitor=false ...`. Do not dispatch subagents or other CLIs. Do not start, stop or
+  install anything. Never open .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl
+  unfiltered: read it only through `jq 'del(.prompt)'`. Never start a model session or a behaviour run.
+
+HOW TO PLAN (the packet's frozen decision D3 says plans are built with /speckit:plan):
+1. Read .skilled/commands/speckit/plan.md, then .skilled/commands/speckit/assets/speckit-plan.yaml, and follow
+   that workflow's :auto path for each new phase. You cannot type a slash command, so carry out its steps
+   yourself, in order, with its scripts and templates.
+2. Read .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md and follow it for every
+   spec document. Read references/structure/phase-definitions.md for how a phase child is shaped and named,
+   and use .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh to pick each phase's level.
+3. Look at how phases 014 and 017 (remediation phases of this same packet) were planned, and match their
+   rigor: every task names one file, one function, and a Verify command with its expected output; each
+   finding is reproduced by a probe before it is planned; tests come first.
+4. For a goal.md change, read .skilled/skills/sk-doc/sk-create-goal/SKILL.md and its
+   references/budget-and-handoff.md first. The durable slice must stay within its budget: run
+   `node .skilled/hooks/goal/bin/goal.cjs packet P --workspace "$PWD"` and require packet_budget=ok.
+   Each new phase gets its own goal.md, as phases 001 to 008 have.
+5. After editing any spec document run
+   `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder <folder> --apply`, then
+   `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <folder> --strict` on each new phase and on P.
+   Require `RESULT: PASSED` and paste the summary lines.
+
+THE OPERATOR'S CORE NEED (verbatim, 2026-11-13, typos are theirs):
+"Its not just that but that ais using skills are flexible but will more often use the besr correct
+workflows for said tasks."
+An AI that works through skills stays free to choose the command path or the skill path, and lands on
+the best correct workflow for the task more often, never an improvised one. Delivering a command with a
+run, start or ask policy is only the means.
+
+WHAT TRIGGERED THIS PLAN
+Two independent read-only reviews (Fable 5.2 medium, 2026-11-14) judged the packet DRIFTING from that
+need and not ready to close. Read both in full:
+- P/review/fable-alignment-2026-11-14/report-code-logic.txt
+- P/review/fable-alignment-2026-11-14/report-purpose-alignment.txt
+The coordinator reran these claims and confirmed them (advisor CLI, 2026-11-14):
+- "do not run /speckit:complete yet, just explain what it does" -> top row /speckit:complete; "someone ran
+  /speckit:save by accident, how do I undo what it wrote" -> top row /speckit:save; "what does
+  /create:readme do?" and "update the README typo in line 3" -> sk-doc with /create:readme attached;
+  "do not run it, just tell me what /doctor:update would change" -> /doctor:update.
+- "the environment variable for the database url is missing in production" -> only /doctor:env list;
+  "the install step in our dockerfile is broken, the overlay filesystem is stale" -> only /doctor:overlay status.
+- "document the new skill and create a feature catalog for it" -> top row command-doctor-sk-skill-convert at
+  confidence 0.8 and uncertainty 0.42, above the 0.35 the hooks use, so the hooks drop it.
+- "make a manual testing playbook for the login flow": with default options the sk-doc row carries no command
+  and a lower command row carries /create:manual-testing-playbook; with {"compiledRouteTopOnly":true} (Claude's
+  shape) the sk-doc row carries it. The OpenCode rendered text itself was not captured.
+- The phase 019 share dropped every owned run that wrote nothing. Counted on the stored final arm: of Claude's
+  10 such runs 9 ran shell steps and 7 read files without loading a workflow, though an Opus check found
+  at least 2 of those 9 ran only the Gate 1 lookup that AGENTS.md requires, so they did no task work.
+  The coordinator is fixing that count in phase 019 by leaving the gate steps out. Phase 019 has since added
+  `loadRate` (every owned scored run in the denominator) and `noneActed`. Final-arm load rates: claude 6 of 16,
+  devin 15 of 16, dsh 12 of 15, pi 5 of 16, opencode 7 of 16. Before arm: claude 4 of 16, codex 0 of 16,
+  pi 3 of 16, devin 12 of 16, opencode 9 of 16, dsh 10 of 16. These are on the 16 tuned command rows only,
+  one run each.
+- One code-lens finding (a redirected compiled-route.cjs call never counting) is already fixed in phase 019.
+Treat every other finding as a hypothesis: reproduce it with a probe before you plan a fix, and drop or
+downgrade it with the probe output when it does not reproduce.
+
+OPERATOR DECISIONS STILL IN FORCE (read P/goal.md section 4 and P/decision-record.md for the full record)
+- D1 to D7 in P/goal.md. D7: a command is a suggestion beside its hub mode, the model picks either path.
+- 2026-11-13: "No more behaviour arms" (later relaxed only for one Codex-only arm, which waits on Codex hook approval).
+- Research rank 12 declined: the degraded brief stays typed-only (Q026 stands).
+- The Gate 2 clause for a skill-only brief was declined.
+- Write discipline on Devin and OpenCode is tracked for a separate packet.
+- AGENTS.md is the shared framework document. Its wording changes are the operator's to approve.
+- Holdout prompt text is never read, and every number comes from a committed script.
+A planned item that would reverse or bypass one of these is not a build task. Put it in the plan as
+WAITING ON OPERATOR with the decision it needs, the options and your recommendation.
+
+WHAT TO PRODUCE
+1. Remediation phases for the confirmed defects and the measure gaps, grouped file-disjoint so workers can
+   build them one task at a time, each with spec.md, plan.md, tasks.md, acceptance-criteria.md, goal.md and
+   whatever its level requires. You decide how many phases and their order. Say for each finding which phase
+   and task fixes it, or why it is declined.
+2. The parent updates: new phase map rows in P/spec.md, binding rows and any goal amendment in P/goal.md
+   (the reviews note that no completion criterion measures the outcome and that criterion 1 says eight phases
+   while the packet has nineteen), and one decision-record entry per decision you take.
+3. A plan for how the packet will show the outcome honestly, within the operator decisions above: what can be
+   measured from stored sessions, what needs a new behaviour arm (operator-gated) and what the target-setting
+   decision is.
+
+FINAL OUTPUT (print to stdout, plain text, no preamble):
+FILES: every path you created or changed.
+PHASES: one paragraph per new phase: purpose, the findings it fixes, task count, level.
+FINDINGS MAP: each review finding id (A-1 to A-12 for the code lens, B-1 to B-11 for the purpose lens) with
+  planned (phase and task), declined (reason) or not reproduced (probe and output).
+GOAL CHANGES: the exact old and new text of every goal.md change and the packet_budget line.
+WAITING ON OPERATOR: each decision, its options and your recommendation.
+VALIDATION: the strict validation summary for each new phase and for P.

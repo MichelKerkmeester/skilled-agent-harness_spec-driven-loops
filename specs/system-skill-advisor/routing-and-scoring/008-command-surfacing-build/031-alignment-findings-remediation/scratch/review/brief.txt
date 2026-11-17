@@ -1,0 +1,17 @@
+ROLE: one independent Opus reviewer, read-only. Repository root: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research. Run git as `git -c core.fsmonitor=false`. Change no file except the report named below. Run no model session, runtime CLI, full suite, build or daemon. Temporary files go under /tmp only and are removed after.
+
+DIFF UNDER REVIEW: `git -c core.fsmonitor=false diff ea3b7ab4460 d509e9d5c07 -- ':(exclude)specs/**' ':(exclude)**/command-prompts.jsonl'` (BASE ea3b7ab4460, FIX d509e9d5c07). Never open command-prompts.jsonl, holdout-prompts.jsonl or behaviour-fresh-prompts.jsonl except through `jq 'del(.prompt)'`.
+
+READ FIRST: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/spec.md (the REQ tables and the Mechanism per Path table), plan.md (decisions D1 to D6), tasks.md (the evidence on each ticked line), scratch/probe-decisions.txt, scratch/matrix-before.txt and scratch/matrix-after.txt. The alignment run's literal fix for D-01 is in ~/.local/state/local-skilled-alignment/352-command-surfacing-research/20261115T123946Z/fix-plan.md.
+
+QUESTIONS, answer each:
+1. Does the allowlist line in `.skilled/commands/scripts/validate-command-references.cjs` equal the run's literal fix for D-01?
+2. Does each CI line added to `.github/workflows/command-tree-parity.yml` and `spec-kit-check.yml` run on a clean ubuntu runner (no gitignored dist, only what the job installs and builds) and fire on the paths it should? Check what each Vibe sync script requires at load time.
+3. Do the changelog and the feature catalog page state what `commandOnlyMentioned`, `typedCommandForTop` and `attachCommand` in `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` actually do?
+4. Does each of the three new scenarios (NC-012, CL-009, CL-010) pin only what its own commands print, hold to the playbook contract in `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md`, and avoid ids, spec paths or phase numbers in lasting text?
+5. Could any kept intent signal in `.skilled/skills/system-skill-advisor/graph-metadata.json` lift a sealed or holdout row? (Reason from the committed floors: `scratch/floor-*.txt` and `scratch/eval-*.txt` are equal before and after. Do not read prompt text.)
+6. Does the compiled `runtime/scripts/skill-graph.json` match its sources (`python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --validate-only`, and compare the advisor's intent_signals in both), and do `leaf-manifest.json` and `leaf-aliases.json` match their generators' `--check`?
+7. Does any added code or workflow comment name a spec path, phase number or task, finding or decision id?
+8. Was any finding the spec hands back (scratch/handback.md and spec.md Out of Scope) in fact caused by this branch's own diff?
+
+OUTPUT: write specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/scratch/review/report.txt. First line `verdict: SHIP` or `verdict: FIX`. Then one item per finding: severity P0, P1 or P2, the file and line, what is wrong, the exact input or command that shows it, and the fix. A P0 or P1 needs a reproducing command. End with one line per question 1 to 8 with its answer.

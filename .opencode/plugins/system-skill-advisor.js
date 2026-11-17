@@ -28,7 +28,6 @@ import * as messageIdentity from './lib/opencode-message-identity.js';
 import {
   FALLBACK_DIRECTIVE,
   SETUP_WORDING,
-  renderCompiledRouteSummaryLine,
   renderPluginFallbackDirective,
 } from './lib/skill-advisor-render.js';
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
@@ -586,24 +585,6 @@ function cliRecommendations(data, options) {
     });
 }
 
-// Compact the served compiled decision the advisor attached to a recommendation.
-// Returns null when no recommendation carried a route, which keeps the injected
-// context byte-identical to the legacy brief.
-function compiledRouteSummary(data) {
-  if (!Array.isArray(data?.recommendations)) return null;
-  for (const recommendation of data.recommendations) {
-    const route = recommendation?.compiledRoute;
-    if (!route || typeof route !== 'object' || typeof route.action !== 'string') continue;
-    return {
-      outcome: route.action,
-      hubId: typeof route.hubId === 'string' ? route.hubId : null,
-      targets: Array.isArray(route.targets) ? route.targets.filter((target) => typeof target === 'string') : [],
-      servingAuthority: 'compiled',
-    };
-  }
-  return null;
-}
-
 /**
  * Parse the advisor CLI's stdout and render its brief.
  *
@@ -629,7 +610,9 @@ async function parseCliResponse(stdout, options) {
   }
 
   const recommendations = cliRecommendations(data, options);
-  const top = recommendations[0] ?? null;
+  // The renderer leads with the first passing row, so a label taken from a row
+  // that does not pass would name one row and score another.
+  const top = recommendations.find((recommendation) => recommendation.passes_threshold) ?? recommendations[0] ?? null;
   // The CLI reports no freshness when it answered from the local scorer instead
   // of the daemon; 'stale' keeps that brief renderable and honest.
   const freshness = data.freshness === 'live' || data.freshness === 'stale'
@@ -655,7 +638,6 @@ async function parseCliResponse(stdout, options) {
     })
     : null;
   const brief = typeof rendered === 'string' && rendered.trim() ? rendered : null;
-  const routeSummary = compiledRouteSummary(data);
 
   return {
     brief,
@@ -667,7 +649,6 @@ async function parseCliResponse(stdout, options) {
       tokenCap,
       skillLabel: top?.skill ?? null,
       cacheHit: Boolean(data.cache?.hit),
-      ...(routeSummary ? { compiledRouteSummary: routeSummary } : {}),
     },
   };
 }
@@ -871,6 +852,10 @@ function advisorCliRequest({ prompt, options, surfaceHint = null }) {
     topK: 3,
     includeAttribution: false,
     includeAbstainReasons: true,
+    // The brief prints the head and at most one partner, and every hook asks for
+    // the route of the top pick alone, so a partner that carried a command here
+    // and none there would give two runtimes two heads for one request.
+    compiledRouteTopOnly: true,
     confidenceThreshold: options.thresholdConfidence,
     uncertaintyThreshold: DEFAULT_THRESHOLD_UNCERTAINTY,
     ...(surfaceHint ? { surfaceHint } : {}),
@@ -1078,7 +1063,7 @@ function deliverTransformContribution(decision, deliver) {
  * @param {number} [rawOptions.maxPromptBytes] - Maximum UTF-8 bytes of the stdin request sent to the advisor CLI, prompt included
  * @param {number} [rawOptions.maxBriefChars] - Maximum injected advisor brief characters
  * @param {number} [rawOptions.maxCacheEntries] - Maximum advisor cache entries
- * @param {boolean} [rawOptions.boundedCompiledRouteSummary] - Bound long compiled-route target lists
+ * @param {boolean} [rawOptions.boundedCompiledRouteSummary] - Reported as the bounded_compiled_route_summary status field. The brief carries no compiled-route line, so it bounds nothing
  * @param {boolean} [rawOptions.deduplicateTransforms] - Suppress duplicate same-message system blocks
  * @param {string} [rawOptions.sourceSignatureOverride] - Test override for advisor source signature
  * @returns {Promise<Object>} Hooks with `event`, `experimental.chat.system.transform`, and `tool`
@@ -1583,24 +1568,9 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       if (advisorDecision.shouldDeliver) {
         await observeBlock(deliveredAdvisorBlock);
       }
-      const compiledLine = renderCompiledRouteSummaryLine(response.metadata?.compiledRouteSummary, {
-        bounded: options.boundedCompiledRouteSummary,
-      });
-      if (compiledLine) {
-        const compiledDecision = transformContributionDecision(
-          input,
-          options,
-          messageIdentity.POLICY_BLOCK_IDS.RUNTIME_OPENCODE_COMPILED_ROUTE,
-          compiledLine,
-          8,
-        );
-        deliverTransformContribution(compiledDecision, () => {
-          output.system.push(compiledLine);
-        });
-        if (compiledDecision.shouldDeliver) {
-          await observeBlock(compiledLine);
-        }
-      }
+      // The head entry already names the hub, its command and its policy. The
+      // route summary keeps string targets only while the routes carry objects,
+      // so a second entry repeated the head with `targets=none`.
     } catch {
       state.lastBridgeStatus = 'fail_open';
       state.lastErrorCode = 'UNEXPECTED_HOOK_ERROR';

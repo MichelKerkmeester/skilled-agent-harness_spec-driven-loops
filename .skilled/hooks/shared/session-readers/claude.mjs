@@ -230,7 +230,9 @@ export function loadClaudeSession({ sessionId, transcriptPath, ...options } = {}
 
   let raw;
   try {
-    raw = readFileSync(transcriptPath, 'utf8');
+    // The file read is the path the containment check resolved, so a path
+    // swapped after the check is not followed.
+    raw = readFileSync(storePath, 'utf8');
   } catch {
     try {
       statSync(root);

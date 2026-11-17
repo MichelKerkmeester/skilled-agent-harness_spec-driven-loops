@@ -25,8 +25,10 @@ import {
   briefDelivered,
   codexHookApproval,
   parseOffer,
+  promptSessionId,
   replayOffer,
 } from '../scripts/routing-accuracy/command-offer.mjs';
+import { MARK } from '../scripts/routing-accuracy/prepare-behaviour-arena.mjs';
 
 const OFFERED_HEAD = 'Advisor: live; use sk-git → /doctor:git hooks (ask) 0.82/0.12 pass.';
 const BRIEF = 'Advisor: live; use sk-doc → /create:readme (start) 0.82/0.12 pass.';
@@ -74,6 +76,7 @@ describe('parseOffer', () => {
     expect(parseOffer(OFFERED_HEAD)).toEqual({
       offeredCommand: '/doctor:git hooks',
       offeredPolicy: 'ask',
+      offeredAs: 'head',
     });
   });
 
@@ -81,6 +84,7 @@ describe('parseOffer', () => {
     expect(parseOffer(AMBIGUOUS_HEAD)).toEqual({
       offeredCommand: '/doctor:git hooks',
       offeredPolicy: null,
+      offeredAs: 'head',
     });
   });
 
@@ -88,7 +92,58 @@ describe('parseOffer', () => {
     expect(parseOffer(NO_COMMAND_HEAD)).toEqual({
       offeredCommand: null,
       offeredPolicy: null,
+      offeredAs: null,
     });
+  });
+
+  it('marks a command that sits after vs as the partner', () => {
+    expect(parseOffer('Advisor: live; ambiguous: sk-code 0.95/0.12 vs sk-doc → /create:manual-testing-playbook (start) 0.82/0.12 pass.')).toEqual({
+      offeredCommand: '/create:manual-testing-playbook',
+      offeredPolicy: 'start',
+      offeredAs: 'partner',
+    });
+  });
+
+  it('marks a command before vs as the head', () => {
+    expect(parseOffer('Advisor: live; ambiguous: sk-doc → /create:agent (start) 0.82/0.12 vs sk-code 0.82/0.12 pass.')).toEqual({
+      offeredCommand: '/create:agent',
+      offeredPolicy: 'start',
+      offeredAs: 'head',
+    });
+  });
+});
+
+describe('promptSessionId', () => {
+  it('returns the one added session whose first user message is the prompt', async () => {
+    await expect(promptSessionId({
+      before: ['session-one'],
+      after: ['session-one', 'session-two', 'session-three'],
+      prompt: 'write a README for the ledger module',
+      firstUserText: async (id: string) => (
+        id === 'session-two' ? 'write a README for the ledger module' : 'a helper turn'
+      ),
+    })).resolves.toBe('session-two');
+  });
+
+  it('returns no session when two added sessions both hold the prompt', async () => {
+    await expect(promptSessionId({
+      before: ['session-one'],
+      after: ['session-one', 'session-two', 'session-three'],
+      prompt: 'write a README for the ledger module',
+      firstUserText: async () => 'write a README for the ledger module',
+    })).resolves.toBeNull();
+  });
+
+  it('treats a candidate whose first user message cannot be read as no match', async () => {
+    await expect(promptSessionId({
+      before: [],
+      after: ['session-torn', 'session-two'],
+      prompt: 'write a README for the ledger module',
+      firstUserText: async (id: string) => {
+        if (id === 'session-torn') throw new Error('unreadable session');
+        return 'write a README for the ledger module';
+      },
+    })).resolves.toBe('session-two');
   });
 });
 
@@ -99,6 +154,7 @@ describe('replayOffer', () => {
       expect(replayOffer({ checkoutDir, prompt: 'create a readme', sessionId: 'offer-test' })).toEqual({
         offeredCommand: null,
         offeredPolicy: null,
+        offeredAs: null,
         offerError: 'hook_missing',
       });
     } finally {
@@ -221,6 +277,30 @@ describe('briefDelivered', () => {
       rmSync(dir, { recursive: true, force: true });
     }
   });
+
+  it('does not count a head quoted inside a tool result', async () => {
+    await expect(briefDelivered({
+      runtime: 'pi',
+      locator: {},
+      loadSession: async () => ({
+        ok: true,
+        records: [{ role: 'toolResult', content: [{ type: 'text', text: 'Advisor: live; use sk-doc 0.95/0.12 pass.' }] }],
+        injected: [],
+      }),
+    })).resolves.toBe(false);
+  });
+
+  it('counts a head in a user record', async () => {
+    await expect(briefDelivered({
+      runtime: 'pi',
+      locator: {},
+      loadSession: async () => ({
+        ok: true,
+        records: [{ role: 'user', content: [{ type: 'text', text: 'Advisor: live; use sk-doc 0.95/0.12 pass.' }] }],
+        injected: [],
+      }),
+    })).resolves.toBe(true);
+  });
 });
 
 describe('backfillRunLog', () => {
@@ -251,6 +331,7 @@ describe('backfillRunLog', () => {
           seen.push({ runtime, locator });
           return true;
         },
+        trusted: () => true,
       });
 
       expect(result).toEqual({ ok: true, lines: 2, outPath });
@@ -270,6 +351,78 @@ describe('backfillRunLog', () => {
       expect(replayed[0]).toMatchObject({ checkoutDir: '/checkout-one', prompt: 'prompt for row-one' });
       expect(seen).toHaveLength(2);
       expect(readFileSync(inPath, 'utf8')).toBe(before);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('keeps where the offered command sat in the head', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'command-offer-'));
+    const outPath = join(dir, 'runs-out.jsonl');
+    const inPath = writeRunLog(dir, [
+      { runtime: 'claude', rowId: 'row-one', arm: 'pre', locator: { projectDir: '/checkout-one' }, exit: 0, changedPaths: [] },
+      { runtime: 'claude', rowId: 'row-two', arm: 'pre', locator: { projectDir: '/checkout-one' }, exit: 0, changedPaths: [] },
+    ]);
+    try {
+      const result = await backfillRunLog({
+        inPath,
+        outPath,
+        promptFor: (rowId: string) => `prompt for ${rowId}`,
+        warm: async () => {},
+        replay: async ({ sessionId }: { checkoutDir: string; prompt: string; sessionId: string }) => (
+          sessionId === 'backfill-row-one'
+            ? {
+              offeredCommand: '/create:manual-testing-playbook',
+              offeredPolicy: 'start',
+              offeredAs: 'partner',
+              offerError: null,
+            }
+            : { offeredCommand: null, offeredPolicy: null, offerError: 'no_head' }
+        ),
+        brief: async () => true,
+        trusted: () => true,
+      });
+
+      expect(result).toEqual({ ok: true, lines: 2, outPath });
+      const written = readFileSync(outPath, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+      expect(written[0].offeredAs).toBe('partner');
+      expect(written[1].offeredAs).toBeNull();
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('hands each line to the prompt lookup', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'command-offer-'));
+    const outPath = join(dir, 'runs-out.jsonl');
+    const inPath = writeRunLog(dir, [
+      {
+        runtime: 'claude',
+        rowId: 'row-one',
+        arm: 'g2',
+        fixture: '/custom/fixture',
+        locator: { projectDir: '/checkout-one' },
+        exit: 0,
+        changedPaths: [],
+      },
+    ]);
+    const seen: Array<{ fixture?: string }> = [];
+    try {
+      const result = await backfillRunLog({
+        inPath,
+        outPath,
+        promptFor: (_rowId: string, line: { fixture?: string }) => {
+          seen.push(line);
+          return 'prompt';
+        },
+        warm: async () => {},
+        replay: async () => ({ offeredCommand: null, offeredPolicy: null, offerError: null }),
+        brief: async () => 'unknown',
+        trusted: () => true,
+      });
+
+      expect(result).toMatchObject({ ok: true, lines: 1 });
+      expect(seen[0].fixture).toBe('/custom/fixture');
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }
@@ -368,6 +521,81 @@ describe('backfillRunLog', () => {
       });
       expect(warmed).toBe(0);
       expect(replayed).toBe(0);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('runs nothing from a checkout that is neither the project root nor a marked arena', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'command-offer-'));
+    const checkoutDir = join(dir, 'checkout');
+    const cliMarker = join(checkoutDir, 'ran-cli');
+    const hookMarker = join(checkoutDir, 'ran-hook');
+    const cliPath = join(checkoutDir, '.skilled/bin/skill-advisor.cjs');
+    const hookPath = join(checkoutDir, '.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js');
+    mkdirSync(join(checkoutDir, '.skilled/bin'), { recursive: true });
+    mkdirSync(join(checkoutDir, '.skilled/skills/system-spec-kit/runtime/dist/hooks/claude'), { recursive: true });
+    writeFileSync(cliPath, `require('node:fs').writeFileSync(${JSON.stringify(cliMarker)}, 'ran');\n`);
+    writeFileSync(
+      hookPath,
+      `require('node:fs').writeFileSync(${JSON.stringify(hookMarker)}, 'ran');\n`
+        + "process.stdout.write(JSON.stringify({ hookSpecificOutput: { additionalContext: 'Advisor: live; use sk-doc -> /create:readme' } }));\n",
+    );
+    const outPath = join(dir, 'runs-out.jsonl');
+    const inPath = writeRunLog(dir, [
+      { runtime: 'claude', rowId: 'row-one', arm: 'pre', locator: { projectDir: checkoutDir }, exit: 0, changedPaths: [] },
+    ]);
+    try {
+      const result = await backfillRunLog({
+        inPath,
+        outPath,
+        promptFor: () => 'prompt',
+        brief: async () => 'unknown',
+      });
+
+      expect(result).toMatchObject({ ok: true, lines: 1 });
+      expect(existsSync(cliMarker)).toBe(false);
+      expect(existsSync(hookMarker)).toBe(false);
+      const [written] = readFileSync(outPath, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+      expect(written).toMatchObject({
+        offeredCommand: null,
+        offeredPolicy: null,
+        offerError: 'untrusted_checkout',
+      });
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('replays a checkout that holds the arena marker', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'command-offer-'));
+    const checkoutDir = join(dir, 'checkout');
+    mkdirSync(join(checkoutDir, '.git'), { recursive: true });
+    writeFileSync(join(checkoutDir, '.git', MARK), '');
+    const outPath = join(dir, 'runs-out.jsonl');
+    const inPath = writeRunLog(dir, [
+      { runtime: 'claude', rowId: 'row-one', arm: 'pre', locator: { projectDir: checkoutDir }, exit: 0, changedPaths: [] },
+    ]);
+    const warmed: string[] = [];
+    const replayed: string[] = [];
+    try {
+      const result = await backfillRunLog({
+        inPath,
+        outPath,
+        promptFor: () => 'prompt',
+        warm: async (target: string) => {
+          warmed.push(target);
+        },
+        replay: async ({ checkoutDir: target }: { checkoutDir: string }) => {
+          replayed.push(target);
+          return { offeredCommand: null, offeredPolicy: null, offerError: null };
+        },
+        brief: async () => 'unknown',
+      });
+
+      expect(result).toMatchObject({ ok: true, lines: 1 });
+      expect(warmed).toEqual([checkoutDir]);
+      expect(replayed).toEqual([checkoutDir]);
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }

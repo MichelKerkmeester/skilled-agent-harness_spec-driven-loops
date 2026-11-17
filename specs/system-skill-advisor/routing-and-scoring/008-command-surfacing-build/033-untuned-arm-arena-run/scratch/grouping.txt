@@ -1,0 +1,6 @@
+# jq -s -c 'group_by(.arm + "-" + (.run|tostring)) | map(map(.rowId) | unique | length)' runs/<runtime>.jsonl
+claude [36,36,8]
+opencode [36,36,8]
+pi [36,36,8]
+devin [36,36,8]
+dsh [36,36,8]

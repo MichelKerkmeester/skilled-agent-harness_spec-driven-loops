@@ -1,0 +1,79 @@
+{
+  "traceabilityResults": [
+    {
+      "protocolId": "spec_code",
+      "status": "partial",
+      "gateClass": "hard",
+      "applicable": true,
+      "evidence": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/spec.md:133",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/spec.md:134",
+        ".skilled/commands/doctor/assets/symlink-manifest.json:5-13",
+        ".skilled/commands/doctor/scripts/tests/doctor-install-contract.test.cjs:237-240"
+      ],
+      "summary": "REQ-005 passes both mechanical checks; REQ-006's workflow leg is not enforced by the contract test."
+    },
+    {
+      "protocolId": "checklist_evidence",
+      "status": "partial",
+      "gateClass": "hard",
+      "applicable": true,
+      "evidence": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/tasks.md:65",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/acceptance-criteria.md:59"
+      ],
+      "summary": "T015 says the contract test checks the workflow; it checks one phrase absence. AC-006's evidence is the 17/17 pass and remains defensible."
+    },
+    {
+      "protocolId": "skill_agent",
+      "status": "notApplicable",
+      "gateClass": "overlay",
+      "applicable": false,
+      "evidence": [],
+      "summary": "No agent owns or mirrors the sk-doc hub or the doctor contract test."
+    },
+    {
+      "protocolId": "agent_cross_runtime",
+      "status": "notApplicable",
+      "gateClass": "overlay",
+      "applicable": false,
+      "evidence": [],
+      "summary": "No runtime-mirrored agent copies for these four files."
+    },
+    {
+      "protocolId": "feature_catalog_code",
+      "status": "notApplicable",
+      "gateClass": "overlay",
+      "applicable": false,
+      "evidence": [],
+      "summary": "No feature-catalog row describes the merged intents or the doctor test."
+    },
+    {
+      "protocolId": "playbook_capability",
+      "status": "notApplicable",
+      "gateClass": "overlay",
+      "applicable": false,
+      "evidence": [],
+      "summary": "No playbook scenario covers these four files."
+    }
+  ],
+  "delta": [
+    {
+      "type": "classification",
+      "detail": "REQ-005 verified by both mechanical checks; REQ-006 partial because only the presentation/manifest leg is enforced; AC-006 remains true on its own evidence."
+    },
+    {
+      "type": "ruled_out",
+      "direction": "A false AC-006 mark or a merge-introduced graph drift",
+      "reason": "The contract run reproduces 17/17 and --strict exits 0 with no drift."
+    },
+    {
+      "type": "traceability_check",
+      "protocolId": "checklist_evidence",
+      "status": "partial",
+      "evidence": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/tasks.md:65"
+      ]
+    }
+  ]
+}

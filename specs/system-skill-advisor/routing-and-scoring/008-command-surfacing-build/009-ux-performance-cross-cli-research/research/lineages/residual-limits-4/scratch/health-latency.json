@@ -1,0 +1,57 @@
+{
+  "files": 58,
+  "records": 1826,
+  "byRuntime": {
+    "claude": 1816,
+    "pi": 7,
+    "codex": 3
+  },
+  "statuses": {
+    "ok": 1762,
+    "skipped": 39,
+    "fail_open": 19,
+    "degraded": 6
+  },
+  "freshness": {
+    "live": 1726,
+    "unavailable": 50,
+    "absent": 3,
+    "stale": 47
+  },
+  "cacheHitRate": 0.876,
+  "durationMs": {
+    "n": 1826,
+    "median": 178,
+    "p95": 294,
+    "p99": 396,
+    "max": 893,
+    "min": 0
+  },
+  "durationMsCacheMiss": {
+    "n": 226,
+    "median": 0,
+    "p95": 438,
+    "p99": 582,
+    "max": 893,
+    "min": 0
+  },
+  "durationMsCacheHit": {
+    "n": 1600,
+    "median": 186,
+    "p95": 289,
+    "p99": 298,
+    "max": 300,
+    "min": 0
+  },
+  "emittedBytes": {
+    "n": 1826,
+    "median": 0,
+    "p95": 287,
+    "p99": 349,
+    "max": 361,
+    "min": 0
+  },
+  "overBudget2500": 0,
+  "over1000ms": 0,
+  "zeroDuration": 234
+}

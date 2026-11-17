@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"fanout-attach-config-9-1794835877856-5ghgm4","sessionId":"fanout-attach-config-9-1794835877856-5ghgm4"},"data":{"mode":"review","totalIterations":4,"activeP0":0,"activeP1":0,"activeP2":1,"dimensionCoverage":1,"verdict":"PASS","releaseReadinessState":"converged","stopReason":"converged"}}

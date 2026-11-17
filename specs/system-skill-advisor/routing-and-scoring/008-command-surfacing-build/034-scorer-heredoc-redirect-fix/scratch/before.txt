@@ -1,0 +1,20 @@
+## before at 3d794f1df74
+$ SUITE
+ Test Files  185 passed (185)
+      Tests  2313 passed | 6 skipped (2319)
+exit 
+$ FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+$ EVAL
+[160,49,21,5]
+$ PROBE
+body ["0:"] started /create:sk-skill
+opening ["notes.txt"] started /create:sk-skill
+$ REACH
+{"rt":"claude","lines":80,"loaded":80,"failed":0,"only":0,"rows":[]}
+{"rt":"opencode","lines":80,"loaded":80,"failed":0,"only":2,"rows":["fresh-decline-refusal-02/off1","fresh-fit-14/on1"]}
+{"rt":"pi","lines":80,"loaded":80,"failed":0,"only":1,"rows":["fresh-fit-14/off1"]}
+{"rt":"devin","lines":81,"loaded":81,"failed":0,"only":3,"rows":["fresh-fit-14/off1","fresh-decline-app-problem-02/on1","fresh-fit-14/on1"]}
+{"rt":"dsh","lines":80,"loaded":80,"failed":0,"only":6,"rows":["fresh-decline-refusal-02/off1","fresh-fit-14/off1","fresh-skill-07/off1","fresh-decline-refusal-02/on1","fresh-fit-14/on1","fresh-skill-07/on1"]}

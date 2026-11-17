@@ -1,0 +1,20 @@
+[
+  "is /speckit:complete overkill for a two line fix?",
+  "should I use /deep:research for this or just read the two files myself?",
+  "can you run /speckit:plan?",
+  "dont guess, run /speckit:plan",
+  "never mind just run /speckit:save",
+  "not sure, use /create:readme",
+  "without asking, run /speckit:complete",
+  "change the title of the README in the hooks folder",
+  "add a troubleshooting section to the existing README",
+  "add a troubleshooting section to the existing README in the hooks folder",
+  "the symlink in my node_modules folder is broken after npm install",
+  "the trigger index lookup returns nothing for my packet, leave every file as it is",
+  "leave every file as it is, the trigger index lookup returns nothing for my packet",
+  "the trigger index lookup returns nothing for my packet, do not change anything",
+  "do i need to run /speckit:plan before /speckit:implement?",
+  "when would i use /create:agent?",
+  "does /doctor:update touch my settings?",
+  "would /speckit:complete be too much here?"
+]

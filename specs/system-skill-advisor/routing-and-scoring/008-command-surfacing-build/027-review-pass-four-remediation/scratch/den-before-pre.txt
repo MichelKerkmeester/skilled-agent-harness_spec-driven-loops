@@ -1,0 +1,6 @@
+claude pre 16
+codex pre 16
+pi pre 16
+devin pre 16
+opencode pre 16
+dsh pre 16

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review pass two remediation",
+      "phase 17 review pass two remediation",
+      "review pass two remediation plan",
+      "review pass two remediation tasks",
+      "review pass two remediation acceptance criteria",
+      "review pass two remediation implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "pass",
+      "two",
+      "remediation",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "four"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/before.txt",
+      "scratch/after.txt",
+      "scratch/after-vall.log",
+      "scratch/repro-after.txt",
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+      "runtime/tests/README.md",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".opencode/plugins/tests/system-skill-advisor.test.cjs",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+      ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/setup.md",
+      ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-vall.log",
+        "kind": "file",
+        "path": "scratch/after-vall.log",
+        "source": "derived"
+      },
+      {
+        "name": "repro-after.txt",
+        "kind": "file",
+        "path": "scratch/repro-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/system-skill-advisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-embed.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "setup.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/setup.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-wiring-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four no-edit wordings, \"don't change anything yet\", \"no changes yet\", \"don't touch any files\" written with a curly apostrophe and \"make no changes\", still attach `/create:agent` on the hub path and still pass the scorer's command gate, because the shared pattern knows only \"do not\"",
+    "created_at": "2026-11-13T14:16:53Z",
+    "last_save_at": "2026-11-13T21:04:51.950Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eaa32c83480f14d28b84c0a1a56aee9f415ff43d82d269c44609fc684c7e97ee",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "36587a87a06bf409cf4ec2c8a5626721f5de18643597aea4515f97541fb03d5f",
+      "plan.md": "ef1935d60926e98ffca8ed78a9bf5d5b881c8d06c1ae41e4a5d18e808641a212",
+      "tasks.md": "aa83c819ac5b840c88783786ca00c5f9b836877a81b6bdf02a8fffd3f280202c",
+      "implementation-summary.md": "eb04a98611b66380e24b55e00e128bb8d383d4459a2b9f4d52f0c01e3421c7a7"
+    },
+    "last_active_at": null
+  }
+}

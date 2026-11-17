@@ -41,6 +41,11 @@ const INSTALL_PHRASES = [
   'first install of skilled in my project',
   'skilled in my other repository',
   'skilled in another repository',
+  'walk me through adding this toolkit to my own project repository',
+  'put this toolkit into my own project repository',
+  'use this toolkit in my own project',
+  'install this toolkit into another repository',
+  'onboard this project repository',
 ];
 const WORKFLOW_STEP_NAMES = ['Locate', 'Ask', 'Inspect', 'Checklist', 'Warn'];
 const SAVE_CAVEAT = 'context saves land in the target repo\'s own specs/ when they run from inside it, so run /doctor:setup and later saves from inside the target repo, not from the Skilled checkout.';
@@ -228,6 +233,13 @@ test('the presentation prints writing commands for the operator and closes on th
   assert.ok(PRESENTATION.includes('End interactive presentations with: `What would you like to do next?`'));
 
   assert.ok(PRESENTATION.includes(`\n${SAVE_CAVEAT}\n`), SAVE_CAVEAT);
+});
+
+test('the presentation and the workflow name the accepted runtimes instead of a count', () => {
+  const named = Object.keys(JSON.parse(read(path.join(ASSETS, 'symlink-manifest.json'))).runtimes).sort();
+  const list = `${named.slice(0, -1).join(', ')} and ${named[named.length - 1]}`;
+  assert.ok(PRESENTATION.includes(`outside ${list} or the ones already there`), list);
+  assert.doesNotMatch(WORKFLOW.inputs.runtimes, /is not offered/);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

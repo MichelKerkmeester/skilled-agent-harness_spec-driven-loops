@@ -1,0 +1,18 @@
+D01 validator   exit=1 FAIL  1 unresolved command reference(s):
+D01 self-test   [self-test] real tree resolves clean: FAIL (1 unresolved)
+X01 command-tree-parity   vibe-checks=0 vibe-filters=0 dsh-filters=2
+X01 spec-kit-check   vibe-checks=0 vibe-filters=0 dsh-filters=0
+D03 docs        only-mentions=3
+D03 cli         ["the /create:sk-skill command is slow","sk-doc","/create:sk-skill","start"]
+D03 cli         ["what does /create:sk-skill do","sk-doc",null,null]
+BS401 playbook  scenario-files=50 new-ids=0 test-pin="live 50-scenario"
+PRB P01         [["cli-external-orchestration","cli-mistral-vibe",0.95],["system-skill-advisor",null,0.845]]
+PRB P02         [["sk-prompt",null,0.832],["sk-code",null,0.82]]
+PRB P04         [["sk-prompt",null,0.82]]
+PRB P07         []
+PRB P11         [["sk-doc","sk-create-quality-control",0.82],["sk-code",null,0.82]]
+BAT01 dist      system-spec-kit/runtime=stale
+BAT01 dist      system-spec-kit/runtime/cli=stale
+BAT02 package   FAIL package=system-spec-kit scenarios=124 violations=1
+BAT06 links     check-markdown-links: 7603 files, 14899 links checked, 5 broken
+BAT07 strict    failed-packages=[package=system-spec-kit]

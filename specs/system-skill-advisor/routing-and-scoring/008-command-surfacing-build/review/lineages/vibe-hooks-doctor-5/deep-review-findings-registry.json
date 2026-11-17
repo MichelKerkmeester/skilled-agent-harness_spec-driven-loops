@@ -1,0 +1,716 @@
+{
+  "sessionId": "fanout-vibe-hooks-doctor-5-1794760565927-i99t40",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 4,
+    "timestamp": "2026-11-15T17:04:59.505Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "The no-brief fallback is read as a routing head, so a command named in the directive block gains a document line after the directives",
+      "file": ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+      "line": 125,
+      "description": "withCommandDocuments treats a context that starts with the directive separator as a head, so a fallback whose directive block names a command gains a Command documents line after the directives.",
+      "findingClass": "boundary_parsing",
+      "deltaStatus": null,
+      "scopeProof": "The Vibe part is in the declared vibe-hooks-doctor scope; withCommandDocuments is its only document-line producer and the fallback shape is produced by the in-scope handler.",
+      "affectedSurfaceHints": [
+        "Vibe no-brief fallback",
+        "document line placement",
+        "directive block"
+      ],
+      "contentHash": "sha256:c097882dc09a636afeb0de676afbeb5901f2f174066552f58c2708c8d0748aac",
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "The subagent guard keys on a field no Vibe source or test names, while the hook contract promises a subagent turn gets no brief",
+      "file": ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+      "line": 64,
+      "description": "isChildSession reads payload.parent_session_id as the subagent marker, but no in-repo Vibe payload schema or test names that key, so the contract promise is unverified.",
+      "findingClass": "unverified_claim",
+      "deltaStatus": null,
+      "scopeProof": "Both the part and the hook contract are in the declared scope; the child marker is a behavior the contract states.",
+      "affectedSurfaceHints": [
+        "Vibe subagent turns",
+        "child-session suppression",
+        "hook contract doc"
+      ],
+      "contentHash": "sha256:d439e745a5309d4e09cc4d372646a6c7975821166688acfcd7278cd9fe849d5c",
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "The handler resolves the shared switch resolver one level above the repository when it runs from source, so the canonical kill switch fails open there",
+      "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "line": 71,
+      "description": "skillAdvisorHookEnabled resolves hook-flags.cjs with six parent hops, which is correct only for the dist file; from the source folder the require throws and the catch returns true.",
+      "findingClass": "fail_open_control_bypass",
+      "deltaStatus": null,
+      "scopeProof": "The handler is in the declared scope; the dist file is the shipped entry and resolves, so the reach is the vitest and development consumers the repo uses.",
+      "affectedSurfaceHints": [
+        "canonical kill switch",
+        "source-run handler",
+        "test harness"
+      ],
+      "contentHash": "sha256:099290aa55ce6b14d76c777e6ac0f5414751e72ecf9e93ceb7cce49da3d52592",
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "The switch table implies a hook-versus-plugin split that the shared resolver does not make, so either name silences every adapter",
+      "file": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      "line": 173,
+      "description": "The hook alias row says it disables the native adapters, but the shared resolver lists it with the plugin alias for one concern, and the OpenCode plugin and the Vibe part ask that resolver.",
+      "findingClass": "doc_code_drift",
+      "deltaStatus": null,
+      "scopeProof": "The hook contract is a declared scope file and the rows are the changed lines; the resolver and plugin are read as context evidence.",
+      "affectedSurfaceHints": [
+        "kill-switch documentation",
+        "OpenCode plugin",
+        "Vibe part"
+      ],
+      "contentHash": "sha256:03379ed479386153758612630b8adecd772e998be6e41d8c5c7867000fd327d3",
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "The Vibe row ignores the hook match filter, so an entry Vibe never runs on a main turn still reads ok vibe",
+      "file": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      "line": 249,
+      "description": "tomlCommands captures only type and command, and inspect accepts any pre_agent block whose command ends with the marker, so a match value other than main still reads ok.",
+      "findingClass": "false_pass_diagnostic",
+      "deltaStatus": null,
+      "scopeProof": "The check and its test are declared scope files; the hooks file and README are the code and claim it must match.",
+      "affectedSurfaceHints": [
+        "doctor hook-wiring check",
+        "Vibe prompt entry",
+        "target-repository diagnostics"
+      ],
+      "contentHash": "sha256:97893ae4ae140f6f44d2bf98999cb411ecf9d00501f10d3851855015a5198eea",
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "The hook contract names Vibe in its per-runtime table but leaves it out of the two runtime summaries that table feeds",
+      "file": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      "line": 84,
+      "description": "The section intro and the starting-a-surfaced-command table omit Vibe while the new Vibe row says it uses the shared handler and needs the document line.",
+      "findingClass": "doc_code_drift",
+      "deltaStatus": null,
+      "scopeProof": "The hook contract is a declared scope file and the Vibe row is the changed line; the code it describes is in scope.",
+      "affectedSurfaceHints": [
+        "hook contract",
+        "Vibe command document line",
+        "runtime capability table"
+      ],
+      "contentHash": "sha256:527655716771c892b6b5ed19c3e780ee1a52e1954f83f722256e01dfbbeac75e",
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The dependency object env does not reach the receipt path, so a caller that injects only env still writes to and reads from the real temporary folder",
+      "file": ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+      "line": 68,
+      "description": "buildAdvisorPart accepts env for deterministic tests, but headReceiptDir and the default read and write keep using process.env and tmpdir(), so env only changes the child-session test.",
+      "findingClass": "partial_injection",
+      "deltaStatus": null,
+      "scopeProof": "The part and its suite are declared scope files; read, write and env are accepted in the same documented dependency object.",
+      "affectedSurfaceHints": [
+        "Vibe head receipt",
+        "test isolation",
+        "SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR"
+      ],
+      "contentHash": "sha256:ffd4fa4c03f55564aaf87876c9f31abf687371bdb0943c943bb4226239677a07",
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The doctor contract test name says it checks DSH only while it now asserts the Vibe rows too",
+      "file": ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs",
+      "line": 203,
+      "description": "MIRROR_CHECKS is the union of DSH and Vibe rows and routeGaps iterates both, but the route test is still named for the three DSH checks.",
+      "findingClass": "test_naming_gap",
+      "deltaStatus": null,
+      "scopeProof": "The contract test is a declared scope file and the changed line added the Vibe rows to the same array.",
+      "affectedSurfaceHints": [
+        "doctor contract test",
+        "CI failure attribution",
+        "Vibe mirror coverage"
+      ],
+      "contentHash": "sha256:c34199f3db4d4e8e9c3a284da0378996e41ef3bb0daaa69e839b0ef40d0f628f",
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 8
+  },
+  "openFindingsCount": 8,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.75,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "boundary_parsing",
+      "doc_code_drift",
+      "fail_open_control_bypass",
+      "false_pass_diagnostic",
+      "partial_injection",
+      "test_naming_gap",
+      "unverified_claim"
+    ],
+    "ruledOut": [
+      "coverage_gap",
+      "dead_code",
+      "environment_precedence",
+      "holdout_leak",
+      "state_transition",
+      "trust_boundary"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "boundary_parsing": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "unverified_claim": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          4
+        ]
+      },
+      "doc_code_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "fail_open_control_bypass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "environment_precedence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "trust_boundary": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "false_pass_diagnostic": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "coverage_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "holdout_leak": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "partial_injection": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "test_naming_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dead_code": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "prompt-advisor.mjs:179-181",
+        "vibe-prompt-advisor.vitest.ts:205-208"
+      ],
+      "reason": "Equal head suppressed by the receipt comparison and pinned by the suite."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts"
+      ],
+      "bugClass": "environment_precedence",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "advisor-disabled.ts:92-101",
+        "handlers/advisor-recommend.ts:542"
+      ],
+      "reason": "Environment precedes the file, and the daemon path passes no file."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "trust_boundary",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "system-skill-advisor-launcher.cjs:312-315"
+      ],
+      "reason": "The allowlist forwards neither the switch names nor HOOK_FLAGS_CONFIG."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".github/workflows/spec-kit-check.yml"
+      ],
+      "bugClass": "coverage_gap",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".github/workflows/spec-kit-check.yml:337-339"
+      ],
+      "reason": "CI, the route and the workflow all run the three scripts with --check."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/scripts/validate-command-references.cjs"
+      ],
+      "bugClass": "holdout_leak",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "review/review-scope-5.txt:3-48"
+      ],
+      "reason": "No scoped file names a corpus file; no prompt text was read."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "prompt-advisor.mjs:51"
+      ],
+      "reason": "The constant documents the fail-open policy the composer relies on and matches the DSH adapters."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-015",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "prompt-advisor.mjs:106-108"
+      ],
+      "reason": "The write failure is swallowed and the context is still returned."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "prompt-advisor.mjs:179-181",
+        "vibe-prompt-advisor.vitest.ts:205-208"
+      ],
+      "proof": "Equal head suppressed by the receipt comparison and pinned by the suite."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts"
+      ],
+      "bugClass": "environment_precedence",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "advisor-disabled.ts:92-101",
+        "handlers/advisor-recommend.ts:542"
+      ],
+      "proof": "Environment precedes the file, and the daemon path passes no file."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "trust_boundary",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "system-skill-advisor-launcher.cjs:312-315"
+      ],
+      "proof": "The allowlist forwards neither the switch names nor HOOK_FLAGS_CONFIG."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".github/workflows/spec-kit-check.yml"
+      ],
+      "bugClass": "coverage_gap",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".github/workflows/spec-kit-check.yml:337-339"
+      ],
+      "proof": "CI, the route and the workflow all run the three scripts with --check."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/scripts/validate-command-references.cjs"
+      ],
+      "bugClass": "holdout_leak",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "review/review-scope-5.txt:3-48"
+      ],
+      "proof": "No scoped file names a corpus file; no prompt text was read."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "prompt-advisor.mjs:51"
+      ],
+      "proof": "The constant documents the fail-open policy the composer relies on and matches the DSH adapters."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-015",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "prompt-advisor.mjs:106-108"
+      ],
+      "proof": "The write failure is swallowed and the context is still returned."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "partial_injection",
+      "test_naming_gap",
+      "dead_code",
+      "state_transition"
+    ],
+    "covered": [
+      "partial_injection",
+      "test_naming_gap"
+    ],
+    "ruledOut": [
+      "dead_code",
+      "state_transition"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,28 @@
+after merging origin/main 920b9cb703c
+build exit 0
+typecheck exit 0
+rescore exit 0
+start-007 unchanged from 038
+pre-set unchanged from 038
+final-set unchanged from 038
+arm-033 unchanged from 038
+graph freshness exit 0
+generation: 529 -> 530
+ Test Files  185 passed (185)
+      Tests  2391 passed | 8 skipped (2399)
+suite exit 0
+ Test Files  185 passed (185)
+      Tests  2391 passed | 8 skipped (2399)
+suite child exit 0
+doctor tests
+ℹ pass 1303
+ℹ fail 0
+bin tests
+ℹ pass 198
+ℹ fail 0
+FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+EVAL
+[160,49,21,5]

@@ -1,0 +1,527 @@
+{
+ "type": "iteration",
+ "iteration": 1,
+ "run": 1,
+ "mode": "review",
+ "target_agent": "deep-review",
+ "agent_definition_loaded": true,
+ "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+ "status": "complete",
+ "focus": "correctness and traceability - seven new intent_signals phrases, CL-009 prompt and ADR-001",
+ "dimensions": [
+  "correctness",
+  "traceability"
+ ],
+ "filesReviewed": [
+  ".skilled/skills/system-skill-advisor/graph-metadata.json:1-201",
+  ".skilled/skills/system-skill-advisor/graph-metadata.json:96-110",
+  ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md:1-198",
+  ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md:80-165",
+  "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/decision-record.md:1-38",
+  "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/acceptance-criteria.md:59",
+  "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/tasks.md:37-121",
+  "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/scratch/probes.json:79-135",
+  ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+  ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+  ".skilled/commands/doctor/_routes.yaml:786-809",
+  ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:1-330",
+  ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:295-300",
+  ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:200-290",
+  ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:64-200",
+  ".skilled/skills/system-skill-advisor/runtime/tests/scorer/declared-phrase-specificity.vitest.ts:30-90",
+  "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-brief-13.txt:1",
+  "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-scope-13.txt:1-7"
+ ],
+ "findingsCount": 2,
+ "findingsSummary": {
+  "P0": 0,
+  "P1": 1,
+  "P2": 1
+ },
+ "findingsNew": {
+  "P0": 0,
+  "P1": 1,
+  "P2": 1
+ },
+ "findingDetails": [
+  {
+   "id": "F001",
+   "severity": "P1",
+   "title": "New signals are indexed as common words, so ordinary prompts top the advisor",
+   "dimension": "correctness",
+   "file": ".skilled/skills/system-skill-advisor/graph-metadata.json:101",
+   "evidence": "A/B scoring with the seven signals removed: the routing arm of the load balancer is flaky, the advisor briefs me every morning, the arena is clean now and clean the routing table all return system-skill-advisor:0.82 passes_threshold true now and none before.",
+   "disposition": "active",
+   "findingClass": "algorithmic",
+   "scopeProof": "The built scorer was run over the same prompt set with the committed projection and a projection whose system-skill-advisor intentSignals had the seven new phrases removed; the laneContributions show lexical token:clean/token:arena at rawScore 0.67.",
+   "affectedSurfaceHints": [
+    ".skilled/skills/system-skill-advisor/graph-metadata.json",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts"
+   ],
+   "recommendation": "Score joined intent_signals as phrases only, or exclude their single tokens from the lexical and graph lanes; add ordinary-sense fixtures to the specificity test."
+  },
+  {
+   "id": "F002",
+   "severity": "P2",
+   "title": "clean arena fires inside a longer noun phrase and ranks the advisor above a design request",
+   "dimension": "correctness",
+   "file": ".skilled/skills/system-skill-advisor/graph-metadata.json:106",
+   "evidence": "clean arena seating chart for the stadium returns system-skill-advisor:0.82 first and sk-design:0.82 second; the stripped projection returned only sk-design. explicit_author 0.88 evidence author:clean arena.",
+   "disposition": "active",
+   "findingClass": "algorithmic",
+   "scopeProof": "Exact A/B above with the built scorer; the explicit lane matched the declared phrase inside the longer noun phrase.",
+   "affectedSurfaceHints": [
+    ".skilled/skills/system-skill-advisor/graph-metadata.json",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/declared-phrase-specificity.vitest.ts"
+   ],
+   "recommendation": "Require a phrase boundary after a declared signal, or add the ordinary noun-phrase sense as a negative fixture."
+  }
+ ],
+ "traceabilityChecks": {
+  "results": [
+   {
+    "protocolId": "spec_code",
+    "status": "pass",
+    "gateClass": "hard",
+    "applicable": true,
+    "evidence": [
+     ".skilled/skills/system-skill-advisor/graph-metadata.json:101-107",
+     ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+    ],
+    "summary": "Seven signals appended as T006 says, and the compiled graph carries the same seven strings."
+   },
+   {
+    "protocolId": "checklist_evidence",
+    "status": "pass",
+    "gateClass": "hard",
+    "applicable": true,
+    "evidence": [
+     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/acceptance-criteria.md:59",
+     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/scratch/probes.json:79-135"
+    ],
+    "summary": "AC-004 and probes.json agree: P07/P08/P09 top the advisor and P05 tops the helper; the rerun reproduces P05 at 0.8."
+   },
+   {
+    "protocolId": "playbook_capability",
+    "status": "pass",
+    "gateClass": "soft",
+    "applicable": true,
+    "evidence": [
+     ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md:83-108",
+     ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md:148",
+     ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:200-290"
+    ],
+    "summary": "check for skilled updates tops command-doctor-update and renders the parent (ask) and child (parent-named only) labels the playbook expects."
+   }
+  ]
+ },
+ "newFindingsRatio": 1,
+ "noveltyJustification": "First iteration: two findings, both raised now; the ratio counts one P1 and one P2 against the same weighted total.",
+ "sessionId": "fanout-data-13-1794865302020-qunumz",
+ "generation": 1,
+ "lineageMode": "new",
+ "timestamp": "2026-11-16T21:52:52.455Z",
+ "durationMs": 192455,
+ "graphEvents": [
+  {
+   "type": "node",
+   "id": "d-correctness",
+   "kind": "DIMENSION",
+   "label": "correctness"
+  },
+  {
+   "type": "node",
+   "id": "d-traceability",
+   "kind": "DIMENSION",
+   "label": "traceability"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-grap-64d035",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/graph-metadata.json"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-manu-f94ae5",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md"
+  },
+  {
+   "type": "node",
+   "id": "file-specs-system-skill-advisor-routing-and-s-fc9b91",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/decision-record.md"
+  },
+  {
+   "type": "node",
+   "id": "file-specs-system-skill-advisor-routing-and-s-e72f78",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/acceptance-criteria.md"
+  },
+  {
+   "type": "node",
+   "id": "file-specs-system-skill-advisor-routing-and-s-99ff57",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/tasks.md"
+  },
+  {
+   "type": "node",
+   "id": "file-specs-system-skill-advisor-routing-and-s-65f332",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/scratch/probes.json"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-runt-e252ff",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-runt-5e396f",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-commands-doctor-routes-yaml-61165e",
+   "kind": "FILE",
+   "label": ".skilled/commands/doctor/_routes.yaml"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-runt-ea901d",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-runt-47cd27",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-runt-0c18d5",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/lib/render.ts"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-runt-b2b7fb",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-runt-85a693",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/declared-phrase-specificity.vitest.ts"
+  },
+  {
+   "type": "node",
+   "id": "file-specs-system-skill-advisor-routing-and-s-a6a761",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-brief-13.txt"
+  },
+  {
+   "type": "node",
+   "id": "file-specs-system-skill-advisor-routing-and-s-1f81a6",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-scope-13.txt"
+  },
+  {
+   "type": "node",
+   "id": "f-F001",
+   "kind": "FINDING",
+   "label": "New signals are indexed as common words, so ordinary prompts top the advisor"
+  },
+  {
+   "type": "node",
+   "id": "f-F002",
+   "kind": "FINDING",
+   "label": "clean arena fires inside a longer noun phrase and ranks the advisor above a design request"
+  },
+  {
+   "type": "node",
+   "id": "ev-F001",
+   "kind": "EVIDENCE",
+   "label": ".skilled/skills/system-skill-advisor/graph-metadata.json:101-107"
+  },
+  {
+   "type": "node",
+   "id": "ev-F002",
+   "kind": "EVIDENCE",
+   "label": ".skilled/skills/system-skill-advisor/graph-metadata.json:106"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-c-1",
+   "source": "d-correctness",
+   "target": "file-skilled-skills-system-skill-advisor-grap-64d035",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-t-2",
+   "source": "d-traceability",
+   "target": "file-skilled-skills-system-skill-advisor-grap-64d035",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-c-3",
+   "source": "d-correctness",
+   "target": "file-skilled-skills-system-skill-advisor-manu-f94ae5",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-t-4",
+   "source": "d-traceability",
+   "target": "file-skilled-skills-system-skill-advisor-manu-f94ae5",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-c-5",
+   "source": "d-correctness",
+   "target": "file-specs-system-skill-advisor-routing-and-s-fc9b91",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-t-6",
+   "source": "d-traceability",
+   "target": "file-specs-system-skill-advisor-routing-and-s-fc9b91",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-c-7",
+   "source": "d-correctness",
+   "target": "file-specs-system-skill-advisor-routing-and-s-e72f78",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-t-8",
+   "source": "d-traceability",
+   "target": "file-specs-system-skill-advisor-routing-and-s-e72f78",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-c-9",
+   "source": "d-correctness",
+   "target": "file-specs-system-skill-advisor-routing-and-s-99ff57",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-t-10",
+   "source": "d-traceability",
+   "target": "file-specs-system-skill-advisor-routing-and-s-99ff57",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-c-11",
+   "source": "d-correctness",
+   "target": "file-specs-system-skill-advisor-routing-and-s-65f332",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-t-12",
+   "source": "d-traceability",
+   "target": "file-specs-system-skill-advisor-routing-and-s-65f332",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-c-13",
+   "source": "d-correctness",
+   "target": "file-skilled-skills-system-skill-advisor-runt-e252ff",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-t-14",
+   "source": "d-traceability",
+   "target": "file-skilled-skills-system-skill-advisor-runt-e252ff",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-c-15",
+   "source": "d-correctness",
+   "target": "file-skilled-skills-system-skill-advisor-runt-5e396f",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-t-16",
+   "source": "d-traceability",
+   "target": "file-skilled-skills-system-skill-advisor-runt-5e396f",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-c-17",
+   "source": "d-correctness",
+   "target": "file-skilled-commands-doctor-routes-yaml-61165e",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-t-18",
+   "source": "d-traceability",
+   "target": "file-skilled-commands-doctor-routes-yaml-61165e",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-c-19",
+   "source": "d-correctness",
+   "target": "file-skilled-skills-system-skill-advisor-runt-ea901d",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-t-20",
+   "source": "d-traceability",
+   "target": "file-skilled-skills-system-skill-advisor-runt-ea901d",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-c-21",
+   "source": "d-correctness",
+   "target": "file-skilled-skills-system-skill-advisor-runt-47cd27",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-t-22",
+   "source": "d-traceability",
+   "target": "file-skilled-skills-system-skill-advisor-runt-47cd27",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-c-23",
+   "source": "d-correctness",
+   "target": "file-skilled-skills-system-skill-advisor-runt-0c18d5",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-t-24",
+   "source": "d-traceability",
+   "target": "file-skilled-skills-system-skill-advisor-runt-0c18d5",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-c-25",
+   "source": "d-correctness",
+   "target": "file-skilled-skills-system-skill-advisor-runt-b2b7fb",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-t-26",
+   "source": "d-traceability",
+   "target": "file-skilled-skills-system-skill-advisor-runt-b2b7fb",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-c-27",
+   "source": "d-correctness",
+   "target": "file-skilled-skills-system-skill-advisor-runt-85a693",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-t-28",
+   "source": "d-traceability",
+   "target": "file-skilled-skills-system-skill-advisor-runt-85a693",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-c-29",
+   "source": "d-correctness",
+   "target": "file-specs-system-skill-advisor-routing-and-s-a6a761",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-t-30",
+   "source": "d-traceability",
+   "target": "file-specs-system-skill-advisor-routing-and-s-a6a761",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-c-31",
+   "source": "d-correctness",
+   "target": "file-specs-system-skill-advisor-routing-and-s-1f81a6",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-t-32",
+   "source": "d-traceability",
+   "target": "file-specs-system-skill-advisor-routing-and-s-1f81a6",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-in-dim-F001",
+   "source": "f-F001",
+   "target": "d-correctness",
+   "relation": "IN_DIMENSION"
+  },
+  {
+   "type": "edge",
+   "id": "e-in-file-F001",
+   "source": "f-F001",
+   "target": "file-skilled-skills-system-skill-advisor-grap-64d035",
+   "relation": "IN_FILE"
+  },
+  {
+   "type": "edge",
+   "id": "e-ev-F001",
+   "source": "ev-F001",
+   "target": "f-F001",
+   "relation": "EVIDENCE_FOR"
+  },
+  {
+   "type": "edge",
+   "id": "e-in-dim-F002",
+   "source": "f-F002",
+   "target": "d-correctness",
+   "relation": "IN_DIMENSION"
+  },
+  {
+   "type": "edge",
+   "id": "e-in-file-F002",
+   "source": "f-F002",
+   "target": "file-skilled-skills-system-skill-advisor-grap-64d035",
+   "relation": "IN_FILE"
+  },
+  {
+   "type": "edge",
+   "id": "e-ev-F002",
+   "source": "ev-F002",
+   "target": "f-F002",
+   "relation": "EVIDENCE_FOR"
+  }
+ ]
+}

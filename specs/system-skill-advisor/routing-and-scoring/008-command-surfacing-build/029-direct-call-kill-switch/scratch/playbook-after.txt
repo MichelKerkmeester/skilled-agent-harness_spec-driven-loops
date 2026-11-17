@@ -1,0 +1,15 @@
+$ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --no-warm-only > /dev/null
+exit 0
+
+$ SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000 | jq -c '{w:.data.warnings,r:.data.recommendations,a:.data.abstainReasons,f:.data.freshness}'
+{"w":["ADVISOR_DISABLED"],"r":[],"a":["Skill advisor disabled by SPECKIT_SKILL_ADVISOR_HOOK_DISABLED."],"f":"unavailable"}
+exit 0
+
+$ SYSTEM_SKILL_ADVISOR_DISABLED=true node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000 | jq -c '{w:.data.warnings,r:.data.recommendations,a:.data.abstainReasons,f:.data.freshness}'
+{"w":["ADVISOR_DISABLED"],"r":[],"a":["Skill advisor disabled by SYSTEM_SKILL_ADVISOR_DISABLED."],"f":"unavailable"}
+exit 0
+
+$ env -u SPECKIT_SKILL_ADVISOR_HOOK_DISABLED -u SYSTEM_SKILL_ADVISOR_HOOK_DISABLED -u SYSTEM_SKILL_ADVISOR_DISABLED -u SYSTEM_HOOKS_DISABLED node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1}' --format json --timeout-ms 30000 | jq -c '[.data.recommendations[].skillId]'
+["sk-git"]
+exit 0
+

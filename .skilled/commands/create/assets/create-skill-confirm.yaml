@@ -2,7 +2,7 @@
 # OPENCODE CREATE: SK-SKILL UNIFIED WORKFLOW (CONFIRM MODE)
 # ─────────────────────────────────────────────────────────────────
 # Mode: interactive execution with explicit checkpoints
-# Entrypoint: /create:skill
+# Entrypoint: /create:sk-skill
 # Operations: full-create | full-update | reference-only | asset-only
 # ─────────────────────────────────────────────────────────────────
 
@@ -623,11 +623,11 @@ termination:
   message: "Unified sk-skill confirm workflow complete."
   next_steps:
     - condition: "Need iterative updates"
-      action: "/create:skill [skill-name] full-update :confirm"
+      action: "/create:sk-skill [skill-name] full-update :confirm"
     - condition: "Need another reference"
-      action: "/create:skill [skill-name] reference-only [type] :confirm"
+      action: "/create:sk-skill [skill-name] reference-only [type] :confirm"
     - condition: "Need another asset"
-      action: "/create:skill [skill-name] asset-only [type] :confirm"
+      action: "/create:sk-skill [skill-name] asset-only [type] :confirm"
 
 rules:
   ALWAYS:

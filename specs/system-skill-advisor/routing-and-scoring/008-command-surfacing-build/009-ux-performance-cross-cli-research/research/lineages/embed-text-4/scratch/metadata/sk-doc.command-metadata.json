@@ -1,0 +1,532 @@
+[
+  {
+    "command": "/create:skill",
+    "ownerMode": "sk-create-skill",
+    "description": "Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.",
+    "argumentHint": "<skill-name> [operation] [type] [--path <dir>] [--chained] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a new or updated OpenCode skill package at --path or the path setup resolves",
+    "userIntent": {
+      "job": "I want to create or update a standalone OpenCode skill package.",
+      "ownedSignals": [
+        "create an OpenCode skill",
+        "scaffold a skill package",
+        "update a skill definition"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-skill",
+        "resource": ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+        "action": "load the standalone-skill scaffolding mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-skill",
+        "resource": ".skilled/commands/create/assets/create-skill-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the deliverable is a standalone OpenCode skill or a shared skill packet.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/create:skill-parent",
+          "when": "Prefer the parent command when the deliverable is a hub with multiple nested workflow or surface packets."
+        }
+      ]
+    }
+  },
+  {
+    "command": "/create:skill-parent",
+    "ownerMode": "sk-create-skill-parent",
+    "description": "Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth). :auto/:confirm.",
+    "argumentHint": "<skill-name> [create|update] [--modes <mode1,mode2,...>] [--surfaces <s1,s2,...>] [--path <dir>] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a parent skill hub with nested mode packets, one graph-metadata.json, at the resolved --path",
+    "userIntent": {
+      "job": "I want to scaffold or update a parent skill hub with nested mode packets.",
+      "ownedSignals": [
+        "create a parent skill hub",
+        "add nested mode packets",
+        "scaffold a skill router",
+        "hub skill that holds several nested workflow variants",
+        "nested workflow variants under one identity",
+        "a skill hub with nested mode packets",
+        "one identity for several workflow variants"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-skill",
+        "resource": ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+        "action": "load the parent-hub scaffolding mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-skill",
+        "resource": ".skilled/commands/create/assets/create-skill-parent-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the deliverable is a parent skill hub with nested workflow or surface packets.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/create:skill",
+          "when": "Prefer the standalone command when the deliverable is one skill package without a multi-packet hub."
+        }
+      ]
+    }
+  },
+  {
+    "command": "/create:readme",
+    "ownerMode": "sk-create-readme",
+    "description": "Folder README creation, general or code-folder, with sk-doc quality standards. Modes :auto, :confirm.",
+    "argumentHint": "<target> [--type <project|component|feature|skill>] [--output <path>] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a README file in the target folder, or at the --output path",
+    "userIntent": {
+      "job": "I want to write a current-state README for a folder.",
+      "ownedSignals": [
+        "write a folder README",
+        "document a project folder"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-readme",
+        "resource": ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
+        "action": "load the README authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-readme",
+        "resource": ".skilled/commands/create/assets/create-readme-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  },
+  {
+    "command": "/create:agent",
+    "ownerMode": "sk-create-agent",
+    "description": "Create a new OpenCode agent with frontmatter, tool permissions, behavioral rules. Modes :auto, :confirm.",
+    "argumentHint": "<agent_name> [agent_description] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "mutating": "mutates",
+    "gate3_location": "a new agent file under .skilled/agents/ and its runtime mirrors",
+    "userIntent": {
+      "job": "I want to create an OpenCode agent with explicit permissions and behavioral rules.",
+      "ownedSignals": [
+        "create an OpenCode agent",
+        "define agent permissions",
+        "write an agent persona"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-agent",
+        "resource": ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+        "action": "load the agent-authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-agent",
+        "resource": ".skilled/commands/create/assets/create-agent-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  },
+  {
+    "command": "/create:command",
+    "ownerMode": "sk-create-command",
+    "description": "Create or update OpenCode slash command sets with :auto/:confirm workflow assets.",
+    "argumentHint": "<command_invocation> [command_request] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a slash command file plus its auto and confirm workflow YAML assets",
+    "userIntent": {
+      "job": "I want to create or update an OpenCode slash command with routed workflow assets.",
+      "ownedSignals": [
+        "create a slash command",
+        "scaffold command routing",
+        "write command frontmatter"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-command",
+        "resource": ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        "action": "load the slash-command authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-command",
+        "resource": ".skilled/commands/create/assets/create-command-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  },
+  {
+    "command": "/create:feature-catalog",
+    "ownerMode": "sk-create-feature-catalog",
+    "description": "Create or update feature catalog packages via one unified command. Modes :auto, :confirm.",
+    "argumentHint": "<skill-name> [create|update] [--path <dir>] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a feature catalog package with per-feature docs at --path or the resolved location",
+    "userIntent": {
+      "job": "I want to build a feature catalog with auditable per-feature documentation.",
+      "ownedSignals": [
+        "build a feature catalog",
+        "inventory system capabilities",
+        "add per-feature documentation"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-feature-catalog",
+        "resource": ".skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md",
+        "action": "load the feature-catalog authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-feature-catalog",
+        "resource": ".skilled/commands/create/assets/create-feature-catalog-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  },
+  {
+    "command": "/create:manual-testing-playbook",
+    "ownerMode": "sk-create-manual-testing-playbook",
+    "description": "Create or update manual testing playbook packages via one unified command. Modes :auto, :confirm.",
+    "argumentHint": "<skill-name> [create|update] [--path <dir>] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a manual testing playbook package with scenario and evidence docs at the resolved --path",
+    "userIntent": {
+      "job": "I want to author a deterministic manual testing playbook with evidence capture.",
+      "ownedSignals": [
+        "create a testing playbook",
+        "write deterministic test scenarios",
+        "plan evidence collection"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-manual-testing-playbook",
+        "resource": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "action": "load the manual-testing-playbook authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-manual-testing-playbook",
+        "resource": ".skilled/commands/create/assets/create-manual-testing-playbook-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  },
+  {
+    "command": "/create:benchmark",
+    "ownerMode": "sk-create-benchmark",
+    "description": "Author or update family-keyed benchmark packages. Modes :auto, :confirm.",
+    "argumentHint": "<skill-or-mode> <spec-packet> [create|update] --family=<family> [--benchmark-id <id>] [--date YYYY-MM-DD] [--path <dir>] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "family-keyed benchmark artifacts and fixtures at --path or the family's resolved location",
+    "userIntent": {
+      "job": "I want to author benchmark artifacts, fixtures, or conformance packages for a skill or mode.",
+      "ownedSignals": [
+        "author benchmark artifacts",
+        "create a conformance benchmark",
+        "write benchmark fixtures"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-benchmark",
+        "resource": ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
+        "action": "load the benchmark-authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-benchmark",
+        "resource": ".skilled/commands/create/assets/create-benchmark-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  },
+  {
+    "command": "/create:changelog",
+    "ownerMode": "sk-create-changelog",
+    "description": "Create a global changelog entry. Topology-aware, optional GitHub release. :auto/:confirm.",
+    "argumentHint": "<spec-folder-or-component> [--bump <major|minor|patch|build>] [--release] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a changelog entry under .skilled/changelog/, plus a pushed tag and a published GitHub release when --release is passed",
+    "ask_first": [
+      "outside-repo"
+    ],
+    "userIntent": {
+      "job": "I want to create a global component changelog with release notes.",
+      "ownedSignals": [
+        "write release notes",
+        "create a packet changelog",
+        "bump a component version"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-changelog",
+        "resource": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "action": "load the changelog authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-changelog",
+        "resource": ".skilled/commands/create/assets/create-changelog-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  },
+  {
+    "command": "/create:diff",
+    "ownerMode": "sk-create-diff",
+    "description": "Create a self-contained before/after document diff report via the create-diff engine. Modes :auto, :confirm.",
+    "argumentHint": "<target-document | --before old --after new> [--report out.html] [--view unified|side-by-side] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a self-contained HTML diff report at the --report path the user names",
+    "userIntent": {
+      "job": "I want to compare document versions and produce a self-contained HTML diff report.",
+      "ownedSignals": [
+        "compare document versions",
+        "review a document diff",
+        "make an HTML diff report"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-diff",
+        "resource": ".skilled/skills/sk-doc/sk-create-diff/SKILL.md",
+        "action": "load the document-diff mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-diff",
+        "resource": ".skilled/commands/create/assets/create-diff-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  },
+  {
+    "command": "/create:repo-rule",
+    "ownerMode": "sk-create-repo-rule",
+    "description": "Create, revise or retire a repo rule under repo-rules/, wired into REPO RULES.md. :auto/:confirm.",
+    "argumentHint": "<what the rule should bind> [create|revise|retire] [--rule <name>] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a rule file under repo-rules/, wired into that repository's REPO RULES.md",
+    "userIntent": {
+      "job": "I want a repo-local rule that binds before an action, or I want to change or remove one.",
+      "ownedSignals": [
+        "create a repo rule",
+        "add a project rule",
+        "retire a repo rule",
+        "wire a rule into REPO RULES.md"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-repo-rule",
+        "resource": ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+        "action": "load the repo-rule authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-repo-rule",
+        "resource": ".skilled/commands/create/assets/create-repo-rule-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the deliverable constrains what may be done before an action — a rule loaded by a trigger table.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/create:skill",
+          "when": "Prefer the skill command when the deliverable teaches how to accomplish something rather than constraining how it is done."
+        },
+        {
+          "sibling": "/create:command",
+          "when": "Prefer the command command when the deliverable is a slash command rather than a rule."
+        }
+      ]
+    }
+  },
+  {
+    "command": "/create:with-human-voice",
+    "ownerMode": "sk-create-with-human-voice",
+    "description": "Apply or score prose against the Human Voice Rules with a scope gate and a re-scan. :auto/:confirm.",
+    "argumentHint": "<file or passage> [apply|score] [--include-code] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "the target file rewritten in place by apply; score writes no file",
+    "userIntent": {
+      "job": "I want prose brought up to the Human Voice Rules, or told how far off it is.",
+      "ownedSignals": [
+        "make this sound human",
+        "it reads like AI wrote it",
+        "apply the human voice rules",
+        "score this against HVR"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-with-human-voice",
+        "resource": ".skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md",
+        "action": "load the voice-application mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-with-human-voice",
+        "resource": ".skilled/commands/create/assets/create-with-human-voice-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the deliverable is prose that has to read as a person wrote it, and the target already exists.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "sk-create-quality-control",
+          "when": "Prefer the document audit mode, which the hub reaches by routing rather than by a command, when the target needs structure, DQI and validator results rather than a voice pass."
+        },
+        {
+          "sibling": "/create:readme",
+          "when": "Prefer the README command when the document does not exist yet. Author it first, then run the voice pass over what came out."
+        }
+      ]
+    }
+  },
+  {
+    "command": "/create:goal",
+    "ownerMode": "sk-create-goal",
+    "description": "Author or revise a packet goal.md: top-level, phase-parent, child, retrofit, phase-add, amend. :auto/:confirm.",
+    "argumentHint": "<packet path> [top-level|phase-parent|child|retrofit|phase-add|amend] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a goal.md inside the spec packet the user names",
+    "userIntent": {
+      "job": "I want a spec packet's goal.md authored, added or revised from that packet's own sources.",
+      "ownedSignals": [
+        "write a goal.md for a packet",
+        "author a phase parent goal",
+        "add a goal to a packet",
+        "author a nested child goal"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-goal",
+        "resource": ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
+        "action": "load the packet-goal authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-goal",
+        "resource": ".skilled/commands/create/assets/create-goal-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the deliverable is a spec packet's goal.md (top-level, phase parent or nested child) authored or revised from that packet's own sources.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/goal-opencode",
+          "when": "Prefer the goal hooks (/goal, /goal-opencode, /goal-pi, /goal-cursor) or the host's native goal command when the request is to set, bind or resend a session objective; this command authors goal files and never touches session state."
+        }
+      ]
+    }
+  }
+]

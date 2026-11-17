@@ -1,0 +1,681 @@
+{
+  "sessionId": "fanout-kill-switch-cli-5-1794760565927-i99t40",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 4,
+    "timestamp": "2026-11-15T17:01:15.995Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "iter2-P2-cp003-control-aliases",
+      "severity": "P2",
+      "title": "CP-003 control call can abstain under a switch alias it never unsets",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md",
+      "line": 49,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter2-P2-env-alias-column",
+      "severity": "P2",
+      "title": "The master-switch row says No aliases while the resolver honors MK_HOOKS_DISABLED",
+      "file": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      "line": 74,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter2-P2-env-source-column",
+      "severity": "P2",
+      "title": "The advisor switch row Source column omits the direct-call readers it claims",
+      "file": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      "line": 75,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter3-P2-cli-mk-alias-filter",
+      "severity": "P2",
+      "title": "CLI disable loop filters out every MK_ alias, so the direct-call path never exercises those names",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts",
+      "line": 221,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter3-P2-launcher-switch-fixture",
+      "severity": "P2",
+      "title": "Launcher test covers two of the ten switch names it claims to keep out of the daemon env",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts",
+      "line": 124,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter3-P2-lib-readme-tree",
+      "severity": "P2",
+      "title": "lib README tree omits five flat modules that exist on disk",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/README.md",
+      "line": 100,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 6
+  },
+  "openFindingsCount": 6,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "active_finding_replay",
+      "alias_table_drift",
+      "daemon_environment_leak",
+      "holdout_hygiene",
+      "launcher_test_fixture_gap",
+      "mk_alias_test_gap",
+      "module_map_drift",
+      "prompt_leak",
+      "scenario_alias_isolation",
+      "source_column_missing_reader",
+      "switch_bypass",
+      "switch_path_recheck",
+      "workspace_root_bypass"
+    ],
+    "ruledOut": [
+      "active_finding_replay",
+      "daemon_environment_leak",
+      "holdout_hygiene",
+      "prompt_leak",
+      "switch_bypass",
+      "switch_path_recheck",
+      "workspace_root_bypass"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "switch_bypass": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "prompt_leak": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "daemon_environment_leak": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "workspace_root_bypass": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "alias_table_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "source_column_missing_reader": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "scenario_alias_isolation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "launcher_test_fixture_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "mk_alias_test_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "module_map_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "active_finding_replay": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "holdout_hygiene": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "switch_path_recheck": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-201",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runtime/lib/advisor-disabled.ts",
+        "runtime/skill-advisor-cli.ts",
+        "runtime/handlers/advisor-recommend.ts"
+      ],
+      "bugClass": "switch_bypass",
+      "disposition": "ruled_out",
+      "rationale": "The switch decision runs before any daemon or scorer path, and the no-daemon test pins it.",
+      "evidenceRefs": [
+        "advisor-disabled.ts:85",
+        "skill-advisor-cli.ts:1540",
+        "advisor-recommend.ts:646",
+        "skill-advisor-cli-stale-daemon-retry.vitest.ts:303-317"
+      ],
+      "reason": "Both call sites check before the I/O path."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        "runtime/lib/advisor-disabled.ts"
+      ],
+      "bugClass": "prompt_leak",
+      "disposition": "ruled_out",
+      "rationale": "No prompt field is read or copied into the envelope.",
+      "evidenceRefs": [
+        "advisor-disabled.ts:150-179"
+      ],
+      "reason": "The builder has no prompt input."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "daemon_environment_leak",
+      "disposition": "ruled_out",
+      "rationale": "The filter is exact-set membership and no switch name is in the set.",
+      "evidenceRefs": [
+        "system-skill-advisor-launcher.cjs:131-189",
+        "system-skill-advisor-launcher.cjs:312-315",
+        "system-skill-advisor-launcher.cjs:156-163"
+      ],
+      "reason": "Daemon child env cannot carry a switch."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        "runtime/lib/advisor-disabled.ts",
+        "runtime/skill-advisor-cli.ts",
+        "runtime/handlers/advisor-recommend.ts"
+      ],
+      "bugClass": "workspace_root_bypass",
+      "disposition": "ruled_out",
+      "rationale": "No reachable caller supplies an unvalidated root to the disabled envelope.",
+      "evidenceRefs": [
+        "skill-advisor-cli-manifest.ts:43-64",
+        "advisor-tool-schemas.ts:285-303"
+      ],
+      "reason": "Disproved at the CLI schema and handler parse boundaries."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-211",
+      "dimension": "correctness",
+      "targetRefs": [
+        "ENV-REFERENCE.md",
+        "global-disable-flag.md",
+        "launcher-bootstrap.vitest.ts",
+        "skill-advisor-cli-stale-daemon-retry.vitest.ts",
+        "runtime/lib/README.md"
+      ],
+      "bugClass": "active_finding_replay",
+      "disposition": "ruled_out",
+      "rationale": "The active set is stable and correctly scoped.",
+      "evidenceRefs": [
+        "ENV-REFERENCE.md:74-75",
+        "global-disable-flag.md:49",
+        "launcher-bootstrap.vitest.ts:127-145",
+        "skill-advisor-cli-stale-daemon-retry.vitest.ts:219-221",
+        "runtime/lib/README.md:100-122"
+      ],
+      "reason": "No drift at the six cited sites."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-212",
+      "dimension": "security",
+      "targetRefs": [
+        "hook-flags.cjs",
+        "env-aliases.cjs",
+        "advisor-disabled.ts",
+        "skill-advisor-cli.ts",
+        "advisor-recommend.ts"
+      ],
+      "bugClass": "switch_path_recheck",
+      "disposition": "ruled_out",
+      "rationale": "No P0 or P1 exists in the area; the switch is a working safety control.",
+      "evidenceRefs": [
+        "hook-flags.cjs:234-285",
+        "advisor-disabled.ts:85-93",
+        "skill-advisor-cli.ts:1540",
+        "advisor-recommend.ts:646",
+        "system-skill-advisor-launcher.cjs:312-315"
+      ],
+      "reason": "All claimed paths checked before the daemon/scorer or filtered at the launcher."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-213",
+      "dimension": "security",
+      "targetRefs": [
+        "command-prompts.jsonl",
+        "holdout-prompts.jsonl",
+        "behaviour-fresh-prompts.jsonl"
+      ],
+      "bugClass": "holdout_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "No prompt row was opened, printed or used; only counts were produced.",
+      "evidenceRefs": [
+        "review-brief-5.txt:1"
+      ],
+      "reason": "Counts-only probe; no prompt text in any artifact."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-201",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runtime/lib/advisor-disabled.ts",
+        "runtime/skill-advisor-cli.ts",
+        "runtime/handlers/advisor-recommend.ts"
+      ],
+      "bugClass": "switch_bypass",
+      "disposition": "ruled_out",
+      "rationale": "The switch decision runs before any daemon or scorer path, and the no-daemon test pins it.",
+      "evidenceRefs": [
+        "advisor-disabled.ts:85",
+        "skill-advisor-cli.ts:1540",
+        "advisor-recommend.ts:646",
+        "skill-advisor-cli-stale-daemon-retry.vitest.ts:303-317"
+      ],
+      "proof": "Both call sites check before the I/O path."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        "runtime/lib/advisor-disabled.ts"
+      ],
+      "bugClass": "prompt_leak",
+      "disposition": "ruled_out",
+      "rationale": "No prompt field is read or copied into the envelope.",
+      "evidenceRefs": [
+        "advisor-disabled.ts:150-179"
+      ],
+      "proof": "The builder has no prompt input."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "daemon_environment_leak",
+      "disposition": "ruled_out",
+      "rationale": "The filter is exact-set membership and no switch name is in the set.",
+      "evidenceRefs": [
+        "system-skill-advisor-launcher.cjs:131-189",
+        "system-skill-advisor-launcher.cjs:312-315",
+        "system-skill-advisor-launcher.cjs:156-163"
+      ],
+      "proof": "Daemon child env cannot carry a switch."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        "runtime/lib/advisor-disabled.ts",
+        "runtime/skill-advisor-cli.ts",
+        "runtime/handlers/advisor-recommend.ts"
+      ],
+      "bugClass": "workspace_root_bypass",
+      "disposition": "ruled_out",
+      "rationale": "No reachable caller supplies an unvalidated root to the disabled envelope.",
+      "evidenceRefs": [
+        "skill-advisor-cli-manifest.ts:43-64",
+        "advisor-tool-schemas.ts:285-303"
+      ],
+      "proof": "Disproved at the CLI schema and handler parse boundaries."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-211",
+      "dimension": "correctness",
+      "targetRefs": [
+        "ENV-REFERENCE.md",
+        "global-disable-flag.md",
+        "launcher-bootstrap.vitest.ts",
+        "skill-advisor-cli-stale-daemon-retry.vitest.ts",
+        "runtime/lib/README.md"
+      ],
+      "bugClass": "active_finding_replay",
+      "disposition": "ruled_out",
+      "rationale": "The active set is stable and correctly scoped.",
+      "evidenceRefs": [
+        "ENV-REFERENCE.md:74-75",
+        "global-disable-flag.md:49",
+        "launcher-bootstrap.vitest.ts:127-145",
+        "skill-advisor-cli-stale-daemon-retry.vitest.ts:219-221",
+        "runtime/lib/README.md:100-122"
+      ],
+      "proof": "No drift at the six cited sites."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-212",
+      "dimension": "security",
+      "targetRefs": [
+        "hook-flags.cjs",
+        "env-aliases.cjs",
+        "advisor-disabled.ts",
+        "skill-advisor-cli.ts",
+        "advisor-recommend.ts"
+      ],
+      "bugClass": "switch_path_recheck",
+      "disposition": "ruled_out",
+      "rationale": "No P0 or P1 exists in the area; the switch is a working safety control.",
+      "evidenceRefs": [
+        "hook-flags.cjs:234-285",
+        "advisor-disabled.ts:85-93",
+        "skill-advisor-cli.ts:1540",
+        "advisor-recommend.ts:646",
+        "system-skill-advisor-launcher.cjs:312-315"
+      ],
+      "proof": "All claimed paths checked before the daemon/scorer or filtered at the launcher."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-213",
+      "dimension": "security",
+      "targetRefs": [
+        "command-prompts.jsonl",
+        "holdout-prompts.jsonl",
+        "behaviour-fresh-prompts.jsonl"
+      ],
+      "bugClass": "holdout_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "No prompt row was opened, printed or used; only counts were produced.",
+      "evidenceRefs": [
+        "review-brief-5.txt:1"
+      ],
+      "proof": "Counts-only probe; no prompt text in any artifact."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "active_finding_replay",
+      "holdout_hygiene",
+      "switch_path_recheck"
+    ],
+    "covered": [
+      "active_finding_replay",
+      "holdout_hygiene",
+      "switch_path_recheck"
+    ],
+    "ruledOut": [
+      "active_finding_replay",
+      "holdout_hygiene",
+      "switch_path_recheck"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

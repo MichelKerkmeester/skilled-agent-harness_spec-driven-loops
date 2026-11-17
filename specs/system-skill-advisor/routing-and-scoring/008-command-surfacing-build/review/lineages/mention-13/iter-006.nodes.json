@@ -1,0 +1,1 @@
+[{"id":"d-maintainability","kind":"DIMENSION","name":"maintainability","iteration":6},{"id":"file-command-attach","kind":"FILE","name":".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts","iteration":6},{"id":"ev-010","kind":"EVIDENCE","name":"b8ebee37d75:runtime/lib/command-attach.ts:419-434","iteration":6}]

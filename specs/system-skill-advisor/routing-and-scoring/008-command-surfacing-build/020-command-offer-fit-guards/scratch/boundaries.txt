@@ -1,0 +1,17 @@
+## G diff --quiet BASE -- AGENTS.md
+exit 0
+## G diff --stat BASE -- '*package.json' '*package-lock.json'
+(end, nothing above means no change)
+## added comment lines naming an id or a spec path
+rg exit 1 (1 means nothing found)
+## G diff --name-only BASE -- .skilled .opencode
+.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+.skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts
+.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json
+.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/command-meaning-anchor.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-handoff-command.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/scorer/typed-command-owner.vitest.ts
+## deviation
+Eight files, not seven: command-routing-baseline.json was recaptured so the slice test passes after this phase stops offering a command on three question rows (sv-09, sv-11, sv-12). Decision P020 in ../decision-record.md.

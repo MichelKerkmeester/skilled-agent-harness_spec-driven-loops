@@ -1,0 +1,23 @@
+## rg -c Status Complete in 022 and 023 spec.md
+specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/spec.md:1
+specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness/spec.md:1
+## G status --porcelain -- S CTS RA (nothing below means clean)
+## G rev-parse --short HEAD (BASES)
+4a622e419f
+## VX tests/command-transcript-score.vitest.ts
+ Test Files  1 passed (1)
+      Tests  151 passed (151)
+## SSTART > start-before.json
+exit 0
+## SPRE > workflow-before-pre.json
+exit 0
+## SFIN > workflow-before-final.json
+exit 0
+## rg -c codex start lines in starts-before.txt
+2
+## codex start lines
+codex pre start 0 of 12
+codex post start 0 of 12
+## SUMOK pre, then final
+true
+true

@@ -1,0 +1,26 @@
+# Planning probes for phase 023, 2026-11-14, commit 16c9757ac0 with phase 019's scorer uncommitted.
+# Every line is the output of a committed script, read through jq. No prompt text is read or printed.
+
+# node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs > scratch/planning/capture-fixture.json
+# jq -c '{regime: "fixture", plain: .attachedMetrics.plain, holdoutByFamily: (.attachedMetrics.plain_by_family | map_values(.holdout | "\(.combined) of \(.total)")), falseOffer: .metrics.false_offer, stages: (.attachedMetrics.plain_stages // null), fit: (.attachedMetrics.fit // null)}' scratch/planning/capture-fixture.json
+{"regime":"fixture","plain":{"tune":{"own":13,"attached":15,"combined":28,"total":45},"holdout":{"own":1,"attached":0,"combined":1,"total":44}},"holdoutByFamily":{"create":"0 of 13","deep":"0 of 3","design":"0 of 3","doctor":"1 of 17","prompt":"0 of 1","speckit":"0 of 7"},"falseOffer":{"count":0,"total":35},"stages":null,"fit":null}
+
+# node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs --real-embedding > scratch/planning/capture-real.json
+# the same jq filter with regime "real" and a tuneByFamily key
+{"regime":"real","plain":{"tune":{"own":18,"attached":15,"combined":33,"total":45},"holdout":{"own":5,"attached":0,"combined":5,"total":44}},"holdoutByFamily":{"create":"0 of 13","deep":"0 of 3","design":"0 of 3","doctor":"5 of 17","prompt":"0 of 1","speckit":"0 of 7"},"tuneByFamily":{"create":"10 of 14","deep":"3 of 3","design":"3 of 3","doctor":"12 of 17","prompt":"1 of 1","speckit":"4 of 7"},"falseOffer":{"count":0,"total":35},"stages":null,"fit":null}
+
+# jq -r 'del(.prompt) | [.split, .row_type] | join(" ")' .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl | sort | uniq -c
+  44 holdout plain
+  22 none must-not-start
+   9 none near-miss
+  12 none slash-variant
+  44 none typed
+  45 tune plain
+
+# node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs --summary <runs-final.jsonl> --pair pre,post --json
+score-command-transcripts.mjs: unknown option: --pair
+exit 2
+
+# bash .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --loc 420 --files 7
+Recommended Level: 1 (Baseline)
+Score: 37/100 | Confidence: 90%

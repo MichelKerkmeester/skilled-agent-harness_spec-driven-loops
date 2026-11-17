@@ -32,11 +32,12 @@
 //
 // A live turn is also a turn that can reach the network, so the runner takes the
 // reach away before the model has it. The child gets none of the GitHub tokens, an
-// empty GitHub CLI config, no credential helper and no terminal to be prompted on.
-// A live arm additionally refuses to start in a checkout that has any git remote,
-// because a command wrongly started there could push, tag or publish something the
-// arm cannot take back. A dry run spawns nothing, so it keeps running in this
-// checkout and its guards stay about file paths alone.
+// empty GitHub CLI config, no credential helper and no terminal to be prompted on,
+// while Git is allowed only the file transport, so SSH and HTTPS stay out of reach
+// whatever keys HOME holds. A live arm additionally refuses to start in a checkout
+// that has any git remote, because a command wrongly started there could push, tag
+// or publish something the arm cannot take back. A dry run spawns nothing, so it
+// keeps running in this checkout and its guards stay about file paths alone.
 //
 // Usage:
 //   node run-command-behaviour.mjs --print-argv <runtime>
@@ -45,7 +46,7 @@
 //     --out <run-log> [--arm <arm>] [--fixture <dir>] [--dry-run]
 //   node run-command-behaviour.mjs --backfill <run-log> --out <new-log> [--brief-only]
 
-import { appendFileSync, mkdirSync, readdirSync, readFileSync, realpathSync } from 'node:fs';
+import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { homedir } from 'node:os';
 import { randomUUID } from 'node:crypto';
@@ -53,7 +54,10 @@ import { spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dshProjectKey, dshStoreRoot } from '../../../../../hooks/shared/session-readers/dsh.mjs';
 import { loadSession as loadSharedSession } from '../../../../../hooks/shared/session-readers/index.mjs';
-import { backfillRunLog, briefDelivered, codexHookApproval, replayOffer } from './command-offer.mjs';
+import { backfillRunLog, briefDelivered, codexHookApproval, promptSessionId, replayOffer } from './command-offer.mjs';
+// The arena builder writes this file into the checkout it made. Its absence is the
+// proof that a root is an operator's working tree rather than a disposable arena.
+import { MARK } from './prepare-behaviour-arena.mjs';
 import { restoreTurn, statusSnapshot } from './worktree-restore.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -64,6 +68,7 @@ const DSH_PATCH_DIR = resolve(REPO_ROOT, '.dsh/patches');
 // directory instead of letting each reader compare the id against its own root.
 const PROJECT_DIR = realpathSync(REPO_ROOT);
 const PROMPTS_PATH = resolve(HERE, 'command-prompts.jsonl');
+const FRESH_PATH = resolve(HERE, 'behaviour-fresh-prompts.jsonl');
 
 const EXIT_REFUSED = 2;
 const EXIT_HEAD_MOVED = 3;
@@ -77,17 +82,22 @@ const CAP_MS = Object.freeze({
 
 const CLAUDE_MODEL = 'claude-sonnet-5-5';
 const CODEX_MODEL = 'gpt-6-luna';
-// The variant rides the model string, because `opencode run` has no flag for it.
-const OPENCODE_MODEL = 'llmgateway/deepseek-v4.1-flash-1017#max';
-const PI_MODEL = 'llmgateway/deepseek-v4.1-flash-1017';
+// OpenCode and Pi run the flat-rate OpenCode Go flash model, the fastest and
+// cheapest DeepSeek route, because the max variant took about three minutes a
+// turn. Pi takes its thinking level after the colon and would otherwise use the
+// max level its settings file names.
+const OPENCODE_MODEL = 'opencode-go/deepseek-v4.1-flash';
+const PI_MODEL = 'opencode-go/deepseek-v4.1-flash:off';
 const DEVIN_MODEL = 'swe-2-max';
 const DSH_MODEL = 'deepseek-v4.1-flash-1017';
 
 // Runtimes the phase reports as not measured, with the reason a run would be
 // wasted work rather than evidence. Cursor's reader never leaves gated, so its
-// transcript could not be scored even if the turn ran.
+// transcript could not be scored even if the turn ran. Vibe's reader is ready
+// but no live arm may run it, so it is reported rather than run.
 const NOT_MEASURED = Object.freeze({
   cursor: 'its session reader is gated, so no produced transcript can be scored',
+  vibe: 'no live turn is wired for it: live runs need an arena with credentials off and the behaviour arms are stopped',
 });
 
 function has(object, key) {
@@ -370,6 +380,31 @@ function addedSessionId(before, after) {
   return added.length === 1 ? added[0] : null;
 }
 
+// A DSH turn can add helper sessions beside its own, so a difference of several
+// entries names no single session. Only the session the prompt opened holds that
+// prompt as its first user message, so the prompt decides between them, and a
+// session the reader cannot open names no match rather than failing the turn.
+async function firstUserText(sessionId) {
+  let loaded;
+  try {
+    loaded = await loadSharedSession({
+      runtime: 'dsh',
+      sessionId,
+      dshHome: dshHome(),
+      projectDir: PROJECT_DIR,
+    });
+  } catch {
+    return null;
+  }
+  if (!loaded?.ok || !Array.isArray(loaded.records)) return null;
+  const record = loaded.records.find((entry) => entry?.role === 'user');
+  if (record === undefined) return null;
+  return (Array.isArray(record.content) ? record.content : [])
+    .filter((block) => block?.type === 'text' && typeof block.text === 'string')
+    .map((block) => block.text)
+    .join('\n');
+}
+
 // DSH keeps its session logs under DSH_HOME, which an operator can move, so the
 // locator records the home the run used and the transcript stays findable from
 // the log alone.
@@ -546,6 +581,24 @@ function changedPaths(before, after) {
   return changed.sort();
 }
 
+// The arena's pointer is left out of git, so the restore after a turn never sees a
+// turn that edits or deletes it. Writing the pre-turn content back keeps every later
+// turn in that arena on the same rules.
+/**
+ * Put the arena's pointer back when a turn changed or removed it.
+ *
+ * @param {string} dir - The checkout the turn ran in.
+ * @param {string | null} before - The pointer content read before the turn, null when absent.
+ * @returns {boolean} Whether the pointer was written back.
+ */
+export function restorePointer(dir, before) {
+  if (typeof before !== 'string') return false;
+  const path = join(dir, 'CLAUDE.md');
+  if (existsSync(path) && readFileSync(path, 'utf8') === before) return false;
+  writeFileSync(path, before, 'utf8');
+  return true;
+}
+
 // The head and the stash are the two places another operator's git work can hide.
 function gitSnapshot() {
   return {
@@ -554,13 +607,50 @@ function gitSnapshot() {
   };
 }
 
-// A remote is the one piece of git state a turn could use to reach outside the
-// checkout, so its presence is read rather than the branch's tracking state.
-function remoteNames() {
-  return gitText(['remote'])
+// A remote is what a turn could push to by name, so a live arm refuses to start
+// when one is listed. It is only half the boundary: the push boundary is childEnv's
+// empty credential helper, empty GH_CONFIG_DIR, GIT_TERMINAL_PROMPT=0 and
+// GIT_ALLOW_PROTOCOL=file, because a push to an explicit URL needs no remote at all
+// and the protocol setting keeps SSH and HTTPS out of reach whatever keys HOME
+// holds. The builder's marker then proves the root came from the arena builder,
+// because only that checkout has no remote, no outer repository and no dotenv file
+// in its copied build trees.
+export function liveArmRefusal(root) {
+  const gitAt = (args) => {
+    const result = spawnSync('git', ['-C', root, ...GIT_PREFIX, ...args], {
+      encoding: 'utf8',
+    });
+    if (result.error) throw result.error;
+    if (result.status !== 0) {
+      throw new Error(`git -C ${root} ${args.join(' ')} failed: ${(result.stderr ?? '').trim()}`);
+    }
+    return result.stdout;
+  };
+  const remotes = gitAt(['remote'])
     .split('\n')
     .map((name) => name.trim())
     .filter((name) => name !== '');
+  if (remotes.length > 0) return { ok: false, code: 'remote_present', remotes };
+  const marker = resolve(root, gitAt(['rev-parse', '--git-path', MARK]).trim());
+  if (!existsSync(marker)) return { ok: false, code: 'arena_unprepared', marker };
+  return null;
+}
+
+/**
+ * Check whether a turn may start where it would run.
+ *
+ * A remote one turn adds outlives that turn, so the check runs before every turn
+ * rather than before the first one only.
+ *
+ * @param {string} root - The checkout the turn runs in.
+ * @param {{ dryRun: boolean }} options - Whether the turn spawns a model.
+ * @returns {object | null} The refusal, or null when the turn may start.
+ */
+export function turnRefusal(root, { dryRun }) {
+  // A dry run spawns nothing and keeps running in this checkout, so it has no
+  // turn to guard.
+  if (dryRun) return null;
+  return liveArmRefusal(root);
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -581,14 +671,19 @@ class Refusal extends Error {
 // the lookup itself, so a run, a selection and a listing all answer a refused id
 // the same way instead of one of them getting there through a usage error.
 function findRow(rowId) {
-  for (const line of readFileSync(PROMPTS_PATH, 'utf8').split('\n')) {
-    if (line.trim() === '') continue;
-    const row = JSON.parse(line);
-    if (row.id !== rowId) continue;
-    if (row.split === 'holdout') {
-      throw new Refusal('holdout_row', `${rowId}: a holdout row is never run`);
+  const paths = rowId.startsWith('fresh-') && existsSync(FRESH_PATH)
+    ? [PROMPTS_PATH, FRESH_PATH]
+    : [PROMPTS_PATH];
+  for (const path of paths) {
+    for (const line of readFileSync(path, 'utf8').split('\n')) {
+      if (line.trim() === '') continue;
+      const row = JSON.parse(line);
+      if (row.id !== rowId) continue;
+      if (row.split === 'holdout') {
+        throw new Refusal('holdout_row', `${rowId}: a holdout row is never run`);
+      }
+      return row;
     }
-    return row;
   }
   throw new Refusal('unknown_row', `${rowId}: no row holds that id`);
 }
@@ -611,6 +706,81 @@ function rowLabels() {
     labels.push({ id: row.id, split: row.split, rowType: row.row_type, policy: row.expected_policy });
   }
   return labels;
+}
+
+// The fresh set is authored apart from the corpus, so the split and the id prefix
+// are its only guard against a row that would measure the wrong question. The count
+// is fixed because a rate over fewer rows than the arm claims would misreport it.
+const FRESH_ROW_COUNT = 36;
+
+/**
+ * Read the fresh rows from their own text and refuse a set that cannot be blinded.
+ *
+ * @param {string} text - The fresh row file, one JSON row per line.
+ * @returns {object[]} The parsed rows.
+ */
+export function freshRowsFrom(text) {
+  const rows = [];
+  for (const line of text.split('\n')) {
+    if (line.trim() === '') continue;
+    const row = JSON.parse(line);
+    if (row.split === 'holdout') {
+      throw new Refusal('holdout_row', `${row.id}: a holdout row is never run`);
+    }
+    if (row.split !== 'fresh') {
+      throw new Refusal('fresh_split', `${row.id}: a fresh row needs split fresh`);
+    }
+    if (typeof row.id !== 'string' || !row.id.startsWith('fresh-')) {
+      throw new Refusal('fresh_id', `${row.id}: a fresh row id starts with fresh-`);
+    }
+    rows.push(row);
+  }
+  if (rows.length !== FRESH_ROW_COUNT) {
+    throw new Refusal('set_short', `fresh: expected ${FRESH_ROW_COUNT} rows, found ${rows.length}`);
+  }
+  return rows;
+}
+
+// A repeated prompt would measure a request the corpus already answered, so the fresh
+// set stays apart from it. The refusal names the two ids and never the text, because a
+// blind row's prompt is the one thing the run must not publish.
+/**
+ * Refuse a fresh row whose prompt repeats another row.
+ *
+ * @param {object[]} freshRows - The fresh rows about to run.
+ * @param {object[]} otherRows - Every row the fresh set must stay apart from.
+ */
+export function assertFreshRowsUnique(freshRows, otherRows) {
+  const fold = (prompt) => prompt.toLowerCase().trim().replace(/\s+/g, ' ');
+  for (let index = 0; index < freshRows.length; index += 1) {
+    const fresh = freshRows[index];
+    const folded = fold(fresh.prompt);
+    for (const other of otherRows) {
+      if (fold(other.prompt) === folded) {
+        throw new Refusal('repeated_row', `fresh row ${fresh.id} repeats row ${other.id}`);
+      }
+    }
+    for (const later of freshRows.slice(index + 1)) {
+      if (fold(later.prompt) === folded) {
+        throw new Refusal('repeated_row', `fresh row ${fresh.id} repeats row ${later.id}`);
+      }
+    }
+  }
+}
+
+// The fresh rows live apart from the corpus so the capture never publishes them,
+// and a prompt that repeats a corpus row would measure a tuned request.
+function freshRowIds() {
+  if (!existsSync(FRESH_PATH)) {
+    throw new Refusal('fresh_missing', 'behaviour-fresh-prompts.jsonl: no fresh row file');
+  }
+  const freshRows = freshRowsFrom(readFileSync(FRESH_PATH, 'utf8'));
+  const corpusRows = readFileSync(PROMPTS_PATH, 'utf8')
+    .split('\n')
+    .filter((line) => line.trim() !== '')
+    .map((line) => JSON.parse(line));
+  assertFreshRowsUnique(freshRows, corpusRows);
+  return freshRows.map((row) => row.id).sort();
 }
 
 // The log is written after the closing snapshot, so the file the runner creates is
@@ -673,29 +843,41 @@ const G2_SET = 'g2';
 const G2_FIXTURE_DIRNAME = 'g2-fixture';
 const FIXTURE_TOKEN = '{fixture}';
 
-const G2_ROWS = Object.freeze([
+export const G2_ROWS = Object.freeze([
   {
     id: 'g2-deep-research-ask',
+    command: '/deep:research',
+    variant: 'ask',
     prompt: 'look into how other teams harden a parse function like the one under {fixture} and write up what you find, one iteration is enough',
   },
   {
     id: 'g2-deep-research-typed',
+    command: '/deep:research',
+    variant: 'typed',
     prompt: '/deep:research how other teams harden a parse function like the one under {fixture} :auto --max-iterations=1',
   },
   {
     id: 'g2-deep-review-ask',
+    command: '/deep:review',
+    variant: 'ask',
     prompt: 'review the parser under {fixture} for correctness gaps and write up what you find, one iteration is enough',
   },
   {
     id: 'g2-deep-review-typed',
+    command: '/deep:review',
+    variant: 'typed',
     prompt: '/deep:review the parser under {fixture} for correctness gaps :auto --max-iterations=1',
   },
   {
     id: 'g2-speckit-complete-ask',
+    command: '/speckit:complete',
+    variant: 'ask',
     prompt: 'finish the work described in {fixture}/spec.md end to end and write up what you changed',
   },
   {
     id: 'g2-speckit-complete-typed',
+    command: '/speckit:complete',
+    variant: 'typed',
     prompt: '/speckit:complete {fixture}/spec.md :auto',
   },
 ]);
@@ -704,6 +886,7 @@ const G2_PROMPTS = new Map(G2_ROWS.map((row) => [row.id, row.prompt]));
 
 const SETS = Object.freeze({
   chat: chatRowIds,
+  fresh: freshRowIds,
   [G2_SET]: () => G2_ROWS.map((row) => row.id),
 });
 
@@ -737,6 +920,37 @@ function fixtureDir(options) {
   return options.fixture ?? resolve(dirname(options.out), G2_FIXTURE_DIRNAME);
 }
 
+// A finished log records the folder its turn measured, so a backfill replays the
+// prompt the turn actually saw rather than the folder this invocation defaults to.
+/**
+ * Read the fixture folder a run line recorded.
+ *
+ * @param {object} line - One run-log line.
+ * @param {string} fallback - Folder a line without a recorded fixture replays.
+ * @returns {string} The fixture folder the line's prompt named.
+ */
+export function lineFixture(line, fallback) {
+  return typeof line?.fixture === 'string' && line.fixture !== '' ? line.fixture : fallback;
+}
+
+// A run line keeps where its offered command sat in the head, because the summary
+// counts a command on the partner side apart from an offer.
+/**
+ * Copy the offer a run line records into the fields that line carries.
+ *
+ * @param {{ offeredCommand: string | null, offeredPolicy: string | null,
+ *   offeredAs?: 'head' | 'partner' | null }} offer - The replayed offer.
+ * @returns {{ offeredCommand: string | null, offeredPolicy: string | null,
+ *   offeredAs: 'head' | 'partner' | null }} The offer fields a line records.
+ */
+export function offerLineFields(offer) {
+  return {
+    offeredCommand: offer.offeredCommand ?? null,
+    offeredPolicy: offer.offeredPolicy ?? null,
+    offeredAs: offer.offeredAs ?? null,
+  };
+}
+
 // A placeholder keeps the fixed prompts free of a path that only exists on the
 // machine the arm runs on.
 function promptFor(rowId, fixture) {
@@ -755,17 +969,54 @@ function capForRow(rowId) {
 // One turn
 // ───────────────────────────────────────────────────────────────
 
-// A dispatched worker's marker makes a CLI answer as a child session, and a child
-// session is not the chat start an arm measures. The rest of the environment stays,
-// so each CLI finds its own home, account and route.
+// A turn runs with bypassed permissions, so it gets only what a runtime needs to
+// start and authenticate, and every other credential in the operator's shell stays
+// out. The shell basics and each runtime's own prefixes are enough for a CLI to
+// find its home, account and route, while a dispatched worker's marker is not
+// passed at all, because a CLI that answers as a child session is not the chat
+// start an arm measures.
 //
-// The network credentials are the exception, because a turn that reaches a forge
-// with the operator's identity is a side effect no transcript can undo. The token
-// variables go, the GitHub CLI is pointed at an empty folder beside the run log
-// rather than the operator's authenticated one, and an empty credential helper
-// replaces whatever a global git config would have offered. A missing credential
-// then fails at once instead of waiting on a terminal nobody is sitting at.
-const GITHUB_TOKEN_VARS = Object.freeze(['GH_TOKEN', 'GITHUB_TOKEN', 'GH_ENTERPRISE_TOKEN']);
+// The network credentials stay out of the allowlist for the same reason: a turn
+// that reaches a forge with the operator's identity is a side effect no transcript
+// can undo. The GitHub CLI is pointed at an empty folder beside the run log rather
+// than the operator's authenticated one, and an empty credential helper replaces
+// whatever a global git config would have offered. A missing credential then fails
+// at once instead of waiting on a terminal nobody is sitting at.
+const CHILD_ENV_NAMES = Object.freeze([
+  'PATH',
+  'HOME',
+  'USER',
+  'LOGNAME',
+  'SHELL',
+  'TMPDIR',
+  'TMP',
+  'TEMP',
+  'LANG',
+  'TERM',
+  'TERM_PROGRAM',
+  'COLORTERM',
+  'NO_COLOR',
+]);
+
+const CHILD_ENV_PREFIXES = Object.freeze([
+  'LC_',
+  'XDG_',
+  'ANTHROPIC_',
+  'CLAUDE_',
+  'CODEX_',
+  'OPENAI_',
+  'OPENCODE_',
+  'LLMGATEWAY_',
+  'PI_',
+  'DEVIN_',
+  'DSH_',
+  'DEEPSEEK_',
+  'OLLAMA_',
+  'SPECKIT_',
+  'SKILL_ADVISOR_',
+  'SYSTEM_SPEC_GATE_',
+  'MK_',
+]);
 
 const GIT_CREDENTIAL_OVERRIDES = Object.freeze({
   GIT_CONFIG_COUNT: '1',
@@ -779,24 +1030,44 @@ function ghConfigDir(outPath) {
   return join(dirname(outPath), 'gh-config-empty');
 }
 
-function childEnv(ghConfig) {
-  const env = { ...process.env };
-  delete env.AI_SESSION_CHILD;
-  for (const name of GITHUB_TOKEN_VARS) delete env[name];
+export function childEnv(ghConfig, arm) {
+  const env = {};
+  for (const [name, value] of Object.entries(process.env)) {
+    if (value === undefined) continue;
+    const keep =
+      CHILD_ENV_NAMES.includes(name) ||
+      CHILD_ENV_PREFIXES.some((prefix) => name.startsWith(prefix));
+    if (keep) env[name] = value;
+  }
+  if (arm === 'off' || arm === 'on') {
+    // The two arms differ only in the advisor, so a switch inherited from the
+    // operator's shell is removed from both.
+    for (const name of Object.keys(env)) {
+      if (name.endsWith('_DISABLED') && (name.includes('SKILL_ADVISOR') || name.includes('HOOKS'))) {
+        delete env[name];
+      }
+    }
+    if (arm === 'off') {
+      env.SYSTEM_SKILL_ADVISOR_HOOK_DISABLED = '1';
+      env.SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED = '1';
+    }
+  }
   env.GH_CONFIG_DIR = ghConfig;
   env.GIT_TERMINAL_PROMPT = '0';
+  // Git's network transports would let a turn push with whatever identity HOME holds.
+  env.GIT_ALLOW_PROTOCOL = 'file';
   Object.assign(env, GIT_CREDENTIAL_OVERRIDES);
   return env;
 }
 
-function spawnTurn(runtime, argv, prompt, capMs, ghConfig) {
+function spawnTurn(runtime, argv, prompt, capMs, ghConfig, arm) {
   return new Promise((settle) => {
     // A CLI that reads the prompt from stdin gets a pipe to write it into. Every other
     // runtime keeps stdin ignored, because an open stdin leaves that CLI waiting on
     // input nobody types until the cap runs out into an empty transcript.
     const child = spawn(runtime.command, argv, {
       cwd: REPO_ROOT,
-      env: childEnv(ghConfig),
+      env: childEnv(ghConfig, arm),
       // Ignored means the child reads /dev/null rather than blocking on a terminal.
       stdio: [runtime.promptOnStdin ? 'pipe' : 'ignore', 'pipe', 'inherit'],
       // A chat turn still running after its cap is stuck, while a started workflow
@@ -835,8 +1106,9 @@ const SAMPLE_PROMPT = 'sample prompt for argv inspection';
 const SAMPLE_SESSION_ID = 'sample-session-id';
 
 // An arm label decides how a later scorer groups a whole log, so a typo would
-// quietly invent a third arm. The set is closed for that reason.
-const ARMS = ['pre', 'post', 'smoke', 'g2'];
+// quietly invent a third arm. The set is closed for that reason. The off and on
+// arms compare one commit with the advisor switched off and on.
+const ARMS = ['pre', 'post', 'smoke', 'g2', 'off', 'on'];
 
 // The pre-change arm is the default because it is the one that can run before the
 // brief lands. A post-change run has to say which arm it belongs to. The
@@ -848,7 +1120,7 @@ const USAGE = [
   `usage: ${SCRIPT_NAME} --print-argv <runtime>`,
   `       ${SCRIPT_NAME} --list <set>`,
   `       ${SCRIPT_NAME} --runtime <runtime> (--set <set> | --row-id <id>...)`,
-  '         --out <run-log> [--arm <arm>] [--fixture <dir>] [--dry-run]',
+  '         --out <run-log> [--arm <arm>] [--run <n>] [--fixture <dir>] [--dry-run]',
   `       ${SCRIPT_NAME} --backfill <run-log> --out <new-log> [--brief-only]`,
 ].join('\n');
 
@@ -870,11 +1142,38 @@ function valueAfter(argv, index, flag) {
   return value;
 }
 
-// A set that has its own arm names it, so a started-command run cannot join the
-// change comparison because nobody passed `--arm`.
-function armFor(options) {
+// A started-command row joins its own comparison whichever flag picked it, so the
+// arm follows the rows rather than the invocation. A selection that mixes the two
+// kinds of row has no single honest arm, so it stops instead of recording half its
+// work under the wrong label.
+export function armFor(options, rowIds) {
   if (options.arm !== null) return options.arm;
-  return options.set === G2_SET ? G2_SET : DEFAULT_ARM;
+  const started = rowIds.filter((rowId) => G2_PROMPTS.has(rowId));
+  if (started.length === 0) return DEFAULT_ARM;
+  if (started.length === rowIds.length) return G2_SET;
+  throw new Refusal(
+    'mixed_row_arms',
+    `started-command rows ${started.join(', ')} cannot share an arm with another row`,
+  );
+}
+
+// A fresh row answers a fixed question on each arm, so the run number and the arm
+// are part of the question. A run that leaves the run number out or files the row
+// under another arm could not be paired with the arm it belongs to.
+/**
+ * Refuse a fresh run that names no measured arm or no run number.
+ *
+ * @param {object} options - The parsed invocation.
+ * @param {string[]} rowIds - The rows this invocation selected.
+ */
+export function assertFreshRun(options, rowIds) {
+  if (!rowIds.some((rowId) => rowId.startsWith('fresh-'))) return;
+  if (options.arm !== 'off' && options.arm !== 'on') {
+    throw new Refusal('fresh_arm', 'a fresh row runs under arm off or on');
+  }
+  if (options.run === null) {
+    throw new Refusal('fresh_run', 'a fresh row needs --run');
+  }
 }
 
 function parseOptions(argv) {
@@ -885,6 +1184,7 @@ function parseOptions(argv) {
     runtime: null,
     rowIds: [],
     arm: null,
+    run: null,
     out: null,
     backfill: null,
     fixture: null,
@@ -915,6 +1215,13 @@ function parseOptions(argv) {
         throw new UsageError(`--arm: expected one of ${ARMS.join(', ')}`);
       }
       options.arm = arm;
+    } else if (token === '--run') {
+      index += 1;
+      const run = valueAfter(argv, index, '--run');
+      if (!/^[1-9][0-9]*$/.test(run)) {
+        throw new UsageError('--run: a whole number from 1 is required');
+      }
+      options.run = Number(run);
     } else if (token === '--out') {
       index += 1;
       options.out = resolve(valueAfter(argv, index, '--out'));
@@ -979,18 +1286,18 @@ function writeArgv(runtimeName) {
 // fires, so a broken precondition never spends another model call.
 async function runTurn(job, options, exempt, isFirst) {
   const before = { status: statusPaths(), ...gitSnapshot() };
+  // A live turn can push, so it may only start in the arena the builder made: no
+  // remote it could push to by name and the builder's marker in place. The push
+  // boundary is childEnv's empty credential helper, empty GH_CONFIG_DIR,
+  // GIT_TERMINAL_PROMPT=0 and GIT_ALLOW_PROTOCOL=file, because a push to an explicit
+  // URL needs no remote and the protocol setting keeps SSH and HTTPS out of reach
+  // whatever keys HOME holds. A dry run spawns nothing and keeps running in this
+  // checkout.
+  const refusal = turnRefusal(REPO_ROOT, { dryRun: options.dryRun });
+  if (refusal !== null) {
+    return { status: EXIT_REFUSED, refusal };
+  }
   if (isFirst) {
-    // A live turn can push, so it may only start where there is no remote to push
-    // to. A dry run spawns nothing and keeps running in this checkout.
-    if (!options.dryRun) {
-      const remotes = remoteNames();
-      if (remotes.length > 0) {
-        return {
-          status: EXIT_REFUSED,
-          refusal: { ok: false, code: 'remote_present', remotes },
-        };
-      }
-    }
     const dirty = dirtyPaths(before.status, exempt);
     if (dirty.length > 0) {
       return {
@@ -1007,12 +1314,27 @@ async function runTurn(job, options, exempt, isFirst) {
   // starts no CLI, so it has nothing to list.
   const listed = !options.dryRun && listsStore(job.runtime);
   const listingBefore = listed ? storeIds(job.runtime, job.ghConfig) : null;
+  // The pointer is excluded from git, so the restore below never sees a turn that
+  // changed or deleted it.
+  const pointerPath = join(REPO_ROOT, 'CLAUDE.md');
+  const pointerBefore = existsSync(pointerPath) ? readFileSync(pointerPath, 'utf8') : null;
   const turn = options.dryRun
     ? { exit: null, error: null, streamId: null }
-    : await spawnTurn(job.runtime, argv, job.prompt, job.cap, job.ghConfig);
-  const reportedId = listed
-    ? addedSessionId(listingBefore, storeIds(job.runtime, job.ghConfig))
+    : await spawnTurn(job.runtime, argv, job.prompt, job.cap, job.ghConfig, options.arm);
+  const listingAfter = listed ? storeIds(job.runtime, job.ghConfig) : null;
+  let reportedId = listed
+    ? addedSessionId(listingBefore, listingAfter)
     : turn.streamId;
+  // A DSH turn can add helper sessions to the store, so a difference of several
+  // entries names no single session. The one its prompt opened is the turn's own.
+  if (reportedId === null && job.runtime.locator.kind === 'store') {
+    reportedId = await promptSessionId({
+      before: listingBefore,
+      after: listingAfter,
+      prompt: job.prompt,
+      firstUserText,
+    });
+  }
 
   const after = { status: statusPaths(), ...gitSnapshot() };
   const headMoved = before.head !== after.head || before.stash !== after.stash;
@@ -1024,7 +1346,9 @@ async function runTurn(job, options, exempt, isFirst) {
     runtime: job.runtimeName,
     rowId: job.rowId,
     arm: options.arm,
+    ...(options.run === null ? {} : { run: options.run }),
     locator,
+    ...(job.fixture === undefined ? {} : { fixture: job.fixture }),
     exit: turn.exit,
     changedPaths: changed,
   };
@@ -1039,6 +1363,7 @@ async function runTurn(job, options, exempt, isFirst) {
   // A dry run spawns nothing, so an unchanged worktree is the only thing it can
   // honestly report as left as found.
   const restore = options.dryRun ? null : restoreTurn({ cwd: REPO_ROOT, before: before.status });
+  const pointerRestored = options.dryRun ? false : restorePointer(REPO_ROOT, pointerBefore);
   const restored = options.dryRun ? changed.length === 0 : restore.restored;
   // The head the reader saw is the only place the offer was named, and not every
   // runtime keeps it, so the offer is replayed after the turn. A dry run still
@@ -1052,10 +1377,10 @@ async function runTurn(job, options, exempt, isFirst) {
     : await briefDelivered({ runtime: job.runtimeName, locator, loadSession: loadSharedSession });
   appendRunLine(options.out, {
     ...line,
-    offeredCommand: offer.offeredCommand,
-    offeredPolicy: offer.offeredPolicy,
+    ...offerLineFields(offer),
     briefDelivered: delivered,
     restored,
+    ...(pointerRestored ? { pointerRestored: true } : {}),
     ...(restore !== null && restore.leftoverPaths.length > 0
       ? { leftoverPaths: restore.leftoverPaths }
       : {}),
@@ -1091,7 +1416,15 @@ async function runArm(options, rowIds) {
   for (let index = 0; index < rowIds.length; index += 1) {
     const rowId = rowIds[index];
     const prompt = promptFor(rowId, fixture);
-    const job = { runtime, runtimeName: options.runtime, rowId, prompt, cap: capForRow(rowId), ghConfig };
+    const job = {
+      runtime,
+      runtimeName: options.runtime,
+      rowId,
+      prompt,
+      cap: capForRow(rowId),
+      ghConfig,
+      ...(G2_PROMPTS.has(rowId) ? { fixture } : {}),
+    };
     const result = await runTurn(job, options, exempt, index === 0);
     if (result.refusal !== null) writeJson(result.refusal);
     if (result.status !== 0) return result.status;
@@ -1107,7 +1440,7 @@ async function backfillLog(options) {
   const result = await backfillRunLog({
     inPath: options.backfill,
     outPath: options.out,
-    promptFor: (rowId) => promptFor(rowId, fixture),
+    promptFor: (rowId, line) => promptFor(rowId, lineFixture(line, fixture)),
     briefOnly: options.briefOnly,
   });
   writeJson(result);
@@ -1121,7 +1454,10 @@ async function main(argv) {
     // answered by that guard rather than by whichever usage check would run first.
     const rowIds = selectedRowIds(options);
     const mode = selectMode(options);
-    options.arm = armFor(options);
+    options.arm = armFor(options, rowIds);
+    // A listing writes nothing, so it names rows without needing an arm or a run
+    // number. Only a run is held to the fresh set's own rules.
+    if (mode === 'run') assertFreshRun(options, rowIds);
 
     if (mode === 'print-argv') {
       writeArgv(options.printArgv);
@@ -1164,13 +1500,28 @@ async function main(argv) {
   }
 }
 
-try {
-  process.exitCode = await main(process.argv.slice(2));
-} catch (error) {
-  if (error instanceof UsageError) {
-    process.stderr.write(`${SCRIPT_NAME}: ${error.message}\n`);
-    process.exitCode = EXIT_REFUSED;
-  } else {
-    throw error;
+// The runner's tables are exported for direct tests, so the CLI runs only when
+// this file is the entry point. An imported module that parsed the host's argv
+// would refuse on flags it never received. The entry path is compared after
+// resolving links, because Node names a linked entry by its real path.
+const invokedDirectly = (() => {
+  if (typeof process.argv[1] !== 'string') return false;
+  try {
+    return realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url));
+  } catch {
+    return false;
+  }
+})();
+
+if (invokedDirectly) {
+  try {
+    process.exitCode = await main(process.argv.slice(2));
+  } catch (error) {
+    if (error instanceof UsageError) {
+      process.stderr.write(`${SCRIPT_NAME}: ${error.message}\n`);
+      process.exitCode = EXIT_REFUSED;
+    } else {
+      throw error;
+    }
   }
 }

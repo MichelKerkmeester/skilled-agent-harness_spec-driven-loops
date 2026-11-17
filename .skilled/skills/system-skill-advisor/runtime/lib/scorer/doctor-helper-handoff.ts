@@ -17,8 +17,10 @@
 //      vocabulary ("start a deep review loop"), so a weak match also needs the
 //      prompt to name a problem. Beside a passing skill only a strong cue
 //      counts, because bare words such as "missing" or "broken" are common in
-//      ordinary work. With no skill passing, a strong ranker match stands in
-//      for the cue.
+//      ordinary work. A skill that passed with none of its own phrases in the
+//      prompt is the exception: there a bare word with a strong ranker match
+//      leads. With no skill passing, a weak cue or no cue needs a strong ranker match,
+//      and only a strong cue hands off on the lower score.
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -44,12 +46,22 @@ export const DOCTOR_HELPER_MIN_SCORE = 6;
 /** Helper rank score that stands in for a cue when no skill passes. */
 export const DOCTOR_HELPER_UNCUED_MIN_SCORE = 10;
 
+/**
+ * Helper rank score a weak cue needs when no skill passes. A weak cue is a bare
+ * word ordinary work also uses, so it needs a stronger ranker match than a
+ * strong cue, though less than no cue.
+ */
+export const DOCTOR_HELPER_WEAK_CUE_MIN_SCORE = 9;
+
 // A strong cue says a state is wrong or asks for a health or switch change, so
-// it can surface the helper beside a passing skill. A weak cue is a bare word
-// that ordinary work requests also use ("fix the broken example"), so it counts
-// only when no skill passes. Every hand-off needs at least one cue.
+// it can surface the helper beside a passing skill. A tool or command that does
+// not show up or appear is that wrong state, like one that is not registered or
+// not found. "appear to" states an impression and "up-to-date" is a compound,
+// so neither says a tool is missing. A weak cue is a bare word that ordinary
+// work requests also use ("fix the broken example"), so it counts only when no
+// skill passes. Every hand-off needs at least one cue.
 const STRONG_PROBLEM_CUE = new RegExp([
-  "\\b(?:not|isn'?t|aren'?t|doesn'?t|don'?t|won'?t|can'?t) (?:\\w+ )?(?:work|working|registered|found|load|loading|run|running|active|linked|fir(?:e|es|ing)|trigger(?:s|ing)?|converg\\w*)\\b",
+  "\\b(?:not|isn'?t|aren'?t|doesn'?t|don'?t|won'?t|can'?t) (?:\\w+ )?(?:work|working|registered|found|load|loading|run|running|active|linked|fir(?:e|es|ing)|trigger(?:s|ing)?|converg\\w*|show(?:s|ing)? up(?![-\\w])|appear(?:s|ing)?(?! to\\b))\\b",
   '\\bnever (?:converg\\w*|finish\\w*|stops?|works?|loads?|runs?)\\b',
   '\\bstopped converg\\w*\\b',
   '\\breturns? nothing\\b',
@@ -140,8 +152,11 @@ function loadHelper(workspaceRoot: string): LoadedHelper | null {
 
 /** The strongest problem cue the prompt carries. */
 export function doctorProblemCue(prompt: string): 'strong' | 'weak' | null {
-  if (STRONG_PROBLEM_CUE.test(prompt)) return 'strong';
-  if (WEAK_PROBLEM_CUE.test(prompt)) return 'weak';
+  // Many keyboards type a contraction with a curly apostrophe, and the cue
+  // patterns spell it straight.
+  const folded = prompt.replace(/[‘’]/g, "'");
+  if (STRONG_PROBLEM_CUE.test(folded)) return 'strong';
+  if (WEAK_PROBLEM_CUE.test(folded)) return 'weak';
   return null;
 }
 

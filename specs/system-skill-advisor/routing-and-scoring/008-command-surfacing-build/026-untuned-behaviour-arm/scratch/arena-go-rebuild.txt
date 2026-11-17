@@ -1,0 +1,6 @@
+{"rt":"pi","ok":false,"head":null}
+pi head= remote=[] status=[] claude= b6= model=
+{"rt":"opencode","ok":true,"head":"067c2cf029717d7bcc3a76ceef2d4332528f8e01"}
+opencode head=067c2cf029 remote=[] status=[] claude=@AGENTS.md b6=1 model=opencode-go/deepseek-v4.1-flash
+{"rt":"pi","ok":true,"head":"067c2cf029717d7bcc3a76ceef2d4332528f8e01"}
+pi head=067c2cf0297 remote=[] status=[] claude=@AGENTS.md b6=1 model=opencode-go/deepseek-v4.1-flash:off

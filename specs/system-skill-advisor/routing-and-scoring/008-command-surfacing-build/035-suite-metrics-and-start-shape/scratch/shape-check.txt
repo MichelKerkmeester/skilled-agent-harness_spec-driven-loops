@@ -1,0 +1,12 @@
+# rescore of the 033 lines at 267c27fc5df against 034 summary-rescore.json
+claude off rate equal, shapes sum equal startRate 2 of 15 skill=0 reported=0 expanded=0 readWrite=0 readOnly=2
+claude on rate equal, shapes sum equal startRate 3 of 15 skill=0 reported=0 expanded=0 readWrite=0 readOnly=3
+opencode off rate equal, shapes sum equal startRate 1 of 7 skill=0 reported=0 expanded=0 readWrite=0 readOnly=1
+opencode on rate equal, shapes sum equal startRate 3 of 10 skill=0 reported=1 expanded=0 readWrite=0 readOnly=2
+pi off rate equal, shapes sum equal startRate 3 of 14 skill=0 reported=1 expanded=0 readWrite=0 readOnly=2
+pi on rate equal, shapes sum equal startRate 6 of 15 skill=0 reported=1 expanded=0 readWrite=0 readOnly=5
+devin off rate equal, shapes sum equal startRate 2 of 11 skill=0 reported=1 expanded=0 readWrite=0 readOnly=1
+devin on rate equal, shapes sum equal startRate 6 of 12 skill=0 reported=2 expanded=0 readWrite=0 readOnly=4
+dsh off rate equal, shapes sum equal startRate 6 of 15 skill=0 reported=1 expanded=0 readWrite=0 readOnly=5
+dsh on rate equal, shapes sum equal startRate 10 of 15 skill=0 reported=5 expanded=0 readWrite=1 readOnly=4
+summary identical to 034 apart from startShapes

@@ -1,0 +1,69 @@
+{
+  "cliVersionSpawn": {
+    "label": "cli-version",
+    "summary": true,
+    "n": 10,
+    "median": 33.568667000000005,
+    "worst": 39.93237499999998,
+    "best": 31.818167000000017
+  },
+  "cliImportMs": {
+    "n": 10,
+    "median": 3.846375000000002,
+    "worst": 5.261082999999999,
+    "best": 3.660667
+  },
+  "handlerImportMs": {
+    "n": 10,
+    "median": 67.361417,
+    "worst": 91.067208,
+    "best": 56.871916999999996
+  },
+  "proposed": {
+    "totalMs": {
+      "n": 10,
+      "median": 231.052292,
+      "worst": 428.525,
+      "best": 148.293541
+    },
+    "headroomMs": {
+      "n": 10,
+      "median": 2257.048709,
+      "worst": 2351.706459,
+      "best": 2071.475
+    }
+  },
+  "today": {
+    "totalMs": {
+      "n": 10,
+      "median": 219.914917,
+      "worst": 544.278791,
+      "best": 205.956292
+    },
+    "headroomMs": {
+      "n": 10,
+      "median": 2276.803875,
+      "worst": 2294.043708,
+      "best": 1955.721209
+    }
+  },
+  "proposedLong": [
+    {
+      "chars": 9997,
+      "totalMs": 334.992291,
+      "headroomMs": 2165.007709
+    }
+  ],
+  "longColdHandler": {
+    "n": 5,
+    "median": 242.056125,
+    "worst": 424.14937499999996,
+    "best": 222.607875
+  },
+  "longWarmHandler": {
+    "n": 10,
+    "median": 147.06258300000002,
+    "worst": 215.27675,
+    "best": 61.11237499999993
+  }
+}

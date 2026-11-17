@@ -1,0 +1,19 @@
+# confirming round of review pass four: git -c core.fsmonitor=false diff --name-only 11af224a34 48f03b5013 -- .skilled .opencode (row files excluded)
+# area<TAB>path; lineage scorer-attach-confirm-4b reviews area scorer-attach, accuracy-runner-confirm-4b reviews area accuracy-runner
+accuracy-runner	.skilled/commands/doctor/assets/doctor-agents-md-presentation.txt
+accuracy-runner	.skilled/hooks/shared/session-readers/codex.d.mts.map
+accuracy-runner	.skilled/hooks/shared/session-readers/codex.mjs
+accuracy-runner	.skilled/hooks/shared/tests/session-readers/codex.test.mjs
+scorer-attach	.skilled/skills/system-skill-advisor/README.md
+scorer-attach	.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md
+scorer-attach	.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts

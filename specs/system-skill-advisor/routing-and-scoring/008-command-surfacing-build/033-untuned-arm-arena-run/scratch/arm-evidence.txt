@@ -1,0 +1,45 @@
+followed claude off 4 of 28 range 0.06 to 0.31
+followed claude on 6 of 28 range 0.1 to 0.4
+followed opencode off 11 of 28 range 0.24 to 0.58
+followed opencode on 13 of 28 range 0.3 to 0.64
+followed pi off 13 of 28 range 0.3 to 0.64
+followed pi on 14 of 28 range 0.33 to 0.67
+followed devin off 24 of 28 range 0.69 to 0.94
+followed devin on 24 of 28 range 0.69 to 0.94
+followed dsh off 18 of 28 range 0.46 to 0.79
+followed dsh on 23 of 28 range 0.64 to 0.92
+paired claude rows=28 gained=3 lost=1 bothFollowed=3 neitherFollowed=21 unpaired=0
+paired opencode rows=28 gained=6 lost=4 bothFollowed=7 neitherFollowed=11 unpaired=0
+paired pi rows=28 gained=8 lost=7 bothFollowed=6 neitherFollowed=7 unpaired=0
+paired devin rows=28 gained=3 lost=3 bothFollowed=21 neitherFollowed=1 unpaired=0
+paired dsh rows=28 gained=5 lost=0 bothFollowed=18 neitherFollowed=5 unpaired=0
+pooled from=off to=on runtimes=5 rows=140 gained=25 lost=15 ties=100 unpaired=0 declineStarts={"off":{"started":0,"runs":40},"on":{"started":1,"runs":80}} skillOnlyStarts={"off":{"started":0,"runs":40},"on":{"started":0,"runs":40}} p=0.0769
+starts claude off decline 0 of 8 skillOnly 0 of 8
+starts claude on decline 0 of 16 skillOnly 0 of 8
+starts opencode off decline 0 of 8 skillOnly 0 of 8
+starts opencode on decline 0 of 16 skillOnly 0 of 8
+starts pi off decline 0 of 8 skillOnly 0 of 8
+starts pi on decline 0 of 16 skillOnly 0 of 8
+starts devin off decline 0 of 8 skillOnly 0 of 8
+starts devin on decline 0 of 16 skillOnly 0 of 8
+starts dsh off decline 0 of 8 skillOnly 0 of 8
+starts dsh on decline 1 of 16 skillOnly 0 of 8
+delivery claude off runs 36 scored 36 unknown 0 offered 5
+delivery claude on runs 44 scored 44 unknown 0 offered 5
+delivery opencode off runs 36 scored 36 unknown 36 offered 5
+delivery opencode on runs 44 scored 44 unknown 44 offered 5
+delivery pi off runs 36 scored 36 unknown 0 offered 5
+delivery pi on runs 44 scored 44 unknown 0 offered 5
+delivery devin off runs 36 scored 36 unknown 1 offered 5
+delivery devin on runs 44 scored 44 unknown 1 offered 5
+delivery dsh off runs 36 scored 36 unknown 0 offered 5
+delivery dsh on runs 44 scored 44 unknown 1 offered 5
+mismatch 0
+limit: a loaded document is not a followed step, so followed counts a workflow opened before the first write, not each step done
+limit: OpenCode delivery reads unknown in both arms, so its arms rest on the switch alone; Codex is not measured (Q075)
+limit: the off arm also makes the Gate 2 direct call abstain, so the arms compare the advisor off with on, not the brief alone
+limit: the off arm's offered command is the head the runner's replay would have carried, not one the model saw
+limit: a runtime's paired line is direction only, each fit and skill-only row has one run per arm (option D), and fresh-skill-04 moved head on devin and dsh, so those turns end restore-failed
+limit: Claude also reads the home CLAUDE.md in both arms
+floor fixture {"own":2,"attached":0,"combined":2,"total":44}
+floor real {"own":5,"attached":0,"combined":5,"total":44}

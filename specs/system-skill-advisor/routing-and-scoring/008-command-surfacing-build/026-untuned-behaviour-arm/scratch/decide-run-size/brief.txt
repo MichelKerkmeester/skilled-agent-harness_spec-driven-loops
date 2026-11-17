@@ -1,0 +1,34 @@
+You are a fresh, independent decision reviewer. Read-only: change no file and run no build, test, advisor or model command. Answer with a recommendation the operator can act on now.
+
+REPOSITORY: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+PHASE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/026-untuned-behaviour-arm (read spec.md sections "Pre-registered Target" and "Arm Design", and tasks.md T041 to T051)
+PARENT GOAL: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md
+
+HARD RULE: never read prompt text. Do not open behaviour-fresh-prompts.jsonl, command-prompts.jsonl or holdout-prompts.jsonl except through `jq 'del(.prompt)'`. Do not open any file under the phase's scratch/runs/ folder except through `jq 'del(.prompt)'`, and do not read any *.log file there.
+
+THE OPERATOR'S CORE NEED (verbatim): "ais using skills are flexible but will more often use the besr correct workflows for said tasks".
+
+THE QUESTION
+The operator asks: "Do we need to run all this? Can't we already be somewhat certain about our logic?" Decide how many behaviour sessions this arm should still run.
+
+WHAT IS RUNNING (07:15, 2026-11-15)
+- Design: 36 blind fresh rows (20 fit, 8 skill-only, 8 decline), arms off and on (advisor switched off or on), two runs per arm, per runtime in the order off 1, on 1, off 2, on 2. Pre-registered Met: pooled one-sided sign test over gained and lost rows p < 0.05, the on arm starts no command on any decline row, and the sealed reach floor holds.
+- Codex was left out by the operator (hook approval did not land). Five runtimes: 144 sessions each, 720 in all, cap 900.
+- Progress: claude 87 lines, now in pass "off 2" (its run 1 is complete for both arms). devin 22 and dsh 21, both still in "off 1" at about 2.6 minutes a session, so about 6 hours each for all four passes. pi 8 and opencode 5, restarted at 07:01 on a faster model after the operator asked for one.
+- Nothing has been scored yet. Changing the plan now, logged, keeps the test pre-registered. Changing it after scoring would not.
+
+A CHEAP CHECK THE COORDINATOR RAN (deterministic advisor output over the 36 fresh rows, no model session, not an outcome)
+- Fit rows: the expected command is offered on 6 of 20 (4 of 10 start, 2 of 5 run, 0 of 5 ask). The expected owner skill is first on about 12 of 20. On 6 fit rows the advisor offers nothing.
+- Skill-only rows: the expected skill is first on 4 of 8.
+- Decline rows: a command is offered on 4 of 8 (both refusals, one question, one small edit), although the fit guards should withhold it.
+- Earlier, sealed holdout plain reach was 1 of 44 against 23 of 45 on tuned rows.
+
+THE OPTIONS
+A. Run all 720 as pre-registered.
+B. Keep run 1 only: stop each runtime after its "on 1" pass (claude is already past it, so its run 2 lines would be set aside unscored), amend the Met rule to one run per arm, log the amendment before scoring.
+C. Stop now and score what exists, accepting unequal coverage across runtimes.
+D. Something else you can justify, for example fewer runtimes, or keeping run 2 only on fast runtimes.
+
+ANSWER FORMAT (plain prose, no em dashes, no tables)
+First line: "RECOMMENDATION: <A|B|C|D>" and, for D, the exact plan.
+Then, in at most 300 words: what the remaining sessions can still tell the operator that the cheap check cannot, what each cut costs in power or fairness, whether the decline result (a command offered on 4 of 8 decline rows) changes the value of running, and the exact amendment text to log if a cut is chosen. Mark anything you infer rather than read as inference.

@@ -1,0 +1,7 @@
+## arenas after the run, 2026-11-16T04:08:05Z
+arena claude head=b765c7a14c5 remotes=0 status=0 stash=0 branches=worktrees/352-command-surfacing-research,
+arena opencode head=b765c7a14c5 remotes=0 status=0 stash=0 branches=worktrees/352-command-surfacing-research,
+arena pi head=b765c7a14c5 remotes=0 status=0 stash=0 branches=worktrees/352-command-surfacing-research,
+arena devin head=b765c7a14c5 remotes=0 status=0 stash=0 branches=worktrees/352-command-surfacing-research,
+arena dsh head=b765c7a14c5 remotes=0 status=0 stash=0 branches=worktrees/352-command-surfacing-research,
+devin and dsh carried a main ref the first fresh-skill-04 turn created (devin) and the hand restore recreated (dsh); deleted here, so every arena holds only the builder's branch

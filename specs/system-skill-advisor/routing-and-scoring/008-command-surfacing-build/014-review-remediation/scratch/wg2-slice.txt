@@ -1,0 +1,6 @@
+env -u AI_SESSION_CHILD npx vitest run tests/command-routing-slice.vitest.ts
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  09:45:32
+   Duration  4.98s (transform 160ms, setup 14ms, import 17ms, tests 4.89s, environment 0ms)

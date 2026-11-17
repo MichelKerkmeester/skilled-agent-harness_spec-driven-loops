@@ -1,0 +1,15 @@
+G1 scorer      {"scored":1,"unscoredRuns":[]}
+G2 runner      exit=2 run-command-behaviour.mjs: runtime vibe is not measured: no live turn is wired for it: live runs need an arena with credentials off and the behaviour arms are stopped
+G3 wiring      ["claude:ok","codex:ok","cursor:ok","devin:ok","vibe:ok"]
+G5 mirrors     workflow-lines=9 route-lines=3
+G6 brief 1     Advisor: live; use sk-doc → /create:readme (start) 0.94/0.12 pass.
+G6 brief 1     Command documents (read in full before taking one): /create:readme is .skilled/commands/create/readme.md.
+G6 brief 2     Advisor: live; use sk-git 0.82/0.16 pass.
+G6 brief 2     Also: /doctor:git setup (run)
+G6 brief 2     Command documents (read in full before taking one): /doctor:git is .skilled/commands/doctor/git.md.
+G6 brief 3     Advisor: no skill matched. For setup or health checks, run /doctor:setup.
+G6 brief 3     Command documents (read in full before taking one): /doctor:setup is .skilled/commands/doctor/setup.md.
+G11 label      lifecycle=startup runtime=claude records=2 labels=["Claude Code"]
+G11 label      lifecycle=startup runtime=pi records=2 labels=["pi"]
+G11 label      lifecycle=startup runtime=dsh records=2 labels=["dsh"]
+G11 label      lifecycle=startup runtime=vibe records=2 labels=["vibe"]

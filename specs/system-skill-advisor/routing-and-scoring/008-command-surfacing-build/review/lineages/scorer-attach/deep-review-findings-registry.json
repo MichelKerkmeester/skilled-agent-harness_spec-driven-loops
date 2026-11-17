@@ -1,0 +1,932 @@
+{
+  "sessionId": "fanout-scorer-attach-1794550137809-1ecgc7",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 5,
+    "timestamp": "2026-11-13T06:41:14.499Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Deep-loop depth gate is satisfied by any typed /deep: prefix, not the attached command",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 385,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Typed-command scan reads a document reference as the command",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 266,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Hub-attached commands skip the no-edit gate the command scorer applies",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 353,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Two docs added by this change state 45 TypeScript-served command rows; the generated artifact holds 46",
+      "file": ".skilled/skills/system-skill-advisor/README.md",
+      "line": 176,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "The runtime coverage sentence omits dsh while the canonical runtime set and the hook readers include it",
+      "file": ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+      "line": 142,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "COMMAND_POLICIES is generated, drift-guarded and documented as the attach-path policy lookup, but no code reads it",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 123,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "Dead empty conditional in primaryIntentBonus",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      "line": 750,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 7
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "cross_reference_integrity",
+      "dead_control_flow",
+      "dead_generated_surface",
+      "doc_code_drift",
+      "duplicate_policy_sources",
+      "false_command_match",
+      "finding_staleness",
+      "mutating_offer_without_gate",
+      "policy_misclassification",
+      "runtime_coverage",
+      "scope_leak",
+      "severity_inflation",
+      "wrong_command_offer"
+    ],
+    "ruledOut": [
+      "cross_reference_integrity",
+      "doc_code_drift",
+      "duplicate_policy_sources",
+      "finding_staleness",
+      "generated_table_drift",
+      "holdout_leak",
+      "policy_misclassification",
+      "prototype_pollution",
+      "scope_leak",
+      "severity_inflation",
+      "state_transition"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "wrong_command_offer": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "false_command_match": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "cross_runtime_behavior": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "generated_table_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "prototype_pollution": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "mutating_offer_without_gate": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "policy_misclassification": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "holdout_leak": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "tune_fix_report_holdout_paths": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "doc_code_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "cross_reference_integrity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "runtime_coverage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "hub_router_prose": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "dead_generated_surface": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dead_control_flow": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "duplicate_policy_sources": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "finding_staleness": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "severity_inflation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "scope_leak": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        ".skilled/skills/sk-doc/mode-registry.json"
+      ],
+      "bugClass": "generated_table_drift",
+      "disposition": "ruled_out",
+      "rationale": "table matches the authored registries exactly",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:14-42"
+      ],
+      "reason": "verified by direct data comparison"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "documented contract: only a single-mode route names one command unambiguously",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:359-364,394-399"
+      ],
+      "reason": "contract decision, not a defect"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "prototype_pollution",
+      "disposition": "ruled_out",
+      "rationale": "own-key lookup on both levels",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:247-249,375-377"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "policy_misclassification",
+      "disposition": "ruled_out",
+      "rationale": "executed whole-table invariant proves no unprompted mutating offer exists",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:64-122"
+      ],
+      "reason": "verified by executed comparison"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ],
+      "bugClass": "policy_misclassification",
+      "disposition": "ruled_out",
+      "rationale": "policy filter is present and exact",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1103-1110"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts"
+      ],
+      "bugClass": "holdout_leak",
+      "disposition": "ruled_out",
+      "rationale": "schema boundary exposes aggregate slices only",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:511-520,588-590"
+      ],
+      "reason": "verified by exact search and direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/install.md"
+      ],
+      "bugClass": "policy_misclassification",
+      "disposition": "ruled_out",
+      "rationale": "command doc states it prints writing commands without running them",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/install.md:5",
+        ".skilled/commands/doctor/_routes.yaml:626-645"
+      ],
+      "reason": "verified against the command own contract"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "cross_reference_integrity",
+      "disposition": "ruled_out",
+      "rationale": "every row is backed by a command file",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:14-42"
+      ],
+      "reason": "verified by executed existence check"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json"
+      ],
+      "bugClass": "cross_reference_integrity",
+      "disposition": "ruled_out",
+      "rationale": "owner copies the router tag exactly",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:560-575"
+      ],
+      "reason": "verified by executed comparison"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/README.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "option list matches the schema",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:283-303"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs"
+      ],
+      "bugClass": "duplicate_policy_sources",
+      "disposition": "ruled_out",
+      "rationale": "duplication is a cost, not a live divergence",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:1180-1223"
+      ],
+      "reason": "verified by executed comparison"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-019",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "finding_staleness",
+      "disposition": "ruled_out",
+      "rationale": "each finding verified against current file content",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:385",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:750-751"
+      ],
+      "reason": "verified by direct reread"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-020",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "severity_inflation",
+      "disposition": "ruled_out",
+      "rationale": "no new failing input found",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:353-388"
+      ],
+      "reason": "trigger condition unmet"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-021",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/scorer-attach"
+      ],
+      "bugClass": "scope_leak",
+      "disposition": "ruled_out",
+      "rationale": "all writes resolved under the lineage directory",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/scorer-attach/iterations/iteration-005.md"
+      ],
+      "reason": "verified by inventory"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        ".skilled/skills/sk-doc/mode-registry.json"
+      ],
+      "bugClass": "generated_table_drift",
+      "disposition": "ruled_out",
+      "rationale": "table matches the authored registries exactly",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:14-42"
+      ],
+      "proof": "verified by direct data comparison"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "documented contract: only a single-mode route names one command unambiguously",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:359-364,394-399"
+      ],
+      "proof": "contract decision, not a defect"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "prototype_pollution",
+      "disposition": "ruled_out",
+      "rationale": "own-key lookup on both levels",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:247-249,375-377"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "policy_misclassification",
+      "disposition": "ruled_out",
+      "rationale": "executed whole-table invariant proves no unprompted mutating offer exists",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:64-122"
+      ],
+      "proof": "verified by executed comparison"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ],
+      "bugClass": "policy_misclassification",
+      "disposition": "ruled_out",
+      "rationale": "policy filter is present and exact",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1103-1110"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts"
+      ],
+      "bugClass": "holdout_leak",
+      "disposition": "ruled_out",
+      "rationale": "schema boundary exposes aggregate slices only",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:511-520,588-590"
+      ],
+      "proof": "verified by exact search and direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/install.md"
+      ],
+      "bugClass": "policy_misclassification",
+      "disposition": "ruled_out",
+      "rationale": "command doc states it prints writing commands without running them",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/install.md:5",
+        ".skilled/commands/doctor/_routes.yaml:626-645"
+      ],
+      "proof": "verified against the command own contract"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "cross_reference_integrity",
+      "disposition": "ruled_out",
+      "rationale": "every row is backed by a command file",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:14-42"
+      ],
+      "proof": "verified by executed existence check"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json"
+      ],
+      "bugClass": "cross_reference_integrity",
+      "disposition": "ruled_out",
+      "rationale": "owner copies the router tag exactly",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:560-575"
+      ],
+      "proof": "verified by executed comparison"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/README.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "option list matches the schema",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:283-303"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs"
+      ],
+      "bugClass": "duplicate_policy_sources",
+      "disposition": "ruled_out",
+      "rationale": "duplication is a cost, not a live divergence",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:1180-1223"
+      ],
+      "proof": "verified by executed comparison"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-019",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "finding_staleness",
+      "disposition": "ruled_out",
+      "rationale": "each finding verified against current file content",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:385",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:750-751"
+      ],
+      "proof": "verified by direct reread"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-020",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "severity_inflation",
+      "disposition": "ruled_out",
+      "rationale": "no new failing input found",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:353-388"
+      ],
+      "proof": "trigger condition unmet"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-021",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/scorer-attach"
+      ],
+      "bugClass": "scope_leak",
+      "disposition": "ruled_out",
+      "rationale": "all writes resolved under the lineage directory",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/scorer-attach/iterations/iteration-005.md"
+      ],
+      "proof": "verified by inventory"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "finding_staleness",
+      "severity_inflation",
+      "scope_leak"
+    ],
+    "covered": [
+      "finding_staleness",
+      "severity_inflation",
+      "scope_leak"
+    ],
+    "ruledOut": [
+      "finding_staleness",
+      "severity_inflation",
+      "scope_leak"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

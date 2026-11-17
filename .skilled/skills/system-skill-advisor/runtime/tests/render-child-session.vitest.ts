@@ -16,6 +16,7 @@ import {
   HYGIENE_DIRECTIVE,
   renderAdvisorBrief,
 } from '../lib/render.js';
+import { isChildSession } from '../../../system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs';
 
 type AdvisorBriefResult = Parameters<typeof renderAdvisorBrief>[0];
 
@@ -84,6 +85,28 @@ describe('child session command brief', () => {
     ));
   });
 
+  it('takes the class from the row of the command it prints', () => {
+    vi.stubEnv('AI_SESSION_CHILD', '1');
+
+    const rendered = renderAdvisorBrief({
+      status: 'ok',
+      freshness: 'live',
+      recommendations: [{
+        skill: 'command-speckit-search',
+        kind: 'command',
+        command: '/doctor:speckit',
+        policy: 'run',
+        confidence: 0.85,
+        uncertainty: 0.2,
+        passes_threshold: true,
+      }],
+      metrics: { tokenCap: 80 },
+    });
+    const head = rendered.slice(0, rendered.indexOf(DIRECTIVES_LABEL));
+
+    expect(head).toContain('/doctor:speckit (parent-named only)');
+  });
+
   it('matches the non-child render when the variable is 0', () => {
     vi.stubEnv('AI_SESSION_CHILD', '0');
     const baseline = renderAdvisorBrief(advisorResult('command-create-readme'), { childSession: false });
@@ -116,5 +139,16 @@ describe('child session command brief', () => {
     expect(rendered).toBe(expectedBrief(
       'Advisor: live; use sk-git → /doctor:git hooks (parent-named only) 0.85/0.20 pass.',
     ));
+  });
+
+  // The renderer keeps its own literal so the runtime build has no edge into
+  // the spec kit, and this case keeps the two rules equal.
+  it.each(['1', '0', 'true', ''])('reads AI_SESSION_CHILD=%s as the spec gate does', (value) => {
+    vi.stubEnv('AI_SESSION_CHILD', value);
+
+    const rendered = renderAdvisorBrief(advisorResult('command-create-readme'));
+    const head = rendered.slice(0, rendered.indexOf(DIRECTIVES_LABEL));
+
+    expect(head.includes('(parent-named only)')).toBe(isChildSession({ AI_SESSION_CHILD: value }));
   });
 });

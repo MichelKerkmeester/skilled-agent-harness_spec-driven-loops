@@ -1,0 +1,26 @@
+### before-pre
+claude pre command=3 skill=1 improvised=0 none=12 noneActed=6 noOwner=8 unscored=0 loadRate=4 of 16 share=4 of 4
+codex pre command=0 skill=0 improvised=0 none=16 noneActed=15 noOwner=8 unscored=0 loadRate=0 of 16 share=0 of 0
+pi pre command=0 skill=3 improvised=4 none=9 noneActed=7 noOwner=8 unscored=0 loadRate=3 of 16 share=3 of 7
+devin pre command=3 skill=9 improvised=0 none=4 noneActed=4 noOwner=8 unscored=0 loadRate=12 of 16 share=12 of 12
+opencode pre command=5 skill=4 improvised=2 none=5 noneActed=4 noOwner=8 unscored=0 loadRate=9 of 16 share=9 of 11
+dsh pre command=8 skill=2 improvised=2 none=4 noneActed=4 noOwner=8 unscored=0 loadRate=10 of 16 share=10 of 12
+### after-pre
+claude pre command=4 skill=1 asked=0 askedActed=0 otherMode=0 improvised=0 none=11 noneActed=5 noOwner=8 unscored=0 loadRate=5 of 16 followedRate=5 of 16 share=5 of 5
+codex pre command=0 skill=0 asked=0 askedActed=0 otherMode=0 improvised=0 none=16 noneActed=15 noOwner=8 unscored=0 loadRate=0 of 16 followedRate=0 of 16 share=0 of 0
+pi pre command=3 skill=4 asked=0 askedActed=0 otherMode=0 improvised=2 none=7 noneActed=5 noOwner=8 unscored=0 loadRate=7 of 16 followedRate=7 of 16 share=7 of 9
+devin pre command=3 skill=9 asked=0 askedActed=0 otherMode=0 improvised=0 none=4 noneActed=4 noOwner=8 unscored=0 loadRate=12 of 16 followedRate=12 of 16 share=12 of 12
+opencode pre command=7 skill=3 asked=0 askedActed=0 otherMode=0 improvised=1 none=5 noneActed=4 noOwner=8 unscored=0 loadRate=10 of 16 followedRate=10 of 16 share=10 of 11
+dsh pre command=10 skill=2 asked=0 askedActed=0 otherMode=0 improvised=0 none=4 noneActed=4 noOwner=8 unscored=0 loadRate=12 of 16 followedRate=12 of 16 share=12 of 12
+### before-final
+claude post command=5 skill=1 improvised=0 none=10 noneActed=5 noOwner=8 unscored=0 loadRate=6 of 16 share=6 of 6
+devin post command=14 skill=1 improvised=0 none=1 noneActed=1 noOwner=8 unscored=0 loadRate=15 of 16 share=15 of 15
+dsh post command=11 skill=1 improvised=2 none=1 noneActed=1 noOwner=8 unscored=1 loadRate=12 of 15 share=12 of 14
+pi post command=5 skill=0 improvised=1 none=10 noneActed=7 noOwner=8 unscored=0 loadRate=5 of 16 share=5 of 6
+opencode post command=5 skill=2 improvised=3 none=6 noneActed=6 noOwner=8 unscored=0 loadRate=7 of 16 share=7 of 10
+### after-final
+claude post command=5 skill=1 asked=2 askedActed=2 otherMode=0 improvised=0 none=8 noneActed=3 noOwner=8 unscored=0 loadRate=6 of 16 followedRate=8 of 16 share=6 of 6
+devin post command=14 skill=1 asked=1 askedActed=1 otherMode=0 improvised=0 none=0 noneActed=0 noOwner=8 unscored=0 loadRate=15 of 16 followedRate=16 of 16 share=15 of 15
+dsh post command=12 skill=1 asked=0 askedActed=0 otherMode=0 improvised=0 none=2 noneActed=2 noOwner=8 unscored=1 loadRate=13 of 15 followedRate=13 of 15 share=13 of 13
+pi post command=9 skill=3 asked=0 askedActed=0 otherMode=0 improvised=0 none=4 noneActed=1 noOwner=8 unscored=0 loadRate=12 of 16 followedRate=12 of 16 share=12 of 12
+opencode post command=9 skill=4 asked=1 askedActed=1 otherMode=1 improvised=0 none=1 noneActed=1 noOwner=8 unscored=0 loadRate=13 of 16 followedRate=14 of 16 share=13 of 13

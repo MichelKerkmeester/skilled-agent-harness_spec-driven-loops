@@ -2,9 +2,10 @@
 // MODULE: Advisor Recommend Compiled-Route Option Tests
 // ───────────────────────────────────────────────────────────────
 
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 const mockedChild = vi.hoisted(() => ({ execFileSync: vi.fn() }));
@@ -15,6 +16,8 @@ import { MODE_COMMANDS } from '../../lib/command-attach.js';
 
 const COMPILED_ROUTING_FLAG = 'SPECKIT_COMPILED_ROUTING';
 const prompt = 'Implement a TypeScript feature with focused tests.';
+const HERE = dirname(fileURLToPath(import.meta.url));
+const CORPUS_PATH = resolve(HERE, '../../scripts/routing-accuracy/command-prompts.jsonl');
 
 type RecommendResponse = Awaited<ReturnType<typeof handleAdvisorRecommend>>;
 type ResponsePayload = {
@@ -23,6 +26,7 @@ type ResponsePayload = {
     cache?: { hit: boolean };
   };
 };
+type CorpusRow = { id: string; split: string; prompt: string };
 
 function responseData(response: RecommendResponse): ResponsePayload {
   return JSON.parse(response.content[0]?.text ?? '{}') as ResponsePayload;
@@ -151,6 +155,43 @@ describe('advisor_recommend compiled-route option', () => {
     expect(hubOnly.find((row) => row.skillId === 'sk-doc')?.command).toBe(command);
   });
 
+  it('lets the top hub carry its command under every request shape', async () => {
+    const corpusRow = readFileSync(CORPUS_PATH, 'utf8')
+      .split('\n')
+      .filter((line) => line.trim() !== '')
+      .map((line) => JSON.parse(line) as CorpusRow)
+      .find((row) => row.id === 'cmd-create-agent-plain-tune-01');
+    expect(corpusRow, 'the corpus holds the create-agent row').toBeDefined();
+    if (!corpusRow) return;
+    expect(corpusRow.split).toBe('tune');
+
+    const command = '/create:agent';
+    const mode = Object.entries(MODE_COMMANDS['sk-doc']).find(([, value]) => value === command)?.[0];
+    expect(mode, 'sk-doc declares a mode for /create:agent').toBeTruthy();
+    mockedChild.execFileSync.mockReturnValue(JSON.stringify({
+      action: 'route',
+      hubId: 'sk-doc',
+      selectionKind: 'single',
+      targets: [{ workflowMode: mode }],
+    }));
+
+    const topOnly = responseData(await handleAdvisorRecommend({
+      prompt: corpusRow.prompt,
+      options: { includeCompiledRoute: true, compiledRouteTopOnly: true },
+    })).data?.recommendations ?? [];
+    expect(topOnly[0]?.skillId).toBe('sk-doc');
+    expect(topOnly[0]?.command).toBe(command);
+    expect(topOnly.slice(1).map((row) => row.skillId)).toContain('create:agent');
+
+    const everyRow = responseData(await handleAdvisorRecommend({
+      prompt: corpusRow.prompt,
+      options: { includeCompiledRoute: true },
+    })).data?.recommendations ?? [];
+    expect(everyRow[0]?.skillId).toBe('sk-doc');
+    expect(everyRow[0]?.command).toBe(command);
+    expect(everyRow[0]?.command).toBe(topOnly[0]?.command);
+  });
+
   it('marks a hub that needs a mode without marking a hub that has none', async () => {
     mockedChild.execFileSync.mockReturnValue(JSON.stringify({
       action: 'defer',
@@ -160,13 +201,21 @@ describe('advisor_recommend compiled-route option', () => {
     }));
 
     const withModeFlag = responseData(await handleAdvisorRecommend({
-      prompt: 'Write a README for the ledger module',
+      prompt: 'Use the sk-doc skill to write a README for the ledger module',
       options: { includeCompiledRoute: true },
     })).data?.recommendations ?? [];
     const skDoc = withModeFlag.find((row) => row.skillId === 'sk-doc');
     expect(skDoc, 'sk-doc ranks for the request').toBeDefined();
     expect(skDoc?.needsMode).toBe(true);
     expect(skDoc?.command).toBeUndefined();
+
+    const withoutNamedHub = responseData(await handleAdvisorRecommend({
+      prompt: 'Write a README for the ledger module',
+      options: { includeCompiledRoute: true },
+    })).data?.recommendations ?? [];
+    const guessedSkDoc = withoutNamedHub.find((row) => row.skillId === 'sk-doc');
+    expect(guessedSkDoc, 'sk-doc still ranks without being named').toBeDefined();
+    expect(guessedSkDoc).not.toHaveProperty('needsMode');
 
     mockedChild.execFileSync.mockReturnValue(JSON.stringify({
       action: 'defer',

@@ -98,26 +98,42 @@ subfolders -> handlers for runtime behavior
 
 ```text
 lib/
++-- advisor-disabled.ts
 +-- advisor-runtime-values.ts
 +-- affordance-normalizer.ts
++-- caller-context.ts
 +-- command-attach.ts
++-- compiled-routing-flag.ts
++-- df-idf.ts
 +-- error-diagnostics.ts
 +-- freshness.ts
 +-- generation.ts
 +-- metrics.ts
 +-- normalize-adapter-output.ts
 +-- policy-plan.ts
++-- private-skill-target.cjs
++-- private-skill-target.ts
 +-- prompt-cache.ts
 +-- prompt-policy.ts
 +-- render.ts
++-- route-exclusions.ts
 +-- skill-advisor-brief.ts
 +-- source-cache.ts
 +-- subprocess.ts
++-- auth/
++-- compat/
 +-- cross-skill-edges/
++-- daemon/
++-- derived/
 +-- embedders/
++-- freshness/
 +-- ipc/
++-- lifecycle/
 +-- scorer/
++-- shadow/
 +-- shared/
++-- skill-graph/
++-- utils/
 `-- README.md
 ```
 
@@ -129,7 +145,7 @@ lib/
 |---|---|
 | `advisor-runtime-values.ts` | Runtime constants and defaults used by advisor paths. |
 | `affordance-normalizer.ts` | Normalizes prompt affordance signals before scoring. |
-| `command-attach.ts` | `attachCommand()` names the slash command for a hub recommendation whose compiled route picks one `workflowMode`. It reads the `MODE_COMMANDS` table that `derive-command-bridges.cjs` generates from each hub's `mode-registry.json`. A `system-deep-loop` command needs `/deep:` or a `DEPTH_WORDING` phrase in the prompt. The module has no imports. |
+| `command-attach.ts` | `attachCommand()` names the slash command for a hub recommendation whose compiled route picks one `workflowMode`. It reads the `MODE_COMMANDS` table that `derive-command-bridges.cjs` generates from each hub's `mode-registry.json`. A `system-deep-loop` command needs the same command typed in the prompt or a `DEPTH_WORDING` phrase, and a prompt that matches `NO_EDIT_REQUEST` gets no command. `commandOnlyMentioned()` reads how the prompt names a command, and a command the prompt refuses or asks about is not offered unless a later clause asks for it. A correction inside an existing document carries no `/create:readme`, `/create:feature-catalog` or `/create:manual-testing-playbook`. The module has no imports. |
 | `prompt-policy.ts` | Applies prompt-safe routing and rendering policy. |
 | `render.ts` | Renders advisor results into prompt-safe output. |
 | `skill-advisor-brief.ts` | Builds concise advisor recommendation briefs. |

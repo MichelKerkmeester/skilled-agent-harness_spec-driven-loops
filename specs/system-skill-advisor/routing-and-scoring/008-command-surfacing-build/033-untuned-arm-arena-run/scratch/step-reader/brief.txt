@@ -1,0 +1,18 @@
+Step reader for the untuned behaviour arm. Read-only judgment. Write no file.
+
+Repository: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Sessions: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/sessions/*.json (20 files). Each holds runtime, rowId, command and the session's raw records.
+Command documents: .skilled/commands/<namespace>/<name>.md for a command /<namespace>:<name>. A doctor command's document is .skilled/commands/doctor/<name>.md.
+
+For each session file, read the session and the document of its command, then answer three questions with yes, no or unclear:
+1. Setup: did the session ask the setup question or take the mode the document asks for before working?
+2. Folder or lock: did the session take the spec folder, lock or target the document requires before its first write?
+3. Output: did the session produce the output the document names, at the path or in the form it names?
+
+Give one quoted session line as evidence for each answer. Quote only assistant text or tool calls, never the user's opening prompt. Answer unclear when the session ended before the step could happen or the evidence does not settle it.
+
+Return exactly one block per session, in this form, and nothing else after the blocks except one final line `TOTAL setup=<yes count>/20 folder=<yes count>/20 output=<yes count>/20`:
+<runtime> <rowId> <command>
+  setup: <yes|no|unclear> "<quote>"
+  folder: <yes|no|unclear> "<quote>"
+  output: <yes|no|unclear> "<quote>"

@@ -1,0 +1,257 @@
+{
+  "type": "iteration",
+  "iteration": 4,
+  "run": 4,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "status": "complete",
+  "focus": "correctness and traceability recovery - token-level suffix and parser claim check",
+  "dimensions": [
+    "correctness",
+    "traceability"
+  ],
+  "filesReviewed": [
+    ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:92-106",
+    ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:208-245",
+    ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:425-495",
+    ".skilled/skills/system-skill-advisor/README.md:176"
+  ],
+  "findingsCount": 1,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "findingsNew": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "findingDetails": [
+    {
+      "id": "F005",
+      "severity": "P2",
+      "title": "The suffix list in the changelog is narrower than the parser",
+      "dimension": "correctness",
+      "file": ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:102",
+      "evidence": "MODE_SUFFIX also accepts :unattended and :with-context|phases|research; tests at command-attach-guards.vitest.ts:453,458 pin both.",
+      "recommendation": "Name the accepted suffix family, including :unattended and the :with-* modifiers, or say the list is the mode set rather than the whole accepted set.",
+      "disposition": "active",
+      "findingClass": "doc-claim-accuracy",
+      "scopeProof": "Changelog sentence, MODE_SUFFIX regex and two test expectations read at HEAD.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts"
+      ]
+    }
+  ],
+  "traceabilityChecks": {
+    "summary": {
+      "required": 2,
+      "executed": 4,
+      "pass": 2,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 2,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "notApplicable",
+        "gateClass": "hard",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [],
+        "summary": "No spec implementation surface maps to this docs area."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "gateClass": "hard",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [],
+        "summary": "No checklist.md; the brief and scope file are the checklist."
+      },
+      {
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [
+          ".skilled/skills/sk-doc/SKILL.md:29"
+        ],
+        "summary": "The sk-doc hub still names /create:sk-skill."
+      },
+      {
+        "protocolId": "agent_cross_runtime",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:40-50"
+        ],
+        "summary": "The Vibe adapter still proxies the shared handler."
+      }
+    ]
+  },
+  "newFindingsRatio": 1,
+  "noveltyJustification": "One new finding: a token-level comparison of the changelog suffix list against MODE_SUFFIX and its guard tests. This is the recovery pass after the stuck decision, and it resets the no-progress count with a real defect.",
+  "sessionId": "fanout-docs-merge-10-1794847584683-k2l24m",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-16T17:17:04.246Z",
+  "durationMs": 240000,
+  "graphEvents": [
+    {
+      "type": "node",
+      "id": "d-correctness",
+      "kind": "DIMENSION",
+      "label": "correctness"
+    },
+    {
+      "type": "node",
+      "id": "d-traceability",
+      "kind": "DIMENSION",
+      "label": "traceability"
+    },
+    {
+      "type": "node",
+      "id": "file-docs-readme",
+      "kind": "FILE",
+      "label": "docs-readme"
+    },
+    {
+      "type": "node",
+      "id": "file-docs-skill",
+      "kind": "FILE",
+      "label": "docs-skill"
+    },
+    {
+      "type": "node",
+      "id": "file-docs-changelog",
+      "kind": "FILE",
+      "label": "docs-changelog"
+    },
+    {
+      "type": "node",
+      "id": "file-docs-env",
+      "kind": "FILE",
+      "label": "docs-env"
+    },
+    {
+      "type": "node",
+      "id": "file-merge-skdoc-skill",
+      "kind": "FILE",
+      "label": "merge-skdoc-skill"
+    },
+    {
+      "type": "node",
+      "id": "file-merge-skdoc-router",
+      "kind": "FILE",
+      "label": "merge-skdoc-router"
+    },
+    {
+      "type": "node",
+      "id": "file-merge-doctor-presentation",
+      "kind": "FILE",
+      "label": "merge-doctor-presentation"
+    },
+    {
+      "type": "node",
+      "id": "file-merge-changelog",
+      "kind": "FILE",
+      "label": "merge-changelog"
+    },
+    {
+      "type": "node",
+      "id": "file-merge-routing-test",
+      "kind": "FILE",
+      "label": "merge-routing-test"
+    },
+    {
+      "type": "node",
+      "id": "f-F005",
+      "kind": "FINDING",
+      "label": "The suffix list in the changelog is narrower than the parser"
+    },
+    {
+      "type": "node",
+      "id": "ev-F005",
+      "kind": "EVIDENCE",
+      "label": ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:102"
+    },
+    {
+      "type": "edge",
+      "id": "e-i4-cov-correctness-docs-changelog",
+      "source": "d-correctness",
+      "target": "file-docs-changelog",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i4-cov-correctness-docs-readme",
+      "source": "d-correctness",
+      "target": "file-docs-readme",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i4-cov-traceability-docs-changelog",
+      "source": "d-traceability",
+      "target": "file-docs-changelog",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i4-cov-traceability-docs-readme",
+      "source": "d-traceability",
+      "target": "file-docs-readme",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i4-dim-F005",
+      "source": "f-F005",
+      "target": "d-correctness",
+      "relation": "IN_DIMENSION"
+    },
+    {
+      "type": "edge",
+      "id": "e-i4-file-F005",
+      "source": "f-F005",
+      "target": "file-docs-changelog",
+      "relation": "IN_FILE"
+    },
+    {
+      "type": "edge",
+      "id": "e-i4-ev-F005",
+      "source": "ev-F005",
+      "target": "f-F005",
+      "relation": "EVIDENCE_FOR"
+    }
+  ]
+}

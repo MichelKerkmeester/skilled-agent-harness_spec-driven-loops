@@ -1,0 +1,12 @@
+$ F='walk(if type=="object" then del(.startRate, .startedOfOffered, .started) else . end)'
+$ diff <(jq -S "$F" start-007-before.json) <(jq -S "$F" start-007-after.json)   -> exit 0, no lines
+$ diff <(jq -S "$F" arm-033-before.json) <(jq -S "$F" arm-033-after.json)       -> exit 0, no lines
+$ diff <(jq -S . start-007-before.json) <(jq -S . start-007-after.json) | grep -c '^>'   -> 35
+Only startRate, startedOfOffered and the byPolicy started counts moved.
+007 startedOfOffered before -> after: claude post 1 -> 0, pi post 1 -> 1, devin post 1 -> 0, dsh post 3 -> 0, others 0 -> 0
+
+REQ-003 against 034's record (the walk above deletes pooled started keys, so this compares them directly):
+$ Q='[to_entries[] | .key as $r | .value | to_entries[] | select(.value|type=="object") | {r:$r, a:.key, d:.value.declineStarts, s:.value.skillOnlyStarts, c:.value.commandStartRuns}]'
+$ diff <(jq -S "$Q" 034-scorer-heredoc-redirect-fix/scratch/summary-rescore.json) <(jq -S "$Q" 036-start-rate-fixed-rule/scratch/arm-033-after.json)   -> exit 0, over the 10 runtime and arm blocks
+pooled after: {"declineStarts":{"off":{"started":0,"runs":40},"on":{"started":0,"runs":80}},"skillOnlyStarts":{"off":{"started":0,"runs":40},"on":{"started":0,"runs":40}}}
+$ P='.pooled | {declineStarts, skillOnlyStarts}'; diff <(jq -S "$P" 034 .../summary-rescore.json) <(jq -S "$P" 036 .../arm-033-after.json)   -> exit 0

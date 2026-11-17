@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation",
+  "description": "Phase 14: review-remediation",
+  "keywords": [
+    "phase",
+    "review-remediation"
+  ],
+  "lastUpdated": "2026-11-13T09:04:30.212Z",
+  "specId": "014",
+  "folderSlug": "review-remediation",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring",
+    "008-command-surfacing-build"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "13-11-26_10-04__planned-phases-014-review-remediation-and-015.md"
+  ]
+}

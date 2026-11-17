@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "workflow measure soundness",
+      "phase 22 workflow measure soundness",
+      "followed rate",
+      "shell read counts as a load",
+      "workflow measure soundness plan",
+      "workflow measure soundness tasks",
+      "workflow measure soundness acceptance criteria",
+      "workflow measure soundness goal",
+      "workflow measure soundness implementation summary"
+    ],
+    "key_topics": [
+      "workflow",
+      "measure",
+      "soundness",
+      "phase",
+      "followed",
+      "rate",
+      "shell",
+      "read",
+      "counts",
+      "load",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "scratch/workflow-delta.txt",
+      "scratch/workflow-after-pre.json",
+      "scratch/workflow-after-final.json",
+      "scratch/workflow-before-pre.json",
+      "scratch/workflow-before-final.json",
+      "scratch/repro-before.txt",
+      ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+      ".skilled/skills/sk-doc/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-command-transcripts.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-transcript-score.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-offer.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-offer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-delta.txt",
+        "kind": "file",
+        "path": "scratch/workflow-delta.txt",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-after-pre.json",
+        "kind": "config",
+        "path": "scratch/workflow-after-pre.json",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-after-final.json",
+        "kind": "config",
+        "path": "scratch/workflow-after-final.json",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-before-pre.json",
+        "kind": "config",
+        "path": "scratch/workflow-before-pre.json",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-before-final.json",
+        "kind": "config",
+        "path": "scratch/workflow-before-final.json",
+        "source": "derived"
+      },
+      {
+        "name": "repro-before.txt",
+        "kind": "file",
+        "path": "scratch/repro-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The classifier matches a load only on a read tool or a skill tool, so a model that runs `cat` on the skill's entry document, or reads the command through `.pi/prompts/`, is counted as loading nothing",
+    "created_at": "2026-11-14T06:10:06Z",
+    "last_save_at": "2026-11-14T12:07:06.838Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:410bc693d9d8101897bfd29423d22ef877e871f28b12a338e0bc17985dd85a98",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "aea4f2f5c6790e276f678693f5f05027ca55247ae4725b5d76e33afa5034b5ea",
+      "plan.md": "d9dbb4f1474408c8225a1184b2d611b06944d4483581b3b682ec9fabee7f2c28",
+      "tasks.md": "dac4e63d43de7a207e3c6815ba62b2be690ab3901ef0f75118476629f78698ae",
+      "implementation-summary.md": "7c96e8bf2f84e5c36517723c6af2aa00dc2081866bec940cb65be0c529ea1d1d"
+    },
+    "last_active_at": null
+  }
+}

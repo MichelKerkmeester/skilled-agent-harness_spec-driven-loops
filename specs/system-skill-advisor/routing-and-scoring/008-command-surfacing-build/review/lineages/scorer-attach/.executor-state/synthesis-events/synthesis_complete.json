@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"scorer-attach","sessionId":"scorer-attach"},"data":{"mode":"review","totalIterations":5,"activeP0":0,"activeP1":0,"activeP2":7,"dimensionCoverage":1,"verdict":"PASS","releaseReadinessState":"converged","stopReason":"converged"}}

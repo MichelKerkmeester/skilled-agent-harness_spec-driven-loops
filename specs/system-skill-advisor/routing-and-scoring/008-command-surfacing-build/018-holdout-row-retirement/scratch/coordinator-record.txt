@@ -1,0 +1,28 @@
+Coordinator record for phase 018, written 2026-11-13. Base commit 11f3a30814 with the changes in the working tree.
+Every line below is output the coordinator read when the command ran, or a rerun at the time of writing.
+
+T003, as run (the two commands of the task line, no model session, the sealed file never opened or diffed):
+  grep -c '"id":"suppressed-codex-abstain"' HP            -> 1
+  grep -v '"id":"suppressed-codex-abstain"' HP > HP.tmp && mv HP.tmp HP
+  git diff --numstat -- HP | cut -f1,2                     -> 0 1
+  HCOUNT                                                   -> 65
+  HROW                                                     -> (nothing)
+  test -e HP.tmp                                           -> exit 1
+  VX tests/parity/scorer-eval-baseline-ratchet.vitest.ts   -> Tests 1 failed | 6 passed (7), in "fixture hashes match the pinned baseline (no silent fixture drift)", message "holdout changed"
+
+T002 and T007: probe-leak-scan.mjs exit status 0 on both runs.
+
+T004: capture-scorer-eval-baseline.mjs --write ran once, without --misses, stdout to /dev/null. No other capture with --write ran.
+
+Commands never run in this phase: any Read, cat, head, tail, git diff (other than --numstat), git show or git log -p on HP, capture-scorer-eval-baseline.mjs --misses, a model session (claude, codex, opencode, pi, devin, dsh), a daemon start, a write under the home folder.
+
+T008, rerun at the time of writing:
+  git diff --name-only BASE -- .skilled .opencode AGENTS.md:
+    .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+    .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl
+    .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json
+  untracked under .skilled .opencode: []
+  git diff --numstat BASE -- HP | cut -f1,2 -> 0 1
+  git diff --quiet BASE -- build-holdout.mjs skill-graph.json cli-external-orchestration lib tests -> exit 0
+  code files changed: []
+  package files changed: []

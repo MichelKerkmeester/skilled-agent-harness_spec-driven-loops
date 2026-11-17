@@ -1,0 +1,35 @@
+$ git rev-parse --short HEAD
+320e7b64d4
+$ FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":24,"attached":20,"combined":44,"total":44}
+{"own":8,"attached":15,"combined":23,"total":45}
+$ EVAL
+[160,50,21,5]
+$ TC
+exit=0
+$ VALL
+ Test Files  179 passed (179)
+      Tests  1712 passed | 8 skipped (1720)
+exit=0
+$ DALL
+ℹ pass 1164
+ℹ fail 0
+$ VSR
+ℹ pass 90
+ℹ fail 0
+$ SRD --check
+STATUS=OK session-reader-declarations: 20 file(s) current
+$ DERIVE
+fresh
+$ RV
+exit=0
+$ SRM
+[runtime-mirror-sync] PASS: 256 mirrors across 10 trees are in sync.
+exit=0
+$ G2SUM
+{"claude":"3 of 6","codex":"0 of 6","devin":"4 of 6","dsh":"3 of 4","opencode":"5 of 6","pi":"4 of 6"}
+$ HOLD
+{"holdout":44,"rows":44,"attachedRows":0,"typedRows":0}
+order: phase 015 also edits lib/command-attach.ts, scripts/routing-accuracy/capture-command-routing-baseline.mjs, command-routing-baseline.json, run-command-behaviour.mjs, score-command-transcripts.mjs, tests/command-transcript-score.vitest.ts, feature ARCHITECTURE.md and doctor-setup.yaml. Phase 014 builds every one of them first and is committed before any phase 015 task starts.

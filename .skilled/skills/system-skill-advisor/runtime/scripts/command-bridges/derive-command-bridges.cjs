@@ -955,7 +955,14 @@ function runtimeCompatibility(entries, metadata) {
 }
 
 function tsString(value) {
-  return `'${value.replaceAll('\\', '\\\\').replaceAll("'", "\\'")}'`;
+  const escaped = value
+    .replaceAll('\\', '\\\\')
+    .replaceAll("'", "\\'")
+    .replaceAll('\n', '\\n')
+    .replaceAll('\r', '\\r')
+    .replaceAll('\u2028', '\\u2028')
+    .replaceAll('\u2029', '\\u2029');
+  return `'${escaped}'`;
 }
 
 function tsArray(values) {
@@ -1148,13 +1155,11 @@ function runnablePolicyRecord(runnable, policies) {
 // to a single row.
 function renderCommandRows(entries, policies) {
   const rows = new Map();
-  const runnablePolicies = new Map();
   for (const entry of entries) {
     const { typescript, python } = entry.runtime;
     if (!typescript.enabled && !python.enabled) continue;
     const runnable = entryRunnable(entry);
     const policyRecord = runnablePolicyRecord(runnable, policies);
-    runnablePolicies.set(runnable, policyRecord.policy);
     const ids = new Set([entry.id]);
     if (typescript.enabled) ids.add(typescript.id);
     if (python.enabled) ids.add(python.id);
@@ -1202,9 +1207,6 @@ function renderCommandRows(entries, policies) {
       fields.push(`ownerSkillId: ${tsString(row.ownerSkillId)}`);
       return `  ${tsString(id)}: { ${fields.join(', ')} },`;
     });
-  const policyLines = [...runnablePolicies.entries()]
-    .sort(([left], [right]) => left.localeCompare(right))
-    .map(([runnable, policy]) => `  ${tsString(runnable)}: ${tsString(policy)},`);
   const trackedLines = [...tracked.entries()]
     .sort(([left], [right]) => left.localeCompare(right))
     .map(([runnable, row]) => (
@@ -1214,9 +1216,6 @@ function renderCommandRows(entries, policies) {
   return [
     'export const COMMAND_ROWS: Readonly<Record<string, CommandRow>> = {',
     ...rowLines,
-    '};',
-    "export const COMMAND_POLICIES: Readonly<Record<string, 'run' | 'start' | 'ask'>> = {",
-    ...policyLines,
     '};',
     'export const TRACKED_COMMANDS: Readonly<Record<string, TrackedCommand>> = {',
     ...trackedLines,
@@ -1412,4 +1411,5 @@ module.exports = {
   doctorLeadPhrases,
   identityViolations,
   commandPolicies,
+  tsString,
 };

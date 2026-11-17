@@ -1,0 +1,7 @@
+# NC-012 route evidence, rerun 2026-11-15 after lane R
+refusal: {"status":"ok","r0":{"skillId":"sk-doc","route":{"action":"route","selectionKind":"single","mode":"sk-create-readme"}}}
+question: {"status":"ok","r0":{"skillId":"sk-doc","route":{"action":"route","selectionKind":"single","mode":"sk-create-readme"}}}
+plain: {"status":"ok","r0":{"skillId":"sk-doc","route":{"action":"route","selectionKind":"single","mode":"sk-create-readme"}}}
+no-edit: {"status":"ok","r0":{"skillId":"sk-doc","route":{"action":"route","selectionKind":"single","mode":"sk-create-readme"}}}
+typo: {"status":"ok","r0":{"skillId":"sk-doc","route":{"action":"route","selectionKind":"single","mode":"sk-create-readme"}}}
+git: {"status":"ok","r0":{"skillId":"sk-git","route":{"action":null,"selectionKind":null,"mode":null}}}

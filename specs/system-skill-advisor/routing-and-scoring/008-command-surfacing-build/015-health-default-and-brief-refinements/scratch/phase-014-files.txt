@@ -1,0 +1,21 @@
+$ git log -1 --format='%h %s' -- specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation
+b3b5ae8314 fix(system-skill-advisor): close review pass one across the command surfacing code
+files of that commit that this phase's spec.md section 3 also names:
+.skilled/commands/doctor/assets/doctor-setup.yaml
+.skilled/hooks/shared/session-readers/README.md
+.skilled/skills/system-skill-advisor/ARCHITECTURE.md
+.skilled/skills/system-skill-advisor/README.md
+.skilled/skills/system-skill-advisor/runtime/lib/README.md
+.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+.skilled/skills/system-skill-advisor/runtime/lib/render.ts
+.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md
+.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+.skilled/skills/system-skill-advisor/runtime/tests/command-brief-golden.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts
+$ git status --short -- .skilled .opencode/plugins
+(end of status)

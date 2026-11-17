@@ -1,0 +1,11 @@
+## G diff --quiet BASE -- AGENTS.md
+exit 0
+## G diff --stat BASE -- package files (nothing below means none)
+## comment id search over added .skilled lines (nothing below means none)
+## G diff --name-only BASE -- .skilled .opencode
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+.skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts
+## G status --porcelain -- 019 folder (nothing below means clean)

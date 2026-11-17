@@ -17,13 +17,13 @@ version: 1.16.0.0
 
 Use this packet when the request involves:
 - Creating or rebuilding an OpenCode skill under `.skilled/skills/`.
-- Running `/create:skill` for a standalone skill with its own advisor identity.
+- Running `/create:sk-skill` for a standalone skill with its own advisor identity.
 - Running `/create:skill-parent` for a parent hub with nested workflow or surface packets.
 - Authoring or repairing `SKILL.md`, `README.md`, `references/`, `assets/`, `scripts/`, or `changelog/` for a skill package.
 - Creating parent-hub router files such as `mode-registry.json`, `hub-router.json`, `description.json`, or hub-level `graph-metadata.json`.
 - Validating and packaging a skill with `scripts/package_skill.py`.
 
-Keyword triggers: `create skill`, `/create:skill`, `/create:skill-parent`, `new skill`, `skill scaffold`, `SKILL.md scaffold`, `OpenCode skill`, `sk-skill`, `create sk-`, `reusable capability`, `reusable helper`, `starter reference docs`, `parent skill`, `parent hub`, `mode packet`, `nested workflow packet`, `package skill`.
+Keyword triggers: `create skill`, `/create:sk-skill`, `/create:skill-parent`, `new skill`, `skill scaffold`, `SKILL.md scaffold`, `OpenCode skill`, `sk-skill`, `create sk-`, `reusable capability`, `reusable helper`, `starter reference docs`, `parent skill`, `parent hub`, `mode packet`, `nested workflow packet`, `package skill`.
 
 ### When NOT to Use
 

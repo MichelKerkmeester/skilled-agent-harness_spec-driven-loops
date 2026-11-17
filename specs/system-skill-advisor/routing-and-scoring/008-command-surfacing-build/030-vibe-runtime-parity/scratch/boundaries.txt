@@ -1,0 +1,66 @@
+
+$ $G diff --quiet 70975514563 -- AGENTS.md
+exit=0
+
+$ $G diff --quiet 70975514563 -- specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation .vibe .skilled/hooks
+exit=0
+
+$ test "$($G rev-parse 70975514563:.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl)" = "$($G hash-object .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl)"
+exit=0
+
+$ test "$($G rev-parse 70975514563:.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl)" = "$($G hash-object .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl)"
+exit=0
+
+$ test "$($G rev-parse 70975514563:.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl)" = "$($G hash-object .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl)"
+exit=0
+
+$ $G diff --quiet 70975514563 -- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json
+exit=0
+
+$ $G diff --stat 70975514563 -- '*package.json' '*package-lock.json'
+exit=0
+
+$ $G diff 70975514563 -U0 -- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs .skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs .skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts .skilled/commands/doctor/scripts/hook-wiring-check.cjs .skilled/commands/doctor/scripts/tests/hook-wiring-check.test.cjs .skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs | rg -e '^+s*(//|#|*|/*)' | rg -c -e 'specs/|[0-9]{3}-[a-z]|\b(T|P|Q|A)[0-9]{3}\b|\bD[0-9]\b|\b(REQ|AC|CHK|ADR|SC|NFR)-[0-9]+|\bphase [0-9]+'
+exit=1
+
+$ rg -n -e '^s*(//|#|*|/*)' .skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts | rg -c -e 'specs/|[0-9]{3}-[a-z]|\b(T|P|Q|A)[0-9]{3}\b|\bD[0-9]\b|\b(REQ|AC|CHK|ADR|SC|NFR)-[0-9]+|\bphase [0-9]+'
+exit=1
+
+$ $G diff 70975514563 -U0 -- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md .skilled/commands/doctor/scripts/README.markdown .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md .skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml | rg '^+' | rg -c '\x{2014}'
+exit=1
+
+$ $G status --porcelain --untracked-files=all -- .skilled .opencode .vibe AGENTS.md
+ M .skilled/commands/doctor/_routes.yaml
+ M .skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml
+ M .skilled/commands/doctor/scripts/README.markdown
+ M .skilled/commands/doctor/scripts/hook-wiring-check.cjs
+ M .skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs
+ M .skilled/commands/doctor/scripts/tests/hook-wiring-check.test.cjs
+ M .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+ M .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md
+ M .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+ M .skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
+?? .skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts
+exit=0
+
+$ find "${TMPDIR%/}" -maxdepth 1 ( -name 'vibe-probe.*' -o -name 'vibe-matrix.*' ) | wc -l
+       1
+exit=0
+
+$ find /tmp/ -maxdepth 1 -name 'sa-*' | wc -l
+       0
+exit=0
+
+## Correction
+The three pattern checks above (comment ids in the code diff, comment ids in the new test file, em dashes in the doc diff) ran through a heredoc and eval that stripped their backslashes, so their exit=1 lines tested nothing and are void. They were rerun directly:
+- added comment lines in the ten changed code and test files: 58. Lines that also match the id pattern: none (rg exit 1).
+- comment lines in tests/hooks/vibe-prompt-advisor.vitest.ts: 25. Lines that match the id pattern: none (rg exit 1).
+- added lines in the four doc and workflow files that hold U+2014: none (rg exit 1).
+- added code comment lines that hold a semicolon: none (rg exit 1).
+The probe-folder count above printed 1. Two vibe-probe folders came back about 20 seconds after the T015 matrix run, written by each probe's scoped advisor daemon when it shut down (generation file reason SIGTERM). Both were removed. isolated-probe.sh now stops the daemon that holds files in its scope and waits for it before removing the scope. The matrix was rerun with it: the output is byte-equal to the first after run, and the count 40 seconds later is 0.
+The status lists the fifteen changed FILES and the one new file vibe-prompt-advisor.vitest.ts, sixteen in all, nothing else under .skilled, .opencode, .vibe or AGENTS.md.

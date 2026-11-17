@@ -1,0 +1,25 @@
+codex lines: 24
+custom tool call name:exec: 53
+custom tool calls: 53
+custom tool calls with an input string: 53
+exec bodies the planned helper reads no command from: 8
+no-command body shape: const cmd = ""; const r = await tools.exec_command({cmd,workdir:"",max_output_tokens:5000}); text(r.output); text(""); : 1
+no-command body shape: const cmds = [ ["", ""], ["", ""], ["", ""] ]; const rs = await Promise.all(cmds.map(async ([k,cmd]) => [k, await tools.exec_command({cmd,workdir:"",max_output_: 1
+no-command body shape: const cmds = [ ["", ""], ["", ""], ["", ""] ]; const rs = await Promise.all(cmds.map(async ([n,cmd]) => [n, await tools.exec_command({cmd,workdir:"",max_output_: 1
+no-command body shape: const cmds = [ ["", ""], ["", ""], ["", ""], ["", ""] ]; const rs = await Promise.all(cmds.map(async ([k,cmd]) => [k, await tools.exec_command({cmd,workdir:"",m: 1
+no-command body shape: const r = await tools.web__run({search_query:[ {q:""}, {q:""}, {q:""}, {q:""} ],response_length:""}); text(r); : 3
+no-command body shape: const t = ALL_TOOLS.filter(x => /github.*(workflow|action)|workflow.*github|repository.*(get|list)/i.test(x.name+""+x.description)); text(t); : 1
+of those, read before the first write: 3
+owned rows: 16
+path now:none: 16
+path with the body read:command: 1
+path with the body read:none: 13
+path with the body read:skill: 2
+sessions read: 24
+sessions whose wrote fact changes: 0
+sessions with a shell read of a skill or command document: 3
+shell events: 53
+shell events with no command text: 53
+started now: 0
+started with the body read: 0
+tools called inside exec bodies: exec_command=52, web__run=3

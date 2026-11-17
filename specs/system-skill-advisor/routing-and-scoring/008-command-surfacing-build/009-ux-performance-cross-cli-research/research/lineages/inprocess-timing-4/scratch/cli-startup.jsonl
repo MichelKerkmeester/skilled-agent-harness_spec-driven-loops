@@ -1,0 +1,11 @@
+{"label":"cli-version","run":0,"elapsedMs":33.568667000000005,"status":0,"stdoutTail":"0.0.0"}
+{"label":"cli-version","run":1,"elapsedMs":32.495541,"status":0,"stdoutTail":"0.0.0"}
+{"label":"cli-version","run":2,"elapsedMs":36.091207999999995,"status":0,"stdoutTail":"0.0.0"}
+{"label":"cli-version","run":3,"elapsedMs":32.729916,"status":0,"stdoutTail":"0.0.0"}
+{"label":"cli-version","run":4,"elapsedMs":32.157792,"status":0,"stdoutTail":"0.0.0"}
+{"label":"cli-version","run":5,"elapsedMs":35.21687499999999,"status":0,"stdoutTail":"0.0.0"}
+{"label":"cli-version","run":6,"elapsedMs":37.78983299999999,"status":0,"stdoutTail":"0.0.0"}
+{"label":"cli-version","run":7,"elapsedMs":39.26904200000001,"status":0,"stdoutTail":"0.0.0"}
+{"label":"cli-version","run":8,"elapsedMs":39.93237499999998,"status":0,"stdoutTail":"0.0.0"}
+{"label":"cli-version","run":9,"elapsedMs":31.818167000000017,"status":0,"stdoutTail":"0.0.0"}
+{"label":"cli-version","summary":true,"n":10,"median":33.568667000000005,"worst":39.93237499999998,"best":31.818167000000017}

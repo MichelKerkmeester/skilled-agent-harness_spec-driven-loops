@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix",
+  "description": "Phase 34: scorer-heredoc-redirect-fix",
+  "keywords": [
+    "phase",
+    "scorer-heredoc-redirect-fix"
+  ],
+  "lastUpdated": "2026-11-16T06:00:39.104Z",
+  "specId": "034",
+  "folderSlug": "scorer-heredoc-redirect-fix",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring",
+    "008-command-surfacing-build"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "16-11-26_06-30__planned-phase-034-the-scorer-redirect-parser.md",
+    "16-11-26_07-00__fixed-the-scorer-redirect-parser-to-strip-heredoc.md"
+  ]
+}

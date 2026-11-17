@@ -1,0 +1,67 @@
+VERDICT: FIX FIRST
+
+Nothing was run or changed. Every claim below comes from reading the diff, the code around it and the stored `PH/scratch/switch-probe.txt`. No finding moves the pooled p directly, but one makes a printed target number wrong, so it comes before the 864 sessions.
+
+**P1. `unpaired` misses a row that one arm scored and the other never scored.**
+- Where: `RAD/score-command-transcripts.mjs:2006` builds `shared` from rows present in both arms' `pairCounts`. The unequal-runs check at `:2016` only sees those rows.
+- Input: on `claude`, `fresh-fit-03` scores run 1 and run 2 in `off`. Both `on` lines stay unscored, for example `arm_delivery_mismatch` twice, or a locator failure after the one rerun.
+- Result: the row is in no count and `unpaired` prints 0. The spec's Gain and loss rule and A8 say a row whose arms scored a different number of runs is counted in `unpaired`, and 2 against 0 is such a row. `rows + unpaired` then falls below 28 for that runtime with nothing printed to say why.
+- Related gap: a runtime with no shared row at all gets no `paired` block, so all its rows vanish the same way. The spec's edge case allows this only for a runtime that scored one arm.
+- Fix: in `project`, walk the union of both arms' `pairCounts` keys and treat a missing side as `runs: 0`, so it lands in `unpaired`. `NEWF` already strips `unpaired`, so the stored comparison in T031 is unaffected.
+
+**P2. A decline row is kept out of the pairing only by having no owner, and nothing checks that on the blind file.**
+- Where: `score-command-transcripts.mjs:1326` gives a row an owner from `expected_top`, and `:1855` pairs every row whose path is not `noOwner`. `row_type` is not consulted.
+- Input: the blind author writes `"expected_top":"sk-doc"` on `fresh-decline-small-edit-01`. T036's verify does not check that decline rows carry null `expected_command`, `expected_policy` and `expected_top`.
+- Result: that row joins the followed rate and the sign test on all six runtimes, against the Units rule. This becomes a P1 the moment the file carries such a row.
+- Fix: add to T036's verify that `jq -c 'del(.prompt) | select(.row_type=="decline") | [.expected_command,.expected_policy,.expected_top]'` prints only `[null,null,null]`, and the same null check for `expected_command` on skill-only rows.
+
+**P2. The new `CLAUDE.md` pointer is invisible to the restore.**
+- Where: `RAD/prepare-behaviour-arena.mjs:302-307` writes it and excludes it. `RAD/worktree-restore.mjs:48` and `:108` restore only paths `git status --porcelain` lists.
+- Input: a Claude turn in `off` run 1 edits or deletes `CLAUDE.md`, which is plausible on a row about agent instructions.
+- Result: no changed path, no restore, and every later turn in that arena reads the altered rules. The contamination starts at one point in the off, on, off, on order, so it does not fall on both arms alike.
+- Fix: have the runner compare `CLAUDE.md` with `@AGENTS.md\n` after each turn and rewrite it, or add a `cat CLAUDE.md` check per arena after each pass in T042.
+
+**P2. The skill-only half of the B-5 trigger is not printed pooled.**
+- Where: `score-command-transcripts.mjs:1834-1835` prints `x of y` strings per runtime and arm. `pooledPair` at `:2040` sums no starts.
+- Input: `on` has 3 skill-only starts over 90 scored runs and `off` has 3 over 96.
+- Result: the reader must add 12 strings by hand, and the raw counts compare unequal denominators. A15 says the pooled counts are compared.
+- Fix: add `declineStarts` and `skillOnlyStarts` as `{started, runs}` per arm to `pooled`.
+
+**P2. README wording.**
+- `RAD/README.md:135` still says the rate is read "on tuned rows with one run each", which is false for this arm.
+- `RAD/README.md:107` says the two arms "differ in nothing else", which overclaims while T032 is blocked.
+- Fix: scope the first sentence to the stored arms and soften the second until the switch fix lands.
+
+**Question 1: does each change match its task line?**
+Every task from T004 to T030, T052 and T053 does what its line says. Four do slightly more, none harmfully:
+- T018 puts the count in a helper `countPairRow` (`:1843`) instead of one inline line. The verifier already noted it.
+- T009 adds a `typeof row.id !== 'string'` guard and a `FRESH_ROW_COUNT` constant.
+- T030 adds a prose section "Two arms on one commit" beside the three table rows. The verifier noted it.
+- T019 changes `rows` from `shared.length` to the paired count. The task asks for this, and it is the same value on the stored one-run logs.
+
+No task does less than its line. The gap in P1 follows T019's own wording ("a shared row"), so the task was met and the spec was not. The second `childEnv(ghConfig)` call at `run-command-behaviour.mjs:324` takes no arm. It only lists the session store, so T006's "one call" holds for the turn.
+
+**Question 2: can the arms differ in anything but the advisor?**
+Apart from the known direct-call issue, I found one path, the `CLAUDE.md` item above. The rest is symmetric:
+- **Environment:** the two `SYSTEM_` names set for `off` are the only difference (`run-command-behaviour.mjs:998-1010`). The strip removes the same inherited names from both arms.
+- **Row set and order:** both arms get the same sorted ids (`:739`), the same prompt lookup and the same cap.
+- **Model and arena:** the argv and working directory do not read the arm.
+- **Offer replay and delivery check:** the replay at `:1319` runs with the runner's own environment in both arms (`command-offer.mjs:114`). The delivery read does not read the arm.
+- **Run number:** it is written only from `--run`, and a fresh row is refused without it.
+- **What the switch silences:** on Claude it returns only the advisor hook's output (`hooks/claude/user-prompt-submit.ts:301`). The spec-gate and context-nudge hooks are separate entries.
+- **Daemon started inside an off turn:** it does not carry the switch into on turns, because the launcher filters the daemon's environment through an allowlist (`.skilled/bin/system-skill-advisor-launcher.cjs:312-315`). The stored probe agrees: a fresh-folder direct call under the switch printed no disabled line.
+
+One asymmetry is by design and already a printed limit: on Codex an on-arm run whose brief did not arrive reads `unknown` and is scored (`command-offer.mjs:296-298`), while on Claude, Pi, Devin and DSH it is dropped.
+
+**Question 3: does the scorer print the target as written?**
+Yes, except for the `unpaired` gap and the hand-pooled skill-only starts.
+- **`signTestP` (`:1743-1755`):** it sums exact binomial coefficients from `gained` to `n` in BigInt and rounds half up to four decimals.
+  - 15 gained, 5 lost: the tail is 15504 + 4845 + 1140 + 190 + 20 + 1 = 21700 over 1048576 = 0.020695, printed 0.0207.
+  - 12 gained, 6 lost: the tail is 18564 + 8568 + 3060 + 816 + 153 + 18 + 1 = 31180 over 262144 = 0.118942, printed 0.1189.
+  - 0 and 0 returns null.
+- **Pooling:** `pooledPair` sums `gained`, `lost`, ties and `unpaired` over the runtimes and tests the pooled counts (`:2040-2058`).
+- **Gain, loss and ties:** they compare followed counts over equal run counts (`:2016-2024`), with followed meaning `command`, `skill` or `asked` (`:1846`).
+- **Delivery mismatch:** the run is left unscored before the session is loaded (`:1567-1569`). It still counts in `runs`, `unscored` and `unscoredRuns`, and it leaves the pairing.
+- **Unknown delivery:** it is scored and counted in `deliveryUnknown` for every line, scored or not (`:1955`). A line with no `briefDelivered` field is treated the same way.
+- **Unpaired row:** it is counted only when both arms scored the row at least once (the P1 item above).
+- **Start counts:** decline and skill-only starts print per runtime and arm with their denominators, and each start is listed with its row, run and command.

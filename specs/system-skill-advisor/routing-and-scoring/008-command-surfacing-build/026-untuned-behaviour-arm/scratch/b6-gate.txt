@@ -1,0 +1,16 @@
+$ git -c core.fsmonitor=false show HEAD:AGENTS.md | rg -c -F 'If you take the command, read its document in full and follow it'
+1
+exit 0
+$ git -c core.fsmonitor=false show HEAD:AGENTS.md | rg -c -F 'To take the command, read its document'
+exit 1
+$ rg -c '^- \*\*Command in the brief\.\*\*' AGENTS.md
+1
+exit 0
+$ node .skilled/commands/doctor/scripts/agents-md-check.cjs --json | jq -r .status
+OK
+exit 0
+$ node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check
+[gate1-pointer-sync] PASS: 1 instruction files carry the root Gate 1 and Gate 2 pointers.
+exit 0
+$ git -c core.fsmonitor=false status --porcelain -- AGENTS.md .cursor/rules/skill-routing.md
+exit 0

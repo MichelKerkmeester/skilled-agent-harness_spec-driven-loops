@@ -1,0 +1,167 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "run": 2,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "status": "complete",
+  "focus": "security and maintainability - retained cross-hub token footprint and the generation gate's dotted-phrase blind spot",
+  "dimensions": ["security", "maintainability"],
+  "filesReviewed": [
+    ".skilled/skills/sk-doc/ROUTER.md:126-142",
+    ".skilled/skills/sk-doc/ROUTER.md:218-220",
+    ".skilled/skills/sk-doc/graph-metadata.json:340-395",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json:1",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:12-122",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts:7-35",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts:60-105",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:6-18",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/scratch/readme-probes.txt:1-11",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/spec.md:60-111"
+  ],
+  "findingsCount": 5,
+  "findingsSummary": {"P0": 0, "P1": 0, "P2": 5},
+  "findingsNew": {"P0": 0, "P1": 0, "P2": 2},
+  "findingDetails": [
+    {
+      "id": "F004",
+      "severity": "P2",
+      "title": "The narrowing removes the git and gate words but leaves the same cross-hub token class from the other named hooks",
+      "dimension": "security",
+      "file": ".skilled/skills/sk-doc/ROUTER.md:219",
+      "evidence": "The prose at ROUTER.md:136-137 says git-* and spec-gate are not named because their names carry git, hooks and gate. After the removal the bag has no git and no gate, but hooks remains via codex-global-hooks-check (graph-metadata.json:358-359), and the retained names still inject env, secret, session, handover, decision, capture, dispatch, subagent, advisor, freshness, overlay, completion and quality into sk-doc's bag. Probe line 8 shows git hooks still reaches sk-git, so no present misroute is proven.",
+      "recommendation": "Reword the prose to the words actually removed, and either drop the remaining cross-domain names or restrict them to a full-phrase match that cannot fire on a bare hook-system prompt.",
+      "disposition": "active",
+      "findingClass": "class-of-bug",
+      "scopeProof": "Tokenized all 345 committed signals with the scorer rule (text.ts:31-35); intersected the 39 tokens from the 44 hook phrases with the 13 other hubs' bags; collisions exist for nine hubs.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/sk-doc/ROUTER.md",
+        ".skilled/skills/sk-doc/graph-metadata.json",
+        ".skilled/skills/system-spec-kit/graph-metadata.json",
+        ".skilled/skills/cli-external-orchestration/graph-metadata.json"
+      ]
+    },
+    {
+      "id": "F005",
+      "severity": "P2",
+      "title": "The generator's carry rule and its --check gate share a blind spot for dotted phrases",
+      "dimension": "maintainability",
+      "file": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:57",
+      "evidence": "declaredPhrases keeps only phrases containing a space, so security.md and sync.md are never candidates. --check reports missing=0 while SECURITY_POLICY declares security.md as its only keyword (ROUTER.md:218) and neither generated artifact contains it. The packet probe still shows a SECURITY.md request topping sk-doc, so reach holds but the gate cannot verify it.",
+      "recommendation": "Teach the writer to carry dotted filename phrases, or add a gate case that flags an intent with zero carryable phrases; document the exclusion explicitly.",
+      "disposition": "active",
+      "findingClass": "matrix/evidence",
+      "scopeProof": "Computed declared vocabularies with and without the includes(' ') filter: 381 total, 328 multi-word; security.md and sync.md are excluded; ran --check --hub sk-doc and read missing=0.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs",
+        ".skilled/skills/sk-doc/ROUTER.md",
+        ".skilled/skills/sk-doc/graph-metadata.json"
+      ]
+    }
+  ],
+  "traceabilityChecks": {
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "pass",
+        "gateClass": "hard",
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/sk-doc/ROUTER.md:218-220",
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/spec.md:100-111"
+        ],
+        "summary": "The narrowed vocabulary matches the phase scope; F005 is a contract gap in a named integration surface."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "gateClass": "hard",
+        "applicable": false,
+        "evidence": ["specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/acceptance-criteria.md:56-58"],
+        "summary": "No packet checklist belongs to this review pass."
+      },
+      {
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "gateClass": "overlay",
+        "applicable": true,
+        "evidence": [".skilled/skills/sk-doc/ROUTER.md:1-14"],
+        "summary": "No agent definition is touched; the probes still route the three README families."
+      },
+      {
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "gateClass": "overlay",
+        "applicable": false,
+        "evidence": ["git diff --name-only 6d50afe6f39 2f3f893c153 -- .skilled/skills/sk-doc/ROUTER.md"],
+        "summary": "No agent file is in the diff."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "gateClass": "overlay",
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:51-97",
+          ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json:1"
+        ],
+        "summary": "Two-stage contract holds for multi-word phrases; F005 names the dotted-phrase case the gate cannot see."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "overlay",
+        "applicable": true,
+        "evidence": ["specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/scratch/readme-probes.txt:2-11"],
+        "summary": "Committed probes read; no playbook scenario executed."
+      }
+    ]
+  },
+  "newFindingsRatio": 0.4,
+  "noveltyJustification": "Two first-time P2s (F004, F005) against five total findings. F004 comes from a token intersection over the committed graph and the scorer's stop-word rule; F005 comes from computing the generator's declared set with and without its space filter. Neither repeats F001-F003.",
+  "sessionId": "fanout-routing-11-1794851543294-mlt3r6",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-16T18:14:54Z",
+  "durationMs": 420000,
+  "graphEvents": [
+    {"type": "node", "id": "d-security", "kind": "DIMENSION", "label": "security"},
+    {"type": "node", "id": "d-maintainability", "kind": "DIMENSION", "label": "maintainability"},
+    {"type": "node", "id": "file-sk-doc-router", "kind": "FILE", "label": ".skilled/skills/sk-doc/ROUTER.md"},
+    {"type": "node", "id": "file-sk-doc-graph-metadata", "kind": "FILE", "label": ".skilled/skills/sk-doc/graph-metadata.json"},
+    {"type": "node", "id": "file-advisor-skill-graph", "kind": "FILE", "label": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"},
+    {"type": "node", "id": "file-generate-router-intent-signals", "kind": "FILE", "label": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs"},
+    {"type": "node", "id": "file-scorer-text", "kind": "FILE", "label": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts"},
+    {"type": "node", "id": "file-scorer-lexical", "kind": "FILE", "label": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts"},
+    {"type": "node", "id": "file-scorer-lane-registry", "kind": "FILE", "label": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts"},
+    {"type": "node", "id": "file-039-probes", "kind": "FILE", "label": "039-main-sk-doc-routing-repair/scratch/readme-probes.txt"},
+    {"type": "node", "id": "f-004", "kind": "FINDING", "label": "Retained named hooks leave the cross-hub token class, including hooks"},
+    {"type": "node", "id": "f-005", "kind": "FINDING", "label": "Generator carry rule and --check share a dotted-phrase blind spot"},
+    {"type": "node", "id": "ev-004", "kind": "EVIDENCE", "label": ".skilled/skills/sk-doc/ROUTER.md:219"},
+    {"type": "node", "id": "ev-005", "kind": "EVIDENCE", "label": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:57"},
+    {"type": "edge", "id": "e2-cov-security-router", "source": "d-security", "target": "file-sk-doc-router", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-security-metadata", "source": "d-security", "target": "file-sk-doc-graph-metadata", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-security-graph", "source": "d-security", "target": "file-advisor-skill-graph", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-security-generator", "source": "d-security", "target": "file-generate-router-intent-signals", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-security-text", "source": "d-security", "target": "file-scorer-text", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-security-lexical", "source": "d-security", "target": "file-scorer-lexical", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-security-registry", "source": "d-security", "target": "file-scorer-lane-registry", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-security-probes", "source": "d-security", "target": "file-039-probes", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-maint-router", "source": "d-maintainability", "target": "file-sk-doc-router", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-maint-metadata", "source": "d-maintainability", "target": "file-sk-doc-graph-metadata", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-maint-graph", "source": "d-maintainability", "target": "file-advisor-skill-graph", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-maint-generator", "source": "d-maintainability", "target": "file-generate-router-intent-signals", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-maint-text", "source": "d-maintainability", "target": "file-scorer-text", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-maint-lexical", "source": "d-maintainability", "target": "file-scorer-lexical", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-maint-registry", "source": "d-maintainability", "target": "file-scorer-lane-registry", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-maint-probes", "source": "d-maintainability", "target": "file-039-probes", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-in-dim-004", "source": "f-004", "target": "d-security", "relation": "IN_DIMENSION"},
+    {"type": "edge", "id": "e2-in-dim-005", "source": "f-005", "target": "d-maintainability", "relation": "IN_DIMENSION"},
+    {"type": "edge", "id": "e2-in-file-004", "source": "f-004", "target": "file-sk-doc-router", "relation": "IN_FILE"},
+    {"type": "edge", "id": "e2-in-file-005", "source": "f-005", "target": "file-generate-router-intent-signals", "relation": "IN_FILE"},
+    {"type": "edge", "id": "e2-evidence-004", "source": "ev-004", "target": "f-004", "relation": "EVIDENCE_FOR"},
+    {"type": "edge", "id": "e2-evidence-005", "source": "ev-005", "target": "f-005", "relation": "EVIDENCE_FOR"}
+  ]
+}

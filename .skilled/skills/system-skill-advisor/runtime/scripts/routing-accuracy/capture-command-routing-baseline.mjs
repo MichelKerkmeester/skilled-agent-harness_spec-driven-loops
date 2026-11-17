@@ -63,6 +63,7 @@ const DIST = resolve(HERE, '../../dist/runtime');
 const FUSION_MODULE = resolve(DIST, 'lib/scorer/fusion.js');
 const WORKSPACE_ROOT_MODULE = resolve(DIST, 'lib/utils/workspace-root.js');
 const COMMAND_ATTACH_MODULE = resolve(DIST, 'lib/command-attach.js');
+const PROMPT_POLICY_MODULE = resolve(DIST, 'lib/prompt-policy.js');
 const COMPILED_ROUTING_FLAG_MODULE = resolve(DIST, 'lib/compiled-routing-flag.js');
 const SEMANTIC_SHADOW_MODULE = resolve(DIST, 'lib/scorer/lanes/semantic-shadow.js');
 const SKILL_GRAPH_DB_MODULE = resolve(DIST, 'lib/skill-graph/skill-graph-db.js');
@@ -79,6 +80,21 @@ const COMMAND_DOC_SUFFIX = '.md';
 // second derivation of it that could disagree with the first.
 const COMPILED_ROUTE_CLI = '.skilled/bin/compiled-route.cjs';
 const COMPILED_ROUTE_TIMEOUT_MS = 5000;
+
+// The reproducible projection writes or deletes exactly these names. They are
+// saved and restored around a score because a harness imports this module and
+// scores in process, so a projection left behind would change the caller.
+const PROJECTED_ENV_NAMES = [
+  'SYSTEM_SKILL_ADVISOR_DB_DIR',
+  'SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC',
+  'VITEST',
+  'SPECKIT_SKILL_ADVISOR_FORCE_LOCAL',
+  'PYTHONDONTWRITEBYTECODE',
+  'SPECKIT_ADVISOR_LANE_WEIGHTS_JSON',
+  'SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON',
+  'SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW',
+  'SPECKIT_PRIVATE_SKILL_ROOTS',
+];
 
 // A real capture talks to the same embedder the recommend path does, so the probe
 // asks that daemon directly and names the model family the routing vectors come
@@ -209,6 +225,26 @@ function readCorpus(path) {
   return rows;
 }
 
+// A fit row shares the corpus with every other row, so a prompt that already
+// exists would count one request twice. Case and whitespace do not make two
+// prompts different. The message names the two ids and never the text, because
+// an error must not republish a prompt.
+export function assertFitRowsUnique(rows) {
+  const folded = rows.map((row) => ({
+    id: row.id,
+    isFit: row.row_type === 'skill-only' || row.row_type === 'decline',
+    text: row.prompt.toLowerCase().trim().replace(/\s+/g, ' '),
+  }));
+  for (let index = 0; index < folded.length; index += 1) {
+    if (!folded[index].isFit) continue;
+    for (let other = 0; other < folded.length; other += 1) {
+      if (other !== index && folded[other].text === folded[index].text) {
+        throw new Error(`fit row ${folded[index].id} repeats row ${folded[other].id}`);
+      }
+    }
+  }
+}
+
 // Commands live exactly two levels deep, `<namespace>/<name>.md`, and become
 // `/<namespace>:<name>`. Anything directly in the commands root is a document
 // rather than a command, and deeper nesting is a command's own assets.
@@ -277,6 +313,13 @@ function isBridgeOwnerPair(idToCommand, ids, expected) {
   return Boolean(trailing && trailing.command === expected && trailing.skillId === first);
 }
 
+// A fit row asks whether the head carries a command where none fits its request,
+// so the head carries one when the leading recommendation reaches a command, or
+// when a typed command or hub route delivered one.
+function headCarriesCommand(landed, delivered) {
+  return landed[0] != null || delivered !== undefined;
+}
+
 // The scorer reports ranked recommendations when the projection produced a
 // list, and only a top pick otherwise; both shapes have to be scorable.
 function recommendationIds(result) {
@@ -307,6 +350,22 @@ function addAttachedRow(tally, ownHit, attachedHit) {
   tally.total += 1;
   if (ownHit) tally.own += 1;
   if (attachedHit) tally.attached += 1;
+}
+
+// A plain row leaves the path to its command at one stage, and the tally says
+// which stage that was.
+function emptyStageTally() {
+  return { total: 0, own: 0, ownerLed: 0, routed: 0, withCommand: 0, attached: 0, neither: 0 };
+}
+
+function addStageRow(tally, facts) {
+  tally.total += 1;
+  if (facts.own) tally.own += 1;
+  if (facts.ownerLed) tally.ownerLed += 1;
+  if (facts.routed) tally.routed += 1;
+  if (facts.withCommand) tally.withCommand += 1;
+  if (facts.attached) tally.attached += 1;
+  if (facts.neither) tally.neither += 1;
 }
 
 function attachedTallyJson(tally) {
@@ -345,6 +404,10 @@ function readHeadSha(workspaceRoot) {
 export async function scoreCommandCorpus(options = {}) {
   const realEmbedding = options.realEmbedding === true;
   const RealDate = Date;
+  // A harness imports this module and scores in process, so the projection must
+  // not outlive the call: every name it writes or deletes is saved here and put
+  // back in the `finally`, with an absent name deleted again.
+  const savedEnv = new Map(PROJECTED_ENV_NAMES.map((name) => [name, process.env[name]]));
   // The projection needs an existing, empty cache directory, and that directory
   // is scratch space this run owns. It is created before the `try` so a failure
   // to create it has nothing left to remove, and removed in the `finally` so
@@ -392,7 +455,7 @@ export async function scoreCommandCorpus(options = {}) {
     if (!existsSync(FUSION_MODULE)) {
       throw new Error(`built scorer file missing: ${FUSION_MODULE}`);
     }
-    for (const modulePath of [COMMAND_ATTACH_MODULE, COMPILED_ROUTING_FLAG_MODULE]) {
+    for (const modulePath of [COMMAND_ATTACH_MODULE, COMPILED_ROUTING_FLAG_MODULE, PROMPT_POLICY_MODULE]) {
       if (!existsSync(modulePath)) {
         throw new Error(`built command-attach file missing: ${modulePath}`);
       }
@@ -403,7 +466,8 @@ export async function scoreCommandCorpus(options = {}) {
     // build is reported as such rather than as a module-resolution failure.
     const { scoreAdvisorPrompt } = await import(pathToFileURL(FUSION_MODULE).href);
     const { findAdvisorWorkspaceRoot } = await import(pathToFileURL(WORKSPACE_ROOT_MODULE).href);
-    const { attachCommand, typedCommandForTop, TRACKED_COMMANDS } = await import(pathToFileURL(COMMAND_ATTACH_MODULE).href);
+    const { attachCommand, typedCommandForTop, TRACKED_COMMANDS, routeNeedsMode } = await import(pathToFileURL(COMMAND_ATTACH_MODULE).href);
+    const { extractMetalinguisticSkillMentions } = await import(pathToFileURL(PROMPT_POLICY_MODULE).href);
     const { COMPILED_ROUTING_HUBS } = await import(pathToFileURL(COMPILED_ROUTING_FLAG_MODULE).href);
     const workspaceRoot = findAdvisorWorkspaceRoot(HERE, { maxDepth: 14, sentinel: SENTINEL });
 
@@ -430,7 +494,15 @@ export async function scoreCommandCorpus(options = {}) {
     const commandNames = readCommandFileNames(workspaceRoot);
     const commandSet = new Set(commandNames);
     const { bridgeCounts, idToCommand } = readBridgeMap(BRIDGES_JSON);
+    // A hub route attaches commands whose TypeScript bridge is disabled, so the
+    // scorer-id map cannot name their owner and every bridge entry is the only
+    // complete command-to-owner source.
+    const commandOwner = new Map();
+    for (const entry of JSON.parse(readFileSync(BRIDGES_JSON, 'utf8')).entries ?? []) {
+      commandOwner.set(entry.command, entry.skillId);
+    }
     const corpus = readCorpus(CORPUS_JSONL);
+    assertFitRowsUnique(corpus);
 
     // A label naming a command that does not exist would silently score as a
     // permanent miss, so it fails the capture instead of deflating a metric.
@@ -471,9 +543,19 @@ export async function scoreCommandCorpus(options = {}) {
     const typedAttached = emptyAttachedTally();
     const typedRowResults = {};
     const plainAttached = { tune: emptyAttachedTally(), holdout: emptyAttachedTally() };
+    const plainStages = { tune: emptyStageTally(), holdout: emptyStageTally() };
+    // A fit row asks a question of its own, whether the head carries a command
+    // where none fits, so its counts sit apart from every recall tally and never
+    // reach a row map.
+    const fitTally = {
+      skillOnly: { carried: 0, total: 0 },
+      decline: { carried: 0, total: 0, byKind: {} },
+    };
     const plainAttachedByFamily = new Map();
     const sameOwnerAmbiguous = [];
     let falseOfferAttached = 0;
+    const needsModeRows = [];
+    let needsModeFloor = 0;
 
     for (const row of corpus) {
       // The recommend path supplies the semantic lane's prompt vector through this
@@ -492,38 +574,81 @@ export async function scoreCommandCorpus(options = {}) {
       // command, which the behaviour run line records as `offeredCommand`.
       const offered = landed.some((command) => command !== null);
       const isPlainSplit = row.row_type === 'plain' && (row.split === 'tune' || row.split === 'holdout');
+      // A holdout row's outcome is what the split exists to keep unseen, so
+      // only its counts are published.
+      const publishRow = row.split !== 'holdout';
 
       // A hub can name the slash command its route would take, which is reach a
       // reader otherwise gets only by translating the workflow mode by hand.
       const topId = ids[0];
-      const attached = topId !== undefined && COMPILED_ROUTING_HUBS.has(topId)
-        ? attachCommand(topId, readCompiledRoute(workspaceRoot, topId, row.prompt), row.prompt)
+      const route = topId !== undefined && COMPILED_ROUTING_HUBS.has(topId)
+        ? readCompiledRoute(workspaceRoot, topId, row.prompt)
         : undefined;
+      const attached = route !== undefined ? attachCommand(topId, route, row.prompt) : undefined;
       const attachedHit = attached !== undefined && attached === expected && !top1Hit;
       // A typed command is the reader's own wording, so it outranks the hub's
       // route in the delivered command, the same precedence the handler applies.
       const delivered = typedCommandForTop(topId, row.prompt)?.command ?? attached;
+      // A fit row is counted here and then leaves the loop, so no recall, reach,
+      // silence or agreement count below describes it and no row map publishes
+      // it. A decline row also rolls up under the kind it declares.
+      if (row.row_type === 'skill-only' || row.row_type === 'decline') {
+        const carries = headCarriesCommand(landed, delivered);
+        const tally = row.row_type === 'skill-only' ? fitTally.skillOnly : fitTally.decline;
+        tally.total += 1;
+        if (carries) tally.carried += 1;
+        if (row.row_type === 'decline') {
+          const kind = row.decline_kind;
+          if (tally.byKind[kind] === undefined) tally.byKind[kind] = { carried: 0, total: 0 };
+          tally.byKind[kind].total += 1;
+          if (carries) tally.byKind[kind].carried += 1;
+        }
+        continue;
+      }
+      // A head shows that label only when nothing else names a command, so a row
+      // counts only when neither the typed command nor the route delivered one. A
+      // silent row that carries it shows a label nobody asked for.
+      const needsMode = route !== undefined && delivered === undefined && routeNeedsMode(topId, route, extractMetalinguisticSkillMentions(row.prompt));
+      // The list names rows with their outcome, so a holdout row stays out of it
+      // as it stays out of the row maps.
+      if (needsMode && publishRow) needsModeRows.push(row.id);
       const deliveredPolicy = delivered === undefined ? null : TRACKED_COMMANDS[delivered]?.policy ?? null;
       const deliveredHit = !top1Hit && delivered === expected && deliveredPolicy !== null;
 
       if (row.row_type === 'typed') {
         addRow(typed, top1Hit, top3Hit);
         addAttachedRow(typedAttached, top1Hit, deliveredHit);
-        typedRowResults[row.id] = {
-          expected_command: expected,
-          top: ids[0] ?? null,
-          carried: top1Hit ? 'own' : deliveredHit ? 'attached' : null,
-          command: delivered ?? null,
-          policy: deliveredPolicy,
-        };
+        if (publishRow) {
+          typedRowResults[row.id] = {
+            expected_command: expected,
+            top: ids[0] ?? null,
+            carried: top1Hit ? 'own' : deliveredHit ? 'attached' : null,
+            command: delivered ?? null,
+            policy: deliveredPolicy,
+          };
+        }
       }
       if (isPlainSplit) {
         addRow(plain[row.split], top1Hit, top3Hit);
         addAttachedRow(plainAttached[row.split], top1Hit, attachedHit);
         const family = attachedFamilyTally(plainAttachedByFamily, expected);
         if (family) addAttachedRow(family[row.split], top1Hit, attachedHit);
+        // `own` and `ownerLed` split the rows and `neither` is the remainder,
+        // while the counted stages nest from owner-led down to attached.
+        const owningSkill = expected === null ? undefined : commandOwner.get(expected);
+        const ownerLed = !top1Hit && owningSkill !== undefined && owningSkill === topId;
+        const routed = ownerLed && route !== undefined;
+        const withCommand = routed && attached !== undefined;
+        addStageRow(plainStages[row.split], {
+          own: top1Hit,
+          ownerLed,
+          routed,
+          withCommand,
+          attached: attachedHit,
+          neither: !top1Hit && !ownerLed,
+        });
       }
-      if (attached !== undefined) attachedRows[row.id] = attached;
+      if (publishRow && attached !== undefined) attachedRows[row.id] = attached;
       if (row.row_type === 'typed' && result?.ambiguous === true && isBridgeOwnerPair(idToCommand, ids, expected)) {
         sameOwnerAmbiguous.push(row.id);
       }
@@ -534,7 +659,9 @@ export async function scoreCommandCorpus(options = {}) {
         else if (isPlainSplit) addRow(commandTally.plain[row.split], top1Hit, top3Hit);
       }
 
-      rows[row.id] = { expected_command: expected, top: ids[0] ?? null, top1: top1Hit, top3: top3Hit, offered };
+      if (publishRow) {
+        rows[row.id] = { expected_command: expected, top: ids[0] ?? null, top1: top1Hit, top3: top3Hit, offered };
+      }
 
       const isSlashVariant = row.row_type === 'slash-variant';
       // Silence is the requirement for a near miss, a prompt that must not
@@ -546,6 +673,7 @@ export async function scoreCommandCorpus(options = {}) {
         falseOfferTotal += 1;
         if (offered) falseOfferCount += 1;
         if (attached !== undefined) falseOfferAttached += 1;
+        if (needsMode) needsModeFloor += 1;
       }
 
       if (isSlashVariant) {
@@ -629,16 +757,30 @@ export async function scoreCommandCorpus(options = {}) {
           tune: attachedTallyJson(plainAttached.tune),
           holdout: attachedTallyJson(plainAttached.holdout),
         },
+        plain_stages: {
+          tune: plainStages.tune,
+          holdout: plainStages.holdout,
+        },
         plain_by_family: plainByFamily,
+        fit: {
+          skillOnly: fitTally.skillOnly,
+          decline: fitTally.decline,
+        },
         false_offer_attached: { count: falseOfferAttached, total: falseOfferTotal },
         typed: attachedTallyJson(typedAttached),
         typedRows,
         typed_same_owner_ambiguous: sameOwnerAmbiguous.sort(),
         attachedRows,
+        needs_mode_floor: { count: needsModeFloor, total: falseOfferTotal },
+        needsModeRows: needsModeRows.sort(),
       },
     };
   } finally {
     globalThis.Date = RealDate;
+    for (const [name, value] of savedEnv) {
+      if (value === undefined) delete process.env[name];
+      else process.env[name] = value;
+    }
     // Removal comes last, after every read that needs the directory has
     // finished; `force` keeps an already-swept directory from turning a
     // completed capture into a failure.

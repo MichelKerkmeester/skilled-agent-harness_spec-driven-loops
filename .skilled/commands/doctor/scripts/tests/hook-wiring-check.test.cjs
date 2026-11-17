@@ -21,6 +21,8 @@ const test = require('node:test');
 const SCRIPT = path.resolve(__dirname, '..', 'hook-wiring-check.cjs');
 const CLAUDE_FILE = '.claude/settings.json';
 const CLAUDE_MARKER = '.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js';
+const VIBE_FILE = '.vibe/hooks.toml';
+const VIBE_COMMAND = 'node \\"$(git rev-parse --show-toplevel)/.skilled/hooks/session-lifecycle/vibe/turn-start.mjs\\"';
 
 function fixture(t) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'hook-wiring-check-'));
@@ -35,6 +37,27 @@ function fixture(t) {
 function writeClaudeSettings(root, hooks) {
   fs.mkdirSync(path.join(root, '.claude'), { recursive: true });
   fs.writeFileSync(path.join(root, CLAUDE_FILE), JSON.stringify({ hooks }, null, 2));
+}
+
+// A case can replace the match line of the text it writes, and null drops it.
+// The line is written as the case spells it, so a case chooses its quoting and
+// any trailing comment.
+function writeVibeHooks(root, text, matchLine) {
+  fs.mkdirSync(path.join(root, '.vibe'), { recursive: true });
+  let body = text;
+  if (matchLine === null) body = body.replace(/^match = .*\n/m, '');
+  else if (typeof matchLine === 'string') body = body.replace(/^match = .*$/m, matchLine);
+  fs.writeFileSync(path.join(root, VIBE_FILE), body);
+}
+
+// The Vibe hook file is TOML, so one block is built as the lines the check reads.
+// A block omits its match line when the case passes null for it, and otherwise
+// writes the line as the case spells it.
+function vibeBlock(type, commandLine, match = 'match = "main"') {
+  const lines = ['[[hooks]]', 'name = "turn-start"', `type = "${type}"`];
+  if (match !== null) lines.push(match);
+  lines.push('timeout = 20.0', commandLine);
+  return lines.join('\n');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -57,7 +80,7 @@ test('passes a runtime whose prompt entry is wired', (t) => {
   const f = fixture(t);
   writeClaudeSettings(f.root, {
     UserPromptSubmit: [{
-      hooks: [{ type: 'command', command: `node ${CLAUDE_MARKER}` }],
+      hooks: [{ type: 'command', command: `bash -c 'cd "$PWD" && node ${CLAUDE_MARKER}'` }],
     }],
   });
   const text = f.run();
@@ -68,6 +91,301 @@ test('passes a runtime whose prompt entry is wired', (t) => {
   assert.equal(JSON.parse(json.out).checks.find((check) => check.runtime === 'claude').status, 'ok');
 });
 
+test('passes a prompt entry that starts node on the script path', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{
+      hooks: [{ type: 'command', command: `node ${CLAUDE_MARKER}` }],
+    }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('passes a prompt entry that starts node by its absolute path', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{
+      hooks: [{ type: 'command', command: `/opt/homebrew/bin/node ${CLAUDE_MARKER}` }],
+    }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('names a runtime whose entry only names node as an argument', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{
+      hooks: [{ type: 'command', command: `echo node ${CLAUDE_MARKER}` }],
+    }],
+  });
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing claude \.claude\/settings\.json$/m);
+});
+
+test('names a runtime whose entry only echoes the script path', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{
+      hooks: [{ type: 'command', command: 'echo hooks/claude/user-prompt-submit.js' }],
+    }],
+  });
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing claude \.claude\/settings\.json$/m);
+});
+
+test('names a runtime whose entry only describes the script', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{
+      hooks: [{
+        type: 'command',
+        command: 'node some-other-hook.js',
+        description: 'hooks/claude/user-prompt-submit.js',
+      }],
+    }],
+  });
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing claude \.claude\/settings\.json$/m);
+});
+
+test('passes a launch that starts node through env', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{ hooks: [{ type: 'command', command: `env node ${CLAUDE_MARKER}` }] }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('passes a launch that starts node through an absolute env', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{ hooks: [{ type: 'command', command: `/usr/bin/env node ${CLAUDE_MARKER}` }] }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('passes a launch that runs node inside a bash login command', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{ hooks: [{ type: 'command', command: `bash -lc "node ${CLAUDE_MARKER}"` }] }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('passes a launch that runs node inside a zsh command', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{ hooks: [{ type: 'command', command: `zsh -c 'node ${CLAUDE_MARKER}'` }] }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('passes a launch that gives node a flag', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{ hooks: [{ type: 'command', command: `node --no-warnings ${CLAUDE_MARKER}` }] }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('passes a launch whose separator sticks to the previous word', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{ hooks: [{ type: 'command', command: `cd "\$PWD"&& node ${CLAUDE_MARKER}` }] }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('passes a launch whose semicolon sticks to the previous word', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{ hooks: [{ type: 'command', command: `cd /tmp; node ${CLAUDE_MARKER}` }] }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('names a runtime whose entry echoes a quoted command', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{ hooks: [{ type: 'command', command: `echo "x && node ${CLAUDE_MARKER}"` }] }],
+  });
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing claude \.claude\/settings\.json$/m);
+});
+
+// Vibe keeps its hooks in TOML and only a `pre_agent` entry for the main agent
+// that starts node on the turn-start script runs before the prompt, so each
+// shape below must not count.
+test('passes the Vibe turn-start entry under pre_agent', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock('pre_agent', 'command = "' + VIBE_COMMAND + '"'));
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok vibe');
+});
+
+test('passes a Vibe entry whose match selector names the main agent', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock('pre_agent', 'command = "' + VIBE_COMMAND + '"', 'match = "main"'));
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok vibe');
+});
+
+test('passes a Vibe entry with no match line', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock('pre_agent', 'command = "' + VIBE_COMMAND + '"', null));
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok vibe');
+});
+
+test('names Vibe when its turn-start entry matches another agent', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock('pre_agent', 'command = "' + VIBE_COMMAND + '"'), 'match = "agents_spawn"');
+  const result = f.run();
+  assert.equal(result.code, 1, result.out.trim());
+  assert.match(result.out, /^hook-missing vibe \.vibe\/hooks\.toml$/m);
+});
+
+test('names Vibe when its match selector is a regular expression', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock('pre_agent', 'command = "' + VIBE_COMMAND + '"', 'match = "re:main|other"'));
+  const result = f.run();
+  assert.equal(result.code, 1, result.out.trim());
+  assert.match(result.out, /^hook-missing vibe \.vibe\/hooks\.toml$/m);
+});
+
+test('names Vibe when its match selector is a literal string', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock(
+    'pre_agent',
+    'command = "' + VIBE_COMMAND + '"',
+    "match = 'agents_spawn'",
+  ));
+  const result = f.run();
+  assert.equal(result.code, 1, result.out.trim());
+  assert.match(result.out, /^hook-missing vibe \.vibe\/hooks\.toml$/m);
+});
+
+test('names Vibe when its match line carries a trailing comment', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock(
+    'pre_agent',
+    'command = "' + VIBE_COMMAND + '"',
+    'match = "agents_spawn"  # subagents',
+  ));
+  const result = f.run();
+  assert.equal(result.code, 1, result.out.trim());
+  assert.match(result.out, /^hook-missing vibe \.vibe\/hooks\.toml$/m);
+});
+
+test('passes a Vibe match selector written as a literal string', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock(
+    'pre_agent',
+    'command = "' + VIBE_COMMAND + '"',
+    "match = 'main'",
+  ));
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok vibe');
+});
+
+test('names Vibe when its turn-start entry runs under post_agent', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock('post_agent', 'command = "' + VIBE_COMMAND + '"'));
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing vibe \.vibe\/hooks\.toml$/m);
+});
+
+test('names Vibe when its turn-start command is commented out', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock(
+    'pre_agent',
+    '# command = "' + VIBE_COMMAND + '"\ncommand = "node other-hook.mjs"',
+  ));
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing vibe /m);
+});
+
+test('names Vibe when only a name mentions the script', (t) => {
+  const f = fixture(t);
+  const block = vibeBlock('pre_agent', 'command = "node other-hook.mjs"')
+    .replace('name = "turn-start"', 'name = "hooks/session-lifecycle/vibe/turn-start.mjs"');
+  writeVibeHooks(f.root, block);
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing vibe /m);
+});
+
+test('names Vibe when its folder holds no hooks file', (t) => {
+  const f = fixture(t);
+  fs.mkdirSync(path.join(f.root, '.vibe'), { recursive: true });
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing vibe /m);
+});
+
+test('reads a commented hooks header as the start of the next block', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, [
+    vibeBlock('pre_agent', 'command = "' + VIBE_COMMAND + '"'),
+    '[[hooks]]  # turn end',
+    'name = "turn-end"',
+    'type = "post_agent"',
+    'command = "node other-hook.mjs"',
+  ].join('\n'));
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok vibe');
+});
+
+test("does not credit a later table's command to the hooks block before it", (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, [
+    vibeBlock('pre_agent', 'command = "node other-hook.mjs"'),
+    '[[notes]]',
+    'command = "' + VIBE_COMMAND + '"',
+  ].join('\n'));
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing vibe \.vibe\/hooks\.toml$/m);
+});
+
+test('reads a spaced hooks header', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock('pre_agent', 'command = "' + VIBE_COMMAND + '"')
+    .replace('[[hooks]]', '[[ hooks ]]'));
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok vibe');
+});
+
 test('skips a runtime whose folder is absent', (t) => {
   const f = fixture(t);
   const text = f.run();
@@ -75,5 +393,52 @@ test('skips a runtime whose folder is absent', (t) => {
   assert.equal(text.out, '');
   const json = f.run('--json');
   assert.equal(json.code, 0);
-  assert.deepEqual(JSON.parse(json.out).checks.map((check) => check.status), ['skipped', 'skipped', 'skipped', 'skipped']);
+  assert.deepEqual(JSON.parse(json.out).checks.map((check) => check.status), ['skipped', 'skipped', 'skipped', 'skipped', 'skipped']);
 });
+
+// Launch shapes a shell runs, each with node standing where a command starts.
+for (const [label, build] of [
+  ['env unsets a variable first', (m) => `env -u AI_SESSION_CHILD node ${m}`],
+  ['node preloads a module', (m) => `node -r ./preload.cjs ${m}`],
+  ['node preloads a module attached to the flag', (m) => `node -r./preload.cjs ${m}`],
+  ['the command runs in a subshell', (m) => `(node ${m})`],
+  ['the command runs in a brace group', (m) => `{ node ${m}; }`],
+  ['exec replaces the shell', (m) => `exec node ${m}`],
+  ['the command builtin starts node', (m) => `command node ${m}`],
+  ['node runs in a conditional', (m) => `if true; then node ${m}; fi`],
+  ['nohup starts node', (m) => `nohup node ${m}`],
+  ['a background command comes first', (m) => `cd /tmp & node ${m}`],
+  ['a backslash continues the line', (m) => `node \\\n${m}`],
+]) {
+  test(`passes a launch where ${label}`, (t) => {
+    const f = fixture(t);
+    writeClaudeSettings(f.root, {
+      UserPromptSubmit: [{ hooks: [{ type: 'command', command: build(CLAUDE_MARKER) }] }],
+    });
+    const text = f.run();
+    assert.equal(text.code, 0);
+    assert.equal(text.out.trim(), 'ok claude');
+  });
+}
+
+// Text that names node and the script without a shell ever running it.
+for (const [label, build] of [
+  ['a quote never closes', (m) => `echo "x; node ${m}`],
+  ['node only checks the syntax', (m) => `node --check ${m}`],
+  ['node evaluates inline code', (m) => `node -e "1" ${m}`],
+  ['node evaluates code attached to the flag', (m) => `node -e1 ${m}`],
+  ['node evaluates code given with an equals sign', (m) => `node --eval=1 ${m}`],
+  ['node prints an expression given with an equals sign', (m) => `node --print=1 ${m}`],
+  ['the launch sits in a comment', (m) => `true # ; node ${m}`],
+  ['a shell script takes its own -c argument', (m) => `bash ./x.sh -c "node ${m}"`],
+]) {
+  test(`names a runtime when ${label}`, (t) => {
+    const f = fixture(t);
+    writeClaudeSettings(f.root, {
+      UserPromptSubmit: [{ hooks: [{ type: 'command', command: build(CLAUDE_MARKER) }] }],
+    });
+    const text = f.run();
+    assert.equal(text.code, 1);
+    assert.match(text.out, /^hook-missing claude \.claude\/settings\.json$/m);
+  });
+}

@@ -1,0 +1,1 @@
+{"ok":false,"code":"codex-hooks-unapproved","runtime":"codex","measurable":false,"repair":"open /hooks in a Codex session at /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-behaviour-arenas/fresh-codex and approve each entry"}

@@ -9,10 +9,10 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────
 
-import { statSync } from 'node:fs';
+import { existsSync, statSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { performance } from 'node:perf_hooks';
-import { resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isAdvisorRuntime, type AdvisorRuntime } from '../../runtime/lib/advisor-runtime-values.js';
 import { findAdvisorWorkspaceRoot } from '../../runtime/lib/utils/workspace-root.js';
@@ -65,11 +65,27 @@ export const SETUP_WORDING = new RegExp(
     + String.raw`|hooks?|tools|tooling|toolchain|skilled))\b`,
   'i',
 );
+// The source and the built module sit at different depths below .skilled, so the
+// resolver is found by walking up rather than by counting parent hops. A missing
+// resolver answers as if no switch were set, as every adapter does.
+function hookFlagsResolverPath(): string | null {
+  let folder = dirname(fileURLToPath(import.meta.url));
+  while (true) {
+    const resolverPath = join(folder, 'hooks', 'shared', 'hook-flags.cjs');
+    if (existsSync(resolverPath)) return resolverPath;
+    const parent = dirname(folder);
+    if (parent === folder) return null;
+    folder = parent;
+  }
+}
+
 function skillAdvisorHookEnabled(): boolean {
   try {
-    const { isHookEnabled } = requireFromAdvisor(
-      fileURLToPath(new URL('../../../../../../hooks/shared/hook-flags.cjs', import.meta.url)),
-    ) as { isHookEnabled?: (concern: string) => boolean };
+    const resolverPath = hookFlagsResolverPath();
+    if (resolverPath === null) return true;
+    const { isHookEnabled } = requireFromAdvisor(resolverPath) as {
+      isHookEnabled?: (concern: string) => boolean;
+    };
     return typeof isHookEnabled !== 'function' || isHookEnabled('skill-advisor') !== false;
   } catch {
     return true;
@@ -131,6 +147,7 @@ interface HookDiagnosticInput {
   readonly errorCode?: unknown;
   readonly errorDetails?: string;
   readonly skillLabel?: string | null;
+  readonly degraded?: boolean;
   readonly generation?: number;
   readonly emittedBytes?: number;
   readonly directivesSuppressed?: boolean;
@@ -422,6 +439,7 @@ export async function handleClaudeUserPromptSubmit(
       errorCode: result.diagnostics?.errorCode,
       errorDetails: result.diagnostics?.errorMessage ?? result.diagnostics?.policyReason ?? result.diagnostics?.staleReason,
       skillLabel: skillLabelFor(result),
+      degraded: result.metrics.degraded === true,
       emittedBytes: Buffer.byteLength(effectiveEmitted, 'utf8'),
       directivesSuppressed: effectiveEmitted !== emitted,
     }, writeDiagnostic);
@@ -441,7 +459,9 @@ export async function handleClaudeUserPromptSubmit(
     }
     observeEmittedAdvisorPolicy(effectiveEmitted, {
       ...deliveryState,
-      runtime: 'Claude Code',
+      // Claude keeps its display label and every other caller is recorded under
+      // the runtime it named, so no other runtime's delivery is counted as Claude's.
+      runtime: runtime === 'claude' ? 'Claude Code' : runtime,
       candidate: OBSERVED_ADVISOR_POLICY_CANDIDATE,
     });
     return output;

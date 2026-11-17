@@ -1,0 +1,38 @@
+AC b765c7a14c5
+free_gb 640
+## build claude
+{"ok":false,"head":null,"code":"stale_build","copied":0}
+## build opencode
+{"ok":false,"head":null,"code":"stale_build","copied":0}
+## build pi
+{"ok":false,"head":null,"code":"stale_build","copied":0}
+## build devin
+{"ok":false,"head":null,"code":"stale_build","copied":0}
+## build dsh
+{"ok":false,"head":null,"code":"stale_build","copied":0}
+## build claude
+{"ok":false,"head":null,"code":"stale_build","copied":0,"trackedDotenv":null}
+## build opencode
+{"ok":false,"head":null,"code":"stale_build","copied":0,"trackedDotenv":null}
+## build pi
+{"ok":false,"head":null,"code":"stale_build","copied":0,"trackedDotenv":null}
+## build devin
+{"ok":false,"head":null,"code":"stale_build","copied":0,"trackedDotenv":null}
+## build dsh
+{"ok":false,"head":null,"code":"stale_build","copied":0,"trackedDotenv":null}
+## retry after spec-kit runtime and cli rebuild (cli/dist older than the regenerated retrieval fixtures)
+## build claude
+{"ok":true,"head":"b765c7a14c5c7b29218ebcab912bb9cf489b0065","code":null,"copied":23,"trackedDotenv":[".env.example","specs/system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/graphrag-hybrid/.env.example"]}
+## build opencode
+{"ok":true,"head":"b765c7a14c5c7b29218ebcab912bb9cf489b0065","code":null,"copied":23,"trackedDotenv":[".env.example","specs/system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/graphrag-hybrid/.env.example"]}
+## build pi
+{"ok":true,"head":"b765c7a14c5c7b29218ebcab912bb9cf489b0065","code":null,"copied":23,"trackedDotenv":[".env.example","specs/system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/graphrag-hybrid/.env.example"]}
+## build devin
+{"ok":true,"head":"b765c7a14c5c7b29218ebcab912bb9cf489b0065","code":null,"copied":23,"trackedDotenv":[".env.example","specs/system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/graphrag-hybrid/.env.example"]}
+## build dsh
+{"ok":true,"head":"b765c7a14c5c7b29218ebcab912bb9cf489b0065","code":null,"copied":23,"trackedDotenv":[".env.example","specs/system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/graphrag-hybrid/.env.example"]}
+## arena claude head=b765c7a14c5 remotes=0 status=0 claude_md=@AGENTS.md  flags=1 model='claude-sonnet-5-5';
+## arena opencode head=b765c7a14c5 remotes=0 status=0 claude_md=@AGENTS.md  flags=1 model='opencode-go/deepseek-v4.1-flash';
+## arena pi head=b765c7a14c5 remotes=0 status=0 claude_md=@AGENTS.md  flags=1 model='opencode-go/deepseek-v4.1-flash:off';
+## arena devin head=b765c7a14c5 remotes=0 status=0 claude_md=@AGENTS.md  flags=1 model='swe-2-max';
+## arena dsh head=b765c7a14c5 remotes=0 status=0 claude_md=@AGENTS.md  flags=1 model='deepseek-v4.1-flash-1017';

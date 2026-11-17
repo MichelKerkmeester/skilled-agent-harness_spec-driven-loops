@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation",
+  "description": "Phase 32: review-pass-five-remediation",
+  "keywords": [
+    "phase",
+    "review-pass-five-remediation"
+  ],
+  "lastUpdated": "2026-11-15T23:03:32.761Z",
+  "specId": "032",
+  "folderSlug": "review-pass-five-remediation",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring",
+    "008-command-surfacing-build"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_00-03__phase-032-closed-review-pass-five-lanes-a-k-v-and.md"
+  ]
+}

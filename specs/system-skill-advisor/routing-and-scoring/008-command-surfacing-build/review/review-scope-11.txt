@@ -1,0 +1,9 @@
+# review pass eleven: diff each path with git -c core.fsmonitor=false diff 6d50afe6f39 2f3f893c153 -- <path>, then read the whole file at 2f3f893c153
+routing	.skilled/skills/sk-doc/ROUTER.md
+routing	.skilled/skills/sk-doc/graph-metadata.json
+routing	.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json
+fixes	.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+fixes	.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts
+fixes	.skilled/commands/doctor/assets/doctor-install-presentation.txt
+fixes	.skilled/commands/doctor/assets/doctor-install.yaml
+fixes	.skilled/commands/doctor/scripts/tests/doctor-install-contract.test.cjs

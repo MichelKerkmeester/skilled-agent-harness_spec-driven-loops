@@ -1,0 +1,29 @@
+Read-only review of one fix commit. Do not edit, stage, commit or run any build, test or advisor command. Write only the report file named at the end.
+
+Repository: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Diff under review: git -c core.fsmonitor=false diff 8bac97d71c 88d8bebcd7 -- <the eleven files below>
+  .skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts
+  .skilled/skills/system-skill-advisor/runtime/tests/advisor-disabled.vitest.ts
+  .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts
+  .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts
+  .skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts
+  .skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-test-utils.ts
+  .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md
+  .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md
+  .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md
+  .skilled/bin/system-skill-advisor-launcher.cjs
+  .skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts
+
+Contract: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/028-direct-call-off-switch/spec.md. Read its REQ tables (the requirements anchor), the "Mechanism per Path" table and assumptions A3 to A6.
+Recorded run evidence (already run by the coordinator, read it rather than rerun): scratch/repro-before.txt, scratch/repro-after.txt, scratch/playbook-after.txt, scratch/closure-after.txt, scratch/after.txt in the same folder.
+
+Rules: never open command-prompts.jsonl or holdout-prompts.jsonl. Any git diff, show or log -p over a path that could include them adds ':(exclude)**/command-prompts.jsonl' ':(exclude)**/holdout-prompts.jsonl'.
+
+Answer these five questions, each with file:line evidence:
+1. Does the client decide the switch before any socket probe, daemon spawn or local scorer run, on every recommend entry path (argv form, --json form, stdin form, the stale-daemon retry and recycle paths)?
+2. Can the client and the handler return different envelopes for the same flagged call (fields, warning code, abstain text, workspace root, thresholds, which of the two switch names is reported)?
+3. Does any unflagged path change behaviour (output, timing-relevant work, imports that load a native package)?
+4. Does any added code comment name a spec path, phase number or a task, decision, requirement or finding id?
+5. Do the three documents (hook doc, playbook scenario, feature-catalog entry) state the shipped behaviour, including the launcher no longer forwarding the switch names to a daemon it starts?
+
+Output: write specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/028-direct-call-off-switch/scratch/review/report.txt. First line "VERDICT: SHIP" or "VERDICT: FIX FIRST". Then each finding as P0, P1 or P2 with where, the concrete input, the result and the fix. A finding without a concrete input that shows it is not a P0 or P1. Then a short answer to each of the five questions. Plain prose, no em dashes.

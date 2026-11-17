@@ -1,0 +1,319 @@
+{
+  "type": "iteration",
+  "iteration": 3,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-vibe-hooks-doctor-5-1794760565927-i99t40",
+  "status": "complete",
+  "focus": "traceability",
+  "dimensions": [
+    "traceability"
+  ],
+  "filesReviewed": [
+    ".skilled/commands/doctor/scripts/hook-wiring-check.cjs:1-408",
+    ".skilled/commands/doctor/scripts/tests/hook-wiring-check.test.cjs:1-371",
+    ".skilled/commands/doctor/scripts/README.markdown:1-272",
+    ".skilled/commands/doctor/_routes.yaml:250-292",
+    ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:40-90,203-209",
+    ".skilled/commands/scripts/validate-command-references.cjs:35-60,140-152",
+    ".github/workflows/spec-kit-check.yml:1-105,300-350",
+    ".github/workflows/command-tree-parity.yml:1-60,152-190",
+    ".vibe/hooks.toml:1-45,80-90",
+    ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:82-111"
+  ],
+  "findingsCount": 2,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "findingsNew": [
+    "R3-P2-001",
+    "R3-P2-002"
+  ],
+  "findingDetails": [
+    {
+      "id": "R3-P2-001",
+      "severity": "P2",
+      "title": "The Vibe row ignores the hook match filter, so an entry Vibe never runs on a main turn still reads ok vibe",
+      "file": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs:249",
+      "findingClass": "false_pass_diagnostic",
+      "claim": "tomlCommands captures only type and command, and inspect accepts any pre_agent block whose command ends with the marker, so a match value other than main still reads ok.",
+      "evidenceRefs": [
+        "hook-wiring-check.cjs:249",
+        "hook-wiring-check.cjs:253-255",
+        "hook-wiring-check.cjs:350-361",
+        ".vibe/hooks.toml:18",
+        ".vibe/hooks.toml:84",
+        "README.markdown:112"
+      ],
+      "counterevidenceSought": "Read the real hooks file and the repository uses match on this event family, including agents_spawn, while the check never reads the key.",
+      "alternativeExplanation": "The check could be read as entry-presence only; even then a filtered entry is not the prompt entry it claims to report.",
+      "finalSeverity": "P2",
+      "confidence": "high",
+      "downgradeTrigger": "None; a target-repository block with another match value is a concrete false pass.",
+      "scopeProof": "The check and its test are declared scope files; the hooks file and README are the code and claim it must match.",
+      "affectedSurfaceHints": [
+        "doctor hook-wiring check",
+        "Vibe prompt entry",
+        "target-repository diagnostics"
+      ]
+    },
+    {
+      "id": "R3-P2-002",
+      "severity": "P2",
+      "title": "The hook contract names Vibe in its per-runtime table but leaves it out of the two runtime summaries that table feeds",
+      "file": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:84",
+      "findingClass": "doc_code_drift",
+      "claim": "The section intro and the starting-a-surfaced-command table omit Vibe while the new Vibe row says it uses the shared handler and needs the document line.",
+      "evidenceRefs": [
+        "skill-advisor-hook.md:84",
+        "skill-advisor-hook.md:103-111",
+        "skill-advisor-hook.md:95",
+        "prompt-advisor.mjs:123-148"
+      ],
+      "counterevidenceSought": "Read the Vibe row and the handler path; the row describes the shared handler and the document line, so the summaries are stale rather than describing a different design.",
+      "alternativeExplanation": "Vibe could be excluded from the table because it has no command loader; the table already has a no row for every other runtime without a loader, so the exclusion is inconsistent.",
+      "finalSeverity": "P2",
+      "confidence": "high",
+      "downgradeTrigger": "None; the doc addition is the changed line set.",
+      "scopeProof": "The hook contract is a declared scope file and the Vibe row is the changed line; the code it describes is in scope.",
+      "affectedSurfaceHints": [
+        "hook contract",
+        "Vibe command document line",
+        "runtime capability table"
+      ]
+    }
+  ],
+  "traceabilityChecks": {
+    "spec_code": {
+      "level": "core",
+      "status": "partial",
+      "notes": "Phase 030 REQ-004/005/010 hold; the match filter is the uncovered entry shape."
+    },
+    "checklist_evidence": {
+      "level": "core",
+      "status": "partial",
+      "notes": "AC-004/005/010 are Met for the tested cases; no match filter or summary-row case."
+    },
+    "skill_agent": {
+      "level": "overlay",
+      "status": "notApplicable",
+      "notes": "No agent definition changed in this area."
+    },
+    "agent_cross_runtime": {
+      "level": "overlay",
+      "status": "partial",
+      "notes": "Five hook-file runtimes are checked; Pi, DSH and OpenCode are documented plugin or extension deliveries."
+    },
+    "feature_catalog_code": {
+      "level": "overlay",
+      "status": "pending",
+      "notes": "Feature-catalog pages belong to another lineage."
+    },
+    "playbook_capability": {
+      "level": "overlay",
+      "status": "partial",
+      "notes": "The Vibe scenario states the document line and child arm; it does not exercise match."
+    }
+  },
+  "newFindingsRatio": 0.3333,
+  "noveltyJustification": "Two new P2s against six weighted findings; both are in the doctor and doc surfaces the first two iterations did not read.",
+  "sessionId": "fanout-vibe-hooks-doctor-5-1794760565927-i99t40",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-15T16:58:35Z",
+  "durationMs": 720000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "The traceability pass spans the doctor check, its tests and README, the route, the CI workflow and the hook contract.",
+    "evidenceRefs": [
+      "review/review-scope-5.txt:3-12",
+      ".skilled/commands/doctor/scripts/hook-wiring-check.cjs:1-408"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/hook-wiring-check.test.cjs",
+      ".skilled/commands/doctor/scripts/README.markdown",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/scripts/validate-command-references.cjs",
+      ".github/workflows/spec-kit-check.yml",
+      ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md"
+    ],
+    "selectionReason": "The traceability iteration follows the doctor and doc files the pass-five brief names.",
+    "discoveryMethods": [
+      "review-scope-5 area filter",
+      "direct_read",
+      "live check run"
+    ],
+    "omittedHighRiskTargets": [
+      ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml (read as context)"
+    ],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": [
+      "review/review-scope-5.txt:3-12"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "false_pass_diagnostic",
+      "doc_code_drift",
+      "coverage_gap",
+      "holdout_leak"
+    ],
+    "covered": [
+      "false_pass_diagnostic",
+      "doc_code_drift"
+    ],
+    "ruledOut": [
+      "coverage_gap",
+      "holdout_leak"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/hook-wiring-check.cjs"
+      ],
+      "bugClass": "false_pass_diagnostic",
+      "hypothesis": "A Vibe entry that never runs on the main agent reads ok.",
+      "invariant": "The check reports the prompt entry Vibe actually runs before the main prompt.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "hook-wiring-check.cjs:233-361",
+          "result": "Only type and command are read; match is ignored.",
+          "evidenceRefs": [
+            "hook-wiring-check.cjs:249"
+          ]
+        },
+        {
+          "method": "exact_search",
+          "queryOrPath": "match = ",
+          "result": "The hooks file uses match, including agents_spawn.",
+          "evidenceRefs": [
+            ".vibe/hooks.toml:18",
+            ".vibe/hooks.toml:84"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "R3-P2-001",
+      "rationale": "A filtered pre_agent entry passes the reader and Vibe skips it for the main prompt."
+    },
+    {
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "hypothesis": "The doc additions left the runtime summaries stale.",
+      "invariant": "Every runtime summary lists every runtime the per-runtime table lists.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "skill-advisor-hook.md:82-111",
+          "result": "The intro and the command table omit Vibe; the row includes it.",
+          "evidenceRefs": [
+            "skill-advisor-hook.md:84",
+            "skill-advisor-hook.md:103-111"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "R3-P2-002",
+      "rationale": "The Vibe row contradicts the summaries in the same section."
+    },
+    {
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".github/workflows/spec-kit-check.yml"
+      ],
+      "bugClass": "coverage_gap",
+      "hypothesis": "The three Vibe mirror scripts are named but no job runs them.",
+      "invariant": "Each named check runs in its check-only form.",
+      "searchActions": [
+        {
+          "method": "exact_search",
+          "queryOrPath": "sync-*-vibe.cjs --check",
+          "result": "Nine lines in spec-kit-check and three in command-tree-parity; the route has three.",
+          "evidenceRefs": [
+            ".github/workflows/spec-kit-check.yml:337-339"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "CI, the route and the workflow all run the three scripts with --check."
+    },
+    {
+      "id": "SL-011",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/scripts/validate-command-references.cjs"
+      ],
+      "bugClass": "holdout_leak",
+      "hypothesis": "A scoped file reads or leaks a holdout corpus.",
+      "invariant": "No tune, fix or report path reads a holdout row.",
+      "searchActions": [
+        {
+          "method": "exact_search",
+          "queryOrPath": "holdout|command-prompts.jsonl|behaviour-fresh-prompts",
+          "result": "No hit in the twelve scoped files.",
+          "evidenceRefs": [
+            "review/review-scope-5.txt:3-48"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "No scoped file names a corpus file; no prompt text was read."
+    }
+  ],
+  "graphEvents": [
+    {
+      "type": "node",
+      "id": "file:hook-wiring",
+      "kind": "FILE",
+      "label": "Doctor hook-wiring check"
+    },
+    {
+      "type": "node",
+      "id": "file:hook-doc",
+      "kind": "FILE",
+      "label": "Hook contract"
+    },
+    {
+      "type": "node",
+      "id": "finding:R3-P2-001",
+      "kind": "FINDING",
+      "label": "Vibe match filter ignored"
+    },
+    {
+      "type": "edge",
+      "id": "edge:r3f1-in-check",
+      "source": "finding:R3-P2-001",
+      "target": "file:hook-wiring",
+      "relation": "IN_FILE"
+    },
+    {
+      "type": "edge",
+      "id": "edge:r3f2-in-doc",
+      "source": "finding:R3-P2-002",
+      "target": "file:hook-doc",
+      "relation": "IN_FILE"
+    }
+  ]
+}

@@ -1,0 +1,474 @@
+{
+  "sessionId": "fanout-accuracy-runner-close-4c-1794682797954-pcdanq",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 2,
+    "timestamp": "2026-11-14T19:24:49.923Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "ARC4C-P2-001",
+      "severity": "P2",
+      "title": "A 2> or &> redirect target that names a command document still counts as a start",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 677,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "ARC4C-P2-002",
+      "severity": "P2",
+      "title": "The README says a stored run line holds no offeredAs, but both current writers store it",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 123,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "ARC4C-P2-003",
+      "severity": "P2",
+      "title": "The runner row says --brief-only rewrites the four fields, but that mode copies the offer fields untouched",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 125,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 3
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.33330000000000004,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "checklist_evidence",
+      "doc_code_drift",
+      "doc_contradiction",
+      "heredoc_parsing",
+      "holdout_publication",
+      "path_containment",
+      "shell_command_parsing",
+      "start_detection"
+    ],
+    "ruledOut": [
+      "checklist_evidence",
+      "heredoc_parsing",
+      "holdout_publication",
+      "offered_as_persistence",
+      "path_containment"
+    ],
+    "deferred": [
+      "deferred_scope"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "shell_command_parsing": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "start_detection": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "heredoc_parsing": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "path_containment": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "holdout_publication": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "offered_as_persistence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "doc_code_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "doc_contradiction": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "checklist_evidence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "deferred_scope": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 2,
+      "id": "ARC4C-SL-009",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/report.md"
+      ],
+      "bugClass": "deferred_scope",
+      "disposition": "deferred",
+      "rationale": "The closing round records them as deferred, not as new findings.",
+      "evidenceRefs": [
+        "027-review-pass-four-remediation/spec.md:214"
+      ],
+      "reason": "The 027 remediation spec assigns these three items to phase 026; re-reporting them here would duplicate a deferred workstream."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "ARC4C-SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs"
+      ],
+      "bugClass": "offered_as_persistence",
+      "disposition": "ruled_out",
+      "rationale": "Both writers keep the field, so the 4b P1 is fixed.",
+      "evidenceRefs": [
+        "command-offer.mjs:496",
+        "run-command-behaviour.mjs:824",
+        "run-command-behaviour.mjs:1203"
+      ],
+      "reason": "The field is present on both writer paths; the head-moved line is the documented exception and carries none of the four."
+    },
+    {
+      "iteration": 1,
+      "id": "ARC4C-SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
+      ],
+      "bugClass": "heredoc_parsing",
+      "disposition": "ruled_out",
+      "rationale": "No defect found in the heredoc end-word handling.",
+      "evidenceRefs": [
+        "score-command-transcripts.mjs:648"
+      ],
+      "reason": "The character class and backreference cover the hyphen and dot cases the T008 tests name."
+    },
+    {
+      "iteration": 1,
+      "id": "ARC4C-SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/codex.mjs"
+      ],
+      "bugClass": "path_containment",
+      "disposition": "ruled_out",
+      "rationale": "The R4-P2-001 fix holds at the current tree.",
+      "evidenceRefs": [
+        "codex.mjs:163",
+        "codex.mjs:169",
+        "codex.mjs:180"
+      ],
+      "reason": "The read is the file containment resolved; the caller's locator is only used to compare the recorded id."
+    },
+    {
+      "iteration": 1,
+      "id": "ARC4C-SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts"
+      ],
+      "bugClass": "holdout_publication",
+      "disposition": "ruled_out",
+      "rationale": "The live-guard P2 is fixed.",
+      "evidenceRefs": [
+        "command-routing-slice.vitest.ts:134-149",
+        "command-routing-slice.vitest.ts:201-210"
+      ],
+      "reason": "The live capture is checked and the helper reads all four published maps."
+    },
+    {
+      "iteration": 2,
+      "id": "ARC4C-SL-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md"
+      ],
+      "bugClass": "checklist_evidence",
+      "disposition": "ruled_out",
+      "rationale": "The two 4b accuracy-runner findings are confirmed fixed.",
+      "evidenceRefs": [
+        "README.md:70",
+        "README.md:76",
+        "README.md:125",
+        "run-command-behaviour.mjs:1180-1184",
+        "run-command-behaviour.mjs:1201-1205"
+      ],
+      "reason": "AR4B-P2-001 and AR4B-P2-002 are fixed by the T030 edits; no third list or exception is missing."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "ARC4C-SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs"
+      ],
+      "bugClass": "offered_as_persistence",
+      "disposition": "ruled_out",
+      "rationale": "Both writers keep the field, so the 4b P1 is fixed.",
+      "evidenceRefs": [
+        "command-offer.mjs:496",
+        "run-command-behaviour.mjs:824",
+        "run-command-behaviour.mjs:1203"
+      ],
+      "proof": "The field is present on both writer paths; the head-moved line is the documented exception and carries none of the four."
+    },
+    {
+      "iteration": 1,
+      "id": "ARC4C-SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
+      ],
+      "bugClass": "heredoc_parsing",
+      "disposition": "ruled_out",
+      "rationale": "No defect found in the heredoc end-word handling.",
+      "evidenceRefs": [
+        "score-command-transcripts.mjs:648"
+      ],
+      "proof": "The character class and backreference cover the hyphen and dot cases the T008 tests name."
+    },
+    {
+      "iteration": 1,
+      "id": "ARC4C-SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/codex.mjs"
+      ],
+      "bugClass": "path_containment",
+      "disposition": "ruled_out",
+      "rationale": "The R4-P2-001 fix holds at the current tree.",
+      "evidenceRefs": [
+        "codex.mjs:163",
+        "codex.mjs:169",
+        "codex.mjs:180"
+      ],
+      "proof": "The read is the file containment resolved; the caller's locator is only used to compare the recorded id."
+    },
+    {
+      "iteration": 1,
+      "id": "ARC4C-SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts"
+      ],
+      "bugClass": "holdout_publication",
+      "disposition": "ruled_out",
+      "rationale": "The live-guard P2 is fixed.",
+      "evidenceRefs": [
+        "command-routing-slice.vitest.ts:134-149",
+        "command-routing-slice.vitest.ts:201-210"
+      ],
+      "proof": "The live capture is checked and the helper reads all four published maps."
+    },
+    {
+      "iteration": 2,
+      "id": "ARC4C-SL-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md"
+      ],
+      "bugClass": "checklist_evidence",
+      "disposition": "ruled_out",
+      "rationale": "The two 4b accuracy-runner findings are confirmed fixed.",
+      "evidenceRefs": [
+        "README.md:70",
+        "README.md:76",
+        "README.md:125",
+        "run-command-behaviour.mjs:1180-1184",
+        "run-command-behaviour.mjs:1201-1205"
+      ],
+      "proof": "AR4B-P2-001 and AR4B-P2-002 are fixed by the T030 edits; no third list or exception is missing."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "doc_code_drift",
+      "doc_contradiction",
+      "checklist_evidence",
+      "deferred_scope"
+    ],
+    "covered": [
+      "doc_code_drift",
+      "doc_contradiction",
+      "checklist_evidence"
+    ],
+    "ruledOut": [],
+    "deferred": [
+      "deferred_scope"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

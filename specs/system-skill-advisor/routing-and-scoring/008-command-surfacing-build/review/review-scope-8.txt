@@ -1,0 +1,7 @@
+# review pass eight: diff each path with git -c core.fsmonitor=false diff 1c3d62def5a 3416b5e0526 -- <path>; CONTRIBUTING.md diffs with git -c core.fsmonitor=false diff origin/main HEAD -- CONTRIBUTING.md
+scorer	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+scorer	.skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts
+scorer	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+attach-docs	.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+attach-docs	.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts
+attach-docs	CONTRIBUTING.md

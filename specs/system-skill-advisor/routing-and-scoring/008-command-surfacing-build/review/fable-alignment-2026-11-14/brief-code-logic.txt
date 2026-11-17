@@ -1,0 +1,81 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched reviewer. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0
+are set in your environment, which this repository's AGENTS.md defines as the autonomous
+child-dispatch exemption. Nobody is at a prompt, so no answer can reach you.
+Spec folder: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build (pre-approved, skip Gate 3)
+
+WRITE AUTHORITY: NONE. This is a read-only review. Do not create, edit, move or delete any file,
+do not run git commands that change state (no add, commit, checkout, stash, reset, merge), do not
+start, stop or install anything, and do not dispatch subagents or other CLIs. Print your report to
+stdout and nothing else. Run git only as `git -c core.fsmonitor=false ...`.
+
+HARD DATA RULE: never open `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`
+unfiltered and never print any `prompt` field from it. It holds sealed holdout prompts. If you need
+its rows, read it only through `jq 'del(.prompt)'`. Never start a model session or run
+`run-command-behaviour.mjs`.
+
+THE OPERATOR'S CORE NEED (verbatim, 2026-11-13, typos are theirs):
+"Its not just that but that ais using skills are flexible but will more often use the besr correct
+workflows for said tasks."
+Restated by the packet: an AI that works through skills stays free to choose how it does a task
+(the command path or the skill path, even for the whole job), and it lands on the best correct
+workflow for that task more often than before, never an improvised one. Delivering a tracked slash
+command to the model with a run, start or ask policy on every supported CLI is only the MEANS.
+Delivery counts show the means works. They do not show the outcome.
+
+WHAT TO READ FIRST
+- specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md (purpose, phase map of 19 phases, open questions)
+- the same folder's goal.md (directive, decisions D1 to D7, a long progress log in section 4)
+- 019-workflow-outcome-measure/spec.md, plan.md and tasks.md (the outcome measure, in progress)
+The packet's code spans commits 3a0b9e2c02~1..HEAD plus uncommitted work in the working tree.
+`git -c core.fsmonitor=false log --oneline 3a0b9e2c02~1..HEAD` lists 177 commits. Some of them are
+merges of other packets from main (for example session-relaunch hooks): those are out of scope.
+
+MAIN CODE OF THIS PACKET
+- .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts (which command rides with a skill, its policy)
+- .skilled/skills/system-skill-advisor/runtime/lib/render.ts (the brief line a model sees)
+- .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts, projection.ts, ambiguity.ts, doctor-helper-handoff.ts, lanes/explicit.ts, lanes/semantic-shadow.ts
+- .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs and command-bridges.generated.json
+- .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts, hooks/lib/skill-advisor-cli-fallback.ts
+- .opencode/plugins/system-skill-advisor.js and .opencode/plugins/lib/skill-advisor-render.js
+- the Gate 2 bullet in AGENTS.md section 2 ("Command in the brief")
+- measurement: runtime/scripts/routing-accuracy/score-command-transcripts.mjs (phase 019 is adding a
+  `workflowPath` measure to it right now: tasks T011 to T013 and T024 are not done, so two tests in
+  tests/command-transcript-score.vitest.ts fail by design and the file may change while you read it),
+  capture-command-routing-baseline.mjs, command-offer.mjs, run-command-behaviour.mjs
+- tests live under .skilled/skills/system-skill-advisor/runtime/tests. You may run one test file with
+  `env -u AI_SESSION_CHILD npx vitest run <file>` from .skilled/skills/system-skill-advisor/runtime.
+  Do not run the whole suite.
+
+To see what the model actually receives, you may run the advisor on a prompt you write yourself, for
+example from the repository root:
+  printf '%s' 'write a readme for the doctor scripts folder' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json
+(read .skilled/skills/system-skill-advisor/SKILL.md for the exact call if that shape fails).
+
+EVIDENCE RULES
+- Cite file:line for every claim about code, and the command plus its output for every claim about behaviour.
+- Mark each claim OBSERVED (you ran or read it), DERIVED (follows from something observed) or INFERRED (plausible, unverified, say what would confirm it).
+- Grade defects P0 (wrong result or harm in normal use), P1 (wrong result in a realistic case, or the measure misleads), P2 (minor, edge or clarity).
+- Do not restate the packet's own claims as findings. Check them.
+
+YOUR ROLE: an independent senior code reviewer (the review persona this repository's .claude/agents/review.md describes), working read-only. A second reviewer is looking at the same packet with a different lens. You do not see each other's work.
+
+YOUR LENS: CODE AND LOGIC CORRECTNESS.
+Review the code and logic this packet built for command surfacing and its measurement. Find what is wrong, not what is fine. Priorities, in order:
+1. The recommendation path: how a prompt becomes a skill plus an attached command with a run, start or ask policy (command-attach.ts, fusion.ts including `applyDoctorHelperHandoff` and its newest weak-cue rule from commit 23e7eee17b, projection.ts, ambiguity.ts, render.ts). Look for prompts that get a wrong command, a wrong policy (a mutating command offered as run, an ask that should be a start), a command offered where none fits, or a mismatch between what the hook renders on Claude and what the OpenCode plugin renders.
+2. The outcome measure in phase 019 (score-command-transcripts.mjs: `workflowPath`, `ownerLoadedBeforeWrite`, `loadOwners`, `ownerOf`, and the summary code they feed). Does it classify real transcripts correctly? Think about every runtime's event shape (the TOOL_TABLES near the top of the file), loads through mirrors such as .claude/commands or .opencode/commands, a skill tool, a hub `compiled-route.cjs` call, reads of the wrong skill, and runs that write nothing.
+3. The measurement scripts the packet's numbers come from (capture-command-routing-baseline.mjs, command-offer.mjs, the floors the tests pin): can a number they report be right for the wrong reason?
+Skip style, naming and comment wording unless it hides a defect.
+
+At the end add one short section: ALIGNMENT VERDICT. In three to six sentences, say whether the code you read serves the operator's core need above or drifts toward the means (delivery and offer counts) at the expense of the outcome (free choice plus landing on a real workflow), and name the strongest piece of evidence for your verdict.
+
+OUTPUT FORMAT (plain text, no preamble):
+VERDICT: one line.
+FINDINGS: numbered, most severe first. Each: severity, file:line, the defect in one sentence, the concrete input or scenario that shows it, OBSERVED/DERIVED/INFERRED, and the evidence (command and output, or the lines read).
+RULED OUT: things you checked and found sound, one line each, at most eight.
+ALIGNMENT VERDICT: as above.
+NOT CHECKED: what you could not verify and why.

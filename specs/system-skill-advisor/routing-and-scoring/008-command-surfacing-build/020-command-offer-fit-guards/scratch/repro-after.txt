@@ -1,0 +1,103 @@
+PROMPT: do not run /speckit:complete yet, just explain what it does
+  row 0: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 1: cli-external-orchestration 0.82/0.26 command=- policy=- owner=- ambiguous=false
+  row 2: sk-doc 0.82/0.26 command=- policy=- owner=- ambiguous=false
+PROMPT: I never want to use /create:agent again, delete the agent file
+  row 0: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=true
+  row 1: sk-doc 0.8246/0.16 command=- policy=- owner=- ambiguous=true
+  row 2: sk-design 0.82/0.26 command=- policy=- owner=- ambiguous=true
+PROMPT: someone ran /speckit:save by accident, how do I undo what it wrote
+  row 0: system-spec-kit 0.8396/0.12 command=- policy=- owner=- ambiguous=false
+PROMPT: please do not start /deep:research, I only want a two line summary of the readme
+  row 0: sk-doc 0.8909/0.16 command=/create:readme policy=start owner=- ambiguous=true
+  row 1: system-deep-loop 0.8575/0.16 command=- policy=- owner=- ambiguous=true
+  row 2: cli-external-orchestration 0.82/0.22 command=- policy=- owner=- ambiguous=true
+PROMPT: what does /create:readme do?
+  row 0: sk-doc 0.95/0.12 command=- policy=- owner=- ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: mcp-tooling 0.82/0.22 command=- policy=- owner=- ambiguous=false
+PROMPT: update the README typo in line 3
+  row 0: sk-doc 0.9269/0.12 command=- policy=- owner=- ambiguous=false
+  row 1: sk-design 0.82/0.22 command=- policy=- owner=- ambiguous=false
+PROMPT: do not run it, just tell me what /doctor:update would change
+  row 0: system-skilled-doctor 0.82/0.26 command=- policy=- owner=- ambiguous=true
+  row 1: sk-doc 0.82/0.26 command=- policy=- owner=- ambiguous=true
+  row 2: mcp-code-mode 0.82/0.26 command=- policy=- owner=- ambiguous=true
+PROMPT: the environment variable for the database url is missing in production
+  (no recommendation)
+PROMPT: the install step in our dockerfile is broken, the overlay filesystem is stale
+  (no recommendation)
+PROMPT: the mcp tool call fails with a wrong argument error in my weather server code
+  row 0: command-doctor-mcp-debug 0.8/0.34 command=/doctor:mcp debug policy=ask owner=system-skilled-doctor ambiguous=false
+  row 1: mcp-code-mode 0.8904/0.16 command=- policy=- owner=- ambiguous=false
+  row 2: sk-code 0.8625/0.12 command=- policy=- owner=- ambiguous=false
+PROMPT: turn off the dark mode toggle in the settings page
+  row 0: sk-code 0.82/0.18 command=- policy=- owner=- ambiguous=true
+  row 1: command-doctor-helper 0.8/0.35 command=/doctor:helper policy=run owner=system-skilled-doctor ambiguous=true
+PROMPT: the trigger index lookup returns nothing for my packet, do not change anything
+  row 0: system-spec-kit 0.95/0.12 command=- policy=- owner=- ambiguous=false
+  row 1: sk-doc 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: sk-code 0.82/0.26 command=- policy=- owner=- ambiguous=false
+PROMPT: my deep research loop never converges, dont touch anything just tell me why
+  row 0: system-deep-loop 0.935/0.12 command=- policy=- owner=- ambiguous=false
+PROMPT: document the new skill and create a feature catalog for it
+  row 0: sk-doc 0.95/0.12 command=- policy=- owner=- ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: sk-design 0.82/0.22 command=- policy=- owner=- ambiguous=false
+PROMPT: create a new agent definition for a security reviewer
+  row 0: create:agent 0.8235/0.12 command=/create:agent policy=start owner=sk-doc ambiguous=false
+  row 1: sk-doc 0.8923/0.12 command=- policy=- owner=- ambiguous=false
+  row 2: sk-code 0.82/0.22 command=- policy=- owner=- ambiguous=false
+PROMPT: plan a new feature: rate limiting for the api
+  (no recommendation)
+PROMPT: my skilled hooks are not showing up
+  (no recommendation)
+PROMPT: do a thorough multi-pass review of the advisor runtime code
+  row 0: system-deep-loop 0.9117/0.16 command=- policy=- owner=- ambiguous=true
+  row 1: sk-code 0.9008/0.12 command=- policy=- owner=- ambiguous=true
+  row 2: sk-doc 0.82/0.18 command=- policy=- owner=- ambiguous=true
+PROMPT: make a manual testing playbook for the login flow
+  row 0: sk-doc 0.95/0.12 command=- policy=- owner=- ambiguous=false
+  row 1: create:manual-testing-playbook 0.8394/0.12 command=/create:manual-testing-playbook policy=start owner=sk-doc ambiguous=false
+PROMPT: write a readme for the doctor scripts folder
+  row 0: sk-doc 0.9481/0.12 command=/create:readme policy=start owner=- ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: mcp-tooling 0.82/0.22 command=- policy=- owner=- ambiguous=false
+PROMPT: run /speckit:complete for the rate limiter
+  row 0: command-speckit-complete 0.821/0.16 command=/speckit:complete policy=start owner=system-spec-kit ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: cli-external-orchestration 0.82/0.26 command=- policy=- owner=- ambiguous=false
+PROMPT: /create:agent security-reviewer
+  row 0: create:agent 0.82/0.16 command=/create:agent policy=start owner=sk-doc ambiguous=false
+  row 1: sk-doc 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: sk-code 0.82/0.22 command=- policy=- owner=- ambiguous=false
+PROMPT: fix the typo in the README
+  row 0: sk-doc 0.9473/0.12 command=- policy=- owner=- ambiguous=false
+  row 1: mcp-tooling 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: sk-code 0.82/0.18 command=- policy=- owner=- ambiguous=false
+PROMPT: how does /speckit:plan differ from /speckit:complete?
+  row 0: system-spec-kit 0.82/0.18 command=- policy=- owner=- ambiguous=false
+PROMPT: explain /deep:review to me
+  row 0: system-deep-loop 0.9338/0.16 command=- policy=- owner=- ambiguous=true
+  row 1: sk-code 0.8897/0.12 command=- policy=- owner=- ambiguous=true
+  row 2: cli-external-orchestration 0.82/0.22 command=- policy=- owner=- ambiguous=true
+PROMPT: skip /create:readme, just append one line to the existing README
+  row 0: sk-doc 0.8989/0.12 command=- policy=- owner=- ambiguous=false
+  row 1: mcp-tooling 0.82/0.18 command=- policy=- owner=- ambiguous=false
+  row 2: sk-design 0.82/0.18 command=- policy=- owner=- ambiguous=false
+# app problem
+cue=weak first=/doctor:env list score=8.361 noEdit=false :: the environment variable for the database url is missing in production
+cue=weak first=/doctor:overlay status score=6.529 noEdit=false :: the install step in our dockerfile is broken, the overlay filesystem is stale
+cue=weak first=/doctor:mcp debug score=10.009 noEdit=false :: the mcp tool call fails with a wrong argument error in my weather server code
+cue=strong first=/doctor:git hooks score=9.761 noEdit=false :: turn off the dark mode toggle in the settings page
+cue=strong first=- score=- noEdit=false :: the login button is not working on the checkout page
+cue=weak first=- score=- noEdit=false :: our ci pipeline is failing on the lint step for the payments service
+# toolkit problem
+cue=strong first=- score=- noEdit=false :: my skilled hooks are not showing up
+cue=strong first=- score=- noEdit=false :: the skill advisor is not firing in codex
+cue=weak first=/doctor:runtime-mirrors score=14.255 noEdit=false :: the runtime mirrors are out of sync with .skilled
+cue=strong first=/doctor:mcp install score=7.491 noEdit=false :: code mode is not registered in opencode
+cue=strong first=/doctor:deep-loop score=21.666 noEdit=true :: my deep research loop never converges, dont touch anything just tell me why
+cue=strong first=/doctor:speckit score=23.471 noEdit=true :: the trigger index lookup returns nothing for my packet, do not change anything
+cue=weak first=/doctor:agents-md check score=15.398 noEdit=false :: AGENTS.md is missing the shipped sections
+cue=weak first=/doctor:symlink link score=11.428 noEdit=false :: the symlink to the skilled checkout is broken

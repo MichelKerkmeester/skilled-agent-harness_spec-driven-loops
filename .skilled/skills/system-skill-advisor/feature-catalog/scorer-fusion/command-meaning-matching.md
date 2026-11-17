@@ -6,7 +6,7 @@ trigger_phrases:
   - "command row embedding"
   - "vec_cmd table"
   - "command meaning anchor"
-version: 1.0.0.0
+version: 1.0.4.0
 ---
 
 # Command Meaning Matching
@@ -23,7 +23,7 @@ A command row used to pass only on one of its own phrases or its slash string. A
 
 ### Command Vectors
 
-`derive-command-bridges.cjs` writes an `embeddingText` for each command row the TypeScript scorer serves, 45 rows in all. A metadata row leads with its `userIntent.job` sentence and adds its owned phrases. The `description` stands in only when the record states no job. A doctor row uses its router's frontmatter `description` and the route's trigger phrases. Slash command strings are stripped from the text.
+`derive-command-bridges.cjs` writes an `embeddingText` for each command row the TypeScript scorer serves, 47 rows in all. A metadata row leads with its `userIntent.job` sentence and adds its owned phrases. The `description` stands in only when the record states no job. A doctor row uses its router's frontmatter `description` and the route's trigger phrases. Slash command strings are stripped from the text.
 
 `skill_graph_scan` embeds that text into a separate `vec_cmd_<dim>` table. The table carries no foreign key, and the skill vector table is left untouched. A row whose text hash has not changed is skipped. A stored row that the deriver no longer generates is pruned.
 
@@ -33,7 +33,7 @@ A command row used to pass only on one of its own phrases or its slash string. A
 
 ### Eligibility
 
-A meaning pass lifts a command past the read-only confidence floor, so `commandMeaningEligible` asks the question that floor asks of a phrase match. A prompt matching `NO_EDIT_REQUEST`, such as "no edits", "do not change", "just show" or "just list", rules out every command on meaning. A read-only explainer prompt admits only a command marked `readOnly`, because running it is the answer. `readOnlyRouteAllowed` reads the same pattern, so the two gates cannot drift apart.
+A meaning pass lifts a command past the read-only confidence floor, so `commandMeaningEligible` asks the question that floor asks of a phrase match. A meaning-passed command row must also clear the uncertainty bar that `requireCommandPhraseAnchor` applies before the brief reports it as passing. A prompt matching `NO_EDIT_REQUEST`, such as "no edits", "do not change", "just show" or "just list", rules out every command on meaning. A read-only explainer prompt admits only a command marked `readOnly`, because running it is the answer. `readOnlyRouteAllowed` reads the same pattern, so the two gates cannot drift apart.
 
 ### Ranking
 
@@ -62,7 +62,7 @@ A meaning pass lifts a command past the read-only confidence floor, so `commandM
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-skill-advisor/runtime/tests/command-meaning-anchor.vitest.ts` | Vitest | 17 cases: cosine bar, margin, stand-in refusal, eligibility and ranking rule |
+| `.skilled/skills/system-skill-advisor/runtime/tests/command-meaning-anchor.vitest.ts` | Vitest | 28 cases: cosine bar, margin, stand-in refusal, eligibility and ranking rule |
 | `.skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts` | Vitest | Generated bridge file matches the deriver |
 
 ---

@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "untuned outcome evidence",
+      "phase 23 untuned outcome evidence",
+      "sealed fit rows",
+      "followed range and paired arms",
+      "untuned outcome evidence plan",
+      "untuned outcome evidence tasks",
+      "untuned outcome evidence acceptance criteria",
+      "untuned outcome evidence goal",
+      "untuned outcome evidence implementation summary"
+    ],
+    "key_topics": [
+      "untuned",
+      "outcome",
+      "evidence",
+      "phase",
+      "sealed",
+      "fit",
+      "rows",
+      "followed",
+      "range",
+      "paired",
+      "arms",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/before.txt",
+      "scratch/outcome-evidence.txt",
+      "scratch/recapture.txt",
+      "scratch/after.txt",
+      "scratch/scope.txt",
+      "scratch/capture-before-fixture.json",
+      "scratch/summary-before.json",
+      "scratch/repro-before.txt",
+      "scratch/planning/untuned-reach.before.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "outcome-evidence.txt",
+        "kind": "file",
+        "path": "scratch/outcome-evidence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "recapture.txt",
+        "kind": "file",
+        "path": "scratch/recapture.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "scope.txt",
+        "kind": "file",
+        "path": "scratch/scope.txt",
+        "source": "derived"
+      },
+      {
+        "name": "capture-before-fixture.json",
+        "kind": "config",
+        "path": "scratch/capture-before-fixture.json",
+        "source": "derived"
+      },
+      {
+        "name": "summary-before.json",
+        "kind": "config",
+        "path": "scratch/summary-before.json",
+        "source": "derived"
+      },
+      {
+        "name": "repro-before.txt",
+        "kind": "file",
+        "path": "scratch/repro-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "untuned-reach.before.txt",
+        "kind": "file",
+        "path": "scratch/planning/untuned-reach.before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every outcome number the packet quotes comes from rows its phrases were written against",
+    "created_at": "2026-11-14T06:10:08Z",
+    "last_save_at": "2026-11-14T13:18:34.263Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bb14c12e8d5a8ccee87d491148903f7216eba76da7388302bf3d4322d0bda3dc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fabbe17707c41db70b3e982f8ac18142cbb81cd17034b16cb4fd3b5fbf8142f9",
+      "plan.md": "181a8cc3703229a1315fcbfa299a082e37cf9b5ff39bde4500f61278943c39cb",
+      "tasks.md": "0dee5de55864303e23797db8b7540d4d1887bb53d091614977f31101f2403170",
+      "implementation-summary.md": "74d447bf2aa0976ea52562a0875bc0f9bbbb12ad08ab461126dfe89eeaa8c7ec"
+    },
+    "last_active_at": null
+  }
+}

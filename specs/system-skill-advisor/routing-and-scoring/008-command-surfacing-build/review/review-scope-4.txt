@@ -1,0 +1,30 @@
+# code this packet changed since review pass three (0cdc9fa3ef), HEAD 400c90e158
+# area<TAB>path; area = lineage label
+render-hooks-plugin	.opencode/plugins/lib/skill-advisor-render.js
+render-hooks-plugin	.opencode/plugins/system-skill-advisor.js
+render-hooks-plugin	.opencode/plugins/tests/system-skill-advisor.test.cjs
+doctor-docs	.skilled/commands/create/assets/create-skill-presentation.txt
+doctor-docs	.skilled/commands/doctor/_routes.yaml
+doctor-docs	.skilled/commands/doctor/scripts/agents-md-check.cjs
+doctor-docs	.skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs
+render-hooks-plugin	.skilled/hooks/shared/session-readers/codex.mjs
+render-hooks-plugin	.skilled/hooks/shared/tests/session-readers/codex.test.mjs
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+render-hooks-plugin	.skilled/skills/system-skill-advisor/runtime/lib/render.ts
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/tests/command-meaning-anchor.vitest.ts
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts
+render-hooks-plugin	.skilled/skills/system-skill-advisor/runtime/tests/doctor-brief-render.vitest.ts
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/tests/doctor-helper-handoff.vitest.ts
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-handoff-command.vitest.ts
+scorer-attach	.skilled/skills/system-skill-advisor/runtime/tests/scorer/typed-command-owner.vitest.ts

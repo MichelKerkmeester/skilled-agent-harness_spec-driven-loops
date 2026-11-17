@@ -1,0 +1,23 @@
+$ git -c core.fsmonitor=false diff --name-only 8a5f3214522 -- . ':!specs'
+.skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md
+.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md
+.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md
+.skilled/skills/system-skill-advisor/runtime/lib/README.md
+.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md
+.skilled/skills/system-skill-advisor/runtime/tests/README.md
+exit 0
+
+$ git -c core.fsmonitor=false diff --quiet 8a5f3214522 -- AGENTS.md .skilled/skills/system-skill-advisor/SKILL.md .skilled/skills/system-skill-advisor/description.json
+exit 0
+
+$ git -c core.fsmonitor=false diff --stat 8a5f3214522 -- '*.ts' '*.mjs' '*.cjs' '*.js' '*.json' ':!specs'
+exit 0
+
+$ ls .skilled/skills/system-skill-advisor/changelog | rg -c '^v1\.1\.'
+1
+exit 0
+
+$ git -c core.fsmonitor=false diff 8a5f3214522 -U0 -- .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md | rg '^\+[^+]' | rg -c -e 'specs/|REQ-0|ADR-0|AC-0|T0[0-9]{2}|[Pp]hase 0?[0-9]{2}'
+exit 1
+

@@ -1,0 +1,11 @@
+{"mode":"warm","index":0,"id":"cmd-create-readme-plain-tune-01","split":"tune","handlerMs":93.63550000000004,"top":"sk-doc","command":null,"needsMode":false,"kind":"skill","recommendationCount":2}
+{"mode":"warm","index":1,"id":"cmd-doctor-setup-plain-tune-01","split":"tune","handlerMs":51.094875,"top":null,"command":null,"needsMode":false,"kind":null,"recommendationCount":0}
+{"mode":"warm","index":2,"id":"cmd-create-agent-plain-tune-01","split":"tune","handlerMs":83.94487500000002,"top":"sk-doc","command":"/create:agent","needsMode":false,"kind":"skill","recommendationCount":3}
+{"mode":"warm","index":3,"id":"cmd-speckit-save-plain-tune-01","split":"tune","handlerMs":76.53029099999992,"top":"sk-doc","command":null,"needsMode":false,"kind":"skill","recommendationCount":1}
+{"mode":"warm","index":4,"id":"cmd-doctor-mcp-plain-tune-01","split":"tune","handlerMs":26.30037500000003,"top":"mcp-code-mode","command":null,"needsMode":false,"kind":"skill","recommendationCount":3}
+{"mode":"warm","index":5,"id":"cmd-speckit-implement-plain-tune-01","split":"tune","handlerMs":71.49787500000002,"top":"sk-code","command":null,"needsMode":false,"kind":"skill","recommendationCount":3}
+{"mode":"warm","index":6,"id":"cmd-create-repo-rule-plain-tune-01","split":"tune","handlerMs":80.09445800000003,"top":"sk-doc","command":null,"needsMode":false,"kind":"skill","recommendationCount":3}
+{"mode":"warm","index":7,"id":"cmd-doctor-sk-skill-plain-tune-01","split":"tune","handlerMs":79.63070900000002,"top":"sk-doc","command":null,"needsMode":false,"kind":"skill","recommendationCount":1}
+{"mode":"warm","index":8,"id":"cmd-create-readme-typed-01","split":"none","handlerMs":82.79645800000003,"top":"sk-doc","command":"/create:readme","needsMode":false,"kind":"skill","recommendationCount":3}
+{"mode":"warm","index":9,"id":"cmd-doctor-setup-typed-01","split":"none","handlerMs":31.64350000000013,"top":"command-doctor-setup","command":"/doctor:setup","needsMode":false,"kind":"command","recommendationCount":1}
+{"mode":"warm-summary","n":10,"median":76.53029099999992,"worst":93.63550000000004,"best":26.30037500000003}

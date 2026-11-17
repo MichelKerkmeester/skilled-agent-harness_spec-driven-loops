@@ -97,25 +97,13 @@ function isContextEvent(eventName) {
 function withdrawOnOperatorPrompt(sessionId, env) {
   const loopId = env.SKILLED_LOOP_ID;
   if (!loopId) return false;
-  let withdrawn;
-  try {
-    withdrawn = withdraw.withdrawHandOver({
-      loopId,
-      sessionId,
-      reason: 'user-message',
-      pending: 'deferred',
-      env,
-      onError: (stage, error) => {
-        logEvent('context-nudge-error', { stage, message: error.message }, env);
-      },
-    });
-  } catch (error) {
-    logEvent('context-nudge-error', { stage: 'withdraw', message: error.message }, env);
-    return false;
-  }
-  if (withdrawn === null) return false;
-  logEvent('withdrawn', { loopId, sessionId, reason: 'user-message' }, env);
-  return true;
+  return withdraw.withdrawOnPrompt({
+    loopId,
+    sessionId,
+    env,
+    log: (event, fields) => logEvent(event, fields, env),
+    withdrawnEvent: 'withdrawn',
+  });
 }
 
 function newestJournalFile(sessionRoot) {

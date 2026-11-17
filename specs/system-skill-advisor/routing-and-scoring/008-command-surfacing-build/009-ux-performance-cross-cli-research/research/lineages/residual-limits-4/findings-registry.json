@@ -1,0 +1,544 @@
+{
+  "sessionId": "fanout-residual-limits-4-1794570002424-6wv97k",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 4,
+    "answeredCount": 3,
+    "totalQuestions": 3,
+    "timestamp": "2026-11-13T12:25:00.000Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-kq1-what-does-the-reader-see-on-each-of-claude-codex-opencode-pi-devin-and-dsh-a",
+      "inboxId": null,
+      "text": "KQ1: What does the reader see on each of claude, codex, opencode, pi, devin and dsh at HEAD after phases 014 and 015, and which runtime still loses the command, the policy or the skill, or reports the brief as unknown?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-kq2-what-is-the-live-brief-size-per-prompt-and-the-hook-latency-at-head-after-ph",
+      "inboxId": null,
+      "text": "KQ2: What is the live brief size per prompt and the hook latency at HEAD after phase 015, and which bytes or milliseconds can be removed without losing the command, the policy or the skill?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-kq3-which-residual-limits-still-make-the-advisor-less-useful-across-the-clis-and",
+      "inboxId": null,
+      "text": "KQ3: Which residual limits still make the advisor less useful across the CLIs, and which change is worth building next, with the files, the measured gain and the check that proves it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-kq1-what-does-the-reader-see-on-each-of-claude-codex-opencode-pi-devin-and-dsh-a",
+      "inboxId": null,
+      "text": "KQ1: What does the reader see on each of claude, codex, opencode, pi, devin and dsh at HEAD after phases 014 and 015, and which runtime still loses the command, the policy or the skill, or reports the brief as unknown?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-kq2-what-is-the-live-brief-size-per-prompt-and-the-hook-latency-at-head-after-ph",
+      "inboxId": null,
+      "text": "KQ2: What is the live brief size per prompt and the hook latency at HEAD after phase 015, and which bytes or milliseconds can be removed without losing the command, the policy or the skill?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-kq3-which-residual-limits-still-make-the-advisor-less-useful-across-the-clis-and",
+      "inboxId": null,
+      "text": "KQ3: Which residual limits still make the advisor less useful across the CLIs, and which change is worth building next, with the files, the measured gain and the check that proves it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-at-head-the-six-runtimes-fall-into-three-delivery-proof-classes-proven-claude-24",
+      "text": "At HEAD the six runtimes fall into three delivery-proof classes. Proven: claude 24 of 24, devin 24 of 24, pi 24 of 24, dsh 23 of 23 stored sessions. Unproven: opencode 24 of 24 rows read `deliveryUnknown`, because the plugin pushes the head onto `output.system` in memory and the shared session reader keeps no trace. Absent: codex 0 of 24, because its hooks are unapproved. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/summary-final-after.json] [SOURCE: .opencode/plugins/system-skill-advisor.js:1580]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/summary-final-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json`",
+        "`.opencode/plugins/system-skill-advisor.js`"
+      ]
+    },
+    {
+      "id": "finding-1-3-codex-is-the-only-runtime-where-the-reader-receives-no-brief-at-all-still-0-of-2",
+      "text": "Codex is the only runtime where the reader receives no brief at all, still 0 of 24. This is the operator-owned hook approval already recorded in the goal log, not a code defect in this phase, and it is the largest single reader-experience gap on the six-runtime surface. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:135] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/summary-final-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json`",
+        "`.opencode/plugins/system-skill-advisor.js`"
+      ]
+    },
+    {
+      "id": "finding-1-5-dsh-s-one-unscored-row-cmd-deep-research-plain-tune-01-reason-locator-unavailabl",
+      "text": "DSH's one unscored row (`cmd-deep-research-plain-tune-01`, reason `locator_unavailable`) is the one DSH line whose `locator` is null in the stale arm; the other 23 lines carry a locator and delivered true. It is a re-score artifact of the pre-015 arm, not a current delivery gap, and one fresh DSH row is what closes it. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/summary-final-after.json]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/summary-final-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json`",
+        "`.opencode/plugins/system-skill-advisor.js`"
+      ]
+    },
+    {
+      "id": "finding-1-4-opencode-s-reader-experience-is-truncated-by-the-turn-cap-more-than-any-other-ru",
+      "text": "OpenCode's reader experience is truncated by the turn cap more than any other runtime: 8 of 24 runs exit 143, 6 of 14 offers land on a capped row, and its start rate is computed on only 5 of 12 start rows. The brief does reach those rows (14 offers), but the run stops before the offer can be taken or refused, so the published 2 of 5 understates what the reader was shown. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/summary-final-after.json] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/summary-final-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json`",
+        "`.opencode/plugins/system-skill-advisor.js`"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-bytes-the-reader-receives-are-identical-across-the-hook-and-the-opencode-plu",
+      "text": "The bytes the reader receives are identical across the hook and the OpenCode plugin on all nine committed probe prompts: one system entry each, 244 to 305 bytes, after rank 4 removed the duplicate compiled-routing line. OpenCode's residual limit is evidence of delivery, not the content or size of the brief. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/summary-final-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json`",
+        "`.opencode/plugins/system-skill-advisor.js`"
+      ]
+    },
+    {
+      "id": "finding-2-3-hook-latency-has-wide-headroom-against-the-2-5-s-budget-across-1-826-real-health",
+      "text": "Hook latency has wide headroom against the 2.5 s budget. Across 1,826 real health records from 2026-11-13 the median is 178 ms, p95 294 ms, p99 396 ms and the maximum 893 ms; zero records exceed 1,000 ms and zero exceed 2,500 ms. The in-process source handler over 44 live calls is 145.3 ms median, 233.5 ms p95 and 274 ms max, with a first call of 221.8 ms on a warm daemon. The p99 uses 15.8 percent of the budget and the worst record 35.7 percent. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/health-latency.json] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/live-brief-ts.json] [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:144]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/live-brief-ts.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/health-latency.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs`"
+      ]
+    },
+    {
+      "id": "finding-2-5-no-byte-cut-is-worth-building-on-this-evidence-the-only-removable-head-decoratio",
+      "text": "No byte cut is worth building on this evidence. The only removable head decoration left is the status word plus the two scores and `pass`, at most about 30 bytes of a 306-byte brief (9.8 percent), and removing it loses freshness and the pass mark, which segment three already showed fails the head-cut test. The other 219 bytes are the directive block, and trimming that was decided in segment one. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/live-brief-ts.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/health-latency.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs`"
+      ]
+    },
+    {
+      "id": "finding-2-2-roughly-72-percent-of-every-brief-is-the-fixed-comment-hygiene-directive-not-the",
+      "text": "Roughly 72 percent of every brief is the fixed comment-hygiene directive, not the recommendation. The no-match brief is 244 bytes, of which 25 are the head `Advisor: no skill matched.` and 219 are the directive block; at the 306-byte median the recommendation is about 87 bytes and the directive about 219. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/live-brief-ts.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/live-brief-ts.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/health-latency.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs`"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-brief-is-selective-so-its-cost-lands-on-a-minority-of-prompts-of-1-826-recor",
+      "text": "The brief is selective, so its cost lands on a minority of prompts. Of 1,826 records, 325 emitted a non-zero brief (17.8 percent), the mean emission is 265.6 bytes and the mean over all records is 47.3 bytes; 47 records are stale, 19 fail open and 6 are degraded. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/health-latency.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/live-brief-ts.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/health-latency.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs`"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-live-brief-over-all-44-typed-rows-is-306-bytes-at-the-median-337-at-p95-and-",
+      "text": "The live brief over all 44 typed rows is 306 bytes at the median, 337 at p95 and 350 at the maximum, with a first-line (head) median of 88 bytes, p95 119 and max 132; all 44 rows rendered a live head (`nonLiveRows: []`). This closes the phase 015 open limitation with a number: the earlier estimate of 296 bytes was 10 bytes low, and the 78-byte repeat estimate was 10 bytes low. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/live-brief-ts.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/live-brief-ts.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/health-latency.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs`"
+      ]
+    },
+    {
+      "id": "finding-3-5-codex-remains-the-only-reader-facing-absence-on-the-six-runtime-surface-0-of-24-",
+      "text": "Codex remains the only reader-facing absence on the six-runtime surface: 0 of 24 rows received a brief because the hooks are unapproved, and no code change in this lane can change that. It is the single largest user-visible gap and it stays on the operator. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:135] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/cli-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/summary-final-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`"
+      ]
+    },
+    {
+      "id": "finding-3-1-cross-cli-usefulness-measured-as-commands-started-over-offers-that-were-not-capp",
+      "text": "Cross-CLI usefulness, measured as commands started over offers that were not capped: Claude 5 of 14 (35.7 percent), Devin 10 of 11 (90.9), DSH 11 of 13 (84.6), Pi 7 of 14 (50.0), OpenCode 3 of 8 (37.5). The spread is 55 points between Devin and Claude; it is not a delivery gap, because all four of the non-OpenCode runtimes carried a proven brief. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/summary-final-after.json]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/cli-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/summary-final-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`"
+      ]
+    },
+    {
+      "id": "finding-3-2-every-start-policy-offer-in-the-final-arm-is-a-create-command-cmd-create-agent-p",
+      "text": "Every start-policy offer in the final arm is a `/create:*` command: `cmd-create-agent-plain-tune-02`, `cmd-create-benchmark-plain-tune-01`, `cmd-create-command-plain-tune-01`, `cmd-create-diff-plain-tune-01`, `cmd-create-feature-catalog-plain-tune-01`, `cmd-create-goal-plain-tune-01` and `cmd-create-manual-testing-playbook-plain-tune-01`. Claude started 2 of its 8 start rows while Devin started 7 of 8 and DSH 6 of 8, so the Claude `create` collapse already waiting on the operator as segment-three rank 7 now has a measured start-side cost, not only a visibility count. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:124]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/cli-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/summary-final-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`"
+      ]
+    },
+    {
+      "id": "finding-3-3-opencode-s-brief-content-has-parity-with-the-hook-over-the-whole-measured-typed-",
+      "text": "OpenCode's brief content has parity with the hook over the whole measured typed corpus, not only the nine probes: 0 of 44 rows differ in top skill, command, policy or ambiguity, with or without the plugin's `surfaceHint`. The plugin request omits `includeCompiledRoute` and `compiledRouteTopOnly`, and that omission changes nothing on this corpus, because the CLI attaches the command anyway. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/cli-parity.json] [SOURCE: .opencode/plugins/system-skill-advisor.js:866]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/cli-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/summary-final-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-one-measured-build-left-is-an-opencode-delivery-marker-the-plugin-already-co",
+      "text": "The one measured build left is an OpenCode delivery marker. The plugin already computes the emitted block in `observeEmittedAdvisorBlock`; writing a bounded, prompt-free receipt (session id, block hash, runtime, epoch) beside the health records and teaching `briefDelivered` an `opencode` branch would move 24 of 24 OpenCode rows from `deliveryUnknown` to a boolean, raising cross-CLI delivery coverage from 4 of 6 runtimes to 5 of 6. The gain is measurement completeness, not model-visible bytes. [SOURCE: .opencode/plugins/system-skill-advisor.js:975] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:220] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/cli-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/summary-final-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`"
+      ]
+    },
+    {
+      "id": "finding-3-6-three-candidates-are-hypotheses-with-no-measurement-and-are-not-recommended-a-mo",
+      "text": "Three candidates are hypotheses with no measurement and are not recommended: a more directive head to lift Claude's start rate (no arm may run), a higher OpenCode turn cap (a harness setting, not advisor code), and a tie-break line on ambiguous prompts (9 probe heads, no command expected on 1 of 9, so the expected gain is at most 1 row). [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/cli-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/summary-final-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/render-entries-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`"
+      ]
+    },
+    {
+      "id": "finding-4-1-all-24-opencode-arena-sessions-are-present-in-the-store-and-their-562-message-ro",
+      "text": "All 24 OpenCode arena sessions are present in the store, and their 562 message rows are 513 `assistant`, 24 `idle`, 24 `user` and 1 `synthetic`; there is no injected-context or system row type at all. The store has every session but no record of what the plugin injected. [SOURCE: ~/.local/share/opencode/opencode.db] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`~/.local/share/opencode/opencode.db` (read-only queries)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl`",
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs`"
+      ]
+    },
+    {
+      "id": "finding-4-2-ten-of-the-24-sessions-contain-the-string-advisor-and-every-one-of-those-hits-is",
+      "text": "Ten of the 24 sessions contain the string `Advisor:` and every one of those hits is in an `assistant` row, which is the model quoting the head, not the host recording an injection. A store-based delivery check would therefore report 10 of 24 as delivered and 14 as missing, and it would count model output as delivery evidence, which is both false-positive and prompt-text exposure. [SOURCE: ~/.local/share/opencode/opencode.db]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`~/.local/share/opencode/opencode.db` (read-only queries)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl`",
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs`"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-build-is-a-new-prompt-free-write-not-a-new-reader-the-plugin-already-compute",
+      "text": "The build is a new prompt-free write, not a new reader. The plugin already computes the emitted block in `observeEmittedAdvisorBlock` and can append a bounded receipt (session id, block hash, runtime, epoch) beside the health records; `briefDelivered` then gains an `opencode` branch that reads that receipt and never the session text. [SOURCE: .opencode/plugins/system-skill-advisor.js:975] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:220]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`~/.local/share/opencode/opencode.db` (read-only queries)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl`",
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs`"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-key-space-for-the-receipt-is-proven-all-24-opencode-run-lines-carry-a-sessio",
+      "text": "The key space for the receipt is proven: all 24 OpenCode run lines carry a `sessionId` and a `projectDir`, and `SPECKIT_` is already in the behaviour runner's child-environment allowlist, so a `SPECKIT_SKILL_ADVISOR_METRICS_DIR`-style path reaches the plugin without changing the allowlist. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:830]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`~/.local/share/opencode/opencode.db` (read-only queries)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl`",
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-67f0fb6bf1e3",
+      "text": "A per-runtime text comparison of the brief: the render probe shows the same renderer output through both channels, so no content difference exists to measure.",
+      "contentHash": "67f0fb6bf1e3",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-ecdc31cf3dbe",
+      "text": "Re-opening segment-three rank 4 (OpenCode compiled-routing line): the after probe shows one entry per prompt on all nine labels, so its gain is already taken.",
+      "contentHash": "ecdc31cf3dbe",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-591ddc0fb45e",
+      "text": "Re-running the behaviour arm to get fresh OpenCode or DSH delivery evidence: the lane forbids a live arm and no model session may start.",
+      "contentHash": "591ddc0fb45e",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-def5d78e5ed2",
+      "text": "Treating the nine probe heads as a brief-size corpus: it is a render parity probe, and KQ2 needs the full typed corpus measured.",
+      "contentHash": "def5d78e5ed2",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-d17102381f73",
+      "text": "Using `summary-final-after.json` alone for delivery: it carries `deliveryUnknown` but not `briefDelivered`, so the per-runtime truth had to come from the run lines.",
+      "contentHash": "d17102381f73",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-629c6fce472f",
+      "text": "Measuring a new cold-daemon first prompt: that needs a fresh socket and a live arm-like start. The phase 010 figure of 742 ms (30 percent of budget) already covers it and is cited, not rerun.",
+      "contentHash": "629c6fce472f",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-f7e909e4e48c",
+      "text": "Piping rows through the committed `measure-brief-cost.mjs` with the compiled dist hook: it reads `degraded_brief` on this machine, which is the exact failure phase 015 recorded, so the source handler is the only path that yields live heads without a build.",
+      "contentHash": "f7e909e4e48c",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-3a00dc0f9b9e",
+      "text": "Rebuilding the stale `@spec-kit/cli` dist to make that script pass: a build writes outside this lineage, and the lane forbids it.",
+      "contentHash": "3a00dc0f9b9e",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1427f9915315",
+      "text": "Treating the cache-hit median as the repeat cost: the repeat head is 88 bytes in the corpus, not zero, because the reduced head still carries the first line.",
+      "contentHash": "1427f9915315",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-88b446fd6291",
+      "text": "Using `emittedBytes` from health records as the brief size: 82 percent of records are zero because the advisor emitted nothing, so the positive subset is the only size signal and the typed corpus is the only clean population.",
+      "contentHash": "88b446fd6291",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-64632f00ac26",
+      "text": "A plugin request-flag change: 0 of 44 typed rows differ, so the flags buy nothing on the measured corpus.",
+      "contentHash": "64632f00ac26",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-a45c0f20a8ce",
+      "text": "Comparing rendered heads from the plugin itself: the plugin's renderer is the same shared renderer, so the CLI answer is the only place a difference could enter, and the probe found none.",
+      "contentHash": "a45c0f20a8ce",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-8a0fff0e390c",
+      "text": "Re-opening rank 6 (in-process degraded scorer) or rank 10 (intent signals): separate segment-four lanes own them.",
+      "contentHash": "8a0fff0e390c",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-c7eb1db0c8ab",
+      "text": "Re-ranking the OpenCode turn cap as an advisor fix: it is the arena's cap and lands in the runner, not in the brief.",
+      "contentHash": "c7eb1db0c8ab",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-8945ac1c5783",
+      "text": "Using the final arm's `startedOfOffered` without removing capped rows: it mixes a model choice with a harness stop, so the judgeable denominator was rebuilt.",
+      "contentHash": "8945ac1c5783",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-489419e13ec9",
+      "text": "`instruction_entry` and `instruction_blob`: 0 entries for these sessions, so the injected block is not in the instruction tables either.",
+      "contentHash": "489419e13ec9",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-7ae0cafe532c",
+      "text": "`part` and `message`: 0 rows for the arena session; the live table is `session_message`.",
+      "contentHash": "7ae0cafe532c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-fa703c049ca1",
+      "text": "A plugin-local in-memory receipt: the arena turn ends the process, so only a durable write survives to scoring time.",
+      "contentHash": "fa703c049ca1",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-d8a0fdda4e71",
+      "text": "A reader-only fix against `session_message`: 10 of 24 sessions would read as delivered on assistant text alone, so the check would be wrong on 14 rows and truthy on model output.",
+      "contentHash": "d8a0fdda4e71",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-26d73698ba23",
+      "text": "Reading message bodies for the brief text: it is model output, and it would put prompt-adjacent text in a score log.",
+      "contentHash": "26d73698ba23",
+      "addedAtIteration": 4
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 4,
+    "openQuestions": 0,
+    "resolvedQuestions": 3,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 20,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.75,
+    "coverageBySources": {
+      "other": 34
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

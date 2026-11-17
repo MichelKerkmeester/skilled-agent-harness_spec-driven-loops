@@ -60,6 +60,7 @@ export interface AdvisorHookDiagnosticRecord {
   readonly generation?: number;
   readonly emittedBytes?: number;
   readonly directivesSuppressed?: boolean;
+  readonly degraded?: boolean;
 }
 
 export interface AdvisorHookHealthSection {
@@ -68,6 +69,8 @@ export interface AdvisorHookHealthSection {
   readonly rollingCacheHitRate: number;
   readonly rollingP95Ms: number;
   readonly rollingFailOpenRate: number;
+  readonly rollingDegradedRate: number;
+  readonly lastRecordAt: string | null;
 }
 
 export interface AdvisorHookAlertThresholds {
@@ -386,6 +389,7 @@ export function createAdvisorHookDiagnosticRecord(input: {
   readonly generation?: number;
   readonly emittedBytes?: number;
   readonly directivesSuppressed?: boolean;
+  readonly degraded?: boolean;
   readonly timestamp?: string;
 }): AdvisorHookDiagnosticRecord {
   const errorCode = normalizeErrorCode(input.errorCode);
@@ -403,6 +407,7 @@ export function createAdvisorHookDiagnosticRecord(input: {
     ...(typeof input.generation === 'number' ? { generation: input.generation } : {}),
     ...(typeof input.emittedBytes === 'number' ? { emittedBytes: input.emittedBytes } : {}),
     ...(typeof input.directivesSuppressed === 'boolean' ? { directivesSuppressed: input.directivesSuppressed } : {}),
+    ...(input.degraded === true ? { degraded: true } : {}),
   };
 }
 
@@ -429,7 +434,8 @@ export function validateAdvisorHookDiagnosticRecord(value: unknown): value is Ad
       || (typeof record.emittedBytes === 'number'
         && Number.isInteger(record.emittedBytes)
         && record.emittedBytes >= 0))
-    && (record.directivesSuppressed === undefined || typeof record.directivesSuppressed === 'boolean');
+    && (record.directivesSuppressed === undefined || typeof record.directivesSuppressed === 'boolean')
+    && (record.degraded === undefined || typeof record.degraded === 'boolean');
 }
 
 /** Serialize a validated diagnostic record for JSONL emission. */
@@ -447,7 +453,12 @@ export async function persistAdvisorHookDiagnosticRecord(
   record: AdvisorHookDiagnosticRecord,
 ): Promise<string> {
   const path = durableMetricsPath(workspaceRoot, 'diagnostics');
-  await writeBoundedJsonl(path, serializeAdvisorHookDiagnosticRecord(record), MAX_DURABLE_DIAGNOSTIC_RECORDS);
+  // A health record answers how the hook runs, which needs no prompt, skill or
+  // error text, so it is written on every prompt, and the debug variable adds the
+  // two fields that say what the prompt was about.
+  const { skillLabel: _skillLabel, errorDetails: _errorDetails, ...promptFreeRecord } = record;
+  const persisted = process.env.SKILL_ADVISOR_DEBUG ? record : promptFreeRecord;
+  await writeBoundedJsonl(path, serializeAdvisorHookDiagnosticRecord(persisted), MAX_DURABLE_DIAGNOSTIC_RECORDS, { requireDebug: false });
   return path;
 }
 
@@ -468,6 +479,7 @@ export function buildAdvisorHookHealthSection(
   const lastInvocations = records.slice(-MAX_HEALTH_RECORDS);
   const cacheHits = lastInvocations.filter((record) => record.cacheHit).length;
   const failOpen = lastInvocations.filter((record) => record.status === 'fail_open').length;
+  const degraded = lastInvocations.filter((record) => record.degraded === true).length;
   return {
     key: 'advisor-hook-health',
     lastInvocations,
@@ -477,6 +489,8 @@ export function buildAdvisorHookHealthSection(
       95,
     ),
     rollingFailOpenRate: lastInvocations.length > 0 ? failOpen / lastInvocations.length : 0,
+    rollingDegradedRate: lastInvocations.length > 0 ? degraded / lastInvocations.length : 0,
+    lastRecordAt: lastInvocations[lastInvocations.length - 1]?.timestamp ?? null,
   };
 }
 

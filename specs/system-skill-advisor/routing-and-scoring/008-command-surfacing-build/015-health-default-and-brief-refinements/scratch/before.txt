@@ -1,0 +1,33 @@
+$ git rev-parse --short HEAD
+2549786f28
+$ npm run build
+exit=0
+$ FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":8,"attached":15,"combined":23,"total":45}
+{"count":0,"total":35}
+$ EVAL
+[160,50,21,5]
+$ TC
+exit=0
+$ VALL
+ Test Files  182 passed (182)
+      Tests  1744 passed | 6 skipped (1750)
+exit=0
+$ NPL
+ℹ pass 42
+ℹ fail 0
+$ DALL
+ℹ pass 1188
+ℹ fail 0
+$ DRV
+{"status":"fresh","changed":[]}
+exit=0
+$ SRM
+[runtime-mirror-sync] PASS: 256 mirrors across 10 trees are in sync.
+exit=0
+$ jq -c '.attachedMetrics | [.needs_mode_floor, .needsModeRows]' BASE
+[null,null]
+$ node S --summary FINAL --json | jq deliveryUnknown, unsafe, unscored
+{"claude":[0,0,0],"devin":[0,2,0],"dsh":[0,2,1],"opencode":[24,2,0],"pi":[0,1,0]}

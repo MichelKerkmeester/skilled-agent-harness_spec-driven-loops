@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/030-vibe-runtime-parity",
+  "description": "Phase 30: vibe-runtime-parity",
+  "keywords": [
+    "phase",
+    "vibe-runtime-parity"
+  ],
+  "lastUpdated": "2026-11-15T10:20:11.659Z",
+  "specId": "030",
+  "folderSlug": "vibe-runtime-parity",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring",
+    "008-command-surfacing-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

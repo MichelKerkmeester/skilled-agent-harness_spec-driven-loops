@@ -1,0 +1,17 @@
+## dsh arena after fresh-skill-04 on run 1
+head 65b4c979900
+65b4c979900 rebase: fast-forward
+4e9586b2be0 rebase: fast-forward
+ec5e9b16549 rebase: fast-forward
+3533a9aa94a rebase: fast-forward
+38a9e41e886 rebase: fast-forward
+0238274ed89 rebase: fast-forward
+98cad52343a rebase: fast-forward
+4b28df4cbcc rebase: fast-forward
+(no branch, rebasing worktrees/352-command-surfacing-research) 65b4c979900
+worktrees/352-command-surfacing-research b765c7a14c5
+status count 0
+stash 0
+ls: .git/MERGE_HEAD: No such file or directory
+.git/rebase-merge
+remotes 0

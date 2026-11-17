@@ -1,0 +1,330 @@
+{
+  "sessionId": "fanout-docs-merge-10-1794847584683-k2l24m",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 5,
+    "timestamp": "2026-11-16T17:21:36.166Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "The merge left the doctor-install contract test pinning the pre-merge presentation text",
+      "file": ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+      "line": 78,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "title": "The merged accepted-runtime sentence says nine but lists eight",
+      "file": ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+      "line": 78,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "Both advisor runtime enumerations omit Vibe",
+      "file": ".skilled/skills/system-skill-advisor/README.md",
+      "line": 244,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "The no-edit release bullet claims more than the gate does",
+      "file": ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
+      "line": 44,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "The suffix list in the changelog is narrower than the parser",
+      "file": ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
+      "line": 102,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 5,
+    "stopReason": "converged",
+    "failedRequiredGateIds": []
+  },
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 4
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 1.8,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "graphSignals": {
+    "blockedBy": [],
+    "decision": "STOP",
+    "graphDecision": "STOP_ALLOWED",
+    "iterationCount": 5,
+    "missingDimensions": [],
+    "reasonDetail": "composite_converged",
+    "rollingAverage": 0.5,
+    "stopReason": "converged",
+    "stuckCount": 1,
+    "weightedStopScore": 0.7
+  },
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 2,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 4,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "applicable": false,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 0
+        },
+        "evidence": [],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "notApplicable",
+        "summary": "No spec implementation surface maps to this docs area."
+      },
+      {
+        "applicable": false,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 0
+        },
+        "evidence": [],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "summary": "No checklist.md; the brief and scope file are the checklist."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 1
+        },
+        "evidence": [
+          ".skilled/skills/sk-doc/SKILL.md:29"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "summary": "The sk-doc rename remains coherent."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 1
+        },
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:40-50"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "agent_cross_runtime",
+        "status": "pass",
+        "summary": "The adapter set is unchanged."
+      },
+      {
+        "applicable": false,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 0
+        },
+        "evidence": [],
+        "gateClass": "advisory",
+        "protocolId": "feature_catalog_code",
+        "status": "notApplicable",
+        "summary": "No feature-catalog claim is touched."
+      },
+      {
+        "applicable": false,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 0
+        },
+        "evidence": [],
+        "gateClass": "advisory",
+        "protocolId": "playbook_capability",
+        "status": "notApplicable",
+        "summary": "No playbook claim is touched."
+      }
+    ],
+    "unfinishedCoreProtocols": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

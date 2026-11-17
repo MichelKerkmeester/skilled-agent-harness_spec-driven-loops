@@ -9,7 +9,7 @@ trigger_phrases:
   - "remove repo parent skill"
 importance_tier: normal
 contextType: implementation
-version: 1.2.11.0
+version: 1.2.12.0
 ---
 
 # Upgrading a Customized Skill to v4
@@ -34,13 +34,13 @@ v4 reshaped `sk-code` into a parent hub: one advisor identity that dispatches to
 **Core Principle**: Convert a skill into a parent hub only when it has two or more distinct jobs. Keep it single when it has one job. You may also drop the repo's parent `sk-code` and keep your own single skill.
 
 **When not to Use**:
-- You are creating a brand-new skill from scratch. Use `/create:skill` or `/create:skill-parent` directly. See [creation-workflow.md](creation-workflow.md) and [parent-skills-nested-packets.md](../parent-skill/parent-skills-nested-packets.md)
+- You are creating a brand-new skill from scratch. Use `/create:sk-skill` or `/create:skill-parent` directly. See [creation-workflow.md](creation-workflow.md) and [parent-skills-nested-packets.md](../parent-skill/parent-skills-nested-packets.md)
 - You are only scoring or editing prose in an existing skill. Use `create-quality-control`
 - You are tempted to convert framework-internal skills (`sk-doc`, `system-spec-kit`, `system-deep-loop`, and peers). Leave those alone
 
 **Key Sources**:
 - `/create:skill-parent` - parent-hub scaffold (`create` or `update`). Argument order is `<skill-name> [create|update] [--modes <m1,m2,...>] [--surfaces <s1,s2,...>] [--path <dir>]`
-- `/create:skill` - standalone scaffold and repair (`full-create`, `full-update`, `reference-only`, `asset-only`)
+- `/create:sk-skill` - standalone scaffold and repair (`full-create`, `full-update`, `reference-only`, `asset-only`)
 - [parent-skills-nested-packets.md](../parent-skill/parent-skills-nested-packets.md) - hub layout, `modes[]`, One-Identity Invariant
 - [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md) - `hub-router.json` contract
 - [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md) - class H (hub) vs class S (standalone) file matrix
@@ -204,7 +204,7 @@ If you need another mode later, use `/create:skill-parent <skill-name> update --
 
 Stay on class S when the skill still has one job.
 
-A standalone root keeps `SKILL.md`, `ROUTER.md`, `graph-metadata.json`, and `leaf-manifest.config.json`. Its `SKILL.md` links to `./ROUTER.md`. It must not gain `mode-registry.json`, `hub-router.json` or `description.json`. It may add `command-metadata.json` when it owns slash commands, with each entry's `ownerMode` set to the skill's own id. Repair that package with `/create:skill <skill-name> full-update` (or `reference-only` / `asset-only` for a scoped add). `/create:skill <skill-name> full-create` is only for a folder that does not exist yet.
+A standalone root keeps `SKILL.md`, `ROUTER.md`, `graph-metadata.json`, and `leaf-manifest.config.json`. Its `SKILL.md` links to `./ROUTER.md`. It must not gain `mode-registry.json`, `hub-router.json` or `description.json`. It may add `command-metadata.json` when it owns slash commands, with each entry's `ownerMode` set to the skill's own id. Repair that package with `/create:sk-skill <skill-name> full-update` (or `reference-only` / `asset-only` for a scoped add). `/create:sk-skill <skill-name> full-create` is only for a folder that does not exist yet.
 
 **Convert a single skill in place.** When the skill has one job and is still in a plain shape, or its machine router still sits inside `SKILL.md`, run `/doctor:sk-skill convert <name-or-path>`. It prints the plan first and writes only after your yes.
 - It adds the four-part `version`.
@@ -267,4 +267,4 @@ Pass prints `Detected kind: standalone` and `package_skill.py --check: PASS (exi
 - [validation-and-packaging.md](../shared/validation-and-packaging.md) - completion gate and packaging
 - [creation-workflow.md](creation-workflow.md) - standalone create path
 - `.skilled/commands/create/skill-parent.md` - `/create:skill-parent` operations `create` and `update`
-- `.skilled/commands/create/skill.md` - `/create:skill` operations `full-create`, `full-update`, `reference-only`, `asset-only`
+- `.skilled/commands/create/sk-skill.md` - `/create:sk-skill` operations `full-create`, `full-update`, `reference-only`, `asset-only`

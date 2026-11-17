@@ -411,12 +411,11 @@ test('flag-off route rendering and plugin delivery remain byte-identical to the 
   });
   const output = await runPrompt(hooks);
 
-  assert.equal(output.system[1], baseline);
+  assert.equal(output.system.length, 1);
   assert.match(await status(hooks), /bounded_compiled_route_summary=false/);
 });
 
-test('bounded flag selects the bounded line in the OpenCode transform', async () => {
-  const renderHelpers = await loadRenderHelpers();
+test('bounding leaves the OpenCode transform with the head entry alone', async () => {
   const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'skilled', 'typescript']);
   const child = fakeChild({
     stdout: cliEnvelope({
@@ -432,11 +431,7 @@ test('bounded flag selects the bounded line in the OpenCode transform', async ()
   });
   const output = await runPrompt(hooks);
 
-  assert.equal(
-    output.system[1],
-    renderHelpers.renderCompiledRouteSummaryLine(summary, { bounded: true }),
-  );
-  assert.match(output.system[1], /\+2 more/);
+  assert.equal(output.system.length, 1);
 });
 
 test('target digest is stable for the same membership and changes for a changed omitted set', async () => {
@@ -486,6 +481,77 @@ test('no-brief turns render the no-match head and hygiene context', async () => 
   assert.deepEqual(calls[0].options.stdio, ['pipe', 'pipe', 'ignore']);
 });
 
+test('renders the command, its policy and its owner from the advisor row', async () => {
+  const previousChildSession = process.env.AI_SESSION_CHILD;
+  // A dispatched child renders a start policy as parent-named, so read the row as
+  // the operator's own session does.
+  delete process.env.AI_SESSION_CHILD;
+  try {
+    const hooks = await makePlugin({
+      spawnOverride: spawnSequence([fakeChild({
+        stdout: cliEnvelope({
+          freshness: 'live',
+          recommendations: [{
+            // The owner differs from the skill, so a dropped owner changes the label.
+            skillId: 'system-spec-kit',
+            score: 0.9,
+            confidence: 0.95,
+            uncertainty: 0.12,
+            command: '/create:agent',
+            policy: 'start',
+            ownerSkillId: 'sk-doc',
+          }],
+        }),
+      })]),
+    });
+    const output = await runPrompt(hooks);
+
+    assert.ok(output.system[0].includes('sk-doc → /create:agent (start)'));
+  } finally {
+    if (previousChildSession === undefined) {
+      delete process.env.AI_SESSION_CHILD;
+    } else {
+      process.env.AI_SESSION_CHILD = previousChildSession;
+    }
+  }
+});
+
+test('names the first passing row when the first row does not pass', async () => {
+  const previousChildSession = process.env.AI_SESSION_CHILD;
+  delete process.env.AI_SESSION_CHILD;
+  try {
+    const hooks = await makePlugin({
+      spawnOverride: spawnSequence([fakeChild({
+        stdout: cliEnvelope({
+          freshness: 'live',
+          recommendations: [
+            {
+              skillId: 'command-doctor-sk-skill-convert',
+              score: 0.5,
+              confidence: 0.8,
+              uncertainty: 0.42,
+              command: '/doctor:sk-skill convert',
+              policy: 'ask',
+              ownerSkillId: 'sk-doc',
+            },
+            { skillId: 'sk-doc', score: 0.8, confidence: 0.95, uncertainty: 0.12 },
+          ],
+        }),
+      })]),
+    });
+    const output = await runPrompt(hooks);
+
+    assert.ok(output.system[0].includes('use sk-doc 0.95/0.12 pass.'));
+    assert.ok(!output.system[0].includes('command-doctor-'));
+  } finally {
+    if (previousChildSession === undefined) {
+      delete process.env.AI_SESSION_CHILD;
+    } else {
+      process.env.AI_SESSION_CHILD = previousChildSession;
+    }
+  }
+});
+
 test('the stdin request stays inside the byte budget when the prompt needs escaping', async () => {
   const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
   const hooks = await makePlugin({ maxPromptBytes: 600, spawnOverride: spawnSequence([child]) });
@@ -507,6 +573,15 @@ test('a prompt over 10,000 characters is sent as its first 10,000', async () => 
   await runPrompt(hooks, { prompt });
 
   assert.equal(JSON.parse(child.stdinPayload).prompt, prompt.slice(0, 10_000));
+});
+
+test('asks the advisor for the route of the top pick alone, as the hooks do', async () => {
+  const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
+  const hooks = await makePlugin({ spawnOverride: spawnSequence([child]) });
+
+  await runPrompt(hooks);
+
+  assert.equal(JSON.parse(child.stdinPayload).options.compiledRouteTopOnly, true);
 });
 
 test('a byte budget too small for any prompt fails open without spawning', async () => {
@@ -579,11 +654,26 @@ test('termination grace stays inside the configured timeout budget', async () =>
   const startedAt = Date.now();
   const keepAlive = setTimeout(() => undefined, 200);
 
-  const output = await runPrompt(hooks);
+  // The scheduled delays carry the budget check because timers fire late on a busy machine.
+  const delays = [];
+  const originalSetTimeout = global.setTimeout;
+  global.setTimeout = (callback, delay, ...args) => {
+    delays.push(delay);
+    return originalSetTimeout(callback, delay, ...args);
+  };
+  let output;
+  try {
+    output = await runPrompt(hooks);
+  } finally {
+    global.setTimeout = originalSetTimeout;
+  }
   clearTimeout(keepAlive);
   const elapsedMs = Date.now() - startedAt;
 
-  assert.ok(elapsedMs < 200, `expected bounded timeout, got ${elapsedMs}ms`);
+  assert.ok(delays.includes(40), `expected a timer at the 40ms deadline, got ${delays.join(', ')}ms`);
+  assert.ok(!delays.includes(290), `expected no timer that adds the grace, got ${delays.join(', ')}ms`);
+  assert.ok(delays.includes(0), `expected SIGTERM at the deadline minus the grace, got ${delays.join(', ')}ms`);
+  assert.ok(elapsedMs < 2000, `expected bounded timeout, got ${elapsedMs}ms`);
   assert.deepEqual(child.kills, ['SIGTERM', 'SIGKILL']);
   assert.equal(output.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
   assert.match(await status(hooks), /last_error_code=TIMEOUT/);

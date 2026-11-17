@@ -133,13 +133,13 @@ interface NudgeModule {
 }
 
 interface WithdrawModule {
-  withdrawHandOver(options: {
+  withdrawOnPrompt(options: {
     loopId: string;
-    reason: string;
-    sessionId?: string;
-    pending?: 'deferred' | 'any' | 'none';
+    sessionId: string;
     env?: NodeJS.ProcessEnv;
-  }): RelaunchRecord | null;
+    log: (event: string, fields: Record<string, unknown>) => void;
+    withdrawnEvent: string;
+  }): boolean;
 }
 
 type AdapterModules = {
@@ -226,8 +226,8 @@ async function loadNudge(): Promise<NudgeModule> {
 
 async function loadWithdraw(): Promise<WithdrawModule> {
   const withdraw = asModule<WithdrawModule>(await import('../lib/withdraw.cjs' as string));
-  if (typeof withdraw.withdrawHandOver !== 'function') {
-    throw new Error('session-handover withdraw does not export withdrawHandOver as a function');
+  if (typeof withdraw.withdrawOnPrompt !== 'function') {
+    throw new Error('session-handover withdraw does not export withdrawOnPrompt as a function');
   }
   return withdraw;
 }
@@ -363,14 +363,6 @@ function logPointer(
 ): void {
   try {
     core.appendLog(event, { sessionId, note: notePath }, process.env);
-  } catch {}
-}
-
-// The withdrawal is a handoff step like the arm itself, so it lands in the same log, and a
-// state-dir write that fails must not fail the turn that withdrew it.
-function logArmCancelled(core: CoreModule, loopId: string, sessionId: string): void {
-  try {
-    core.appendLog('arm-cancelled', { loopId, sessionId, reason: 'user-message' }, process.env);
   } catch {}
 }
 
@@ -680,14 +672,14 @@ export default function sessionHandover(pi: ExtensionAPI): void {
       // The withdrawal reads, judges and disarms under one lock, so a stop that re-armed the
       // record is never undone on the strength of an older read. It also grants the session one
       // more nudge and lists the note as still with its session, as a cancel does.
-      const withdrawn = modules.withdraw.withdrawHandOver({
+      const withdrawn = modules.withdraw.withdrawOnPrompt({
         loopId,
         sessionId,
-        reason: 'user-message',
         env: process.env,
+        log: (event, fields) => modules.core.appendLog(event, fields, process.env),
+        withdrawnEvent: 'arm-cancelled',
       });
-      if (withdrawn === null) return;
-      logArmCancelled(modules.core, loopId, sessionId);
+      if (!withdrawn) return;
       // The model asked for this hand-over and would otherwise still believe it is about to
       // end. Pi awaits this handler before the run's first model call reads its steers.
       pi.sendMessage(

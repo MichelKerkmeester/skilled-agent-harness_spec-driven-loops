@@ -11,7 +11,7 @@
  * omits is the failure mode worth a test, because a local run then reports in
  * sync while the remote run fails on the same tree.
  *
- * DSH checks are asserted in the shape their neighbours use,
+ * DSH and Vibe checks are asserted in the shape their neighbours use,
  * including the n/a rule: an absent runtime tree is reported as n/a rather than
  * created, so a read-only diagnostic never has a write side effect.
  *
@@ -65,7 +65,27 @@ const DSH_CHECKS = [
     tree: '.dsh/',
   },
 ];
-const MIRROR_CHECKS = DSH_CHECKS;
+const VIBE_CHECKS = [
+  {
+    key: 'vibe_prompts',
+    script: '.skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs',
+    surface: '.vibe/prompts',
+    tree: '.vibe/',
+  },
+  {
+    key: 'vibe_agents',
+    script: '.skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs',
+    surface: '.vibe/agents',
+    tree: '.vibe/',
+  },
+  {
+    key: 'vibe_skills',
+    script: '.skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs',
+    surface: '.vibe/skills',
+    tree: '.vibe/',
+  },
+];
+const MIRROR_CHECKS = [...DSH_CHECKS, ...VIBE_CHECKS];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. READERS AND SMALL HELPERS
@@ -180,7 +200,7 @@ function repairGaps(workflowText) {
 // 4. THE MANIFEST AND WORKFLOW AS THEY SHIP
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('the route declares all DSH checks in their check-only form', () => {
+test('the route declares every DSH and Vibe check in its check-only form', () => {
   assert.deepEqual(routeGaps(read(ROUTES_PATH)), []);
 });
 

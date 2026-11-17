@@ -1,0 +1,45 @@
+cmd-create-agent-plain-tune-01	1	/create:agent	/create:agent
+cmd-create-agent-plain-tune-02	1	/create:agent	/create:agent
+cmd-create-benchmark-plain-tune-01	1	/create:benchmark	/create:benchmark
+cmd-create-changelog-plain-tune-01	1	/create:changelog	/create:changelog
+cmd-create-command-plain-tune-01	1	/create:command	/create:command
+cmd-create-diff-plain-tune-01	1	/create:diff	/create:diff
+cmd-create-feature-catalog-plain-tune-01	1	/create:feature-catalog	/create:feature-catalog
+cmd-create-goal-plain-tune-01	1	/create:goal	/create:goal
+cmd-create-manual-testing-playbook-plain-tune-01	1	/create:manual-testing-playbook	/create:manual-testing-playbook
+cmd-create-readme-plain-tune-01	0		/create:readme
+cmd-create-repo-rule-plain-tune-01	0		/create:repo-rule
+cmd-create-skill-parent-plain-tune-01	0		/create:skill-parent
+cmd-create-skill-plain-tune-01	1	/create:skill	/create:skill
+cmd-create-with-human-voice-plain-tune-01	0		/create:with-human-voice
+cmd-doctor-agents-md-plain-tune-01	1	/doctor:agents-md check	/doctor:agents-md
+cmd-doctor-ci-plain-tune-01	1	/doctor:ci report	/doctor:ci
+cmd-doctor-deep-loop-plain-tune-01	1	/doctor:deep-loop	/doctor:deep-loop
+cmd-doctor-env-plain-tune-01	1	/doctor:env list	/doctor:env
+cmd-doctor-git-plain-tune-01	1	/doctor:git hooks	/doctor:git
+cmd-doctor-helper-plain-tune-01	1	/doctor:helper	/doctor:helper
+cmd-doctor-install-plain-tune-01	0		/doctor:install
+cmd-doctor-mcp-plain-tune-01	0		/doctor:mcp
+cmd-doctor-overlay-plain-tune-01	1	/doctor:overlay status	/doctor:overlay
+cmd-doctor-runtime-mirrors-plain-tune-01	1	/doctor:runtime-mirrors	/doctor:runtime-mirrors
+cmd-doctor-setup-plain-tune-01	0		/doctor:setup
+cmd-doctor-sk-code-plain-tune-01	0		/doctor:sk-code
+cmd-doctor-sk-skill-plain-tune-01	0		/doctor:sk-skill
+cmd-doctor-skill-advisor-plain-tune-01	0		/doctor:skill-advisor
+cmd-doctor-speckit-plain-tune-01	0		/doctor:speckit
+cmd-doctor-symlink-plain-tune-01	1	/doctor:symlink link	/doctor:symlink
+cmd-doctor-update-plain-tune-01	0		/doctor:update
+cmd-deep-ai-council-plain-tune-01	1	/deep:ai-council	/deep:ai-council
+cmd-deep-research-plain-tune-01	1	/deep:research	/deep:research
+cmd-deep-review-plain-tune-01	1	/deep:review	/deep:review
+cmd-design-chart-plain-tune-01	1	/design:chart	/design:chart
+cmd-design-diagram-plain-tune-01	1	/design:diagram	/design:diagram
+cmd-design-extract-plain-tune-01	1	/design:extract	/design:extract
+cmd-prompt-improve-plain-tune-01	1	/prompt:improve	/prompt:improve
+cmd-speckit-complete-plain-tune-01	0		/speckit:complete
+cmd-speckit-handoff-plain-tune-01	1	/speckit:handoff	/speckit:handoff
+cmd-speckit-implement-plain-tune-01	0		/speckit:implement
+cmd-speckit-plan-plain-tune-01	1	/speckit:plan	/speckit:plan
+cmd-speckit-resume-plain-tune-01	1	/speckit:resume	/speckit:resume
+cmd-speckit-save-plain-tune-01	0		/speckit:save
+cmd-speckit-search-plain-tune-01	0		/speckit:search

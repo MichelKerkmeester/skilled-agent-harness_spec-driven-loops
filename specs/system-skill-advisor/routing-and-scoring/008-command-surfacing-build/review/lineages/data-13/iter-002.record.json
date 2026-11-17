@@ -1,0 +1,387 @@
+{
+ "type": "iteration",
+ "iteration": 2,
+ "run": 2,
+ "mode": "review",
+ "target_agent": "deep-review",
+ "agent_definition_loaded": true,
+ "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+ "status": "complete",
+ "focus": "security and maintainability - holdout hygiene, playbook instruction surface and cross-scorer phrase specificity",
+ "dimensions": [
+  "security",
+  "maintainability"
+ ],
+ "filesReviewed": [
+  ".skilled/skills/system-skill-advisor/graph-metadata.json:96-110",
+  ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md:60-198",
+  "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/decision-record.md:30-38",
+  "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/scratch/probes.json:79-135",
+  ".skilled/skills/system-skill-advisor/runtime/tests/scorer/declared-phrase-specificity.vitest.ts:30-200",
+  ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4200-4215",
+  ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:1-60",
+  ".skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:20-130",
+  ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+  ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:196",
+  "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/data-13/deep-review-findings-registry.json",
+  "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/data-13/deep-review-strategy.md"
+ ],
+ "findingsCount": 1,
+ "findingsSummary": {
+  "P0": 0,
+  "P1": 0,
+  "P2": 1
+ },
+ "findingsNew": {
+  "P0": 0,
+  "P1": 0,
+  "P2": 1
+ },
+ "findingDetails": [
+  {
+   "id": "F003",
+   "severity": "P2",
+   "title": "The declared-phrase contract holds in one scorer and not the other",
+   "dimension": "maintainability",
+   "file": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/declared-phrase-specificity.vitest.ts:169",
+   "evidence": "the arena is clean now returns system-skill-advisor 0.82 natively and no skill in the Python fallback; clean arena seating chart for the stadium puts the advisor first natively and sk-design first in Python.",
+   "disposition": "active",
+   "findingClass": "test-coverage",
+   "scopeProof": "Ran the Python fallback in-process with the committed skill-graph.json signals and no SQLite graph, and compared its top-1 with scoreAdvisorPrompt for the same prompts; the divergence reproduces and the two phrases the test pins do not diverge.",
+   "affectedSurfaceHints": [
+    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/declared-phrase-specificity.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+    ".skilled/skills/system-skill-advisor/graph-metadata.json"
+   ],
+   "recommendation": "Add ordinary-sense prompts as cross-scorer fixtures once the phrase-scoring fix lands."
+  }
+ ],
+ "traceabilityChecks": {
+  "results": [
+   {
+    "protocolId": "skill_agent",
+    "status": "pass",
+    "gateClass": "soft",
+    "applicable": true,
+    "evidence": [
+     ".skilled/skills/system-skill-advisor/graph-metadata.json:101-107",
+     ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+    ],
+    "summary": "Author metadata and the compiled graph carry the identical seven strings; the projection exposes the same intentSignals."
+   },
+   {
+    "protocolId": "agent_cross_runtime",
+    "status": "notApplicable",
+    "gateClass": "soft",
+    "applicable": false,
+    "evidence": [],
+    "summary": "No agent file is defined in this area; the only runtime-specific artifact is the unchanged Claude hook the CL-009 playbook drives."
+   },
+   {
+    "protocolId": "playbook_capability",
+    "status": "pass",
+    "gateClass": "soft",
+    "applicable": true,
+    "evidence": [
+     ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md:148",
+     ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md:160-161"
+    ],
+    "summary": "The rendered parent and child labels match the playbook expected lines."
+   }
+  ]
+ },
+ "newFindingsRatio": 0.1429,
+ "noveltyJustification": "One new P2 against six weighted units already open is 1/7; the iteration adds a cross-scorer coverage finding rather than re-reporting F001.",
+ "sessionId": "fanout-data-13-1794865302020-qunumz",
+ "generation": 1,
+ "lineageMode": "new",
+ "timestamp": "2026-11-16T21:58:37.971Z",
+ "durationMs": 480000,
+ "graphEvents": [
+  {
+   "type": "node",
+   "id": "d-security",
+   "kind": "DIMENSION",
+   "label": "security"
+  },
+  {
+   "type": "node",
+   "id": "d-maintainability",
+   "kind": "DIMENSION",
+   "label": "maintainability"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-grap-64d035",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/graph-metadata.json"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-manu-f94ae5",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md"
+  },
+  {
+   "type": "node",
+   "id": "file-specs-system-skill-advisor-routing-and-s-fc9b91",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/decision-record.md"
+  },
+  {
+   "type": "node",
+   "id": "file-specs-system-skill-advisor-routing-and-s-65f332",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/scratch/probes.json"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-runt-85a693",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/declared-phrase-specificity.vitest.ts"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-runt-fc2343",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-runt-843cda",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-runt-2064eb",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-runt-e252ff",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+  },
+  {
+   "type": "node",
+   "id": "file-skilled-skills-system-skill-advisor-manu-05ad2b",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md"
+  },
+  {
+   "type": "node",
+   "id": "file-specs-system-skill-advisor-routing-and-s-b08f63",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/data-13/deep-review-findings-registry.json"
+  },
+  {
+   "type": "node",
+   "id": "file-specs-system-skill-advisor-routing-and-s-6fb31b",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/data-13/deep-review-strategy.md"
+  },
+  {
+   "type": "node",
+   "id": "f-F003",
+   "kind": "FINDING",
+   "label": "The declared-phrase contract holds in one scorer and not the other"
+  },
+  {
+   "type": "node",
+   "id": "ev-F003",
+   "kind": "EVIDENCE",
+   "label": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/declared-phrase-specificity.vitest.ts:169-200"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-s-1",
+   "source": "d-security",
+   "target": "file-skilled-skills-system-skill-advisor-grap-64d035",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-m-2",
+   "source": "d-maintainability",
+   "target": "file-skilled-skills-system-skill-advisor-grap-64d035",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-s-3",
+   "source": "d-security",
+   "target": "file-skilled-skills-system-skill-advisor-manu-f94ae5",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-m-4",
+   "source": "d-maintainability",
+   "target": "file-skilled-skills-system-skill-advisor-manu-f94ae5",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-s-5",
+   "source": "d-security",
+   "target": "file-specs-system-skill-advisor-routing-and-s-fc9b91",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-m-6",
+   "source": "d-maintainability",
+   "target": "file-specs-system-skill-advisor-routing-and-s-fc9b91",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-s-7",
+   "source": "d-security",
+   "target": "file-specs-system-skill-advisor-routing-and-s-65f332",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-m-8",
+   "source": "d-maintainability",
+   "target": "file-specs-system-skill-advisor-routing-and-s-65f332",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-s-9",
+   "source": "d-security",
+   "target": "file-skilled-skills-system-skill-advisor-runt-85a693",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-m-10",
+   "source": "d-maintainability",
+   "target": "file-skilled-skills-system-skill-advisor-runt-85a693",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-s-11",
+   "source": "d-security",
+   "target": "file-skilled-skills-system-skill-advisor-runt-fc2343",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-m-12",
+   "source": "d-maintainability",
+   "target": "file-skilled-skills-system-skill-advisor-runt-fc2343",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-s-13",
+   "source": "d-security",
+   "target": "file-skilled-skills-system-skill-advisor-runt-843cda",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-m-14",
+   "source": "d-maintainability",
+   "target": "file-skilled-skills-system-skill-advisor-runt-843cda",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-s-15",
+   "source": "d-security",
+   "target": "file-skilled-skills-system-skill-advisor-runt-2064eb",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-m-16",
+   "source": "d-maintainability",
+   "target": "file-skilled-skills-system-skill-advisor-runt-2064eb",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-s-17",
+   "source": "d-security",
+   "target": "file-skilled-skills-system-skill-advisor-runt-e252ff",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-m-18",
+   "source": "d-maintainability",
+   "target": "file-skilled-skills-system-skill-advisor-runt-e252ff",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-s-19",
+   "source": "d-security",
+   "target": "file-skilled-skills-system-skill-advisor-manu-05ad2b",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-m-20",
+   "source": "d-maintainability",
+   "target": "file-skilled-skills-system-skill-advisor-manu-05ad2b",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-s-21",
+   "source": "d-security",
+   "target": "file-specs-system-skill-advisor-routing-and-s-b08f63",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-m-22",
+   "source": "d-maintainability",
+   "target": "file-specs-system-skill-advisor-routing-and-s-b08f63",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-s-23",
+   "source": "d-security",
+   "target": "file-specs-system-skill-advisor-routing-and-s-6fb31b",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-cov-m-24",
+   "source": "d-maintainability",
+   "target": "file-specs-system-skill-advisor-routing-and-s-6fb31b",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-in-dim-F003",
+   "source": "f-F003",
+   "target": "d-maintainability",
+   "relation": "IN_DIMENSION"
+  },
+  {
+   "type": "edge",
+   "id": "e-in-file-F003",
+   "source": "f-F003",
+   "target": "file-skilled-skills-system-skill-advisor-runt-85a693",
+   "relation": "IN_FILE"
+  },
+  {
+   "type": "edge",
+   "id": "e-ev-F003",
+   "source": "ev-F003",
+   "target": "f-F003",
+   "relation": "EVIDENCE_FOR"
+  }
+ ]
+}

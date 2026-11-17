@@ -18,7 +18,7 @@ import {
   type DeliveryStateName,
   type DeliveryStateSignals,
 } from './policy-plan.js';
-import { commandRowFor } from './command-attach.js';
+import { COMMAND_ROWS, commandRowFor } from './command-attach.js';
 import { isAmbiguousTopTwo } from './scorer/ambiguity.js';
 import type { AdvisorRecommendation } from './subprocess.js';
 import type { AdvisorScoredRecommendation } from './scorer/types.js';
@@ -221,7 +221,9 @@ function policyWord(
 // fields stay authoritative and the generated row fills only what they omit, so a
 // caller that already resolved the command is never second-guessed.
 function commandLabel(recommendation: RenderableRecommendation, childSession: boolean): string | null {
-  const row = commandRowFor(recommendation.skill);
+  // A hub that withheld its mode must not regress to the command its generated
+  // row names, because that command is the mode the reader has not chosen yet.
+  const row = recommendation.needsMode === true ? undefined : commandRowFor(recommendation.skill);
   const command = recommendation.command ?? row?.command;
   const owner = recommendation.ownerSkillId ?? row?.ownerSkillId ?? recommendation.skill;
   const policy = recommendation.policy ?? row?.policy;
@@ -230,7 +232,12 @@ function commandLabel(recommendation: RenderableRecommendation, childSession: bo
   if (!commandPart || !ownerPart) {
     return null;
   }
-  const policyPart = policyWord(policy, row?.mutating, childSession);
+  // The class belongs to the command printed, not to the skill that carried it,
+  // so a recommendation that names another command takes that command's class.
+  const mutating = row !== undefined && row.command === commandPart
+    ? row.mutating
+    : Object.values(COMMAND_ROWS).find((candidate) => candidate.command === commandPart)?.mutating;
+  const policyPart = policyWord(policy, mutating, childSession);
   return policyPart === null
     ? `${ownerPart} → ${commandPart}`
     : `${ownerPart} → ${commandPart} (${policyPart})`;
@@ -245,17 +252,17 @@ function recommendationLabel(recommendation: RenderableRecommendation, childSess
       : sanitizeSkillLabel(recommendation.skill));
 }
 
-// The companion line normally shows only the runnable command. A child gets the
-// downgrade marker appended because that command must not be started there.
+// A companion is a command the reader may act on, so it carries the same policy
+// word the head carries. A child still gets the downgrade marker because that
+// command must not be started there.
 function companionCommandLabel(skillId: string, childSession: boolean): string | null {
   const command = doctorCommandString(skillId);
   if (command === null) {
     return null;
   }
   const row = commandRowFor(skillId);
-  return childSession && parentNamedOnly(row?.policy, row?.mutating)
-    ? `${command} (${PARENT_NAMED_POLICY})`
-    : command;
+  const word = policyWord(row?.policy, row?.mutating, childSession);
+  return word === null ? command : `${command} (${word})`;
 }
 
 function formatScore(value: number): string {
@@ -536,10 +543,12 @@ export function renderAdvisorBrief(
     return null;
   }
 
+  // A recommendation that needs a mode is named by the skill that owns its row,
+  // because the row id is an internal key the reader cannot run.
   const topLabel = commandLabel(top, childSession)
     ?? (isDoctorBridgeId(top.skill)
       ? doctorCommandString(top.skill)
-      : sanitizeSkillLabel(metadataSkillLabel(result) ?? top.skill));
+      : sanitizeSkillLabel(metadataSkillLabel(result) ?? (top.needsMode === true ? commandRowFor(top.skill)?.ownerSkillId : undefined) ?? top.skill));
   if (!topLabel) {
     observeAdvisorPolicy(null, options);
     return null;
@@ -547,16 +556,31 @@ export function renderAdvisorBrief(
 
   // A hub that withheld its command because the prompt names no single mode says
   // so, so the reader asks for the mode instead of improvising one.
-  const headLabel = top.needsMode === true && top.command === undefined && commandRowFor(top.skill) === undefined
+  const headLabel = top.needsMode === true && top.command === undefined
     ? `${topLabel} (needs a mode)`
     : topLabel;
 
+  // A command printed twice reads as two offers, so the companion line never
+  // repeats the command the head already names.
+  const headPrintedCommand = top.command
+    ?? (top.needsMode === true ? undefined : commandRowFor(top.skill)?.command);
   const companion = isDoctorBridgeId(top.skill)
     ? undefined
-    : recommendations.slice(1).find((recommendation) => doctorCommandString(recommendation.skill) !== null);
+    : recommendations.slice(1).find((recommendation) => {
+      const command = doctorCommandString(recommendation.skill);
+      return command !== null && command !== headPrintedCommand;
+    });
   const companionLabel = companion ? companionCommandLabel(companion.skill, childSession) : null;
-  const companionLine = (shownSecond: string | undefined): string => (
-    companionLabel && companion && companion.skill !== shownSecond ? `\nAlso: ${companionLabel}` : ''
+  const companionCommand = companion ? doctorCommandString(companion.skill) : null;
+  // The partner's command shares the printed line with the head, so a companion
+  // that repeats it would offer that command a second time.
+  const companionLine = (shownSecond: string | undefined, shownCommand?: string): string => (
+    companionLabel
+    && companion
+    && companion.skill !== shownSecond
+    && (shownCommand === undefined || companionCommand !== shownCommand)
+      ? `\nAlso: ${companionLabel}`
+      : ''
   );
   const capWithCompanion = (head: string, companionText: string, cap: number): string => {
     const companionFits = head.length + companionText.length <= cap * TOKEN_TO_CHAR_ESTIMATE;
@@ -583,7 +607,7 @@ export function renderAdvisorBrief(
         + `${formatScore(vs.confidence)}/${formatScore(vs.uncertainty)} pass.`;
       const rendered = capWithCompanion(
         head,
-        companionLine(vs.skill),
+        companionLine(vs.skill, vs.command ?? commandRowFor(vs.skill)?.command),
         Math.min(tokenCap, AMBIGUOUS_TOKEN_CAP),
       ) + DIRECTIVES_LABEL + HYGIENE_DIRECTIVE;
       observeAdvisorPolicy(rendered, options);

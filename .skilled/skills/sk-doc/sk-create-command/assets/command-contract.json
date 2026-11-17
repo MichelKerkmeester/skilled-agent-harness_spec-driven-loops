@@ -44,7 +44,7 @@
         "operations": ["writes and overwrites skill and doc files", "full-update mutates existing docs"]
       },
       "timeout_bounds": null,
-      "invocation_aliases": ["/create:skill", "/create:agent", "/create:<operation>", ":auto suffix", ":confirm suffix"],
+      "invocation_aliases": ["/create:sk-skill", "/create:agent", "/create:<operation>", ":auto suffix", ":confirm suffix"],
       "workflow_schema_ref": null
     },
     "design": {

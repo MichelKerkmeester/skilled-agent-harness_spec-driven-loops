@@ -511,6 +511,10 @@ export function resultFromCliData(args: {
       retriesAttempted: 0,
       recommendationCount: recommendations.length,
       tokenCap,
+      // The health record counts degraded answers, and only this step knows the
+      // answer came from the local scorer: freshness folds it into stale beside
+      // a stale graph, so the freshness field alone cannot carry the signal.
+      ...(degraded ? { degraded: true } : {}),
     },
     generatedAt: new Date().toISOString(),
     sharedPayload: null,

@@ -1,0 +1,22 @@
+$ LEASE
+{"pid":72912,"ownerPid":72912,"socketPath":"/tmp/system-skill-advisor/1787187e91b4/daemon-ipc.sock"}
+$ ps -p 72912 -o pid=
+72912
+$ REPRO
+lease before {"pid":99346,"childPid":99558,"startedAt":"2026-11-15T08:00:28.489Z"}
+none                                   hook=on direct=on match=yes recs=["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]
+SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1    hook=off:SYSTEM_SKILL_ADVISOR_HOOK_DISABLED direct=off:SYSTEM_SKILL_ADVISOR_HOOK_DISABLED match=yes recs=[]
+SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1   hook=off:SPECKIT_SKILL_ADVISOR_HOOK_DISABLED direct=off:SPECKIT_SKILL_ADVISOR_HOOK_DISABLED match=yes recs=[]
+SYSTEM_SKILL_ADVISOR_DISABLED=1         hook=off:SYSTEM_SKILL_ADVISOR_DISABLED direct=on match=no recs=["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]
+SYSTEM_SKILL_ADVISOR_DISABLED=true      hook=off:SYSTEM_SKILL_ADVISOR_DISABLED direct=on match=no recs=["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]
+SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=yes  hook=off:SYSTEM_SKILL_ADVISOR_HOOK_DISABLED direct=on match=no recs=["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]
+SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=on hook=off:SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED direct=on match=no recs=["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]
+SYSTEM_HOOKS_DISABLED=1                 hook=off:SYSTEM_HOOKS_DISABLED direct=on match=no recs=["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]
+MK_HOOKS_DISABLED=1                     hook=off:SYSTEM_HOOKS_DISABLED direct=on match=no recs=["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]
+SYSTEM_SKILL_ADVISOR_DISABLED=0         hook=on direct=on match=yes recs=["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]
+flags file                              hook=off:SYSTEM_SKILL_ADVISOR_DISABLED direct=on match=no recs=["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]
+flags file, env SYSTEM_..._DISABLED=0   hook=on direct=on match=yes recs=["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]
+stdin, SYSTEM_SKILL_ADVISOR_DISABLED=1  hook=off:SYSTEM_SKILL_ADVISOR_DISABLED direct=on match=no recs=["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]
+none, after the flagged lines          hook=on direct=on match=yes recs=["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]
+lease after  {"pid":99346,"childPid":99558,"startedAt":"2026-11-15T08:00:28.489Z"}
+exit 0

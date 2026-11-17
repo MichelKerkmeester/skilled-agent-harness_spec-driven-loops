@@ -38,21 +38,30 @@ function trimTrailingSlash(path) {
  *
  * Porcelain names each path relative to the checkout, and a rename names both
  * the old and the new path. Both sides are separate keys because both have to
- * be restored.
+ * be restored. The NUL form never quotes a path, so a name holding a space or a
+ * non-ASCII character arrives as it is and can be passed back to git.
  *
  * @param {string} cwd - Root of the checkout to read.
  * @returns {Map<string, string>} Path to its two-letter status code.
  */
 export function statusSnapshot(cwd) {
-  const result = git(cwd, ['status', '--porcelain']);
+  const result = git(cwd, ['status', '--porcelain', '-z']);
   if (result.status !== 0) {
-    throw new Error(`git status --porcelain failed: ${(result.stderr ?? '').trim()}`);
+    throw new Error(`git status --porcelain -z failed: ${(result.stderr ?? '').trim()}`);
   }
   const paths = new Map();
-  for (const line of result.stdout.split('\n')) {
-    if (line.length < 4) continue;
-    for (const path of line.slice(3).split(' -> ')) {
-      paths.set(path, line.slice(0, 2));
+  const entries = result.stdout.split('\0');
+  for (let index = 0; index < entries.length; index += 1) {
+    const entry = entries[index];
+    if (entry.length < 4) continue;
+    const code = entry.slice(0, 2);
+    paths.set(entry.slice(3), code);
+    // A rename or copy names its source in the next field, and that side has to
+    // be restored too.
+    if (/[RC]/.test(code)) {
+      const source = entries[index + 1];
+      if (source) paths.set(source, code);
+      index += 1;
     }
   }
   return paths;

@@ -112,7 +112,7 @@ An arm that throws is logged as `stop-arm-error stage=arm` and leaves the same s
 
 When the operator types a prompt in that session, the `UserPromptSubmit` nudge withdraws the session's record. It does so when the record is deferred or already armed. The killer signals an armed session after a few quiet seconds. A new turn that runs one long tool would otherwise be ended mid-turn and relaunched onto the old note.
 
-Claude, Codex, Pi, OpenCode, Vibe and `cancel` all withdraw through one helper, `lib/withdraw.cjs`. It disarms the record under the record lock with reason `user-message`, or `cancelled` for the command. It grants the extra nudge below and writes a `withdrawn` line to the hop history. The Claude, Codex and Vibe hooks also log `withdrawn` and tell the session to keep working. The note stays open as it was.
+Claude, Codex, Pi, OpenCode, Vibe and `cancel` all withdraw through one helper, `lib/withdraw.cjs`. It disarms the record under the record lock with reason `user-message`, or `cancelled` for the command. It grants the extra nudge below and writes a `withdrawn` line to the hop history. Each runtime's prompt hook calls it through `withdrawOnPrompt`, which logs any failure as `context-nudge-error` instead of throwing. The Claude, Codex and Vibe hooks also log `withdrawn` and tell the session to keep working. The note stays open as it was.
 
 The killer stands down on a record disarmed after Stop. It does so at its timeout and in its last read before the signal.
 

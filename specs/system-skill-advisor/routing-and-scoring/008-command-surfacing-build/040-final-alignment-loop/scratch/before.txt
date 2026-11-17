@@ -1,0 +1,18 @@
+before, at b8ebee37d75
+/create:readme is not what I want, do not run it => [{"skillId":"sk-doc","command":"/create:readme","policy":"start","score":0.787734},{"skillId":"system-spec-kit","command":null,"policy":null,"score":0.3039}]
+run /doctor:git setup but do not actually run it => [{"skillId":"command-doctor-git-setup","command":"/doctor:git setup","policy":"run","score":0.588},{"skillId":"sk-git","command":null,"policy":null,"score":0.501596}]
+read the /create:readme document and tell me what it does => [{"skillId":"sk-doc","command":"/create:readme","policy":"start","score":0.790751},{"skillId":"system-spec-kit","command":null,"policy":null,"score":0.371078}]
+do not run [/create:readme], just explain => [{"skillId":"sk-doc","command":"/create:readme","policy":"start","score":0.781699},{"skillId":"system-spec-kit","command":null,"policy":null,"score":0.274613}]
+do not run /create:readme, read /create:readme.md => [{"skillId":"sk-doc","command":"/create:readme","policy":"start","score":0.819221},{"skillId":"system-spec-kit","command":null,"policy":null,"score":0.271385}]
+check whether the skill graph is stale and show me how to rebuild it => [{"skillId":"command-doctor-helper","command":"/doctor:helper","policy":"run","score":0}]
+set up the Mistral Vibe prompt hook so the advisor briefs that runtime too => [{"skillId":"sk-prompt","command":null,"policy":null,"score":0.49742},{"skillId":"cli-external-orchestration","command":null,"policy":null,"score":0.688411}]
+run the behaviour arena for the chat set => [{"skillId":"sk-doc","command":null,"policy":null,"score":0.112},{"skillId":"system-spec-kit","command":null,"policy":null,"score":0.0703}]
+prepare a clean arena for a live routing arm => []
+update skilled to the latest version => [{"skillId":"sk-git","command":null,"policy":null,"score":0.146598},{"skillId":"sk-doc","command":null,"policy":null,"score":0.119653}]
+check for skilled updates => [{"skillId":"command-doctor-update","command":"/doctor:update","policy":"ask","score":0.7}]
+FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+EVAL
+[160,49,21,5]

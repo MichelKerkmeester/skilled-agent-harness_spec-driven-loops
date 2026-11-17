@@ -1,0 +1,13 @@
+before: merged HEAD 5a5fe03dfba
+   1       Tests  7 failed | 63 passed (70)
+   1  FAIL  tests/doctor-routing-slice.vitest.ts > doctor routing slice > scores every row of every active wave as expected
+   1  FAIL  tests/parity/holdout-independent.vitest.ts > independent holdout gate > holds top-1 at or above the committed baseline
+   1  FAIL  tests/parity/local-native-divergence-ratchet.vitest.ts > local-vs-native routing divergence ratchet (eval gate) > ledger entries match current promptHash and local/native tops
+   4  FAIL  tests/scorer/doctor-bridge-isolation.vitest.ts > doctor bridge scoring isolation
+FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+EVAL
+[160,49,21,5]
+  SIGNAL DRIFT compiled vs disk: sk-doc

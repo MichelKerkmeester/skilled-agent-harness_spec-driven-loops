@@ -7,14 +7,14 @@
 // is part of the identity.
 
 import assert from 'node:assert/strict';
-import { appendFileSync, mkdirSync } from 'node:fs';
+import { appendFileSync, mkdirSync, rmSync, symlinkSync } from 'node:fs';
 import { join } from 'node:path';
 import { test } from 'node:test';
 
 import { capabilities, readSession } from '../../session-readers/index.mjs';
 import { loadPiSession, piProjectDirectory } from '../../session-readers/pi.mjs';
 import { DECOY, piSession, SESSION, T0 } from './fixtures.mjs';
-import { withTempAsync } from './helpers.mjs';
+import { trackFileOpens, withTempAsync, writeJsonl } from './helpers.mjs';
 
 // The head of a live advisor brief, used as the text a harness injects into a
 // session through an entry that is not a turn.
@@ -132,5 +132,40 @@ test('a custom_message entry is injected context, not a turn', async () => {
     assert.equal(result.ok, true);
     assert.deepEqual(result.injected, [{ source: 'session-start-context', text: BRIEF }]);
     assert.equal(result.records.some((record) => record.id === 'pi-context'), false);
+  });
+});
+
+test('a session file linked outside the store is refused without opening it', async () => {
+  await withTempAsync('pi-outside', async (root) => {
+    const projectDir = join(root, 'project');
+    mkdirSync(projectDir, { recursive: true });
+    const fixture = piSession({ root, projectDir });
+
+    const outside = join(root, 'outside-pi.jsonl');
+    writeJsonl(outside, [
+      { type: 'session', version: 3, id: SESSION, timestamp: '2026-01-01T00:00:00.000Z', cwd: projectDir },
+      {
+        type: 'message',
+        id: 'pi-u1',
+        timestamp: new Date(T0 + 1000).toISOString(),
+        message: { role: 'user', content: [{ type: 'text', text: 'Read the file.' }] },
+      },
+    ]);
+
+    rmSync(fixture.filePath);
+    symlinkSync(outside, fixture.filePath);
+
+    const tracker = trackFileOpens();
+    let result;
+    try {
+      result = await readSession({ runtime: 'pi', sessionId: SESSION, ...fixture.options });
+    } finally {
+      tracker.restore();
+    }
+
+    assert.equal(result.ok, false);
+    assert.equal(result.code, 'session_mismatch');
+    assert.equal(tracker.opened.includes(fixture.filePath), false);
+    assert.equal(tracker.opened.includes(outside), false);
   });
 });

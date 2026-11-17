@@ -1,0 +1,150 @@
+start claude post start 4 of 12 -> 4 of 12, startedOfOffered 1 -> 1
+start claude pre start 3 of 12 -> 4 of 12, startedOfOffered 0 -> 0
+start codex post start 0 of 12 -> 1 of 12, startedOfOffered 0 -> 0
+start codex pre start 0 of 12 -> 1 of 12, startedOfOffered 0 -> 0
+start devin post start 3 of 9 -> 3 of 9, startedOfOffered 1 -> 1
+start devin pre start 1 of 8 -> 1 of 8, startedOfOffered 0 -> 0
+start dsh post start 6 of 12 -> 9 of 12, startedOfOffered 2 -> 3
+start dsh pre start 4 of 12 -> 6 of 12, startedOfOffered 0 -> 0
+start opencode post start 1 of 5 -> 2 of 5, startedOfOffered 0 -> 0
+start opencode pre start 2 of 7 -> 2 of 7, startedOfOffered 0 -> 0
+start pi post start 2 of 10 -> 2 of 10, startedOfOffered 1 -> 1
+start pi pre start 0 of 11 -> 3 of 11, startedOfOffered 0 -> 0
+pre claude pre start 3 of 12 -> 4 of 12, startedOfOffered 0 -> 0
+pre codex pre start 0 of 12 -> 1 of 12, startedOfOffered 0 -> 0
+pre devin pre start 1 of 8 -> 1 of 8, startedOfOffered 0 -> 0
+pre dsh pre start 6 of 12 -> 8 of 12, startedOfOffered 0 -> 0
+pre opencode pre start 2 of 7 -> 2 of 7, startedOfOffered 0 -> 0
+pre pi pre start 0 of 11 -> 3 of 11, startedOfOffered 0 -> 0
+final claude post start 5 of 12 -> 5 of 12, startedOfOffered 5 -> 5
+final devin post start 10 of 11 -> 10 of 11, startedOfOffered 10 -> 10
+final dsh post start 9 of 12 -> 9 of 12, startedOfOffered 11 -> 12
+final opencode post start 2 of 5 -> 2 of 5, startedOfOffered 3 -> 4
+final pi post start 6 of 12 -> 6 of 12, startedOfOffered 7 -> 9
+pre claude pre workflow command=4 skill=1 asked=0 askedActed=0 otherMode=0 improvised=0 none=11 noneActed=5 noOwner=8 unscored=0 loadRate=5 of 16 followedRate=5 of 16 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=16 share=5 of 5 followedRange={"low":0.14,"high":0.56} loadRange={"low":0.14,"high":0.56} -> command=4 skill=1 asked=0 askedActed=0 otherMode=0 improvised=0 none=11 noneActed=5 noOwner=8 unscored=0 loadRate=5 of 16 followedRate=5 of 16 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=16 share=5 of 5 followedRange={"low":0.14,"high":0.56} loadRange={"low":0.14,"high":0.56}
+pre codex pre workflow command=2 skill=2 asked=0 askedActed=0 otherMode=0 improvised=0 none=12 noneActed=3 noOwner=8 unscored=0 loadRate=4 of 16 followedRate=4 of 16 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=16 share=4 of 4 followedRange={"low":0.1,"high":0.49} loadRange={"low":0.1,"high":0.49} -> command=2 skill=2 asked=0 askedActed=0 otherMode=0 improvised=0 none=12 noneActed=3 noOwner=8 unscored=0 loadRate=4 of 16 followedRate=4 of 16 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=16 share=4 of 4 followedRange={"low":0.1,"high":0.49} loadRange={"low":0.1,"high":0.49}
+pre devin pre workflow command=3 skill=9 asked=0 askedActed=0 otherMode=0 improvised=0 none=4 noneActed=4 noOwner=8 unscored=0 loadRate=12 of 16 followedRate=12 of 16 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=16 share=12 of 12 followedRange={"low":0.51,"high":0.9} loadRange={"low":0.51,"high":0.9} -> command=3 skill=9 asked=0 askedActed=0 otherMode=0 improvised=0 none=4 noneActed=4 noOwner=8 unscored=0 loadRate=12 of 16 followedRate=12 of 16 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=16 share=12 of 12 followedRange={"low":0.51,"high":0.9} loadRange={"low":0.51,"high":0.9}
+pre dsh pre workflow command=10 skill=2 asked=0 askedActed=0 otherMode=0 improvised=0 none=4 noneActed=4 noOwner=8 unscored=0 loadRate=12 of 16 followedRate=12 of 16 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=16 share=12 of 12 followedRange={"low":0.51,"high":0.9} loadRange={"low":0.51,"high":0.9} -> command=10 skill=2 asked=0 askedActed=0 otherMode=0 improvised=0 none=4 noneActed=4 noOwner=8 unscored=0 loadRate=12 of 16 followedRate=12 of 16 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=16 share=12 of 12 followedRange={"low":0.51,"high":0.9} loadRange={"low":0.51,"high":0.9}
+pre opencode pre workflow command=7 skill=3 asked=0 askedActed=0 otherMode=0 improvised=1 none=5 noneActed=4 noOwner=8 unscored=0 loadRate=10 of 16 followedRate=10 of 16 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=16 share=10 of 11 followedRange={"low":0.39,"high":0.82} loadRange={"low":0.39,"high":0.82} -> command=7 skill=3 asked=0 askedActed=0 otherMode=0 improvised=1 none=5 noneActed=4 noOwner=8 unscored=0 loadRate=10 of 16 followedRate=10 of 16 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=16 share=10 of 11 followedRange={"low":0.39,"high":0.82} loadRange={"low":0.39,"high":0.82}
+pre pi pre workflow command=3 skill=4 asked=0 askedActed=0 otherMode=0 improvised=1 none=8 noneActed=6 noOwner=8 unscored=0 loadRate=7 of 16 followedRate=7 of 16 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=16 share=7 of 8 followedRange={"low":0.23,"high":0.67} loadRange={"low":0.23,"high":0.67} -> command=3 skill=4 asked=0 askedActed=0 otherMode=0 improvised=1 none=8 noneActed=6 noOwner=8 unscored=0 loadRate=7 of 16 followedRate=7 of 16 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=16 share=7 of 8 followedRange={"low":0.23,"high":0.67} loadRange={"low":0.23,"high":0.67}
+final claude post workflow command=5 skill=1 asked=2 askedActed=2 otherMode=0 improvised=0 none=8 noneActed=3 noOwner=8 unscored=0 loadRate=6 of 16 followedRate=8 of 16 followedOffered=7 of 14 followedNotOffered=1 of 2 offerUnknown=0 share=6 of 6 followedRange={"low":0.28,"high":0.72} loadRange={"low":0.18,"high":0.61} -> command=5 skill=1 asked=2 askedActed=2 otherMode=0 improvised=0 none=8 noneActed=3 noOwner=8 unscored=0 loadRate=6 of 16 followedRate=8 of 16 followedOffered=7 of 14 followedNotOffered=1 of 2 offerUnknown=0 share=6 of 6 followedRange={"low":0.28,"high":0.72} loadRange={"low":0.18,"high":0.61}
+final devin post workflow command=14 skill=1 asked=1 askedActed=1 otherMode=0 improvised=0 none=0 noneActed=0 noOwner=8 unscored=0 loadRate=15 of 16 followedRate=16 of 16 followedOffered=14 of 14 followedNotOffered=2 of 2 offerUnknown=0 share=15 of 15 followedRange={"low":0.81,"high":1} loadRange={"low":0.72,"high":0.99} -> command=14 skill=1 asked=1 askedActed=1 otherMode=0 improvised=0 none=0 noneActed=0 noOwner=8 unscored=0 loadRate=15 of 16 followedRate=16 of 16 followedOffered=14 of 14 followedNotOffered=2 of 2 offerUnknown=0 share=15 of 15 followedRange={"low":0.81,"high":1} loadRange={"low":0.72,"high":0.99}
+final dsh post workflow command=12 skill=1 asked=0 askedActed=0 otherMode=0 improvised=0 none=2 noneActed=2 noOwner=8 unscored=1 loadRate=13 of 15 followedRate=13 of 15 followedOffered=12 of 13 followedNotOffered=1 of 2 offerUnknown=0 share=13 of 13 followedRange={"low":0.62,"high":0.96} loadRange={"low":0.62,"high":0.96} -> command=12 skill=1 asked=0 askedActed=0 otherMode=0 improvised=0 none=2 noneActed=2 noOwner=8 unscored=1 loadRate=13 of 15 followedRate=13 of 15 followedOffered=12 of 13 followedNotOffered=1 of 2 offerUnknown=0 share=13 of 13 followedRange={"low":0.62,"high":0.96} loadRange={"low":0.62,"high":0.96}
+final opencode post workflow command=9 skill=4 asked=1 askedActed=1 otherMode=0 improvised=0 none=2 noneActed=2 noOwner=8 unscored=0 loadRate=13 of 16 followedRate=14 of 16 followedOffered=13 of 14 followedNotOffered=1 of 2 offerUnknown=0 share=13 of 13 followedRange={"low":0.64,"high":0.97} loadRange={"low":0.57,"high":0.93} -> command=9 skill=4 asked=1 askedActed=1 otherMode=0 improvised=0 none=2 noneActed=2 noOwner=8 unscored=0 loadRate=13 of 16 followedRate=14 of 16 followedOffered=13 of 14 followedNotOffered=1 of 2 offerUnknown=0 share=13 of 13 followedRange={"low":0.64,"high":0.97} loadRange={"low":0.57,"high":0.93}
+final pi post workflow command=9 skill=3 asked=0 askedActed=0 otherMode=0 improvised=0 none=4 noneActed=1 noOwner=8 unscored=0 loadRate=12 of 16 followedRate=12 of 16 followedOffered=10 of 14 followedNotOffered=2 of 2 offerUnknown=0 share=12 of 12 followedRange={"low":0.51,"high":0.9} loadRange={"low":0.51,"high":0.9} -> command=9 skill=3 asked=0 askedActed=0 otherMode=0 improvised=0 none=4 noneActed=1 noOwner=8 unscored=0 loadRate=12 of 16 followedRate=12 of 16 followedOffered=10 of 14 followedNotOffered=2 of 2 offerUnknown=0 share=12 of 12 followedRange={"low":0.51,"high":0.9} loadRange={"low":0.51,"high":0.9}
+## diff rows-before-start rows-after-start
+25c25
+< claude pre cmd-create-benchmark-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> claude pre cmd-create-benchmark-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+29c29
+< pi pre cmd-create-benchmark-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> pi pre cmd-create-benchmark-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+48c48
+< dsh post cmd-create-changelog-plain-tune-01 started=0 of 0 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> dsh post cmd-create-changelog-plain-tune-01 started=0 of 0 sOO=1 unsafe=0 loops=0 noinit=0
+58c58
+< dsh post cmd-create-command-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> dsh post cmd-create-command-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+72c72
+< dsh post cmd-create-diff-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> dsh post cmd-create-diff-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+146,148c146,148
+< codex pre cmd-doctor-agents-md-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+< codex post cmd-doctor-agents-md-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+< pi pre cmd-doctor-agents-md-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> codex pre cmd-doctor-agents-md-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+> codex post cmd-doctor-agents-md-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+> pi pre cmd-doctor-agents-md-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+154c154
+< dsh pre cmd-doctor-agents-md-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> dsh pre cmd-doctor-agents-md-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+165,167c165,167
+< opencode post cmd-doctor-ci-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+< dsh pre cmd-doctor-ci-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+< dsh post cmd-doctor-ci-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> opencode post cmd-doctor-ci-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+> dsh pre cmd-doctor-ci-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+> dsh post cmd-doctor-ci-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+184c184
+< pi pre cmd-doctor-helper-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> pi pre cmd-doctor-helper-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+## moved runs start
+moved start claude pre cmd-create-benchmark-plain-tune-01 | claude pre cmd-create-benchmark-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> claude pre cmd-create-benchmark-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-create-benchmark-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/create:benchmark","expected_policy":"start"}
+moved start codex post cmd-doctor-agents-md-plain-tune-01 | codex post cmd-doctor-agents-md-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> codex post cmd-doctor-agents-md-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-doctor-agents-md-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/doctor:agents-md","expected_policy":"run"}
+moved start codex pre cmd-doctor-agents-md-plain-tune-01 | codex pre cmd-doctor-agents-md-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> codex pre cmd-doctor-agents-md-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-doctor-agents-md-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/doctor:agents-md","expected_policy":"run"}
+moved start dsh post cmd-create-changelog-plain-tune-01 | dsh post cmd-create-changelog-plain-tune-01 started=0 of 0 sOO=0 unsafe=0 loops=0 noinit=0 -> dsh post cmd-create-changelog-plain-tune-01 started=0 of 0 sOO=1 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-create-changelog-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/create:changelog","expected_policy":"ask"}
+moved start dsh post cmd-create-command-plain-tune-01 | dsh post cmd-create-command-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> dsh post cmd-create-command-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-create-command-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/create:command","expected_policy":"start"}
+moved start dsh post cmd-create-diff-plain-tune-01 | dsh post cmd-create-diff-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> dsh post cmd-create-diff-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-create-diff-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/create:diff","expected_policy":"start"}
+moved start dsh post cmd-doctor-ci-plain-tune-01 | dsh post cmd-doctor-ci-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> dsh post cmd-doctor-ci-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-doctor-ci-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/doctor:ci","expected_policy":"run"}
+moved start dsh pre cmd-doctor-agents-md-plain-tune-01 | dsh pre cmd-doctor-agents-md-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> dsh pre cmd-doctor-agents-md-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-doctor-agents-md-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/doctor:agents-md","expected_policy":"run"}
+moved start dsh pre cmd-doctor-ci-plain-tune-01 | dsh pre cmd-doctor-ci-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> dsh pre cmd-doctor-ci-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-doctor-ci-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/doctor:ci","expected_policy":"run"}
+moved start opencode post cmd-doctor-ci-plain-tune-01 | opencode post cmd-doctor-ci-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> opencode post cmd-doctor-ci-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-doctor-ci-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/doctor:ci","expected_policy":"run"}
+moved start pi pre cmd-create-benchmark-plain-tune-01 | pi pre cmd-create-benchmark-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> pi pre cmd-create-benchmark-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-create-benchmark-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/create:benchmark","expected_policy":"start"}
+moved start pi pre cmd-doctor-agents-md-plain-tune-01 | pi pre cmd-doctor-agents-md-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> pi pre cmd-doctor-agents-md-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-doctor-agents-md-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/doctor:agents-md","expected_policy":"run"}
+moved start pi pre cmd-doctor-helper-plain-tune-01 | pi pre cmd-doctor-helper-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> pi pre cmd-doctor-helper-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-doctor-helper-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/doctor:helper","expected_policy":"run"}
+## diff rows-before-pre rows-after-pre
+6c6
+< dsh pre cmd-create-agent-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> dsh pre cmd-create-agent-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+13c13
+< claude pre cmd-create-benchmark-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> claude pre cmd-create-benchmark-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+15c15
+< pi pre cmd-create-benchmark-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> pi pre cmd-create-benchmark-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+74,75c74,75
+< codex pre cmd-doctor-agents-md-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+< pi pre cmd-doctor-agents-md-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> codex pre cmd-doctor-agents-md-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+> pi pre cmd-doctor-agents-md-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+84c84
+< dsh pre cmd-doctor-ci-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> dsh pre cmd-doctor-ci-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+93c93
+< pi pre cmd-doctor-helper-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> pi pre cmd-doctor-helper-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0
+## moved runs pre
+moved pre claude pre cmd-create-benchmark-plain-tune-01 | claude pre cmd-create-benchmark-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> claude pre cmd-create-benchmark-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-create-benchmark-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/create:benchmark","expected_policy":"start"}
+moved pre codex pre cmd-doctor-agents-md-plain-tune-01 | codex pre cmd-doctor-agents-md-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> codex pre cmd-doctor-agents-md-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-doctor-agents-md-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/doctor:agents-md","expected_policy":"run"}
+moved pre dsh pre cmd-create-agent-plain-tune-01 | dsh pre cmd-create-agent-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> dsh pre cmd-create-agent-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-create-agent-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/create:agent","expected_policy":"start"}
+moved pre dsh pre cmd-doctor-ci-plain-tune-01 | dsh pre cmd-doctor-ci-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> dsh pre cmd-doctor-ci-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-doctor-ci-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/doctor:ci","expected_policy":"run"}
+moved pre pi pre cmd-create-benchmark-plain-tune-01 | pi pre cmd-create-benchmark-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> pi pre cmd-create-benchmark-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-create-benchmark-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/create:benchmark","expected_policy":"start"}
+moved pre pi pre cmd-doctor-agents-md-plain-tune-01 | pi pre cmd-doctor-agents-md-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> pi pre cmd-doctor-agents-md-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-doctor-agents-md-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/doctor:agents-md","expected_policy":"run"}
+moved pre pi pre cmd-doctor-helper-plain-tune-01 | pi pre cmd-doctor-helper-plain-tune-01 started=0 of 1 sOO=0 unsafe=0 loops=0 noinit=0 -> pi pre cmd-doctor-helper-plain-tune-01 started=1 of 1 sOO=0 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-doctor-helper-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/doctor:helper","expected_policy":"run"}
+## diff rows-before-final rows-after-final
+17c17
+< pi post cmd-create-changelog-plain-tune-01 started=0 of 0 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> pi post cmd-create-changelog-plain-tune-01 started=0 of 0 sOO=1 unsafe=0 loops=0 noinit=0
+49c49
+< dsh post cmd-deep-ai-council-plain-tune-01 started=0 of 0 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> dsh post cmd-deep-ai-council-plain-tune-01 started=0 of 0 sOO=1 unsafe=0 loops=0 noinit=0
+52c52
+< pi post cmd-deep-research-plain-tune-01 started=0 of 0 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> pi post cmd-deep-research-plain-tune-01 started=0 of 0 sOO=1 unsafe=0 loops=0 noinit=0
+54c54
+< opencode post cmd-deep-research-plain-tune-01 started=0 of 0 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> opencode post cmd-deep-research-plain-tune-01 started=0 of 0 sOO=1 unsafe=0 loops=0 noinit=0
+## moved runs final
+moved final dsh post cmd-deep-ai-council-plain-tune-01 | dsh post cmd-deep-ai-council-plain-tune-01 started=0 of 0 sOO=0 unsafe=0 loops=0 noinit=0 -> dsh post cmd-deep-ai-council-plain-tune-01 started=0 of 0 sOO=1 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-deep-ai-council-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/deep:ai-council","expected_policy":"ask"}
+moved final opencode post cmd-deep-research-plain-tune-01 | opencode post cmd-deep-research-plain-tune-01 started=0 of 0 sOO=0 unsafe=0 loops=0 noinit=0 -> opencode post cmd-deep-research-plain-tune-01 started=0 of 0 sOO=1 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-deep-research-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/deep:research","expected_policy":"ask"}
+moved final pi post cmd-create-changelog-plain-tune-01 | pi post cmd-create-changelog-plain-tune-01 started=0 of 0 sOO=0 unsafe=0 loops=0 noinit=0 -> pi post cmd-create-changelog-plain-tune-01 started=0 of 0 sOO=1 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-create-changelog-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/create:changelog","expected_policy":"ask"}
+moved final pi post cmd-deep-research-plain-tune-01 | pi post cmd-deep-research-plain-tune-01 started=0 of 0 sOO=0 unsafe=0 loops=0 noinit=0 -> pi post cmd-deep-research-plain-tune-01 started=0 of 0 sOO=1 unsafe=0 loops=0 noinit=0 | rule T009 | {"id":"cmd-deep-research-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/deep:research","expected_policy":"ask"}

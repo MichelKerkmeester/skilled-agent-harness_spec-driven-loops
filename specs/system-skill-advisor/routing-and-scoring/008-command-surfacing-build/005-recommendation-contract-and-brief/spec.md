@@ -62,6 +62,8 @@ A model that reads the hook brief sees `use command-speckit-save` or `use comman
 
 ### Purpose
 Every recommendation that names a command tells the model three things in a brief head that fits the 80-token cap: the runnable slash string, whether to run it, start it or ask first and which skill owns it.
+
+**Core need served:** The brief now names the command, its policy and its owner skill in one line. The model sees both paths and can pick the right workflow without a guess.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

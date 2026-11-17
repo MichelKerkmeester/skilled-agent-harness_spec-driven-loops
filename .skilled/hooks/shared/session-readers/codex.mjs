@@ -105,10 +105,13 @@ function recordsFromLines(lines) {
         id: (typeof payload.id === 'string' && payload.id ? payload.id : `codex-call-${payload.call_id}`).slice(0, 128),
         role: 'assistant',
         timestamp,
+        // A function call carries JSON in `arguments` while a custom tool call
+        // carries a free-form body in `input`, so the body is kept under one key
+        // and a reader can still see what the call ran.
         content: [toolCallBlock({
           id: payload.call_id ?? id,
           name: payload.name,
-          arguments: parseJsonObject(payload.arguments) ?? {},
+          arguments: parseJsonObject(payload.arguments) ?? (typeof payload.input === 'string' && payload.input !== '' ? { input: payload.input } : {}),
         })],
       });
       return;
@@ -161,7 +164,9 @@ export function loadCodexSession({ sessionId, transcriptPath, ...options } = {})
 
   let raw;
   try {
-    raw = readFileSync(transcriptPath, 'utf8');
+    // The read is the file containment resolved, so a path repointed after the
+    // check is not read in its place.
+    raw = readFileSync(storePath, 'utf8');
   } catch {
     try {
       statSync(root);

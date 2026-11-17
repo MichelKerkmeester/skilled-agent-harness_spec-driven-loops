@@ -1,0 +1,21 @@
+{
+  "executors": [
+    {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max",
+      "iterations": 8,
+      "label": "scorer-9",
+      "count": 1
+    },
+    {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max",
+      "iterations": 8,
+      "label": "attach-config-9",
+      "count": 1
+    }
+  ],
+  "concurrency": 2
+}

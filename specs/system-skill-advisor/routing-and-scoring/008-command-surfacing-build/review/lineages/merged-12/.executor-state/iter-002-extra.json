@@ -1,0 +1,33 @@
+{
+  "traceabilityResults": [
+    {
+      "protocolId": "spec_code",
+      "status": "partial",
+      "gateClass": "hard",
+      "applicable": true,
+      "evidence": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/spec.md:134"
+      ],
+      "summary": "REQ-005's two mechanical checks pass; REQ-006 stays partial on the workflow leg."
+    },
+    {
+      "protocolId": "checklist_evidence",
+      "status": "notApplicable",
+      "gateClass": "hard",
+      "applicable": false,
+      "evidence": [],
+      "summary": "No checklist row governs a security property of the four files."
+    }
+  ],
+  "delta": [
+    {
+      "type": "classification",
+      "detail": "No authority widening: SKILL.md allowed-tools equals main; ROUTER.md hunks are prose/keyword only; the doctor test has no child_process, network or env-controlled path."
+    },
+    {
+      "type": "ruled_out",
+      "direction": "A test-side path injection or shell surface",
+      "reason": "All reads are __dirname-relative constants; the changed hunk adds one assert.doesNotMatch."
+    }
+  ]
+}

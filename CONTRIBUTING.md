@@ -152,7 +152,7 @@ Reviewers look for code that follows the patterns around it and changes that com
 
 ## 6. WHAT TO CONTRIBUTE
 
-Bug fixes with clear steps to reproduce them are the most welcome. Performance work with benchmarks and documentation fixes rank just as high. New skills, commands, agents and tests are welcome too. Scaffold a skill with `/create:skill`, or `/create:skill-parent` for a skill with several modes. Use `/create:command` and `/create:agent` for the others. Typo fixes, clearer code and English translations of non-English content are always welcome.
+Bug fixes with clear steps to reproduce them are the most welcome. Performance work with benchmarks and documentation fixes rank just as high. New skills, commands, agents and tests are welcome too. Scaffold a skill with `/create:sk-skill`, or `/create:skill-parent` for a skill with several modes. Use `/create:command` and `/create:agent` for the others. Typo fixes, clearer code and English translations of non-English content are always welcome.
 
 &nbsp;
 

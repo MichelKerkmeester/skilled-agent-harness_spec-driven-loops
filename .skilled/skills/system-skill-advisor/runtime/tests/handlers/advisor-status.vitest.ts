@@ -2,12 +2,12 @@
 // MODULE: Advisor Status Tests
 // ───────────────────────────────────────────────────────────────
 
-import { mkdtempSync, mkdirSync, readFileSync, symlinkSync, utimesSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, utimesSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import Database from 'better-sqlite3';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
 const ollamaMocks = vi.hoisted(() => ({
   probeOllamaModel: vi.fn(),
@@ -28,6 +28,7 @@ vi.mock('../../lib/embedders/adapters/ollama.js', async (importOriginal) => {
 import { handleAdvisorStatus, readAdvisorStatus } from '../../handlers/advisor-status.js';
 import { computeAdvisorSourceSignature } from '../../lib/freshness.js';
 import {
+  advisorHookDiagnosticsPath,
   createAdvisorHookDiagnosticRecord,
   persistAdvisorHookDiagnosticRecord,
 } from '../../lib/metrics.js';
@@ -46,8 +47,22 @@ const ADVISOR_DB_RELATIVE_PATH = join(
   'skill-graph.sqlite',
 );
 
+// Every temporary tree a case makes is removed when the file ends, so a run
+// leaves nothing behind in the system temp folder.
+const temporaryRoots: string[] = [];
+
+function temporaryRoot(prefix: string): string {
+  const root = mkdtempSync(join(tmpdir(), prefix));
+  temporaryRoots.push(root);
+  return root;
+}
+
+afterAll(() => {
+  for (const root of temporaryRoots) rmSync(root, { recursive: true, force: true });
+});
+
 function workspace(name: string): string {
-  const root = mkdtempSync(join(tmpdir(), `advisor-status-${name}-`));
+  const root = temporaryRoot(`advisor-status-${name}-`);
   mkdirSync(join(root, '.skilled', 'skills', '.state', 'advisor'), { recursive: true });
   mkdirSync(join(root, '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'database'), { recursive: true });
   mkdirSync(join(root, '.skilled', 'skills', 'alpha'), { recursive: true });
@@ -493,11 +508,33 @@ describe('advisor_status handler', () => {
     const root = workspace('privacy');
     writeDb(root);
     writeGeneration(root, 'live', 5);
+    const previousDebug = process.env.SKILL_ADVISOR_DEBUG;
+    process.env.SKILL_ADVISOR_DEBUG = '1';
+    try {
+      await persistAdvisorHookDiagnosticRecord(root, createAdvisorHookDiagnosticRecord({
+        runtime: 'claude',
+        status: 'ok',
+        freshness: 'live',
+        durationMs: 10,
+        cacheHit: true,
+        skillLabel: 'privacy-marker-skill',
+        errorDetails: 'secret@example.com',
+      }));
 
-    const raw = (await handleAdvisorStatus({ workspaceRoot: root })).content[0].text;
+      const stored = readFileSync(advisorHookDiagnosticsPath(root), 'utf8');
+      expect(stored).toContain('privacy-marker-skill');
+      expect(stored).toContain('secret@example.com');
 
-    expect(raw).not.toContain('prompt');
-    expect(raw).not.toContain('secret@example.com');
+      const raw = (await handleAdvisorStatus({ workspaceRoot: root })).content[0].text;
+
+      expect(raw).not.toContain('prompt');
+      expect(raw).not.toContain('secret@example.com');
+      expect(raw).not.toContain('privacy-marker-skill');
+      expect(JSON.parse(raw).data.hookHealth.invocations).toBe(1);
+    } finally {
+      if (previousDebug === undefined) delete process.env.SKILL_ADVISOR_DEBUG;
+      else process.env.SKILL_ADVISOR_DEBUG = previousDebug;
+    }
   });
 
   it('omits embeddings health when the option is absent', async () => {
@@ -531,6 +568,86 @@ describe('advisor_status handler', () => {
       if (previousDebug === undefined) delete process.env.SKILL_ADVISOR_DEBUG;
       else process.env.SKILL_ADVISOR_DEBUG = previousDebug;
     }
+  });
+
+  it('writes a health record without the debug variable and keeps the skill label out', async () => {
+    const root = workspace('hook-health-default');
+    const previousDebug = process.env.SKILL_ADVISOR_DEBUG;
+    delete process.env.SKILL_ADVISOR_DEBUG;
+    try {
+      await persistAdvisorHookDiagnosticRecord(root, createAdvisorHookDiagnosticRecord({
+        runtime: 'claude',
+        status: 'ok',
+        freshness: 'live',
+        durationMs: 12,
+        cacheHit: true,
+        skillLabel: 'sk-doc',
+        errorDetails: 'probe detail',
+        degraded: true,
+      }));
+
+      const lines = readFileSync(advisorHookDiagnosticsPath(root), 'utf8').trimEnd().split('\n');
+      expect(lines).toHaveLength(1);
+      const record = JSON.parse(lines[0] ?? '{}') as Record<string, unknown>;
+      expect(record).not.toHaveProperty('skillLabel');
+      expect(record).not.toHaveProperty('errorDetails');
+      expect(record.degraded).toBe(true);
+      expect(readAdvisorStatus({ workspaceRoot: root }).hookHealth?.invocations).toBe(1);
+    } finally {
+      if (previousDebug === undefined) delete process.env.SKILL_ADVISOR_DEBUG;
+      else process.env.SKILL_ADVISOR_DEBUG = previousDebug;
+    }
+  });
+
+  it('trims the default health log to 200 records', async () => {
+    const root = workspace('hook-health-trim');
+    const previousDebug = process.env.SKILL_ADVISOR_DEBUG;
+    delete process.env.SKILL_ADVISOR_DEBUG;
+    try {
+      for (let index = 0; index < 301; index += 1) {
+        await persistAdvisorHookDiagnosticRecord(root, createAdvisorHookDiagnosticRecord({
+          runtime: 'claude',
+          status: 'ok',
+          freshness: 'live',
+          durationMs: index,
+          cacheHit: true,
+        }));
+      }
+
+      const lines = readFileSync(advisorHookDiagnosticsPath(root), 'utf8').trimEnd().split('\n');
+      expect(lines).toHaveLength(200);
+    } finally {
+      if (previousDebug === undefined) delete process.env.SKILL_ADVISOR_DEBUG;
+      else process.env.SKILL_ADVISOR_DEBUG = previousDebug;
+    }
+  });
+
+  it('reports the newest record time and the degraded share', async () => {
+    const root = workspace('hook-health-degraded');
+    await persistAdvisorHookDiagnosticRecord(root, createAdvisorHookDiagnosticRecord({
+      runtime: 'claude',
+      status: 'ok',
+      freshness: 'live',
+      durationMs: 10,
+      cacheHit: true,
+      timestamp: '2026-11-13T08:00:00.000Z',
+      degraded: true,
+    }));
+    await persistAdvisorHookDiagnosticRecord(root, createAdvisorHookDiagnosticRecord({
+      runtime: 'claude',
+      status: 'ok',
+      freshness: 'live',
+      durationMs: 30,
+      cacheHit: true,
+      timestamp: '2026-11-13T08:00:05.000Z',
+    }));
+
+    const status = readAdvisorStatus({ workspaceRoot: root });
+    const parsed = AdvisorStatusOutputSchema.parse(status);
+
+    expect(parsed.hookHealth?.invocations).toBe(2);
+    expect(parsed.hookHealth?.lastRecordAt).toBe('2026-11-13T08:00:05.000Z');
+    expect(parsed.hookHealth?.rollingDegradedRate).toBe(0.5);
   });
 
   it('omits hook health when no diagnostic records exist', () => {
@@ -621,7 +738,7 @@ describe('advisor_status handler', () => {
     writeDb(workspaceRootDir);
     writeGeneration(workspaceRootDir, 'live', 11);
 
-    const overrideDir = mkdtempSync(join(tmpdir(), 'advisor-status-override-'));
+    const overrideDir = temporaryRoot('advisor-status-override-');
     writeFileSync(join(overrideDir, 'skill-graph.sqlite'), 'not-a-sqlite-database-file-at-all-this-is-corrupt', 'utf8');
     // The generation counter follows the DB dir override, so the live
     // generation the writing daemon published sits beside its database.

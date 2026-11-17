@@ -1,0 +1,171 @@
+## MENTION: node --import ./.skilled/skills/system-spec-kit/node_modules/tsx/dist/loader.mjs specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/scratch/planning/probe-mention-reader.mts
+REFUSE8 expected=true shipped=true planned=true :: do not run /speckit:complete yet, just explain what it does :: /speckit:complete
+REFUSE8 expected=true shipped=true planned=true :: I never want to use /create:agent again, delete the agent file :: /create:agent
+REFUSE8 expected=true shipped=true planned=true :: someone ran /speckit:save by accident, how do I undo what it wrote :: /speckit:save
+REFUSE8 expected=true shipped=true planned=true :: please do not start /deep:research, I only want a two line summary of the readme :: /deep:research
+REFUSE8 expected=true shipped=true planned=true :: what does /create:readme do? :: /create:readme
+REFUSE8 expected=true shipped=true planned=true :: do not run it, just tell me what /doctor:update would change :: /doctor:update
+REFUSE8 expected=true shipped=true planned=true :: explain /deep:review to me :: /deep:review
+REFUSE8 expected=true shipped=true planned=true :: skip /create:readme, just append one line to the existing README :: /create:readme
+QUESTION2 expected=true shipped=true planned=true :: is /speckit:complete overkill for a two line fix? :: /speckit:complete
+QUESTION2 expected=true shipped=true planned=true :: should I use /deep:research for this or just read the two files myself? :: /deep:research
+REQUEST6 expected=false shipped=false planned=false :: run /speckit:complete for the rate limiter :: /speckit:complete
+REQUEST6 expected=false shipped=false planned=false :: /create:agent security-reviewer :: /create:agent
+REQUEST6 expected=false shipped=false planned=false :: don't forget to run /speckit:save :: /speckit:save
+REQUEST6 expected=false shipped=false planned=false :: explain the diff then run /speckit:save :: /speckit:save
+REQUEST6 expected=false shipped=false planned=false :: use /speckit:plan, not /speckit:complete :: /speckit:plan
+REQUEST6 expected=false shipped=false planned=false :: I ran /speckit:plan yesterday, now run /speckit:implement :: /speckit:implement
+CONTROL5 expected=false shipped=false planned=false :: dont guess, run /speckit:plan :: /speckit:plan
+CONTROL5 expected=false shipped=false planned=false :: never mind just run /speckit:save :: /speckit:save
+CONTROL5 expected=false shipped=false planned=false :: not sure, use /create:readme :: /create:readme
+CONTROL5 expected=false shipped=false planned=false :: without asking, run /speckit:complete :: /speckit:complete
+CONTROL5 expected=false shipped=false planned=false :: can you run /speckit:plan? :: /speckit:plan
+BARE4 expected=false shipped=false planned=false :: the next step is /speckit:implement :: /speckit:implement
+BARE4 expected=false shipped=false planned=false :: the next step is /speckit:implement\nany questions? :: /speckit:implement
+BARE4 expected=false shipped=false planned=false :: what does /speckit:save do? ok now run /speckit:save :: /speckit:save
+BARE4 expected=false shipped=false planned=false :: the plan is /speckit:plan then tests :: /speckit:plan
+OPEN4 expected=true shipped=true planned=true :: is /speckit:resume safe to run twice :: /speckit:resume
+OPEN4 expected=true shipped=true planned=true :: does /doctor:git change files or just report problems :: /doctor:git
+OPEN4 expected=true shipped=true planned=true :: can /prompt:improve make a vague request easier to follow :: /prompt:improve
+OPEN4 expected=true shipped=true planned=true :: ok. is /speckit:plan enough here :: /speckit:plan
+SINGLE3 expected=true shipped=true planned=true :: use /speckit:plan, not /speckit:complete :: /speckit:complete
+SINGLE3 expected=true shipped=true planned=true :: don’t run /speckit:save :: /speckit:save
+SINGLE3 expected=false shipped=false planned=false :: do not run /create:sk-skill-parent :: /create:sk-skill
+REFUSAL2 expected=true shipped=true planned=true :: no need to run /doctor:setup, the hooks are fine :: /doctor:setup
+REFUSAL2 expected=true shipped=true planned=true :: stop using /create:changelog for this, write the changelog entry by hand :: /create:changelog
+REQUEST3 expected=false shipped=false planned=false :: I have not run /speckit:plan yet, please start it for the login feature :: /speckit:plan
+REQUEST3 expected=false shipped=false planned=false :: I already ran /create:readme but the output was wrong, run it again for the hooks folder :: /create:readme
+REQUEST3 expected=false shipped=false planned=false :: why not use /create:agent for this? go ahead and make a security reviewer agent :: /create:agent
+QMARK1 expected=true shipped=true planned=true :: quick question? is /speckit:resume safe to run twice :: /speckit:resume
+GUARD8 expected=false shipped=false planned=false :: do not run /speckit:complete, run /speckit:plan for the rate limiter instead :: /speckit:plan
+GUARD8 expected=true shipped=true planned=true :: do not run /speckit:complete, run /speckit:plan for the rate limiter instead :: /speckit:complete
+GUARD8 expected=true shipped=true planned=true :: do not run /speckit:complete, I will run it myself later :: /speckit:complete
+GUARD8 expected=true shipped=true planned=true :: do not use /create:agent, use that other one :: /create:agent
+GUARD8 expected=false shipped=false planned=false :: stop and run /speckit:plan :: /speckit:plan
+GUARD8 expected=false shipped=false planned=false :: no need to ask, run /speckit:save :: /speckit:save
+GUARD8 expected=false shipped=false planned=false :: is this right? run /speckit:plan :: /speckit:plan
+GUARD8 expected=false shipped=false planned=false :: I do not just run it, I read what /speckit:complete does first :: /speckit:complete
+SHIPPED: 46 of 46 agree
+PLANNED: 46 of 46 agree
+## exit 0
+## OFFERS: node specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/scratch/planning/probe-offers.mjs --top-only --file specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/scratch/planning/review-prompts.json
+PROMPT: no need to run /doctor:setup, the hooks are fine
+  row 0: system-skilled-doctor 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 1: mcp-code-mode 0.82/0.26 command=- policy=- owner=- ambiguous=false
+  row 2: cli-external-orchestration 0.82/0.34 command=- policy=- owner=- ambiguous=false
+PROMPT: stop using /create:changelog for this, write the changelog entry by hand
+  row 0: sk-doc 0.8923/0.12 command=- policy=- owner=- ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: sk-design 0.82/0.26 command=- policy=- owner=- ambiguous=false
+PROMPT: I have not run /speckit:plan yet, please start it for the login feature
+  row 0: command-speckit-plan 0.8276/0.16 command=/speckit:plan policy=start owner=system-spec-kit ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: cli-external-orchestration 0.82/0.26 command=- policy=- owner=- ambiguous=false
+PROMPT: I already ran /create:readme but the output was wrong, run it again for the hooks folder
+  row 0: sk-doc 0.9175/0.12 command=/create:readme policy=start owner=sk-doc ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: cli-external-orchestration 0.82/0.22 command=- policy=- owner=- ambiguous=false
+PROMPT: why not use /create:agent for this? go ahead and make a security reviewer agent
+  row 0: create:agent 0.82/0.16 command=/create:agent policy=start owner=sk-doc ambiguous=false
+  row 1: sk-doc 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: sk-code 0.82/0.22 command=- policy=- owner=- ambiguous=false
+PROMPT: quick question? is /speckit:resume safe to run twice
+  row 0: system-spec-kit 0.8218/0.16 command=- policy=- owner=- ambiguous=false
+  row 1: cli-classifier 0.82/0.26 command=- policy=- owner=- ambiguous=false
+  row 2: cli-external-orchestration 0.82/0.26 command=- policy=- owner=- ambiguous=false
+PROMPT: do not run /speckit:complete, run /speckit:plan for the rate limiter instead
+  row 0: command-speckit-plan 0.82/0.16 command=/speckit:plan policy=start owner=system-spec-kit ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: cli-external-orchestration 0.82/0.26 command=- policy=- owner=- ambiguous=false
+PROMPT: do not run it, just tell me what /doctor:update would change
+  row 0: system-skilled-doctor 0.82/0.26 command=- policy=- owner=- ambiguous=true
+  row 1: sk-doc 0.82/0.26 command=- policy=- owner=- ambiguous=true
+  row 2: mcp-code-mode 0.82/0.26 command=- policy=- owner=- ambiguous=true
+## exit 0
+## CODEX pre: node specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/scratch/planning/probe-codex-shell.mjs specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl
+codex lines: 24
+custom tool call name:exec: 58
+custom tool calls: 58
+custom tool calls with an input string: 58
+exec bodies the planned helper reads no command from: 8
+no-command body shape: const cmds = [ ["", ""], ["", ""], ["", ""] ]; const rs = await Promise.all(cmds.map(async ([k,cmd]) => [k,await tools.exec_command({cmd,workdir:"",yield_time_m: 1
+no-command body shape: const names = ALL_TOOLS.filter(x => /communication|handoff|skill advisor/i.test(x.name+""+x.description)); text(names); : 1
+no-command body shape: const r = await tools.mcp__codex_apps__github_fetch({url:""}); text(r); : 1
+no-command body shape: const r = await tools.web__run({open:[{ref_id:""}],response_length:""}); text(r); : 1
+no-command body shape: const r = await tools.web__run({search_query:[ {q:""}, {q:""}, {q:""} ],response_length:""}); text(r); : 1
+no-command body shape: const r = await tools.web__run({search_query:[ {q:""}, {q:""}, {q:""}, {q:""} ],response_length:""}); text(r); : 2
+no-command body shape: text(ALL_TOOLS.filter(x=>["",""].includes(x.name))); : 1
+of those, read before the first write: 4
+owned rows: 16
+path now:command: 2
+path now:none: 12
+path now:skill: 2
+path with the body read:command: 2
+path with the body read:none: 12
+path with the body read:skill: 2
+sessions read: 24
+sessions whose wrote fact changes: 0
+sessions with a shell read of a skill or command document: 4
+shell events: 58
+shell events with no command text: 7
+started now: 0
+started with the body read: 0
+tools called inside exec bodies: exec_command=65, mcp__codex_apps__github_fetch=1, web__run=4
+## exit 0
+## CODEX post: node specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/scratch/planning/probe-codex-shell.mjs specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post.jsonl
+codex lines: 24
+custom tool call name:exec: 53
+custom tool calls: 53
+custom tool calls with an input string: 53
+exec bodies the planned helper reads no command from: 8
+no-command body shape: const cmd = ""; const r = await tools.exec_command({cmd,workdir:"",max_output_tokens:5000}); text(r.output); text(""); : 1
+no-command body shape: const cmds = [ ["", ""], ["", ""], ["", ""] ]; const rs = await Promise.all(cmds.map(async ([k,cmd]) => [k, await tools.exec_command({cmd,workdir:"",max_output_: 1
+no-command body shape: const cmds = [ ["", ""], ["", ""], ["", ""] ]; const rs = await Promise.all(cmds.map(async ([n,cmd]) => [n, await tools.exec_command({cmd,workdir:"",max_output_: 1
+no-command body shape: const cmds = [ ["", ""], ["", ""], ["", ""], ["", ""] ]; const rs = await Promise.all(cmds.map(async ([k,cmd]) => [k, await tools.exec_command({cmd,workdir:"",m: 1
+no-command body shape: const r = await tools.web__run({search_query:[ {q:""}, {q:""}, {q:""}, {q:""} ],response_length:""}); text(r); : 3
+no-command body shape: const t = ALL_TOOLS.filter(x => /github.*(workflow|action)|workflow.*github|repository.*(get|list)/i.test(x.name+""+x.description)); text(t); : 1
+of those, read before the first write: 4
+owned rows: 16
+path now:command: 1
+path now:none: 13
+path now:skill: 2
+path with the body read:command: 1
+path with the body read:none: 13
+path with the body read:skill: 2
+sessions read: 24
+sessions whose wrote fact changes: 0
+sessions with a shell read of a skill or command document: 4
+shell events: 53
+shell events with no command text: 4
+started now: 0
+started with the body read: 0
+tools called inside exec bodies: exec_command=52, web__run=3
+## exit 0
+## SHELL: node specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/scratch/planning/probe-shell-read-rule.mjs
+rg over the owner entry document: none
+grep over the owner entry document: none
+rg whose pattern is the document name: none
+heredoc body line that starts with a reader: none
+heredoc body line that starts with head: none
+cd into the skill folder, then cat: skill
+cd into the mode folder, then sed: skill
+cd elsewhere, then cat a bare name: none
+cat with the full path, the control: skill
+claude: owned=32, loads resting on rg or grep alone=0, cd then a bare document name=0, heredoc body line with a reader verb=0
+codex: owned=16, loads resting on rg or grep alone=0, cd then a bare document name=0, heredoc body line with a reader verb=0
+devin: owned=32, loads resting on rg or grep alone=0, cd then a bare document name=0, heredoc body line with a reader verb=0
+dsh: owned=31, loads resting on rg or grep alone=0, cd then a bare document name=0, heredoc body line with a reader verb=0
+opencode: owned=32, loads resting on rg or grep alone=0, cd then a bare document name=0, heredoc body line with a reader verb=0
+pi: owned=32, loads resting on rg or grep alone=0, cd then a bare document name=1, heredoc body line with a reader verb=1
+## exit 0
+## SKILL LABEL: node --import ./.skilled/skills/system-spec-kit/node_modules/tsx/dist/loader.mjs specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/scratch/planning/probe-skill-label.mts
+needs-mode hub, label sent as the hub: Advisor: live; use sk-doc (needs a mode) 0.91/0.12 pass.
+needs-mode hub, no label sent: Advisor: live; use sk-doc (needs a mode) 0.91/0.12 pass.
+same head with and without the label: true
+failing row 0, label taken from row 0: Advisor: live; use sk-git 0.82/0.20 pass.
+failing row 0, label taken from the first passing row: Advisor: live; use sk-code 0.82/0.20 pass.
+CLI rows over 5 prompts: 10, below the bars: 0, row 0 below the bars: 0
+## exit 0
+## FLAKE: node specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/scratch/planning/probe-plugin-flake.mjs 20
+termination grace test: 20 passed, 0 failed of 20 runs, slowest process 382 ms
+## exit 0

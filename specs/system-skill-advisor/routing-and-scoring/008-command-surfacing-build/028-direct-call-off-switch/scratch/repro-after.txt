@@ -1,0 +1,14 @@
+$ LEASE
+{"pid":30196,"ownerPid":30196,"socketPath":"/tmp/system-skill-advisor/1787187e91b4/daemon-ipc.sock"}
+$ REPRO
+lease before {"pid":12311,"childPid":12315,"startedAt":"2026-11-14T23:19:00.177Z"}
+warm, flag first   1st off disabledCount=1 {"degraded":null,"source":null,"freshness":"unavailable","abstain":["Skill advisor disabled by SYSTEM_SKILL_ADVISOR_HOOK_DISABLED."],"recs":[]}
+warm, flag first   2nd on disabledCount=none {"degraded":null,"source":null,"freshness":"live","abstain":null,"recs":["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]}
+warm, plain first  1st on disabledCount=none {"degraded":null,"source":null,"freshness":"live","abstain":null,"recs":["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]}
+warm, plain first  2nd off disabledCount=1 {"degraded":null,"source":null,"freshness":"unavailable","abstain":["Skill advisor disabled by SYSTEM_SKILL_ADVISOR_HOOK_DISABLED."],"recs":[]}
+fresh, flag first  1st off disabledCount=1 {"degraded":null,"source":null,"freshness":"unavailable","abstain":["Skill advisor disabled by SYSTEM_SKILL_ADVISOR_HOOK_DISABLED."],"recs":[]}
+fresh, flag first  2nd on disabledCount=none {"degraded":true,"source":"local-scorer","freshness":null,"abstain":null,"recs":["system-spec-kit:-:-","sk-doc:-:-"]}
+fresh, plain first 1st on disabledCount=none {"degraded":true,"source":"local-scorer","freshness":null,"abstain":null,"recs":["system-spec-kit:-:-","sk-doc:-:-"]}
+fresh, plain first 2nd off disabledCount=1 {"degraded":null,"source":null,"freshness":"unavailable","abstain":["Skill advisor disabled by SYSTEM_SKILL_ADVISOR_HOOK_DISABLED."],"recs":[]}
+warm, stdin form       off disabledCount=1 {"degraded":null,"source":null,"freshness":"unavailable","abstain":["Skill advisor disabled by SYSTEM_SKILL_ADVISOR_HOOK_DISABLED."],"recs":[]}
+lease after  {"pid":12311,"childPid":12315,"startedAt":"2026-11-14T23:19:00.177Z"}

@@ -194,7 +194,7 @@ Read `sk-doc` first, then the mode packet entry file in the matching row, then t
 | Command                    | Output                                                  | Template                                                                                                                                         |
 | -------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `/create:agent` | New OpenCode agent `.md` plus requested runtime mirrors, and for an agent under `.skilled/agents/` its record in `agent-registry.json` and the regenerated rosters | `.skilled/skills/sk-doc/sk-create-agent/SKILL.md` and the agent template it names |
-| `/create:skill` | New skill `SKILL.md` or doc-only skill resource | `.skilled/skills/sk-doc/sk-create-skill/SKILL.md` and the skill template it names and, when needed, its skill reference template |
+| `/create:sk-skill` | New skill `SKILL.md` or doc-only skill resource | `.skilled/skills/sk-doc/sk-create-skill/SKILL.md` and the skill template it names and, when needed, its skill reference template |
 | `/create:skill-parent` | Parent skill with nested mode packets (hub + registry + N `deep-<mode>` packets + `shared/`, one hub `graph-metadata.json`, root `ROUTER.md` stage-two control document) | `.skilled/skills/sk-doc/sk-create-skill/SKILL.md` and that packet's `ROUTER.md`, which names the parent-skill hub, registry and root-router templates (root `ROUTER.md` two-state authoring) |
 | `/create:feature-catalog` | `feature-catalog/` package | `.skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md` and the catalog template it names |
 | `/create:manual-testing-playbook` | `manual-testing-playbook/` package | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md` and the playbook template it names |
@@ -287,7 +287,7 @@ If any required check fails, do not return `STATUS=OK`. Return `STATUS=FAIL ERRO
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
 | `.skilled/skills/sk-doc/SKILL.md`                                                    | Required skill routing and documentation creation standards        |
 | `.skilled/skills/sk-doc/sk-create-agent/SKILL.md` | Entry file for `/create:agent`; names the production agent template with its BINDING, REFUSE, and summary contracts |
-| `.skilled/skills/sk-doc/sk-create-skill/SKILL.md` | Entry file for `/create:skill` and `/create:skill-parent`; names the skill template and, through the packet's `ROUTER.md`, the root `ROUTER.md` stage-two authoring template |
+| `.skilled/skills/sk-doc/sk-create-skill/SKILL.md` | Entry file for `/create:sk-skill` and `/create:skill-parent`; names the skill template and, through the packet's `ROUTER.md`, the root `ROUTER.md` stage-two authoring template |
 | `.skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md` | Entry file for the feature catalog package template |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md` | Entry file for the manual testing playbook package template |
 | `.skilled/skills/sk-doc/sk-create-readme/SKILL.md` | Entry file for the README template for `/create:readme` |

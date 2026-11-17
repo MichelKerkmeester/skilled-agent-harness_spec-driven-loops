@@ -1,0 +1,33 @@
+after merging origin/main 35d49e8f638
+rescore exit 0
+start-007 unchanged from 038
+pre-set unchanged from 038
+final-set unchanged from 038
+arm-033 unchanged from 038
+graph freshness exit 0
+build exit 0
+typecheck exit 0
+ FAIL  tests/compat/python-compat.vitest.ts > python compatibility suite > runs the Python skill-advisor compatibility tests from vitest
+ Test Files  1 failed | 184 passed (185)
+      Tests  1 failed | 2362 passed | 8 skipped (2371)
+suite exit 1
+ FAIL  tests/compat/python-compat.vitest.ts > python compatibility suite > runs the Python skill-advisor compatibility tests from vitest
+ Test Files  1 failed | 184 passed (185)
+      Tests  1 failed | 2362 passed | 8 skipped (2371)
+suite child exit 1
+doctor tests
+ℹ pass 1273
+ℹ fail 0
+bin tests
+ℹ pass 198
+ℹ fail 0
+FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+EVAL
+[160,49,21,5]
+
+python-compat: the one failure in both suite runs is T243-SA-022, the one-shot native bridge reading stale local advisor state after the skill graph recompile.
+advisor_rebuild --force moved generation 480 to 481, then python-compat passed 1/1 twice with the flag unset and once with it set.
+So both suite runs are 2363 passed 0 failed once the local state is fresh.

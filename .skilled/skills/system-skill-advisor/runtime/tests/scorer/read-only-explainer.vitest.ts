@@ -26,6 +26,15 @@ describe('isReadOnlyExplainer', () => {
     expect(isReadOnlyExplainer('explain how the quality gate picks its checks')).toBe(true);
   });
 
+  it.each([
+    "please show me the parser config, don't change anything yet",
+    'please show me the parser config so i can update it later, no changes yet',
+    'please show me what the fix would be, don\u2019t touch any files',
+    'please show me the parser config and what to edit, make no changes',
+  ])('treats a read-only request that rules out a change as read-only: %s', (prompt) => {
+    expect(isReadOnlyExplainer(prompt.toLowerCase())).toBe(true);
+  });
+
   it('does not match a run verb inside another word', () => {
     expect(isReadOnlyExplainer('tell me about the runtime lanes')).toBe(true);
   });

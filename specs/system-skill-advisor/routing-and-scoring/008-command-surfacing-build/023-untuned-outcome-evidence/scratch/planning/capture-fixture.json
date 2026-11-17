@@ -1,0 +1,2305 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-11",
+  "capturedAtSha": "16c9757ac0",
+  "corpusSha256": "sha256:8545e6d8afcd17b7b12d6ec2cea48cae668c0f8bc5e54d759d2ada12d236651c",
+  "bridgeCounts": {
+    "commandMetadata": 27,
+    "doctorRoutes": 36,
+    "generated": 63,
+    "typescriptActive": 46,
+    "pythonActive": 52
+  },
+  "metrics": {
+    "typed_recall_at_1": {
+      "correct": 24,
+      "total": 44
+    },
+    "typed_reach_top3": {
+      "correct": 27,
+      "total": 44
+    },
+    "plain_recall_at_1": {
+      "tune": {
+        "correct": 13,
+        "total": 45
+      },
+      "holdout": {
+        "correct": 1,
+        "total": 44
+      }
+    },
+    "plain_reach_top3": {
+      "tune": {
+        "correct": 15,
+        "total": 45
+      },
+      "holdout": {
+        "correct": 2,
+        "total": 44
+      }
+    },
+    "false_offer": {
+      "count": 0,
+      "total": 35
+    },
+    "slash_variant": {
+      "reached_top3": 5,
+      "named_total": 8,
+      "offered_on_partial": 0,
+      "partial_total": 4
+    },
+    "agreement": {
+      "correct": 8,
+      "total": 11
+    }
+  },
+  "unreachable": [
+    "/create:benchmark",
+    "/create:changelog",
+    "/create:command",
+    "/create:diff",
+    "/create:feature-catalog",
+    "/create:goal",
+    "/create:readme",
+    "/create:repo-rule",
+    "/create:sk-skill",
+    "/create:skill-parent",
+    "/create:with-human-voice",
+    "/deep:ai-council",
+    "/deep:research",
+    "/deep:review",
+    "/design:chart",
+    "/design:diagram",
+    "/design:extract"
+  ],
+  "commands": {
+    "/create:agent": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 2,
+          "top1": 0,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/create:benchmark": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/create:changelog": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/create:command": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/create:diff": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/create:feature-catalog": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/create:goal": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/create:manual-testing-playbook": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/create:readme": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/create:repo-rule": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/create:sk-skill": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/create:skill-parent": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/create:with-human-voice": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/deep:ai-council": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/deep:research": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/deep:review": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/design:chart": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/design:diagram": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/design:extract": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 0
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/doctor:agents-md": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
+        }
+      }
+    },
+    "/doctor:ci": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/doctor:deep-loop": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/doctor:env": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/doctor:git": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/doctor:helper": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/doctor:install": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/doctor:mcp": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/doctor:overlay": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/doctor:runtime-mirrors": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/doctor:setup": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/doctor:sk-code": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/doctor:sk-skill": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/doctor:skill-advisor": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/doctor:speckit": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 1
+        }
+      }
+    },
+    "/doctor:symlink": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/doctor:update": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/prompt:improve": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/speckit:complete": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/speckit:handoff": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/speckit:implement": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/speckit:plan": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/speckit:resume": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/speckit:save": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    },
+    "/speckit:search": {
+      "typed": {
+        "rows": 1,
+        "top1": 1,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        }
+      }
+    }
+  },
+  "rows": {
+    "cmd-create-agent-typed-01": {
+      "expected_command": "/create:agent",
+      "top": "create:agent",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-create-agent-plain-tune-01": {
+      "expected_command": "/create:agent",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-create-agent-plain-tune-02": {
+      "expected_command": "/create:agent",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-benchmark-typed-01": {
+      "expected_command": "/create:benchmark",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-benchmark-plain-tune-01": {
+      "expected_command": "/create:benchmark",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-changelog-typed-01": {
+      "expected_command": "/create:changelog",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-changelog-plain-tune-01": {
+      "expected_command": "/create:changelog",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-command-typed-01": {
+      "expected_command": "/create:command",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-command-plain-tune-01": {
+      "expected_command": "/create:command",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-diff-typed-01": {
+      "expected_command": "/create:diff",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-diff-plain-tune-01": {
+      "expected_command": "/create:diff",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-feature-catalog-typed-01": {
+      "expected_command": "/create:feature-catalog",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-feature-catalog-plain-tune-01": {
+      "expected_command": "/create:feature-catalog",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-goal-typed-01": {
+      "expected_command": "/create:goal",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-goal-plain-tune-01": {
+      "expected_command": "/create:goal",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-manual-testing-playbook-typed-01": {
+      "expected_command": "/create:manual-testing-playbook",
+      "top": "create:manual-testing-playbook",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-create-manual-testing-playbook-plain-tune-01": {
+      "expected_command": "/create:manual-testing-playbook",
+      "top": "create:manual-testing-playbook",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-create-readme-typed-01": {
+      "expected_command": "/create:readme",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-readme-plain-tune-01": {
+      "expected_command": "/create:readme",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-repo-rule-typed-01": {
+      "expected_command": "/create:repo-rule",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-repo-rule-plain-tune-01": {
+      "expected_command": "/create:repo-rule",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-skill-parent-typed-01": {
+      "expected_command": "/create:skill-parent",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-skill-parent-plain-tune-01": {
+      "expected_command": "/create:skill-parent",
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-skill-typed-01": {
+      "expected_command": "/create:sk-skill",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-skill-plain-tune-01": {
+      "expected_command": "/create:sk-skill",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-with-human-voice-typed-01": {
+      "expected_command": "/create:with-human-voice",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-with-human-voice-plain-tune-01": {
+      "expected_command": "/create:with-human-voice",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-doctor-agents-md-typed-01": {
+      "expected_command": "/doctor:agents-md",
+      "top": "command-doctor-agents-md-check",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-agents-md-plain-tune-01": {
+      "expected_command": "/doctor:agents-md",
+      "top": "command-doctor-agents-md-check",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-ci-typed-01": {
+      "expected_command": "/doctor:ci",
+      "top": "command-doctor-ci-report",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-ci-plain-tune-01": {
+      "expected_command": "/doctor:ci",
+      "top": "command-doctor-ci-report",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-deep-loop-typed-01": {
+      "expected_command": "/doctor:deep-loop",
+      "top": "command-doctor-deep-loop",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-deep-loop-plain-tune-01": {
+      "expected_command": "/doctor:deep-loop",
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-env-typed-01": {
+      "expected_command": "/doctor:env",
+      "top": "command-doctor-env",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-env-plain-tune-01": {
+      "expected_command": "/doctor:env",
+      "top": "system-spec-kit",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-doctor-git-typed-01": {
+      "expected_command": "/doctor:git",
+      "top": "command-doctor-git-setup",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-git-plain-tune-01": {
+      "expected_command": "/doctor:git",
+      "top": "sk-git",
+      "top1": false,
+      "top3": false,
+      "offered": true
+    },
+    "cmd-doctor-helper-typed-01": {
+      "expected_command": "/doctor:helper",
+      "top": "command-doctor-helper",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-helper-plain-tune-01": {
+      "expected_command": "/doctor:helper",
+      "top": "command-doctor-helper",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-install-typed-01": {
+      "expected_command": "/doctor:install",
+      "top": "command-doctor-install",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-install-plain-tune-01": {
+      "expected_command": "/doctor:install",
+      "top": "command-doctor-install",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-mcp-typed-01": {
+      "expected_command": "/doctor:mcp",
+      "top": "command-doctor-mcp-debug",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-mcp-plain-tune-01": {
+      "expected_command": "/doctor:mcp",
+      "top": "mcp-code-mode",
+      "top1": false,
+      "top3": false,
+      "offered": true
+    },
+    "cmd-doctor-overlay-typed-01": {
+      "expected_command": "/doctor:overlay",
+      "top": "command-doctor-overlay-status",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-overlay-plain-tune-01": {
+      "expected_command": "/doctor:overlay",
+      "top": "command-doctor-overlay-status",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-runtime-mirrors-typed-01": {
+      "expected_command": "/doctor:runtime-mirrors",
+      "top": "command-doctor-runtime-mirrors",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-runtime-mirrors-plain-tune-01": {
+      "expected_command": "/doctor:runtime-mirrors",
+      "top": "command-doctor-runtime-mirrors",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-setup-typed-01": {
+      "expected_command": "/doctor:setup",
+      "top": "command-doctor-setup",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-setup-plain-tune-01": {
+      "expected_command": "/doctor:setup",
+      "top": "command-doctor-setup",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-sk-code-typed-01": {
+      "expected_command": "/doctor:sk-code",
+      "top": "command-doctor-sk-code-setup",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-sk-code-plain-tune-01": {
+      "expected_command": "/doctor:sk-code",
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-doctor-sk-skill-typed-01": {
+      "expected_command": "/doctor:sk-skill",
+      "top": "command-doctor-sk-skill-convert",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-sk-skill-plain-tune-01": {
+      "expected_command": "/doctor:sk-skill",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-doctor-skill-advisor-typed-01": {
+      "expected_command": "/doctor:skill-advisor",
+      "top": "command-doctor-skill-advisor-rebuild",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-skill-advisor-plain-tune-01": {
+      "expected_command": "/doctor:skill-advisor",
+      "top": "system-skill-advisor",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-doctor-speckit-typed-01": {
+      "expected_command": "/doctor:speckit",
+      "top": "command-doctor-speckit",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-speckit-plain-tune-01": {
+      "expected_command": "/doctor:speckit",
+      "top": "command-doctor-speckit",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-symlink-typed-01": {
+      "expected_command": "/doctor:symlink",
+      "top": "command-doctor-symlink-check",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-symlink-plain-tune-01": {
+      "expected_command": "/doctor:symlink",
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-doctor-update-typed-01": {
+      "expected_command": "/doctor:update",
+      "top": "command-doctor-update",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-doctor-update-plain-tune-01": {
+      "expected_command": "/doctor:update",
+      "top": "command-doctor-update",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-deep-ai-council-typed-01": {
+      "expected_command": "/deep:ai-council",
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-deep-ai-council-plain-tune-01": {
+      "expected_command": "/deep:ai-council",
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-deep-research-typed-01": {
+      "expected_command": "/deep:research",
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-deep-research-plain-tune-01": {
+      "expected_command": "/deep:research",
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-deep-review-typed-01": {
+      "expected_command": "/deep:review",
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-deep-review-plain-tune-01": {
+      "expected_command": "/deep:review",
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-design-chart-typed-01": {
+      "expected_command": "/design:chart",
+      "top": "sk-design",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-design-chart-plain-tune-01": {
+      "expected_command": "/design:chart",
+      "top": "sk-design",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-design-diagram-typed-01": {
+      "expected_command": "/design:diagram",
+      "top": "sk-design",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-design-diagram-plain-tune-01": {
+      "expected_command": "/design:diagram",
+      "top": "sk-design",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-design-extract-typed-01": {
+      "expected_command": "/design:extract",
+      "top": "sk-design",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-design-extract-plain-tune-01": {
+      "expected_command": "/design:extract",
+      "top": "sk-design",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-prompt-improve-typed-01": {
+      "expected_command": "/prompt:improve",
+      "top": "sk-prompt",
+      "top1": false,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-prompt-improve-plain-tune-01": {
+      "expected_command": "/prompt:improve",
+      "top": "command-prompt-improve",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-speckit-complete-typed-01": {
+      "expected_command": "/speckit:complete",
+      "top": "command-speckit-complete",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-speckit-complete-plain-tune-01": {
+      "expected_command": "/speckit:complete",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-speckit-handoff-typed-01": {
+      "expected_command": "/speckit:handoff",
+      "top": "command-speckit-handoff",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-speckit-handoff-plain-tune-01": {
+      "expected_command": "/speckit:handoff",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-speckit-implement-typed-01": {
+      "expected_command": "/speckit:implement",
+      "top": "command-speckit-implement",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-speckit-implement-plain-tune-01": {
+      "expected_command": "/speckit:implement",
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-speckit-plan-typed-01": {
+      "expected_command": "/speckit:plan",
+      "top": "command-speckit-plan",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-speckit-plan-plain-tune-01": {
+      "expected_command": "/speckit:plan",
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-speckit-resume-typed-01": {
+      "expected_command": "/speckit:resume",
+      "top": "system-spec-kit",
+      "top1": false,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-speckit-resume-plain-tune-01": {
+      "expected_command": "/speckit:resume",
+      "top": "command-speckit-resume",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-speckit-save-typed-01": {
+      "expected_command": "/speckit:save",
+      "top": "system-spec-kit",
+      "top1": false,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-speckit-save-plain-tune-01": {
+      "expected_command": "/speckit:save",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-speckit-search-typed-01": {
+      "expected_command": "/speckit:search",
+      "top": "command-speckit-search",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-speckit-search-plain-tune-01": {
+      "expected_command": "/speckit:search",
+      "top": "command-speckit-search",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "mns-d3-01": {
+      "expected_command": null,
+      "top": "system-skill-advisor",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-d3-02": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-d3-03": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-d3-04": {
+      "expected_command": null,
+      "top": "sk-git",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-d3-05": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-d3-06": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-d3-07": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-d3-08": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-d3-09": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-d3-10": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-chat-01": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-chat-02": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-chat-03": {
+      "expected_command": null,
+      "top": "system-skilled-doctor",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-chat-04": {
+      "expected_command": null,
+      "top": "mcp-tooling",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-chat-05": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-chat-06": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-chat-07": {
+      "expected_command": null,
+      "top": "sk-git",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-chat-08": {
+      "expected_command": null,
+      "top": "sk-git",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-chat-09": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-chat-10": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-chat-11": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "mns-chat-12": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-sk-code-01": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-sk-design-01": {
+      "expected_command": null,
+      "top": "sk-design",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-sk-doc-01": {
+      "expected_command": null,
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-sk-git-01": {
+      "expected_command": null,
+      "top": "sk-git",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-sk-prompt-01": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-01": {
+      "expected_command": null,
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-skill-advisor-01": {
+      "expected_command": null,
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-skilled-doctor-01": {
+      "expected_command": null,
+      "top": "system-skilled-doctor",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-spec-kit-01": {
+      "expected_command": null,
+      "top": "system-spec-kit",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "sv-01": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "sv-02": {
+      "expected_command": null,
+      "top": "system-spec-kit",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "sv-03": {
+      "expected_command": null,
+      "top": "system-skilled-doctor",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "sv-04": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "sv-05": {
+      "expected_command": "/deep:research",
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "sv-06": {
+      "expected_command": "/speckit:plan",
+      "top": "command-speckit-plan",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
+    "sv-07": {
+      "expected_command": "/create:sk-skill",
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "sv-08": {
+      "expected_command": "/doctor:setup",
+      "top": "system-skilled-doctor",
+      "top1": false,
+      "top3": true,
+      "offered": true
+    },
+    "sv-09": {
+      "expected_command": "/speckit:resume",
+      "top": "system-spec-kit",
+      "top1": false,
+      "top3": true,
+      "offered": true
+    },
+    "sv-10": {
+      "expected_command": "/design:chart",
+      "top": "sk-design",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "sv-11": {
+      "expected_command": "/doctor:git",
+      "top": "sk-git",
+      "top1": false,
+      "top3": true,
+      "offered": true
+    },
+    "sv-12": {
+      "expected_command": "/prompt:improve",
+      "top": "command-prompt-improve",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    }
+  },
+  "attachedMetrics": {
+    "plain": {
+      "tune": {
+        "own": 13,
+        "attached": 15,
+        "combined": 28,
+        "total": 45
+      },
+      "holdout": {
+        "own": 1,
+        "attached": 0,
+        "combined": 1,
+        "total": 44
+      }
+    },
+    "plain_by_family": {
+      "create": {
+        "tune": {
+          "own": 1,
+          "attached": 9,
+          "combined": 10,
+          "total": 14
+        },
+        "holdout": {
+          "own": 0,
+          "attached": 0,
+          "combined": 0,
+          "total": 13
+        }
+      },
+      "deep": {
+        "tune": {
+          "own": 0,
+          "attached": 3,
+          "combined": 3,
+          "total": 3
+        },
+        "holdout": {
+          "own": 0,
+          "attached": 0,
+          "combined": 0,
+          "total": 3
+        }
+      },
+      "design": {
+        "tune": {
+          "own": 0,
+          "attached": 3,
+          "combined": 3,
+          "total": 3
+        },
+        "holdout": {
+          "own": 0,
+          "attached": 0,
+          "combined": 0,
+          "total": 3
+        }
+      },
+      "doctor": {
+        "tune": {
+          "own": 9,
+          "attached": 0,
+          "combined": 9,
+          "total": 17
+        },
+        "holdout": {
+          "own": 1,
+          "attached": 0,
+          "combined": 1,
+          "total": 17
+        }
+      },
+      "prompt": {
+        "tune": {
+          "own": 1,
+          "attached": 0,
+          "combined": 1,
+          "total": 1
+        },
+        "holdout": {
+          "own": 0,
+          "attached": 0,
+          "combined": 0,
+          "total": 1
+        }
+      },
+      "speckit": {
+        "tune": {
+          "own": 2,
+          "attached": 0,
+          "combined": 2,
+          "total": 7
+        },
+        "holdout": {
+          "own": 0,
+          "attached": 0,
+          "combined": 0,
+          "total": 7
+        }
+      }
+    },
+    "false_offer_attached": {
+      "count": 0,
+      "total": 35
+    },
+    "typed": {
+      "own": 24,
+      "attached": 20,
+      "combined": 44,
+      "total": 44
+    },
+    "typedRows": {
+      "cmd-create-agent-typed-01": {
+        "expected_command": "/create:agent",
+        "top": "create:agent",
+        "carried": "own",
+        "command": "/create:agent",
+        "policy": "start"
+      },
+      "cmd-create-benchmark-typed-01": {
+        "expected_command": "/create:benchmark",
+        "top": "sk-doc",
+        "carried": "attached",
+        "command": "/create:benchmark",
+        "policy": "start"
+      },
+      "cmd-create-changelog-typed-01": {
+        "expected_command": "/create:changelog",
+        "top": "sk-doc",
+        "carried": "attached",
+        "command": "/create:changelog",
+        "policy": "ask"
+      },
+      "cmd-create-command-typed-01": {
+        "expected_command": "/create:command",
+        "top": "sk-doc",
+        "carried": "attached",
+        "command": "/create:command",
+        "policy": "start"
+      },
+      "cmd-create-diff-typed-01": {
+        "expected_command": "/create:diff",
+        "top": "sk-doc",
+        "carried": "attached",
+        "command": "/create:diff",
+        "policy": "start"
+      },
+      "cmd-create-feature-catalog-typed-01": {
+        "expected_command": "/create:feature-catalog",
+        "top": "sk-doc",
+        "carried": "attached",
+        "command": "/create:feature-catalog",
+        "policy": "start"
+      },
+      "cmd-create-goal-typed-01": {
+        "expected_command": "/create:goal",
+        "top": "sk-doc",
+        "carried": "attached",
+        "command": "/create:goal",
+        "policy": "start"
+      },
+      "cmd-create-manual-testing-playbook-typed-01": {
+        "expected_command": "/create:manual-testing-playbook",
+        "top": "create:manual-testing-playbook",
+        "carried": "own",
+        "command": "/create:manual-testing-playbook",
+        "policy": "start"
+      },
+      "cmd-create-readme-typed-01": {
+        "expected_command": "/create:readme",
+        "top": "sk-doc",
+        "carried": "attached",
+        "command": "/create:readme",
+        "policy": "start"
+      },
+      "cmd-create-repo-rule-typed-01": {
+        "expected_command": "/create:repo-rule",
+        "top": "sk-doc",
+        "carried": "attached",
+        "command": "/create:repo-rule",
+        "policy": "start"
+      },
+      "cmd-create-skill-parent-typed-01": {
+        "expected_command": "/create:skill-parent",
+        "top": "sk-doc",
+        "carried": "attached",
+        "command": "/create:skill-parent",
+        "policy": "start"
+      },
+      "cmd-create-skill-typed-01": {
+        "expected_command": "/create:sk-skill",
+        "top": "sk-doc",
+        "carried": "attached",
+        "command": "/create:sk-skill",
+        "policy": "start"
+      },
+      "cmd-create-with-human-voice-typed-01": {
+        "expected_command": "/create:with-human-voice",
+        "top": "sk-doc",
+        "carried": "attached",
+        "command": "/create:with-human-voice",
+        "policy": "start"
+      },
+      "cmd-deep-ai-council-typed-01": {
+        "expected_command": "/deep:ai-council",
+        "top": "system-deep-loop",
+        "carried": "attached",
+        "command": "/deep:ai-council",
+        "policy": "ask"
+      },
+      "cmd-deep-research-typed-01": {
+        "expected_command": "/deep:research",
+        "top": "system-deep-loop",
+        "carried": "attached",
+        "command": "/deep:research",
+        "policy": "ask"
+      },
+      "cmd-deep-review-typed-01": {
+        "expected_command": "/deep:review",
+        "top": "system-deep-loop",
+        "carried": "attached",
+        "command": "/deep:review",
+        "policy": "ask"
+      },
+      "cmd-design-chart-typed-01": {
+        "expected_command": "/design:chart",
+        "top": "sk-design",
+        "carried": "attached",
+        "command": "/design:chart",
+        "policy": "start"
+      },
+      "cmd-design-diagram-typed-01": {
+        "expected_command": "/design:diagram",
+        "top": "sk-design",
+        "carried": "attached",
+        "command": "/design:diagram",
+        "policy": "start"
+      },
+      "cmd-design-extract-typed-01": {
+        "expected_command": "/design:extract",
+        "top": "sk-design",
+        "carried": "attached",
+        "command": "/design:extract",
+        "policy": "ask"
+      },
+      "cmd-doctor-agents-md-typed-01": {
+        "expected_command": "/doctor:agents-md",
+        "top": "command-doctor-agents-md-check",
+        "carried": "own",
+        "command": "/doctor:agents-md check",
+        "policy": "run"
+      },
+      "cmd-doctor-ci-typed-01": {
+        "expected_command": "/doctor:ci",
+        "top": "command-doctor-ci-report",
+        "carried": "own",
+        "command": "/doctor:ci report",
+        "policy": "run"
+      },
+      "cmd-doctor-deep-loop-typed-01": {
+        "expected_command": "/doctor:deep-loop",
+        "top": "command-doctor-deep-loop",
+        "carried": "own",
+        "command": "/doctor:deep-loop",
+        "policy": "run"
+      },
+      "cmd-doctor-env-typed-01": {
+        "expected_command": "/doctor:env",
+        "top": "command-doctor-env",
+        "carried": "own",
+        "command": "/doctor:env list",
+        "policy": "run"
+      },
+      "cmd-doctor-git-typed-01": {
+        "expected_command": "/doctor:git",
+        "top": "command-doctor-git-setup",
+        "carried": "own",
+        "command": "/doctor:git setup",
+        "policy": "run"
+      },
+      "cmd-doctor-helper-typed-01": {
+        "expected_command": "/doctor:helper",
+        "top": "command-doctor-helper",
+        "carried": "own",
+        "command": "/doctor:helper",
+        "policy": "run"
+      },
+      "cmd-doctor-install-typed-01": {
+        "expected_command": "/doctor:install",
+        "top": "command-doctor-install",
+        "carried": "own",
+        "command": "/doctor:install",
+        "policy": "run"
+      },
+      "cmd-doctor-mcp-typed-01": {
+        "expected_command": "/doctor:mcp",
+        "top": "command-doctor-mcp-debug",
+        "carried": "own",
+        "command": "/doctor:mcp debug",
+        "policy": "ask"
+      },
+      "cmd-doctor-overlay-typed-01": {
+        "expected_command": "/doctor:overlay",
+        "top": "command-doctor-overlay-status",
+        "carried": "own",
+        "command": "/doctor:overlay status",
+        "policy": "run"
+      },
+      "cmd-doctor-runtime-mirrors-typed-01": {
+        "expected_command": "/doctor:runtime-mirrors",
+        "top": "command-doctor-runtime-mirrors",
+        "carried": "own",
+        "command": "/doctor:runtime-mirrors",
+        "policy": "run"
+      },
+      "cmd-doctor-setup-typed-01": {
+        "expected_command": "/doctor:setup",
+        "top": "command-doctor-setup",
+        "carried": "own",
+        "command": "/doctor:setup",
+        "policy": "run"
+      },
+      "cmd-doctor-sk-code-typed-01": {
+        "expected_command": "/doctor:sk-code",
+        "top": "command-doctor-sk-code-setup",
+        "carried": "own",
+        "command": "/doctor:sk-code setup",
+        "policy": "run"
+      },
+      "cmd-doctor-sk-skill-typed-01": {
+        "expected_command": "/doctor:sk-skill",
+        "top": "command-doctor-sk-skill-convert",
+        "carried": "own",
+        "command": "/doctor:sk-skill convert",
+        "policy": "ask"
+      },
+      "cmd-doctor-skill-advisor-typed-01": {
+        "expected_command": "/doctor:skill-advisor",
+        "top": "command-doctor-skill-advisor-rebuild",
+        "carried": "own",
+        "command": "/doctor:skill-advisor rebuild",
+        "policy": "ask"
+      },
+      "cmd-doctor-speckit-typed-01": {
+        "expected_command": "/doctor:speckit",
+        "top": "command-doctor-speckit",
+        "carried": "own",
+        "command": "/doctor:speckit",
+        "policy": "run"
+      },
+      "cmd-doctor-symlink-typed-01": {
+        "expected_command": "/doctor:symlink",
+        "top": "command-doctor-symlink-check",
+        "carried": "own",
+        "command": "/doctor:symlink check",
+        "policy": "run"
+      },
+      "cmd-doctor-update-typed-01": {
+        "expected_command": "/doctor:update",
+        "top": "command-doctor-update",
+        "carried": "own",
+        "command": "/doctor:update",
+        "policy": "ask"
+      },
+      "cmd-prompt-improve-typed-01": {
+        "expected_command": "/prompt:improve",
+        "top": "sk-prompt",
+        "carried": "attached",
+        "command": "/prompt:improve",
+        "policy": "start"
+      },
+      "cmd-speckit-complete-typed-01": {
+        "expected_command": "/speckit:complete",
+        "top": "command-speckit-complete",
+        "carried": "own",
+        "command": "/speckit:complete",
+        "policy": "start"
+      },
+      "cmd-speckit-handoff-typed-01": {
+        "expected_command": "/speckit:handoff",
+        "top": "command-speckit-handoff",
+        "carried": "own",
+        "command": "/speckit:handoff",
+        "policy": "ask"
+      },
+      "cmd-speckit-implement-typed-01": {
+        "expected_command": "/speckit:implement",
+        "top": "command-speckit-implement",
+        "carried": "own",
+        "command": "/speckit:implement",
+        "policy": "start"
+      },
+      "cmd-speckit-plan-typed-01": {
+        "expected_command": "/speckit:plan",
+        "top": "command-speckit-plan",
+        "carried": "own",
+        "command": "/speckit:plan",
+        "policy": "start"
+      },
+      "cmd-speckit-resume-typed-01": {
+        "expected_command": "/speckit:resume",
+        "top": "system-spec-kit",
+        "carried": "attached",
+        "command": "/speckit:resume",
+        "policy": "start"
+      },
+      "cmd-speckit-save-typed-01": {
+        "expected_command": "/speckit:save",
+        "top": "system-spec-kit",
+        "carried": "attached",
+        "command": "/speckit:save",
+        "policy": "start"
+      },
+      "cmd-speckit-search-typed-01": {
+        "expected_command": "/speckit:search",
+        "top": "command-speckit-search",
+        "carried": "own",
+        "command": "/speckit:search",
+        "policy": "run"
+      }
+    },
+    "typed_same_owner_ambiguous": [],
+    "attachedRows": {
+      "cmd-create-agent-plain-tune-01": "/create:agent",
+      "cmd-create-agent-plain-tune-02": "/create:agent",
+      "cmd-create-benchmark-typed-01": "/create:benchmark",
+      "cmd-create-benchmark-plain-tune-01": "/create:benchmark",
+      "cmd-create-changelog-typed-01": "/create:changelog",
+      "cmd-create-changelog-plain-tune-01": "/create:changelog",
+      "cmd-create-command-typed-01": "/create:command",
+      "cmd-create-command-plain-tune-01": "/create:command",
+      "cmd-create-diff-typed-01": "/create:diff",
+      "cmd-create-diff-plain-tune-01": "/create:diff",
+      "cmd-create-feature-catalog-typed-01": "/create:feature-catalog",
+      "cmd-create-feature-catalog-plain-tune-01": "/create:feature-catalog",
+      "cmd-create-goal-typed-01": "/create:goal",
+      "cmd-create-goal-plain-tune-01": "/create:goal",
+      "cmd-create-readme-typed-01": "/create:readme",
+      "cmd-create-repo-rule-typed-01": "/create:repo-rule",
+      "cmd-create-skill-parent-typed-01": "/create:skill-parent",
+      "cmd-create-skill-typed-01": "/create:sk-skill",
+      "cmd-create-skill-plain-tune-01": "/create:sk-skill",
+      "cmd-create-with-human-voice-typed-01": "/create:with-human-voice",
+      "cmd-deep-ai-council-typed-01": "/deep:ai-council",
+      "cmd-deep-ai-council-plain-tune-01": "/deep:ai-council",
+      "cmd-deep-research-plain-tune-01": "/deep:research",
+      "cmd-deep-review-plain-tune-01": "/deep:review",
+      "cmd-design-chart-typed-01": "/design:chart",
+      "cmd-design-chart-plain-tune-01": "/design:chart",
+      "cmd-design-diagram-typed-01": "/design:diagram",
+      "cmd-design-diagram-plain-tune-01": "/design:diagram",
+      "cmd-design-extract-typed-01": "/design:extract",
+      "cmd-design-extract-plain-tune-01": "/design:extract",
+      "sv-07": "/create:sk-skill",
+      "sv-10": "/design:chart"
+    },
+    "needs_mode_floor": {
+      "count": 1,
+      "total": 35
+    },
+    "needsModeRows": [
+      "nm-system-skill-advisor-01"
+    ]
+  }
+}
+

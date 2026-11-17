@@ -1,0 +1,48 @@
+$ capture --write
+exit=0
+$ HASHES
+{"capturedAt":"2026-10-11","corpusSha256":"sha256:4146b002802d010e4d9d3ddf4c07b0738e59a55fab590b2c51e1ed3d4da1e115","holdoutSha256":"sha256:51cb48eb8b10e501fd8536eb403deb7674583f89adc5418c1cb583c5c6b02d6a","ambiguitySha256":"sha256:62423738cab74cf499d98f2e835e8e78c25e2b57e3c1b6994d8a2bd0bfb88491"}
+$ OTHERM
+{"full_corpus_top1":{"correct":160,"total":195,"accuracy":0.8205},"unknown_count":{"value":13},"gold_none_false_fire":{"value":5},"ambiguity_top1":{"correct":21,"total":24,"accuracy":0.875,"tau":0.03},"buckets":{"review":{"correct":25,"total":31,"accuracy":0.8065},"memory_save":{"correct":28,"total":32,"accuracy":0.875},"delegation":{"correct":20,"total":20,"accuracy":1}}}
+$ HOLDM
+{"correct":50,"total":65,"accuracy":0.7692}
+$ FILEHASH
+sha256:51cb48eb8b10e501fd8536eb403deb7674583f89adc5418c1cb583c5c6b02d6a
+$ G diff --numstat SEB
+4	4	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json
+$ VX ratchet
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+$ VX holdout-independent
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+$ VX capture-date
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+$ VALL
+ Test Files  184 passed (184)
+      Tests  1796 passed | 6 skipped (1802)
+$ BASEM
+{"full_corpus_top1":{"correct":160,"total":195,"accuracy":0.8205},"unknown_count":{"value":13},"gold_none_false_fire":{"value":5},"holdout_top1":{"correct":50,"total":65,"accuracy":0.7692},"ambiguity_top1":{"correct":21,"total":24,"accuracy":0.875,"tau":0.03},"buckets":{"review":{"correct":25,"total":31,"accuracy":0.8065},"memory_save":{"correct":28,"total":32,"accuracy":0.875},"delegation":{"correct":20,"total":20,"accuracy":1}}}
+$ EVALM
+{"full_corpus_top1":{"correct":160,"total":195,"accuracy":0.8205},"unknown_count":{"value":13},"gold_none_false_fire":{"value":5},"holdout_top1":{"correct":50,"total":65,"accuracy":0.7692},"ambiguity_top1":{"correct":21,"total":24,"accuracy":0.875,"tau":0.03},"buckets":{"review":{"correct":25,"total":31,"accuracy":0.8065},"memory_save":{"correct":28,"total":32,"accuracy":0.875},"delegation":{"correct":20,"total":20,"accuracy":1}}}
+$ FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":24,"attached":20,"combined":44,"total":44}
+{"own":13,"attached":15,"combined":28,"total":45}
+$ VERDICT
+scoring date 2026-10-11
+holdout total 65, correct 50
+row {"id":"suppressed-codex-abstain","present":false}
+$ OVERLAP
+suppressed-codex-abstain shares its prompt with: []
+holdout-delegation|delegation: all 5, without 5
+holdout-delegation|intent: all 2, without 2
+holdout-harder|delegation: all 2, without 2
+holdout-harder|harder: all 20, without 20
+holdout-regression|golden: all 5, without 5
+holdout-regression|regression: all 40, without 40
+$ LEAK --paths (this folder, the README and the baseline)
+files scanned: 20, rows with a hit: 0 []
+$ base commit for every line above: 11f3a30814, changes in the working tree

@@ -1,0 +1,51 @@
+009-ux-performance-cross-cli-research/research/lineages/cross-cli | ratios 1 0.9 0.7 | stop converged
+009-ux-performance-cross-cli-research/research/lineages/cross-cli-2 | ratios 0.8 0.85 0.9 0.75 | stop maxIterationsReached
+009-ux-performance-cross-cli-research/research/lineages/cross-cli-3 | ratios 0.9 0.75 0.8 0.6 0.7 0.3 | stop maxIterationsReached
+009-ux-performance-cross-cli-research/research/lineages/cross-cli-5 | ratios 0.75 0.8 0.7 0.65 0.7 0.85 0.8 0.35 | stop maxIterationsReached
+009-ux-performance-cross-cli-research/research/lineages/embed-text-4 | ratios 0.45 0.88 0.35 | stop all_questions_answered
+009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4 | ratios 1 1 1 | stop all_questions_answered
+009-ux-performance-cross-cli-research/research/lineages/offer-reach | ratios 0.9 0.85 0.88 0.7 | stop maxIterationsReached
+009-ux-performance-cross-cli-research/research/lineages/offer-reach-3 | ratios 0.85 0.8 0.75 0.45 0.55 0.2 | stop maxIterationsReached
+009-ux-performance-cross-cli-research/research/lineages/performance | ratios 0.9 0.85 0.9 0.85 0.45 | stop max_iterations
+009-ux-performance-cross-cli-research/research/lineages/performance-5 | ratios 0.83 0.92 0.93 0.75 0.7 0.72 0.75 0.6 | stop maxIterationsReached
+009-ux-performance-cross-cli-research/research/lineages/residual-limits-4 | ratios 0.8 0.9 0.83 0.75 | stop converged
+009-ux-performance-cross-cli-research/research/lineages/ux | ratios 0.9 0.88 0.83 0.88 0.88 | stop maxIterationsReached
+009-ux-performance-cross-cli-research/research/lineages/ux-5 | ratios 0.6 0.75 0.7 0.45 0.4 0.85 0.2 | stop converged
+009-ux-performance-cross-cli-research/research/lineages/ux-cost-2 | ratios 0.62 0.72 0.6 | stop converged
+009-ux-performance-cross-cli-research/research/lineages/ux-cost-3 | ratios 0.88 0.82 0.6 0.72 0.58 | stop all_questions_answered
+review/lineages/accuracy-runner | ratios 1 1 1 1 0.11 | stop maxIterationsReached
+review/lineages/accuracy-runner-2 | ratios 1 1 1 1 1 0 0 | stop maxIterationsReached
+review/lineages/accuracy-runner-4 | ratios 1 1 1 1 | stop maxIterationsReached
+review/lineages/accuracy-runner-5 | ratios 1 0.3 0.5 0.0909 | stop maxIterationsReached
+review/lineages/accuracy-runner-close-4c | ratios 1 0.6667 | stop maxIterationsReached
+review/lineages/accuracy-runner-confirm-4b | ratios 0 0 1 | stop maxIterationsReached
+review/lineages/accuracy-runner-confirm-5b | ratios 1 0.3333 0.25 | stop maxIterationsReached
+review/lineages/advisor-runtime-3 | ratios 1 0 0 0 | stop maxIterationsReached
+review/lineages/arena-config-6 | ratios 1 0.3333 0.4 | stop maxIterationsReached
+review/lineages/attach-config-7 | ratios 0 1 0.5 | stop maxIterationsReached
+review/lineages/docs-7 | ratios 0 0 0 | stop maxIterationsReached
+review/lineages/docs-metadata-5 | ratios 1 0.14 0.13 0 | stop maxIterationsReached
+review/lineages/docs-metadata-confirm-5b | ratios 1 0.5 0 | stop maxIterationsReached
+review/lineages/doctor-docs-3 | ratios 1 0 0 0 | stop converged
+review/lineages/doctor-docs-4 | ratios 1 0 0 | stop maxIterationsReached
+review/lineages/doctor-install | ratios 1 0.27 0.21 0.29 0.125 | stop maxIterationsReached
+review/lineages/doctor-install-2 | ratios 1 0 0.5 0.333 0.4 0 | stop converged
+review/lineages/hook-close-3c | ratios 1 0.71 0 | stop maxIterationsReached
+review/lineages/hook-confirm-3b | ratios 1 0.86 0.22 | stop maxIterationsReached
+review/lineages/kill-switch-cli-5 | ratios 0 1 0.5 0 | stop maxIterationsReached
+review/lineages/kill-switch-cli-confirm-5b | ratios 1 0 0 | stop maxIterationsReached
+review/lineages/merge-docs-6 | ratios 1 0 0 | stop maxIterationsReached
+review/lineages/noedit-close-3c | ratios 1 1 0 | stop maxIterationsReached
+review/lineages/noedit-confirm-3b | ratios 1 1 0 | stop maxIterationsReached
+review/lineages/render-hooks-plugin | ratios 1 1 0.33 0.23 0.15 | stop maxIterationsReached
+review/lineages/render-hooks-plugin-2 | ratios 0 1 0 1 1 0 | stop converged
+review/lineages/render-hooks-plugin-4 | ratios 1 0.3333 0 0 | stop converged
+review/lineages/scorer-6 | ratios 1 0.3333 0.25 | stop maxIterationsReached
+review/lineages/scorer-7 | ratios 1 0.6667 0.25 | stop maxIterationsReached
+review/lineages/scorer-attach | ratios 1 0.3333 0.4 0.2857 0 | stop converged
+review/lineages/scorer-attach-2 | ratios 1 1 1 1 0 | stop converged
+review/lineages/scorer-attach-4 | ratios 1 1 1 1 | stop maxIterationsReached
+review/lineages/scorer-attach-close-4c | ratios 1 1 0 | stop maxIterationsReached
+review/lineages/scorer-attach-confirm-4b | ratios 0.88 0 0 | stop maxIterationsReached
+review/lineages/vibe-hooks-doctor-5 | ratios 1 0.5 0.3333 0.25 | stop maxIterationsReached
+review/lineages/vibe-hooks-doctor-confirm-5b | ratios 0 1 0 | stop converged

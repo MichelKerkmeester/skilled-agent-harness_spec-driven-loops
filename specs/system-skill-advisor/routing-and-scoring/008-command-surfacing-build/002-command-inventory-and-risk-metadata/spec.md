@@ -74,6 +74,8 @@ The deriver builds its inventory from `command-metadata.json` files, an allow-li
 
 ### Purpose
 One generated file lists every tracked command and doctor route with a risk class and a derived `run`, `start` or `ask` policy, and the deriver fails when the list and the command tree disagree.
+
+**Core need served:** A model can only take a command's workflow safely if it knows what that command may change. The policy per command lets the brief say run, start or ask, so the model can pick the command path without a risk it cannot see.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"doctor-install-2","sessionId":"doctor-install-2"},"data":{"mode":"review","totalIterations":6,"activeP0":0,"activeP1":0,"activeP2":5,"dimensionCoverage":1,"verdict":"PASS","releaseReadinessState":"converged","stopReason":"converged"}}

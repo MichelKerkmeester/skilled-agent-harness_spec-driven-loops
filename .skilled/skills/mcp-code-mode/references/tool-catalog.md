@@ -9,7 +9,7 @@ trigger_phrases:
   - "tool name lookup"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Tool Catalog - Configured MCP Manuals
@@ -65,12 +65,12 @@ The current `.utcp_config.json` contains these thirteen manual names:
 |---|---|
 | `chrome_devtools_1` | Chrome DevTools instance |
 | `chrome_devtools_2` | Chrome DevTools instance |
+| `chrome_devtools_live` | Chrome DevTools instance |
 | `aside` | Aside MCP bridge |
 | `clickup_official` | Official ClickUp MCP |
 | `figma` | Figma MCP |
 | `github` | GitHub MCP |
 | `gitkraken` | GitKraken MCP |
-| `magnific` | Magnific MCP |
 | `refero` | Refero design-research transport |
 | `mobbin` | Mobbin design-research transport |
 | `notion` | Notion MCP |

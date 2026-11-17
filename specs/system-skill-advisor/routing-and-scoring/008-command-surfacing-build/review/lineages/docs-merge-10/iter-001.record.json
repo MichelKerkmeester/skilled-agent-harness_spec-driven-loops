@@ -1,0 +1,534 @@
+{
+  "type": "iteration",
+  "iteration": 1,
+  "run": 1,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "status": "complete",
+  "focus": "correctness and traceability - docs claims against HEAD and merge resolutions in both directions",
+  "dimensions": [
+    "correctness",
+    "traceability"
+  ],
+  "filesReviewed": [
+    ".skilled/skills/system-skill-advisor/README.md:1-280",
+    ".skilled/skills/system-skill-advisor/SKILL.md:1-223",
+    ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:1-251",
+    ".env.example:1-643",
+    ".skilled/skills/sk-doc/SKILL.md:1-153",
+    ".skilled/skills/sk-doc/sk-create-skill/ROUTER.md:1-208",
+    ".skilled/commands/doctor/assets/doctor-install-presentation.txt:1-204",
+    ".skilled/changelog/skilled/v4.0.2.1.md:1-405",
+    ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts:1-373"
+  ],
+  "findingsCount": 4,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 3
+  },
+  "findingsNew": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 3
+  },
+  "findingDetails": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "title": "The merge left the doctor-install contract test pinning the pre-merge presentation text",
+      "dimension": "correctness",
+      "file": ".skilled/commands/doctor/assets/doctor-install-presentation.txt:78",
+      "evidence": "Main-side asset rewrite kept, branch-side contract test kept; test assertions at doctor-install-contract.test.cjs:240-241 match no text in the asset.",
+      "recommendation": "Update the contract test to the merged sentence and retire or correct the stale DSH line in doctor-install.yaml.",
+      "disposition": "active",
+      "findingClass": "merge-resolution-integration",
+      "scopeProof": "Both merge directions read; grep -F for either asserted sentence returns no match in the HEAD asset.",
+      "affectedSurfaceHints": [
+        ".skilled/commands/doctor/scripts/tests/doctor-install-contract.test.cjs",
+        ".skilled/commands/doctor/assets/doctor-install.yaml",
+        ".skilled/commands/doctor/assets/symlink-manifest.json"
+      ]
+    },
+    {
+      "id": "F002",
+      "severity": "P2",
+      "title": "The merged accepted-runtime sentence says nine but lists eight",
+      "dimension": "correctness",
+      "file": ".skilled/commands/doctor/assets/doctor-install-presentation.txt:78",
+      "evidence": "Presentation line 58 lists eight runtimes; symlink-manifest.json runtimes has eight keys; symlink-engine.cjs rejects any other name.",
+      "recommendation": "Say eight, or name the missing ninth runtime and add it to the manifest.",
+      "disposition": "active",
+      "findingClass": "doc-claim-accuracy",
+      "scopeProof": "Presentation list, manifest keys and engine unknown-name branch read at HEAD.",
+      "affectedSurfaceHints": [
+        ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+        ".skilled/commands/doctor/assets/symlink-manifest.json"
+      ]
+    },
+    {
+      "id": "F003",
+      "severity": "P2",
+      "title": "Both advisor runtime enumerations omit Vibe",
+      "dimension": "traceability",
+      "file": ".skilled/skills/system-skill-advisor/README.md:244",
+      "evidence": "README:244 and SKILL.md:205 list six runtimes plus the OpenCode plugin; hooks/vibe/prompt-advisor.mjs exists and skill-advisor-hook.md:119 documents it.",
+      "recommendation": "Add Vibe to both enumerations, or scope the sentences to the runtimes they list.",
+      "disposition": "active",
+      "findingClass": "cross-doc-consistency",
+      "scopeProof": "Vibe adapter, hook contract row, README and SKILL paragraphs read whole at HEAD; changelog line 59 names seven runtimes.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/system-skill-advisor/SKILL.md",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs"
+      ]
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "title": "The no-edit release bullet claims more than the gate does",
+      "dimension": "traceability",
+      "file": ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:44",
+      "evidence": "withholdWritingCommandsOnNoEdit keeps read-only commands (fusion.ts:1227-1229); its test expects /doctor:env list to survive a no-edit prompt (command-meaning-anchor.vitest.ts:435-449).",
+      "recommendation": "Say \"no writing command it did not type\" in the at-a-glance bullet.",
+      "disposition": "active",
+      "findingClass": "doc-claim-accuracy",
+      "scopeProof": "The bullet, the gate and its test read at HEAD; the test output is a literal expected array.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-meaning-anchor.vitest.ts"
+      ]
+    }
+  ],
+  "traceabilityChecks": {
+    "summary": {
+      "required": 2,
+      "executed": 6,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 5,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "notApplicable",
+        "gateClass": "hard",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [],
+        "summary": "Review target is a spec folder with repo-level skill docs; the operative check is doc claim vs HEAD code, recorded per finding."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "gateClass": "hard",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [],
+        "summary": "No checklist.md at the packet root; the pass-ten brief and scope file are the checklist and were read."
+      },
+      {
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [
+          ".skilled/skills/sk-doc/SKILL.md:29",
+          ".skilled/commands/create/sk-skill.md:1"
+        ],
+        "summary": "The merged hub row names /create:sk-skill; the command file exists under that name."
+      },
+      {
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [],
+        "summary": "No agent body is in the docs scope."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [],
+        "summary": "No feature-catalog claim is touched by the changed lines."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [],
+        "summary": "No manual-testing-playbook claim is touched by the changed lines."
+      }
+    ]
+  },
+  "newFindingsRatio": 1,
+  "noveltyJustification": "All four findings are new to this lineage: three are claim-accuracy checks not previously run against the docs files, and one is a merge pair that main and the branch each changed.",
+  "sessionId": "fanout-docs-merge-10-1794847584683-k2l24m",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-16T17:02:57.855Z",
+  "durationMs": 330000,
+  "graphEvents": [
+    {
+      "type": "node",
+      "id": "d-correctness",
+      "kind": "DIMENSION",
+      "label": "correctness"
+    },
+    {
+      "type": "node",
+      "id": "d-traceability",
+      "kind": "DIMENSION",
+      "label": "traceability"
+    },
+    {
+      "type": "node",
+      "id": "file-docs-readme",
+      "kind": "FILE",
+      "label": ".skilled/skills/system-skill-advisor/README.md"
+    },
+    {
+      "type": "node",
+      "id": "file-docs-skill",
+      "kind": "FILE",
+      "label": ".skilled/skills/system-skill-advisor/SKILL.md"
+    },
+    {
+      "type": "node",
+      "id": "file-docs-changelog",
+      "kind": "FILE",
+      "label": ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md"
+    },
+    {
+      "type": "node",
+      "id": "file-docs-env",
+      "kind": "FILE",
+      "label": ".env.example"
+    },
+    {
+      "type": "node",
+      "id": "file-merge-skdoc-skill",
+      "kind": "FILE",
+      "label": ".skilled/skills/sk-doc/SKILL.md"
+    },
+    {
+      "type": "node",
+      "id": "file-merge-skdoc-router",
+      "kind": "FILE",
+      "label": ".skilled/skills/sk-doc/sk-create-skill/ROUTER.md"
+    },
+    {
+      "type": "node",
+      "id": "file-merge-doctor-presentation",
+      "kind": "FILE",
+      "label": ".skilled/commands/doctor/assets/doctor-install-presentation.txt"
+    },
+    {
+      "type": "node",
+      "id": "file-merge-changelog",
+      "kind": "FILE",
+      "label": ".skilled/changelog/skilled/v4.0.2.1.md"
+    },
+    {
+      "type": "node",
+      "id": "file-merge-routing-test",
+      "kind": "FILE",
+      "label": ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts"
+    },
+    {
+      "type": "node",
+      "id": "f-F001",
+      "kind": "FINDING",
+      "label": "The merge left the doctor-install contract test pinning the pre-merge presentation text"
+    },
+    {
+      "type": "node",
+      "id": "ev-F001",
+      "kind": "EVIDENCE",
+      "label": ".skilled/commands/doctor/assets/doctor-install-presentation.txt:78"
+    },
+    {
+      "type": "node",
+      "id": "f-F002",
+      "kind": "FINDING",
+      "label": "The merged accepted-runtime sentence says nine but lists eight"
+    },
+    {
+      "type": "node",
+      "id": "ev-F002",
+      "kind": "EVIDENCE",
+      "label": ".skilled/commands/doctor/assets/doctor-install-presentation.txt:78"
+    },
+    {
+      "type": "node",
+      "id": "f-F003",
+      "kind": "FINDING",
+      "label": "Both advisor runtime enumerations omit Vibe"
+    },
+    {
+      "type": "node",
+      "id": "ev-F003",
+      "kind": "EVIDENCE",
+      "label": ".skilled/skills/system-skill-advisor/README.md:244"
+    },
+    {
+      "type": "node",
+      "id": "f-F004",
+      "kind": "FINDING",
+      "label": "The no-edit release bullet claims more than the gate does"
+    },
+    {
+      "type": "node",
+      "id": "ev-F004",
+      "kind": "EVIDENCE",
+      "label": ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:44"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-dim-F001",
+      "source": "f-F001",
+      "target": "d-correctness",
+      "relation": "IN_DIMENSION"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-file-F001",
+      "source": "f-F001",
+      "target": "file-merge-doctor-presentation",
+      "relation": "IN_FILE"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-ev-F001",
+      "source": "ev-F001",
+      "target": "f-F001",
+      "relation": "EVIDENCE_FOR"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-dim-F002",
+      "source": "f-F002",
+      "target": "d-correctness",
+      "relation": "IN_DIMENSION"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-file-F002",
+      "source": "f-F002",
+      "target": "file-merge-doctor-presentation",
+      "relation": "IN_FILE"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-ev-F002",
+      "source": "ev-F002",
+      "target": "f-F002",
+      "relation": "EVIDENCE_FOR"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-dim-F003",
+      "source": "f-F003",
+      "target": "d-traceability",
+      "relation": "IN_DIMENSION"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-file-F003",
+      "source": "f-F003",
+      "target": "file-docs-readme",
+      "relation": "IN_FILE"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-ev-F003",
+      "source": "ev-F003",
+      "target": "f-F003",
+      "relation": "EVIDENCE_FOR"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-dim-F004",
+      "source": "f-F004",
+      "target": "d-traceability",
+      "relation": "IN_DIMENSION"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-file-F004",
+      "source": "f-F004",
+      "target": "file-docs-changelog",
+      "relation": "IN_FILE"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-ev-F004",
+      "source": "ev-F004",
+      "target": "f-F004",
+      "relation": "EVIDENCE_FOR"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-correctness-docs-readme",
+      "source": "d-correctness",
+      "target": "file-docs-readme",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-correctness-docs-skill",
+      "source": "d-correctness",
+      "target": "file-docs-skill",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-correctness-docs-changelog",
+      "source": "d-correctness",
+      "target": "file-docs-changelog",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-correctness-docs-env",
+      "source": "d-correctness",
+      "target": "file-docs-env",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-correctness-merge-skdoc-skill",
+      "source": "d-correctness",
+      "target": "file-merge-skdoc-skill",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-correctness-merge-skdoc-router",
+      "source": "d-correctness",
+      "target": "file-merge-skdoc-router",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-correctness-merge-doctor-presentation",
+      "source": "d-correctness",
+      "target": "file-merge-doctor-presentation",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-correctness-merge-changelog",
+      "source": "d-correctness",
+      "target": "file-merge-changelog",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-correctness-merge-routing-test",
+      "source": "d-correctness",
+      "target": "file-merge-routing-test",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-traceability-docs-readme",
+      "source": "d-traceability",
+      "target": "file-docs-readme",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-traceability-docs-skill",
+      "source": "d-traceability",
+      "target": "file-docs-skill",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-traceability-docs-changelog",
+      "source": "d-traceability",
+      "target": "file-docs-changelog",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-traceability-docs-env",
+      "source": "d-traceability",
+      "target": "file-docs-env",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-traceability-merge-skdoc-skill",
+      "source": "d-traceability",
+      "target": "file-merge-skdoc-skill",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-traceability-merge-skdoc-router",
+      "source": "d-traceability",
+      "target": "file-merge-skdoc-router",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-traceability-merge-doctor-presentation",
+      "source": "d-traceability",
+      "target": "file-merge-doctor-presentation",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-traceability-merge-changelog",
+      "source": "d-traceability",
+      "target": "file-merge-changelog",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i1-cov-traceability-merge-routing-test",
+      "source": "d-traceability",
+      "target": "file-merge-routing-test",
+      "relation": "COVERS"
+    }
+  ]
+}

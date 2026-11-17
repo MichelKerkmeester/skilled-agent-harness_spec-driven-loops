@@ -1,0 +1,1 @@
+{"executors":[{"kind":"cli-opencode","model":"opencode-go/deepseek-v4.1-flash","reasoningEffort":"max","iterations":3,"label":"scorer-attach-confirm-4b","count":1},{"kind":"cli-opencode","model":"opencode-go/deepseek-v4.1-flash","reasoningEffort":"max","iterations":3,"label":"accuracy-runner-confirm-4b","count":1}],"concurrency":2}

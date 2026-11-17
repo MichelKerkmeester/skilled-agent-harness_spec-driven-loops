@@ -90,10 +90,51 @@ function withdrawHandOver({
   return disarmed;
 }
 
+/**
+ * Withdraw a session's hand-over because its operator sent a prompt, the step each runtime
+ * adapter takes on a new prompt. A failed withdrawal or follow-up is logged as
+ * `context-nudge-error` and never thrown, so the prompt that triggered it always runs.
+ *
+ * @param {Object} options - What to withdraw and how to report it.
+ * @param {string} options.loopId - Wrapper process identifier.
+ * @param {string} options.sessionId - Session the record must belong to.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ * @param {(event: string, fields: Object) => void} options.log - The adapter's relaunch-log
+ *   writer; a failure inside it is ignored.
+ * @param {string} options.withdrawnEvent - The event the adapter logs once a hand-over is withdrawn.
+ * @returns {boolean} Whether a hand-over was withdrawn.
+ */
+function withdrawOnPrompt({ loopId, sessionId, env = process.env, log, withdrawnEvent }) {
+  const report = (event, fields) => {
+    try {
+      log(event, fields);
+    } catch {
+      // Logging only reports; a failed write must not fail the operator's prompt.
+    }
+  };
+  let withdrawn;
+  try {
+    withdrawn = withdrawHandOver({
+      loopId,
+      sessionId,
+      reason: 'user-message',
+      env,
+      onError: (stage, error) => report('context-nudge-error', { stage, message: error.message }),
+    });
+  } catch (error) {
+    report('context-nudge-error', { stage: 'withdraw', message: error.message });
+    return false;
+  }
+  if (withdrawn === null) return false;
+  report(withdrawnEvent, { loopId, sessionId, reason: 'user-message' });
+  return true;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   withdrawHandOver,
+  withdrawOnPrompt,
 };

@@ -1,0 +1,20 @@
+## after, with the review's two pattern fixes (uncommitted on 4bb83364145)
+$ SUITE
+ Test Files  185 passed (185)
+      Tests  2319 passed | 6 skipped (2325)
+exit 0
+$ FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+$ EVAL
+[160,49,21,5]
+$ PROBE
+body [] started null
+opening ["notes.txt"] started /create:sk-skill
+$ REACH
+{"rt":"claude","lines":80,"loaded":80,"failed":0,"only":0,"rows":[]}
+{"rt":"opencode","lines":80,"loaded":80,"failed":0,"only":0,"rows":[]}
+{"rt":"pi","lines":80,"loaded":80,"failed":0,"only":0,"rows":[]}
+{"rt":"devin","lines":81,"loaded":81,"failed":0,"only":0,"rows":[]}
+{"rt":"dsh","lines":80,"loaded":80,"failed":0,"only":0,"rows":[]}

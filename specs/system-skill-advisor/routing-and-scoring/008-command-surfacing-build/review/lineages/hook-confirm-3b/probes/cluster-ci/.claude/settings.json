@@ -1,0 +1,1 @@
+{"hooks":{"UserPromptSubmit":[{"hooks":[{"type":"command","command":"node -ci .claude/hooks/claude/user-prompt-submit.js"}]}]}}

@@ -9,6 +9,7 @@ import { dirname, join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 import { initDb, getDb, closeDb, resolveSkillGraphDbDir } from '../lib/skill-graph/skill-graph-db.js';
 import { isLeaseHeld, acquireSkillGraphLease, openLeaseDatabase } from '../lib/daemon/lease.js';
+import { ADVISOR_DISABLED_FLAGS } from '../lib/advisor-disabled.js';
 import { rebuildAdvisorIndex } from '../handlers/advisor-rebuild.js';
 import type { AdvisorStatusOutput } from '../schemas/advisor-tool-schemas.js';
 import { resolveProvider } from '@spec-kit/shared/embeddings/factory.js';
@@ -115,6 +116,26 @@ describe('system-skill-advisor launcher bootstrap', () => {
       PATH: '/bin',
       HOME: '/tmp/home',
       SYSTEM_SKILL_ADVISOR_DB_DIR: '/tmp/db',
+      MEMORY_DB_PATH: memoryDbPath,
+      SPECKIT_IPC_SOCKET_DIR: socketDir,
+      HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
+    });
+  });
+
+  it('keeps the per-request advisor switch out of the daemon env', () => {
+    configureTempLauncher();
+    const memoryDbPath = launcher.advisorDbPath();
+    const socketDir = expectedChildSocketDir(memoryDbPath);
+    const sourceEnv: NodeJS.ProcessEnv = { PATH: '/bin' };
+    for (const name of ADVISOR_DISABLED_FLAGS) sourceEnv[name] = '1';
+    const switchNames = Object.keys(sourceEnv).filter((name) => name !== 'PATH');
+    // A short list would quietly narrow this case back to one concern, so the
+    // fixture's size is asserted before the env assertion below.
+    expect(switchNames).toHaveLength(10);
+    // Each caller reads the switch in its own process. A daemon that inherited it
+    // would abstain for every later caller in the checkout, so it stays out.
+    expect(launcher.createChildEnv(sourceEnv)).toEqual({
+      PATH: '/bin',
       MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
       HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),

@@ -1,0 +1,1013 @@
+{
+  "sessionId": "fanout-render-hooks-plugin-1794550137809-1ecgc7",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-11-13T06:35:13.067Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Containment is proven on the resolved path while the bytes are opened from the caller path",
+      "file": ".skilled/hooks/shared/session-readers/claude.mjs",
+      "line": 217,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "A DSH operator message with no source object is silently reclassified as injected",
+      "file": ".skilled/hooks/shared/session-readers/dsh.mjs",
+      "line": 195,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-004",
+      "severity": "P2",
+      "title": "A corrupt Devin sessions.db suppresses the transcript fallback",
+      "file": ".skilled/hooks/shared/session-readers/devin.mjs",
+      "line": 395,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-005",
+      "severity": "P2",
+      "title": "needsMode withholding is defeated when the skill also has a generated command row",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+      "line": 226,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "The low-level advisor spawn accumulates child output without a byte cap",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+      "line": 239,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-003",
+      "severity": "P2",
+      "title": "The child downgrade reads mutability from the skill row, not from the command that is printed",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+      "line": 233,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "A documented timeout consumer never reads the timeout variable",
+      "file": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      "line": 176,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "The documented recommendation contract omits the field that decides the child-session downgrade",
+      "file": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+      "line": 41,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "A fourth hand-spelled runtime list sits outside the parity test that exists to catch exactly this",
+      "file": ".skilled/hooks/shared/session-readers/index.mjs",
+      "line": 28,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The child-session marker is interpreted twice, once through an exported constant and once as a hard-coded literal",
+      "file": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+      "line": 101,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-003",
+      "severity": "P2",
+      "title": "The operator-facing direct-call example puts the prompt in argv, against the guarantee the hook path keeps",
+      "file": "AGENTS.md",
+      "line": 65,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "The child-session command downgrade is decided only by a process-wide env flag",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+      "line": 522,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Unknown runtime is reported as a missing locator, not a gated capability",
+      "file": ".skilled/hooks/shared/session-readers/index.mjs",
+      "line": 99,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 11
+  },
+  "openFindingsCount": 11,
+  "resolvedFindingsCount": 2,
+  "convergenceScore": 0.85,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "contract_omission",
+      "contract_violation",
+      "cross_reference_integrity",
+      "doc_code_drift",
+      "documentation_inconsistency",
+      "duplicated_vocabulary",
+      "error_path_masking",
+      "finding_closure",
+      "holdout_leak",
+      "missing_test_coverage",
+      "p0_p1_replay",
+      "privilege_escalation",
+      "prompt_injection",
+      "resource_exhaustion",
+      "severity_calibration",
+      "silent_data_loss"
+    ],
+    "ruledOut": [
+      "dead_code",
+      "doc_code_drift",
+      "finding_closure",
+      "holdout_leak",
+      "missing_consumer",
+      "p0_p1_replay",
+      "path_traversal",
+      "secret_exposure",
+      "severity_calibration",
+      "state_transition"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "contract_violation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "silent_data_loss": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "error_path_masking": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "privilege_escalation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "prompt_injection": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "holdout_leak": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "resource_exhaustion": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "doc_code_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "contract_omission": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "cross_reference_integrity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "missing_consumer": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "duplicated_vocabulary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "missing_test_coverage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "documentation_inconsistency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dead_code": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "spec-gate-core internals": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "sync-runtime-mirrors internals": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "embedder schema internals": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "p0_p1_replay": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "finding_closure": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "severity_calibration": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/claude.mjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "Refusal happens before the open, so an out-of-store path never reaches the read.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/session-readers/claude.mjs:203"
+      ],
+      "reason": "Guarded by resolveInside before readFileSync."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/devin.mjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "Both walks refuse rather than truncate.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/session-readers/devin.mjs:120"
+      ],
+      "reason": "Cycle and missing-parent guards verified."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-011",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor"
+      ],
+      "bugClass": "holdout_leak",
+      "disposition": "ruled_out",
+      "rationale": "No holdout reader exists in this area.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md:94"
+      ],
+      "reason": "Search covered runtime/lib, skill-advisor-cli.ts, hooks, the plugin and .skilled/hooks/shared."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "Stdin delivery verified in code and comment.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:277"
+      ],
+      "reason": "No prompt text enters argv."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/README.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "The apparently reversed precedence is documented.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/session-readers/README.md:42"
+      ],
+      "reason": "README:42-43 specifies this exact ordering; R1-P2-001 resolved."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-016",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/plugins/README.md"
+      ],
+      "bugClass": "missing_consumer",
+      "disposition": "ruled_out",
+      "rationale": "The variable has live consumers; only the consumer list in another doc is wrong.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:119"
+      ],
+      "reason": "subprocess.ts:103,119 verified."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-020",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/plugins/system-skill-advisor.js"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "The plugin consumes the rendered brief.",
+      "evidenceRefs": [
+        "AGENTS.md:64"
+      ],
+      "reason": "No duplicated brief renderer."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-021",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts"
+      ],
+      "bugClass": "severity_calibration",
+      "disposition": "ruled_out",
+      "rationale": "The gap is a coverage limit of the documented guard, not a contract violation.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:39"
+      ],
+      "reason": "No demonstrable host dispatches an in-process child without the marker."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-022",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/index.mjs"
+      ],
+      "bugClass": "finding_closure",
+      "disposition": "ruled_out",
+      "rationale": "The behaviour is the documented contract.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/session-readers/README.md:42"
+      ],
+      "reason": "README:42-43 specifies the exact precedence."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-023",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts"
+      ],
+      "bugClass": "p0_p1_replay",
+      "disposition": "ruled_out",
+      "rationale": "No reach for a P1; the child is our own CLI.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:239"
+      ],
+      "reason": "Severity calibration holds at P2."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/claude.mjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "Refusal happens before the open, so an out-of-store path never reaches the read.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/session-readers/claude.mjs:203"
+      ],
+      "proof": "Guarded by resolveInside before readFileSync."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/devin.mjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "Both walks refuse rather than truncate.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/session-readers/devin.mjs:120"
+      ],
+      "proof": "Cycle and missing-parent guards verified."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-011",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor"
+      ],
+      "bugClass": "holdout_leak",
+      "disposition": "ruled_out",
+      "rationale": "No holdout reader exists in this area.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md:94"
+      ],
+      "proof": "Search covered runtime/lib, skill-advisor-cli.ts, hooks, the plugin and .skilled/hooks/shared."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "Stdin delivery verified in code and comment.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:277"
+      ],
+      "proof": "No prompt text enters argv."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/README.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "The apparently reversed precedence is documented.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/session-readers/README.md:42"
+      ],
+      "proof": "README:42-43 specifies this exact ordering; R1-P2-001 resolved."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-016",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/plugins/README.md"
+      ],
+      "bugClass": "missing_consumer",
+      "disposition": "ruled_out",
+      "rationale": "The variable has live consumers; only the consumer list in another doc is wrong.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:119"
+      ],
+      "proof": "subprocess.ts:103,119 verified."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-020",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/plugins/system-skill-advisor.js"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "The plugin consumes the rendered brief.",
+      "evidenceRefs": [
+        "AGENTS.md:64"
+      ],
+      "proof": "No duplicated brief renderer."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-021",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts"
+      ],
+      "bugClass": "severity_calibration",
+      "disposition": "ruled_out",
+      "rationale": "The gap is a coverage limit of the documented guard, not a contract violation.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:39"
+      ],
+      "proof": "No demonstrable host dispatches an in-process child without the marker."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-022",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/index.mjs"
+      ],
+      "bugClass": "finding_closure",
+      "disposition": "ruled_out",
+      "rationale": "The behaviour is the documented contract.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/session-readers/README.md:42"
+      ],
+      "proof": "README:42-43 specifies the exact precedence."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-023",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts"
+      ],
+      "bugClass": "p0_p1_replay",
+      "disposition": "ruled_out",
+      "rationale": "No reach for a P1; the child is our own CLI.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:239"
+      ],
+      "proof": "Severity calibration holds at P2."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "p0_p1_replay",
+      "finding_closure",
+      "severity_calibration"
+    ],
+    "covered": [
+      "p0_p1_replay",
+      "finding_closure",
+      "severity_calibration"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

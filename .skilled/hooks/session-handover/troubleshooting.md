@@ -64,7 +64,7 @@ The killer polls every 100 ms. The idle window defaults to 3000 ms and the overa
 | `killer-stale` | The record would pass `SESSION_HANDOVER_MAX_AGE_MIN` before the wrapper could read it | Run `prepare` again on the open note, or claim it by hand |
 | `killer-manual-template` | `SKILLED_LOOP_MANUAL_TEMPLATE` did not hold exactly one note placeholder | Restart the loop without `@@HANDOFF@@` in any launch option |
 | `killer-lock-held` | Another killer owns the lock or is creating it | Wait for that killer to exit |
-| `killer-lock-stale` | The owner process is gone or the unreadable lock is older than five seconds | Nothing to do, the killer takes the lock over |
+| `killer-lock-stale` | The owner process is gone, the lock is past its expiry while its owner still runs, or the unreadable lock is older than five seconds | Nothing to do, the killer takes the lock over |
 | `killer-lock-not-owned` | A stall past the expiry let a contender take the lock over | Nothing to do, the new owner keeps the file |
 | `target-gone` | The target exited between the final liveness check and `SIGTERM` | Nothing to do, the session already ended |
 | `killer-timeout` | The idle wait or the post-signal grace expired while the target runtime stayed alive | Claim the note by hand |

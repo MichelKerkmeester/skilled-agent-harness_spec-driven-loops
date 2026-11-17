@@ -60,6 +60,8 @@ A plain request rarely gets its command: the committed capture offers the expect
 
 ### Purpose
 Raise plain tune offers above 9 of 45 in the committed capture, with every chat row that has a measured cause gaining an offer on paper, and no pinned floor lower than today.
+
+**Core need served:** More plain requests now get their command offered, 23 of 45 tune rows against 9 before. Each new offer is one more case where the model sees a real workflow and can choose it over improvising.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

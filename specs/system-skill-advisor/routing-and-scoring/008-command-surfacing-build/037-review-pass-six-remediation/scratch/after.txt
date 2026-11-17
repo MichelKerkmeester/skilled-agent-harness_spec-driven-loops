@@ -1,0 +1,16 @@
+## after, working tree on 85550ee946e
+$ SUITE
+ Test Files  185 passed (185)
+      Tests  2326 passed | 6 skipped (2332)
+exit 0
+$ typecheck
+exit 0
+$ FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+$ EVAL
+[160,49,21,5]
+$ S033 exit 0
+$ cmp against 036 arm-033-after.json exit 0
+$ buffer fixture cut to 3000 files: 1 failed, expected 558018 to be greater than 1048576; restored

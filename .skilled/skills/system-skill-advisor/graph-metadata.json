@@ -66,8 +66,6 @@
   "intent_signals": [
     "skill routing",
     "gate 2",
-    "which skill",
-    "route request",
     "which skill should i use",
     "route my request",
     "skill discovery is wrong",
@@ -89,14 +87,21 @@
     "prompt-time brief",
     "skill advice before the agent handles my prompt",
     "advisor skipped my prompt",
-    "advisor skip my prompt"
+    "advisor skip my prompt",
+    "vibe prompt advisor",
+    "advisor is not offering a skill",
+    "local fallback scorer",
+    "prompt hook health",
+    "command transcripts",
+    "workflow each run opened",
+    "vibe prompt hook"
   ],
   "derived": {
     "trigger_phrases": [
       "skill routing",
       "gate 2 routing",
-      "which skill",
-      "route request",
+      "which skill should handle",
+      "route my request",
       "skill advisor",
       "confidence threshold",
       "skill discovery",

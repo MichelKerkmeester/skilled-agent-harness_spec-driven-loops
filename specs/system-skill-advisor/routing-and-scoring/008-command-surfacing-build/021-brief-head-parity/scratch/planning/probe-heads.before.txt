@@ -1,0 +1,68 @@
+PROMPT: make a manual testing playbook for the login flow
+  claude:   Advisor: live; use sk-doc → /create:manual-testing-playbook (start) 0.95/0.12 pass.
+  opencode: Advisor: live; use sk-doc 0.95/0.12 pass.
+  same head: false
+PROMPT: write a readme for the doctor scripts folder
+  claude:   Advisor: live; use sk-doc → /create:readme (start) 0.95/0.12 pass.
+  opencode: Advisor: live; use sk-doc → /create:readme (start) 0.95/0.12 pass.
+  same head: true
+PROMPT: create a new agent definition for a security reviewer
+  claude:   Advisor: live; use sk-doc → /create:agent (start) 0.82/0.12 pass.
+  opencode: Advisor: live; use sk-doc → /create:agent (start) 0.82/0.12 pass.
+  same head: true
+PROMPT: document the new skill and create a feature catalog for it
+  claude:   Advisor: live; use sk-doc 0.95/0.12 pass.
+  opencode: Advisor: live; use command-doctor-sk-skill-convert 0.95/0.12 pass.
+  same head: false
+PROMPT: do not run it, just tell me what /doctor:update would change
+  claude:   Advisor: live; ambiguous: system-skilled-doctor → /doctor:update (ask) 0.82/0.26 vs sk-doc 0.82/0.26 pass. | Also: /doctor:update
+  opencode: Advisor: live; ambiguous: system-skilled-doctor → /doctor:update (ask) 0.82/0.26 vs sk-doc 0.82/0.26 pass. | Also: /doctor:update
+  same head: true
+PROMPT: the trigger index lookup returns nothing for my packet, do not change anything
+  claude:   Advisor: live; use system-spec-kit 0.95/0.12 pass. | Also: /doctor:speckit
+  opencode: Advisor: live; use system-spec-kit 0.95/0.12 pass. | Also: /doctor:speckit
+  same head: true
+PROMPT: my deep research loop never converges, dont touch anything just tell me why
+  claude:   Advisor: live; use system-deep-loop 0.94/0.12 pass. | Also: /doctor:deep-loop
+  opencode: Advisor: live; use system-deep-loop 0.94/0.12 pass. | Also: /doctor:deep-loop
+  same head: true
+PROMPT: turn off the dark mode toggle in the settings page
+  claude:   Advisor: live; ambiguous: sk-code 0.82/0.18 vs system-skilled-doctor → /doctor:helper (run) 0.80/0.35 pass.
+  opencode: Advisor: live; ambiguous: sk-code 0.82/0.18 vs system-skilled-doctor → /doctor:helper (run) 0.80/0.35 pass.
+  same head: true
+PROMPT: the mcp tool call fails with a wrong argument error in my weather server code
+  claude:   Advisor: live; use system-skilled-doctor → /doctor:mcp debug (ask) 0.80/0.34 pass.
+  opencode: Advisor: live; use system-skilled-doctor → /doctor:mcp debug (ask) 0.80/0.34 pass.
+  same head: true
+PROMPT: tune the skill advisor
+  claude:   Advisor: live; use system-skill-advisor → /doctor:skill-advisor tune (ask) 0.82/0.22 pass.
+  opencode: Advisor: live; use system-skill-advisor → /doctor:skill-advisor tune (ask) 0.82/0.22 pass.
+  same head: true
+PROMPT: save context
+  claude:   Advisor: live; use system-spec-kit → /speckit:save (start) 0.92/0.16 pass.
+  opencode: Advisor: live; use system-spec-kit → /speckit:save (start) 0.92/0.16 pass.
+  same head: true
+PROMPT: review the alignment of this packet with its purpose, read-only, and report findings
+  claude:   Advisor: live; use sk-code 0.86/0.16 pass.
+  opencode: Advisor: live; use sk-code 0.86/0.16 pass.
+  same head: true
+PROMPT: the trigger index lookup returns nothing for my packet
+  claude:   Advisor: live; ambiguous: system-skilled-doctor → /doctor:speckit (run) 0.82/0.22 vs system-spec-kit 0.95/0.12 pass.
+  opencode: Advisor: live; ambiguous: system-skilled-doctor → /doctor:speckit (run) 0.82/0.22 vs system-spec-kit 0.95/0.12 pass.
+  same head: true
+PROMPT: run /doctor:update for this repository
+  claude:   Advisor: live; use system-skilled-doctor → /doctor:update (ask) 0.82/0.20 pass.
+  opencode: Advisor: live; use system-skilled-doctor → /doctor:update (ask) 0.82/0.20 pass.
+  same head: true
+PROMPT: check the runtime mirrors and then fix the failing unit test in the parser
+  claude:   Advisor: live; ambiguous: system-skilled-doctor → /doctor:runtime-mirrors (run) 0.82/0.22 vs sk-code 0.89/0.12 pass.
+  opencode: Advisor: live; ambiguous: system-skilled-doctor → /doctor:runtime-mirrors (run) 0.82/0.22 vs sk-code 0.89/0.12 pass.
+  same head: true
+PROMPT: thorough deep review of the readme I wrote for the hooks folder
+  claude:   Advisor: live; ambiguous: system-deep-loop → /deep:review (ask) 0.95/0.16 vs sk-doc 0.93/0.12 pass.
+  opencode: Advisor: live; ambiguous: system-deep-loop → /deep:review (ask) 0.95/0.16 vs sk-doc → /create:readme (start) 0.93/0.12 pass.
+  same head: false
+PROMPT: run a deep review on the manual testing playbook I wrote for login
+  claude:   Advisor: live; ambiguous: sk-doc → /create:manual-testing-playbook (start) 0.95/0.16 vs system-deep-loop 0.92/0.12 pass.
+  opencode: Advisor: live; ambiguous: sk-doc 0.95/0.16 vs system-deep-loop → /deep:review (ask) 0.92/0.12 pass.
+  same head: false

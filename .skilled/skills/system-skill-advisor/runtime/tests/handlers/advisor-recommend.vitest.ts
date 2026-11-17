@@ -2,10 +2,12 @@
 // MODULE: Advisor Recommend Tests
 // ───────────────────────────────────────────────────────────────
 
-import { existsSync, mkdtempSync, readFileSync, rmSync, statSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { ADVISOR_DISABLED_FLAGS } from '../../lib/advisor-disabled.js';
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 import { resolveShadowDeltaPath } from '../../lib/shadow/shadow-sink.js';
 
@@ -104,6 +106,8 @@ function expectedWorkspaceRoot(start = process.cwd()): string {
 }
 
 beforeEach(() => {
+  for (const name of ADVISOR_DISABLED_FLAGS) delete process.env[name];
+  delete process.env.HOOK_FLAGS_CONFIG;
   const shadowDir = mkdtempSync(join(process.cwd(), '.vitest-shadow-'));
   tempDirs.push(shadowDir);
   process.env.SPECKIT_ADVISOR_SHADOW_DELTA_PATH = join(shadowDir, 'shadow-deltas.jsonl');
@@ -112,8 +116,8 @@ beforeEach(() => {
 afterEach(() => {
   advisorPromptCache.clear();
   vi.restoreAllMocks();
-  delete process.env.SYSTEM_SKILL_ADVISOR_HOOK_DISABLED;
-  delete process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
+  for (const name of ADVISOR_DISABLED_FLAGS) delete process.env[name];
+  delete process.env.HOOK_FLAGS_CONFIG;
   delete process.env.SPECKIT_ADVISOR_SHADOW_DELTA_PATH;
   mockReadAdvisorStatus.mockReset();
   mockScoreAdvisorPrompt.mockReset();
@@ -399,6 +403,32 @@ describe('advisor_recommend handler', () => {
     expect(response.data.warnings).toEqual(['ADVISOR_DISABLED']);
     expect(response.data.abstainReasons).toEqual(['Skill advisor disabled by SYSTEM_SKILL_ADVISOR_HOOK_DISABLED.']);
     expect(mockScoreAdvisorPrompt).not.toHaveBeenCalled();
+  });
+
+  it('honors the canonical kill switch with a truthy value in the daemon environment', async () => {
+    process.env.SYSTEM_SKILL_ADVISOR_DISABLED = 'true';
+
+    const response = parseResponse(await handleAdvisorRecommend({ prompt: 'Implement routing' }));
+
+    expect(response.data.freshness).toBe('unavailable');
+    expect(response.data.recommendations).toEqual([]);
+    expect(response.data.warnings).toEqual(['ADVISOR_DISABLED']);
+    expect(response.data.abstainReasons).toEqual(['Skill advisor disabled by SYSTEM_SKILL_ADVISOR_DISABLED.']);
+    expect(mockScoreAdvisorPrompt).not.toHaveBeenCalled();
+  });
+
+  it('never reads the flags file in the daemon', async () => {
+    const flagsDir = mkdtempSync(join(tmpdir(), 'adv-daemon-flags-'));
+    tempDirs.push(flagsDir);
+    writeFileSync(join(flagsDir, 'hook-flags.env'), 'SYSTEM_SKILL_ADVISOR_DISABLED=1\n');
+    process.env.HOOK_FLAGS_CONFIG = join(flagsDir, 'hook-flags.env');
+    mockReadAdvisorStatus.mockReturnValue(status('live'));
+    mockScoreAdvisorPrompt.mockReturnValue(scoreResult());
+
+    const response = parseResponse(await handleAdvisorRecommend({ prompt: 'Implement routing' }));
+
+    expect(response.data.warnings ?? []).not.toContain('ADVISOR_DISABLED');
+    expect(mockScoreAdvisorPrompt).toHaveBeenCalled();
   });
 
   it('returns an absent freshness fail-open empty recommendation set', async () => {

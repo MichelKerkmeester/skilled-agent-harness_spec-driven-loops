@@ -37,7 +37,10 @@ import {
   rankMeaningPassedCommandFirst,
   requireCommandPhraseAnchor,
   scoreAdvisorPrompt,
+  withholdMentionedCommands,
+  withholdWritingCommandsOnNoEdit,
 } from '../lib/scorer/fusion.js';
+import { commandRowFor } from '../lib/command-attach.js';
 import { COMMAND_BRIDGES } from '../lib/scorer/projection.js';
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 import type { AdvisorScoredRecommendation, LaneContribution } from '../lib/scorer/types.js';
@@ -150,6 +153,41 @@ describe('requireCommandPhraseAnchor', () => {
     expect(anchored.confidence).toBe(CONFIDENCE_THRESHOLD);
     expect(meaningPassed.has('create:agent')).toBe(true);
     expect(meaningPassed.size).toBe(1);
+  });
+
+  it('leaves a meaning match unpassed when its uncertainty is above the bar', () => {
+    const meaningPassed = new Set<string>();
+    // The same clear lead over the same trailing rival, held back only by the
+    // uncertainty the caller's bar would drop the row for.
+    const ranked = [
+      row('create:agent', 'command', [semantic(AT_BAR)], { uncertainty: 0.42 }),
+      row('sk-doc', 'skill', [], { passes_threshold: true }),
+      row('memory:save', 'command', [semantic(Math.max(AT_BAR - MARGIN - 0.05, 0))]),
+    ];
+
+    const result = requireCommandPhraseAnchor(ranked, CONFIDENCE_THRESHOLD, meaningPassed, () => true, 0.35);
+    if (!MEANING_REACHABLE) { expect(result[0]!.passes_threshold).toBe(false); return; }
+    const anchored = result[0]!;
+
+    expect(anchored.passes_threshold).toBe(false);
+    expect(anchored.confidence).toBe(ROW_CONFIDENCE);
+    expect(meaningPassed.size).toBe(0);
+  });
+
+  it('passes a meaning match at the bar', () => {
+    const meaningPassed = new Set<string>();
+    // An uncertainty exactly at the bar still passes, because a caller keeps a
+    // row that sits at or under its threshold.
+    const ranked = [
+      row('create:agent', 'command', [semantic(AT_BAR)], { uncertainty: 0.35 }),
+      row('sk-doc', 'skill', [], { passes_threshold: true }),
+      row('memory:save', 'command', [semantic(Math.max(AT_BAR - MARGIN - 0.05, 0))]),
+    ];
+
+    const result = requireCommandPhraseAnchor(ranked, CONFIDENCE_THRESHOLD, meaningPassed, () => true, 0.35);
+    if (!MEANING_REACHABLE) { expect(result[0]!.passes_threshold).toBe(false); return; }
+
+    expect(result[0]!.passes_threshold).toBe(true);
   });
 
   it('refuses a cosine under the bar and drops a pass it cannot justify', () => {
@@ -333,6 +371,111 @@ describe('commandMeaningEligible', () => {
     expect(commandMeaningEligible(prompt, false, mutatingCommand)).toBe(false);
     expect(commandMeaningEligible(prompt, false, readOnlyCommand)).toBe(false);
     expect(commandMeaningEligible(prompt, true, readOnlyCommand)).toBe(false);
+  });
+
+  // Many keyboards type the contraction with a curly apostrophe, so the gate
+  // reads the same request whether the mark is straight or curled.
+  it('rules out every command when the prompt asks for no change with a curly apostrophe', () => {
+    const prompt = 'walk me through the optional behaviour toggles, don\u2019t touch anything';
+    expect(commandMeaningEligible(prompt, false, mutatingCommand)).toBe(false);
+    expect(commandMeaningEligible(prompt, false, readOnlyCommand)).toBe(false);
+  });
+});
+
+describe('withholdMentionedCommands', () => {
+  // A command row reaches its pass on the command name in its own wording, so a
+  // prompt that names that command only to refuse it or ask about it would carry
+  // the row through. The skill row shares no command name and must stay as it was.
+  const rows = [
+    row('command-speckit-complete', 'command', [], { passes_threshold: true }),
+    row('system-spec-kit', 'skill', [], { passes_threshold: true }),
+  ];
+
+  it('stops the command row a refusal names', () => {
+    const result = withholdMentionedCommands(rows, 'do not run /speckit:complete yet, just explain what it does');
+
+    expect(result[0]!.passes_threshold).toBe(false);
+    expect(result[1]).toBe(rows[1]);
+  });
+
+  it('leaves both rows passing when the prompt asks for the command', () => {
+    const result = withholdMentionedCommands(rows, 'run /speckit:complete for the rate limiter');
+
+    expect(result[0]).toBe(rows[0]);
+    expect(result[1]).toBe(rows[1]);
+  });
+
+  it('stops the command row a question names', () => {
+    const result = withholdMentionedCommands(rows, 'is /speckit:complete overkill for a two line fix?');
+
+    expect(result[0]!.passes_threshold).toBe(false);
+  });
+
+  // The prompt names a command with subcommands by its base alone, so the row's
+  // own name has to be reduced the same way before the two are compared.
+  it('matches a command that carries a subcommand by its base', () => {
+    const doctorRow = row('command-doctor-env', 'command', [], { passes_threshold: true });
+
+    const result = withholdMentionedCommands([doctorRow], 'do not run /doctor:env on this machine');
+
+    expect(result[0]!.passes_threshold).toBe(false);
+  });
+});
+
+describe('withholdWritingCommandsOnNoEdit', () => {
+  // Three commands of each writing class beside a skill row, so the gate is
+  // shown to choose by the class the command carries rather than by its name.
+  const rows = [
+    row('command-doctor-speckit', 'command', [], { passes_threshold: true }),
+    row('command-speckit-complete', 'command', [], { passes_threshold: true }),
+    row('command-doctor-env', 'command', [], { passes_threshold: true }),
+    row('system-spec-kit', 'skill', [], { passes_threshold: true }),
+  ];
+
+  it('stops every command that writes and keeps the one that only reads', () => {
+    // A regenerated table that changes a class fails here by name, before the
+    // behavioural assertion below can pass for an unrelated reason.
+    expect(commandRowFor('command-doctor-speckit')?.mutating).toBe('add-only');
+    expect(commandRowFor('command-speckit-complete')?.mutating).toBe('mutates');
+    expect(commandRowFor('command-doctor-env')?.mutating).toBe('read-only');
+
+    const result = withholdWritingCommandsOnNoEdit(
+      rows,
+      'the trigger index lookup returns nothing for my packet, do not change anything',
+    );
+
+    expect(result.filter((recommendation) => recommendation.passes_threshold).map((recommendation) => recommendation.skill))
+      .toEqual(['command-doctor-env', 'system-spec-kit']);
+  });
+
+  it('leaves every row as it was when the prompt allows a change', () => {
+    const result = withholdWritingCommandsOnNoEdit(
+      rows,
+      'the trigger index lookup returns nothing for my packet',
+    );
+
+    expect(result).toEqual(rows);
+    expect(result.every((recommendation) => recommendation.passes_threshold)).toBe(true);
+  });
+
+  it('keeps a writing command the prompt types and asks for', () => {
+    const result = withholdWritingCommandsOnNoEdit(
+      rows,
+      'run /speckit:complete for the rate limiter, do not change the public api',
+    );
+
+    expect(result.find((recommendation) => recommendation.skill === 'command-speckit-complete')?.passes_threshold)
+      .toBe(true);
+  });
+
+  it('still withholds a writing command the prompt only names', () => {
+    const result = withholdWritingCommandsOnNoEdit(
+      rows,
+      'do not run /speckit:complete, and do not change anything',
+    );
+
+    expect(result.find((recommendation) => recommendation.skill === 'command-speckit-complete')?.passes_threshold)
+      .toBe(false);
   });
 });
 

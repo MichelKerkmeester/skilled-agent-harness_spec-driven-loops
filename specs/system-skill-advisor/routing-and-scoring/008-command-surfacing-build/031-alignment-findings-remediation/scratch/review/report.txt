@@ -1,0 +1,90 @@
+verdict: SHIP
+
+Reviewer: one Opus reviewer, read-only. Diff read: git -c core.fsmonitor=false diff ea3b7ab4460 d509e9d5c07 -- ':(exclude)specs/**' ':(exclude)**/command-prompts.jsonl' (15 files). HEAD equals d509e9d5c07. No P0 and no P1. Eight P2 items follow.
+
+FINDINGS
+
+1. P2 .github/workflows/spec-kit-check.yml:23 and :64
+   What: both path lists say "Every mirror source and every mirror output triggers it now". This diff adds the three Vibe checks to the mirrors job, but neither `.vibe/**` nor a `SKILL.md` outside system-spec-kit is in either list. A Vibe-only change or a skill frontmatter change therefore does not start this job. Nothing drifts unseen, because command-tree-parity.yml filters on `.vibe/**`, `.skilled/skills/**/SKILL.md`, `.skilled/agents/**` and `.skilled/commands/**` and runs the same three checks. The comment is still false.
+   Input: rg -n "Every mirror source and every mirror output|'.vibe/\*\*'|SKILL.md" .github/workflows/spec-kit-check.yml   (prints only lines 23 and 64)
+   Fix: add `'.vibe/**'` and `'.skilled/skills/**/SKILL.md'` to both lists, or reword the two comments to name command-tree-parity.yml as the Vibe trigger and amend spec A6 to say so.
+
+2. P2 .vibe/SYNC.md:115 (handed back, but caused by this diff)
+   What: "no CI job names a Vibe generator" was true at BASE. This commit makes it false: both workflows now run all three Vibe generators.
+   Input: rg -n "no CI job names a Vibe generator" .vibe/SYNC.md ; rg -n "cli/vibe/sync-" .github/workflows/
+   Fix: no change in this phase, because REQ-010 bars `.vibe/`. In handback.md, mark the row "made false by this phase's CI change" so the packet 004 owner knows the cause.
+
+3. P2 .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:45, :136 and feature-catalog/cli-surface/advisor-recommend.md:41
+   What: "A command named with no such lead is [offered]" holds only as defined by the lists in command-attach.ts, and two cases read as false to a reader.
+   (a) COMMAND_ASK_LEADS (command-attach.ts:390) holds `ran`, `already ran`, `was running` and `undo what`. A naming in a history statement is withheld although it is neither refused nor asked about.
+   (b) A lead must sit directly before the slash name, so a refusal placed after the name is still offered.
+   Input (built dist, in process, no daemon), from .skilled/skills/system-skill-advisor/runtime:
+     node --input-type=module -e 'const m=await import("./dist/runtime/lib/command-attach.js"); for (const p of ["I already ran /create:readme on the utils folder","/create:readme, please do not run it"]) console.log(p, m.commandOnlyMentioned(p,"/create:readme"), JSON.stringify(m.typedCommandForTop("sk-doc",p)??null))'
+     prints: "I already ran ..." true null ; "/create:readme, please do not run it" false {"command":"/create:readme","policy":"start","ownerSkillId":"sk-doc"}
+   Also: typedCommandForTop offers a typed command only when the leading skill owns it or carries the same command row (command-attach.ts:253-261). attachCommand also withholds on a non-single route and on a deep-loop mode without a depth request (:462-512). The sentence states none of these gates, though the catalog page names the no-edit and small-edit gates around it.
+   Fix: one sentence in each doc, for example "A refusal or question counts only when its lead sits right before the command, and a naming after `ran` or `already ran` is withheld too. A command named with no such lead is offered when the other gates pass."
+
+4. P2 .skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md:68-72 and :38
+   What: Expected pins "a single route to `sk-create-readme`" on five prompts. No recorded run captured `compiledRoute`. after.txt lines 122-127 and the spec's Measured Behavior hold only skill, command and policy. So no record shows the route pin was observed, as REQ-009 requires. The contract's pass/fail line (:38) and the table (:63) also leave the route out while section 3 checks it, so the two verdict texts differ.
+   Input: rg -n "route" specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/scratch/after.txt   (no compiledRoute field on the NC lines)
+   Fix: the coordinator reruns the five prompts and records `.data.recommendations[0].compiledRoute | {action, selectionKind, mode: .targets[0].workflowMode}`. Otherwise drop the route clause from lines 68 to 72 and the evidence block (:80-94). This reviewer did not run the advisor CLI, because it is daemon-backed and the brief bars a daemon.
+
+5. P2 .skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md:3, :26 and :37
+   What: the description and outcome say "a typed command's own row". The git prompt `Check my git hooks setup` types no command. The row is a scored command row (`command-doctor-git-setup`), as line 26 itself says.
+   Input: rg -n "typed command" .skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md
+   Fix: replace "a typed command's own row" with "a command row's own command".
+
+6. P2 .skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md:151 against :34, :149 and :172
+   What: line 151 says the head skill, the command and its owner are "read but not asserted". Lines 34 and 172 fail the run when "a command or its owner changes", and line 149 pins `system-skilled-doctor → /doctor:update`. The verdict is not binary as written.
+   Input: sed -n '34p;149p;151p;172p' .skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md
+   Fix: line 151 becomes "Scores, confidences and the freshness word are read but not asserted", which keeps command and owner asserted as lines 34 and 172 say.
+
+7. P2 brief-command-policy-word.md:147 and vibe-command-documents.md:105 (each scenario's Expected)
+   What: "Every run exits 0 and prints one JSON envelope" (CL-009) and "Both runs exit 0" (CL-010) pin output the commands never show. Each block pipes node through jq and head into a file, or redirects it, and then runs `rm` and `cat`. So `$?` is cat's exit status and the envelope is never printed.
+   Input: sed -n '57,67p' .skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md
+   Fix: drop both exit and envelope claims, or add `set -o pipefail` and print `${PIPESTATUS[0]}` right after the node pipeline.
+   Same files, lines 58, 72, 86, 100, 114 and 128 (CL-009) and lines 60 and 80 (CL-010): `mktemp -d "${TMPDIR%/}/cl-00N.XXXXXX"` resolves to `/cl-00N.XXXXXX` where TMPDIR is unset, which is common on Linux. mktemp then fails, T is empty, and the hook runs with `TMPDIR=` and a state dir of `/state`. So the isolation NFR-S02 asks for silently fails. Fix: `"${TMPDIR:-/tmp}"`, with the trailing-slash trim kept, for example `d=${TMPDIR:-/tmp}; T=$(mktemp -d "${d%/}/cl-009.XXXXXX")`.
+
+8. P2 spec.md:304 (risk row) and plan.md:84 (D2 Why), packet docs outside the reviewed diff
+   What: both still say the jobs "already install" what the Vibe scripts need. The fix had to add `( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )` to the dsh-mirror job, because sync-agents-vibe.cjs:13 requires `@spec-kit/shared/frontmatter/parse-frontmatter.js`. That resolves to the gitignored `shared/dist`. tasks.md T004 records the addition, so this is a reconcile item for T024, not a defect in the diff.
+   Input: rg -n "already install" specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/spec.md specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/plan.md
+   Fix: one clause in each, "and the parity job builds the shared package, which sync-agents-vibe.cjs loads from dist".
+
+Not a finding, recorded for the close-out: P02 in probe-decisions.txt reads advisor 0.8847, and matrix-after.txt reads 0.9098 for the same probe after P04 and P11 joined. Both put the advisor first, so the lines are consistent.
+
+ANSWERS
+
+Q1: Yes. Line 46 of the validator at d509e9d5c07 is byte-equal to findings.json D-01 `.fix.new`: a shell `[ = ]` test printed EQUAL, and the old text appears 0 times. The validator prints OK across 85 asset files with exit 0, and --self-test prints three PASS lines.
+Q2: Yes for both runners. In a clean checkout, sync-skills-vibe and sync-prompts-vibe load only the checked-in `shared/workspace/repo-root.mjs`, js-yaml and command-scope.cjs (no requires). sync-agents-vibe also needs `shared/dist`. With dist hidden by a resolve hook, sync-agents-vibe exits 1 and the other five DSH and Vibe scripts exit 0. Both jobs now build shared before the checks: dsh-mirror through the added tsc line, and spec-kit-check mirrors at line 319, where sync-agents-pi.cjs and codex/sync-agents.cjs already load the same parse-frontmatter on Node 22. `.vibe` holds 56 tracked symlinks and nothing gitignored, and the local-only command file is skipped by the generator, so the runner sees 55, 45 and 11 as locally. actionlint exits 0, and all three checks exit 0 by hand through `.opencode/`. Paths: command-tree-parity fires on `.vibe/**` and on every source the three scripts read. spec-kit-check does not, which finding 1 covers. The job `name:` still says DSH only, kept on purpose by plan D2.
+Q3: Mostly. The new text matches commandOnlyMentioned for an ask or decline lead that sits right before the name. It understates the history leads (`ran`, `already ran`, `was running`, `undo what`), the direct-before position rule, and the owner and route gates of typedCommandForTop and attachCommand (finding 3). The Vibe sentence matches withCommandDocuments in hooks/vibe/prompt-advisor.mjs.
+Q4: Partly. All three files have no routing-gold signature and sit under no routingGoldRoot, so the validator's operator contract checked them (PASS scenarios=53 operator=28 violations=0 warnings=0). The root playbook lists the new ids in every section that lists NC-011 or CL-008. No spec path, phase number, task id or finding id is in the lasting text. The temp prefixes are cl-009 and cl-010. NC-012's route pins were never shown in a recorded run (finding 4). The CL-009 and CL-010 exit and envelope claims are not printed by their own commands (finding 7). CL-009's owner clause contradicts itself (finding 6).
+Q5: Not for any row the floors measure. Reasoning from the floors only, with no prompt text read: holdout-prompts.jsonl has no row whose gold is system-skill-advisor, so a kept phrase could only cost rows there, and holdout_top1 49 and gold_none_false_fire 5 are unchanged (cmp equal). command-prompts holdout has one advisor-gold plain row, and plain holdout stays 2/44. That rules out a lift unless a gain offset a loss, which is inference, not shown. Open: behaviour-fresh-prompts.jsonl (36 rows, one expecting system-skill-advisor) and the top-1 of the 24 skill-only and 24 decline holdout rows are outside FLOOR and EVAL, so the committed floors cannot answer for them. The coordinator's fix is a count-only top-1 tally on those rows at BASE and at FIX.
+Q6: Yes. `skill_graph_compiler.py --validate-only` prints VALIDATION PASSED with exit 0. A fresh `--export-json --output <scratch>` equals the committed skill-graph.json except `generated_at`. The advisor's `.signals` equal its graph-metadata intent_signals, and the same holds for all 14 skills. The only graph change since BASE is the six advisor phrases. The doctor graph-metadata is unchanged. `generate-leaf-manifest.cjs --check` prints OK, and `ci-skill-root-metadata.cjs`, which checks leaf-aliases.json against its projection, prints 14 passed and 0 failed. `ci-leaf-manifest-freshness.cjs` prints 14 fresh and 0 failed.
+Q7: No. The diff adds one comment, in command-tree-parity.yml ("The DSH and Vibe runtimes read generated skill, agent and prompt copies."). An id and em dash scan over every added non-JSON line prints nothing.
+Q8: Yes, one. This diff made `.vibe/SYNC.md:115` false (finding 2). Byte-equal to the merge base 28a6d40f81f at FIX, so confirmed pre-existing: BAT-02, BAT-06 and BAT-07 (four files) and A-03 and C-01/BAT-03. BAT-04/D-02 is inferred only. RUN's evidence is origin/main, and this branch changed sk-doc/ROUTER.md by one keyword. The other handed-back P2s (the Vibe omissions, the env variable, A-01, A-02, D-05) are branch-caused by nature, but the handback routes them to owners and never calls them pre-existing.
+
+FOLLOW-UP (2efe3204e3e)
+
+follow-up verdict: SHIP
+
+Read: git -c core.fsmonitor=false diff d509e9d5c07 2efe3204e3e -- ':(exclude)specs/**' (6 files), plus the spec.md, plan.md, handback.md and tasks.md T027 changes. HEAD is 2efe3204e3e. No file under runtime/ changed (git diff --quiet on runtime exits 0), so the code the docs describe is the same code reviewed above.
+
+Item 1 resolved. spec-kit-check.yml:23-25 and :66-68 now say that a Vibe-only or SKILL.md-only change runs the Vibe checks in command-tree-parity.yml, which is true (that workflow filters on `.vibe/**` and `.skilled/skills/**/SKILL.md`). Nit, not a finding: the kept first sentence says every command and agent mirror output triggers the job, and `.vibe/prompts` and `.vibe/agents` are such outputs. The next sentence covers them, so a reader is not misled. actionlint exits 0 on both workflows.
+Item 2 resolved. handback.md now says this phase's CI change made `.vibe/SYNC.md:115` false. `.vibe/` stays untouched, as REQ-010 requires.
+Item 3 resolved in substance, one residual P2 below. Line 45 and the catalog page now add the owner and route gates. Line 136 and the catalog page now state the right-before rule and the `ran` and `already ran` history leads. Checked against the built dist: "do not ever please run /create:readme" and "what does the command /create:readme do" are withheld, which fits "right before" read loosely, as COMMAND_GAP_WORDS allows up to two plain words. "write a readme with /create:readme" is offered with start.
+Item 4 resolved on the coordinator's record. The NC-012 pass/fail line (:38) and the table (:63) now name the single route to sk-create-readme, so the two verdict texts agree with section 3. The route evidence lives only in the T027 task line ("each routes route/single/sk-create-readme (status ok)"), not in a scratch file. This reviewer did not rerun it, because the advisor CLI is daemon-backed.
+Item 5 resolved. NC-012:3, :12 and :37 now say a command row's own command, and rg "typed command" over the file prints nothing.
+Item 6 resolved. CL-009:150 now leaves only scores, confidences and the freshness word unasserted. That agrees with :34, :148 and :171, which assert command and owner.
+Item 7 resolved. The exit and envelope claims are gone from both Expected sections (rg for "exits 0" and "JSON envelope" prints nothing). All eight temp-folder lines now use `d=${TMPDIR:-/tmp}; T=$(mktemp -d "${d%/}/cl-00N.XXXXXX")`, which also handles an empty TMPDIR, and rg for 'TMPDIR%/}/cl' prints nothing.
+Item 8 resolved. spec.md:304 and plan.md:84 now say the parity job builds the shared package that sync-agents-vibe.cjs loads from dist.
+
+New checks on the follow-up: playbook validator PASS package=system-skill-advisor scenarios=53 violations=0 warnings=0, exit 0. validate_document.py exits 0 on all five changed docs. Added non-spec lines: no em dash, and no semicolon outside the bash temp-folder lines. No other file in the repository quotes the old comment or heading text. Version bumps: catalog page 0.9.10.0 to 0.9.11.0, and each of the three scenarios 1.0.0.0 to 1.0.1.0.
+
+NEW FINDING
+
+F1. P2 .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:136 (and feature-catalog/cli-surface/advisor-recommend.md:41)
+   What: line 136 now says "A command named after `ran` or `already ran` is withheld too. Any other named command is offered." COMMAND_ASK_LEADS (command-attach.ts:390) also withholds after `was running` and `undo what`, so "any other" is false for those two leads. The catalog sentence names the same two leads only.
+   Input (built dist, in process, no daemon), from .skilled/skills/system-skill-advisor/runtime:
+     node --input-type=module -e 'const m=await import("./dist/runtime/lib/command-attach.js"); for (const p of ["I was running /create:readme when it stopped","undo what /create:readme wrote"]) console.log(p, m.commandOnlyMentioned(p,"/create:readme"), JSON.stringify(m.typedCommandForTop("sk-doc",p)??null))'
+     prints true null for both prompts, so both are withheld.
+   Fix: in both docs, replace "after `ran` or `already ran`" with "after a history lead such as `ran`, `already ran`, `was running` or `undo what`".

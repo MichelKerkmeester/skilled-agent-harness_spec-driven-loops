@@ -94,48 +94,111 @@ fixtures -> generated runtime state without an explicit test setup
 
 ```text
 tests/
-+-- affordance-normalizer.test.ts
++-- advisor-disabled.vitest.ts
 +-- advisor-rebuild.vitest.ts
++-- advisor-surface-hint.vitest.ts
++-- affordance-normalizer.test.ts
++-- cli-degraded-command-contract.vitest.ts
++-- cli-exit-taxonomy.vitest.ts
++-- command-attach-guards.vitest.ts
++-- command-attach.vitest.ts
++-- command-behaviour-guards.vitest.ts
++-- command-binding-existence.vitest.ts
++-- command-bridge-resolution-guard.vitest.ts
++-- command-bridges-drift-guard.vitest.ts
++-- command-brief-golden.vitest.ts
++-- command-head-length.vitest.ts
 +-- command-meaning-anchor.vitest.ts
++-- command-metadata-e2e.vitest.ts
++-- command-offer.vitest.ts
 +-- command-policy-derivation.vitest.ts
 +-- command-routing-slice.vitest.ts
++-- command-transcript-score.vitest.ts
++-- compiled-routing-consumption.vitest.ts
 +-- cross-skill-edges.vitest.ts
 +-- daemon-freshness-foundation.vitest.ts
++-- daemon-watcher-new-root-ingestion.vitest.ts
 +-- daemon-watcher-resource-leaks-049-005.vitest.ts
++-- derive-command-bridges-strings.vitest.ts
++-- discovery-pipeline-parity.vitest.ts
++-- dist-build-record-contract.vitest.ts
++-- doctor-brief-render.vitest.ts
++-- doctor-command-bridges.vitest.ts
++-- doctor-helper-handoff.vitest.ts
++-- doctor-routing-slice.vitest.ts
 +-- lane-attribution.test.ts
 +-- launcher-bootstrap.vitest.ts
 +-- launcher-idle-timeout.vitest.ts
++-- launcher-install-guard.vitest.ts
 +-- launcher-lease.vitest.ts
++-- launcher-model-server-default.vitest.ts
 +-- launcher-reap-pid-reuse.vitest.ts
++-- launcher-stale-build-recycle.vitest.ts
 +-- lifecycle-derived-metadata.vitest.ts
 +-- manual-testing-playbook.vitest.ts
++-- measure-brief-cost.vitest.ts
++-- metadata-sanitizer-entities-guard.vitest.ts
++-- metrics-file-permissions.vitest.ts
 +-- migration-lineage-identity.vitest.ts
++-- name-mention-scoring.vitest.ts
++-- parent-skill-check-fixtures.vitest.ts
++-- policy-observation-sink.vitest.ts
++-- policy-plan-negative-controls.vitest.ts
++-- policy-plan.vitest.ts
++-- private-skill-target.vitest.ts
 +-- prompt-policy-gold-replay.vitest.ts
-+-- system-skill-advisor-plugin.vitest.ts
 +-- rename-invariants.vitest.ts
++-- render-child-session.vitest.ts
++-- route-exclusions.vitest.ts
 +-- routing-fixtures.affordance.test.ts
++-- routing-golden-prompts.vitest.ts
 +-- routing-parity-deep-skills.vitest.ts
 +-- routing-registry-drift-guard.vitest.ts
++-- semantic-prompt-embedding-degrade.vitest.ts
 +-- shadow-sink.vitest.ts
++-- shared-import-specifier-extension.vitest.ts
 +-- skill-advisor-cli-dual-client.vitest.ts
 +-- skill-advisor-cli-help-aliases-errors.vitest.ts
 +-- skill-advisor-cli-job-semantics.vitest.ts
++-- skill-advisor-cli-json-stdin.vitest.ts
 +-- skill-advisor-cli-manifest-parity.vitest.ts
 +-- skill-advisor-cli-parity.vitest.ts
++-- skill-advisor-cli-repo-paths.vitest.ts
 +-- skill-advisor-cli-stale-daemon-retry.vitest.ts
++-- skill-advisor-cli-test-utils.ts
 +-- skill-advisor-cli-trusted-prompt-time.vitest.ts
 +-- skill-advisor-launcher-orphan-reaping.vitest.ts
++-- skill-doc-frontmatter-checker.vitest.ts
 +-- skill-doc-harvest.vitest.ts
 +-- skill-graph-bfs-traversal.vitest.ts
 +-- skill-graph-db.vitest.ts
 +-- skill-graph-diagnostic-redaction.vitest.ts
++-- skill-graph-embedding-outage.vitest.ts
 +-- skill-graph-handlers.vitest.ts
 +-- skill-graph-queries-parity.vitest.ts
 +-- sqlite-integrity.vitest.ts
++-- state-containment.vitest.ts
++-- subprocess-output-cap.vitest.ts
++-- system-skill-advisor-plugin.vitest.ts
 +-- tsconfig.tests.json
++-- typo-flags.vitest.ts
++-- vocabulary-agreement.vitest.ts
++-- workspace-root.vitest.ts
++-- worktree-restore.vitest.ts
++-- cache/
++-- compat/
++-- doctor/
 +-- embedders/
-+-- skill-graph/
++-- fixtures/
++-- handlers/
++-- helpers/
++-- hooks/
++-- legacy/
++-- parity/
++-- python/
++-- schemas/
 +-- scorer/
++-- skill-graph/
 `-- README.md
 ```
 
@@ -150,10 +213,10 @@ tests/
 | `routing-fixtures.affordance.test.ts` | Connects fixture prompts to affordance expectations. |
 | `shadow-sink.vitest.ts` | Covers shadow telemetry sink behavior. |
 | `skill-graph-db.vitest.ts` | Checks skill-graph database behavior used by advisor tests. |
-| `manual-testing-playbook.vitest.ts` | Verifies manual testing playbook routing fixtures. |
+| `manual-testing-playbook.vitest.ts` | Checks the playbook inventory: the root playbook lists every scenario file in the category tree once, and its persistence note names the folder results are recorded in. |
 | `skill-advisor-cli-stale-daemon-retry.vitest.ts` | Verifies the stale-daemon retry in the CLI entrypoint. |
 | `prompt-policy-gold-replay.vitest.ts` | Replays the prompt gate over the labeled and golden corpora. |
-| `command-meaning-anchor.vitest.ts` | 17 cases on the meaning way in for a command row: a real cosine has to clear the bar and lead the other command rows by the margin, stand-in evidence never passes, a skill row is left alone, a meaning-passed command moves ahead of a passing skill only by the margin, and eligibility rules out every command on a no-edit request and all but read-only commands on a read-only question. |
+| `command-meaning-anchor.vitest.ts` | 28 cases on the meaning way in for a command row: a real cosine has to clear the bar and lead the other command rows by the margin, a meaning pass must also clear the uncertainty bar, stand-in evidence never passes, a skill row is left alone, a meaning-passed command moves ahead of a passing skill only by the margin, and eligibility rules out every command on a no-edit request and all but read-only commands on a read-only question. |
 | `command-policy-derivation.vitest.ts` | Pins the `derivePolicy` ladder and the closed risk-key vocabularies, and checks that the command tree and its declarations agree. |
 | `command-routing-slice.vitest.ts` | Holds live command routing to `scripts/routing-accuracy/command-routing-baseline.json` row by row, pins the corpus hash and requires a typed row and both plain splits for every command file. |
 | `embedders/` | Covers embedder schema, registry and shared-factory parity. |

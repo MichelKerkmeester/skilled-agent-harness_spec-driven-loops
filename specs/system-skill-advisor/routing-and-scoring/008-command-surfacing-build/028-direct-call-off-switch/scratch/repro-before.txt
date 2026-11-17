@@ -1,0 +1,16 @@
+$ LEASE
+{"pid":59115,"ownerPid":59115,"socketPath":"/tmp/system-skill-advisor/1787187e91b4/daemon-ipc.sock"}
+$ ps -p 59115 -o pid=
+59115
+$ REPRO
+lease before {"pid":59115,"childPid":59117,"startedAt":"2026-11-14T22:52:09.632Z"}
+warm, flag first   1st off disabledCount=none {"degraded":null,"source":null,"freshness":"live","abstain":null,"recs":["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]}
+warm, flag first   2nd on disabledCount=none {"degraded":null,"source":null,"freshness":"live","abstain":null,"recs":["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]}
+warm, plain first  1st on disabledCount=none {"degraded":null,"source":null,"freshness":"live","abstain":null,"recs":["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]}
+warm, plain first  2nd off disabledCount=none {"degraded":null,"source":null,"freshness":"live","abstain":null,"recs":["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]}
+fresh, flag first  1st off disabledCount=none {"degraded":true,"source":"local-scorer","freshness":null,"abstain":null,"recs":["system-spec-kit:-:-","sk-doc:-:-"]}
+fresh, flag first  2nd on disabledCount=none {"degraded":true,"source":"local-scorer","freshness":null,"abstain":null,"recs":["system-spec-kit:-:-","sk-doc:-:-"]}
+fresh, plain first 1st on disabledCount=none {"degraded":true,"source":"local-scorer","freshness":null,"abstain":null,"recs":["system-spec-kit:-:-","sk-doc:-:-"]}
+fresh, plain first 2nd off disabledCount=none {"degraded":true,"source":"local-scorer","freshness":null,"abstain":null,"recs":["system-spec-kit:-:-","sk-doc:-:-"]}
+warm, stdin form       off disabledCount=none {"degraded":null,"source":null,"freshness":"live","abstain":null,"recs":["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]}
+lease after  {"pid":59115,"childPid":59117,"startedAt":"2026-11-14T22:52:09.632Z"}

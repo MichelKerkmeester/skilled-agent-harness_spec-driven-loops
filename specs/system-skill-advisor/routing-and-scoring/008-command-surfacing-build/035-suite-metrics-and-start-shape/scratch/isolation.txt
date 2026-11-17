@@ -1,0 +1,12 @@
+shared folder: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-skill-advisor-metrics
+COUNT files 739 lines 26383
+start 08:03:13
+end 08:06:22
+ Test Files  185 passed (185)
+      Tests  2325 passed | 6 skipped (2331)
+suite exit 0
+COUNT files 739 lines 26383
+changed shared files:
+  none
+per-run folders seen during the run: 1
+test -e /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/sav-C5pSfL -> exit 1

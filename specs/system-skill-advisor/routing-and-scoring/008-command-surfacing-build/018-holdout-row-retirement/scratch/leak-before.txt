@@ -1,0 +1,88 @@
+rows checked: sealed 66, command holdout 44
+positive control: sealed rows found in their own file 66 of 66, command holdout rows found in their own file 44 of 44
+scorer input files scanned: data 50, code 100
+rows with a hit: 9 ["negative-guard-following-opencode-standards","P0-UNC-001","P1-ABSTAIN-001","P1-FULLSTACK-001","P1-PHRASE-001","P1-PHRASE-008","P1-REVIEW-005","P1-REVIEW-006","suppressed-codex-abstain"]
+rows with a hit in data, three words or more: ["suppressed-codex-abstain"]
+rows with a hit in data, under three words: ["P1-ABSTAIN-001","P1-PHRASE-001"]
+rows with a hit in code only: ["negative-guard-following-opencode-standards","P0-UNC-001","P1-FULLSTACK-001","P1-PHRASE-008","P1-REVIEW-005","P1-REVIEW-006"]
+sealed negative-guard-following-opencode-standards (words 7): 2 hits in 1 files
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 4057 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 4394 full
+sealed P0-UNC-001 (words 3): 2 hits in 1 files
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 4051 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5354 full
+sealed P1-ABSTAIN-001 (words 1): 41 hits in 8 files
+  data .skilled/skills/cli-external-orchestration/SKILL.md line 183 full
+  data .skilled/skills/cli-external-orchestration/SKILL.md line 184 full
+  data .skilled/skills/cli-orca/SKILL.md line 93 full
+  data .skilled/skills/cli-orca/SKILL.md line 165 full
+  data .skilled/skills/cli-orca/SKILL.md line 185 full
+  data .skilled/skills/sk-prompt/command-metadata.json [0]["userIntent"]["ownedSignals"][6] full
+  code .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts line 128 full
+  code .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts line 794 full
+  code .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts line 796 full
+  code .skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts line 11 full
+  code .skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts line 118 full
+  data .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json ["entries"][38]["embeddingText"] full
+  data .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json ["entries"][38]["runtime"]["typescript"]["keywords"][1] full
+  data .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json ["entries"][55]["ownedSignals"][6] full
+  data .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json ["entries"][55]["embeddingText"] full
+  data .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json ["entries"][55]["runtime"]["typescript"]["keywords"][6] full
+  data .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json ["entries"][55]["runtime"]["typescript"]["intentSignals"][6] full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 1753 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 1875 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5362 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5364 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5366 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5368 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5370 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5372 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5374 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5376 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5378 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5380 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5382 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5384 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5386 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5388 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5390 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5392 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5394 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5396 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5398 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5400 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 5402 full
+  data .skilled/skills/system-spec-kit/SKILL.md line 83 full
+sealed P1-FULLSTACK-001 (words 5): 2 hits in 2 files
+  code .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts line 1450 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 4661 full
+sealed P1-PHRASE-001 (words 2): 11 hits in 5 files
+  data .skilled/skills/system-deep-loop/command-metadata.json [1]["description"] full
+  code .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts line 797 full
+  code .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts line 799 full
+  code .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts line 1420 full
+  code .skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts line 139 full
+  data .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json ["entries"][15]["description"] full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 2168 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 2204 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 2215 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 4052 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 4136 full
+sealed P1-PHRASE-008 (words 3): 1 hits in 1 files
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 2181 full
+sealed P1-REVIEW-005 (words 4): 4 hits in 2 files
+  code .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts line 100 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 2220 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 3678 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 3988 full
+sealed P1-REVIEW-006 (words 4): 2 hits in 2 files
+  code .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts line 102 full
+  code .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py line 3987 full
+sealed suppressed-codex-abstain (words 3): 7 hits in 4 files
+  data .skilled/skills/cli-external-orchestration/graph-metadata.json ["intent_signals"][9] full
+  data .skilled/skills/cli-external-orchestration/graph-metadata.json ["derived"]["trigger_phrases"][29] full
+  data .skilled/skills/cli-external-orchestration/graph-metadata.json ["derived"]["intent_signals"][12] full
+  data .skilled/skills/cli-external-orchestration/graph-metadata.json ["intent_signals_generated"][9] full
+  data .skilled/skills/cli-external-orchestration/hub-router.json ["vocabularyClasses"]["cli-codex-aliases"]["keywords"][2] full
+  data .skilled/skills/cli-external-orchestration/mode-registry.json ["modes"][2]["aliases"][2] full
+  data .skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json ["signals"]["cli-external-orchestration"][9] full

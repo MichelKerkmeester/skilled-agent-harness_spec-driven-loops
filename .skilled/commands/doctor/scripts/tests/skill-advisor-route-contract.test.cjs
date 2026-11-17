@@ -409,6 +409,41 @@ test('the embedder workflow stops at one approval before any pull, server start 
   assert.match(approval, /STATUS=CANCELLED/u);
 });
 
+test('the embedder start and pull steps bind the resolved host and refuse a remote one', () => {
+  const activities = embedderWorkflow()
+    .workflow.phase_4_approved_steps.activities
+    .map(String);
+
+  // The probe resolves the URL from OLLAMA_BASE_URL, so the approved mutations
+  // must reach that same server. A host that is not loopback is the operator's
+  // own server, and pulling a model into it is not this route's to do.
+  const refusalIndex = activities.findIndex(
+    (activity) => /the resolved URL's host is not 127\.0\.0\.1, localhost or ::1/u.test(activity),
+  );
+  assert.notStrictEqual(
+    refusalIndex,
+    -1,
+    'the approved steps must refuse a resolved URL whose host is not local',
+  );
+  assert.match(activities[refusalIndex], /start and pull nothing/u);
+  assert.match(activities[refusalIndex], /STATUS=FAIL naming the URL/u);
+
+  for (const command of ['ollama serve', 'ollama pull nomic-embed-text:v1.5']) {
+    const commandIndex = activities.findIndex((activity) => activity.includes(command));
+    assert.notStrictEqual(commandIndex, -1, `${command} must run in the approved steps`);
+    assert.ok(
+      commandIndex > refusalIndex,
+      `the non-local refusal must come before ${command}`,
+    );
+    assert.match(activities[commandIndex], /OLLAMA_HOST=/u, `${command} must bind OLLAMA_HOST`);
+    assert.match(
+      activities[commandIndex],
+      /resolved URL/u,
+      `${command} must take its host from the resolved URL`,
+    );
+  }
+});
+
 test('a dry run stops after the plan with STATUS=OK and changes nothing', () => {
   const workflow = embedderWorkflow();
   assert.equal(workflow.operating_mode.dry_run, 'print_the_plan_then_status_ok');

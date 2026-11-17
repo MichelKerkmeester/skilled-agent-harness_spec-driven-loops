@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "health default and brief refinements",
+      "phase 15 health default and brief refinements",
+      "hook health record by default",
+      "needs a mode only when the prompt names the hub",
+      "health default and brief refinements plan",
+      "health default and brief refinements tasks",
+      "health default and brief refinements acceptance criteria",
+      "health default and brief refinements implementation summary"
+    ],
+    "key_topics": [
+      "health",
+      "default",
+      "brief",
+      "refinements",
+      "phase",
+      "hook",
+      "record",
+      "needs",
+      "mode",
+      "only",
+      "prompt",
+      "names"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/after.txt",
+      "scratch/boundaries.txt",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".opencode/plugins/tests/system-skill-advisor.test.cjs",
+      ".skilled/commands/doctor/assets/doctor-setup.yaml",
+      ".skilled/commands/doctor/scripts/tests/doctor-setup-contract.test.cjs",
+      "scratch/before.txt",
+      "scratch/debug-set-probe.txt",
+      ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/claude-hook.md",
+      ".skilled/hooks/skill-advisor/opencode/system-skill-advisor.js",
+      ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
+      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl",
+      "scratch/health-live.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "boundaries.txt",
+        "kind": "file",
+        "path": "scratch/boundaries.txt",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/system-skill-advisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-setup-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "debug-set-probe.txt",
+        "kind": "file",
+        "path": "scratch/debug-set-probe.txt",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "claude-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/claude-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
+        "source": "derived"
+      },
+      {
+        "name": "runs-final.jsonl",
+        "kind": "file",
+        "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "command-prompts.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "health-live.txt",
+        "kind": "file",
+        "path": "scratch/health-live.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The prompt hook persists its diagnostic record only when `SKILLADVISORDEBUG` is set, so the `hookHealth` block that `advisorstatus` and `/doctor:setup` read exists for 21 workspace keys on this machine against 124 outcome logs, and no record says whether an answer came from the CLI's local scorer",
+    "created_at": "2026-11-13T07:48:56Z",
+    "last_save_at": "2026-11-13T21:04:48.728Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2e079e16bec546742afcccb243fcc1586f658acf9d051ca3951c1899266a1a82",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "227bc25b810daa65e4cfa6a1d676c642ddac9e574586f5fb76797b60ddf81706",
+      "plan.md": "757d26c80df0fedfa7c0fe6f5b081307289426838fdf5a6bf75d1bf9a7ad7d3b",
+      "tasks.md": "f34e84812bfe248aa808d2f83d9a131f1ee976ad0a7c03585c3abd97237be193",
+      "implementation-summary.md": "ff30c3ccdc4477ca3aeb6bcae57cefee3970923cbdd5d2cf2a7978e1b4c0b9d1"
+    },
+    "last_active_at": null
+  }
+}

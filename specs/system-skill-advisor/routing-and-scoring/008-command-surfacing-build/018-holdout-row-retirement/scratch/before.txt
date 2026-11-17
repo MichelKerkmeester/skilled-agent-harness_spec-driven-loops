@@ -1,0 +1,47 @@
+$ G log -1 sk-skill.md
+ec1869dae8
+$ G ls-files derive-command-bridges-strings
+exit=0
+$ G status --porcelain HP SEB RAR
+(end of status)
+$ BASE
+11f3a30814
+$ npm run build
+exit=0
+$ HCOUNT
+66
+$ HROW
+{"id":"suppressed-codex-abstain","skill_top_1":"none","source_type":"holdout-delegation","origin_fixture":"tests/parity/fixtures/executor-delegation-cases.json"}
+$ HASHES
+{"capturedAt":"2026-10-11","corpusSha256":"sha256:4146b002802d010e4d9d3ddf4c07b0738e59a55fab590b2c51e1ed3d4da1e115","holdoutSha256":"sha256:e8c637d3f59fbba18521c78bc238c5c86dc60d9f8b40c2c921c42ac49766a4cf","ambiguitySha256":"sha256:62423738cab74cf499d98f2e835e8e78c25e2b57e3c1b6994d8a2bd0bfb88491"}
+$ BASEM
+{"full_corpus_top1":{"correct":160,"total":195,"accuracy":0.8205},"unknown_count":{"value":13},"gold_none_false_fire":{"value":5},"holdout_top1":{"correct":50,"total":66,"accuracy":0.7576},"ambiguity_top1":{"correct":21,"total":24,"accuracy":0.875,"tau":0.03},"buckets":{"review":{"correct":25,"total":31,"accuracy":0.8065},"memory_save":{"correct":28,"total":32,"accuracy":0.875},"delegation":{"correct":20,"total":20,"accuracy":1}}}
+$ OTHERM
+{"full_corpus_top1":{"correct":160,"total":195,"accuracy":0.8205},"unknown_count":{"value":13},"gold_none_false_fire":{"value":5},"ambiguity_top1":{"correct":21,"total":24,"accuracy":0.875,"tau":0.03},"buckets":{"review":{"correct":25,"total":31,"accuracy":0.8065},"memory_save":{"correct":28,"total":32,"accuracy":0.875},"delegation":{"correct":20,"total":20,"accuracy":1}}}
+$ HOLDM
+{"correct":50,"total":66,"accuracy":0.7576}
+$ EVALM
+{"full_corpus_top1":{"correct":160,"total":195,"accuracy":0.8205},"unknown_count":{"value":13},"gold_none_false_fire":{"value":5},"holdout_top1":{"correct":50,"total":66,"accuracy":0.7576},"ambiguity_top1":{"correct":21,"total":24,"accuracy":0.875,"tau":0.03},"buckets":{"review":{"correct":25,"total":31,"accuracy":0.8065},"memory_save":{"correct":28,"total":32,"accuracy":0.875},"delegation":{"correct":20,"total":20,"accuracy":1}}}
+$ VERDICT
+scoring date 2026-10-11
+holdout total 66, correct 50
+row {"id":"suppressed-codex-abstain","gold":"none","got":"cli-external-orchestration","correct":false}
+$ OVERLAP
+suppressed-codex-abstain shares its prompt with: ["delegation"]
+holdout-delegation|delegation: all 6, without 5
+holdout-delegation|intent: all 2, without 2
+holdout-harder|delegation: all 2, without 2
+holdout-harder|harder: all 20, without 20
+holdout-regression|golden: all 5, without 5
+holdout-regression|regression: all 40, without 40
+$ FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":24,"attached":20,"combined":44,"total":44}
+{"own":13,"attached":15,"combined":28,"total":45}
+$ VX ratchet
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+$ VX holdout-independent
+ Test Files  1 passed (1)
+      Tests  6 passed (6)

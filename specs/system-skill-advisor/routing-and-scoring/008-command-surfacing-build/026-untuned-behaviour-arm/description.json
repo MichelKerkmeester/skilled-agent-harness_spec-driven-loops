@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/026-untuned-behaviour-arm",
+  "description": "Phase 26: untuned-behaviour-arm",
+  "keywords": [
+    "phase",
+    "untuned-behaviour-arm"
+  ],
+  "lastUpdated": "2026-11-15T06:00:13.631Z",
+  "specId": "026",
+  "folderSlug": "untuned-behaviour-arm",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring",
+    "008-command-surfacing-build"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_07-00__continuity-capture-for-the-008-command-surfacing.md"
+  ]
+}

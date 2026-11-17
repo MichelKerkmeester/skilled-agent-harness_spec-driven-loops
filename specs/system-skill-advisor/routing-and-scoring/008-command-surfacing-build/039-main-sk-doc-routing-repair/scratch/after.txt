@@ -1,0 +1,23 @@
+after the sk-doc routing repair
+rescore exit 0
+start-007 unchanged from 038
+pre-set unchanged from 038
+final-set unchanged from 038
+arm-033 unchanged from 038
+RESULT: PASSED
+graph freshness exit 0
+build exit 0
+typecheck exit 0
+ FAIL  tests/scorer/native-scorer.vitest.ts > 027/003 native scorer units > AC-6 scorer latency p95 meets cache-hit and uncached gates
+ Test Files  1 failed | 184 passed (185)
+      Tests  1 failed | 2348 passed | 8 skipped (2357)
+suite exit 1
+ Test Files  185 passed (185)
+      Tests  2349 passed | 8 skipped (2357)
+suite child exit 0
+FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+EVAL
+[160,49,21,5]

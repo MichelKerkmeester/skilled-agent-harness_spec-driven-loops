@@ -1,0 +1,539 @@
+{
+  "sessionId": "fanout-kill-switch-cli-confirm-5b-1794780590351-ezt1v0",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "timestamp": "2026-11-15T22:25:30.034Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "c5b-iter1-P2-hooks-index-aliases",
+      "severity": "P2",
+      "title": "The hook kill-switch index still omits the four MK_ aliases the resolver honors and this commit added to ENV-REFERENCE",
+      "file": ".skilled/hooks/README.md",
+      "line": 44,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "c5b-iter1-P2-topology-skill-graph",
+      "severity": "P2",
+      "title": "The package topology omits skill-graph/ while the directory tree and the directory itself have it",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/README.md",
+      "line": 69,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "advisory_replay",
+      "alias_set_drift",
+      "duplicate_alias_list",
+      "fix_provenance",
+      "fixture_narrowing",
+      "module_map_drift",
+      "prompt_leak",
+      "switch_bypass",
+      "switch_leak",
+      "test_isolation"
+    ],
+    "ruledOut": [
+      "advisory_replay",
+      "duplicate_alias_list",
+      "fix_provenance",
+      "fixture_narrowing",
+      "prompt_leak",
+      "switch_bypass",
+      "switch_leak",
+      "test_isolation"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "alias_set_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "module_map_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "switch_bypass": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "fixture_narrowing": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "prompt_leak": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "switch_leak": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "test_isolation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "duplicate_alias_list": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          3
+        ]
+      },
+      "advisory_replay": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "fix_provenance": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-503",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts"
+      ],
+      "bugClass": "switch_bypass",
+      "disposition": "ruled_out",
+      "rationale": "DEFAULT_OFF carries only session-handover, so the ten env names are the complete switch set; the master and legacy loops cover all of them.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs:104-106",
+        ".skilled/hooks/shared/hook-flags.cjs:256-271"
+      ],
+      "reason": "No enable switch exists for the advisor and every listed name resolves to a disable decision."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-504",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts"
+      ],
+      "bugClass": "fixture_narrowing",
+      "disposition": "ruled_out",
+      "rationale": "The fixture derives from ADVISOR_DISABLED_FLAGS and asserts ten entries before the env assertion, so an empty or short constant fails loudly.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts:129-143"
+      ],
+      "reason": "The size assertion runs first and the child env assertion is exact."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-505",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts"
+      ],
+      "bugClass": "switch_leak",
+      "disposition": "ruled_out",
+      "rationale": "Child env membership is an exact set with no switch name in it, and the fixture asserts all ten are dropped.",
+      "evidenceRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs:131-180",
+        ".skilled/bin/system-skill-advisor-launcher.cjs:312-315"
+      ],
+      "reason": "Exact-set allowlist and an exact child-env assertion."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-506",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-test-utils.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts"
+      ],
+      "bugClass": "test_isolation",
+      "disposition": "ruled_out",
+      "rationale": "Each scope gets its own mkdtemp root and names a HOOK_FLAGS_CONFIG that does not exist.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-test-utils.ts:51-70",
+        ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts:151-156"
+      ],
+      "reason": "Per-case temp root and a missing flags file."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-507",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/hooks/README.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md"
+      ],
+      "bugClass": "duplicate_alias_list",
+      "disposition": "ruled_out",
+      "rationale": "Four copies remain: resolver constants, ENV-REFERENCE, hooks/README, CP-003. The two tests now read the constant. The drift already has one open finding, so it is priced there rather than counted twice.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs:38-78",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:74-75"
+      ],
+      "reason": "Same defect as the iteration-1 index finding; a second finding would double-count it."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-508",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl"
+      ],
+      "bugClass": "prompt_leak",
+      "disposition": "ruled_out",
+      "rationale": "The three prompt files were counted only (224 / 63 / 36 rows) and no reviewed file reads them.",
+      "evidenceRefs": [
+        "review-brief-5b.txt:1"
+      ],
+      "reason": "Counts only; no content printed and no reader in scope."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-509",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/README.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/README.md"
+      ],
+      "bugClass": "advisory_replay",
+      "disposition": "ruled_out",
+      "rationale": "Both lines replay unchanged: no MK_ name in the hooks index, no skill-graph line in README section 3.",
+      "evidenceRefs": [
+        ".skilled/hooks/README.md:36-44",
+        ".skilled/skills/system-skill-advisor/runtime/lib/README.md:57-76",
+        ".skilled/skills/system-skill-advisor/runtime/lib/README.md:135"
+      ],
+      "reason": "Both advisories are still present exactly as written."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-510",
+      "dimension": "traceability",
+      "targetRefs": [
+        "review-scope-5b.txt"
+      ],
+      "bugClass": "fix_provenance",
+      "disposition": "ruled_out",
+      "rationale": "The last commit touching any scope path is d0f605b42f8, an ancestor of d21dbc1cafe and of HEAD; the diff d0f605b42f8..d21dbc1cafe over the five paths is empty.",
+      "evidenceRefs": [
+        "review-scope-5b.txt:14,16,28-29,30",
+        "review-scope-5b.txt:14,16,28-29,30"
+      ],
+      "reason": "No later commit in the range touched a scope file."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-503",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts"
+      ],
+      "bugClass": "switch_bypass",
+      "disposition": "ruled_out",
+      "rationale": "DEFAULT_OFF carries only session-handover, so the ten env names are the complete switch set; the master and legacy loops cover all of them.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs:104-106",
+        ".skilled/hooks/shared/hook-flags.cjs:256-271"
+      ],
+      "proof": "No enable switch exists for the advisor and every listed name resolves to a disable decision."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-504",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts"
+      ],
+      "bugClass": "fixture_narrowing",
+      "disposition": "ruled_out",
+      "rationale": "The fixture derives from ADVISOR_DISABLED_FLAGS and asserts ten entries before the env assertion, so an empty or short constant fails loudly.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts:129-143"
+      ],
+      "proof": "The size assertion runs first and the child env assertion is exact."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-505",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts"
+      ],
+      "bugClass": "switch_leak",
+      "disposition": "ruled_out",
+      "rationale": "Child env membership is an exact set with no switch name in it, and the fixture asserts all ten are dropped.",
+      "evidenceRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs:131-180",
+        ".skilled/bin/system-skill-advisor-launcher.cjs:312-315"
+      ],
+      "proof": "Exact-set allowlist and an exact child-env assertion."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-506",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-test-utils.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts"
+      ],
+      "bugClass": "test_isolation",
+      "disposition": "ruled_out",
+      "rationale": "Each scope gets its own mkdtemp root and names a HOOK_FLAGS_CONFIG that does not exist.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-test-utils.ts:51-70",
+        ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts:151-156"
+      ],
+      "proof": "Per-case temp root and a missing flags file."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-507",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/hooks/README.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md"
+      ],
+      "bugClass": "duplicate_alias_list",
+      "disposition": "ruled_out",
+      "rationale": "Four copies remain: resolver constants, ENV-REFERENCE, hooks/README, CP-003. The two tests now read the constant. The drift already has one open finding, so it is priced there rather than counted twice.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs:38-78",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:74-75"
+      ],
+      "proof": "Same defect as the iteration-1 index finding; a second finding would double-count it."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-508",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl"
+      ],
+      "bugClass": "prompt_leak",
+      "disposition": "ruled_out",
+      "rationale": "The three prompt files were counted only (224 / 63 / 36 rows) and no reviewed file reads them.",
+      "evidenceRefs": [
+        "review-brief-5b.txt:1"
+      ],
+      "proof": "Counts only; no content printed and no reader in scope."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-509",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/README.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/README.md"
+      ],
+      "bugClass": "advisory_replay",
+      "disposition": "ruled_out",
+      "rationale": "Both lines replay unchanged: no MK_ name in the hooks index, no skill-graph line in README section 3.",
+      "evidenceRefs": [
+        ".skilled/hooks/README.md:36-44",
+        ".skilled/skills/system-skill-advisor/runtime/lib/README.md:57-76",
+        ".skilled/skills/system-skill-advisor/runtime/lib/README.md:135"
+      ],
+      "proof": "Both advisories are still present exactly as written."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-510",
+      "dimension": "traceability",
+      "targetRefs": [
+        "review-scope-5b.txt"
+      ],
+      "bugClass": "fix_provenance",
+      "disposition": "ruled_out",
+      "rationale": "The last commit touching any scope path is d0f605b42f8, an ancestor of d21dbc1cafe and of HEAD; the diff d0f605b42f8..d21dbc1cafe over the five paths is empty.",
+      "evidenceRefs": [
+        "review-scope-5b.txt:14,16,28-29,30",
+        "review-scope-5b.txt:14,16,28-29,30"
+      ],
+      "proof": "No later commit in the range touched a scope file."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "advisory_replay",
+      "fix_provenance"
+    ],
+    "covered": [
+      "advisory_replay",
+      "fix_provenance",
+      "duplicate_alias_list"
+    ],
+    "ruledOut": [
+      "advisory_replay",
+      "fix_provenance",
+      "duplicate_alias_list"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

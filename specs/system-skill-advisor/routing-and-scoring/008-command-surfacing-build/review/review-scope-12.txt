@@ -1,0 +1,7 @@
+# review pass twelve: diff each path with git -c core.fsmonitor=false diff 2f3f893c153 05475f9d044 -- <path>, then read the whole file at 05475f9d044. For the merged files, compare with origin/main 640cd0a2499: only the branch's narrowings and the /create:sk-skill name should differ.
+mention	.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+mention	.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts
+merged	.skilled/skills/sk-doc/ROUTER.md
+merged	.skilled/skills/sk-doc/SKILL.md
+merged	.skilled/skills/sk-doc/graph-metadata.json
+merged	.skilled/commands/doctor/scripts/tests/doctor-install-contract.test.cjs

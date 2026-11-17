@@ -1,0 +1,15 @@
+## G diff --quiet BASE -- AGENTS.md
+exit 0
+## G diff --stat BASE -- '*package.json' '*package-lock.json'
+(end, nothing above means no change)
+## added comment lines naming an id or a spec path
+rg exit 1 (1 means nothing found)
+## G diff --name-only BASE -- .skilled .opencode
+.opencode/plugins/system-skill-advisor.js
+.opencode/plugins/tests/system-skill-advisor.test.cjs
+.skilled/skills/system-skill-advisor/README.md
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md
+.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts
+.skilled/skills/system-skill-advisor/runtime/lib/render.ts
+.skilled/skills/system-skill-advisor/runtime/tests/doctor-brief-render.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts

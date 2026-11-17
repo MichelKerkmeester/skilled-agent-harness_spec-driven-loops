@@ -1,0 +1,8 @@
+16c16
+< pooled from=off to=on runtimes=5 rows=140 gained=25 lost=15 ties=100 unpaired=0 declineStarts={"off":{"started":0,"runs":40},"on":{"started":1,"runs":80}} skillOnlyStarts={"off":{"started":0,"runs":40},"on":{"started":0,"runs":40}} p=0.0769
+---
+> pooled from=off to=on runtimes=5 rows=140 gained=25 lost=15 ties=100 unpaired=0 declineStarts={"off":{"started":0,"runs":40},"on":{"started":0,"runs":80}} skillOnlyStarts={"off":{"started":0,"runs":40},"on":{"started":0,"runs":40}} p=0.0769
+26c26
+< starts dsh on decline 1 of 16 skillOnly 0 of 8
+---
+> starts dsh on decline 0 of 16 skillOnly 0 of 8

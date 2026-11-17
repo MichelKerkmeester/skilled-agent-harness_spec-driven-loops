@@ -1,0 +1,77 @@
+$ rg -c '\*\*Status\*\* \| Complete' specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/028-direct-call-off-switch/spec.md
+1
+exit 0
+
+$ git -c core.fsmonitor=false status --porcelain -- .skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts .skilled/skills/system-skill-advisor/runtime/tests/advisor-disabled.vitest.ts .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts .skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-test-utils.ts .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md .skilled/hooks/hook-flags.env.example .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+exit 0
+
+$ git -c core.fsmonitor=false rev-parse --short HEAD
+b5805efeccd
+exit 0
+
+$ env | rg -c -e '^(SYSTEM_HOOKS_DISABLED|MK_HOOKS_DISABLED|HOOK_FLAGS_CONFIG|[A-Z_]*SKILL_ADVISOR[A-Z_]*_DISABLED)='
+exit 1
+
+$ test -e .skilled/hooks/hook-flags.env; echo "flags file present: $?"
+flags file present: 1
+exit 0
+
+$ cd .skilled/skills/system-skill-advisor/runtime && npm run build
+@spec-kit/system-skill-advisor dist build attestation recorded
+@spec-kit/system-skill-advisor dist build attestation recorded
+exit 0
+
+$ cd .skilled/skills/system-skill-advisor/runtime && npm run typecheck
+> ../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json
+
+exit 0
+
+$ cd .skilled/skills/system-skill-advisor/runtime && env -u AI_SESSION_CHILD npx vitest run tests/advisor-disabled.vitest.ts 2>&1 | grep -E 'Test Files|Tests |FAIL'
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+exit 0
+
+$ cd .skilled/skills/system-skill-advisor/runtime && env -u AI_SESSION_CHILD npx vitest run tests/handlers/advisor-recommend.vitest.ts 2>&1 | grep -E 'Test Files|Tests |FAIL'
+ Test Files  1 passed (1)
+      Tests  22 passed (22)
+exit 0
+
+$ cd .skilled/skills/system-skill-advisor/runtime && env -u AI_SESSION_CHILD npx vitest run tests/skill-advisor-cli-stale-daemon-retry.vitest.ts 2>&1 | grep -E 'Test Files|Tests |FAIL'
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+exit 0
+
+$ cd .skilled/skills/system-skill-advisor/runtime && env -u AI_SESSION_CHILD npx vitest run tests/skill-advisor-cli-dual-client.vitest.ts 2>&1 | grep -E 'Test Files|Tests |FAIL'
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+exit 0
+
+$ cd .skilled/skills/system-skill-advisor/runtime && env -u AI_SESSION_CHILD npx vitest run 2>&1 | grep -E 'Test Files|Tests |FAIL|✗|×'
+ Test Files  185 passed (185)
+      Tests  2121 passed | 6 skipped (2127)
+exit 0
+
+$ node --test .skilled/commands/doctor/scripts/tests/*.test.cjs 2>&1 | grep -E '^ℹ (tests|pass|fail)'
+ℹ tests 1221
+ℹ pass 1221
+ℹ fail 0
+exit 0
+
+$ env -u AI_SESSION_CHILD node --test .opencode/plugins/tests/system-skill-advisor.test.cjs 2>&1 | grep -E '^ℹ (tests|pass|fail)'
+ℹ tests 45
+ℹ pass 45
+ℹ fail 0
+exit 0
+
+$ node --test .skilled/hooks/shared/hook-flags.test.cjs 2>&1 | grep -E '^ℹ (tests|pass|fail)'
+ℹ tests 28
+ℹ pass 28
+ℹ fail 0
+exit 0
+
+$ python3 -m pytest .skilled/skills/sk-doc/scripts/tests/test_validation_switch.py -q -p no:cacheprovider -k every_example_line 2>&1 | tail -n 1
+1 passed, 7 deselected in 0.05s
+exit 0
+
+FLOOR exit 0
+EVAL exit 0

@@ -85,13 +85,12 @@ describe('plugin renders the served compiled outcome into system-context', () =>
   });
   afterEach(() => { delete process.env[FLAG]; });
 
-  it('injects an additive compiled-routing line when a decision is served', async () => {
+  it('injects no compiled-routing line when a decision is served, because the head names the route', async () => {
     mockAdvisorChild(childStdout({ action: 'route', hubId: 'sk-code', targets: ['quality'], servingAuthority: 'compiled', fingerprint: 'abc123', generation: 3 }));
     const system = await runPrompt(await makePlugin(), 'implement feature X');
-    const compiledLine = system.find((line) => line.startsWith('Compiled routing'));
-    expect(compiledLine).toBeTruthy();
-    expect(compiledLine).toContain('outcome=route');
-    expect(compiledLine).toContain('hub=sk-code');
+    // A second line would repeat what the head already says.
+    expect(system.some((line) => line.startsWith('Compiled routing'))).toBe(false);
+    expect(system).toHaveLength(1);
   });
 
   it('injects no compiled line when no decision is served (byte-identical legacy brief)', async () => {

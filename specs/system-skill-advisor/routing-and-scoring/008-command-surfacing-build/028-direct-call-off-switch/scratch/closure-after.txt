@@ -1,0 +1,3 @@
+skill-advisor-cli.ts files 13 packages zod
+lib/advisor-disabled.ts files 9 packages zod
+handlers/advisor-recommend.ts files 65 packages @spec-kit/shared/algorithms/rrf-fusion.js,@spec-kit/shared/embeddings/adapters/ollama.js,@spec-kit/shared/embeddings/auto-select.js,@spec-kit/shared/embeddings/factory.js,@spec-kit/shared/embeddings/registry.js,@spec-kit/shared/frontmatter/parse-frontmatter.js,better-sqlite3,zod

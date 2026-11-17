@@ -808,7 +808,7 @@ function testCommandSchemaAcceptsValidAndEmpty() {
 function testCommandSchemaRejectsCoreViolations() {
   assert.deepEqual(schemaCodes('nope'), ['COMMAND_METADATA_NOT_ARRAY']);
   assert.deepEqual(schemaCodes([{}]).includes('MISSING_FIELD'), true);
-  assert.deepEqual(schemaCodes([validEntry({ command: 'create:skill' })]), ['BAD_COMMAND_ID']);
+  assert.deepEqual(schemaCodes([validEntry({ command: 'create:sk-skill' })]), ['BAD_COMMAND_ID']);
   assert.deepEqual(schemaCodes([validEntry({ ownerMode: 'ghost' })]), ['UNKNOWN_OWNER_MODE']);
   assert.deepEqual(schemaCodes([validEntry(), validEntry()]).includes('DUPLICATE_COMMAND'), true);
   const clash = [
@@ -835,7 +835,7 @@ function testCommandSchemaUsesInjectedProbes() {
     skillId: 'demo', registryModes: ['demo-mode'], commandExists: () => false,
   });
   assert.ok(missingCommand.some((v) => v.code === 'COMMAND_FILE_MISSING'));
-  assert.equal(commandSchema.commandDefinitionRelPath('/create:skill'), 'create/skill.md');
+  assert.equal(commandSchema.commandDefinitionRelPath('/create:sk-skill'), 'create/sk-skill.md');
   assert.equal(commandSchema.commandDefinitionRelPath('/doctor'), 'doctor.md');
 }
 

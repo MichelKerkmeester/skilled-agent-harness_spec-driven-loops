@@ -2,7 +2,29 @@
 // MODULE: System Skill Advisor Vitest Config
 // ───────────────────────────────────────────────────────────────
 
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import path from 'node:path';
+
+// The advisor keeps its durable health records under the system temp folder, where
+// its health readers take every record as real use. A suite run gets a temp folder
+// of its own, set before any worker starts so tests and the processes they spawn
+// inherit it. POSIX reads TMPDIR and Windows reads TEMP then TMP, so all three point
+// at it. The run removes it when node exits normally. A run killed by a signal runs
+// no exit handler and leaves the folder under the system temp folder. A folder that
+// cannot be made throws here, so no run falls back to the shared folder unnoticed.
+const RUN_TMPDIR = mkdtempSync(path.join(tmpdir(), 'sav-'));
+process.env.TMPDIR = RUN_TMPDIR;
+process.env.TEMP = RUN_TMPDIR;
+process.env.TMP = RUN_TMPDIR;
+process.on('exit', () => {
+  rmSync(RUN_TMPDIR, { recursive: true, force: true });
+});
+
+// A dispatched worker carries AI_SESSION_CHILD=1, and the brief renderer reads it
+// when a caller names no child state, so an inherited flag would change what the
+// tests expect. Each test that needs a child session sets the flag itself.
+delete process.env.AI_SESSION_CHILD;
 
 const TEST_TIMEOUT_MS = 30_000;
 const TEARDOWN_TIMEOUT_MS = 1_000;

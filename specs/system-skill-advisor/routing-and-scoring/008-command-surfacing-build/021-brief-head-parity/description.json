@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity",
+  "description": "Phase 21: brief-head-parity",
+  "keywords": [
+    "phase",
+    "brief-head-parity"
+  ],
+  "lastUpdated": "2026-11-14T06:10:06.143Z",
+  "specId": "021",
+  "folderSlug": "brief-head-parity",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring",
+    "008-command-surfacing-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

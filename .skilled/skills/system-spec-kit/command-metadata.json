@@ -238,7 +238,11 @@
         "which spec covers this",
         "which packets mention",
         "search the spec docs",
-        "is this already documented"
+        "is this already documented",
+        "look through our spec notes for anything mentioning",
+        "search our spec notes for a topic",
+        "find spec notes that mention a term",
+        "which spec notes mention rate limiting"
       ]
     },
     "choreography": [

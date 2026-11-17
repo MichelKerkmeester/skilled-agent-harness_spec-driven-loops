@@ -2372,11 +2372,11 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "sk-create-changelog",
         "routing_enabled": True,
     },
-    "command-create-skill": {
-        "description": "Create or update an OpenCode skill using /create:skill.",
-        "slash_markers": ["/create:skill", "create:skill"],
-        "inventory_id": "command-create-skill",
-        "command": "/create:skill",
+    "command-create-sk-skill": {
+        "description": "Create or update an OpenCode skill using /create:sk-skill.",
+        "slash_markers": ["/create:sk-skill", "create:sk-skill"],
+        "inventory_id": "command-create-sk-skill",
+        "command": "/create:sk-skill",
         "skill_id": "sk-doc",
         "owner_mode": "sk-create-skill",
         "routing_enabled": True,

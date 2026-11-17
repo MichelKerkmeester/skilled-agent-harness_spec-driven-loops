@@ -468,6 +468,29 @@ test('the embed workflow hands the undo block back instead of composing one', ()
   assert.match(report, /the operator commits/i);
 });
 
+// The engine prints one ERROR line when the write failed and a second when the restore
+// meant to undo it threw too. The second is the one that says the tree may hold a partial
+// write, and a route that reads it as the first reports a tree it did not find.
+test('the embed workflow reads a failed restore as a partly written tree', () => {
+  const line = EMBED_YAML.split('\n').find((entry) => entry.includes('Exit 3 means'));
+  assert.ok(line, 'the embed workflow has no exit 3 line');
+  assert.match(line, /ERROR: the restore failed/);
+  assert.match(line, /quote both ERROR lines/);
+  assert.match(line, /takes precedence over the restored: outcome/);
+});
+
+// The engine names the backup folder from the plan digest, so the folder the plan prints
+// and the folder apply writes are one folder. A clock reading resolved again at apply time
+// named a folder no run ever created.
+test('the embed workflow and route name the backup folder the engine makes', () => {
+  const folder = 'doctor-agents-md/<first 16 characters of the plan digest>/';
+  for (const text of [EMBED_YAML, routeFor('embed').gate3_location]) {
+    assert.ok(!text.includes('<timestamp>'), 'no clock reading names the backup folder');
+    assert.ok(text.includes(folder), 'the backup folder is named from the plan digest');
+  }
+  assert.match(routeFor('embed').gate3_location, /temporary directory/);
+});
+
 test('the restore workflow asks once, plans from the engine, and writes only after that yes', () => {
   assert.equal(RESTORE_WORKFLOW.operating_mode.execution, 'interactive');
   assert.equal(RESTORE_WORKFLOW.operating_mode.approvals, 'explicit_yes');

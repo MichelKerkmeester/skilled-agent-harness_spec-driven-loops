@@ -14,7 +14,7 @@
     "embedder",
     "setup"
   ],
-  "lastUpdated": "2026-11-13T10:05:02.169Z",
+  "lastUpdated": "2026-11-13T21:01:44.635Z",
   "specId": "009",
   "folderSlug": "ux-performance-cross-cli-research",
   "parentChain": [
@@ -22,6 +22,8 @@
     "routing-and-scoring",
     "008-command-surfacing-build"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "13-11-26_07-58__built-verified-and-committed-phases-011-012-and.md"
+  ]
 }

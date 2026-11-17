@@ -331,8 +331,8 @@
       }
     },
     {
-      "id": "command-create-skill",
-      "command": "/create:skill",
+      "id": "command-create-sk-skill",
+      "command": "/create:sk-skill",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-skill",
       "description": "Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.",
@@ -350,13 +350,13 @@
         },
         "python": {
           "enabled": true,
-          "inventoryId": "command-create-skill",
+          "inventoryId": "command-create-sk-skill",
           "order": 12,
-          "id": "command-create-skill",
-          "description": "Create or update an OpenCode skill using /create:skill.",
+          "id": "command-create-sk-skill",
+          "description": "Create or update an OpenCode skill using /create:sk-skill.",
           "slashMarkers": [
-            "/create:skill",
-            "create:skill"
+            "/create:sk-skill",
+            "create:sk-skill"
           ]
         }
       }
@@ -1088,7 +1088,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
-      "embeddingText": "Get the ordered steps that put Skilled into your own project repo, ready to run. install skilled into my project. set up skilled in another repo. use skilled in my own project. onboard a project repo to skilled. guide me through installing skilled. walk me through a first install of skilled. first install of skilled in my project. skilled in my other repository. skilled in another repository",
+      "embeddingText": "Get the ordered steps that put Skilled into your own project repo, ready to run. install skilled into my project. set up skilled in another repo. use skilled in my own project. onboard a project repo to skilled. guide me through installing skilled. walk me through a first install of skilled. first install of skilled in my project. skilled in my other repository. skilled in another repository. walk me through adding this toolkit to my own project repository. put this toolkit into my own project repository. use this toolkit in my own project. install this toolkit into another repository. onboard this project repository",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1106,7 +1106,12 @@
             "walk me through a first install of skilled",
             "first install of skilled in my project",
             "skilled in my other repository",
-            "skilled in another repository"
+            "skilled in another repository",
+            "walk me through adding this toolkit to my own project repository",
+            "put this toolkit into my own project repository",
+            "use this toolkit in my own project",
+            "install this toolkit into another repository",
+            "onboard this project repository"
           ],
           "intentSignals": [
             "/doctor:install"
@@ -1409,7 +1414,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
-      "embeddingText": "List every doctor target and run the read-only setup checks, naming the repair command for each failing leg. set up skilled. help me set up skilled. is my skilled install healthy. skilled setup check. run the doctor setup checks. getting started with skilled. overview of every doctor command. model server or helper process still running after the session closed",
+      "embeddingText": "List every doctor target and run the read-only setup checks, naming the repair command for each failing leg. set up skilled. help me set up skilled. is my skilled install healthy. skilled setup check. run the doctor setup checks. getting started with skilled. overview of every doctor command. model server or helper process still running after the session closed. list every check this project has. run every check in this project",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1426,7 +1431,9 @@
             "run the doctor setup checks",
             "getting started with skilled",
             "overview of every doctor command",
-            "model server or helper process still running after the session closed"
+            "model server or helper process still running after the session closed",
+            "list every check this project has",
+            "run every check in this project"
           ],
           "intentSignals": [
             "/doctor:setup"
@@ -1927,7 +1934,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
-      "embeddingText": "Diagnose spec-kit retrieval: the generated trigger index, its lookup and the ripgrep recipes. trigger index drift. trigger index lookup fails. retrieval conventions doctor. ripgrep recipe check. citation drift summary. is the trigger index fresh",
+      "embeddingText": "Diagnose spec-kit retrieval: the generated trigger index, its lookup and the ripgrep recipes. trigger index drift. trigger index lookup fails. retrieval conventions doctor. ripgrep recipe check. citation drift summary. is the trigger index fresh. spec search never finds anything. search does not find terms we know are indexed. spec search is broken even for indexed terms. our spec lookup finds nothing. indexed terms are not found by spec search",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1942,7 +1949,12 @@
             "retrieval conventions doctor",
             "ripgrep recipe check",
             "citation drift summary",
-            "is the trigger index fresh"
+            "is the trigger index fresh",
+            "spec search never finds anything",
+            "search does not find terms we know are indexed",
+            "spec search is broken even for indexed terms",
+            "our spec lookup finds nothing",
+            "indexed terms are not found by spec search"
           ],
           "intentSignals": [
             "/doctor:speckit"
@@ -2101,7 +2113,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
-      "embeddingText": "Route check, align, apply, rollback, record-base or compat operations for a spec-kit release. doctor update command. update skills to latest release. skilled release update. update skilled to the latest release. check for skilled updates. is there a newer skilled release. update my project to a newer skilled release. move my project to the newer spec-kit release",
+      "embeddingText": "Route check, align, apply, rollback, record-base or compat operations for a spec-kit release. doctor update command. update skills to latest release. skilled release update. update skilled to the latest release. check for skilled updates. is there a newer skilled release. update my project to a newer skilled release. move my project to the newer spec-kit release. is there a newer release of the toolkit",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -2118,7 +2130,8 @@
             "check for skilled updates",
             "is there a newer skilled release",
             "update my project to a newer skilled release",
-            "move my project to the newer spec-kit release"
+            "move my project to the newer spec-kit release",
+            "is there a newer release of the toolkit"
           ],
           "intentSignals": [
             "/doctor:update"
@@ -2646,12 +2659,16 @@
         "which spec covers this",
         "which packets mention",
         "search the spec docs",
-        "is this already documented"
+        "is this already documented",
+        "look through our spec notes for anything mentioning",
+        "search our spec notes for a topic",
+        "find spec notes that mention a term",
+        "which spec notes mention rate limiting"
       ],
       "standalone": true,
       "mutating": "read-only",
       "source": ".skilled/skills/system-spec-kit/command-metadata.json",
-      "embeddingText": "I want to find which spec packet or skill doc already covers what I am asking about. find the spec packet. which spec covers this. which packets mention. search the spec docs. is this already documented",
+      "embeddingText": "I want to find which spec packet or skill doc already covers what I am asking about. find the spec packet. which spec covers this. which packets mention. search the spec docs. is this already documented. look through our spec notes for anything mentioning. search our spec notes for a topic. find spec notes that mention a term. which spec notes mention rate limiting",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -2666,7 +2683,11 @@
             "which spec covers this",
             "which packets mention",
             "search the spec docs",
-            "is this already documented"
+            "is this already documented",
+            "look through our spec notes for anything mentioning",
+            "search our spec notes for a topic",
+            "find spec notes that mention a term",
+            "which spec notes mention rate limiting"
           ],
           "domains": [
             "speckit",
@@ -2678,7 +2699,11 @@
             "which spec covers this",
             "which packets mention",
             "search the spec docs",
-            "is this already documented"
+            "is this already documented",
+            "look through our spec notes for anything mentioning",
+            "search our spec notes for a topic",
+            "find spec notes that mention a term",
+            "which spec notes mention rate limiting"
           ],
           "readOnly": true
         },
@@ -2771,7 +2796,7 @@
       "policy": "start"
     },
     {
-      "command": "/create:skill",
+      "command": "/create:sk-skill",
       "route": null,
       "mutating": "mutates",
       "askFirst": [],

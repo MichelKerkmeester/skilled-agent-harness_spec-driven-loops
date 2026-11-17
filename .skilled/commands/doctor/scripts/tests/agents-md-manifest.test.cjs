@@ -411,6 +411,16 @@ test('pins: the gate 1 lookup first appears inside its named section', { skip: N
   assert.ok(first >= gateOne.start && first < gateOne.end, `first occurrence at ${first} sits inside ${pin.section}`);
 });
 
+// A prompt passed in argv is readable by any local user from the process table, so the
+// documented direct call sends it on stdin.
+test('pins: the gate 2 direct call reads the request from stdin', { skip: NOT_SOURCE }, () => {
+  const body = manifest.derived.sections['gate-2'].body;
+  const line = body.split('\n').find((row) => row.includes('skill-advisor.cjs advisor_recommend'));
+  assert.ok(line, 'the gate 2 section documents the direct call');
+  assert.ok(line.includes('--json - --format json'), 'the documented call passes the request on stdin');
+  assert.ok(!line.includes("--json '{"), 'the documented call passes no request in argv');
+});
+
 test('pins: each delivery anchor ends inside the delivery prefix', { skip: NOT_SOURCE }, () => {
   const { sections } = segment(rootText, manifest.markers, manifest.sections);
   const anchors = manifest.pins.filter((pin) => pin.kind === 'delivery-anchor');

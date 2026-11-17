@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Meaning matching only works with a local Ollama server serving `nomic-embed-text:v1.5` and with vectors written by a skill graph scan",
     "created_at": "2026-11-12T20:22:20Z",
-    "last_save_at": "2026-11-13T03:23:48.188Z",
+    "last_save_at": "2026-11-13T21:04:34.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9938dfe1a877d9ec0de356747860ab6f298e2a477acb80183ed1b5e9af2e4273",
+    "source_fingerprint": "sha256:6fab529489d55ddf7f5370b05f78eaf86b24efc086e35d1fc8f6a7f51fc67f3b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80793b3fad928b1c24abb1e8dac0eba6a4d4057baace34b59158c5bedc9075ff",
+      "spec.md": "5ea4f82d7daec4689324e4624524d496feb1195941cb01b8fac1ec338a7718c7",
       "plan.md": "d18456585df7d840e3adb2939c399d640093a0e3f4da2773ff972e1c0275dced",
       "tasks.md": "d2d67bd39b39c4ab12c3e4a71d20bac426753bb374ce006919db201995be3a10",
       "implementation-summary.md": "9761b8fb6dc5e8ff595a118bc74258bebd4cfe5e1f7390b3e9058217988ee5e7"

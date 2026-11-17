@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "suite metrics and start shape",
+      "phase 35 suite metrics and start shape",
+      "advisor suite shared metrics folder",
+      "start shape split per runtime",
+      "suite metrics and start shape plan",
+      "suite metrics and start shape tasks",
+      "suite metrics and start shape acceptance criteria",
+      "suite metrics and start shape implementation summary"
+    ],
+    "key_topics": [
+      "suite",
+      "metrics",
+      "start",
+      "shape",
+      "phase",
+      "advisor",
+      "shared",
+      "folder",
+      "split",
+      "per",
+      "runtime",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+      "scratch/isolation-check.sh",
+      "scratch/isolation.txt",
+      "scratch/before.txt",
+      "scratch/after.txt",
+      "scratch/summary-shapes.json",
+      "scratch/shape-check.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "score-command-transcripts.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-transcript-score.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "isolation-check.sh",
+        "kind": "script",
+        "path": "scratch/isolation-check.sh",
+        "source": "derived"
+      },
+      {
+        "name": "isolation.txt",
+        "kind": "file",
+        "path": "scratch/isolation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "summary-shapes.json",
+        "kind": "config",
+        "path": "scratch/summary-shapes.json",
+        "source": "derived"
+      },
+      {
+        "name": "shape-check.txt",
+        "kind": "file",
+        "path": "scratch/shape-check.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`lib/metrics.ts` keeps durable health records under `join(tmpdir(), 'speckit-skill-advisor-metrics')`, and the suite runs with the operator's own temp folder, so every suite run adds test records to the folder that the health readers and the research lanes read as real use",
+    "created_at": "2026-11-16T06:10:58Z",
+    "last_save_at": "2026-11-16T07:13:53.585Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8308a0f08abb8f2369bd507d597a370e62920471f319490d0f8786c46e065c04",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b1fd0006dd05f676de97b9cc8d5c136aabf7759d0cb16b65cb9488782a22e986",
+      "plan.md": "d0bccf949e56616fa890240001c687d4caa4aac1650d772d5e885f1a0a9922bd",
+      "tasks.md": "510429423cfbece0fd0287e8da001f5ebefad8feacce82c51e7de1223e88e275",
+      "implementation-summary.md": "311e9fa634365f4716dd26d81621d13714b4bd4313c235539b7677b427c0b6f8"
+    },
+    "last_active_at": null
+  }
+}

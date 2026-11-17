@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command offer fit guards",
+      "phase 20 command offer fit guards",
+      "withhold a command where none fits",
+      "command only mentioned",
+      "command offer fit guards plan",
+      "command offer fit guards tasks",
+      "command offer fit guards acceptance criteria",
+      "command offer fit guards goal",
+      "command offer fit guards implementation summary"
+    ],
+    "key_topics": [
+      "command",
+      "offer",
+      "fit",
+      "guards",
+      "phase",
+      "withhold",
+      "none",
+      "fits",
+      "only",
+      "mentioned",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-meaning-anchor.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-handoff-command.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/typed-command-owner.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json",
+      "runtime/lib/README.md",
+      "runtime/tests/README.md",
+      "scratch/before.txt",
+      "scratch/repro-after.txt",
+      "scratch/planning/verify-fix-probe.before.txt",
+      "scratch/repro-before.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-helper-handoff.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach-guards.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-meaning-anchor.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-meaning-anchor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-handoff-command.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-handoff-command.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "typed-command-owner.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/typed-command-owner.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-routing-baseline.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "repro-after.txt",
+        "kind": "file",
+        "path": "scratch/repro-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "verify-fix-probe.before.txt",
+        "kind": "file",
+        "path": "scratch/planning/verify-fix-probe.before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "repro-before.txt",
+        "kind": "file",
+        "path": "scratch/repro-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor attaches a command whenever a prompt names one or a hub route picks its mode, without asking whether the reader wants that command",
+    "created_at": "2026-11-14T06:08:09Z",
+    "last_save_at": "2026-11-14T09:33:57.780Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:22ce799d2c04cc8c8bbf91e72884e807f90e90a9c524418dcc2e3698c1027712",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "84c6616a29b038ee5898061384fecf568bebda2c2f13dcaf1132ca9467522ffd",
+      "plan.md": "012a5051b6eb40a59ca9066e424f298b4bac613fa3f192a19d69331eaf8df14d",
+      "tasks.md": "8156e9328a03e808862ecf930449156c7a30d4a26921649c9db55d4b9f1408b1",
+      "implementation-summary.md": "5ac010afa970935460077e938dd54dd34fa8a92d5554083483e6818f87d2a4ac"
+    },
+    "last_active_at": null
+  }
+}

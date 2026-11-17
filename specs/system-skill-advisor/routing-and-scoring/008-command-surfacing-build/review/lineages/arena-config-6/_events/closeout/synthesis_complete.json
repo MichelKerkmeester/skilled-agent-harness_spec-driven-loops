@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"fanout-arena-config-6-1794815529929-dybl7p","sessionId":"fanout-arena-config-6-1794815529929-dybl7p"},"data":{"mode":"review","totalIterations":3,"activeP0":0,"activeP1":0,"activeP2":5,"dimensionCoverage":1,"verdict":"PASS","releaseReadinessState":"in-progress","stopReason":"maxIterationsReached"}}

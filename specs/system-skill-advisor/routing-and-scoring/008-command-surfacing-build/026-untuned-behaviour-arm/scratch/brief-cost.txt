@@ -1,0 +1,2 @@
+{"error":"degraded_brief","rows":44,"liveRows":0}
+exit 2

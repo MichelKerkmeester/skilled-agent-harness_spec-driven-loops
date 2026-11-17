@@ -1,0 +1,341 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "run": 2,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "status": "complete",
+  "focus": "security and maintainability - prompt-free hook records, manifest-backed runtime counts, and the carried maintainability defects",
+  "dimensions": [
+    "security",
+    "maintainability"
+  ],
+  "filesReviewed": [
+    ".skilled/skills/system-skill-advisor/README.md:1-280",
+    ".skilled/skills/system-skill-advisor/SKILL.md:1-223",
+    ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:1-251",
+    ".env.example:401-416",
+    ".skilled/skills/sk-doc/SKILL.md:1-153",
+    ".skilled/skills/sk-doc/sk-create-skill/ROUTER.md:1-208",
+    ".skilled/commands/doctor/assets/doctor-install-presentation.txt:1-204",
+    ".skilled/changelog/skilled/v4.0.2.1.md:1-405",
+    ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts:1-373"
+  ],
+  "findingsCount": 0,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "findingsNew": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "findingDetails": [],
+  "traceabilityChecks": {
+    "summary": {
+      "required": 2,
+      "executed": 4,
+      "pass": 2,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 2,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "protocolId": "agent_cross_runtime",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:1-40",
+          ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:1-30",
+          ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:1-30"
+        ],
+        "summary": "Vibe, Pi and DSH adapters all resolve the shared advisor handler; the coverage defect is documentation only."
+      },
+      {
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [
+          ".skilled/skills/sk-doc/SKILL.md:29",
+          ".skilled/skills/sk-doc/sk-create-skill/ROUTER.md:27,33,97"
+        ],
+        "summary": "The sk-doc hub and router agree with the renamed create-skill command file."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [],
+        "summary": "No feature-catalog claim is touched by the nine files."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [],
+        "summary": "No playbook claim is touched by the nine files."
+      }
+    ]
+  },
+  "newFindingsRatio": 0,
+  "noveltyJustification": "No new finding this iteration. The security lens found no reachable surface in prose, template and test changes, and the maintainability lens confirmed the four carried findings rather than adding a fifth.",
+  "sessionId": "fanout-docs-merge-10-1794847584683-k2l24m",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-16T17:09:13.560Z",
+  "durationMs": 300000,
+  "graphEvents": [
+    {
+      "type": "node",
+      "id": "d-security",
+      "kind": "DIMENSION",
+      "label": "security"
+    },
+    {
+      "type": "node",
+      "id": "d-maintainability",
+      "kind": "DIMENSION",
+      "label": "maintainability"
+    },
+    {
+      "type": "node",
+      "id": "file-docs-readme",
+      "kind": "FILE",
+      "label": "docs-readme"
+    },
+    {
+      "type": "node",
+      "id": "file-docs-skill",
+      "kind": "FILE",
+      "label": "docs-skill"
+    },
+    {
+      "type": "node",
+      "id": "file-docs-changelog",
+      "kind": "FILE",
+      "label": "docs-changelog"
+    },
+    {
+      "type": "node",
+      "id": "file-docs-env",
+      "kind": "FILE",
+      "label": "docs-env"
+    },
+    {
+      "type": "node",
+      "id": "file-merge-skdoc-skill",
+      "kind": "FILE",
+      "label": "merge-skdoc-skill"
+    },
+    {
+      "type": "node",
+      "id": "file-merge-skdoc-router",
+      "kind": "FILE",
+      "label": "merge-skdoc-router"
+    },
+    {
+      "type": "node",
+      "id": "file-merge-doctor-presentation",
+      "kind": "FILE",
+      "label": "merge-doctor-presentation"
+    },
+    {
+      "type": "node",
+      "id": "file-merge-changelog",
+      "kind": "FILE",
+      "label": "merge-changelog"
+    },
+    {
+      "type": "node",
+      "id": "file-merge-routing-test",
+      "kind": "FILE",
+      "label": "merge-routing-test"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-security-docs-readme",
+      "source": "d-security",
+      "target": "file-docs-readme",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-security-docs-skill",
+      "source": "d-security",
+      "target": "file-docs-skill",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-security-docs-changelog",
+      "source": "d-security",
+      "target": "file-docs-changelog",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-security-docs-env",
+      "source": "d-security",
+      "target": "file-docs-env",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-security-merge-skdoc-skill",
+      "source": "d-security",
+      "target": "file-merge-skdoc-skill",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-security-merge-skdoc-router",
+      "source": "d-security",
+      "target": "file-merge-skdoc-router",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-security-merge-doctor-presentation",
+      "source": "d-security",
+      "target": "file-merge-doctor-presentation",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-security-merge-changelog",
+      "source": "d-security",
+      "target": "file-merge-changelog",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-security-merge-routing-test",
+      "source": "d-security",
+      "target": "file-merge-routing-test",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-maintainability-docs-readme",
+      "source": "d-maintainability",
+      "target": "file-docs-readme",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-maintainability-docs-skill",
+      "source": "d-maintainability",
+      "target": "file-docs-skill",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-maintainability-docs-changelog",
+      "source": "d-maintainability",
+      "target": "file-docs-changelog",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-maintainability-docs-env",
+      "source": "d-maintainability",
+      "target": "file-docs-env",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-maintainability-merge-skdoc-skill",
+      "source": "d-maintainability",
+      "target": "file-merge-skdoc-skill",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-maintainability-merge-skdoc-router",
+      "source": "d-maintainability",
+      "target": "file-merge-skdoc-router",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-maintainability-merge-doctor-presentation",
+      "source": "d-maintainability",
+      "target": "file-merge-doctor-presentation",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-maintainability-merge-changelog",
+      "source": "d-maintainability",
+      "target": "file-merge-changelog",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-cov-maintainability-merge-routing-test",
+      "source": "d-maintainability",
+      "target": "file-merge-routing-test",
+      "relation": "COVERS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-confirms-F001",
+      "source": "d-maintainability",
+      "target": "f-F001",
+      "relation": "CONFIRMS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-confirms-F002",
+      "source": "d-maintainability",
+      "target": "f-F002",
+      "relation": "CONFIRMS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-confirms-F003",
+      "source": "d-maintainability",
+      "target": "f-F003",
+      "relation": "CONFIRMS"
+    },
+    {
+      "type": "edge",
+      "id": "e-i2-confirms-F004",
+      "source": "d-maintainability",
+      "target": "f-F004",
+      "relation": "CONFIRMS"
+    }
+  ]
+}

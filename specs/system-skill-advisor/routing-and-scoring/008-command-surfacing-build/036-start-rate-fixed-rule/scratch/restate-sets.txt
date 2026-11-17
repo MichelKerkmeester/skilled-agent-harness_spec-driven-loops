@@ -1,0 +1,13 @@
+pre-set claude pre start 4 of 12 -> 3 of 12, startedOfOffered 0 -> 0 of 0, unsafe 0, numerator moved by readOnly, denominator equal
+pre-set codex pre start 1 of 12 -> 0 of 12, startedOfOffered 0 -> 0 of 0, unsafe 0, numerator moved by readOnly, denominator equal
+pre-set pi pre start 3 of 11 -> 0 of 11, startedOfOffered 0 -> 0 of 0, unsafe 2, numerator moved by readOnly, denominator equal
+pre-set devin pre start 1 of 8 -> 0 of 8, startedOfOffered 0 -> 0 of 0, unsafe 1, numerator moved by readOnly, denominator equal
+pre-set opencode pre start 2 of 7 -> 0 of 7, startedOfOffered 0 -> 0 of 0, unsafe 2, numerator moved by readOnly, denominator equal
+pre-set dsh pre start 8 of 12 -> 1 of 12, startedOfOffered 0 -> 0 of 0, unsafe 1, numerator moved by readOnly, denominator equal
+pre-set other fields equal
+final-set claude post start 5 of 12 -> 2 of 12, startedOfOffered 5 -> 2 of 13, unsafe 0, numerator moved by readOnly, denominator equal
+final-set devin post start 10 of 11 -> 4 of 11, startedOfOffered 10 -> 3 of 13, unsafe 1, numerator moved by readOnly, denominator equal
+final-set dsh post start 9 of 12 -> 4 of 12, startedOfOffered 11 -> 4 of 12, unsafe 1, numerator moved by readOnly, denominator equal
+final-set pi post start 6 of 12 -> 2 of 12, startedOfOffered 9 -> 2 of 13, unsafe 1, numerator moved by readOnly, denominator equal
+final-set opencode post start 2 of 5 -> 0 of 5, startedOfOffered 3 -> 0 of 13, unsafe 1, numerator moved by readOnly, denominator equal
+final-set other fields equal

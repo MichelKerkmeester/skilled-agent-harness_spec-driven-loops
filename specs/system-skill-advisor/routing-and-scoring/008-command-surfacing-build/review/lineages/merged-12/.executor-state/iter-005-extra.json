@@ -1,0 +1,41 @@
+{
+  "traceabilityResults": [
+    {
+      "protocolId": "spec_code",
+      "status": "pass",
+      "gateClass": "hard",
+      "applicable": true,
+      "evidence": [
+        ".skilled/commands/doctor/assets/doctor-install-presentation.txt:78",
+        ".skilled/commands/doctor/assets/doctor-install.yaml:60",
+        ".skilled/commands/doctor/assets/symlink-manifest.json:5-13",
+        ".skilled/commands/doctor/scripts/tests/doctor-install-contract.test.cjs:237-238",
+        ".skilled/skills/sk-doc/graph-metadata.json:601"
+      ],
+      "summary": "REQ-005 passes both mechanical checks; REQ-006's three artifacts agree on the eight manifest runtimes and the suite passes 17/17."
+    },
+    {
+      "protocolId": "checklist_evidence",
+      "status": "pass",
+      "gateClass": "hard",
+      "applicable": true,
+      "evidence": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/tasks.md:61",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/tasks.md:65",
+        ".skilled/commands/doctor/scripts/tests/doctor-install-contract.test.cjs:239-240"
+      ],
+      "summary": "Both doctor [x] rows cite evidence that exists; T015's wording is wider than the assertion, tracked as MRG12-P2-001."
+    }
+  ],
+  "delta": [
+    {
+      "type": "classification",
+      "detail": "Core protocols recorded pass with file:line evidence; coverage graph repaired by adding the 16 missing COVERS edges for the seeded dimension ids."
+    },
+    {
+      "type": "ruled_out",
+      "direction": "A REQ-005 regression, missing checklist evidence, or a cross-session graph collision",
+      "reason": "Both mechanical checks pass; both checklist rows cite an existing run; the duplicate ids are same-session."
+    }
+  ]
+}

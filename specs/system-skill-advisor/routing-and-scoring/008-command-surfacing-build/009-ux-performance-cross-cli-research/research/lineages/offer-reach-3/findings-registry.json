@@ -1,0 +1,1057 @@
+{
+  "sessionId": "fanout-offer-reach-3-1794550139177-nft9c6",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 6,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-13T06:33:01.339Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-which-plain-tune-rows-of-command-prompts-jsonl-still-get-no-command-after-phase-",
+      "inboxId": null,
+      "text": "Which plain tune rows of command-prompts.jsonl still get no command after phase 012, and what is the cause per row id?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-would-intent-signal-enrichment-and-re-embedding-of-the-skill-graph-move-the-rema",
+      "inboxId": null,
+      "text": "Would intent-signal enrichment and re-embedding of the skill graph move the remaining plain tune rows, and at what risk to the floors?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-does-keeping-the-embedding-vectors-in-step-with-the-metadata-cost-and-how-i",
+      "inboxId": null,
+      "text": "What does keeping the embedding vectors in step with the metadata cost, and how is drift detected?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-runtimes-hit-the-degraded-fallback-path-in-practice-and-how-often",
+      "inboxId": null,
+      "text": "Which runtimes hit the degraded fallback path in practice, and how often?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-is-the-smallest-change-that-makes-the-fallback-answer-carry-the-same-comman",
+      "inboxId": null,
+      "text": "What is the smallest change that makes the fallback answer carry the same command as the live answer?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-plain-tune-rows-of-command-prompts-jsonl-still-get-no-command-after-phase-",
+      "inboxId": null,
+      "text": "Which plain tune rows of command-prompts.jsonl still get no command after phase 012, and what is the cause per row id?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-would-intent-signal-enrichment-and-re-embedding-of-the-skill-graph-move-the-rema",
+      "inboxId": null,
+      "text": "Would intent-signal enrichment and re-embedding of the skill graph move the remaining plain tune rows, and at what risk to the floors?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-what-does-keeping-the-embedding-vectors-in-step-with-the-metadata-cost-and-how-i",
+      "inboxId": null,
+      "text": "What does keeping the embedding vectors in step with the metadata cost, and how is drift detected?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-which-runtimes-hit-the-degraded-fallback-path-in-practice-and-how-often",
+      "inboxId": null,
+      "text": "Which runtimes hit the degraded fallback path in practice, and how often?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-what-is-the-smallest-change-that-makes-the-fallback-answer-carry-the-same-comman",
+      "inboxId": null,
+      "text": "What is the smallest change that makes the fallback answer carry the same command as the live answer?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-at-head-320e7b64d4-27-of-45-plain-tune-rows-render-a-command-on-the-brief-head-1",
+      "text": "At `HEAD` `320e7b64d4`, 27 of 45 plain tune rows render a command on the brief head, 1 more renders it only through the `Also:` doctor line, and 17 render no command at all. Head commands are counted from the live recommend output; the renderer prints one head, so a command on rank 2 is not shown unless that rank is a doctor bridge. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:533]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl` (45 live recommendations)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune rows only; holdout prompt text never read)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:491`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:15`, `:21`, `:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:533`, `:550`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-1-4-cause-1-duplicate-suppression-1-row-cmd-create-agent-plain-tune-01-routes-sk-doc",
+      "text": "Cause 1, duplicate suppression, 1 row: `cmd-create-agent-plain-tune-01` routes `sk-doc` single to `sk-create-agent`, but the `create:agent` row already ranks second carrying `/create:agent`; `enrichCompiledRoutes` withholds a hub command that already ranks, and the single-head renderer then shows neither. The command is present in the result and absent from the brief. [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:533]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl` (45 live recommendations)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune rows only; holdout prompt text never read)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:491`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:15`, `:21`, `:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:533`, `:550`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-1-5-cause-2-routed-mode-with-no-command-2-rows-cmd-create-readme-plain-tune-01-and-c",
+      "text": "Cause 2, routed mode with no command, 2 rows: `cmd-create-readme-plain-tune-01` and `cmd-create-with-human-voice-plain-tune-01` both route `sk-doc` single to workflow mode `sk-create-quality-control`, which is absent from `MODE_COMMANDS`; one mode cannot name two commands anyway, so the table cannot fix this and the hub alias must. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:21]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl` (45 live recommendations)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune rows only; holdout prompt text never read)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:491`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:15`, `:21`, `:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:533`, `:550`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-1-6-cause-3-needs-mode-label-4-rows-cmd-create-repo-rule-plain-tune-01-cmd-doctor-sk",
+      "text": "Cause 3, needs-mode label, 4 rows: `cmd-create-repo-rule-plain-tune-01`, `cmd-doctor-sk-skill-plain-tune-01`, `cmd-speckit-complete-plain-tune-01` and `cmd-speckit-save-plain-tune-01` top `sk-doc` with `action: defer` and print `use sk-doc (needs a mode)`. This is phase 012 wave C working as built; the row is told to ask for a mode, not given a command. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:392]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl` (45 live recommendations)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune rows only; holdout prompt text never read)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:491`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:15`, `:21`, `:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:533`, `:550`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-1-7-cause-4-deferring-or-routing-hub-outside-mode-commands-2-rows-cmd-speckit-implem",
+      "text": "Cause 4, deferring or routing hub outside `MODE_COMMANDS`, 2 rows: `cmd-speckit-implement-plain-tune-01` tops `sk-code` with `action: defer` and `needsMode` null, and `cmd-doctor-sk-code-plain-tune-01` tops `sk-code` routing to `sk-code-quality` with no command. `routeNeedsMode` returns true only for a hub in `MODE_COMMANDS`, and `sk-code` has no row, so both are silent. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:392]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl` (45 live recommendations)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune rows only; holdout prompt text never read)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:491`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:15`, `:21`, `:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:533`, `:550`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-1-8-cause-5-no-recommendation-returned-6-rows-cmd-create-skill-parent-plain-tune-01-",
+      "text": "Cause 5, no recommendation returned, 6 rows: `cmd-create-skill-parent-plain-tune-01`, `cmd-doctor-install-plain-tune-01`, `cmd-doctor-setup-plain-tune-01`, `cmd-doctor-speckit-plain-tune-01`, `cmd-doctor-update-plain-tune-01` and `cmd-speckit-search-plain-tune-01` return zero recommendations, so the brief emits nothing. Five of the six commands have `scorerRow: true` in `TRACKED_COMMANDS`, so their row exists and scored below threshold; `create:skill-parent` has no scorer row. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:189]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl` (45 live recommendations)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune rows only; holdout prompt text never read)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:491`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:15`, `:21`, `:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:533`, `:550`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-1-9-cause-6-top-skill-carries-no-command-and-no-route-2-rows-cmd-doctor-mcp-plain-tu",
+      "text": "Cause 6, top skill carries no command and no route, 2 rows: `cmd-doctor-mcp-plain-tune-01` tops `mcp-code-mode` at 0.692 with no route, and `cmd-doctor-skill-advisor-plain-tune-01` tops `system-skill-advisor` at 0.556 with no route although `/doctor:skill-advisor` has seven subcommands. Both are wrong-top rows: the doctor command row is not the top. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl` (45 live recommendations)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune rows only; holdout prompt text never read)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:491`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:15`, `:21`, `:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:533`, `:550`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-1-2-every-one-of-the-27-head-commands-is-the-expected-command-s-family-21-are-the-ex",
+      "text": "Every one of the 27 head commands is the expected command's family. 21 are the exact corpus label and 6 name a subcommand the corpus omits: `/doctor:agents-md check`, `/doctor:ci report`, `/doctor:env list`, `/doctor:git hooks`, `/doctor:overlay status`, `/doctor:symlink link`. There is no wrong-command offer on the plain tune split, so the remaining defect is recall, not precision. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl` (45 live recommendations)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune rows only; holdout prompt text never read)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:491`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:15`, `:21`, `:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:533`, `:550`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-1-10-the-17-no-command-rows-are-the-whole-remaining-plain-gap-in-brief-terms-27-head-",
+      "text": "The 17 no-command rows are the whole remaining plain gap in brief terms: 27 head + 1 Also line + 17 none = 45. Fixing every cause above would take plain tune head reach from 27 to 45, but the causes differ in cost and risk, so they are ranked separately below. [INFERENCE: based on the per-row table in `prompts/tune-live.jsonl` and the renderer's single-head rule]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl` (45 live recommendations)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune rows only; holdout prompt text never read)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:491`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:15`, `:21`, `:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:533`, `:550`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-committed-capture-s-offered-flag-does-not-mean-a-command-was-offered-it-is-t",
+      "text": "The committed capture's `offered` flag does not mean \"a command was offered\". It is true when one of the top three scorer row ids maps to a command bridge, whatever the brief prints, so it disagrees with the live head on six tune rows and cannot answer this question on its own. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:491]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl` (45 live recommendations)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune rows only; holdout prompt text never read)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:491`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:15`, `:21`, `:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:533`, `:550`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-2-8-drift-is-already-detectable-without-a-new-mechanism-per-row-vec-content-hash-cat",
+      "text": "Drift is already detectable without a new mechanism: per-row `vec_content_hash` catches text drift at refresh, and `readAdvisorEmbeddingStaleness` compares the active embedder pointer's model and dimension against the stored vector summary and returns `stale` with a reason. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1621]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md:56`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/embedder-cost.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:737`, `:1413`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:258`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1621`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite` (read-only counts)"
+      ]
+    },
+    {
+      "id": "finding-2-3-exactly-five-tune-rows-move-under-the-real-embedder-and-all-five-already-carried",
+      "text": "Exactly five tune rows move under the real embedder and all five already carried a command in the brief: `cmd-doctor-env`, `cmd-doctor-git`, `cmd-doctor-symlink`, `cmd-speckit-handoff` and `cmd-speckit-plan` each go from `top1: false` to `top1: true` with no loss. The gain is top-1 exactness on rows that already offer a command, not reach. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md:56`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/embedder-cost.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:737`, `:1413`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:258`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1621`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite` (read-only counts)"
+      ]
+    },
+    {
+      "id": "finding-2-6-keeping-vectors-in-step-is-incremental-by-construction-skill-refresh-compares-th",
+      "text": "Keeping vectors in step is incremental by construction. Skill refresh compares the stored `vec_content_hash` and `vec_model_id` and skips a row whose text and model are unchanged; only an edited description or a changed model causes an embedding call. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1413]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md:56`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/embedder-cost.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:737`, `:1413`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:258`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1621`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite` (read-only counts)"
+      ]
+    },
+    {
+      "id": "finding-2-4-none-of-the-17-no-command-rows-gains-a-command-from-re-embedding-five-of-them-al",
+      "text": "None of the 17 no-command rows gains a command from re-embedding. Five of them already have the expected owner inside the top three, and each is blocked by a non-semantic cause (duplicate suppression, a needs-mode defer, or a mode with no command); the other twelve have the owner absent from the top three or no recommendation at all. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md:56`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/embedder-cost.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:737`, `:1413`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:258`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1621`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite` (read-only counts)"
+      ]
+    },
+    {
+      "id": "finding-2-2-that-28-is-the-same-total-iteration-1-measured-at-the-brief-27-head-commands-plu",
+      "text": "That 28 is the same total iteration 1 measured at the brief (27 head commands plus 1 `Also:` line), so the live measurement regime is the real-embedding regime and the committed fixture baseline's 23 is a regime gap, not a regression. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md:56`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/embedder-cost.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:737`, `:1413`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:258`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1621`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite` (read-only counts)"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-measured-cost-is-small-at-this-corpus-size-60-vectors-14-skill-46-command-at",
+      "text": "The measured cost is small at this corpus size: 60 vectors (14 skill + 46 command) at 768 dimensions in a 561 KB SQLite file. `measure-embedder-cost.mjs` reads a warm median of 5.95 ms and p95 of 8.97 ms per embed with the model resident (runner RSS 265,792 KB); re-embedding all 14 skill descriptions is about 83 ms and all 60 vectors about 357 ms, before loop overhead. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/embedder-cost.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md:56`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/embedder-cost.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:737`, `:1413`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:258`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1621`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite` (read-only counts)"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-real-semantic-lane-embeds-less-text-than-the-fixture-lane-the-stored-skill-v",
+      "text": "The real semantic lane embeds less text than the fixture lane. The stored skill vector is the `SKILL.md` frontmatter description alone, while the fixture vector is composed from the skill's name, description, domains, `intentSignals` and `derivedTriggers`, so intent signals reach the cosine lane only under the fixture regime. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:737] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:258]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md:56`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/embedder-cost.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:737`, `:1413`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:258`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1621`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite` (read-only counts)"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-real-embedding-capture-reads-plain-tune-combined-28-of-45-own-13-attached-15",
+      "text": "The real-embedding capture reads plain tune combined 28 of 45 (own 13, attached 15) and holdout 3 of 44, against the committed fixture capture's 23 and 1. Typed stays 44 of 44 (24 own, 20 attached) and false offers stay 0 of 35. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md:56`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/embedder-cost.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:737`, `:1413`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:258`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1621`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite` (read-only counts)"
+      ]
+    },
+    {
+      "id": "finding-2-9-verdict-for-rank-15-the-measured-brief-level-gain-of-enrichment-and-re-embedding",
+      "text": "Verdict for rank 15: the measured brief-level gain of enrichment and re-embedding is zero commands on the tune split, because the five rows the vector change moves already offer their command. The floor risk is real but bounded: the real-embedding regime itself holds 0 of 35 false offers and typed 44 of 44, yet rewriting all 14 embedded texts reranks every skill globally and cannot be measured without writing the vectors. Rank 15 stays declined. [INFERENCE: based on findings 1 to 8]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md:56`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/embedder-cost.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:737`, `:1413`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:258`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1621`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite` (read-only counts)"
+      ]
+    },
+    {
+      "id": "finding-3-2-degradedrecommendations-deliberately-collapses-every-row-whose-bare-slash-comman",
+      "text": "`degradedRecommendations` deliberately collapses every row whose bare slash command does not appear in the prompt into its owner skill, dropping `command`, `policy` and `needsMode`. Plain offers, the doctor hand-off and the needs-mode label are therefore lost by construction on this path, not by accident. [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1487]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`, `:1487`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:294`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:258`, `:382`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md:117`"
+      ]
+    },
+    {
+      "id": "finding-3-8-cold-start-is-no-longer-a-fallback-trigger-the-hook-passes-no-warm-only-so-the-c",
+      "text": "Cold start is no longer a fallback trigger: the hook passes `--no-warm-only`, so the CLI starts the daemon itself and bounds the wait instead of refusing a cold session. What remains is a crashed or unreachable daemon, and a socket-path failure: a `SPECKIT_IPC_SOCKET_DIR` long enough to exceed Darwin's `sun_path` limit makes the CLI exit 69 with a socket-path error and no brief at all. [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:258]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`, `:1487`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:294`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:258`, `:382`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md:117`"
+      ]
+    },
+    {
+      "id": "finding-3-6-how-often-as-recorded-zero-realised-fallback-answers-in-the-measured-arms-the-00",
+      "text": "How often, as recorded: zero realised fallback answers in the measured arms. The 008 cold-start measurement recorded fail-open 0 of 5 with a cold first prompt at 611-844 ms, and the 011 hook health recorded `rollingFailOpenRate` 0 over 3 debug invocations. The only realised hits are deliberate socket sandboxes: the 012 note and the probe above. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`, `:1487`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:294`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:258`, `:382`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md:117`"
+      ]
+    },
+    {
+      "id": "finding-3-3-measured-at-head-on-the-plain-readme-tune-prompt-the-live-daemon-answers-sk-doc-",
+      "text": "Measured at HEAD on the plain readme tune prompt: the live daemon answers `sk-doc` with `/create:readme (start)`; the unreachable endpoint answers `system-spec-kit` with no command in 644 ms. That reproduces the 012 note (`write a readme for the utils folder` went to `system-spec-kit` with no command) on the current build. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`, `:1487`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:294`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:258`, `:382`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md:117`"
+      ]
+    },
+    {
+      "id": "finding-3-10-projected-gain-and-cost-on-the-tune-split-the-degraded-brief-would-carry-27-head",
+      "text": "Projected gain and cost: on the tune split the degraded brief would carry 27 head commands plus 1 `Also:` line out of 45, where it carries a command only for a typed prompt today; the plain readme prompt becomes `sk-doc → /create:readme (start)` and the doctor prompt keeps `/doctor:agents-md check (run)`. The measured cost of the Python spawn today is 644 ms for one prompt, so an in-process scorer is not slower. The floors are untouched because the daemon path does not change. [INFERENCE: based on findings 3 and 9]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`, `:1487`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:294`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:258`, `:382`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md:117`"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-hook-reader-already-forwards-command-policy-needsmode-and-ownerskillid-when-",
+      "text": "The hook reader already forwards `command`, `policy`, `needsMode` and `ownerSkillId` when the answer carries them, and maps a `degraded` or `local-scorer` envelope to freshness `stale`. The loss is upstream of the reader, in what the CLI emits. [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:382]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`, `:1487`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:294`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:258`, `:382`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md:117`"
+      ]
+    },
+    {
+      "id": "finding-3-9-the-smallest-change-that-carries-the-same-command-in-runlocalscorer-score-in-pro",
+      "text": "The smallest change that carries the same command: in `runLocalScorer`, score in process with the TypeScript fusion scorer and apply the same `enrichCompiledRoutes` step the handler applies, instead of spawning `skill_advisor.py`; keep the Python spawn as the fallback when the built scorer is absent, and keep `degradedRecommendations` as the last resort. This reuses the exact code the daemon runs, so the degraded answer becomes the live answer with freshness `stale`. [INFERENCE: based on findings 1, 2 and 4]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`, `:1487`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:294`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:258`, `:382`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md:117`"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-unreachable-daemon-answer-is-produced-by-the-checked-in-python-scorer-not-th",
+      "text": "The unreachable-daemon answer is produced by the checked-in Python scorer, not the TypeScript scorer the daemon runs. `runLocalScorer` spawns `skill_advisor.py` with `FORCE_LOCAL=1` and the CLI's own 0.8/0.35 thresholds, then maps the rows for the brief. [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:294]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`, `:1487`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:294`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:258`, `:382`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md:117`"
+      ]
+    },
+    {
+      "id": "finding-3-7-there-is-no-persistent-counter-for-this-path-the-only-counter-is-hookhealth-roll",
+      "text": "There is no persistent counter for this path. The only counter is `hookHealth.rollingFailOpenRate`, which the hook writes only when `SKILL_ADVISOR_DEBUG=1`, so the real frequency outside deliberate sandboxes is UNKNOWN and cannot be quoted from a committed artifact. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`, `:1487`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:294`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:258`, `:382`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md:117`"
+      ]
+    },
+    {
+      "id": "finding-3-5-which-runtimes-reach-it-every-runtime-whose-hook-runs-the-cli-fallback-claude-pi",
+      "text": "Which runtimes reach it: every runtime whose hook runs the CLI fallback (Claude, Pi, Devin and DSH in the measured arms). Codex does not reach it at all, because its hooks are unapproved on this checkout: the 013 arm answered delivery `false` on 24 of 24 Codex lines and the delivery leg reads DEGRADED, so Codex gets no brief rather than a degraded one. OpenCode delivery stays `unknown`, so whether its plugin path degrades is unmeasured. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md:117]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`, `:1487`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:294`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:258`, `:382`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md:117`"
+      ]
+    },
+    {
+      "id": "finding-4-1-cmd-create-readme-plain-tune-01-routes-to-sk-create-quality-control-because-its-",
+      "text": "`cmd-create-readme-plain-tune-01` routes to `sk-create-quality-control` because its wording names a \"quality bar\", while `create-readme-aliases` holds `readme`, `write readme`, `folder readme`, `front-page overview` and not `overview page`; the prompt asks for an overview page per folder. [SOURCE: .skilled/skills/sk-doc/hub-router.json:240] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md`",
+        "`.skilled/skills/sk-doc/hub-router.json:160`, `:163`, `:240`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/routes-sk-doc-after.tsv`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`"
+      ]
+    },
+    {
+      "id": "finding-4-2-cmd-create-with-human-voice-plain-tune-01-routes-to-sk-create-quality-control-fr",
+      "text": "`cmd-create-with-human-voice-plain-tune-01` routes to `sk-create-quality-control` from its rewrite-and-score wording; `sk-create-with-human-voice` already declares a `create-with-human-voice-aliases` class that none of this prompt's wording reaches. [SOURCE: .skilled/skills/sk-doc/hub-router.json:160] [SOURCE: .skilled/skills/sk-doc/hub-router.json:163]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md`",
+        "`.skilled/skills/sk-doc/hub-router.json:160`, `:163`, `:240`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/routes-sk-doc-after.tsv`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`"
+      ]
+    },
+    {
+      "id": "finding-4-7-candidate-2-is-the-only-one-that-can-move-more-than-two-rows-and-it-is-also-the-",
+      "text": "Candidate 2 is the only one that can move more than two rows, and it is also the only one whose gain depends on new scoring evidence rather than an alias: five of its six commands already have a scorer row, so the work is anchor wording plus the 35-row silence re-measurement, not new plumbing. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:189]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md`",
+        "`.skilled/skills/sk-doc/hub-router.json:160`, `:163`, `:240`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/routes-sk-doc-after.tsv`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`"
+      ]
+    },
+    {
+      "id": "finding-4-5-not-recommended-with-the-reason-rank-15-intent-enrichment-and-re-embedding-itera",
+      "text": "Not recommended, with the reason: rank 15 intent enrichment and re-embedding (iteration 2: 0 brief-level commands gained, and the real regime already holds the floors); the capture `offered` relabel (already built in phase 013 as a comment and field documentation, so re-recommending it would repeat a built item); a lower meaning threshold or a higher semantic lane weight (eliminated in segment two section 4, and iteration 1 shows the no-command rows are not threshold-shaped); a default command for a deferring hub (eliminated in segment two because it fires the deep-loop near-miss row). [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md:56]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md`",
+        "`.skilled/skills/sk-doc/hub-router.json:160`, `:163`, `:240`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/routes-sk-doc-after.tsv`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`"
+      ]
+    },
+    {
+      "id": "finding-4-4-ranked-candidates-by-expected-gain-in-started-when-useful-per-unit-of-floor-risk",
+      "text": "Ranked candidates, by expected gain in started-when-useful per unit of floor risk:",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md`",
+        "`.skilled/skills/sk-doc/hub-router.json:160`, `:163`, `:240`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/routes-sk-doc-after.tsv`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`"
+      ]
+    },
+    {
+      "id": "finding-4-6-residual-not-covered-by-the-built-phase-012-label-routeneedsmode-returns-true-on",
+      "text": "Residual not covered by the built phase 012 label: `routeNeedsMode` returns true only for a hub with a `MODE_COMMANDS` row, and `sk-code` has none, so `cmd-speckit-implement-plain-tune-01` and `cmd-doctor-sk-code-plain-tune-01` stay silent. This is a gap in the delivered label, not a repeat of rank 6, which built the label for hubs the table already knew. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:392]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md`",
+        "`.skilled/skills/sk-doc/hub-router.json:160`, `:163`, `:240`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/routes-sk-doc-after.tsv`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-alias-wording-is-floor-safe-to-add-across-the-87-none-rows-the-only-rows-mat",
+      "text": "The alias wording is floor-safe to add: across the 87 `none` rows, the only rows matching `overview|readme|rewrite|human|person wrote|quality bar` are the two typed rows for these same commands, which must start. No must-not-start, near-miss or partial-slash row can be reached by the proposed keywords. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md`",
+        "`.skilled/skills/sk-doc/hub-router.json:160`, `:163`, `:240`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/routes-sk-doc-after.tsv`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:189`, `:392`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:451`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1453`"
+      ]
+    },
+    {
+      "id": "finding-5-6-candidate-1-s-full-exposure-is-measured-0-of-35-floor-rows-0-of-the-other-52-non",
+      "text": "Candidate 1's full exposure is measured: 0 of 35 floor rows, 0 of the other 52 `none` rows, and at most 1 other tune row if the wrong keyword is chosen. That makes it the lowest-risk change that moves a row. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/none-floor-live.jsonl]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/none-floor-live.jsonl` (35 rows)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md:140`"
+      ]
+    },
+    {
+      "id": "finding-5-5-candidate-1-s-human-voice-wording-must-avoid-the-bare-word-rewrite-cmd-create-di",
+      "text": "Candidate 1's human-voice wording must avoid the bare word `rewrite`. `cmd-create-diff-plain-tune-01` already carries `/create:diff` and its prompt is a before-and-after rewrite request, so a bare `rewrite` keyword would steal a working row; the exact phrases `reads like a person` and `score how human` appear only on the human-voice row. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/none-floor-live.jsonl` (35 rows)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md:140`"
+      ]
+    },
+    {
+      "id": "finding-5-4-candidate-1-s-readme-keyword-is-isolated-overview-page-appears-only-on-cmd-creat",
+      "text": "Candidate 1's readme keyword is isolated: `overview page` appears only on `cmd-create-readme-plain-tune-01`, so adding it cannot move another tune row. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/none-floor-live.jsonl` (35 rows)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md:140`"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-doctor-family-risk-set-for-candidate-2-is-exactly-three-rows-mns-chat-03-mus",
+      "text": "The doctor-family risk set for candidate 2 is exactly three rows: `mns-chat-03` (must-not-start, top score 0.090611), `nm-system-skilled-doctor-01` (near-miss, 0.240312) and `sv-03` (partial slash, 0.125331). They are the only silent rows a doctor anchor can reach, and their top scores are 0.09 to 0.24. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/none-floor-live.jsonl]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/none-floor-live.jsonl` (35 rows)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md:140`"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-floor-baseline-at-head-is-clean-0-of-35-silent-rows-carry-a-command-15-retur",
+      "text": "The floor baseline at HEAD is clean: 0 of 35 silent rows carry a command, 15 return no recommendation at all, and 20 return a skill-only head. Any offer on these rows is a floor break, so candidate 2 has no slack. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/none-floor-live.jsonl]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/none-floor-live.jsonl` (35 rows)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md:140`"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-narrow-band-for-candidate-2-is-therefore-between-a-new-anchor-strong-enough-",
+      "text": "The narrow band for candidate 2 is therefore between a new anchor strong enough to pass the 0.8 confidence gate on the five below-threshold rows and weak enough to stay under three doctor-top rows scoring 0.09 to 0.24. That band is the reason it ranks below a two-row alias despite moving more rows. [INFERENCE: based on findings 1 and 2]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/none-floor-live.jsonl` (35 rows)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md:140`"
+      ]
+    },
+    {
+      "id": "finding-5-7-the-three-doctor-top-floor-rows-pass-the-render-gate-on-confidence-0-82-and-unce",
+      "text": "The three doctor-top floor rows pass the render gate on confidence 0.82 and uncertainty 0.22 to 0.34 while scoring 0.09 to 0.24, so the floor is protected by the ranking band, not by a comfortable score margin; candidate 2's verification must name those three row ids, not only the aggregate 0 of 35. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/none-floor-live.jsonl]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/none-floor-live.jsonl` (35 rows)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md:140`"
+      ]
+    },
+    {
+      "id": "finding-6-3-every-one-of-the-17-no-command-rows-maps-to-a-candidate-1-to-the-duplicate-suppr",
+      "text": "Every one of the 17 no-command rows maps to a candidate: 1 to the duplicate-suppression fix, 2 to the sk-doc alias fix, 2 to the silent-hub label fix, 6 to the below-threshold anchors, and 2 to the wrong-top doctor fix; the remaining 4 already print `(needs a mode)` and are an intentional ask, not a defect. [INFERENCE: based on iterations 1 and 4]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/iterations/iteration-001.md`, `iteration-004.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:36`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`"
+      ]
+    },
+    {
+      "id": "finding-6-4-final-ranking-by-expected-gain-in-started-when-useful-per-unit-of-risk-1-sk-doc-",
+      "text": "Final ranking by expected gain in started-when-useful per unit of risk: (1) sk-doc readme and human-voice aliases, +2 rows, zero floor exposure; (2) below-threshold anchors plus one scorer row, up to +6 rows, the only candidate with real floor risk; (3) the silent-hub label for `sk-code`, +2 actionable labels; (4) in-process TypeScript scoring on the degraded path, 28 rendered commands instead of 0 on untyped rows whenever the daemon is down; (5) the duplicate-suppression fix, +1 row; (6) the doctor wrong-top pair, +2 rows, medium-high risk. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/iterations/iteration-004.md]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/iterations/iteration-001.md`, `iteration-004.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:36`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`"
+      ]
+    },
+    {
+      "id": "finding-6-2-of-the-28-rendered-commands-22-are-the-exact-corpus-label-and-6-are-a-documented",
+      "text": "Of the 28 rendered commands, 22 are the exact corpus label and 6 are a documented subcommand (`/doctor:agents-md check`, `/doctor:ci report`, `/doctor:env list`, `/doctor:git hooks`, `/doctor:overlay status`, `/doctor:symlink link`). Exact-string metrics therefore understate plain reach by 6 rows at HEAD, and that is a corpus-label decision for the operator, not a routing defect. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/iterations/iteration-001.md`, `iteration-004.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:36`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`"
+      ]
+    },
+    {
+      "id": "finding-6-1-the-four-numbers-describe-one-state-under-four-definitions-the-committed-fixture",
+      "text": "The four numbers describe one state under four definitions: the committed fixture capture's 23 is expected-command reach through bridge row ids under fixture vectors; the real-embedding capture's 28 is the same metric under the operator's vectors; the live brief renders 27 head commands plus 1 `Also:` line, which is 28 rows carrying a command; and candidate 1 projects 30. None of them is a regression of another. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/iterations/iteration-001.md`, `iteration-004.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:36`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`"
+      ]
+    },
+    {
+      "id": "finding-6-7-the-lane-s-three-questions-are-answered-with-commands-and-file-evidence-a-17-row",
+      "text": "The lane's three questions are answered with commands and file evidence: (a) 17 rows and six causes, each named by row id; (b) re-embedding and intent enrichment declined again, measured at 0 brief-level commands and priced at about 83 ms for all 14 skill vectors with hash-gated incremental refresh; (g) the fallback runs the Python scorer and then collapses untyped rows, measured at 644 ms and 0 observed occurrences in the recorded arms. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/iterations/iteration-001.md`, `iteration-004.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:36`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`"
+      ]
+    },
+    {
+      "id": "finding-6-6-three-gaps-remain-all-measurement-rather-than-routing-no-persistent-counter-reco",
+      "text": "Three gaps remain, all measurement rather than routing: no persistent counter records how often the local-scorer fallback answers; OpenCode's degraded behaviour is unmeasured because its delivery is `unknown`; and the six subcommand labels need an operator decision on whether the corpus should name the subcommand. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/iterations/iteration-001.md`, `iteration-004.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:36`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`"
+      ]
+    },
+    {
+      "id": "finding-6-5-verification-per-candidate-is-already-executable-with-committed-scripts-compiled",
+      "text": "Verification per candidate is already executable with committed scripts: `compiled-route.cjs --hub sk-doc --prompt` for the alias modes; `capture-command-routing-baseline.mjs --real-embedding` (no `--write`) for the tune and false-offer lines; the advisor suite for the label and duplicate changes; a new unreachable-endpoint vitest for the degraded path; and the three named floor row ids (`mns-chat-03`, `nm-system-skilled-doctor-01`, `sv-03`) for the anchor work. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:36]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/tune-live.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/real-embed-capture.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/prompts/degraded-readme.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/iterations/iteration-001.md`, `iteration-004.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:36`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/hook-health.json`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-313c5bc33d9d",
+      "text": "`cmd-create-skill-parent-plain-tune-01`: no scorer row and no hub route, so no command can attach without new evidence; it is an alias or scorer-row question, not a table edit.",
+      "contentHash": "313c5bc33d9d",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-28d607a5a912",
+      "text": "`cmd-doctor-skill-advisor-plain-tune-01`: the command has seven subcommands and no default, so no single command can be attached without a policy decision about which subcommand a bare request means.",
+      "contentHash": "28d607a5a912",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b02caf35b956",
+      "text": "Counting the whole top three as \"offered\". The renderer emits one head plus an optional doctor `Also:` line, so a rank-2 command is invisible in 16 of the 17 no-command rows.",
+      "contentHash": "b02caf35b956",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-cabacf1fef83",
+      "text": "Reading the committed `attachedMetrics.plain.tune` line as a brief-offer count. It measures expected-command reach through scorer row ids and hub attach at capture time; the live head disagrees on six rows, so it cannot enumerate the rows this iteration asks about. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs:491]",
+      "contentHash": "cabacf1fef83",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-5a6f28279fa2",
+      "text": "Treating the six subcommand differences as wrong offers. All six are the expected command's own documented subcommand, so they are label granularity in the corpus, not a routing error. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:74]",
+      "contentHash": "5a6f28279fa2",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b1bae79f78b9",
+      "text": "Adding intent text to the 14 `SKILL.md` descriptions. That is an operator-facing document change in `sk-doc` scope, not a routing fix, and it changes bytes the model reads.",
+      "contentHash": "b1bae79f78b9",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1591e3678a52",
+      "text": "Measuring an enriched re-embedding without writing vectors. No read-only switch composes the enrichment, so the only honest statement is the bounded projection in finding 9.",
+      "contentHash": "1591e3678a52",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-5c72f0bf4b74",
+      "text": "Reopening rank 15 on the real-embedder numbers alone. The +5 tune rows are top-1 exactness on rows that already carried a command; they do not move a single no-command row, so the disposition does not change.",
+      "contentHash": "5c72f0bf4b74",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-dce7306d5892",
+      "text": "Treating the fixture capture's 23 and the real capture's 28 as a before/after pair. They are two scoring regimes at one commit.",
+      "contentHash": "dce7306d5892",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-8b1d439efaaa",
+      "text": "Using the holdout delta (1 to 3 of 44) as evidence for enrichment: it is the same real-embedder effect, and holdout prompt text was not read.",
+      "contentHash": "8b1d439efaaa",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-0aa1d111a4d6",
+      "text": "Measuring the fallback rate from committed artifacts: no counter exists outside debug mode, so any frequency claim beyond the recorded arms would be invented.",
+      "contentHash": "0aa1d111a4d6",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-d10305ad91aa",
+      "text": "Reusing `degradedRecommendations` alone. It has no command to preserve on an untyped prompt: the Python rows name bridge ids that the function intentionally reduces to their owner skill, so keeping the fields would still not produce the live command or the live skill.",
+      "contentHash": "d10305ad91aa",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-4ec1555c90f0",
+      "text": "Treating Codex as a degraded-path runtime. Its hook never runs on this checkout (unapproved), so its failure is a missing brief, a different defect with a different fix.",
+      "contentHash": "4ec1555c90f0",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-6b93ef37d34e",
+      "text": "Treating cold start as a degraded-path trigger. The `--no-warm-only` flag and the 008 measurement rule it out.",
+      "contentHash": "6b93ef37d34e",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-71706ff93c86",
+      "text": "Using the long lineage path as a socket dir: Darwin rejects it with exit 69 before any answer, so the probe was rerun on a loopback endpoint.",
+      "contentHash": "71706ff93c86",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-b6540c6f66c4",
+      "text": "A second rendered head for candidate 5: it costs bytes on every prompt, which is the one budget the brief cannot grow.",
+      "contentHash": "b6540c6f66c4",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-5c1c53373736",
+      "text": "Proving candidate 1's gain by editing the router: out of scope for this lineage. The compiled-route probe on the current wording plus the alias-class read is the strongest available evidence.",
+      "contentHash": "5c1c53373736",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-99fa2627a415",
+      "text": "Proving candidate 4's gain without the code change: the daemon path cannot be forced through `runLocalScorer` without an unreachable endpoint, and the Python branch is what answers there.",
+      "contentHash": "99fa2627a415",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-a5561385464d",
+      "text": "Re-recommending the capture `offered` relabel. Phase 013 already built it and the remaining risk is a reader trusting the field, which iteration 1 documented.",
+      "contentHash": "a5561385464d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-3e9921908686",
+      "text": "Reopening rank 15 on this evidence. The measured brief-level gain is zero.",
+      "contentHash": "3e9921908686",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-1f8c36a3c2ca",
+      "text": "Treating candidate 2 as one change: its six rows split into five anchor rows and one missing-scorer-row row, with different files and different risk.",
+      "contentHash": "1f8c36a3c2ca",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-7e6e634a3aa4",
+      "text": "Adding a bare `rewrite` keyword to the human-voice class. It would steal a working diff row.",
+      "contentHash": "7e6e634a3aa4",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-ed3728d6b229",
+      "text": "Estimating candidate 2's new scores without writing the anchors: no read-only switch scores a hypothetical anchor set, so the band is stated as a constraint on the implementing phase, not a predicted number.",
+      "contentHash": "ed3728d6b229",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-3cc628730dd3",
+      "text": "Measuring candidate 1 with a whole-file alias rewrite. The two exact phrases are isolated, so a narrower edit carries the same gain with no canary exposure.",
+      "contentHash": "3cc628730dd3",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-efbdae2d8f1f",
+      "text": "Treating the 0 of 35 floor as the whole risk test for candidate 2. The three doctor-top rows are the ones that move first, and the aggregate would only show the failure after the fact.",
+      "contentHash": "efbdae2d8f1f",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-da88b4a8f792",
+      "text": "Closing the fallback-frequency gap from inside the lineage: it needs a persistent counter that only a build phase can add.",
+      "contentHash": "da88b4a8f792",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-ded1889c0fcc",
+      "text": "Counting the six subcommand rows as misses in the final ranking; they are reach, and only the label granularity differs.",
+      "contentHash": "ded1889c0fcc",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-eb0a829bb1e5",
+      "text": "Measuring OpenCode's degraded path: no delivery marker exists for the committed arm.",
+      "contentHash": "eb0a829bb1e5",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-734ab32f4a4c",
+      "text": "Reporting a single \"plain recall\" number without its definition. The four numbers differ by metric and regime, and quoting one alone would misstate the built state.",
+      "contentHash": "734ab32f4a4c",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-e2737517c59d",
+      "text": "Treating the 4 needs-mode rows as fixable recall. They are a deliberate ask, and forcing a command on them would repeat the eliminated \"default command for a deferring hub\" item.",
+      "contentHash": "e2737517c59d",
+      "addedAtIteration": 6
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 6,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 50,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.2,
+    "coverageBySources": {
+      "code": 37,
+      "other": 31
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach-3/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

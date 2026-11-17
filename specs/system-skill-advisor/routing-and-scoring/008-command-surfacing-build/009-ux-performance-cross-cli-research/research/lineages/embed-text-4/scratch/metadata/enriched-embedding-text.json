@@ -1,0 +1,83 @@
+{
+  "/doctor:install": {
+    "source": ".skilled/commands/doctor/_routes.yaml",
+    "typescriptEnabled": true,
+    "typescriptId": "command-doctor-install",
+    "added": [
+      "walk me through putting this toolkit into my own project repository",
+      "put this toolkit into my own project repository",
+      "use this toolkit in my own project",
+      "install this toolkit into another repository",
+      "onboard this project repository"
+    ],
+    "before": "Get the ordered steps that put Skilled into your own project repo, ready to run. install skilled into my project. set up skilled in another repo. use skilled in my own project. onboard a project repo to skilled. guide me through installing skilled. walk me through a first install of skilled. first install of skilled in my project. skilled in my other repository. skilled in another repository",
+    "after": "Get the ordered steps that put Skilled into your own project repo, ready to run. install skilled into my project. set up skilled in another repo. use skilled in my own project. onboard a project repo to skilled. guide me through installing skilled. walk me through a first install of skilled. first install of skilled in my project. skilled in my other repository. skilled in another repository. walk me through putting this toolkit into my own project repository. put this toolkit into my own project repository. use this toolkit in my own project. install this toolkit into another repository. onboard this project repository"
+  },
+  "/doctor:setup": {
+    "source": ".skilled/commands/doctor/_routes.yaml",
+    "typescriptEnabled": true,
+    "typescriptId": "command-doctor-setup",
+    "added": [
+      "list every check this project has",
+      "tell me what to fix where it fails",
+      "which checks fail and what to fix",
+      "run every check in this project",
+      "show me every check and the fix"
+    ],
+    "before": "List every doctor target and run the read-only setup checks, naming the repair command for each failing leg. set up skilled. help me set up skilled. is my skilled install healthy. skilled setup check. run the doctor setup checks. getting started with skilled. overview of every doctor command. model server or helper process still running after the session closed",
+    "after": "List every doctor target and run the read-only setup checks, naming the repair command for each failing leg. set up skilled. help me set up skilled. is my skilled install healthy. skilled setup check. run the doctor setup checks. getting started with skilled. overview of every doctor command. model server or helper process still running after the session closed. list every check this project has. tell me what to fix where it fails. which checks fail and what to fix. run every check in this project. show me every check and the fix"
+  },
+  "/doctor:speckit": {
+    "source": ".skilled/commands/doctor/_routes.yaml",
+    "typescriptEnabled": true,
+    "typescriptId": "command-doctor-speckit",
+    "added": [
+      "spec search never finds anything",
+      "search does not find terms we know are indexed",
+      "spec search is broken even for indexed terms",
+      "our spec lookup finds nothing",
+      "indexed terms are not found by spec search"
+    ],
+    "before": "Diagnose spec-kit retrieval: the generated trigger index, its lookup and the ripgrep recipes. trigger index drift. trigger index lookup fails. retrieval conventions doctor. ripgrep recipe check. citation drift summary. is the trigger index fresh",
+    "after": "Diagnose spec-kit retrieval: the generated trigger index, its lookup and the ripgrep recipes. trigger index drift. trigger index lookup fails. retrieval conventions doctor. ripgrep recipe check. citation drift summary. is the trigger index fresh. spec search never finds anything. search does not find terms we know are indexed. spec search is broken even for indexed terms. our spec lookup finds nothing. indexed terms are not found by spec search"
+  },
+  "/doctor:update": {
+    "source": ".skilled/commands/doctor/_routes.yaml",
+    "typescriptEnabled": true,
+    "typescriptId": "command-doctor-update",
+    "added": [
+      "is there a newer release of the toolkit",
+      "what changed in the newer release",
+      "are we on the latest release and what changed",
+      "check whether a newer version exists and what changed"
+    ],
+    "before": "Route check, align, apply, rollback, record-base or compat operations for a spec-kit release. doctor update command. update skills to latest release. skilled release update. update skilled to the latest release. check for skilled updates. is there a newer skilled release. update my project to a newer skilled release. move my project to the newer spec-kit release",
+    "after": "Route check, align, apply, rollback, record-base or compat operations for a spec-kit release. doctor update command. update skills to latest release. skilled release update. update skilled to the latest release. check for skilled updates. is there a newer skilled release. update my project to a newer skilled release. move my project to the newer spec-kit release. is there a newer release of the toolkit. what changed in the newer release. are we on the latest release and what changed. check whether a newer version exists and what changed"
+  },
+  "/speckit:search": {
+    "source": ".skilled/skills/system-spec-kit/command-metadata.json",
+    "typescriptEnabled": true,
+    "typescriptId": "command-speckit-search",
+    "added": [
+      "look through our spec notes for anything mentioning",
+      "search our spec notes for a topic",
+      "find spec notes that mention a term",
+      "which spec notes mention rate limiting"
+    ],
+    "before": "I want to find which spec packet or skill doc already covers what I am asking about. find the spec packet. which spec covers this. which packets mention. search the spec docs. is this already documented",
+    "after": "I want to find which spec packet or skill doc already covers what I am asking about. find the spec packet. which spec covers this. which packets mention. search the spec docs. is this already documented. look through our spec notes for anything mentioning. search our spec notes for a topic. find spec notes that mention a term. which spec notes mention rate limiting"
+  },
+  "/create:skill-parent": {
+    "source": ".skilled/skills/sk-doc/command-metadata.json",
+    "typescriptEnabled": false,
+    "typescriptId": null,
+    "added": [
+      "hub skill that holds several nested workflow variants",
+      "nested workflow variants under one identity",
+      "a skill hub with nested mode packets",
+      "one identity for several workflow variants"
+    ],
+    "before": "Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth). :auto/:confirm.. create a parent skill hub. add nested mode packets. scaffold a skill router",
+    "after": "Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth). :auto/:confirm.. create a parent skill hub. add nested mode packets. scaffold a skill router. hub skill that holds several nested workflow variants. nested workflow variants under one identity. a skill hub with nested mode packets. one identity for several workflow variants"
+  }
+}

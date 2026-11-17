@@ -53,10 +53,10 @@
       ".codex/hooks.json",
       ".cursor/hooks.json",
       ".devin/hooks.v1.json",
-      ".skilled/commands/create/skill.md",
       ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs",
       ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
-      ".skilled/commands/doctor/scripts/README.markdown"
+      ".skilled/commands/doctor/scripts/README.markdown",
+      ".skilled/bin/system-skill-advisor-launcher.cjs"
     ],
     "entities": [
       {
@@ -150,12 +150,6 @@
         "source": "derived"
       },
       {
-        "name": "skill.md",
-        "kind": "doc",
-        "path": ".skilled/commands/create/skill.md",
-        "source": "derived"
-      },
-      {
         "name": "codex-hook-approval-check.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs",
@@ -171,6 +165,12 @@
         "name": "README.markdown",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/README.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
         "source": "derived"
       },
       {
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The before arm reports Codex at 0 of 12 started rows, but no Codex transcript in that arm carries an advisor brief, because Codex runs a project hook only after per-entry approval and the install guide never says so",
     "created_at": "2026-11-12T23:24:41Z",
-    "last_save_at": "2026-11-13T03:02:38.682Z",
+    "last_save_at": "2026-11-13T21:04:40.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c09804c05a8432a9a420ab201ced5897e72731afd2aa15f1a4cea72dbefc8018",
+    "source_fingerprint": "sha256:3fffb5df08163c35d1dd7f2f352ad7ee546888d41139e66869d4620756f4ed0f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2748af774ef5115adc656b83bb553781af79059b09bb8336f638965440f16f3b",
+      "spec.md": "54c702509df808d0d477dd99f901e7f95c361a6d6512d9f447b405ee8af455d8",
       "plan.md": "15866f2f66b6a1c4101d9d3151390dfe9d96371bd10c98680b70d15fbe58616b",
       "tasks.md": "70e9e099fe80edf0b952ea80aab4dd15ceb7e322a0226db0e6d73984d3197a06",
       "decision-record.md": "c128e67f0984b9c68e051affcec2ed0a93c5bb266088b2dae18f7906b2036ba9",

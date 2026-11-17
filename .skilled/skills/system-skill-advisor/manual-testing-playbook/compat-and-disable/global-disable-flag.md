@@ -6,7 +6,7 @@ trigger_phrases:
   - "global disable flag"
   - "global disable"
   - "global"
-version: 0.8.2.0
+version: 0.8.7.0
 id: CP-003
 category: compat_and_disable
 stage: routing
@@ -32,7 +32,7 @@ Validate the common disable flag across the native CLI, Python shim, runtime hoo
 - Repo root is the working directory.
 - Advisor runtime build is current.
 - Capture env and command output.
-- Never stop the live daemon. Step 1's teardown sends no signal. Its sandbox daemon exits on a 12-second idle timeout, and the block removes the sandbox only once the lease, the socket and every open file in it are gone.
+- Never stop the live daemon. Step 1 reads the warm workspace daemon and sends it no signal.
 
 ---
 
@@ -40,30 +40,13 @@ Validate the common disable flag across the native CLI, Python shim, runtime hoo
 
 ### Commands
 
-1. Native CLI (isolate both the socket and the DB so a cold daemon starts and inherits the flag). The cold start leaves a sandbox launcher and daemon running, and a daemon that outlives its sandbox recreates the folder the next time it writes to it. The block sends no signal. It gives the sandbox daemon a 12-second idle timeout. It then waits until the lease file is gone, the socket folder is empty, no process holds a file open in the sandbox and at least 25 seconds have passed, which outlasts the idle timeout and its six-second check. Only then does it remove the sandbox. The open-file test covers a launcher that crashes, because a crashing launcher deletes its lease without waiting for its daemon, and the daemon keeps its database open until it exits. The block does nothing when `$SANDBOX` is empty, as it is when its lines run in separate shells. It keeps the sandbox when `lsof` cannot list the shell's own open files, since the open-file test then proves nothing. It removes with `rm -r`, so `sandbox removed` prints only when a folder was really removed:
+1. Native CLI against the warm workspace daemon, which runs without the switch. The client reads the switch in its own process before it connects, so each flagged call must abstain although the daemon would answer, the legacy name set to `1` and the canonical name set to `true`, and the unflagged call after them must still recommend. Each call names `/dev/null` as its flags file, so a switch saved in `.skilled/hooks/hook-flags.env` cannot decide it:
 
 ```bash
-SANDBOX=$(mktemp -d /tmp/cp003.XXXXXX)
-SYSTEM_SKILL_ADVISOR_DB_DIR="$SANDBOX/db" SPECKIT_IPC_SOCKET_DIR="$SANDBOX/sock" \
-SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN=0.2 \
-  node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" \
-  --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000
-if [ -z "${SANDBOX:-}" ]; then
-  echo "SANDBOX is unset; run step 1 as one block"
-else
-  sandbox_advisor_running() {
-    [ -e "$SANDBOX/db/.system-skill-advisor-launcher.json" ] || [ -n "$(ls -A "$SANDBOX/sock" 2>/dev/null)" ] ||
-      [ -n "$(lsof -t +D "$SANDBOX" 2>/dev/null)" ]
-  }
-  for i in $(seq 1 60); do [ "$i" -gt 25 ] && ! sandbox_advisor_running && break; sleep 1; done
-  if [ -z "$(lsof -t -p $$ 2>/dev/null)" ]; then
-    echo "lsof cannot list open files here; sandbox kept at $SANDBOX"
-  elif sandbox_advisor_running; then
-    echo "sandbox advisor still running after the wait; sandbox kept at $SANDBOX"
-  else
-    rm -r "$SANDBOX" && echo "sandbox advisor exited; sandbox removed"
-  fi
-fi
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --no-warm-only > /dev/null
+HOOK_FLAGS_CONFIG=/dev/null SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000
+HOOK_FLAGS_CONFIG=/dev/null SYSTEM_SKILL_ADVISOR_DISABLED=true node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000
+HOOK_FLAGS_CONFIG=/dev/null env -u SYSTEM_HOOKS_DISABLED -u MK_HOOKS_DISABLED -u SYSTEM_SKILL_ADVISOR_DISABLED -u SYSTEM_SKILL_ADVISOR_HOOK_DISABLED -u SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED -u MK_SKILL_ADVISOR_DISABLED -u MK_SKILL_ADVISOR_HOOK_DISABLED -u MK_SKILL_ADVISOR_PLUGIN_DISABLED -u SPECKIT_SKILL_ADVISOR_HOOK_DISABLED -u SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1}' --format json --timeout-ms 30000
 ```
 
 2. Python shim:
@@ -78,7 +61,7 @@ SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .skilled/skills/system-skill-advis
 npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/system-skill-advisor-plugin.vitest.ts -t "opt-out"
 ```
 
-4. One hook adapter. The spec-kit shim never forwards its child's stderr, so read the skipped record from the diagnostics JSONL that `SKILL_ADVISOR_DEBUG=1` turns on:
+4. One hook adapter. The spec-kit shim never forwards its child's stderr, so read the skipped record from the diagnostics JSONL. The hook appends that record on every run, disabled or not, and `SKILL_ADVISOR_DEBUG=1` adds nothing to a skipped record:
 
 ```bash
 DIAG=$(node --input-type=module -e "const m = await import('./.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/metrics.js'); console.log(m.advisorHookDiagnosticsPath(process.cwd()))")
@@ -93,8 +76,8 @@ tail -n 1 "$DIAG"
 
 ### Expected Signals
 
-- Native `advisor_recommend` returns `recommendations: []`, `freshness: "unavailable"` and `ADVISOR_DISABLED`.
-- Step 1 then prints `sandbox advisor exited; sandbox removed`, and no `/tmp/cp003.*` folder is left behind.
+- Step 1's two flagged calls each return `recommendations: []`, `freshness: "unavailable"` and `ADVISOR_DISABLED`, although the warm daemon would have answered, and the second names `SYSTEM_SKILL_ADVISOR_DISABLED` in its abstain reason.
+- Step 1's unflagged call that follows returns at least one recommendation, so the switch did not reach the daemon.
 - Python shim returns `[]` or prompt-safe disabled output without native scoring.
 - OpenCode plugin returns disabled/skipped output without invoking the advisor (covered by the plugin test's env opt-out case).
 - Hook adapter prints `{}` and exits `0`. The diagnostics JSONL gains one line, and that newest record has `status: "skipped"` and `freshness: "unavailable"`. If the file had passed 300 lines, the append trims it to the newest 200, so read the last line instead of the count.
@@ -106,14 +89,11 @@ tail -n 1 "$DIAG"
 | Any surface still recommends a skill | Non-empty recommendation under disabled env | Block release. |
 | Disabled response includes prompt text | Search captured output for prompt literal | Block release. |
 | Plugin only honors legacy env | New flag has no effect | Update the plugin after code approval. |
-| Sandbox advisor outlives the wait | Step 1 prints `still running after the wait` and keeps the sandbox | Check the pids in the kept lease, if there is one, and the pids `lsof -t +D "$SANDBOX"` prints, with `ps`. Remove the sandbox by hand once none of them runs. Never stop the live daemon. |
-| `lsof` cannot run | Step 1 prints `lsof cannot list open files here` and keeps the sandbox | `lsof` is missing or the runtime's sandbox blocks it, so the block cannot tell whether the sandbox daemon still holds its database. Record the environment limit. Remove the sandbox by hand once `lsof -t +D` in a shell where it works shows nothing holds it. |
-| Step 1 ran in pieces | Step 1 prints `SANDBOX is unset` | Its lines ran in separate shells, so nothing was removed. Run step 1 again as one block. |
 
 ### Evidence
 
 - Capture each numbered step's output and exit status.
-- Record whether the native response has empty recommendations, freshness unavailable and ADVISOR_DISABLED. Capture the sandbox cleanup result and check that no temporary folder remains.
+- Record whether each flagged native response has empty recommendations, freshness unavailable and ADVISOR_DISABLED, which switch each abstain reason names, and whether the unflagged call that follows still recommends.
 - Record whether the Python shim returns an empty list or prompt-safe disabled output. Record whether the plugin returns disabled or skipped output without invoking the advisor.
 - Capture the hook output {}, exit status 0, diagnostic line counts and newest record values status skipped and freshness unavailable.
 - If the diagnostics file exceeds 300 lines, record that the append trims it to 200 and inspect the newest record.
@@ -129,6 +109,9 @@ tail -n 1 "$DIAG"
 
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
+- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts`
+- `.skilled/hooks/shared/hook-flags.cjs`
 - `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
 - `.opencode/plugins/system-skill-advisor.js`
 - `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`

@@ -1,0 +1,107 @@
+verdict: SHIP
+
+Scope: git -c core.fsmonitor=false diff 70975514563 6c026746381 over the sixteen FILES of tasks.md (16 files, 639 insertions, 14 deletions). HEAD read 6c026746381. No P0 and no P1 found. Five P2 findings follow.
+
+FINDINGS
+
+P2-1 .skilled/commands/doctor/scripts/hook-wiring-check.cjs:231-248 (tomlCommands) and :346-354 (toml branch of inspect)
+  The line reader misreads valid or invalid TOML in both directions.
+  Failure scenario, false pass (prints `ok vibe`, exit 0, while Vibe runs no turn-start hook):
+    a) a syntax error anywhere in the file, e.g. another block's line `command = "node "oops.mjs""`. Vibe's loader (installed mistral-vibe, vibe/core/hooks/config.py load_hooks_file) catches TOMLDecodeError and returns no hooks at all, yet the reader still finds the turn-start block. The JSON branch at :356-361 reads an unparseable file as `hook-missing`, so this is an asymmetry with the four JSON runtimes.
+    b) a duplicate key inside one block (`command = "node other.mjs"` then the turn-start command): invalid TOML, reader keeps the last value.
+    c) two blocks named "turn-start", the first running another script: load_hooks_from_fs keeps the first name and drops the second, the reader ignores `name`.
+    d) a later non-hooks table such as `[[notes]]` holding `command = "<turn-start>"`: the reader never resets `current` on another header, so the key is attributed to the previous `[[hooks]]` block.
+    e) a `command = "<turn-start>"` line inside a `"""` multi-line string of another key.
+  Failure scenario, false fail (prints `hook-missing vibe .vibe/hooks.toml`, exit 1, while the hook runs): single-quoted literal strings (`command = 'node "...turn-start.mjs"'`), a trailing comment on the value line (`command = "..."  # brief`), a trailing comment on the NEXT block's header (`[[hooks]]  # turn end` after the turn-start block, which merges turn-end's type and command into the turn-start block), a spaced header `[[ hooks ]]`, quoted keys `"command" = ...`, a multi-line basic string command, and the inline form `hooks = [ { ... } ]`.
+  Evidence: thirteen probe files under a scratch folder, each checked with python3.11 tomllib (Vibe's own parser) and with `node hook-wiring-check.cjs --root <dir>`. tomllib: baseline, duplicate_name, foreign_table_after, inline_array, inside_multiline_string, literal_string, multiline_basic, next_header_comment, quoted_keys, spaced_header, trailing_comment_value all valid; broken_other_line and duplicate_key INVALID. Check output: broken_other_line, duplicate_key, duplicate_name_first_wins, foreign_table_after, inside_multiline_string all `ok vibe exit=0`; inline_array, literal_string, multiline_basic, next_header_comment, quoted_keys, spaced_header, trailing_comment_value all `hook-missing vibe .vibe/hooks.toml exit=1`.
+  Why P2: every REQ-004 shape (post_agent, commented out, name only, absent folder) reads right, the committed `.vibe/hooks.toml` reads `ok vibe`, and an rg over every committed hooks.toml under .vibe for the misread shapes returns 0 matches. D4 chose a line reader on purpose and the doctor's delivery leg is never FAIL. The header-comment merge (reset or close the block on any `[` header) and the foreign-table attribution are plain reader bugs with small fixes.
+
+P2-2 .skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts:68-88 (vibeHead env) with runtime/lib/metrics.ts:185 and :322-347
+  The scope redirects the flags file, socket, databases and both receipt stores, but not the durable hook-health root, which is `join(os.tmpdir(), 'speckit-skill-advisor-metrics')` and keyed by the checkout path. The handler starts a fire-and-forget persist on the success path (hooks/claude/user-prompt-submit.ts:416 then :251), and the child calls process.exit(0) right after writing stdout (vitest.ts:56).
+  Failure scenario: on a run where the async appendFile wins the race, each proof case appends a `vibe` health record to $TMPDIR/speckit-skill-advisor-metrics/ede9344fd0f1eb33-diagnostics.jsonl for this worktree, which /doctor:setup's advisor leg shows as hook health.
+  Evidence (inferred, not observed): before and after the VPT run that file stayed at 213 lines with mtime 1794742613, the outcomes file at 298 lines with mtime 1794742292, the real vibe-turn-start receipt folder at 64 files with the same newest mtime, and /tmp/sa-* at 0. writeBoundedJsonl is async (metrics.ts:322-331), so the clean result reads as exit timing rather than isolation. Fix: add TMPDIR under scope.rootDir to the child env.
+
+P2-3 .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:126-127
+  When the context has no `\nDirectives:` after index 0 (an older build's directive-only fallback starting `Directives:`, or a context starting with `\nDirectives:`), the whole context is read as head, so command tokens inside the directive block gain a document line appended after the directives.
+  Evidence: probe `withCommandDocuments('Directives:\n- run /speckit:save before ending')` appends `/speckit:save is .skilled/commands/speckit/save.md.`. Not reachable with the current renderer: every render path in runtime/lib/render.ts:605-662 puts an `Advisor:` head before DIRECTIVES_LABEL, and the hygiene directive holds no `/` token after whitespace or `(`. Note only.
+  Related note: the paths are relative to the checkout. A dispatched child (AI_SESSION_CHILD=1, set by cli-mistral-vibe SKILL.md:72 and fanout-run.cjs:3976) gets no brief, and project hooks load only from a trusted root, so only an interactive session that loads the checkout through `--add-dir` from another cwd would see a path its cwd cannot open. The outage head already uses checkout-relative `node .skilled/bin/skill-advisor.cjs`.
+
+P2-4 .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md:135
+  The new sentence "A Vibe run is read a second time through the Vibe reader" sits right after the `--runtime <name> --locator '<json>'` clause. That single-session mode (score-command-transcripts.mjs:1271-1290, scoreSession) only counts `loaded.records` and never reads the entries.
+  Evidence: `node score-command-transcripts.mjs --runtime vibe --locator '{"sessionId":"08b32b11-...","transcriptPath":"<fixture>"}'` printed `vibe 08b32b11-0d8a-bb26-2385-86bb47a2ca7d: 2 records`, exit 0, so the fixture's write is not counted there. The sentence is true for `--summary`, which is where scoreRun reads the entries. Scoping the sentence to `--summary` fixes it.
+
+P2-5 .skilled/commands/doctor/scripts/README.markdown:235 (unchanged line)
+  "It exits 0 when every installed runtime's entry runs its hook script" now overclaims for Vibe, given the P2-1 false passes. Line 112 states the line-by-line reading correctly, but no line names the limit.
+
+Not a finding, recorded for the reader: the observation label vocabulary is now mixed. Claude records `Claude Code` and OpenCode `OpenCode` (display labels), while codex, cursor, devin, pi, dsh and vibe record their lowercase ids. No non-test reader exists (Q6), so nothing breaks.
+
+QUESTIONS
+
+Q1 (Vibe calls reach normalize in session order): Yes for every recorded shape. vibeRecords (score-command-transcripts.mjs:449-487) walks `session.entries`, which the reader builds from a Map keyed by entry id (vibe.mjs:186-215), so a replace_entry keeps the first position and an id never appears twice. Snapshot chunks come first and the journal tail after (vibe.mjs:116-124). Only user and assistant text blocks and `effect` entries with detail.kind `tool` survive. scoreRun (1640-1655) passes them to normalize in place of loaded.records. Evidence: a probe over the reader fixture, the 018 forced-compaction session and the 009 lineage session (129 entries, 59 bash, 6 write_file, 3 todo effects) printed interleaved message and effect order with 0 non-monotonic createdAt steps in all three. The brief text sits in a `notice` entry (015 keyed advisor journal) and the 018 injected context in the user message, so neither is scored as model text. The fixture normalizes to `['write','text']` with path /tmp/vibe-fixture-project/proof.txt (SCT case passes). Residual, reader-owned and not in this diff: replayProjection ignores `remove_entry`. The two recorded removals are hook notices, which vibeRecords skips anyway. A call can be dropped only when its toolName is not a string or sits outside the table (process.start, skill.read, vibe.todo, which D2 records as a limit). The second loadVibeSession call at :1645 is outside a try, but it reads the same files the dispatcher's guarded call just read.
+
+Q2 (non-Vibe scores): No change. For a non-vibe line `vibe` is null and normalize receives loaded.records exactly as before. The new import is a module index.mjs already loads. TOOL_TABLES is read only through tableFor (:233-237). Evidence: a differential probe imported the 70975514563 scorer from a mirrored tree and the new one. It ran normalize over one record set that holds every tool name of every table plus the vibe names. claude 21, codex 18, opencode 24, pi 15, devin 20 and dsh 18 events, all byte-identical old vs new, while the old scorer throws `no tool table for runtime vibe`. A run-log summary probe ran both scorers with `--summary --json` the way SCT's summary cases do, over one codex line and one vibe line. Only counts were printed, and no row-file prompt text. Result: codex block byte-identical, vibe.pre moved from `unscorable_runtime` to scored 1. The SCT, RBT and UPT run reported 272 passed, 0 failed.
+
+Q3 (wiring check TOML shapes): Answered in P2-1. It passes a file whose hook does not run for a parse error elsewhere, a duplicate key, a duplicate block name, a foreign table's command key, or a command line inside a multi-line string. It fails a file whose hook runs for literal strings, trailing comments on a value or on the next header, a spaced header, quoted keys, a multi-line command and the inline array form. `node hook-wiring-check.cjs --root .` printed `ok claude`, `ok codex`, `ok cursor`, `ok devin`, `ok vibe`, exit 0. HWT and RMC under node --test: tests 49, pass 49, fail 0.
+
+Q4 (Vibe mirror rows keep n/a, never create .vibe/): Yes. doctor-runtime-mirrors.yaml adds the three upstream_assets keys, three steps each saying "When .vibe/ is absent, report the row as n/a (no .vibe/ tree) without running the check ... this run never creates that directory", three generator repair lines without --check, and an output paragraph saying the Vibe rows read n/a the same way. _routes.yaml adds three `--check` invocations with `# n/a, not run, while .vibe/ is absent`. The contract test now iterates DSH_CHECKS plus VIBE_CHECKS over the same five step rules and the route and repair rules. In each of sync-prompts-vibe.cjs, sync-agents-vibe.cjs and sync-skills-vibe.cjs, mkdirSync sits only in writeOutputs, so the check form cannot create the folder. route-validate.sh printed `OK: route-validate - 32 routes validated, 11 warnings`, exit 0, none of them about vibe or runtime-mirrors. derive-command-bridges.cjs --check printed `"changed": []`, exit 0.
+
+Q5 (withCommandDocuments paths and tokens): No wrong or missing path for any command the advisor can name. All 44 unique commandPolicies commands match the token pattern, and each maps to an existing file (44 `ok ok`). A missing file is skipped through existsSync (:136). Probes left these unchanged: a score `0.94/0.12` (digit after `/`), a URL, `and/or` and `read/write`, absolute paths `/tmp/foo /deep/research /speckit`, `(needs a mode)`, `/speckit:Plan`, `/create:sk_skill` and `/doctor`. They added the right line for `(/create:readme)` and for the outage head's `run /doctor:setup;`. The receipt holds: full brief, then head-only, then head-only returned [delivered, "", ""], and the VPT repeat case passes. Edge note in P2-3.
+
+Q6 (observation label readers): No reader outside tests. getPolicyObservationRecords, observationBindsToCell and deliveryEvidenceFromObservation are called only from tests (rg over .skilled without dist or node_modules). The sink is an in-process array (policy-plan.ts:880-890). A codex caller goes through the spec-kit codex shim, which spawns the handler with SPECKIT_RUNTIME=codex (runtime/hooks/codex/shared.ts:104). It now records `codex` instead of `Claude Code`, in a short-lived child whose sink dies with it. An opencode caller never reaches this handler: its plugin calls observeEmittedAdvisorPolicy itself with `runtime: 'OpenCode'` (.opencode/plugins/system-skill-advisor.js:974), so it is unchanged. The UPT label cases (claude, pi, dsh, vibe, env codex) pass.
+
+Q7 (proof test strength and leaks): It cannot pass with no brief. An empty result gives head '' and fails `head.startsWith('Advisor:')` (vitest.ts:104, 112, 121), and an outage head fails case 3 because it reads `run /doctor:setup;` against the regex `run \/doctor:setup\.`. Case 3 passes on the no-match head with the setup hint, which is the REQ-007 shape. Isolation: HOOK_FLAGS_CONFIG points at a missing file (hook-flags.cjs:148-150 honours it), the socket and both databases sit under /tmp/sa-*, SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR moves both receipt stores into the scope, and AI_SESSION_CHILD is deleted. The VPT run reported 10 passed, 0 failed. /tmp/sa-* read 0 after, and the real receipt folder was unchanged. The un-redirected hook-health root is P2-2.
+
+Q8 (comment hygiene): Clean. 83 added comment lines across the thirteen code and config files, plus every added code line, were scanned for specs/, phase numbers, T0xx, D1-D9, REQ-, ADR-, CHK-, G<n>, F<nnn>, Q<nnn> and the word packet. 0 matches, rg exit 1.
+
+Q9 (three documents): Mostly exact. RAD/README.md:135 names the four recorded Vibe tool names and the second read, but see P2-4 about the `--locator` mode. RAD/README.md:137 says Cursor and Vibe exit 2 as not measured. That holds for `--print-argv` (runner exit 2, stderr `runtime vibe is not measured:`) and for `--runtime` (runArm resolves the runtime first, run-command-behaviour.mjs:1383-1385 and :1104-1111). DS/README.markdown:112 states the line-by-line `.vibe/hooks.toml` reading and the Pi, DSH and OpenCode limit exactly, but :235 overclaims (P2-5). skill-advisor-hook.md:95 states the document line exactly, with one omission: the line names only commands whose document exists.
+
+Checks run: VPT 10/10 passed. SCT, RBT and UPT together 272 passed, 0 failed. HWT and RMC 49 pass, 0 fail. WIRE exit 0 with five ok lines, RV exit 0, DRV exit 0. Not run: the full suite, any build, VT, MIRRORS, VMIR, floors and eval, all outside this brief.
+
+FOLLOW-UP 0c4de1808e7
+
+follow-up verdict: SHIP
+
+Scope: git -c core.fsmonitor=false diff 6c026746381 0c4de1808e7 over hook-wiring-check.cjs, hook-wiring-check.test.cjs, vibe-prompt-advisor.vitest.ts, RAD/README.md and DS/README.markdown (5 files under .skilled, 53 insertions, 7 deletions). HEAD read 0c4de1808e7. No P0 and no P1 found. Two P2 findings follow.
+
+Each fix checked:
+- P2-1 header handling (hook-wiring-check.cjs:238-246): does what it says. A trimmed line starting with `[` is a header, its `#` comment and all whitespace are dropped, `[[hooks]]` opens a block and any other header sets current to null. The commented next header, the spaced header and the foreign table now read right, and a `[hooks.extra]` sub-table no longer lends its `command` to the block above it.
+- P2-2 TMPDIR (vibe-prompt-advisor.vitest.ts:76 and :98): does what it says. The child env sets TMPDIR to `<scope>/tmp`, beforeAll creates that folder, and cleanupSkillAdvisorScope removes it with rootDir. Node honours it: `TMPDIR=<dir> node -e 'console.log(require("os").tmpdir())'` printed `<dir>`. metrics.ts:185 computes its root from tmpdir() at module load in the child, so the durable records now resolve inside the scope. The real diagnostics file read 214 lines with mtime 1794745373 and the outcomes file 205 lines with mtime 1794745271, both before and after the VPT run. The real vibe-turn-start receipt folder held 64 files and /tmp/sa-* 0 after.
+- P2-4 (RAD/README.md:135): the sentence now opens `Under --summary, a Vibe run is read a second time`, which matches scoreRun and leaves the `--locator` mode undescribed rather than misdescribed.
+- P2-5 (DS/README.markdown:235): the exit rule now says an unparseable `.vibe/hooks.toml` can still read `ok vibe`, and a trailing comment or a single-quoted string reads `hook-missing`. Both are true (probes 09, 10, n6, 02, 03 below). Residual in FP2-2.
+- P2-3: left as unreachable, as stated. No change to prompt-advisor.mjs in this diff.
+
+TOML probes, old reader (6c026746381) vs new reader (0c4de1808e7), with python3.11 tomllib as ground truth (valid or INVALID, and whether the turn-start pre_agent hook survives Vibe's first-name-wins rule):
+  01 baseline                      valid, runs     old ok            new ok            same
+  02 literal_string                valid, runs     old hook-missing  new hook-missing  same (false fail, named in DS README:235)
+  03 trailing_comment_value        valid, runs     old hook-missing  new hook-missing  same (false fail, named)
+  04 next_header_comment           valid, runs     old hook-missing  new ok            CHANGED, fixed
+  05 spaced_header                 valid, runs     old hook-missing  new ok            CHANGED, fixed
+  06 inline_array                  valid, runs     old hook-missing  new hook-missing  same (false fail)
+  07 quoted_keys                   valid, runs     old hook-missing  new hook-missing  same (false fail)
+  08 multiline_basic               valid, runs     old hook-missing  new hook-missing  same (false fail)
+  09 broken_other_line             INVALID         old ok            new ok            same (false pass, named)
+  10 duplicate_key                 INVALID         old ok            new ok            same (false pass, named)
+  11 foreign_table_after           valid, no run   old ok            new hook-missing  CHANGED, fixed
+  12 inside_multiline_string       valid, no run   old ok            new ok            same (false pass, not named)
+  13 duplicate_name_first_wins     valid, no run   old ok            new ok            same (false pass, not named)
+  New shapes aimed at the new rule:
+  n1 quoted_header [["hooks"]]     valid, runs     old hook-missing  new hook-missing  same (false fail)
+  n2 bracket_line_in_string        valid, runs     old ok            new hook-missing  CHANGED, new false fail (FP2-1)
+  n3 subtable_then_command         valid, no run   old ok            new hook-missing  CHANGED, fixed
+  n4 header_comment_with_hash      valid, runs     old hook-missing  new ok            CHANGED, fixed
+  n5 bracket_array_line            valid, runs     old ok            new hook-missing  CHANGED, new false fail (FP2-1)
+  n6 split_brackets [ [hooks] ]    INVALID         old hook-missing  new ok            CHANGED, new false pass inside the named parse-error limit
+  n7 the committed .vibe/hooks.toml valid, runs    old ok            new ok            same
+Net: five shapes fixed (04, 05, 11, n3, n4). Two valid shapes moved from right to wrong (n2, n5), and one invalid shape (n6) moved into the already named parse-error false pass.
+
+FP2-1 .skilled/commands/doctor/scripts/hook-wiring-check.cjs:238-246
+  The new header rule reads any continuation line of a multi-line value that starts with `[` as a header and closes the block. So a `command` key after that value is lost.
+  Failure scenario: a turn-start block with `description = """` then `[note] composes the brief` then `"""` above its `command` line (n2), or `extra = [` then `  [1, 2],` then `]` above its `command` (n5). tomllib accepts both and keeps the pre_agent turn-start hook. The old reader printed `ok vibe` and the new one prints `hook-missing vibe .vibe/hooks.toml`, exit 1.
+  Why P2: Vibe's HookConfig models no string or array field that would hold such a value, and an rg over every committed hooks.toml under .vibe for `= [`, `"""` and `'''` returns 0 files. The committed file still reads `ok vibe`. The direction is a false DEGRADED, never a false pass.
+
+FP2-2 .skilled/commands/doctor/scripts/README.markdown:235
+  The new limit sentence names the parse-failure false pass and two false-fail shapes. It does not name the two valid-TOML false passes that remain: a second block reusing an earlier block's `name`, which Vibe drops while the reader counts it (13), and a `command = "<turn-start>"` line inside another key's `"""` string (12). Both still print `ok vibe` with no turn-start hook running. The coordinator's note calls the kept limit "parse-error and duplicate-key", and a duplicate key is a parse error, but a duplicate name is not. Naming the duplicate-name case would make the sentence complete for the realistic shapes.
+
+Comment hygiene: every added line of the five files scanned for specs/, phase numbers, T0xx, D1-D9, REQ-, ADR-, CHK-, G<n>, F<nnn>, Q<nnn> and P<n>: 0 matches, rg exit 1. The new code comment ("A header ends the block before it, so a commented header or another table never lends its keys to a hooks block") states the behaviour exactly.
+
+Follow-up checks run: hook-wiring-check.test.cjs and doctor-runtime-mirrors-contract.test.cjs under node --test: tests 52, pass 52, fail 0 (49 before, plus the three new header cases). VPT: 10 passed, 0 failed. `node hook-wiring-check.cjs --root .` printed `ok claude`, `ok codex`, `ok cursor`, `ok devin`, `ok vibe`, exit 0. The probe folders were deleted after the run.

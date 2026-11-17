@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8c450e0ff080b863e4a05dddc7b56667ab4523fd8dc14bed9868cfa5b1ee3361",
+  "manifestHash": "0b1fa705cd7b84f30c45f7bbcf0d9812dca63c5ae1c4d0cf9bf09f0e837f8811",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -5521,6 +5521,9 @@
     "026 timeline": [
       "026 timeline"
     ],
+    "026 untuned behaviour arm operator decisions": [
+      "026-untuned-behaviour-arm operator decisions"
+    ],
     "026 validator cleanup plan": [
       "026 validator cleanup plan"
     ],
@@ -6779,6 +6782,9 @@
     "033 retention tasks": [
       "033 retention tasks"
     ],
+    "033 untuned arm arena run decisions": [
+      "033-untuned-arm-arena-run decisions"
+    ],
     "034 complete": [
       "034 complete"
     ],
@@ -6976,6 +6982,9 @@
     ],
     "040 embedding row reset": [
       "040 embedding row reset"
+    ],
+    "040 final alignment loop operator decisions": [
+      "040-final-alignment-loop operator decisions"
     ],
     "040 implementation summary": [
       "040 implementation summary"
@@ -7276,6 +7285,9 @@
     ],
     "054 handover": [
       "054 handover"
+    ],
+    "054 handover review remediation operator decisions": [
+      "054-handover-review-remediation operator decisions"
     ],
     "054 implementation summary": [
       "054 implementation summary"
@@ -8796,6 +8808,9 @@
     "advisor changelog rename tasks": [
       "advisor changelog rename tasks"
     ],
+    "advisor changelog v1 1 0 0 extension": [
+      "advisor changelog v1.1.0.0 extension"
+    ],
     "advisor child budget verdict": [
       "advisor child budget verdict"
     ],
@@ -8956,6 +8971,9 @@
     "advisor diagnostics verification": [
       "advisor diagnostics verification"
     ],
+    "advisor direct call ignores kill switch": [
+      "advisor direct call ignores kill switch"
+    ],
     "advisor directive block": [
       "advisor directive block"
     ],
@@ -8964,6 +8982,9 @@
     ],
     "advisor directive repetition": [
       "advisor directive repetition"
+    ],
+    "advisor disabled flag cli client": [
+      "advisor disabled flag cli client"
     ],
     "advisor dist drift hook error": [
       "advisor dist drift hook error"
@@ -9451,6 +9472,9 @@
     "advisor preserve set": [
       "advisor preserve set"
     ],
+    "advisor probe intent signals arena": [
+      "advisor probe intent signals arena"
+    ],
     "advisor probes 3 of 3 correct": [
       "advisor probes 3 of 3 correct"
     ],
@@ -9877,6 +9901,9 @@
     ],
     "advisor suite restore tasks": [
       "advisor suite restore tasks"
+    ],
+    "advisor suite shared metrics folder": [
+      "advisor suite shared metrics folder"
     ],
     "advisor suite teardown hang": [
       "advisor suite teardown hang"
@@ -11572,6 +11599,21 @@
     "alignment findings plan": [
       "alignment findings plan"
     ],
+    "alignment findings remediation": [
+      "alignment findings remediation"
+    ],
+    "alignment findings remediation acceptance criteria": [
+      "alignment findings remediation acceptance criteria"
+    ],
+    "alignment findings remediation implementation summary": [
+      "alignment findings remediation implementation summary"
+    ],
+    "alignment findings remediation plan": [
+      "alignment findings remediation plan"
+    ],
+    "alignment findings remediation tasks": [
+      "alignment findings remediation tasks"
+    ],
     "alignment findings tasks": [
       "alignment findings tasks"
     ],
@@ -11649,6 +11691,21 @@
     ],
     "alignment open findings tasks": [
       "alignment open findings tasks"
+    ],
+    "alignment p1 remediation": [
+      "alignment p1 remediation"
+    ],
+    "alignment p1 remediation acceptance criteria": [
+      "alignment p1 remediation acceptance criteria"
+    ],
+    "alignment p1 remediation implementation summary": [
+      "alignment p1 remediation implementation summary"
+    ],
+    "alignment p1 remediation plan": [
+      "alignment p1 remediation plan"
+    ],
+    "alignment p1 remediation tasks": [
+      "alignment p1 remediation tasks"
     ],
     "alignment phase status": [
       "alignment phase status"
@@ -12900,6 +12957,9 @@
     ],
     "archived tier read exclusion": [
       "archived tier read exclusion"
+    ],
+    "arena builder stale dist refusal": [
+      "arena builder stale dist refusal"
     ],
     "args present": [
       "args_present"
@@ -14878,6 +14938,12 @@
     "behavioral negative control verification": [
       "behavioral negative control verification"
     ],
+    "behaviour arm live run five runtimes": [
+      "behaviour arm live run five runtimes"
+    ],
+    "behaviour proof waivers": [
+      "behaviour proof waivers"
+    ],
     "belief truth maintenance deep loop": [
       "belief truth maintenance deep loop"
     ],
@@ -15825,6 +15891,24 @@
     ],
     "bridge to dead daemon reconnect": [
       "bridge to dead daemon reconnect"
+    ],
+    "brief head parity": [
+      "brief head parity"
+    ],
+    "brief head parity acceptance criteria": [
+      "brief head parity acceptance criteria"
+    ],
+    "brief head parity goal": [
+      "brief head parity goal"
+    ],
+    "brief head parity implementation summary": [
+      "brief head parity implementation summary"
+    ],
+    "brief head parity plan": [
+      "brief head parity plan"
+    ],
+    "brief head parity tasks": [
+      "brief head parity tasks"
     ],
     "brief provided values": [
       "brief provided values"
@@ -20765,6 +20849,21 @@
     "claude context nudge": [
       "Claude context nudge",
       "claude context nudge"
+    ],
+    "claude create reach and doctor default": [
+      "claude create reach and doctor default"
+    ],
+    "claude create reach and doctor default acceptance criteria": [
+      "claude create reach and doctor default acceptance criteria"
+    ],
+    "claude create reach and doctor default implementation summary": [
+      "claude create reach and doctor default implementation summary"
+    ],
+    "claude create reach and doctor default plan": [
+      "claude create reach and doctor default plan"
+    ],
+    "claude create reach and doctor default tasks": [
+      "claude create reach and doctor default tasks"
     ],
     "claude cursor fallback wrap": [
       "claude cursor fallback wrap"
@@ -27871,6 +27970,9 @@
     "codex shape fold in plan": [
       "codex shape fold-in plan"
     ],
+    "codex shell steps without command text": [
+      "codex shell steps without command text"
+    ],
     "codex shell tool test node test": [
       "codex shell tool test node test"
     ],
@@ -28298,6 +28400,9 @@
     "command intent phrases": [
       "command intent phrases"
     ],
+    "command intent phrases for doctor install setup speckit update": [
+      "command intent phrases for doctor install setup speckit update"
+    ],
     "command inventory and risk metadata": [
       "command inventory and risk metadata"
     ],
@@ -28349,6 +28454,9 @@
     "command meaning matching tasks": [
       "command meaning matching tasks"
     ],
+    "command mention refusal after name": [
+      "command mention refusal after name"
+    ],
     "command metadata census pin": [
       "command metadata census pin"
     ],
@@ -28364,8 +28472,29 @@
     "command mirror sync": [
       "command mirror sync"
     ],
+    "command offer fit guards": [
+      "command offer fit guards"
+    ],
+    "command offer fit guards acceptance criteria": [
+      "command offer fit guards acceptance criteria"
+    ],
+    "command offer fit guards goal": [
+      "command offer fit guards goal"
+    ],
+    "command offer fit guards implementation summary": [
+      "command offer fit guards implementation summary"
+    ],
+    "command offer fit guards plan": [
+      "command offer fit guards plan"
+    ],
+    "command offer fit guards tasks": [
+      "command offer fit guards tasks"
+    ],
     "command only handoff cursor devin": [
       "command-only handoff cursor devin"
+    ],
+    "command only mentioned": [
+      "command only mentioned"
     ],
     "command parity chart diagram": [
       "command parity chart diagram"
@@ -29071,6 +29200,9 @@
     ],
     "compaction stop rule removal": [
       "compaction stop rule removal"
+    ],
+    "companion line policy word": [
+      "companion line policy word"
     ],
     "companion tables setup": [
       "companion tables setup"
@@ -32565,6 +32697,9 @@
     ],
     "create skill": [
       "create skill"
+    ],
+    "create skill command rename": [
+      "create skill command rename"
     ],
     "create skill guidance": [
       "create skill guidance"
@@ -41617,6 +41752,36 @@
     "direct append sites through gateway tasks": [
       "direct append sites through gateway tasks"
     ],
+    "direct call kill switch": [
+      "direct call kill switch"
+    ],
+    "direct call kill switch acceptance criteria": [
+      "direct call kill switch acceptance criteria"
+    ],
+    "direct call kill switch implementation summary": [
+      "direct call kill switch implementation summary"
+    ],
+    "direct call kill switch plan": [
+      "direct call kill switch plan"
+    ],
+    "direct call kill switch tasks": [
+      "direct call kill switch tasks"
+    ],
+    "direct call off switch": [
+      "direct call off switch"
+    ],
+    "direct call off switch acceptance criteria": [
+      "direct call off switch acceptance criteria"
+    ],
+    "direct call off switch implementation summary": [
+      "direct call off switch implementation summary"
+    ],
+    "direct call off switch plan": [
+      "direct call off switch plan"
+    ],
+    "direct call off switch tasks": [
+      "direct call off switch tasks"
+    ],
     "direct child spec allowlist": [
       "direct child spec allowlist"
     ],
@@ -43430,6 +43595,9 @@
     "doctor helper command routing": [
       "doctor helper command routing"
     ],
+    "doctor helper for a tool that is not showing up": [
+      "doctor helper for a tool that is not showing up"
+    ],
     "doctor helper hand off": [
       "doctor helper hand-off"
     ],
@@ -44396,6 +44564,9 @@
     ],
     "document quality workflows": [
       "document quality workflows"
+    ],
+    "document read is a lookup not a start": [
+      "document read is a lookup not a start"
     ],
     "document score": [
       "document score"
@@ -46250,6 +46421,9 @@
     ],
     "embed repo unique instructions": [
       "embed repo unique instructions"
+    ],
+    "embed write failure exits 3": [
+      "embed write failure exits 3"
     ],
     "embedded artifact reference kind": [
       "embedded artifact reference kind"
@@ -49536,6 +49710,24 @@
     "fable mode tasks": [
       "fable mode tasks"
     ],
+    "fable review remediation": [
+      "fable review remediation"
+    ],
+    "fable review remediation acceptance criteria": [
+      "fable review remediation acceptance criteria"
+    ],
+    "fable review remediation goal": [
+      "fable review remediation goal"
+    ],
+    "fable review remediation implementation summary": [
+      "fable review remediation implementation summary"
+    ],
+    "fable review remediation plan": [
+      "fable review remediation plan"
+    ],
+    "fable review remediation tasks": [
+      "fable review remediation tasks"
+    ],
     "fable review synthesis": [
       "Fable review synthesis"
     ],
@@ -51303,6 +51495,21 @@
     "filters jsonc": [
       "filters.jsonc"
     ],
+    "final alignment loop": [
+      "final alignment loop"
+    ],
+    "final alignment loop acceptance criteria": [
+      "final alignment loop acceptance criteria"
+    ],
+    "final alignment loop implementation summary": [
+      "final alignment loop implementation summary"
+    ],
+    "final alignment loop plan": [
+      "final alignment loop plan"
+    ],
+    "final alignment loop tasks": [
+      "final alignment loop tasks"
+    ],
     "final baseline run tasks": [
       "final baseline run tasks"
     ],
@@ -52703,6 +52910,15 @@
     "followable spec templates": [
       "followable spec templates"
     ],
+    "followed a real workflow against improvising": [
+      "followed a real workflow against improvising"
+    ],
+    "followed range and paired arms": [
+      "followed range and paired arms"
+    ],
+    "followed rate": [
+      "followed rate"
+    ],
     "follower auto start": [
       "follower auto start"
     ],
@@ -53173,6 +53389,9 @@
     ],
     "fresh": [
       "fresh"
+    ],
+    "fresh blind rows off and on": [
+      "fresh blind rows off and on"
     ],
     "fresh clone bootstrap": [
       "fresh clone bootstrap"
@@ -54257,6 +54476,9 @@
     ],
     "gate 2 binding and runtime pointers tasks": [
       "gate 2 binding and runtime pointers tasks"
+    ],
+    "gate 2 direct call on stdin": [
+      "gate 2 direct call on stdin"
     ],
     "gate 2 routing": [
       "gate 2 routing"
@@ -58197,6 +58419,15 @@
     "handover review remediation": [
       "handover review remediation"
     ],
+    "handover review remediation implementation summary": [
+      "handover review remediation implementation summary"
+    ],
+    "handover review remediation plan": [
+      "handover review remediation plan"
+    ],
+    "handover review remediation tasks": [
+      "handover review remediation tasks"
+    ],
     "handover state routing": [
       "handover_state routing"
     ],
@@ -58612,6 +58843,21 @@
     "health data folder setup": [
       "health data folder setup"
     ],
+    "health default and brief refinements": [
+      "health default and brief refinements"
+    ],
+    "health default and brief refinements acceptance criteria": [
+      "health default and brief refinements acceptance criteria"
+    ],
+    "health default and brief refinements implementation summary": [
+      "health default and brief refinements implementation summary"
+    ],
+    "health default and brief refinements plan": [
+      "health default and brief refinements plan"
+    ],
+    "health default and brief refinements tasks": [
+      "health default and brief refinements tasks"
+    ],
     "health degeneration harness implementation": [
       "health degeneration harness implementation"
     ],
@@ -58734,6 +58980,9 @@
     ],
     "help printer test": [
       "help printer test"
+    ],
+    "heredoc comparison misread as write": [
+      "heredoc comparison misread as write"
     ],
     "heredoc script dispatch": [
       "heredoc script dispatch"
@@ -59345,6 +59594,21 @@
     "holdout overlap check": [
       "holdout overlap check"
     ],
+    "holdout row retirement": [
+      "holdout row retirement"
+    ],
+    "holdout row retirement acceptance criteria": [
+      "holdout row retirement acceptance criteria"
+    ],
+    "holdout row retirement implementation summary": [
+      "holdout row retirement implementation summary"
+    ],
+    "holdout row retirement plan": [
+      "holdout row retirement plan"
+    ],
+    "holdout row retirement tasks": [
+      "holdout row retirement tasks"
+    ],
     "home config cutover": [
       "home config cutover"
     ],
@@ -59609,6 +59873,12 @@
     "hook guards and audit log tasks": [
       "hook guards and audit log tasks"
     ],
+    "hook health by default": [
+      "hook health by default"
+    ],
+    "hook health record by default": [
+      "hook health record by default"
+    ],
     "hook helper skipped fail open": [
       "hook helper skipped fail_open"
     ],
@@ -59756,6 +60026,9 @@
     "hook readme fold and rewrite tasks": [
       "hook readme fold and rewrite tasks"
     ],
+    "hook readme phrases git hooks": [
+      "hook readme phrases git hooks"
+    ],
     "hook readme rewrite": [
       "hook readme rewrite"
     ],
@@ -59899,6 +60172,9 @@
     ],
     "hook usefulness validation": [
       "hook usefulness validation"
+    ],
+    "hook wiring reads the launch": [
+      "hook wiring reads the launch"
     ],
     "hooks": [
       "hooks"
@@ -61477,6 +61753,9 @@
     ],
     "in place recycle vs self exit": [
       "in-place recycle vs self-exit"
+    ],
+    "in place shell write scorer": [
+      "in-place shell write scorer"
     ],
     "in process execution directive": [
       "in-process execution directive"
@@ -67084,6 +67363,21 @@
     "main readme wording": [
       "main readme wording"
     ],
+    "main sk doc routing repair": [
+      "main sk doc routing repair"
+    ],
+    "main sk doc routing repair acceptance criteria": [
+      "main sk doc routing repair acceptance criteria"
+    ],
+    "main sk doc routing repair implementation summary": [
+      "main sk doc routing repair implementation summary"
+    ],
+    "main sk doc routing repair plan": [
+      "main sk doc routing repair plan"
+    ],
+    "main sk doc routing repair tasks": [
+      "main sk doc routing repair tasks"
+    ],
     "main skill guide source of truth": [
       "main skill guide source of truth"
     ],
@@ -72673,6 +72967,9 @@
     "ment": [
       "ment"
     ],
+    "mention is not a request release note": [
+      "mention is not a request release note"
+    ],
     "menu wording plan": [
       "menu wording plan"
     ],
@@ -73401,6 +73698,9 @@
     ],
     "mistral vibe": [
       "mistral vibe"
+    ],
+    "mistral vibe chat automation": [
+      "mistral vibe chat automation"
     ],
     "mistral vibe closeout": [
       "mistral vibe closeout"
@@ -75235,6 +75535,9 @@
     "necessary beyond local maxima": [
       "necessary beyond local maxima"
     ],
+    "needs a mode only when the prompt names the hub": [
+      "needs a mode only when the prompt names the hub"
+    ],
     "needs clarification space variant": [
       "NEEDS CLARIFICATION space variant"
     ],
@@ -75657,6 +75960,9 @@
     ],
     "no drift no debt": [
       "no drift no debt"
+    ],
+    "no edit prompt gets no command": [
+      "no-edit prompt gets no command"
     ],
     "no fabrication goal binding": [
       "no fabrication goal binding"
@@ -78019,6 +78325,9 @@
     "opencode goal wall clock cap": [
       "opencode goal wall clock cap"
     ],
+    "opencode head drops the command": [
+      "opencode head drops the command"
+    ],
     "opencode history locator": [
       "opencode history locator"
     ],
@@ -79024,6 +79333,9 @@
     ],
     "opus single id": [
       "opus single id"
+    ],
+    "or list refusal mention reader": [
+      "or-list refusal mention reader"
     ],
     "or r 01 election race investigation": [
       "OR-R-01 election race investigation"
@@ -81182,6 +81494,9 @@
     "pascalcase types check": [
       "pascalcase types check"
     ],
+    "pass six p2 findings": [
+      "pass six p2 findings"
+    ],
     "past due tasks": [
       "past-due tasks"
     ],
@@ -81716,6 +82031,9 @@
     ],
     "per runtime behaviour proof acceptance criteria": [
       "per runtime behaviour proof acceptance criteria"
+    ],
+    "per runtime behaviour proof decision record": [
+      "per runtime behaviour proof decision record"
     ],
     "per runtime behaviour proof implementation summary": [
       "per runtime behaviour proof implementation summary"
@@ -83019,6 +83337,9 @@
     "phase 14 results": [
       "phase 14 results"
     ],
+    "phase 14 review remediation": [
+      "phase 14 review remediation"
+    ],
     "phase 14 review wording fixes": [
       "phase 14 review wording fixes"
     ],
@@ -83079,6 +83400,9 @@
     "phase 15 goal legacy resume and budget notice": [
       "phase 15 goal legacy resume and budget notice"
     ],
+    "phase 15 health default and brief refinements": [
+      "phase 15 health default and brief refinements"
+    ],
     "phase 15 hook suite job split": [
       "phase 15 hook suite job split"
     ],
@@ -83126,6 +83450,9 @@
     ],
     "phase 16 ci red check repairs": [
       "phase 16 ci red check repairs"
+    ],
+    "phase 16 claude create reach and doctor default": [
+      "phase 16 claude create reach and doctor default"
     ],
     "phase 16 cli codex": [
       "phase 16 cli codex"
@@ -83208,6 +83535,9 @@
     "phase 17 release changelog": [
       "phase 17 release changelog"
     ],
+    "phase 17 review pass two remediation": [
+      "phase 17 review pass two remediation"
+    ],
     "phase 17 specs artifact tracking decision": [
       "phase 17 specs artifact tracking decision"
     ],
@@ -83240,6 +83570,9 @@
     ],
     "phase 18 dsh single executor loop": [
       "phase 18 dsh single executor loop"
+    ],
+    "phase 18 holdout row retirement": [
+      "phase 18 holdout row retirement"
     ],
     "phase 18 host trigger index and repin generated": [
       "phase 18 host trigger index and repin generated"
@@ -83321,6 +83654,9 @@
     ],
     "phase 19 vibe relaunch command tier": [
       "phase 19 vibe relaunch command tier"
+    ],
+    "phase 19 workflow outcome measure": [
+      "phase 19 workflow outcome measure"
     ],
     "phase 2 admission corpus pin": [
       "phase 2 admission corpus pin"
@@ -83571,6 +83907,9 @@
     "phase 20 closure gate": [
       "phase 20 closure gate"
     ],
+    "phase 20 command offer fit guards": [
+      "phase 20 command offer fit guards"
+    ],
     "phase 20 deep review remediation": [
       "phase 20 deep review remediation"
     ],
@@ -83615,6 +83954,9 @@
     ],
     "phase 21 align system skill advisor": [
       "phase 21 align system skill advisor"
+    ],
+    "phase 21 brief head parity": [
+      "phase 21 brief head parity"
     ],
     "phase 21 ci gate regressions": [
       "phase 21 ci gate regressions"
@@ -83700,6 +84042,9 @@
     "phase 22 vibe hook playbook and live scenarios": [
       "phase 22 vibe hook playbook and live scenarios"
     ],
+    "phase 22 workflow measure soundness": [
+      "phase 22 workflow measure soundness"
+    ],
     "phase 23 agent docs fixes": [
       "phase 23 agent docs fixes"
     ],
@@ -83721,11 +84066,17 @@
     "phase 23 relaunch cancel and test isolation": [
       "phase 23 relaunch cancel and test isolation"
     ],
+    "phase 23 untuned outcome evidence": [
+      "phase 23 untuned outcome evidence"
+    ],
     "phase 23 vibe review remediation": [
       "phase 23 vibe review remediation"
     ],
     "phase 24 dsh docs alignment": [
       "phase 24 dsh docs alignment"
+    ],
+    "phase 24 fable review remediation": [
+      "phase 24 fable review remediation"
     ],
     "phase 24 goal rebind claude codex hermes probes": [
       "phase 24 goal rebind claude codex hermes probes"
@@ -83769,6 +84120,9 @@
     "phase 25 goal binding record and launcher": [
       "phase 25 goal binding record and launcher"
     ],
+    "phase 25 release notes and doc sync": [
+      "phase 25 release notes and doc sync"
+    ],
     "phase 25 stop path live proof": [
       "phase 25 stop path live proof"
     ],
@@ -83787,6 +84141,9 @@
     "phase 26 goal rebind shared core and opencode": [
       "phase 26 goal rebind shared core and opencode"
     ],
+    "phase 26 untuned behaviour arm": [
+      "phase 26 untuned behaviour arm"
+    ],
     "phase 27 alignment preexisting gaps": [
       "phase 27 alignment preexisting gaps"
     ],
@@ -83799,6 +84156,9 @@
     "phase 27 opencode2 models provider check": [
       "phase 27 opencode2 models provider check"
     ],
+    "phase 27 review pass four remediation": [
+      "phase 27 review pass four remediation"
+    ],
     "phase 27 review traceability recording": [
       "phase 27 review traceability recording"
     ],
@@ -83807,6 +84167,9 @@
     ],
     "phase 28 ci red checks": [
       "phase 28 ci red checks"
+    ],
+    "phase 28 direct call off switch": [
+      "phase 28 direct call off switch"
     ],
     "phase 28 goal rebind live proof and docs": [
       "phase 28 goal rebind live proof and docs"
@@ -83819,6 +84182,9 @@
     ],
     "phase 28 surface setup hardening research": [
       "phase 28 surface setup hardening research"
+    ],
+    "phase 29 direct call kill switch": [
+      "phase 29 direct call kill switch"
     ],
     "phase 29 relaunch evidence gaps and playbook drift": [
       "phase 29 relaunch evidence gaps and playbook drift"
@@ -84075,6 +84441,12 @@
     "phase 30 review count source": [
       "phase 30 review count source"
     ],
+    "phase 30 vibe runtime parity": [
+      "phase 30 vibe runtime parity"
+    ],
+    "phase 31 alignment findings remediation": [
+      "phase 31 alignment findings remediation"
+    ],
     "phase 31 epic review fixes": [
       "phase 31 epic review fixes"
     ],
@@ -84096,6 +84468,9 @@
     "phase 32 plugin tests ci and stale bundles": [
       "phase 32 plugin tests ci and stale bundles"
     ],
+    "phase 32 review pass five remediation": [
+      "phase 32 review pass five remediation"
+    ],
     "phase 32 traceability reserve iteration": [
       "phase 32 traceability reserve iteration"
     ],
@@ -84105,11 +84480,20 @@
     "phase 33 follow up review fixes": [
       "phase 33 follow up review fixes"
     ],
+    "phase 33 untuned arm arena run": [
+      "phase 33 untuned arm arena run"
+    ],
     "phase 33 zero iteration report": [
       "phase 33 zero iteration report"
     ],
+    "phase 34 scorer heredoc redirect fix": [
+      "phase 34 scorer heredoc redirect fix"
+    ],
     "phase 34 self check adjudication ledger": [
       "phase 34 self check adjudication ledger"
+    ],
+    "phase 35 suite metrics and start shape": [
+      "phase 35 suite metrics and start shape"
     ],
     "phase 35 v2 bridge plugin effects": [
       "phase 35 v2 bridge plugin effects"
@@ -84117,14 +84501,26 @@
     "phase 36 cli opencode docs and vision test cleanup": [
       "phase 36 cli opencode docs and vision test cleanup"
     ],
+    "phase 36 start rate fixed rule": [
+      "phase 36 start rate fixed rule"
+    ],
     "phase 37 ci pi and provisioning follow ups": [
       "phase 37 ci pi and provisioning follow ups"
     ],
     "phase 37 relaunch test speed": [
       "phase 37 relaunch test speed"
     ],
+    "phase 37 review pass six": [
+      "phase 37 review pass six"
+    ],
+    "phase 38 alignment p1 remediation": [
+      "phase 38 alignment p1 remediation"
+    ],
     "phase 38 plugin scanner follow ups": [
       "phase 38 plugin scanner follow ups"
+    ],
+    "phase 39 main sk doc routing repair": [
+      "phase 39 main sk doc routing repair"
     ],
     "phase 39 sk code opencode alignment audit": [
       "phase 39 sk code opencode alignment audit"
@@ -84362,6 +84758,9 @@
     ],
     "phase 40 dispatch lint held fixes": [
       "phase 40 dispatch lint held fixes"
+    ],
+    "phase 40 final alignment loop": [
+      "phase 40 final alignment loop"
     ],
     "phase 41 goal held fixes": [
       "phase 41 goal held fixes"
@@ -84632,6 +85031,9 @@
     ],
     "phase 53 handover deep review": [
       "phase 53 handover deep review"
+    ],
+    "phase 54 handover review remediation": [
+      "phase 54 handover review remediation"
     ],
     "phase 54 v4 0 0 13 changelog opencode": [
       "phase 54 v4 0 0 13 changelog opencode"
@@ -88225,6 +88627,9 @@
     ],
     "ponytail sk code findings": [
       "ponytail sk-code findings"
+    ],
+    "pooled sign test arm": [
+      "pooled sign test arm"
     ],
     "population pyramid categorical colour": [
       "population-pyramid categorical colour"
@@ -93684,6 +94089,9 @@
     "refusal outcomes inverted grading": [
       "refusal outcomes inverted grading"
     ],
+    "refusal wording mention reader": [
+      "refusal wording mention reader"
+    ],
     "refuse a refuted claim": [
       "refuse a refuted claim"
     ],
@@ -95125,6 +95533,24 @@
     "release notes": [
       "release notes"
     ],
+    "release notes and doc sync": [
+      "release notes and doc sync"
+    ],
+    "release notes and doc sync acceptance criteria": [
+      "release notes and doc sync acceptance criteria"
+    ],
+    "release notes and doc sync goal": [
+      "release notes and doc sync goal"
+    ],
+    "release notes and doc sync implementation summary": [
+      "release notes and doc sync implementation summary"
+    ],
+    "release notes and doc sync plan": [
+      "release notes and doc sync plan"
+    ],
+    "release notes and doc sync tasks": [
+      "release notes and doc sync tasks"
+    ],
     "release notes corrections": [
       "release notes corrections"
     ],
@@ -95606,6 +96032,9 @@
     "remote github operations": [
       "remote github operations"
     ],
+    "remote guard every live turn": [
+      "remote guard every live turn"
+    ],
     "remote push approval": [
       "remote push approval"
     ],
@@ -95938,6 +96367,9 @@
     ],
     "rename commit verification checklist": [
       "rename commit verification checklist"
+    ],
+    "rename create skill to create sk skill": [
+      "rename create skill to create sk-skill"
     ],
     "rename double check review report": [
       "rename double-check review report"
@@ -98200,6 +98632,9 @@
     "restart loop fix shipped": [
       "restart loop fix shipped"
     ],
+    "restated start rates 007 and 033": [
+      "restated start rates 007 and 033"
+    ],
     "restore and phase numbering": [
       "restore and phase numbering"
     ],
@@ -98619,6 +99054,9 @@
     ],
     "retire sweep": [
       "retire sweep"
+    ],
+    "retire the sealed holdout row": [
+      "retire the sealed holdout row"
     ],
     "retire the sweep plan": [
       "retire the sweep plan"
@@ -99779,8 +100217,71 @@
     "review packet type tasks": [
       "review packet type tasks"
     ],
+    "review pass five remediation": [
+      "review pass five remediation"
+    ],
+    "review pass five remediation acceptance criteria": [
+      "review pass five remediation acceptance criteria"
+    ],
+    "review pass five remediation implementation summary": [
+      "review pass five remediation implementation summary"
+    ],
+    "review pass five remediation plan": [
+      "review pass five remediation plan"
+    ],
+    "review pass five remediation tasks": [
+      "review pass five remediation tasks"
+    ],
+    "review pass four remediation": [
+      "review pass four remediation"
+    ],
+    "review pass four remediation acceptance criteria": [
+      "review pass four remediation acceptance criteria"
+    ],
+    "review pass four remediation goal": [
+      "review pass four remediation goal"
+    ],
+    "review pass four remediation implementation summary": [
+      "review pass four remediation implementation summary"
+    ],
+    "review pass four remediation plan": [
+      "review pass four remediation plan"
+    ],
+    "review pass four remediation tasks": [
+      "review pass four remediation tasks"
+    ],
+    "review pass six remediation": [
+      "review pass six remediation"
+    ],
+    "review pass six remediation acceptance criteria": [
+      "review pass six remediation acceptance criteria"
+    ],
+    "review pass six remediation implementation summary": [
+      "review pass six remediation implementation summary"
+    ],
+    "review pass six remediation plan": [
+      "review pass six remediation plan"
+    ],
+    "review pass six remediation tasks": [
+      "review pass six remediation tasks"
+    ],
     "review pass tasks": [
       "review pass tasks"
+    ],
+    "review pass two remediation": [
+      "review pass two remediation"
+    ],
+    "review pass two remediation acceptance criteria": [
+      "review pass two remediation acceptance criteria"
+    ],
+    "review pass two remediation implementation summary": [
+      "review pass two remediation implementation summary"
+    ],
+    "review pass two remediation plan": [
+      "review pass two remediation plan"
+    ],
+    "review pass two remediation tasks": [
+      "review pass two remediation tasks"
     ],
     "review path resolution rule": [
       "review path resolution rule"
@@ -104164,6 +104665,21 @@
     "scorer fusion stress": [
       "scorer fusion stress"
     ],
+    "scorer heredoc redirect fix": [
+      "scorer heredoc redirect fix"
+    ],
+    "scorer heredoc redirect fix acceptance criteria": [
+      "scorer heredoc redirect fix acceptance criteria"
+    ],
+    "scorer heredoc redirect fix implementation summary": [
+      "scorer heredoc redirect fix implementation summary"
+    ],
+    "scorer heredoc redirect fix plan": [
+      "scorer heredoc redirect fix plan"
+    ],
+    "scorer heredoc redirect fix tasks": [
+      "scorer heredoc redirect fix tasks"
+    ],
     "scorer lanes": [
       "scorer lanes"
     ],
@@ -104391,6 +104907,9 @@
     ],
     "sealed artifact verification evidence": [
       "sealed artifact verification evidence"
+    ],
+    "sealed fit rows": [
+      "sealed fit rows"
     ],
     "sealed ledger alignment recovery plan": [
       "sealed ledger alignment recovery plan"
@@ -106964,6 +107483,12 @@
     ],
     "shell quality validation": [
       "shell quality validation"
+    ],
+    "shell read command start": [
+      "shell read command start"
+    ],
+    "shell read counts as a load": [
+      "shell read counts as a load"
     ],
     "shell security considerations": [
       "shell security considerations"
@@ -112783,6 +113308,9 @@
     "sk doc 2 1 0 0": [
       "sk-doc 2.1.0.0"
     ],
+    "sk doc 2 10 0 0": [
+      "sk-doc 2.10.0.0"
+    ],
     "sk doc 2 2 0 0": [
       "sk-doc 2.2.0.0"
     ],
@@ -113313,6 +113841,9 @@
     ],
     "sk doc v2 1 0 0": [
       "sk-doc v2.1.0.0"
+    ],
+    "sk doc v2 10 0 0": [
+      "sk-doc v2.10.0.0"
     ],
     "sk doc v2 2 0 0": [
       "sk-doc v2.2.0.0"
@@ -114509,6 +115040,9 @@
     "sk prompt v4 0 5 0": [
       "sk-prompt v4.0.5.0"
     ],
+    "sk skill command name": [
+      "sk-skill command name"
+    ],
     "sk vision changelog retrofit": [
       "sk-vision changelog retrofit"
     ],
@@ -114750,6 +115284,9 @@
     ],
     "skill advisor devin hook": [
       "skill advisor devin hook"
+    ],
+    "skill advisor disabled direct call still answers": [
+      "skill advisor disabled direct call still answers"
     ],
     "skill advisor dist json copy": [
       "skill-advisor dist json copy"
@@ -115920,6 +116457,9 @@
     "skill graph scan vs advisor rebuild": [
       "skill_graph_scan vs advisor_rebuild"
     ],
+    "skill graph signal drift sk doc": [
+      "skill graph signal drift sk-doc"
+    ],
     "skill graph sqlite": [
       "skill graph sqlite"
     ],
@@ -116042,6 +116582,9 @@
     ],
     "skill md code rank embed keyword": [
       "SKILL.md code-rank-embed keyword"
+    ],
+    "skill md command file refused": [
+      "skill.md command file refused"
     ],
     "skill md recovery commands": [
       "skill md recovery commands"
@@ -119996,6 +120539,9 @@
     "speckit save search rename": [
       "speckit save search rename"
     ],
+    "speckit search intent phrases": [
+      "speckit search intent phrases"
+    ],
     "speckit semantic triggers flag": [
       "SPECKIT_SEMANTIC_TRIGGERS flag"
     ],
@@ -120949,11 +121495,29 @@
     "start new session killpg": [
       "start_new_session killpg"
     ],
+    "start rate fixed rule": [
+      "start rate fixed rule"
+    ],
+    "start rate fixed rule acceptance criteria": [
+      "start rate fixed rule acceptance criteria"
+    ],
+    "start rate fixed rule implementation summary": [
+      "start rate fixed rule implementation summary"
+    ],
+    "start rate fixed rule plan": [
+      "start rate fixed rule plan"
+    ],
+    "start rate fixed rule tasks": [
+      "start rate fixed rule tasks"
+    ],
     "start running timer": [
       "start running timer"
     ],
     "start sh reaper allowlist": [
       "start.sh reaper allowlist"
+    ],
+    "start shape split per runtime": [
+      "start shape split per runtime"
     ],
     "start the skill advisor on the node": [
       "start the skill advisor on the node"
@@ -122345,6 +122909,21 @@
     ],
     "suite failure task breakdown": [
       "suite failure task breakdown"
+    ],
+    "suite metrics and start shape": [
+      "suite metrics and start shape"
+    ],
+    "suite metrics and start shape acceptance criteria": [
+      "suite metrics and start shape acceptance criteria"
+    ],
+    "suite metrics and start shape implementation summary": [
+      "suite metrics and start shape implementation summary"
+    ],
+    "suite metrics and start shape plan": [
+      "suite metrics and start shape plan"
+    ],
+    "suite metrics and start shape tasks": [
+      "suite metrics and start shape tasks"
     ],
     "suite path proof objective": [
       "suite path proof objective"
@@ -123766,6 +124345,9 @@
     "system skill advisor 1 0 0 0": [
       "system-skill-advisor 1.0.0.0"
     ],
+    "system skill advisor 1 1 0 0": [
+      "system-skill-advisor 1.1.0.0"
+    ],
     "system skill advisor architectural shape": [
       "system-skill-advisor architectural shape"
     ],
@@ -124105,6 +124687,9 @@
     "system skill advisor v1 0 0 0": [
       "system-skill-advisor v1.0.0.0"
     ],
+    "system skill advisor v1 1 0 0": [
+      "system-skill-advisor v1.1.0.0"
+    ],
     "system skilled doctor 1 0 0 0": [
       "system-skilled-doctor 1.0.0.0"
     ],
@@ -124128,6 +124713,9 @@
     ],
     "system skilled doctor 1 1 6 0": [
       "system-skilled-doctor 1.1.6.0"
+    ],
+    "system skilled doctor 1 1 7 0": [
+      "system-skilled-doctor 1.1.7.0"
     ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
@@ -124185,6 +124773,9 @@
     ],
     "system skilled doctor v1 1 6 0": [
       "system-skilled-doctor v1.1.6.0"
+    ],
+    "system skilled doctor v1 1 7 0": [
+      "system-skilled-doctor v1.1.7.0"
     ],
     "system spec gate": [
       "system-spec-gate"
@@ -124596,6 +125187,9 @@
     ],
     "system spec kit 2 13 3 0": [
       "system-spec-kit 2.13.3.0"
+    ],
+    "system spec kit 2 13 4 0": [
+      "system-spec-kit 2.13.4.0"
     ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
@@ -125250,6 +125844,9 @@
     ],
     "system spec kit v2 13 3 0": [
       "system-spec-kit v2.13.3.0"
+    ],
+    "system spec kit v2 13 4 0": [
+      "system-spec-kit v2.13.4.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
@@ -129302,6 +129899,9 @@
     "unattended task metadata": [
       "unattended task metadata"
     ],
+    "unattended with research suffix": [
+      "unattended with-research suffix"
+    ],
     "unattributabledirs implementation summary": [
       "unattributableDirs implementation summary"
     ],
@@ -129614,6 +130214,9 @@
     "unrun tests ci coverage tasks": [
       "unrun tests ci coverage tasks"
     ],
+    "unsafe arena write checkout boundary": [
+      "unsafe arena write checkout boundary"
+    ],
     "unsafe type casts reduced": [
       "unsafe type casts reduced"
     ],
@@ -129661,6 +130264,63 @@
     ],
     "untrusted repo hook source root": [
       "untrusted repo hook source root"
+    ],
+    "untuned arm arena run": [
+      "untuned arm arena run"
+    ],
+    "untuned arm arena run acceptance criteria": [
+      "untuned arm arena run acceptance criteria"
+    ],
+    "untuned arm arena run implementation summary": [
+      "untuned arm arena run implementation summary"
+    ],
+    "untuned arm arena run plan": [
+      "untuned arm arena run plan"
+    ],
+    "untuned arm arena run tasks": [
+      "untuned arm arena run tasks"
+    ],
+    "untuned arm rescore b 5 trigger": [
+      "untuned arm rescore b-5 trigger"
+    ],
+    "untuned arm verdict": [
+      "untuned arm verdict"
+    ],
+    "untuned behaviour arm": [
+      "untuned behaviour arm"
+    ],
+    "untuned behaviour arm acceptance criteria": [
+      "untuned behaviour arm acceptance criteria"
+    ],
+    "untuned behaviour arm goal": [
+      "untuned behaviour arm goal"
+    ],
+    "untuned behaviour arm implementation summary": [
+      "untuned behaviour arm implementation summary"
+    ],
+    "untuned behaviour arm plan": [
+      "untuned behaviour arm plan"
+    ],
+    "untuned behaviour arm tasks": [
+      "untuned behaviour arm tasks"
+    ],
+    "untuned outcome evidence": [
+      "untuned outcome evidence"
+    ],
+    "untuned outcome evidence acceptance criteria": [
+      "untuned outcome evidence acceptance criteria"
+    ],
+    "untuned outcome evidence goal": [
+      "untuned outcome evidence goal"
+    ],
+    "untuned outcome evidence implementation summary": [
+      "untuned outcome evidence implementation summary"
+    ],
+    "untuned outcome evidence plan": [
+      "untuned outcome evidence plan"
+    ],
+    "untuned outcome evidence tasks": [
+      "untuned outcome evidence tasks"
     ],
     "unused backend dependencies": [
       "unused backend dependencies"
@@ -132063,6 +132723,12 @@
     "vibe cli reference": [
       "vibe cli reference"
     ],
+    "vibe command document pointer": [
+      "vibe command document pointer"
+    ],
+    "vibe command reference allowlist": [
+      "vibe command reference allowlist"
+    ],
     "vibe compaction context": [
       "vibe compaction context"
     ],
@@ -132339,6 +133005,9 @@
     "vibe local prompt stub gitignore": [
       "vibe local prompt stub gitignore"
     ],
+    "vibe mirror checks in ci": [
+      "vibe mirror checks in ci"
+    ],
     "vibe mirror ci check": [
       "vibe mirror ci check"
     ],
@@ -132486,6 +133155,21 @@
     "vibe runtime folder implementation summary": [
       "vibe runtime folder implementation summary"
     ],
+    "vibe runtime parity": [
+      "vibe runtime parity"
+    ],
+    "vibe runtime parity acceptance criteria": [
+      "vibe runtime parity acceptance criteria"
+    ],
+    "vibe runtime parity implementation summary": [
+      "vibe runtime parity implementation summary"
+    ],
+    "vibe runtime parity plan": [
+      "vibe runtime parity plan"
+    ],
+    "vibe runtime parity tasks": [
+      "vibe runtime parity tasks"
+    ],
     "vibe session handover": [
       "Vibe session handover",
       "vibe session handover"
@@ -132534,6 +133218,9 @@
     ],
     "vibe sync generators": [
       "vibe sync generators"
+    ],
+    "vibe transcript scorer tool table": [
+      "vibe transcript scorer tool table"
     ],
     "vibe trust gate": [
       "vibe trust gate"
@@ -133013,6 +133700,9 @@
     ],
     "warm cli fallback envelope": [
       "warm CLI fallback envelope"
+    ],
+    "warm daemon ignores disable flag": [
+      "warm daemon ignores disable flag"
     ],
     "warm fallback reason codes": [
       "warm fallback reason codes"
@@ -133824,11 +134514,20 @@
     "withdraw deferred hand over": [
       "withdraw deferred hand-over"
     ],
+    "withdraw on prompt error logging": [
+      "withdraw on prompt error logging"
+    ],
     "withdrawn acceptance criterion": [
       "withdrawn acceptance criterion"
     ],
     "withdrawn notice pi opencode": [
       "withdrawn notice pi opencode"
+    ],
+    "withdrawonprompt shared helper": [
+      "withdrawOnPrompt shared helper"
+    ],
+    "withhold a command where none fits": [
+      "withhold a command where none fits"
     ],
     "withspecfolderlock": [
       "withSpecFolderLock"
@@ -133932,11 +134631,47 @@
     "workflow invariance": [
       "workflow invariance"
     ],
+    "workflow load rate per runtime": [
+      "workflow load rate per runtime"
+    ],
     "workflow lock starvation": [
       "workflow lock starvation"
     ],
     "workflow logic hardening phase parent spec": [
       "workflow logic hardening phase parent spec"
+    ],
+    "workflow measure soundness": [
+      "workflow measure soundness"
+    ],
+    "workflow measure soundness acceptance criteria": [
+      "workflow measure soundness acceptance criteria"
+    ],
+    "workflow measure soundness goal": [
+      "workflow measure soundness goal"
+    ],
+    "workflow measure soundness implementation summary": [
+      "workflow measure soundness implementation summary"
+    ],
+    "workflow measure soundness plan": [
+      "workflow measure soundness plan"
+    ],
+    "workflow measure soundness tasks": [
+      "workflow measure soundness tasks"
+    ],
+    "workflow outcome measure": [
+      "workflow outcome measure"
+    ],
+    "workflow outcome measure acceptance criteria": [
+      "workflow outcome measure acceptance criteria"
+    ],
+    "workflow outcome measure implementation summary": [
+      "workflow outcome measure implementation summary"
+    ],
+    "workflow outcome measure plan": [
+      "workflow outcome measure plan"
+    ],
+    "workflow outcome measure tasks": [
+      "workflow outcome measure tasks"
     ],
     "workflow owner guard": [
       "workflow owner guard",
@@ -133950,6 +134685,9 @@
     ],
     "workflow path review routing": [
       "workflow path review routing"
+    ],
+    "workflow path share": [
+      "workflow path share"
     ],
     "workflow permissions": [
       "workflow permissions"

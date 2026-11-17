@@ -1,0 +1,66 @@
+PROMPT: is /speckit:complete overkill for a two line fix?
+  row 0: system-spec-kit 0.82/0.26 command=- policy=- owner=- ambiguous=false
+  row 1: sk-code 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: mcp-tooling 0.82/0.26 command=- policy=- owner=- ambiguous=false
+PROMPT: should I use /deep:research for this or just read the two files myself?
+  row 0: system-deep-loop 0.8378/0.12 command=- policy=- owner=- ambiguous=false
+PROMPT: can you run /speckit:plan?
+  row 0: command-speckit-plan 0.8623/0.16 command=/speckit:plan policy=start owner=system-spec-kit ambiguous=false
+  row 1: system-spec-kit 0.8284/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: cli-external-orchestration 0.82/0.2 command=- policy=- owner=- ambiguous=false
+PROMPT: dont guess, run /speckit:plan
+  row 0: command-speckit-plan 0.8224/0.16 command=/speckit:plan policy=start owner=system-spec-kit ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: cli-external-orchestration 0.82/0.26 command=- policy=- owner=- ambiguous=false
+PROMPT: never mind just run /speckit:save
+  row 0: command-speckit-save 0.9134/0.16 command=/speckit:save policy=start owner=system-spec-kit ambiguous=false
+  row 1: system-spec-kit 0.874/0.12 command=- policy=- owner=- ambiguous=false
+  row 2: cli-external-orchestration 0.82/0.22 command=- policy=- owner=- ambiguous=false
+PROMPT: not sure, use /create:readme
+  row 0: sk-doc 0.9393/0.12 command=/create:readme policy=start owner=sk-doc ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: mcp-tooling 0.82/0.22 command=- policy=- owner=- ambiguous=false
+PROMPT: without asking, run /speckit:complete
+  row 0: command-speckit-complete 0.8228/0.16 command=/speckit:complete policy=start owner=system-spec-kit ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: cli-external-orchestration 0.82/0.26 command=- policy=- owner=- ambiguous=false
+PROMPT: change the title of the README in the hooks folder
+  row 0: sk-doc 0.9433/0.12 command=/create:readme policy=start owner=- ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: mcp-tooling 0.82/0.18 command=- policy=- owner=- ambiguous=false
+PROMPT: add a troubleshooting section to the existing README
+  row 0: sk-doc 0.9171/0.12 command=/create:readme policy=start owner=- ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: sk-code 0.82/0.22 command=- policy=- owner=- ambiguous=false
+PROMPT: add a troubleshooting section to the existing README in the hooks folder
+  row 0: sk-doc 0.9191/0.12 command=/create:readme policy=start owner=- ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: mcp-tooling 0.82/0.18 command=- policy=- owner=- ambiguous=false
+PROMPT: the symlink in my node_modules folder is broken after npm install
+  (no recommendation)
+PROMPT: the trigger index lookup returns nothing for my packet, leave every file as it is
+  row 0: command-doctor-speckit 0.8/0.3 command=/doctor:speckit policy=run owner=system-skilled-doctor ambiguous=false
+  row 1: system-spec-kit 0.95/0.12 command=- policy=- owner=- ambiguous=false
+  row 2: sk-doc 0.82/0.18 command=- policy=- owner=- ambiguous=false
+PROMPT: leave every file as it is, the trigger index lookup returns nothing for my packet
+  row 0: system-spec-kit 0.95/0.12 command=- policy=- owner=- ambiguous=false
+  row 1: sk-doc 0.82/0.18 command=- policy=- owner=- ambiguous=false
+  row 2: command-doctor-speckit 0.8/0.3 command=/doctor:speckit policy=run owner=system-skilled-doctor ambiguous=false
+PROMPT: the trigger index lookup returns nothing for my packet, do not change anything
+  row 0: system-spec-kit 0.95/0.12 command=- policy=- owner=- ambiguous=false
+  row 1: sk-doc 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: sk-code 0.82/0.26 command=- policy=- owner=- ambiguous=false
+PROMPT: do i need to run /speckit:plan before /speckit:implement?
+  row 0: command-speckit-implement 0.8378/0.16 command=/speckit:implement policy=start owner=system-spec-kit ambiguous=false
+  row 1: system-spec-kit 0.827/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: sk-code 0.82/0.22 command=- policy=- owner=- ambiguous=false
+PROMPT: when would i use /create:agent?
+  row 0: sk-design 0.82/0.26 command=- policy=- owner=- ambiguous=true
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=true
+  row 2: sk-doc 0.82/0.26 command=- policy=- owner=- ambiguous=true
+PROMPT: does /doctor:update touch my settings?
+  row 0: sk-code 0.82/0.26 command=- policy=- owner=- ambiguous=true
+  row 1: system-skilled-doctor 0.82/0.34 command=- policy=- owner=- ambiguous=true
+  row 2: mcp-tooling 0.82/0.3 command=- policy=- owner=- ambiguous=true
+PROMPT: would /speckit:complete be too much here?
+  row 0: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false

@@ -112,6 +112,9 @@ export function compiledRouteSummaryTargetDigest(summary) {
 // byte-identical to legacy on routing fields, so only its served authority and
 // outcome are reported. Returning null when no compiled decision is served
 // keeps the injected context byte-identical to the legacy brief.
+// The plugin transform does not add this line to the brief today, so nothing a
+// session reads comes from here. The renderer and its tests stay so the line
+// can be wired back without being rewritten.
 /**
  * Render the served compiled decision as one additive summary line.
  *

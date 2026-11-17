@@ -1,0 +1,51 @@
+# Phase 022 workflow delta. Before is the phase base scorer (47577daa6f), after is the working tree at the T015 gate.
+# Counts and reasons only. Row lines below each runtime name the row that moved and the task whose rule moved it.
+claude pre before: command=3 skill=1 asked=- askedActed=- otherMode=- improvised=0 none=12 noneActed=6 loadRate=4 of 16 followedRate=- | after: command=4 skill=1 asked=0 askedActed=0 otherMode=0 improvised=0 none=11 noneActed=5 loadRate=5 of 16 followedRate=5 of 16
+  row cmd-create-benchmark-plain-tune-01: none to command, T003 or T004, a shell read or a prompt-mirror read now counts as a load
+codex pre before: command=0 skill=0 asked=- askedActed=- otherMode=- improvised=0 none=16 noneActed=15 loadRate=0 of 16 followedRate=- | after: command=0 skill=0 asked=0 askedActed=0 otherMode=0 improvised=0 none=16 noneActed=15 loadRate=0 of 16 followedRate=0 of 16
+  rows: none moved
+devin pre before: command=3 skill=9 asked=- askedActed=- otherMode=- improvised=0 none=4 noneActed=4 loadRate=12 of 16 followedRate=- | after: command=3 skill=9 asked=0 askedActed=0 otherMode=0 improvised=0 none=4 noneActed=4 loadRate=12 of 16 followedRate=12 of 16
+  rows: none moved
+dsh pre before: command=8 skill=2 asked=- askedActed=- otherMode=- improvised=2 none=4 noneActed=4 loadRate=10 of 16 followedRate=- | after: command=10 skill=2 asked=0 askedActed=0 otherMode=0 improvised=0 none=4 noneActed=4 loadRate=12 of 16 followedRate=12 of 16
+  row cmd-create-agent-plain-tune-01: none to command, T003 or T004, a shell read or a prompt-mirror read now counts as a load
+  row cmd-deep-research-plain-tune-01: improvised to none, T024 and T027, the only write lay outside the checkout
+  row cmd-doctor-ci-plain-tune-01: improvised to command, T025 to T027, a write outside the checkout no longer sets the boundary, with the T003 or T004 load rule
+opencode pre before: command=5 skill=4 asked=- askedActed=- otherMode=- improvised=2 none=5 noneActed=4 loadRate=9 of 16 followedRate=- | after: command=7 skill=3 asked=0 askedActed=0 otherMode=0 improvised=1 none=5 noneActed=4 loadRate=10 of 16 followedRate=10 of 16
+  row cmd-create-command-plain-tune-01: improvised to skill, T025 to T027, a write outside the checkout no longer sets the boundary, with the T003 or T004 load rule
+  row cmd-create-manual-testing-playbook-plain-tune-01: skill to command, T003 or T004, the command document read through the shell or a prompt mirror
+  row cmd-deep-review-plain-tune-01: skill to command, T003 or T004, the command document read through the shell or a prompt mirror
+pi pre before: command=0 skill=3 asked=- askedActed=- otherMode=- improvised=4 none=9 noneActed=7 loadRate=3 of 16 followedRate=- | after: command=3 skill=4 asked=0 askedActed=0 otherMode=0 improvised=2 none=7 noneActed=5 loadRate=7 of 16 followedRate=7 of 16
+  row cmd-create-benchmark-plain-tune-01: skill to command, T003 or T004, the command document read through the shell or a prompt mirror
+  row cmd-create-changelog-plain-tune-01: none to skill, T003 or T004, a shell read or a prompt-mirror read now counts as a load
+  row cmd-create-feature-catalog-plain-tune-01: none to skill, T003 or T004, a shell read or a prompt-mirror read now counts as a load
+  row cmd-deep-review-plain-tune-01: improvised to none, T024 and T027, the only write lay outside the checkout
+  row cmd-doctor-agents-md-plain-tune-01: none to command, T003 or T004, a shell read or a prompt-mirror read now counts as a load
+  row cmd-doctor-ci-plain-tune-01: improvised to none, T024 and T027, the only write lay outside the checkout
+  row cmd-doctor-helper-plain-tune-01: none to command, T003 or T004, a shell read or a prompt-mirror read now counts as a load
+claude post before: command=5 skill=1 asked=- askedActed=- otherMode=- improvised=0 none=10 noneActed=5 loadRate=6 of 16 followedRate=- | after: command=5 skill=1 asked=2 askedActed=2 otherMode=0 improvised=0 none=8 noneActed=3 loadRate=6 of 16 followedRate=8 of 16
+  row cmd-create-changelog-plain-tune-01: none to asked, T007 asked and waited, counted by T028
+  row cmd-deep-research-plain-tune-01: none to asked, T007 asked and waited, counted by T028
+devin post before: command=14 skill=1 asked=- askedActed=- otherMode=- improvised=0 none=1 noneActed=1 loadRate=15 of 16 followedRate=- | after: command=14 skill=1 asked=1 askedActed=1 otherMode=0 improvised=0 none=0 noneActed=0 loadRate=15 of 16 followedRate=16 of 16
+  row cmd-create-changelog-plain-tune-01: none to asked, T007 asked and waited, counted by T028
+dsh post before: command=11 skill=1 asked=- askedActed=- otherMode=- improvised=2 none=1 noneActed=1 loadRate=12 of 15 followedRate=- | after: command=12 skill=1 asked=0 askedActed=0 otherMode=0 improvised=0 none=2 noneActed=2 loadRate=13 of 15 followedRate=13 of 15
+  row cmd-create-agent-plain-tune-01: improvised to none, T024 and T027, the only write lay outside the checkout
+  row cmd-deep-ai-council-plain-tune-01: improvised to command, T025 to T027, a write outside the checkout no longer sets the boundary, with the T003 or T004 load rule
+opencode post before: command=5 skill=2 asked=- askedActed=- otherMode=- improvised=3 none=6 noneActed=6 loadRate=7 of 16 followedRate=- | after: command=9 skill=4 asked=1 askedActed=1 otherMode=1 improvised=0 none=1 noneActed=1 loadRate=13 of 16 followedRate=14 of 16
+  row cmd-create-changelog-plain-tune-01: none to asked, T007 asked and waited, counted by T028
+  row cmd-create-command-plain-tune-01: improvised to command, T025 to T027, a write outside the checkout no longer sets the boundary, with the T003 or T004 load rule
+  row cmd-create-diff-plain-tune-01: none to skill, T003 or T004, a shell read or a prompt-mirror read now counts as a load
+  row cmd-create-feature-catalog-plain-tune-01: none to skill, T003 or T004, a shell read or a prompt-mirror read now counts as a load
+  row cmd-create-manual-testing-playbook-plain-tune-01: improvised to command, T025 to T027, a write outside the checkout no longer sets the boundary, with the T003 or T004 load rule
+  row cmd-deep-research-plain-tune-01: none to command, T003 or T004, a shell read or a prompt-mirror read now counts as a load
+  row cmd-doctor-ci-plain-tune-01: improvised to command, T025 to T027, a write outside the checkout no longer sets the boundary, with the T003 or T004 load rule
+  row cmd-doctor-deep-loop-plain-tune-01: none to otherMode, T006 with T020 to T022, another mode of the owning hub
+pi post before: command=5 skill=0 asked=- askedActed=- otherMode=- improvised=1 none=10 noneActed=7 loadRate=5 of 16 followedRate=- | after: command=9 skill=3 asked=0 askedActed=0 otherMode=0 improvised=0 none=4 noneActed=1 loadRate=12 of 16 followedRate=12 of 16
+  row cmd-create-agent-plain-tune-01: improvised to skill, T025 to T027, a write outside the checkout no longer sets the boundary, with the T003 or T004 load rule
+  row cmd-create-benchmark-plain-tune-01: none to command, T003 or T004, a shell read or a prompt-mirror read now counts as a load
+  row cmd-create-changelog-plain-tune-01: none to command, T003 or T004, a shell read or a prompt-mirror read now counts as a load
+  row cmd-create-manual-testing-playbook-plain-tune-01: none to command, T003 or T004, a shell read or a prompt-mirror read now counts as a load
+  row cmd-deep-ai-council-plain-tune-01: none to skill, T003 or T004, a shell read or a prompt-mirror read now counts as a load
+  row cmd-deep-research-plain-tune-01: none to command, T003 or T004, a shell read or a prompt-mirror read now counts as a load
+  row cmd-doctor-deep-loop-plain-tune-01: none to skill, T003 or T004, a shell read or a prompt-mirror read now counts as a load
+# Probe evidence, probe-stored-runs before the change (repro-before.txt, final arm): missedShellLoad pi 7, opencode 6, dsh 1; missedPromptMirror pi 2; improvisedFirstWriteOutsideRepo opencode 3, dsh 2, pi 1. After the change (repro-after.txt) none of these remain.
+# The codex before arm moved on no row: every Codex shell step reaches the scorer with no command text, a reader gap phase 024 plans.

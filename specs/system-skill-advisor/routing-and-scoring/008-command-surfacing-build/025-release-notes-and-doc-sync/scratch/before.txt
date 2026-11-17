@@ -1,0 +1,116 @@
+$ rg -c '\*\*Status\*\* \| Complete' specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/spec.md specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/spec.md specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/spec.md specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness/spec.md specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/spec.md specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/spec.md specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/026-untuned-behaviour-arm/spec.md specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/027-review-pass-four-remediation/spec.md specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/028-direct-call-off-switch/spec.md
+specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/spec.md:1
+specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/spec.md:1
+specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/spec.md:1
+specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/spec.md:1
+specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/spec.md:1
+specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/027-review-pass-four-remediation/spec.md:1
+specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/028-direct-call-off-switch/spec.md:1
+specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/026-untuned-behaviour-arm/spec.md:1
+specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness/spec.md:1
+exit 0
+$ git -c core.fsmonitor=false show origin/main:.skilled/skills/system-skill-advisor/SKILL.md | rg -c '^version: 1.0.0.0$'
+1
+exit 0
+$ git -c core.fsmonitor=false status --porcelain -- .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md .skilled/skills/system-skill-advisor/runtime/lib/README.md .skilled/skills/system-skill-advisor/runtime/tests/README.md .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md
+exit 0
+$ git -c core.fsmonitor=false rev-parse --short HEAD
+8a5f3214522
+exit 0
+$ wc -l < .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+     168
+exit 0
+$ rg -c 'section:' .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+9
+exit 0
+$ rg -c '^#### ' .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+17
+exit 0
+$ python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+PASS .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+SUMMARY files=1 pass=1 fail=0
+exit 0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+Document type: changelog
+Total issues: 0
+exit 0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/lib/README.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/runtime/lib/README.md
+Document type: readme
+Total issues: 0
+exit 0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/tests/README.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/runtime/tests/README.md
+Document type: readme
+Total issues: 0
+exit 0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md
+Document type: feature_catalog
+Total issues: 0
+
+cite-drift advisory: checked=5 flagged=0 unchecked=0 not_in_range=0 (never blocks; JEV_FEATURE_CITE_DRIFT=0 skips it)
+exit 0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md
+Document type: feature_catalog
+Total issues: 0
+exit 0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md
+Document type: feature_catalog
+Total issues: 0
+exit 0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md
+Document type: readme
+Total issues: 0
+exit 0
+$ python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package system-skill-advisor
+PACKAGE system-skill-advisor: PASS tier=fail violations=0
+PASS: 0 violations (all enforced catalog checks).
+exit 0
+$ git -c core.fsmonitor=false diff --stat origin/main -- .skilled .opencode ':(exclude)**/command-prompts.jsonl' ':(exclude)**/holdout-prompts.jsonl' | rg -o '^ \.(skilled/skills/[^/]+|skilled/hooks/[^/]+|opencode/plugins)' | sort | uniq -c
+   4  .opencode/plugins
+   1  .skilled/hooks/completion
+   3  .skilled/hooks/decision-capture
+   2  .skilled/hooks/dispatch
+   1  .skilled/hooks/dist-freshness
+   4  .skilled/hooks/goal
+   1  .skilled/hooks/hook-flags.env.example              |     17 +-
+   1  .skilled/hooks/injection-contract.md               |      8 +-
+   1  .skilled/hooks/README.md                           |     52 +-
+   3  .skilled/hooks/session-lifecycle
+   6  .skilled/hooks/session-relaunch
+  15  .skilled/hooks/shared
+   1  .skilled/hooks/skill-advisor
+   1  .skilled/skills/README.txt                         |      2 +-
+  24  .skilled/skills/sk-code
+  17  .skilled/skills/sk-doc
+   2  .skilled/skills/sk-prompt
+   3  .skilled/skills/system-deep-loop
+   2  .skilled/skills/system-skill-advisor
+   1  .skilled/skills/system-skilled-doctor
+   5  .skilled/skills/system-spec-kit
+exit 0
+$ git diff --name-only merge-base..HEAD -- .skilled .opencode | components
+   3 .opencode/plugins
+   1 .skilled/agents
+   3 .skilled/bin
+   1 .skilled/changelog
+  33 .skilled/commands
+  15 .skilled/hooks/shared
+   1 .skilled/skills/sk-code
+  18 .skilled/skills/sk-doc
+   2 .skilled/skills/system-deep-loop
+  79 .skilled/skills/system-skill-advisor
+   2 .skilled/skills/system-skilled-doctor
+  10 .skilled/skills/system-spec-kit

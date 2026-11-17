@@ -108,9 +108,39 @@ test('an entry with no approval warns and names the repair', (t) => {
   assert.doesNotMatch(result.stdout, /sha256/);
 });
 
+// An absent entry has no hash to approve, so the repair has to be the copy that
+// creates the entry and the approval that lets it run, not the approval alone.
+test('an absent advisor entry prints the repair that creates it', (t) => {
+  const root = fixture(t);
+  writeFile(path.join(root, HOOKS_FILE), JSON.stringify({
+    hooks: {
+      UserPromptSubmit: [
+        { hooks: [{ type: 'command', command: 'node other-prompt-hook.js' }] },
+      ],
+    },
+  }));
+  const repair = `repair: copy the advisor UserPromptSubmit entry from the Skilled checkout's .codex/hooks.json into ${path.join(root, HOOKS_FILE)}, then approve it with /hooks in a Codex session`;
+
+  const text = run(root, path.join(root, CONFIG_FILE));
+  assert.equal(text.status, 1, text.stderr);
+  assert.equal(text.stdout, `WARN codex-advisor-hook-absent\n${repair}\n`);
+
+  const json = spawnSync(process.execPath, [SCRIPT, '--root', root, '--json'], { encoding: 'utf8' });
+  assert.equal(json.status, 1, json.stderr);
+  assert.equal(JSON.parse(json.stdout).repair, repair);
+});
+
 test('a project without .codex is skipped', (t) => {
   const root = fixture(t);
   const result = run(root, path.join(root, CONFIG_FILE));
   assert.equal(result.status, 0, result.stderr);
   assert.equal(result.stdout, 'SKIP no-codex-hooks\n');
+});
+
+// A flag standing where a value belongs leaves the option without a value. The run
+// must refuse the arguments rather than read a root the operator never named.
+test('a flag standing where a value belongs is refused', () => {
+  const result = spawnSync(process.execPath, [SCRIPT, '--root', '--json'], { encoding: 'utf8' });
+  assert.equal(result.status, 2, result.stderr);
+  assert.match(result.stderr, /Usage: codex-hook-approval-check\.cjs/);
 });

@@ -1,0 +1,353 @@
+{
+  "sessionId": "fanout-data-14-1794868189353-tsxtos",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 5,
+    "timestamp": "2026-11-16T22:51:28.525Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Four ordinary prompts still top the advisor through pre-existing generic intent signals",
+      "file": ".skilled/skills/system-skill-advisor/graph-metadata.json",
+      "line": 70,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "title": "ADR-001 records the pass-thirteen fix but not the residual leak it leaves open",
+      "file": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/decision-record.md",
+      "line": 37,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 1
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0.25,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "graphSignals": {
+    "blockedBy": [],
+    "decision": "CONTINUE",
+    "gates": {
+      "candidateCoverageGate": {
+        "pass": true,
+        "skipped": true
+      },
+      "claimAdjudicationGate": {
+        "pass": true,
+        "skipped": false
+      },
+      "convergenceGate": {
+        "hardStop": false,
+        "pass": false,
+        "score": 0.25,
+        "skipped": false
+      },
+      "dimensionCoverageGate": {
+        "missing": [],
+        "pass": false,
+        "skipped": false
+      },
+      "evidenceDensityGate": {
+        "pass": true,
+        "skipped": false
+      },
+      "fixCompletenessReplayGate": {
+        "pass": true,
+        "skipped": false
+      },
+      "graphlessFallbackGate": {
+        "pass": true,
+        "skipped": true
+      },
+      "hotspotSaturationGate": {
+        "pass": true,
+        "skipped": false
+      },
+      "p0ResolutionGate": {
+        "activeP0": 0,
+        "pass": true,
+        "skipped": false
+      }
+    },
+    "graphDecision": "STOP_ALLOWED",
+    "inputs": {
+      "config": {
+        "convergenceMode": "default",
+        "convergenceThreshold": 0.1,
+        "maxIterations": 8,
+        "minIterations": 2,
+        "stopPolicy": "convergence",
+        "stuckThreshold": 2
+      },
+      "consecutiveFailureCount": 0,
+      "graphBlockers": [],
+      "graphDecision": "STOP_ALLOWED",
+      "iterationCount": 3,
+      "loopType": "review",
+      "ratios": [
+        1,
+        0.1667,
+        0
+      ],
+      "research": null,
+      "review": {
+        "activeP0": 0,
+        "activeP1": 1,
+        "candidateCovered": [],
+        "coverageAge": 1,
+        "evidenceBackedP0P1": 1,
+        "fallbackCoveredBugClasses": [],
+        "fixReplayPassingRows": 0,
+        "fixReplayRequiredRows": 0,
+        "graphCoverageMode": null,
+        "hotspotSaturated": true,
+        "lastClaimAdjudicationPassed": null,
+        "missingDimensions": [],
+        "requiredBugClasses": [],
+        "reviewDepthApplicability": null,
+        "reviewDepthSchemaVersion": null,
+        "searchDebt": [],
+        "securitySensitiveFixScope": false,
+        "totalDimensions": 4,
+        "traceabilityCovered": false,
+        "unfinishedCoreProtocols": [
+          "checklist_evidence"
+        ]
+      },
+      "stuckCount": 1
+    },
+    "reasonDetail": "noStopCandidate",
+    "signals": {
+      "dimensionCoverage": {
+        "available": true,
+        "stop": false,
+        "value": 1,
+        "weight": 0.45
+      },
+      "madNoiseFloor": {
+        "available": true,
+        "stop": true,
+        "value": 0.247149,
+        "weight": 0.25
+      },
+      "rollingAverage": {
+        "available": true,
+        "stop": false,
+        "value": 0.08335,
+        "weight": 0.3
+      }
+    },
+    "stopReason": null,
+    "weightedStopScore": 0.25
+  },
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 3,
+      "executed": 3,
+      "pass": 3,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 3,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 1
+        },
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/decision-record.md:37",
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/scratch/probes.json"
+        ],
+        "findingRefs": [],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "P05/P07/P08/P09 outcomes still reproduce and agree with ADR-001."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 1
+        },
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/acceptance-criteria.md:59",
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/tasks.md:58"
+        ],
+        "findingRefs": [
+          "F001",
+          "F002"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "summary": "Checklist rows carry evidence; F001 and F002 are the separately recorded residuals."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 1
+        },
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/graph-metadata.json:66-100"
+        ],
+        "findingRefs": [],
+        "gateClass": "soft",
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "summary": "Projection still lists 33 canonical signals and none of the six removed phrases."
+      },
+      {
+        "applicable": false,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 0
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "gateClass": "soft",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "summary": "No agent file or runtime-specific surface in this area."
+      },
+      {
+        "applicable": false,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 0
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "gateClass": "soft",
+        "protocolId": "feature_catalog_code",
+        "status": "notApplicable",
+        "summary": "This area changes no feature catalog row; it is skill metadata and a packet decision record."
+      },
+      {
+        "applicable": false,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 0
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "gateClass": "soft",
+        "protocolId": "playbook_capability",
+        "status": "notApplicable",
+        "summary": "No manual-testing playbook source is in this area; the prior playbook row is unchanged."
+      }
+    ],
+    "unfinishedCoreProtocols": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

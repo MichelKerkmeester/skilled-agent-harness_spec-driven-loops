@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"vibe-hooks-doctor-confirm-5b","sessionId":"vibe-hooks-doctor-confirm-5b"},"data":{"mode":"review","totalIterations":3,"activeP0":0,"activeP1":0,"activeP2":2,"dimensionCoverage":1,"verdict":"PASS","releaseReadinessState":"converged","stopReason":"converged"}}

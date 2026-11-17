@@ -1,0 +1,1059 @@
+{
+  "sessionId": "fanout-ux-5-1794801313778-3ys69o",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 7,
+    "answeredCount": 4,
+    "totalQuestions": 4,
+    "timestamp": "2026-11-16T04:21:08.499Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-which-offer-ask-and-start-decisions-does-the-built-brief-make-today-and-which-of",
+      "inboxId": null,
+      "text": "Which offer, ask and start decisions does the built brief make today, and which of them phase 020's fit guard or phase 021's head parity already settled?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-why-did-an-ask-offer-of-deep-review-reach-the-refusal-decline-row-fresh-decline-",
+      "inboxId": null,
+      "text": "Why did an ask offer of `/deep:review` reach the refusal decline row fresh-decline-refusal-02, and what does a declined or refused offer do on each runtime?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-does-the-brief-s-wording-cost-a-model-that-would-otherwise-start-a-workflow",
+      "inboxId": null,
+      "text": "What does the brief's wording cost a model that would otherwise start a workflow: head line, directive block, command-line order and length?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-offer-fit-or-decline-path-ux-gaps-remain-after-phases-016-to-033-that-no-p",
+      "inboxId": null,
+      "text": "Which offer-fit or decline-path UX gaps remain after phases 016 to 033 that no planned or built phase already covers?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-offer-ask-and-start-decisions-does-the-built-brief-make-today-and-which-of",
+      "inboxId": null,
+      "text": "Which offer, ask and start decisions does the built brief make today, and which of them phase 020's fit guard or phase 021's head parity already settled?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-why-did-an-ask-offer-of-deep-review-reach-the-refusal-decline-row-fresh-decline-",
+      "inboxId": null,
+      "text": "Why did an ask offer of `/deep:review` reach the refusal decline row fresh-decline-refusal-02, and what does a declined or refused offer do on each runtime?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-3-what-does-the-brief-s-wording-cost-a-model-that-would-otherwise-start-a-workflow",
+      "inboxId": null,
+      "text": "What does the brief's wording cost a model that would otherwise start a workflow: head line, directive block, command-line order and length?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-which-offer-fit-or-decline-path-ux-gaps-remain-after-phases-016-to-033-that-no-p",
+      "inboxId": null,
+      "text": "Which offer-fit or decline-path UX gaps remain after phases 016 to 033 that no planned or built phase already covers?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Which offer-fit or decline-path UX gaps remain after phases 016 to 033 that no planned or built phase already covers?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Why did an ask offer of `/deep:review` reach the refusal decline row `fresh-decline-refusal-02`, and what does a declined or refused offer do on each runtime?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What does the brief's wording cost a model that would otherwise start a workflow: head line, directive block, command-line order and length?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None in this lane's key-question set.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None. All four lane questions are answered; the remaining work is the confirmation runs the recommendations name.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None. The confirmation runs named in the recommendations are follow-up work, not open questions.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-10-every-brief-also-carries-a-comment-hygiene-directive-of-219-bytes-that-says-noth",
+      "text": "Every brief also carries a comment-hygiene directive of 219 bytes that says nothing about the command; on the pre-016 306-byte median brief it is about 72 percent of the payload, and segment one already settled that trimming it is not the move. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:127]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:58,276,414`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127,618`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:30`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/implementation-summary.md:89`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/implementation-summary.md:51`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:16`"
+      ]
+    },
+    {
+      "id": "finding-1-6-on-that-row-both-dsh-arms-still-offered-deep-review-at-the-head-with-policy-ask-",
+      "text": "On that row both dsh arms still offered `/deep:review` at the head with policy `ask`, and the on arm delivered the brief (`briefDelivered: true`) where the off arm did not. The offer survived a prompt that explicitly refuses the workflow. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:58,276,414`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127,618`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:30`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/implementation-summary.md:89`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/implementation-summary.md:51`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:16`"
+      ]
+    },
+    {
+      "id": "finding-1-8-phase-020-cut-reproduction-probe-offers-from-26-to-8-but-cost-one-real-sealed-ro",
+      "text": "Phase 020 cut reproduction-probe offers from 26 to 8 but cost one real sealed row: real plain holdout fell 5 to 4 of 44, and the phase kept the uncertainty bar with that drop recorded as known. The 033 floor reads combined 5 of 44 at the arena commit, so the loss was recovered later without a recorded cause in the lane's inputs. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/implementation-summary.md:89]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:58,276,414`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127,618`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:30`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/implementation-summary.md:89`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/implementation-summary.md:51`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:16`"
+      ]
+    },
+    {
+      "id": "finding-1-3-phase-020-s-mention-reader-only-fires-on-a-typed-command-string-commandonlymenti",
+      "text": "Phase 020's mention reader only fires on a typed command string. `commandOnlyMentioned(prompt, command)` finds occurrences of the literal command (for example `/deep:review`) and tests the words before it; a prose phrase such as \"skip the deep review\" can never match, so a prose refusal cannot reach the guard. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:414]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:58,276,414`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127,618`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:30`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/implementation-summary.md:89`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/implementation-summary.md:51`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:16`"
+      ]
+    },
+    {
+      "id": "finding-1-9-phase-021-settled-head-parity-17-of-17-probe-prompts-print-the-same-head-on-clau",
+      "text": "Phase 021 settled head parity: 17 of 17 probe prompts print the same head on Claude and OpenCode where 14 did before, and the companion line now prints its policy word. Wording parity is therefore no longer the explanation for a per-runtime difference in what a model does with an offer. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/implementation-summary.md:51]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:58,276,414`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127,618`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:30`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/implementation-summary.md:89`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/implementation-summary.md:51`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:16`"
+      ]
+    },
+    {
+      "id": "finding-1-7-that-row-carries-the-arm-s-only-decline-start-off-0-of-40-runs-on-1-of-80-and-ds",
+      "text": "That row carries the arm's only decline start: off 0 of 40 runs, on 1 of 80, and dsh's on arm 1 of 16. Sixteen dsh on-arm decline runs produced one start where zero is the pre-registered target. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:58,276,414`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127,618`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:30`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/implementation-summary.md:89`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/implementation-summary.md:51`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:16`"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-033-arm-s-fresh-decline-refusal-02-row-is-exactly-that-shape-skip-the-deep-r",
+      "text": "The 033 arm's `fresh-decline-refusal-02` row is exactly that shape: \"Skip the deep review on this branch. I only need you to check the diff for typos and formatting.\", typed `decline`/`refusal`, expected command `null`. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:30]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:58,276,414`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127,618`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:30`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/implementation-summary.md:89`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/implementation-summary.md:51`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:16`"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-brief-prints-the-policy-word-as-a-bare-parenthetical-with-no-legend-advisor-",
+      "text": "The brief prints the policy word as a bare parenthetical with no legend: `Advisor: live; use system-deep-loop → /deep:review (ask) 0.85/0.20 pass.` Nothing in the brief says what `(ask)` or `(start)` asks the model to do. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:618]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:58,276,414`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127,618`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:30`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/implementation-summary.md:89`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/implementation-summary.md:51`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:16`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-offer-policy-is-a-three-word-enum-carried-per-command-row-run-means-execute-",
+      "text": "The offer policy is a three-word enum carried per command row: `run` means execute, `start` means open a workflow, `ask` means ask the person first. The deep-loop commands are both `ask`; `/create:readme` and `/create:sk-skill` are `start`. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:58]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:58,276,414`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127,618`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:30`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/implementation-summary.md:89`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/implementation-summary.md:51`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:16`"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-same-file-lists-deep-review-as-a-depth-request-phrase-so-the-prose-words-dee",
+      "text": "The same file lists \"deep review\" as a depth-request phrase, so the prose words \"deep review\" are read as a request for the heavy loop whenever they appear, including inside a sentence that declines it. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:276]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:58,276,414`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127,618`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:30`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/implementation-summary.md:89`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/implementation-summary.md:51`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:16`"
+      ]
+    },
+    {
+      "id": "finding-2-8-dsh-s-on-arm-also-records-five-runs-in-workflow-none-with-all-five-noneacted-so-",
+      "text": "dsh's on arm also records five runs in `workflow.none` with all five `noneActed`, so on those rows the model acted without opening any tracked workflow. Model action is not mediated by the brief on every row, which bounds what an offer-fit change can promise. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:28`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:339,494,510`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`"
+      ]
+    },
+    {
+      "id": "finding-2-7-explicitly-declining-an-offer-is-almost-absent-across-the-on-arm-the-turns-echo-",
+      "text": "Explicitly declining an offer is almost absent: across the on arm the turns echo a command line 7 times on dsh, 2 on OpenCode, 2 on pi, 3 on devin and 0 on Claude, and only one run in the whole arm marks the command `declined` (devin). The other offers are used or silently ignored. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:28`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:339,494,510`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`"
+      ]
+    },
+    {
+      "id": "finding-2-3-four-of-the-five-are-prose-mentions-that-the-guard-cannot-see-the-goal-document-",
+      "text": "Four of the five are prose mentions that the guard cannot see. \"The goal document\", \"the AI council\", \"writing a README\" and \"the deep review\" name no typed command, and `commandOnlyMentioned` only tests the literal command string. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:494]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:28`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:339,494,510`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`"
+      ]
+    },
+    {
+      "id": "finding-2-6-the-arm-s-single-decline-start-is-dsh-on-arm-run-1-on-fresh-decline-refusal-02-a",
+      "text": "The arm's single decline start is dsh on arm run 1 on `fresh-decline-refusal-02`, and the command it started is `/create:sk-skill` while `/deep:review` was the offer. The start is therefore a substitution, not a model following the offered workflow. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:28`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:339,494,510`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-built-brief-still-offers-a-command-on-five-of-those-eight-rows-identically-o",
+      "text": "The built brief still offers a command on five of those eight rows, identically on all five runtimes and in both arms: `fresh-decline-question-01` → `/create:goal (start)`, `fresh-decline-question-02` → `/speckit:ai-council (ask)`, `fresh-decline-refusal-01` → `/create:readme (start)`, `fresh-decline-refusal-02` → `/deep:review (ask)` and `fresh-decline-small-edit-02` → `/create:changelog (ask)`. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:28`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:339,494,510`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-fifth-offer-create-changelog-on-the-small-edit-row-is-a-named-exclusion-rath",
+      "text": "The fifth offer, `/create:changelog` on the small-edit row, is a named exclusion rather than a miss: the small-edit gate covers only `/create:readme`, `/create:feature-catalog` and `/create:manual-testing-playbook`, and `/create:changelog` is policy `ask`. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:339]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:28`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:339,494,510`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-fresh-set-defines-eight-decline-rows-as-four-kinds-twice-each-refusal-2-ques",
+      "text": "The fresh set defines eight decline rows as four kinds twice each: refusal (2), question (2), small-edit (2) and app-problem (2). Every one carries `expected_command: null` and `expected_policy: null`, so the contract is \"no command at all\", not \"a command with a cautious policy\". [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:28]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:28`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:339,494,510`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-refusal-row-passes-every-gate-attachcommand-has-it-is-not-a-no-edit-request-",
+      "text": "The refusal row passes every gate `attachCommand` has: it is not a no-edit request, it types no command, it is not one of the three small-edit gated creation commands, and \"deep review\" satisfies the depth-request list, so the deep-loop gate attaches the command rather than withholding it. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:510]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:28`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:339,494,510`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:16`"
+      ]
+    },
+    {
+      "id": "finding-3-4-at-identical-brief-bytes-start-policy-starts-differ-by-runtime-in-the-on-arm-cla",
+      "text": "At identical brief bytes, start-policy starts differ by runtime in the on arm: Claude 0 of 10, OpenCode 5 of 10, pi 4 of 10, devin 5 of 10 and dsh 7 of 10. Since phase 021 made the head identical across runtimes and the render is one function, the wording cannot be the cause of that spread. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104,127,133,618`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/live-brief-ts.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/live-heads.txt:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1`"
+      ]
+    },
+    {
+      "id": "finding-3-5-claude-started-none-of-its-ten-start-policy-rows-in-either-arm-off-0-of-10-on-0-",
+      "text": "Claude started none of its ten start-policy rows in either arm (off 0 of 10, on 0 of 10) and capped none of them. The advisor-on change added no start in that bucket, so its followed gain (4 of 28 to 6 of 28) came from run or ask rows. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104,127,133,618`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/live-brief-ts.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/live-heads.txt:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1`"
+      ]
+    },
+    {
+      "id": "finding-3-1-every-brief-ends-with-a-fixed-218-byte-tail-a-12-byte-directives-label-plus-a-20",
+      "text": "Every brief ends with a fixed 218-byte tail: a 12-byte `Directives:` label plus a 206-byte comment-hygiene directive. On the measured 306-byte median live brief that is 71 percent of the payload, and only 88 bytes are head. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:127]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104,127,133,618`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/live-brief-ts.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/live-heads.txt:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1`"
+      ]
+    },
+    {
+      "id": "finding-3-8-inference-not-measurement-a-brief-whose-last-sentence-is-an-unrelated-hard-block",
+      "text": "Inference, not measurement: a brief whose last sentence is an unrelated HARD BLOCK about code comments spends the reader's final attention on a rule that cannot help it act on the command. This would be confirmed by an A/B on the same rows with the tail moved or removed and the start rate compared; this lineage can read the bytes but cannot run that arm. [INFERENCE: from the 218-byte fixed tail at render.ts:127 and the per-policy start spread in summary-arm.json]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104,127,133,618`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/live-brief-ts.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/live-heads.txt:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1`"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-ask-word-does-not-produce-an-ask-reliably-either-on-the-five-ask-policy-rows",
+      "text": "The ask word does not produce an ask reliably either: on the five ask-policy rows per runtime the on arm started 1 on Claude, 0 on OpenCode, 0 on pi, 2 on devin and 3 on dsh. The policy describes the command's risk, not the model's next action. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104,127,133,618`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/live-brief-ts.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/live-heads.txt:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1`"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-command-line-itself-is-a-small-slice-of-the-head-system-deep-loop-deep-revie",
+      "text": "The command line itself is a small slice of the head: `system-deep-loop → /deep:review (ask)` is 39 bytes, and the scores plus `pass.` add about 15 more. The command, its owner and its policy are roughly 13 percent of a median brief. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:618]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104,127,133,618`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/live-brief-ts.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/live-heads.txt:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1`"
+      ]
+    },
+    {
+      "id": "finding-3-7-the-head-is-not-truncated-in-practice-the-token-cap-is-80-tokens-about-320-chara",
+      "text": "The head is not truncated in practice: the token cap is 80 tokens, about 320 characters, against an 88-byte median head, so the command and its policy word always fit. Length is a payload question, not a truncation defect. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:104]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104,127,133,618`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/live-brief-ts.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/live-heads.txt:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1`"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-policy-word-is-printed-but-never-defined-the-brief-carries-no-legend-for-run",
+      "text": "The policy word is printed but never defined. The brief carries no legend for `(run)`, `(start)` or `(ask)`; the only explanatory block is the hygiene directive, which says nothing about commands. A model learns the policy vocabulary from its own context, not from the brief. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:133]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104,127,133,618`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/scratch/live-brief-ts.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/live-heads.txt:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1`"
+      ]
+    },
+    {
+      "id": "finding-4-8-no-phase-in-this-packet-after-033-covers-r1-r2-r3-or-r4-the-last-phase-is-033-th",
+      "text": "No phase in this packet after 033 covers R1, R2, R3 or R4: the last phase is 033, the packet's next step is the segment-five research merge, and phase 031 names the decline rows as explicitly outside what the floors can measure. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/implementation-summary.md:140]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/implementation-summary.md:55`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/implementation-summary.md:140`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:231`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:276,339,494`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1`"
+      ]
+    },
+    {
+      "id": "finding-4-3-recommendation-r1-make-the-mention-reader-see-the-prose-name-a-command-s-own-dep",
+      "text": "Recommendation R1: make the mention reader see the prose name a command's own depth phrase, so a sentence that declines \"the deep review\" is read as a refusal. Measured basis: 4 of the 8 decline rows lose their command. Confirmation: those four rows print no command through the render probe, typed recall stays 24 of 44, false offers stay 0 of 35, and real plain holdout stays at least 5 of 44. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:276]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/implementation-summary.md:55`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/implementation-summary.md:140`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:231`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:276,339,494`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1`"
+      ]
+    },
+    {
+      "id": "finding-4-4-recommendation-r2-add-create-changelog-to-the-small-edit-gated-set-measured-basi",
+      "text": "Recommendation R2: add `/create:changelog` to the small-edit gated set. Measured basis: 1 of the 8 decline rows (`fresh-decline-small-edit-02`) and no other row in the fresh set. Confirmation: that row prints no command, and the tune rows that ask for a changelog keep theirs. Phase 020's own record is the caution: a wider gate failed three times before it was narrowed to three commands, so one command is the smallest extension that can be judged. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:339]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/implementation-summary.md:55`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/implementation-summary.md:140`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:231`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:276,339,494`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1`"
+      ]
+    },
+    {
+      "id": "finding-4-5-recommendation-r3-when-the-head-is-next-changed-define-the-policy-word-once-the-",
+      "text": "Recommendation R3: when the head is next changed, define the policy word once. The brief prints `(ask)`, `(start)` and `(run)` with no legend, and the same bytes produced 0 of 10 starts on Claude against 7 of 10 on dsh. This is not a separate change: B-5 (reword the head so the command reads as an option) is already waiting on the operator, so the legend belongs inside that decision, not beside it. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:231]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/implementation-summary.md:55`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/implementation-summary.md:140`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:231`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:276,339,494`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1`"
+      ]
+    },
+    {
+      "id": "finding-4-6-recommendation-r4-treat-claude-s-0-of-10-start-policy-starts-as-the-largest-meas",
+      "text": "Recommendation R4: treat Claude's 0 of 10 start-policy starts as the largest measured start gap in the arm. It is not a wording gap, because the head is identical across runtimes and Claude capped none of the ten; the next evidence is a Claude-only run of those ten rows on the post-016 listing that already shows 44 of 44 commands. The causation belongs to the cross-CLI lane; the UX consequence is that `(start)` on Claude is an instruction the runtime may not let the model follow. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/implementation-summary.md:55`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/implementation-summary.md:140`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:231`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:276,339,494`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1`"
+      ]
+    },
+    {
+      "id": "finding-4-7-recommendation-r5-restate-the-parent-outcome-target-so-offer-fit-owns-only-the-o",
+      "text": "Recommendation R5: restate the parent outcome target so offer-fit owns only the offer half. The one decline start began `/create:sk-skill` while `/deep:review` was offered, and dsh acted with no tracked workflow on 5 of its 28 on-arm rows; no offer-fit change can prevent a model inventing a different workflow. The target's \"0 commands started on a decline row\" therefore needs a second owner: the model's own path choice. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/implementation-summary.md:55`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/implementation-summary.md:140`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:231`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:276,339,494`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1`"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-decline-offer-rate-is-already-a-recorded-deliberately-untuned-number-phase-0",
+      "text": "The decline offer rate is already a recorded, deliberately untuned number: phase 023 measured a command on 8 of its 24 sealed decline rows. The fresh set's 5 of 8 is the same defect on a second sample, and the arm's run lines show it is identical on all five runtimes and both arms. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/implementation-summary.md:55]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/implementation-summary.md:55`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/implementation-summary.md:140`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:231`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:276,339,494`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1`"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-mechanism-splits-4-1-four-offers-are-prose-mentions-the-typed-command-guard-",
+      "text": "The mechanism splits 4 + 1. Four offers are prose mentions the typed-command guard cannot see; the fifth is the named small-edit exclusion for `/create:changelog`. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:494]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/implementation-summary.md:55`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/implementation-summary.md:140`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:231`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:276,339,494`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt:1`"
+      ]
+    },
+    {
+      "id": "finding-5-3-r2-s-mechanism-is-wrong-as-stated-the-small-edit-gate-fires-only-when-a-listed-s",
+      "text": "R2's mechanism is wrong as stated. The small-edit gate fires only when a listed small-edit phrase appears, and \"Change the release date in CHANGELOG.md from 2025-11-02 to 2025-11-09.\" contains none of them: no typo, spelling, grammar, punctuation, wording, link or line phrase. Adding `/create:changelog` to the gated set would therefore still leave the offer. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:294]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`AGENTS.md:68`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:294`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:312`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-5/deep-research-strategy.md:38`"
+      ]
+    },
+    {
+      "id": "finding-5-2-r3-is-withdrawn-as-a-brief-change-adding-a-legend-to-the-brief-would-duplicate-a",
+      "text": "R3 is withdrawn as a brief change. Adding a legend to the brief would duplicate an instruction every measured runtime already reads and would spend bytes on the one payload the lane measured at 306 bytes; the remaining risk belongs to any surface that delivers the brief without the root doc, which no arm measured. [SOURCE: AGENTS.md:68]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`AGENTS.md:68`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:294`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:312`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-5/deep-research-strategy.md:38`"
+      ]
+    },
+    {
+      "id": "finding-5-6-r5-is-confirmed-by-the-root-doc-not-only-by-the-arm-agents-md-already-tells-the-",
+      "text": "R5 is confirmed by the root doc, not only by the arm: `AGENTS.md` already tells the model to take either path whole and never an improvised one. The dsh substitution (`/create:sk-skill` on a typo-check request) breaks an existing instruction, so no new wording is needed for it; the gap is compliance, and the arm is where it should be measured. [SOURCE: AGENTS.md:68]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`AGENTS.md:68`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:294`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:312`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-5/deep-research-strategy.md:38`"
+      ]
+    },
+    {
+      "id": "finding-5-7-the-carry-over-question-s-exact-text-carries-backticks-around-deep-review-iterat",
+      "text": "The carry-over question's exact text carries backticks around `/deep:review`; iteration 2 recorded the answer with a paraphrase, so the registry kept the question open. This iteration records the exact text and the same answer: the prose refusal cannot reach the typed-command guard, and the offer survives on all five runtimes. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-5/deep-research-strategy.md:38]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`AGENTS.md:68`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:294`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:312`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-5/deep-research-strategy.md:38`"
+      ]
+    },
+    {
+      "id": "finding-5-5-the-existing-guard-tests-already-protect-the-changelog-request-from-a-wider-gate",
+      "text": "The existing guard tests already protect the changelog request from a wider gate: \"add a changelog entry for the typo fixes in the cli help\" keeps its command because the creation-request check stands the small-edit gate down. Any new phrase must be added without breaking that case. [SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:312]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`AGENTS.md:68`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:294`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:312`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-5/deep-research-strategy.md:38`"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-policy-vocabulary-is-defined-once-in-agents-md-not-in-the-brief-run-starts-i",
+      "text": "The policy vocabulary is defined once, in `AGENTS.md`, not in the brief: `run` starts it now, `start` starts it without `:auto`, `ask` offers it in one question and waits. All five arenas load that file (`@AGENTS.md` in the arena clone), so iteration 3's \"the brief has no legend\" is corrected to \"the brief depends on the root doc for its legend\". [SOURCE: AGENTS.md:68]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`AGENTS.md:68`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:294`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:312`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-5/deep-research-strategy.md:38`"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-smallest-correct-change-for-that-row-is-a-single-value-edit-phrase-in-the-sm",
+      "text": "The smallest correct change for that row is a single-value edit phrase in the small-edit list, such as a release date or a version number, beside the existing vocabulary. Confirmation: `fresh-decline-small-edit-02` prints no command, and `fresh-fit-16` (\"Assemble the changelog for this release from the pull requests merged since the last tag\") keeps `/create:changelog`, because it carries a creation verb and no correction verb. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:16]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`AGENTS.md:68`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:294`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:312`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:16`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-5/deep-research-strategy.md:38`"
+      ]
+    },
+    {
+      "id": "finding-6-2-five-of-the-seven-offers-are-the-row-s-expected-command-create-readme-create-goa",
+      "text": "Five of the seven offers are the row's expected command (`/create:readme`, `/create:goal`, `/design:chart`, `/design:diagram`, and `/doctor:agents-md check` for the `/doctor:agents-md` family). Two are a different doctor command: `/doctor:setup` where the row wants `/doctor:env`, and `/doctor:overlay status` where it wants `/doctor:update`. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:11]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/claude.jsonl:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:11`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:100`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2314`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:510`"
+      ]
+    },
+    {
+      "id": "finding-6-3-none-of-the-five-ask-policy-plain-rows-carries-a-command-the-changelog-row-the-d",
+      "text": "None of the five ask-policy plain rows carries a command: the changelog row, the deep-research row, the deep-review row, the design-extract row and the skill-advisor doctor row all reach the model as a skill with no runnable command. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/claude.jsonl:1]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/claude.jsonl:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:11`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:100`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2314`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:510`"
+      ]
+    },
+    {
+      "id": "finding-6-5-r1-must-therefore-be-two-sided-a-prose-depth-phrase-rule-that-only-reads-refusal",
+      "text": "R1 must therefore be two-sided. A prose depth-phrase rule that only reads refusals would remove the false offer on the refusal row and leave the missing offer on the real request; the same change must prove both rows. Confirmation: one render replay shows `/deep:review` in `fresh-fit-18`'s head and not in the refusal row's head. [INFERENCE: from findings 4 and the attach gate at command-attach.ts:510]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/claude.jsonl:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:11`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:100`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2314`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:510`"
+      ]
+    },
+    {
+      "id": "finding-6-6-the-13-no-command-rows-are-not-all-failures-a-skill-only-route-is-counted-as-fol",
+      "text": "The 13 no-command rows are not all failures: a skill-only route is counted as followed by the arm's own metric, so 7 of 20 is an offer-surface count, not a success rate. What it does bound is the reach of the policy word: a model cannot act on a `(start)` or `(ask)` word the brief never printed. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2314]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/claude.jsonl:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:11`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:100`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2314`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:510`"
+      ]
+    },
+    {
+      "id": "finding-6-4-the-depth-gate-is-inverted-on-the-only-two-fresh-rows-that-use-a-depth-phrase-fr",
+      "text": "The depth gate is inverted on the only two fresh rows that use a depth phrase. `fresh-fit-18` asks for \"a thorough multi-pass review\" and expects `/deep:review`; `fresh-decline-refusal-02` says \"skip the deep review\" and expects nothing. The brief offers `/deep:review` on the refusal and not on the request, on all five runtimes. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:18]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/claude.jsonl:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:11`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:100`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2314`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:510`"
+      ]
+    },
+    {
+      "id": "finding-6-1-the-on-arm-brief-carries-a-command-on-7-of-the-20-fresh-plain-rows-and-the-count",
+      "text": "The on-arm brief carries a command on 7 of the 20 fresh plain rows, and the count is identical on all five runtimes: 7 of 20. The other 13 rows carry no command at all. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/claude.jsonl:1]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/claude.jsonl:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:11`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:100`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2314`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:510`"
+      ]
+    },
+    {
+      "id": "finding-7-1-claim-c1-the-mention-guard-only-fires-on-a-typed-command-verified-by-the-guard-s",
+      "text": "Claim C1, the mention guard only fires on a typed command: verified by the guard's own regex entry point and by the refusal row, which carries the prose phrase and still drew the offer on all five runtimes. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:414]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:414`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/claude.jsonl:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:16`",
+        "`AGENTS.md:68`"
+      ]
+    },
+    {
+      "id": "finding-7-2-claim-c2-five-of-eight-fresh-decline-rows-carry-a-command-verified-by-the-fresh-",
+      "text": "Claim C2, five of eight fresh decline rows carry a command: verified by the fresh row definitions and by the per-row offer fields in the run lines, which agree exactly across five runtimes and both arms. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:414`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/claude.jsonl:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:16`",
+        "`AGENTS.md:68`"
+      ]
+    },
+    {
+      "id": "finding-7-3-claim-c3-the-brief-carries-a-command-on-7-of-20-fresh-plain-rows-and-on-none-of-",
+      "text": "Claim C3, the brief carries a command on 7 of 20 fresh plain rows and on none of the five ask rows: verified by the run lines on all five runtimes and by the corpus row labels that name the expected command and policy. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:16]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:414`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/claude.jsonl:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:16`",
+        "`AGENTS.md:68`"
+      ]
+    },
+    {
+      "id": "finding-7-4-claim-c4-claude-starts-none-of-its-ten-start-policy-rows-verified-by-the-per-pol",
+      "text": "Claim C4, Claude starts none of its ten start-policy rows: verified by the per-policy summary block and by two raw run lines (`fresh-fit-01`, `fresh-fit-03`) that show the offer, exit 0 and zero changed paths. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/claude.jsonl:1]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:414`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/claude.jsonl:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:16`",
+        "`AGENTS.md:68`"
+      ]
+    },
+    {
+      "id": "finding-7-5-claim-c5-the-policy-vocabulary-is-defined-outside-the-brief-verified-by-the-root",
+      "text": "Claim C5, the policy vocabulary is defined outside the brief: verified by the root doc's four-sentence definition and by the render, which prints the word without a definition. [SOURCE: AGENTS.md:68]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:414`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/claude.jsonl:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:16`",
+        "`AGENTS.md:68`"
+      ]
+    },
+    {
+      "id": "finding-7-6-the-one-claim-this-lane-could-not-verify-to-two-source-classes-is-the-attention-",
+      "text": "The one claim this lane could not verify to two source classes is the attention-dilution inference: the byte split is measured, but no arm moved the directive tail, so it stays an inference with a stated confirmation path and is not registered as a claim. [INFERENCE: from the 218-byte fixed tail and the absent A/B]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:414`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/claude.jsonl:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl:16`",
+        "`AGENTS.md:68`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-af3f80d4a291",
+      "text": "Re-measuring typed recall, false offers or the sealed holdout: those are the performance and routing lanes' numbers, and 033 already prints the floor lines.",
+      "contentHash": "af3f80d4a291",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-91c1abbe90b7",
+      "text": "Reading holdout prompts to explain the offer: banned by the lead's ruling, and unnecessary here because the refusal row is a `fresh` row.",
+      "contentHash": "91c1abbe90b7",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-fad37153abde",
+      "text": "Searching for a policy legend in the hook or plugin text: none. The plugin forwards the rendered brief; the legend does not exist anywhere in the render path.",
+      "contentHash": "fad37153abde",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-a02713f3e74b",
+      "text": "Searching for a prose-level refusal guard: none exists. The only refusal vocabulary in `command-attach.ts` operates on the typed command name, which the refusal row does not contain.",
+      "contentHash": "a02713f3e74b",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-a2084cb088c9",
+      "text": "Treating the 033 `offeredAs` field as a record of model behaviour: it names what the brief offered, not what the model did; the run line has no started-command field.",
+      "contentHash": "a2084cb088c9",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-fdec87954eab",
+      "text": "A per-row declaration of what the model did with the offer: the run line records the offer and the changed paths, not the action; the action only appears in the scorer's per-start list.",
+      "contentHash": "fdec87954eab",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e433c0bd2f46",
+      "text": "A prose refusal vocabulary anywhere in the attach path: the only refusal lists operate on a typed command name, and `isNoEditRequest` covers change wording, not workflow refusal.",
+      "contentHash": "e433c0bd2f46",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e78805ec00c0",
+      "text": "Counting the `startedOfOffered` aggregate as a decline-row rate: that counter only increments when a row's expected command was offered and then started, and decline rows have no expected command, so it cannot describe them.",
+      "contentHash": "e78805ec00c0",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1a0204ee5971",
+      "text": "Re-checking phase 020's question-shape limitation: it is already recorded there and restated here only as mechanism, not as a new finding.",
+      "contentHash": "1a0204ee5971",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-514ae826af2c",
+      "text": "Treating an offer on a decline row as a safety failure by itself: 49 of the 50 decline-row offers in the run lines produced no start.",
+      "contentHash": "514ae826af2c",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-8ced36ff0ac1",
+      "text": "A per-row brief text in the 033 run lines: they carry the offer fields, not the rendered string, so byte cost has to come from the separate captures.",
+      "contentHash": "8ced36ff0ac1",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-4f28a2a6f676",
+      "text": "A policy-legend test in the repository: no test asserts that a reader can interpret `(ask)` or `(start)`.",
+      "contentHash": "4f28a2a6f676",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-35dd9bf2065b",
+      "text": "Cutting the scores and pass mark: settled in segment three section 4 (f), not reopened here.",
+      "contentHash": "35dd9bf2065b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-8dd82d98b0b6",
+      "text": "Head parity as a per-runtime explanation: phase 021 fixed it and the render is shared.",
+      "contentHash": "8dd82d98b0b6",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-ae23c65debc7",
+      "text": "Truncation as a wording defect: the cap is far above the measured head size.",
+      "contentHash": "ae23c65debc7",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-8d189dc5633f",
+      "text": "A decline-row guard that could stop a substituted start: the start came from the model's own route, not from the offer.",
+      "contentHash": "8d189dc5633f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-9803167fbf10",
+      "text": "A head rewrite as this lane's recommendation: B-5 already holds that decision with the operator.",
+      "contentHash": "9803167fbf10",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-1269c160af2d",
+      "text": "A phase after 033 that owns these gaps: none exists in the packet.",
+      "contentHash": "1269c160af2d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-3561cc5bb1c8",
+      "text": "A policy legend as a standalone build: it costs bytes on every brief and belongs inside B-5.",
+      "contentHash": "3561cc5bb1c8",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-e00b67ebe3b4",
+      "text": "Presenting the 8-of-24 decline offer count as new: phase 023 recorded it and left it untuned on purpose.",
+      "contentHash": "e00b67ebe3b4",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-4ee243dd68dc",
+      "text": "A brief legend (R3): the root doc carries the definition and every arena reads it.",
+      "contentHash": "4ee243dd68dc",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-f3e206949f8d",
+      "text": "A policy-legend gap on any measured runtime: all five read the root doc.",
+      "contentHash": "f3e206949f8d",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-17347eb1edd4",
+      "text": "A test that pins \"change the release date\" as a small edit: none exists, which is why the row still draws an offer.",
+      "contentHash": "17347eb1edd4",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-9302b9f6519b",
+      "text": "Gating `/create:changelog` by command name (R2): the row carries no small-edit wording, so the gate would not fire.",
+      "contentHash": "9302b9f6519b",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-7d963ec754ec",
+      "text": "A stored head for `fresh-fit-18`: the run line records the offer fields, not the rendered string, so the cause of the missing command needs one hook replay of that prompt.",
+      "contentHash": "7d963ec754ec",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-1a0323c8a4e1",
+      "text": "Blaming the runner for the missing offers: `replayOffer` spawns the hook with the row's prompt and reads the head it returns, so the run line records the hook's own output.",
+      "contentHash": "1a0323c8a4e1",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-796989e344e8",
+      "text": "Treating 13 of 20 as 13 failures: the arm's metric follows a skill path, so the count is about the offer surface only.",
+      "contentHash": "796989e344e8",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-e351726791d3",
+      "text": "A second measured source for the directive's effect on attention: none exists in the packet.",
+      "contentHash": "e351726791d3",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-acb3ac663e95",
+      "text": "Registering the attention-dilution inference as a verified claim: its evidence is one byte measurement and no behavioural contrast.",
+      "contentHash": "acb3ac663e95",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-55d1cd036e6d",
+      "text": "Using a single source class for C3: the run lines and the corpus labels are independent records of the same row.",
+      "contentHash": "55d1cd036e6d",
+      "addedAtIteration": 7
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 7,
+    "openQuestions": 0,
+    "resolvedQuestions": 4,
+    "carriedForwardOpenQuestions": 7,
+    "keyFindings": 53,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.2,
+    "coverageBySources": {
+      "code": 64
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-5/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

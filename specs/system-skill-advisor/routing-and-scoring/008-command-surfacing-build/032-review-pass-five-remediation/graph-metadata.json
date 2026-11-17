@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "status_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review pass five remediation",
+      "phase 32 review pass five remediation",
+      "in-place shell write scorer",
+      "arena builder stale dist refusal",
+      "remote guard every live turn",
+      "review pass five remediation plan",
+      "review pass five remediation tasks",
+      "review pass five remediation acceptance criteria",
+      "review pass five remediation implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "pass",
+      "five",
+      "remediation",
+      "phase",
+      "in-place",
+      "shell",
+      "write",
+      "scorer",
+      "arena",
+      "builder",
+      "stale"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      "scratch/probes-before.txt",
+      "scratch/probes-after.txt",
+      "scratch/after.txt",
+      "scratch/rescore-delta.txt",
+      "scratch/boundaries.txt",
+      "scratch/review-rounds.txt",
+      "hooks/dsh/README.md",
+      "scratch/planning/arena-cases.sh",
+      "scratch/before.txt",
+      "scratch/floor-before.txt",
+      "scratch/eval-before.txt",
+      ".vibe/hooks.toml",
+      ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-wiring-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "probes-before.txt",
+        "kind": "file",
+        "path": "scratch/probes-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "probes-after.txt",
+        "kind": "file",
+        "path": "scratch/probes-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rescore-delta.txt",
+        "kind": "file",
+        "path": "scratch/rescore-delta.txt",
+        "source": "derived"
+      },
+      {
+        "name": "boundaries.txt",
+        "kind": "file",
+        "path": "scratch/boundaries.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review-rounds.txt",
+        "kind": "file",
+        "path": "scratch/review-rounds.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "hooks/dsh/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "arena-cases.sh",
+        "kind": "script",
+        "path": "scratch/planning/arena-cases.sh",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "floor-before.txt",
+        "kind": "file",
+        "path": "scratch/floor-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "eval-before.txt",
+        "kind": "file",
+        "path": "scratch/eval-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "turn-start.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The workflow measure misses every write a model makes with an in-place shell edit, so a run that edits a file with `sed -i` or `tee` reads as safe and as a non-start, and the goal log cannot explain `unsafe` row by row",
+    "created_at": "2026-11-15T17:40:45Z",
+    "last_save_at": "2026-11-15T23:03:32.761Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0764166637e29cea06db1c45643aeb37acd2a98af1040433e07fdb142fc6f8ef",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "78270c9a4b8ab1f3a5454d55404eda0d9525757b461c4937764611956f8ce0b0",
+      "plan.md": "2d388bbb2a628d337cfb37a6f8c5aed3754059fb642d700ddf43e085f10beff1",
+      "tasks.md": "242f076dc46acd439c64940f2db67e012c91153d2a1806fa123bb66929ae9616",
+      "implementation-summary.md": "8b20c208e1cbe96fb3d74169760f1b9beb0ee4bec63c8aece602515ea789aa76"
+    },
+    "last_active_at": null
+  }
+}

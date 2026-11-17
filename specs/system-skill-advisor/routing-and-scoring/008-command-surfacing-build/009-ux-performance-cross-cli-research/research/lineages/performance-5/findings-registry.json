@@ -1,0 +1,1047 @@
+{
+  "sessionId": "fanout-performance-5-1794801313778-3ys69o",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 8,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-16T04:21:49.670Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-does-the-advisor-hook-cost-per-prompt-on-the-built-state-after-phases-016-t",
+      "inboxId": null,
+      "text": "What does the advisor hook cost per prompt on the built state after phases 016 to 033, and does any measured path exceed its runtime's hook budget?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-what-ended-the-41-capped-turns-in-the-phase-033-untuned-arm-and-can-a-runtime-ke",
+      "inboxId": null,
+      "text": "What ended the 41 capped turns in the phase 033 untuned arm, and can a runtime-keyed wall-clock cap reduce them without changing the measured outcome?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-does-one-brief-cost-in-bytes-and-tokens-on-the-built-state-and-which-remain",
+      "inboxId": null,
+      "text": "What does one brief cost in bytes and tokens on the built state, and which remaining byte is removable without losing the offer contract?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-4-does-the-pre-model-hook-and-brief-cost-consume-a-measurable-share-of-a-behaviour",
+      "inboxId": null,
+      "text": "Does the pre-model hook and brief cost consume a measurable share of a behaviour-runner turn's wall clock, so that it competes with the turn cap?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-latency-instrument-reports-the-built-state-s-true-p95-and-which-path-does-",
+      "inboxId": null,
+      "text": "Which latency instrument reports the built state's true p95, and which path does it still miss (cold first prompt, in-process plugin, Codex adapter)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-does-the-advisor-hook-cost-per-prompt-on-the-built-state-after-phases-016-t",
+      "inboxId": null,
+      "text": "What does the advisor hook cost per prompt on the built state after phases 016 to 033, and does any measured path exceed its runtime's hook budget?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-what-ended-the-41-capped-turns-in-the-phase-033-untuned-arm-and-can-a-runtime-ke",
+      "inboxId": null,
+      "text": "What ended the 41 capped turns in the phase 033 untuned arm, and can a runtime-keyed wall-clock cap reduce them without changing the measured outcome?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-what-does-one-brief-cost-in-bytes-and-tokens-on-the-built-state-and-which-remain",
+      "inboxId": null,
+      "text": "What does one brief cost in bytes and tokens on the built state, and which remaining byte is removable without losing the offer contract?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-4-does-the-pre-model-hook-and-brief-cost-consume-a-measurable-share-of-a-behaviour",
+      "inboxId": null,
+      "text": "Does the pre-model hook and brief cost consume a measurable share of a behaviour-runner turn's wall clock, so that it competes with the turn cap?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-5-which-latency-instrument-reports-the-built-state-s-true-p95-and-which-path-does-",
+      "inboxId": null,
+      "text": "Which latency instrument reports the built state's true p95, and which path does it still miss (cold first prompt, in-process plugin, Codex adapter)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-7-no-byte-remains-removable-from-a-brief-without-reversing-a-swept-decision-the-he",
+      "text": "**No byte remains removable from a brief without reversing a swept decision.** The head and companion already share one 320-character budget; the constant block is the comment-hygiene hard block that segment one and the repo's own directive decided to keep. Any further cut would remove offer content or the hard block, not slack. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:127] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:127]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arenas.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (694 files, 17,775 duration rows)",
+        "`~/.local/share/opencode/{opencode.db,opencode-v1.db,opencode-v2.db,opencode-rerun.db,opencode-shots.db}` (read-only)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 965, 1063-1095`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127, 150-157, 585-624`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:260-290, 355-424`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:127`"
+      ]
+    },
+    {
+      "id": "finding-1-3-no-measured-hook-path-exceeded-the-claude-2-500-ms-budget-but-the-worst-row-used",
+      "text": "**No measured hook path exceeded the Claude 2,500 ms budget, but the worst row used 88.7 percent of it.** The maximum 2,218 ms leaves 282 ms of headroom against the Claude hook budget; three rows sit above 2,000 ms. The Codex adapter's 2,800 ms budget and Devin/Cursor's 10 s budgets are farther away. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl] [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arenas.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (694 files, 17,775 duration rows)",
+        "`~/.local/share/opencode/{opencode.db,opencode-v1.db,opencode-v2.db,opencode-rerun.db,opencode-shots.db}` (read-only)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 965, 1063-1095`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127, 150-157, 585-624`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:260-290, 355-424`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:127`"
+      ]
+    },
+    {
+      "id": "finding-1-6-one-brief-costs-270-7-bytes-on-average-and-361-bytes-at-most-over-1-138-emitting",
+      "text": "**One brief costs 270.7 bytes on average and 361 bytes at most over 1,138 emitting rows on the built state.** That is about 68 tokens at the renderer's own four-characters-per-token estimate. The variable part is capped at 80 tokens (320 characters) by default, and the constant directive block is appended after that cap, so the 219-byte hygiene directive is about 81 percent of a mean brief. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:104] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:620-624]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arenas.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (694 files, 17,775 duration rows)",
+        "`~/.local/share/opencode/{opencode.db,opencode-v1.db,opencode-v2.db,opencode-rerun.db,opencode-shots.db}` (read-only)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 965, 1063-1095`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127, 150-157, 585-624`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:260-290, 355-424`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:127`"
+      ]
+    },
+    {
+      "id": "finding-1-2-per-day-medians-move-little-the-tail-moved-2026-11-13-n-6-438-p50-193-p95-290-p9",
+      "text": "**Per-day medians move little; the tail moved.** 2026-11-13: n 6,438, p50 193, p95 290, p99 298, max 922. 2026-11-14: n 5,501, p50 196, p95 291, p99 299, max 1,205. 2026-11-15: n 5,256, p50 185, p95 291, p99 344, max 2,218. 2026-11-16 (partial): n 580, p50 136, p95 212, p99 308, max 2,208. The p95 is flat across three days while the max tripled. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arenas.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (694 files, 17,775 duration rows)",
+        "`~/.local/share/opencode/{opencode.db,opencode-v1.db,opencode-v2.db,opencode-rerun.db,opencode-shots.db}` (read-only)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 965, 1063-1095`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127, 150-157, 585-624`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:260-290, 355-424`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:127`"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-300-ms-boundary-is-instrumented-on-the-shim-side-and-the-mechanism-is-unconf",
+      "text": "**The 300 ms boundary is instrumented on the shim side, and the mechanism is unconfirmed.** The Claude shim reserves `CHILD_START_MARGIN_MS = 300` \"after advisor CLI\", and the hook stamps `durationMs` from its own start to the brief result. Which component stops at 300 ms is not proven by the record alone; a trace of one prompt whose duration crosses the boundary is what would confirm it. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22] [SOURCE: .skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:383]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arenas.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (694 files, 17,775 duration rows)",
+        "`~/.local/share/opencode/{opencode.db,opencode-v1.db,opencode-v2.db,opencode-rerun.db,opencode-shots.db}` (read-only)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 965, 1063-1095`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127, 150-157, 585-624`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:260-290, 355-424`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:127`"
+      ]
+    },
+    {
+      "id": "finding-1-11-the-arena-arm-ran-at-an-earlier-commit-than-the-dispatch-brief-s-head-the-five-a",
+      "text": "**The arena arm ran at an earlier commit than the dispatch brief's HEAD.** The five arenas were built at `b765c7a14c5`; HEAD is `84de3d600fa`, six commits later, all documentation and review commits. The arm's behaviour numbers are therefore evidence about `b765c7a14c5`, and no code that affects hook time changed between the two commits. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arenas.txt:1] [SOURCE: `git log --format='%h %ad %s'` at HEAD sequence 84de3d600fa, b765c7a14c5]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arenas.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (694 files, 17,775 duration rows)",
+        "`~/.local/share/opencode/{opencode.db,opencode-v1.db,opencode-v2.db,opencode-rerun.db,opencode-shots.db}` (read-only)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 965, 1063-1095`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127, 150-157, 585-624`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:260-290, 355-424`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:127`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-built-state-s-hook-cost-is-p50-189-ms-p95-290-ms-p99-300-ms-max-2-218-ms-ove",
+      "text": "**The built state's hook cost is p50 189 ms, p95 290 ms, p99 300 ms, max 2,218 ms over 17,775 persisted records.** Records run 2026-11-13 to 2026-11-16 and include the phase 033 arena's own prompts. Seven rows exceed 1,000 ms and three exceed 2,000 ms. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:402]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arenas.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (694 files, 17,775 duration rows)",
+        "`~/.local/share/opencode/{opencode.db,opencode-v1.db,opencode-v2.db,opencode-rerun.db,opencode-shots.db}` (read-only)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 965, 1063-1095`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127, 150-157, 585-624`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:260-290, 355-424`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:127`"
+      ]
+    },
+    {
+      "id": "finding-1-9-the-cap-is-keyed-to-the-prompt-not-the-runtime-and-the-runner-records-no-turn-du",
+      "text": "**The cap is keyed to the prompt, not the runtime, and the runner records no turn duration.** `CAP_MS` is 300,000 ms for a chat turn and 900,000 ms for a started one, chosen by `G2_PROMPTS.has(rowId)`. `spawnTurn` passes `timeout: capMs` and settles only `{exit}`, and the run line stores `exit` alone, so a null exit conflates a cap kill with a spawn error. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:965] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1063-1095]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arenas.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (694 files, 17,775 duration rows)",
+        "`~/.local/share/opencode/{opencode.db,opencode-v1.db,opencode-v2.db,opencode-rerun.db,opencode-shots.db}` (read-only)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 965, 1063-1095`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127, 150-157, 585-624`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:260-290, 355-424`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:127`"
+      ]
+    },
+    {
+      "id": "finding-1-10-the-capped-turns-wall-time-cannot-be-recovered-from-the-opencode-store-today-non",
+      "text": "**The capped turns' wall time cannot be recovered from the OpenCode store today.** None of the five local OpenCode databases holds a phase 033 arena session id, and the active store holds zero sessions for the arena directory, so no message timestamp survives to measure how long a capped turn actually ran. [SOURCE: read-only count queries against ~/.local/share/opencode/{opencode.db,opencode-v1.db,opencode-v2.db,opencode-rerun.db,opencode-shots.db}] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arenas.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (694 files, 17,775 duration rows)",
+        "`~/.local/share/opencode/{opencode.db,opencode-v1.db,opencode-v2.db,opencode-rerun.db,opencode-shots.db}` (read-only)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 965, 1063-1095`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127, 150-157, 585-624`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:260-290, 355-424`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:127`"
+      ]
+    },
+    {
+      "id": "finding-1-8-the-committed-arm-s-capped-turn-count-is-47-not-the-41-in-the-dispatch-brief-sum",
+      "text": "**The committed arm's capped-turn count is 47, not the 41 in the dispatch brief.** `summary-arm.json` counts opencode 26 (15 off, 11 on), devin 19 (10 off, 9 on), pi 2 (off), claude 0 and dsh 0 across 400 runs. The raw exit census agrees except for one row: 28 runs exited 143 (opencode 26, pi 2) and 20 exited null (devin), of which one null is the documented `fresh-skill-04` rebase row rather than a cap. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arenas.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (694 files, 17,775 duration rows)",
+        "`~/.local/share/opencode/{opencode.db,opencode-v1.db,opencode-v2.db,opencode-rerun.db,opencode-shots.db}` (read-only)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 965, 1063-1095`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127, 150-157, 585-624`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:260-290, 355-424`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:127`"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-duration-distribution-has-a-hard-cliff-at-300-ms-so-p95-290-ms-measures-a-de",
+      "text": "**The duration distribution has a hard cliff at 300 ms, so p95 290 ms measures a deadline, not the work.** 4,674 of 17,775 rows (26.3 percent) are spread almost uniformly across 240-299 ms, about 778 per 10 ms bin, while only 87 rows (0.49 percent) land beyond 300 ms (81 in 300-309 ms, 6 at 310 ms or more). A uniform plateau followed by a cliff is a wait being cut, not a workload distribution. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl] [INFERENCE: based on the 240-299 ms plateau and the 300 ms start-margin constant beside the hook's child timeout]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arenas.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (694 files, 17,775 duration rows)",
+        "`~/.local/share/opencode/{opencode.db,opencode-v1.db,opencode-v2.db,opencode-rerun.db,opencode-shots.db}` (read-only)",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 965, 1063-1095`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127, 150-157, 585-624`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:260-290, 355-424`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:127`"
+      ]
+    },
+    {
+      "id": "finding-2-4-a-capped-opencode-turn-was-still-producing-messages-7-seconds-before-it-was-kill",
+      "text": "**A capped OpenCode turn was still producing messages 7 seconds before it was killed.** The sampled `opencode fresh-fit-02` session runs 02:07:12 to 02:12:05 (293 s) across 142 records and its run line exits 143; `opencode fresh-fit-03`, uncapped, runs 291 s and exits 0. The cut lands on active work, not on an idle process, for at least that row. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/sessions/opencode-fresh-fit-02.json] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/sessions/*.json` (20 sessions)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/pick.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 846-884, 965, 1063-1095`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-2-5-a-runtime-keyed-cap-is-the-wrong-lever-a-behaviour-keyed-cap-is-the-targeted-one",
+      "text": "**A runtime-keyed cap is the wrong lever; a behaviour-keyed cap is the targeted one.** Claude and DSH capped 0 of 80 fresh runs each, so a runtime key would give them nothing. OpenCode and Devin carried all 48 caps. What would remove them is giving a turn the 900 s cap once it opens a workflow, not because of which runtime carried it. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/claude.jsonl] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/sessions/*.json` (20 sessions)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/pick.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 846-884, 965, 1063-1095`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-2-1-every-capped-turn-sits-in-the-300-s-group-not-one-900-s-row-was-cut-all-48-raw-c",
+      "text": "**Every capped turn sits in the 300 s group; not one 900 s row was cut.** All 48 raw cap exits are `fresh-*` rows: opencode 26, devin 20 (19 counted plus the restore-failed `fresh-skill-04` null), pi 2, claude 0, dsh 0. The six `g2-*` rows, which get 900 s, were never capped. The 47-count in the committed summary and the 48 raw exits differ only by that restore-failed row. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/devin.jsonl] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/sessions/*.json` (20 sessions)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/pick.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 846-884, 965, 1063-1095`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-2-6-hook-cost-is-not-a-measurable-share-of-a-turn-s-wall-clock-the-built-state-hook-",
+      "text": "**Hook cost is not a measurable share of a turn's wall clock.** The built-state hook p95 of 290 ms is 1.9 percent of the shortest sampled turn (15 s) and 0.10 percent of a 298 s turn; at the p50 of 189 ms the share is 0.06-1.3 percent. Even the 2,218 ms worst row is 0.7 percent of a 300 s turn. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl] [INFERENCE: based on hook percentiles from iteration 1 and the sampled turn durations in this iteration]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/sessions/*.json` (20 sessions)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/pick.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 846-884, 965, 1063-1095`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-2-3-successful-turns-stack-against-the-300-s-boundary-so-the-cap-slices-a-live-tail-",
+      "text": "**Successful turns stack against the 300 s boundary, so the cap slices a live tail rather than a hang.** The 20 sampled sessions run 15, 24, 25, 41, 44, 61, 63, 72, 79, 90, 104, 167, 291, 293, 293, 298 s (DSH 64, 240, 262, 298 s). Four sampled successes finish within 10 s of the cap, on three runtimes. A cap that were 2.5x a typical turn would not have four of twenty completions inside its last 10 seconds. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/sessions/] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/pick.txt]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/sessions/*.json` (20 sessions)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/pick.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 846-884, 965, 1063-1095`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-cap-is-keyed-to-row-set-membership-not-to-what-the-turn-did-capforrow-return",
+      "text": "**The cap is keyed to row-set membership, not to what the turn did.** `capForRow` returns 900,000 ms only when the row id is in `G2_PROMPTS`; every other row gets 300,000 ms. The `fresh-*` rows include prompts that launch a writing workflow (`/create:goal`, `/create:command`), yet they are capped as chat turns. So the runner's own comment that \"a started workflow legitimately needs the longer one\" is true only for the six rows it already knows are started. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:965] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:846-884]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/sessions/*.json` (20 sessions)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/pick.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 846-884, 965, 1063-1095`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-cap-s-cost-is-measurable-in-lost-judgeable-rows-not-in-wall-time-saved-26-of",
+      "text": "**The cap's cost is measurable in lost judgeable rows, not in wall time saved.** 26 of 80 OpenCode fresh runs (32.5 percent) and 20 of 81 Devin fresh runs (24.7 percent) ended capped, against 0 of 80 on Claude and DSH. Those are the rows the summary already excludes from \"judgeable offers\", so the cap decides how much of the arm can be scored at all. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/sessions/*.json` (20 sessions)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/pick.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:78-81, 846-884, 965, 1063-1095`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-3-9-a-repo-wide-read-of-the-folder-reports-the-sweep-while-the-product-s-own-rate-do",
+      "text": "**A repo-wide read of the folder reports the sweep, while the product's own rate does not.** The rolling rate reads only a workspace's last 30 records, so a real workspace is unaffected; but any cross-workspace aggregate — a doctor report, a research read, an operator's `jq` — reports the synthetic shape unless it filters by file or runtime. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:482-492]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (458 duration-bearing files; 77 sweep files and 381 real files)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402, 482-492`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160, 222-223`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance-5/iterations/iteration-001.md`"
+      ]
+    },
+    {
+      "id": "finding-3-8-brief-cost-is-unchanged-on-the-real-rows-1-234-briefs-mean-270-6-bytes-p50-262-p",
+      "text": "**Brief cost is unchanged on the real rows: 1,234 briefs, mean 270.6 bytes, p50 262, p95 316, max 361.** Briefs carry `emittedBytes` only on real prompts, which is why the filtered and unfiltered brief figures agree to a tenth of a byte. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (458 duration-bearing files; 77 sweep files and 381 real files)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402, 482-492`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160, 222-223`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance-5/iterations/iteration-001.md`"
+      ]
+    },
+    {
+      "id": "finding-3-3-correction-to-iteration-1-the-300-ms-cliff-was-the-sweep-s-ceiling-not-a-deadlin",
+      "text": "**Correction to iteration 1: the 300 ms cliff was the sweep's ceiling, not a deadline.** The 4,674 rows spread across 240-299 ms are the top of each 101-300 ms synthetic sweep (60 rows per file across 77 files), and no real row set shows a cut at 300 ms. Iteration 1's findings 4 and 5 are withdrawn as an instrument artifact; the real distribution has a smooth tail to 1,538 ms. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (458 duration-bearing files; 77 sweep files and 381 real files)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402, 482-492`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160, 222-223`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance-5/iterations/iteration-001.md`"
+      ]
+    },
+    {
+      "id": "finding-3-6-coverage-is-claude-dominated-so-a-built-state-p95-is-effectively-claude-s-p95-re",
+      "text": "**Coverage is Claude-dominated, so a \"built-state p95\" is effectively Claude's p95.** Real rows by runtime: claude 1,794 (75.5 percent), pi 272, dsh 131, devin 117, vibe 49, codex 12, cursor 0. The per-runtime p95s differ (claude 292, dsh 243, devin 230, pi 179, vibe 742), and only Claude and Vibe have enough rows to read a tail. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (458 duration-bearing files; 77 sweep files and 381 real files)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402, 482-492`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160, 222-223`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance-5/iterations/iteration-001.md`"
+      ]
+    },
+    {
+      "id": "finding-3-7-live-p95-uses-12-4-percent-of-the-claude-budget-and-p99-uses-30-3-percent-live-p",
+      "text": "**Live p95 uses 12.4 percent of the Claude budget and p99 uses 30.3 percent.** Live p95 311 ms against the 2,500 ms hook timeout is 12.4 percent; live p99 757 ms is 30.3 percent; the worst live row 1,538 ms is 61.5 percent. No live row in 1,695 exceeded the budget. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl] [SOURCE: .skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (458 duration-bearing files; 77 sweep files and 381 real files)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402, 482-492`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160, 222-223`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance-5/iterations/iteration-001.md`"
+      ]
+    },
+    {
+      "id": "finding-3-2-real-built-state-hook-cost-is-p50-12-ms-p95-279-ms-p99-735-ms-max-2-218-ms-over-",
+      "text": "**Real built-state hook cost is p50 12 ms, p95 279 ms, p99 735 ms, max 2,218 ms over all 2,375 real rows; live-only it is p50 124, p95 311, p99 757, max 1,538 ms.** The all-row median is depressed by 664 `unavailable` rows and 693 `skipped` rows that record almost no work. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:402]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (458 duration-bearing files; 77 sweep files and 381 real files)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402, 482-492`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160, 222-223`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance-5/iterations/iteration-001.md`"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-2-218-ms-maximum-is-an-unavailable-row-not-a-delivered-brief-freshness-unava",
+      "text": "**The 2,218 ms maximum is an `unavailable` row, not a delivered brief.** `freshness: unavailable` rows (664) have p50 0 ms and p95 2 ms, and the single 2,218 ms row is one of them; every live row is at or below 1,538 ms. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (458 duration-bearing files; 77 sweep files and 381 real files)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402, 482-492`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160, 222-223`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance-5/iterations/iteration-001.md`"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-health-folder-is-mostly-synthetic-15-400-of-17-775-duration-rows-86-6-percen",
+      "text": "**The health folder is mostly synthetic: 15,400 of 17,775 duration rows (86.6 percent) sit in 77 generated sweeps.** Each sweep file holds 200 rows whose durations rise by exactly one from 101 to 300 ms inside a single minute, the shape of a timing harness, not of prompts. Filtering the 77 sweep files leaves 2,375 real rows across 381 files. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (458 duration-bearing files; 77 sweep files and 381 real files)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402, 482-492`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160, 222-223`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance-5/iterations/iteration-001.md`"
+      ]
+    },
+    {
+      "id": "finding-3-5-the-instrument-cannot-show-a-cold-start-cost-because-the-fail-open-path-is-recor",
+      "text": "**The instrument cannot show a cold-start cost, because the fail-open path is recorded as zero work.** An unavailable prompt stores 0 ms rather than the time spent probing a cold daemon, so the one population where a cold start would appear is the population that reports no elapsed time. What would confirm a cold cost: a record that stamps the probe's own elapsed time before writing `unavailable`. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:402] [INFERENCE: based on the 664 unavailable rows at p50 0 ms and the writer's rounded durationMs]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl` (458 duration-bearing files; 77 sweep files and 381 real files)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:384-402, 482-492`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160, 222-223`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance-5/iterations/iteration-001.md`"
+      ]
+    },
+    {
+      "id": "finding-4-1-every-committed-44-prompt-probe-reads-a-median-of-192-251-ms-and-a-p95-of-239-45",
+      "text": "**Every committed 44-prompt probe reads a median of 192-251 ms and a p95 of 239-450 ms.** 003 before 194.4/281.2, 003 after 251.2/450.5, 004 after 205.1/261.9, 005 before 193.2/295.6, 005 after-1 192.4/239.2, after-2 192.8/278.6, after-3 218.1/250.2. The built state's organic live p95 of 311 ms sits inside that band, so no measured regression appears between the probe era and the built state. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/scratch/hook-latency-before.json] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/scratch/hook-latency-after-3.json]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/scratch/hook-latency-{before,after,top-only}.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/scratch/hook-latency-{before-1,after-1,after-2,after-3}.json`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:167`"
+      ]
+    },
+    {
+      "id": "finding-4-3-per-runtime-live-p95-is-308-ms-on-claude-279-on-dsh-264-on-pi-237-on-devin-and-7",
+      "text": "**Per-runtime live p95 is 308 ms on Claude, 279 on DSH, 264 on Pi, 237 on Devin and 742 on Vibe.** Codex has six live rows at p95 161 ms, too few to read. Vibe is the only runtime whose p95 exceeds Claude's, and it is also the one with the smallest live sample (49 rows). [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/scratch/hook-latency-{before,after,top-only}.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/scratch/hook-latency-{before-1,after-1,after-2,after-3}.json`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:167`"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-built-state-brief-median-is-262-bytes-44-bytes-below-segment-four-s-306-byte",
+      "text": "**The built-state brief median is 262 bytes, 44 bytes below segment four's 306-byte median on typed rows.** The populations differ (organic prompts versus 44 typed rows), so this is consistent with, not proof of, the phase 021 head change trimming the head. What would confirm it: the same 44 typed rows re-measured on the built state. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl] [INFERENCE: based on the 262-byte built-state median and segment four's 306-byte typed-row median] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:167]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/scratch/hook-latency-{before,after,top-only}.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/scratch/hook-latency-{before-1,after-1,after-2,after-3}.json`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:167`"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-organic-record-has-two-modes-and-the-median-describes-the-cheap-one-of-1-695",
+      "text": "**The organic record has two modes, and the median describes the cheap one.** Of 1,695 live rows, 980 (57.8 percent) are cache hits; Claude's live median is 30 ms while its live p95 is 308 ms. The fixed probe never observes a cache hit, so a probe median of ~200 ms and an organic median of 30 ms are both true and describe different paths. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/scratch/hook-latency-{before,after,top-only}.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/scratch/hook-latency-{before-1,after-1,after-2,after-3}.json`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:167`"
+      ]
+    },
+    {
+      "id": "finding-5-3-both-cold-waits-on-the-server-side-are-twice-the-caller-s-budget-the-cli-waits-u",
+      "text": "**Both cold waits on the server side are twice the caller's budget.** The CLI waits up to 5,000 ms for a cold daemon (`COLD_START_WAIT_MS`), and the local scorer has a 5,000 ms deadline (`LOCAL_SCORER_TIMEOUT_MS`); the hook that called them gives up at 2,500 ms. A path that honours its own 5 s wait can only ever be observed from the caller as a timeout. [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:33-36] [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:43-45]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:132, 159-160`",
+        "`.skilled/skills/system-spec-kit/shared/embeddings/auto-select.ts:116-119`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:33-45`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-cascade-probe-s-default-2-500-ms-can-consume-the-whole-hook-child-budget-bef",
+      "text": "**The cascade probe's default 2,500 ms can consume the whole hook child budget before any scoring work starts.** `SPECKIT_CASCADE_PROBE_TIMEOUT_MS` defaults to 2,500 ms inside `auto-select.ts`, while the Claude shim kills its child at 2,500 ms. A probe that runs to its default therefore leaves zero time for the CLI, and the failure mode is a fail-open brief, not a slow brief. [SOURCE: .skilled/skills/system-spec-kit/shared/embeddings/auto-select.ts:116-119] [SOURCE: .skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:132, 159-160`",
+        "`.skilled/skills/system-spec-kit/shared/embeddings/auto-select.ts:116-119`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:33-45`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-measured-cold-work-is-about-690-ms-271-277-ms-for-a-cold-embedding-call-plus",
+      "text": "**The measured cold work is about 690 ms: 271-277 ms for a cold embedding call plus 413 ms for the advisor CLI with the model cold.** Against the 2,500 ms Claude hook budget that is 27.6 percent, so a cold first prompt does not by itself exhaust the budget. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:132]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:132, 159-160`",
+        "`.skilled/skills/system-spec-kit/shared/embeddings/auto-select.ts:116-119`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:33-45`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-production-record-prices-the-cold-failure-at-zero-the-664-unavailable-rows-h",
+      "text": "**The production record prices the cold failure at zero.** The 664 `unavailable` rows have p50 0 ms and p95 2 ms, so a cold first prompt that fails open contributes the cheapest possible row to every aggregate; the population that should carry the cold cost carries none of it. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:132, 159-160`",
+        "`.skilled/skills/system-spec-kit/shared/embeddings/auto-select.ts:116-119`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:33-45`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-5-5-what-would-confirm-the-bound-one-sandbox-cold-start-with-the-model-unloaded-unlo",
+      "text": "**What would confirm the bound: one sandbox cold start with the model unloaded.** Unload the embed model, wait past its five-minute keep-alive, run one prompt through the real hook and record wall time, the cascade probe's own duration and the fail-open reason. Absent that, 690 ms is measured work and 2,500 ms is a waiting bound, not a first-prompt cost. [INFERENCE: based on findings 1-4]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:132, 159-160`",
+        "`.skilled/skills/system-spec-kit/shared/embeddings/auto-select.ts:116-119`",
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:33-45`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-6-4-a-long-lived-operator-session-would-amortize-toward-a-26-90-byte-head-but-no-row",
+      "text": "**A long-lived operator session would amortize toward a 26-90 byte head, but no row set here measures that share.** The head is a single line (median 88 bytes in segment four) and the directive is 219 bytes, so a reduced delivery would land in the 26-90 byte range depending on the head's command and score decoration. What would confirm the amortized figure: five or more prompts sharing one session id with a growing transcript, recording `emittedBytes` per prompt. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:167] [INFERENCE: based on the head and directive byte split]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-179`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:167`"
+      ]
+    },
+    {
+      "id": "finding-6-1-brief-bytes-are-tightly-clustered-and-almost-never-head-only-p10-244-p25-260-p50",
+      "text": "**Brief bytes are tightly clustered and almost never head-only.** p10 244, p25 260, p50 262, p75 286, p90 298, max 361 bytes. Only 9 of 1,234 briefs (0.7 percent) fall below 120 bytes, the size a head-only delivery would have; 1,221 (99.0 percent) are at or above 240 bytes. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-179`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:167`"
+      ]
+    },
+    {
+      "id": "finding-6-3-in-an-arm-where-every-turn-is-a-new-session-the-dedup-cannot-fire-so-270-6-bytes",
+      "text": "**In an arm where every turn is a new session, the dedup cannot fire, so 270.6 bytes is the per-prompt cost, not an upper bound.** The behaviour runner starts each row as its own runtime session, and the measured population agrees: 99 percent of briefs carry the full block. [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:129-137] [INFERENCE: based on the dedup gate's session requirement and the 0.7 percent head-only share]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-179`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:167`"
+      ]
+    },
+    {
+      "id": "finding-6-2-the-dedup-gate-needs-a-proven-continuing-session-so-a-fresh-turn-always-pays-the",
+      "text": "**The dedup gate needs a proven continuing session, so a fresh turn always pays the directive.** Reduced delivery requires a non-empty confirmed session id, a valid transcript with byte size, a stable state clock across two reads, and a transcript that has not shrunk; a new session, a lifecycle boundary, a changed directive set or a shrunk transcript all force the full block. [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-179]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121-179`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md:167`"
+      ]
+    },
+    {
+      "id": "finding-7-2-a-claude-prompt-runs-five-node-processes-and-the-advisor-record-times-three-of-t",
+      "text": "**A Claude prompt runs five Node processes, and the advisor record times three of them.** `.claude/settings.json` declares three `UserPromptSubmit` commands — the spec-kit shim, `spec-gate-classify.mjs` and `context-nudge.mjs` — each with `timeout: 3`. The shim then spawns the advisor hook, which spawns the advisor CLI, so the advisor path alone is three starts and the prompt pays two more hooks outside that path. [SOURCE: .claude/settings.json] [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`.claude/settings.json`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:78`"
+      ]
+    },
+    {
+      "id": "finding-7-3-at-the-committed-36-85-ms-bare-node-start-the-advisor-s-three-starts-are-about-1",
+      "text": "**At the committed 36.85 ms bare-Node start, the advisor's three starts are about 111 ms, or 64 percent of the uncached median.** Collapsing the CLI spawn and the adapter spawn would recover about 74 ms, 43 percent of the uncached p50. Both figures are estimates built on a start cost measured on this machine in an earlier segment, not on the built state. [INFERENCE: based on 3 × 36.85 ms against the 172 ms uncached p50] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:78]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`.claude/settings.json`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:78`"
+      ]
+    },
+    {
+      "id": "finding-7-1-claude-s-uncached-live-path-is-p50-172-ms-p90-348-p95-618-max-1-538-ms-over-529-",
+      "text": "**Claude's uncached live path is p50 172 ms, p90 348, p95 618, max 1,538 ms over 529 rows.** The cached path is p50 30, p95 151, max 913 over 926 rows. The 2,500 ms budget holds at 4x the uncached p95. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`.claude/settings.json`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:78`"
+      ]
+    },
+    {
+      "id": "finding-7-4-the-health-record-cannot-price-the-whole-prompt-because-two-of-the-three-hook-co",
+      "text": "**The health record cannot price the whole prompt, because two of the three hook commands are outside it.** The advisor's `durationMs` covers its own leg; `spec-gate-classify` and `context-nudge` have no join to it, so a prompt's total hook latency is at least the advisor leg plus two more Node starts that no single record sums. [SOURCE: .claude/settings.json] [INFERENCE: based on three independent UserPromptSubmit commands and the advisor record's own start and end stamps]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`.claude/settings.json`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:78`"
+      ]
+    },
+    {
+      "id": "finding-7-5-what-would-confirm-the-ceiling-one-timing-probe-that-runs-the-three-configured-h",
+      "text": "**What would confirm the ceiling: one timing probe that runs the three configured hooks in the host's order.** Record wall time per command and total, then compare with the advisor leg alone. Absent that, 111 ms and 74 ms are ceilings, not savings. [INFERENCE: based on findings 2 and 3]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`.claude/settings.json`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:21-22`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:78`"
+      ]
+    },
+    {
+      "id": "finding-8-6-no-measured-cell-in-this-ledger-exceeds-a-runtime-s-budget-the-worst-live-p95-is",
+      "text": "**No measured cell in this ledger exceeds a runtime's budget.** The worst live p95 is Claude's uncached 618 ms against 2,500 ms (24.7 percent); the worst single live row is 1,538 ms (61.5 percent); the cold chain's measured work is 690 ms and its risk is the 2,500 ms probe ceiling, not the model. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl] [SOURCE: .skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160`",
+        "`.claude/settings.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:82`"
+      ]
+    },
+    {
+      "id": "finding-8-3-the-brief-costs-about-68-tokens-per-prompt-in-a-fresh-session-population-270-6-b",
+      "text": "**The brief costs about 68 tokens per prompt in a fresh-session population.** 270.6 bytes mean, 262 median, 316 p95 at the renderer's four-characters-per-token estimate; 99 percent of briefs carry the full 219-byte directive. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160`",
+        "`.claude/settings.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:82`"
+      ]
+    },
+    {
+      "id": "finding-8-1-the-hook-ledger-per-runtime-uncached-claude-p50-172-p95-618-ms-n-529-devin-160-2",
+      "text": "**The hook ledger, per runtime, uncached:** Claude p50 172, p95 618 ms (n 529); Devin 160/237 (n 44); DSH 165/243 (n 49); Pi 161/264 (n 48); Vibe 140/742 (n 41); Codex four rows at 0 ms, unusable. Cached: Claude 30/151 (n 926), Pi 140/327 (n 20), DSH 139/323 (n 20), Vibe 142/220 (n 8), Devin 200/230 (n 4). [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160`",
+        "`.claude/settings.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:82`"
+      ]
+    },
+    {
+      "id": "finding-8-4-the-started-command-s-document-read-is-16-6-times-the-brief-so-prompt-level-over",
+      "text": "**The started command's document read is 16.6 times the brief, so prompt-level overhead is not where a prompt's cost lives.** The command-document median is about 1,131 tokens and p95 about 3,143, against the brief's ~68 tokens; the hook's own 172 ms is 0.10 percent of a 172-second uncached turn. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:82] [INFERENCE: based on the brief token estimate and the committed document measurement]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160`",
+        "`.claude/settings.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:82`"
+      ]
+    },
+    {
+      "id": "finding-8-2-the-three-in-process-runtimes-share-one-profile-and-claude-is-the-outlier-at-the",
+      "text": "**The three in-process runtimes share one profile and Claude is the outlier at the tail.** Pi, DSH and Devin land at uncached p50 160-165 ms and p95 237-264 ms; Claude's uncached p95 is 618 ms, 2.3-2.6x theirs. The difference tracks the process chain: three Node starts on Claude against an in-process plugin elsewhere. [SOURCE: $TMPDIR/speckit-skill-advisor-metrics/*.jsonl] [INFERENCE: based on the runtime split and the Claude-only three-command hook configuration]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160`",
+        "`.claude/settings.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:82`"
+      ]
+    },
+    {
+      "id": "finding-8-5-three-cells-remain-inferred-each-with-one-confirming-measurement-the-cold-first-",
+      "text": "**Three cells remain inferred, each with one confirming measurement.** The cold first prompt: unload the model and run one real prompt, recording hook wall time, probe duration and fail-open reason. The process-chain ceiling: run the three configured hooks in host order and record per-command time. The amortized brief: five prompts sharing one session id with a growing transcript, recording `emittedBytes` each time. [INFERENCE: based on iterations 5, 6 and 7]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`$TMPDIR/speckit-skill-advisor-metrics/*.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:104-127`",
+        "`.skilled/hooks/skill-advisor/claude/user-prompt-submit.ts:160`",
+        "`.claude/settings.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:82`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-4c0298f6759f",
+      "text": "Counting `null` exits as caps without qualification: one of the 20 null exits is the `fresh-skill-04` rebase row with a failed restore, so the cap count is 19 nulls plus 28 exit-143s.",
+      "contentHash": "4c0298f6759f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-eced8966237a",
+      "text": "OpenCode SQLite store as a turn-duration source for phase 033: the sessions do not exist in any of the five databases. Candidate for \"Exhausted Approaches\" only for this arm; a future run must record durations itself.",
+      "contentHash": "eced8966237a",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-bef3ca7be84f",
+      "text": "Reading turn duration from the run lines: the record has no duration field and the arena sessions are gone from the store, so the cap's cost per turn is not recoverable. Replaced by the exit census and the cap constants.",
+      "contentHash": "bef3ca7be84f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-654f1bd01748",
+      "text": "Reconstructing the brief's token count from a tokenizer: no tokenizer is committed for this brief and the renderer's own 4-characters-per-token estimate is the contract, so a second estimate would add noise, not evidence.",
+      "contentHash": "654f1bd01748",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-622fdb053199",
+      "text": "Treating the p95 290 ms as the hook's work time: the 240-299 ms plateau with a 300 ms cliff shows a deadline shapes the distribution. Reporting 290 ms as \"typical cost\" would misstate it.",
+      "contentHash": "622fdb053199",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-5f3801b529f8",
+      "text": "A runtime-keyed cap as the fix: it leaves the misclassification in place and gives zero help to the two runtimes that never capped.",
+      "contentHash": "5f3801b529f8",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-fa396a8963c0",
+      "text": "Estimating the number of capped turns a longer cap would convert: the arm stores no duration for them, and the two sampled capped sessions disagree in shape (293 s active versus 61 s then waiting). That needs a re-run, not arithmetic.",
+      "contentHash": "fa396a8963c0",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e7de2388b9c9",
+      "text": "Recovering the durations of the 45 unsampled capped turns from the OpenCode store: iteration 1 already established the sessions are gone; only the step-reader's 20 sampled sessions survive.",
+      "contentHash": "e7de2388b9c9",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-d04865eb96b8",
+      "text": "Treating the 300 s cap as a stuck detector: four sampled completions land within 10 s of it, and one capped session was still emitting messages at 293 s.",
+      "contentHash": "d04865eb96b8",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-b281ac06bed6",
+      "text": "Using `summary-arm.json`'s `cappedOfferRows` as the cap's cost: it counts only the five offer rows, so it understates the 26 OpenCode caps by an order of magnitude.",
+      "contentHash": "b281ac06bed6",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-5264cb489298",
+      "text": "Measuring cold-start cost from the current record: the unavailable path records 0 ms by construction, so the record cannot carry it.",
+      "contentHash": "5264cb489298",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-2c3c250b3174",
+      "text": "Reading the folder's raw percentiles as hook cost: 86.6 percent of the rows are generated. Any future measurement must filter sweeps or read a single workspace.",
+      "contentHash": "2c3c250b3174",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-f126a9111517",
+      "text": "Separating sweeps from real rows by timestamp: both land in the same minutes, so shape (monotone, exact span, 200 rows) is the only reliable discriminator.",
+      "contentHash": "f126a9111517",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-6ee41850dc3f",
+      "text": "Treating the 2,218 ms maximum as a live-path worst case: it is an unavailable row, and the live maximum is 1,538 ms.",
+      "contentHash": "6ee41850dc3f",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-b248d2a63062",
+      "text": "Using `freshness: stale` (13 rows) as a cold indicator: stale rows have p50 374 ms, but the population is too small and marks a stale brief, not a cold daemon.",
+      "contentHash": "b248d2a63062",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-f0408b37be9c",
+      "text": "Comparing a probe median to an organic median directly: 57.8 percent of organic live rows are cache hits, so the two medians measure different work.",
+      "contentHash": "f0408b37be9c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-ba80f4136b79",
+      "text": "Reading Vibe's 742 ms p95 as a runtime cost: 49 rows is too small a sample and its rows are not from a controlled arm.",
+      "contentHash": "ba80f4136b79",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-5ce16ba27fb0",
+      "text": "The phase 015 `brief-cost-live.json` is not a rows array in the shape the filename suggests, so it could not be joined to the organic brief set; the 1,234 organic brief rows carry the same quantity.",
+      "contentHash": "5ce16ba27fb0",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-24bf14635d3d",
+      "text": "Reading a cold first-prompt cost from the health records: the fail-open branch writes 0 ms, so the record cannot carry it.",
+      "contentHash": "24bf14635d3d",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-47e21febd0cf",
+      "text": "The phase 008 committed cost script needs the model unloaded to reproduce the cold numbers, and unloading is a process action this read-only lane may not take.",
+      "contentHash": "47e21febd0cf",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-e5bc5f1d6b79",
+      "text": "Treating 2,500 ms as the cold cost: it is the cascade probe's ceiling, and the measured cold work is 690 ms.",
+      "contentHash": "e5bc5f1d6b79",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-02b87d083e73",
+      "text": "Measuring the dedup's amortized effect from this data: nine head-only rows cannot support a share.",
+      "contentHash": "02b87d083e73",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-43f23fc438c7",
+      "text": "Splitting brief bytes by `cacheHit`: a cache hit describes the recommendation cache, not the directive lifecycle, so the two fields do not partition the same population.",
+      "contentHash": "43f23fc438c7",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-586f94380019",
+      "text": "Treating 270.6 bytes as a per-session upper bound: it is the per-prompt cost in a fresh-session population.",
+      "contentHash": "586f94380019",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-bebfbcdcf22d",
+      "text": "Adding the three hook timeouts as a worst case: `timeout: 3` is a host kill, not a cost.",
+      "contentHash": "bebfbcdcf22d",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-ecacaed4d8fe",
+      "text": "Reading the advisor leg as the prompt's hook cost: two more hook commands run and are not in its record.",
+      "contentHash": "ecacaed4d8fe",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-2082a225c4e3",
+      "text": "The shim's compiled dispatcher could not be timed without running it, which this lane may not do.",
+      "contentHash": "2082a225c4e3",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-417c15180a25",
+      "text": "Per-runtime cached medians on Devin and Codex: four and two rows respectively, too few to read.",
+      "contentHash": "417c15180a25",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-2a2c44f7c2f8",
+      "text": "Ranking any performance fix above the turn-cap fix: the cap removed 47 judgeable rows, while every latency cell sits inside its budget.",
+      "contentHash": "2a2c44f7c2f8",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-754f24678844",
+      "text": "Treating the ledger's hook column as a prompt's total hook latency: two non-advisor hooks run outside it.",
+      "contentHash": "754f24678844",
+      "addedAtIteration": 8
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 8,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 51,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.6,
+    "coverageBySources": {
+      "code": 18,
+      "other": 42
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance-5/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

@@ -1,0 +1,175 @@
+{
+  "sessionId": "fanout-merged-12-1794856957949-n58dw7",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 6,
+    "timestamp": "2026-11-16T19:46:13.703Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "MRG12-P2-001",
+      "severity": "P2",
+      "title": "The runtime-name contract test workflow half cannot fail",
+      "file": ".skilled/commands/doctor/scripts/tests/doctor-install-contract.test.cjs",
+      "line": 239,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "graphSignals": {
+    "blockedBy": [],
+    "dimensionCoverage": 1,
+    "evidenceDensity": 1,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 1,
+    "stopReason": "converged"
+  },
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 2,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 4,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/commands/doctor/assets/symlink-manifest.json:5-13",
+          ".skilled/commands/doctor/scripts/tests/doctor-install-contract.test.cjs:237-240"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "Scope files are stable after the reviewed commit; REQ-005 and REQ-006 both hold."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/tasks.md:65"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "summary": "Both doctor checklist rows cite existing evidence; the T015 wording gap is the recorded P2."
+      },
+      {
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "overlay",
+        "protocolId": "skill_agent",
+        "status": "notApplicable",
+        "summary": "No agent owns or mirrors the sk-doc hub or the doctor contract test."
+      },
+      {
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "overlay",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "summary": "No runtime-mirrored agent copies for these four files."
+      },
+      {
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "overlay",
+        "protocolId": "feature_catalog_code",
+        "status": "notApplicable",
+        "summary": "No feature-catalog row describes the merged intents or the doctor test."
+      },
+      {
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "overlay",
+        "protocolId": "playbook_capability",
+        "status": "notApplicable",
+        "summary": "No playbook scenario covers these four files."
+      }
+    ],
+    "unfinishedCoreProtocols": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

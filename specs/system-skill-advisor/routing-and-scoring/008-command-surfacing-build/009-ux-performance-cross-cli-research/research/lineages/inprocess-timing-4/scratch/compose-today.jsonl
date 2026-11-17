@@ -1,0 +1,10 @@
+{"mode":"today","index":0,"id":"cmd-create-readme-plain-tune-01","split":"tune","chars":84,"cliImportMs":6.902542,"spawnMs":275.511708,"ok":true,"top":"system-spec-kit","totalMs":297.495791}
+{"mode":"today","index":1,"id":"cmd-doctor-setup-plain-tune-01","split":"tune","chars":72,"cliImportMs":3.6810419999999997,"spawnMs":188.325792,"ok":true,"top":"sk-code","totalMs":205.956292}
+{"mode":"today","index":2,"id":"cmd-create-agent-plain-tune-01","split":"tune","chars":81,"cliImportMs":3.2545830000000002,"spawnMs":200.792708,"ok":true,"top":null,"totalMs":216.96775}
+{"mode":"today","index":3,"id":"cmd-speckit-save-plain-tune-01","split":"tune","chars":61,"cliImportMs":3.441749999999999,"spawnMs":205.81879099999998,"ok":true,"top":"system-spec-kit","totalMs":223.196125}
+{"mode":"today","index":4,"id":"cmd-doctor-mcp-plain-tune-01","split":"tune","chars":48,"cliImportMs":17.491375000000005,"spawnMs":326.62016700000004,"ok":true,"top":"mcp-code-mode","totalMs":413.501583}
+{"mode":"today","index":5,"id":"cmd-speckit-implement-plain-tune-01","split":"tune","chars":65,"cliImportMs":5.649583,"spawnMs":188.720125,"ok":true,"top":"sk-code","totalMs":212.677667}
+{"mode":"today","index":6,"id":"cmd-create-repo-rule-plain-tune-01","split":"tune","chars":83,"cliImportMs":3.429125000000001,"spawnMs":283.471416,"ok":true,"top":null,"totalMs":299.738}
+{"mode":"today","index":7,"id":"cmd-doctor-sk-skill-plain-tune-01","split":"tune","chars":68,"cliImportMs":3.2263339999999996,"spawnMs":193.79524999999998,"ok":true,"top":"sk-doc","totalMs":209.546084}
+{"mode":"today","index":8,"id":"cmd-create-readme-typed-01","split":"none","chars":28,"cliImportMs":3.4311669999999985,"spawnMs":203.24004100000002,"ok":true,"top":"command-create-readme","totalMs":219.914917}
+{"mode":"today","index":9,"id":"cmd-doctor-setup-typed-01","split":"none","chars":44,"cliImportMs":7.499207999999999,"spawnMs":516.898917,"ok":true,"top":"command-doctor-setup","totalMs":544.278791}

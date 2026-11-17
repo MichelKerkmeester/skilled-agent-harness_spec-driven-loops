@@ -1,0 +1,97 @@
+{
+  "topic": "Command surfacing review pass three closing round - hook-close-3c lineage (doctor hook check first, no-edit gate second)",
+  "sessionId": "fanout-hook-close-3c-1794596804847-827gze",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 3,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "convergence"
+  },
+  "stopPolicy": "convergence",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "createdAt": "2026-11-13T19:19:03.103Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewFocus": "Code review of command surfacing, PASS THREE closing round. Review the FINAL state of (a) .skilled/commands/doctor/scripts/hook-wiring-check.cjs readWords/simpleCommands/commandWords/nodeFlagSkipsScript/runsNodeOnMarker/scriptWord/runsMarker and its test file, and (b) NO_EDIT_REQUEST and isNoEditRequest in .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts, their callers in runtime/lib/scorer/fusion.ts and runtime/lib/scorer/text.ts, and runtime/tests/command-attach-guards.vitest.ts. Settled and not re-reported: the 'make no changes' safe reading, and the hook check being a wiring heuristic rather than a node or shell parser. Every finding is P0/P1/P2 with file:line and a concrete input run. Never open holdout-prompts.jsonl. Change no code; write only inside the lineage folder. This lineage reviews the doctor hook check first and the no-edit gate second.",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": false
+  },
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fanout_lineage_artifact_dir": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/hook-close-3c",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

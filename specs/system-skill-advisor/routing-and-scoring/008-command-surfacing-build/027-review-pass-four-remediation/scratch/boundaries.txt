@@ -1,0 +1,31 @@
+$ git -c core.fsmonitor=false diff --quiet 11af224a34 -- AGENTS.md
+exit 0
+$ test "$(git -c core.fsmonitor=false rev-parse 11af224a34:.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl)" = "$(git -c core.fsmonitor=false hash-object .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl)"
+exit 0
+$ test "$(git -c core.fsmonitor=false rev-parse 11af224a34:.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl)" = "$(git -c core.fsmonitor=false hash-object .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl)"
+exit 0
+$ git -c core.fsmonitor=false diff --quiet 11af224a34 -- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json
+exit 0
+$ git -c core.fsmonitor=false diff --stat 11af224a34 -- '*package.json' '*package-lock.json'
+exit 0
+$ git -c core.fsmonitor=false diff 11af224a34 -U0 -- .skilled .opencode ':(exclude)**/command-prompts.jsonl' ':(exclude)**/holdout-prompts.jsonl' | rg -e '^\+\s*(//|#|\*|/\*)' | rg -c -e 'specs/|[0-9]{3}-[a-z]|(T|P|Q)[0-9]{3}|(REQ|AC|CHK|ADR)-[0-9]+|(SA4|R4|DR4)-P[0-9]|iter[0-9]-P[0-9]'
+exit 1
+$ git -c core.fsmonitor=false diff --name-only 11af224a34 -- .skilled .opencode ':(exclude)**/command-prompts.jsonl' ':(exclude)**/holdout-prompts.jsonl'
+.skilled/commands/doctor/assets/doctor-agents-md-presentation.txt
+.skilled/hooks/shared/session-readers/codex.d.mts.map
+.skilled/hooks/shared/session-readers/codex.mjs
+.skilled/hooks/shared/tests/session-readers/codex.test.mjs
+.skilled/skills/system-skill-advisor/README.md
+.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md
+.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md
+.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts
+exit 0

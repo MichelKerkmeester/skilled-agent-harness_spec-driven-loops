@@ -1,0 +1,543 @@
+{
+  "sessionId": "fanout-inprocess-timing-4-1794570002424-6wv97k",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-what-does-one-in-process-handler-call-cost-from-a-cold-node-process-and-does-its",
+      "inboxId": null,
+      "text": "What does one in-process handler call cost from a cold node process, and does its worst case fit the hook's 2.5 s budget?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-what-does-a-warm-handler-call-cost-in-a-process-that-already-loaded-the-modules-",
+      "inboxId": null,
+      "text": "What does a warm handler call cost in a process that already loaded the modules, and how much of the cold cost is module load rather than scoring?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-3-how-does-the-in-process-handler-compare-with-today-s-python-fallback-scorer-on-t",
+      "inboxId": null,
+      "text": "How does the in-process handler compare with today's Python fallback scorer on the same prompts?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-4-would-the-in-process-answer-change-the-degraded-top-the-typed-command-and-the-mo",
+      "inboxId": null,
+      "text": "Would the in-process answer change the degraded top, the typed command and the mode label under the Q026 filter, and do the floors hold?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-5-how-much-of-the-hook-s-2-5-s-budget-is-left-when-the-degraded-cli-path-uses-the-",
+      "inboxId": null,
+      "text": "How much of the hook's 2.5 s budget is left when the degraded CLI path uses the in-process handler instead of the Python spawn?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-does-one-in-process-handler-call-cost-from-a-cold-node-process-and-does-its",
+      "inboxId": null,
+      "text": "What does one in-process handler call cost from a cold node process, and does its worst case fit the hook's 2.5 s budget?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-what-does-a-warm-handler-call-cost-in-a-process-that-already-loaded-the-modules-",
+      "inboxId": null,
+      "text": "What does a warm handler call cost in a process that already loaded the modules, and how much of the cold cost is module load rather than scoring?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-how-does-the-in-process-handler-compare-with-today-s-python-fallback-scorer-on-t",
+      "inboxId": null,
+      "text": "How does the in-process handler compare with today's Python fallback scorer on the same prompts?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-4-would-the-in-process-answer-change-the-degraded-top-the-typed-command-and-the-mo",
+      "inboxId": null,
+      "text": "Would the in-process answer change the degraded top, the typed command and the mode label under the Q026 filter, and do the floors hold?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-5-how-much-of-the-hook-s-2-5-s-budget-is-left-when-the-degraded-cli-path-uses-the-",
+      "inboxId": null,
+      "text": "How much of the hook's 2.5 s budget is left when the degraded CLI path uses the in-process handler instead of the Python spawn?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-a-cold-in-process-path-costs-a-median-of-224-7-ms-and-a-worst-of-337-7-ms-for-im",
+      "text": "A cold in-process path costs a median of 224.7 ms and a worst of 337.7 ms for import plus one handler call, and the whole fresh process finishes at a median of 239.4 ms and a worst of 443.0 ms. That worst case is 17.7 percent of the hook's 2,500 ms budget. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/iteration-001-summary.json]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation/implementation-summary.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/implementation-summary.md",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1455",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1481",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:716",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:305",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:303",
+        ".skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts:47",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:144",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:228",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/cold.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/warm.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/fallback.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/floor-capture.json"
+      ]
+    },
+    {
+      "id": "finding-1-2-a-warm-handler-call-in-a-process-that-already-loaded-the-modules-costs-a-median-",
+      "text": "A warm handler call in a process that already loaded the modules costs a median of 76.5 ms and a worst of 93.6 ms across the ten prompts. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/warm.jsonl]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation/implementation-summary.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/implementation-summary.md",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1455",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1481",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:716",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:305",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:303",
+        ".skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts:47",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:144",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:228",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/cold.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/warm.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/fallback.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/floor-capture.json"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-cold-in-process-added-cost-is-at-parity-with-today-s-fallback-224-7-ms-again",
+      "text": "The cold in-process added cost is at parity with today's fallback, 224.7 ms against 238.5 ms, a difference of minus 13.8 ms at the median. The warm in-process call is 3.1 times cheaper than the Python spawn. A CLI process that already loaded its own modules pays the import only on its first degraded call, so the comparable number is the cold one. [INFERENCE: based on the cold, warm and fallback rows in the same summary file and the dynamic-import shape of the proposed call site]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation/implementation-summary.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/implementation-summary.md",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1455",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1481",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:716",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:305",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:303",
+        ".skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts:47",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:144",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:228",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/cold.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/warm.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/fallback.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/floor-capture.json"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-floors-are-unchanged-at-the-built-head-typed-recall-24-of-44-false-offers-0-",
+      "text": "The floors are unchanged at the built HEAD: typed recall 24 of 44, false offers 0 of 35, plain tune 23 of 45 and attached false offers 0 of 35. The capture took 8.96 s. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/floor-capture.json]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation/implementation-summary.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/implementation-summary.md",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1455",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1481",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:716",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:305",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:303",
+        ".skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts:47",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:144",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:228",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/cold.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/warm.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/fallback.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/floor-capture.json"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-handler-module-import-is-the-largest-fixed-cost-of-the-cold-path-median-78-4",
+      "text": "The handler module import is the largest fixed cost of the cold path: median 78.4 ms, worst 146.4 ms, which is 35 percent of the 224.7 ms cold median. The remaining 140.5 ms median is the first scoring call, including the prompt embedding. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/iteration-001-summary.json]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation/implementation-summary.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/implementation-summary.md",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1455",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1481",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:716",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:305",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:303",
+        ".skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts:47",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:144",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:228",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/cold.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/warm.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/fallback.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/floor-capture.json"
+      ]
+    },
+    {
+      "id": "finding-1-4-today-s-python-fallback-scorer-costs-a-median-of-238-5-ms-and-a-worst-of-377-7-m",
+      "text": "Today's Python fallback scorer costs a median of 238.5 ms and a worst of 377.7 ms for the same ten prompts, measured as one spawn per prompt inside a warm node process. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/fallback.jsonl]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation/implementation-summary.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/implementation-summary.md",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1455",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1481",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:716",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:305",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:303",
+        ".skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts:47",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:144",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:228",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/cold.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/warm.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/fallback.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/floor-capture.json"
+      ]
+    },
+    {
+      "id": "finding-2-3-a-filter-that-trusts-the-handler-s-own-command-only-when-the-prompt-typed-it-kee",
+      "text": "A filter that trusts the handler's own command only when the prompt typed it keeps the typed readme command and adds no command to the nine untyped prompts: 1 of 1 typed command kept, 0 of 9 gained. That is the Q026 boundary, and it needs the filter to read the handler row rather than re-derive the command from the skill. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/shape-live.jsonl]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1481",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:389",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:311",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/shape-live.jsonl"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-handler-s-raw-answer-is-the-live-answer-on-the-cases-rank-6-names-the-plain-",
+      "text": "The handler's raw answer is the live answer on the cases rank 6 names: the plain readme prompt tops `sk-doc` where the fallback tops `system-spec-kit`, the create-agent prompt carries `/create:agent`, the typed doctor prompt carries `/doctor:setup`, and both hub prompts report `needsMode` true where the fallback reports none. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/shape-live.jsonl]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1481",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:389",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:311",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/shape-live.jsonl"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-in-process-top-differs-from-the-fallback-top-on-five-of-the-ten-corpus-promp",
+      "text": "The in-process top differs from the fallback top on five of the ten corpus prompts: plain readme, plain doctor setup, create-agent, save and repo-rule. On the typed readme prompt the two agree on the command but not on the top skill. The other five agree. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/shape-live.jsonl]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1481",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:389",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:311",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/shape-live.jsonl"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-literal-rank-6-wiring-loses-the-typed-command-on-the-typed-readme-prompt-the",
+      "text": "The literal rank 6 wiring loses the typed command on the typed readme prompt. The handler names `sk-doc` with `/create:readme`, the existing filter emits a bare `sk-doc` skill row because `commandRowFor('sk-doc')` is empty, and today's fallback keeps `/create:readme`. Feeding handler rows to `degradedRecommendations` with `skillId` as the skill is a regression on the one guarantee Q026 makes. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/shape-live.jsonl]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1481",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:389",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:311",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/shape-live.jsonl"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-mode-label-needs-a-second-small-change-the-hook-s-payload-mapper-already-rea",
+      "text": "The mode label needs a second small change. The hook's payload mapper already reads `needsMode` from a CLI recommendation, but the Q026 filter's rows carry no such field, so the in-process call alone cannot surface the label. [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:389]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-3.md",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1481",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:389",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:311",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/shape-live.jsonl"
+      ]
+    },
+    {
+      "id": "finding-3-6-a-whole-cli-process-that-only-prints-its-version-costs-a-median-of-33-6-ms-and-a",
+      "text": "A whole CLI process that only prints its version costs a median of 33.6 ms and a worst of 39.9 ms, which is the floor any degraded hook call pays before scoring starts. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/cli-startup.jsonl]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1455",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:305",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:144",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:230",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-proposed.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-today.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-proposed-long.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/cli-startup.jsonl"
+      ]
+    },
+    {
+      "id": "finding-3-4-at-its-worst-the-proposed-path-leaves-2-071-5-ms-of-the-2-500-ms-budget-82-9-per",
+      "text": "At its worst the proposed path leaves 2,071.5 ms of the 2,500 ms budget, 82.9 percent; today's worst leaves 1,955.7 ms, 78.2 percent. The proposed path costs 11.2 ms more at the median and 115.8 ms less at the worst case. [INFERENCE: derived from the composed rows in the two files above, each total subtracted from 2,500]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1455",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:305",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:144",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:230",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-proposed.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-today.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-proposed-long.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/cli-startup.jsonl"
+      ]
+    },
+    {
+      "id": "finding-3-5-at-the-10-000-character-prompt-cap-the-composed-proposed-path-costs-335-0-ms-13-",
+      "text": "At the 10,000-character prompt cap the composed proposed path costs 335.0 ms, 13.4 percent of the budget, and the handler alone costs a cold median of 242.1 ms and a worst of 424.1 ms over five runs, with a warm median of 147.1 ms and a worst of 215.3 ms over ten. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/iteration-003-summary.json]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1455",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:305",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:144",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:230",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-proposed.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-today.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-proposed-long.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/cli-startup.jsonl"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-cli-s-module-import-costs-a-median-of-3-85-ms-and-a-worst-of-5-26-ms-inside-",
+      "text": "The CLI's module import costs a median of 3.85 ms and a worst of 5.26 ms inside a fresh process. The CLI's own startup is not the budget driver. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/iteration-003-summary.json]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1455",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:305",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:144",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:230",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-proposed.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-today.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-proposed-long.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/cli-startup.jsonl"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-composed-proposed-path-costs-a-median-of-231-1-ms-and-a-worst-of-428-5-ms-pe",
+      "text": "The composed proposed path costs a median of 231.1 ms and a worst of 428.5 ms per fresh process, including CLI import, handler import and one scoring call. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-proposed.jsonl]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1455",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:305",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:144",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:230",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-proposed.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-today.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-proposed-long.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/cli-startup.jsonl"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-composed-today-path-costs-a-median-of-219-9-ms-and-a-worst-of-544-3-ms-on-th",
+      "text": "The composed today path costs a median of 219.9 ms and a worst of 544.3 ms on the same prompts, including CLI import and the Python spawn. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-today.jsonl]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1455",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:305",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:144",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:230",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-proposed.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-today.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-proposed-long.jsonl",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/cli-startup.jsonl"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-f371c48c9fb4",
+      "text": "Measuring the in-process handler against the tracked database: the copy plus the copied generation file is what makes `readAdvisorStatus` report `live`, and it keeps every scratch write inside the lineage. Without the generation file the status read `absent` and the handler returned zero recommendations. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts:47]",
+      "contentHash": "f371c48c9fb4",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-1e32b3e57b7c",
+      "text": "None this iteration. The first scratch run returned zero recommendations because the generation file was missing; copying it fixed the status read and is recorded under Ruled Out rather than treated as a dead end.",
+      "contentHash": "1e32b3e57b7c",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-f65d95ad31b0",
+      "text": "Timing the warm set on the same prompts used for warm-up: the prompt cache is keyed on prompt text and source signature, so a warm-up call would have filled the measured cache entry. Warm-up used two rows outside the measured set. [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:602]",
+      "contentHash": "f65d95ad31b0",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-0ea567ade5a0",
+      "text": "None this iteration.",
+      "contentHash": "0ea567ade5a0",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-4fa22110dc85",
+      "text": "Reporting the synthetic hub prompts as corpus rows. They exist only for the label check, and their ids carry the `synthetic-` prefix in every artifact.",
+      "contentHash": "4fa22110dc85",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-9ac0150495ad",
+      "text": "Treating `degradedRecommendations` as drop-in compatible with handler rows. It re-derives a command from `commandRowFor(entry.skill)`, so a hub's attached command never survives and a typed command is lost. [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1495]",
+      "contentHash": "9ac0150495ad",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-708cd12d8fc9",
+      "text": "Summing the separately measured medians (CLI startup, handler import, handler call) as if that were a measurement. The composed process run replaces the sum and is the number quoted for the budget.",
+      "contentHash": "708cd12d8fc9",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-a0af0f9120be",
+      "text": "Treating the `--version` spawn as the CLI's import cost. The spawn includes Node boot; the in-process import is 3.85 ms, and both are reported separately. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/scratch/compose-proposed.jsonl]",
+      "contentHash": "a0af0f9120be",
+      "addedAtIteration": 3
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 17,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      "code": 11,
+      "other": 12
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/inprocess-timing-4/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [
+    {
+      "type": "event",
+      "event": "novelty_signal_inert",
+      "mode": "research",
+      "severity": "warning",
+      "metric": "newInfoRatio",
+      "run": 3,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "note": "newInfoRatio held flat at 1 across 3 iterations — the novelty signal is uninformative, so convergence and \"not exhausted\" claims derived from it are untrustworthy.",
+      "timestamp": "2026-11-13T11:55:40Z"
+    },
+    {
+      "type": "event",
+      "event": "trend_flatline",
+      "mode": "research",
+      "severity": "advisory",
+      "metric": "score",
+      "run": 3,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "timestamp": "2026-11-13T11:55:40Z"
+    }
+  ],
+  "strategyWarnings": []
+}

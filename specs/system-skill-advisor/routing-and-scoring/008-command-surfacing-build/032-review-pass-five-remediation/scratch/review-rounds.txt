@@ -1,0 +1,22 @@
+# round 5b, commits 2a1a42263cc..d21dbc1cafe, four cli-opencode lineages on opencode-go/deepseek-v4.1-flash max, 3 iterations each, threshold 0.10
+accuracy-runner-confirm-5b ratios: 1 0.3333 0.25  last=0.25 open: P2 8
+kill-switch-cli-confirm-5b ratios: 1 0 0  last=0 open: P2 2
+vibe-hooks-doctor-confirm-5b ratios: 0 1 0  last=0 open: P2 2
+docs-metadata-confirm-5b ratios: 1 0.5 0  last=0 open: P2 4
+# adjudication: 0 P0 and 0 P1 reported, so nothing to reproduce and no round 5c. Each P2 with its reason:
+accuracy-runner-confirm-5b P2 --target-directory copy records the source: reason, lesser direction (a write is still reported), named in plan D13 under the wider option-value limit
+accuracy-runner-confirm-5b P2 background & folded into the writer's arguments: reason, the same miss as at d0f605b42f8, named in plan D13 (wrapped and nested writes)
+accuracy-runner-confirm-5b P2 a three-backtick line closes a four-backtick fence: reason, a report line inside such a fence counts, the lesser direction for a start rate, left open in review-report.md
+accuracy-runner-confirm-5b P2 in-place editors outside the writer list stay invisible: reason, plan D13 interpreter writes, a writer table is a change of its own
+accuracy-runner-confirm-5b P2 turnRefusal throws where its contract promises a refusal: reason, a git failure still stops the arm before any spawn, left open in review-report.md
+accuracy-runner-confirm-5b P2 a mid-arm refusal names no row: reason, the run log's last line already names the row that ran, left open in review-report.md
+accuracy-runner-confirm-5b P2 README symlink_escape clause names two of three refusals: reason, doc wording, left open in review-report.md
+accuracy-runner-confirm-5b P2 README scorer row never says an in-place shell edit is a write: reason, doc wording, left open in review-report.md
+kill-switch-cli-confirm-5b P2 .skilled/hooks/README.md omits the four MK_ aliases: reason, outside the 28 fix paths
+kill-switch-cli-confirm-5b P2 lib README package topology omits skill-graph/: reason, doc wording, left open in review-report.md
+vibe-hooks-doctor-confirm-5b P2 doctor scripts README.markdown hook-missing wording: reason, outside the 28 fix paths
+vibe-hooks-doctor-confirm-5b P2 names-the-main-agent case duplicates the default case: reason, a redundant test, it cannot hide a defect, left open in review-report.md
+docs-metadata-confirm-5b P2 skill README states 46 command rows: reason, outside the 28 fix paths
+docs-metadata-confirm-5b P2 ROUTER.md says five hook docs: reason, outside the 28 fix paths
+docs-metadata-confirm-5b P2 playbook section 18.5 names numbered category slots: reason, doc wording, left open in review-report.md
+docs-metadata-confirm-5b P2 tests README topology omits doctor/: reason, doc wording, left open in review-report.md

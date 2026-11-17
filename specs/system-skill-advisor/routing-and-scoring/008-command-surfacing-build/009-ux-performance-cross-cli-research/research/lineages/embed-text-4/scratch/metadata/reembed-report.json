@@ -1,0 +1,42 @@
+{
+  "embedderParity": {
+    "command": "/doctor:install",
+    "cosineAgainstStoredVector": 1,
+    "prefix": "search_document: ",
+    "model": "nomic-embed-text:v1.5"
+  },
+  "/doctor:install": {
+    "commandId": "command-doctor-install",
+    "bytes": 3072,
+    "modelId": "nomic-embed-text-v1.5",
+    "contentHashMatches": true
+  },
+  "/doctor:setup": {
+    "commandId": "command-doctor-setup",
+    "bytes": 3072,
+    "modelId": "nomic-embed-text-v1.5",
+    "contentHashMatches": true
+  },
+  "/doctor:speckit": {
+    "commandId": "command-doctor-speckit",
+    "bytes": 3072,
+    "modelId": "nomic-embed-text-v1.5",
+    "contentHashMatches": true
+  },
+  "/doctor:update": {
+    "commandId": "command-doctor-update",
+    "bytes": 3072,
+    "modelId": "nomic-embed-text-v1.5",
+    "contentHashMatches": true
+  },
+  "/speckit:search": {
+    "commandId": "command-speckit-search",
+    "bytes": 3072,
+    "modelId": "nomic-embed-text-v1.5",
+    "contentHashMatches": true
+  },
+  "/create:skill-parent": {
+    "commandId": null,
+    "skipped": "no command vector row (no TypeScript bridge or no stored row)"
+  }
+}

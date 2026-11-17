@@ -1,0 +1,11 @@
+## jq -c '[.attachedMetrics.plain_stages, .attachedMetrics.fit]' capture-before-fixture.json
+[null,null]
+## followedRange all null in summary-before.json
+true
+## node S --summary runs-final --pair pre,post --json
+exit 2
+score-command-transcripts.mjs: unknown option: --pair
+usage: score-command-transcripts.mjs --runtime <name> --locator <json> [--json]
+       score-command-transcripts.mjs --summary <run-log> [<run-log>...] [--row-id <id>] [--json]
+## FITROWS | wc -l
+0

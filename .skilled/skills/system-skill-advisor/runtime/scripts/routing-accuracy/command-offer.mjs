@@ -9,6 +9,15 @@
 // the command and the policy, and a replay keeps the recorded value independent
 // of whatever the session reader happened to retain.
 //
+// The handler gives the head row its command under every request shape and
+// every caller asks for the route of the top pick alone, so for a run made
+// from that state on, the Claude hook's head is
+// the head every runtime's reader got.
+// A run stored before that state carries the Claude hook's replay, which
+// could differ from the head a non-Claude reader saw, at the head row or at
+// the partner of an ambiguous head. A runtime whose renderer differs would
+// need its own replay.
+//
 // A failed replay returns null fields plus an offerError, so a backfill over a
 // checkout without the hook, or a hook that crashes, still produces a readable
 // line instead of aborting the run.
@@ -23,11 +32,12 @@
 // behind and each line still answers for its own checkout.
 
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { loadSession as loadSharedSession } from '../../../../../hooks/shared/session-readers/index.mjs';
+import { MARK } from './prepare-behaviour-arena.mjs';
 
 const HOOK_RELATIVE = '.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js';
 const ADVISOR_CLI_RELATIVE = '.skilled/bin/skill-advisor.cjs';
@@ -41,28 +51,34 @@ const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../
 const CODEX_CHECK = join(REPO_ROOT, '.skilled/commands/doctor/scripts/codex-hook-approval-check.cjs');
 
 function failedOffer(offerError) {
-  return { offeredCommand: null, offeredPolicy: null, offerError };
+  return { offeredCommand: null, offeredPolicy: null, offeredAs: null, offerError };
 }
 
 /**
- * Read the command and the policy out of the first line of a head.
+ * Read the command, the policy and the side of `vs` out of the first line of a
+ * head.
  *
  * The policy only counts when it directly follows the command, so a `(ask)`
  * that belongs to a later clause cannot attach itself to an earlier match.
+ * An ambiguous head names two paths, and only one of them leads, so
+ * `offeredAs` records whether the match sat before `vs` as the head or after
+ * it as the partner.
  *
  * @param {string} head - One line of advisor output.
- * @returns {{ offeredCommand: string | null, offeredPolicy: string | null }}
+ * @returns {{ offeredCommand: string | null, offeredPolicy: string | null,
+ *   offeredAs: 'head' | 'partner' | null }}
  */
 export function parseOffer(head) {
   const text = typeof head === 'string' ? head : '';
   const match = text.match(OFFER_PATTERN);
   if (!match) {
-    return { offeredCommand: null, offeredPolicy: null };
+    return { offeredCommand: null, offeredPolicy: null, offeredAs: null };
   }
   const policy = text.slice(match.index + match[0].length).match(POLICY_PATTERN);
   return {
     offeredCommand: match[0],
     offeredPolicy: policy ? policy[1] : null,
+    offeredAs: text.slice(0, match.index).includes(' vs ') ? 'partner' : 'head',
   };
 }
 
@@ -78,7 +94,8 @@ export function parseOffer(head) {
  * @param {string} options.prompt - The prompt to replay.
  * @param {string} options.sessionId - Session id for the hook payload.
  * @param {number} [options.timeoutMs] - Hook timeout before the replay fails.
- * @returns {{ offeredCommand: string | null, offeredPolicy: string | null, offerError: string | null }}
+ * @returns {{ offeredCommand: string | null, offeredPolicy: string | null,
+ *   offeredAs: 'head' | 'partner' | null, offerError: string | null }}
  */
 export function replayOffer({ checkoutDir, prompt, sessionId, timeoutMs = DEFAULT_TIMEOUT_MS }) {
   const hookPath = join(checkoutDir, HOOK_RELATIVE);
@@ -139,12 +156,14 @@ function contentHasBrief(content) {
   });
 }
 
-// Neutral records keep their text in content blocks, and the block shape differs
-// by runtime, so the serialized record is the one place the brief is found
-// whichever block carries it.
+// A brief arrives as session input, so a tool that printed a document quoting a
+// head delivered nothing. Neutral records keep their text in content blocks, and
+// the block shape differs by runtime, so the serialized record is the one place
+// the brief is found whichever block carries it.
 function recordsHaveBrief(records) {
   return (Array.isArray(records) ? records : []).some((record) =>
-    BRIEF_PATTERN.test(JSON.stringify(record ?? null)));
+    record?.role !== 'toolResult'
+    && BRIEF_PATTERN.test(JSON.stringify(record ?? null)));
 }
 
 // Injected context sits beside the records rather than inside them, so a reader
@@ -283,9 +302,66 @@ export async function briefDelivered({ runtime, locator, loadSession, codexConfi
   return 'unknown';
 }
 
+/**
+ * Pick the session a DSH prompt opened among the sessions a turn added.
+ *
+ * A DSH turn can add helper sessions beside its own, and only the session the
+ * prompt opened holds that prompt as its first user message, so the prompt
+ * decides between them and a tie names none.
+ *
+ * @param {object} options
+ * @param {string[]} options.before - Session ids the store held before the turn.
+ * @param {string[]} options.after - Session ids the store held after the turn.
+ * @param {string} options.prompt - The prompt the turn ran.
+ * @param {(id: string) => Promise<string | null>} options.firstUserText - Reads a
+ *   session's first user message.
+ * @returns {Promise<string | null>} The session the prompt opened, or null.
+ */
+export async function promptSessionId({ before, after, prompt, firstUserText }) {
+  if (!Array.isArray(before) || !Array.isArray(after)) return null;
+  if (typeof prompt !== 'string' || prompt.length === 0) return null;
+
+  const known = new Set(before);
+  const added = [...new Set(after)].filter((id) => !known.has(id));
+  const wanted = prompt.trim();
+  const matched = [];
+
+  for (const id of added) {
+    let text;
+    try {
+      text = await firstUserText(id);
+    } catch {
+      continue;
+    }
+    if (typeof text !== 'string') continue;
+    if (text.trim() === wanted) matched.push(id);
+  }
+
+  return matched.length === 1 ? matched[0] : null;
+}
+
 // ───────────────────────────────────────────────────────────────
 // Run-log backfill
 // ───────────────────────────────────────────────────────────────
+
+// A run log is input, and the folder it names may hold any code, so only this
+// project root or an arena holding the builder's marker may be replayed.
+/**
+ * Decide whether a run line's checkout may run its own code.
+ *
+ * @param {string} checkoutDir - Root of the checkout a run line names.
+ * @returns {boolean} True when the folder may be warmed and replayed.
+ */
+export function trustedCheckout(checkoutDir) {
+  try {
+    return (
+      realpathSync(checkoutDir) === realpathSync(REPO_ROOT)
+      || existsSync(join(checkoutDir, '.git', MARK))
+    );
+  } catch {
+    return false;
+  }
+}
 
 // A fresh daemon can outlast the first prompt's budget, so the backfill asks
 // each checkout to start one before it replays. The status call writes nothing,
@@ -321,12 +397,16 @@ function refused(code, detail) {
  * @param {object} options
  * @param {string} options.inPath - Run log to read.
  * @param {string} options.outPath - New run log to write.
- * @param {(rowId: string) => string} options.promptFor - Prompt lookup. It
- *   refuses an unknown or holdout row by throwing an error with a `code`.
+ * @param {(rowId: string, line: object) => string} options.promptFor - Prompt
+ *   lookup. It also receives the line, so a prompt can be rebuilt from the
+ *   fixture the line records, and it refuses an unknown or holdout row by
+ *   throwing an error with a `code`.
  * @param {boolean} [options.briefOnly] - Write only the delivery answer and
  *   leave every offer field exactly as the input line holds it.
  * @param {Function} [options.replay] - Offer replay, injectable for tests.
  * @param {Function} [options.brief] - Brief delivery reader, injectable for tests.
+ * @param {(checkoutDir: string) => boolean} [options.trusted] - Checkout trust
+ *   check, injectable for tests.
  * @param {(checkoutDir: string) => unknown} [options.warm] - Daemon warm-up,
  *   injectable for tests.
  * @returns {Promise<{ ok: true, lines: number, outPath: string }
@@ -339,6 +419,7 @@ export async function backfillRunLog({
   briefOnly = false,
   replay = replayOffer,
   brief = briefDelivered,
+  trusted = trustedCheckout,
   warm = warmCheckout,
 }) {
   if (resolve(outPath) === resolve(inPath)) {
@@ -354,7 +435,7 @@ export async function backfillRunLog({
   const prompts = [];
   for (const row of rows) {
     try {
-      prompts.push(promptFor(row.rowId));
+      prompts.push(promptFor(row.rowId, row));
     } catch (error) {
       return refused(error?.code ?? 'unknown_row', error?.message ?? String(error));
     }
@@ -375,19 +456,23 @@ export async function backfillRunLog({
     if (!briefOnly) {
       offer = { offeredCommand: null, offeredPolicy: null, offerError: 'no_checkout' };
       if (checkoutDir !== null) {
-        if (!warmed.has(checkoutDir)) {
-          warmed.add(checkoutDir);
-          try {
-            await warm(checkoutDir);
-          } catch {
-            // A failed warm-up still lets the replay report its own miss.
+        if (!trusted(checkoutDir)) {
+          offer = { offeredCommand: null, offeredPolicy: null, offerError: 'untrusted_checkout' };
+        } else {
+          if (!warmed.has(checkoutDir)) {
+            warmed.add(checkoutDir);
+            try {
+              await warm(checkoutDir);
+            } catch {
+              // A failed warm-up still lets the replay report its own miss.
+            }
           }
+          offer = await replay({
+            checkoutDir,
+            prompt: prompts[index],
+            sessionId: `backfill-${rowId}`,
+          });
         }
-        offer = await replay({
-          checkoutDir,
-          prompt: prompts[index],
-          sessionId: `backfill-${rowId}`,
-        });
       }
     }
 
@@ -399,6 +484,8 @@ export async function backfillRunLog({
     // A recorded offer belongs to the head the turn saw, so recomputing
     // delivery must not replay it. A brief-only pass copies the line forward
     // untouched, so a present offer stays and an absent one stays absent.
+    // Where the command sat in the head travels with it, because a command on
+    // the partner side was shown and not offered.
     let nextLine;
     if (briefOnly) {
       nextLine = { ...line, briefDelivered: delivered, briefBackfilled: true };
@@ -407,6 +494,7 @@ export async function backfillRunLog({
         ...line,
         offeredCommand: offer.offeredCommand ?? null,
         offeredPolicy: offer.offeredPolicy ?? null,
+        offeredAs: offer.offeredAs ?? null,
         offerError: offer.offerError ?? null,
         briefDelivered: delivered,
         offerBackfilled: true,

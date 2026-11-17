@@ -266,7 +266,7 @@ You ask for it in plain words, for example "use cli-opencode to review this diff
 
 Extending Skilled follows the same framework that built it. The [sk-doc](.skilled/skills/sk-doc/README.md) hub holds a template, a set of standards and a validator for each kind of component. Ask for a new skill, agent or command in plain words and the advisor loads the matching sk-doc mode, so the result matches the rest of the repository.
 
-Each kind also has a `/create` command for when you want the workflow directly. `/create:skill` creates or updates a skill, and `/create:skill-parent` scaffolds a parent hub with its modes. `/create:agent` and `/create:command` cover agents and slash commands. `/create:readme`, `/create:changelog`, `/create:goal` and `/create:repo-rule` cover the documents around them. Every one runs with `:auto` or with `:confirm` to pause at each step.
+Each kind also has a `/create` command for when you want the workflow directly. `/create:sk-skill` creates or updates a skill, and `/create:skill-parent` scaffolds a parent hub with its modes. `/create:agent` and `/create:command` cover agents and slash commands. `/create:readme`, `/create:changelog`, `/create:goal` and `/create:repo-rule` cover the documents around them. Every one runs with `:auto` or with `:confirm` to pause at each step.
 
 Updating works the same way as creating. Name the component and the change, and the workflow edits it in place, checks it against its template and runs the sk-doc validator. A new skill needs no registration step, because the advisor finds it from its own metadata.
 
@@ -602,7 +602,7 @@ Forty-four commands ship in six groups in the [commands folder](.skilled/command
 
 **Spec Kit (8).** `/speckit:complete`, `/speckit:plan`, `/speckit:implement`, `/speckit:resume`, `/speckit:save`, `/speckit:search`, `/speckit:handoff` and `/speckit:ai-council`. These run the spec workflow and its continuity, as [Everyday Workflows](#5--everyday-workflows) describes.
 
-**Create (13).** `/create:skill`, `/create:skill-parent`, `/create:agent`, `/create:command`, `/create:readme`, `/create:changelog`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:goal`, `/create:benchmark`, `/create:diff`, `/create:repo-rule` and `/create:with-human-voice`. These scaffold or revise one kind of artifact to the sk-doc standards.
+**Create (13).** `/create:sk-skill`, `/create:skill-parent`, `/create:agent`, `/create:command`, `/create:readme`, `/create:changelog`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:goal`, `/create:benchmark`, `/create:diff`, `/create:repo-rule` and `/create:with-human-voice`. These scaffold or revise one kind of artifact to the sk-doc standards.
 
 **Deep (2).** `/deep:research` and `/deep:review` run the autonomous loops.
 

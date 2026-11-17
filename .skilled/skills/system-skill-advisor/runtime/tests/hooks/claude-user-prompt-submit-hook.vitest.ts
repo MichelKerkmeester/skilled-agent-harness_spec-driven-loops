@@ -18,12 +18,15 @@ import {
 } from '../../../hooks/claude/user-prompt-submit.js';
 import { DIRECTIVE_LIFECYCLE_DEDUP_ENV, InMemoryDirectiveLifecycleStore } from '../../../hooks/lib/directive-lifecycle.js';
 import { normalizeRuntimeOutput } from '../../lib/normalize-adapter-output.js';
+import { clearPolicyObservationSink, getPolicyObservationRecords } from '../../lib/policy-plan.js';
 import { renderAdvisorBrief } from '../../lib/render.js';
 import { validateAdvisorHookDiagnosticRecord } from '../../lib/metrics.js';
 import type { AdvisorHookResult } from '../../lib/skill-advisor-brief.js';
 
 const fixturesDir = join(import.meta.dirname, '..', 'legacy', 'advisor-fixtures');
 const ORIGINAL_HOOK_DISABLED = process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
+const ORIGINAL_SYSTEM_HOOK_DISABLED = process.env.SYSTEM_SKILL_ADVISOR_DISABLED;
+const ORIGINAL_HOOK_FLAGS_CONFIG = process.env.HOOK_FLAGS_CONFIG;
 const ORIGINAL_DIRECTIVE_DEDUP = process.env[DIRECTIVE_LIFECYCLE_DEDUP_ENV];
 const ORIGINAL_ADVISOR_RUNTIME = process.env.SPECKIT_RUNTIME;
 let lifecycleTranscriptDir = '';
@@ -96,6 +99,10 @@ afterEach(() => {
   lifecycleTranscriptDir = '';
   if (ORIGINAL_HOOK_DISABLED === undefined) delete process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
   else process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED = ORIGINAL_HOOK_DISABLED;
+  if (ORIGINAL_SYSTEM_HOOK_DISABLED === undefined) delete process.env.SYSTEM_SKILL_ADVISOR_DISABLED;
+  else process.env.SYSTEM_SKILL_ADVISOR_DISABLED = ORIGINAL_SYSTEM_HOOK_DISABLED;
+  if (ORIGINAL_HOOK_FLAGS_CONFIG === undefined) delete process.env.HOOK_FLAGS_CONFIG;
+  else process.env.HOOK_FLAGS_CONFIG = ORIGINAL_HOOK_FLAGS_CONFIG;
   if (ORIGINAL_DIRECTIVE_DEDUP === undefined) delete process.env[DIRECTIVE_LIFECYCLE_DEDUP_ENV];
   else process.env[DIRECTIVE_LIFECYCLE_DEDUP_ENV] = ORIGINAL_DIRECTIVE_DEDUP;
   if (ORIGINAL_ADVISOR_RUNTIME === undefined) delete process.env.SPECKIT_RUNTIME;
@@ -206,6 +213,41 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     expect(writeDiagnostic).toHaveBeenCalledOnce();
     expect(diagnostic.runtime).toBe(expectedRuntime);
     expect(diagnostic.emittedBytes).toBe(Buffer.byteLength(additionalContext, 'utf8'));
+  });
+
+  it.each([
+    { runtime: 'claude' as const, label: 'Claude Code' },
+    { runtime: 'pi' as const, label: 'pi' },
+    { runtime: 'dsh' as const, label: 'dsh' },
+    { runtime: 'vibe' as const, label: 'vibe' },
+    { environmentRuntime: 'codex', label: 'codex' },
+  ])('labels a recorded policy observation for $label', async ({ label, runtime, environmentRuntime }) => {
+    if (environmentRuntime === undefined) delete process.env.SPECKIT_RUNTIME;
+    else process.env.SPECKIT_RUNTIME = environmentRuntime;
+
+    clearPolicyObservationSink();
+    const diagnostics = diagnosticsSink();
+    const buildBrief = vi.fn(async () => fixture('livePassingSkill.json'));
+    const dependencies = {
+      buildBrief,
+      renderBrief: renderAdvisorBrief,
+      writeDiagnostic: diagnostics.writeDiagnostic,
+      directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+      ...(runtime === undefined ? {} : { runtime }),
+    };
+    // A startup event gives the shadow session its epoch, without which the
+    // sink holds no record to read a label from.
+    await handleClaudeUserPromptSubmit({
+      session_id: `policy-label-${label}`,
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+      lifecycle_event: 'startup',
+    }, dependencies);
+
+    const records = getPolicyObservationRecords();
+    expect(records.length).toBeGreaterThan(0);
+    expect(records.every((record) => record.binding.runtime === label)).toBe(true);
   });
 
   it('AS2 emits the skipped fallback head for an empty prompt skipped by the producer', async () => {
@@ -353,6 +395,27 @@ describe('Claude UserPromptSubmit advisor hook', () => {
 
   it('AS4 respects SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 without calling the producer', async () => {
     process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED = '1';
+    const diagnostics = diagnosticsSink();
+    const buildBrief = vi.fn(async () => fixture('livePassingSkill.json'));
+
+    const output = await handleClaudeUserPromptSubmit({
+      session_id: 's1',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+    }, {
+      buildBrief,
+      writeDiagnostic: diagnostics.writeDiagnostic,
+    });
+
+    expect(output).toEqual({});
+    expect(buildBrief).not.toHaveBeenCalled();
+    expect(validateAdvisorHookDiagnosticRecord(parseDiagnostic(diagnostics.records[0] ?? '{}'))).toBe(true);
+  });
+
+  it('AS4b honors SYSTEM_SKILL_ADVISOR_DISABLED=1 through the repo hook resolver without calling the producer', async () => {
+    process.env.SYSTEM_SKILL_ADVISOR_DISABLED = '1';
+    process.env.HOOK_FLAGS_CONFIG = '/dev/null';
     const diagnostics = diagnosticsSink();
     const buildBrief = vi.fn(async () => fixture('livePassingSkill.json'));
 

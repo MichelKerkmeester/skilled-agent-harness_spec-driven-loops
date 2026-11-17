@@ -1,0 +1,191 @@
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-a10-count.sh
+# # Run from the repository root: bash <this file>
+A10 PASS | 5/6 copies as expected, 1 pointer missing
+  CLAUDE.md: INFO pointer missing
+  .codex/AGENTS.md: PASS absent
+  .cursorrules: INFO reported only
+  .cursor/rules/skill-routing.md: PASS gate1 block in sync
+  .cursor/rules/repo-local.md: PASS absent
+  ~/.claude/CLAUDE.md: INFO reported only
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-arm-fixture.mjs
+# // Run from the repository root: node <this file>
+armFor exported: false
+--row-id g2-deep-review-ask -> arm pre
+--set g2 -> arm g2
+--row-id g2-deep-review-ask --row-id cmd-x -> arm pre
+run with --fixture /custom/fixture puts in the prompt: review the parser under /custom/fixture for correctness gaps and write up what you find, one iteration is enough
+its backfill replays: review the parser under /runs/arm/g2-fixture for correctness gaps and write up what you find, one iteration is enough
+run line keys: ["runtime","rowId","arm","locator","exit","changedPaths"]
+run line records the fixture: false
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-backfill-trust.mjs
+# // Run from the repository root: node <this file>
+backfill result: true lines 1
+fake CLI ran: true, fake hook ran: true
+offerError: null
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-busy-cap.mts
+# // Run from the repository root:
+marker after 1 MiB: errorCode NON_ZERO_EXIT, retriesAttempted 0
+marker first: errorCode SQLITE_BUSY_EXHAUSTED, retriesAttempted 1
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-capture-env.mjs
+# // Run from the repository root with AI_SESSION_CHILD unset: node <this file>
+variables left changed: ["PYTHONDONTWRITEBYTECODE","SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC","SPECKIT_PRIVATE_SKILL_ROOTS","SPECKIT_SKILL_ADVISOR_FORCE_LOCAL","SYSTEM_SKILL_ADVISOR_DB_DIR","VITEST"]
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":24,"attached":20,"combined":44,"total":44}
+{"own":13,"attached":15,"combined":28,"total":45}
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-catalog-lines.sh
+# # Run from the repository root: bash <this file>
+handlers/advisor-recommend.ts:563 => ...semanticLaneOffWarning(semanticLaneOffReason),
+lib/skill-advisor-cli-fallback.ts:238 => includeCompiledRoute: true,
+schemas/advisor-tool-schemas.ts:287 => workspaceRoot: BoundedWorkspaceRootSchema.optional(),
+schemas/advisor-tool-schemas.ts:290 => topK: z.number().int().min(1).max(10).optional(),
+schemas/advisor-tool-schemas.ts:308 => confidence: z.number().min(0).max(1),
+schemas/advisor-tool-schemas.ts:310 => dominantLane: AdvisorLaneSchema.nullable(),
+skill-advisor-cli-manifest.ts:57 => includeCompiledRoute: { type: 'boolean', description: 'Attach compiled
+skill-advisor-cli-manifest.ts:58 => compiledRouteTopOnly: { type: 'boolean', description: 'Attach compiled
+tools/advisor-recommend.ts:23 => includeCompiledRoute: { type: 'boolean', description: 'Attach compiled
+tools/advisor-recommend.ts:24 => compiledRouteTopOnly: { type: 'boolean', description: 'Attach compiled
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-cost-child.mjs
+# // Run from the repository root: node <this file>
+script exit 0
+hook saw AI_SESSION_CHILD=1
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-embed-contract.sh
+# # Run from the repository root: bash <this file>
+engine prints the restore failure: 1
+workflow names the restore failure: 0
+engine names the backup by: digest.slice(0, BACKUP_NAME_CHARS) with BACKUP_NAME_CHARS = 16, fallback path.join(os.tmpdir(), BACKUP_FALLBACK_DIR)
+workflow backup name: doctor-agents-md/<timestamp>/
+route backup name: doctor-agents-md/<timestamp>/
+route names the temporary-directory fallback: no
+setup router reason: names `SKILL_ADVISOR_DEBUG`, the setting that turns the records on
+setup router names the debug flag: 1
+setup router gives the workflow reason: 0
+setup workflow reason: because no prompt hook has written a record for this checkout yet
+health writer needs debug: requireDebug: false
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-hook-shapes.cjs
+# // Run from the repository root: node <this file>
+plain node: exit 0 ok claude
+env node: exit 1 hook-missing claude .claude/settings.json
+/usr/bin/env node: exit 1 hook-missing claude .claude/settings.json
+bash -lc: exit 1 hook-missing claude .claude/settings.json
+zsh -c: exit 1 hook-missing claude .claude/settings.json
+node with a flag: exit 1 hook-missing claude .claude/settings.json
+&& stuck to the word: exit 1 hook-missing claude .claude/settings.json
+; stuck to the word: exit 1 hook-missing claude .claude/settings.json
+the repository shape: exit 0 ok claude
+echo with a quoted script: exit 0 ok claude
+echo of node: exit 1 hook-missing claude .claude/settings.json
+this repository: exit 0 ok claude, ok codex, ok cursor, ok devin
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-no-edit-corpus.mjs
+# // Run from the repository root: node <this file>
+command-prompts.jsonl: scanned 132, holdout skipped 44, matched today 0, newly matched 0
+labeled-prompts.jsonl: scanned 195, holdout skipped 0, matched today 10, newly matched 0
+ambiguity-prompts.jsonl: scanned 24, holdout skipped 0, matched today 2, newly matched 0
+doctor-prompts.jsonl: scanned 78, holdout skipped 0, matched today 0, newly matched 0
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-no-edit.mts
+# // Run from the repository root: node --import ./.skilled/skills/system-spec-kit/node_modules/tsx/dist/loader.mjs <this file>
+attach "do not change anything yet" -> undefined | shared pattern true | isNoEditRequest absent | proposed true
+attach "don't change anything yet" -> "/create:agent" | shared pattern false | isNoEditRequest absent | proposed true
+attach "no changes yet" -> "/create:agent" | shared pattern false | isNoEditRequest absent | proposed true
+attach "don’t touch any files" -> "/create:agent" | shared pattern false | isNoEditRequest absent | proposed true
+attach "make no changes" -> "/create:agent" | shared pattern false | isNoEditRequest absent | proposed true
+scorer commandMeaningEligible "do not change anything yet" -> false
+scorer commandMeaningEligible "don't change anything yet" -> true
+scorer commandMeaningEligible "no changes yet" -> true
+scorer commandMeaningEligible "don’t touch any files" -> true
+scorer commandMeaningEligible "make no changes" -> true
+isReadOnlyExplainer "please show me the parser config, do not change anything yet" -> true
+isReadOnlyExplainer "please show me the parser config, don't change anything yet" -> false
+isReadOnlyExplainer "please show me the parser config so i can update it later, no changes yet" -> false
+isReadOnlyExplainer "please show me what the fix would be, don’t touch any files" -> false
+isReadOnlyExplainer "please show me the parser config and what to edit, make no changes" -> false
+attach(sk-doc, sk-create-benchmark, plain, injected table) -> undefined
+attach(sk-doc, sk-create-benchmark, plain, generated table) -> "/create:benchmark"
+'sk-create-benchmark' in injected sk-doc row -> false
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-phase-map.sh
+# # Run from the repository root: bash <this file>
+row 1  001-command-routing-baseline-corpus: map=Complete child=Complete
+row 2  002-command-inventory-and-risk-metadata: map=Complete child=Complete
+row 3  003-plain-chat-command-reach: map=Complete child=Complete
+row 4  004-command-meaning-matching: map=Complete child=Complete
+row 5  005-recommendation-contract-and-brief: map=Complete child=Complete
+row 6  006-gate-2-binding-and-runtime-pointers: map=Complete child=Complete
+row 7  007-per-runtime-behaviour-proof: map=In Progress child=In Progress
+row 8  008-embedder-setup-and-cost: map=Complete child=Complete
+row 9  009-ux-performance-cross-cli-research: map=In Progress child=In Progress
+row 10  010-reachability-and-attribution: map=Complete child=Complete
+row 11  011-typed-command-delivery-and-guards: map=Complete child=Complete
+row 12  012-plain-offer-reach: map=Complete child=Complete
+row 13  013-attribution-and-install-reach: map=Complete child=Complete
+row 14  014-review-remediation: map=In Progress child=Complete  <- differs
+row 15  015-health-default-and-brief-refinements: map=Planned child=Complete  <- differs
+row 16  016-claude-create-reach-and-doctor-default: map=Planned child=Complete  <- differs
+row 17  017-review-pass-two-remediation: map=Planned child=Planned
+row 18  018-holdout-row-retirement: map=Planned child=Planned
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-playbook-notes.sh
+# # Run from the repository root: bash <this file>
+scenario files: 50
+NNN-*.md scenario files: 0
+note: the source category tree contains 41 `NNN-*.md` scenario files
+result folder named: system-skill-advisor/benchmark/reports/<dated-run-label>/
+renderer sentence: Generated report Markdown is renderer-owned and never hand-authored.
+benchmark folder exists: no
+standard: The wrapper that once persisted them
+tests README row: | `manual-testing-playbook.vitest.ts` | Verifies manual testing playbook routing fixtures. |
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-plugin-fields.mts
+# // Run from the repository root with AI_SESSION_CHILD unset:
+compiledRouteSummary lines: ["591: function compiledRouteSummary(data) {","657: const routeSummary = compiledRouteSummary(data);","669: ...(routeSummary ? { compiledRouteSummary: routeSummary } : {}),"]
+metadata readers: ["1542: const freshness = response.metadata?.freshness;"]
+bounding jsdoc: ["1080: * @param {boolean} [rawOptions.boundedCompiledRouteSummary] - Bound long compiled-route ta"]
+envelope test inputs with command, policy, ownerSkillId: false, false, false
+plugin test asserts a command label: false
+fallback keeps: command /create:agent, policy start, ownerSkillId sk-doc
+head: Advisor: live; use sk-doc → /create:agent (start) 0.95/0.12 pass.
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-restore-quoted.mjs
+# // Run from the repository root: node <this file>
+snapshot keys after the turn: ["\"notes draft.md\"","plain.md"]
+restoreTurn: {"restored":false,"leftoverPaths":["\"notes draft.md\""],"failures":[]}
+left on disk: notes draft.md true, plain.md false
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-scorer-rowid.sh
+# # Run from the repository root: bash <this file>
+args [none] exit=2 stdout={"ok":false,"code":"locator_unavailable"} stderr=
+args [--row-id no-such-row] exit=2 stdout={"ok":false,"code":"locator_unavailable"} stderr=
+//
+// Reads a captured session through the shared session readers and reports what a
+// model did with the commands a turn offered it: the `COMMAND:` lines it printed,
+// the reads and writes in order, and whether a started loop ran its init first.
+//   node score-command-transcripts.mjs --runtime <name> --locator '<json>' [--row-id <id>] [--json]
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-status-privacy.mts
+# // Run from the repository root: node --import ./.skilled/skills/system-spec-kit/node_modules/tsx/dist/loader.mjs <this file>
+privacy case persists a record: false
+diagnostics file before: false
+stored record holds both markers: true
+status shows a marker: false
+status holds the word prompt: false
+status hookHealth invocations: 1
+exit=0
+### specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation/scratch/planning/probe-tsstring.cjs
+# // Run from the repository root: node <this file>
+exported: false
+LF: raw break in literal true, parses false
+CR: raw break in literal true, parses false
+U+2028: raw break in literal true, parses true
+U+2029: raw break in literal true, parses true
+generated strings 1714, with a line break 0
+exit=0

@@ -1,0 +1,41 @@
+$ ROWS
+do not run /create:agent or /create:readme => [["sk-doc","/create:readme","start"],["system-spec-kit","-","-"],["cli-external-orchestration","-","-"]]
+never use /create:readme or /create:feature-catalog => [["sk-doc","/create:feature-catalog","start"],["sk-design","-","-"],["mcp-tooling","-","-"]]
+do not run /deep:review, or /deep:research => [["system-deep-loop","/deep:research","ask"],["sk-code","-","-"],["command-doctor-deep-loop","/doctor:deep-loop","run"]]
+use /create:agent or /create:readme => [["sk-doc","/create:readme","start"],["create:agent","/create:agent","start"],["system-spec-kit","-","-"]]
+use /speckit:plan, not /speckit:complete => [["command-speckit-plan","/speckit:plan","start"],["system-spec-kit","-","-"]]
+Is the /doctor:update command safe? => [["system-skilled-doctor","/doctor:update","ask"],["mcp-code-mode","-","-"],["command-doctor-update","/doctor:update","ask"]]
+The /doctor:update command is documented in the README => [["sk-doc","/create:readme","start"],["system-skilled-doctor","-","-"],["command-doctor-update","/doctor:update","ask"]]
+
+$ ROUTE
+# The /doctor:update command is documented in the README
+{"action":"route","selectionKind":"single","targets":["sk-create-readme"]}
+# the readme documents the update command
+{"action":"route","selectionKind":"single","targets":["sk-create-readme"]}
+
+$ SHELLP
+heredoc EOF            workflowPath = improvised
+heredoc 'EOF'          workflowPath = improvised
+heredoc END_SCRIPT     workflowPath = improvised
+heredoc 'END-SCRIPT'   workflowPath = skill
+heredoc "END-SCRIPT"   workflowPath = skill
+heredoc END-SCRIPT     workflowPath = skill
+shellRead followedBeforeWrite true
+shellRead startState {"started":false,"unsafe":false,"selfAuto":false}
+readTool  startState {"started":true,"unsafe":false,"selfAuto":false}
+
+$ BACKFILL
+parseOffer {"offeredCommand":"/create:manual-testing-playbook","offeredPolicy":"start","offeredAs":"partner"}
+backfill true keys ["runtime","rowId","arm","exit","locator","offeredCommand","offeredPolicy","offerError","briefDelivered","offerBackfilled"] NO offeredAs
+
+$ RACE
+ok true storePath <tmp>/sessions/inside.jsonl
+recordsText [ 'OUTSIDE-STORE-FILE' ]
+
+$ OFFERS | rg -c command=/
+9
+
+$ MENTION | tail -2
+SHIPPED: 46 of 46 agree
+PLANNED: 46 of 46 agree
+

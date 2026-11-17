@@ -1,0 +1,737 @@
+{
+  "sessionId": "fanout-accuracy-runner-4-1794669272137-9v23rz",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 4,
+    "timestamp": "2026-11-14T15:46:36.624Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "iter1-P1-offeredas-not-persisted",
+      "severity": "P1",
+      "title": "The partner-side offer field is computed and then dropped by both offer writers",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs",
+      "line": 486,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter2-P1-fit-decline-ungated",
+      "severity": "P1",
+      "title": "The refusal and question rows can still carry a command, and no gate consumes the count",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs",
+      "line": 595,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter1-P2-heredoc-delimiter",
+      "severity": "P2",
+      "title": "A heredoc whose delimiter is not a bare identifier is read as commands",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 647,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter1-P2-shell-read-not-start",
+      "severity": "P2",
+      "title": "A shell read counts as a workflow load but not as a start or a loop",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 913,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter2-P2-live-holdout-guard-baseline-only",
+      "severity": "P2",
+      "title": "The holdout publication guard reads the baseline, not the live capture",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts",
+      "line": 181,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter3-P2-attached-metrics-unpinned",
+      "severity": "P2",
+      "title": "The new stage and fit counts are not held to the committed baseline",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts",
+      "line": 268,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter3-P2-pair-doc-shared-rows",
+      "severity": "P2",
+      "title": "The README promises a paired block for any runtime that scored both arms, but the code requires a shared row",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 122,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter4-P2-paired-arm-key-collision",
+      "severity": "P2",
+      "title": "An arm named paired is silently hidden or overwritten by the summary pair block",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 1911,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "iter4-P2-unscored-only-dead-field",
+      "severity": "P2",
+      "title": "The workflow block unscoredOnly count is never incremented",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 1629,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 7
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "active_finding_replay",
+      "attribution_field_drop",
+      "backfill_trust",
+      "codex_exec_string",
+      "coverage_gap",
+      "dead_field",
+      "decline_command_carried",
+      "documentation_drift",
+      "heredoc_parse",
+      "holdout_live_publication",
+      "holdout_row_measurement",
+      "key_collision",
+      "pair_scope",
+      "ratchet_coverage",
+      "start_detection"
+    ],
+    "ruledOut": [
+      "active_finding_replay",
+      "backfill_trust",
+      "codex_exec_string",
+      "coverage_gap",
+      "documentation_drift",
+      "holdout_row_measurement"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "attribution_field_drop": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "heredoc_parse": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "start_detection": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "codex_exec_string": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "decline_command_carried": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "holdout_live_publication": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "holdout_row_measurement": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "backfill_trust": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "ratchet_coverage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "pair_scope": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "documentation_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "key_collision": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dead_field": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "active_finding_replay": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "coverage_gap": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-104",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
+      ],
+      "bugClass": "codex_exec_string",
+      "disposition": "ruled_out",
+      "rationale": "The fallback is bounded to bodies with no cmd literal and the test blesses it; no real body shape was found.",
+      "evidenceRefs": [
+        "score-command-transcripts.mjs:340"
+      ],
+      "reason": "documented fallback, no reaching input found"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
+      ],
+      "bugClass": "holdout_row_measurement",
+      "disposition": "ruled_out",
+      "rationale": "The holdout sentinel precedes the reader and the label carries no prompt.",
+      "evidenceRefs": [
+        "score-command-transcripts.mjs:1232",
+        "score-command-transcripts.mjs:1506"
+      ],
+      "reason": "holdout_row returned before loadSession"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/command-offer.mjs"
+      ],
+      "bugClass": "backfill_trust",
+      "disposition": "ruled_out",
+      "rationale": "The pass-two trust boundary still holds for the pass-four writer.",
+      "evidenceRefs": [
+        "command-offer.mjs:354",
+        "command-offer.mjs:458"
+      ],
+      "reason": "trustedCheckout and no_checkout refusal verified"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-303",
+      "dimension": "traceability",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/README.md"
+      ],
+      "bugClass": "documentation_drift",
+      "disposition": "ruled_out",
+      "rationale": "Reporting it again would duplicate the iteration-1 P1; it is carried there.",
+      "evidenceRefs": [
+        "README.md:123",
+        "command-offer.mjs:490"
+      ],
+      "reason": "same root cause as iter1-P1-offeredas-not-persisted"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "traceability",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
+      ],
+      "bugClass": "documentation_drift",
+      "disposition": "ruled_out",
+      "rationale": "The denominators match; the interval cases hold.",
+      "evidenceRefs": [
+        "score-command-transcripts.mjs:1727"
+      ],
+      "reason": "same six path counts"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "traceability",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/command-offer.mjs",
+        "runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs"
+      ],
+      "bugClass": "active_finding_replay",
+      "disposition": "ruled_out",
+      "rationale": "Both P1s are current; no downgrade.",
+      "evidenceRefs": [
+        "command-offer.mjs:490",
+        "capture-command-routing-baseline.mjs:595"
+      ],
+      "reason": "re-read at cited lines and still active"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy",
+        ".skilled/skills/system-skill-advisor/runtime/tests"
+      ],
+      "bugClass": "coverage_gap",
+      "disposition": "ruled_out",
+      "rationale": "Coverage is complete for the area list.",
+      "evidenceRefs": [
+        "review-scope-4.txt:18-25"
+      ],
+      "reason": "every scope file read at least once"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-104",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
+      ],
+      "bugClass": "codex_exec_string",
+      "disposition": "ruled_out",
+      "rationale": "The fallback is bounded to bodies with no cmd literal and the test blesses it; no real body shape was found.",
+      "evidenceRefs": [
+        "score-command-transcripts.mjs:340"
+      ],
+      "proof": "documented fallback, no reaching input found"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
+      ],
+      "bugClass": "holdout_row_measurement",
+      "disposition": "ruled_out",
+      "rationale": "The holdout sentinel precedes the reader and the label carries no prompt.",
+      "evidenceRefs": [
+        "score-command-transcripts.mjs:1232",
+        "score-command-transcripts.mjs:1506"
+      ],
+      "proof": "holdout_row returned before loadSession"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/command-offer.mjs"
+      ],
+      "bugClass": "backfill_trust",
+      "disposition": "ruled_out",
+      "rationale": "The pass-two trust boundary still holds for the pass-four writer.",
+      "evidenceRefs": [
+        "command-offer.mjs:354",
+        "command-offer.mjs:458"
+      ],
+      "proof": "trustedCheckout and no_checkout refusal verified"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-303",
+      "dimension": "traceability",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/README.md"
+      ],
+      "bugClass": "documentation_drift",
+      "disposition": "ruled_out",
+      "rationale": "Reporting it again would duplicate the iteration-1 P1; it is carried there.",
+      "evidenceRefs": [
+        "README.md:123",
+        "command-offer.mjs:490"
+      ],
+      "proof": "same root cause as iter1-P1-offeredas-not-persisted"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "traceability",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
+      ],
+      "bugClass": "documentation_drift",
+      "disposition": "ruled_out",
+      "rationale": "The denominators match; the interval cases hold.",
+      "evidenceRefs": [
+        "score-command-transcripts.mjs:1727"
+      ],
+      "proof": "same six path counts"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "traceability",
+      "targetRefs": [
+        "runtime/scripts/routing-accuracy/command-offer.mjs",
+        "runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs"
+      ],
+      "bugClass": "active_finding_replay",
+      "disposition": "ruled_out",
+      "rationale": "Both P1s are current; no downgrade.",
+      "evidenceRefs": [
+        "command-offer.mjs:490",
+        "capture-command-routing-baseline.mjs:595"
+      ],
+      "proof": "re-read at cited lines and still active"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy",
+        ".skilled/skills/system-skill-advisor/runtime/tests"
+      ],
+      "bugClass": "coverage_gap",
+      "disposition": "ruled_out",
+      "rationale": "Coverage is complete for the area list.",
+      "evidenceRefs": [
+        "review-scope-4.txt:18-25"
+      ],
+      "proof": "every scope file read at least once"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "key_collision",
+      "dead_field",
+      "active_finding_replay",
+      "coverage_gap"
+    ],
+    "covered": [
+      "key_collision",
+      "dead_field",
+      "active_finding_replay",
+      "coverage_gap"
+    ],
+    "ruledOut": [
+      "active_finding_replay",
+      "coverage_gap"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

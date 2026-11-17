@@ -1,0 +1,5 @@
+claude post start 5 of 12 startedOfOffered 5 unsafe 0 loops 0 noinit 0 load 6 of 15 followed 8 of 15
+devin post start 10 of 11 startedOfOffered 10 unsafe 1 loops 0 noinit 0 load 14 of 15 followed 15 of 15
+dsh post start 9 of 12 startedOfOffered 11 unsafe 1 loops 0 noinit 0 load 12 of 14 followed 12 of 14
+pi post start 6 of 12 startedOfOffered 9 unsafe 1 loops 0 noinit 0 load 11 of 15 followed 11 of 15
+opencode post start 2 of 5 startedOfOffered 3 unsafe 1 loops 0 noinit 0 load 12 of 15 followed 13 of 15

@@ -1,0 +1,505 @@
+{
+  "sessionId": "fanout-accuracy-runner-confirm-4b-1794680176420-xvj4ed",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "timestamp": "2026-11-14T18:36:52.973Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "AR4B-P2-001",
+      "severity": "P2",
+      "title": "The README still says the backfill adds three fields and lists three in the runner row",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 76,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "AR4B-P2-002",
+      "severity": "P2",
+      "title": "The README says every run line carries four attribution fields, but a head-moved line carries none",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 65,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "checklist_evidence",
+      "doc_code_drift"
+    ],
+    "ruledOut": [
+      "checklist_evidence",
+      "field_persistence",
+      "holdout_leak",
+      "partner_semantics",
+      "resolved_path_toctou",
+      "symlink_escape",
+      "untrusted_checkout_execution",
+      "writer_parity"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "field_persistence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "writer_parity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "partner_semantics": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "doc_code_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3
+        ]
+      },
+      "symlink_escape": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "resolved_path_toctou": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "holdout_leak": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "untrusted_checkout_execution": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "checklist_evidence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "AR4B-SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs"
+      ],
+      "bugClass": "field_persistence",
+      "disposition": "ruled_out",
+      "rationale": "Both writers carry the field and the reader consumes it.",
+      "evidenceRefs": [
+        "command-offer.mjs:496",
+        "command-offer.mjs:80",
+        "run-command-behaviour.mjs:824"
+      ],
+      "reason": "The field is present on every branch that writes an offer."
+    },
+    {
+      "iteration": 1,
+      "id": "AR4B-SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs"
+      ],
+      "bugClass": "writer_parity",
+      "disposition": "ruled_out",
+      "rationale": "The live writer uses the helper and the helper test pins its shape.",
+      "evidenceRefs": [
+        "run-command-behaviour.mjs:820-827",
+        "run-command-behaviour.mjs:1203",
+        "tests/command-behaviour-guards.vitest.ts:110-124"
+      ],
+      "reason": "No writer path drops the field."
+    },
+    {
+      "iteration": 1,
+      "id": "AR4B-SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs"
+      ],
+      "bugClass": "partner_semantics",
+      "disposition": "ruled_out",
+      "rationale": "The parser and the reader agree on the partner side.",
+      "evidenceRefs": [
+        "score-command-transcripts.mjs:1471-1476",
+        "command-offer.mjs:80"
+      ],
+      "reason": "No input in the changed surface makes a partner command count as an offer."
+    },
+    {
+      "iteration": 2,
+      "id": "AR4B-SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/codex.mjs"
+      ],
+      "bugClass": "symlink_escape",
+      "disposition": "ruled_out",
+      "rationale": "The real path is checked and then read; no lexical prefix check remains.",
+      "evidenceRefs": [
+        "identity.mjs:104-116",
+        "codex.mjs:153-169"
+      ],
+      "reason": "A link to an outside file is refused before the open."
+    },
+    {
+      "iteration": 2,
+      "id": "AR4B-SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/codex.mjs"
+      ],
+      "bugClass": "resolved_path_toctou",
+      "disposition": "ruled_out",
+      "rationale": "The changed read and the changed test prove the resolved file is the one opened.",
+      "evidenceRefs": [
+        "codex.mjs:169",
+        "codex.test.mjs:117-127"
+      ],
+      "reason": "No path leaves the caller's locator as the read target."
+    },
+    {
+      "iteration": 2,
+      "id": "AR4B-SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs"
+      ],
+      "bugClass": "holdout_leak",
+      "disposition": "ruled_out",
+      "rationale": "The only bypass is the fixed prompt table, and it holds no corpus row.",
+      "evidenceRefs": [
+        "run-command-behaviour.mjs:633-634",
+        "run-command-behaviour.mjs:782",
+        "run-command-behaviour.mjs:721-760"
+      ],
+      "reason": "No holdout id is reachable through the runner."
+    },
+    {
+      "iteration": 2,
+      "id": "AR4B-SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs"
+      ],
+      "bugClass": "untrusted_checkout_execution",
+      "disposition": "ruled_out",
+      "rationale": "Both the replay and the live arm gate the checkout before running anything.",
+      "evidenceRefs": [
+        "command-offer.mjs:458-460",
+        "run-command-behaviour.mjs:590-610"
+      ],
+      "reason": "No untrusted checkout reaches a hook or a child."
+    },
+    {
+      "iteration": 3,
+      "id": "AR4B-SL-011",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt"
+      ],
+      "bugClass": "checklist_evidence",
+      "disposition": "ruled_out",
+      "rationale": "The added row matches the code path it describes.",
+      "evidenceRefs": [
+        "doctor-agents-md-presentation.txt:267-268",
+        "agents-md-check.cjs:776-778",
+        "agents-md-embed.cjs:373-410"
+      ],
+      "reason": "No contradiction between the A11 advice and the checker or embed."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "AR4B-SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs"
+      ],
+      "bugClass": "field_persistence",
+      "disposition": "ruled_out",
+      "rationale": "Both writers carry the field and the reader consumes it.",
+      "evidenceRefs": [
+        "command-offer.mjs:496",
+        "command-offer.mjs:80",
+        "run-command-behaviour.mjs:824"
+      ],
+      "proof": "The field is present on every branch that writes an offer."
+    },
+    {
+      "iteration": 1,
+      "id": "AR4B-SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs"
+      ],
+      "bugClass": "writer_parity",
+      "disposition": "ruled_out",
+      "rationale": "The live writer uses the helper and the helper test pins its shape.",
+      "evidenceRefs": [
+        "run-command-behaviour.mjs:820-827",
+        "run-command-behaviour.mjs:1203",
+        "tests/command-behaviour-guards.vitest.ts:110-124"
+      ],
+      "proof": "No writer path drops the field."
+    },
+    {
+      "iteration": 1,
+      "id": "AR4B-SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs"
+      ],
+      "bugClass": "partner_semantics",
+      "disposition": "ruled_out",
+      "rationale": "The parser and the reader agree on the partner side.",
+      "evidenceRefs": [
+        "score-command-transcripts.mjs:1471-1476",
+        "command-offer.mjs:80"
+      ],
+      "proof": "No input in the changed surface makes a partner command count as an offer."
+    },
+    {
+      "iteration": 2,
+      "id": "AR4B-SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/codex.mjs"
+      ],
+      "bugClass": "symlink_escape",
+      "disposition": "ruled_out",
+      "rationale": "The real path is checked and then read; no lexical prefix check remains.",
+      "evidenceRefs": [
+        "identity.mjs:104-116",
+        "codex.mjs:153-169"
+      ],
+      "proof": "A link to an outside file is refused before the open."
+    },
+    {
+      "iteration": 2,
+      "id": "AR4B-SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/codex.mjs"
+      ],
+      "bugClass": "resolved_path_toctou",
+      "disposition": "ruled_out",
+      "rationale": "The changed read and the changed test prove the resolved file is the one opened.",
+      "evidenceRefs": [
+        "codex.mjs:169",
+        "codex.test.mjs:117-127"
+      ],
+      "proof": "No path leaves the caller's locator as the read target."
+    },
+    {
+      "iteration": 2,
+      "id": "AR4B-SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs"
+      ],
+      "bugClass": "holdout_leak",
+      "disposition": "ruled_out",
+      "rationale": "The only bypass is the fixed prompt table, and it holds no corpus row.",
+      "evidenceRefs": [
+        "run-command-behaviour.mjs:633-634",
+        "run-command-behaviour.mjs:782",
+        "run-command-behaviour.mjs:721-760"
+      ],
+      "proof": "No holdout id is reachable through the runner."
+    },
+    {
+      "iteration": 2,
+      "id": "AR4B-SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs"
+      ],
+      "bugClass": "untrusted_checkout_execution",
+      "disposition": "ruled_out",
+      "rationale": "Both the replay and the live arm gate the checkout before running anything.",
+      "evidenceRefs": [
+        "command-offer.mjs:458-460",
+        "run-command-behaviour.mjs:590-610"
+      ],
+      "proof": "No untrusted checkout reaches a hook or a child."
+    },
+    {
+      "iteration": 3,
+      "id": "AR4B-SL-011",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt"
+      ],
+      "bugClass": "checklist_evidence",
+      "disposition": "ruled_out",
+      "rationale": "The added row matches the code path it describes.",
+      "evidenceRefs": [
+        "doctor-agents-md-presentation.txt:267-268",
+        "agents-md-check.cjs:776-778",
+        "agents-md-embed.cjs:373-410"
+      ],
+      "proof": "No contradiction between the A11 advice and the checker or embed."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "doc_code_drift",
+      "checklist_evidence"
+    ],
+    "covered": [
+      "doc_code_drift",
+      "checklist_evidence"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,34 @@
+after the review pass thirteen fixes
+build exit 0
+typecheck exit 0
+rescore exit 0
+start-007 unchanged from 038
+pre-set unchanged from 038
+final-set unchanged from 038
+arm-033 unchanged from 038
+graph freshness exit 0
+generation: 508 -> 509
+ Test Files  185 passed (185)
+      Tests  2385 passed | 8 skipped (2393)
+suite exit 0
+ Test Files  185 passed (185)
+      Tests  2385 passed | 8 skipped (2393)
+suite child exit 0
+FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+EVAL
+[160,49,21,5]
+PROBES
+fail       P04    want=system-skilled-doctor                    got=system-spec-kit
+fail       P05    want=system-skill-advisor                     got=command-doctor-helper
+fail       P08    want=system-skill-advisor                     got=sk-doc
+fail       P09    want=system-skill-advisor                     got=-
+STATUS=FINDINGS run-probes: pass=11 fail=4 cannot_run=0
+LEAK CHECK (ordinary prompts from review pass thirteen, top skill)
+the routing arm of the load balancer is flaky => []
+the advisor briefs me every morning => []
+the arena is clean now => []
+clean the routing table => []
+fix the routing arm in the nginx config => ["system-spec-kit"]

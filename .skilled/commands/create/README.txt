@@ -54,7 +54,7 @@ This document is a routing and reference surface only. Run the command entrypoin
 | **manual-testing-playbook** | `/create:manual-testing-playbook <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `manual-testing-playbook/` package using the shipped `sk-doc` contract |
 | **readme** | `/create:readme <target> [--type <project\|component\|feature\|skill>] [--output <path>] [:auto\|:confirm]` | Folder README creation with `sk-doc` quality standards |
 | **repo-rule** | `/create:repo-rule <what the rule should bind> [create\|revise\|retire] [--rule <name>] [:auto\|:confirm]` | Create, revise or retire a repo rule under `repo-rules/`, wired into `REPO RULES.md` |
-| **skill** | `/create:skill <skill-name> [operation] [type] [--path <dir>] [--chained] [:auto\|:confirm]` | Unified skill workflow (full-create, full-update, reference-only, asset-only) |
+| **skill** | `/create:sk-skill <skill-name> [operation] [type] [--path <dir>] [--chained] [:auto\|:confirm]` | Unified skill workflow (full-create, full-update, reference-only, asset-only) |
 | **skill-parent** | `/create:skill-parent <skill-name> [create\|update] [--modes <m1,m2,...>] [--surfaces <s1,s2,...>] [--path <dir>] [:auto\|:confirm]` | Scaffold a parent skill with nested mode packets (one hub identity, `mode-registry.json` source of truth, and a root `ROUTER.md` stage-two control document) |
 | **with-human-voice** | `/create:with-human-voice <file or passage> [apply\|score] [--include-code] [:auto\|:confirm]` | Apply or score prose against the Human Voice Rules with a scope gate and a re-scan |
 
@@ -85,7 +85,7 @@ create/
 ├── manual-testing-playbook.md    # /create:manual-testing-playbook command
 ├── readme.md                     # /create:readme — folder README command
 ├── repo-rule.md                  # /create:repo-rule command
-├── skill.md                      # /create:skill command
+├── sk-skill.md                   # /create:sk-skill command
 ├── skill-parent.md               # /create:skill-parent command
 ├── with-human-voice.md           # /create:with-human-voice command
 └── assets/                       # One auto YAML, one confirm YAML and one presentation
@@ -116,7 +116,7 @@ Each mode loads a separate YAML workflow from `assets/` when that command ships 
 - Auto: `create-<command>-auto.yaml`
 - Confirm: `create-<command>-confirm.yaml`
 
-The `--chained` flag on `/create:skill` doc-only operations indicates parent workflow handoff.
+The `--chained` flag on `/create:sk-skill` doc-only operations indicates parent workflow handoff.
 
 The documentation-package commands preserve the live `sk-doc` contracts:
 - `/create:feature-catalog` produces `feature-catalog/feature-catalog.md` plus bare descriptive-slug category folders (the root catalog owns display order)
@@ -134,7 +134,7 @@ The documentation-package commands preserve the live `sk-doc` contracts:
 /create:readme readme .skilled/skills/my-skill --type skill :confirm
 
 # Create a full skill
-/create:skill my-new-skill full-create :auto
+/create:sk-skill my-new-skill full-create :auto
 
 # Scaffold a parent skill with nested mode packets
 /create:skill-parent my-loop-workflows create --modes research,review,ai-council :confirm
@@ -146,7 +146,7 @@ The documentation-package commands preserve the live `sk-doc` contracts:
 /create:manual-testing-playbook system-spec-kit update :auto
 
 # Add a reference doc to an existing skill
-/create:skill my-skill reference-only debugging :confirm
+/create:sk-skill my-skill reference-only debugging :confirm
 
 # Create a changelog from a completed spec folder
 /create:changelog specs/my-track/042-memory-upgrade :auto
@@ -175,7 +175,7 @@ The documentation-package commands preserve the live `sk-doc` contracts:
 
 A: Use `create` when the package folder does not yet exist under the skill root. Use `update` when the package already exists and you want to add or revise content within it. Running `create` on an existing package will produce a conflict error.
 
-**Q: What does the `--chained` flag do on `/create:skill`?**
+**Q: What does the `--chained` flag do on `/create:sk-skill`?**
 
 A: The `--chained` flag signals that the command was dispatched from a parent workflow (for example, a `full-create` that hands off to a doc-only phase). It changes how the command reports completion and does not affect the output files. Remove it when running the command standalone.
 

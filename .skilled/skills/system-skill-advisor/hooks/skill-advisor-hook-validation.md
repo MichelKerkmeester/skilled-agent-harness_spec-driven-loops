@@ -8,7 +8,7 @@ trigger_phrases:
   - "cross-runtime hook smoke"
 importance_tier: normal
 contextType: implementation
-version: 3.6.2.0
+version: 3.6.3.0
 ---
 
 # Skill Advisor Hook Validation Playbook
@@ -97,7 +97,7 @@ Pass conditions:
 
 Goal: confirm hook diagnostics persist to bounded JSONL sinks under the temp metrics root and that `advisor_validate` can read them back across processes.
 
-Durable JSONL writes only occur when `SKILL_ADVISOR_DEBUG=1` is set; otherwise the sink early-returns.
+Every hook run writes a prompt-free health record to the diagnostics sink, and `SKILL_ADVISOR_DEBUG=1` adds the skill label and the error text to each record.
 
 ```bash
 export SKILL_ADVISOR_DEBUG=1
@@ -229,7 +229,7 @@ Pass condition: rollback and re-enable need no state cleanup.
 | Different brief bodies from OpenCode vs OpenCode for equivalent input | One path still routes through a custom formatter | Run Step 7 grep; any `formatAdvisorBrief`/`legacyAdvisorRender` hit is drift to fix |
 | No brief appears in any runtime | Disable flag set, advisor script missing, or prompt policy skipped | Unset `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, check `skill_advisor.py`, use a work-intent prompt |
 | Brief appears in Claude but not Copilot | Runtime registration drift or Copilot custom-instructions target mismatch | Check `.github/hooks/*.json`, `SPECKIT_COPILOT_INSTRUCTIONS_PATH`, and the managed block in `$HOME/.copilot/copilot-instructions.md` |
-| JSONL sink empty or unbounded | Metrics root misconfigured, `SKILL_ADVISOR_DEBUG` unset, or rotation disabled | Check `TMPDIR`, confirm `SKILL_ADVISOR_DEBUG=1`, confirm `.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts` sink wiring, and verify rotation bounds |
+| JSONL sink empty or unbounded | Metrics root misconfigured, no prompt hook ran in this checkout or rotation disabled | Check `TMPDIR`, run one prompt through the hook, confirm `.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts` sink wiring, and verify rotation bounds |
 | `freshness: "unavailable"` persists | Probe failure, missing graph, or corrupt generation counter | Check `.skilled/skills/.state/advisor/generation.json`, `skill-graph.sqlite`, and JSONL `errorCode` |
 | Fail-open rate exceeds 5% | Python missing, timeout, invalid JSON, SQLite busy or script missing | Inspect `speckit_advisor_hook_fail_open_total` by `errorCode`, then fix the top code |
 

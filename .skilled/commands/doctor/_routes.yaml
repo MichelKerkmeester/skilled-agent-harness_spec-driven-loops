@@ -83,6 +83,11 @@ routes:
       - "ripgrep recipe check"
       - "citation drift summary"
       - "is the trigger index fresh"
+      - "spec search never finds anything"
+      - "search does not find terms we know are indexed"
+      - "spec search is broken even for indexed terms"
+      - "our spec lookup finds nothing"
+      - "indexed terms are not found by spec search"
 
   - command: /doctor:deep-loop
     target: deep-loop
@@ -260,6 +265,9 @@ routes:
       - 'node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check  # n/a, not run, while .dsh/ is absent'
       - 'node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs --check  # n/a, not run, while .dsh/ is absent'
       - 'node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check  # n/a, not run, while .dsh/ is absent'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs --check  # n/a, not run, while .vibe/ is absent'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs --check  # n/a, not run, while .vibe/ is absent'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs --check  # n/a, not run, while .vibe/ is absent'
       - 'node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs'
       - 'node .skilled/bin/check-agent-mirror-sync.cjs --all'
       - 'node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs'
@@ -397,6 +405,8 @@ routes:
       - "getting started with skilled"
       - "overview of every doctor command"
       - "model server or helper process still running after the session closed"
+      - "list every check this project has"
+      - "run every check in this project"
 
   - command: /doctor:ci
     target: report
@@ -533,7 +543,7 @@ routes:
     setup_vars: [execution_mode, root, dry_run, plan_digest, digest_confirmation, keep_claude_md, create_router]
     allowed_flags: ["--dry-run", "--root <dir>", "--plan-digest <digest>", "--keep-claude-md", "--remove-claude-md", "--create-router"]
     mutating: mutates
-    gate3_location: "AGENTS.md (created when absent, replaced with the shipped sections plus the composed block), CLAUDE.md and .codex/AGENTS.md (folded into the block and removed, unless --keep-claude-md), .cursor/rules/repo-local.md (the generated mirror of a non-empty block) and REPO RULES.md (missing shipped rows appended, or the file created behind --create-router), with a copy of every touched path taken to the plan's backup folder under .skilled/output/doctor-agents-md/<timestamp>/ before the first byte, and .cursor/rules/skill-routing.md rewritten by the pointer generator the engine calls; the write runs only against the plan digest the operator approved"
+    gate3_location: "AGENTS.md (created when absent, replaced with the shipped sections plus the composed block), CLAUDE.md and .codex/AGENTS.md (folded into the block and removed, unless --keep-claude-md), .cursor/rules/repo-local.md (the generated mirror of a non-empty block) and REPO RULES.md (missing shipped rows appended, or the file created behind --create-router), with a copy of every touched path taken to the plan's backup folder, .skilled/output/doctor-agents-md/<first 16 characters of the plan digest>/ or the folder of that name under the operating system's temporary directory when git does not ignore that path, before the first byte, and .cursor/rules/skill-routing.md rewritten by the pointer generator the engine calls; the write runs only against the plan digest the operator approved"
     mcp_tools: []   # script-only; no MCP calls
     script_invocations:
       - 'node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan  # read-only: composes every target in memory and prints the targets, the diffs, the block, the budget, the preservation ledger, the backup folder and the plan digest; the workflow adds --root <dir>, --keep-claude-md, --create-router and --dry-run only when the operator passed them'
@@ -645,6 +655,11 @@ routes:
       - "first install of skilled in my project"
       - "skilled in my other repository"
       - "skilled in another repository"
+      - "walk me through adding this toolkit to my own project repository"
+      - "put this toolkit into my own project repository"
+      - "use this toolkit in my own project"
+      - "install this toolkit into another repository"
+      - "onboard this project repository"
 
   - command: /doctor:overlay
     target: status
@@ -791,6 +806,7 @@ standalone:
       - "is there a newer skilled release"
       - "update my project to a newer skilled release"
       - "move my project to the newer spec-kit release"
+      - "is there a newer release of the toolkit"
 
   - command: /doctor:env
     file: .skilled/commands/doctor/env.md

@@ -1,0 +1,955 @@
+{
+  "sessionId": "fanout-cross-cli-5-1794801313778-3ys69o",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 8,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-16T04:11:39.471Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-a-why-does-the-033-untuned-arm-s-follow-through-vary-so-widely-per-runtime-claud",
+      "inboxId": null,
+      "text": "(a) Why does the 033 untuned arm's follow-through vary so widely per runtime — claude 4 of 28 followed off and 6 of 28 on, opencode 11 of 28 and 13 of 28, pi 13 of 28 and 14 of 28, devin 24 of 28 twice, dsh 18 of 28 and 23 of 28 — and which part of each gap is a runner artifact rather than a product gap?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-b-opencode-reads-delivery-unknown-on-36-of-36-off-runs-and-44-of-44-on-runs-what",
+      "inboxId": null,
+      "text": "(b) OpenCode reads delivery unknown on 36 of 36 off runs and 44 of 44 on runs: what does that cost the arm's evidence, and is a prompt-free plugin receipt the smallest fix that moves those rows?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-3-c-which-runtimes-still-have-a-reader-or-attribution-gap-the-arm-cannot-see-codex",
+      "inboxId": null,
+      "text": "(c) Which runtimes still have a reader or attribution gap the arm cannot see — codex unmeasured under Q075, devin and dsh one unknown row each, opencode all unknown — and what file line proves each gap?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-d-the-ask-path-put-deep-review-in-front-of-the-refusal-row-fresh-decline-refusal",
+      "inboxId": null,
+      "text": "(d) The ask path put `/deep:review` in front of the refusal row fresh-decline-refusal-02 and dsh started `/create:sk-skill` on a decline row: what per-runtime surface decides whether an ask offer is representable, and which runtime's reader loses it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-e-which-remaining-cross-cli-gap-ranks-first-by-commands-started-when-useful-per-",
+      "inboxId": null,
+      "text": "(e) Which remaining cross-CLI gap ranks first by commands started when useful per unit of floor risk, and what measurement would confirm the fix on claude, codex, opencode, pi, devin and dsh?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-a-why-does-the-033-untuned-arm-s-follow-through-vary-so-widely-per-runtime-claud",
+      "inboxId": null,
+      "text": "(a) Why does the 033 untuned arm's follow-through vary so widely per runtime — claude 4 of 28 followed off and 6 of 28 on, opencode 11 of 28 and 13 of 28, pi 13 of 28 and 14 of 28, devin 24 of 28 twice, dsh 18 of 28 and 23 of 28 — and which part of each gap is a runner artifact rather than a product gap?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-b-opencode-reads-delivery-unknown-on-36-of-36-off-runs-and-44-of-44-on-runs-what",
+      "inboxId": null,
+      "text": "(b) OpenCode reads delivery unknown on 36 of 36 off runs and 44 of 44 on runs: what does that cost the arm's evidence, and is a prompt-free plugin receipt the smallest fix that moves those rows?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-c-which-runtimes-still-have-a-reader-or-attribution-gap-the-arm-cannot-see-codex",
+      "inboxId": null,
+      "text": "(c) Which runtimes still have a reader or attribution gap the arm cannot see — codex unmeasured under Q075, devin and dsh one unknown row each, opencode all unknown — and what file line proves each gap?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-d-the-ask-path-put-deep-review-in-front-of-the-refusal-row-fresh-decline-refusal",
+      "inboxId": null,
+      "text": "(d) The ask path put `/deep:review` in front of the refusal row fresh-decline-refusal-02 and dsh started `/create:sk-skill` on a decline row: what per-runtime surface decides whether an ask offer is representable, and which runtime's reader loses it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-e-which-remaining-cross-cli-gap-ranks-first-by-commands-started-when-useful-per-",
+      "inboxId": null,
+      "text": "(e) Which remaining cross-CLI gap ranks first by commands started when useful per unit of floor risk, and what measurement would confirm the fix on claude, codex, opencode, pi, devin and dsh?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-opencode-s-delivery-unknown-is-a-missing-reader-not-a-delivery-failure-briefdeli",
+      "text": "OpenCode's delivery unknown is a missing reader, not a delivery failure. `briefDelivered` has branches for `claude`, for `pi`/`devin`/`dsh` together, and for `codex`, then falls through to `return 'unknown'`. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:239-303] The string `opencode` does not occur anywhere in that file. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs] The 36-of-36 off and 44-of-44 on unknown counts are therefore exactly what the code produces for a runtime with no branch, and they carry no information about whether the plugin emitted a brief.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/report.txt:1-81`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1182-1212`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1300-1341`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:239-303`"
+      ]
+    },
+    {
+      "id": "finding-1-2-phase-033-did-produce-the-step-level-number-and-it-is-far-below-every-followed-r",
+      "text": "Phase 033 did produce the step-level number, and it is far below every followed rate: setup 15 of 20, folder 12 of 20, output 4 of 20 over the 20 sessions the reader examined. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/report.txt:81] This is the first measured answer in this packet to the limit `arm-evidence.txt` records as \"a loaded document is not a followed step\". [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/report.txt:1-81`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1182-1212`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1300-1341`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:239-303`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-arm-s-followed-rate-is-a-document-access-test-not-a-step-execution-test-foll",
+      "text": "The arm's followed rate is a document-access test, not a step-execution test. `followedBeforeWrite` counts a run as following when it read the command's document (or loaded the command through a skill event) before its first write, and disqualifies it only when a \"confirm\" document is read after the write. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1182-1212] The classifier's own contract states the intent: \"The measure asks whether a run opened a workflow before it acted, not whether it followed each step, so one load decides the path.\" [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1301-1302] So the 4-of-28 to 24-of-28 spread is a spread in document access, and no arm number today reports whether a workflow's steps ran.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/report.txt:1-81`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1182-1212`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1300-1341`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:239-303`"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-step-split-inverts-the-arm-s-runtime-order-per-runtime-over-four-sessions-ea",
+      "text": "The step split inverts the arm's runtime order. Per runtime over four sessions each: claude setup 3, folder 3, output 2; devin setup 2, folder 2, output 1; dsh setup 3, folder 2, output 0; opencode setup 3, folder 2, output 1; pi setup 4, folder 3, output 0. [INFERENCE: counted from the 20 blocks of specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/report.txt:1-81] Pi is the only runtime whose setup step passed in all four sampled sessions, and it produced the named output in none; devin, the arm's highest followed runtime at 24 of 28, produced the named output in one of four. The runtime that opens the document most is not the runtime that finishes the work most.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/report.txt:1-81`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1182-1212`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1300-1341`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:239-303`"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-three-runtimes-that-do-have-a-reader-still-differ-in-what-the-reader-can-see",
+      "text": "The three runtimes that do have a reader still differ in what the reader can see. Claude is read from a transcript attachment of one fixed hook event; pi, devin and dsh are read from session records or an injected block; codex returns `false` without reading when its hook is unapproved and `unknown` when the records do not carry the brief. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:240-300] A `false` on codex is a positive delivery answer, but an `unknown` there is indistinguishable from opencode's structural unknown, because both print as `deliveryUnknown`.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/report.txt:1-81`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1182-1212`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1300-1341`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:239-303`"
+      ]
+    },
+    {
+      "id": "finding-2-2-approving-the-codex-hook-would-not-by-itself-produce-a-delivery-boolean-the-read",
+      "text": "Approving the Codex hook would not by itself produce a delivery boolean. The reader returns `false` only when the hook is unapproved; otherwise it loads the session and returns `true` when the records or the injected block carry the brief and `unknown` when they do not. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:282-300] So an approved Codex arm whose store does not carry the hook context prints the same `unknown` as OpenCode, and `deliveryUnknown` would not distinguish the two.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md:1486-1499`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1465-1499`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:185-229`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:282-303`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1986-1992`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2361-2375`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts:232-265`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`"
+      ]
+    },
+    {
+      "id": "finding-2-1-codex-has-no-rows-in-the-033-arm-because-the-runner-refuses-the-whole-arm-not-be",
+      "text": "Codex has no rows in the 033 arm because the runner refuses the whole arm, not because its reader failed. When the runtime is codex and `codexHookApproval` reports `unapproved`, the runner writes `{ok:false, code:'codex-hooks-unapproved', measurable:false}` and returns the refused exit before any turn runs, with the repair text \"open /hooks in a Codex session at <dir> and approve each entry\". [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1473-1488] The operator's answer to Q075 was to leave Codex out of the arm rather than approve it. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md:1486-1499]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md:1486-1499`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1465-1499`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:185-229`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:282-303`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1986-1992`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2361-2375`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts:232-265`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`"
+      ]
+    },
+    {
+      "id": "finding-2-4-devin-s-and-dsh-s-single-unplaceable-row-each-is-a-run-line-format-gap-not-a-run",
+      "text": "Devin's and DSH's single unplaceable row each is a run-line format gap, not a runtime behaviour gap. `offerFieldAbsent` is true when the line carries no offer field at all [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1991], and a scored owned row with no offer field is counted into `followedByOffer.unknown` rather than into either side of the offer split [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2361-2375]. The scorer's comment is explicit that such a line was \"written before that field existed\". [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2361-2363]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md:1486-1499`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1465-1499`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:185-229`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:282-303`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1986-1992`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2361-2375`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts:232-265`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`"
+      ]
+    },
+    {
+      "id": "finding-2-3-opencode-s-unknown-is-a-documented-design-consequence-not-an-accident-opencode-s",
+      "text": "OpenCode's unknown is a documented design consequence, not an accident: \"OpenCode stays `unknown`, because its plugin adds the brief in memory and the store keeps no copy.\" [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:220-229] That makes a prompt-free receipt necessary but not sufficient: the reader branch must be added too, because the suite currently pins the unknown even for a session whose records do hold the brief. [SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts:259-265]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md:1486-1499`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1465-1499`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:185-229`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:282-303`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1986-1992`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2361-2375`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts:232-265`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`"
+      ]
+    },
+    {
+      "id": "finding-2-5-ranked-by-whether-closing-the-gap-changes-a-published-number-the-reader-gaps-ord",
+      "text": "Ranked by whether closing the gap changes a published number, the reader gaps order as OpenCode, Codex, Devin/DSH. OpenCode carries 80 of 80 run lines at `briefDelivered: unknown` (36 off, 44 on) in its own run log [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl] against 0 unknown on claude and pi and 1 on devin and dsh [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt]. Devin and DSH each lose one row to the offer split, which cannot move a rate printed over 28 rows; Codex has 0 rows today, so its fix unlocks a runtime rather than correcting a number. [INFERENCE: from the delivery and offerUnknown counts in summary-arm.json and the per-file unknown tallies above]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md:1486-1499`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1465-1499`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:185-229`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:282-303`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1986-1992`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2361-2375`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts:232-265`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`"
+      ]
+    },
+    {
+      "id": "finding-3-2-across-five-runtimes-and-two-arms-the-ask-classification-fired-once-each-runtime",
+      "text": "Across five runtimes and two arms the ask classification fired once. Each runtime carries five ask-policy rows per arm, and `workflow.asked` reads claude off 1 and on 0, opencode 0 and 0, pi 0 and 0, devin 0 and 0, dsh 0 and 0. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json] So the arm has almost no evidence about the ask path in either direction, and the followed rate's `asked` term contributes one run out of 280.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1283-1296`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl`",
+        "`/Users/michelkerkmeester/.dsh/sessions/--private-var-folders-3c-zfqcqsts0kn19cgblj82gqhm0000gn-T-skilled-behaviour-arenas-run033-dsh--/session-6fe5690b-7654-448a-aa28-2ad0d58a3ddb/session.v4.jsonl.zstd`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/devin.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-3-5-devin-is-the-only-runtime-where-the-refusal-path-is-observable-at-all-offerdecli",
+      "text": "Devin is the only runtime where the refusal path is observable at all: `offerDeclined` reads 1 in both arms, with every other runtime at 0. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json] The one `asked` classification in the arm belongs to claude off, so the two halves of the ask path — asking and declining — were each observed on a different runtime and never together.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1283-1296`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl`",
+        "`/Users/michelkerkmeester/.dsh/sessions/--private-var-folders-3c-zfqcqsts0kn19cgblj82gqhm0000gn-T-skilled-behaviour-arenas-run033-dsh--/session-6fe5690b-7654-448a-aa28-2ad0d58a3ddb/session.v4.jsonl.zstd`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/devin.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-ask-path-accepts-exactly-two-representations-and-both-are-transcript-shapes-",
+      "text": "The ask path accepts exactly two representations, and both are transcript shapes rather than policy facts. A run counts as `asked` only when a `COMMAND:` line reports the offer state `offered`, or when the last assistant text contains a `?` and a token naming the expected command. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1283-1296] A session that asked in prose without a question mark, or whose final text was not stored, classifies as `none` even when it did offer and wait.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1283-1296`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl`",
+        "`/Users/michelkerkmeester/.dsh/sessions/--private-var-folders-3c-zfqcqsts0kn19cgblj82gqhm0000gn-T-skilled-behaviour-arenas-run033-dsh--/session-6fe5690b-7654-448a-aa28-2ad0d58a3ddb/session.v4.jsonl.zstd`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/devin.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-dsh-decline-start-is-an-outcome-difference-not-a-representation-loss-on-fres",
+      "text": "The dsh decline start is an outcome difference, not a representation loss. On `fresh-decline-refusal-02` the head offered `/deep:review` with policy `ask`, the run line records `briefDelivered: true` on both on-arm runs and `changedPaths: []` on both, and the scorer records the row's started command as `/create:sk-skill`. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl] The same session's own text carries twelve `COMMAND: [/deep:review] → declined` lines, so the offer arrived and was refused before a different command was started. [SOURCE: /Users/michelkerkmeester/.dsh/sessions/--private-var-folders-3c-zfqcqsts0kn19cgblj82gqhm0000gn-T-skilled-behaviour-arenas-run033-dsh--/session-6fe5690b-7654-448a-aa28-2ad0d58a3ddb/session.v4.jsonl.zstd]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1283-1296`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl`",
+        "`/Users/michelkerkmeester/.dsh/sessions/--private-var-folders-3c-zfqcqsts0kn19cgblj82gqhm0000gn-T-skilled-behaviour-arenas-run033-dsh--/session-6fe5690b-7654-448a-aa28-2ad0d58a3ddb/session.v4.jsonl.zstd`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/devin.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-model-s-own-offer-line-is-the-only-offer-signal-that-moves-with-the-brief-an",
+      "text": "The model's own offer line is the only offer signal that moves with the brief, and it moves on two runtimes only. `offerSeen` off to on reads dsh 2 to 7, opencode 0 to 2, claude 0 to 0, pi 1 to 1 and devin 3 to 3. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json] Because `offerSeen` is read from the model's `COMMAND:` line rather than from the brief, it survives opencode's missing delivery reader — which is why opencode shows 0 to 2 there while its delivery column shows 80 unknowns.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1283-1296`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl`",
+        "`/Users/michelkerkmeester/.dsh/sessions/--private-var-folders-3c-zfqcqsts0kn19cgblj82gqhm0000gn-T-skilled-behaviour-arenas-run033-dsh--/session-6fe5690b-7654-448a-aa28-2ad0d58a3ddb/session.v4.jsonl.zstd`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/devin.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-4-1-a-delivery-unknown-is-counted-as-an-offer-that-reached-the-model-the-tally-exclu",
+      "text": "A delivery `unknown` is counted as an offer that reached the model. The tally excludes an offer only when delivery is exactly `false`; every other value, including `unknown`, increments `offerReached`. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2351-2353]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2351-2353`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2194-2205`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`"
+      ]
+    },
+    {
+      "id": "finding-4-3-no-per-runtime-start-rate-delta-is-separable-at-these-arm-sizes-recomputing-the-",
+      "text": "No per-runtime start-rate delta is separable at these arm sizes. Recomputing the Wilson interval the scorer itself uses [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2194-2205] over each runtime's printed counts gives claude 0.04 to 0.38 against 0.07 to 0.45, opencode 0.03 to 0.51 against 0.11 to 0.60, pi 0.08 to 0.48 against 0.20 to 0.64, devin 0.05 to 0.48 against 0.25 to 0.75 and dsh 0.20 to 0.64 against 0.42 to 0.85. [INFERENCE: computed from the startRate counts in summary-arm.json] Every pair overlaps, so no runtime's start gain can be attributed to the brief from this arm, and a rank ordered by claimed start gain would be unfounded.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2351-2353`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2194-2205`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`"
+      ]
+    },
+    {
+      "id": "finding-4-5-ranked-by-measurement-restored-per-unit-of-floor-risk-the-cross-cli-gaps-order-1",
+      "text": "Ranked by measurement restored per unit of floor risk, the cross-CLI gaps order: (1) the OpenCode receipt plus the reader branch, which restores the off-arm counterfactual on 5 offered rows and answers 80 delivery rows with no scoring input touched; (2) the Codex arm unlock, which adds a whole runtime but is blocked on the operator's `/hooks` approval rather than on code; (3) the ask-representation widening, which would affect 1 of 280 runs and changes a measure rather than a product, so it also rewrites prior arms' numbers; (4) the devin and dsh `offerUnknown` rows, one each, which cannot move a rate over 28. [INFERENCE: from the counts in findings 1 to 4 and the file inventory in iteration 2]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2351-2353`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2194-2205`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`"
+      ]
+    },
+    {
+      "id": "finding-4-2-that-rule-erases-opencode-s-off-arm-counterfactual-while-the-four-reader-runtime",
+      "text": "That rule erases OpenCode's off-arm counterfactual while the four reader runtimes keep theirs. `offerReached` off to on reads claude 0 of 5 to 5 of 5, pi 0 of 5 to 5 of 5, devin 0 of 5 to 5 of 5, dsh 0 of 5 to 5 of 5, and opencode 5 of 5 to 5 of 5. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json] So the cost of the missing OpenCode reader is not a blank on the on arm: it is that five off-arm offers are credited as reached when the brief could not have arrived through a plugin that was switched off, which is the exact comparison the arm exists to make.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2351-2353`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2194-2205`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-turn-cap-costs-measurement-space-unevenly-and-mostly-on-opencode-cappedstart",
+      "text": "The turn cap costs measurement space unevenly, and mostly on OpenCode. `cappedStartRows` reads 8 of 15 off and 5 of 15 on for opencode, 4 and 3 for devin, 1 and 0 for pi, and 0 in both arms for claude and dsh. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json] OpenCode's printed start rate therefore rests on 7 and 10 judgeable rows, which is why its interval is the widest of the five.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2351-2353`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2194-2205`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`"
+      ]
+    },
+    {
+      "id": "finding-5-1-a-start-row-counts-as-started-without-any-write-startstate-sets-started-from-a-d",
+      "text": "A start row counts as started without any write. `startState` sets `started` from a document read, a model-reported `COMMAND:` start line, or a host expansion, and never consults a write boundary. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1477-1493] The start rate therefore answers \"did the run open the command's document or say it started\", not \"did it do the work\".",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1424-1441`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1477-1493`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1395-1402`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2300-2304`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2399-2403`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`"
+      ]
+    },
+    {
+      "id": "finding-5-4-nothing-in-the-summary-prints-which-shape-produced-a-start-so-the-mix-cannot-be-",
+      "text": "Nothing in the summary prints which shape produced a start, so the mix cannot be recovered after the fact. `byPolicy` carries counts only [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2399-2403], and `commandStartRuns` lists the row, the run and the command but not the shape [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2300-2304]. With 15 judged start rows per runtime per arm, a two-row difference between claude's 2 and 3 could be one read and one expansion in either order.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1424-1441`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1477-1493`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1395-1402`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2300-2304`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2399-2403`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`"
+      ]
+    },
+    {
+      "id": "finding-5-5-the-fix-is-a-measurement-field-not-a-product-change-record-the-shape-read-report",
+      "text": "The fix is a measurement field, not a product change: record the shape (read, reported, expanded, skill) on each scored row and print its distribution per runtime. That would make claude's 2 of 15 and 3 of 15, opencode's 1 of 7 and 3 of 10, pi's 3 of 14 and 6 of 15, devin's 2 of 11 and 6 of 12 and dsh's 6 of 15 and 10 of 15 comparable quantities rather than five differently-earned numerators. No command, vector, brief byte or floor input changes. [INFERENCE: from findings 1 to 4 and the start counts in summary-arm.json]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1424-1441`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1477-1493`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1395-1402`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2300-2304`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2399-2403`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-start-vocabulary-is-runtime-asymmetric-hostexpanded-recognises-claude-code-s",
+      "text": "The start vocabulary is runtime-asymmetric. `hostExpanded` recognises Claude Code's expansion tag, which exists because Claude expands a typed command before the model sees it and keeps only that tag in the stored user turn; the comment records the consequence that it \"is not a spoken command: the model never chose it\". [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1395-1402] Claude is the only one of the six runtimes that can produce this event, so its start count can include a start the model did not choose while the other five cannot.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1424-1441`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1477-1493`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1395-1402`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2300-2304`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2399-2403`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-two-start-functions-disagree-about-a-bare-document-read-for-a-decline-or-ski",
+      "text": "The two start functions disagree about a bare document read. For a decline or skill-only row, `startedCommand` accepts a document read only when a write boundary exists; the same read with no write is not a start there. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1424-1441] So one transcript can be a start under the start rate and not a start under the decline count, and both numbers appear in the same runtime block.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1424-1441`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1477-1493`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1395-1402`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2300-2304`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2399-2403`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`"
+      ]
+    },
+    {
+      "id": "finding-6-2-capped-is-true-for-two-different-events-an-exit-code-of-143-or-an-exit-code-of-n",
+      "text": "`capped` is true for two different events: an exit code of 143, or an exit code of `null`. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2035-2038]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1998-2040`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2376-2383`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1905-1916`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/reruns.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/devin.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-6-5-a-capped-start-row-is-dropped-from-the-start-rate-s-denominator-and-counted-apar",
+      "text": "A capped start row is dropped from the start rate's denominator and counted apart instead. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2376-2383] Devin's printed start rate therefore rests on 11 and 12 judgeable rows out of 15, not because the turns were slow but because their exit code was never recorded — the wall-clock rule applied to a different fault.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1998-2040`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2376-2383`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1905-1916`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/reruns.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/devin.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-6-4-devin-s-exit-null-lines-are-mostly-not-restore-faults-either-all-19-carry-restor",
+      "text": "Devin's exit-null lines are mostly not restore faults either. All 19 carry `restored: true`, none carries `headMoved`, and the sampled ones have no changed paths; only 2 of the 19 are the `fresh-skill-04` restore-failed lines the runner's rerun log describes. [INFERENCE: counted over the deduplicated devin lines, joined against `scratch/reruns.txt`] The missing exit code alone is enough to label a turn capped.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1998-2040`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2376-2383`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1905-1916`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/reruns.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/devin.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-6-6-the-row-the-runner-calls-unmeasurable-is-scored-as-an-ordinary-row-dsh-s-restore",
+      "text": "The row the runner calls unmeasurable is scored as an ordinary row. DSH's restore-failed `fresh-skill-04` line carries exit 0, so it passes every filter and is counted in the DSH block; `reruns.txt` records the same row as \"the row is not rerun because the same row moved head on devin twice\" and calls it unmeasurable there. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/reruns.txt] Nothing in the scorer distinguishes a turn that ran from a turn that rebased the arena.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1998-2040`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2376-2383`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1905-1916`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/reruns.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/devin.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-6-1-the-scorer-never-reads-restored-or-headmoved-a-run-is-scored-whenever-its-sessio",
+      "text": "The scorer never reads `restored` or `headMoved`; a run is scored whenever its session loads, \"whatever exit the turn ended with\", and the exit code itself never decides a score. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1998-1999]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1998-2040`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2376-2383`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1905-1916`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/reruns.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/devin.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-6-3-the-two-causes-split-cleanly-by-runtime-in-the-033-arm-opencode-s-26-capped-line",
+      "text": "The two causes split cleanly by runtime in the 033 arm. OpenCode's 26 capped lines are all exit 143 (15 off, 11 on). Devin's 19 capped lines are all exit `null` (10 off, 9 on). Claude has none. Pi has 2 off and 0 on, both 143. DSH has none. [INFERENCE: counted over the deduplicated lines of `scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`] So the same printed word describes a wall-clock cap on OpenCode and something else entirely on Devin, and a reader comparing the two runtimes' `capped` columns is comparing unlike events.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1998-2040`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2376-2383`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1905-1916`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/reruns.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/opencode.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/devin.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-7-3-offerseen-is-the-only-cross-check-on-the-replay-and-it-corroborates-it-on-two-ru",
+      "text": "`offerSeen` is the only cross-check on the replay, and it corroborates it on two runtimes only. The model's own `COMMAND:` line reports a head-named command 0 of 36 on claude, 0 of 36 on opencode, 1 on pi, 3 on devin and 2 on dsh in the off arm; in the on arm the same counts read 0, 2, 1, 3 and 7. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json] On claude, pi and devin the replay is never corroborated by the model in either arm.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1362-1389`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:460-470`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:85-139`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:518-526`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md`",
+        "`/Users/michelkerkmeester/.claude/CLAUDE.md`"
+      ]
+    },
+    {
+      "id": "finding-7-5-that-makes-the-claude-arms-carry-roughly-ninety-times-the-brief-in-un-isolated-r",
+      "text": "That makes the Claude arms carry roughly ninety times the brief in un-isolated rules text. The live brief measures 306 bytes at the median; the home file measures 27,730. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md] So the framework is present twice on claude, once through the arena pointer and once through the operator's home file, and only the pointer is under the harness's control.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1362-1389`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:460-470`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:85-139`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:518-526`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md`",
+        "`/Users/michelkerkmeester/.claude/CLAUDE.md`"
+      ]
+    },
+    {
+      "id": "finding-7-4-the-claude-limit-line-is-true-and-its-size-is-larger-than-the-line-suggests-clau",
+      "text": "The Claude limit line is true and its size is larger than the line suggests. `~/.claude/CLAUDE.md` is a symlink to the operator's 27,730-byte `AGENTS.md`, the runner reads `CLAUDE_CONFIG_DIR` only to locate the projects folder and never sets it for the turn [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:466], and the arena's own `CLAUDE.md` is the single line `@AGENTS.md`, written once and excluded from git so the clean-tree check never sees it. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:518-526]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1362-1389`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:460-470`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:85-139`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:518-526`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md`",
+        "`/Users/michelkerkmeester/.claude/CLAUDE.md`"
+      ]
+    },
+    {
+      "id": "finding-7-2-the-inherited-limit-line-understates-the-caveat-by-naming-only-the-off-arm-all-4",
+      "text": "The inherited limit line understates the caveat by naming only the off arm. All 400 deduplicated run lines across the five logs carry an offer answer and none carries an `offerError`, so the replay succeeded on every turn of both arms. [INFERENCE: counted over the deduplicated lines of `scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`] In the on arm the replayed head should match the delivered brief, but nothing in the arm's outputs compares them.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1362-1389`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:460-470`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:85-139`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:518-526`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md`",
+        "`/Users/michelkerkmeester/.claude/CLAUDE.md`"
+      ]
+    },
+    {
+      "id": "finding-7-1-the-offer-field-is-a-replay-on-every-run-in-both-arms-replayoffer-spawns-the-che",
+      "text": "The offer field is a replay on every run, in both arms. `replayOffer` spawns the checkout's own prompt hook with the turn's prompt after the turn has finished, and parses the head it prints; the comment states the reason plainly: \"The head the reader saw is the only place the offer was named, and not every runtime keeps it, so the offer is replayed after the turn.\" [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1368-1372] The replay resolves the hook from the checkout, not from the working copy, so the answer is what that checkout would have offered at run time. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:85-100]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1362-1389`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:460-470`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:85-139`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:518-526`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md`",
+        "`/Users/michelkerkmeester/.claude/CLAUDE.md`"
+      ]
+    },
+    {
+      "id": "finding-7-6-what-would-confirm-either-line-run-one-claude-arm-with-claude-config-dir-pointed",
+      "text": "What would confirm either line: run one Claude arm with `CLAUDE_CONFIG_DIR` pointed at an empty directory and compare its followed and start counts with the same rows in the existing arm; and print `offerSeen` beside `offered` per row so the replay's corroboration rate becomes a number instead of a footnote. Neither is a product change. [INFERENCE: from findings 1 to 5]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1362-1389`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:460-470`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:85-139`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:518-526`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/{claude,opencode,pi,devin,dsh}.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-4.md`",
+        "`/Users/michelkerkmeester/.claude/CLAUDE.md`"
+      ]
+    },
+    {
+      "id": "finding-8-7-floor-risk-is-none-for-items-1-to-5-and-7-s-product-side-because-none-of-them-ch",
+      "text": "Floor risk is none for items 1 to 5 and 7's product side, because none of them changes a command, a vector, a brief byte or a scoring input: items 1 to 4 are readers and counters, 5 is a run setting, and 6 is an operator action. Item 7 changes a measure, which is why it is last, and it would alter previously published arm numbers if adopted retroactively. [INFERENCE: from the file list and the recorded floors of 24 of 44 typed and 0 of 35 false offers]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/report.txt:1-81`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:220-303`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1477-1493`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2035-2038`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1368-1372`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:518-526`"
+      ]
+    },
+    {
+      "id": "finding-8-5-four-measurement-findings-sit-outside-the-original-five-questions-and-belong-in-",
+      "text": "Four measurement findings sit outside the original five questions and belong in the lane's answer: the start rate credits a bare document read and, on Claude alone, a host expansion the model never chose; the `capped` column mixes exit 143 with exit null and is all exit null on devin; the offer field is a replay in both arms with `offerSeen` as its only cross-check; and Claude's arms carry a 27,730-byte home rules file the harness never isolates. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1477-1493] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2035-2038] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1368-1372] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:518-526]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/report.txt:1-81`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:220-303`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1477-1493`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2035-2038`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1368-1372`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:518-526`"
+      ]
+    },
+    {
+      "id": "finding-8-1-question-a-is-answered-with-a-mechanism-not-a-rate-the-arm-s-followed-measure-is",
+      "text": "Question (a) is answered with a mechanism, not a rate: the arm's followed measure is a pre-write document access test, and phase 033's step reader supplies the step-level counterpart at setup 15 of 20, folder 12 of 20, output 4 of 20. The per-runtime order inverts between the two, so the arm's spread cannot be read as workflow quality. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/report.txt:81]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/report.txt:1-81`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:220-303`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1477-1493`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2035-2038`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1368-1372`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:518-526`"
+      ]
+    },
+    {
+      "id": "finding-8-2-question-b-and-question-c-are-answered-by-one-code-fact-and-one-test-briefdelive",
+      "text": "Question (b) and question (c) are answered by one code fact and one test: `briefDelivered` has no OpenCode branch and returns `unknown` structurally, and the suite pins that answer even for a session whose records hold the brief. Codex is a runner refusal rather than a reader gap, and devin's and dsh's single unplaceable rows are run-line format gaps. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:220-303]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/report.txt:1-81`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:220-303`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1477-1493`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2035-2038`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1368-1372`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:518-526`"
+      ]
+    },
+    {
+      "id": "finding-8-3-question-d-is-answered-the-ask-path-accepts-two-transcript-shapes-only-and-the-d",
+      "text": "Question (d) is answered: the ask path accepts two transcript shapes only, and the dsh decline-row start is an outcome difference with the offer delivered, represented and declined twelve times before a different command started. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/dsh.jsonl]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/report.txt:1-81`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:220-303`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1477-1493`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2035-2038`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1368-1372`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:518-526`"
+      ]
+    },
+    {
+      "id": "finding-8-4-question-e-is-answered-with-a-ranking-but-its-gain-column-had-to-change-twice-fi",
+      "text": "Question (e) is answered with a ranking, but its gain column had to change twice: first from claimed start gain, because no per-runtime interval separates, then to measurement restored, because that is what the evidence prices. [INFERENCE: iteration 4 findings 3 and 5]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/report.txt:1-81`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:220-303`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1477-1493`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2035-2038`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1368-1372`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:518-526`"
+      ]
+    },
+    {
+      "id": "finding-8-6-the-lane-s-final-order-each-with-file-and-check-1-the-opencode-receipt-plus-read",
+      "text": "The lane's final order, each with file and check. (1) The OpenCode receipt plus reader branch: `.opencode/plugins/system-skill-advisor.js` after the emitted-block observer, an `opencode` branch in `command-offer.mjs` `briefDelivered`, and the test at `command-offer.vitest.ts:259-265`; confirmed when the next arm's OpenCode off rows read `briefDelivered: false` and its `offerReached` reads 0 of 5 against 5 of 5 on, where today both read 5 of 5. (2) The start-shape field and its per-runtime distribution in `score-command-transcripts.mjs`; confirmed by a printed shape count per runtime. (3) The `capped` split into exit 143 and exit null; confirmed by devin's start rate printing over 15 rows instead of 11 and 12, and by a `capped` line that names its cause. (4) `restored: false` scored as unscored with a reason; confirmed by dsh's `unscored` rising from 0 to 1 and devin's by 2. (5) One Claude arm with `CLAUDE_CONFIG_DIR` on an empty directory; confirmed by a same-rows followed comparison against 6 of 28. (6) The Codex arm unlock, blocked on the operator's `/hooks` approval rather than on code. (7) The ask-representation widening, which touches 1 of 280 runs and rewrites prior arms' numbers. [INFERENCE: assembled from iterations 2 to 7]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/report.txt:1-81`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:220-303`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1477-1493`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2035-2038`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1368-1372`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:518-526`"
+      ]
+    },
+    {
+      "id": "finding-8-8-what-remains-unmeasured-in-this-lane-whether-a-longer-opencode-cap-would-raise-i",
+      "text": "What remains unmeasured in this lane: whether a longer OpenCode cap would raise its judgeable rows (the `performance-5` lane owns the cap itself); whether Claude's home rules file moves any row (item 5 is the test, not yet run); and which shape produced each existing start count (item 2 is the test). No claim in this lane rests on those three, and each is stated as a proposed measurement rather than a result. [INFERENCE: from the capped and start counts in summary-arm.json and the files named in items 2 and 5]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/step-reader/report.txt:1-81`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/summary-arm.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arm-evidence.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:220-303`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1477-1493`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:2035-2038`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1368-1372`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs:518-526`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-4cbc7a2e7481",
+      "text": "Comparing the arm's followed rate with the step reader as two estimates of one quantity. They are not: one is pre-write access, the other is post-hoc step grading on a different row sample (the 20 `fresh-fit-*` rows, not the 28 paired rows).",
+      "contentHash": "4cbc7a2e7481",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-13528b4f0f83",
+      "text": "Reading the arm's per-runtime followed rate as a UX or fit measure. The classifier's contract and its helper both define it as a pre-write document read, so the label overstates what the number is.",
+      "contentHash": "13528b4f0f83",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-fd8e98a08d62",
+      "text": "Treating opencode's `deliveryUnknown 44` as evidence that the plugin failed to emit. No reader exists to observe either outcome.",
+      "contentHash": "fd8e98a08d62",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-62d8b769a1aa",
+      "text": "Reading the `offerUnknown: 1` on devin and dsh as a lost offer. The field is absent from the line; it is not a recorded non-offer.",
+      "contentHash": "62d8b769a1aa",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1b149ceac649",
+      "text": "Searching the run logs for opencode rows that carry a delivery answer. All 80 lines read unknown by construction, so no per-row inspection can recover a delivery fact from them.",
+      "contentHash": "1b149ceac649",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-9e3e8dd07142",
+      "text": "Treating Codex as a sixth measured runtime. No row exists, and the gate that stops it is a runner refusal with an operator repair path, not a scoring gap.",
+      "contentHash": "9e3e8dd07142",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-17ed9e07cd6b",
+      "text": "Attributing dsh's decline-row start to a delivery or representation failure. The run line records the brief as delivered and the session records the offer as declined, so the mechanism is present and the outcome still violates the row.",
+      "contentHash": "17ed9e07cd6b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-6eedac75adb3",
+      "text": "Counting ask-policy rows that ended in prose questions without a `?`. The classifier requires the mark, so no such run can be recovered after the fact.",
+      "contentHash": "6eedac75adb3",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-5ec32bf0c8af",
+      "text": "Reading the near-zero `asked` count as evidence that models do not ask. The classifier only accepts two transcript shapes, so the count measures representability at least as much as behaviour.",
+      "contentHash": "5ec32bf0c8af",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-dc627ad04c6d",
+      "text": "Ranking by claimed start gain. No pair of per-runtime intervals separates, so the gain column cannot carry a rank.",
+      "contentHash": "dc627ad04c6d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-5be9b797db93",
+      "text": "Treating the OpenCode receipt as a delivery-only improvement. It also changes which offers count as reached, because the tally reads the same field.",
+      "contentHash": "5be9b797db93",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-f53e2b44dcc8",
+      "text": "Trying to recover a per-runtime brief effect from the `byPolicy` blocks. Five ask rows and ten start rows per runtime per arm leave nothing separable once the capped rows are removed.",
+      "contentHash": "f53e2b44dcc8",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-19d8b95d6615",
+      "text": "Comparing runtimes on start rate without naming the shape mix, while the shape vocabulary differs by runtime.",
+      "contentHash": "19d8b95d6615",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-ec73bfa27662",
+      "text": "Searching the run logs for a start-shape field. No such field exists in the line schema; only `changedPaths`, `offeredCommand`, `offeredPolicy`, `offeredAs`, `briefDelivered`, `restored` and `exit` are written.",
+      "contentHash": "ec73bfa27662",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-d0c027307caa",
+      "text": "Treating the printed start rate as \"the model took the workflow\". A document read alone earns it, and on Claude an expansion the model never chose also earns it.",
+      "contentHash": "d0c027307caa",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-f864d165ffb8",
+      "text": "Reading the `capped` column as a wall-clock count on every runtime. On devin it is a missing-exit-code count.",
+      "contentHash": "f864d165ffb8",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-af9cb25d8ee2",
+      "text": "Searching for a scored-row field that records the restore fault. `restored` and `headMoved` exist on the run line and are never read by the scorer.",
+      "contentHash": "af9cb25d8ee2",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-7f8858304e72",
+      "text": "Treating the runner's `restore_failed` verdict as reaching the score. It does not: only `exit` is consulted.",
+      "contentHash": "7f8858304e72",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-2db31b1b465e",
+      "text": "Looking for a `pointerRestored` or `leftoverPaths` event in the logs to show a turn disturbing the pointer. No line carries either field, so no turn touched it.",
+      "contentHash": "2db31b1b465e",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-3d6570716923",
+      "text": "Reading the off arm's offer field as counterfactual and the on arm's as observed. Both are replays; only the model's own line distinguishes them.",
+      "contentHash": "3d6570716923",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-e3d368cbf56a",
+      "text": "Treating the arm's five-runtime comparison as holding the framework constant. It holds the arena's pointer constant and leaves the home file in place on one runtime.",
+      "contentHash": "e3d368cbf56a",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-dcbfe24060ce",
+      "text": "A sixth answer question. The lane's five questions are answered; the four extra findings are measurement facts about the instrument, and folding them into a new question would hide that they were found while testing the answers.",
+      "contentHash": "dcbfe24060ce",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-0116ae35449a",
+      "text": "Ranking by any per-runtime start delta. Recomputed intervals overlap for all five runtimes, so that column cannot carry an order.",
+      "contentHash": "0116ae35449a",
+      "addedAtIteration": 8
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 8,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 45,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.35,
+    "coverageBySources": {
+      "code": 51,
+      "other": 18
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-5/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

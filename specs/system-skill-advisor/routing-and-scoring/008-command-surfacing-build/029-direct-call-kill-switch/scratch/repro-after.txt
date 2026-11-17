@@ -1,0 +1,20 @@
+$ LEASE
+{"pid":74123,"ownerPid":74123,"socketPath":"/tmp/system-skill-advisor/1787187e91b4/daemon-ipc.sock"}
+$ REPRO
+lease before {"pid":39197,"childPid":39239,"startedAt":"2026-11-15T08:38:34.495Z"}
+none                                   hook=on direct=on match=yes recs=["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]
+SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1    hook=off:SYSTEM_SKILL_ADVISOR_HOOK_DISABLED direct=off:SYSTEM_SKILL_ADVISOR_HOOK_DISABLED match=yes recs=[]
+SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1   hook=off:SPECKIT_SKILL_ADVISOR_HOOK_DISABLED direct=off:SPECKIT_SKILL_ADVISOR_HOOK_DISABLED match=yes recs=[]
+SYSTEM_SKILL_ADVISOR_DISABLED=1         hook=off:SYSTEM_SKILL_ADVISOR_DISABLED direct=off:SYSTEM_SKILL_ADVISOR_DISABLED match=yes recs=[]
+SYSTEM_SKILL_ADVISOR_DISABLED=true      hook=off:SYSTEM_SKILL_ADVISOR_DISABLED direct=off:SYSTEM_SKILL_ADVISOR_DISABLED match=yes recs=[]
+SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=yes  hook=off:SYSTEM_SKILL_ADVISOR_HOOK_DISABLED direct=off:SYSTEM_SKILL_ADVISOR_HOOK_DISABLED match=yes recs=[]
+SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=on hook=off:SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED direct=off:SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED match=yes recs=[]
+SYSTEM_HOOKS_DISABLED=1                 hook=off:SYSTEM_HOOKS_DISABLED direct=off:SYSTEM_HOOKS_DISABLED match=yes recs=[]
+MK_HOOKS_DISABLED=1                     hook=off:SYSTEM_HOOKS_DISABLED direct=off:SYSTEM_HOOKS_DISABLED match=yes recs=[]
+SYSTEM_SKILL_ADVISOR_DISABLED=0         hook=on direct=on match=yes recs=["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]
+flags file                              hook=off:SYSTEM_SKILL_ADVISOR_DISABLED direct=off:SYSTEM_SKILL_ADVISOR_DISABLED match=yes recs=[]
+flags file, env SYSTEM_..._DISABLED=0   hook=on direct=on match=yes recs=["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]
+stdin, SYSTEM_SKILL_ADVISOR_DISABLED=1  hook=off:SYSTEM_SKILL_ADVISOR_DISABLED direct=off:SYSTEM_SKILL_ADVISOR_DISABLED match=yes recs=[]
+none, after the flagged lines          hook=on direct=on match=yes recs=["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]
+lease after  {"pid":39197,"childPid":39239,"startedAt":"2026-11-15T08:38:34.495Z"}
+exit 0

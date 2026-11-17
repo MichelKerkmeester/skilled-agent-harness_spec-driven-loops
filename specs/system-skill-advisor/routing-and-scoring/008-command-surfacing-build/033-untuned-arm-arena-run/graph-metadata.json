@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "status_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "untuned arm arena run",
+      "phase 33 untuned arm arena run",
+      "behaviour arm live run five runtimes",
+      "untuned arm verdict",
+      "untuned arm arena run plan",
+      "untuned arm arena run tasks",
+      "untuned arm arena run acceptance criteria",
+      "033-untuned-arm-arena-run decisions",
+      "untuned arm arena run implementation summary"
+    ],
+    "key_topics": [
+      "untuned",
+      "arm",
+      "arena",
+      "run",
+      "phase",
+      "behaviour",
+      "live",
+      "five",
+      "runtimes",
+      "verdict",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/summary-arm.json",
+      "scratch/arm-evidence.txt",
+      "scratch/smoke.txt",
+      "scratch/reruns.txt",
+      "scratch/arenas.txt",
+      "scratch/arenas-after.txt",
+      "scratch/devin-rebase-evidence.txt",
+      "scratch/dsh-head-move-evidence.txt",
+      "scratch/devin-rows.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "summary-arm.json",
+        "kind": "config",
+        "path": "scratch/summary-arm.json",
+        "source": "derived"
+      },
+      {
+        "name": "arm-evidence.txt",
+        "kind": "file",
+        "path": "scratch/arm-evidence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "smoke.txt",
+        "kind": "file",
+        "path": "scratch/smoke.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reruns.txt",
+        "kind": "file",
+        "path": "scratch/reruns.txt",
+        "source": "derived"
+      },
+      {
+        "name": "arenas.txt",
+        "kind": "file",
+        "path": "scratch/arenas.txt",
+        "source": "derived"
+      },
+      {
+        "name": "arenas-after.txt",
+        "kind": "file",
+        "path": "scratch/arenas-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "devin-rebase-evidence.txt",
+        "kind": "file",
+        "path": "scratch/devin-rebase-evidence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-head-move-evidence.txt",
+        "kind": "file",
+        "path": "scratch/dsh-head-move-evidence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "devin-rows.txt",
+        "kind": "file",
+        "path": "scratch/devin-rows.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The behaviour summary over the tuned 007 rows prints a before and an after start rate on six runtimes, but those rows were tuned while the advisor was built, so they cannot show that the brief helps on prompts nobody saw",
+    "created_at": "2026-11-15T23:21:04Z",
+    "last_save_at": "2026-11-16T05:27:23.530Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7ac5675423aa66ed70c9b5c885fb954da7169adadb81163cbbe06068cac74bce",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3c9db986eda8f5df3f62042a2e3656e07c3cdb249e9c84e2ca58e8266f338a7e",
+      "plan.md": "f2864a9c12ba9f6028a303952dde6e3defcf86f6a64b921b190c02100440550a",
+      "tasks.md": "58a310d5df8757780dbb47fb8853b8826589df7d17c3b6c33b922f56d5c7bc12",
+      "decision-record.md": "6c7e9e8c38be394015a7d1484da9e7a053be7f955701a2c21d45e93fb4b3c712",
+      "implementation-summary.md": "0bec46b51c7efdbd38aed31979156b4fbf32ecec1e2b58f85fca9b852d0a56c1"
+    },
+    "last_active_at": null
+  }
+}

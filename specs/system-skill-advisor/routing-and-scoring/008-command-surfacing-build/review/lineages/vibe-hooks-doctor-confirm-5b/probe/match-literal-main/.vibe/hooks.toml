@@ -1,0 +1,5 @@
+[[hooks]]
+name = "turn-start"
+type = "pre_agent"
+match = 'main'
+command = "node \"$(git rev-parse --show-toplevel)/.skilled/hooks/session-lifecycle/vibe/turn-start.mjs\""

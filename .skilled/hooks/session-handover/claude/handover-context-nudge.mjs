@@ -56,26 +56,15 @@ function withdrawOnOperatorPrompt(eventName, prompt, sessionId) {
   const loopId = process.env.SKILLED_LOOP_ID;
   if (eventName !== 'UserPromptSubmit' || !loopId) return false;
   if (typeof prompt !== 'string' || TASK_NOTIFICATION_PATTERN.test(prompt)) return false;
-  let withdrawnRecord;
-  try {
-    // The withdrawn session may already have spent its last nudge, so the helper grants one
-    // more. The grant is fixed to a fill ratio by the nudge decision that follows on this prompt.
-    withdrawnRecord = withdraw.withdrawHandOver({
-      loopId,
-      sessionId,
-      reason: 'user-message',
-      env: process.env,
-      onError: (stage, error) => {
-        logEvent('context-nudge-error', { stage, message: error.message });
-      },
-    });
-  } catch (error) {
-    logEvent('context-nudge-error', { stage: 'withdraw', message: error.message });
-    return false;
-  }
-  if (withdrawnRecord === null) return false;
-  logEvent('withdrawn', { loopId, sessionId, reason: 'user-message' });
-  return true;
+  // The withdrawn session may already have spent its last nudge, so the helper grants one
+  // more. The grant is fixed to a fill ratio by the nudge decision that follows on this prompt.
+  return withdraw.withdrawOnPrompt({
+    loopId,
+    sessionId,
+    env: process.env,
+    log: logEvent,
+    withdrawnEvent: 'withdrawn',
+  });
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

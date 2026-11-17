@@ -1,0 +1,35 @@
+## VX tests/command-transcript-score.vitest.ts
+ Test Files  1 passed (1)
+      Tests  139 passed (139)
+## VX tests/command-offer.vitest.ts
+ Test Files  1 passed (1)
+      Tests  29 passed (29)
+## npm run typecheck in ADV
+exit 0
+## VALL
+exit 1
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/handlers/advisor-validate.vitest.ts > advisor_validate handler > surfaces named intent buckets with minN floors
+ Test Files  1 failed | 183 passed (184)
+      Tests  1 failed | 1982 passed | 6 skipped (1989)
+## SPRE > workflow-after-pre.json
+exit 0
+## SFIN > workflow-after-final.json
+exit 0
+## SUMOK after-pre, after-final
+true
+true
+## cmp den pre, den final (nothing then exit 0 means equal)
+exit 0
+exit 0
+## claude post loadRate
+6 of 16
+## old fields kept
+true
+## probes for repro-after exit 0
+## VALL rerun after T039 (the run above failed once in tests/handlers/advisor-validate.vitest.ts > surfaces named intent buckets with minN floors, a file this phase does not touch)
+## env -u AI_SESSION_CHILD npx vitest run tests/handlers/advisor-validate.vitest.ts, twice: Tests 10 passed (10), Tests 10 passed (10)
+## VALL again
+exit 0
+ Test Files  184 passed (184)
+      Tests  1983 passed | 6 skipped (1989)

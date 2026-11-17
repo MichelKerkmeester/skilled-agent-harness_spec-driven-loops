@@ -33,7 +33,7 @@ trigger_phrases:
   - "vibe advisor adapter"
 importance_tier: normal
 contextType: reference
-version: 3.6.11.0
+version: 3.6.22.0
 ---
 
 # Skill Advisor: Prompt Routing Context

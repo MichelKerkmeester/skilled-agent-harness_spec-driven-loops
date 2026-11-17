@@ -1,0 +1,216 @@
+{
+  "type": "iteration",
+  "iteration": 1,
+  "run": 1,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "status": "complete",
+  "focus": "correctness and traceability - stage-two README intent narrowing and generated-artifact parity",
+  "dimensions": ["correctness", "traceability"],
+  "filesReviewed": [
+    ".skilled/skills/sk-doc/ROUTER.md:1-591",
+    ".skilled/skills/sk-doc/graph-metadata.json:340-395",
+    ".skilled/skills/sk-doc/graph-metadata.json:870-925",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json:1",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:51-122",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs:160-250",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts:31-150",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts:60-105",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:1-20",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/spec.md:1-140",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/acceptance-criteria.md:40-64",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/tasks.md:40-62",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/implementation-summary.md:45-70",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/scratch/readme-probes.txt:1-11",
+    ".skilled/skills/sk-doc/sk-create-readme/ROUTER.md:18-50"
+  ],
+  "findingsCount": 3,
+  "findingsSummary": {"P0": 0, "P1": 0, "P2": 3},
+  "findingsNew": {"P0": 0, "P1": 0, "P2": 3},
+  "findingDetails": [
+    {
+      "id": "F001",
+      "severity": "P2",
+      "title": "The accepted probe proves hub reach only, while two dropped phrase families now load the generic README leaves",
+      "dimension": "traceability",
+      "file": ".skilled/skills/sk-doc/ROUTER.md:136",
+      "evidence": "readme-probes.txt:3 records the git-preflight README request topping sk-doc; stage two then scores only README_CREATION=12, so hook-readme-template.md does not load. 'write a hook mirror readme' scores README_CREATION=4 only after RUNTIME_PLUGIN_README dropped its phrase, so runtime-plugin-readme-template.md does not load. AC-003 asserts top=sk-doc, while spec.md:61 promises templates.",
+      "recommendation": "Extend the phase probe to assert the leaf pair for git-preflight and hook mirror, or narrow the purpose sentence to hub reach and record the generic fallback.",
+      "disposition": "active",
+      "findingClass": "matrix/evidence",
+      "scopeProof": "Scored every declared generic and named hook phrase with the leaf-route-replay rule; retained names still select their specific leaves, only the dropped families fall through.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md",
+        ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md",
+        ".skilled/skills/sk-doc/ROUTER.md"
+      ]
+    },
+    {
+      "id": "F002",
+      "severity": "P2",
+      "title": "The named skill-advisor hook phrase ties the skill README and hook README intents",
+      "dimension": "correctness",
+      "file": ".skilled/skills/sk-doc/ROUTER.md:219",
+      "evidence": "'readme for the skill-advisor hook' contains the SKILL_README keyword 'readme for the skill' (ROUTER.md:215), so SKILL_README=16 and HOOK_README=16 are both within one point of the top and both leaf sets load.",
+      "recommendation": "Drop the named skill-advisor phrase in favor of the generic hook phrases, or require a word boundary that excludes a hyphenated name after 'skill'.",
+      "disposition": "active",
+      "findingClass": "instance-only",
+      "scopeProof": "Scored all 20 'readme for the ... hook' phrases; only skill-advisor produces a second top-score intent.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md",
+        ".skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md"
+      ]
+    },
+    {
+      "id": "F003",
+      "severity": "P2",
+      "title": "The 039 spec still lists the packet router as a file to change, but the delivered work left it untouched",
+      "dimension": "traceability",
+      "file": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/spec.md:105",
+      "evidence": "The Files to Change table names .skilled/skills/sk-doc/sk-create-readme/ROUTER.md as Modify; tasks.md:46 records 'left as is'; implementation-summary.md:57-63 omits it; git diff --name-only over the commit confirms it is not in the change; the packet router still carries 'security policy' and 'sync.md' at sk-create-readme/ROUTER.md:109.",
+      "recommendation": "Remove the row from the Files to Change table with the recorded reason, or make the narrowing change to the packet router.",
+      "disposition": "active",
+      "findingClass": "matrix/evidence",
+      "scopeProof": "Compared spec table, task evidence, implementation-summary table and the commit's file list; the hub router gates advisor entry, so no runtime caller reaches the packet through the dropped phrase.",
+      "affectedSurfaceHints": [
+        "039-main-sk-doc-routing-repair/spec.md",
+        "039-main-sk-doc-routing-repair/tasks.md",
+        ".skilled/skills/sk-doc/sk-create-readme/ROUTER.md"
+      ]
+    }
+  ],
+  "traceabilityChecks": {
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "pass",
+        "gateClass": "hard",
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/sk-doc/ROUTER.md:218",
+          ".skilled/skills/sk-doc/ROUTER.md:219",
+          ".skilled/skills/sk-doc/ROUTER.md:220",
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/spec.md:100-111"
+        ],
+        "summary": "The router narrows exactly the scoped intents; the remaining mismatch is the packet-router row recorded as F003."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "gateClass": "hard",
+        "applicable": false,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/acceptance-criteria.md:56-58"
+        ],
+        "summary": "A review pass over another phase's files has no packet checklist to certify; the phase acceptance rows were read as evidence."
+      },
+      {
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "gateClass": "overlay",
+        "applicable": true,
+        "evidence": [".skilled/skills/sk-doc/ROUTER.md:1-14"],
+        "summary": "The change stays inside the sk-doc skill and its advisor projection; no agent file is touched."
+      },
+      {
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "gateClass": "overlay",
+        "applicable": false,
+        "evidence": ["git diff --name-only 6d50afe6f39 2f3f893c153 -- .skilled/skills/sk-doc/ROUTER.md"],
+        "summary": "No agent definition is in the diff."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "pass",
+        "gateClass": "overlay",
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:51-97",
+          ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json:1"
+        ],
+        "summary": "The generator carries the narrowed vocabulary and the compiled graph matches all 14 source metadata files exactly."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "overlay",
+        "applicable": true,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/scratch/readme-probes.txt:2-11"
+        ],
+        "summary": "The committed probe was read; no routing playbook scenario was executed, so the stage-two scores are a local reproduction of the documented rule."
+      }
+    ]
+  },
+  "newFindingsRatio": 1.0,
+  "noveltyJustification": "All three findings are first-time (no prior iteration exists). F001 and F002 come from the documented stage-two scorer and the exact predicate keyword sets; F003 comes from the packet's own files-to-change, task and implementation tables.",
+  "sessionId": "fanout-routing-11-1794851543294-mlt3r6",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-16T18:08:43Z",
+  "durationMs": 600000,
+  "graphEvents": [
+    {"type": "node", "id": "d-correctness", "kind": "DIMENSION", "label": "correctness"},
+    {"type": "node", "id": "d-traceability", "kind": "DIMENSION", "label": "traceability"},
+    {"type": "node", "id": "file-sk-doc-router", "kind": "FILE", "label": ".skilled/skills/sk-doc/ROUTER.md"},
+    {"type": "node", "id": "file-sk-doc-graph-metadata", "kind": "FILE", "label": ".skilled/skills/sk-doc/graph-metadata.json"},
+    {"type": "node", "id": "file-advisor-skill-graph", "kind": "FILE", "label": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"},
+    {"type": "node", "id": "file-generate-router-intent-signals", "kind": "FILE", "label": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs"},
+    {"type": "node", "id": "file-leaf-route-replay", "kind": "FILE", "label": ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs"},
+    {"type": "node", "id": "file-scorer-text", "kind": "FILE", "label": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts"},
+    {"type": "node", "id": "file-scorer-lexical", "kind": "FILE", "label": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts"},
+    {"type": "node", "id": "file-scorer-lane-registry", "kind": "FILE", "label": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts"},
+    {"type": "node", "id": "file-039-spec", "kind": "FILE", "label": "039-main-sk-doc-routing-repair/spec.md"},
+    {"type": "node", "id": "file-039-acceptance", "kind": "FILE", "label": "039-main-sk-doc-routing-repair/acceptance-criteria.md"},
+    {"type": "node", "id": "file-039-tasks", "kind": "FILE", "label": "039-main-sk-doc-routing-repair/tasks.md"},
+    {"type": "node", "id": "file-039-implementation", "kind": "FILE", "label": "039-main-sk-doc-routing-repair/implementation-summary.md"},
+    {"type": "node", "id": "file-039-probes", "kind": "FILE", "label": "039-main-sk-doc-routing-repair/scratch/readme-probes.txt"},
+    {"type": "node", "id": "file-sk-create-readme-router", "kind": "FILE", "label": ".skilled/skills/sk-doc/sk-create-readme/ROUTER.md"},
+    {"type": "node", "id": "f-001", "kind": "FINDING", "label": "Hub reach proven, dropped phrase families load generic README leaves"},
+    {"type": "node", "id": "f-002", "kind": "FINDING", "label": "skill-advisor hook phrase ties skill README and hook README"},
+    {"type": "node", "id": "f-003", "kind": "FINDING", "label": "039 spec lists packet router as changed but it was left untouched"},
+    {"type": "node", "id": "ev-001", "kind": "EVIDENCE", "label": ".skilled/skills/sk-doc/ROUTER.md:136"},
+    {"type": "node", "id": "ev-002", "kind": "EVIDENCE", "label": ".skilled/skills/sk-doc/ROUTER.md:219"},
+    {"type": "node", "id": "ev-003", "kind": "EVIDENCE", "label": "039-main-sk-doc-routing-repair/spec.md:105"},
+    {"type": "edge", "id": "e-cov-correctness-router", "source": "d-correctness", "target": "file-sk-doc-router", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-correctness-metadata", "source": "d-correctness", "target": "file-sk-doc-graph-metadata", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-correctness-graph", "source": "d-correctness", "target": "file-advisor-skill-graph", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-correctness-generator", "source": "d-correctness", "target": "file-generate-router-intent-signals", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-correctness-replay", "source": "d-correctness", "target": "file-leaf-route-replay", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-correctness-scorer-text", "source": "d-correctness", "target": "file-scorer-text", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-correctness-lexical", "source": "d-correctness", "target": "file-scorer-lexical", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-correctness-lane-registry", "source": "d-correctness", "target": "file-scorer-lane-registry", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-correctness-039-spec", "source": "d-correctness", "target": "file-039-spec", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-correctness-039-ac", "source": "d-correctness", "target": "file-039-acceptance", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-correctness-039-tasks", "source": "d-correctness", "target": "file-039-tasks", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-correctness-039-impl", "source": "d-correctness", "target": "file-039-implementation", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-correctness-039-probes", "source": "d-correctness", "target": "file-039-probes", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-correctness-create-readme", "source": "d-correctness", "target": "file-sk-create-readme-router", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-traceability-router", "source": "d-traceability", "target": "file-sk-doc-router", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-traceability-metadata", "source": "d-traceability", "target": "file-sk-doc-graph-metadata", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-traceability-graph", "source": "d-traceability", "target": "file-advisor-skill-graph", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-traceability-generator", "source": "d-traceability", "target": "file-generate-router-intent-signals", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-traceability-replay", "source": "d-traceability", "target": "file-leaf-route-replay", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-traceability-scorer-text", "source": "d-traceability", "target": "file-scorer-text", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-traceability-lexical", "source": "d-traceability", "target": "file-scorer-lexical", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-traceability-lane-registry", "source": "d-traceability", "target": "file-scorer-lane-registry", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-traceability-039-spec", "source": "d-traceability", "target": "file-039-spec", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-traceability-039-ac", "source": "d-traceability", "target": "file-039-acceptance", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-traceability-039-tasks", "source": "d-traceability", "target": "file-039-tasks", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-traceability-039-impl", "source": "d-traceability", "target": "file-039-implementation", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-traceability-039-probes", "source": "d-traceability", "target": "file-039-probes", "relation": "COVERS"},
+    {"type": "edge", "id": "e-cov-traceability-create-readme", "source": "d-traceability", "target": "file-sk-create-readme-router", "relation": "COVERS"},
+    {"type": "edge", "id": "e-in-dim-001", "source": "f-001", "target": "d-traceability", "relation": "IN_DIMENSION"},
+    {"type": "edge", "id": "e-in-dim-002", "source": "f-002", "target": "d-correctness", "relation": "IN_DIMENSION"},
+    {"type": "edge", "id": "e-in-dim-003", "source": "f-003", "target": "d-traceability", "relation": "IN_DIMENSION"},
+    {"type": "edge", "id": "e-in-file-001", "source": "f-001", "target": "file-sk-doc-router", "relation": "IN_FILE"},
+    {"type": "edge", "id": "e-in-file-002", "source": "f-002", "target": "file-sk-doc-router", "relation": "IN_FILE"},
+    {"type": "edge", "id": "e-in-file-003", "source": "f-003", "target": "file-039-spec", "relation": "IN_FILE"},
+    {"type": "edge", "id": "e-evidence-001", "source": "ev-001", "target": "f-001", "relation": "EVIDENCE_FOR"},
+    {"type": "edge", "id": "e-evidence-002", "source": "ev-002", "target": "f-002", "relation": "EVIDENCE_FOR"},
+    {"type": "edge", "id": "e-evidence-003", "source": "ev-003", "target": "f-003", "relation": "EVIDENCE_FOR"}
+  ]
+}

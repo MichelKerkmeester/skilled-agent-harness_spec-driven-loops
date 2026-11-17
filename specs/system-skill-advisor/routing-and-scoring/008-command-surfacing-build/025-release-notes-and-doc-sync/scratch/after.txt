@@ -1,0 +1,145 @@
+$ python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+PASS .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+SUMMARY files=1 pass=1 fail=0
+exit 0
+
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+Document type: changelog
+Total issues: 0
+exit 0
+
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/lib/README.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/runtime/lib/README.md
+Document type: readme
+Total issues: 0
+exit 0
+
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/tests/README.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/runtime/tests/README.md
+Document type: readme
+Total issues: 0
+exit 0
+
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md
+Document type: feature_catalog
+Total issues: 0
+
+cite-drift advisory: checked=5 flagged=0 unchecked=0 not_in_range=0 (never blocks; JEV_FEATURE_CITE_DRIFT=0 skips it)
+exit 0
+
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md
+Document type: feature_catalog
+Total issues: 0
+exit 0
+
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md
+Document type: feature_catalog
+Total issues: 0
+exit 0
+
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md
+Document type: readme
+Total issues: 0
+exit 0
+
+$ python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+HVR SCAN: .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+  x4    first@126   soft1  soft-deduction         make
+  x1    first@192   soft1  soft-deduction         do
+  x1    first@41    soft1  soft-deduction         take
+  x7    first@46    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          0
+  mechanical deductions:  -6
+  mechanical ceiling:     94/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality
+exit 0
+
+$ python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package system-skill-advisor
+PACKAGE system-skill-advisor: PASS tier=fail violations=0
+PASS: 0 violations (all enforced catalog checks).
+exit 0
+
+$ python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py .skilled/skills/system-skill-advisor/runtime/lib/README.md .skilled/skills/system-skill-advisor/runtime/tests/README.md .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md
+  line 16: inline 'runtime/lib/': path does not exist
+  line 139: inline 'config/route-exclusions.json': path does not exist
+  line 139: inline 'route-exclusions.local.json': path does not exist
+FAIL .skilled/skills/system-skill-advisor/runtime/lib/README.md: references=91 unresolved=3 examples=0 allowed=0
+  line 16: inline 'runtime/tests/': path does not exist
+  line 159: inline 'scripts/routing-accuracy/command-routing-baseline.json': path does not exist
+FAIL .skilled/skills/system-skill-advisor/runtime/tests/README.md: references=91 unresolved=2 examples=0 allowed=0
+  line 50: inline 'lib/command-attach.ts': path does not exist
+  line 50: inline 'lib/scorer/projection.ts': path does not exist
+  line 74: inline 'lib/scorer/fusion.ts': path does not exist
+FAIL .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md: references=37 unresolved=3 examples=0 allowed=0
+SUMMARY files=3 pass=0 fail=3
+exit 1
+
+$ wc -l .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+     251 .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+exit 0
+
+$ rg -c section: .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+14
+exit 0
+
+$ rg -c ^####  .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+32
+exit 0
+
+## Coordinator reading of the two non-zero findings
+
+check_readme_references exit 1: eight unresolved paths on lib/README.md lines 16 and 139, tests/README.md lines 16 and 159, command-bridges/README.md lines 50 and 74. The phase changed only lib/README.md line 132, tests/README.md line 157 and command-bridges/README.md line 68 (git diff 8a5f3214522 -U0 hunks), and each flagged string is present in the file at 8a5f3214522, so all eight predate this phase.
+
+HVR on lines the phase added (added ranges 32-33, 45-49, 71-74, 132-201, 240-241, 249): seven review-level candidates and no hard blocker. Lines 46, 49, 136, 176, 180 and 184 are oxford-comma-candidate hits on a comma that joins two independent clauses, not a list of three, so no serial comma is present. Line 192 is a soft-deduction on "do" in the limits sentence "so they do not show that the brief makes a model follow a correct workflow more often". All seven left as written.
+## Rerun after the T016 wording fixes (changelog lines 46, 140, 160, 180, 194, 198 and the command bridges policy sentence)
+
+$ python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+PASS .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+SUMMARY files=1 pass=1 fail=0
+exit 0
+
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+Document type: changelog
+Total issues: 0
+exit 0
+
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md
+Document type: readme
+Total issues: 0
+exit 0
+
+$ python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package system-skill-advisor
+PACKAGE system-skill-advisor: PASS tier=fail violations=0
+PASS: 0 violations (all enforced catalog checks).
+exit 0
+
+$ wc -l .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+     251 .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+exit 0
+
+$ rg -c section: .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+14
+exit 0
+
+$ rg -c ^####  .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+32
+exit 0
+

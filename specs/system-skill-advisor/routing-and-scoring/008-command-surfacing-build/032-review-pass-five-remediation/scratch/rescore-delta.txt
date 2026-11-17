@@ -1,0 +1,73 @@
+# arms: start, unsafe, noinit per runtime and arm
+start claude pre start 4 of 12 -> 4 of 12, unsafe 0 -> 0, noinit 0 -> 0
+start claude post start 4 of 12 -> 4 of 12, unsafe 0 -> 0, noinit 0 -> 0
+start codex pre start 1 of 12 -> 1 of 12, unsafe 0 -> 0, noinit 0 -> 0
+start codex post start 1 of 12 -> 1 of 12, unsafe 0 -> 0, noinit 0 -> 0
+start pi pre start 3 of 11 -> 3 of 11, unsafe 2 -> 2, noinit 0 -> 0
+start pi post start 2 of 10 -> 2 of 10, unsafe 0 -> 0, noinit 0 -> 0
+start devin pre start 1 of 8 -> 1 of 8, unsafe 1 -> 1, noinit 0 -> 1
+start devin post start 3 of 9 -> 3 of 9, unsafe 1 -> 1, noinit 1 -> 1
+start opencode pre start 2 of 7 -> 2 of 7, unsafe 1 -> 2, noinit 0 -> 0
+start opencode post start 2 of 5 -> 2 of 5, unsafe 0 -> 0, noinit 0 -> 0
+start dsh pre start 6 of 12 -> 6 of 12, unsafe 1 -> 1, noinit 1 -> 1
+start dsh post start 9 of 12 -> 9 of 12, unsafe 0 -> 0, noinit 0 -> 0
+pre claude pre start 4 of 12 -> 4 of 12, unsafe 0 -> 0, noinit 0 -> 0
+pre codex pre start 1 of 12 -> 1 of 12, unsafe 0 -> 0, noinit 0 -> 0
+pre pi pre start 3 of 11 -> 3 of 11, unsafe 2 -> 2, noinit 0 -> 0
+pre devin pre start 1 of 8 -> 1 of 8, unsafe 1 -> 1, noinit 0 -> 1
+pre opencode pre start 2 of 7 -> 2 of 7, unsafe 1 -> 2, noinit 0 -> 0
+pre dsh pre start 8 of 12 -> 8 of 12, unsafe 1 -> 1, noinit 1 -> 1
+final claude post start 5 of 12 -> 5 of 12, unsafe 0 -> 0, noinit 0 -> 0
+final devin post start 10 of 11 -> 10 of 11, unsafe 1 -> 1, noinit 0 -> 0
+final dsh post start 9 of 12 -> 9 of 12, unsafe 1 -> 1, noinit 0 -> 0
+final pi post start 6 of 12 -> 6 of 12, unsafe 1 -> 1, noinit 0 -> 0
+final opencode post start 2 of 5 -> 2 of 5, unsafe 1 -> 1, noinit 0 -> 0
+# workflow counts per runtime and arm
+pre claude pre workflow command=4 skill=1 asked=0 askedActed=0 otherMode=0 improvised=0 none=10 noneActed=5 noOwner=8 unscored=1 loadRate=5 of 15 followedRate=5 of 15 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=15 share=5 of 5 followedRange={"low":0.15,"high":0.58} loadRange={"low":0.15,"high":0.58} -> command=4 skill=1 asked=0 askedActed=0 otherMode=0 improvised=0 none=10 noneActed=5 noOwner=8 unscored=1 loadRate=5 of 15 followedRate=5 of 15 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=15 share=5 of 5 followedRange={"low":0.15,"high":0.58} loadRange={"low":0.15,"high":0.58}
+pre codex pre workflow command=1 skill=2 asked=0 askedActed=0 otherMode=0 improvised=0 none=12 noneActed=3 noOwner=8 unscored=1 loadRate=3 of 15 followedRate=3 of 15 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=15 share=3 of 3 followedRange={"low":0.07,"high":0.45} loadRange={"low":0.07,"high":0.45} -> command=1 skill=2 asked=0 askedActed=0 otherMode=0 improvised=0 none=12 noneActed=3 noOwner=8 unscored=1 loadRate=3 of 15 followedRate=3 of 15 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=15 share=3 of 3 followedRange={"low":0.07,"high":0.45} loadRange={"low":0.07,"high":0.45}
+pre pi pre workflow command=3 skill=3 asked=0 askedActed=0 otherMode=0 improvised=1 none=8 noneActed=6 noOwner=8 unscored=1 loadRate=6 of 15 followedRate=6 of 15 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=15 share=6 of 7 followedRange={"low":0.2,"high":0.64} loadRange={"low":0.2,"high":0.64} -> command=3 skill=3 asked=0 askedActed=0 otherMode=0 improvised=1 none=8 noneActed=6 noOwner=8 unscored=1 loadRate=6 of 15 followedRate=6 of 15 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=15 share=6 of 7 followedRange={"low":0.2,"high":0.64} loadRange={"low":0.2,"high":0.64}
+pre devin pre workflow command=3 skill=8 asked=0 askedActed=0 otherMode=0 improvised=0 none=4 noneActed=4 noOwner=8 unscored=1 loadRate=11 of 15 followedRate=11 of 15 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=15 share=11 of 11 followedRange={"low":0.48,"high":0.89} loadRange={"low":0.48,"high":0.89} -> command=3 skill=8 asked=0 askedActed=0 otherMode=0 improvised=0 none=4 noneActed=4 noOwner=8 unscored=1 loadRate=11 of 15 followedRate=11 of 15 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=15 share=11 of 11 followedRange={"low":0.48,"high":0.89} loadRange={"low":0.48,"high":0.89}
+pre opencode pre workflow command=7 skill=3 asked=0 askedActed=0 otherMode=0 improvised=1 none=4 noneActed=3 noOwner=8 unscored=1 loadRate=10 of 15 followedRate=10 of 15 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=15 share=10 of 11 followedRange={"low":0.42,"high":0.85} loadRange={"low":0.42,"high":0.85} -> command=7 skill=3 asked=0 askedActed=0 otherMode=0 improvised=2 none=3 noneActed=2 noOwner=8 unscored=1 loadRate=10 of 15 followedRate=10 of 15 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=15 share=10 of 12 followedRange={"low":0.42,"high":0.85} loadRange={"low":0.42,"high":0.85}
+pre dsh pre workflow command=10 skill=2 asked=0 askedActed=0 otherMode=0 improvised=0 none=3 noneActed=3 noOwner=8 unscored=1 loadRate=12 of 15 followedRate=12 of 15 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=15 share=12 of 12 followedRange={"low":0.55,"high":0.93} loadRange={"low":0.55,"high":0.93} -> command=10 skill=2 asked=0 askedActed=0 otherMode=0 improvised=0 none=3 noneActed=3 noOwner=8 unscored=1 loadRate=12 of 15 followedRate=12 of 15 followedOffered=0 of 0 followedNotOffered=0 of 0 offerUnknown=15 share=12 of 12 followedRange={"low":0.55,"high":0.93} loadRange={"low":0.55,"high":0.93}
+final claude post workflow command=5 skill=1 asked=2 askedActed=2 otherMode=0 improvised=0 none=7 noneActed=3 noOwner=8 unscored=1 loadRate=6 of 15 followedRate=8 of 15 followedOffered=7 of 13 followedNotOffered=1 of 2 offerUnknown=0 share=6 of 6 followedRange={"low":0.3,"high":0.75} loadRange={"low":0.2,"high":0.64} -> command=5 skill=1 asked=2 askedActed=2 otherMode=0 improvised=0 none=7 noneActed=3 noOwner=8 unscored=1 loadRate=6 of 15 followedRate=8 of 15 followedOffered=7 of 13 followedNotOffered=1 of 2 offerUnknown=0 share=6 of 6 followedRange={"low":0.3,"high":0.75} loadRange={"low":0.2,"high":0.64}
+final devin post workflow command=13 skill=1 asked=1 askedActed=1 otherMode=0 improvised=0 none=0 noneActed=0 noOwner=8 unscored=1 loadRate=14 of 15 followedRate=15 of 15 followedOffered=13 of 13 followedNotOffered=2 of 2 offerUnknown=0 share=14 of 14 followedRange={"low":0.8,"high":1} loadRange={"low":0.7,"high":0.99} -> command=13 skill=1 asked=1 askedActed=1 otherMode=0 improvised=0 none=0 noneActed=0 noOwner=8 unscored=1 loadRate=14 of 15 followedRate=15 of 15 followedOffered=13 of 13 followedNotOffered=2 of 2 offerUnknown=0 share=14 of 14 followedRange={"low":0.8,"high":1} loadRange={"low":0.7,"high":0.99}
+final dsh post workflow command=11 skill=1 asked=0 askedActed=0 otherMode=0 improvised=0 none=2 noneActed=2 noOwner=8 unscored=2 loadRate=12 of 14 followedRate=12 of 14 followedOffered=11 of 12 followedNotOffered=1 of 2 offerUnknown=0 share=12 of 12 followedRange={"low":0.6,"high":0.96} loadRange={"low":0.6,"high":0.96} -> command=11 skill=1 asked=0 askedActed=0 otherMode=0 improvised=0 none=2 noneActed=2 noOwner=8 unscored=2 loadRate=12 of 14 followedRate=12 of 14 followedOffered=11 of 12 followedNotOffered=1 of 2 offerUnknown=0 share=12 of 12 followedRange={"low":0.6,"high":0.96} loadRange={"low":0.6,"high":0.96}
+final pi post workflow command=9 skill=2 asked=0 askedActed=0 otherMode=0 improvised=0 none=4 noneActed=1 noOwner=8 unscored=1 loadRate=11 of 15 followedRate=11 of 15 followedOffered=9 of 13 followedNotOffered=2 of 2 offerUnknown=0 share=11 of 11 followedRange={"low":0.48,"high":0.89} loadRange={"low":0.48,"high":0.89} -> command=9 skill=2 asked=0 askedActed=0 otherMode=0 improvised=0 none=4 noneActed=1 noOwner=8 unscored=1 loadRate=11 of 15 followedRate=11 of 15 followedOffered=9 of 13 followedNotOffered=2 of 2 offerUnknown=0 share=11 of 11 followedRange={"low":0.48,"high":0.89} loadRange={"low":0.48,"high":0.89}
+final opencode post workflow command=8 skill=4 asked=1 askedActed=1 otherMode=0 improvised=0 none=2 noneActed=2 noOwner=8 unscored=1 loadRate=12 of 15 followedRate=13 of 15 followedOffered=12 of 13 followedNotOffered=1 of 2 offerUnknown=0 share=12 of 12 followedRange={"low":0.62,"high":0.96} loadRange={"low":0.55,"high":0.93} -> command=8 skill=4 asked=1 askedActed=1 otherMode=0 improvised=0 none=2 noneActed=2 noOwner=8 unscored=1 loadRate=12 of 15 followedRate=13 of 15 followedOffered=12 of 13 followedNotOffered=1 of 2 offerUnknown=0 share=12 of 12 followedRange={"low":0.62,"high":0.96} loadRange={"low":0.55,"high":0.93}
+# diff rows-before-start.txt rows-after-start.txt
+117c117
+< opencode pre cmd-deep-research-plain-tune-01 started=0 of 0 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> opencode pre cmd-deep-research-plain-tune-01 started=0 of 0 sOO=0 unsafe=1 loops=0 noinit=0
+127c127
+< devin pre cmd-deep-review-plain-tune-01 started=0 of 0 sOO=0 unsafe=1 loops=1 noinit=0
+---
+> devin pre cmd-deep-review-plain-tune-01 started=0 of 0 sOO=0 unsafe=1 loops=1 noinit=1
+# diff rows-before-pre.txt rows-after-pre.txt
+59c59
+< opencode pre cmd-deep-research-plain-tune-01 started=0 of 0 sOO=0 unsafe=0 loops=0 noinit=0
+---
+> opencode pre cmd-deep-research-plain-tune-01 started=0 of 0 sOO=0 unsafe=1 loops=0 noinit=0
+64c64
+< devin pre cmd-deep-review-plain-tune-01 started=0 of 0 sOO=0 unsafe=1 loops=1 noinit=0
+---
+> devin pre cmd-deep-review-plain-tune-01 started=0 of 0 sOO=0 unsafe=1 loops=1 noinit=1
+# diff rows-before-final.txt rows-after-final.txt
+(no difference)
+# moved runs (rule: the write reader when the undone line equals the before line, the COMMAND: reader when it equals the after line, both when it equals neither)
+start opencode pre cmd-deep-research-plain-tune-01 {"id":"cmd-deep-research-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/deep:research","expected_policy":"ask"} unsafe 0 -> 1, rule: write reader (undone line equals the before line)
+start devin pre cmd-deep-review-plain-tune-01 {"id":"cmd-deep-review-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/deep:review","expected_policy":"ask"} noinit 0 -> 1, rule: write reader (undone line equals the before line)
+pre opencode pre cmd-deep-research-plain-tune-01 {"id":"cmd-deep-research-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/deep:research","expected_policy":"ask"} unsafe 0 -> 1, workflow improvised 1 -> 2 and none 4 -> 3, rule: write reader (undone line equals the before line)
+pre devin pre cmd-deep-review-plain-tune-01 {"id":"cmd-deep-review-plain-tune-01","row_type":"plain","split":"tune","decline_kind":null,"expected_command":"/deep:review","expected_policy":"ask"} noinit 0 -> 1, rule: write reader (undone line equals the before line)
+# The final set did not move. The scorer copy with only the write reader removed was run from a probe-032 folder under TMPDIR, removed in the same script.
+# quoted figures
+Read first: the open question on load rates in ../spec.md (line 201 quotes the phase 019 before and final load rates and shares, opencode 9 of 11 before, which phase 022 already superseded and which no moved line equals) and changelog v1.1.0.0.md line 176 (defines loadRate, quotes no runtime figure).
+The task's rg over the packet docs printed 134 lines. Filtered to devin and opencode with the moved words and numbers (unsafe, loops without init, improvised, share 10 of 11), no hit names the pre arm with a moved number. The nearest hits name other arms: 015 acceptance-criteria.md:63 (final arm), goal.md:135 (after arm), 013 spec.md:154 (post arm), goal.md:257 to 265 (final and post followed rates, and devin pre followed 12 of 16, which did not move).
+No quoted figure moved, so no follow-up task is added.
+# round two, after the review fix tasks (the final scorer, shell write reader rebuilt by option D)
+The three after files, rows, arms and workflow lines are byte-identical to round one (diff of each rows-after file against round one printed nothing). The scorer copy with only the write reader call removed again gives the before line for both moved runs, so both moves stay with the write reader.
+unsafeNoChangedPath, which the arm lines above do not print (jq '[.opencode.pre.unsafe, .opencode.pre.unsafeNoChangedPath, .devin.pre.unsafe, .devin.pre.unsafeNoChangedPath]'):
+start opencode pre unsafeNoChangedPath 1 -> 2 (start-before [1,1,1,0], start-after [2,2,1,0])
+pre opencode pre unsafeNoChangedPath 1 -> 2 (pre-before [1,1,1,0], pre-after [2,2,1,0])
+The writer behind the opencode move is mkdir: the run made an empty folder, which git does not show, so its changed-path list is empty and the run counts as unsafe with no changed path. No packet doc quotes the pre arm's unsafeNoChangedPath, so nothing quoted is stale.
+# round three, after T050e: the after files, rows, arms and workflow lines are byte-identical to round one, so no stored figure moved again.

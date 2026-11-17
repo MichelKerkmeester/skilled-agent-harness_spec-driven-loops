@@ -2,7 +2,7 @@
 name: sk-doc
 description: "Documentation & component authoring hub: skills, agents, commands, READMEs, catalogs, playbooks, changelogs, goals, frontmatter."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.9.16.0
+version: 2.10.0.0
 metadata:
   family: sk-util
 ---
@@ -26,7 +26,7 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 
 | Mode | Use it for | Packet | Command |
 |------|------------|--------|---------|
-| **sk-create-skill** | Scaffold an OpenCode skill (and, via `sk-create-skill-parent`, a parent hub with nested mode packets) | `sk-create-skill/` | `/create:skill`, `/create:skill-parent` |
+| **sk-create-skill** | Scaffold an OpenCode skill (and, via `sk-create-skill-parent`, a parent hub with nested mode packets) | `sk-create-skill/` | `/create:sk-skill`, `/create:skill-parent` |
 | **sk-create-readme** | Author a folder, code-folder or skill README, a repository front page and its contributing and security guides | `sk-create-readme/` | `/create:readme` |
 | **sk-create-agent** | Scaffold an OpenCode agent (permission/authority frontmatter) | `sk-create-agent/` | `/create:agent` |
 | **sk-create-command** | Scaffold an OpenCode slash command (argument-hint + allowed-tools + router/presentation split) | `sk-create-command/` | `/create:command` |

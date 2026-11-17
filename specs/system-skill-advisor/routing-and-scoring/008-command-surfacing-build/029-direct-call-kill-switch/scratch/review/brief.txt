@@ -1,0 +1,32 @@
+REVIEW BRIEF: the direct-call kill switch fix
+
+ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research (run git as git -c core.fsmonitor=false)
+DIFF: git -c core.fsmonitor=false diff b5805efeccd 0bc486b1637 -- ':(exclude)specs' ':(exclude)**/command-prompts.jsonl'
+  (the twelve files: runtime/lib/advisor-disabled.ts, runtime/handlers/advisor-recommend.ts, four test files, the hook doc, the disable-flag playbook step, hook-flags.env.example, the advisor-recommend catalog page, the v1.1.0.0 changelog, ENV-REFERENCE.md)
+CONTEXT TO READ: spec.md (REQ tables, the Mechanism per Path table, assumptions A4 to A6) and plan.md (decisions D1 and D2) in specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/029-direct-call-kill-switch/. The resolver is .skilled/hooks/shared/hook-flags.cjs. The client is runtime/skill-advisor-cli.ts. The launcher is .skilled/bin/system-skill-advisor-launcher.cjs.
+EVIDENCE ALREADY OBSERVED (scratch/): before.txt and after.txt (suite 2121 then 2139 passed, 0 failed), repro-before.txt (8 of 14 matrix lines mismatched) and repro-after.txt (14 of 14 match), closure-after.txt, timing-before/after.txt, playbook-after.txt, boundaries.txt.
+
+QUESTIONS
+1. Does the client abstain exactly when hookFlagDecision('skill-advisor') says disabled in the same environment, and name the same switch? Include truthy values, the master switch and its MK_ alias, legacy aliases and a flags-file line with an environment 0 over it.
+2. Can any path drop the flags file when it should read it, or read it when it should not?
+3. Does the built module (dist) find the resolver from its own depth, and what happens when it cannot?
+4. Can the daemon read the flags file through any path (handler, MCP tool, Python bridge)?
+5. Does any unflagged path change its output or its cost?
+6. Does any added code comment name a spec path, phase number, task, ADR, REQ or finding id?
+7. Do the hook doc, the playbook step, the env example, the catalog page, the changelog item and ENV-REFERENCE state the shipped behaviour, no more and no less?
+
+KNOWN ITEMS FROM TASK VERIFIERS (judge them, do not just repeat them):
+T004 verifier divergences to carry into the T015 review brief:
+- An explicit env object gets no MK_ alias copy: advisorDisabledBy({HOOK_FLAGS_CONFIG:<switch file>, MK_SKILL_ADVISOR_DISABLED:'0'}) disables while the adapter in that process is enabled, and {MK_HOOKS_DISABLED:'1'} names MK_HOOKS_DISABLED where the adapter names SYSTEM_HOOKS_DISABLED.
+- configPath() reads process.env.HOOK_FLAGS_CONFIG, not the passed env, so advisorDisabledBy({}) in a process whose HOOK_FLAGS_CONFIG names a switch file abstains.
+- Neither path is reachable from the CLI (default process.env) or the handler after T005.
+- Test header of advisor-disabled.vitest.ts still says "its exact-value rule".
+T005 verifier notes:
+- No worker recorded a test-first failing run for T004 or T005; both rest on verifier reasoning and probes of the HEAD shape.
+- A verifier probe called advisorDisabledBy() with HOOK_FLAGS_CONFIG unset, which attempted to read the real .skilled/hooks/hook-flags.env; the file is absent (ENOENT), so nothing was read. Record under T013's no-open check.
+- Loading hook-flags.cjs in the daemon runs applyEnvAliases(), copying MK_ values onto new names in the daemon's own process.env; it reads no file.
+T006 verifier notes, outside this phase's scope:
+- tests/skill-advisor-cli-json-stdin.vitest.ts calls the CLI in-process without the isolated scope; its cases exit 64 before the switch check today, but a future success-path case would read a checkout flags file.
+- runtime/scripts/routing-accuracy/command-offer.mjs spawns the shim; an operator's checkout flags file would make it abstain.
+
+OUTPUT: write scratch/review/report.txt. First line exactly "verdict: SHIP" or "verdict: FIX". Then one item per finding, each starting P0, P1 or P2, with the file:line, the input that shows it and the fix you propose. Read-only otherwise: change no other file, no git write, run no model session. Never open command-prompts.jsonl, holdout-prompts.jsonl or behaviour-fresh-prompts.jsonl, and do not read or create .skilled/hooks/hook-flags.env (test -e only). Do not run the full vitest suite.

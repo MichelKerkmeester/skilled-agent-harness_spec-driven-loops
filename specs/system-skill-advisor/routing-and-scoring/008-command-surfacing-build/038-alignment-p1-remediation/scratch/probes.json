@@ -1,0 +1,88 @@
+{
+  "rows": [
+    {
+      "id": "P01",
+      "prompt": "Create a README for the sk-doc skill folder and validate it against our standards",
+      "expect": "sk-doc",
+      "expectMode": "sk-create-readme",
+      "status": "fail"
+    },
+    {
+      "id": "P02",
+      "prompt": "Scaffold a new skill package for our deployment helper, with its own references and assets",
+      "expect": "sk-doc",
+      "expectMode": "sk-create-skill",
+      "status": "pass"
+    },
+    {
+      "id": "P03",
+      "prompt": "Type /create:skill to start a new standalone skill for release notes",
+      "expect": "sk-doc",
+      "expectMode": "sk-create-skill",
+      "status": "fail"
+    },
+    {
+      "id": "P04",
+      "prompt": "Review the spec packet at specs/352-command-surfacing-research in depth and give me a final verdict",
+      "expect": "system-deep-loop",
+      "expectMode": "review",
+      "status": "fail"
+    },
+    {
+      "id": "P05",
+      "prompt": "Research the trade-offs of a daemon-backed advisor in depth across several sources",
+      "expect": "system-deep-loop",
+      "expectMode": "research",
+      "status": "fail"
+    },
+    {
+      "id": "P06",
+      "prompt": "Something is wrong with the git hooks in this repository and I need someone to diagnose the problem",
+      "expect": "sk-git",
+      "expectMode": null,
+      "status": "pass"
+    },
+    {
+      "id": "P07",
+      "prompt": "Set up the Vibe prompt advisor hook so it shows the routing brief on every turn",
+      "expect": "system-skill-advisor",
+      "expectMode": null,
+      "status": "pass"
+    },
+    {
+      "id": "P08",
+      "prompt": "Write the login handler and add a test for a failed password",
+      "expect": "sk-code",
+      "expectMode": null,
+      "status": "fail"
+    },
+    {
+      "id": "P09",
+      "prompt": "Measure how often an offered command was started from the recorded transcripts",
+      "expect": "system-skill-advisor",
+      "expectMode": null,
+      "status": "fail"
+    },
+    {
+      "id": "P10",
+      "prompt": "Which skill should handle this request, and why did the advisor pick it",
+      "expect": "system-skill-advisor",
+      "expectMode": null,
+      "status": "pass"
+    },
+    {
+      "id": "P11",
+      "prompt": "Create a parent skill hub with three nested workflow modes",
+      "expect": "sk-doc",
+      "expectMode": "sk-create-skill",
+      "status": "fail"
+    },
+    {
+      "id": "P12",
+      "prompt": "Run the doctor helper for a repository whose runtime mirrors drifted",
+      "expect": "system-skilled-doctor",
+      "expectMode": null,
+      "status": "fail"
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "main sk doc routing repair",
+      "phase 39 main sk doc routing repair",
+      "hook readme phrases git hooks",
+      "skill graph signal drift sk-doc",
+      "main sk doc routing repair plan",
+      "main sk doc routing repair tasks",
+      "main sk doc routing repair acceptance criteria",
+      "main sk doc routing repair implementation summary"
+    ],
+    "key_topics": [
+      "main",
+      "doc",
+      "routing",
+      "repair",
+      "phase",
+      "hook",
+      "readme",
+      "phrases",
+      "git",
+      "hooks",
+      "skill",
+      "graph"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/ROUTER.md",
+      ".skilled/skills/sk-doc/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      "scratch/try-variant.py",
+      "scratch/try-variant.sh",
+      "scratch/after-pass-ten.txt",
+      "scratch/readme-probes.txt",
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+      ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+      "scratch/after.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "try-variant.py",
+        "kind": "file",
+        "path": "scratch/try-variant.py",
+        "source": "derived"
+      },
+      {
+        "name": "try-variant.sh",
+        "kind": "script",
+        "path": "scratch/try-variant.sh",
+        "source": "derived"
+      },
+      {
+        "name": "after-pass-ten.txt",
+        "kind": "file",
+        "path": "scratch/after-pass-ten.txt",
+        "source": "derived"
+      },
+      {
+        "name": "readme-probes.txt",
+        "kind": "file",
+        "path": "scratch/readme-probes.txt",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach-guards.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-install-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Main",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Main's README intents gave sk-doc words that other skills own",
+    "created_at": "2026-11-16T16:54:08Z",
+    "last_save_at": "2026-11-16T19:53:37.493Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f6c8fadf6531953657d42c6254cc1362d042da5858e330f0faa0ac925365133a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "459cca3dc592596527111660b7607ea39a8fb69c6993c6000093e1aa8283f95c",
+      "plan.md": "5a6f13606b0c9299ad3355d979b520ca1cf6f47dd2313a10eb34d0d33f5b21f4",
+      "tasks.md": "a0b683f257828524b814c4d2917e1573779d57d9ea8923c3e8214013d0b98da8",
+      "implementation-summary.md": "13d64876019c2f1f4a51ceba0c46130373cc042143dd9451a38f873f6acc0ee0"
+    },
+    "last_active_at": null
+  }
+}

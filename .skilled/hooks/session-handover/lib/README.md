@@ -32,7 +32,7 @@ Claude and Codex register their adapters in `hook-registry.json`. Pi runs an ext
 | `killer.cjs` | The detached process an adapter spawns when a session stops. It waits for transcript idle, signals the target runtime once an armed record exists and raises a macOS notice with the manual claim command on timeout. It logs the outcome and exits when the target is gone or the record changed. It also exits once the hop cap is reached. |
 | `nudge.cjs` | Builds the seed, handoff, stale-note and withdrawn text. It decides the threshold and hop cap and reads or writes per-session nudge state. A read helper returns `null` for an absent note. A missing state file reads as level zero. |
 | `relaunch-core.cjs` | Defines the runtime list, parses a handoff note and validates it. It prepares, arms, claims and completes a record. It resolves state paths and process ancestry and provides the append lock and log helper. It writes no transport of its own. |
-| `withdraw.cjs` | Calls off a prepared hand-over under the record lock. The session keeps running and the note stays open. It returns `null` when no matching record is found. |
+| `withdraw.cjs` | Calls off a prepared hand-over under the record lock. The session keeps running and the note stays open. It returns `null` when no matching record is found. `withdrawOnPrompt` is the form every runtime's prompt hook calls: it logs a failure as `context-nudge-error` instead of throwing, logs the runtime's own event on success and returns whether it withdrew. |
 
 ---
 

@@ -2,7 +2,7 @@
 // MODULE: Command Brief Golden Tests
 // ───────────────────────────────────────────────────────────────
 
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderAdvisorBrief } from '../lib/render.js';
 
 const DIRECTIVES_LABEL = '\nDirectives:';
@@ -209,12 +209,38 @@ function headOf(rendered: string | null): string {
 }
 
 describe('command brief golden heads', () => {
+  // The expected heads are the interactive ones, so a run inside a dispatched
+  // child must not turn them into the child form.
+  beforeEach(() => {
+    vi.stubEnv('AI_SESSION_CHILD', '');
+  });
+
+  afterEach(() => {
+    vi.unstubAllEnvs();
+  });
+
   it.each(HEAD_CASES)('renders $name', ({ recommendation, expectedHead }) => {
     const head = headOf(renderAdvisorBrief(advisorResult(recommendation)));
 
     expect(head).toBe(expectedHead);
     expect(head.length).toBeLessThanOrEqual(HEAD_CHARACTER_CAP);
     expect(head).not.toContain('command-');
+  });
+
+  // A generated row can name a command the hub withheld because the prompt names
+  // no single mode, so the marker wins over the row instead of printing a command
+  // the reader never asked for.
+  it('renders needs a mode even when the id has a command row', () => {
+    const head = headOf(renderAdvisorBrief(advisorResult({
+      skill: 'command-create-agent',
+      needsMode: true,
+      confidence: 0.95,
+      uncertainty: 0.12,
+    })));
+
+    expect(head).toContain('use sk-doc (needs a mode)');
+    expect(head).not.toContain('command-');
+    expect(head).not.toContain('/create:agent');
   });
 
   it('renders both command labels under an ambiguous head', () => {

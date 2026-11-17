@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 2.4.13.0
+version: 2.4.14.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -125,16 +125,20 @@ emits leaf paths, and this router never re-decides the mode.
   beats the readme-creation intent, so the skill template always loads.
 - **root-guide leaves.** The contributing guide and security policy templates,
   one intent each, for the guides that sit beside a repository's front page.
-  Fired by "contributing guide / contributing.md" and "security policy /
-  security.md" requests.
+  Fired by "contributing guide / contributing.md" and "security.md" requests. A
+  bare "security policy" phrase is left out, because it pulled a request that was
+  not a README into this skill.
 - **hook-readme leaves.** The readme README and the hook folder template a
   request to write the README of a shared hook folder loads. Fired by "readme
-  for a new hook / readme for this hook" requests. No phrase is a bare "hook
-  readme", because "webhook readme" would contain it.
+  for a new hook / readme for this hook" requests and by the named shared
+  hooks. No phrase is a bare "hook readme", because "webhook readme" would
+  contain it. The `git-*` and `spec-gate` hooks are not named, because their
+  names carry "git", "hooks" and "gate", which belong to git and spec work.
 - **runtime-plugin-readme leaves.** The readme README and the runtime plugin
   template a request to write the README of a plugin, extension or hook mirror
   folder loads. Fired by "plugins folder readme / readme for the extensions
-  folder / hook mirror readme" requests.
+  folder" requests. "hook mirror readme" is left out, because "mirror" belongs
+  to the runtime mirror doctor.
 - **runtime-folder leaves.** The readme README and the runtime folder template
   a request to write a runtime folder's README or its `SYNC.md` loads. Fired by
   "runtime folder readme / sync.md / sync doc for the"
@@ -196,7 +200,7 @@ dual-reads to a canonical typed pair through `leaf-manifest.json` or the hub's
 INTENT_SIGNALS = {
     "DOC_QUALITY": {"weight": 4, "keywords": ["documentation quality", "doc quality", "validate documentation", "validate a document", "validate this document", "validate markdown", "validation rules", "score this document", "score this doc", "dqi", "document audit", "fail sk-doc standards", "review the docs", "review the documentation", "document for clarity", "check the docs", "check the documentation", "audit the docs", "documentation review bar", "quality bar", "flag", "meet our standards", "audit documentation quality", "ai-friendly documentation", "extract structure", "validate", "score", "harden", "audit", "/doc:quality"]},
     "OPTIMIZATION": {"weight": 4, "keywords": ["optimize", "token efficiency", "llms.txt", "llmstxt", "reduce tokens", "fewer tokens", "trim", "compress the doc", "slim down", "model's budget", "machine-readable index", "optimize this doc"]},
-    "SKILL_CREATION": {"weight": 4, "keywords": ["sk-skill", "create a new sk", "create sk-", "skill.md scaffold", "skill.md and starter", "resource_map wiring", "new skill", "create a skill", "build a skill", "author a skill", "scaffold a skill", "reusable capability", "reusable helper", "starter reference docs", "new capability", "capability module", "package a capability", "create skill", "skill scaffold", "opencode skill", "package skill", "which json files does a skill need", "skill root metadata contract", "leaf-manifest config aliases required", "/create:skill"]},
+    "SKILL_CREATION": {"weight": 4, "keywords": ["sk-skill", "create a new sk", "create sk-", "skill.md scaffold", "skill.md and starter", "resource_map wiring", "new skill", "create a skill", "build a skill", "author a skill", "scaffold a skill", "reusable capability", "reusable helper", "starter reference docs", "new capability", "capability module", "package a capability", "create skill", "skill scaffold", "opencode skill", "package skill", "which json files does a skill need", "skill root metadata contract", "leaf-manifest config aliases required", "/create:sk-skill"]},
     "PARENT_HUB": {"weight": 4, "keywords": ["parent hub", "parent skill", "mode packet", "mode packets", "nested packet", "nested workflow packet", "mode-registry.json", "hub-router.json", "hub versus standalone skill class", "skill hub", "/create:skill-parent"]},
     "RENDER_LEDGER": {"weight": 4, "keywords": ["doc rewrite guard", "doc-rewrite-guard.py", "rewrite guard", "render ledger", "render-known-debt.json", "exempt from the render checks", "render exempt map", "kept every claim", "kept every original claim"]},
     "AGENT_CREATION": {"weight": 4, "keywords": ["create an agent", "create agent", "new agent", "author an agent", "scaffold an agent", "agent file", "agent persona", "agent frontmatter", "agent template", "permission object", "authority boundary", "agent registry", "@analyze agent", "opencode agent", "claude code agent", "/create:agent", "new agent definition", "specialist persona file"]},
@@ -209,9 +213,9 @@ INTENT_SIGNALS = {
     "README_CREATION": {"weight": 4, "keywords": ["create a readme", "readme for", "a readme", "front-page overview", "project overview", "getting started doc", "intro doc", "overview doc", "landing doc", "create readme", "readme", "folder readme", "write readme", "readme.md", "code folder readme", "/create:readme"]},
     "SKILL_README": {"weight": 16, "keywords": ["skill readme", "readme for my new skill", "readme for a new skill", "readme for my skill", "readme for a skill", "readme for the skill", "readme for this skill", "skill's readme"]},
     "CONTRIBUTING_GUIDE": {"weight": 4, "keywords": ["contributing guide", "contributing.md"]},
-    "SECURITY_POLICY": {"weight": 4, "keywords": ["security policy", "security.md"]},
-    "HOOK_README": {"weight": 16, "keywords": ["readme for a new hook", "readme for a hook", "readme for the hook", "readme for this hook", "readme for my hook", "hook's readme", "readme for the ask-surface-guard hook", "ask-surface-guard hook readme", "readme for the classifier-injection-screen hook", "classifier-injection-screen hook readme", "readme for the cli-dispatch hook", "cli-dispatch hook readme", "readme for the codex-global-hooks-check hook", "codex-global-hooks-check hook readme", "readme for the completion-evidence hook", "completion-evidence hook readme", "readme for the decision-capture hook", "decision-capture hook readme", "readme for the directive-lifecycle hook", "directive-lifecycle hook readme", "readme for the dist-freshness hook", "dist-freshness hook readme", "readme for the env-secret-guard hook", "env-secret-guard hook readme", "readme for the git-hooks-check hook", "git-hooks-check hook readme", "readme for the git-live-follow hook", "git-live-follow hook readme", "readme for the git-message-gate hook", "git-message-gate hook readme", "readme for the git-preflight hook", "git-preflight hook readme", "readme for the git-primary-reconcile hook", "git-primary-reconcile hook readme", "readme for the git-worktree-guard hook", "git-worktree-guard hook readme", "readme for the goal hook", "goal hook readme", "readme for the mcp-route-guard hook", "mcp-route-guard hook readme", "readme for the overlay-guard hook", "overlay-guard hook readme", "readme for the permission-policy hook", "permission-policy hook readme", "readme for the post-edit-quality hook", "post-edit-quality hook readme", "readme for the session-cleanup hook", "session-cleanup hook readme", "readme for the session-handover hook", "session-handover hook readme", "readme for the session-lifecycle hook", "session-lifecycle hook readme", "readme for the skill-advisor hook", "skill-advisor hook readme", "readme for the spec-gate hook", "spec-gate hook readme", "readme for the subagent-dispatch-guard hook", "subagent-dispatch-guard hook readme"]},
-    "RUNTIME_PLUGIN_README": {"weight": 16, "keywords": ["plugins folder readme", "extensions folder readme", "readme for the plugins folder", "readme for the extensions folder", "readme for a plugin folder", "readme for an extension folder", "hook mirror readme"]},
+    "SECURITY_POLICY": {"weight": 4, "keywords": ["security.md"]},
+    "HOOK_README": {"weight": 16, "keywords": ["readme for a new hook", "readme for a hook", "readme for the hook", "readme for this hook", "readme for my hook", "hook's readme", "readme for the ask-surface-guard hook", "ask-surface-guard hook readme", "readme for the classifier-injection-screen hook", "classifier-injection-screen hook readme", "readme for the cli-dispatch hook", "cli-dispatch hook readme", "readme for the codex-global-hooks-check hook", "codex-global-hooks-check hook readme", "readme for the completion-evidence hook", "completion-evidence hook readme", "readme for the decision-capture hook", "decision-capture hook readme", "readme for the directive-lifecycle hook", "directive-lifecycle hook readme", "readme for the dist-freshness hook", "dist-freshness hook readme", "readme for the env-secret-guard hook", "env-secret-guard hook readme", "readme for the goal hook", "goal hook readme", "readme for the mcp-route-guard hook", "mcp-route-guard hook readme", "readme for the overlay-guard hook", "overlay-guard hook readme", "readme for the permission-policy hook", "permission-policy hook readme", "readme for the post-edit-quality hook", "post-edit-quality hook readme", "readme for the session-cleanup hook", "session-cleanup hook readme", "readme for the session-handover hook", "session-handover hook readme", "readme for the session-lifecycle hook", "session-lifecycle hook readme", "readme for the skill-advisor hook", "skill-advisor hook readme", "readme for the subagent-dispatch-guard hook", "subagent-dispatch-guard hook readme"]},
+    "RUNTIME_PLUGIN_README": {"weight": 16, "keywords": ["plugins folder readme", "extensions folder readme", "readme for the plugins folder", "readme for the extensions folder", "readme for a plugin folder", "readme for an extension folder"]},
     "RUNTIME_FOLDER": {"weight": 16, "keywords": ["runtime folder readme", "readme for a runtime folder", "readme for the runtime folder", "sync.md", "sync doc for the"]},
     "CHANGELOG": {"weight": 4, "keywords": ["changelog", "release notes", "version notes", "release summary", "what shipped", "since the last version", "changelog entry", "nested changelog", "packet changelog", "packet-local changelog", "create changelog", "global changelog", "vx.y.z.b", "/create:changelog"]},
     "BENCHMARK": {"weight": 4, "keywords": ["create a benchmark", "author a benchmark", "benchmark suite", "benchmark authoring", "behavior benchmark", "benchmark-report.md", "source.md", "mcp-server/benchmarks", "behavior-benchmark.md", "scenario contract", "claude-baseline", "benchmark/readme.md", "run-label folder", "benchmark package", "benchmark fixture", "benchmark profile", "reviewer-prompt fixture", "agent quality dimensions", "new benchmark", "promote benchmark folder", "create benchmark", "behavior_benchmark"]},

@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/036-start-rate-fixed-rule",
+  "description": "Phase 36: start-rate-fixed-rule",
+  "keywords": [
+    "phase",
+    "start-rate-fixed-rule"
+  ],
+  "lastUpdated": "2026-11-16T07:43:44.308Z",
+  "specId": "036",
+  "folderSlug": "start-rate-fixed-rule",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring",
+    "008-command-surfacing-build"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "16-11-26_08-14__planned-phase-036-on-the-operator-s-go-ahead-to.md",
+    "16-11-26_08-43__phase-036-closed-the-printed-start-rate-follows.md"
+  ]
+}

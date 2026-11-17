@@ -496,13 +496,17 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
       laneWeights: DEFAULT_SCORER_WEIGHTS,
       // The p95 counts cache-hit invocations only, because a miss pays the
       // child-process cost that the alert thresholds are not set against.
-      ...(hookHealthSection.lastInvocations.length > 0
+      // A timestamp exists exactly when a record does, which is the condition
+      // that decides whether the hook has reported anything yet.
+      ...(hookHealthSection.lastRecordAt !== null
         ? {
             hookHealth: {
               invocations: hookHealthSection.lastInvocations.length,
               rollingP95Ms: hookHealthSection.rollingP95Ms,
               rollingFailOpenRate: hookHealthSection.rollingFailOpenRate,
               rollingCacheHitRate: hookHealthSection.rollingCacheHitRate,
+              rollingDegradedRate: hookHealthSection.rollingDegradedRate,
+              lastRecordAt: hookHealthSection.lastRecordAt,
             },
           }
         : {}),

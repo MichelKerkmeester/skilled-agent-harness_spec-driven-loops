@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';
+import { commandRowFor } from '../lib/command-attach.js';
 import {
   doctorCommandString,
   renderAdvisorBrief,
@@ -26,6 +27,9 @@ interface RecommendationInput {
   readonly kind: 'skill' | 'command';
   readonly confidence: number;
   readonly uncertainty: number;
+  readonly command?: string;
+  readonly policy?: string;
+  readonly ownerSkillId?: string;
 }
 
 // Every recommendation is marked as passing so each case isolates label
@@ -60,7 +64,24 @@ describe('doctor command brief', () => {
       { skill: 'command-doctor-git-setup', kind: 'command', confidence: 0.82, uncertainty: 0.21 },
     ]));
 
-    expect(rendered).toBe(expectedBrief('Advisor: live; use sk-git 0.82/0.20 pass.\nAlso: /doctor:git setup'));
+    expect(rendered).toBe(expectedBrief(`Advisor: live; use sk-git 0.82/0.20 pass.\nAlso: /doctor:git setup (${commandRowFor('command-doctor-git-setup')?.policy})`));
+  });
+
+  it('prints the policy word of a companion and the child marker in a child session', () => {
+    const result = advisorResult([
+      { skill: 'system-spec-kit', kind: 'skill', confidence: 0.95, uncertainty: 0.12 },
+      { skill: 'command-doctor-env', kind: 'command', confidence: 0.82, uncertainty: 0.2 },
+    ]);
+
+    expect(renderAdvisorBrief(result, { childSession: false })).toContain('\nAlso: /doctor:env list (run)');
+    expect(renderAdvisorBrief(result, { childSession: true })).toContain('\nAlso: /doctor:env list (run)');
+
+    const updateResult = advisorResult([
+      { skill: 'system-spec-kit', kind: 'skill', confidence: 0.95, uncertainty: 0.12 },
+      { skill: 'command-doctor-update', kind: 'command', confidence: 0.82, uncertainty: 0.2 },
+    ]);
+
+    expect(renderAdvisorBrief(updateResult, { childSession: true })).toContain('\nAlso: /doctor:update (parent-named only)');
   });
 
   it('uses the first doctor bridge after the top pick, past other skills', () => {
@@ -68,10 +89,30 @@ describe('doctor command brief', () => {
       { skill: 'sk-code', kind: 'skill', confidence: 0.82, uncertainty: 0.2 },
       { skill: 'sk-git', kind: 'skill', confidence: 0.82, uncertainty: 0.2 },
       { skill: 'command-doctor-update', kind: 'command', confidence: 0.82, uncertainty: 0.22 },
+    ]), { childSession: false }) ?? '';
+
+    expect(rendered).toContain('\nAlso: /doctor:update (ask)');
+    expect(rendered.startsWith('Advisor: live; use sk-code 0.82/0.20 pass.')).toBe(true);
+  });
+
+  it('prints a command once when the head already names it', () => {
+    const rendered = renderAdvisorBrief(advisorResult([
+      { skill: 'system-skilled-doctor', kind: 'skill', confidence: 0.82, uncertainty: 0.26, command: '/doctor:update', policy: 'ask', ownerSkillId: 'system-skilled-doctor' },
+      { skill: 'command-doctor-update', kind: 'command', confidence: 0.82, uncertainty: 0.2 },
     ])) ?? '';
 
-    expect(rendered).toContain('\nAlso: /doctor:update');
-    expect(rendered.startsWith('Advisor: live; use sk-code 0.82/0.20 pass.')).toBe(true);
+    expect(rendered.match(/\/doctor:update/g)).toHaveLength(1);
+    expect(rendered).not.toContain('Also:');
+  });
+
+  it('prints a second doctor bridge when the first repeats the head', () => {
+    const rendered = renderAdvisorBrief(advisorResult([
+      { skill: 'system-skilled-doctor', kind: 'skill', confidence: 0.82, uncertainty: 0.26, command: '/doctor:update', policy: 'ask', ownerSkillId: 'system-skilled-doctor' },
+      { skill: 'command-doctor-update', kind: 'command', confidence: 0.82, uncertainty: 0.2 },
+      { skill: 'command-doctor-env', kind: 'command', confidence: 0.82, uncertainty: 0.2 },
+    ])) ?? '';
+
+    expect(rendered).toContain('\nAlso: /doctor:env list (run)');
   });
 
   it('never renders a raw or unmapped doctor id', () => {

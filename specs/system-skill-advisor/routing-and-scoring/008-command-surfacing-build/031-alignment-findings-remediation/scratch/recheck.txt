@@ -1,0 +1,110 @@
+# Recheck of RUN 20261115T123946Z, report-only, at HEAD 2efe3204e3e
+OUT=/Users/michelkerkmeester/.local/state/local-skilled-alignment/352-command-surfacing-research/20261115T160920Z
+test -d RUN before: 0
+STATUS=OK recheck: rows=8
+battery exit=1
+STATUS=OPEN recheck: resolved=3 still_open=10 new=0 needs_review=34
+prune: removed_runs=0 removed_scratch=0 kept=6
+test -d RUN after: 0
+
+## In-scope ids
+BAT-01 resolved: S1-package-check row is pass (spec-kit dist rebuilt, gitignored at .gitignore:60, T002)
+BAT-05 resolved: S9-command-references row is pass (T003)
+D-01 resolved: new text present and old text absent (T003)
+BAT-02 still_open: pre-existing, fails on MB 28a6d40f81f, passes on origin/main bcd15801196, files byte-equal to MB, cleared by the next catch-up merge (T002)
+BAT-06 still_open: pre-existing, fails on MB 28a6d40f81f, passes on origin/main bcd15801196, files byte-equal to MB, cleared by the next catch-up merge (T002)
+BAT-07 still_open: pre-existing, fails on MB 28a6d40f81f, passes on origin/main bcd15801196, files byte-equal to MB, cleared by the next catch-up merge (T002)
+X-01 needs_review: resolved by T004, the three Vibe checks run in command-tree-parity.yml (with the shared build) and spec-kit-check.yml, matrix-after X01 vibe-checks=3 and 3, actionlint 0
+D-03 needs_review: resolved by T005 and T027, the release note and catalog page state the shipped rule (lead right before the command, history namings withheld, owner and route gates), matrix-after only-mentions=0, the D03 cli lines unchanged as the operator chose (Q072)
+B-S4-01 needs_review: resolved by T006 to T008, NC-012, CL-009 and CL-010 added, PBV scenarios=53 violations=0, matrix-after new-ids=3
+PRB-02 (P02) needs_review: resolved by T009, P02 kept: [["system-skill-advisor",null,0.8847,null,null],["sk-prompt",null,0.8357,null,null]] | paraphrase none
+PRB-03 (P04) needs_review: resolved by T011, P04 kept: [["system-skill-advisor",null,0.8591,null,null],["sk-prompt",null,0.82,null,null]] | paraphrase sk-prompt
+PRB-06 (P11) needs_review: resolved by T013, P11 kept: [["system-skill-advisor",null,0.82,null,null],["sk-doc","sk-create-quality-control",0.82,null,null]] | paraphr
+PRB-01 (P01) needs_review: declined, P01 declined: cli-mistral-vibe owns the Vibe hook wiring and the advisor already ranks second, see plan.md D5 | [["cli-external-orchestration","cli-mi
+PRB-04 (P07) needs_review: declined, P07 declined: read-only explainer floor in the scorer pins confidence at 0.25, a scorer change is outside FILES. floor: {"correct":24,"total":44} {"co
+
+## Other still_open ids, each in scratch/handback.md
+BAT-03 handback.md lines: 53 
+BAT-04 handback.md lines: 41 
+A-01 handback.md lines: 15 
+D-06 handback.md lines: 54 
+B-S2-01 handback.md lines: 18 
+C-01 handback.md lines: 53 
+ENV-01 handback.md lines: 26 49 
+S13-env-tokens row is ENV-01
+
+## recheck.md
+# Alignment recheck
+
+| Bucket | Count |
+|---|---:|
+| resolved | 3 |
+| still_open | 10 |
+| new | 0 |
+| needs_review | 34 |
+
+## battery_rows: resolved
+
+- S1-package-check:.skilled/skills/system-spec-kit/runtime/cli (P0) npm --prefix .skilled/skills/system-spec-kit/runtime/cli run check: row is pass
+- S9-command-references (P2) node .skilled/commands/scripts/validate-command-references.cjs: row is pass
+
+## battery_rows: still_open
+
+- S4-playbook-package:.skilled/skills/system-spec-kit (P0) node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-spec-kit/manual-testing-playbook: row is fail
+- S5-derived-counts (P2) python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py .opencode/plugins/README.md .skilled/bin/README.md .skilled/commands/create/README.md .skilled/hooks/README.md .skilled/skills/sk-code/README.md .skilled/skills/sk-code/sk-code-skilled/README.md .skilled/skills/sk-doc/README.md .skilled/skills/sk-doc/sk-create-command/README.md .skilled/skills/sk-doc/sk-create-frontmatter/README.md .skilled/skills/sk-doc/sk-create-skill/README.md .skilled/skills/system-skill-advisor/README.md .skilled/skills/system-skilled-doctor/README.md .skilled/skills/system-spec-kit/README.md README.md: row is fail
+- S7-router-vocabulary-reach:.skilled/skills/sk-doc (P2) node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs --hub sk-doc: row is fail
+- S13-env-tokens (P2) node ../../../MEGA/Development/Skilled/.skilled/commands/assets/local-skilled-alignment/check-env-tokens.cjs --scope /Users/michelkerkmeester/.local/state/local-skilled-alignment/352-command-surfacing-research/20261115T123946Z/scope.json --out /Users/michelkerkmeester/.local/state/local-skilled-alignment/352-command-surfacing-research/20261115T160920Z/env-tokens.json: row is fail
+- S15-ci-markdown-links (P0) node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs: row is fail
+- S15-ci-playbook-operator-contract (P0) node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --strict: row is fail
+
+## battery_rows: new
+
+None.
+
+## findings: resolved
+
+- D-01 (P1) .skilled/commands/scripts/validate-command-references.cjs: new text present and old text absent
+
+## findings: still_open
+
+- A-01 (P2) .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts: old text still present
+- D-06 (P2) .skilled/agents/code.md: old text still present
+- B-S2-01 (P2) .skilled/skills/system-skill-advisor/README.md: old text still present
+- C-01 (P2) .skilled/hooks/README.md: old text still present
+
+## findings: needs_review
+
+- X-01 (P1) .github/workflows/command-tree-parity.yml: judgment finding: needs a reviewer
+- B-S4-01 (P1) .skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/hub-command-attachment.md: judgment finding: needs a reviewer
+- D-03 (P1) .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts: judgment finding: needs a reviewer
+- PRB-01 (P1) -: judgment finding: needs a reviewer
+- PRB-02 (P1) -: judgment finding: needs a reviewer
+- PRB-03 (P1) -: judgment finding: needs a reviewer
+- PRB-04 (P1) -: judgment finding: needs a reviewer
+- PRB-06 (P1) -: judgment finding: needs a reviewer
+- A-02 (P2) .skilled/skills/system-skill-advisor/runtime/tests/doctor-brief-render.vitest.ts: judgment finding: needs a reviewer
+- A-03 (P2) .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-freshness.vitest.ts: judgment finding: needs a reviewer
+- D-07 (P2) ~/.claude/CLAUDE.md: judgment finding: needs a reviewer
+- C-08 (P2) .env.example: judgment finding: needs a reviewer
+- C-09 (P2) .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md: judgment finding: needs a reviewer
+- ENV-01 (P2) .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs: judgment finding: needs a reviewer
+- X-05 (P2) specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/030-vibe-runtime-parity/spec.md: judgment finding: needs a reviewer
+- A-04 (P2) .skilled/skills/system-spec-kit/runtime/cli/evals/check-source-dist-alignment.ts: judgment finding: needs a reviewer
+- A-05 (P2) .skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-07-29--manual-testing-playbook--goal-hook/source.md: judgment finding: needs a reviewer
+- B-S2-02 (P2) .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md: judgment finding: needs a reviewer
+- B-S2-03 (P2) .skilled/skills/system-skill-advisor/runtime/lib/README.md: judgment finding: needs a reviewer
+- B-S3-01 (P2) .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md: judgment finding: needs a reviewer
+- B-S3-02 (P2) .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md: judgment finding: needs a reviewer
+- X-02 (P2) .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md: judgment finding: needs a reviewer
+- B-S4-02 (P2) .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md: judgment finding: needs a reviewer
+- C-02 (P2) README.md: judgment finding: needs a reviewer
+- C-04 (P2) README.md: judgment finding: needs a reviewer
+- X-04 (P2) README.md: judgment finding: needs a reviewer
+- C-05 (P2) .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md: judgment finding: needs a reviewer
+- C-06 (P2) .skilled/changelog/skilled/v4.0.2.1.md: judgment finding: needs a reviewer
+- C-07 (P2) .skilled/skills/system-skilled-doctor/changelog/v1.1.7.0.md: judgment finding: needs a reviewer
+- D-02 (P2) .skilled/skills/sk-doc/ROUTER.md: judgment finding: needs a reviewer
+- D-04 (P2) .skilled/skills/system-skill-advisor/graph-metadata.json: judgment finding: needs a reviewer
+- D-05 (P2) .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md: judgment finding: needs a reviewer
+- X-03 (P2) .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py: judgment finding: needs a reviewer
+- X-06 (P2) .skilled/commands/doctor/assets/doctor-install.yaml: judgment finding: needs a reviewer

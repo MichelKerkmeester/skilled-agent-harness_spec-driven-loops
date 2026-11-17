@@ -1,0 +1,412 @@
+{
+  "rows": 44,
+  "liveRows": 44,
+  "withCommand": 44,
+  "withPolicy": 44,
+  "totalBytes": 13173,
+  "medianBytes": 296,
+  "minBytes": 284,
+  "maxBytes": 336,
+  "medianHeadBytes": 78,
+  "maxHeadBytes": 118,
+  "hookMedianMs": 333.95,
+  "hookP95Ms": 547.86,
+  "rowsOut": [
+    {
+      "id": "cmd-create-agent-typed-01",
+      "bytes": 285,
+      "ms": 282.32,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 67
+    },
+    {
+      "id": "cmd-create-benchmark-typed-01",
+      "bytes": 289,
+      "ms": 360.25,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 71
+    },
+    {
+      "id": "cmd-create-changelog-typed-01",
+      "bytes": 323,
+      "ms": 490.04,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 105
+    },
+    {
+      "id": "cmd-create-command-typed-01",
+      "bytes": 323,
+      "ms": 454.79,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 105
+    },
+    {
+      "id": "cmd-create-diff-typed-01",
+      "bytes": 284,
+      "ms": 596.99,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 66
+    },
+    {
+      "id": "cmd-create-feature-catalog-typed-01",
+      "bytes": 325,
+      "ms": 420.63,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 107
+    },
+    {
+      "id": "cmd-create-goal-typed-01",
+      "bytes": 284,
+      "ms": 311.81,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 66
+    },
+    {
+      "id": "cmd-create-manual-testing-playbook-typed-01",
+      "bytes": 303,
+      "ms": 337.78,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 85
+    },
+    {
+      "id": "cmd-create-readme-typed-01",
+      "bytes": 286,
+      "ms": 355.08,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 68
+    },
+    {
+      "id": "cmd-create-repo-rule-typed-01",
+      "bytes": 289,
+      "ms": 326.83,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 71
+    },
+    {
+      "id": "cmd-create-skill-parent-typed-01",
+      "bytes": 324,
+      "ms": 547.86,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 106
+    },
+    {
+      "id": "cmd-create-skill-typed-01",
+      "bytes": 285,
+      "ms": 438.09,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 67
+    },
+    {
+      "id": "cmd-create-with-human-voice-typed-01",
+      "bytes": 296,
+      "ms": 371.56,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 78
+    },
+    {
+      "id": "cmd-doctor-agents-md-typed-01",
+      "bytes": 308,
+      "ms": 212.57,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 90
+    },
+    {
+      "id": "cmd-doctor-ci-typed-01",
+      "bytes": 288,
+      "ms": 411.27,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 70
+    },
+    {
+      "id": "cmd-doctor-deep-loop-typed-01",
+      "bytes": 297,
+      "ms": 242.66,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 79
+    },
+    {
+      "id": "cmd-doctor-env-typed-01",
+      "bytes": 301,
+      "ms": 333.95,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 83
+    },
+    {
+      "id": "cmd-doctor-git-typed-01",
+      "bytes": 287,
+      "ms": 448.29,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 69
+    },
+    {
+      "id": "cmd-doctor-helper-typed-01",
+      "bytes": 299,
+      "ms": 551.48,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 81
+    },
+    {
+      "id": "cmd-doctor-install-typed-01",
+      "bytes": 300,
+      "ms": 374.06,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 82
+    },
+    {
+      "id": "cmd-doctor-mcp-typed-01",
+      "bytes": 336,
+      "ms": 344.95,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 118
+    },
+    {
+      "id": "cmd-doctor-overlay-typed-01",
+      "bytes": 307,
+      "ms": 361.04,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 89
+    },
+    {
+      "id": "cmd-doctor-runtime-mirrors-typed-01",
+      "bytes": 308,
+      "ms": 371.75,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 90
+    },
+    {
+      "id": "cmd-doctor-setup-typed-01",
+      "bytes": 298,
+      "ms": 432.03,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 80
+    },
+    {
+      "id": "cmd-doctor-sk-code-typed-01",
+      "bytes": 292,
+      "ms": 434.89,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 74
+    },
+    {
+      "id": "cmd-doctor-sk-skill-typed-01",
+      "bytes": 294,
+      "ms": 315.8,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 76
+    },
+    {
+      "id": "cmd-doctor-skill-advisor-typed-01",
+      "bytes": 313,
+      "ms": 325.9,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 95
+    },
+    {
+      "id": "cmd-doctor-speckit-typed-01",
+      "bytes": 300,
+      "ms": 312.17,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 82
+    },
+    {
+      "id": "cmd-doctor-symlink-typed-01",
+      "bytes": 306,
+      "ms": 255.9,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 88
+    },
+    {
+      "id": "cmd-doctor-update-typed-01",
+      "bytes": 335,
+      "ms": 383.96,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 117
+    },
+    {
+      "id": "cmd-deep-ai-council-typed-01",
+      "bytes": 296,
+      "ms": 259.17,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 78
+    },
+    {
+      "id": "cmd-deep-research-typed-01",
+      "bytes": 294,
+      "ms": 315.58,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 76
+    },
+    {
+      "id": "cmd-deep-review-typed-01",
+      "bytes": 292,
+      "ms": 445.45,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 74
+    },
+    {
+      "id": "cmd-design-chart-typed-01",
+      "bytes": 288,
+      "ms": 248.68,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 70
+    },
+    {
+      "id": "cmd-design-diagram-typed-01",
+      "bytes": 290,
+      "ms": 238.75,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 72
+    },
+    {
+      "id": "cmd-design-extract-typed-01",
+      "bytes": 288,
+      "ms": 243.7,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 70
+    },
+    {
+      "id": "cmd-prompt-improve-typed-01",
+      "bytes": 290,
+      "ms": 270.64,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 72
+    },
+    {
+      "id": "cmd-speckit-complete-typed-01",
+      "bytes": 298,
+      "ms": 245.16,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 80
+    },
+    {
+      "id": "cmd-speckit-handoff-typed-01",
+      "bytes": 295,
+      "ms": 198.49,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 77
+    },
+    {
+      "id": "cmd-speckit-implement-typed-01",
+      "bytes": 299,
+      "ms": 195.86,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 81
+    },
+    {
+      "id": "cmd-speckit-plan-typed-01",
+      "bytes": 294,
+      "ms": 170.79,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 76
+    },
+    {
+      "id": "cmd-speckit-resume-typed-01",
+      "bytes": 296,
+      "ms": 192.38,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 78
+    },
+    {
+      "id": "cmd-speckit-save-typed-01",
+      "bytes": 294,
+      "ms": 189.36,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 76
+    },
+    {
+      "id": "cmd-speckit-search-typed-01",
+      "bytes": 294,
+      "ms": 199.37,
+      "state": "live",
+      "hasCommand": true,
+      "hasPolicy": true,
+      "headBytes": 76
+    }
+  ]
+}

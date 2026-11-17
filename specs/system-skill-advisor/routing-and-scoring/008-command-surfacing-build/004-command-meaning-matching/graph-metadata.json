@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phase 003 made a plain prompt reach its command when the prompt reuses the command's own words",
     "created_at": "2026-11-12T18:13:56Z",
-    "last_save_at": "2026-11-12T22:05:32.948Z",
+    "last_save_at": "2026-11-13T21:04:27.285Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32d8e5dd65211b0f7530cdcced73aa38a1d22e962ac944f1b887bb1fa9c79477",
+    "source_fingerprint": "sha256:29f11744d25ad737eb78de2dc0715dd35a1c7666386bc78f35d3aba5e0fd79c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d13134509c5b58427173bd801d8a6445765eeb2bf5b18a0ad0e18b09bb87f71e",
+      "spec.md": "fde1c966804e78ad140a229fd220d76228ff2810631fc56179fdd70ee79456df",
       "plan.md": "3bd09436264998dd0e0daf082e61500060cff775fd297e98a1dae2b45b26122a",
       "tasks.md": "3522758a72ba93f13493cdac507bb8aad668082ff3e0122d1c9766b6569c44e6",
       "decision-record.md": "11bb1db01f3efb3c02ae6de8687bfa7e7ec1e8cdadaba94d0cb05d400b77aee3",

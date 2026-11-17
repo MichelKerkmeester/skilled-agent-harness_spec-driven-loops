@@ -1,0 +1,23 @@
+PROMPT: thorough deep review of the readme I wrote for the hooks folder
+  row 0: system-deep-loop 0.9488/0.16 command=/deep:review policy=ask owner=- ambiguous=true
+  row 1: sk-doc 0.9316/0.12 command=/create:readme policy=start owner=- ambiguous=true
+  row 2: sk-code 0.8418/0.12 command=- policy=- owner=- ambiguous=true
+PROMPT: do a deep review of the readme in the doctor scripts folder
+  row 0: system-deep-loop 0.95/0.16 command=/deep:review policy=ask owner=- ambiguous=true
+  row 1: sk-doc 0.9328/0.12 command=/create:readme policy=start owner=- ambiguous=true
+  row 2: sk-code 0.8668/0.12 command=- policy=- owner=- ambiguous=true
+PROMPT: deep research how the readme for the hooks folder should be structured
+  row 0: sk-doc 0.9148/0.16 command=/create:readme policy=start owner=- ambiguous=true
+  row 1: system-deep-loop 0.9093/0.12 command=/deep:research policy=ask owner=- ambiguous=true
+PROMPT: run a deep review on the manual testing playbook I wrote for login
+  row 0: sk-doc 0.9486/0.16 command=- policy=- owner=- ambiguous=true
+  row 1: system-deep-loop 0.9247/0.12 command=/deep:review policy=ask owner=- ambiguous=true
+  row 2: create:manual-testing-playbook 0.82/0.16 command=/create:manual-testing-playbook policy=start owner=sk-doc ambiguous=true
+PROMPT: create a new agent definition for a security reviewer
+  row 0: create:agent 0.8235/0.12 command=/create:agent policy=start owner=sk-doc ambiguous=false
+  row 1: sk-doc 0.8924/0.12 command=- policy=- owner=- ambiguous=false
+  row 2: sk-code 0.82/0.22 command=- policy=- owner=- ambiguous=false
+PROMPT: write an agent file for a code reviewer agent
+  row 0: sk-doc 0.9082/0.16 command=/create:agent policy=start owner=- ambiguous=true
+  row 1: sk-code 0.8927/0.12 command=- policy=- owner=- ambiguous=true
+  row 2: system-spec-kit 0.82/0.16 command=- policy=- owner=- ambiguous=true

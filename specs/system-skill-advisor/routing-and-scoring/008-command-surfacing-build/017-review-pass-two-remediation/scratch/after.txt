@@ -1,0 +1,63 @@
+$ git rev-parse --short HEAD
+ec1869dae8
+$ npm run build (ADV)
+exit=0
+$ FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":24,"attached":20,"combined":44,"total":44}
+{"own":13,"attached":15,"combined":28,"total":45}
+$ EVAL
+[160,50,21,5]
+$ A10Q
+3/6 copies as expected, 2 reported only, 1 pointer missing | pass 3 | reported 2
+$ TC
+exit=0
+$ VALL
+exit=0
+ Test Files  184 passed (184)
+      Tests  1796 passed | 6 skipped (1802)
+$ child-flag envelope
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+$ DALL
+ℹ pass 1211
+ℹ fail 0
+$ VSR
+ℹ pass 93
+ℹ fail 0
+$ VP
+ℹ pass 43
+ℹ fail 0
+$ DERIVE
+{"status":"fresh","changed":[]}
+$ RV
+OK: route-validate — 32 routes validated, 11 warnings
+exit=0
+$ SRM
+[runtime-mirror-sync] PASS: 256 mirrors across 10 trees are in sync.
+exit=0
+$ PBV
+PASS package=system-skill-advisor tier=FAIL_CLOSED scenarios=50 categories=9 operator=25 routing_gold_excluded=25 violations=0 warnings=0
+$ FLOOR and EVAL beside before.txt (base ec1869dae8 with the changes in the working tree)
+before:
+  $ FLOOR
+  {"correct":24,"total":44}
+  {"count":0,"total":35}
+  {"own":24,"attached":20,"combined":44,"total":44}
+  {"own":13,"attached":15,"combined":28,"total":45}
+  $ EVAL
+  [160,50,21,5]
+  $ A10Q
+after:
+  $ FLOOR
+  {"correct":24,"total":44}
+  {"count":0,"total":35}
+  {"own":24,"attached":20,"combined":44,"total":44}
+  {"own":13,"attached":15,"combined":28,"total":45}
+  $ EVAL
+  [160,50,21,5]
+  $ A10Q
+A10Q before: 5/6 copies as expected, 1 pointer missing | pass 3 | reported 2
+A10Q after:  3/6 copies as expected, 2 reported only, 1 pointer missing | pass 3 | reported 2
+RESULT: every floor equals its before line

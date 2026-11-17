@@ -1,0 +1,22 @@
+Review brief, phase 032 fix diff (read-only)
+
+Worktree: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Diff: git -c core.fsmonitor=false diff BASE FIX -- <FILES>, with BASE = 2a1a42263cc and FIX = d0f605b42f8.
+FILES is the list of twenty-eight paths in the notation block of specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation/tasks.md.
+Every git diff, show or log -p must add ':(exclude)**/command-prompts.jsonl' ':(exclude)**/holdout-prompts.jsonl' ':(exclude)**/behaviour-fresh-prompts.jsonl'. Never open those three row files except through jq 'del(.prompt)'. Never read or create .skilled/hooks/hook-flags.env. Run no model session, live runner, daemon or build. Probes go under a mktemp folder in TMPDIR and are removed after.
+
+Read first: the REQ tables (section 4) and the Mechanism per Path table (section 2) of the phase spec.md, and decisions D1 to D13 of the phase plan.md. The findings being fixed are in ../review/verify-5/report.md.
+
+Answer each question with evidence from the code or a probe you ran:
+1. For each shell writer the scorer now reads (sed -i, perl -i, tee, cp, mv, rm, mkdir, touch, python and others in shellWriteTargets), is the recorded target the word the command writes, and does a redirect word or option never become a target?
+2. Does the anchored COMMAND: reader drop a line a model prints as its own (inside a list, after emphasis, after a fence closes, in a second text block)? Does it still count a quoted or fenced line?
+3. Can the stale-build rule in prepare-behaviour-arena.mjs pass a build of an uncommitted edit, or refuse a clean committed tree whose dist is current?
+4. Can the symlink check be raced or skipped (a link inside a copied dist, a dangling link, a link to a link)?
+5. Does turnRefusal run before every live turn in run-command-behaviour.mjs, and do the comments name the real boundary (the credential overrides)?
+6. Does each doc row in the diff state what its code does (ENV-REFERENCE, the playbook files, the changelog, the READMEs, skill-advisor-hook.md)?
+7. Is a moved stored figure left unexplained? scratch/rescore-delta.txt of the phase lists the two moved runs.
+8. Does any added comment name a spec path, phase number, task id, finding id, lineage label or decision id?
+9. Was a recorded finding of verify-5/report.md in fact buildable inside FILES but left undone?
+10. A verifier noted that the builder's source checks and build-tree scan now run before its error handler, so a git or folder-read failure there exits 1 with a raw stack trace instead of the JSON failure line. Confirm or reject, and grade it.
+
+Write the report to specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation/scratch/review/report.txt. First line: "verdict: SHIP" or "verdict: FIX". Then each item as "P0|P1|P2 <file>:<line> <claim> | evidence: <command or read> | fix: <one line>". Edit no other file.

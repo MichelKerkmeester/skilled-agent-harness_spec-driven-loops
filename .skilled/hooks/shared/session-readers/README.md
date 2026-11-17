@@ -23,14 +23,16 @@ Files are read and SQLite stores are opened with read-only flags. The side-effec
 
 `readSession` returns `{ ok: true, source, items }` or `{ ok: false, code }`. It never throws across the boundary and never returns a partial list. A projection defect becomes `store_unreadable`.
 
+A reader resolves its store path inside the runtime's root before it opens it, and opens the path that check resolved, so a path swapped after the check is not followed.
+
 `index.mjs` exports `capabilities`, one row per runtime. Each row carries a `status`, a locator kind and a store root. A gated runtime also carries a `reason`. The dispatcher does not consult the table. The lookup CLI refuses a runtime whose `status` is not `ready`.
 
-`loadSession` returns the raw neutral records. Claude, Pi, Devin and DSH also return `injected`, a list of `{ source, text }`. That list holds context a hook or runtime put into the session, which `records` never carries. `loadSession` passes `injected` through and `readSession` ignores it.
+`loadSession` returns the raw neutral records. Claude, Pi, Devin and DSH also return `injected`, a list of `{ source, text }`. That list holds context a hook or runtime put into the session, which `records` never carries. `loadSession` passes `injected` through and `readSession` ignores it. A Codex custom tool call has no JSON arguments, so its record carries the call's body as `arguments.input`, a string.
 
 - Claude's `injected` source is `hook_additional_context`, one entry per hook context attachment.
 - Pi's `injected` source is the entry's custom type, such as `session-start-context`. It falls back to `custom_message` when the entry carries none.
 - Devin's `injected` source is `system` for a system node and `unflagged-user` for a user node without the input flag. The transcript fallback uses the step's own source.
-- DSH's `injected` source is the event's source kind, such as `repo-guards`. It falls back to `unknown` when the event names none.
+- DSH's `injected` source is the event's source kind, such as `repo-guards`. It falls back to `unknown` when the event names none. A `user/message` with no source stays injected and never becomes a record.
 
 A failure is one of these codes.
 
@@ -41,7 +43,7 @@ A failure is one of these codes.
 | `session_not_found` | No store record matches the id |
 | `session_mismatch` | A record was found, but its recorded id or path does not match |
 | `session_ambiguous` | More than one record claims the id |
-| `store_unreadable` | The store could not be read or projected |
+| `store_unreadable` | The store could not be read or projected. For Devin, an open or projection failure falls back to the transcript first, so the code means the transcript failed too |
 | `unsupported_format` | The journal holds no record shape the reader knows, so it fails instead of returning an empty session |
 
 Vibe's reader is `ready`. It projects `harness.public-session-state/v1` and the completion records beside it. Its helpers are `loadVibeSession`, `lastAssistantText`, `turnToolCalls`, `compactionsSince` and `turnId`. `compactionsSince` returns the compactions after a watermark.

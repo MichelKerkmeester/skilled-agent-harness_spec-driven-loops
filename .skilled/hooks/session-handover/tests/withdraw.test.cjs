@@ -10,7 +10,7 @@ const os = require('node:os');
 const path = require('node:path');
 const core = require('../lib/relaunch-core.cjs');
 const nudge = require('../lib/nudge.cjs');
-const { withdrawHandOver } = require('../lib/withdraw.cjs');
+const { withdrawHandOver, withdrawOnPrompt } = require('../lib/withdraw.cjs');
 const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
 
 // The suite also runs from inside a looped session, whose wrapper exports these variables.
@@ -163,4 +163,73 @@ test('a follow-up that fails is reported and never undoes the withdrawal', (t) =
   assert.equal(disarmed.status, 'disarmed');
   assert.deepEqual(reported, [['rearm', 'state write refused']]);
   assert.deepEqual(historyEvents(sandbox), ['withdrawn']);
+});
+
+test('a prompt withdrawal logs the runtime\'s own event and returns true', (t) => {
+  const sandbox = createSandbox(t);
+  writeRecord(sandbox, { status: 'armed', armedAt: NOW.toISOString() });
+  const logged = [];
+
+  const withdrawn = withdrawOnPrompt({
+    loopId: LOOP_ID,
+    sessionId: SESSION_ID,
+    env: sandbox.env,
+    log: (event, fields) => logged.push([event, fields]),
+    withdrawnEvent: 'arm-cancelled',
+  });
+
+  assert.equal(withdrawn, true);
+  assert.deepEqual(logged, [
+    ['arm-cancelled', { loopId: LOOP_ID, sessionId: SESSION_ID, reason: 'user-message' }],
+  ]);
+});
+
+test('a prompt withdrawal with nothing to withdraw logs nothing', (t) => {
+  const sandbox = createSandbox(t);
+  const logged = [];
+
+  const withdrawn = withdrawOnPrompt({
+    loopId: LOOP_ID,
+    sessionId: SESSION_ID,
+    env: sandbox.env,
+    log: (event) => logged.push(event),
+    withdrawnEvent: 'withdrawn',
+  });
+
+  assert.equal(withdrawn, false);
+  assert.deepEqual(logged, []);
+});
+
+test('a prompt withdrawal that throws is logged and never thrown', (t) => {
+  const sandbox = createSandbox(t);
+  const logged = [];
+
+  const withdrawn = withdrawOnPrompt({
+    loopId: 'bad/loop',
+    sessionId: SESSION_ID,
+    env: sandbox.env,
+    log: (event, fields) => logged.push([event, fields.stage]),
+    withdrawnEvent: 'withdrawn',
+  });
+
+  assert.equal(withdrawn, false);
+  assert.deepEqual(logged, [['context-nudge-error', 'withdraw']]);
+});
+
+test('a log that throws never fails a prompt withdrawal', (t) => {
+  const sandbox = createSandbox(t);
+  writeRecord(sandbox, { status: 'armed', armedAt: NOW.toISOString() });
+
+  const withdrawn = withdrawOnPrompt({
+    loopId: LOOP_ID,
+    sessionId: SESSION_ID,
+    env: sandbox.env,
+    log: () => {
+      throw new Error('log write refused');
+    },
+    withdrawnEvent: 'withdrawn',
+  });
+
+  assert.equal(withdrawn, true);
+  assert.equal(core.readRelaunchFile(LOOP_ID, sandbox.env).status, 'disarmed');
 });

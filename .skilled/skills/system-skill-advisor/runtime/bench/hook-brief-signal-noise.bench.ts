@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Hook Brief Signal/Noise Bench
 // ───────────────────────────────────────────────────────────────
-// Invokes the brief renderer per runtime (claude/opencode),
+// Invokes the brief renderer per runtime (the iteration measured Claude and OpenCode, and the rest read not-recorded),
 // loads the iter-4 7-axis adapter divergence matrix as a fixture, and
 // asserts non-zero signal counts per runtime. Collector-shape coverage for
 // spec_kit.advisor.recommendation_emitted_total is kept separate from the
@@ -24,8 +24,15 @@ const F22_AXES = [
 ] as const;
 
 const SEVEN_AXIS_MATRIX: Record<typeof ADVISOR_RUNTIME_VALUES[number], Record<typeof F22_AXES[number], string>> = {
-  claude:  { inputFieldNames: 'prompt-only', cwdResolution: 'input-or-process', inputSource: 'stdin-only', outputShape: 'hookSpecificOutput', timeoutHandling: 'none', renderThresholdOverride: 'none', sideEffectsBeyondReturn: 'none' },
-  opencode:   { inputFieldNames: '3-fallbacks', cwdResolution: 'input-or-request-or-process', inputSource: 'stdin-or-argv', outputShape: 'hookSpecificOutput', timeoutHandling: 'env-3000ms', renderThresholdOverride: 'forced-0.8/0.35', sideEffectsBeyondReturn: 'none' },
+  claude:   { inputFieldNames: 'prompt-only', cwdResolution: 'input-or-process', inputSource: 'stdin-only', outputShape: 'hookSpecificOutput', timeoutHandling: 'none', renderThresholdOverride: 'none', sideEffectsBeyondReturn: 'none' },
+  opencode: { inputFieldNames: '3-fallbacks', cwdResolution: 'input-or-request-or-process', inputSource: 'stdin-or-argv', outputShape: 'hookSpecificOutput', timeoutHandling: 'env-3000ms', renderThresholdOverride: 'forced-0.8/0.35', sideEffectsBeyondReturn: 'none' },
+  // An invented axis reading would pass for a measured one, so a runtime nobody probed reads not-recorded.
+  pi:       { inputFieldNames: 'not-recorded', cwdResolution: 'not-recorded', inputSource: 'not-recorded', outputShape: 'not-recorded', timeoutHandling: 'not-recorded', renderThresholdOverride: 'not-recorded', sideEffectsBeyondReturn: 'not-recorded' },
+  codex:    { inputFieldNames: 'not-recorded', cwdResolution: 'not-recorded', inputSource: 'not-recorded', outputShape: 'not-recorded', timeoutHandling: 'not-recorded', renderThresholdOverride: 'not-recorded', sideEffectsBeyondReturn: 'not-recorded' },
+  cursor:   { inputFieldNames: 'not-recorded', cwdResolution: 'not-recorded', inputSource: 'not-recorded', outputShape: 'not-recorded', timeoutHandling: 'not-recorded', renderThresholdOverride: 'not-recorded', sideEffectsBeyondReturn: 'not-recorded' },
+  devin:    { inputFieldNames: 'not-recorded', cwdResolution: 'not-recorded', inputSource: 'not-recorded', outputShape: 'not-recorded', timeoutHandling: 'not-recorded', renderThresholdOverride: 'not-recorded', sideEffectsBeyondReturn: 'not-recorded' },
+  dsh:      { inputFieldNames: 'not-recorded', cwdResolution: 'not-recorded', inputSource: 'not-recorded', outputShape: 'not-recorded', timeoutHandling: 'not-recorded', renderThresholdOverride: 'not-recorded', sideEffectsBeyondReturn: 'not-recorded' },
+  vibe:     { inputFieldNames: 'not-recorded', cwdResolution: 'not-recorded', inputSource: 'not-recorded', outputShape: 'not-recorded', timeoutHandling: 'not-recorded', renderThresholdOverride: 'not-recorded', sideEffectsBeyondReturn: 'not-recorded' },
 };
 
 function buildRecommendations(runtime: string): readonly AdvisorRecommendation[] {

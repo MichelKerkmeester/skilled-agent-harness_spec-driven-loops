@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.18.0
+version: 0.12.23.0
 ---
 
 # system-skill-advisor

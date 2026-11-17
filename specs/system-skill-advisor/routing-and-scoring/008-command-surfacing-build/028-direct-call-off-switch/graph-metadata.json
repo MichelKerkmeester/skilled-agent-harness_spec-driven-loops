@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/028-direct-call-off-switch",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/028-direct-call-off-switch",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "direct call off switch",
+      "phase 28 direct call off switch",
+      "advisor disabled flag cli client",
+      "warm daemon ignores disable flag",
+      "direct call off switch plan",
+      "direct call off switch tasks",
+      "direct call off switch acceptance criteria",
+      "direct call off switch implementation summary"
+    ],
+    "key_topics": [
+      "direct",
+      "call",
+      "switch",
+      "phase",
+      "advisor",
+      "disabled",
+      "flag",
+      "cli",
+      "client",
+      "warm",
+      "daemon",
+      "ignores"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      "scratch/review/report.txt",
+      "scratch/repro-after.txt",
+      ".skilled/bin/skill-advisor.cjs",
+      "scratch/floor-before.txt",
+      "scratch/eval-before.txt",
+      "scratch/before.txt",
+      "scratch/repro-before.txt",
+      "scratch/timing-before.txt",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/advisor-disabled.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts",
+      "scratch/planning/direct-call-matrix.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "report.txt",
+        "kind": "file",
+        "path": "scratch/review/report.txt",
+        "source": "derived"
+      },
+      {
+        "name": "repro-after.txt",
+        "kind": "file",
+        "path": "scratch/repro-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "floor-before.txt",
+        "kind": "file",
+        "path": "scratch/floor-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "eval-before.txt",
+        "kind": "file",
+        "path": "scratch/eval-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "repro-before.txt",
+        "kind": "file",
+        "path": "scratch/repro-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "timing-before.txt",
+        "kind": "file",
+        "path": "scratch/timing-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-disabled.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-disabled.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/advisor-disabled.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-stale-daemon-retry.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "direct-call-matrix.sh",
+        "kind": "script",
+        "path": "scratch/planning/direct-call-matrix.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A model in the behaviour arm's off arm, or a user who exports `SYSTEMSKILLADVISORHOOKDISABLED=1`, runs the Gate 2 direct call and still gets `sk-doc → /create:readme (start)` from the warm daemon, or two skill rows from the local scorer when no daemon answers",
+    "created_at": "2026-11-14T22:11:47Z",
+    "last_save_at": "2026-11-14T23:28:44.249Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c4e710606c6db140b135683fc2af848bf4e947cec3494feff33e002a8e143721",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "aa43444f451ed5b6ac653cc14b03182c313d67a28ddb075e13db55d20f0ce0b6",
+      "plan.md": "9b44460d5d006e0bed396564d7526438837f2ae597e66f35328705ea15bd5178",
+      "tasks.md": "537c402c422821b8de4412ee05d68cb8df3fd42b5ca2de33489326155da9f362",
+      "implementation-summary.md": "6ea2c85cd4bc7dc4aa28ae7f8698025ac17b9e2919c1a02503b007c6b744790d"
+    },
+    "last_active_at": null
+  }
+}

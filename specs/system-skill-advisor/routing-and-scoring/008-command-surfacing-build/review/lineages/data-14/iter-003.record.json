@@ -1,0 +1,204 @@
+{
+ "type": "iteration",
+ "iteration": 3,
+ "run": 3,
+ "mode": "review",
+ "target_agent": "deep-review",
+ "agent_definition_loaded": true,
+ "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+ "status": "complete",
+ "focus": "all four dimensions re-verified - final-tree replay of F001 and the pass-thirteen transcript, then the stop decision",
+ "dimensions": [
+  "correctness",
+  "security",
+  "traceability",
+  "maintainability"
+ ],
+ "filesReviewed": [
+  ".skilled/skills/system-skill-advisor/graph-metadata.json:66-100",
+  "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/decision-record.md:37",
+  "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/scratch/probes.json",
+  "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/scratch/after-pass-13.txt:16-20",
+  "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/data-14/deep-review-findings-registry.json",
+  "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/data-14/deep-review-strategy.md"
+ ],
+ "findingsCount": 0,
+ "findingsSummary": {
+  "P0": 0,
+  "P1": 0,
+  "P2": 0
+ },
+ "findingsNew": {
+  "P0": 0,
+  "P1": 0,
+  "P2": 0
+ },
+ "findingDetails": [],
+ "traceabilityChecks": {
+  "summary": {
+   "required": 2,
+   "executed": 3,
+   "pass": 2,
+   "partial": 1,
+   "fail": 0,
+   "blocked": 0,
+   "notApplicable": 0,
+   "gatingFailures": 0
+  },
+  "results": [
+   {
+    "protocolId": "spec_code",
+    "status": "pass",
+    "gateClass": "hard",
+    "applicable": true,
+    "counts": {
+     "pass": 1,
+     "partial": 0,
+     "fail": 0
+    },
+    "evidence": [
+     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/decision-record.md:37",
+     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/scratch/probes.json"
+    ],
+    "findingRefs": [],
+    "summary": "Final-tree replay matches ADR-001 and the probe rows on P05, P07, P08 and P09."
+   },
+   {
+    "protocolId": "checklist_evidence",
+    "status": "partial",
+    "gateClass": "hard",
+    "applicable": true,
+    "counts": {
+     "pass": 0,
+     "partial": 1,
+     "fail": 0
+    },
+    "evidence": [
+     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/acceptance-criteria.md:59",
+     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/tasks.md:58"
+    ],
+    "findingRefs": [
+     "F001"
+    ],
+    "summary": "AC-004 agrees with ADR-001; T008 evidence remains wider than its five-prompt check."
+   },
+   {
+    "protocolId": "skill_agent",
+    "status": "pass",
+    "gateClass": "soft",
+    "applicable": true,
+    "counts": {
+     "pass": 1,
+     "partial": 0,
+     "fail": 0
+    },
+    "evidence": [
+     ".skilled/skills/system-skill-advisor/graph-metadata.json:66-100"
+    ],
+    "findingRefs": [],
+    "summary": "Projection still lists 33 canonical signals and none of the six removed phrases."
+   }
+  ]
+ },
+ "newFindingsRatio": 0,
+ "noveltyJustification": "No new findings: the final tree reproduces F001 and the pass-thirteen transcript unchanged, so the iteration adds verification rather than novelty.",
+ "sessionId": "fanout-data-14-1794868189353-tsxtos",
+ "generation": 1,
+ "lineageMode": "new",
+ "timestamp": "2026-11-16T22:45:02.174Z",
+ "durationMs": 300000,
+ "graphEvents": [
+  {
+   "type": "node",
+   "id": "d-correctness",
+   "kind": "DIMENSION",
+   "label": "correctness"
+  },
+  {
+   "type": "node",
+   "id": "d-security",
+   "kind": "DIMENSION",
+   "label": "security"
+  },
+  {
+   "type": "node",
+   "id": "d-traceability",
+   "kind": "DIMENSION",
+   "label": "traceability"
+  },
+  {
+   "type": "node",
+   "id": "d-maintainability",
+   "kind": "DIMENSION",
+   "label": "maintainability"
+  },
+  {
+   "type": "node",
+   "id": "file-graph-metadata-json",
+   "kind": "FILE",
+   "label": ".skilled/skills/system-skill-advisor/graph-metadata.json"
+  },
+  {
+   "type": "node",
+   "id": "file-decision-record-md",
+   "kind": "FILE",
+   "label": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/decision-record.md"
+  },
+  {
+   "type": "edge",
+   "id": "e-d-correctness-graph",
+   "source": "d-correctness",
+   "target": "file-graph-metadata-json",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-d-correctness-decision",
+   "source": "d-correctness",
+   "target": "file-decision-record-md",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-d-security-graph",
+   "source": "d-security",
+   "target": "file-graph-metadata-json",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-d-security-decision",
+   "source": "d-security",
+   "target": "file-decision-record-md",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-d-traceability-graph",
+   "source": "d-traceability",
+   "target": "file-graph-metadata-json",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-d-traceability-decision",
+   "source": "d-traceability",
+   "target": "file-decision-record-md",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-d-maintainability-graph",
+   "source": "d-maintainability",
+   "target": "file-graph-metadata-json",
+   "relation": "COVERS"
+  },
+  {
+   "type": "edge",
+   "id": "e-d-maintainability-decision",
+   "source": "d-maintainability",
+   "target": "file-decision-record-md",
+   "relation": "COVERS"
+  }
+ ]
+}

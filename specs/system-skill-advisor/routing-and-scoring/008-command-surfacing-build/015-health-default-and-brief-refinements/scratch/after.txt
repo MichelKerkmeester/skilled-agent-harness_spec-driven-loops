@@ -1,0 +1,32 @@
+$ git rev-parse --short HEAD (changes in the working tree on top of it)
+2549786f28
+$ FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":8,"attached":15,"combined":23,"total":45}
+{"count":0,"total":35}
+$ EVAL
+[160,50,21,5]
+$ TC
+exit=0
+$ VALL
+ FAIL  tests/compiled-routing-consumption.vitest.ts > plugin renders the served compiled outcome into system-context > injects an additive compiled-routing line when a decision is served
+ Test Files  1 failed | 182 passed (183)
+      Tests  1 failed | 1754 passed | 6 skipped (1761)
+exit=1
+$ NPL
+ℹ pass 42
+ℹ fail 0
+$ DALL
+ℹ pass 1188
+ℹ fail 0
+$ DRV
+{"status":"fresh","changed":[]}
+exit=0
+$ SRM
+[runtime-mirror-sync] PASS: 256 mirrors across 10 trees are in sync.
+exit=0
+$ VALL, rerun after the consumption test was held to the plugin change (the first run above failed that one case)
+ Test Files  183 passed (183)
+      Tests  1755 passed | 6 skipped (1761)
+exit=0

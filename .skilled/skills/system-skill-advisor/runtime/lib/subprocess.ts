@@ -90,6 +90,7 @@ interface SpawnAttemptResult {
   readonly ok: boolean;
   readonly stdout: string;
   readonly stderr: string;
+  readonly sawBusy: boolean;
   readonly exitCode: number | null;
   readonly signal: NodeJS.Signals | null;
   readonly errorCode: AdvisorSubprocessErrorCode | null;
@@ -101,6 +102,7 @@ interface SpawnAttemptResult {
 // ───────────────────────────────────────────────────────────────────
 
 const DEFAULT_TIMEOUT_MS = 3000;
+const MAX_OUTPUT_CHARS = 1024 * 1024;
 const SQLITE_BUSY_PATTERN = /\bSQLITE_BUSY\b|database is locked/i;
 
 // ───────────────────────────────────────────────────────────────────
@@ -138,6 +140,16 @@ function sanitizeStderr(stderr: string): string | null {
     return null;
   }
   return compact.slice(0, 240);
+}
+
+// Only the timeout bounded the child's output before, so a runaway child could
+// hold the hook's memory until it was killed. Both streams stop growing at the
+// cap instead.
+function capOutput(current: string, chunk: string): string {
+  if (current.length >= MAX_OUTPUT_CHARS) {
+    return current;
+  }
+  return (current + chunk).slice(0, MAX_OUTPUT_CHARS);
 }
 
 function coerceCompiledRouteSummary(value: unknown): CompiledRouteSummary | undefined {
@@ -203,6 +215,8 @@ function runSpawnAttempt(args: {
   return new Promise((resolve) => {
     let stdout = '';
     let stderr = '';
+    let busyCarry = '';
+    let sawBusy = false;
     let settled = false;
     let timedOut = false;
     let child: ChildProcess;
@@ -218,6 +232,7 @@ function runSpawnAttempt(args: {
         ok: false,
         stdout,
         stderr: error instanceof Error ? error.message : 'spawn failed',
+        sawBusy,
         exitCode: null,
         signal: null,
         errorCode: 'SPAWN_ERROR',
@@ -236,10 +251,20 @@ function runSpawnAttempt(args: {
     child.stdout?.setEncoding('utf8');
     child.stderr?.setEncoding('utf8');
     child.stdout?.on('data', (chunk: string) => {
-      stdout += chunk;
+      stdout = capOutput(stdout, chunk);
     });
     child.stderr?.on('data', (chunk: string) => {
-      stderr += chunk;
+      // The cap bounds what is kept, not what is scanned, so a marker written
+      // past it, or split across two writes, still decides the retry.
+      if (!sawBusy) {
+        const scan = busyCarry + chunk;
+        if (SQLITE_BUSY_PATTERN.test(scan)) {
+          sawBusy = true;
+        } else {
+          busyCarry = scan.slice(-64);
+        }
+      }
+      stderr = capOutput(stderr, chunk);
     });
     child.on('error', (error: NodeJS.ErrnoException) => {
       if (settled) {
@@ -251,6 +276,7 @@ function runSpawnAttempt(args: {
         ok: false,
         stdout,
         stderr: error.message,
+        sawBusy,
         exitCode: null,
         signal: null,
         errorCode: error.code === 'ENOENT' ? 'PYTHON_MISSING' : 'SPAWN_ERROR',
@@ -267,6 +293,7 @@ function runSpawnAttempt(args: {
         ok: exitCode === 0 && signal === null && !timedOut,
         stdout,
         stderr,
+        sawBusy,
         exitCode,
         signal,
         errorCode: timedOut || performance.now() - startedAt >= args.timeoutMs
@@ -341,7 +368,7 @@ export async function runAdvisorSubprocess(
     });
 
     if (!attemptResult.ok) {
-      const busy = SQLITE_BUSY_PATTERN.test(attemptResult.stderr);
+      const busy = attemptResult.sawBusy || SQLITE_BUSY_PATTERN.test(attemptResult.stderr);
       const budgetRemaining = timeoutMs - (performance.now() - startedAt);
       if (busy && attempt === 0 && budgetRemaining >= 500) {
         retriesAttempted = 1;

@@ -1,0 +1,133 @@
+FILES
+
+P = `specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build`
+
+New, in each of `P/020-command-offer-fit-guards/`, `P/021-brief-head-parity/`, `P/022-workflow-measure-soundness/`, `P/023-untuned-outcome-evidence/`:
+- `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md`
+- `description.json`, `graph-metadata.json` (written by `create.sh` and the repair script)
+- `scratch/implementation-summary.scaffold.md` (set aside until each close-out task)
+
+Planning probes and their outputs:
+- `020/scratch/planning/`: `probe-offers.mjs`, `offer-prompts.json`, `probe-offers.before.txt`, `probe-doctor-cue.mts`, `probe-doctor-cue.before.txt`
+- `021/scratch/planning/`: `probe-heads.mts`, `head-prompts.json`, `probe-heads.before.txt`
+- `022/scratch/planning/`: `probe-measure-units.mjs`, `probe-measure-units.before.txt`, `probe-stored-runs.mjs`, `probe-stored-runs.final.txt`
+- `023/scratch/planning/`: `capture-fixture.json`, `capture-real.json`, `untuned-reach.before.txt`, `validate-parent.txt`
+
+Changed:
+- `P/spec.md`: phase map rows 20 to 23, four handoff rows, open questions.
+- `P/goal.md`: objective, criteria, binding rows, seven log rows.
+- `P/decision-record.md`: one new section, `Planner Decisions, 2026-11-14`, P001 to P012.
+- `P/graph-metadata.json`: by `create.sh` and the repair script only.
+
+Nothing in `019`, in a closed phase, in code, tests, `AGENTS.md` or a README was edited. No git state changed.
+
+PHASES
+
+**020-command-offer-fit-guards.** Level 2, 16 tasks. It keeps the model's free choice where no command fits. A command the prompt only mentions, refuses or asks about is not offered. A no-edit request and a small in-place edit carry no writing command. A meaning match holds the uncertainty bar the hooks use, and a weak doctor cue needs the stronger bar. It fixes A-4, A-5 in part, A-6 (the no-edit half), A-8, B-3 and the first half of B-9. The probe printed 26 command heads on 26 such prompts, and the plan expects 8 after.
+
+**021-brief-head-parity.** Level 2, 13 tasks. One request gets one head on every runtime. The handler gives the first row its command whatever the caller asked for, and the OpenCode plugin leads with the row that passed. A companion command prints its policy word and is not printed twice. It fixes A-2, A-3, A-7, the second half of B-9 and an OpenCode head that showed a raw bridge id, which the probe found. The probe printed 13 of 15 equal heads between the Claude hook and the plugin.
+
+**022-workflow-measure-soundness.** Level 2, 18 tasks (T001 to T019, T010 unused). It makes the workflow measure count what a run did. A shell read and a Pi or Codex prompt mirror count as loads, and a write outside the checkout sets no boundary. A wrong-mode load returns `otherMode` and an ask row that asked returns `asked`. A `followedRate` sits beside the unchanged `loadRate` and `share`, and both stored arms are rescored with a reason for every changed count. It fixes A-9, A-11 in two of three parts, A-12, B-2, B-7 and B-8.
+
+**023-untuned-outcome-evidence.** Level 2, 15 tasks. It states the outcome from committed scripts and tunes nothing. It adds a stage split for the 44 sealed plain rows and 48 new sealed rows that should carry no command. The workflow summary gains a 95 percent range, a split by offer and a `--pair` option. It covers the scorer-level parts of B-1 and the measurement half of B-11, and prints the lines the new goal criterion from B-4 names.
+
+Order: 020 and 021 share no file and run side by side. 022 and 023 are not file-disjoint with what precedes them: 022 edits the scorer 019 built, and 023 edits it again. Each has a first task that stops until the earlier phase is committed.
+
+FINDINGS MAP
+
+| Finding | Disposition |
+|---|---|
+| A-1 | Already fixed in phase 019 (`loadRate`, `noneActed`). Not replanned. |
+| A-2 | Planned: 021 T003. |
+| A-3 | Planned: 021 T003 fixes it, 022 T013 states the rule in the offer module. |
+| A-4 | Planned: 020 T007 for the scorer bar, 021 T006 for the OpenCode head. |
+| A-5 | Planned in part: 020 T010 and T011. Two probe prompts still draw a doctor command; declined because their ranker scores (10.009, 9.761) sit inside the range real toolkit problems score (7.491 to 23.471). |
+| A-6 | Planned: 020 T009 for the no-edit half. The `run` policy of an add-only doctor command is declined; it derives from the risk class the inventory phase fixed. |
+| A-7 | Planned: 021 T004. |
+| A-8 | Planned: 020 T003 to T005 and T008. |
+| A-9 | Planned: 022 T003 (shell reads) and T004 (prompt mirrors). |
+| A-10 | Already fixed in phase 019. |
+| A-11 | Planned: 022 T011 (partner's command) and T012 (tool results). The fallback-head part is declined: a fallback head that reached the session is a delivery, and its offer is recorded as null. |
+| A-12 | Planned: 022 T005. |
+| B-1 | Planned in its scorer-level parts: 023 T003 to T009 and T012. A behaviour number on untuned rows with repeats waits on the operator. |
+| B-2 | First half fixed in 019. Planned: 022 T007 and T009. |
+| B-3 | Planned: 020 T003 to T005 (question case) and T006 (small edit case). |
+| B-4 | Done in the goal amendment below. 023 T012 and T014 produce the lines it names. |
+| B-5 | Waiting on the operator. |
+| B-6 | Waiting on the operator. |
+| B-7 | Planned: 022 T006. |
+| B-8 | Planned: 022 T008. |
+| B-9 | Planned: 020 T003 to T005 (refusal) and 021 T005 (command printed twice). |
+| B-10 | Not reproduced. `probe-heads.mts` on "create a new agent definition…" prints `use sk-doc → /create:agent (start) 0.82/0.12` on both the Claude hook and the OpenCode plugin, the owning skill first. |
+| B-11 | Reproduced: both review prompts return no recommendation, and the capture prints 5 of 44 on sealed rows. 023 T003 says where they fall out. Raising the number waits on the operator. |
+
+GOAL CHANGES
+
+`P/goal.md`, above the log:
+
+1. Objective.
+   - Old: "A model using skills keeps its free choice and takes the best correct workflow more often, because every tracked slash command reaches it with a run, start or ask policy on every supported CLI, and the plan is built, tested, measured, reviewed and improved without waiting on the operator."
+   - New: "A model using skills keeps its free choice and takes the best correct workflow more often. Delivery is the means: every tracked slash command reaches it with a run, start or ask policy on every supported CLI. The plan is built, tested, measured, reviewed and improved without waiting on the operator."
+2. Criterion 1.
+   - Old: "Strict validation prints `RESULT: PASSED` for this parent and all eight phases, each Complete."
+   - New: "Strict validation prints `RESULT: PASSED` for this parent and every phase folder, each Complete."
+3. Two criteria merged.
+   - Old: "A `/deep:review` loop over the packet code has converged with 0 open P0 and P1 findings." and "`/local-skilled-alignment` on the branch reports 0 P0 and 0 P1 findings."
+   - New: "A `/deep:review` loop over the packet code has converged with 0 open P0 and P1 findings, and `/local-skilled-alignment` on the branch reports 0 P0 and 0 P1."
+4. New criterion: "The workflow summary prints a followed rate with its range for each runtime and arm, the capture prints reach and fit counts on sealed rows, and this log holds the operator's target for each or the operator's waiver."
+5. Four binding rows added: `| 020 | 020-command-offer-fit-guards/goal.md |`, `| 021 | 021-brief-head-parity/goal.md |`, `| 022 | 022-workflow-measure-soundness/goal.md |`, `| 023 | 023-untuned-outcome-evidence/goal.md |` (paths in backticks in the file).
+6. Three template comments removed to hold the budget:
+   - `<!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Keep only the newest n archives on request. WEAK: Improve the script. -->`
+   - `<!-- FILL: List each child phase and its goal path. Name the precedence rule. GOOD: 001 and 002. Decisions here outrank child detail. WEAK: Children are bound. -->`
+   - `<!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->`
+7. Seven log rows added through `goal.cjs packet-log`: the remediation plan, the goal amendment, untuned reach at planning, three WAITING ON OPERATOR rows, and the goal check after the amendment.
+
+Decisions D1 to D7 are untouched and the criteria count stays at seven.
+
+```
+packet_durable_chars=3954
+packet_budget=ok
+```
+
+The chat slice changed, so the coordinator's session must resend it from `goal.cjs packet`.
+
+`check-goal.cjs` still prints `RESULT: FAILED (4/5 checks)`: 11 missing binding rows, phases 009 to 019, none of which has a `goal.md`. Phases 020 to 023 are bound.
+
+WAITING ON OPERATOR
+
+1. **A behaviour arm on untuned rows.** It is the only way to show the brief causes more correct workflows on requests nobody tuned for. "No more behaviour arms" is in force, so nothing builds it.
+   - Options: approve it, or keep the ruling.
+   - Proposal if approved: 24 fresh rows never tuned on (12 that fit a command, 6 skill-only, 6 decline), three runs each, the brief on and off at one commit, 144 sessions per runtime. These sizes are my proposal, not a measured need.
+   - Recommendation: approve it for three runtimes after phase 023 closes. It becomes a new phase.
+2. **The outcome target.**
+   - Options: a gain target (brief-on follows on more paired rows than brief-off on every runtime measured, and no command starts on a decline row), an absolute followed rate you name, or a written waiver that closes the packet on delivery and says the outcome was not shown.
+   - Recommendation: the gain target, with the sealed reach kept as a floor that may only rise.
+3. **The sealed reach (B-11).** With the real embedding the brief carries the right command on 5 of 44 sealed plain rows against 33 of 45 tuned rows. The create, deep and design families carry it on 0 of 19 sealed rows.
+   - Options: a matching phase in this packet, or a follow-up packet.
+   - Recommendation: a follow-up packet, after 023 prints the stage counts.
+4. **Head wording (B-5).** Reword the head so the command reads as an option. It changes the brief you approved and needs the arm to judge. Recommendation: decide it with the arm.
+5. **`AGENTS.md` prefix (B-6).** Prefix the Gate 2 policy sentences with "If you take the command:". Recommendation: yes.
+6. **Goal binding for 009 to 019.** Eleven more rows need about 530 characters and the slice is at 3,954 of 4,000.
+   - Options: retrofit eleven child goals and shorten the decision prose, or accept the finding for closed phases.
+   - Recommendation: accept it.
+7. **Who writes the 48 sealed fit rows.** The plan defaults to one worker that sees no phrase table and scores no draft. You may replace the set with requests from real use before 023 T006 runs; after that it is frozen.
+8. **Arena deletion.** Already approved for after scoring. It now has to wait until 022 T016 and 023 T012 have run, because both rescore the stored sessions.
+
+VALIDATION
+
+| Folder | Summary | Result |
+|---|---|---|
+| `020-command-offer-fit-guards` | Errors: 0 Warnings: 0 | RESULT: PASSED |
+| `021-brief-head-parity` | Errors: 0 Warnings: 0 | RESULT: PASSED |
+| `022-workflow-measure-soundness` | Errors: 0 Warnings: 0 | RESULT: PASSED |
+| `023-untuned-outcome-evidence` | Errors: 0 Warnings: 0 | RESULT: PASSED |
+| P, its own block | Errors: 0 Warnings: 1 | RESULT: PASSED |
+| P, recursive run | exit 2 | one child failed: `019` |
+
+- The parent's one warning is `SOURCE_TAGS`: 11 of 669 citations in review lineage files do not resolve. It predates this plan.
+- The recursive run fails only on `019-workflow-outcome-measure` (Errors: 2 Warnings: 1): `GENERATED_METADATA_INTEGRITY` and `GENERATED_METADATA_DRIFT`. Its generated metadata is stale against the coordinator's uncommitted `spec.md`. I may not edit that folder; the fix is `repair-derived.cjs --folder <019> --apply`, run by the coordinator.
+- The other 22 children print `RESULT: PASSED`. Full output is in `023/scratch/planning/validate-parent.txt`.
+
+One planning correction: the goal log said the attached-command figure on holdout was unmeasured. The committed capture already prints it (0 of 44), so no task adds it and a log row supersedes the old one.
+
+Not verified at planning: the stage counts and the fit counts do not exist until 023 is built, and no sealed prompt text was read to predict them.

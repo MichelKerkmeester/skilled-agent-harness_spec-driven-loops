@@ -2,8 +2,9 @@
 // MODULE: Skill Advisor CLI Stale-Daemon Retry Tests
 // ───────────────────────────────────────────────────────────────
 
-import { mkdirSync } from 'node:fs';
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import net from 'node:net';
+import { join } from 'node:path';
 import { StringDecoder } from 'node:string_decoder';
 
 import { afterEach, describe, expect, it } from 'vitest';
@@ -12,9 +13,11 @@ import {
   cleanupSkillAdvisorScope,
   createIsolatedCliScope,
   parseJsonOutput,
+  readSkillAdvisorLauncherPid,
   type IsolatedCliScope,
 } from './skill-advisor-cli-test-utils.js';
 
+import { ADVISOR_DISABLED_FLAGS } from '../lib/advisor-disabled.js';
 import { runSkillAdvisorCli } from '../skill-advisor-cli.js';
 
 interface FakeDaemon {
@@ -25,12 +28,15 @@ interface CliPayload {
   readonly status?: string;
   readonly data?: {
     readonly recommendations?: ReadonlyArray<{ readonly skillId?: string }>;
+    readonly abstainReasons?: ReadonlyArray<string>;
+    readonly warnings?: ReadonlyArray<string>;
+    readonly freshness?: string;
   };
   readonly error?: string;
   readonly exitCode?: number;
 }
 
-type FakeDaemonBehavior = 'reject-compiled-route-option' | 'reject-unrelated-option';
+type FakeDaemonBehavior = 'answer' | 'reject-compiled-route-option' | 'reject-unrelated-option';
 
 const scopes: IsolatedCliScope[] = [];
 const servers: net.Server[] = [];
@@ -74,11 +80,13 @@ async function startFakeAdvisorDaemon(socketPath: string, behavior: FakeDaemonBe
         const hasCompiledRouteOption = typeof options === 'object'
           && options !== null
           && Object.prototype.hasOwnProperty.call(options, 'includeCompiledRoute');
-        const errorMessage = behavior === 'reject-unrelated-option'
-          ? 'Unrecognized key in options: unsupportedOption'
-          : hasCompiledRouteOption
-            ? 'Unrecognized key in options: includeCompiledRoute'
-            : null;
+        const errorMessage = behavior === 'answer'
+          ? null
+          : behavior === 'reject-unrelated-option'
+            ? 'Unrecognized key in options: unsupportedOption'
+            : hasCompiledRouteOption
+              ? 'Unrecognized key in options: includeCompiledRoute'
+              : null;
 
         const response: Record<string, unknown> = errorMessage
           ? {
@@ -113,12 +121,12 @@ async function startFakeAdvisorDaemon(socketPath: string, behavior: FakeDaemonBe
   return { calls };
 }
 
-async function runRecommend(scope: IsolatedCliScope) {
+async function runRecommend(scope: IsolatedCliScope, env: NodeJS.ProcessEnv = scope.env) {
   const originalEnv = { ...process.env };
   const stdout: string[] = [];
   const stderr: string[] = [];
   for (const key of Object.keys(process.env)) delete process.env[key];
-  Object.assign(process.env, scope.env);
+  Object.assign(process.env, env);
   let exitCode: number;
   try {
     exitCode = await runSkillAdvisorCli([
@@ -138,6 +146,19 @@ async function runRecommend(scope: IsolatedCliScope) {
     Object.assign(process.env, originalEnv);
   }
   return { exitCode, stdout: stdout.join(''), stderr: stderr.join('') };
+}
+
+function switchEnv(scope: IsolatedCliScope, flag?: string): NodeJS.ProcessEnv {
+  const env = { ...scope.env };
+  for (const name of ADVISOR_DISABLED_FLAGS) delete env[name];
+  if (flag) env[flag] = '1';
+  return env;
+}
+
+function flagsFile(scope: IsolatedCliScope): string {
+  const filePath = join(scope.rootDir, 'hook-flags.env');
+  writeFileSync(filePath, 'SYSTEM_SKILL_ADVISOR_DISABLED=1\n');
+  return filePath;
 }
 
 async function cleanup(): Promise<void> {
@@ -190,6 +211,111 @@ describe('skill-advisor CLI stale-daemon retry', () => {
     expect(payload.status).toBe('error');
     expect(payload.exitCode).toBe(64);
     expect(payload.error).toContain('unsupportedOption');
+    expect(daemon.calls).toHaveLength(1);
+  });
+});
+
+describe('skill-advisor CLI disable switch', () => {
+  it.each(ADVISOR_DISABLED_FLAGS.map((flag) => [flag]))('abstains under %s before it asks a warm daemon', async (flag) => {
+    const scope = createIsolatedCliScope('disable-switch-warm');
+    scopes.push(scope);
+    const daemon = await startFakeAdvisorDaemon(scope.socketPath, 'answer');
+
+    const run = await runRecommend(scope, switchEnv(scope, flag));
+    const payload = parseJsonOutput<CliPayload>(run);
+
+    expect(run.exitCode, run.stderr).toBe(0);
+    expect(payload.status).toBe('ok');
+    expect(payload.data?.recommendations).toEqual([]);
+    // A legacy name can reach the resolver as the canonical one it maps to, so the
+    // reported name is not fixed but the reason always names some switch.
+    const reasons = payload.data?.abstainReasons ?? [];
+    expect(reasons).toHaveLength(1);
+    expect(reasons[0]?.startsWith('Skill advisor disabled by ')).toBe(true);
+    if (!flag.startsWith('MK_')) expect(reasons).toEqual([`Skill advisor disabled by ${flag}.`]);
+    expect(payload.data?.warnings).toEqual(['ADVISOR_DISABLED']);
+    expect(payload.data?.freshness).toBe('unavailable');
+    expect(daemon.calls).toHaveLength(0);
+  });
+
+  it('still asks a warm daemon when no switch is set', async () => {
+    const scope = createIsolatedCliScope('disable-switch-control');
+    scopes.push(scope);
+    const daemon = await startFakeAdvisorDaemon(scope.socketPath, 'answer');
+
+    const run = await runRecommend(scope, switchEnv(scope));
+    const payload = parseJsonOutput<CliPayload>(run);
+
+    expect(run.exitCode, run.stderr).toBe(0);
+    expect(payload.data?.recommendations?.[0]?.skillId).toBe('sk-code');
+    expect(daemon.calls).toHaveLength(1);
+  });
+
+  it('abstains with no daemon and starts no launcher', async () => {
+    const scope = createIsolatedCliScope('disable-switch-no-daemon');
+    scopes.push(scope);
+
+    const run = await runRecommend(scope, switchEnv(scope, 'SYSTEM_SKILL_ADVISOR_HOOK_DISABLED'));
+    const payload = parseJsonOutput<CliPayload>(run);
+
+    expect(run.exitCode, run.stderr).toBe(0);
+    expect(payload.data?.recommendations).toEqual([]);
+    expect(payload.data?.abstainReasons).toEqual(['Skill advisor disabled by SYSTEM_SKILL_ADVISOR_HOOK_DISABLED.']);
+    expect(readSkillAdvisorLauncherPid(scope.skillAdvisorDbDir)).toBeNull();
+    expect(existsSync(scope.socketPath)).toBe(false);
+  }, 30_000);
+});
+
+describe('skill-advisor CLI kill switch, as the hooks resolve it', () => {
+  it.each([
+    ['SYSTEM_SKILL_ADVISOR_DISABLED', '1'],
+    ['SYSTEM_SKILL_ADVISOR_DISABLED', 'true'],
+    ['SYSTEM_SKILL_ADVISOR_HOOK_DISABLED', 'yes'],
+    ['SYSTEM_HOOKS_DISABLED', '1'],
+  ])('abstains under %s=%s before it asks a warm daemon', async (name, value) => {
+    const scope = createIsolatedCliScope('kill-switch-name');
+    scopes.push(scope);
+    const daemon = await startFakeAdvisorDaemon(scope.socketPath, 'answer');
+
+    const run = await runRecommend(scope, { ...switchEnv(scope), [name]: value });
+    const payload = parseJsonOutput<CliPayload>(run);
+
+    expect(run.exitCode, run.stderr).toBe(0);
+    expect(payload.status).toBe('ok');
+    expect(payload.data?.recommendations).toEqual([]);
+    expect(payload.data?.abstainReasons).toEqual([`Skill advisor disabled by ${name}.`]);
+    expect(payload.data?.warnings).toEqual(['ADVISOR_DISABLED']);
+    expect(daemon.calls).toHaveLength(0);
+  });
+
+  it('abstains under a flags-file entry before it asks a warm daemon', async () => {
+    const scope = createIsolatedCliScope('kill-switch-flags-file');
+    scopes.push(scope);
+    const daemon = await startFakeAdvisorDaemon(scope.socketPath, 'answer');
+
+    const run = await runRecommend(scope, { ...switchEnv(scope), HOOK_FLAGS_CONFIG: flagsFile(scope) });
+    const payload = parseJsonOutput<CliPayload>(run);
+
+    expect(run.exitCode, run.stderr).toBe(0);
+    expect(payload.data?.recommendations).toEqual([]);
+    expect(payload.data?.abstainReasons).toEqual(['Skill advisor disabled by SYSTEM_SKILL_ADVISOR_DISABLED.']);
+    expect(daemon.calls).toHaveLength(0);
+  });
+
+  it('still asks a warm daemon when the environment sets the switch to 0 over the file', async () => {
+    const scope = createIsolatedCliScope('kill-switch-file-override');
+    scopes.push(scope);
+    const daemon = await startFakeAdvisorDaemon(scope.socketPath, 'answer');
+
+    const run = await runRecommend(scope, {
+      ...switchEnv(scope),
+      HOOK_FLAGS_CONFIG: flagsFile(scope),
+      SYSTEM_SKILL_ADVISOR_DISABLED: '0',
+    });
+    const payload = parseJsonOutput<CliPayload>(run);
+
+    expect(run.exitCode, run.stderr).toBe(0);
+    expect(payload.data?.recommendations?.[0]?.skillId).toBe('sk-code');
     expect(daemon.calls).toHaveLength(1);
   });
 });

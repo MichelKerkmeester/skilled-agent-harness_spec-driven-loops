@@ -20,7 +20,9 @@ on:
       # The mirror-parity job compares generated mirrors against their sources.
       # Triggering on the spec-kit runtime alone let a mirror drift on a command
       # or agent commit, ship unseen, and fail here later on whoever next touched
-      # the runtime. Every mirror source and every mirror output triggers it now.
+      # the runtime. Every command and agent mirror source and output triggers it now.
+      # A Vibe-only or SKILL.md-only change runs the same Vibe checks in
+      # command-tree-parity.yml, which filters on those paths.
       - '.opencode/commands/**'
       - '.skilled/commands/**'
       - '.opencode/agents/**'
@@ -66,7 +68,9 @@ on:
       # The mirror-parity job compares generated mirrors against their sources.
       # Triggering on the spec-kit runtime alone let a mirror drift on a command
       # or agent commit, ship unseen, and fail here later on whoever next touched
-      # the runtime. Every mirror source and every mirror output triggers it now.
+      # the runtime. Every command and agent mirror source and output triggers it now.
+      # A Vibe-only or SKILL.md-only change runs the same Vibe checks in
+      # command-tree-parity.yml, which filters on those paths.
       - '.opencode/commands/**'
       - '.skilled/commands/**'
       - '.opencode/agents/**'
@@ -348,6 +352,9 @@ jobs:
           node .opencode/commands/doctor/scripts/command-catalog-mirror-check.cjs
           node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check
           node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check
+          node .opencode/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs --check
+          node .opencode/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs --check
+          node .opencode/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs --check
 
   doctor-scripts:
     name: Doctor script test suites

@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/037-review-pass-six-remediation",
+  "description": "Phase 37: review-pass-six-remediation",
+  "keywords": [
+    "phase",
+    "review-pass-six-remediation"
+  ],
+  "lastUpdated": "2026-11-16T08:38:53.215Z",
+  "specId": "037",
+  "folderSlug": "review-pass-six-remediation",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring",
+    "008-command-surfacing-build"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_09-38__review-pass-six-converged-with-0-p0-and-0-p1-and.md"
+  ]
+}

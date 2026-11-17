@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scorer heredoc redirect fix",
+      "phase 34 scorer heredoc redirect fix",
+      "heredoc comparison misread as write",
+      "untuned arm rescore b-5 trigger",
+      "scorer heredoc redirect fix plan",
+      "scorer heredoc redirect fix tasks",
+      "scorer heredoc redirect fix acceptance criteria",
+      "scorer heredoc redirect fix implementation summary"
+    ],
+    "key_topics": [
+      "scorer",
+      "heredoc",
+      "redirect",
+      "phase",
+      "comparison",
+      "misread",
+      "write",
+      "untuned",
+      "arm",
+      "rescore",
+      "b-5",
+      "trigger"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+      "scratch/heredoc-probe.mjs",
+      "scratch/heredoc-reach.mjs",
+      "scratch/rescore.py",
+      "scratch/before.txt",
+      "scratch/after.txt",
+      "scratch/boundaries.txt",
+      "scratch/summary-before.json",
+      "scratch/summary-rescore.json",
+      "scratch/rescore-evidence.txt",
+      "scratch/rescore-diff.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-command-transcripts.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-transcript-score.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "heredoc-probe.mjs",
+        "kind": "file",
+        "path": "scratch/heredoc-probe.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "heredoc-reach.mjs",
+        "kind": "file",
+        "path": "scratch/heredoc-reach.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "rescore.py",
+        "kind": "file",
+        "path": "scratch/rescore.py",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "boundaries.txt",
+        "kind": "file",
+        "path": "scratch/boundaries.txt",
+        "source": "derived"
+      },
+      {
+        "name": "summary-before.json",
+        "kind": "config",
+        "path": "scratch/summary-before.json",
+        "source": "derived"
+      },
+      {
+        "name": "summary-rescore.json",
+        "kind": "config",
+        "path": "scratch/summary-rescore.json",
+        "source": "derived"
+      },
+      {
+        "name": "rescore-evidence.txt",
+        "kind": "file",
+        "path": "scratch/rescore-evidence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rescore-diff.txt",
+        "kind": "file",
+        "path": "scratch/rescore-diff.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`redirectTargets` in the transcript scorer scans a whole shell command for `>`, heredoc bodies included, while `shellReadTargets` and `shellWriteTargets` strip those bodies first",
+    "created_at": "2026-11-16T05:23:43Z",
+    "last_save_at": "2026-11-16T06:12:56.547Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e3e530c586675331012889fdc63d86265b7cdd9afc19625155bbaf5225ef4522",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e9cbefb2e8bd43cd4ce91e7b74b637b8ac3ae16677a05c02f93eb6a3f4054697",
+      "plan.md": "c2d0e98840f5723c0c2a295041fbae9dd16e74e55922acb5d36b6de2eed1fd84",
+      "tasks.md": "5bac1ea4b8ad91741ed4d2dd826e8ebfd0f2f1761424fab092b0f4d85d80ef09",
+      "implementation-summary.md": "e44f223c8fa81f5f6b254bc85613c63d5db4180f1be0e858d472bd42cecc3499"
+    },
+    "last_active_at": null
+  }
+}

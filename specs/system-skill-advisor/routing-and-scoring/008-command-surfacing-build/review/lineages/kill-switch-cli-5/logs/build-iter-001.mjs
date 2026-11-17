@@ -1,0 +1,167 @@
+import fs from 'node:fs';
+
+const dir = 'specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/kill-switch-cli-5';
+const sessionId = 'fanout-kill-switch-cli-5-1794760565927-i99t40';
+const now = new Date().toISOString();
+const record = {
+  type: 'iteration',
+  iteration: 1,
+  mode: 'review',
+  target_agent: 'deep-review',
+  agent_definition_loaded: true,
+  resolved_route: 'Resolved route: mode=review target_agent=deep-review',
+  run: sessionId,
+  status: 'complete',
+  focus: 'correctness-security',
+  dimensions: ['correctness', 'security'],
+  filesReviewed: [
+    '.skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts:1-179',
+    '.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1330-1660',
+    '.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:600-655',
+    '.skilled/bin/system-skill-advisor-launcher.cjs:130-190,312-342,1536-1560',
+    '.skilled/hooks/shared/hook-flags.cjs:1-350',
+    '.skilled/hooks/shared/env-aliases.cjs:1-64',
+    '.skilled/skills/system-skill-advisor/runtime/lib/compat/daemon-probe.ts:1-70',
+    '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:210,5488-5500',
+    '.opencode/plugins/system-skill-advisor.js:200-270,360-375',
+    '.skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md:39-104'
+  ],
+  findingsCount: 0,
+  findingsSummary: { P0: 0, P1: 0, P2: 0 },
+  findingsNew: [],
+  findingDetails: [],
+  traceabilityChecks: {
+    spec_code: { status: 'pass', notes: 'Switch claims checked against the resolver and the CLI/handler call sites.' },
+    checklist_evidence: { status: 'partial', notes: 'No packet checklist row names this area; the pass-five brief is the checklist and its switch checks are covered.' },
+    skill_agent: { status: 'notApplicable', notes: 'No agent definition changed in the kill-switch-cli area.' },
+    agent_cross_runtime: { status: 'notApplicable', notes: 'No runtime mirror changed in this area.' },
+    feature_catalog_code: { status: 'pending', notes: 'Scheduled for the traceability iteration.' },
+    playbook_capability: { status: 'pending', notes: 'Scheduled for the traceability iteration.' }
+  },
+  newFindingsRatio: 0,
+  noveltyJustification: 'First pass covers the switch paths; the candidate workspace-root bypass was disproved at the CLI schema boundary, so no finding is new and none is inflated.',
+  sessionId,
+  generation: 1,
+  lineageMode: 'new',
+  timestamp: now,
+  durationMs: 420000,
+  reviewDepthSchemaVersion: 2,
+  reviewDepthApplicability: {
+    scopeClass: 'standard',
+    enforcement: 'strict',
+    reason: 'Thirteen changed files plus shared docs and tests across the CLI, daemon handler, launcher and resolver; not trivial.',
+    evidenceRefs: ['review-scope-5.txt:3-48', 'review-brief-5.txt:1']
+  },
+  targetSelection: {
+    selectedTargets: [
+      'runtime/lib/advisor-disabled.ts',
+      'runtime/skill-advisor-cli.ts',
+      'runtime/handlers/advisor-recommend.ts',
+      '.skilled/bin/system-skill-advisor-launcher.cjs',
+      '.skilled/hooks/shared/hook-flags.cjs',
+      '.skilled/hooks/shared/env-aliases.cjs',
+      'runtime/lib/compat/daemon-probe.ts',
+      'runtime/scripts/skill_advisor.py',
+      '.opencode/plugins/system-skill-advisor.js',
+      'manual-testing-playbook/compat-and-disable/global-disable-flag.md'
+    ],
+    selectionReason: 'The pass-five scope file names the kill-switch-cli files; the resolver, plugin, shim and compat probe are the switch readers that the CLI and handler depend on, read as context for reach.',
+    discoveryMethods: ['direct_read', 'exact_search', 'git_diff_range'],
+    omittedHighRiskTargets: ['runtime/lib/command-attach.ts (out of pass-five scope)', 'holdout prompt text (counts only, never opened)'],
+    graphStatus: 'unavailable',
+    semanticSearchStatus: 'unavailable',
+    evidenceRefs: ['review-scope-5.txt:4,11,24,27-29,36-37,40,43,46-48', 'review-brief-5.txt:1']
+  },
+  searchCoverage: {
+    requiredBugClasses: ['switch_bypass', 'prompt_leak', 'daemon_environment_leak', 'workspace_root_bypass'],
+    covered: ['switch_bypass', 'prompt_leak', 'daemon_environment_leak', 'workspace_root_bypass'],
+    ruledOut: ['switch_bypass', 'prompt_leak', 'daemon_environment_leak', 'workspace_root_bypass'],
+    deferred: [],
+    blocked: [],
+    graphCoverageMode: 'graphless_fallback'
+  },
+  searchLedger: [
+    {
+      id: 'SL-201',
+      dimension: 'correctness',
+      targetRefs: ['runtime/lib/advisor-disabled.ts', 'runtime/skill-advisor-cli.ts', 'runtime/handlers/advisor-recommend.ts'],
+      bugClass: 'switch_bypass',
+      hypothesis: 'A switch name or a CLI path can reach the daemon or the local scorer before the disabled decision runs.',
+      searchActions: [
+        { method: 'direct_read', queryOrPath: 'advisor-disabled.ts:85-93; skill-advisor-cli.ts:1535-1543; advisor-recommend.ts:643-646', result: 'the CLI check is the first statement in invokeAdvisorRecommendPayload; the handler check precedes computeRecommendationOutput', evidenceRefs: ['advisor-disabled.ts:85', 'skill-advisor-cli.ts:1540', 'advisor-recommend.ts:646'] },
+        { method: 'direct_read', queryOrPath: 'skill-advisor-cli-stale-daemon-retry.vitest.ts:303-317', result: 'no launcher pid and no socket are created under a switch', evidenceRefs: ['skill-advisor-cli-stale-daemon-retry.vitest.ts:303-317'] }
+      ],
+      disposition: 'ruled_out',
+      rationale: 'The switch decision runs before any daemon or scorer path, and the no-daemon test pins it.',
+      ruledOutReason: 'Both call sites check before the I/O path.'
+    },
+    {
+      id: 'SL-202',
+      dimension: 'security',
+      targetRefs: ['runtime/lib/advisor-disabled.ts'],
+      bugClass: 'prompt_leak',
+      hypothesis: 'The disabled envelope can echo the prompt through warnings or abstain reasons.',
+      searchActions: [
+        { method: 'direct_read', queryOrPath: 'advisor-disabled.ts:150-179', result: 'the envelope is built from workspaceRoot, thresholds, timestamps and the switch key', evidenceRefs: ['advisor-disabled.ts:150-179'] }
+      ],
+      disposition: 'ruled_out',
+      rationale: 'No prompt field is read or copied into the envelope.',
+      ruledOutReason: 'The builder has no prompt input.'
+    },
+    {
+      id: 'SL-203',
+      dimension: 'security',
+      targetRefs: ['.skilled/bin/system-skill-advisor-launcher.cjs'],
+      bugClass: 'daemon_environment_leak',
+      hypothesis: 'A flagged caller environment reaches the shared daemon and silences later callers.',
+      searchActions: [
+        { method: 'direct_read', queryOrPath: 'system-skill-advisor-launcher.cjs:131-189,312-342', result: 'createChildEnv is an exact-set allowlist and no switch name is in it', evidenceRefs: ['system-skill-advisor-launcher.cjs:131-189', 'system-skill-advisor-launcher.cjs:312-315'] },
+        { method: 'git_diff_range', queryOrPath: 'db14c22bb0..HEAD -- launcher.cjs', result: 'the pass-five change removed the two switch names from the allowlist', evidenceRefs: ['system-skill-advisor-launcher.cjs:156-163'] }
+      ],
+      disposition: 'ruled_out',
+      rationale: 'The filter is exact-set membership and no switch name is in the set.',
+      ruledOutReason: 'Daemon child env cannot carry a switch.'
+    },
+    {
+      id: 'SL-204',
+      dimension: 'security',
+      targetRefs: ['runtime/lib/advisor-disabled.ts', 'runtime/skill-advisor-cli.ts', 'runtime/handlers/advisor-recommend.ts'],
+      bugClass: 'workspace_root_bypass',
+      hypothesis: 'The disabled path accepts and echoes a workspaceRoot the enabled path allowlist rejects.',
+      searchActions: [
+        { method: 'direct_read', queryOrPath: 'advisor-disabled.ts:169-172; skill-advisor-cli-manifest.ts:43-64; schemas/advisor-tool-schemas.ts:285-303', result: 'the CLI schema does not admit workspaceRoot and the handler Zod-parses the allowlist before the check', evidenceRefs: ['skill-advisor-cli-manifest.ts:43-64', 'advisor-tool-schemas.ts:285-303'] }
+      ],
+      disposition: 'ruled_out',
+      rationale: 'No reachable caller supplies an unvalidated root to the disabled envelope.',
+      ruledOutReason: 'Disproved at the CLI schema and handler parse boundaries.'
+    }
+  ],
+  graphEvents: [
+    { type: 'node', id: 'dim:correctness', kind: 'DIMENSION', label: 'Correctness' },
+    { type: 'node', id: 'dim:security', kind: 'DIMENSION', label: 'Security' },
+    { type: 'node', id: 'file:advisor-disabled', kind: 'FILE', label: 'Advisor disable resolver' },
+    { type: 'node', id: 'file:cli', kind: 'FILE', label: 'Skill advisor CLI' },
+    { type: 'node', id: 'file:handler', kind: 'FILE', label: 'Advisor recommend handler' },
+    { type: 'node', id: 'file:launcher', kind: 'FILE', label: 'Skill advisor launcher' },
+    { type: 'node', id: 'ev:switch-probe', kind: 'EVIDENCE', label: 'Read-only switch probe' },
+    { type: 'node', id: 'inv:no-daemon-when-disabled', kind: 'INVARIANT', label: 'Disabled calls start no daemon' },
+    { type: 'edge', id: 'e:dim-correctness-file-advisor-disabled', source: 'dim:correctness', target: 'file:advisor-disabled', relation: 'COVERS' },
+    { type: 'edge', id: 'e:dim-security-file-advisor-disabled', source: 'dim:security', target: 'file:advisor-disabled', relation: 'COVERS' },
+    { type: 'edge', id: 'e:file-cli-in-dim-correctness', source: 'file:cli', target: 'dim:correctness', relation: 'IN_DIMENSION' },
+    { type: 'edge', id: 'e:file-handler-in-dim-correctness', source: 'file:handler', target: 'dim:correctness', relation: 'IN_DIMENSION' },
+    { type: 'edge', id: 'e:file-launcher-in-dim-security', source: 'file:launcher', target: 'dim:security', relation: 'IN_DIMENSION' },
+    { type: 'edge', id: 'e:ev-switch-probe-evidence-for-file-cli', source: 'ev:switch-probe', target: 'file:cli', relation: 'EVIDENCE_FOR' },
+    { type: 'edge', id: 'e:inv-no-daemon-in-dim-correctness', source: 'inv:no-daemon-when-disabled', target: 'dim:correctness', relation: 'IN_DIMENSION' }
+  ]
+};
+fs.writeFileSync(dir + '/iter-001.record.json', JSON.stringify(record));
+const delta = [
+  record,
+  { type: 'ruled_out', direction: 'disabled envelope bypasses the workspace allowlist', reason: 'CLI schema does not admit workspaceRoot; handler Zod-parses the allowlist first', iteration: 1 },
+  { type: 'ruled_out', direction: 'disabled envelope leaks prompt text', reason: 'builder reads no prompt field', iteration: 1 },
+  { type: 'ruled_out', direction: 'launcher forwards a switch to the daemon', reason: 'exact-set allowlist carries no switch name', iteration: 1 },
+  { type: 'ruled_out', direction: 'project flags file silences the shared daemon', reason: 'handler passes an explicit empty config and reads only its own env', iteration: 1 },
+  { type: 'classification', detail: 'D1 correctness and D2 security: no active finding; four switch-path hypotheses ruled out with file:line evidence.', iteration: 1 }
+];
+fs.writeFileSync(dir + '/deltas/iter-001.jsonl', delta.map((r) => JSON.stringify(r)).join('\n') + '\n');
+console.log(JSON.stringify({ record: dir + '/iter-001.record.json', delta: dir + '/deltas/iter-001.jsonl' }));

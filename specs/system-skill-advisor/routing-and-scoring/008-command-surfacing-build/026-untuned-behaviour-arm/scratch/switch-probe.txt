@@ -1,0 +1,14 @@
+spec-kit claude off Advisor count: none
+spec-kit claude on Advisor count: 1
+spec-kit codex off Advisor count: none
+spec-kit codex on Advisor count: 1
+spec-kit devin off Advisor count: none
+spec-kit devin on Advisor count: 1
+advisor claude (Pi imports) off Advisor count: none
+advisor claude (Pi imports) on Advisor count: 1
+direct call off disabled count: none
+direct call on disabled count: none
+opencode argv: ["run","--standalone","--model","llmgateway/deepseek-v4.1-flash-1017#max","--format","json","--auto","sample prompt for argv inspection"] 
+opencode plugin switch line: return !isHookEnabled('skill-advisor');
+dsh adapter switch line: isEnabled = isHookEnabled,
+pi import line: export const ADVISOR_HOOK_MODULE =

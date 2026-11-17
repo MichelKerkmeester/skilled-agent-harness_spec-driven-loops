@@ -12,9 +12,10 @@
 // from one that would drop a line somebody wrote. So this engine reports, per row and
 // without writing a byte, what the repository holds against the manifest.
 //
-// Three of the twelve rows are answers this engine must not invent. The delivery budget
+// Four of the twelve rows are answers this engine must not invent. The delivery budget
 // and its anchors belong to the rule-copy canary, the Cursor pointer block belongs to
-// the gate 1 sync, and the router belongs to the repo-rules checker. Each already has
+// the gate 1 sync, the router belongs to the repo-rules checker and the source
+// template's purity belongs to the manifest generator's check. Each already has
 // tests and an owner, so each is run as a child process and its own lines are carried
 // into the report; re-deriving any of them here would be a second opinion that drifts
 // from the first. The rest are pure classifiers over one read of the target tree.
@@ -635,7 +636,7 @@ function rowRuntimeCopies(context, manifest, tools) {
 
   for (const expected of manifest.runtime_copies || []) {
     const verdict = copyVerdict(expected, context, manifest, tools);
-    entries.push({ path: expected.path, kind: verdict.kind, state: verdict.state, lines: verdict.lines || [] });
+    entries.push({ path: expected.path, kind: verdict.kind, state: verdict.state, detail: verdict.detail, lines: verdict.lines || [] });
     // A copy nobody could measure is printed like a finding: a pass line with no detail
     // reads as a copy that was checked and found right.
     if (verdict.state === FINDING || verdict.state === UNKNOWN || verdict.kind === 'pointer missing') {
@@ -645,8 +646,14 @@ function rowRuntimeCopies(context, manifest, tools) {
 
   const failed = entries.filter((entry) => entry.state === FINDING);
   const unmeasured = entries.filter((entry) => entry.state === UNKNOWN);
+  // A missing pointer is a route the runtime does not have, not a copy that was checked.
+  const pointerMissing = entries.filter((entry) => entry.kind === 'pointer missing');
+  // An INFO entry was reported, never checked, so counting it as expected would call a
+  // copy right that no check ever measured.
+  const passed = entries.filter((entry) => entry.state === PASS);
+  const reported = entries.filter((entry) => entry.state === INFO && entry.kind !== 'pointer missing');
   const state = failed.length > 0 ? FINDING : (unmeasured.length > 0 ? UNKNOWN : PASS);
-  const detail = `${entries.length - failed.length - unmeasured.length}/${entries.length} copies as expected${unmeasured.length > 0 ? `, ${unmeasured.length} unmeasured` : ''}`;
+  const detail = `${passed.length}/${entries.length} copies as expected${unmeasured.length > 0 ? `, ${unmeasured.length} unmeasured` : ''}${reported.length > 0 ? `, ${reported.length} reported only` : ''}${pointerMissing.length > 0 ? `, ${pointerMissing.length} pointer missing` : ''}`;
   return row('A10', 'runtime copies', state, detail, { lines, entries });
 }
 
@@ -708,6 +715,11 @@ function copyVerdict(expected, context, manifest, tools) {
 
   if (isSymlink(target)) {
     const link = fs.readlinkSync(target);
+    // A path the checklist expects to be absent is one no runtime should load, and a link
+    // there loads the root document under that name just as a copy would.
+    if (expectsAbsent) {
+      return { state: FINDING, kind: 'symlink where none belongs', detail: `links to ${link}, where the checklist expects no file` };
+    }
     const pointsAtRoot = path.basename(link) === manifest.root_file;
     if (pointsAtRoot) return { state: PASS, kind: 'symlink', detail: `links to ${link}` };
     return { state: FINDING, kind: 'symlink elsewhere', detail: `links to ${link} instead of ${manifest.root_file}` };
@@ -729,7 +741,7 @@ function copyVerdict(expected, context, manifest, tools) {
   // else is either a copy or a copy plus local lines, and both drift: the second also
   // loses text when it is replaced, so the lines only it carries are listed.
   if (!sharesShippedLine && namesRoot) {
-    return { state: PASS, kind: 'pointer', detail: `every line names ${manifest.root_file}` };
+    return { state: PASS, kind: 'pointer', detail: `names ${manifest.root_file} and carries no shipped line` };
   }
   return { state: FINDING, kind: 'divergent copy', detail: `${unique.length} line(s) only this file carries`, lines: unique };
 }
@@ -753,12 +765,19 @@ function rowRouter(context, manifest, tools) {
 
   const text = fs.readFileSync(routerPath, 'utf8');
   const shipped = (manifest.derived && manifest.derived.repo_rules) || { trigger_rows: [], index_rows: [] };
-  const lines = [];
-  const missing = [
-    ...missingRows(shipped.trigger_rows, parseTableRows(text, 'TRIGGER TABLE'), 'trigger'),
-    ...missingRows(shipped.index_rows, parseTableRows(text, 'INDEX'), 'index'),
+  const tables = [
+    { kind: 'trigger', rows: parseTableRows(text, 'TRIGGER TABLE'), shipped: shipped.trigger_rows },
+    { kind: 'index', rows: parseTableRows(text, 'INDEX'), shipped: shipped.index_rows },
   ];
+  const lines = [];
+  const missing = tables.flatMap((table) => missingRows(table.shipped, table.rows, table.kind));
   for (const entry of missing) lines.push(`missing ${entry.kind} row for ${entry.rule}`);
+  for (const table of tables) {
+    for (const entry of table.rows) {
+      if (!entry.malformed) continue;
+      lines.push(`malformed ${table.kind} row at line ${entry.line}: ${entry.cells.length} cells where the header has ${entry.width}`);
+    }
+  }
 
   if (typeof tools.repoRules !== 'string' || !fs.existsSync(tools.repoRules)) {
     return row('A11', 'REPO RULES.md', UNKNOWN, 'present; the repo-rules checker is not installed',
@@ -776,16 +795,24 @@ function rowRouter(context, manifest, tools) {
     return row('A11', 'REPO RULES.md', UNKNOWN, 'the repo-rules checker could not run',
       { lines: [...lines, ...output.filter((line) => line.includes(REPO_RULES_TAG))] });
   }
+  // A malformed row makes this a finding with nothing missing, so the detail has to
+  // carry that count or it reads as a finding with no cause.
+  const malformedCount = lines.length - missing.length;
+  const counts = malformedCount === 0
+    ? `${missing.length} shipped row(s) missing`
+    : `${missing.length} shipped row(s) missing, ${malformedCount} malformed row(s)`;
   if (run.status !== 0) {
-    return row('A11', 'REPO RULES.md', FINDING, `${missing.length} shipped row(s) missing; the checker fails`,
+    return row('A11', 'REPO RULES.md', FINDING, `${counts}; the checker fails`,
       { lines: [...lines, summary] });
   }
   return row('A11', 'REPO RULES.md', lines.length === 0 ? PASS : FINDING,
-    `${missing.length} shipped row(s) missing; ${summary}`, { lines: [...lines, summary] });
+    `${counts}; ${summary}`, { lines: [...lines, summary] });
 }
 
 // The router's own table, read the same way the manifest's rows were derived. Comparing
-// shipped rows to the file is the only way to say which of them a consumer dropped.
+// shipped rows to the file is the only way to say which of them a consumer dropped, and a
+// row of another width is kept so the report can name the defect instead of the rule it
+// would otherwise read as missing.
 function parseTableRows(text, anchor) {
   const lines = text.split('\n');
   const start = lines.findIndex((line) => line.startsWith('#') && line.includes(anchor));
@@ -806,8 +833,7 @@ function parseTableRows(text, anchor) {
       width = cells.length;
       continue;
     }
-    if (cells.length !== width) continue;
-    rows.push(cells);
+    rows.push({ cells, line: index + 1, width, malformed: cells.length !== width });
   }
   return rows;
 }
@@ -823,7 +849,7 @@ function rulePathOf(cells) {
 }
 
 function missingRows(shipped, present, kind) {
-  const found = new Set(present.map((cells) => rulePathOf(cells) || cells.join(' | ')));
+  const found = new Set(present.map((entry) => rulePathOf(entry.cells) || entry.cells.join(' | ')));
   const missing = [];
   for (const cells of shipped) {
     const rule = rulePathOf(cells) || cells.join(' | ');

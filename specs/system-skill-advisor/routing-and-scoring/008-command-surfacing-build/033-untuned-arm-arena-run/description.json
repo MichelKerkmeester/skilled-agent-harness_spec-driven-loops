@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run",
+  "description": "Phase 33: untuned-arm-arena-run",
+  "keywords": [
+    "phase",
+    "untuned-arm-arena-run"
+  ],
+  "lastUpdated": "2026-11-16T04:12:07.496Z",
+  "specId": "033",
+  "folderSlug": "untuned-arm-arena-run",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring",
+    "008-command-surfacing-build"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "16-11-26_00-24__planned-phase-033-the-live-run-of-the-phase-026.md",
+    "16-11-26_03-30__devin-off-arm-rebased-its-arena-mid-row.md",
+    "16-11-26_05-12__ran-and-scored-the-phase-026-untuned-behaviour.md"
+  ]
+}

@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The advisor now attaches a command to a recommendation, but nothing in `AGENTS.md` says what a model does with it, so a surfaced command is a hint with no rule behind it",
     "created_at": "2026-11-12T12:27:37Z",
-    "last_save_at": "2026-11-13T03:24:53.982Z",
+    "last_save_at": "2026-11-13T21:04:30.775Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a3808a8e5455f0cc67e6c45323a5e4709c92aeec00724f0aa1d23afa0a4b3e8",
+    "source_fingerprint": "sha256:e5fe08aa7d87e83b9eaa0e6cb1756f2e201ad0d05058acb83015bfadea91965e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "88282511aaa5431d565dc6e170ce88ce2b0caf96892cdb0b0cfde173bebb3051",
+      "spec.md": "046728a4ca560697c4235edda4f46163b62dc4f9ecffb1342b66b95e3823ffed",
       "plan.md": "256bac48fd888d48ae2af9530424d88aa6a1609978068c4b5eb256481ef93d3a",
       "tasks.md": "68e083e3237ee0c6c3d36a8c9a80589b0caa708d2209839ab73a4be489dabb7d",
       "implementation-summary.md": "b0ac38a44e61d7a55dcdce4d874eff72ce9c1ca1d40b3b8cc82e78a55769de4d"
