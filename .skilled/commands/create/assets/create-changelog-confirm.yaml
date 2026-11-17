@@ -546,7 +546,7 @@ workflow:
       - |
         Generate BODY using selected format:
           COMPACT: summary paragraph + at-a-glance short bullets + Upgrade + the spec-folder line
-          EXPANDED (the layout of .skilled/changelog/skilled/v4.0.2.1.md): two to four opening parts,
+          EXPANDED (the layout of .skilled/changelog/skilled/v4.1.0.0.md): two to four opening parts,
                     each a lead sentence with short bullets + a > [!IMPORTANT] box listing every break
                     + Why This Release + a glance table of Change, What It Means and Section, in section
                     order, each Change linked to its item anchor + topical H2 sections opened by one or

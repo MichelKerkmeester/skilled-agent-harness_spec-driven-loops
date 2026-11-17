@@ -4,7 +4,7 @@
 # ---------------------------------------------------------------------------
 """Each shape rule passes at its ceiling and fails one past it.
 
-The published v4.0.2.1 release entry is the model for readability and for the
+The published v4.1.0.0 release entry is the model for readability and for the
 testing section, so it must pass every rule as it stands. A ceiling it breaks
 is the wrong ceiling.
 
@@ -18,7 +18,7 @@ from pathlib import Path
 SK_DOC = Path(__file__).resolve().parents[2]
 REPO_ROOT = Path(__file__).resolve().parents[5]
 CHECKER = SK_DOC / "sk-create-changelog" / "scripts" / "check_changelog_shape.py"
-MODEL_ENTRY = REPO_ROOT / ".skilled" / "changelog" / "skilled" / "v4.0.2.1.md"
+MODEL_ENTRY = REPO_ROOT / ".skilled" / "changelog" / "skilled" / "v4.1.0.0.md"
 
 sys.path.insert(0, str(CHECKER.parent))
 from check_changelog_shape import check_entry  # type: ignore  # noqa: E402

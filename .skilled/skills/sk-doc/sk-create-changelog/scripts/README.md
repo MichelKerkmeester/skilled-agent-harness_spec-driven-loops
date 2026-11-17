@@ -1,7 +1,7 @@
 ---
 title: "Create Changelog Scripts: shape gate and release notes builder"
 description: "A Python gate that fails a global changelog entry whose shape breaks the template's ceilings, and a builder that turns an entry into its GitHub release body."
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 # Create Changelog Scripts
@@ -53,10 +53,10 @@ The spec-position rule accepts a spec-folder line folded inside a closing `<deta
 Run from the repository root.
 
 ```bash
-python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/changelog/skilled/v4.0.2.1.md
+python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/changelog/skilled/v4.1.0.0.md
 ```
 
-Expected result: `PASS` and `SUMMARY files=1 pass=1 fail=0`, exit 0. Entries published before v4.0.2.1 predate the sentence rules and fail them.
+Expected result: `PASS` and `SUMMARY files=1 pass=1 fail=0`, exit 0. Entries published before v4.1.0.0 predate the sentence rules and fail them.
 
 The sk-doc suite covers each rule at its ceiling and one past it in `test_check_changelog_shape.py`, and the release body in `test_build_release_notes.py`:
 

@@ -144,15 +144,16 @@ A version has four parts, `MAJOR.MINOR.SERIES.PATCH`. The version is also the re
 
 ## 6. RELEASES
 
-The latest release is v4.0.2.1, Improved Chat Automation, Search & Session Handover. Its entry is [v4.0.2.1.md](.skilled/changelog/skilled/v4.0.2.1.md). The [latest release page](https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/releases/latest) always shows the newest one.
+The latest release is v4.1.0.0, Improved Chat Automation, Search & Session Handover. Its entry is [v4.1.0.0.md](.skilled/changelog/skilled/v4.1.0.0.md). The [latest release page](https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/releases/latest) always shows the newest one.
 
-The current generation has three series:
+The current generation has four series:
 
 | Series | Releases | Theme |
 | --- | --- | --- |
 | `4.0.0.x` | 4.0.0.0 to 4.0.0.16 | The foundation rebuilt: Spec Kit, deep loops and parent skills |
 | `4.0.1.x` | 4.0.1.0 | Every skill routes from its own file |
-| `4.0.2.x` | 4.0.2.0 to 4.0.2.1 | Skilled in your own project, then chat automation, search and session handover |
+| `4.0.2.x` | 4.0.2.0 | Skilled in your own project |
+| `4.1.0.x` | 4.1.0.0 | Chat automation, search and session handover |
 
 The [GitHub releases page](https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/releases) lists the earlier releases.
 
