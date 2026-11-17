@@ -205,6 +205,18 @@ function normalize(text: string, specFolder: string): string {
   return text.split(specFolder).join('<SPEC>');
 }
 
+// The lineage prompt embeds the agent persona verbatim. The persona's leaf
+// contract carries one paragraph that applies only when an iteration prompt
+// holds a FRONTIER block, which a default run never renders. That paragraph
+// alone is removed before comparison; any other persona or prompt byte still
+// has to match the baseline.
+const EXPANSIVE_ONLY_PERSONA_PARAGRAPH =
+  /\n\n\*\*Frontier proposals \(expansive depth runs only\)\.\*\*[^\n]*\n[^\n]*\nYou only propose\.[^\n]*/;
+
+function withoutExpansiveOnlyPersona(prompt: string): string {
+  return prompt.replace(EXPANSIVE_ONLY_PERSONA_PARAGRAPH, '');
+}
+
 function renderArtifacts(variant: Variant): Record<Artifact, string> {
   const specFolder = writeFixture(variant);
   const researchDir = join(specFolder, 'research');
@@ -261,7 +273,7 @@ function renderArtifacts(variant: Variant): Record<Artifact, string> {
     'dashboard.md': normalize(reduced.dashboard, specFolder),
     'next-focus.txt': normalize(nextFocus, specFolder),
     'prompt-pack.md': normalize(promptPack, specFolder),
-    'lineage-prompt.txt': lineagePrompt,
+    'lineage-prompt.txt': withoutExpansiveOnlyPersona(lineagePrompt),
     'stop-decision-config.json': `${JSON.stringify(decisionInput.config, null, 2)}\n`,
   };
 }

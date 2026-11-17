@@ -346,6 +346,45 @@ function closeNode({ artifactDir, nodeId, status, reason = null, iteration }) {
   return row;
 }
 
+// The block is computed, not written by the orchestrating model, so the slot count
+// the leaf sees is the one admission will enforce.
+function renderFrontierBlock({ artifactDir, focus }) {
+  if (typeof focus !== 'string' || focus === '') return '';
+
+  const match = /^Frontier node (\S+) /.exec(focus);
+  if (!match) return '';
+
+  const nodeId = match[1];
+  const nodes = readNodeStore(path.join(artifactDir, NODE_STORE_FILE));
+  const node = nodes.get(nodeId);
+  if (!node) return '';
+  // A closed node's block would invite proposals admission can only prune.
+  if (node.status !== 'open' && node.status !== 'active') return '';
+
+  const caps = readCaps(artifactDir);
+  const depth = Number.isFinite(node.depth) ? node.depth : 0;
+  const scope = Array.isArray(node.scope) ? node.scope.join(', ') : (node.scope || 'unscoped');
+  const slots = Math.max(0, Math.min(
+    caps.maxChildrenPerNode - countLiveChildren(nodes, nodeId),
+    caps.maxFrontierNodes - countLiveNodes(nodes),
+  ));
+
+  const lines = [
+    'FRONTIER (expansive depth)',
+    `Current node: ${nodeId} at depth ${depth} of ${caps.maxDepth}, scope ${scope}.`,
+  ];
+
+  if (depth >= caps.maxDepth) {
+    lines.push('This node is at the depth cap, so do not propose children.');
+  } else if (slots === 0) {
+    lines.push('This node has no child slots left, so do not propose children.');
+  } else {
+    lines.push(`You may append up to ${slots} \`frontier_proposal\` rows to this iteration's delta with "parentId":"${nodeId}", one per follow-up question your evidence opened inside this node. Each row needs "question", "scope" and "evidence". The admission step prunes duplicates and anything past the depth, fan-out or budget caps.`);
+  }
+
+  return `\n\n${lines.join('\n')}`;
+}
+
 // Question coverage and source diversity divide by every QUESTION node, so a
 // node that closed unanswered would hold both signals down for the rest of the
 // run. It is re-kinded to a CLAIM marked closed instead: CLAIM feeds only the
@@ -427,6 +466,7 @@ const VALUE_FLAGS = new Set([
   'status',
   'reason',
   'output',
+  'focus',
 ]);
 
 function parseArgs(argv) {
@@ -526,8 +566,9 @@ function runCli(argv) {
   const args = parseArgs(argv);
   const command = args.command;
 
-  if (command !== 'seed' && command !== 'admit' && command !== 'close' && command !== 'graph') {
-    throw new Error(`unknown command: ${command === null ? '(none)' : command}; expected seed, admit, close or graph`);
+  if (command !== 'seed' && command !== 'admit' && command !== 'close'
+    && command !== 'graph' && command !== 'block') {
+    throw new Error(`unknown command: ${command === null ? '(none)' : command}; expected seed, admit, close, graph or block`);
   }
 
   const artifactDir = requireFlag(args, 'artifactDir', 'artifact-dir');
@@ -535,6 +576,13 @@ function runCli(argv) {
   if (command === 'graph') {
     const output = requireFlag(args, 'output', 'output');
     return writeFrontierGraph({ artifactDir, output });
+  }
+
+  // The block is prompt text, so it goes to stdout verbatim rather than through
+  // the JSON envelope the record-shaped commands return.
+  if (command === 'block') {
+    process.stdout.write(renderFrontierBlock({ artifactDir, focus: requireFlag(args, 'focus', 'focus') }));
+    return undefined;
   }
 
   const iteration = parseIterationArg(args.iteration);
@@ -558,7 +606,7 @@ function runCli(argv) {
 function main(argv = process.argv.slice(2)) {
   try {
     const result = runCli(argv);
-    process.stdout.write(`${JSON.stringify(result)}\n`);
+    if (result !== undefined) process.stdout.write(`${JSON.stringify(result)}\n`);
     process.exit(0);
   } catch (error) {
     process.stderr.write(`frontier-admit: ${error instanceof Error ? error.message : String(error)}\n`);
@@ -583,6 +631,7 @@ module.exports = {
   admitProposals,
   seedNodes,
   closeNode,
+  renderFrontierBlock,
   buildFrontierGraphEvents,
   main,
 };

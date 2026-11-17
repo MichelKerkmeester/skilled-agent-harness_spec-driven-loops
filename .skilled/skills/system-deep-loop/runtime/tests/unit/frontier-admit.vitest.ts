@@ -47,6 +47,7 @@ const {
   admitProposals,
   seedNodes,
   closeNode,
+  renderFrontierBlock,
   readNodeStore,
   buildFrontierGraphEvents,
 } = require(FRONTIER_ADMIT_SCRIPT) as {
@@ -70,6 +71,7 @@ const {
     reason?: string | null;
     iteration?: number;
   }) => NodeRow;
+  renderFrontierBlock: (options: { artifactDir: string; focus: string }) => string;
   readNodeStore: (storePath: string) => Map<string, NodeRow>;
   buildFrontierGraphEvents: (nodes: Iterable<NodeRow>) => FrontierGraphEvent[];
 };
@@ -506,5 +508,59 @@ describe('frontier graph close rule', () => {
     const lines = readJsonl(outputPath);
     expect(lines).toHaveLength(1);
     expect(lines[0].kind).toBe('QUESTION');
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// 6. FRONTIER BLOCK
+// ───────────────────────────────────────────────────────────────────
+
+describe('frontier block', () => {
+  function admitOneProposal(question: string): { artifactDir: string; nodeId: string; focus: string } {
+    const artifactDir = makeArtifactDir();
+    const { admitted } = admitProposals({ artifactDir, iteration: 1, proposals: [makeProposal(question)] });
+    const nodeId = admitted[0];
+    return { artifactDir, nodeId, focus: `Frontier node ${nodeId} (depth 1, scope runtime/lib): ${question}` };
+  }
+
+  it('renders the slot count admission will enforce on the focused node', () => {
+    const { artifactDir, focus } = admitOneProposal('what does the expansively admitted probe show');
+
+    const block = renderFrontierBlock({ artifactDir, focus });
+
+    expect(block.startsWith('\n\nFRONTIER (expansive depth)\nCurrent node: F-1-001 at depth 1 of 3')).toBe(true);
+    expect(block).toContain('up to 2 `frontier_proposal` rows');
+  });
+
+  it('returns an empty block when the focus names no node', () => {
+    const artifactDir = makeArtifactDir();
+
+    expect(renderFrontierBlock({
+      artifactDir,
+      focus: 'Frontier node F-9-999 (depth 1, scope runtime/lib): a question the store never took',
+    })).toBe('');
+  });
+
+  it('returns an empty block once the focused node has closed', () => {
+    const { artifactDir, nodeId, focus } = admitOneProposal('what does the closed frontier probe show');
+    closeNode({ artifactDir, nodeId, status: 'exhausted', reason: 'budget', iteration: 2 });
+
+    expect(renderFrontierBlock({ artifactDir, focus })).toBe('');
+  });
+
+  it('the block CLI prints the same string as the function', () => {
+    const { artifactDir, focus } = admitOneProposal('what does the cli block probe show');
+
+    const result = spawnSync(process.execPath, [
+      FRONTIER_ADMIT_SCRIPT,
+      'block',
+      '--artifact-dir',
+      artifactDir,
+      '--focus',
+      focus,
+    ], { encoding: 'utf8' });
+
+    expect(result.status).toBe(0);
+    expect(String(result.stdout)).toBe(renderFrontierBlock({ artifactDir, focus }));
   });
 });
