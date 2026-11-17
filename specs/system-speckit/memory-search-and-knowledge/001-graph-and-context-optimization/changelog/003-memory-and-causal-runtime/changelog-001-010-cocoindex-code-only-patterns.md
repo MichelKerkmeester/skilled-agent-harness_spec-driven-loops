@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/010-cocoindex-code-only-patterns` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 Cocoindex's include patterns previously listed `.md`, `.mdx`, `.txt` and `.rst` alongside code extensions. On this codebase that meant 45% of the 142,237-chunk index (63,504 chunks) was markdown. The bulk of that markdown came from the 4-runtime skill mirror: the same SKILL.md content indexed four times under `.opencode/`, `.gemini/`, `.claude/` and `.codex/skills/`. Code-search queries returned near-duplicate documentation hits where actual code matches should have won.
@@ -69,3 +66,6 @@ Both the project-level `.cocoindex_code/settings.yml` and the source `DEFAULT_IN
 - Confirm Go and Rust are present in `SELECT DISTINCT language FROM code_chunks_vec` after the full rebuild settles.
 - Add `**/.{gemini,claude,codex}/skills/**` to default `exclude_patterns` to eliminate the 4-runtime skill-mirror duplication for any future indexing surface that does include markdown (separate packet).
 - Investigate why html, css and json appeared at low counts (34, 11, 6) in the pre-change index despite not being listed in `include_patterns`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/010-cocoindex-code-only-patterns` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

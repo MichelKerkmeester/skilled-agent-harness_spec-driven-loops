@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup` (Level 3)
-
 ### Summary
 
 This group tracks the post-review follow-up on the 036 deep-loop innovation packet: the code-targeted deep-review of the system-deep-loop runtime, the reconciliation of the parent's documentation and metadata drift surfaced by that review's traceability check, and two scoped remediation fixes (rollback candidate hash hardening and review containment exemption). Each child owns its own scope, plan, and verification; this parent tracks the shared theme only. Per the parent phase documentation map, all four child phases (053-056) are complete.
@@ -26,3 +24,5 @@ This group tracks the post-review follow-up on the 036 deep-loop innovation pack
 | `002-review-drift-remediation` | Reconcile the 036 parent's documentation and metadata drift that the 053 review's traceability check surfaced: incomplete `children_ids`, a stale PHASE DOCUMENTATION MAP, legacy `065` child-alias residue, and a status contradiction in `029`. |
 | `003-rollback-candidate-hash-hardening` | Enforce promoted-candidate-only rollback authority in the deep-improvement rollback path; `rollback-candidate.cjs` now requires the current target to equal the promoted candidate hash exclusively, with pre-ship rollback intentionally removed. |
 | `004-review-containment-exemption` | Exempt the runtime's own generated state (runtime/database telemetry plus `description.json`/`descriptions.json` memory-index metadata) from fatal write-containment reverts so fan-out reviews can run without the runtime's own writes failing the lineage. |
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup` (Level 3)

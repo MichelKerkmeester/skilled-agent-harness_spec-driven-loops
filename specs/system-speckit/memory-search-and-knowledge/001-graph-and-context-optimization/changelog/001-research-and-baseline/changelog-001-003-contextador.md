@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-04-06
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline`
-
 ### Summary
 
 Public already operated CocoIndex, Code Graph MCP and Spec Kit Memory but lacked a Mainframe-style shared query-result cache and a self-healing loop that patches stale context artifacts after agent failures. Contextador appeared to address both, but its headline claims (93% token reduction, self-improving knowledge, cross-agent reuse) needed verification against checked-in source rather than README marketing.
@@ -71,3 +68,6 @@ A 20-iteration cli-codex investigation read the full Contextador source tree fro
 - Bun runtime dependency. Contextador's CLI and setup wizard are Bun-native (`external/src/cli.ts:1`, `external/package.json:27-33`). Any prototype that depends on Bun-specific behavior requires runtime-stack normalization before adoption.
 - Mainframe conflict resolution gap. Mainframe uses best-effort Matrix room state writes for janitor locks and budget with no explicit reconciliation. Any Public answer-cache prototype must add conflict resolution and timestamps before broader rollout.
 - Sibling phases 002-codesight and 004-graphify are not yet complete. A track-level synthesis across all three phases under `026-graph-and-context-optimization/` is the natural next step once siblings finish their own research packets.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline`

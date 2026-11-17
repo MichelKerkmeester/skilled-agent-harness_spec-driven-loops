@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/007-code-graph-p1-config-extraction`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`
-
 ### Summary
 
 Code-graph had five hardcoded constants scattered across separate consumer files with no env-var overrides. `owner-lease.ts` held `DEFAULT_TTL_MS=60000`. `structural-indexer.ts` held `FIND_FILES_MAX_DEPTH=20`. `apply-orchestrator.ts` held `DEFAULT_QUARANTINE_AGE_DAYS=14`. `budget-allocator.ts` and `indexer-types.ts` each held frozen object constants (`DEFAULT_FLOORS`, `DEFAULT_EDGE_WEIGHTS`). Operators had no mechanism to tune any of these at runtime, which was flagged as 6 P1 audit findings.
@@ -77,3 +74,6 @@ A new `config-defaults.ts` module was shipped with a single `CODE_GRAPH_DEFAULTS
 - Confirm that `DEFAULT_FLOORS` and `DEFAULT_EDGE_WEIGHTS` named exports continue to satisfy all downstream callers after the indirect assignment via `CODE_GRAPH_DEFAULTS`.
 - Ten P2 audit findings were effectively closed by the consolidation pattern but were not individually documented. A follow-on pass should record the closure evidence for each P2 finding.
 - Pre-existing `TS6307` errors in `system-code-graph`'s own `tsc` (cross-project reference to `system-spec-kit/shared/embeddings/registry.ts` introduced in phase 005) are unrelated to this phase and do not affect `typecheck:root` or runtime behavior.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/007-code-graph-p1-config-extraction`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

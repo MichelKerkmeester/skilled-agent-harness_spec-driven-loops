@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 Phase 002/008 made a malformed vector shard detectable and rebuildable, but the "this shard needs repair" intent lived only in memory. A restart before the rebuild finished lost that intent, and the next boot attached a fresh empty shard while health still reported success — permanent recall loss with nothing flagged. This phase made the repair durable. A repair-pending sentinel is persisted at quarantine, and boot uses a completeness check — the vector rowcount against the `memory_index` success count, not a file-exists probe that returns OK for a missing shard — to decide between resuming a real repair and clearing a stale sentinel on an already-rebuilt shard. The quarantine rename is itself a durable marker, so repair resumes even when no sentinel write could land. An in-flight guard stops a double boot-attach from scheduling the same rebuild twice.
@@ -60,3 +57,6 @@ Phase 002/008 made a malformed vector shard detectable and rebuildable, but the 
 ### Follow-Ups
 
 - Live adoption requires a dist rebuild plus daemon recycle (operator-gated). The behavior is otherwise inert until then.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

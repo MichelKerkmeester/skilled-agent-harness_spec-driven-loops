@@ -8,8 +8,6 @@
 
 Built the complete evaluator-first MVP for bounded agent improvement. The phase delivered proposal-only execution with an append-only ledger, deterministic prompt-surface scoring, guarded promotion with rollback, and mirror-drift detection. The handover agent was chosen as the first target because it has the narrowest structured prompt and artifact contract already present in the repo.
 
-> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/001-sk-recursive-agent-mvp/`
-
 ---
 
 ## New Features (6)
@@ -89,3 +87,5 @@ Built the complete evaluator-first MVP for bounded agent improvement. The phase 
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/001-sk-recursive-agent-mvp/`

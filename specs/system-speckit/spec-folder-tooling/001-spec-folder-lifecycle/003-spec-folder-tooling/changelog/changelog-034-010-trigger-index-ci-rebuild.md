@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-10
 
-> Spec folder: `specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild` (Level 1)
-> Parent packet: `specs/system-speckit/034-spec-folder-tooling`
-
 ### Summary
 
 A push that leaves the committed trigger index stale is now repaired by CI instead of merged with a warning. The new job regenerates the index and commits it when it changed, so agents stop searching an index that misses the newest packets.
@@ -65,3 +62,6 @@ A push that leaves the committed trigger index stale is now repaired by CI inste
 - The first committing run had no --check. Run 37704306595 pushed 2d2c8fcd55 before f0ea65aeef added the in-job --check. The --check result for the current head is in run 37986342243 (scratch/evidence/ci-bot-commit-proof.txt section 4).
 - The working tree holds uncommitted workflow edits. At recording time the working copy of trigger-index-rebuild.yml differed from HEAD by 116 changed lines. CI has not run those edits. This phase's live evidence covers the committed version.
 - The changelog entry is written. The Phase Context asked for a refresh of this phase's changelog file. The entry is ../changelog/changelog-034-010-trigger-index-ci-rebuild.md in the parent's changelog folder, and the nested changelog generator wrote it from this packet.
+
+> Spec folder: `specs/system-speckit/034-spec-folder-tooling/010-trigger-index-ci-rebuild` (Level 1)
+> Parent packet: `specs/system-speckit/034-spec-folder-tooling`

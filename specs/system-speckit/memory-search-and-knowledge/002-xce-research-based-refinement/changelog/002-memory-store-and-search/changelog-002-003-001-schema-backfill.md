@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback`
-
 ### Summary
 
 The semantic trigger fallback required a storage substrate before any matching logic could ship. This leaf adds a `memory_trigger_embeddings` derived table to `vector-index-schema.ts`, reuses the existing `embedding_cache` BLOB store for actual vectors, and wires a resumable per-memory backfill helper into `memory-index.ts`. Schema version advances from 33 to 34 via an additive migration.
@@ -67,3 +64,6 @@ The save-time hook and runtime matcher are intentionally out of scope. Default-o
 
 - The save-time hook (populating trigger embeddings on memory write) was deferred outside this leaf's approved write scope. It remains unimplemented until a later phase needs it.
 - The semantic matcher, hybrid handler behavior, and shadow/promotion evaluation are for child phases 002 through 004.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback`

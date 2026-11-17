@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality`
-
 ### Summary
 
 Benchmark evidence from two spec-packet bake-offs lived exclusively inside the `specs/` tree, making it hard to answer "what embedder does this MCP use and why?" from within the MCP skill folder. There was no convention for skill-local benchmark discoverability and no shared format for structured benchmark reports.
@@ -72,3 +69,6 @@ None.
 - Consolidate FORMAT.md mechanics into sk-doc as a single `benchmark_creation.md` reference and replace legacy `FORMAT.md` symlinks. (Completed in packet 006-benchmark-format-to-sk-doc.)
 - Add benchmarks for mk-skill-advisor once that MCP has benchmark data to promote.
 - Write a `promote-benchmark.sh` helper to automate the CSV copy and benchmark_report.md scaffold step for future runs.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality`

@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/002-fanout-leaf-identity-conflation` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`
-
 ### Summary
 
 The shared fan-out prompt builder (`buildLoopPrompt`) told dispatched CLI subprocesses "you are a {agentName} agent" and instructed them to run the full multi-iteration loop (`phase_init`, `phase_main_loop`, `phase_synthesis`), contradicting the LEAF-agent contract that requires exactly one iteration and forbids full-loop requests. Fixed a prior codex deep-review finding (F003), covering all 3 loop types (context/research/review) from one shared-function edit.
@@ -48,3 +45,6 @@ The shared fan-out prompt builder (`buildLoopPrompt`) told dispatched CLI subpro
 ### Follow-Ups
 
 - None. This finding was fully closed by this child.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/002-fanout-leaf-identity-conflation` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`

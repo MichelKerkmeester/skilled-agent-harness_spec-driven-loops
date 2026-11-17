@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`
-
 ### Summary
 
 The final phase of embedding-stack hardening shipped socket perimeter guards, default-off idle eviction, a real-process live integration test, a dtype benchmark harness, and staged deprecated-code cleanup. The advisor flag flip and live performance numbers remain gated on a working onnxruntime tree in this checkout. Runnable test and benchmark artifacts ship now so the gate is explicit and the one-line flip recipe is documented.
@@ -69,3 +66,6 @@ The final phase of embedding-stack hardening shipped socket perimeter guards, de
 - The flag flip, the dtype decision, and live performance and recall numbers are gated on repairing the `onnxruntime-common` dependency tree so a loadable model is available. Runnable test and benchmark artifacts ship now.
 - Cache-into-reindex remains deferred pending resolution of a reindex-versus-query normalization divergence. The cache cannot hit in production until reindex keys and embeddings use the same normalized content that the query path uses.
 - Reindex-versus-query normalization divergence (pre-existing, surfaced by the review) needs its own follow-up packet. It also affects search-vector consistency beyond the cache.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`

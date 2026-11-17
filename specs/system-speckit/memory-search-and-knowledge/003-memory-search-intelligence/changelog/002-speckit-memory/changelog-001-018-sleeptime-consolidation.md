@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 This phase shipped the safe core for off-turn sleep-time consolidation behind default-off flags. The bounded tool-rule governor and a shadow agent scaffold are delivered, while the synchronous save path stays unchanged. Off-turn dispatch, live archival writes and benchmark promotion remain pending. The packet stays default-off, shadow-first and governor-first because it mutates archival memory outside the foreground turn. Commit `508af65780` carried the governor and scaffold with a passing governor test.
@@ -53,3 +50,6 @@ _No fixes recorded._
 - Build the governor before the off-turn agent.
 - Keep the default state shadow or dry-run.
 - Validate idempotency against the consolidation cursor and clock host before write-mode promotion.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

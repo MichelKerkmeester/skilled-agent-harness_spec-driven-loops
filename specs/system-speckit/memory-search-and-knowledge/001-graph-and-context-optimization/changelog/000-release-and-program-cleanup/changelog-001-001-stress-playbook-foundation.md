@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/001-stress-playbook-foundation` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`
-
 ### Summary
 
 A root packet plus two nested sub-phases that together form a reproducible cross-AI stress-test playbook for the system-spec-kit Search/Query/Intelligence surfaces. The playbook dispatches a fixed 9-scenario corpus through cli-codex, and cli-opencode and scores outcomes against a 5-dimension rubric.
@@ -66,3 +63,6 @@ A root packet plus two nested sub-phases that together form a reproducible cross
 - Run strict validation on the root packet and both sub-phase folders.
 - Verify cross-references from scenario design to sibling defect packet requirement IDs.
 - Run bash -n syntax checks on dispatch scripts.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/001-stress-playbook-foundation` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`

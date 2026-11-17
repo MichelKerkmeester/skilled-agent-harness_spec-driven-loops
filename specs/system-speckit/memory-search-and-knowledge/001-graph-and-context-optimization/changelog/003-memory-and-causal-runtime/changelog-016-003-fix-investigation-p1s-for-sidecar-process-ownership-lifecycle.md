@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle`
-
 ### Summary
 
 The sidecar lifecycle had two P1 findings from arc 010 deep-research: F79, where `terminateChild` used a convoluted dual-promise pattern with an IIFE, an immediate `await` plus `try/finally` block and a `sleep(0)` event-loop yield hack; and F88, where `processLiveness` silently defaulted unknown `process.kill` error codes to `alive=true` with no operator visibility. Both findings were closed in commit `ef1e78669b`. F79 collapses the lifecycle to a single Promise gated on `child.once('exit', ...)` with internal SIGTERM-sent and SIGKILL-sent state, removing the `sleep(0)` hack and the unused `sleep()` helper while preserving the full SIGTERM, grace window, SIGKILL, process-group kill sequence. F88 adds explicit `ESRCH` and `EPERM` case handling, changes the return type to a structured `{ alive, reason, errorCode? }` object and logs unexpected error codes to stderr so operators see them. Together these two fixes make sidecar reuse and termination semantics unambiguous and fully tested.
@@ -63,3 +60,6 @@ The sidecar lifecycle had two P1 findings from arc 010 deep-research: F79, where
 
 - Python implementation in `sidecar_ledger.py` still uses a string-based `process_liveness` return type and silent default-alive behavior. This parity gap is tracked for phase 004.
 - Monitor operator stderr output for unexpected `processLiveness` error codes to confirm the fail-open default-alive policy is appropriate in production.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle`

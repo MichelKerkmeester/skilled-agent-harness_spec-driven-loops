@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/005-skill-reference-asset-doc-alignment` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
-
 ### Summary
 
 The system-spec-kit skill documentation surface had stale references to deleted scripts, old template folder names, and a retired architecture label from earlier cleanup rounds. It also omitted newly shipped validation and workflow features introduced in packets 003 and 004. An audit covered 39 Markdown files across the skill entry document (SKILL.md), references directory, and assets directory. The audit updated 19 files to replace stale references with current manifest-backed template and validation paths and to document newly available features where those topics naturally belong.
@@ -65,3 +62,6 @@ The system-spec-kit skill documentation surface had stale references to deleted 
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/005-skill-reference-asset-doc-alignment` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

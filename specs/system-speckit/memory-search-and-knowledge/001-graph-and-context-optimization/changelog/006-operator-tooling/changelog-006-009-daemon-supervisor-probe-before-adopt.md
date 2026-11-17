@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/009-daemon-supervisor-probe-before-adopt` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`
-
 ### Summary
 
 The spec-memory daemon supervisor used to decide a released daemon was healthy from two cheap checks — the pid is alive (process.kill(pid,0)) and a socket file exists on disk. A daemon whose event loop is wedged passes both: it is still "alive" and still owns its listening socket, but it never services a request. The launcher would adopt it "instead of reaping" and bridge every client into a dead end, so memory_* calls returned ECONNREFUSED with no path to recovery — exactly the failure that pinned a real daemon at 120% CPU for four hours while every call failed. The supervisor can now tell the difference.
@@ -57,3 +54,6 @@ The spec-memory daemon supervisor used to decide a released daemon was healthy f
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/009-daemon-supervisor-probe-before-adopt` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`

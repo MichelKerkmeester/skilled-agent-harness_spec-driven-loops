@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/008-chunking-strategy-tuning`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`
-
 ### Summary
 
 The cocoindex pipeline hard-coded CHUNK_SIZE=1000 and CHUNK_OVERLAP=150 with no runtime override path. At 741-char average chunk size the corpus was well below the 512-1024 token optimum confirmed by Wu et al. 2026 and NVIDIA 2024. Operators had no way to tune chunking without editing source.
@@ -72,3 +69,6 @@ Note: The `mcp-coco-index` skill was subsequently removed in a later packet (`ch
 - Run the 18-pair fixture reindex benchmark with Stage A defaults to measure actual hit-rate lift before deciding on Stage B.
 - Implement Stage B (CHUNK_SIZE 2000, per-language overrides TS=2000, MD=800, Python=1500) if Stage A benchmark confirms the estimated lift.
 - Evaluate cAST/tree-sitter integration in a follow-on packet once Stage A lift is validated.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/008-chunking-strategy-tuning`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

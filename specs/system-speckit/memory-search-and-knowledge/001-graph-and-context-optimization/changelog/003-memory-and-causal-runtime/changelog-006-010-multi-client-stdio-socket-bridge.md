@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/010-multi-client-stdio-socket-bridge` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`
-
 ### Summary
 
 The 006 arc made each MCP launcher a strict-single-writer, protecting SQLite from concurrent writes. A side effect was that any second MCP host session hit `LEASE_HELD_BY:<pid>` and an immediate launcher exit, which the host interpreted as a JSON-RPC `-32000` error and a failed tool connection.
@@ -75,3 +72,6 @@ All three MCP launchers have bridge mode. Daemon-side socket listener support sh
 
 - Run a live Unix-socket probe on a host that permits `net.listen()` to confirm socket lifecycle, secondary client attach and `SIGTERM` cleanup behavior end-to-end.
 - Scope a follow-up packet to add daemon-side IPC socket listeners for `system-code-index` and `system-skill-advisor` so those services gain full multi-client concurrency parity with spec-memory.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/010-multi-client-stdio-socket-bridge` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

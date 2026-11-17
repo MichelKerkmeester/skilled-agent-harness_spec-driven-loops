@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/006-cocoindex-remove-cancel-and-index-lifecycle` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`
-
 ### Summary
 
 The code-index audit found that `remove_project()` could close resources while active indexing was still running. Index operations lacked a real protocol cancel surface. Background indexing tasks were unowned or weakly reported, making teardown unsafe.
@@ -88,3 +85,6 @@ Phase 006 introduced a `lifecycle/` package with three new modules: `ActiveWorkR
 - Cancellation is cooperative. If the underlying CocoIndex update call does not yield from `handle.watch()`, cancellation is acknowledged at the next watch iteration rather than by terminating work in-place.
 - Future index producers added to the daemon must opt into `DaemonTaskRegistry` explicitly. The registry does not auto-discover new spawn sites.
 - Full existing pytest coverage could not be run in this sandbox. Once a Python 3.11 environment with project dependencies is available, run the full suite to confirm no regressions.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/006-cocoindex-remove-cancel-and-index-lifecycle` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

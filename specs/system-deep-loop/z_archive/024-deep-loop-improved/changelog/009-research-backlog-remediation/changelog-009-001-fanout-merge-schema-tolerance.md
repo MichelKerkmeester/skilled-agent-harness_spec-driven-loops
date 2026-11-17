@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/001-fanout-merge-schema-tolerance` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`
-
 ### Summary
 
 The fan-out merge script silently dropped an entire lineage's findings whenever its registry used a non-canonical schema key. A tolerant normalizer now coerces known key aliases before merging and logs a structured warning instead of a silent skip.
@@ -48,3 +45,6 @@ The fan-out merge script silently dropped an entire lineage's findings whenever 
 ### Follow-Ups
 
 - The research-side counterpart for a fully missing registry file (not just a schema mismatch) was tracked separately and shipped later in this same phase as `009/011`'s `reconstructResearchRegistryFromState`.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/001-fanout-merge-schema-tolerance` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

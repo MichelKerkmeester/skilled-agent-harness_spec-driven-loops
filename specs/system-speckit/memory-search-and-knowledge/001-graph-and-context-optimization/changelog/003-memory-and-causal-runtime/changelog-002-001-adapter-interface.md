@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/001-adapter-interface` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`
-
 ### Summary
 
 The mk-spec-memory MCP server had no abstraction over its embedding backend. Every call site referenced the Ollama HTTP endpoint directly, making it impossible to swap or test alternative models without touching scattered search code. Phase 016/001 defined the foundational contract: an `EmbedderAdapter` TypeScript interface with four manifest properties and two methods, a `BackendKind` union covering four backend families and an `EmbedderRegistry` holding six frozen manifests covering the initial candidate model set. No runtime wiring shipped in this phase, keeping the deliverable to pure types that downstream phases can implement against without breaking changes. A 10-test vitest battery locked the registry lookup contract from day one.
@@ -64,3 +61,6 @@ The mk-spec-memory MCP server had no abstraction over its embedding backend. Eve
 - Implement the concrete Ollama adapter against the `EmbedderAdapter` interface in phase 016/002.
 - Extend the registry with dimension-tagged vector schema selection once phase 016/002 ships.
 - Backfill `implementation-summary.md` with actual shipped state to retire the pre-execution stub.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/001-adapter-interface` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

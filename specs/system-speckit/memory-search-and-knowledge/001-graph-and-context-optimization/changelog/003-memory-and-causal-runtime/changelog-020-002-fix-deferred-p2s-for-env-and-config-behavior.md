@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/002-fix-deferred-p2s-for-env-and-config-behavior` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes`
-
 ### Summary
 
 Four deferred P2 findings in the rerank sidecar env/config surface were left open after the main P1 remediation arc. F17 allowed malformed config values to enter the canonical hash silently. F16 and F40 reported allowlist drift between the launcher and the in-process sidecar client, enabling disallowed env vars to leak into child processes. F46 left the `SPECKIT_*` and `RERANK_*` prefix overlap behavior undocumented and untested.
@@ -71,3 +68,6 @@ All four findings were closed in a single commit. Config-hash input validation n
 
 - Files `ensure-rerank-sidecar.cjs` and `sidecar-client.ts` were later removed when the sidecar execution path was retired in a subsequent packet. Confirm the shared allowlist helper (`sidecar-env-allowlist.cjs`) is still referenced or also remove it.
 - Verify that the findings (F17, F16, F40, F46) are marked closed in the parent finding registry at `../../015-deep-research-drift-and-simplification/research/findings-registry.json`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/002-fix-deferred-p2s-for-env-and-config-behavior` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes`

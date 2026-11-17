@@ -13,9 +13,6 @@ contextType: "implementation"
 
 ## 2026-04-26
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`
-
 ### Summary
 
 The execution harness for the parent stress-test playbook. Defines the four-stage workflow (pre-flight, dispatch, manual scoring, findings aggregation) with idempotent run-folder layout so re-runs with --skip-existing resume mid-sweep without losing prior cells. The first full sweep ran 27 base cells (9 scenarios by 3 CLIs) plus 3 cli-opencode --pure ablation cells in 43 minutes wall-clock with zero dispatch failures. All 30 cells scored against the 001 rubric and synthesized into findings.md with per-CLI averages, top wins per CLI, top failures per CLI, cross-references to 005 defect REQs, and recommendations. The synthesis surfaces one net-new defect class (model-side hallucination on weak retrieval signal) that was not in 005's REQ-001..017.
@@ -71,3 +68,6 @@ The execution harness for the parent stress-test playbook. Defines the four-stag
 - Re-run the sweep after the 005 Cluster 1-3 P0 fixes go live in the running daemon (dist rebuild plus daemon restart). The current sweep measured the pre-fix runtime
 - Calibrate latency thresholds based on the observed distribution. Zero cells scored above 0 on latency in this sweep
 - If signal at N=1 proves noisy across multiple sweeps, expand to N=3 per cell per parent REQ-009
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook`

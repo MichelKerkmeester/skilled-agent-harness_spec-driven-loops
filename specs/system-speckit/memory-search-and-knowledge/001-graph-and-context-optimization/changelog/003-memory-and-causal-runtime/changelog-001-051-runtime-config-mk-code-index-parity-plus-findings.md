@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/051-runtime-config-mk-code-index-parity-plus-findings` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 After the code-graph server was renamed to `mk-code-index`, three runtime client configs still carried the legacy `system_code_graph` server key and old launcher path. Operators using OpenCode, Codex or Gemini runtimes would attempt to connect through stale config identity that no longer matched the live launcher. Two deep-review reports (017 and 048) also carried open finding ledgers with no recorded remediation or deferral.
@@ -83,3 +80,6 @@ Work landed in two commits on 2026-05-14: `2ad7f79fa` for config parity and `b74
 - Pre-existing dirty runtime state (launcher timestamp JSON and search-decision logs) was not staged. Future commits should clarify which generated state files are intentional.
 - Broad 048 P2 clusters deferred to `049-shared-daemon-runner-hardening` (safe argument parser, env allowlist, stderr opt-out, result aggregation, runner phase extraction) and `050-shared-daemon-test-hygiene` (broaden helper tests, resolve deep relative import strategy).
 - Deferred 017 findings (F006/F011/F017) are tracked under `017-system-code-graph-architecture-and-artifact-policy` for architecture artifact policy and source-map path normalization.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/051-runtime-config-mk-code-index-parity-plus-findings` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

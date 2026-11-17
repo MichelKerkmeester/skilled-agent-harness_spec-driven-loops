@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence` (Phase Parent)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 After phase `015` fixed the dominant retrieval miscalibration (the request-quality gate read RRF fusion scores against cosine-scale thresholds, so a genuinely relevant search could never read citable), the `016` deep-research surfaced the remaining gaps. This packet implemented them across seven phase children, each fresh-agent built and independently verified. Five phases tune retrieval and scoring: token-budget truncation no longer hides results, a strong top hit earns citable on its own, short generic queries escalate for recall, per-result confidence lets relevance dominate (with opt-in isotonic calibration staged off), and the rendered head is reordered by absolute cosine relevance. Two phases fix the `/memory:search` command contract: deterministic arg handling stops weak models dropping the query, and output surface-parity makes every model render one score, one scale and one name. The fifth research problem, tuning how FSRS ranks cold and deprecated tiers, is a deliberate no-change: phase `015` already admits cold rows into the lexical, trigger and vector lanes, and FSRS already supplies the decay that ranks them, so there is nothing to tune. A cross-encoder reranker was excluded per the operator decision.
@@ -52,3 +49,6 @@ The fifth research problem is not a phase. Phase `015` already admits cold and d
 - The deferred corpus reindex before the generic-query recall lift can be measured.
 - A real labeled set before enabling the opt-in confidence calibration.
 - The live cross-model A/B render and execute-rate confirmation for the two command-contract phases.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence` (Phase Parent)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

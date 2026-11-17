@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/002-advisor-plugin-hardening` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening`
-
 ### Summary
 
 The skill-advisor plugin held all runtime state at module scope, risking cross-instance contamination in multi-workspace scenarios. Concurrent identical cache misses spawned duplicate bridge subprocesses with no deduplication. Prompt payloads, advisor briefs, and cache entries had no size bounds, exposing the system to unbounded memory growth from adversarial input. This phase refactored all plugin state into per-instance closures, added in-flight request deduplication, and introduced configurable caps with LRU eviction.
@@ -61,3 +58,6 @@ The skill-advisor plugin held all runtime state at module scope, risking cross-i
 
 - This packet does not address the unrelated copilot-hook-wiring.vitest.ts mismatch deferred from packet 007.
 - If maxPromptBytes is configured below the fixed JSON metadata overhead, the prompt is clamped to an empty string while the metadata payload may still exceed that unrealistically small cap.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/002-advisor-plugin-hardening` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening`

@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/010-documentation-truth-audit` (Level 2)
-
 ### Summary
 
 Phase 010 dispatched a genuine 10-iteration deep-review to `openai/gpt-5.5-fast` checking whether the public root README and the project's agent-instruction files had drifted from everything packet 030 shipped across phases 001 through 009. The review found 0 P0, 4 P1 and 1 P2 finding. All five were fixed.
@@ -68,3 +66,5 @@ The public-facing documentation now matches what the packet actually shipped. `A
 ### Follow-Ups
 
 - None. All findings this phase surfaced were in-scope and resolved.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/010-documentation-truth-audit` (Level 2)

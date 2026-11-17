@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/009-learning-feedback-loop-repair/` (Level 2)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`
-
 ### Summary
 
 The memory learning loop had sixteen ways to learn the wrong thing and this phase closes all of them. Cache-hit access tracking updates access metadata on the cached search path when a caller opts in, with the production default off. FSRS `last_review` is written in one ISO-8601 UTC format everywhere. The learned-term cap ignores expired terms so a memory whose eight terms are all stale can still learn. Batch learning aggregates in SQL, treats a `query_reformulated` signal as negative and is idempotent. Auto-promotion gained demotion with hysteresis, a per-memory throttle and batched negative-count fetches. All seven feedback ledgers gained age-based sweeps that are dry-run by default and never delete inside an active shadow window. Two new gated `/memory:manage` maintenance tools were added. Shipped in `7b4c721f43`.
@@ -66,3 +63,6 @@ The memory learning loop had sixteen ways to learn the wrong thing and this phas
 - `trackAccess` production enablement is a deferred operator decision. Assess it against the phase 010 hot-path latency budget before enabling.
 - The MCP tool surface grew by two, so any doc stating a fixed tool count is stale. Phase 012 does the doc-alignment.
 - Code effects apply on the next daemon-lease restart. No live data was migrated.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/009-learning-feedback-loop-repair/` (Level 2)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

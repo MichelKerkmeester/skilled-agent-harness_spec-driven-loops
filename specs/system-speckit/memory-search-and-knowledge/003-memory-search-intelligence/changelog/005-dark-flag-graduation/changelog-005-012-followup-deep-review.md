@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/008-followup-deep-review` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`
-
 ### Summary
 
 An opus deep review ran ten iterative passes loop-until-dry over the 010 graduation follow-ups and returned a FAIL verdict: three P0 blockers in the code-graph bitemporal wiring, eight P1 conditional blockers and four P2 advisories. All three P0 were in the live-read and reindex paths, not reachable by the prior cli test pass. The fixes resolved every P0 and P1, each behind its existing default-off flag and confirmed byte-identical when the flag is off. A first re-review cleared the FAIL to PASS at zero P0 and zero P1. A second batch of seven recs and follow-ups then shipped, and a third re-review confirmed zero findings of any severity. The bitemporal cluster moved from a false graduate to genuinely working.
@@ -75,3 +72,6 @@ An opus deep review ran ten iterative passes loop-until-dry over the 010 graduat
 - Flipping any of the involved production defaults on stays a separate evidence-gated decision outside this packet.
 - The `code_graph_context` multi-hop traversal remains live-only. As-of traversal was deliberately deferred.
 - Unbounded history growth under the bitemporal flag (many generations of closed edges) is out of scope while the flag stays off.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/008-followup-deep-review` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-27
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring` (Level 2)
-
 ### Summary
 
 > Phase-parent note: This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
@@ -70,3 +68,5 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring` (Level 2)

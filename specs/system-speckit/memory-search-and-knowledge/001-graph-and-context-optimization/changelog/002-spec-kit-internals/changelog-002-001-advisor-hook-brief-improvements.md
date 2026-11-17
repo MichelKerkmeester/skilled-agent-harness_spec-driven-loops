@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`
-
 ### Summary
 
 The skill-advisor runtime had a fragmented threshold contract across OpenCode and Codex paths, with no durable path for hook diagnostics to survive process boundaries. This phase unified the threshold and rendering invariants for both runtimes, wired public `advisor_recommend` and `advisor_validate` onto explicit `workspaceRoot` and effective-state outputs, and published a bounded JSONL sink for prompt-safe diagnostics that validator analysis can read across processes. Verification passed on the focused Vitest suites, direct hook smokes, and cross-consistency greps. The full package build remains blocked by unrelated pre-existing TypeScript errors outside this scope.
@@ -80,3 +77,6 @@ The skill-advisor runtime had a fragmented threshold contract across OpenCode an
 ### Follow-Ups
 
 - Full package build remains blocked by pre-existing TypeScript errors in `hooks/claude/hook-state.ts`, `lib/context/shared-payload.ts`, and `code-graph/lib/code-graph-context.ts` outside this packet scope. Resolution is outside the scope lock for this packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`

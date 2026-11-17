@@ -2,8 +2,6 @@
 
 This release matters because it makes the MCP server package honest and predictable during the move to ESM (the modern JavaScript module system). The work updated the public entrypoints, aligned the build output, replaced fragile local and cross-package imports, kept the few remaining late-bound loaders explicit, and verified the built package before handoff to the next phase. The result is a package that builds as native ESM, starts cleanly, and gives library and command-line users a clearer contract.
 
-> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/002-mcp-server-esm-migration` (Level 1)
-
 ---
 
 ## Architecture (6)
@@ -132,3 +130,5 @@ No phase documentation files were part of the original migration deliverable. Th
 No migration required.
 
 This change stays inside `@spec-kit/mcp-server`, so downstream consumers do not need to rewrite their own imports for this phase. If the package is run directly, use Node.js 20.11.0 or newer so the supported runtime behavior matches the package contract.
+
+> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/002-mcp-server-esm-migration` (Level 1)

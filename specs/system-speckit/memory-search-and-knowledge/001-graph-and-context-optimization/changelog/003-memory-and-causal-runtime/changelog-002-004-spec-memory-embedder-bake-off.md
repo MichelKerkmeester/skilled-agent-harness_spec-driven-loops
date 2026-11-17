@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`
-
 ### Summary
 
 mk-spec-memory had one outstanding retrieval failure blocking packet 008 closure: cat-24/409 (LLM-made-memory recall) could not reach the 8/10 top-3 threshold. The entry hypothesis was a targeted swap to mxbai-embed-large-v1, but the swap failed immediately due to a provider-tag mapping defect and then a context-length limit. The packet expanded into a 6-candidate bake-off covering mxbai, jina-embeddings-v3, nomic-embed-text-v1.5, bge-m3, snowflake-arctic-embed-l-v2.0 plus the gemma-300m baseline. No pure dense swap closed 409. A retrieval-rescue layer (trigger-lane hardening plus sibling/backfill injection) shipped as ADR-010 and was flipped default-on per ADR-011, lifting Nomic to 8/10 and Jina v3 to 9/10 top-3. ADR-012 selects jina-embeddings-v3 plus rescue as production default, closing packet 008 at 51/51 FAILs resolved.
@@ -88,3 +85,6 @@ mk-spec-memory had one outstanding retrieval failure blocking packet 008 closure
 - cat-24/409 reaches the required threshold (8/10 under Nomic, 9/10 under Jina v3) but remaining misses are `7639` duplicate/root-lineage displacement and `13310` weak-trigger stress-test task recall.
 - The 20-scenario PASS sample was preserved through a guarded regression proxy. A full manual replay of all 20 playbook scenarios remains a follow-on verification task.
 - ADR-012 ratification (jina-v3 vs gemma vs nomic with rescue) ran as a parallel codex dispatch and confirmed jina-v3 plus rescue as the production default. The comparison JSONL is in `evidence/embedder-comparison-with-rescue.jsonl`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

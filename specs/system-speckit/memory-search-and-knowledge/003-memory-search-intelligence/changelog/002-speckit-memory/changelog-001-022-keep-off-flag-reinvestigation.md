@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-20
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence`
-
 ### Summary
 
 This milestone is the flag-resolution reckoning that closed the keep-off experiment after the build program and the four-round deep review. The criterion-4 benchmark had concluded that no default-off flag earned a flip, so every 028 flag that benchmarked keep-off was first reinvestigated for a path to useful, then simulated under a fair real-world load with claude2 and gpt-5.5 as the live signal, and finally given a per-flag keep-or-delete decision behind a fresh-Opus gate. The reckoning ended the path-to-useful framing. Where the connection to live data was made and the metric still did not move, the flag was deleted along with its code rather than left dormant. The final tally is keep 5 default-on and delete 10. A three-round deep review validated the disposition and caught an off-arm measurement bug that would have read every flip as a win.
@@ -67,3 +64,6 @@ This milestone is the flag-resolution reckoning that closed the keep-off experim
 
 - Add the coupling guard on the kept calibration pair so `absolute_relevance_calibration=false` with `confidence_calibration=true` degrades to identity rather than silently mis-calibrating.
 - Track the within-noise graph-channel harm on the separate pre-028 graph flags `useGraph`, `SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST` as a follow-up out of 028 scope. `SPECKIT_TEMPORAL_EDGES` stays default-on for its prod-path displacement protection, the graph-additive reorder that protects the truncated prod top-3, so the harm does not belong to it.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence`

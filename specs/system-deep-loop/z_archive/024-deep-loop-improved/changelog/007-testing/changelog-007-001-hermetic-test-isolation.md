@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/007-testing/001-hermetic-test-isolation` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/007-testing`
-
 ### Summary
 
 Deep-loop-runtime tests can now run fully in parallel without writing to the real HOME or runtime database/ directory. Previously the lock/state/fan-out tests shared real paths and could cross-contaminate; this removes that hazard for the wired suite.
@@ -54,3 +51,6 @@ Deep-loop-runtime tests can now run fully in parallel without writing to the rea
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/007-testing/001-hermetic-test-isolation` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/007-testing`

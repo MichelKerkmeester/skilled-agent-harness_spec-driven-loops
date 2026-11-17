@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/006-optional-addons` (Level 1)
-> Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`
-
 ### Summary
 
 Phase 6 shipped the two optional add-ons that were worth carrying into the skills now. The implementer anti-stall rule prevents an agent from turning YAGNI judgment into silent scope cutting, while the review-depth alias gives operators a named way to select existing review behavior. Both changes are guidance or routing labels, and both preserve the hard floors.
@@ -67,3 +64,6 @@ Phase 6 shipped the two optional add-ons that were worth carrying into the skill
 - The depth alias and anti-stall rule are guidance the agent applies in-loop. Neither is machine-enforced by design.
 - Two add-ons are deferred and operator-optional. They remain available on an explicit request.
 - Not committed. Changes sat in the working tree on branch `028-mcp-to-cli-tool-transition`.
+
+> Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/006-optional-addons` (Level 1)
+> Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`

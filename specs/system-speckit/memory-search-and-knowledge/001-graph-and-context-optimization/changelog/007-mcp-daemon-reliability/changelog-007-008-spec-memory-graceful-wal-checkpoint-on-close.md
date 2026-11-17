@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The `mk-spec-memory` close path (`close_db` in `vector-index-store.ts`) was closing `context-index.sqlite` without first checkpointing its write-ahead log (WAL). The `better-sqlite3` `.close()` call performs only a passive checkpoint, which can leave un-checkpointed frames behind. If the process was then killed abruptly mid-write, a run of pages could be left malformed. This was the root cause of the FTS5 corruption in incident `026/004/012`.
@@ -68,3 +65,6 @@ The `mk-spec-memory` close path (`close_db` in `vector-index-store.ts`) was clos
 - A running `mk-spec-memory` server must be restarted to pick up the fix because `dist/` is gitignored.
 - Real elimination of the corruption window requires graceful-only kills at the harness level. The OpenCode/Claude harness MCP-reconnect kill behavior is external to this repo. Ensuring it sends SIGTERM with grace rather than SIGKILL would close the remaining gap.
 - A separate benign build gap remains: `dist/lib/errors/core.js` lazy-imports a non-existent `dist/lib/utils/retry.js` and degrades gracefully. This is tracked separately and was not addressed here.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

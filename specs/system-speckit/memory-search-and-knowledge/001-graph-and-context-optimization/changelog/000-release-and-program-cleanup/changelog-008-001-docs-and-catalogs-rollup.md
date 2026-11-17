@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup`
-
 ### Summary
 
 The umbrella docs and catalog indexes needed to reflect the capabilities spec 026 actually shipped. A read-only gap analysis compared each of the seven umbrella docs against the 026 changelogs and found the docs were already largely current. Only four final-sprint capabilities were genuinely missing, so the work was surgical additions rather than a rewrite. Every addition is grounded in a shipped changelog.
@@ -58,3 +55,6 @@ The umbrella docs and catalog indexes needed to reflect the capabilities spec 02
 ### Follow-Ups
 
 - Code-graph and skill-advisor handler docs were left to the extracted system-code-graph and system-skill-advisor skills, so they are out of scope here
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup`

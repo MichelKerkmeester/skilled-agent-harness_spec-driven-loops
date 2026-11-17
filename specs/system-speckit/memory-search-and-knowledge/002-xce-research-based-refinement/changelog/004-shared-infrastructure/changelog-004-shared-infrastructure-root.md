@@ -8,8 +8,6 @@ contextType: "implementation"
 ---
 # Changelog Rollup — Track 004: Shared Infrastructure
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure` (Phase Parent)
-
 Top rollup for the `004-shared-infrastructure/` themed track. Each row links to a phase changelog (or that phase's own rollup). The chronological view lives in `../../timeline.md`; the old-to-new path bridge in `../../context-index.md`.
 
 ## Included Phases
@@ -25,3 +23,5 @@ Top rollup for the `004-shared-infrastructure/` themed track. Each row links to 
 | `004-shared-infrastructure/007` ipc client cap hardening | [changelog-004-007-ipc-client-cap-hardening.md](./changelog-004-007-ipc-client-cap-hardening.md) |
 | `004-shared-infrastructure/008` mcp config alignment reelection default | [changelog-004-008-mcp-config-alignment-reelection-default.md](./changelog-004-008-mcp-config-alignment-reelection-default.md) |
 | `004-shared-infrastructure/009` code graph code only indexing | [changelog-004-009-code-graph-code-only-indexing.md](./changelog-004-009-code-graph-code-only-indexing.md) |
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure` (Phase Parent)

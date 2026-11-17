@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli`
-
 ### Summary
 
 The skill-advisor runtime integration wired warm-only CLI fallback into Claude and Codex prompt-submit hooks, added a CLI fallback route to the OpenCode bridge (primary MCP path stays intact), updated doctor probes to read-only CLI calls, and added Gate-2 facade-vs-CLI guidance to both `README.md` and `SKILL.md`. The absent-socket fail-open path measured 0.8ms; warm calls measured 120-198ms, well below the 824.8ms one-shot native bridge ban.
@@ -67,3 +64,6 @@ The skill-advisor runtime integration wired warm-only CLI fallback into Claude a
 ### Follow-Ups
 
 - Final multi-runtime transport-down drill tracked as program-level verification
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli`

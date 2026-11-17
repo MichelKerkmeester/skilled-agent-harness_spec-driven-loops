@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/052-mk-spec-memory-rename` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 The Spec Kit Memory MCP server had been configured under the `spec_kit_memory` alias, forcing a 22-character fully qualified prefix into every Claude-style tool reference and triggering Gemini policy ambiguity because its parser splits after `mcp_`. The rename to `mk-spec-memory` brought this server in line with the `mk-*` naming convention established by the earlier `mk-code-index` rename (packets 010 and 016).
@@ -81,3 +78,6 @@ The change landed in a single commit across 105 files: the server-name constant 
 - Live MCP child processes retain the old server name until they respawn. Restart the runtime (OpenCode, Claude Code, Codex, Gemini) once after this commit to pick up the new identity. This is expected behavior for stateful daemons.
 - The Gemini-style hyphenated namespace `mcp_mk-spec-memory_*` is rarely referenced in this repo. Only the dominant Claude-style underscored prefix `mcp__mk_spec_memory__` was swept. Any Gemini-mode tool references that remain will surface on the first Gemini probe.
 - No backward-compatible alias exists for the old `spec_kit_memory` key. Users with local config overrides referencing the old key must update their config once. The absence of a shim is a deliberate decision recorded in the packet's decision table.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/052-mk-spec-memory-rename` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

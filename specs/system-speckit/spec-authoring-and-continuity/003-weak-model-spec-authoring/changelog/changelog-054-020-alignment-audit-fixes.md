@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes` (Level 2)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 Phase 020 checks everything packet 054 touched against its standard and fixes what is off. Four Opus medium leads audited code, skill docs, READMEs and changelogs, and routing with commands and agents, and a critic looked for gaps: 46 findings, 1 P0, 12 P1 and 33 P2. The P0 was a test import that broke the CLI import-policy gate, which CI runs on main. DeepSeek V4.1 Flash 1017 through cli-pi made the literal fixes, Sonnet 5.5 high the judgment fixes, and a fresh verifier per lane re-audited the files the first scope list missed. system-spec-kit is now 2.12.1.0.
@@ -64,3 +61,6 @@ Phase 020 checks everything packet 054 touched against its standard and fixes wh
 
 - One advisor prompt, `repair derived metadata after editing docs`, still ranks sk-doc (0.8681) just above system-spec-kit (0.8622); sk-doc owns skill-root derived metadata, so the phrases were not widened.
 - Em dashes that were already in edited files stay; no added line holds one.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/020-alignment-audit-fixes` (Level 2)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

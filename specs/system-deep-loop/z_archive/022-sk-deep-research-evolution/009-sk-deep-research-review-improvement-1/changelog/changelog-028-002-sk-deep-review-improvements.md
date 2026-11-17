@@ -8,8 +8,6 @@
 
 This phase brought `sk-deep-review` to the same lineage-aware, reducer-driven contract that Phase 1 established for `sk-deep-research`. It froze canonical `deep-review-*` artifact naming, propagated lifecycle and reducer semantics across all review surfaces, synchronized all four runtime mirrors, and closed the phase packet with executable Vitest guards and strict validation.
 
-> Spec folder: `.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements/`
-
 ---
 
 ## Review Contract and Naming (3)
@@ -140,3 +138,5 @@ This phase brought `sk-deep-review` to the same lineage-aware, reducer-driven co
 ## Upgrade
 
 No migration is required for consumers of the shipped deep-review packet. The main practical change is that the review contract is now unambiguous: one canonical set of artifact names, one lifecycle model, one reducer contract, and one set of runtime mirrors — all backed by executable Vitest guards.
+
+> Spec folder: `.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements/`

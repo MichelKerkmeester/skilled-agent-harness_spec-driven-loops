@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common` (Level 2)
-
 ### Summary
 
 This phase-parent migrates the shared deep-improvement evaluator-first loop, candidate generation, scoring, canary, and guarded promotion services onto the typed event-ledger substrate before the agent-improvement, model-benchmark, and skill-benchmark variants consume them. It owns the evaluator, canary, and promotion services its three benchmark variants reuse, and lands before those variants. Each child owns its own scope, plan, and verification. Per the phase documentation map the children are delivered; the lane remains in progress.
@@ -30,9 +28,9 @@ This phase-parent migrates the shared deep-improvement evaluator-first loop, can
 | `006-shadow-parity` | Implement the shared shadow-parity harness with logical event pairing, independent projections, fault injection, and manifest-bound receipts. |
 | `007-rollback-and-mode-gate` | Deliver the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone without moving authority. |
 
-## 2026-08-16
-
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common` (Level 2)
+
+## 2026-08-16
 
 ### Summary
 
@@ -43,3 +41,5 @@ The Deep Improvement Common Services migration lane is now Complete, with all se
 - All 7 leaves Complete.
 - Certificates-and-receipts verified green at 22/22; resume-adapter at 23/23.
 - Shadow-parity at 27/27; rollback-gate at 37/37 after correcting a stale census-fixture path in the rollback-gate test.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common` (Level 2)

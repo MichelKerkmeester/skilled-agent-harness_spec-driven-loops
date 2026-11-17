@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/002-telemetry-and-process-verification-harness`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`
-
 ### Summary
 
 Both prior research packets deferred live proof for several memory claims, leaving downstream remediation phases without a repeatable way to confirm whether cleanup worked or whether RSS growth was real. This phase delivered `scripts/ops/process-memory-harness.ts`, a dry-run evidence collector that parses `ps`, `vm_stat` and `sysctl hw.memsize` to classify processes into roles (current-session, project daemon, expected warm daemon, zombie, stale PID lock, abandoned project daemon) while exposing fully deterministic fixtures through the `fixture` command. The harness intentionally never sends signals, so later phases can gather exact inventory before any destructive cleanup path is introduced.
@@ -64,3 +61,6 @@ None.
 
 - The harness inventories termination candidates but never terminates them. Phases 003-010 must add owner-specific cleanup behavior separately.
 - Final memory-relief claims still require before/after workload measurements in the relevant remediation phase.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/002-telemetry-and-process-verification-harness`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

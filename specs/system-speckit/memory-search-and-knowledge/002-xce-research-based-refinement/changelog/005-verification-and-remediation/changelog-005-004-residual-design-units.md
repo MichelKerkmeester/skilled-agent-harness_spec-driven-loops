@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 This phase resolved the residual design units that 005/003 deferred because each touched a high-blast-radius subsystem. Three units shipped as code and three items were disposed by verify-first reasoning with no code written. Work was dispatched to parallel claude2 Opus 4.8 xhigh read-only design seats. The orchestrator independently re-verified each result before committing, never trusting a seat's self-report. Unit A (vector reconcile) and the L9 tail items landed in the prior session. This session shipped tri-138, tri-109 and Unit B, then recorded terminal dispositions for Unit C, tri-163, tri-129 and tri-135.
@@ -84,3 +81,6 @@ This phase resolved the residual design units that 005/003 deferred because each
 - tri-163 reframe: a read-only key_files reality crosswalk (declared vs on-disk plus code-graph) is offered as a defensible reframe, pending operator decision.
 - tri-129 large-payload bound test: specified for follow-on once oversized-content and embedding behavior in the save path is verified.
 - Pre-existing branch red test: `vector-shard-read-path-resilience > "does not double-schedule a pending shard repair"` was red at session start and remains so; unrelated to this session's changes and warrants a separate investigation.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

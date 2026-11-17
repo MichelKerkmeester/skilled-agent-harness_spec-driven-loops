@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/002-framework-bakeoff` (Level 1)
-> Parent packet: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support`
-
 ### Summary
 
 The first Kimi K2.7 Code prompt-framework bakeoff ran as a real model-under-test sweep, not a dry configuration exercise. It completed 30 of 30 `kimi-for-coding/k2p7` dispatches across five frameworks and two T3 coding fixtures, then returned the only honest verdict the data allowed: TIE. Correctness saturated, the engine surfaced that saturation, fell to efficiency as the ranking key and handed phase 003 an interim finding rather than a winner.
@@ -79,3 +76,6 @@ The first Kimi K2.7 Code prompt-framework bakeoff ran as a real model-under-test
 - A sharper recommendation needed harder, less-saturating fixtures and ideally a correctness-anchored judge.
 - The secondary `gpt-5.5` judge was subjective. It flagged some oracle-confirmed-correct code as buggy, a known LLM-judge failure mode, so it ranked perceived clarity and was not load-bearing for the verdict.
 - `kimi-k2.7-code` has `fallback_target: null`. The run completed on the `kimi-for-coding` pool without fallback, but a future re-run must defer rather than retry the same pool if it is exhausted.
+
+> Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/002-framework-bakeoff` (Level 1)
+> Parent packet: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support`

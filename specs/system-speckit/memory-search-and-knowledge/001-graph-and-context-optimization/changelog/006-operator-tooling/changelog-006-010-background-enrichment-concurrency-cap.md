@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/010-background-enrichment-concurrency-cap` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`
-
 ### Summary
 
 The spec-memory daemon's background-enrichment scheduler had a concurrency cap that did not actually cap anything under load. It bumped the in-flight counter inside the deferred callback, so a burst — most acutely a startup scan calling it once per indexed row — read a stale zero on every call, all passed the < 4 gate, and piled up unbounded setImmediate callbacks that then self-drained as a synchronous microtask chain. The event loop never returned to the poll phase, the IPC accept() starved, and the daemon spun at ~100% CPU. This was the trigger behind the incident the 009 supervisor fix recovers from; this packet removes the trigger.
@@ -58,3 +55,6 @@ The spec-memory daemon's background-enrichment scheduler had a concurrency cap t
 - Shutdown-durability fences for the enrichment scheduler and startup scan (deep-review P1, F-008/F-012): a deferred run or fire-and-forget scan can reopen the DB after `closeDb()` and re-dirty the WAL. Tracked as a follow-up packet (011).
 - Queue retention bound (deep-review P2, F-007): the fix caps concurrency but not queue size, so a large scan retains `parsed` payloads for the throttled drain. Deferred: store only `memoryId` and re-derive at run time, or bound the queue.
 - Idle-monitor enrichment blind spot (deep-review P2, F-005): a short idle timeout could shut the daemon mid-drain. Deferred as cross-cutting.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/010-background-enrichment-concurrency-cap` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`

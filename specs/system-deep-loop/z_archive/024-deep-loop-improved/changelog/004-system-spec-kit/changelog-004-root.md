@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/004-system-spec-kit` (Level 2)
-
 ### Summary
 
 Phase 005 shipped the Spec Kit autopilot envelope across `speckit complete`, `speckit plan`, `speckit implement` and `complete_auto.yaml`. It added machine-readable terminal reason codes and branch-preserved failure so unattended loop callers can recover without scraping prose.
@@ -63,3 +61,5 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/004-system-spec-kit` (Level 2)

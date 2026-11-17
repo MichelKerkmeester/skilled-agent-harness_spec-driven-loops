@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/003-generalization-probes` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Ran focused fix-vs-fallback probes on `gpt-fast-med` to test whether the compiled-command-contract flip generalized beyond review/research. The result was mixed: council showed only directional signal, context was lever-null on the natural cell and method-moot, and leaf-reliability improved detectability but did not mechanically rescue the review re-probe.
@@ -58,3 +55,6 @@ Ran focused fix-vs-fallback probes on `gpt-fast-med` to test whether the compile
 - Bound the true council fix pass rate with N>=3 after the seat-convergence stall fix.
 - Add a setup-confirm carve-out for autonomous-precedence over-triggering on should-halt asks.
 - Consider runner-owned retry for leaf reliability, since the single-executor loop still depends on the model following re-dispatch instructions.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/003-generalization-probes` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Shipped a shared `resolveSpecFolderIdentity` helper consumed by both the graph build and the description writers so a single specs-root-relative identity drives both files. Made `mergeGraphMetadata` keep a non-null `parent_id` and union `children_ids` on merge so a scoped or racing scan never erases lineage. Every behavioral change sits behind the default-OFF `SPECKIT_IDENTITY_MERGE_SAFETY` flag, so the flag-OFF path is byte-identical to prior behavior. Verified by 11 new vitest cases plus the graph and description regression suites. The flag later GRADUATED to default-ON after the scoped migration.
@@ -57,3 +54,6 @@ Shipped a shared `resolveSpecFolderIdentity` helper consumed by both the graph b
 
 - `SPECKIT_IDENTITY_MERGE_SAFETY` GRADUATED to default-ON after the scoped migration restamped the legacy prefixed-path folders.
 - The grandfather report listing that enumerates would-change folders before enforcement was the deferred follow-up that preceded graduation.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups`
-
 ### Summary
 
 Three `Cannot find module '@modelcontextprotocol/sdk/*'` errors were blocking `npm run build` in the system-spec-kit MCP server. The root cause was a dependency ownership gap introduced during the ADR-002 standalone code-graph extraction: `system-code-graph/mcp_server/index.ts` imports `@modelcontextprotocol/sdk` directly, but the standalone package did not declare it. Resolution only worked locally through an accidental symlink into the sibling `system-spec-kit/mcp_server/node_modules`.
@@ -73,3 +70,6 @@ Path A was used: the standalone `system-code-graph` package now declares `@model
 - Registry install could not run in this sandbox. DNS resolution for `registry.npmjs.org` failed, so node_modules was not freshly downloaded from the registry. The on-disk SDK remains the existing symlinked install at version `1.27.1`, satisfying the declared `^1.24.3` range. A fresh checkout should install cleanly now that the manifest declares the dependency.
 - `tsc --build --force` is blocked by shared dist permissions and fails with `EPERM` on `shared/dist/**`. The normal required build command exits 0 and is the correct gate.
 - Update `tests/context-server.vitest.ts` to remove the 74 stale topology assertions that still expect pre-ADR-002 co-resident code-graph tools in `system-spec-kit`. This is outside the scope of a dependency repair packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups`

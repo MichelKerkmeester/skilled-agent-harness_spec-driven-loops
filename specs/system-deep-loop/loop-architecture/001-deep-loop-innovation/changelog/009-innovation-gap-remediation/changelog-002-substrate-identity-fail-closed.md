@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-16
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/002-substrate-identity-fail-closed` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation`
-
 ### Summary
 
 Hardened shared-gateway identity resolution and rollback-certificate identity verification to fail closed, establishing the identity invariant that any pilot-mode cutover depends on. Malformed, missing, stale, or mismatched identity evidence now resolves to a typed denial rather than a silent accept.
@@ -28,3 +25,6 @@ Hardened shared-gateway identity resolution and rollback-certificate identity ve
 ### Status
 
 Complete. Additive-dark — no authority flipped.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/002-substrate-identity-fail-closed` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation`

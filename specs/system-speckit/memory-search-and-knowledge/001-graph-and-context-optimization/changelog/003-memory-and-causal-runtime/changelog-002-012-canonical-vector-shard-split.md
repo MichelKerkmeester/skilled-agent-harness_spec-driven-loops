@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/012-canonical-vector-shard-split` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`
-
 ### Summary
 
 Embedding-profile experiments duplicated canonical memory metadata, lineage, FTS, governance tables and checkpoint state across per-profile SQLite files. Hot vector pages from inactive profiles remained mapped during profile switches, wasting approximately 35 to 40 MB of RSS per profile swap and keeping old profile state visible to the active session.
@@ -84,3 +81,6 @@ All vector query, mutation and cache paths qualify through `active_vec`. Tests c
 
 - Remove temporary unqualified `vec_memories` aliases from internal modules outside the primary query/mutation path once direct call sites migrate to qualified shard-table references.
 - Delete legacy backup files under `database/migrations/` after production verification confirms the split is stable.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/012-canonical-vector-shard-split` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

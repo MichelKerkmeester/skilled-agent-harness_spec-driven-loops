@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 Two recursive-CTE graph traversals in the causal-boost and memo read paths shared a join shape that defeated index use, so each walk fell back to repeated full scans as the graph grew. Both call sites now route through a single shared app-level BFS helper that walks the same edges with the same visit semantics. Traversal results are identical to the recursive-CTE output, including multi-root fan-in, and the walk no longer depends on the planner choosing an index it was never going to choose. This is an internal performance refactor with no caller-visible change to ranking, ordering, or response shape.
@@ -56,3 +53,6 @@ Two recursive-CTE graph traversals in the causal-boost and memo read paths share
 ### Follow-Ups
 
 - None. The shared BFS helper is the single traversal path for both read sites.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

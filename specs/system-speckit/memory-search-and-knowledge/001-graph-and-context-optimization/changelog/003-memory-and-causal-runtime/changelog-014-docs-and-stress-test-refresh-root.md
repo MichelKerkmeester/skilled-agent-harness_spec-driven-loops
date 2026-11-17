@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-02
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh` (Level 2)
-
 ### Summary
 
 Phase-parent rollup for the 014 docs and stress-test refresh. The packet completed four child phases that brought operator-facing documentation and stress coverage up to the shipped 013 memory-index-scan roadmap and the 128 sk-git worktree convention. The parent spec records the child map and aggregate complete state, while implementation detail lives in the four child phase changelogs.
@@ -66,3 +64,5 @@ None. Detail lives in the child phase changelogs.
 
 - Address the conditional deep review workstreams in a remediation packet: documentation accuracy, playbook executability, stress-test fidelity and packet metadata cleanup.
 - Keep future root rollups thin. Child phases own implementation detail.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh` (Level 2)

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/036-metadata-validator-status-enum` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Closed `derived.status` to a shared `z.enum`, added the first-class `GENERATED_METADATA_INTEGRITY` validator wired into the validation orchestrator and `validate.sh` strict, and stopped the parser preserving a legacy bad status across re-derives. The rule is gated by `SPECKIT_GENERATED_METADATA_GRANDFATHER`, report-only and non-blocking by default during migration. The 9-case vitest passes and `validate.sh --strict` on this folder exits 0. The grandfather flag was later flipped OFF to a hard strict error, so the rule now graduates enforcing.
@@ -67,3 +64,6 @@ Closed `derived.status` to a shared `z.enum`, added the first-class `GENERATED_M
 - `SPECKIT_GENERATED_METADATA_GRANDFATHER` was later flipped OFF to a hard strict error, so the rule now graduates enforcing rather than report-only.
 - The scoped migration that restamps the legacy files preceded that graduation.
 - The path-prefix invariant the rule asserts depends on the shared identity resolver from a sibling phase, so a prefixed path reported under the grandfather window until that resolver landed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/036-metadata-validator-status-enum` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

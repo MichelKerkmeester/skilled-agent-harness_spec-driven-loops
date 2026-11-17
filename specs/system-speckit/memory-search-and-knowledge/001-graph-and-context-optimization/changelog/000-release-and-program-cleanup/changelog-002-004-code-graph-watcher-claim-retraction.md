@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/004-code-graph-watcher-claim-retraction` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`
-
 ### Summary
 
 The MCP server README had claimed real-time structural code-graph watching, but deep-research packet 013 validated that no such watcher path exists. The actual contract is that `ensureCodeGraphReady()` selectively reindexes changed tracked files on read. `code_graph_scan` performs operator-triggered full repair. `code_graph_status` diagnoses without mutating. `code_graph_query` blocks with a required-action signal when a full scan is needed. This packet replaced the false claim with an accurate freshness-model subsection and confirmed no other current operator docs carry a structural watcher promise.
@@ -57,3 +54,6 @@ The MCP server README had claimed real-time structural code-graph watching, but 
 
 - Runtime automation remains unchanged by design. Implementing a structural source watcher is a separate, out-of-scope decision.
 - Historical research artifacts in packets 012 and 013 may still reference the old watcher claim as recorded evidence. They are evidence records, not current operator guidance.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/004-code-graph-watcher-claim-retraction` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit`

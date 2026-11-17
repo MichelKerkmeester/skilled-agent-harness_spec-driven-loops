@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/011-synthesis-integrity-and-orchestrator-watchdog` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`
-
 ### Summary
 
 A lineage could narrate synthesis complete while its registry and output files never actually existed, and the fan-out orchestrator could hang indefinitely after a lineage's subprocess had already exited, both directly observed in production during this same remediation phase's own generation-2 research run. All three fixes close the gap: a real completion invariant, a genuinely new post-exit watchdog and the last missing registry-reconstruction counterpart.
@@ -56,3 +53,6 @@ A lineage could narrate synthesis complete while its registry and output files n
 ### Follow-Ups
 
 - None identified. All 3 fixes are independently verified against the actual repo state, not accepted on the dispatch's own incomplete self-report.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/011-synthesis-integrity-and-orchestrator-watchdog` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

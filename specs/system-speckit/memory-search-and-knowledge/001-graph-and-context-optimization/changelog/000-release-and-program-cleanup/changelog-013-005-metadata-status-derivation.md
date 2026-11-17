@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/005-metadata-status-derivation`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`
-
 ### Summary
 
 Status derivation no longer marks Draft or Placeholder specs complete merely because an implementation-summary file exists. The graph metadata parser now reads the `| **Status** | ... |` row from `spec.md` when YAML frontmatter has no status, then feeds that value into the existing precedence chain. The cited 026 and 027 metadata data files were also reconciled to actual disk state, actual spec status and corrected changelog counts in the scope owned by this phase.
@@ -70,3 +67,6 @@ Status derivation no longer marks Draft or Placeholder specs complete merely bec
 
 - Global backfill was not run. Central owns the mcp_server dist rebuild and `backfill-graph-metadata.ts` run that regenerates derived statuses across all 026 and 027 packets.
 - Tracks 003 and 004 changelog rollup drift was explicitly left as a follow-up by this phase.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/005-metadata-status-derivation`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`

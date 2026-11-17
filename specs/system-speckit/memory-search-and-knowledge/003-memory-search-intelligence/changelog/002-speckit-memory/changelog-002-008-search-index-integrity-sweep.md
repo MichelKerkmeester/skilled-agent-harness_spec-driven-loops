@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/008-search-index-integrity-sweep` (Level recorded in phase evidence)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
-> Historical alias: `007-search-index-integrity-sweep`
-
 ### Summary
 
 This migration index makes the shipped phase discoverable at its final packet-local path without rewriting its historical identity. The allowed implementation evidence records: This resumed agent did not re-run the destructive repair. The live database state shows the core mutation had already happened before this agent resumed.
@@ -49,3 +45,7 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 ### Follow-Ups
 
 - Evidence gap: tasks.md records 17 of 24 checklist items checked. This index does not upgrade completion status.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/008-search-index-integrity-sweep` (Level recorded in phase evidence)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
+> Historical alias: `007-search-index-integrity-sweep`

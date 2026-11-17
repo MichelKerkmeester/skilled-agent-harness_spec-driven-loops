@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/029-post-027-findings-remediation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 The 027 deep-review surfaced 21 P1 and 16 P2 findings against the post-014 local embeddings stack. The two highest-impact problems were cloud provider DB filenames missing the dtype segment (breaking the `provider/model/dim/dtype` contract) plus a one-hop factory fallback that jumped directly to hf-local rather than resuming the full cascade order. All 37 findings were resolved in a single batch commit shipped 2026-05-13, covering code fixes, doc updates, fixture refreshes and legacy comment cleanup. Operators now get a uniform four-part filename for every provider and a cascade fallback that tries each downstream provider in order before giving up.
@@ -89,3 +86,6 @@ The 027 deep-review surfaced 21 P1 and 16 P2 findings against the post-014 local
 
 - Verify that `llama-cpp-availability.ts` extraction is no longer needed after the llama-cpp surface was purged in a subsequent packet and remove the file if it is now dead code.
 - Confirm `profile-db-filename.vitest.ts` assertions remain green after the nomic consolidation that followed this remediation batch.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/029-post-027-findings-remediation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/017-last-50-commits-review-remediation` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup`
-
 ### Summary
 
 This packet remediated all actionable findings from the 016 review across four parallel streams plus a test round. The streams covered shutdown, IPC and socket, validator and memory, and contract, config and docs. Six items were accepted with no code change as deliberate ADRs recorded in the decision record. The work shipped on 2026-06-05 with the mk-spec-memory daemon recycled to a fresh dist and verified live.
@@ -69,3 +66,6 @@ This packet remediated all actionable findings from the 016 review across four p
 ### Follow-Ups
 
 - None. The six accept-no-action items are deliberate and recorded in the decision record.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/017-last-50-commits-review-remediation` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup`

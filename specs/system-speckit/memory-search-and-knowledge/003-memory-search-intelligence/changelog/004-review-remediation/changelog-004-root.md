@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-20
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation` (Level 2)
-
 ### Summary
 
 The Review Remediation phase parent turns the 028 deep-review findings into independently executable remediation phases. The first four families cover eval-benchmark fidelity, memory schema and concurrency, doc accuracy and the 91-strong P2 triage, where the deep review closed NOT CONVERGED with 0 P0, 6 confirmed P1 and 91 P2. Phases 001 and 003 executed their scope while phases 002 and 004 stand as PENDING remediation contracts. Two later phases then shipped their own scoped work, the 005 ENV-documentation deep review and remediation and the 006 marker-gated review packet type for the validator. The parent stays a rollup and implementation detail lives in the child phase folders.
@@ -53,3 +51,5 @@ _No file-level detail recorded._
 
 - Execute the 002 schema and concurrency fixes and finalize the 004 P2 triage in their owning child phases.
 - After 001 through 003 land and 004 closes its fix-now set, re-run the deep review on 028 until a round surfaces zero new P0/P1. A single clean round is the convergence gate.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation` (Level 2)

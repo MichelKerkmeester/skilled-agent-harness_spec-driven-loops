@@ -8,8 +8,6 @@
 
 We claimed different runtimes had different levels of context preservation -- Claude Code at 100%, Codex at 55% -- but there was no actual measurement behind those numbers. When a user lost context mid-session, nobody detected it. When the code graph went stale, nobody noticed. This phase adds lightweight, in-memory metrics collection inside the MCP server that tracks session health events (starts, resumes, clears, tool calls, recovery attempts, graph scans) and computes a quality score for every session. The score uses four factors -- recency, recovery, graph freshness, and continuity -- to produce a simple traffic-light rating of "healthy", "degraded", or "critical". Because the scoring lives server-side, it works identically across all five runtimes without any client-side changes. Dashboard integration (Phase C) and drift detection alerts (Phase D) are deferred until enough baseline data has been collected to tune their thresholds.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/023-context-preservation-metrics/`
-
 ---
 
 ## What Changed
@@ -104,3 +102,5 @@ We claimed different runtimes had different levels of context preservation -- Cl
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/023-context-preservation-metrics/`

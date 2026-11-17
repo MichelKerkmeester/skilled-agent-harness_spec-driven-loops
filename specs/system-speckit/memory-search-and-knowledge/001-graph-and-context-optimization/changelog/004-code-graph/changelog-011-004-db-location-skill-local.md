@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/004-db-location-skill-local` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`
-
 ### Summary
 
 The code-graph database now lives inside its skill at .opencode/skills/system-code-graph/mcp_server/database/, not the workspace-root .opencode/.spec-kit/code-graph/database/. The old directory is removed and no longer recreated. Every runtime reaches the skill-local DB through the .opencode/skills symlink, so it stays a single shared instance.
@@ -58,3 +55,6 @@ The code-graph database now lives inside its skill at .opencode/skills/system-co
 
 - A live DB inside the committed/symlinked skill folder must be treated as gitignored regenerable state; skill re-sync must not overwrite it. .gitignore and launcher migration-back handle this.
 - readiness-marker still resolves its base dir from process.cwd() (matches config when CWD == workspace root); sharing the canonical resolver from core/config is deferred due to fs-mock test breakage at module load.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/004-db-location-skill-local` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/009-launcher-eperm-parity-fix` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`
-
 ### Summary
 
 The `mk-spec-memory` and `mk-code-index` launchers crashed with `Error: kill EPERM` whenever `process.kill(pid, 0)` probed a lease owner from a different Claude/Codex sandbox session. Both `leaseHeldFromFile()` implementations handled only `ESRCH` and rethrew all other errors. The unhandled `EPERM` caused the launcher to exit 1 with no MCP stdio child, which surfaced to Claude as JSON-RPC `-32000`. The skill-advisor launcher had already received an identical fix in packet 007 (`mk-skill-advisor-launcher.cjs:171-180`).
@@ -66,3 +63,6 @@ A byte-equivalent `EPERM` branch was added to both launchers, mirroring the RCA-
 - Add a dedicated EPERM-mock vitest test for cross-sandbox-PID scenarios if the cross-launcher parity surface grows. The current cross-sandbox setup is not easily reproducible in vitest.
 - Track artifact freshness asymmetry: `mk-skill-advisor-launcher` checks `latestSourceMtimeMs` but the other two only check artifact existence. This leaves room for stale dist to be served.
 - Track stale copied shared dist under `.opencode/skills/system-code-graph/dist/system-spec-kit/shared/embeddings/factory.js` where `ollama` is missing from `SUPPORTED_PROVIDERS`. This is a latent bug not in the active code path today.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/009-launcher-eperm-parity-fix` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

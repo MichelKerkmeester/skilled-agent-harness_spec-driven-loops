@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/004-fix-template-deferred-followups` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
-
 ### Summary
 
 Ten items deferred from the round-3 Gate 7 sweep of the manifest-template-implementation packet remained open because they required policy decisions on validation architecture, CLI contracts, and migration strategy. A single Node.js validation orchestrator replaced the legacy shell pipeline and brought strict-mode validation of a fresh Level 3 scaffold down to 106ms. Manifest-owned template version declarations, per-document section gate profiles, a batch inline renderer, canonical save advisory locking, lenient session-lineage warnings, and migration documentation were all delivered across four ordered phases.
@@ -75,3 +72,6 @@ Ten items deferred from the round-3 Gate 7 sweep of the manifest-template-implem
 
 - Residual Gate E annotation remains partially addressed: the live sentinel path for historical packet validation does not exist in the working tree and reports two warnings under strict validation.
 - Full validation of all historical spec-kit packets was deferred. Only sentinel checks and the required A through D gates were executed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/004-fix-template-deferred-followups` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

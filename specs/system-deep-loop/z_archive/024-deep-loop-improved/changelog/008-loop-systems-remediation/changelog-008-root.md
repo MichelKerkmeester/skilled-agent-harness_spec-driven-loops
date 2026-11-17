@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation` (Level 1)
-
 ### Summary
 
 Phase 009 shipped the final safety remediation track for rollback, promotion, benchmark reducers, manual playbooks, validation evidence and JSONL append concurrency. It tightened failure-mode proof with hash guards, canonical mirror checks, explicit benchmark logs, adversarial scenarios, zero-exit validation and a true process race test.
@@ -73,3 +71,5 @@ _No file-level detail recorded._
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation` (Level 1)

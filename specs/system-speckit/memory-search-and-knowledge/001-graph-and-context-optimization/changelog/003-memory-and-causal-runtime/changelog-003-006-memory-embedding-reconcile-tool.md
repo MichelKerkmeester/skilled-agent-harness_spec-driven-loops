@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`
-
 ### Summary
 
 The one-time backlog repair that flipped vector-present rows from stale `failed`/`pending`/`retry` to `success` in `memory_index.embedding_status` was executed via hand-written guarded SQL. That path was manual, easy to misapply against the wrong shard. It was also unsafe to re-run without re-deriving every predicate by hand.
@@ -76,3 +73,6 @@ On the current DB the tool is a near-noop because the roughly 17k backlog was al
 - Add a mutation-ledger governance-audit entry on apply mode. The initial ship omitted this to keep the core logic dependency-free. A follow-on packet can add it as a low-stakes status-flip audit trail.
 - Implement a future prune/dedup tool for the masked `failed_masked_by_newer_latest_path_anchor_row` rows. Pruning is out of scope here and requires different safety checks per the acceptance contract.
 - Address success-rows-missing-active-vector hygiene in packet `007-success-vector-coverage-hygiene`, which reuses the active-shard verification pattern from `lib/embedders/embedding-reconcile.ts`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-05-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index` (Level <!-- SPECKIT_LEVEL: phase-parent -->, Phase Parent)
-
 ### Summary
 
 This phase parent groups 7 child phases spanning 2026-05-25 to 2026-05-25. Each child phase shipped independently and carries its own changelog with full detail. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-phase summary, verification, and files changed.
@@ -58,3 +56,5 @@ This phase parent groups 7 child phases spanning 2026-05-25 to 2026-05-25. Each 
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index` (Level <!-- SPECKIT_LEVEL: phase-parent -->, Phase Parent)

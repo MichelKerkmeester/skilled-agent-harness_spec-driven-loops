@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`
-
 ### Summary
 
 Packet 007 showed Qwen3-Reranker-0.6B on Apple Silicon MPS crashing with a 76 GiB MTLBuffer allocation when spec-memory sent its default 50-document batch to the local rerank endpoint. The working hypothesis was that smaller batches would fit inside GPU memory. This packet added a `SPECKIT_RERANK_LOCAL_MAX_DOCS` env override to `cross-encoder.ts` that clamps the local provider's batch to 10 documents, then ran a fresh 3x50-probe A/B bench under that cap.
@@ -70,3 +67,6 @@ None.
 - Test additional batch-size values (5, 15, 20) only if future evidence suggests the 10-doc OOM was borderline rather than structural.
 - Test CPU device at cap=10 if a future packet determines the MPS buffer reservation is the sole constraint and CPU overhead is acceptable.
 - Investigate fp16 weights as an orthogonal memory lever (covered by packet 009).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

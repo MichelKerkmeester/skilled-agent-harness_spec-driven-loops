@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/004-injection-inbox-provenance` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`
-
 ### Summary
 
 Propagate question origin provenance through reduce-state.cjs and document the inbox.jsonl injection surface in deep_research_strategy.md. Tests pass; hygiene + drift green.
@@ -55,3 +52,6 @@ Propagate question origin provenance through reduce-state.cjs and document the i
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/004-injection-inbox-provenance` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

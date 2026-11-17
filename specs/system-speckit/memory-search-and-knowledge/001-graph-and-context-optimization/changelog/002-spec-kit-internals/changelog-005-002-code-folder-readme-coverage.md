@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/002-code-folder-readme-coverage` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation`
-
 ### Summary
 
 system-skill-advisor had 7 files failing sk-doc validation. Phase B closed the gap by authoring 2 new fixture READMEs and adding TOC anchor blocks to 5 existing READMEs. Two-track delivery used a cli-devin plus cli-opencode pipeline for the new READMEs and a mechanical anchor-insert pass for the existing files. A pre-commit verification gate caught 2 P0 bundle hallucinations that were corrected before shipping.
@@ -66,3 +63,6 @@ system-skill-advisor had 7 files failing sk-doc validation. Phase B closed the g
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/002-code-folder-readme-coverage` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-24
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering` (Phase Parent)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
-
 ### Summary
 
 This phase parent removes the second-order migration, rollback, and over-built machinery left in the deep-loop runtime after all eight modes finalized to `new_authoritative_final`. A prior wave had already removed rollback ceremony and one-time scaffolding; this program deletes the evidence-backed residue surfaced by a 10-iteration audit and repo-wide zero-caller re-proof, as five dependency-ordered waves. All five children are complete; the live ledger loop and authority posture are unchanged.
@@ -30,3 +27,6 @@ This phase parent removes the second-order migration, rollback, and over-built m
 ### Status
 
 Complete. All five waves landed green with tsc, authority (8/8 `new_authoritative_final`), and suite gates unchanged by failure name. No authority moves; integration to v4/main awaits the operator ff-merge gate.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering` (Phase Parent)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

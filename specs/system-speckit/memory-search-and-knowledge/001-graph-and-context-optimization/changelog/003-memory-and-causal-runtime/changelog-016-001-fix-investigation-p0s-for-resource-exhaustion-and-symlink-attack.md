@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle`
-
 ### Summary
 
 Arc 010/001 deep-research identified three P0 security findings in the embedder sidecar IPC path. The sidecar client could accumulate unbounded stdout bytes before parsing JSON (F12). The rerank-sidecar ledger write used predictable temp file names based on PID and timestamp, enabling symlink pre-creation attacks (F13). The sidecar worker had no line length or input array cap before JSON parsing, allowing unbounded allocation (F47).
@@ -78,3 +75,6 @@ All three findings were closed in commit `719610899f`. Surgical fixes touched on
 
 - Monitor the 1MB line cap and 500-item input array cap if future embedding models produce larger per-vector metadata or require larger batch sizes. A configurable override via environment variable may be needed.
 - The `ensure-rerank-sidecar.vitest.ts` test file was present at this phase but was later reorganized. Verify test coverage survives any subsequent sidecar retirement refactors.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle`

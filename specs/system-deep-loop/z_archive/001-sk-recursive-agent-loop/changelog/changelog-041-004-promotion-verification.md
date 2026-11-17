@@ -8,8 +8,6 @@
 
 Proved the full promotion lifecycle end-to-end: score a winning candidate, promote to canonical, verify, and roll back. This phase was verification-only with no new code, confirming the Phase 001 promotion path works as designed.
 
-> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/004-sk-recursive-agent-promotion-verification/`
-
 ---
 
 ## Verification (2)
@@ -40,3 +38,5 @@ No code changes. This phase generated runtime evidence artifacts in the `improve
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/004-sk-recursive-agent-promotion-verification/`

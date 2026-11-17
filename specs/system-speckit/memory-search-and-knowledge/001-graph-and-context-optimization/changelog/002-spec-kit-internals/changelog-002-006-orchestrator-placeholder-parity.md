@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/006-orchestrator-placeholder-parity` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals`
-
 ### Summary
 
 The canonical Node validator and the legacy shell rule now read placeholders the same way. Before this change the orchestrator (the active path) missed the space-variant marker and flagged markers that lived inside code fences or inline backticks, while the shell fallback flagged mustache that the orchestrator never touched. The two paths could disagree on the very same document. They now share one contract.
@@ -61,3 +58,6 @@ The canonical Node validator and the legacy shell rule now read placeholders the
 
 - Backtick escape is single-backtick, left-side only. A marker is treated as escaped only when the character immediately before the match is a backtick, matching the shell rule. A marker wrapped only by a trailing backtick with no leading backtick is still flagged, which is the intended conservative behavior.
 - Mustache `{{...}}` is intentionally unguarded in spec docs. Neither validator flags it. If a future template ever adopts mustache as a real unfilled-placeholder syntax, both validators would need a coordinated update.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/006-orchestrator-placeholder-parity` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals`

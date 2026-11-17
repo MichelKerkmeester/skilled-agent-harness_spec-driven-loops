@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata` (Level 2)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 Phase 017 acts on two findings from the benchmark. Authors misstated a script's output in 5 of 12 packets even after running it, so the spec template gains a Measured Behavior block that holds a command and its verbatim output, with a warning-only rule for new specs. And 33 of the 36 failed validator rounds in the 24 author runs failed only on derived metadata, so a strict validate run on a Draft packet now repairs that metadata itself, names each file it rewrote and validates again. A fresh review found no blocker and six findings, all fixed. Both full suites ran on the final tree with no new failure, and the phase is Complete.
@@ -69,3 +66,6 @@ Phase 017 acts on two findings from the benchmark. Authors misstated a script's 
 - The census baselines are shared with phase 016 and live in its `scratch/baseline/`.
 - Phases 015, 016 and 017 were built in one uncommitted tree and are committed together; the stamp v2.4 was set once for all five templates.
 - The work is committed as `62e4661e01` (code) and `ef939bf0ac` (docs).
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata` (Level 2)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

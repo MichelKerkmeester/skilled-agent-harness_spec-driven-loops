@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`
-
 ### Summary
 
 The shared embeddings factory only knew `openai`, `voyage`, `hf-local` and `llama-cpp` after 016/002 shipped its registry and Ollama adapter. That left a production asymmetry where the index path could write Jina v3 vectors into `vec_1024` via `OllamaAdapter`, while query-time calls to `generateEmbedding()` still instantiated llama-cpp and produced 768-dim EmbeddingGemma vectors. The live machine had `active_embedder_name='jina-embeddings-v3'` and a populated `vec_1024`, making silent dimension mismatches inevitable at search time.
@@ -77,3 +74,6 @@ A shared `OllamaProvider` was added to `shared/embeddings/` implementing `IEmbed
 - Update `embedder_status` to report active shared-provider metadata instead of only re-index job state. The handler was outside the frozen scope for this packet.
 - Restart the live `context-server.js` daemon after deploying this packet so the new compiled dist loads and old llama-cpp module state is dropped.
 - Keep shared factory manifest rows and MCP registry manifest rows symmetric until a package-safe shared manifest source is established to avoid silent drift.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

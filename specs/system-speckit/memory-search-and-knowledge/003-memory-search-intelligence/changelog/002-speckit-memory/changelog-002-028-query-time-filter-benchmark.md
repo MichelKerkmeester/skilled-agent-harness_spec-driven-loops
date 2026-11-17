@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/028-query-time-filter-benchmark` (Level recorded in phase evidence)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
-> Historical alias: `020-query-time-filter-benchmark`
-
 ### Summary
 
 This migration index makes the shipped phase discoverable at its final packet-local path without rewriting its historical identity. The allowed implementation evidence records: Implemented the four scoped hardening requirements for the default-off query-time existence filter without changing its filtering behavior, the Layer 2 hook, or Layer 3 sweep/confirmation behavior.
@@ -49,3 +45,7 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 ### Follow-Ups
 
 - None in the allowed evidence set.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/028-query-time-filter-benchmark` (Level recorded in phase evidence)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
+> Historical alias: `020-query-time-filter-benchmark`

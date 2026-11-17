@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/039-full-repo-json-migration` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Built a scoped per-folder migration driver and ran it tree-wide to regenerate every `description.json` and `graph-metadata.json` onto the new format. The driver enumerates every spec folder that carries `spec.md` or `description.json`, archives included, and regenerates both generated files through the scoped per-folder path only, never the legacy whole-tree walk and never the aggregate cache. The `z_archive` tree migrates like any other track. The `z_future` staging tree is enumerated for coverage but recorded skipped on the hardened writer rule per an operator amendment, since the writer refuses graph-metadata under `z_future`. This migration is what earned the packet 028 flag flips.
@@ -52,3 +49,6 @@ Built a scoped per-folder migration driver and ran it tree-wide to regenerate ev
 ### Follow-Ups
 
 - This migration is the gate the flag flips depended on. The byte-stable, zero-violation tree let `SPECKIT_IDENTITY_MERGE_SAFETY`, `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES`, and `SPECKIT_GENERATED_METADATA_GRANDFATHER` graduate in the phase 040 benchmark. The drift gate and generator hardening graduated only after the migration was re-run with their field-writing flags set on, which backfilled `source_doc_hashes` and `source_fingerprint` tree-wide.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/039-full-repo-json-migration` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

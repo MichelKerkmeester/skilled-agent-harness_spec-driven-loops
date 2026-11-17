@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-08
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/001-cache-warning-hooks` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
-
 ### Summary
 
 The original packet framing promised a six-phase cache-warning rollout including `UserPromptSubmit` behavior and a `SessionStart` estimator. Canonical research dated 2026-04-08 narrowed the safe early work to a bounded producer-side metadata patch in `session-stop.ts` and `hook-state.ts` after FTS helper and forced-degrade tests existed. The packet was re-scoped accordingly and all active scope was realigned to that boundary.
@@ -75,3 +72,6 @@ The original packet framing promised a six-phase cache-warning rollout including
 - Implement `UserPromptSubmit` warning behavior as a separate follow-on packet after the analytics reader gate is satisfied.
 - Introduce `.claude/settings.local.json` runtime enablement only after cached-summary consumer and warning consumer packets land.
 - Add normalized analytics reader, dashboard contract, token-observability publication as later follow-on packets.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/001-cache-warning-hooks` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-09-26
 
-> Spec folder: `specs/sk-doc/060-create-goal-mode/009-verification-and-closeout` (Level 2)
-> Parent packet: `specs/sk-doc/060-create-goal-mode`
-
 ### Summary
 
 The mode now has run evidence, not only a passing package. All eight playbook scenarios ran and passed. The mode authored one real missing goal: phase 007 of 017-memory-database-decommission, which had no goal file and no binding row. That packet now binds all seven phases at 3,728 durable characters. The mode also has a full README, a v1.0.0.0 changelog and a hub changelog link, and every phase record agrees that the packet is done.
@@ -66,3 +63,6 @@ _No file-level detail recorded._
 - A dispatched worker ran /create:goal. Workers cannot type slash commands, so the worker followed the command's :auto workflow file step by step. No one has invoked the command interactively.
 - One newcomer prompt reaches the mode only at the hub. Prompt 3 gets system-spec-kit from the advisor, so the joint count is 9 of 10.
 - Older drift remains. The sk-design admission drift and three generate-command-routers.cjs drifts on the speckit plan, implement and complete commands all predate this packet.
+
+> Spec folder: `specs/sk-doc/060-create-goal-mode/009-verification-and-closeout` (Level 2)
+> Parent packet: `specs/sk-doc/060-create-goal-mode`

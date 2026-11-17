@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-16
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 The memory quality validator was rejecting legitimate ADR content with a V8 hard block. A direct run against the `037-llama-cpp-embedding-worker-deep-dive` decision record reported false foreign packet IDs including `768-dimension`, `142-line`, `ADR-002-decouple-retention-from-governance` plus `005-stability-instrumentation`. Four independent overreach modes caused the block: metric unit labels matching the `NNN-word` shape, ADR title numbers treated as packet IDs, a nested file-path fallback that captured the wrong numbered segment plus a scatter threshold too low for document types that legitimately cross-reference related packets.
@@ -64,3 +61,6 @@ The patch tightened candidate extraction in `validate-memory-quality.ts` by addi
 - Resolve the `EPERM` filesystem permission issue blocking `npm run build` writes to `mcp_server/dist` and confirm exit 0 for a full build.
 - Extend the metric suffix denylist as new unit-like false positives are discovered, each with a paired test.
 - Consider broader ADR context filtering if prose references to decision numbers beyond the immediate `ADR-` prefix are found to produce new false positives.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

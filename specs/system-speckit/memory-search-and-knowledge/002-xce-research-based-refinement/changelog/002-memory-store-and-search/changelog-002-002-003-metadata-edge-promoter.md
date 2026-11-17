@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle`
-
 ### Summary
 
 The memory index now promotes authored packet lineage metadata into causal edges during scan indexing. `lib/causal/frontmatter-promoter.ts` handles three validated gaps: `graph-metadata.json.parent_id`, `graph-metadata.json.children_ids`, and `description.json.parentChain`. Already-wired manual metadata links remain on the existing causal-link processor path and are not re-promoted. Parent and parent-chain metadata create `derived_from` edges from the current packet to the ancestor. Child metadata creates `enabled` edges from the current packet to each child. Generated edges write `created_by='auto'`, `extraction_method='frontmatter'`, and `confidence=1.0`. Stale generated edges for removed metadata are routed through the tombstone sweep helper before deletion. The schema advances to v33 with additive `confidence` and `extraction_method` columns that make generated edges auditable without changing existing manual rows.
@@ -72,3 +69,6 @@ The memory index now promotes authored packet lineage metadata into causal edges
 
 - The promoter resolves packet ids to indexed memory rows. Unindexed targets produce warnings and no partial edge is created; this will self-resolve as those packets are indexed.
 - Three pre-existing out-of-scope alignment-verifier defects remain: `canonical-fingerprint.ts`, `memo.ts`, and `deploy-mcp.sh`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle`

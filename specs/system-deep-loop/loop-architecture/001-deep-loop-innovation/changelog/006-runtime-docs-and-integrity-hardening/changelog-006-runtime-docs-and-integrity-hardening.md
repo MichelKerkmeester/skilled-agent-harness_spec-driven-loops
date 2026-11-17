@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening` (Level 3)
-
 ### Summary
 
 This group covers the runtime-docs and integrity-hardening spine of the 036 deep-loop innovation packet: runtime code READMEs and sk-code alignment, plus the artifact-certificate, alignment-coverage, mode-gate, dispatch-integrity, promotion-authority, routing-parity, silent-failure, docs-drift, and identity-and-lock hardening clusters. Each child owns its own scope, plan, and verification; this parent tracks the shared theme only. Per the parent phase documentation map, phases 019, 020, 026, 027, and 033 are complete; phases 025, 028, 029, 030, 031, and 032 are in progress.
@@ -33,3 +31,5 @@ This group covers the runtime-docs and integrity-hardening spine of the 036 deep
 | `009-silent-failure-and-harness-repair` | Make invalid input fail loudly and repair the harnesses that produce evidence, across strict parsing and honest exit codes, test-harness integrity, and asset/playbook resolution. Complete (22/23 landed across 3 lanes). |
 | `010-docs-drift-and-p2-batch` | Batch the P2 backlog and the three doc-contract P1s in one sweep, replacing duplicated facts with links to one authoritative source so the drift cannot silently recur. Complete. |
 | `011-identity-and-lock-ownership-hardening` | Fail-closed identity binding and process-shared ownership boundaries for authorized transitions, staged leaf publication, append locks, and fresh loop-lock acquisition. Complete (5/5 landed). |
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening` (Level 3)

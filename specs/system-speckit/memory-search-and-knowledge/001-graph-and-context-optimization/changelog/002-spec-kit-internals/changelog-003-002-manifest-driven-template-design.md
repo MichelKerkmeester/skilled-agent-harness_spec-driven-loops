@@ -19,9 +19,6 @@ contextType: "research"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
-
 ### Summary
 
 A 9-iteration autonomous deep-research loop converged on a C+F hybrid manifest-driven greenfield template system. The design takes the spec-kit template surface from 86 source files to 15 while eliminating the Level 1/2/3/3+ taxonomy entirely. The chosen design replaces the level scalar with three orthogonal axes (kind plus capabilities plus presets), gives every addon doc an explicit lifecycle owner so stale empty stubs never appear in fresh packets, and drives both the scaffolder and the validator from a single manifest so they cannot drift. The synthesis lives in research/research.md (40.9 KB, 17 sections). Concrete refactor phases are in plan.md. ADR-001 plus ADR-002/003/004 capture the decisions in decision-record.md.
@@ -66,3 +63,6 @@ A 9-iteration autonomous deep-research loop converged on a C+F hybrid manifest-d
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

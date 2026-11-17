@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved` (Level 2, phase parent)
-
 ### Summary
 
 Packet 156 mined two reference loop codebases into a ranked improvement backlog, shipped that backlog as seven subsystem and remediation phases, then ran a deep-research fan-out against the packet itself and shipped the resulting 11-child remediation phase, then dispatched a 10-iteration deep-review against its own public documentation, and closed the follow-ups phase 009 itself deferred. All eleven phases are complete; phase 011 closed 2026-07-02 with the sliding-window convergence mode.
@@ -77,3 +75,5 @@ _No packet-level file-level detail recorded. See each phase's own root changelog
 - Phase 009 identified several deliberately deferred items: 2 review findings remain genuinely active, a sliding-window convergence mode is a documented follow-up, the default validate.sh path does not read the shell rule registry, and dozens of leaf children across phases 002 through 007 still carry scaffold markers in their own plan.md or tasks.md. See `009-research-backlog-remediation/changelog-009-root.md` for detail.
 - Phase 010 found no follow-ups of its own. See `010-documentation-truth-audit/changelog-010-root.md` for detail.
 - Phase 011 closed all 4 of phase 009's deferred items, finishing with the sliding-window convergence mode (child 007) on 2026-07-02. See `011-followup-remediation/changelog-011-root.md` for detail.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved` (Level 2, phase parent)

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/011-enrichment-and-scan-shutdown-fence` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`
-
 ### Summary
 
 fatalShutdown fenced the file watcher and ingest worker before closeDb() precisely because they re-resolve the DB through requireDb(), which reopens a closed connection — a write after the TRUNCATE checkpoint leaves a non-empty WAL at rest. The 010 deep-review found the background-enrichment scheduler and the fire-and-forget startup scan had the same hazard but were never fenced. They are now.
@@ -57,3 +54,6 @@ fatalShutdown fenced the file watcher and ingest worker before closeDb() precise
 ### Follow-Ups
 
 - The 010 deep-review P2 backlog items (queue cap, failure aggregation, scheduler observability) remain deferred and are tracked as a follow-up packet (012).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/011-enrichment-and-scan-shutdown-fence` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`

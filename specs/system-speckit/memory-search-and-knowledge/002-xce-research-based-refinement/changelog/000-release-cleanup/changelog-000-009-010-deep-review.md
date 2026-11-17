@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/010-deep-review` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 deep-review's 10 references and 2 assets now carry exactly the canonical frontmatter contract, so every doc in the skill is valid routing signal for the advisor doc harvest. Unlike the pilot, this phase was mostly net-new authoring: only 3 docs had detailed blocks (each missing tier and contextType), while 9 docs carried title+description only.
@@ -64,3 +61,6 @@ deep-review's 10 references and 2 assets now carry exactly the canonical frontma
 ### Follow-Ups
 
 - Live-daemon `matchedDocs` verification is deferred to a later campaign-level session cycle; the running advisor daemon predates the doc-trigger adoption and cannot observe doc triggers until restarted.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/010-deep-review` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

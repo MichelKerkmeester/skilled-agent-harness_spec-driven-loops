@@ -2,8 +2,6 @@
 
 This release matters because bulk rebuilds had started rejecting good files and keeping older context labels alive. In `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives`, Phase 009 addresses 25 issues across validation behavior, shared context labeling and database cleanup so valid content can be rebuilt instead of blocked. The forced full rebuild path now drops blocked files from 1,106 to 0, total passing tests rise from 134 to 139, clean distribution rebuilds pass and the sk-code-skilled alignment verifier reports 0 findings. Two lower-priority follow-ups remain deferred: summary counts during rate limiting and per-file skip reasons.
 
-> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives` (Level 2)
-
 ---
 
 ## Bug Fixes (11)
@@ -238,3 +236,5 @@ The implementation set for this phase was code and test focused. No standalone d
 No manual migration is required.
 
 Existing databases move to schema version 25 during the normal upgrade path, and older decision and discovery labels are rewritten as part of that step. If an environment still carries repeated rows from earlier forced rebuild runs, rerunning the rebuild on this patched version will settle the index under the new duplicate checks.
+
+> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives` (Level 2)

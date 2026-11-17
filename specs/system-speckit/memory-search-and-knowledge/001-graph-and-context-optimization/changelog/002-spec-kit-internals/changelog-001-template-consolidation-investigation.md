@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-01
 
-> Spec folder: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/001-template-level-consolidation-research` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
-
 ### Summary
 
 This was an **investigation-only packet**. A 10-iteration autonomous deep-research loop (cli-codex gpt-5.5 high fast) analyzed the spec-kit template system, which maintained 86 files across `core/`, `addendum/`, and four materialized `level_N/` output directories. The system ran `compose.sh` at build time and committed the output alongside source, creating two independent drift surfaces and ~60 redundant files.
@@ -75,3 +72,6 @@ Three commits touched this phase: `e933c152a7`, `79e97aec92`, `bdb739d973`.
 - **Phase 002 (greenfield redesign).** The user rejected the PARTIAL framing. Phase 002 ran a new deep-research loop focused on the greenfield design problem.
 - **Phase 003 (greenfield implementation).** Executes the C+F hybrid design chosen in phase 002.
 - **Byte-equivalence and resolver work.** The PARTIAL plan's Phases 1 and 2 were superseded by the greenfield approach.
+
+> Spec folder: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/001-template-level-consolidation-research` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

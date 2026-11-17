@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation/005-env-documentation-audit` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation`
-
 ### Summary
 
 This phase ran a ten-iteration opus deep review of the whole ENV-documentation surface as one body and remediated what it found. It entered a POOR verdict because the reference was actively misleading rather than merely incomplete. The code reads 412 distinct flags against 289 documented, and the raw 144 gap triaged to zero P0, thirteen P1 and sixteen P2. The remediation rebuilt the stale dist, added the missing rows, corrected the wrong defaults, reconciled the cross-doc contradictions and fixed the structure, verifying every finding against source and correcting three review errors in the process. No production default was flipped.
@@ -47,3 +44,6 @@ This phase ran a ten-iteration opus deep review of the whole ENV-documentation s
 ### Follow-Ups
 - A separate house-style pass should clean the eleven pre-existing em-dashes and the prose semicolons in ENV_REFERENCE.md, which are debt outside this change's scope.
 - The 144-flag raw gap is intentionally not fully documented, flags that are internal-only or not user-facing remain undocumented by design.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation/005-env-documentation-audit` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/004-review-remediation`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-30
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/002-fix-deep-loop-workflow-state` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`
-
 ### Summary
 
 The deep-loop workflow state machine had five issues surfaced by prior research. The `step_acquire_lock` block in the research-loop YAML did not release its lock file on terminal halt or cancel paths, leaving stale locks that blocked subsequent runs. Both the research-loop and review-loop YAMLs emitted a malformed fallback iteration record when outputs were missing, dropping fields required by `state_format.md` so the reducer silently discarded the record. The `--no-resource-map` command-line flag was parsed in the markdown command but the YAML config-creation step hardcoded `resource_map.emit: true`, overwriting the parsed value. In `generate-context.ts`, child saves updated only `last_active_child_id` and `last_active_at` on the parent, leaving `children_ids` stale after every save.
@@ -70,3 +67,6 @@ Five surgical fixes addressed each finding with the smallest code or doc change 
 - Lock cleanup is a workflow contract, not runtime-enforced. A future hardening packet should verify that all registered runtimes honor the `on_halt` and `on_cancel` directives under adversarial conditions.
 - The fallback record fix is additive. Track schema drift in `state_format.md` through periodic deep-review of the YAML assets to prevent fields drifting out of alignment again.
 - Resource-map flag plumbing covers the config writers only. If additional YAML paths write `resource_map.emit` directly, audit them against the same templating pattern.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/002-fix-deep-loop-workflow-state` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings`

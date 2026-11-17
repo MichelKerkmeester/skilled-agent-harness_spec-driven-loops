@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-04-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Research-only)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 A 10-iteration deep-research investigation targeted the code-graph and hook surfaces. The investigation asked: what information do the layers produce that the next layer does not receive? The answer was contract leakage at three boundaries.
@@ -67,3 +64,6 @@ The investigation stopped at the 10-iteration cap. The `newInfoRatio` trajectory
 - **F-005 startup payload transport.** Three of four runtime hooks dropped the structured payload. Addressed by the Phase 004 implementation's startup payload parity stream.
 - **F-006 context deadline wiring.** Deadline contracts were defined but never wired. Addressed by the Phase 004 implementation's bounded-context contracts stream.
 - **Additional surface area.** The investigation stopped at the 10-iteration cap with `newInfoRatio` above 0.05. A follow-up investigation may cover the remaining surface.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Research-only)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

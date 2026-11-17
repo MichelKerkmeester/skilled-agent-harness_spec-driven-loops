@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-16
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation`
-
 ### Summary
 
 This sub-phase reconciled doc-truth, completion-claim and runtime-mirror drift across the 027 epic. Each of the 42 findings was re-verified against the live repo before action: true findings were fixed, false ones refuted with corrected coordinates and code-class findings deferred to the sibling code phases. Result: 35 resolved here, 7 deferred. This is the work that documents how the existing 027 spec folders were corrected, so the reconciliation of those folders is captured here rather than in a per-folder changelog.
@@ -67,3 +64,6 @@ This sub-phase reconciled doc-truth, completion-claim and runtime-mirror drift a
 - Seven code-class findings (T022, T024, T025, T026, T027, T031, T032) plus T042 optional wiring were deferred to sibling code phases 001-004 and are resolved there.
 - Around twelve other scenario files still phrase a per-scenario PARTIAL and are a noted follow-up sweep (the root taxonomy is now self-consistent).
 - Where a fixed markdown status implies a derived-status JSON update, that refresh is a metadata follow-on (the canonical markdown is now correct).
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation`

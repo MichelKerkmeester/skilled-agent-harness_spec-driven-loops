@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/003-router-rewire` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands`
-
 ### Summary
 
 Replaced the four long memory command files with slim routers that point to presentation assets and preserve local workflow routing.
@@ -55,3 +52,6 @@ Replaced the four long memory command files with slim routers that point to pres
 ### Follow-Ups
 
 - Full workflow-routing separation into YAML could not be completed because the requested existing memory workflow YAML assets are absent and creating YAML assets was out of scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/003-router-rewire` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`
-
 ### Summary
 
 Phase 007's `classifyOwner` returned `live-owner` for any owner whose PID was alive regardless of heartbeat freshness. When an arc 009 closure attempt hit a launcher + server pair that had outlived their parent MCP client disconnect, `lastHeartbeatIso` was 22 minutes stale against a 60-second TTL. The new MCP client was blocked from acquiring the lease with a `-32000` error because the gate refused every non-stale-pid live owner.
@@ -76,3 +73,6 @@ Phase 013 introduces `stale-heartbeat-reclaim` as a new `OwnerClassification` va
 - Heartbeat refresh relies on the Node event loop. Under severe event-loop saturation, refresh ticks can be delayed. The `ttlMs / 3` cadence leaves several missed ticks before the `ttlMs * 2` reclaim threshold, but no macOS load-stress benchmark was added in this phase.
 - SC-003 operator verification uses `launcher-lease.vitest.ts` as harness-equivalent evidence. A manual non-disruptive live MCP verification script is documented in the implementation summary for operators who want production-parent disconnect evidence.
 - The launcher retains a mirrored CommonJS owner-lease classifier because it runs before TypeScript build and bootstrap can be assumed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

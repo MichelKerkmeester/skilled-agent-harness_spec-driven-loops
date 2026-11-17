@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 The query expansion pipeline built `combinedQuery` by appending up to eight synonym terms to the original query without any length check. When the combined text crossed the practical llama-cpp context budget, the worker truncated the tail after the fact, silently dropping lower-priority synonym signal and degrading retrieval quality. Packet 039 added worker-side tokenizer truncation as a fallback but did not address the consumer-side construction.
@@ -62,3 +59,6 @@ A `COMBINED_QUERY_CHAR_BUDGET` constant and a `buildBoundedCombinedQuery()` help
 
 - The cap is character-based rather than tokenizer-based. This was chosen deliberately for simplicity and to keep the patch minimal. Future retrieval evaluation can replace the character proxy with provider tokenizer plumbing if degradation evidence appears.
 - The `tests/stage1-candidate-gen.vitest.ts` filter referenced in the dispatch is absent from this checkout. The available regression `tests/stage1-expansion.vitest.ts` imports `stage1-candidate-gen.ts` and passed. The missing filename should be reconciled with the test suite when the stage1 test layout is next revised.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

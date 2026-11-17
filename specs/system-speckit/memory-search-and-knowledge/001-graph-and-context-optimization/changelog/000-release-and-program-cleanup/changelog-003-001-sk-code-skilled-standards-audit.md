@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass`
-
 ### Summary
 
 Packets 033, 034 and 036 added retention-sweep, half-auto advisor, hook freshness and matrix-runner code without a dedicated standards pass. Mixed value and type imports, missing TypeScript module headers on new test files, absent TSDoc on new exported surfaces and undocumented fail-closed catches were the most common gaps.
@@ -88,3 +85,6 @@ A line-cited audit of 51 files was run against sk-code-skilled. Concrete violati
 - Update sk-code-skilled to document a pure-JSON exception for manifest files that cannot carry JSONC header comments. The JSON manifest files must stay valid JSON.
 - Update sk-code-skilled to allow feature-ID-prefixed prompt template filenames when IDs are declared in a sibling manifest. The F1 through F14 template names are intentional manifest addressing.
 - Add TypeScript CLI output guidance to sk-code-skilled documenting `process.stdout.write` and `process.stderr.write` as the preferred pattern over `console.log` for CLI reporters.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass`

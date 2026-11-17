@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-09
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli` (Phase Parent)
-
 ### Summary
 
 The code-index CLI lane delivered a complete dual-stack CLI front-door over the mk-code-index daemon. A single 10-iteration research run produced a GO verdict for all 8 tools with the blocked-read envelope identified as the top system risk. The CLI core shipped as a manifest-backed layer over the existing daemon contract. Hardening locked dual-client safety, owner-lease respawn, blocked-read rendering, schema parity, and teardown cleanliness with 16/16 sandbox tests passing. Runtime integration repaired the mk-code-graph bridge (replacing the reverted in-process import approach) and wired warm-only fallback into hooks.
@@ -68,3 +66,5 @@ See per-phase changelogs for full file tables.
 
 - Dual-stack observation window remains open by design
 - Final program-level multi-runtime transport-down drill tracked at program level
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli` (Phase Parent)

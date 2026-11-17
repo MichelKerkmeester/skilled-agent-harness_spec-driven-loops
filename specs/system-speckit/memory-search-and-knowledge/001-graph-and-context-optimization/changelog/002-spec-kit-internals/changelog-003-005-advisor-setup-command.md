@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/005-advisor-setup-command` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine`
-
 ### Summary
 
 You can now run `/doctor:skill-advisor` to interactively analyze every skill in your repo, propose optimized advisor scoring (TOKEN_BOOSTS, PHRASE_BOOSTS, derived triggers, CATEGORY_HINTS), apply approved changes, re-index the skill graph, and validate with the existing 220-test advisor suite. Before this packet, the only way to tune advisor routing was to hand-edit explicit.ts / lexical.ts / per-skill graph-metadata.json files and remember to rebuild dist plus run tests. Now the workflow is one command.
@@ -84,3 +81,6 @@ You can now run `/doctor:skill-advisor` to interactively analyze every skill in 
 - Per-run rollback script auto-invoke triggers on build or edit failure only. Post-test-failure rollback is offered as option B at the post_phase_4 gate in confirm mode and surfaces as a recommended action in auto mode failure paths, but is not auto-executed without operator decision.
 - Token-collision detection is per-pair, not transitive. Phase 2 cross-checks each proposed token against existing TOKEN_BOOSTS for other skills but does not detect three-way collisions. In practice this is rare because Phase 2 generates proposals one skill at a time.
 - Confidence threshold is fixed at 0.40 (medium). Phase 2 emits confidence_by_skill per proposal and pre_phase_3 hard-blocks anything below 0.40. There is no flag to relax this for development or testing without editing the YAML directly.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/005-advisor-setup-command` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine`

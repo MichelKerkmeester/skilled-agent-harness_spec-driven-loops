@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The changelog for v3.5.0.4 said the full multi-session behavior of daemon re-election was under live observation rather than proven, because a real launcher seemed impossible to spawn in a test without touching the shared production lease and database. This packet proved it can, and in proving it found a real defect.
@@ -60,3 +57,6 @@ The changelog for v3.5.0.4 said the full multi-session behavior of daemon re-ele
 - Fresh sessions do not reuse the warm daemon. A fresh session after disposal reaps the released daemon and spawns a clean one rather than adopting the warm one. True adoption is a deferred follow-up; the value of re-election remains for already-connected live secondaries.
 - PID-recycle assumption. The reap signals a pid recorded in the lease, the same lease-freshness assumption as the existing dead-socket reap. No new risk class is introduced.
 - Activation needs a fresh session. The launcher reads its code at startup, so a launcher already running keeps the old behavior until the next session spawns it.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

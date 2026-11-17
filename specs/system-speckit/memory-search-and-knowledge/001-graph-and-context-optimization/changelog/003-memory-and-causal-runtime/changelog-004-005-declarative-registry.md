@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-05-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/005-declarative-registry` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`
-
 ### Summary
 
 This phase is a pre-implementation scaffold for a declarative CocoIndex embedder registry. The planned work is a typed `registered_embedders.py` module with model metadata, a default accessor that matches `config.py` and unit tests for schema coverage.
@@ -65,3 +62,6 @@ No runtime implementation has shipped yet. The packet records the target shape, 
 - Build `cocoindex_code/registered_embedders.py` with typed metadata and manifest accessors.
 - Add `tests/test_registered_embedders.py` to enforce schema shape and default alignment.
 - Run the planned pytest, import smoke and strict packet validation once implementation lands.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/005-declarative-registry` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

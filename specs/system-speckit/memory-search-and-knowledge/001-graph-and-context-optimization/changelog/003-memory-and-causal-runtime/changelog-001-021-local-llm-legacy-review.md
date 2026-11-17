@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-05-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/021-local-llm-legacy-review` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 Packet 014 shipped a default-embedding migration that demoted llama-cpp to explicit opt-in and promoted hf-local EmbeddingGemma q8 768d as the automatic default. After the migration, approximately 147 active-file surfaces across code, docs, runtime configs and assets still asserted old provider defaults without any post-014 audit.
@@ -76,3 +73,6 @@ None. Review-only phase.
 - Resolve the P0 framing question: determine whether `factory.ts` auto-llama-cpp selection is the actual ship state (making the 014 implementation-summaries wrong) or whether 014 incompletely landed the opt-in flip (making factory.ts wrong). Remediation 022 must pick which truth wins before writing the fix.
 - Confirm whether the Voyage cloud-fallback in factory.ts is intentional opt-in behavior via env or also residue from 014.
 - Run a confirmatory `/deep:start-review-loop:auto` pass after remediation 022 ships to confirm FAIL transitions to PASS.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/021-local-llm-legacy-review` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

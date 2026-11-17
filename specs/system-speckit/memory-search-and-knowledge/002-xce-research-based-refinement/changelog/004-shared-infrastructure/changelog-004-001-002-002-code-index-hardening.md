@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-09
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli`
-
 ### Summary
 
 The code-index CLI hardening phase shipped six Vitest suites that regression-lock the critical failure modes identified in the research delta set. The suites exercise real MCP and CLI paths in a sandbox harness, with D8 covering real dual-client concurrency, D9 reading the real `.code-graph-owner.json` lease for fresh-launcher takeover, blocked-read rendering asserting `status:blocked` and `requiredAction` across 9 stale cases, parity locking all 8 schema-declared tools, and teardown verifying zero orphaned processes. Host daemons stayed untouched.
@@ -67,3 +64,6 @@ The code-index CLI hardening phase shipped six Vitest suites that regression-loc
 ### Follow-Ups
 
 - None identified; runtime integration proceeds in `003-runtime-integration`
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli`

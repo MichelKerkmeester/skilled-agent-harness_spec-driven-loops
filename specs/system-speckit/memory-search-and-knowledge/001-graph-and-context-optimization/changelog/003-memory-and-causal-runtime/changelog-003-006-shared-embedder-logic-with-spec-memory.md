@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack/006-shared-embedder-logic-with-spec-memory` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack`
-
 ### Summary
 
 Skill-advisor and mk-spec-memory maintained separate embedder registries with competing defaults and parallel factory implementations. Any update to one skill's embedder layer risked silent drift in the other. The `embeddinggemma-300m` default in skill-advisor was stale relative to mk-spec-memory's post-phase-007 state.
@@ -84,3 +81,6 @@ The canonical adapter contract surface (interface, types, registry, Ollama adapt
 - Remove the legacy `skill_nodes.embedding` BLOB column once production confirms no installation still reads from it (003 follow-up #3).
 - Add behavior branching to the shared cascade for `contentType: 'code'` when a TypeScript code consumer materialises. Today the parameter is accepted but does not alter routing.
 - Collect live daemon smoke (cold start, pointer flip observation, semantic-shadow probe) to complete the final operator-side acceptance check.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack/006-shared-embedder-logic-with-spec-memory` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack`

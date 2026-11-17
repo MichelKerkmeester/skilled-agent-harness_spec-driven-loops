@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-16
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation`
-
 ### Summary
 
 This sub-phase remediated the 34 memory store, search and save findings from the fresh-regression deep-review. Outcome: 28 fixed, 2 refuted, 2 deferred to the dedicated consolidation packet (007) and 2 partial. Every cited file and line was re-opened and confirmed real before editing, fixes mirror the named correct sibling pattern, and the four highest-value bugs were mutation-checked RED then GREEN.
@@ -65,3 +62,6 @@ This sub-phase remediated the 34 memory store, search and save findings from the
 - T013 and T014 (consolidation lock-ordering and handle consistency) were deferred to the dedicated consolidation packet (sub-phase 007) because they touch a default-ON path and warranted their own concurrency gate.
 - T031: the retention-reducer helper is documented as staged. Wiring it into the sweep and correcting the sibling impl-summary claim was handled in the edge-tier honesty fix.
 - T004 and T032 were refuted with reason and intentionally not changed (re-stamping a system-merged row would mislabel it, and `codeHash()` is a correct used utility).
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation`

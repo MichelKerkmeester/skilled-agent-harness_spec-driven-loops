@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode`
-
 ### Summary
 
 The sidecar client had accumulated seven P1 findings from the arc 010/001 deep-research pass. Production constructor options blurred with test-only knobs (F18). `EmbedOptions` was defined twice across the embedder layer (F20). Eight trivial single-call helpers indirected the flow without encoding meaningful seams (F25). SIGTERM and SIGKILL sequencing was split across duplicate call sites instead of one grace-period helper (F57). Response handling relied on broad post-parse assertions rather than discriminator narrowing, leaving unknown message types unhandled (F62). `SidecarClient.ready()` had no production callers on the sidecar execution path (F73). The `embed()` validation cascade was deeply nested rather than flat (F91).
@@ -70,3 +67,6 @@ All seven findings closed in commit `2ffca86be4`. `sidecar-client.ts` received s
 
 - Address remaining P2 findings in `execution-router.ts` that are outside this packet scope. Only the F20 duplicate `EmbedOptions` definer changed here.
 - The `EmbedderAdapter` shared contract still includes `ready()` for registry adapters. A follow-on packet should evaluate whether the registry adapter surface also warrants removal or a separate `ready()` contract.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode`

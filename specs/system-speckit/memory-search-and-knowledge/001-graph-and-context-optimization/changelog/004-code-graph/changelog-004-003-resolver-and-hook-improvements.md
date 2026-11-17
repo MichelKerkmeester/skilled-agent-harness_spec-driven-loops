@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/003-resolver-and-hook-improvements` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan`
-
 ### Summary
 
 Four deep-research sub-phases (001 through 004 under `research/`) produced a set of findings covering CALLS subject selection, blocked-read contract gaps, CocoIndex ranking loss, stale scan metadata, missing graph-quality observability and startup payload fragmentation across runtime hooks.
@@ -91,3 +88,6 @@ Eight streams addressed those findings. The `calls_from` and `calls_to` query pa
 - Address residual template-anchor and link issues in `spec.md`, `plan.md` and `tasks.md` in a dedicated doc-cleanup packet. These were explicitly out of scope for this implementation packet.
 - Resolve pre-existing workspace-wide lint errors that block `npm run check --workspace=@spec-kit/mcp-server`. These are in untouched files outside this packet's scope.
 - Verify Copilot hook startup payload transport once a dedicated `hooks/copilot/session-prime.ts` path is established. The current copilot wiring routes through a shared test fixture.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/003-resolver-and-hook-improvements` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan`

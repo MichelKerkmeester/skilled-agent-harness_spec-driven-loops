@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 Packet 043 proved that spawning one child agent per scenario was the wrong architecture for the local LLM query-intelligence suite. Each child started its own MCP daemon stack, which could contend with the main session's local llama-cpp Metal context before any scenario logic ran.
@@ -72,3 +69,6 @@ A direct Node MCP client runner replaced that approach. The runner creates one `
 - Extend the runner to cover the full scenarios 401 to 415 once the operator confirms the shared-daemon architecture is stable.
 - Sync the substrate stress harness at `mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs` with the TSV output format until an automated mirror lands.
 - Consider disabling daemon stderr capture by default and requiring an explicit flag for operators who need startup diagnostics.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

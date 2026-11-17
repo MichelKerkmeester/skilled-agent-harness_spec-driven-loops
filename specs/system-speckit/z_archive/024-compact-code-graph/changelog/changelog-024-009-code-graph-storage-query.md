@@ -8,8 +8,6 @@
 
 This phase turned the structural index into a usable service. Graph data now has a SQLite storage layer, MCP tools for scan/query/status, and enough server wiring to answer outline, call, and import questions without forcing users back to manual grep chains.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/009-code-graph-storage-query/`
-
 ---
 
 ## New Features (4)
@@ -55,3 +53,5 @@ This phase turned the structural index into a usable service. Graph data now has
 ## Upgrade
 
 No migration required. The storage layer is still single-writer by design and replaces file-level graph data atomically.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/009-code-graph-storage-query/`

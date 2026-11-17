@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/015-socket-server-reconvergence-and-hardening` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`
-
 ### Summary
 
 This phase closed the drift left after the daemon bridge work. A canonical `@spec-kit/shared/ipc/socket-server.ts` now carries the hardened race-safe bridge contract. spec-memory and skill-advisor re-export it, while code-index keeps a byte-identical local copy guarded by a drift-check because it cannot yet import `@spec-kit/shared`. The work also adds tests for socket TOCTOU recovery, socket-copy drift and probe-no-spawn behavior.
@@ -74,3 +71,6 @@ This phase closed the drift left after the daemon bridge work. A canonical `@spe
 - Restart affected daemons or reconnect MCP so the new `dist` output is active.
 - Finish code-index unification by adding the `@spec-kit/shared` dependency and replacing its byte-identical local copy with an import.
 - Track the unrelated advisor shared-embeddings failure separately.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/015-socket-server-reconvergence-and-hardening` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

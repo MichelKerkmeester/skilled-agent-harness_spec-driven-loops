@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-16
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation` (Phase Parent)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation`
-
 ### Summary
 
 This phase closes the deep-loop-innovation (036) gap-analysis findings across five children: measured recommendation-to-runtime traceability, fail-closed substrate identity, a pilot-mode authority cutover, the fleet-wide authority cutover with legacy-writer retirement, and a final closeout and drift reconciliation. The two verification-plane children have landed; the three authority-changing children remain planned behind explicit operator gates.
@@ -30,3 +27,6 @@ This phase closes the deep-loop-innovation (036) gap-analysis findings across fi
 ### Status
 
 Additive-dark throughout: no mode authority has been flipped and no legacy writer retired. The remaining cutover, retirement, and reconciliation work is gated for explicit operator approval.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation` (Phase Parent)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation`

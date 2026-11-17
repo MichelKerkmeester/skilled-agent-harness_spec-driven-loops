@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup` (Level 2)
-
 ### Summary
 
 > Phase-parent note: This spec.md is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below. <!-- /ANCHOR:problem -->
@@ -61,3 +59,5 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup` (Level 2)

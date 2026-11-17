@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-08
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing`
-
 ### Summary
 
 The query router previously activated the graph channel only at the complex tier (more than 8 terms), leaving 1,328 live causal edges unused for natural 1-5-term queries. Intent-driven searches for decisions and specs never reached the graph channel regardless of how many causal edges existed for those nodes. Operators had no telemetry to observe whether the graph channel was firing at all.
@@ -83,3 +80,6 @@ None. This packet is purely additive.
 - Wire `invalidateEntityDensityCache()` into the post-commit paths of `memory-save.ts` and `memory-bulk-delete.ts` if the 60-second TTL lag matters in practice. The current bias is false-negative only and does not cause false activation.
 - Tighten playbook 272 query phrasing so "alternatives considered for caching" classifies as `find_decision` rather than `understand`. The code is correct. The playbook expectation is off by one hit out of five.
 - Telemetry state resets on restart. If long-running rate trends are needed, add a persistent store for the rolling 200-decision window.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing`

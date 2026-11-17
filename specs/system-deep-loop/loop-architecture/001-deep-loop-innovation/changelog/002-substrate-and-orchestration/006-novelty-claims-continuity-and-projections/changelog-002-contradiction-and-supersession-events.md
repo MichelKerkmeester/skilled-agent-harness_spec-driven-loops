@@ -12,9 +12,9 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections`
-
 ### Summary
 
 This phase made contradiction and supersession first-class ledger events so a later finding can typed-ly overturn or replace an earlier one with an audit trail, preserving evidence, history, deterministic claim status, and replayable audit trails. Per its implementation summary, the phase delivered typed additive-dark claim relationship events, deterministic status projection, and fail-closed replay evidence. Status is complete.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections`

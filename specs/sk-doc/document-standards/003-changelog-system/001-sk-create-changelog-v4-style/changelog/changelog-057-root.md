@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-09-29
 
-> Spec folder: `specs/sk-doc/057-sk-create-changelog-v4-style` (Level 1)
-
 ### Summary
 
 The /create:changelog skill now writes release notes in the narrative house style of the v4 exemplar instead of the machine-era table format. Generated changelogs open with why the release matters, name their sections for the domain they change, enforce voice and conciseness at validation time, and drop the file inventories, test metrics and schema churn no reader asked for.
@@ -81,3 +79,5 @@ The /create:changelog skill now writes release notes in the narrative house styl
 - The routing pin and SKILL.md ship together. The re-pinned sk-doc manifests hold the hash of the edited SKILL.md. Committing one without the other leaves sk-doc serving legacy routing.
 - Frontmatter versions move at commit time. The build segment counts each doc's git edits, so the version tool needs a second pass once these edits are committed.
 - A mode's SKILL.md edit moves the sk-doc pin. The hub hashes every mode's SKILL.md as a routing input, so the concision pass left sk-doc on legacy routing in the working tree. The pre-commit route-remint gate re-mints and stages the manifest in the same commit.
+
+> Spec folder: `specs/sk-doc/057-sk-create-changelog-v4-style` (Level 1)

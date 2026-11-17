@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research` (Level 2)
-
 ### Summary
 
 This phase-parent coordinates the Deep Research migration over the shared typed append-only event-ledger substrate without redefining shared contracts or moving authority prematurely. Its seven child phases divide the mode migration into schema, deterministic replay state, sealed artifacts, certificates and receipts, resume, shadow parity, and rollback plus mode-gate ownership. When the handoff criteria are met, deep-review receives a proven migration pattern and an unambiguous mode boundary. Per the parent phase documentation map, all seven children are delivered; the lane remains in progress pending acceptance of reconciled evidence.
@@ -30,9 +28,9 @@ This phase-parent coordinates the Deep Research migration over the shared typed 
 | `006-shadow-parity` | Define the shadow-parity harness that runs the ledger path beside the legacy emitter and diffs projections event-for-event. |
 | `007-rollback-and-mode-gate` | Define the fail-closed rollback switch and the independent mode-gate checklist that certifies this mode migrated. |
 
-## 2026-08-16
-
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research` (Level 2)
+
+## 2026-08-16
 
 ### Summary
 
@@ -43,3 +41,5 @@ The Deep Research migration lane is now Complete. All seven concern children rea
 - All 7 leaves Complete: typed-ledger schema, reducers/projections, sealed-artifacts, certificates, resume-adapter, shadow-parity, rollback-gate.
 - Shadow-parity verified green at 49/49.
 - Rollback-gate verified green at 79/79.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research` (Level 2)

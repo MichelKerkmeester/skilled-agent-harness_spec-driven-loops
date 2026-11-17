@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-20
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/010-public-repo-docs-alignment` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`
-
 ### Summary
 
 After the May 2026 retrieval-pipeline arc, public-repo documentation had drifted from current code defaults. The root README still cited `jina-embeddings-v3` as the mk-spec-memory cascade primary. The two-stage CocoIndex pipeline narrative (Stage 1 `nomic-CodeRankEmbed` + Stage 2 `Qwen3-Reranker-0.6B`) was absent. Several runtime docs under `mcp-coco-index/{references,assets}/` carried duplicate H2 headers and evergreen packet-ID violations.
@@ -75,3 +72,6 @@ A cli-devin SWE-1.6 sweep ran 10 iterations across every README, INSTALL_GUIDE, 
 
 - Seven spec-packet historical markdown files retain the old `benchmark-2026-05-20-expanded` path string by design (evergreen rule). Readers scanning grep results without context may flag these as drift. Both SOURCE.md and this changelog document the convention as intentional.
 - Two P2/INFO items from the cli-devin report remain open: mk-spec-memory embedder cross-check and a longer-timeout `cocoindex_code` module path grep re-run. Both are explicitly low-priority and outside this packet's scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/010-public-repo-docs-alignment` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots`

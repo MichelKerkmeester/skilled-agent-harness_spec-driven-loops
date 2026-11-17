@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/008-convergence-threshold-and-forced-depth-flag` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`
-
 ### Summary
 
 A hardcoded convergence-threshold fallback disagreed with deep-research's own documented default, and the original fix framing of a flat value change was corrected mid-implementation once it was found the same code path also serves review and context loops with their own different correct defaults. The already-working but undocumented `--stop-policy` flag was also documented on both consumer commands.
@@ -52,3 +49,6 @@ A hardcoded convergence-threshold fallback disagreed with deep-research's own do
 ### Follow-Ups
 
 - None. The corrected, loop-type-aware fix is documented as an explicit amendment to the original spec framing.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/008-convergence-threshold-and-forced-depth-flag` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

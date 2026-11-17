@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health` (Level 2)
-
 ### Summary
 
 This phase defines the shared planning boundary for replacing count-based stopping with five complementary contracts: path-covering termination, cycle detection, independent stopping clocks, value-of-computation allocation, and a generic health and degeneration harness. It generalizes the current council convergence anchor across all modes and is deliberately sequenced after durable fan-in and novelty/claims continuity because coverage, cycle, allocation, and health decisions consume those signals. Per the group parent phase map, this phase is in progress; all five children report delivered implementations in their implementation summaries.
@@ -27,3 +25,5 @@ This phase defines the shared planning boundary for replacing count-based stoppi
 | `003-stopping-clocks` | Multiple independent stopping clocks (budget, novelty-decay, coverage, wall-time) whose deterministic earliest firing stops the loop, each recorded. |
 | `004-value-of-computation-allocation` | Value-of-computation scoring and adaptive allocation that spend more iterations where marginal value is high, gated by the typed budgets. |
 | `005-health-and-degeneration-harness` | A generic health and degeneration harness that detects mode collapse, repetition, and quality decay across any mode without taking stop authority. |
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health` (Level 2)

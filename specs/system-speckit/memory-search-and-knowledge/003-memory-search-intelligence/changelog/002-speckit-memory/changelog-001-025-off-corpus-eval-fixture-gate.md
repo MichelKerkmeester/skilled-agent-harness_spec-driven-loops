@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/025-off-corpus-eval-fixture-gate` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 This phase shipped an `off_corpus` eval fixture (ids 98-103, kubernetes pinned as the permanent regression anchor) with six absent bare terms carrying zero relevance rows, a `run-false-confirm-eval.mjs` driver that scores the class through the production verdict path and reads the dormant `falseGoodOnHardNegatives` metric, plus a default-off `SPECKIT_FALSE_CONFIRM_MAX_RATE` gate with a grandfather report mode. The live driver measures a 0.833 false-confirm rate on nomic, five of six absent terms earning a good verdict on an unrelated doc. The phase measures and guards the off-corpus defect and does not touch the verdict, the downstream lexical-grounding floor fixes it.
@@ -60,3 +57,6 @@ This phase shipped an `off_corpus` eval fixture (ids 98-103, kubernetes pinned a
 - The off-corpus false-positive persists until the separate downstream lexical-grounding floor lands, the gate ships default-off for that reason.
 - The `SPECKIT_FALSE_CONFIRM_MAX_RATE` enforcement value stays open until the downstream verdict fix lands.
 - The 0.833 rate is embedder-scoped to nomic and should be re-measured on an embedder change.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/025-off-corpus-eval-fixture-gate` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

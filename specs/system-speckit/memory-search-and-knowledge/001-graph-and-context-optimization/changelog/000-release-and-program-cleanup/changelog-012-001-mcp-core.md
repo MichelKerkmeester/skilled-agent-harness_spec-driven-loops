@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`
-
 ### Summary
 
 This review-only packet audited the MCP memory mutation, save and embedding reconcile path. The verdict was CONDITIONAL. The audit found no P0s, but it kept 3 P1 findings active around stale entity-density cache invalidation, dry-run versus apply predicate drift and stale operator docs for `memory_embedding_reconcile`. It also recorded 1 P2 advisory for an advertised `activeOnly` option that the implementation does not read.
@@ -58,3 +55,6 @@ This review-only packet audited the MCP memory mutation, save and embedding reco
 - Plan remediation for entity-density invalidation after save, update, delete and bulk-delete mutations.
 - Align reconcile dry-run counts with apply mutation predicates.
 - Replace stale `dryRun: false` operator examples with the live `mode: "apply"` call shape.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`

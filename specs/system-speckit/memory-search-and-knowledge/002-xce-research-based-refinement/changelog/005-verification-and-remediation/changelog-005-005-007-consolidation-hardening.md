@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-16
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation`
-
 ### Summary
 
 This packet implemented the two consolidation.ts findings deferred from sub-phase 001, which were held back because they touch a default-ON path and warranted their own concurrency gate. The weekly consolidation cycle used to take the exclusive BEGIN IMMEDIATE write lock and then run an O(n^2) read-only contradiction scan while still holding it, blocking every other writer for the whole window. The cycle now does all read-only work before it takes the lock, and the lock covers only the writes. A latent second issue is also closed: a function carried a database parameter it ignored while reading through the module-global connection.
@@ -57,3 +54,6 @@ This packet implemented the two consolidation.ts findings deferred from sub-phas
 
 - Live activation is deferred. These changes are validated in tests only; the live consolidation daemon path is untouched until a separate dist rebuild and daemon recycle.
 - The pre-existing causal-edges T045 failure (old insertEdgesBatch return shape) is outside this packet scope and was not touched.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation`

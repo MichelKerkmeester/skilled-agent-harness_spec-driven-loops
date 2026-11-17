@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/004-vector-and-checkpoint-durability` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation`
-
 ### Summary
 
 The vector and checkpoint durability lane closed all recorded backlog entries across vector shard rebuild/attach integrity and checkpoint invalidation concerns.
@@ -53,3 +50,6 @@ The vector and checkpoint durability lane closed all recorded backlog entries ac
 ### Follow-Ups
 
 - Waived P2 entries are deliberate non-fixes with recorded reasons.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/004-vector-and-checkpoint-durability` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation`

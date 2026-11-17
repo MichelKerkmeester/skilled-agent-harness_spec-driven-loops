@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/010-daemon-resilience` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`
-
 ### Summary
 
 The cocoindex daemon was leaking zombie processes and burning CPU on every client disconnect. Two stale daemon zombies held 244 open file descriptors, the live daemon spent 90 percent CPU formatting tracebacks, and daemon.log had grown to 23 MB with 564 BrokenPipeError entries. The nine-patch fix removes the leak surface, eliminates the disconnect-loop CPU spike, caps the log at 60 MB, and gives operators a single recovery procedure that works whether the daemon is half-stuck, fully stuck, or duplicated.
@@ -69,3 +66,6 @@ The cocoindex daemon was leaking zombie processes and burning CPU on every clien
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/010-daemon-resilience` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

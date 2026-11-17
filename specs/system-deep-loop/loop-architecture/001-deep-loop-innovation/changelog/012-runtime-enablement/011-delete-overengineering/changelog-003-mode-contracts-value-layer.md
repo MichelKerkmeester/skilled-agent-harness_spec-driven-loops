@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-24
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/003-mode-contracts-value-layer` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering`
-
 ### Summary
 
 Wave 3 removed the dead mode-contracts value layer (F2) — the conformance runner, strict gate validators, and version-compatibility policy — while preserving the type contract all eight reducers import and the substrate-port types it depends on. One function still called by a kept authorized-ledger test was relocated byte-for-byte before deletion.
@@ -31,3 +28,6 @@ Wave 3 removed the dead mode-contracts value layer (F2) — the conformance runn
 ### Status
 
 Complete. Relocation diff vs `git HEAD` original empty; typecheck returned to 57 baseline errors (0 `TS2307`); authority 8/8 `new_authoritative_final`; prepared-authorization test block passes with the new import.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/003-mode-contracts-value-layer` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-20
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/011-sun-path-and-stale-lease-followups` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`
-
 ### Summary
 
 After `010-multi-client-stdio-socket-bridge` shipped, codex could not complete the MCP handshake for `mk_skill_advisor` and `mk_code_index`, with `mk-spec-memory` failing intermittently as well. Two distinct root causes were found: the bridge launcher binds its IPC socket at the service's database directory by default, which resolves to 134+ characters on this workspace and exceeds the 104-byte macOS `sun_path` cap, causing `listen()` to return `EINVAL`. Separately, stale file-based pid locks and SQLite daemon-lease rows from prior non-clean shutdowns caused fresh launchers to refuse startup with `LEASE_HELD_BY:<dead-pid>`.
@@ -70,3 +67,6 @@ Three phases of remediation shipped. Phase A (commit `9ae9a6f4e`) added `SPECKIT
 
 - Implement dead-PID auto-reclaim in the daemon-lease path. The `skill_graph_daemon_lease` reclaim guard should call `process.kill(pid, 0)` before treating a row as "held". Proposed as a follow-on packet (REQ-006).
 - Lift the `fs.mkdirSync(..., { recursive: true })` mkdir-on-listen pattern from `socket-server.ts:102` into `launcher-ipc-bridge.cjs` for `mk-skill-advisor` and `mk-code-index`. On a fresh boot those directories do not exist and `listen()` will fail with `ENOENT`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/011-sun-path-and-stale-lease-followups` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

@@ -13,9 +13,6 @@ contextType: "implementation"
 
 ## 2026-06-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`
-
 ### Summary
 
 A 50-iteration, multi-model drift audit of packet 028 converged 175 findings (6 P0, 91 P1, 78 P2) — each an LLM hypothesis with file:line evidence. This phase remediated and verified every one under a two-role contract: gpt-5.5-fast high implemented the fixes, and opus did both pre-fix triage (read the cited file, mark REAL or FALSE-POSITIVE) and post-fix verification (git-diff + re-read the real file; never trust the implementer's self-report). The remediation ledger (`remediation-ledger.jsonl`) reached 100% terminal: **130 fixed-verified + 45 false-positive**. No regressions — a captured baseline showed the one failing test (a gate-3 classifier case referencing the renamed `/deep:start-research-loop`) was pre-existing from the deep-loop merge, not introduced here.
@@ -37,3 +34,6 @@ A 50-iteration, multi-model drift audit of packet 028 converged 175 findings (6 
 ### Notes
 
 This packet was relocated from `028/008-drift-remediation` to `028/000-release-cleanup/013-drift-remediation` so the drift remediation sits with the release-cleanup track. The remediation ledger is the per-finding source of truth.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`

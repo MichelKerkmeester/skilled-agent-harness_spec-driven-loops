@@ -2,8 +2,6 @@
 
 This audit matters because it turns the spec and memory foundation back into something people can trust before building more work on top of it. The work covered 186 folders and 135 memory files, repaired the in-scope spec library to zero validation errors, rebuilt the search database from a clean baseline, and confirmed the metadata-format repair after the MCP server (the local memory-service process) restart.
 
-> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/008-spec-memory-compliance-audit` (Level 2)
-
 ---
 
 ## Documentation (4)
@@ -149,3 +147,5 @@ No new automated test files were added in this phase. Verification used strict v
 No migration required.
 
 If a local MCP server process is still running older code in memory, restart it once so the metadata-format repair is loaded. This release records that restart verification, not a full end-to-end follow-up search retest.
+
+> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/008-spec-memory-compliance-audit` (Level 2)

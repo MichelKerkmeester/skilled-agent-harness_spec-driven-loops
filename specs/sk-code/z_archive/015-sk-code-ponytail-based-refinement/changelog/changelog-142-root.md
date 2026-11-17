@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement` (Level Phase Parent)
-
 ### Summary
 
 Spec 142 turned a research recommendation into a shipped refinement set for `sk-code` and `sk-code-review`. The work kept the ponytail lesson narrow: add review pressure where agents overbuild, add drift guards where copied rules can rot and move reusable checklist artifacts to the surfaces that match how agents consume them.
@@ -89,3 +87,5 @@ The packet shipped eight completed phase children. It added reviewer rows, a bou
 - Historical changelogs still cite old `references/` paths by design. External links to moved sk-code-review checklist files should update to `sk-code-review/assets/<name>.md`.
 - Several guidance additions are intentionally behavioral, not machine-enforced.
 - Earlier phases were not committed at the time their summaries were captured, and their working-tree branch was `028-mcp-to-cli-tool-transition`.
+
+> Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement` (Level Phase Parent)

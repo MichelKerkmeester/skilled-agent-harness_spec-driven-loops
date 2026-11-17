@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-26
 
-> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/005-memory-search-runtime-bugs` (Level 1)
-> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
-
 ### Summary
 
 A live /memory:search session against the indexed-continuity runtime exposed contract violations across the retrieval, output rendering, and causal-graph subcommands. The empty-arguments gate fired correctly, but every downstream stage produced at least one observable defect.
@@ -79,3 +76,6 @@ Packet-level reference: `7a987e8827`.
 - **Clusters 4-7 (P1/P2) deferred** to a follow-up remediation packet: causal-stats output hygiene, state hygiene, folder discovery and channel health, quality fallback and edge growth.
 - **CocoIndex daemon health** was not directly probed. REQ-012 verification blocked until daemon is runnable.
 - **Stability corpus** deferred. A 20-paraphrase corpus exists informally via the 80% accuracy test at intent-classifier.vitest.ts:T060.
+
+> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/005-memory-search-runtime-bugs` (Level 1)
+> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`

@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/004-embedding-coverage-and-vector-shard-consistency/` (Level 3)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`
-
 ### Summary
 
 Rows stop falling into the gap between indexed and actually embedded. Drains no longer produce success-without-vector rows. A stale-model vector is never silently compared against a different query embedder. Retry-exhausted rows are rescuable instead of stranded. The auto shard-repair sentinel now counts `vec_memories`, the surface the writes actually target, so it finally clears once vectors exist. A model-provenance backfill ran on the live index under an atomic backup. It normalized 1,026 long-spelling rows and derived the model for about 9,465 previously-empty rows from real shard provenance. It left 9,817 genuinely-unembedded rows untouched and reported them. Shipped in `95843073c9`.
@@ -63,3 +60,6 @@ Rows stop falling into the gap between indexed and actually embedded. Drains no 
 - The reconcile apply is daemon-side. It resets the 12,226 vector-missing rows to retry when the daemon picks up this code, then the async drain re-embeds them.
 - About 9,817 rows remain without a model or a vector until their next embed.
 - Rollback is `context-index.sqlite.pre-004-model-backfill-20260703` or the `embedding_model_backfill_audit` table.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/004-embedding-coverage-and-vector-shard-consistency/` (Level 3)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`
-
 ### Summary
 
 Arc 009's deep review returned a CONDITIONAL verdict with 40 P1 findings and 20 P2 advisories covering ownership races, cleanup gaps, local-service security boundaries, audit integrity failures and traceability evidence gaps. Phase 014 converted those 60 findings into six bounded implementation batches that closed every active finding or recorded an operator-approved deferral.
@@ -84,3 +81,6 @@ Six batches shipped on 2026-05-22: B1 closed lease/ledger race correctness findi
 - Implement shared lease/ownership helper across TS and CJS runtimes to eliminate the remaining ownership-race risk flagged in ADR-001 (DR009-COR-001 and DR009-COR-002 are deferred to a future arc).
 - Restore DR009-TRC-005 RSS slope measurement when an environment with `ps` access and live CocoIndex daemon startup is available.
 - Add explicit environment allowlists for subprocess boundaries per ADR-002 once the new sidecar architecture stabilises.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

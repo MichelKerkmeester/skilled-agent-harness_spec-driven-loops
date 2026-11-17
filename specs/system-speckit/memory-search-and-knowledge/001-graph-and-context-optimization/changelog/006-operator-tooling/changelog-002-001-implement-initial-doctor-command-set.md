@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-09
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/001-implement-initial-doctor-command-set` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator`
-
 ### Summary
 
 The spec-kit doctor surface covered code-graph, skill-advisor, skill-budget, mcp_install plus mcp_debug but had no commands for the four remaining subsystems (memory, causal-graph, deep-loop, cocoindex) and no unified orchestrator to rebuild all databases in dependency-safe order. Users at older schema versions such as 3.3.0.0 had no one-shot upgrade path.
@@ -74,3 +71,6 @@ This phase delivered the full Level 2 planning document set for the 013 Doctor U
 - Author the migration manifest (Phase D): `mcp_server/database/migration-manifest.json` with per-version blocks for 3.3.0.0, 3.4.0.0 plus 3.4.1.0.
 - Run Phase E verification gates G1-G9 once Phase C and Phase D are complete.
 - Advance `completion_pct` in continuity surfaces: 50% at end of Phase B, 75% at end of Phase C, 90% at end of Phase D, 100% after Phase E gates are green.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/001-implement-initial-doctor-command-set` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator`

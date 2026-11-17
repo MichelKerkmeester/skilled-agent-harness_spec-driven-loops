@@ -17,9 +17,6 @@ contextType: "research"
 
 ## 2026-04-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Research-only)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 A user reported zero outgoing CALLS edges for `handleMemoryContext` in the code graph. A primary handler should call many downstream functions. If the graph really showed zero calls, something was broken in either the parser or the indexer.
@@ -68,3 +65,6 @@ Four findings were produced: F-001 (P0) the zero-edge result, F-002 (P1) the amb
 - **F-002 resolveSubject ambiguity.** The ambiguity contract in `code_graph_query` is under-specified for relationship operations. A follow-up should define resolution precedence rules.
 - **F-003 regression test correctness.** Existing tests expect the wrong behavior (first candidate deterministically). Tests should be updated to expect the implementation symbol, not the wrapper.
 - **F-004 systemic wrapper pattern.** All `handle*` symbols in index modules share the same wrapper ambiguity. A bulk audit should identify and rank affected symbols.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Research-only)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

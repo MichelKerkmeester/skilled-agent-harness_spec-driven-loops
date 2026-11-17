@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-05-26
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`
-
 ### Summary
 This parent packet aggregates memory and causal runtime work. Each child addresses a specific aspect: memory continuity, causal graph routing, embedder testing, backlog investigation, status integrity, reconcile tool, coverage hygiene, provider auto-resolution, auto-resolution fixes, embedding consolidation, and stack hardening.
 
@@ -56,3 +53,6 @@ This parent packet aggregates memory and causal runtime work. Each child address
 
 ### Follow-Ups
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

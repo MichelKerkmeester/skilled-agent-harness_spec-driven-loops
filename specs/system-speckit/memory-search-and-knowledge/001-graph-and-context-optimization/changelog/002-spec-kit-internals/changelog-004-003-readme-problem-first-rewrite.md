@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/003-readme-problem-first-rewrite` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor`
-
 ### Summary
 
 The system-skill-advisor README read as a structural reference but lacked the marketing voice found in the project root README and the peer system-code-graph README. A skeleton specification defined a full rewrite into 9 numbered sections at approximately 2000 words, with Hard Voice Rules (HVR) compliance and eight unique selling points surfaced prominently. Implementation is gated on completion of the parent research synthesis and has not yet shipped.
@@ -53,3 +50,6 @@ The system-skill-advisor README read as a structural reference but lacked the ma
 - Run HVR compliance check on final text
 - Validate against sk-doc skill_readme template
 - Compare voice density with peer system-code-graph README
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/003-readme-problem-first-rewrite` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor`

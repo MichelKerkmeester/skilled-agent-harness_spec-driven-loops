@@ -2,8 +2,6 @@
 
 This phase closes the latest search-runtime drift in the packet. It fixed the FTS5 double-quoting bug, applied the new folder-grouped `/memory:search` dashboard, hardened the database-path and rebind logic that could quietly drift vector search into an empty provider-specific database, and added warning-level diagnostics across previously silent failure paths. The phase packet records its P0 and P1 implementation and verification as complete, while still leaving one deferred P2 follow-up for saving the research and review findings into `memory/`.
 
-> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/013-fts5-fix-and-search-dashboard` (Level 2)
-
 ---
 
 ## Search (3)
@@ -103,3 +101,5 @@ The phase relied on build verification, live search queries, focused-mode runtim
 No migration required.
 
 Users should see cleaner multi-word FTS5 results, a more readable `/memory:search` dashboard, and clearer diagnostics when search initialization or DB-path state drifts away from the populated database.
+
+> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/013-fts5-fix-and-search-dashboard` (Level 2)

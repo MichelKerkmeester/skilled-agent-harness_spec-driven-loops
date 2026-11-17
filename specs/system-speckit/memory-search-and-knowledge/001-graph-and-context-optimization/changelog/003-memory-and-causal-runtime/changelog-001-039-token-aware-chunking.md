@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/039-token-aware-chunking` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 `LlamaCppProvider` capped embedding input by character count, but a live reproduction confirmed that a 2831-byte normalized checklist could still overflow the llama-cpp embedding context because the real limit is token count, not raw characters. The provider was extended to derive a token budget from the loaded GGUF model's `trainContextSize`, create an auto-bounded embedding context and truncate the post-semantic-chunk text through the model tokenizer before calling `getEmbeddingFor`. The existing provider-neutral character cap is preserved as a first-pass guard. A targeted Vitest file covers token truncation, context creation bounds and a conditional real-model smoke case without requiring a real GGUF model at test time.
@@ -61,3 +58,6 @@ contextType: "implementation"
 
 - Treat packets 037 and 039 as a single logical fix when reviewing or reverting. The original 039 patch used `model.tokenizer.tokenize` which crashed the real model at runtime. Packet 037 shipped the corrected call `model.tokenize` and the API hotfix narrative in `decision-record.md`.
 - Auto context can consume more VRAM than the prior fixed 512-token context. Document the `minContextSize: 512` floor and the explicit failure mode for memory-constrained hosts in the operator runbook.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/039-token-aware-chunking` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

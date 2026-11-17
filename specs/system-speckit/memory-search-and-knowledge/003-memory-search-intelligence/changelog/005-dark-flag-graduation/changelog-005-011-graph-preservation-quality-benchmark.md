@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/011-graph-preservation-quality-benchmark` (Level recorded in phase evidence)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation`
-> Historical alias: `021-graph-preservation-quality-benchmark`
-
 ### Summary
 
 This migration index makes the shipped phase discoverable at its final packet-local path without rewriting its historical identity. The allowed implementation evidence records: Before implementation started, a dedicated read-only feasibility investigation checked whether the plan as written was actually buildable. It found the original worktree-isolation blocker was a dispatch-tooling artifact (not relevant to a plain checkout), confirmed most spec.md/plan.md citations still held, and surfaced one genuine specification gap: no shipped tool performs a full causal_edges regeneration, so REQ-003's original "regenerate embeddings and causal edges" wording was unsatisfiable. That gap was resolved during implementation (see decision-record.md ADR-004) by amending REQ-003 to require quiescence-verification of a read-only copied snapshot instead.
@@ -49,3 +45,7 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 ### Follow-Ups
 
 - None in the allowed evidence set.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/011-graph-preservation-quality-benchmark` (Level recorded in phase evidence)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation`
+> Historical alias: `021-graph-preservation-quality-benchmark`

@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/001-fanout-session-id-propagation` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`
-
 ### Summary
 
 `deep_review_auto.yaml`'s new-lineage init path wrote `sessionId` as a raw `{ISO_8601_NOW}` timestamp instead of binding the real session id the fan-out runner generates and threads into the CLI prompt. Every downstream consumer (state log, findings registry, convergence events, claim adjudication) inherited the wrong id. Fixed a prior codex deep-review finding (F002).
@@ -51,3 +48,6 @@ contextType: "implementation"
 ### Follow-Ups
 
 - None. This finding was fully closed by this child.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/001-fanout-session-id-propagation` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation`

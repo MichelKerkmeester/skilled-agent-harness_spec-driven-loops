@@ -2,8 +2,6 @@
 
 This phase matters because the scripts layer had to stay dependable while the packages around it changed. Phase 3 kept the scripts package stable during the ESM (the modern JavaScript module system) migration, proved that memory saving still works from input to indexing, and locked the JSON input contract so future saves are easier to generate correctly.
 
-> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/003-scripts-interop-refactor` (Level 1)
-
 ---
 
 ## Architecture (3)
@@ -112,3 +110,5 @@ Phase 3 also recorded a passing help-command smoke check, completed the module-s
 No migration required.
 
 The scripts package keeps its existing outward contract. The release changes how safely it works with migrated sibling packages and how reliably session context can still be saved and recovered during that transition.
+
+> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/003-scripts-interop-refactor` (Level 1)

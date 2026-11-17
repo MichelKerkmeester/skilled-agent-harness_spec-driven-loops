@@ -9,7 +9,8 @@
     "sk-doc/document-standards/003-changelog-system",
     "sk-doc/document-standards/004-security-policy-alignment",
     "sk-doc/document-standards/005-root-readme-section-spacing",
-    "sk-doc/document-standards/006-readme-template-conformance"
+    "sk-doc/document-standards/006-readme-template-conformance",
+    "sk-doc/document-standards/007-changelog-spec-folder-at-bottom"
   ],
   "manual": {
     "depends_on": [],

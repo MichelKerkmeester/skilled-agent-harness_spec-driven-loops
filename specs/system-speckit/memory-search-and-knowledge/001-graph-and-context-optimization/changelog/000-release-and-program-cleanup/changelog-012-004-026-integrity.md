@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`
-
 ### Summary
 
 This review-only packet audited 026 program control docs, changelog rollups and completion-claim reconciliation. The merged verdict was CONDITIONAL. The registry recorded 9 open finding entries: 5 P1 and 4 P2. The distinct themes were stale graph metadata and track status, changelog rollup inventory gaps, completed packets that still advertise in-progress status, stale resource-map rows and changelog voice-rule violations.
@@ -59,3 +56,6 @@ This review-only packet audited 026 program control docs, changelog rollups and 
 - Reconcile 026 graph metadata last-active and track status fields.
 - Update changelog rollups so live child rollups and current entries are represented accurately.
 - Fix packet status drift, stale resource-map rows and changelog voice-rule violations found by the audit.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit`

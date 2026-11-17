@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/003-skill-metadata-embedding-quality-audit` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph`
-
 ### Summary
 
 The 015/004 seeded sweep had shown that the cosine lane could not flip routing decisions on the 24-prompt corpus regardless of weight configuration. One plausible explanation was that per-skill embeddings were not discriminating enough. If two skills carry generic or overlapping descriptions, their vectors sit close together and cosine similarity will not pick the correct one. The same problem exists for the lexical and derived lanes when trigger phrases and key topics are too generic or duplicative.
@@ -61,3 +58,6 @@ None. Research-only phase.
 - Apply the per-skill metadata recommendations in a separate edit packet then re-run the seeded sweep to confirm routing impact.
 - Extend the audit to cover `derived.intent_signals` once any skill begins populating that field, as it was absent across the entire active set.
 - Validate that cross-skill duplication reductions in the `cli-*` and deep-loop families actually reduce routing ambiguity before promoting those changes.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/003-skill-metadata-embedding-quality-audit` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph`

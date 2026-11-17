@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-24
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card` (Level 3)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 The four authoring intents now load one 172-line card instead of the 1,200-line template guide, and the guide is reachable on request.
@@ -71,3 +68,6 @@ The four authoring intents now load one 172-line card instead of the 1,200-line 
 - Amended 2026-10-24: the two review P1 defects are fixed. Step 2 now says to use `--level 1` when recommend-level.sh prints Level 0, because create.sh --level does not accept 0. The step 3 command now passes `--with-goal`, so the scaffold holds the goal.md that steps 8, 9 and 11 write to. The card is still 172 lines. A scaffold made with the new command at Level 1 holds goal.md and validates with RESULT: PASSED.
 - Three smoke runs detect only large effects. The card either lets a weak model finish a Level 1 packet or it does not. Phase 009 reports the range and the delta, not a significance claim.
 - The card does not repair the guide. The guide keeps its defects until phase 2 and phase 3 fix them, and this phase only changes which tier loads it.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/005-weak-model-authoring-card` (Level 3)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

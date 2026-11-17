@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/023-daemon-reliability-doc-alignment` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The daemon-reliability features are now discoverable. They shipped as code plus spec packets (018-022), but a gpt-5.5 doc-alignment audit (cli-codex) plus a grep pre-scan found them in zero operator-facing surfaces: none of the 8 new env flags were in ENV_REFERENCE, there were no feature_catalog entries, no playbook scenarios, and no README or SKILL mentions. This packet closes that gap.
@@ -64,3 +61,6 @@ The daemon-reliability features are now discoverable. They shipped as code plus 
 - Docs track default-off features. Phases 021 and 022 are documented as default-off/experimental; the docs describe the capability and its safety posture, not a live-by-default behavior.
 - Phase 020 has no env flag. It is documented via the catalog/playbook and a README lifecycle row rather than an ENV_REFERENCE entry.
 - Count invariant is shared. The playbook file-count self-check is a hand-maintained number; a concurrent session adding a scenario would require re-bumping it (verified at 391 just before commit).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/023-daemon-reliability-doc-alignment` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 This phase shipped the ungated pieces of the write, recall and prompt trust spine. Recalled memory bodies now render inside an untrusted-content wrapper with tag-escaped content. Capture now flags prompt-injection markers without destroying the stored body. CAS self-edit protection and retention disclosure are recorded as delivered. The system-kind exclusion remains gated because the workspace did not have a safe substrate-only marker or the live database needed to prove constitutional and spec rows stay visible.
@@ -54,3 +51,6 @@ _Detailed file-level changes live in the phase implementation summary._
 
 - Resolve system-kind exclusion only with a substrate-only marker and live-database validation.
 - Keep the aggregate security gate as a sibling phase rather than claiming it here.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

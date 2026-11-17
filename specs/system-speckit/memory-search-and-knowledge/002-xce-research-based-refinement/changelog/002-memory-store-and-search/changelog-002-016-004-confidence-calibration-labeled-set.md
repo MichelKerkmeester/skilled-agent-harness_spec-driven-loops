@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/004-confidence-calibration-labeled-set` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 A strong but isolated high-cosine hit could be capped at `medium` confidence because the per-result `confidence.value` reflected only about forty percent absolute relevance. This phase ships two clearly separated deliverables. The first is a default-ON weight rebalance that makes relevance dominate the per-result confidence value, moving the blend to `heuristicValue * 0.45 + scorePrior * 0.55` so a genuinely relevant result reads as confident. The second is calibration infrastructure: an isotonic fit-and-apply path that would map raw scores onto observed relevance, plus a loader and a flag. That second path is default-OFF and ships as machinery plus a corpus-derived proxy seed only. The proxy labels are derived from the spec corpus (a spec's own keywords as the query, that spec as the positive and a different spec as the negative), so the fitted model is unvalidated and must not be trusted for production ranking. The flag stays off until a real labeled set of roughly fifty to one hundred human-judged pairs from live traffic is collected.
@@ -62,3 +59,6 @@ A strong but isolated high-cosine hit could be capped at `medium` confidence bec
 ### Follow-Ups
 
 - The real labeled set (roughly fifty to one hundred human-judged pairs from live `memory_search` traffic, joined to the raw score the pipeline assigned each pair) is the documented prerequisite before `SPECKIT_CONFIDENCE_CALIBRATION` can be enabled.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/004-confidence-calibration-labeled-set` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

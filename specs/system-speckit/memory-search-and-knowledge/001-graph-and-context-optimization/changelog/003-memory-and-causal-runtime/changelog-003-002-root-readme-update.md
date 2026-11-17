@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/002-root-readme-update`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment`
-
 ### Summary
 
 Root `README.md` still claimed llama-cpp and `google/embeddinggemma-300m` as the active defaults across four sections after the 016-019 embedder migration. New visitors landing on the repository saw outdated provider names, a stale ASCII diagram, incorrect env var names. The database filename no longer matched the shipped default. A markdown agent (Sonnet) applied a surgical +7 LOC net edit across eight locations: the ASCII diagram, Quick Start provider block, Memory Engine providers list, mcp-coco-index skill bullet, retired env var entries, TIP auto-detect block, DB schema path example. A new Embedder Architecture subsection was added. All stale gemma-300m and llama-cpp current-state claims were removed. Historical packet-name citations in "What's Shipped Recently" were intentionally retained.
@@ -64,3 +61,6 @@ Root `README.md` still claimed llama-cpp and `google/embeddinggemma-300m` as the
 
 - Update `implementation-summary.md` completion metadata to reflect the shipped state (currently shows 0% pending).
 - Verify forward-reference cross-link `.opencode/skills/system-spec-kit/references/embedder-pluggability.md` resolves now that 021/003 has shipped.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/002-root-readme-update`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment`

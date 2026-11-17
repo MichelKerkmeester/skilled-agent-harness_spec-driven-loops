@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-07
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli`
-
 ### Summary
 
 The spec-memory CLI core shipped as a thin IPC client over the unchanged mk-spec-memory daemon. The implementation generates its 37-subcommand map at runtime from `TOOL_DEFINITIONS`, validates argv with the existing Zod schemas, sends `tools/call` JSON-RPC frames over the daemon socket, auto-spawns via the existing launcher when the daemon probe fails, and renders `json`, `jsonl`, or text output. The existing MCP surface was left untouched. Live daemon smoke confirmed `memory_stats` returns real data.
@@ -62,3 +59,6 @@ The spec-memory CLI core shipped as a thin IPC client over the unchanged mk-spec
 ### Follow-Ups
 
 - Dual-spawn races, dual-client parity, full 37-command invocation matrix, and runtime allowlists remain phase 002/003 work
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli`

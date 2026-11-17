@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup`
-
 ### Summary
 
 The 026 changelog backfill is complete. The program started with roughly 103 packet-local changelogs and finished at 696 changelog files: 624 leaf changelogs, 72 phase-parent rollups and 2 README indexes. Every shipped phase now has a changelog or an explicit audit entry. The effort also removed 85 dangling symlinks, flattened the central changelog tree to one subdir level per track and recorded the HALT inventory so thin or unshipped packets were not fabricated into shipped work.
@@ -73,3 +70,6 @@ The 026 changelog backfill is complete. The program started with roughly 103 pac
 - The 002 track remains one-per-leaf rather than thematic by owner preference. No information is lost.
 - One program-level cross-cutting rename log remains in its original freeform format because automated reformatting risked dropping content.
 - Deferred runtime performance notes such as per-track wall-clock and recycle rate were not recorded because there was no runtime target.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup`

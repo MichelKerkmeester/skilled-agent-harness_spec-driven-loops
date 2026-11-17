@@ -2,7 +2,7 @@
 name: sk-create-changelog
 description: Author global component changelogs in the v4 narrative style, with placement, versioning, lean content and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.5.3.0
+version: 1.5.4.0
 ---
 
 # create-changelog
@@ -104,7 +104,7 @@ The contract in one pass:
 1. Frontmatter first, then an optional editorial title H1, then the summary narrative. No version header, backlink or version-date line.
 2. Compact under 10 reader-visible changes when the release is neither major nor breaking: summary, `## What's New at a Glance` and `## Upgrade`, with `## Why This Release` only when the summary does not say why.
 3. Expanded for 10 or more changes, a major bump or any breaking change: opening narrative, `## Why This Release`, `## What's New at a Glance`, topical H2 sections with benefit-led H4 items, `## How It Was Checked` and `## Upgrade Notes`.
-4. A spec-folder blockquote, ``> Spec folder: `{path}` ``, when the release has a spec folder. It carries the path only, and the level stays in the packet.
+4. A spec-folder blockquote, ``> Spec folder: `{path}` ``, when the release has a spec folder. It closes the entry, after the last section and an `&nbsp;` line. It carries the path only, and the level stays in the packet.
 5. Content chosen by reader impact and each fact said once. No file or schema tables unless the numbers are the story.
 6. Detail by default, with no request needed. Each new feature says how it works and shows a real line of output. Every fix a reader could run into is named. `## How It Was Checked` gives the before and after, the cost and the tests that ran.
 7. Short sentences in plain words: about 8 words each, none past 22 and 10 at most on average.

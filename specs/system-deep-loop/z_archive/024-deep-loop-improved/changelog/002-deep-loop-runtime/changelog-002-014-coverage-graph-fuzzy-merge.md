@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/014-coverage-graph-fuzzy-merge` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`
-
 ### Summary
 
 Added fuzzy-merge to coverage-graph-query.ts (merge near-duplicate coverage nodes by fuzzy identity); 10 tests pass; typecheck + comment-hygiene + alignment-drift green.
@@ -54,3 +51,6 @@ Added fuzzy-merge to coverage-graph-query.ts (merge near-duplicate coverage node
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/014-coverage-graph-fuzzy-merge` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/003-merged-hub-and-mode-packets` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`
-
 ### Summary
 
 This phase introduced the new public shape: `deep-loop-workflows/` as one hub skill with five mode packets and one advisor identity. The hub routes by mode and carries no per-mode implementation logic. That made the consolidation visible as one skill while preserving mode-level behavior underneath.
@@ -53,3 +50,6 @@ This phase introduced the new public shape: `deep-loop-workflows/` as one hub sk
 - CHK-011 Changes follow existing project conventions.
 - CHK-020 `deep-loop-workflows/` exists. Hub `SKILL.md` routes by mode with no per-mode logic, grep-verified.
 - CHK-021 Hub `graph-metadata.json` has `skill_id`, `name` and folder equal to `deep-loop-workflows`, with `family=deep-loop`.
+
+> Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/003-merged-hub-and-mode-packets` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`

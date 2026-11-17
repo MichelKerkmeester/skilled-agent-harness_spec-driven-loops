@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 The 022 plan called for five batched cli-codex dispatches to purge Nomic/MiniLM/legacy-ONNX residue surfaced by the 021 deep-review. When the playbook validation ran (15 scenarios via cli-opencode plus kimi-k2.6), every save-heavy scenario failed with `E081 "An unexpected error occurred"`. That chronic failure blocked the original cleanup work and hid a three-factor substrate problem: multi-daemon contention triggered circuit-breaker flapping, low retry throughput slowed recovery. `retentionPolicy: "ephemeral"` silently triggered governed-ingest enforcement that required six audit fields none of the scenarios provided. Scope shifted from model-name cleanup to substrate repair. Three high-value fixes shipped: env-overridable retry-throughput config plus the E081 catch-all replaced with classified codes E085 through E089 plus all six playbook scenario files cleaned of the ephemeral retentionPolicy. Follow-up work for ADR-002 implementation, build fix plus scenario re-validation was tracked under the sibling 032-substrate-repair-followups packet.
@@ -83,3 +80,6 @@ The 022 plan called for five batched cli-codex dispatches to purge Nomic/MiniLM/
 - Explicitly clean up the 24 historical failed embeddings that survived the retry throughput increase, tracked in `032/004-failed-embedding-cleanup`.
 - Add circuit-breaker instrumentation to surface when and why it flaps under high retry load, tracked in `032/005-stability-instrumentation`.
 - Execute the original five-batch model-name-purge scope from 022 (Nomic, MiniLM, hardcoded sqlite paths, ONNX cleanup, generated-asset regeneration) as a separate audit packet once the substrate is stable.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

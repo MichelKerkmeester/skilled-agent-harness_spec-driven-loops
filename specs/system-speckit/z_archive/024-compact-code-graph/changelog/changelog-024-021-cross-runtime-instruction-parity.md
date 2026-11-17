@@ -8,8 +8,6 @@
 
 When this phase landed, Claude still had the strongest startup/recovery story and the non-Claude instruction files were missing a consistent lifecycle fallback. This phase closed the instruction-layer gap by adding standardized "No Hook Transport" trigger tables to the non-Claude guidance and by introducing `@context-prime` for OpenCode-style bootstrap delegation. Later phases refined the public recovery contract around `session_bootstrap()`, Gemini hooks, Codex bootstrap parity, OpenCode startup digests, and repo-local Copilot startup wiring.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity/`
-
 ---
 
 ## What Changed
@@ -121,3 +119,5 @@ When this phase landed, Claude still had the strongest startup/recovery story an
 ## Upgrade
 
 No migration required. The new trigger tables are passive documentation -- they guide AI behavior but do not change any runtime code or configuration. The `@context-prime` agent is additive and does not affect existing workflows.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity/`

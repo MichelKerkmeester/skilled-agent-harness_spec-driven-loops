@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/006-seeded-corpus-evaluation-sweep` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`
-
 ### Summary
 
 The lane-weight sweep shipped in a prior phase ran with empty cosine embeddings because the fixture projection did not seed skill description vectors. Every candidate weight vector, including V6-cosine-dominant, produced identical accuracy numbers. This packet added a cache-aware fixture helper that embeds projection skill descriptions through the live embedding provider, wired the seeded vectors into the sweep, and produced an advisory recommendation backed by numeric evidence.
@@ -58,3 +55,6 @@ The lane-weight sweep shipped in a prior phase ran with empty cosine embeddings 
 
 - Re-run the sweep with a compatible embedding provider when one becomes available to capture cosine-lane deltas.
 - Revisit the weight recommendation if skill descriptions change materially or the corpus expands.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/006-seeded-corpus-evaluation-sweep` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`

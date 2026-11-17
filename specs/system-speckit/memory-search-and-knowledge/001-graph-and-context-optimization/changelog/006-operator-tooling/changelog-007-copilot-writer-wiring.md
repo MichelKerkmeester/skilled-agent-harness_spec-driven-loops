@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-04-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 1)
-> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`
-
 ### Summary
 
 After phase 006 fixed the Copilot schema crash, the `userPromptSubmitted` hook still did not refresh the managed `SPEC-KIT-COPILOT-CONTEXT` block in `$HOME/.copilot/copilot-instructions.md`. The Superset wrapper at `~/.superset/bin/copilot` rewrites `.github/hooks/superset-notify.json` on every launch to point `userPromptSubmitted` at `~/.superset/hooks/copilot-hook.sh`, which only posts Superset notifications and never invokes the system-spec-kit writer. This phase replaced the no-op `bash: "true"` on the `UserPromptSubmit` and `SessionStart` matcher wrappers with the actual Copilot writer commands, routing through `.claude/settings.local.json` (which Copilot also merges).
@@ -56,3 +53,6 @@ After phase 006 fixed the Copilot schema crash, the `userPromptSubmitted` hook s
 ### Follow-Ups
 
 - Cross-runtime smoke matrix should be re-run now that both phases 006 and 007 are live.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 1)
+> Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

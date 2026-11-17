@@ -12,9 +12,9 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/002-reducers-and-projections` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common`
-
 ### Summary
 
 This phase planned the deterministic reducers and live projections for the shared deep-improvement backbone: evaluator-first iteration, candidate generation, scoring, canary analysis, and guarded promotion. The reducers replay the typed event ledger into iteration/convergence state, an artifact index, and per-mode service status without side effects. Per its implementation summary, the additive-dark shared Deep Improvement ledger now folds into deterministic iteration, artifact, score, canary, promotion, and per-mode projections. Status is complete.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/002-reducers-and-projections` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common`

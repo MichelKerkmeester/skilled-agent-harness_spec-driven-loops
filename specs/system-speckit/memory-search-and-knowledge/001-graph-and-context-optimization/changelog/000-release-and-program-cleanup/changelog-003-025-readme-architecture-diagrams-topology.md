@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-02
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 Eighteen of nineteen principal code-area documentation files in `system-spec-kit/` had incomplete visual documentation. Eleven files were missing both an ASCII box-art architecture diagram and a directory topology tree. Six files had a tree but no diagram. That gap left developers without a visual entry point when reading into any code folder beyond `shared/`.
@@ -73,3 +70,6 @@ Architecture diagrams using Unicode box-drawing characters (`┌┐└┘──�
 ### Follow-Ups
 
 - Four of the 17 target files (`mcp_server/code_graph/lib/README.md`, `mcp_server/code_graph/handlers/README.md`, `mcp_server/skill_advisor/README.md`, `mcp_server/code_graph/README.md`) were later extracted to their own skill packages (`system-code-graph`, `system-skill-advisor`). Verify that diagram coverage is maintained in those new locations.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

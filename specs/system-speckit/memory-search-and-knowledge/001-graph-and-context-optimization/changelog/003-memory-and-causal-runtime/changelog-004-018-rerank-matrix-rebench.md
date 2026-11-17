@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`
-
 ### Summary
 
 All prior reranker comparisons were made on a broken retrieval pipeline (mirror pollution, import-header chunking, missing query expansion, uncalibrated RRF). After packets 013 through 017 fixed every upstream layer, this packet re-ran all four reranker lanes on the corrected 18-probe fixture to produce a trustworthy verdict. jina-reranker-v3 won at 14/18 against BGE-baseline at 12/18 and BGE with path-class boost at 13/18. The production default in `config.py` was updated to `jinaai/jina-reranker-v3`. ADR-021 was appended to the bake-off decision record. The 6-packet arc was closed.
@@ -75,3 +72,6 @@ All prior reranker comparisons were made on a broken retrieval pipeline (mirror 
 - Lane A (no-rerank ablation) timed out at 32 sec per probe under `COCOINDEX_RERANK_ENABLED=false`. Diagnose and fix the rerank-disabled dispatch path in a follow-on packet (020).
 - `cocoindex_code/README.md` Rerankers section was not updated in this tranche. Update default and opt-in alternatives documentation once the skill relocates.
 - ADR cross-links from packets 013 through 017 into `decision-record.md` index are pending. Verify all six arc packets are visible in the ADR index.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

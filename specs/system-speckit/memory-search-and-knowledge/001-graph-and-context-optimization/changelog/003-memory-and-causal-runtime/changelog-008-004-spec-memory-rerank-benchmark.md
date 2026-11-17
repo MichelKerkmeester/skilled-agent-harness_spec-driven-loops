@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-20
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`
-
 ### Summary
 
 Cocoindex's earlier benchmark showed Qwen3-Reranker-0.6B winning by only +1 hit out of 73 probes on code chunks. Because spec-memory indexes natural-language prose with paraphrase queries, that code-retrieval evidence was insufficient to justify promoting Qwen as the default reranker. A controlled A/B benchmark was needed to produce domain-specific evidence before phase 005 could make a promotion decision.
@@ -84,3 +81,6 @@ A 50-probe fixture was authored by combining 10 probes from cat-24/409 with 12 f
 - Evaluate cross-machine p95 latency on hardware representative of production before using latency numbers as a promotion gate input.
 - Consider expanding the fixture to 100 or more probes to reduce confidence interval width if a future benchmark produces a borderline delta.
 - Add non-English paraphrase probes if spec-memory is extended to multi-language content.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

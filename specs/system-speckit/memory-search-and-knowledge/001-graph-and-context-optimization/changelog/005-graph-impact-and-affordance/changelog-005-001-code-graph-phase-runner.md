@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/001-code-graph-phase-runner` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance`
-
 ### Summary
 
 The code-graph scan flow in `structural-indexer.ts` had all scan stages inlined with no phase abstraction. There was no way to declare phase dependencies, validate ordering or surface failure attribution. Separately, no handler existed to map a git diff to affected symbols. The entire `detect_changes` capability was missing from `code_graph/handlers/`.
@@ -77,3 +74,6 @@ A typed phase-DAG runner (`phase-runner.ts`) was introduced with a `Phase<I, O>`
 - Add `detect_changes` to `tool-schemas.ts` MCP catalog so external clients see it in the tool list. The handler is exported but schema registration was intentionally out of scope for this phase.
 - Combine `detect_changes` output with `code_graph_query({ operation: 'blast_radius' })` for full indirect-impact coverage. Symbol attribution in this phase uses pure line-range overlap only.
 - Resolve cosmetic `validate.sh --strict` failure caused by extra section headers in the per-sub-phase scaffold. Tracked as deferred P2 cleanup.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/001-code-graph-phase-runner` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance`

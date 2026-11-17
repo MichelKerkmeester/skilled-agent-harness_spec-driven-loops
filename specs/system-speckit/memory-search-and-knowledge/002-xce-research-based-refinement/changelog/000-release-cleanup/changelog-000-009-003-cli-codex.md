@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 cli-codex's 7 reference and asset docs now carry exactly the canonical frontmatter contract, so the advisor doc harvest can route codex-shaped requests to the right doc. This was the first mostly-net-new authoring phase after the pilot: 6 docs had title+description only, so phrases, tiers, and contextTypes were derived from each doc body rather than normalized from existing values.
@@ -61,4 +58,5 @@ cli-codex's 7 reference and asset docs now carry exactly the canonical frontmatt
 | `.opencode/skills/cli-codex/assets/prompt_quality_card.md` | Modified | Full block added; normal / implementation |
 | `.opencode/skills/cli-codex/assets/prompt_templates.md` | Modified | Full block added; normal / implementation |
 
-
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

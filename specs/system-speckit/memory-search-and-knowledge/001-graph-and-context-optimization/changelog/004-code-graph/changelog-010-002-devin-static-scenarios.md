@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-26
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/002-devin-static-scenarios` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`
-
 ### Summary
 
 Seven of the 22 code-graph manual-testing playbook scenarios had never been run against the renamed (post-`mk-code-index`) surface. These static/build/infrastructure scenarios did not require a live MCP runtime, making them suitable for dispatch to cli-devin SWE-1.6 with RCAF framing and a scoped agent-config recipe.
@@ -84,3 +81,6 @@ Three dispatch batches ran sequentially. Scenarios 016, 017, 018, 020, 021 passe
 - Verify the active MCP runtime DB binding and remove the legacy `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` file (F-019-1 remediation).
 - Reconcile scenario 020 expected tool count from 11 to 8 in the playbook doc (F-020-1 follow-on).
 - Correct the playbook index label for scenario 021 from "unicode-normalization fix from 009" to "root dist cleanup verification" (F-021-1 follow-on).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/002-devin-static-scenarios` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`

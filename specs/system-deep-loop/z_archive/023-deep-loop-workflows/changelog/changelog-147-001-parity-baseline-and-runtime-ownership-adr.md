@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`
-
 ### Summary
 
 This foundation phase created the reference surface every later migration phase had to respect. It did not change any live skill. Its value was control: the packet started with a parity baseline, a runtime ownership decision and phase docs that could validate before the moving parts changed.
@@ -53,3 +50,6 @@ This foundation phase created the reference surface every later migration phase 
 - CHK-011 Changes follow existing project conventions.
 - CHK-020 Phase plan, tasks, checklist and implementation summary exist and validate with no placeholders.
 - CHK-021 Source-surface manifest covers all five old skills, `deep-loop-runtime`, command surfaces and current OpenCode agent files.
+
+> Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`

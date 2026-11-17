@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/008-deep-loop-runtime` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 deep-loop-runtime's 4 reference docs now carry exactly the canonical frontmatter contract, making this the first skill whose docs are fully valid routing signal for the advisor doc harvest. As the campaign pilot it proved the per-skill recipe end to end: coverage-mode baseline, frontmatter-only patch, deterministic re-check, daemon-independent routing smoke.
@@ -55,3 +52,6 @@ deep-loop-runtime's 4 reference docs now carry exactly the canonical frontmatter
 ### Follow-Ups
 
 - Live-daemon `matchedDocs` verification is deferred to a later campaign-level session cycle; the running advisor daemon predates the launcher allowlist fix and cannot observe doc triggers until restarted.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/008-deep-loop-runtime` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/014-deferred-closeout` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`
-
 ### Summary
 
 After arc 022 shipped, four deferred items remained. The build pipeline had a gap: `tsc` does not copy `data/*.json` into the `dist/` tree, so the skill-advisor MCP launcher would fail on first start without `dist/.../data/prompt-policy.default.json`. The pre-commit hook for `validate-doc-model-refs.js` (originally scoped in Task 39) was never installed. The `Z_SCORE_THRESHOLD` comment in `evidence-gap-detector.ts` still referenced the pre-013 reranker activation narrative, which was stale after the voyage/cohere removal.
@@ -76,3 +73,6 @@ A follow-on commit (`8cbce5ae85`) closed two additional deferred items: a scorer
 - Add runtime reranker-presence detection (probe `localhost:8765/health`) and dynamic `Z_SCORE_THRESHOLD` selection. The current static value (1.3) over-penalizes operators running without the sidecar when it is raised unconditionally.
 - Widen the glob in `copy-skill-advisor-dist-data.sh` if future arcs introduce non-JSON assets (YAML, binary models). Current implementation handles `data/*.json` only.
 - Remove stale `node-llama-cpp` entries from `system-code-graph/package-lock.json` on the next `npm install` in that workspace. Not blocking.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/014-deferred-closeout` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

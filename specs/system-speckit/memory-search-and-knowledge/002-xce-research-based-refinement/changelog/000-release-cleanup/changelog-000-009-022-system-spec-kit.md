@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 system-spec-kit's 45 reference and asset docs now carry exactly the canonical frontmatter contract, closing the largest phase of the 009 campaign. Where the pilot normalized 4 already-detailed blocks, this phase authored 43 detailed blocks from scratch: distinctive multi-word trigger phrases grounded in each doc's heading outline, tier judgment across 12 formal contract docs, and contextType assignment spanning all four enum values.
@@ -63,3 +60,6 @@ system-spec-kit's 45 reference and asset docs now carry exactly the canonical fr
 
 - Live-daemon verification is campaign-level. The running daemon adopts the doc-trigger flag only after every attached session cycles; live matchedDocs evidence is tracked at the campaign level.
 - Two unrelated worktree deletions share the directory. Another session's hyphen-to-underscore rename left `references/hooks/skill-advisor-hook*.md` deletions uncommitted, so the diff shows 47 paths with 45 belonging to this phase.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

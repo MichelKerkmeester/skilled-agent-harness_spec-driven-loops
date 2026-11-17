@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/005-opencode-bridge-native-route` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation`
-
 ### Summary
 
 The bridge was failing open to the python route even though the native compat module was available, because it spawned a launcher subprocess and a stale lease with a missing IPC socket caused the MCP handshake to fail silently. The bridge now imports `dist/mcp_server/compat/index.js` directly as the primary native path, keeping the launcher subprocess only as a fallback. The probe is gated on a reader-usable trustState so a usable-but-degraded daemon still serves a native route. With this, the OpenCode plugin returns `route:"native"` with an `Advisor:` brief instead of silent python fail-open. A cold-environment residual where the bridge can still fall to python remains flagged for follow-up.
@@ -55,3 +52,6 @@ The bridge was failing open to the python route even though the native compat mo
 - Fix the launcher so a held lease without `daemon-ipc.sock` is treated as stale and reclaimable instead of emitting `LEASE_HELD_BY... (no-bridge-socket)` to MCP stdout
 - Replace the blanket fail-open catch with an accurate diagnostic
 - Confirm compat/index.js exports `probeAdvisorDaemon`, `readAdvisorStatus`, `handleAdvisorRecommend`, and `buildSkillAdvisorBrief`
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/005-opencode-bridge-native-route` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation`

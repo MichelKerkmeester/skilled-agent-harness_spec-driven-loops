@@ -8,8 +8,6 @@
 
 Gemini CLI has supported hooks since v0.33.1, but we never configured any -- meaning Gemini users had no automatic context recovery when sessions started, no context preservation when conversations were compressed, and no token tracking. This phase ports the full Claude Code hook suite (session priming, compaction caching, context injection, session tracking) to Gemini's lifecycle format, raising Gemini's context parity from 50% to 85%. Rather than copying Claude hooks verbatim, each hook was adapted to Gemini's different lifecycle event names and I/O format, with shared utilities to keep both runtimes aligned.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/022-gemini-hook-porting/`
-
 ---
 
 ## New Features (4)
@@ -113,3 +111,5 @@ Gemini CLI has supported hooks since v0.33.1, but we never configured any -- mea
 ## Upgrade
 
 No migration required. Gemini CLI users automatically benefit from the new hooks after updating. No changes needed for Claude Code, Codex, or Copilot users.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/022-gemini-hook-porting/`

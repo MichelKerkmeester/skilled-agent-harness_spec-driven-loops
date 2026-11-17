@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/017-enrichment-reconsolidation-default-on` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`
-
 ### Summary
 
 This packet changed the save-time enrichment posture so normal saves can populate graph and entity data without blocking the save response. Post-insert enrichment and quality auto-fix now use default-on flag semantics with opt-out environment values. The enrichment bundle runs in the background by default and the response reports a deferred post-insert enrichment result.
@@ -78,3 +75,6 @@ The packet title includes reconsolidation, but the final reviewed state keeps sa
 - Add the deferred backfill-failure-mode regression test noted in the review report.
 - Existing docs still need re-save or pending-marker repair before they gain the new enrichment output.
 - Use `SPECKIT_POST_INSERT_ENRICHMENT_SYNC=true` when strict read-after-write graph freshness is required.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/017-enrichment-reconsolidation-default-on` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-02
 
-> Spec folder: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/006-command-markdown-yaml-workflow-alignment` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
-
 ### Summary
 
 Phase 006 audited the AI-facing command surfaces for `/spec_kit` after the template-level refactor. The 6 command Markdown files under `.opencode/commands/spec_kit/` and 12 command YAML workflow assets under `.opencode/commands/spec_kit/assets/` were reviewed for stale references to deleted scripts (`compose.sh`, `wrap-all-templates`), deleted folder names (`level_N/` directories), and the retired architecture label. Current-behavior notes were added only where they affect command invocation: validation exit codes, path traversal rejection, canonical save locking, batch inline rendering, and phase-mode syntax.
@@ -69,3 +66,6 @@ One commit: `de27ce62f9`.
 
 - **Phase 007 (fleet marker sweep).** Validate and clean fleet markers across spec folders.
 - **Phase 008 (z_archive marker sweep).** Validate and clean archive markers.
+
+> Spec folder: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/006-command-markdown-yaml-workflow-alignment` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

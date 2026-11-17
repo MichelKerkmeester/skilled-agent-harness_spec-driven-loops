@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality`
-
 ### Summary
 
 The pipx-installed `cocoindex-code` build at `~/.local/pipx/venvs/cocoindex-code/` was a non-editable copy missing four modules shipped after May 7: `reranker.py`, `fts_index.py`, `fusion.py`, `registered_embedders.py`. The bake-off harness resolved `ccc` from PATH, which landed on the stale pipx binary instead of the canonical production venv. Prior hybrid-plus-rerank benchmark runs may have measured a stack without rerank enabled while the harness claimed otherwise.
@@ -70,3 +67,6 @@ Codex confirmed the full diagnosis but hit a sandbox write blocker when attempti
 - Run all four module import checks against the repaired pipx venv Python to confirm `cocoindex_code.reranker`, `fts_index`, `fusion`, `registered_embedders` all resolve to the local source tree.
 - Re-run the hybrid-plus-rerank bake-off with the hardened harness to produce results that reflect the correctly editable stack.
 - Track whether the follow-on packet `007-cocoindex-install-hygiene-pipx-repair` completed the full P1 requirements.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality`

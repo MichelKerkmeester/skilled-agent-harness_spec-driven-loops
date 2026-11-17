@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-16
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/001-mcp-shared-dependency-startup-fix` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 Codex startup logs showed `mk_skill_advisor` and `mk_code_index` failing during MCP initialization with `ERR_MODULE_NOT_FOUND: Cannot find package '@spec-kit/shared'`. Both packages compiled TypeScript path aliases into bare runtime imports, but neither declared `@spec-kit/shared` as an installed local dependency. The result was a clean TypeScript build path paired with a broken Node runtime path that prevented both advisory and code-graph MCP servers from starting.
@@ -91,3 +88,6 @@ The fix adds `@spec-kit/shared` as a local `file:` dependency in both affected p
 
 - The broken `.mcp.json` symlink remains separate config hygiene. The active Codex startup crash came from `@spec-kit/shared` package resolution in `opencode.json`-launched MCP servers. Confirm whether the symlink is an active launcher path before addressing.
 - Package manifests (`package.json`) are git-ignored in this repo. The runtime fix updates the local ignored files and the tracked lockfiles. A future packaging pass should decide whether these manifests should become tracked artifacts.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/001-mcp-shared-dependency-startup-fix` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph`

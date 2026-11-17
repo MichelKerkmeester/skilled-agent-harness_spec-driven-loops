@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/004-cli-opencode` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 cli-opencode's 9 reference/asset docs now carry exactly the canonical frontmatter contract, turning the skill's doc corpus into valid routing signal for the advisor doc harvest. This was the campaign's first pure net-new authoring phase: where the pilot only normalized existing blocks, every cli-opencode doc started at title+description and needed its trigger phrases derived from a full body read.
@@ -64,4 +61,5 @@ cli-opencode's 9 reference/asset docs now carry exactly the canonical frontmatte
 | `.opencode/skills/cli-opencode/assets/prompt_quality_card.md` | Modified | Authored block; normal / planning (prompt composition) |
 | `.opencode/skills/cli-opencode/assets/prompt_templates.md` | Modified | Authored block; normal / implementation |
 
-
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/004-cli-opencode` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

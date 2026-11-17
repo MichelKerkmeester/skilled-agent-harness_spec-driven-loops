@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-05
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability` (phase parent with 7 themed tracks)
-
 ### Summary
 
 Packet 031 is the GPT reliability deep-loop packet. It was renamed from `031-deep-loop-issues-with-gpt-opencode` and regrouped from 22 historical phases into 7 themed tracks: research and diagnosis, routing/dispatch/identity, guard/enforcement, benchmarks/verification, skill-doc hygiene, reliability fixes, and compiled-contract compiler. The packet is still open: tracks 001 through 005 are Complete, track 006 is Planned, and track 007 is In Progress.
@@ -79,3 +77,5 @@ _See the final task summary for the move/create/rewrite split._
 
 - Continue track 006 from Planned state.
 - Continue track 007 from In Progress state without claiming packet completion until both open tracks are resolved.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability` (phase parent with 7 themed tracks)

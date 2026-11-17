@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/004-discriminating-bakeoff` (Level 1)
-> Parent packet: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support`
-
 ### Summary
 
 Run 006 proved the first bakeoff was too easy, so this phase built the sharper test the recommendation needed. Run 007 used invalid-dominant strict validators, recovered from an external kill, fixed throttling, persisted serial Kimi dispatches and produced a separable correctness spread. The final guidance is model-specific and empirical: Kimi K2.7 Code is mostly framework-robust on these strict validators, but `rcaf` measured weakest and the registry now promotes `costar` with `tidd-ec` as the token-efficient fallback.
@@ -74,3 +71,6 @@ Run 006 proved the first bakeoff was too easy, so this phase built the sharper t
 - The default is best-of-tied plus corroborated, not a single decisive winner. The actionable signal is that `rcaf` is weakest, not that `costar` beats the other two perfect frameworks.
 - Confidence is medium, not high. Three fixtures at 6 samples per cell clearly separate `rcaf` from the perfect tier, but a larger fixture set would tighten confidence on the within-tier ordering.
 - The result is model-specific. The leaderboard is for `kimi-for-coding/k2p7` on strict validators and should not be transferred to sibling models.
+
+> Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/004-discriminating-bakeoff` (Level 1)
+> Parent packet: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support`

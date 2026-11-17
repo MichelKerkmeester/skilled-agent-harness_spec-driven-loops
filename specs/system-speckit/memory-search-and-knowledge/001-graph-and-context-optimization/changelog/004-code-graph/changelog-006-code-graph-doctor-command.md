@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 Operators had no quick way to check the health of the code-graph system. The status handler exposed metrics but required knowing which MCP tool to call and how to interpret the response. The scan handler could rebuild the graph but required operator knowledge of scope and stale-gate behavior.
@@ -73,3 +70,6 @@ The command mirrors the `/doctor:skill-advisor` pattern in structure, voice, and
 
 - **Phase B promotion.** Apply-mode operations (auto-fix) are gated on research packet 007 producing the verification battery, staleness model, recovery playbook, and exclude-rule confidence tiers. Once 007 converges, Phase B can be implemented.
 - **Bloat-dir authoritative tiers.** The current bloat-dir defaults are placeholders. Research packet 007 will produce calibrated tiers.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

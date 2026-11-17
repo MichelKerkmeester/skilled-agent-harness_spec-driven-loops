@@ -8,8 +8,6 @@
 
 This phase documented the compact-code-graph rollout across the places users actually learn the system: the feature catalog, the manual testing playbook, the skill docs, and the architecture notes. Instead of leaving the new behavior trapped in phase specs, it turned the rollout into operator-facing reference material.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/006-documentation-alignment/`
-
 ---
 
 ## Documentation (3)
@@ -59,3 +57,5 @@ This phase documented the compact-code-graph rollout across the places users act
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/006-documentation-alignment/`

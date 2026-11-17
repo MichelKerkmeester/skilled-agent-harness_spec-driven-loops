@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 After packet 010 made the at-rest WAL durable, three gaps remained. A daemon killed mid-write could leave the FTS5 index torn with no detection at the next boot. The retention sweep committed its delete transaction but never reclaimed space or truncated the WAL. The launcher liveness probe could be satisfied by a bare socket connect, meaning a hung daemon that accepted connections but never answered JSON-RPC would be bridged into rather than reaped.
@@ -73,3 +70,6 @@ Third, `launcher-ipc-bridge.cjs` raises `DEFAULT_PROBE_TIMEOUT_MS` from 2500 to 
 
 - Auto-recover is intentionally deferred. This packet ships detect-only. An automatic rebuild or index swap on a corrupt verdict is a follow-on with its own failure modes.
 - The crash marker can persist after a fatal dimension-mismatch boot loop. It survives until a clean close, costing one extra cheap read-only integrity-check per boot. Bounded and self-clearing with no false `corrupt` verdict.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-04-28
 
-> Spec folder: `026-graph-and-context-optimization/005-graph-impact-and-affordance` (Level 3)
-
 ### Summary
 
 Phase 026/006 shipped the graph-impact and affordance-uplift packet as clean-room adaptation work. The parent scope started from external research, but it treated that input as architecture evidence rather than source material. Eight child phases cleared governance, built Code Graph foundations, improved edge and blast-radius output, added Skill Advisor affordance evidence, showed Memory causal trust, rolled up docs, remediated review findings and captured a 10-iteration research review. Historical docs still mention `010` and `012`, but this changelog records the current packet path.
@@ -82,3 +80,5 @@ Phase 026/006 shipped the graph-impact and affordance-uplift packet as clean-roo
 
 - Downstream remediation remains tracked by the 008 deep-research review: P1 D1 and selected P2 findings.
 - Historical `010` and `012` labels remain in older source docs. This changelog uses the current filesystem identity.
+
+> Spec folder: `026-graph-and-context-optimization/005-graph-impact-and-affordance` (Level 3)

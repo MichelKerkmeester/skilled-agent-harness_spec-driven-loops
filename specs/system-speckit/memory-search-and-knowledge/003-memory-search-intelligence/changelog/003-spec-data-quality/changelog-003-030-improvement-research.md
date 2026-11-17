@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 A 10-angle read-only research study seeded by the 029 model benchmark, asking how to improve the 005 spec-data-quality program. It diagnosed the benchmarked off-corpus false-positive as a score-calibration miss not an envelope-fidelity miss, converged on a lexical-grounding floor as the root-cause fix, cross-model verified the load-bearing claims, and produced 12 ranked proposals with a build order. This phase ships a diagnosis and a ranked plan, not a code change.
@@ -51,3 +48,6 @@ A 10-angle read-only research study seeded by the 029 model benchmark, asking ho
 - The operator decides which verified proposals warrant a build phase versus a backlog entry.
 - The convergent fix is a lexical-grounding floor, a query-term or BM25 overlap requirement before awarding good or cite_results, gated behind the off-corpus fixture and CI metric that this study ranked first.
 - The off-corpus fixture is a precondition for every behavioral fix below rank 2, so it is the gating first build.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

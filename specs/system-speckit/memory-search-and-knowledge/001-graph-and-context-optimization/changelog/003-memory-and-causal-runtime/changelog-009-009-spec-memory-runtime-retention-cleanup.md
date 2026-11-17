@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/009-spec-memory-runtime-retention-cleanup` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`
-
 ### Summary
 
 The broad system-spec-kit audit identified in-process retention risks across memory scan, routing, search, ingest, retry, audit, embedder paths that could accumulate without any orphaned external processes. Phase 009 addressed all identified surfaces by introducing bounded data structures, a process-wide timer registry, a shutdown hook system and cooperative cleanup integration across 17 existing modules. Embedder sidecar calls received env allowlisting, request timeout termination and parent-death polling to ensure owned child processes exit when the parent disappears. All existing public APIs remained behavior-compatible.
@@ -92,3 +89,6 @@ The broad system-spec-kit audit identified in-process retention risks across mem
 - Audit remaining memory/search/routing/session/queue paths for any unbounded `new Map()` or `new Set()` retention not covered by this phase.
 - Audit timer usage across `mcp_server/lib/**` and `mcp_server/context-server.ts` to confirm all long-lived timers route through the timer registry.
 - Confirm macOS parent-death polling behavior is preserved after the sidecar execution path retirement that followed this phase.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/009-spec-memory-runtime-retention-cleanup` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

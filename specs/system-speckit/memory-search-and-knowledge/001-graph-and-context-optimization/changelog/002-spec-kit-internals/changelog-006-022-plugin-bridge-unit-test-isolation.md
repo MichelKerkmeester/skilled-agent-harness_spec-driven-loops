@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/022-plugin-bridge-unit-test-isolation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 Behavioral tests for the plugin bridge ran as subprocess calls, making logic failures slow to diagnose and coupling unit coverage to MCP subprocess availability. The tests now use direct imports with mocked native dependencies while one subprocess smoke test preserves the JSON envelope contract. Unit test iteration is faster and logic failures surface directly rather than at process boundaries.
@@ -57,3 +54,6 @@ Behavioral tests for the plugin bridge ran as subprocess calls, making logic fai
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/022-plugin-bridge-unit-test-isolation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

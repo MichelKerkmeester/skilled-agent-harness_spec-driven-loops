@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`
-
 ### Summary
 
 Packet 014/003 (commit `c99f990897`) already removed the core inactive LLM-model reranking path: the cross-encoder modules, local GGUF reranker sidecar, conditional rerank gate, Stage 3 Step 1 cross-encoder step plus seven related tests. After that removal, residual confidence scoring vestiges, explainability signals, audit metrics, active documentation claims plus test assertions still referenced the dead reranker path. The live pipeline no longer assigned `rerankerScore`, so all of those references were inert noise.
@@ -84,3 +81,6 @@ None.
 ### Follow-Ups
 
 - Run the full 528-file mcp_server Vitest suite when machine capacity allows to close the substitution gap documented in Known Limitations.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`

@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/008-code-graph-coverage-bridge` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`
-
 ### Summary
 
 Seed coverage-graph from code-graph at loop init: seed_source/seed_confidence DB schema in coverage-graph-db.ts + --seed-source/--seed-confidence on upsert.cjs + init seed steps in deep_context_auto.yaml/deep_review_auto.yaml. Tests pass; typecheck/hygiene/drift green.
@@ -58,3 +55,6 @@ Seed coverage-graph from code-graph at loop init: seed_source/seed_confidence DB
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/008-code-graph-coverage-bridge` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

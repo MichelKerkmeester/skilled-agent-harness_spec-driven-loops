@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-04-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
-
 ### Summary
 
 The skill advisor's multi-word phrase routing now actually works as designed. 24 tokenizer-broken whitespace entries and 12 hyphenated entries that were silently dead in `INTENT_BOOSTERS` (because the tokenizer `\b\w+\b` splits on whitespace and hyphens before dict lookup) have been migrated to `PHRASE_INTENT_BOOSTERS` (which matches substrings against the raw prompt). The headline win: "5-dimension agent scoring" was misrouting to `sk-improve-prompt` at 0.77 via a weak single-token match. After the fix it routes to the correct `sk-improve-agent` at 0.95.
@@ -62,3 +59,6 @@ The skill advisor's multi-word phrase routing now actually works as designed. 24
 
 - Barter repo advisor is out of sync and needs its own migration pass.
 - REQ-020 bench latency not re-measured (data-only change, low p95 risk).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

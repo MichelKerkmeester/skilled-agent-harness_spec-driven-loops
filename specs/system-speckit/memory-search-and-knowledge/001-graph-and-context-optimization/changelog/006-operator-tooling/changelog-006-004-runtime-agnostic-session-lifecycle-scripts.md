@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`
-
 ### Summary
 
 The session-lifecycle shell scripts now work across every AI CLI runtime instead of solely Claude Code, and the orphan sweeper no longer kills an operator's `opencode run` MCP children. The cleanup script was renamed from `claude-session-cleanup.sh` to `session-cleanup.sh` with a back-compat shim so existing callers keep working, and it resolves the session PID from whichever runtime env var is set. Cleanup is wired into each runtime's real session-end mechanism.
@@ -65,3 +62,6 @@ The session-lifecycle shell scripts now work across every AI CLI runtime instead
 
 - Codex and Devin have no session-end primitive. Their orphaned MCP helpers are reclaimed by the age-based orphan-mcp-sweeper.sh, not an on-exit hook.
 - feature_catalog and manual_testing_playbook still reference the old script name. Deferred as a P2 follow-on. The README and all live wiring are updated.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling`

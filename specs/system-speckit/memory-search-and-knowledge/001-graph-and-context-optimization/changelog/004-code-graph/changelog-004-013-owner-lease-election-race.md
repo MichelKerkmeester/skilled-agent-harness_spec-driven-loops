@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/013-owner-lease-election-race` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 The code-graph launcher (`mk-code-index-launcher.cjs`) runs a multi-gate election before spawning the daemon, but two of the gates are non-atomic. The owner-lease reclaim (`acquireOwnerLeaseFile`, lines 373-386) and the `writeLeaseFile` reprobe (lines 948-954) both use a read-after-write check that only catches overlapping concurrent writes, not sequential ones. Worse, `writeLeaseFile` executes outside the `if (lockHeld)` bootstrap-lock branch, so both the bootstrap-lock winner and loser reach it. Under two launchers concurrently reclaiming a stale-heartbeat lease, both can reach `launchServer()`. The daemon does not re-elect atomically. It refreshes the owner lease on a timer (interval `TTL/3`) and self-shuts-down when a refresh finds the lease pid is no longer its own (`index.ts:46-55`). This produces a double-daemon window of up to one heartbeat tick, the "~12 s both alive" observed during the OR-1-01 fix.
@@ -65,3 +62,6 @@ A read-only investigation traced the full 4-layer election to exact line numbers
 - Add a two-launcher election regression test that exercises the concurrent stale-heartbeat reclaim path and asserts a single launcher reaches `launchServer()`.
 - Run the empirical 2-launcher repro as part of the fix validation. The code-trace severity verdict is P2 but has not been confirmed by observation.
 - Verify whether the bootstrap-lock loser branch intentionally allows a second launcher to take over an already-built DB. Confirm the fix must preserve that behavior before implementing Option B.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/013-owner-lease-election-race` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/009-deep-research` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 deep-research's 15 reference and asset docs now carry exactly the canonical frontmatter contract, making the skill fully valid routing signal for the advisor doc harvest. Unlike the pilot's pure normalization, this was the campaign's first net-new authoring phase: every doc had title+description only, so all trigger phrases, tiers, and contextTypes were authored from doc content while staying distinctive against the five sibling deep-* skills whose docs already carry phrases.
@@ -63,3 +60,6 @@ deep-research's 15 reference and asset docs now carry exactly the canonical fron
 
 - Live-daemon `matchedDocs` verification is deferred to a later campaign-level session cycle; the daemon requires a restart before doc-trigger routing takes effect.
 - Phrase distinctiveness is point-in-time. Later campaign phases author their own phrases; bare deep-research claims like "question entropy" and "mad noise floor" rely on those phases honoring the same prefix-when-generic rule to prevent routing collisions.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/009-deep-research` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-04-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 1)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
-
 ### Summary
 
 Packet 009 added the OpenCode Plugin Exemption Tier to the JavaScript quality standards reference and aligned the skill-advisor plugin with structural conventions (box header, section dividers, JSDoc). No behavior changes were made. The exemption scopes to `.opencode/plugins/*.{js,mjs,ts}` and `.opencode/plugin-helpers/*.{js,mjs,ts}`, exempting only the `module.exports` requirement because the OpenCode plugin loader requires ESM default export.
@@ -56,3 +53,6 @@ None - standards alignment only, no bug fixes.
 ### Follow-Ups
 
 - None specific to this packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 1)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

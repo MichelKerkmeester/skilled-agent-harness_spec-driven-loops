@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/018-sk-prompt` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 sk-prompt's 5 reference/asset docs now carry exactly the canonical frontmatter contract, so the advisor doc harvest can route on them. Unlike the pilot, this phase was pure net-new authoring: every doc held title+description only, so all trigger phrases, tiers, and contextTypes were derived fresh from the doc bodies.
@@ -54,3 +51,6 @@ sk-prompt's 5 reference/asset docs now carry exactly the canonical frontmatter c
 ### Follow-Ups
 
 - Live-daemon matchedDocs verification is deferred until every advisor-attached session ends and a fresh session respawns the daemon with the doc-trigger flag enabled.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/018-sk-prompt` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

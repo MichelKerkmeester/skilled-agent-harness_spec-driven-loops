@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-04-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Research-only)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 A 10-iteration deep-research first wave investigated code-graph and hook improvement gaps. Seven findings surfaced: 1 P0, 4 P1, and 2 P2.
@@ -69,3 +66,6 @@ The investigation stopped at the 10-iteration cap. The `newInfoRatio` trajectory
 - **F-003 contradictory freshness.** The two freshness sources (status handler and context metadata) must agree. A follow-up should unify on a single freshness computation.
 - **F-005 detector summaries read path.** The write-only summaries need a query surface. A follow-up observability packet should add a read path.
 - **F-006 startup payload transport.** Addressed by the Phase 004 implementation's startup payload parity stream.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Research-only)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback`
-
 ### Summary
 
 The schema substrate from leaf 001 is consumed here. This leaf adds a pure semantic trigger matcher that reads cached prompt and trigger embeddings, computes cosine similarity with threshold, margin, and max gates, and deduplicates results. The matcher is integrated into `memory_match_triggers` as a shadow stage: when `SPECKIT_SEMANTIC_TRIGGERS` is unset the handler does not initialize the matcher at all. When the flag is set, semantic scores are logged and returned as metadata fields only. Returned lexical results and activation behavior are bit-for-bit identical in both states.
@@ -66,3 +63,6 @@ No schema version bump was needed: the implementation reads from the v34 tables 
 
 - Union mode is explicitly out of scope for this leaf. Semantic matches are shadow-only and cannot affect returned trigger results until a later evidence phase promotes them.
 - Prompt cache miss produces a `no_query_embedding` shadow stat. The matcher does not generate query embeddings in the trigger hot path. This is by design and is carried forward to leaf 004.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback`

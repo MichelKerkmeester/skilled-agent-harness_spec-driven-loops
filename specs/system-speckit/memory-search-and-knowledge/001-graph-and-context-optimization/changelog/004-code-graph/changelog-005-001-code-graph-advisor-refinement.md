@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/001-code-graph-advisor-refinement` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor`
-
 ### Summary
 
 The Code Graph and Skill Advisor systems had accumulated technical debt across algorithm correctness, daemon reliability, trust-state vocabulary plus observability coverage. No prior investigation had surveyed both systems together. A 20-iteration deep-research loop produced 35 actionable findings across five dimensions (algorithm correctness, performance, UX consistency, observability plus cross-runtime parity) and yielded a SHIP_READY_CONFIRMED synthesis with a 10-PR implementation roadmap.
@@ -79,3 +76,6 @@ Phase 5 executed all 10 PRs, covering corpus-path repair, Claude settings rewrit
 - Deferred: F2 and F8 tree-sitter `call_expression` AST work moved to a future packet per research synthesis section 15.
 - Deferred: F36 bench items 1, 2, 3, 5 plus 6 moved to a future packet per research synthesis section 15. Phase 5 shipped F36 items 4, 7 plus 8 only.
 - The retained `mcp_server/tests/promotion-positive-validation-semantics.vitest.ts` test covers memory auto-promotion semantics. A follow-up should add explicit auto-promotion tier-escalation coverage.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/001-code-graph-advisor-refinement` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor`

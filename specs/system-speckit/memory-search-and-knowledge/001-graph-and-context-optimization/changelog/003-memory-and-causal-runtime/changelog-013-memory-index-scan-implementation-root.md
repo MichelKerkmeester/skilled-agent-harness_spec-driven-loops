@@ -16,8 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-05
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation` (Level 2)
-
 ### Summary
 
 This phase parent coordinates the shipped memory_index_scan self-maintaining index program. The parent spec records the child map and aggregate status. Detailed implementation evidence lives in the child changelogs.
@@ -65,3 +63,5 @@ The program delivered a self-maintaining memory index, file-based checkpoint dur
 ### Follow-Ups
 
 - None recorded for the parent packet. Per-phase follow-ups live in the child changelogs.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation` (Level 2)

@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation/005-per-iteration-memory-upsert` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation`
-
 ### Summary
 
 memory_save/upsert step after each iteration + memory_context refresh before the next prompt (non-fatal on MCP error) in deep_research_auto.yaml. YAML parses; additive.
@@ -54,3 +51,6 @@ memory_save/upsert step after each iteration + memory_context refresh before the
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation/005-per-iteration-memory-upsert` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation`

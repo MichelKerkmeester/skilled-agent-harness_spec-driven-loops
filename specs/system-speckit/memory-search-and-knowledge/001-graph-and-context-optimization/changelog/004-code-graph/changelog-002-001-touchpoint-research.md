@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/001-touchpoint-research` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`
-
 ### Summary
 
 Deprecating `mcp-coco-index` and `system-rerank-sidecar` touches a large, dispersed surface spanning skills, commands, agents, hooks, four runtime configs plus READMEs, with two high-risk couplings: the rerank sidecar into `mk-spec-memory` and the `system-code-graph` into CocoIndex via the `ccc` bridge. Acting without an exhaustive, classified touchpoint map risked breaking memory reranking, semantic-search routing or the structural code graph.
@@ -67,3 +64,6 @@ None. Research-only phase.
 
 - Confirm D1 (accept memory cross-encoder loss) and D2 (HYBRID semantic-search policy) with the operator before executing any deprecation phase.
 - Scaffold and execute deprecation phases 002-008 in dependency order, each gated by its verify command and a pre-phase git commit as a rollback point.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/001-touchpoint-research` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`
-
 ### Summary
 
 The skill advisor semantic-shadow lane lacked an embedding-based scoring path. This phase added per-skill embedding caching to skill-graph.sqlite, embedded recommend prompts at call time, and wired a cosine similarity lane that emits real LaneMatch scores. The lane remains shadow-only this phase so it does not change live recommendation output. A future phase promotes the lane after an ablation sweep.
@@ -56,3 +53,6 @@ The skill advisor semantic-shadow lane lacked an embedding-based scoring path. T
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`

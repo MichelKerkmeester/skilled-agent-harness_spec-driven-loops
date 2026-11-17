@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark` (Level 2)
-
 ### Summary
 
 This phase-parent migrates the skill-benchmark variant's scenario runs and scoring onto the typed event-ledger substrate while reusing the deep-improvement-common backbone and ending in an independent mode gate. Each child owns its own scope, plan, and verification. Per the phase documentation map the children are delivered; the lane remains in progress.
@@ -30,9 +28,9 @@ This phase-parent migrates the skill-benchmark variant's scenario runs and scori
 | `006-shadow-parity` | Plan the Skill Benchmark shadow-parity harness for paired skill scenarios and scoring that blocks authority movement until parity is green. |
 | `007-rollback-and-mode-gate` | Plan the Skill Benchmark mode's rollback switch and independent mode gate with fail-closed authority-cutover controls and a bounded rollback window. |
 
-## 2026-08-16
-
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark` (Level 2)
+
+## 2026-08-16
 
 ### Summary
 
@@ -43,3 +41,5 @@ The Skill Benchmark migration lane is now Complete, with all seven concern child
 - All 7 leaves Complete.
 - Sealed-artifacts verified green at 13/13; certificates-and-receipts at 20/20; resume-adapter at 22/22.
 - Shadow-parity at 20/20 (stale documented counts corrected 17->20 and 223->80); rollback-gate at 80/80.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark` (Level 2)

@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/027-memory-context-structural-channel-research` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 The system had two parallel retrieval surfaces with no routing layer between them: `memory_context` routed only to `memory_search` flavors while `code_graph_query` answered structural questions as a standalone tool. The advisor at `context-server.ts:335-341` already detected structural intent and nudged users toward `code_graph_query`, making channel fusion a plausible next step. Before implementation, three sub-questions needed research: whether intent signals were reliable enough to route automatically (RQ1), what the right merged response shape would be (RQ2), whether the existing `SearchDecisionEnvelope` already covered the routing trace (RQ3).
@@ -81,3 +78,6 @@ None. Research-only phase.
 - Confirm the exact structural payload key (`data.structural` or `data.structuralResults`) before wiring the handler.
 - Establish a confidence threshold for actionable operation planning before the routing layer dispatches `code_graph_query`.
 - Validate the split-payload shape against external MCP clients not visible in this repository.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/027-memory-context-structural-channel-research` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

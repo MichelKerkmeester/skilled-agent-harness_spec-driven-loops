@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/001-skill-graph-metadata-routing-boosts` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph`
-
 ### Summary
 
 Skill relationship knowledge was entirely implicit. All 333 boosters (170 single-skill, 32 multi-skill, 131 phrase) were hardcoded in `skill_advisor.py` with no structured representation of how skills relate to each other. Adding a new skill required editing three booster maps by hand. Conflict detection was absent. Session bootstrap had no graph context about skill topology.
@@ -76,3 +73,6 @@ Twenty-one per-skill `graph-metadata.json` files were authored across all routab
 - Populate `conflicts_with` arrays in per-skill `graph-metadata.json` files as real conflicts are identified. All arrays are currently empty.
 - Implement session bootstrap injection so the graph summary is pre-injected into session context rather than loaded lazily at first advisor call.
 - Investigate auto-generation of `graph-metadata.json` from SKILL.md analysis to reduce manual maintenance burden as skills are added or renamed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/001-skill-graph-metadata-routing-boosts` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph`

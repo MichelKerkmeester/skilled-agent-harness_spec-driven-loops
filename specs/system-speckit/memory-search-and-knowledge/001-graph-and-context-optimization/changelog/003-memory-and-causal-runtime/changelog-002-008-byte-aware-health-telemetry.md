@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/008-byte-aware-health-telemetry`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`
-
 ### Summary
 
 The `memory_health` tool collapsed all retained memory into RSS, making it impossible to attribute pressure to V8 heap, external allocations or ArrayBuffers. Without byte-aware telemetry, future memory reduction work could not verify what was retained versus resident in native or SQLite pages.
@@ -74,3 +71,6 @@ None.
 
 - Byte estimates are approximate. They are intended to compare retained-cache trends, not replace V8 retained-size analysis from a heap snapshot.
 - Heap snapshots require operator opt-in. Set `SPECKIT_HEAP_SNAPSHOT_DIR` before launching the daemon when an investigation needs snapshot artifacts.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/008-byte-aware-health-telemetry`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

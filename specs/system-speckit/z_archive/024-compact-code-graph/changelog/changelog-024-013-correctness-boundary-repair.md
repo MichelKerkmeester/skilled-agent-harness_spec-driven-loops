@@ -8,8 +8,6 @@
 
 This phase fixed 15 correctness bugs (2 critical, 11 must-fix, 2 improvements) found across 95 deep research iterations and 30 deep review iterations. These bugs meant the code graph produced wrong results for multi-line functions, could lose data during database failures, ignored caller-provided token budgets, leaked query results beyond requested boundaries, and accepted unsanitized inputs. Every fix had to land before any new feature work could proceed safely.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/013-correctness-boundary-repair/`
-
 ---
 
 ## Bug Fixes (5 fixes)
@@ -153,3 +151,5 @@ This phase fixed 15 correctness bugs (2 critical, 11 must-fix, 2 improvements) f
 ## Upgrade
 
 No migration required. The database schema version advances to v3 automatically on first use. All 226 existing tests pass without changes.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/013-correctness-boundary-repair/`

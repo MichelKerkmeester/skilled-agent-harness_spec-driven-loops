@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization` (Level 2)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 Phase 015 took the speed benchmark's own task, a quiet flag for `recommend-level.sh`, out of the guidance a model reads while authoring. The sweep found 87 lines in 12 files, 52 with the task's own words and 35 that told the same story in other words. Every one now uses one neutral feature: `scripts/rotate-logs.sh --keep <n>`, which deletes all but the newest n archives in `logs/archive/`. A fresh review found ten follow-ups, all ten were fixed, and a fix check recorded a PASS verdict. The phase is Complete, with three recorded deviations: the term gate excludes the one instruction line `goal.md` D3 keeps word for word, the scope check uses list membership because phases 016 and 017 share the uncommitted tree, and the planned replacement table was never written, so the sweep table stands in for it.
@@ -57,3 +54,6 @@ Phase 015 took the speed benchmark's own task, a quiet flag for `recommend-level
 ### Follow-Ups
 
 - None recorded.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/015-template-example-neutralization` (Level 2)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

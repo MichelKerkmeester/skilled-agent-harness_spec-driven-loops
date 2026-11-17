@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/006-openltm-retrieval-observability` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 Memory retrieval is now inspectable without touching ranking, scoring, decay, schema, or write behavior. The work adds four categories of diagnostic information — all behind existing per-call opt-ins or existing diagnostic tools. Operators calling `memory_search(includeTrace: true)` receive a `why_ranked` breakdown keyed to document path and anchor, derived from the ranker's own row intermediates rather than a parallel display formula. When returned documents are linked by existing `contradicts` or `supersedes` causal edges, a compact inline warning appears in the formatted results. Health and embedder-status responses now surface degraded-vector state directly. Maintenance handlers for index scan, embedding reconcile, and retention sweep each record their last-run counters in process memory so health can report them without a schema bump or persisted write path. A focused vitest suite of six tests proves each surface fires under its opt-in and that no ranking or state mutation occurs.
@@ -72,3 +69,6 @@ None. All changes are additive.
 
 - Process-local maintenance counters reset on MCP process restart. A future phase may introduce a lightweight persisted counter if last-run observability across restarts becomes necessary.
 - The root `tsconfig.json` (TS5058) was pre-existing and out of scope for this phase.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/006-openltm-retrieval-observability` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

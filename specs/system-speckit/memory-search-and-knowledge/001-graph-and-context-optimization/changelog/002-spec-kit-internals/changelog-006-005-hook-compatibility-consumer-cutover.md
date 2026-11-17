@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/005-hook-compatibility-consumer-cutover` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 Advisor consumers across the codebase still carried mixed assumptions after the standalone `system_skill_advisor` package was created in child 004. The OpenCode plugin bridge imported the old `dist/skill_advisor/compat/index.js` path. The memory MCP process registered primary `advisor_*` handlers directly. The Python shim pointed at the wrong repo root. Doctor assets probed the old memory-side DB. Install guides described an outdated single-server topology.
@@ -82,3 +79,6 @@ All production consumers were inventoried and classified under one of five categ
 - Update the standalone plugin-bridge Vitest that computes repo root one directory too high.
 - Run `doctor:update --cleanup-legacy=false` against the standalone advisor path to verify the full mutation route end-to-end.
 - Smoke-test operator-facing install-guide examples against a clean environment.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/005-hook-compatibility-consumer-cutover` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

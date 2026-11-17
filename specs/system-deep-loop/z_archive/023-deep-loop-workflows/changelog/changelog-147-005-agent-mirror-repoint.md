@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/005-agent-mirror-repoint` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`
-
 ### Summary
 
 This phase moved the five native deep-loop agent bodies to the merged `deep-loop-workflows` skill across all three runtime mirrors. Agent names and dispatch contracts did not change. The runtime mirrors now point at the same consolidated skill identity that the command surface uses.
@@ -54,3 +51,6 @@ This phase moved the five native deep-loop agent bodies to the merged `deep-loop
 - CHK-011 Changes follow existing project conventions.
 - CHK-020 Phase 001 baseline manifest located and used. No new baseline invented.
 - CHK-021 Phase 003 `mode-registry.json` exists and carries `workflowMode`, `runtimeLoopType` and `backendKind`.
+
+> Spec folder: `.opencode/specs/deep-loops/029-deep-loop-workflows/005-agent-mirror-repoint` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/029-deep-loop-workflows`

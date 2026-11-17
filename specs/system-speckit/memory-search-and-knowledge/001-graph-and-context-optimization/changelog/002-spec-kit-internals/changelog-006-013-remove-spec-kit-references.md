@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/013-remove-spec-kit-references` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 After the advisor extraction moved ownership to the sibling `system-skill-advisor` skill, a baseline grep found 208 match lines across 29 spec-kit doc files that still referenced old `mcp_server/skill_advisor/` paths or named spec-kit as the advisor owner. Every hit was bucketed using ADR-004 policy: 31 stale live references were rewritten to target the sibling skill and the `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs` bridge, 4 advisor-owned catalog and playbook entries were deleted from spec-kit, and 134 current sibling references were left in place. The final grep returned 167 match lines with zero `STALE_LIVE` doc instructions remaining.
@@ -71,3 +68,6 @@ None.
 
 - The final grep still reports current sibling advisor references and out-of-scope script and test fixture hits. Those are not stale live doc instructions and require no further action.
 - Parallel-session dirty files were left untouched and must not be included in the scoped commit.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/013-remove-spec-kit-references` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

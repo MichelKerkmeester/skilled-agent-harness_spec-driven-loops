@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/005-opt-in-only-closure` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc`
-
 ### Summary
 
 After four HOLD verdicts across the rerank arc, including a bge-v2-m3 trial that returned literally identical numbers to the OFF baseline at 19x the latency, the operator closed arc 011 with a documented decision: keep the shared sidecar framework because cocoindex has a working default consumer, but make spec-memory reranking explicit opt-in. The `WEIGHT_RERANKER=0.20` boolean penalty in `confidence-scoring.ts` was silently dragging `requestQuality` confidence down across every `memory_search` call even when no reranker was involved. This phase patched the default flag to OFF, introduced `isRerankerExpected()` to gate the penalty on intentional operator configuration, added 3 targeted Vitest cases covering the opt-in boundary, updated skill docs. It swept supersede statuses across 7 sibling packets. The arc is closed and reversible: all existing opt-in code paths remain intact.
@@ -75,3 +72,6 @@ After four HOLD verdicts across the rerank arc, including a bge-v2-m3 trial that
 - The full Vitest suite retains a 157-failure baseline below the <=168 ceiling. Investigate the remaining failures in a dedicated remediation packet if the count grows.
 - Retrieval and fixture quality were intentionally out of scope. Revisit the 011/004 audit work if spec-memory reranking is opted back in by an operator.
 - Confirm that the `system-rerank-sidecar` skill SKILL.md update from the original commit persists after the subsequent skill removal in commit `ada2c51ee8`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/005-opt-in-only-closure` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc`

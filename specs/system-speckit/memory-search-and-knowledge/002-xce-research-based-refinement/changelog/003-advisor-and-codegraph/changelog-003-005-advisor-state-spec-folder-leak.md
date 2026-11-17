@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/005-advisor-state-spec-folder-leak` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 The skill-advisor resolves where to write its runtime state via `findAdvisorWorkspaceRoot(start)`, which walks up looking for the canonical sentinel `.opencode/skills/system-spec-kit/SKILL.md` and, on a miss, fell back to returning `start`. Advisor-bearing processes dispatched with a cwd inside a `specs/` packet subtree — deep-loop fan-out seats, deep-research iteration dirs, prompt/asset working dirs — therefore materialized a stray `.opencode/skills/.advisor-state/skill-graph-generation.json` inside that packet on every run. A sweep of `.opencode/specs/` found 23 such stray directories; they are gitignored and harmless but clutter the tree and appear with no commit trail. (`specs/` at the repo root is a symlink to `.opencode/specs`, so both spellings point at the same on-disk location.) This packet makes the fallback structurally incapable of returning a spec-subtree path, mirrors the guard in the schema's `detectRepoRoot` twin, proves it with a regression test, and removes the 23 strays.
@@ -65,3 +62,6 @@ The skill-advisor resolves where to write its runtime state via `findAdvisorWork
 - Live activation: the running advisor daemon picks up the rebuilt `dist` only after a fresh session or `/mcp` reconnect; its launcher does not transparently recycle on child SIGTERM.
 - A heavier, related artifact class remains: two research dirs still hold a full `.opencode/node_modules` opencode-plugin install (zod, effect, `@opencode-ai`). It is gitignored and out of scope here; a separate cleanup can remove it.
 - The exact reason post-fix-era dispatched `opencode run` seats still reached the fallback was not reproduced; the hoist makes it moot for this leak regardless of dispatch path.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/005-advisor-state-spec-folder-leak` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

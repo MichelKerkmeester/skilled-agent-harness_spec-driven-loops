@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation/006-loop-wide-dry-run` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation`
-
 ### Summary
 
 First-class --dry-run flag + halt hooks at dispatch/state-mutation/reducer-refresh/child-spawn boundaries + dry_run_halt events (research.md + deep_research_confirm.yaml). YAML parses; additive.
@@ -54,3 +51,6 @@ First-class --dry-run flag + halt hooks at dispatch/state-mutation/reducer-refre
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation/006-loop-wide-dry-run` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation`

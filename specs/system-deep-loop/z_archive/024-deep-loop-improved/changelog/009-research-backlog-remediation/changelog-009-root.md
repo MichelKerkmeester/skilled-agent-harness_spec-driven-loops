@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation` (Level 2, phase parent)
-
 ### Summary
 
 Phase 009 implemented the prioritized backlog a deep-research fan-out produced against the packet itself, then a deeper forced-depth generation-2 pass found two more critical bugs in the research runtime's own completion and hang-handling logic. All 11 children shipped: 3 tooling bug fixes, 4 claimed-versus-actual drift closures, 3 infrastructure and design hardening items and a final pair of production-observed fixes for synthesis integrity and orchestrator hangs.
@@ -78,3 +76,5 @@ _See each leaf changelog in this directory for full file-level detail._
 - The sliding-window convergence mode is a documented, evidence-backed follow-up, not shipped in this phase.
 - The default validate.sh invocation path does not read the shell rule registry at all, so both new rules added in this phase only run through explicit `SPECKIT_RULES` invocation, a real architectural gap worth its own follow-up phase.
 - Dozens of leaf children across phases 002 through 007 still carry genuine scaffold markers in their own plan.md or tasks.md, a known, deliberately deferred Tier 3 item this phase's own new detector surfaces but does not fix.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation` (Level 2, phase parent)

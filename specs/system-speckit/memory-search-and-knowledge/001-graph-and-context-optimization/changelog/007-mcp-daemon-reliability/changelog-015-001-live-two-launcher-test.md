@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`
-
 ### Summary
 
 The F2 clean-close barrier (`reapLeaseChildBeforeRespawn`) decides whether a daemon database is clean after a child context server exits, but only its pure helpers had unit tests. The reap orchestration itself had zero live coverage because the only real-process launcher suite was entirely skipped as a known flake. This packet exported the reap function for testability and added a deterministic test suite that drives it against real child processes and a real marker file, avoiding the flaky launcher-spawn pattern entirely.
@@ -52,3 +49,6 @@ The F2 clean-close barrier (`reapLeaseChildBeforeRespawn`) decides whether a dae
 ### Follow-Ups
 - Not a full two-launcher integration test. The reap function, the safety-critical core of the F2 barrier, is covered but the full launcher-B-bridges-then-respawns wiring is not. The bridge respawn-on-dead decision is separately unit-tested in `launcher-ipc-bridge-probe.vitest.ts`. Combining both into a real two-process test remains deferred for the same flake reason that skipped the legacy suite.
 - The SIGKILL-escalation branch is not exercised live. Reliably forcing a child to ignore SIGTERM proved environment-fragile (the first attempt flaked), so the `killed=true` path is covered by the pure `cleanCloseAfterReap` unit test rather than a live reap. The live suite covers SIGTERM-reap and marker-based clean/unclean determination only.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`

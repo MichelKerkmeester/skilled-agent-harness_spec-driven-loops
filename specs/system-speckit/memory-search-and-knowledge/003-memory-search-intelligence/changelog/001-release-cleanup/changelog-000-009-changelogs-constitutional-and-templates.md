@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`
-
 ### Summary
 
 This child phase executed (commit d9b95ef9a6). Four factual drifts were fixed across the constitutional docs and system-spec-kit templates, including the constitutional README rule-file count and a cli-dispatch model reference. The changelog entries were left historical as immutable archive records and every corrected path was verified to resolve.
@@ -56,3 +53,6 @@ This child phase executed (commit d9b95ef9a6). Four factual drifts were fixed ac
 ### Follow-Ups
 
 - None. The changelogs, constitutional docs and templates cleanup is complete and strict validation is green.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`

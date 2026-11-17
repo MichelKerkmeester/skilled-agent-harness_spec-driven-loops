@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
-
 ### Summary
 
 Three parallel sub-tracks shipped addressing all aspects of search-pipeline tuning and content routing accuracy. The coordination parent restored a canonical `spec.md` surface for the search-and-routing workstream so packet-level graph provenance and recovery flows have a real root document. Implementation detail lives in the child packets.
@@ -94,3 +91,6 @@ Multiple commits across three sequential dispatch tracks. Iteration evidence pre
 - Canonical `/spec_kit:resume` bypasses the search pipeline entirely. Docs should distinguish resume ladder from search-style `profile='resume'`.
 - Dashboard-grade reranker telemetry: separate stale expiry from capacity eviction, expose reset/failure context, add provider-scoped counters.
 - Short-fragment content routing robustness: progress versus research, research versus metadata, and terse drop telemetry still drift on compact inputs.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

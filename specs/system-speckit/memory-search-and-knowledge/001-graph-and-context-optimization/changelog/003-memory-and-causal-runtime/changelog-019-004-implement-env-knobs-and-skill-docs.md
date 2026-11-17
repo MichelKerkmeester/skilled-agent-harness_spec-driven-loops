@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/004-implement-env-knobs-and-skill-docs` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper`
-
 ### Summary
 
 The rerank sidecar launcher was silently dropping the four approved reaper control variables at its `env -i` scrubbing boundary. Operators had no docs explaining which cleanup mechanism fires under which condition, nor how to override reaper behavior for manual debugging. The `start.sh` allowlist now explicitly forwards `RERANK_SIDECAR_REAPER_HEARTBEAT_SECONDS`, `RERANK_SIDECAR_REAPER_DISABLE`, `RERANK_SIDECAR_REAPER_TELEMETRY_PATH` and `RERANK_SIDECAR_IDLE_TIMEOUT_SECONDS` through the existing `add_env_if_set` loop without weakening the `env -i` isolation. `SKILL.md` now documents the three-layer reaper lifecycle with defaults, telemetry path and the `RERANK_SIDECAR_REAPER_DISABLE=1` manual debug opt-out. `README.md` adds operator-facing lifecycle guidance covering owner-death self-exit, the 30-minute idle backstop, launcher pre-flight reap and a troubleshooting row for stale sidecars. This closes the final open surface of the three-layer reaper arc.
@@ -69,3 +66,6 @@ The rerank sidecar launcher was silently dropping the four approved reaper contr
 ## Later Update (2026-06-04)
 
 The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits b8a866de2f, c99f990897 and ada2c51ee8. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/004-implement-env-knobs-and-skill-docs` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper`

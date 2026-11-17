@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/002-causal-and-memo` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation`
-
 ### Summary
 
 The causal and memo lane closed its backlog entries with Fable verification, confirmed-finding implementation, and terminal disposition records in the canonical backlog JSON files.
@@ -53,3 +50,6 @@ The causal and memo lane closed its backlog entries with Fable verification, con
 ### Follow-Ups
 
 - Waived P2 entries are recorded as deliberate non-fixes.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/002-causal-and-memo` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation`

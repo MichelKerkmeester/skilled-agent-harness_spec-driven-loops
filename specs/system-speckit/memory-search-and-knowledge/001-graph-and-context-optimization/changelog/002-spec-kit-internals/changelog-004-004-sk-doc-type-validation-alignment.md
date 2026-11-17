@@ -17,9 +17,6 @@ contextType: "research"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/004-sk-doc-type-validation-alignment` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor`
-
 ### Summary
 
 This phase targets 1:1 alignment of system-skill-advisor documentation surfaces against sk-doc templates. The scaffold and specification are in place. No implementation has shipped because this phase is blocked by the parent not being complete.
@@ -52,3 +49,6 @@ This phase targets 1:1 alignment of system-skill-advisor documentation surfaces 
 - feature_catalog/* alignment (parent plus 7 groups)
 - manual_testing_playbook/* alignment (parent plus 9 categories)
 - sk-doc validate per surface
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/004-sk-doc-type-validation-alignment` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor`

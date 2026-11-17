@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/004-mcp-contract-parity`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`
-
 ### Summary
 
 The public MCP contracts for four tools now match the runtime schemas and validation behavior. Embedding-reconcile dry runs now predict apply coverage, governed ingest metadata survives scan and async ingest paths, stale code-graph bootstrap guidance no longer promises queries work on stale graphs and a contract parity test compares public schema keys against Zod keys for the tools in scope. The same pass exposed causal scope fields so the retrieval hardening phase is reachable through real MCP traffic.
@@ -76,3 +73,6 @@ The public MCP contracts for four tools now match the runtime schemas and valida
 
 - Central verification should validate the additive `ingest_jobs.governance_json` migration and run the broader typecheck and vitest suite.
 - D3 test coverage reaches the handler boundary. A full end-to-end DB assertion is left for central integration coverage.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/004-mcp-contract-parity`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation`

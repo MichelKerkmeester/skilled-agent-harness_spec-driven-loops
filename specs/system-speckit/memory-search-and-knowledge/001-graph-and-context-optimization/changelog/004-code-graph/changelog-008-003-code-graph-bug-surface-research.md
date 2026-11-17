@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-06
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/003-code-graph-bug-surface-research` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`
-
 ### Summary
 
 After the native rerun in 012/002 exposed broad scan regressions, the code graph and adjacent runtime surfaces had no unified bug inventory. Operators lacked severity classification, file:line evidence or a corrected framing of what counted as an end-user defect versus a framework-maintainer concern.
@@ -71,3 +68,6 @@ None. Research-only phase.
 
 - Open a remediation packet targeting F-002 (zero-node scan promotion guard at `scan.ts:292`) and F-003 (parser-error graph preservation at `ensure-ready.ts:467`) before enabling automatic read-path rescans.
 - Track affected filenames for parser out-of-bounds crashes. The native artifacts preserved crash count and message but not the file list.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/003-code-graph-bug-surface-research` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning`

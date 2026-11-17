@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`
-
 ### Summary
 
 The 004 deep-research investigation surfaced three durable defects that prevented a bulk re-embed of the mk-spec-memory store from ever reaching a clean state. The reindex completion transaction wrote vectors but never committed `memory_index.embedding_status`, leaving rows stale after every run. The retention enforcer parked clean never-attempted `pending` rows as failed before the drain could embed them. Retry-retention config was read once at module load, so tuned environment variables never applied to a long-lived daemon without a full restart.
@@ -68,3 +65,6 @@ Three surgical fixes were shipped: REQ-001 adds a status-commit UPDATE to the re
 - Rebuild the daemon and restart the lease owner after deploying these fixes. A `/mcp` reconnect alone is not sufficient to activate the changes in `dist/`.
 - Move the context-server hardcoded retry interval and batch size (5 min / 5 rows) to call-time environment reads. Deferred from this packet.
 - Implement `memory_embedding_reconcile()` as a maintenance tool for future one-time backlog repairs. Currently only an emergency SQL fallback exists.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime`

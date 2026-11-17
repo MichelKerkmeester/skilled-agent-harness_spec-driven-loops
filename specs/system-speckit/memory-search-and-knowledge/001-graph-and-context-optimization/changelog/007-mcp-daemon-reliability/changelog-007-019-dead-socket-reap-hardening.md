@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/019-dead-socket-reap-hardening` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 A busy daemon no longer gets killed for being briefly slow. Before this, the lease-holder check ran the deep liveness probe once, and a single failure made the checking launcher reap the owner and spawn a second daemon. An owner mid-FTS-merge or stalled for one probe window was wrongly declared dead, which is exactly the kind of duplicate-daemon thrash that drops transports. Now the owner is declared dead only after N consecutive deep-probe failures.
@@ -60,3 +57,6 @@ A busy daemon no longer gets killed for being briefly slow. Before this, the lea
 - Heuristic, not consensus. N consecutive failures is a robust heuristic for owner gone, not a distributed consensus. A daemon hung longer than the bounded retry budget is still reaped, which is correct since an unresponsive daemon should be replaced.
 - mk-spec-memory only. This hardens the mk-spec-memory lease-holder check. mk-code-index reuses the shared probeDaemon but its bridge upgrade is a separate phase.
 - Operator overrides own their timing. Setting a large SPECKIT_LEASE_PROBE_RETRIES can push total probe time past the grace ceiling; the default is the safe value.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/019-dead-socket-reap-hardening` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

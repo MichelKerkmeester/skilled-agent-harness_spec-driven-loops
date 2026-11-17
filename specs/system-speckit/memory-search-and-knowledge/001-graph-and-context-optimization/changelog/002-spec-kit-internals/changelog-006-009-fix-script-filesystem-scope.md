@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/009-fix-script-filesystem-scope` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 Two production advisor scripts resolved filesystem paths one directory too high. `skill_graph_compiler.py` set `SKILLS_DIR` to `.opencode/` instead of `.opencode/skills/`, causing skill graph compilation to scan non-skill trees. `skill_advisor.py` set `SKILL_GRAPH_SQLITE_PATH` under the skill root instead of `mcp_server/database/`, so the Python parity shim probed the wrong database location.
@@ -65,3 +62,6 @@ None.
 
 - The advisor package Vitest suite remains partially red. Remaining 7 failures are pre-existing and outside the scope of this packet. A future packet should investigate and close them.
 - The worktree contained unrelated pre-existing changes at dispatch time. Review whether any are related to advisor path behavior before the next refactor pass.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/009-fix-script-filesystem-scope` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback`
-
 ### Summary
 
 This leaf implements the full two-stage hybrid handler behavior inside `memory_match_triggers`. The semantic stage from leaf 002 is now controlled by a mode gate. Master flag off leaves the handler entirely inert with unchanged lexical output. Master flag on with the default mode produces shadow metadata only and does not affect results. Setting `SPECKIT_SEMANTIC_TRIGGERS_MODE=union` allows the semantic stage to supplement results when the lexical stage is weak: empty or below the caller limit, except when an exact strong lexical match is present.
@@ -62,3 +59,6 @@ Lexical results are always ordered first. Semantic-only hits carry `matchSource:
 
 - Env flag documentation for `SPECKIT_SEMANTIC_TRIGGERS_MODE` was intentionally deferred to the final leaf (004) per the parent phase assignment.
 - The scaffold referenced `mcp_server/__tests__/triggers/` as the test path. Implementation followed the repository's actual `mcp_server/tests/*.vitest.ts` convention. This is a documentation drift note only.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback`

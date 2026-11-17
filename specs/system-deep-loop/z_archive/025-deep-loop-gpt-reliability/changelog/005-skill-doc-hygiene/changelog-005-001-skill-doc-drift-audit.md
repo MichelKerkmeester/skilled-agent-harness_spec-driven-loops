@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/001-skill-doc-drift-audit` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Ran a 10-iteration deep-review + 10-iteration deep-research dual fan-out (`cli-opencode openai/gpt-5.5-fast`, reasoning=high) auditing 45 candidate `SKILL.md`/`references/`/`assets/`/README files for staleness caused by phases 008-013's changes. All 20 iterations were independently re-verified by fresh Claude Sonnet 5 agents (zero fabrications found), confirming 6 real drift clusters.
@@ -52,3 +49,6 @@ Ran a 10-iteration deep-review + 10-iteration deep-research dual fan-out (`cli-o
 ### Follow-Ups
 
 - Findings-only phase; recommended follow-up phase `015-skill-doc-drift-remediation` to fix all 6 confirmed clusters (completed).
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/001-skill-doc-drift-audit` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

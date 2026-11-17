@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/005-codegraph-seeded-ppr` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`
-
 ### Summary
 
 This phase benchmarked the removed dark mechanism `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` against the flat reverse impact walk on 20 labeled change-impact queries over the live code graph. The mechanism was reconstructed in-harness from its recorded constants without touching the serving path. Both rankers ranked the same shared multi-hop candidate pool to isolate ranking quality from reachability. PPR ties the flat walk on precision, recall and nDCG at every K with a delta of 0.0 across all cells, and the damping sweep shows no value beats flat while 0.95 makes PPR worse. The root cause is uniform edges: all 18,851 CALLS edges carry identical weight so PPR centrality collapses onto the flat walk hop ordering. Verdict: CUT, confirmed by measurement. The flag and its code stay deleted.
@@ -49,3 +46,6 @@ This phase benchmarked the removed dark mechanism `SPECKIT_CODE_GRAPH_SEEDED_PPR
 ### Follow-Ups
 - A non-uniform edge weighting (resolved call targets, observed-versus-inferred provenance, real strength signals) would give PPR a centrality gradient to differentiate on and would change the question. This is a separate edge-quality design not measured here.
 - The flat walk could itself expand past 1 hop for impact queries. The pool ranker already shows a hop-stratified multi-hop order is well-formed. This is a separate enhancement this benchmark only motivates.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/005-codegraph-seeded-ppr` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/005-deep-review-findings` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance`
-
 ### Summary
 
 A 7-iteration deep-review pass across the graph-impact-and-affordance sub-phases (001 through 006) surfaced 1 P0 plus 21 P1 plus 22 P2 findings. The P0 (a missing LICENSE verbatim quote) was resolved by scrubbing the upstream project name from the codebase entirely. The remaining findings clustered into six task groups. All 21 P1 findings and 12 actionable P2 findings were closed in Wave 1.
@@ -93,3 +90,6 @@ The work covered: wiring `detect_changes` as a callable MCP tool across 4 code t
 - Run `validate.sh --strict` operator-side on sub-phases 001/002/003/005/006 once template-section cosmetic warnings are resolved.
 - Run sk-doc DQI checks on the 5 sub-phase docs that carry OPERATOR-PENDING DQI rows.
 - Confirm the `affordances` DEFER decision holds when route/tool/shape contract safety work (ADR-012-003) is revisited in a later packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/005-deep-review-findings` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance`

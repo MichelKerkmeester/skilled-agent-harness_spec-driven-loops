@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/004-fanout-stopreason-tolerance` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Fixed a fan-out false failure where a completed 10/10 lineage was marked failed because its synthesis stop reason was written as `max-iterations (10/10)` instead of the canonical `maxIterationsReached`. The validator now accepts the max-iterations family after the iteration-count check has already proven completion.
@@ -54,3 +51,6 @@ Fixed a fan-out false failure where a completed 10/10 lineage was marked failed 
 ### Follow-Ups
 
 - Producer output still remains free-form by design. The consumer is tolerant, and the iteration-count check remains the authoritative completeness signal.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/004-fanout-stopreason-tolerance` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

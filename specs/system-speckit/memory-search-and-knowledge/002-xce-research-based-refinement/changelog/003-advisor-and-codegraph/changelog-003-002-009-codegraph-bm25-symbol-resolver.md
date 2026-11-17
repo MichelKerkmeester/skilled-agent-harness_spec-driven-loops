@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`
-
 ### Summary
 
 Code graph subject resolution gained an opt-in escape hatch for unresolved symbol names. Exact `symbol_id`, `fq_name`, and `name` resolution still runs first; BM25 only returns disambiguation candidates after exact matching misses.
@@ -60,3 +57,6 @@ Code graph subject resolution gained an opt-in escape hatch for unresolved symbo
 ### Follow-Ups
 
 - `code_graph_context` was not wired because its implementation files were outside the approved write scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`

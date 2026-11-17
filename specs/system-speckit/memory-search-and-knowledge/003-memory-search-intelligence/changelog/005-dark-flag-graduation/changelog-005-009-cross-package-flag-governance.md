@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/009-cross-package-flag-governance` (Level recorded in phase evidence)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation`
-> Historical alias: `016-cross-package-flag-governance`
-
 ### Summary
 
 This migration index makes the shipped phase discoverable at its final packet-local path without rewriting its historical identity. The allowed implementation evidence records: Status: IMPLEMENTED. This phase was opened from a Fable-5 three-angle review (correctness/quality, architecture consistency, risk/blast-radius) of sibling phases 006-presentation-layer-fixes through 011-automatic-drift-self-healing, and owns findings F5, F14, and F15 — all concentrated in the two feature-flag registration files, search-flags.ts and capability-flags.ts, plus one call site in query-router.ts. A follow-up adversarial review ran real empirical tests against the original findings and reached the same conclusion the original benchmark did: F5's default-polarity question (REQ-001) was RESOLVED — flip to default-off — before this implementation pass began, so F5a landed as a direct 
@@ -49,3 +45,7 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 ### Follow-Ups
 
 - None in the allowed evidence set.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/009-cross-package-flag-governance` (Level recorded in phase evidence)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-dark-flag-graduation`
+> Historical alias: `016-cross-package-flag-governance`

@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/001-contract-compiler-design` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Status: Planned within the active 7-track rollup. This child carries the design handoff for the build-time command-contract compiler: verify the seed design, resolve the prompt-injection seam, checksum ownership and CLI parity unknowns, then decompose the build and retrofit phases. Track 007 remains In Progress overall.
@@ -49,3 +46,6 @@ Status: Planned within the active 7-track rollup. This child carries the design 
 ### Follow-Ups
 
 - Approve and execute the compiled-contract build/retrofit phases before promoting this track beyond In Progress.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/001-contract-compiler-design` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

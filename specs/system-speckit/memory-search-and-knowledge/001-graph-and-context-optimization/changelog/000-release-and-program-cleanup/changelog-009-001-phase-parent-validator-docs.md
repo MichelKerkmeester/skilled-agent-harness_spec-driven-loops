@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/001-phase-parent-validator-docs` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation`
-
 ### Summary
 
 Phase-parent spec folders accumulated stale `plan.md`, `tasks.md`, `checklist.md` and `implementation-summary.md` files at the parent level. Those files reflected a previous phase's state rather than the current one. AI agents resuming from that surface read hallucinated context as a result. The validator had no mechanism to distinguish a phase parent from a regular spec folder, so it applied level-N enforcement to folders that should only carry a lean trio of `spec.md`, `description.json` and `graph-metadata.json`.
@@ -82,3 +79,6 @@ Two detection helpers were shipped: `is_phase_parent()` in `shell-common.sh` and
 - Implement pointer-write generator branch to populate `derived.last_active_child_id` in `graph-metadata.json` on save. Schema already accepts the field. Resume already handles phase parents via filesystem listing.
 - Sync AGENTS_Barter.md and AGENTS_example_fs_enterprises.md with the Phase Parent Mode block once those files are re-created or confirmed at a new path.
 - Add soft-deprecation warning for legacy phase parents that retain heavy docs. Tolerant policy preserves them today. A follow-on `migrate-phase-parent.sh` or validator warning can prompt cleanup.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/001-phase-parent-validator-docs` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation`

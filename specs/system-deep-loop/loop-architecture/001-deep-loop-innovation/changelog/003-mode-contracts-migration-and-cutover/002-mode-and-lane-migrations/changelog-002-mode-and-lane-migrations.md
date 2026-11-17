@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations` (Level 2)
-
 ### Summary
 
 This phase is the per-mode fan-out of the recommendations-implementation program: each of the eight deep-loop modes becomes an independent fractal parent that migrates that mode's full run behavior onto the shared typed event-ledger substrate — a typed event schema, deterministic reducers, sealed reference artifacts, certificates and receipts, a resume adapter, a shadow-parity harness, and a rollback-guarded mode gate. Ordering is load-bearing: deep-improvement-common (004) lands before its agent-improvement, model-benchmark, and skill-benchmark variants (005-007), and deep-alignment (008) reuses the review-loop backbone shared with deep-review. Per the parent phase documentation map, phase 001 is authored and phases 002-008 are planned; the root remains in progress pending acceptance of reconciled evidence.
@@ -30,3 +28,5 @@ This phase is the per-mode fan-out of the recommendations-implementation program
 | `006-model-benchmark` | Migrate the model-benchmark variant on the deep-improvement-common backbone; adds only model-benchmark run and scoring logic. |
 | `007-skill-benchmark` | Migrate the skill-benchmark variant on the deep-improvement-common backbone; adds only skill-benchmark scenario and scoring logic. |
 | `008-deep-alignment` | Migrate the deep-alignment loop (per-lane conformance against a named authority); reuses the review-loop backbone shared with deep-review. |
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations` (Level 2)

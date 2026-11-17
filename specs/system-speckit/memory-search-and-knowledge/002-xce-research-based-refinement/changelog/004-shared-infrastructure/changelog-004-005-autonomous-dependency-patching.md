@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/005-autonomous-dependency-patching` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 OpenCode skill package roots (system-spec-kit, system-skill-advisor, mcp-code-mode, and siblings) each carry their own npm lockfile, and security findings in those lockfiles had no automated detection or remediation path. This phase shipped a packet-local shell entrypoint that scans the eligible package roots, runs `npm audit` on each, applies supported npm override remediation, regenerates lockfiles without executing install scripts (the safety property: no arbitrary postinstall code runs during remediation), and re-audits to verify the result. The phase was authored as a standalone packet by a concurrent session and relocated into the 027 epic as phase 024 at epic close.
@@ -54,3 +51,6 @@ OpenCode skill package roots (system-spec-kit, system-skill-advisor, mcp-code-mo
 ### Follow-Ups
 
 - CI or pre-commit integration of the audit entrypoint remains optional and undecided.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/005-autonomous-dependency-patching` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

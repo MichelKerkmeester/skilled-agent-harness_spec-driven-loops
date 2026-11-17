@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/015-retrieval-gating-and-recall-recovery` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 Two two-word searches that should have surfaced many on-topic specs came back `weak` with `do_not_cite`, even when a controlled re-run proved the right specs were retrieved. The root cause was a scale mismatch. The request-quality gate and the per-result confidence read the RRF and RSF fusion score, which lands around 0.03 for a strong match, and compared it against cosine-scale thresholds (0.7 for high, 0.4 for low). Good was structurally unreachable, so almost every genuine hit was labeled weak. This packet adds `resolveAbsoluteRelevance`, which prefers the cosine similarity (the `similarity` field divided by one hundred) over the fusion score for the confidence and request-quality calibration, and falls back to the effective score when no cosine is present. Ordering is untouched: fusion still ranks, the calibration only changes how the gate reads relevance. Two recall problems are fixed alongside the gate. Cold and deprecated tiers, about a quarter of the corpus, were hard-excluded from every channel, so the archived hybrid-RAG specs the user was looking for could never rank. The deprecated-tier filter in the lexical and trigger channels is now gated by an include-cold flag, and the FSRS scheduler is left to rank those rows by temperature. And the vector lane joins the active-memory projection, which held one active row per logical key, so a cold orphan with no active winner was invisible to semantic search. A projection backfill admits a cold orphan only when its logical key has no active winner, preserving the one-active-per-key invariant. All three behaviors ship default-ON.
@@ -73,3 +70,6 @@ Two two-word searches that should have surfaced many on-topic specs came back `w
 
 - The remaining generic-query recall, request-quality aggregation, token-budget and output-contract gaps were researched in phase `016` and implemented in phase `017`.
 - The corpus reindex that restores the un-embedded rows is deferred and runs when the operator is home and confirms.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/015-retrieval-gating-and-recall-recovery` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

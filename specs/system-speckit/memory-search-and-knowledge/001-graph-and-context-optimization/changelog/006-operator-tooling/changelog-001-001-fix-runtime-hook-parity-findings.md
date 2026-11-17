@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/001-fix-runtime-hook-parity-findings` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`
-
 ### Summary
 
 A 2026-04-21 deep review of runtime hook wiring found 10 defects across OpenCode, Codex and Copilot. The highest-risk issues were an OpenCode plugin path that could silently deliver no code-graph context when the transport plan was absent or unparsable. Codex advisor hook flows could also return no visible advisory on timeout.
@@ -80,3 +77,6 @@ All 10 review findings were closed. Typecheck, build, targeted vitest suites and
 
 - Run `codex hooks list` coverage when the Codex CLI exposes a stable hook-list command to replace the `.codex/settings.json` validity heuristic.
 - Add a cluster-export column to the code graph schema when that work ships, to close the deferred T015 item from the adjacent code-graph packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/001-fix-runtime-hook-parity-findings` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`

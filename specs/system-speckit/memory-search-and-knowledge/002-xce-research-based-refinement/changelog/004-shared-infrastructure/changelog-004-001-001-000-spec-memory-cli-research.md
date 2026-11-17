@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-06
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli`
-
 ### Summary
 
 Four successive deep-research runs produced a decision-grade GO verdict for replacing the mk-spec-memory MCP with a daemon-backed CLI. The research confirmed zero feature loss is achievable across all 37 tools provided the daemon stays running, adjudicated lane disagreements on spawn strategy, and ran a final risk-closure pass leaving zero unresolved or unexamined items. The implementation design, parity matrix, and effort estimate (10-13 engineering days) landed here as the foundation for the 001-spec-memory-cli workstream.
@@ -64,3 +61,6 @@ Four successive deep-research runs produced a decision-grade GO verdict for repl
 ### Follow-Ups
 
 - None; all risk items terminal, implementation packet opened as 001-cli-core
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli`

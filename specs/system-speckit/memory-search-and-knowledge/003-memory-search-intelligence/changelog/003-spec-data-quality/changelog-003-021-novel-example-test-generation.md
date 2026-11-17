@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/004-novel-research/021-novel-example-test-generation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Nothing is built yet. This phase is PLANNED and only the spec-kit doc set is scaffolded ahead of the build. The generator described below does not exist in the repo and no requirement prose has been touched.
@@ -46,3 +43,6 @@ _No file-level detail recorded._
 
 - Build this capability per plan.md as a report-only or additive seam that never mutates an authored document body.
 - It bypasses the 3-result truncation floor by construction, so it earns its keep on a non-retrieval metric of its own.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/004-novel-research/021-novel-example-test-generation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

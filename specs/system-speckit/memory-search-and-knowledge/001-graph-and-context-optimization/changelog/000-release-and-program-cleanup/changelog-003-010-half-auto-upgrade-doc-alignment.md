@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/010-half-auto-upgrade-doc-alignment` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 Packet 013 identified four Tier C surfaces where automation was easy to overstate. Copilot advisor refresh was described inconsistently across docs, leaving operators unaware that it is next-prompt only and the current prompt sees the prior turn's brief. The Codex timeout fallback served stale cold-start context with no machine-visible marker. Feature-flag default states were undocumented, hiding opt-in OFF behavior for five search and memory automation gates. The `advisor_status` tool detected stale advisor state but had no explicit repair path.
@@ -74,3 +71,6 @@ All four sub-tasks shipped in a single pass. Copilot docs in `hook_system.md` an
 - Copilot remains next-prompt fresh by design. Current-prompt injection is out of scope and was not added.
 - The feature flags table is generated from the source file at authoring time. Automated build-time generation is a future improvement.
 - `advisor_rebuild` skips a live status check unless `force:true` is passed. Auto-repair triggered by `advisor_status` was explicitly ruled out.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/010-half-auto-upgrade-doc-alignment` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

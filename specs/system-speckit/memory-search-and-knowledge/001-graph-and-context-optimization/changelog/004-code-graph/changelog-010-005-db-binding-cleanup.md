@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/005-db-binding-cleanup`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`
-
 ### Summary
 
 Playbook scenario 019 (F-019-1) reported the code-graph runtime bound to a legacy SQLite DB at `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` (106 KB). Investigation revealed that an empty code-graph SQLite is also ~106,496 bytes, so the smoke-006 `dbFileSize: 106496` reading came from the canonical DB in its then-empty state, not the legacy file. The canonical DB was the active store all along, configured by default via `opencode.json` and the launcher `dbDir` path with no legacy fallback in code. The stale legacy file (mtime May 25, not held open, gitignored) was removed alongside its now-empty parent directory. F-019-1 was downgraded from "active misbinding (P1)" to "stale leftover (P2), resolved." No config or code change was needed.
@@ -55,3 +52,6 @@ Playbook scenario 019 (F-019-1) reported the code-graph runtime bound to a legac
 
 - A live `code_graph_status` dispatch was not run after cleanup to avoid graph-metadata churn. Run one to confirm the canonical DB is healthy if graph behavior appears degraded.
 - Scenario 019 was not re-dispatched via the playbook runner. A targeted re-run of scenario 019 would formally close F-019-1 with a recorded PASS.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/005-db-binding-cleanup`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`

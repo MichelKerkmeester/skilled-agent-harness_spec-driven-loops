@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/008-agents-md` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`
-
 ### Summary
 
 The AGENTS.md and runtime-routing cleanup ran against the three maintained surfaces: root `AGENTS.md`, the Codex voice mirror and the Claude routing mirror. One stale factual claim was found and fixed: the root file now reports 39 mk-spec-memory tools instead of 37. The live count was confirmed from the CLI, tool registry source and canonical skill docs. The mirror files had no stale paths, counts or routes and were left unchanged.
@@ -60,3 +57,6 @@ The AGENTS.md and runtime-routing cleanup ran against the three maintained surfa
 
 - Treat broader governance-doc voice restyling as separate, higher-blast work.
 - Keep mirror files unchanged until a concrete stale route, count or path appears.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/008-agents-md` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`

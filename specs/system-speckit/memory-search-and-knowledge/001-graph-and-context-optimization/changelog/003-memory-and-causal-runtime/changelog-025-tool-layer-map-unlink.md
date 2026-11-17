@@ -18,8 +18,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/025-tool-layer-map-unlink` (Level 1)
-
 ### Summary
 
 `memory_causal_unlink` was a registered MCP tool (added by commit `f6f95062ed`, defined in `tool-schemas.ts` with the description prefix `[L6:Analysis]`), but it was missing from the `TOOL_LAYER_MAP` source in `lib/architecture/layer-definitions.ts`. The map is derived by iterating `LAYER_DEFINITIONS[*].tools`, and the tool name was never added to any layer's `tools` array, so it had no layer entry. This broke two parity tests on the clean baseline: "every registered tool has a layer definition" and "tool definition prefixes stay aligned with TOOL_LAYER_MAP."
@@ -58,3 +56,5 @@ None. Single one-line addition to an existing array.
 
 - No new tests added. The two pre-existing parity tests already cover this drift and now pass. The fix relies on the existing registry/map alignment assertions to prevent regression.
 - Single-tool fix. This packet only closes the `memory_causal_unlink` gap, and no other layer or tool was reviewed for drift.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/025-tool-layer-map-unlink` (Level 1)

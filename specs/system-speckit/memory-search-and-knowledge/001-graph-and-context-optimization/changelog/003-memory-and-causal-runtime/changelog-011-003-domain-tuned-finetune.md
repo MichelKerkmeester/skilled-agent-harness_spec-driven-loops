@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc`
-
 ### Summary
 
 Off-the-shelf cross-encoders (Phases 1 and 2 of the arc) were unable to lift recall on the spec-memory corpus above the OFF baseline because generic models train on scaffolding similarity rather than content relevance. Both Phase 1 (OFF_DEFICIENT: hit-rate@5 of 0.12) and Phase 2 (HOLD: bge-v2-m3 at the same floor) closed without a promotable result.
@@ -76,3 +73,6 @@ Phases A and B shipped in a single cli-codex dispatch. The nine finetune helper 
 - Dispatch Phase F: if the verdict is PROMOTE, publish the artifact to local cache or HF private repo, pin the revision SHA, then flip the spec-memory default in `cross-encoder.ts`.
 - Calibrate the anti-overfit-to-template gate threshold in Phase E: the structural-neighbor eval set approach is specified but the numeric cutoff is TBD.
 - Verify cross-machine artifact sharing if the fine-tuned model needs to leave this machine. Local-cache publishing is one-machine-only. An HF push is a separate follow-on.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc`

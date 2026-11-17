@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/013-absorb-028-004-review-remediation-closeout/` (Level 2)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`
-
 ### Summary
 
 This phase writes no code. It closes the 016 program's books so packet 028's status surfaces are accurate. Three trackers that advertised a pre-absorption state now point at the phases that own their items. The 028/006/002 schema-and-concurrency tracker rows are marked verify-first-then-close because the plan review confirmed all three items were already correct in live code, so they route to phases 008 and 009 for verification and a test, not a re-fix. The ex-031 Group-A rows are reconciled to their 014 resolution and their shared root cause was hardened in phase 007. The frozen 91-item P2 source is unrecoverable, so the map was reconstructed from the 004-p2-triage G1-G15 lens grouping, which sums to about 86, with the roughly 5-item delta being the review's own stated approximation. Three scaffolding tooling bugs were recorded with repro and routed. Both the 028/006 and 028 parents were rolled up to the accurate absorbed and complete state. Shipped in `2993c98725` and `872ac27994`.
@@ -53,3 +50,6 @@ This phase writes no code. It closes the 016 program's books so packet 028's sta
 - The P2 reconstruction is lens-level, not per-item, because the frozen per-item source is unrecoverable.
 - The three tooling bugs are routed, not fixed, for a follow-on scripts-tooling packet.
 - The memory-index of this closeout is a daemon-side follow-up.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/013-absorb-028-004-review-remediation-closeout/` (Level 2)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

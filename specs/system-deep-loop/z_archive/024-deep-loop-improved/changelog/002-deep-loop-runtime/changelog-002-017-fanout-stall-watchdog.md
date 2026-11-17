@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/017-fanout-stall-watchdog` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`
-
 ### Summary
 
 Opt-in stall watchdog in fanout-pool.cjs (abort handles + lag-ceiling abort-and-requeue). Tests pass; hygiene + drift green.
@@ -54,3 +51,6 @@ Opt-in stall watchdog in fanout-pool.cjs (abort handles + lag-ceiling abort-and-
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/017-fanout-stall-watchdog` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

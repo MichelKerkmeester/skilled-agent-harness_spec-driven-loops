@@ -8,8 +8,6 @@
 
 When a user asked a question about their codebase, they had to know which tool to call: `code_graph_context` for structural questions ("who calls this function?") and `memory_search` for semantic ones ("find code similar to X"). Most users do not know the difference and should not have to. This phase makes `memory_context` smart enough to figure it out automatically. It classifies every incoming query by intent, routes it to the correct backend, and falls back gracefully if the first choice returns nothing. A new `session_resume` composite tool eliminates the 3-4 separate calls users previously needed when resuming a session, replacing them with a single call that merges memory, code graph, and cache status into one response. Finally, a passive enrichment pipeline was added so that every tool response can be lightly annotated with nearby code symbols, session staleness warnings, and triggered memories -- all within strict latency and token budgets.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/020-query-routing-integration/`
-
 ---
 
 ## What Changed
@@ -122,3 +120,5 @@ When a user asked a question about their codebase, they had to know which tool t
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/020-query-routing-integration/`

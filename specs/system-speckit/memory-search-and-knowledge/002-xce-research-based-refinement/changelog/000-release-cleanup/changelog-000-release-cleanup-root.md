@@ -16,8 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup` (Level 2, Phase Parent)
-
 ### Summary
 
 This phase parent is the 027 release-gate track. Its nine children carried the documentation and verification cleanup that keeps the published surface honest against what the epic actually shipped: the public root README, the skill docs and ENV_REFERENCE rows, the feature catalog, the manual-testing playbook, the MCP-and-CLI stress tests, the command docs, the agent mirrors, the root AGENTS.md governance, and the skill-frontmatter alignment campaign. The work is documentation and process — no runtime behavior changed here — so the substance lives under Summary and Verification, and detail lives in each child's spec docs.
@@ -63,3 +61,5 @@ This rollup is the authoritative child inventory for 000. Unlike the pre-existin
 ### Follow-Ups
 
 - 009 live adoption (advisor doc-trigger harvest indexing the aligned frontmatter) is operator-gated and requires a fresh advisor session.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup` (Level 2, Phase Parent)

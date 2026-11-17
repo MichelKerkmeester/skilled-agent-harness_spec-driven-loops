@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup`
-
 ### Summary
 
 A two-stage phase: (1) a three-model deep research over the closed 026 program (50 angles across the 8 tracks + runtime/process themes), and (2) the verified code remediation it drove. The research artifacts (angles, per-model notes, synthesis, measurement backlog) live in research/; the four code fixes shipped to the runtime. A third stage followed on 2026-06-06: the first measurement-backlog experiment (item 4, fan-out lineage diversity) was executed and analyzed in research/experiments/fanout-diversity/. <!-- /ANCHOR:what-built -->
@@ -54,3 +51,6 @@ A two-stage phase: (1) a three-model deep research over the closed 026 program (
 
 - Remaining measurement experiments (q8/fp16 bench, cloud-vs-local A/B, RSS calibration, advisor calibration) are deferred; tracked in research/measurement-backlog.md. The q8/fp16 and RSS items are blocked on a missing onnxruntime-common dep.
 - Watcher-rename embedding-loss defect (live folder renames bypass reconcileMoves via watcher unlink+add path, destroying embeddings) is documented in the fan-out experiment but not fixed in this phase.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup`

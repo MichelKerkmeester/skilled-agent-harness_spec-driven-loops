@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/006-jsonl-lock-held-merge` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`
-
 ### Summary
 
 Added mergeJsonlUnderLock to jsonl-repair.ts (reread-under-lock + set-union dedupe by stable record identity, atomic write) and wired fanout-salvage.cjs through it instead of bare append. Tests pass (19); typecheck green. Spec path for fanout-salvage corrected (scripts/, not lib/deep-loop/).
@@ -55,3 +52,6 @@ Added mergeJsonlUnderLock to jsonl-repair.ts (reread-under-lock + set-union dedu
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/006-jsonl-lock-held-merge` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

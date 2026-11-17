@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 mcp-click-up's 3 reference docs now carry exactly the canonical frontmatter contract, so every doc is valid routing signal for the advisor doc harvest. The drift profile differed from the pilot: instead of an out-of-enum contextType: reference, all three docs were simply missing importance_tier and contextType while their titles, descriptions, and trigger phrases (6 each, content-derived) already conformed.
@@ -53,3 +50,6 @@ mcp-click-up's 3 reference docs now carry exactly the canonical frontmatter cont
 ### Follow-Ups
 
 - Live-daemon `matchedDocs` verification is deferred to a later campaign-level session cycle; the running advisor daemon predates the launcher allowlist fix and cannot observe doc triggers until restarted.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

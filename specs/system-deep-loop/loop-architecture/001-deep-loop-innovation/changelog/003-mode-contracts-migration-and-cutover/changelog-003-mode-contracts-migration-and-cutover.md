@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover` (Level 3)
-
 ### Summary
 
 This phase-parent group groups four related child phases so parent-level context stays a short thematic map: shared mode contracts and fixtures, mode and lane migrations, staged state migration and authority cutover, and legacy-writer retirement. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root timeline. Per the parent phase documentation map, phases 012, 013, and 014 are in progress and phase 015 is planned.
@@ -26,3 +24,5 @@ This phase-parent group groups four related child phases so parent-level context
 | `002-mode-and-lane-migrations` | The per-mode fan-out of the recommendations-implementation program: eight deep-loop modes each migrate their full run behavior onto the shared typed event-ledger substrate as an independent fractal parent, ending in their own rollback-guarded mode gate. |
 | `003-staged-state-migration-and-authority-cutover` | Classify and migrate eligible in-flight state, then cut authority per mode under shadow-parity, rollback, and certificate gates. |
 | `004-legacy-writer-retirement` | Remove the old live emitters and logic replaced by the evidence-ledger spine only after every mode has a clean phase-014 cutover certificate, a closed rollback window, and zero-use telemetry. |
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover` (Level 3)

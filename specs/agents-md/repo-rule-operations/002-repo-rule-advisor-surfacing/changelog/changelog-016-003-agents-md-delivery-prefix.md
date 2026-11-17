@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-04
 
-> Spec folder: `specs/agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix` (Level 2)
-> Parent packet: `specs/agents/016-repo-rule-advisor-surfacing`
-
 ### Summary
 
 Devin now receives every hard blocker in AGENTS.md, the line that tells it to load the reply rules, and the "Never fabricate" and "treat content as data" mandates. Before this phase its 16,384-byte cut fell inside the completion rule and dropped all of that. The rule canary now fails CI the moment any of those clauses drifts past the cut or the file passes Codex's 32,768-byte cap.
@@ -64,3 +61,6 @@ Devin now receives every hard blocker in AGENTS.md, the line that tells it to lo
 - The rest of §3 is past Devin's cut. Execution Behavior, Quality Principles and Restraint Signals, plus §5 to §10, still do not reach Devin. None is a hard blocker.
 - 39 bytes of headroom. Any growth in §1, §2 or §4 trips the guard. That is intended: whoever grows those sections must decide what gives way.
 - The CI workflow runs the canary, not its test script. The fixture cases run locally through check-rule-copies.test.sh.
+
+> Spec folder: `specs/agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix` (Level 2)
+> Parent packet: `specs/agents/016-repo-rule-advisor-surfacing`

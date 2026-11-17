@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/021-residual-correctness` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 This phase shipped two always-on correctness residuals inside the 028 tree. Search score averaging now reads the calibrated absolute relevance signal for semantic rows and falls back safely for lexical-only rows. Maintenance marker TTL now derives from the owner lease TTL with the reclaim margin codified, while preserving the existing 180 second value.
@@ -56,3 +53,6 @@ This phase shipped two always-on correctness residuals inside the 028 tree. Sear
 
 - Expect recall-confidence magnitudes to move because the scale is corrected by design.
 - Keep the maintenance refresh invariant in mind for any future synchronous phase that could run longer than half the TTL.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/021-residual-correctness` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

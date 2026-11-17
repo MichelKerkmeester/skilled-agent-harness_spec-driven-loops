@@ -17,9 +17,6 @@ contextType: "review"
 
 ## 2026-04-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Review-only)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 After the Phase 005 implementation shipped 5 fix-up batches (B1-B5) and the F35 calibration bench, a 7-iteration deep-review cycle validated the implementation against the 35 findings from the 20-iteration deep-research investigation.
@@ -66,3 +63,6 @@ All 7 findings were addressed in the B6 fix-up batch. The B6 batch also included
 ### Follow-Ups
 
 - **Concurrent-first-query race.** The daemon startup path should be hardened with a mutex gate for concurrent first-query scenarios. Filed as a follow-up for a future daemon-hardening packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Review-only)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

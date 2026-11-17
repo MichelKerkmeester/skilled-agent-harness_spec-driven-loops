@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/001-multihop-tail-appends` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`
-
 ### Summary
 
 This phase benchmarked `SPECKIT_DETERMINISTIC_MULTIHOP` and `SPECKIT_LANE_CHAMPION_BACKFILL` on the production `executePipeline` path, diagnosed why both appends were unreachable as wired, shipped a structural rewire behind the same default-off flags, and re-benchmarked the rewired path. The diagnosis found the appends never ran on prod because Stage-1 `collectRawCandidates` runs with `stopAfterFusion`, skipping `enrichFusedResults`, the legacy branch the append stages lived in. The documented three-result floor was a never-cut-below-three minimum not a cap. The rewire added a post-Stage-4 tail-append stage in the orchestrator that extends the capped baseline past the requested limit, making appended rows exempt from the final-limit cap. After the rewire completeRecall@20 rose from 0.5625 to 0.9375 (84 rows appended across 8 queries) with zero run-to-run variance. Default-off is a proven strict no-op. Verdict: GRADUATE for deep-K readers.
@@ -63,3 +60,6 @@ This phase benchmarked `SPECKIT_DETERMINISTIC_MULTIHOP` and `SPECKIT_LANE_CHAMPI
 - The flag flip to default-on for deep-K readers is a separate evidence-gated decision, fed by this verdict but not taken here.
 - The legacy `searchWithFallback` path that still runs the append stages may be a retirement candidate now that the prod handler calls `executePipeline` exclusively.
 - Lifting an appended sibling into the top-K window would require rescoring it on its own merit, which is outside the additive-tail contract and a separate ranking question.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/001-multihop-tail-appends` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

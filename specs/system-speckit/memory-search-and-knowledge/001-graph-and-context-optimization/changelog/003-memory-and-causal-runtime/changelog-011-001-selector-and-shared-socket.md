@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/001-selector-and-shared-socket` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`
-
 ### Summary
 
 The hf-local embedder selector required a local Python installation with `sentence_transformers`, which broke the zero-install fallback on Node-only machines. The probe was swapped to a pure HTTP health check via `HfLocalProvider.canLoad`, the stale Python import probe and its seam were deleted, and a shared Unix socket was pinned across all five runtime configs so both launchers converge on one resident server. The client was hardened to retry `ECONNRESET` and `EPIPE` on readiness checks and to retry embed POST requests up to twice so a mid-request server reap recovers against the respawned daemon instead of tripping the circuit breaker.
@@ -64,3 +61,6 @@ The hf-local embedder selector required a local Python installation with `senten
 - Reset-retry latency tradeoff (accepted): treating `ECONNRESET`/`EPIPE` as retryable means a permanently resetting server may consume the full `HF_EMBED_SERVER_READY_TIMEOUT_MS` (default 45s) per attempt before failing. The embed-POST retry is bounded at two attempts to cap worst-case latency. Documented in the spec risk table.
 - Cascade-probe-timeout divergence (documented): spec-memory probes the shared socket at 5000ms while skill-advisor uses 2500ms. Marginal impact since a local `/api/health` GET completes in under 50ms. `SPECKIT_CASCADE_PROBE_TIMEOUT_MS` aligns both. Threading an explicit shared timeout into the skill-advisor package is deferred.
 - Live selection not exercised end-to-end: the probe swap and five-runtime convergence are covered by unit tests with injected transports. A live Node-only daemon selecting hf-local with two launchers sharing one resident server is verified in phase 005.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/001-selector-and-shared-socket` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`

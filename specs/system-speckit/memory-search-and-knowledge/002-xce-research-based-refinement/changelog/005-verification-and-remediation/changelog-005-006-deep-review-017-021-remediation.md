@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 After the 017-021 remediation closed, a 30-pass gpt-5.5-fast xhigh "broaden" review swept three dimensions the earlier passes had not centered — search/retrieval, store/index, and server infrastructure — and surfaced 52 findings. Eight refute-first verifiers triaged them to nine real fixes; the rest were by-design, default-off, or refuted. The headline was a default-on cross-tenant scope leak: `retrieval-rescue`'s Stage-2 lexical-backfill and sibling-injection path re-queried the index without re-applying the governance + `spec_folder` scope filter that the constitutional and community paths already perform, so a scoped search could smuggle cross-scope rows back in through the one injection path that skipped the re-filter. It was fixed and locked behind a new P0 scope-isolation regression test. The nine fixes landed in `3a86923dee`, with the full disposition in `review-r2/broaden-synthesis.md` and the synthesis commit `bf7869aa68`. This session then built the committed source into `dist/` and recycled the live spec-memory daemon onto it — closing the inert-until-recycle follow-up from the 2026-06-17 section — and shipped a durable wedged-daemon CLI-fallback rule across the deep-loop and review agents (`e199410030`).
@@ -65,10 +62,10 @@ After the 017-021 remediation closed, a 30-pass gpt-5.5-fast xhigh "broaden" rev
 - The inert-until-recycle follow-up from the 2026-06-17 section is **closed**: `dist/` was rebuilt and the live daemon recycled onto it on 2026-06-18. The recycle was not transparent — the daemon child had been reparented to init (PPID 1) with no healthy lease-holder, so the SIGTERM took the shared daemon and its launchers down; it was recovered via a deliberate CLI-front-door cold-start, which left a properly-supervised launcher + daemon pair running the fresh dist.
 - **Soft-delete tombstone completion** remains its own dedicated packet: `SPECKIT_SOFT_DELETE_TOMBSTONES` is default-off until recall/list/dedup paths filter `deleted_at IS NULL` (≈8 paths) and the tombstone child-cascade plus tests are in place.
 
-## 2026-06-17
-
 > Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation` (Level 3)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
+
+## 2026-06-17
 
 ### Summary
 
@@ -126,3 +123,7 @@ This phase closed the confirmed, code-verified findings from a 50-pass multi-mod
 
 - The P1 residual is a renderer-level argv fix: a `/memory:search` query containing an embedded single quote still breaks the single-quote escaping, because the renderer splices the raw string rather than passing arguments as a quoted argv vector. The exposure is bounded to self-injection and documented; the durable fix belongs in the renderer, not the command template.
 - The code fixes are committed and the dist is built, but they are inert until the live spec-memory daemon is recycled to adopt the rebuilt dist. Until that transparent recycle runs, the running daemon serves the pre-fix code.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
+

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-20
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`
-
 ### Summary
 
 Arc 008 was scoped around deduplication: one shared Qwen sidecar process serving both spec-memory and cocoindex instead of each bundling its own in-process `CrossEncoder`. Phases 001-005 shipped the sidecar, the launcher helpers, and the spec-memory A/B bench, but cocoindex was never actually moved off its bundled loader. Both MCPs continued to ship Qwen separately, duplicating roughly 1.5 GB RAM whenever both ran.
@@ -87,3 +84,6 @@ Phase 006 added `HttpSidecarRerankerAdapter` to `mcp-coco-index`, wired `COCOIND
 - Run n=3 benchmark sweeps once the baseline drift is understood. The PROMOTE decision rested on a single 73-probe sweep per arm with no confidence intervals computed.
 - Document sigmoid score scale implications for operators running with path-class boost enabled. Boost is gated `false` by default for non-BGE adapters but operators who previously enabled it need to supply explicit recalibrated factors.
 - Address single-worker sidecar serialization: `asyncio.Lock` on `/rerank` means concurrent cocoindex searches queue at the sidecar. Not exercised in this packet's benchmark.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc`

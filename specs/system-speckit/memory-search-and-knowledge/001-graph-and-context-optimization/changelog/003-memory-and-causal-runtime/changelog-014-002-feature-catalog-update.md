@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-02
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh`
-
 ### Summary
 
 Updated the `system-spec-kit` feature catalog for shipped 013 memory-index-scan behavior and the 128 sk-git worktree convention. The phase expanded checkpoint create and restore entries, created new catalog entries for the front proxy, schema version history, error codes, enrichment markers and sk-git then registered the new files in the catalog index.
@@ -73,3 +70,6 @@ This was documentation-only. The packet records that every behavioral claim was 
 - Deep review later flagged catalog accuracy drift around the tool count, `E429` coalescing and replay-boundary terminology. Reconcile those in the follow-up remediation packet.
 - The pre-existing unregistered routing telemetry file remained out of scope.
 - README and ENV_REFERENCE coverage was owned by sibling phase 003.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh`

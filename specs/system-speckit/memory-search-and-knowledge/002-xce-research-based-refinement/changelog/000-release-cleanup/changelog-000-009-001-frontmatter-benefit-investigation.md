@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 The question "should skill references/assets carry detailed frontmatter?" now has an evidence-based answer instead of a guess. The detailed block (trigger_phrases, importance_tier, contextType) found on 103 of 369 reference/asset docs is consumed by nothing at runtime: the memory index only admits spec documents and constitutional memories, the skill advisor compiles only each skill's graph-metadata.json, and the code graph excludes skill folders by default. The 21 per-skill alignment phases can now normalize frontmatter without fear of destroying live routing signal.
@@ -59,4 +56,5 @@ The question "should skill references/assets carry detailed frontmatter?" now ha
 | `tasks.md` | Modified | Executed task list with evidence pointers |
 | `implementation-summary.md` | Created | This summary and the pending operator decision |
 
-
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

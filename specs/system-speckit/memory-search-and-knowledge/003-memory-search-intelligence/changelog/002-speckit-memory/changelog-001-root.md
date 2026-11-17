@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory` (Level 2)
-
 ### Summary
 
 This root rollup tracks the Memory MCP child phases for packet 028. The parent remains a phase container: detailed planning, implementation evidence and verification live in the child folders below. The rollup now reflects the corrected child status mix: one phase is planning-only, most are partial implementations and the complete phases are limited to the scopes their own verification supports. A closing flag-resolution reckoning sits after the phase builds, recorded in `changelog-001-022-keep-off-flag-reinvestigation.md`: it simulated every keep-off flag under a fair real-world load, kept 5 default-on, deleted 10 along with their code and validated the disposition across three deep-review rounds. A TRACK B new-feature arc then followed the reckoning, recorded in `changelog-001-023-new-feature-research-build.md`: the deleted-10 teachings drove research that found 4 candidates, eval-v2 was built and kept as the measurability gate, and 3 features were built default-off and fresh-Opus held because the append-not-displace pattern makes tail-additive recall zero at prod K by construction. The scoring and eval build then landed as children 025 through 028: the off-corpus false-confirm gate, the lexical-grounding floor, the envelope-fidelity enforcement and the four-flag scoring hardening. The flag-graduation benchmark in the sibling 005 track later graduated the earners to default-ON and deleted the one purely-informational flag. A later test-infrastructure phase, `029-substrate-sandbox-cleanup`, then made the substrate stress harness self-clean its `_sandbox/` scratch directory, with no change to any served behavior.
@@ -81,3 +79,5 @@ This root rollup tracks the Memory MCP child phases for packet 028. The parent r
 ### Follow-Ups
 
 - Keep future rollups tied to child phase evidence rather than generated placeholder summaries.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory` (Level 2)

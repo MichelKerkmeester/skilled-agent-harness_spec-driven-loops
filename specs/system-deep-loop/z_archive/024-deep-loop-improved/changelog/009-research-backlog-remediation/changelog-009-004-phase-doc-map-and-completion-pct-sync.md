@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/004-phase-doc-map-and-completion-pct-sync` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`
-
 ### Summary
 
 Every phase-parent from 002 through 007 had a Phase Documentation Map whose Status column still read Draft for every child row despite the parent and children both being Complete, and many grandchild spec files carried a stale zero completion percentage. A reusable sync script backfilled both classes of drift from real source state.
@@ -53,3 +50,6 @@ Every phase-parent from 002 through 007 had a Phase Documentation Map whose Stat
 ### Follow-Ups
 
 - None. The real file count (40) is the correct scope, documented as a correction to the original 143 estimate rather than a shortfall.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/004-phase-doc-map-and-completion-pct-sync` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

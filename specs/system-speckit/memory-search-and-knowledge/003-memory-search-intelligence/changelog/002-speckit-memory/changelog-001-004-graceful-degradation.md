@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 Memory recall now degrades to lexical search when the embedder is unavailable. A null or empty embedding no longer collapses Stage 1 into an empty result set. The pipeline falls back to BM25 and FTS, carries explicit metadata that the dense channel was skipped and leaves the successful embedding path unchanged.
@@ -57,3 +54,6 @@ Memory recall now degrades to lexical search when the embedder is unavailable. A
 
 - Callers that used an embedder exception as the outage signal should read the metadata flag instead.
 - Recall quality during an outage is lexical-only until the embedder recovers.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

@@ -9,7 +9,7 @@ trigger_phrases:
   - "changelog omission rules"
 importance_tier: normal
 contextType: general
-version: 1.3.4.0
+version: 1.3.5.0
 ---
 
 # Changelog & Release Notes Templates - Format Reference
@@ -58,8 +58,6 @@ contextType: "general"
 
 {Summary: a few short sentences, about 60 words in all, on what the release does for the reader and why it matters.}
 
-> Spec folder: `{path}`
-
 &nbsp;
 
 ## What's New at a Glance
@@ -71,9 +69,13 @@ contextType: "general"
 ## Upgrade
 
 {The action the reader must take, or "No migration required."}
+
+&nbsp;
+
+> Spec folder: `{path}`
 ```
 
-Include the spec-folder line only when the release has a spec folder. Add a short `## Why This Release` section after the summary only when the summary does not already say why, with an `&nbsp;` line before it like every other H2.
+Include the spec-folder line only when the release has a spec folder. It closes the entry, after the last section and an `&nbsp;` line, so the reader meets the change before the bookkeeping. Add a short `## Why This Release` section after the summary only when the summary does not already say why, with an `&nbsp;` line before it like every other H2.
 
 ### Expanded Format (10+ changes, major or breaking)
 
@@ -81,8 +83,6 @@ Include the spec-folder line only when the release has a spec folder. Add a shor
 {The same frontmatter block as the compact format.}
 
 {Opening narrative: 1-5 paragraphs in plain prose, one per theme, no headers.}
-
-> Spec folder: `{path}`
 
 &nbsp;
 
@@ -133,9 +133,13 @@ Include the spec-folder line only when the release has a spec folder. Add a shor
 ## Upgrade Notes
 
 - **{The reader's situation, such as "Skills you wrote yourself"}:** {The action, as a short instruction.}
+
+&nbsp;
+
+> Spec folder: `{path}`
 ```
 
-Include the spec-folder line only when the release has a spec folder.
+Include the spec-folder line only when the release has a spec folder, as the last line of the entry.
 
 **Field guidelines**:
 

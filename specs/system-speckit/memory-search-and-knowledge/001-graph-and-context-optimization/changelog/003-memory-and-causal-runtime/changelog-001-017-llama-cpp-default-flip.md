@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 The Memory MCP embedding backend had `hf-local` as the automatic local default. Earlier phases (015 and 016) showed `llama-cpp` was meaningfully faster and passed a 200-row rank-equivalence probe. The remaining work was to perform the live migration, run a larger 1000-row retrieval probe, then decide whether to promote `llama-cpp` in the auto-cascade.
@@ -79,3 +76,6 @@ Operator accepted the probe result. The auto-cascade now resolves Voyage then Op
 
 - A later packet purged the `llama-cpp` surface entirely and moved to a nomic-only local default. The auto-cascade and provider file changes from this phase were superseded by that decision.
 - A rank-stability fix would be required before reconsidering `llama-cpp` as the automatic default at a future point.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

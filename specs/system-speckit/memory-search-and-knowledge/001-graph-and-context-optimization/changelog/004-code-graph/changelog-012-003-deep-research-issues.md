@@ -17,9 +17,6 @@ contextType: "research"
 
 ## 2026-05-06
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 The Phase 012/001 sandbox campaign and Phase 012/002 native rerun surfaced issues across code-graph, hooks, advisor, CocoIndex handoff, readiness, and test-coverage surfaces. A 10-iteration deep-research sweep classified these issues, identified root causes, and produced the Phase 012 remediation backlog.
@@ -76,3 +73,6 @@ The sweep also identified test-coverage gaps: CocoIndex handoff tests were missi
 - **012/006 cluster A-E polish.** Phase 012/006 addressed the expanded 5-cluster list.
 - **012/007 parser resilience.** Phase 012/007 addressed the reclassified P0 parser crash with skip-list and quarantine.
 - **Test-coverage gaps.** The identified CocoIndex handoff, readiness computation, and test-isolation gaps were filed for a future coverage-hardening packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
-
 ### Summary
 
 Confirmed the external-shell precondition that had blocked phase 005 (this Claude Code shell is genuinely `OPENCODE_PID`-free), then ran live smoke-level dispatches across 4 deep modes x 2 models, finding zero Mode-D recurrences, zero route mismatches, a measured 3-10x GPT latency gap, and one inconsistent GPT "Command-only" enforcement observation.
@@ -56,3 +53,6 @@ Confirmed the external-shell precondition that had blocked phase 005 (this Claud
 - `/deep:review` command-level Phase-0 check was genuinely inconclusive and not retried with a longer window.
 - GPT's inconsistent Command-only enforcement (refused a `deep-research` direct dispatch, allowed an identical `deep-review` one) observed but not root-caused.
 - ai-council's GPT-leg latency not separately re-timed this run.
+
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`

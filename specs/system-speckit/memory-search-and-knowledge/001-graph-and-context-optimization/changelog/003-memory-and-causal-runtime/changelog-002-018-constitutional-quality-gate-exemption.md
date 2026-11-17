@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/018-constitutional-quality-gate-exemption` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`
-
 ### Summary
 
 Constitutional markdown files under `.opencode/skills/*/constitutional/` were hard-rejected by `memory_index_scan` with `INSUFFICIENT_CONTEXT_ABORT`. The sufficiency gate at `memory-sufficiency.ts:372` requires `support >= 3` plus `anchors >= 1` when primary evidence is absent. Constitutional files carry policy text without ANCHOR tags by design, so the strict gate always triggered for them. A 016/002/016 scan first surfaced two specific rejections: `cli-dispatch-skill-preload.md` and `post-implementation-deep-review.md`.
@@ -59,3 +56,6 @@ A 5-line patch widened the `useWarnOnly` OR chain in `handlers/memory-index.ts:4
 
 - Constitutional file quality goes unenforced by the strict gate. Warn-only mode still emits advisories, but reviewers and authors are the actual quality bar for policy text. If a future constitutional file lands with truly broken structure, the index will accept it. Mitigation: PR review.
 - No tests added for the new OR term. The OR chain is small and the existing scan paths exercise both branches. A dedicated test could be added if regressions surface.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/018-constitutional-quality-gate-exemption` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

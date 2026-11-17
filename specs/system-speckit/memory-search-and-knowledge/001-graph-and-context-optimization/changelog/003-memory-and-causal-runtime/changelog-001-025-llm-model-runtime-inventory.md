@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/025-llm-model-runtime-inventory` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 After the 014 setup-A line migrated both MCP servers off cloud Voyage onto local EmbeddingGemma, two distinct runtimes landed in production: a quantized GGUF/ONNX path for the Memory MCP family plus a full-precision sentence-transformers path for CocoIndex. Operators routinely conflated the two because both surface as "EmbeddingGemma 768d" in documentation, with no per-subsystem breakdown of which runtime each one actually invokes.
@@ -64,3 +61,6 @@ Two inventory documents were authored at the packet root, splitting every spec-k
 - Re-resolve each inventory row after any provider swap by running the "verify with" command blocks at the bottom of each variant document.
 - Update the Skill Advisor classification if it ever gains its own embedding pipeline rather than routing through Memory MCP transit.
 - Exclude CocoIndex tokenizer warm-up models from the inventory scope if they are formally documented elsewhere.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/025-llm-model-runtime-inventory` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

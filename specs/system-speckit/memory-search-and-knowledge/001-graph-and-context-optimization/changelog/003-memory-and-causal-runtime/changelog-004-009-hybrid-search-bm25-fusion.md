@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`
-
 ### Summary
 
 CocoIndex code retrieval relied on semantic vector search alone, delivering a 38.9% (7/18) fixture hit-rate. Three deep-research iterations converged on SQLite FTS5 as the embedded lexical engine and Reciprocal Rank Fusion (RRF, k=60) as the fusion algorithm, rejecting tantivy (Rust toolchain overhead), rank-bm25 (too slow at corpus scale) and manticore (standalone daemon contradicts the embedded design).
@@ -74,3 +71,6 @@ Cumulative fixture lift is estimated at 50% (9/18) when combined with the 011/00
 - Run 18-pair fixture validation comparing hybrid-on against the 011/002 chunking baseline to measure actual hit-rate lift.
 - Measure p95 query latency delta for hybrid versus vector-only mode at production corpus scale.
 - Promote `COCOINDEX_HYBRID` to default-on once fixture validation confirms the lift exceeds the baseline threshold.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack`

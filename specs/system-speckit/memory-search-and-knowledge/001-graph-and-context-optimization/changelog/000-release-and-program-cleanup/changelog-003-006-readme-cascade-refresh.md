@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass`
-
 ### Summary
 
 Packets 031-036 and 037/001-005 changed the documentation surface: the MCP registry grew to 54 tools, `matrix_runners/` and `stress_test/` became live folders and `advisor_rebuild` joined the public Skill Advisor surface. Several parent and subfolder READMEs still cited 51 tools, referenced hyphenated subsystem paths that had moved and omitted the new folders and handlers.
@@ -85,3 +82,6 @@ Operators reading the parent README, the MCP server README, install guides and s
 ### Follow-Ups
 
 - Broad runtime tests were not run. This packet is doc-only. Packet 037/005 already recorded the `npm test` suite blocker and the passing `npm run stress` result.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass`

@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption`
-
 ### Summary
 
 Wave 1 of the gem-team adoption introduced an optional advisory agent I/O contract. Rich markdown agent bodies remain canonical. A shared `agent-io-contract.md` reference now defines typed dispatch headers, result envelopes, handoff and pre-execution sections, and an advisory group. Numeric confidence is derived from existing HIGH/MED/LOW bands rather than kept as a competing field. The four Wave-1 planning dispatches in both `speckit_plan_auto.yaml` and `speckit_plan_confirm.yaml` now prepend compact advisory headers to their `@context` exploration prompts. All five core agents (`@orchestrate`, `@code`, `@review`, `@context`, `@debug`) gained optional guidance in all three runtime mirrors (`.opencode`, `.claude`, `.codex`). `@orchestrate` tolerates envelope-less output for backward compatibility.
@@ -81,3 +78,6 @@ Wave 1 of the gem-team adoption introduced an optional advisory agent I/O contra
 
 - No runtime parser or validator consumes the contract yet; existing markdown remains authoritative until a follow-on enforcement pass.
 - Broader command and deep-loop integration remain out of scope for this packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption`

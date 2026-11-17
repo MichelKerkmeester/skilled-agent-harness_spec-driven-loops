@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-13
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/019-readme-resource-map` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 The 014 setup-A line made 13 concrete changes to the embedding stack across both MCP servers, but the user-facing READMEs were never updated. DeepSeek v4 pro scanned all 522 READMEs in the repo via `cli-opencode --pure` and flagged 7 as MAJOR stale. Every flagged README still recommended Voyage as primary, cited 1024 as the default vector dimension with no mention of `llama-cpp` or the local-first cascade.
@@ -76,3 +73,6 @@ The main agent applied 55 surgical edits across the 7 canonical READMEs. Ollama 
 - The `mcp-coco-index` README received 7 edits at the time of authoring. The skill directory was subsequently removed per packet `014/005`. Verify no README reference still points to that path.
 - Phase label numbering gap in install guide: section numbers read 8, 9 REMOVED, 10, 11 after Ollama removal. A future restructure can renumber if the stylistic gap becomes a user complaint.
 - Confirm all 6 barter symlinks still resolve correctly after any future barter directory restructure.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/019-readme-resource-map` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

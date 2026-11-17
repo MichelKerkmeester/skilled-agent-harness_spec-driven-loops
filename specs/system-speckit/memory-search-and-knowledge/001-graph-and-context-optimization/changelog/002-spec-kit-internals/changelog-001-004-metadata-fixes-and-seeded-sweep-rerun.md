@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/004-metadata-fixes-and-seeded-sweep-rerun` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph`
-
 ### Summary
 
 The skill advisor's graph-metadata and SKILL.md frontmatter descriptions across the cli-star and deep-star skill families had accumulated generic, low-signal vocabulary that reduced routing precision. Phase 015/005 had audited every active skill and ranked the 8 lowest-scoring entries with concrete WHAT and EXAMPLE phrasing changes. Those recommendations were advisory only and no skill files had been modified.
@@ -83,3 +80,6 @@ The embedding cache was deleted before the re-run to force cold re-embedding. Th
 - Author a harder prompt corpus specifically designed to surface lexical false-positives between skills with overlapping vocabulary.
 - Populate `derived.intent_signals` plus `manual.depends_on`/`manual.related_to` across the 17 active skills. The 015/005 audit found these fields are universally absent. This is a separate intervention from description rewording.
 - Revisit the semantic weight recommendation if SKILL.md descriptions change materially outside this packet or a richer corpus is available.
+
+> Spec folder: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/004-metadata-fixes-and-seeded-sweep-rerun` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph`

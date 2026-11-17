@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/018-persistent-launcher-log` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The launcher now leaves a durable trace. Before this, log() wrote only to stderr, which the MCP host captures inconsistently, so a daemon flap or owner-disposal race vanished with no record. Now every logged line is also appended to a bounded file, so the next incident is attributable from disk. This is the foundational item phase 017 deferred: the later reliability changes (reap hardening, code-index proxy, RC-2) are far easier to validate against real logs.
@@ -59,3 +56,6 @@ The launcher now leaves a durable trace. Before this, log() wrote only to stderr
 - Single daemon only. This logs the mk-spec-memory launcher. The mk-code-index launcher gets its own observability when its reconnecting proxy lands.
 - Text, not structured. Lines are human-readable text matching stderr, not JSON. Sufficient for attributing flaps; a structured format is out of scope.
 - Single-generation rotation. Only the most recent window plus one .prev.log is retained; older history is dropped by design to bound disk use.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/018-persistent-launcher-log` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

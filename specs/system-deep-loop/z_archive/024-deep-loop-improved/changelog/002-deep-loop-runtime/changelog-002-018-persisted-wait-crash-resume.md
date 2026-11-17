@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/018-persisted-wait-crash-resume` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`
-
 ### Summary
 
 Persist a wait-checkpoint at the pre-dispatch boundary plus a resume-waiting crash-resume branch in fanout-run.cjs (+ optional yaml schema fields). Tests pass; hygiene + drift green.
@@ -55,3 +52,6 @@ Persist a wait-checkpoint at the pre-dispatch boundary plus a resume-waiting cra
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/018-persisted-wait-crash-resume` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

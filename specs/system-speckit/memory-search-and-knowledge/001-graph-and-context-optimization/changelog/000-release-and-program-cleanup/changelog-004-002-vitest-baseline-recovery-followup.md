@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-09
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/002-vitest-baseline-recovery-followup` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program`
-
 ### Summary
 
 Predecessor packet `003-vitest-baseline-recovery` had deferred 196 failures under annotation-based discovery, but only a small fraction of those annotations persisted at the time this packet ran. A fresh vitest JSON baseline was captured and found 11,618 passed, 197 failed, 35 skipped, 11 todo across 66 failed files, with 5 additional suite-import failures surfacing after assertion-level failures were parked.
@@ -88,3 +85,6 @@ Additional checks:
 
 - Environmental skips remain intentionally skipped. The Unit H closure left infrastructure-blocked `// REASON:` cases alone because they need infrastructure changes, not test fixes.
 - Build verification is unavailable. `pnpm build` fails with `sh: tsc: command not found`. Vitest is the authoritative verification surface for this packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/002-vitest-baseline-recovery-followup` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program`

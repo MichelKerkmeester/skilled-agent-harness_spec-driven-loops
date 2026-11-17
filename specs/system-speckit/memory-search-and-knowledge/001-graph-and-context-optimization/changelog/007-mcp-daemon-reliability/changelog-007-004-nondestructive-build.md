@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/004-nondestructive-build` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The `@spec-kit/mcp-server` build ran a `prebuild` step that called `rmSync('dist', {recursive, force})` before every `tsc --build`. Any daemon running at that moment had its module tree deleted mid-session, causing `MODULE_NOT_FOUND` crashes on lazy imports (root cause RC-4). The wipe also removed `dist/tsconfig.tsbuildinfo`, forcing a full recompile on every build instead of an incremental one.
@@ -61,3 +58,6 @@ This is the first fix shipped from the 030 daemon-reliability roadmap.
 - A from-scratch build (`npm run rebuild` or `clean`) still has a brief partial-tree window while tsc repopulates. Run `rebuild` only when no daemon must stay up.
 - Orphan `.js` files from deleted or renamed sources can linger without the auto-clean. The `dist-freshness` and orphan tests catch them. Run `npm run rebuild` to clear them on demand.
 - Only RC-4 is addressed. The remaining 030 root causes (sidecar OOM, no auto-respawn, bridge-to-dead-socket) are tracked in separate packets per the 030 roadmap.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/004-nondestructive-build` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

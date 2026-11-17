@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`
-
 ### Summary
 
 The `code_graph_query` blast_radius operation silently ignored the `includeTransitive` flag. The blast_radius branch in `handlers/query.ts` derived traversal depth solely from `args.maxDepth` (defaulting to 3) and never read `includeTransitive`, making the flag a no-op. Blast_radius was therefore always multi-hop. Scenario 022's requirement that transitive results exceed non-transitive results was unachievable.
@@ -62,3 +59,6 @@ The fix introduces an `effectiveDepth` gate inside the blast_radius branch that 
 
 - Any future caller that wants full-closure blast_radius must pass `includeTransitive:true`. Document this change in the code-graph operator guide so users are not surprised by the narrower default.
 - The phase-007 consumer audit only covered programmatic callers. An interactive-use survey (agent prompts that call blast_radius) would confirm no agent workflow silently depended on the old full-closure default.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`

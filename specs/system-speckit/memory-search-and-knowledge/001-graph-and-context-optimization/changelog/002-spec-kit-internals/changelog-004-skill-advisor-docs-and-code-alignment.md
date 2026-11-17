@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-04-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
-
 ### Summary
 
 Phase 022 brought the skill-advisor package into line with the hook surface that Phase 020 shipped. Operators now see prompt-time hook invocation as the primary Gate 2 path, with the direct Python CLI documented as a fallback. A sk-code-skilled TypeScript audit of all 18 scoped Phase 020 files found no major findings and nine minor findings were fixed in place.
@@ -64,3 +61,6 @@ Phase 022 brought the skill-advisor package into line with the hook surface that
 ### Follow-Ups
 
 - Interactive runtime smoke remains manual per the new playbook.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

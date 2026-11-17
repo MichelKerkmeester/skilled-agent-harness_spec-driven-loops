@@ -19,9 +19,6 @@ contextType: "research"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 The `/doctor:code-graph` Phase B (apply mode) needed four authoritative inputs before it could safely auto-fix issues: a verification battery to prove fixes worked, a staleness model to know when the graph was freshly enough for diagnostics, a recovery playbook to guide operator actions, and exclude-rule confidence tiers to calibrate bloat-dir detection.
@@ -72,3 +69,6 @@ The research converged after 12 iterations. Iterations 1 through 7 produced the 
 
 - **Phase B unblocked.** All four authoritative inputs are produced. The gating condition for `/doctor:code-graph` Phase B (apply mode) is met. Phase B implementation can proceed.
 - **Gold-query battery drift monitoring.** The battery should be rerun on a schedule to detect indexer regressions. A follow-up automation packet could wire periodic battery runs.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/023-subprocess-environment-whitelist` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 The skill advisor launcher, plugin bridge, and Python native bridge each inherited the full parent environment when spawning child processes. This could leak unrelated credentials or operator state into subprocesses. Each spawn surface now passes only runtime-essential environment keys through an explicit allowlist. Tests confirm that secret-like parent keys are not forwarded.
@@ -50,3 +47,6 @@ The skill advisor launcher, plugin bridge, and Python native bridge each inherit
 
 ### Follow-Ups
 - The allowlist intentionally does not cover unrelated subprocesses outside the three named surfaces.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/023-subprocess-environment-whitelist` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

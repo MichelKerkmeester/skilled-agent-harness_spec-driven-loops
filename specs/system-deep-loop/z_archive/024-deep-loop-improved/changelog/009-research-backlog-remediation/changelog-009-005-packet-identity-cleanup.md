@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/005-packet-identity-cleanup` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`
-
 ### Summary
 
 Live navigational fields across several phase folders still pointed at the packet's pre-migration name and an abandoned native review lineage held a lock that was never re-heartbeated after acquisition. Every genuinely live reference was corrected while historical citations were left untouched, and the stale lock was removed with the lineage archived.
@@ -51,3 +48,6 @@ Live navigational fields across several phase folders still pointed at the packe
 ### Follow-Ups
 
 - None. Every live reference is closed and every historical reference is preserved as-is.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/005-packet-identity-cleanup` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

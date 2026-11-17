@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`
-
 ### Summary
 
 This child phase executed (commit 7b74ddfbe5). The system-spec-kit feature_catalog was reviewed against current shipped behavior and 12 files were aligned, fixing stale source-reference paths and drift across the retrieval, discovery, pipeline-architecture, governance and context-preservation entries. No catalog entry was added or removed, so the count self-checks still hold, and every corrected path was verified to resolve.
@@ -54,3 +51,6 @@ This child phase executed (commit 7b74ddfbe5). The system-spec-kit feature_catal
 ### Follow-Ups
 
 - None. The feature catalog cleanup is complete and strict validation is green.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`

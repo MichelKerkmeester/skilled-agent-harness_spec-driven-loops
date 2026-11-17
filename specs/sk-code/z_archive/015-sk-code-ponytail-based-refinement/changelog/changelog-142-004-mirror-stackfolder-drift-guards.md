@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/004-mirror-stackfolder-drift-guards` (Level 1)
-> Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`
-
 ### Summary
 
 Phase 4 closed the gap between copied agent surfaces and the checks that keep them honest. A pre-flight audit found drift before the new guard existed, then the implementation separated real drift from a false positive and added changed-file-scoped enforcement. The phase also bound `STACK_FOLDERS` to the references and assets it names.
@@ -73,3 +70,6 @@ Phase 4 closed the gap between copied agent surfaces and the checks that keep th
 - The `.vitest.ts` mirror-sync test could not be re-run via the local CLI because the repo uses a non-default vitest config.
 - Normalizer behavior was verified directly instead, with tamper control and the existing test reported green by the implementer.
 - Not committed. Changes sat in the working tree on branch `028-mcp-to-cli-tool-transition`.
+
+> Spec folder: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/004-mirror-stackfolder-drift-guards` (Level 1)
+> Parent packet: `.opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement`

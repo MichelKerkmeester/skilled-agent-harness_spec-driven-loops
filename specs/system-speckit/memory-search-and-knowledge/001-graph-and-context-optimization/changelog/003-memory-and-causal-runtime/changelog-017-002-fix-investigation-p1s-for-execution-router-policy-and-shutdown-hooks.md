@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode`
-
 ### Summary
 
 `execution-router.ts` accumulated seven P1 defects from an arc 010/001 deep-research investigation. The defects clustered around production API hygiene (a test-only aggregate exported from the production module), impure resolver boundaries (policy logging inside the resolver), dimension fallback dead code with silent mismatches, fire-and-forget signal handler semantics, plus a zero-caller readiness method left in the adapter surface.
@@ -70,3 +67,6 @@ All seven findings (F6, F31, F52, F53, F58, F61, F74) were closed in a single su
 ### Follow-Ups
 
 - Signal cleanup remains process-lifecycle best effort. The shared handler awaits `shutdownAllSidecars()` before re-signaling, but callers needing deterministic shutdown should call and await `shutdownAllSidecars()` directly rather than relying on signal interception.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode`

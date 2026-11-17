@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-27
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation`
-
 ### Summary
 
 The lean-trio policy (spec.md + description.json + graph-metadata.json at every phase-parent level) was enforced for new parents but not yet applied to the 28 to 31 legacy NNN-prefixed parents already in the repo. Those parents split into two states: Category B parents had a full lean trio but stale metadata, while Category C parents were missing spec.md entirely. Operators and the resume command encountered a mixed surface across the repo.
@@ -78,3 +75,6 @@ Every touched parent now exposes the lean trio. Manual relationship blocks (`dep
 - Improve the `check-spec-doc-integrity.sh` validator to skip plain-prose and HTML-comment mentions of `plan.md`, `tasks.md`, etc. The current rule flags the canonical CONTENT DISCIPLINE comment block in every lean parent template, producing false-positive `SPEC_DOC_INTEGRITY` warnings. This is a P3 improvement tracked separately.
 - Populate `derived.last_active_child_id` on migrated parents that have never been saved. The field fills naturally on the next per-parent memory save. No action required in 004.
 - Evaluate whether spec-collection roots (`.opencode/specs/system-spec-kit/`, `.opencode/specs/00--ai-systems/`) should receive a lightweight README equivalent. These folders trigger phase-parent detection but are directory containers, not spec packets. A separate "spec-roots README" packet can address this.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation`

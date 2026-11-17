@@ -18,9 +18,6 @@ contextType: "review"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/006-mcp-tool-schema-governance-audit` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`
-
 ### Summary
 
 Before this audit, there was no systematic truth check covering MCP tool schema completeness, strict-mode enforcement consistency, governed-ingest policy scope or canonical tool count alignment. The audit read six target runtime surfaces plus related packets 033, 034 and 042. It produced a severity-classified `review-report.md` with nine sections.
@@ -69,3 +66,6 @@ The canonical count is sound: `spec_kit_memory` exposes 54 public tools made of 
 - Establish an explicit governed-ingest policy for `memory_index_scan` and `memory_ingest_start`, either adding governance fields or documenting them as operator-maintenance paths.
 - Move schema validation to the server boundary before session priming in `context-server.ts`.
 - Update the schema README after parity remediation to avoid stale schema-key count claims.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/006-mcp-tool-schema-governance-audit` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits`

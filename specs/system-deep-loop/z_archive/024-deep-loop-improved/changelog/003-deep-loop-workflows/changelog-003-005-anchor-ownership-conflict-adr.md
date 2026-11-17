@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/005-anchor-ownership-conflict-adr` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`
-
 ### Summary
 
 Added resolveQuestionConflicts() to deep-research reduce-state.cjs and treat key-questions as a generated projection (+ strategy + reducer-registry docs + yaml). Tests pass; parity green; hygiene/drift clean.
@@ -57,3 +54,6 @@ Added resolveQuestionConflicts() to deep-research reduce-state.cjs and treat key
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/005-anchor-ownership-conflict-adr` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

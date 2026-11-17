@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/017-hook-test-sandbox-fix` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 The runtime hook test matrix ran live runtime CLIs from inside a sandboxed `codex exec --sandbox workspace-write` parent process. That sandbox blocks access to user auth state, keychain, home config plus runtime state directories, so live CLI failures were misclassified as hook or auth failures rather than sandbox-blocked calls.
@@ -79,3 +76,6 @@ Prior findings in `016-runtime-hook-plugin-testing/findings.md` were amended to 
 ### Follow-Ups
 
 - Obtain canonical live CLI verdicts by running `hook-tests` from a normal operator shell outside any sandbox to confirm all five runtimes produce `PASS` live-cli cells.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/017-hook-test-sandbox-fix` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

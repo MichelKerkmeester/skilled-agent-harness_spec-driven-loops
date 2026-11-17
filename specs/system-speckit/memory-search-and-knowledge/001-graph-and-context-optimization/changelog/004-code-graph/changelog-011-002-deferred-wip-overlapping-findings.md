@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-deferred-wip-overlapping-findings` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`
-
 ### Summary
 
 The source-bug and misalignment audit surfaced 28 findings. During the remediation pass, 7 of those findings could not be safely auto-fixed. Each finding either edits a file that the operator's in-progress BUG-04 or BUG-06 work-in-progress already modifies. Alternatively it requires reconciling behavioral semantics that interact with that in-flight work.
@@ -66,3 +63,6 @@ None.
 - Re-implement CG-008 candidate-manifest source change once `ensure-ready.ts` is no longer under active BUG-06 WIP.
 - Re-apply CG-009 and CG-010 together after the recovery-procedures no-op vs errored-rollback distinction is added, enabling a precise `restored !== true` check.
 - Re-apply CG-037 dry-run rollback target fix alongside the apply-orchestrator changes once the CG-009/CG-010 pair are unblocked.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-deferred-wip-overlapping-findings` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit`

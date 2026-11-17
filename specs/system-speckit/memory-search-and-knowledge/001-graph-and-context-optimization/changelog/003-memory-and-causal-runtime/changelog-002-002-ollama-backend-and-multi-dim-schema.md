@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/002-ollama-backend-and-multi-dim-schema`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`
-
 ### Summary
 
 The memory stack had no concrete HTTP adapter for Ollama and no way to store embeddings at multiple dimensionalities. The `EmbedderAdapter` interface from phase 001 existed but had no implementation that could reach a running Ollama daemon. The vec table schema only handled a single fixed dimension.
@@ -71,3 +68,6 @@ Phase 002 shipped two complementary pieces as a fully additive layer. `OllamaAda
 - Route existing retrieval traffic through `getAdapter()` in Phase 003 once MCP tools are added.
 - Add a live integration test against a real Ollama daemon to complement the mocked HTTP suite.
 - Document `brew install ollama` and minimum required model names in the operator guide for contributors who run the full embedder stack locally.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/002-ollama-backend-and-multi-dim-schema`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-25
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes` (Level 3)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 Phase 010 fixed the nine P1 findings and every reproducing P2 from the 2026-10-25 deep review of the closed packet, in three lanes: gate code, guidance and guards, and playbook, records and review tooling. Every gate change reads the v2.3 template stamp, so v2.2 docs keep their verdicts. Of the 63 P2 ledger rows, 59 are fixed and 4 did not reproduce. The fix tasks are done. The final rebuild, suite and census reruns, the two closing reviews and the phase commit are still open, so the phase is not closed.
@@ -72,3 +69,6 @@ Phase 010 fixed the nine P1 findings and every reproducing P2 from the 2026-10-2
 
 - Run the open verification tasks, the two closing reviews and the phase commit before the phase reads Complete.
 - Raise the version carriers for system-spec-kit and system-deep-loop to match their new release records.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/010-deep-review-finding-fixes` (Level 3)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

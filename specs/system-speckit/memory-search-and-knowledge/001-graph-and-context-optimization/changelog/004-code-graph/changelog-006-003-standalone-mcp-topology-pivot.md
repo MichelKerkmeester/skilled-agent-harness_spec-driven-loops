@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/003-standalone-mcp-topology-pivot` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation`
-
 ### Summary
 
 ADR-001 Q3 had registered code-graph MCP tools as co-resident under the `spec_kit_memory` server. The user reversed that decision on 2026-05-14 and required a standalone MCP server for code-graph tooling. At the same time, the physical source tree had already been flattened so runtime code lived at `system-code-graph/mcp_server/{lib,handlers,tools,tests}/` rather than under an intermediate `code_graph/` subdirectory.
@@ -80,3 +77,6 @@ All typechecks passed. The full 395-test Vitest suite passed. Strict packet vali
 ### Follow-Ups
 
 - MCP children must be restarted before the new standalone server becomes visible to clients. The implementation-summary records this as a known limitation at handover.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/003-standalone-mcp-topology-pivot` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation`

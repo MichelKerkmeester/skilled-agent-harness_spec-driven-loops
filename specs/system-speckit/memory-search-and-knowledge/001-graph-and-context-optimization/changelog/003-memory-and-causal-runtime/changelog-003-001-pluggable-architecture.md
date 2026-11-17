@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack/001-pluggable-architecture`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack`
-
 ### Summary
 
 The skill-advisor server was locked to a legacy pre-016 cascade (`lib/shared/embeddings` symlink) with no mechanism to swap embedders, no `vec_metadata` pointer table, no pluggable registry. Operators could not change the default embedder without editing legacy provider files directly.
@@ -76,3 +73,6 @@ A skill-advisor-local `mcp_server/lib/embedders/` module was shipped that mirror
 
 - Resolve pre-existing vitest failures in `manual-testing-playbook.vitest.ts`, `advisor-corpus-parity.vitest.ts`, `advisor-graph-health.vitest.ts`, `python-ts-parity.vitest.ts` before the next full-suite green baseline.
 - Extract a shared `@spec-kit/embedders` package to replace the copy-adapt duplication between 016 mk-spec-memory and skill-advisor once a third consumer emerges.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack/001-pluggable-architecture`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack`

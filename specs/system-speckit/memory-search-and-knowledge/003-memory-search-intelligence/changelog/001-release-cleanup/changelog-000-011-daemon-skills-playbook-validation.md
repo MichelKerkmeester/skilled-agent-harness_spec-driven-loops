@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`
-
 ### Summary
 
 This phase ran every stress suite plus 222 of 471 manual-testing-playbook scenarios across three cli models against the three daemon-backed system skills, scored each run critically rather than trusting its verdict string and documented fourteen real product findings with remediation plans. The deliverable is a results and findings report, not a code change. The benchmark workspace was wiped on a process exit and the report was salvaged from the surviving session transcript and two recovered eval logs. The real repository stayed byte-clean throughout.
@@ -47,3 +44,6 @@ No skill source was modified. The validation was read-only by design.
 - Operator decides whether to re-run the remaining 249 spec-kit scenarios that the workspace wipe froze. The operator chose salvage over re-run for this pass.
 - The fourteen findings warrant remediation, which became the follow-on phase 012-playbook-findings-remediation. The wiring gaps F8 and F10 and the schema-drift gaps F11 and F12 each name a failure class an integration or contract test would catch.
 - Phase-2 UNCLEAR is inflated, roughly twenty of the twenty-five are session-DB contention fast-fails from a concurrent operator opencode session rather than product behavior.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`

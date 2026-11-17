@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
-
 ### Summary
 
 You can now run /doctor:skill-advisor to interactively analyze every skill in your repo, propose optimized advisor scoring (TOKEN_BOOSTS, PHRASE_BOOSTS, derived triggers, CATEGORY_HINTS), apply approved changes, re-index the skill graph, and validate with the existing 220-test advisor suite. Before this packet, the only way to tune advisor routing was to hand-edit explicit.ts / lexical.ts / per-skill graph-metadata.json files and remember to rebuild dist plus run tests. Now the workflow is one command.
@@ -81,3 +78,6 @@ You can now run /doctor:skill-advisor to interactively analyze every skill in yo
 - No automatic rollback on test failure. If the command applies mutations and the test suite fails, the user receives a STATUS=FAIL plus a git checkout HEAD -- rollback hint, but the rollback is manual. A future enhancement could auto-rollback on regression.
 - Token-collision detection is per-pair, not transitive. Phase 2 cross-checks each proposed token against existing TOKEN_BOOSTS for OTHER skills. It does not detect three-way collisions where two newly-proposed tokens for different skills would themselves collide. In practice this is rare because Phase 2 generates proposals one skill at a time.
 - Dry-run output writes to /tmp, not to a versioned scratch path. /tmp/skill-advisor-proposal-{timestamp}.md survives only until the next reboot. Users wanting to retain dry-run output should redirect or copy the file before exiting the session.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

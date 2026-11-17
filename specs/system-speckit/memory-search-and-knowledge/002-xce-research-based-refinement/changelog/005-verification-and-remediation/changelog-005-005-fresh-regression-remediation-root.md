@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-16
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation` (Phase Parent)
-
 ### Summary
 
 This phase parent ran a fresh-plus-regression deep-review of the whole 027 epic and then remediated everything it found. The review used 75 single-pass seats across three models (Opus 4.8 via the claude2 binary, GPT-5.5-fast and Kimi K2.7 via cli-opencode), all strictly read-only, spread over 15 fresh angles so no single loop could converge early. Deduplication produced 113 unique findings (0 P0, 40 P1, 73 P2). Round-2 adversarial verification re-checked every code-defect P1 with the opposite model and reduced 16 candidates to 5 confirmed, with the remaining drift confirmed as documentation and control-metadata. Per operator directive, all 113 findings were then carried into remediation: true findings fixed, false ones refuted with reason and deferred ones routed to their own packet. The five confirmed code defects are fixed and test-gated.
@@ -71,3 +69,5 @@ This phase parent ran a fresh-plus-regression deep-review of the whole 027 epic 
 - Live activation of the code fixes (dist rebuild plus daemon recycle) is operator-gated and deferred.
 - The three `.claude` and `.codex` agent-mirror edits flagged by the mirror-parity pre-commit guard remain a separate decision.
 - The deep-review verdict was CONDITIONAL; the conditions are addressed by this remediation, which closes every finding it raised.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation` (Phase Parent)

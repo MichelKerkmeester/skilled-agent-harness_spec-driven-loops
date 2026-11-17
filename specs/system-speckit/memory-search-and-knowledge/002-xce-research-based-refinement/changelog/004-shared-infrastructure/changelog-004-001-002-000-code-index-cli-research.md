@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-06
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli`
-
 ### Summary
 
 A single cli-codex lane (gpt-5.5 high, 10 forced iterations) delivered a GO verdict for the code-index CLI transition. All 8 tools from `CODE_GRAPH_TOOL_SCHEMAS` can be exposed with zero feature loss via a daemon-backed CLI over the existing IPC surface. The spec-memory pattern transfers except for Zod codegen — the hand-coded `validateToolArgs` path is used instead. Blocked-read rendering was identified as the top system-specific risk and added to the D1-D10 design delta set. Effort estimate: 6-9 engineering days.
@@ -57,3 +54,6 @@ A single cli-codex lane (gpt-5.5 high, 10 forced iterations) delivered a GO verd
 
 - Command naming and file placement left to the implementation packet (lane recommends `code-index` with `mk_code_index` server key)
 - Effort re-estimated at implementation packet planning as routine hygiene
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli`

@@ -8,8 +8,6 @@
 
 Startup injection for hook runtimes was still too thin to orient the AI well at the beginning of a session. This follow-on phase added a shared startup brief that combines structural code-graph highlights with recent-session continuity, then wired that brief into both Claude and Gemini startup hooks while keeping the hookless contract work cleanly handed off to Phase 027.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/026-session-start-injection-debug/`
-
 ---
 
 ## New Features (3)
@@ -86,3 +84,5 @@ Startup injection for hook runtimes was still too thin to orient the AI well at 
 ## Upgrade
 
 No migration required. This phase improves startup orientation for hook runtimes only; hookless bootstrap contract changes remain in Phase 027.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/026-session-start-injection-debug/`

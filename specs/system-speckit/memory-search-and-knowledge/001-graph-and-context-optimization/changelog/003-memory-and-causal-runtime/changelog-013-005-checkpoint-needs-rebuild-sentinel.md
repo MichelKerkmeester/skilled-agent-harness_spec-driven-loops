@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-02
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/005-checkpoint-needs-rebuild-sentinel` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation`
-
 ### Summary
 
 Shipped and **deployed** the second deferred follow-up. After a checkpoint-v2 restore, `runPostRestoreRebuilds()` rebuilds derived artifacts (FTS, communities, derived graph) best-effort and **catches** failures — so a failed/skipped rebuild left the restore reporting success with stale derived state and no repair signal (the existing `.unclean-shutdown` boot auto-heal does not cover checkpoint-restore rebuild failures). This packet adds a durable `.needs-rebuild` sentinel written on that path and a bounded, non-fatal boot/scan repair that clears it on success. The restore itself still succeeds — the source snapshot is valid. Implemented via `cli-opencode gpt-5.5-fast --variant xhigh`, integrated with 004, and deployed.
@@ -59,3 +56,6 @@ Shipped and **deployed** the second deferred follow-up. After a checkpoint-v2 re
 ### Follow-Ups
 
 - None required. The `.needs-rebuild` sentinel self-clears on the next successful boot/scan rebuild after a checkpoint restore.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/005-checkpoint-needs-rebuild-sentinel` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation`

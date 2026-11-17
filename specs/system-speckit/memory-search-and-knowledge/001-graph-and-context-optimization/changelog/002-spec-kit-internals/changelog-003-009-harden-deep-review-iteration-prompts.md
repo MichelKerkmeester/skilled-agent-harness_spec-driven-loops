@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/009-harden-deep-review-iteration-prompts` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
-
 ### Summary
 
 The deep-review iteration dispatch hands executors unrestricted filesystem write access but only a single prose line guards against modifications to reviewed files. On 2026-05-04 a deepseek-v4-pro dispatch under `/deep:start-review-loop:auto` deleted 44 files across two phase folders. This packet authored the specification for tightening the dispatch prompt template with an explicit allowed-write list and a ban on destructive shell verbs.
@@ -53,3 +50,6 @@ The deep-review iteration dispatch hands executors unrestricted filesystem write
 - Insert a destructive-verb ban forbidding rm, git rm, mv, sed -i, rmdir, output-redirect truncate, and find -delete in the same template
 - Insert a scope_violation finding instruction for would-be out-of-scope mutations in the same template
 - Smoke-test with a cli-opencode plus deepseek-v4-pro dispatch and verify no surprise writes outside the review directory
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/009-harden-deep-review-iteration-prompts` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

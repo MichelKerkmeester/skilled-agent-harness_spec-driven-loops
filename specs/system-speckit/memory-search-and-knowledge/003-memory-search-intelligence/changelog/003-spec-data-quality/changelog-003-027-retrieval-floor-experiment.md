@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Status PLANNED. This phase is scaffolded and not yet implemented. No code change has landed and nothing below has shipped. The section describes the change the phase will make once it is built. The prod path guarantees a never-cut-below-3 minimum, not a cap, then narrows the set through a cliff-conditional confidence cut that returns 3 to 20 and a token budget that is the real prod-limiting stage. This experiment raises the floor and budget across a small sweep to read whether the recovered tail is signal or noise, and it consumes the C2 gate unchanged.
@@ -51,3 +48,6 @@ Status PLANNED. This phase is scaffolded and not yet implemented. No code change
 ### Follow-Ups
 
 - Build per plan.md. This phase is foundational and the dependents sequenced behind it are listed in `028-governance-rollout`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

@@ -2,8 +2,6 @@
 
 This follow-on release extends the packet after the original migration closure recorded in `v1.0.0`. Phase 13 hardened search correctness, search visibility, and SQLite path stability: multi-word FTS5 searches keep their exact-word matches, `/memory:search` now groups results by leaf spec folder, vector search stays pinned to the populated `context-index.sqlite`, and the search pipeline now warns instead of failing quietly on unexpected empty paths. Phase 13 verified all P0 and P1 checklist items and leaves one P2 follow-up open for saving the supporting research and review findings into `memory/`.
 
-> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement` (Level 2)
-
 ---
 
 ## Search Hardening (4)
@@ -80,8 +78,6 @@ The original `v1.0.0` entry below remains the migration-closure release. This `v
 This release closed the original 12-phase ESM Module Compliance packet at `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement`. The point of the work was simple: make the runtime tell the truth, make search trustworthy again, and make saved memory useful instead of boilerplate.
 
 Across 10 days, the packet migrated `@spec-kit/shared` and `@spec-kit/mcp-server` to native ESM (Node's modern module system), kept `@spec-kit/scripts` on CommonJS (Node's older module system) without faking compatibility, fixed search failures that could return zero results, audited 186 spec folders, rebuilt the memory database from clean inputs, and raised JSON-mode memory saves from unusable 0/100 output to a repeatable 55-75/100 range. Final verification ended at 9480+ passing tests with 0 failures and 0 skipped.
-
-> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement` (Level 2)
 
 ---
 
@@ -272,3 +268,7 @@ For future work, treat these behaviors as the new baseline:
 - `@spec-kit/scripts` remains CommonJS by design.
 - New `contextType` values should use the canonical set, not legacy aliases.
 - Search and memory-save fixes described here are part of the shipped state and should not be reworked around as if they were temporary patches.
+
+> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement` (Level 2)
+
+> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement` (Level 2)

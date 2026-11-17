@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/003-promote-results` (Level 1)
-> Parent packet: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support`
-
 ### Summary
 
 This phase did not pretend an inconclusive bakeoff had chosen a framework. It folded run 006 into the registry and model profile as evidence that correctness saturated, then kept `primary: rcaf` and `status: default-unverified` because the rule was TIE or INCONCLUSIVE means keep the default and record why. Phase 004 later superseded this placeholder with run 007, moving the live state to `primary: costar`, `fallback: tidd-ec`, `avoid: [rcaf]`, `status: empirical` and evidence `007-kimi-k2.7-discriminating`.
@@ -76,3 +73,6 @@ This phase did not pretend an inconclusive bakeoff had chosen a framework. It fo
 - The follow-up bakeoff with harder, less-saturating fixtures became phase 004, run 007, which discriminated and promoted COSTAR while retiring RCAF.
 - The COSTAR and CIDI clarity edge from the `gpt-5.5` judge was advisory only. It was subjective and not strong enough to change the primary.
 - Card-sync and tree-wide validate were the closing gate. Both children validated at exit 0, while the full parent plus children strict sweep and card-sync guard run stayed with the orchestrator's final step.
+
+> Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/003-promote-results` (Level 1)
+> Parent packet: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support`

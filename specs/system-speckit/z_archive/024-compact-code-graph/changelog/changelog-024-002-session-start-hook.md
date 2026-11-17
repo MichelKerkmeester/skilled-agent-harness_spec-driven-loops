@@ -8,8 +8,6 @@
 
 This phase turned SessionStart into a source-aware recovery surface instead of a one-size-fits-all banner. Startup, resume, clear, and compact sessions now each get the right guidance, and resume flows consistently request the compact `profile: "resume"` briefing that fits inside the preserved-context budget.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/002-session-start-hook/`
-
 ---
 
 ## New Features (4)
@@ -54,3 +52,5 @@ This phase turned SessionStart into a source-aware recovery surface instead of a
 ## Upgrade
 
 No migration required.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/002-session-start-hook/`

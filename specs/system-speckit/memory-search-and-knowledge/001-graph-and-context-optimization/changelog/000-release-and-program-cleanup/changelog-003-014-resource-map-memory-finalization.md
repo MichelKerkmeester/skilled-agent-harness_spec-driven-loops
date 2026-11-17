@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/014-resource-map-memory-finalization` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 Seventeen spec folders touched during the release program had no resource maps and stale memory metadata. Without a path ledger, downstream reviewers had to reconstruct touched files from raw git history. Memory search could not surface accurate packet state.
@@ -70,3 +67,6 @@ Resource maps were generated for all 17 target folders from commit-history path 
 ### Follow-Ups
 
 - Shared commit attribution is path-based. The split follows commit bodies and path ownership. Future edits to a shared commit meaning should refresh the affected maps.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/014-resource-map-memory-finalization` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

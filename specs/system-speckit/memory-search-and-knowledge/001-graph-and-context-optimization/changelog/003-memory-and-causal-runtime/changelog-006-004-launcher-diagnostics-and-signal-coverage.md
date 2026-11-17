@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/004-launcher-diagnostics-and-signal-coverage` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`
-
 ### Summary
 
 The 3-reviewer audit of packets 006+007 surfaced 14 P2 findings covering diagnostic gaps, signal handling omissions, a schema-mutating lease probe and loose test assertions. None were correctness blockers but together they left operators without enough information to triage PID-reuse contention and left the system exposed to lease-file leaks on atypical exits.
@@ -81,3 +78,6 @@ All 14 findings shipped in one pass. Each of the three MCP launchers now emits `
 ### Follow-Ups
 
 - Evaluate whether `MK_SKILL_ADVISOR_DB_DIR` and `SYSTEM_SKILL_ADVISOR_DB_DIR` overrides should fail closed in strict single-writer mode. The current documentation approach was chosen to stay within the P2 cleanup scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/004-launcher-diagnostics-and-signal-coverage` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency`

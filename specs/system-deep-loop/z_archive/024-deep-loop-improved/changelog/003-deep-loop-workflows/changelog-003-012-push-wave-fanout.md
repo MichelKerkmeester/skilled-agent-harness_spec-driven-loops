@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/012-push-wave-fanout` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`
-
 ### Summary
 
 depends_on/touches/assignment_model schema in executor-config.ts + flat_pool guard + dormant wave-planner interface stub in fanout-pool/fanout-run. Default flat_pool keeps existing behavior; typecheck + fanout tests 97/97; drift clean.
@@ -58,3 +55,6 @@ depends_on/touches/assignment_model schema in executor-config.ts + flat_pool gua
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/012-push-wave-fanout` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows`

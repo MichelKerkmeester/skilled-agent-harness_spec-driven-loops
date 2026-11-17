@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/003-codex-agents-mirror-fill`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`
-
 ### Summary
 
 Packet 021 audit reported two findings for codex agents: a P0 claiming `.codex/agents/` was empty and `[agents.ai-council]` was missing, plus a P1 noting the `deep-ai-council (proposed)` qualifier was stale after the rename arc shipped. Pre-edit investigation confirmed the P0 sub-claims were stale: `.codex/agents/` already contained 11 .toml files mirroring `.opencode/agents/` and `[agents.ai-council]` was declared at `.codex/config.toml:139`. Phase 003 therefore reduced to two token deletions. The `(proposed)` qualifier was removed from `deep-ai-council` references in `.opencode/agents/deep-research.md` and `.opencode/agents/deep-review.md`. Both audit findings are now closed with investigation evidence preserved in the spec docs.
@@ -56,3 +53,6 @@ None.
 
 - Audit research.md in packet 021 records the now-stale P0 claim. That document is treated as an immutable historical record so no retroactive update is needed.
 - `.claude/agents/` and `.gemini/agents/` deep-research and deep-review mirrors do not contain the threshold-comparison block at the equivalent lines due to layout divergence. No action needed as the qualifier was never present there.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/003-codex-agents-mirror-fill`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc`

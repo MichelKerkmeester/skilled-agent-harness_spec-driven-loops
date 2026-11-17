@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-release-readiness-findings-synthesis` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness`
-
 ### Summary
 
 Packet 045 produced ten separate release-readiness review reports with no shared priority order. Eight P0 blockers were active: destructive `memory_delete` calls could run without confirmation, code-graph readiness could return a cached fresh result after tracked-file edits, hooks could be bypassed silently, the strict validator accepted template structure hidden inside fenced code blocks. Deep-loop max-iteration caps could also convert into continued dispatch rather than terminating the run.
@@ -74,3 +71,6 @@ All ten reports were rolled up into `synthesis.md` (6 FAIL, 4 CONDITIONAL, P0=8,
 
 - Normal-shell hook verdicts remain operator-owned. The sandbox cannot produce the non-sandbox live runtime evidence requested by packet 045.
 - Tier gamma P1s require explicit operator direction: memory YAML contracts, memory-save defaults, embedding-cache retention policy, governed ingest and server-boundary validation are open design calls.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-release-readiness-findings-synthesis` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness`

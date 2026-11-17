@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-30
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 Five vitest unit tests in the spec-kit skill-advisor MCP server had been failing since packet 040 (sk-doc conformance sweep) and commit `7dfd108` (skill_id rename). The failures were confirmed pre-existing via `git stash` during packet 045 work. Four tests were stale assertions out-of-sync with deliberate content reductions: the manual-testing playbook was reclassified from 42 scenarios to 4, the labeled corpus shrank from 200 to 197 rows. The plugin-bridge defaults had also been refactored to read from `compat-contract.json`. The fifth failure traced to commit `7dfd108`, which aligned `graph-metadata.json` with the new snake_case skill id but missed three kebab-case call sites across `skill_graph_compiler.py` and `skill_advisor.py`. All five tests now pass. The full stress suite (56/56, 163/163) and the skill-advisor sub-suite (236/236) verified no regressions.
@@ -73,3 +70,6 @@ None.
 - The `manual-testing-playbook.vitest.ts` test only covers the skill-advisor playbook layout. No coverage exists for other playbook packages that may have their own count drift over time.
 - The validator's `key_files` check rejects directories. Skills that legitimately need to surface a directory stub need a different mechanism. This is out of scope for this packet.
 - Other unit-suite failures unrelated to packet 045 remain (see Verification table above). These are pre-existing and were escalated to the user for separate triage.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

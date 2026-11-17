@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`
-
 ### Summary
 
 Both mk-spec-memory and skill-advisor already consumed the same @spec-kit/shared hf-local HTTP client pointing at the memory daemon bound socket, so they shared one resident server by construction. This phase extracted the hf-model-server supervision into a shared `.opencode/bin/lib/model-server-supervision.cjs` factory that both launchers drive. mk-spec-memory preserves its F1 byte-equivalence and 23-symbol surface. skill-advisor gains a gated shared-socket spawn capability behind `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` (default OFF) using a socket-adjacent `hf-embed.pid` single-winner channel. A 4-lens adversarial review found 5 defects (1 P1 plus 4 P2) and all were fixed.
@@ -73,3 +70,6 @@ Both mk-spec-memory and skill-advisor already consumed the same @spec-kit/shared
 - skill-advisor spawn is opt-in (default OFF). `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` must be set to 1 for skill-advisor to win the shared-server spawn when the memory daemon is absent. Flipping the default to ON is a one-line change once live-validated.
 - Live two-launcher residency not exercised end-to-end. Single-winner, spawn-to-bind back-off, and pid round-trip are covered by injected-spawn/fake-http tests. A live daemon plus skill-advisor plus model server is the natural follow-up (shared with the 002 to 005 live-spawn deferral).
 - Respawn-lock lifetime differs from phase 004 by design. The demand lock is now held across the bind plus idle-listener window so a second launcher loses cleanly. The wx-open plus UDS-bind single-winner primitives themselves are unchanged.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server`

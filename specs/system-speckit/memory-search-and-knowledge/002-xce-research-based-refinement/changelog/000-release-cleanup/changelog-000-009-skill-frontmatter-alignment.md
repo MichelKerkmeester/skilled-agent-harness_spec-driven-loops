@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-11
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment` (Level 1, Phase Parent)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`
-
 ### Summary
 
 This phase-parent campaign standardized skill reference and asset frontmatter across 22 child phases. The operator-selected contract requires `title`, `description`, `trigger_phrases`, `importance_tier`, and `contextType` on skill reference/asset docs, with the skill advisor as the consumer and Spec Kit Memory permanently excluded from skill-doc indexing.
@@ -58,3 +55,6 @@ This phase-parent campaign standardized skill reference and asset frontmatter ac
 ### Follow-Ups
 
 - Live advisor `matchedDocs` smoke depends on a fresh advisor session adopting the doc-trigger flag.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment` (Level 1, Phase Parent)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

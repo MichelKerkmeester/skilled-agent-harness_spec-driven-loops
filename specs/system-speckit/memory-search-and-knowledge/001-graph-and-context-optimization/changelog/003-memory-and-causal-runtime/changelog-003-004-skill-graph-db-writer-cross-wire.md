@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack/004-skill-graph-db-writer-cross-wire`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack`
-
 ### Summary
 
 After 010/001 shipped the pluggable EmbedderAdapter layer, the read path in `skill-graph-db.ts` was already wired to `vec_<active.dim>` tables, but the write path still called the old `createEmbeddingsProvider()` factory, which has no Ollama provider and cannot produce jina-v3 vectors. This gap was independently flagged by the E deep-review as P1-1 and blocked 010/002 from executing the jina-v3 swap.
@@ -70,3 +67,6 @@ After 010/001 shipped the pluggable EmbedderAdapter layer, the read path in `ski
 - Deprecate the `skill_nodes.embedding` BLOB column in a future packet once all active installs have migrated to `vec_<dim>` tables.
 - Cache adapter instances at module level if profiling shows repeated `getAdapter` calls during high-frequency refresh.
 - Update 010/002 swap-runbook to confirm the write-read parity is closed and the jina-v3 reindex path is now executable end-to-end.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack/004-skill-graph-db-writer-cross-wire`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack`

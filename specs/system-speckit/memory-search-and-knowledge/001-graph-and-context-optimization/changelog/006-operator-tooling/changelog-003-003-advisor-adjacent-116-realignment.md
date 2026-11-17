@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-26
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/003-advisor-adjacent-116-realignment` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment`
-
 ### Summary
 
 The adjacent-116 rename pass (skill names from `sk-deep-*` to `deep-*`) had left stale references in four files outside the main operator surface: the optimizer manifest, a Gemini deep command and two test fixtures. Separately, a prior research phase had flagged two advisor-scorer corpus files as P1 live bugs based on misread behavior.
@@ -71,3 +68,6 @@ A flag comment was also added to `system-code-graph/mcp_server/core/config.ts` t
 - Reactivate the dead `fusion.ts` deep-research and deep-review bonus branches once a scorer owner re-blesses the 197-prompt corpus parity gate against canonical ids.
 - Regenerate `graph-metadata.json` for `deep-research`, `deep-review` and `deep-agent-improvement` skills to clear stale `derived.key_files` entries pointing at moved reference docs.
 - Reconcile the two contract-parity vitest files (marked FIXME) that assert a pre-116 unshipped contract shape against current shipped docs.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/003-advisor-adjacent-116-realignment` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment`

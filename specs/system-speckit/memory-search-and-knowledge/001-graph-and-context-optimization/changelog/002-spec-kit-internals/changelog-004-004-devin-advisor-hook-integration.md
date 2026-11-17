@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/004-devin-advisor-hook-integration` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening`
-
 ### Summary
 
 A Devin UserPromptSubmit hook variant was added for the system-skill-advisor skill to enable advisor brief injection in Devin CLI sessions. The plugin was renamed from spec-kit-skill-advisor to mk-skill-advisor to align with mk-* MCP server naming. The plugin bridge was migrated from system-spec-kit ownership to system-skill-advisor ownership.
@@ -78,3 +75,6 @@ A Devin UserPromptSubmit hook variant was added for the system-skill-advisor ski
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/004-devin-advisor-hook-integration` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening`

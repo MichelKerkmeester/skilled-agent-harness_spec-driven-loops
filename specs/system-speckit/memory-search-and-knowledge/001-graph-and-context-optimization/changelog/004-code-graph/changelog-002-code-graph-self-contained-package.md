@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/004-code-graph`
-
 ### Summary
 
 The code-graph source was scattered across 4 directories under the MCP server project. Handlers lived in one place, shared library code in another, tests in a third, and tool definitions in a fourth. This layout made it hard to understand the surface area and to dispatch targeted CI runs.
@@ -65,3 +62,6 @@ Every import path was rewritten. The dispatcher was rewired to point at the new 
 ### Follow-Ups
 
 - **Commit and git-history migration.** The filesystem migration is complete but the orchestrator must stage and commit the new-path files for git history to attach to the new location. Old-path git history is intact.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`

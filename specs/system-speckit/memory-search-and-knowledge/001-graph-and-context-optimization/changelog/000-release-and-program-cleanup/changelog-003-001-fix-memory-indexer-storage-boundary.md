@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/001-fix-memory-indexer-storage-boundary` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 The 005-memory-indexer-invariants deep review found that parser and discovery correctly excluded constitutional README files from indexing, but storage-layer mutation paths did not share that rule. A poisoned checkpoint or a pre-existing DB row could therefore survive a restore with `importance_tier='constitutional'` intact, which is incorrect behavior.
@@ -84,3 +81,6 @@ This phase added `isIndexableConstitutionalMemoryPath()` as a single-source-of-t
 - Strict packet validation is not green. Runtime remediation is tested, typechecked and built, but `validate.sh --strict` exits 2 due to template structure gaps in `plan.md`, `tasks.md` and `checklist.md`.
 - T25 remains open. The final validator task was not marked complete because the validator did not pass.
 - P2-002 is only partially closed. The 005 checklist has current-packet path cleanup, but a full every-row `file:line` normalization is still needed as part of the template repair pass.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/001-fix-memory-indexer-storage-boundary` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

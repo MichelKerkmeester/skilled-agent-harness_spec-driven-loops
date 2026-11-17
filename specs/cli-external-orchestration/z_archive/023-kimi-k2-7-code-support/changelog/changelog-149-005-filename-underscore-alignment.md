@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/005-filename-underscore-alignment` (Level 1)
-> Parent packet: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support`
-
 ### Summary
 
 The Kimi support work exposed a naming drift in `sk-prompt-models`: house files used dash names while the house convention preferred underscores. This phase renamed the seven documentation and asset targets, repaired every live inbound reference and left the four model-profile files dashed on purpose. Those model files mirror external model ids, and the pre-commit drift guard derives their paths from the dashed ids.
@@ -76,3 +73,6 @@ The Kimi support work exposed a naming drift in `sk-prompt-models`: house files 
 - References from `cli-opencode` to the `sk-prompt-models` canonical files were repointed correctly.
 - The four model-profile filenames remain dashed by contract. They mirror external model ids enforced by the drift guard.
 - A future change that renames model-profile files would also need to teach the guard a dash and underscore translation.
+
+> Spec folder: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/005-filename-underscore-alignment` (Level 1)
+> Parent packet: `.opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support`

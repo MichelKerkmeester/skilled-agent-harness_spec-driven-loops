@@ -19,9 +19,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`
-
 ### Summary
 
 The three remaining cli-* dispatcher skills now tell the calling AI to set AI_SESSION_CHILD=1 when it dispatches a sub-session, completing the propagation begun in 036/003 (cli-codex + cli-opencode). Each rule cross-references bin/README.md rather than duplicating the mechanism rationale, so the whole cli-* family (five dispatchers) now carries the uniform contract for worktree child-marker dispatch.
@@ -61,3 +58,6 @@ The three remaining cli-* dispatcher skills now tell the calling AI to set AI_SE
 
 - The child-marker contract is advisory, not enforced. Nothing statically prevents a dispatcher from omitting AI_SESSION_CHILD=1. The wrapper's structural git --git-common-dir backstop serves as the safety net. This closes the documentation gap across the whole cli-* family.
 - Operator-machine launch aliases remain out of scope. Routing a runtime through worktree-session.sh by default (alias) is still the operator's environment-specific step. The companion SessionStart guard hook is handled by sibling child 006.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`

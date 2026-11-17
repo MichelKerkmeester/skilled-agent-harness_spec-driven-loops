@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-02
 
-> Spec folder: `.opencode/specs/skilled-agent-orchestration/z_archive/103-sk-git-worktree-convention-and-advisor-routing` (Level 2)
-> Parent packet: `.opencode/specs/skilled-agent-orchestration` (track)
-
 ### Summary
 
 Adopted one named-feature-worktree convention for sk-git — branch `wt/{NNNN}-{name}` (groups under `wt/` in Git UIs, mirroring `system-speckit/`) and directory `<repo>/.worktrees/{NNNN}-{name}` (gitignored), with a 4-digit global `max+1` counter. Sharpened sk-git's skill-advisor routing so git/worktree/branch/commit/PR/merge/finish intent reliably lands on sk-git (and not system-spec-kit or sk-code), and restructured all existing worktrees into the scheme. The ephemeral per-session wrapper (`worktree-session.sh`) keeps its auto-managed `work/{runtime}/{slug}` lane — documented as a distinct lane, intentionally not renumbered (the reaper keys on the `.worktrees/` dir, and the wrapper is live shared infra). Committed `58dc634577`.
@@ -57,3 +54,6 @@ Adopted one named-feature-worktree convention for sk-git — branch `wt/{NNNN}-{
 ### Follow-Ups
 
 - Optional: align the ephemeral per-session wrapper (`worktree-session.sh`) branch namespace to `wt/` too — deferred (live shared infra; reaper is dir-keyed so it's reconnect-safe but not numbered). Stale feature worktrees (`0001`–`0005`) are merged and prunable on request.
+
+> Spec folder: `.opencode/specs/skilled-agent-orchestration/z_archive/103-sk-git-worktree-convention-and-advisor-routing` (Level 2)
+> Parent packet: `.opencode/specs/skilled-agent-orchestration` (track)

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/014-sk-code` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`
-
 ### Summary
 
 sk-code's 88 reference and asset docs now carry exactly the canonical frontmatter contract, making the campaign's largest skill fully valid routing signal for the advisor doc harvest. The phase scaled the pilot recipe from 4 docs to 88 by replacing per-file edits with a digest sweep plus one assertion-guarded batch patch, and proved the recipe holds at an order of magnitude more volume.
@@ -57,3 +54,6 @@ sk-code's 88 reference and asset docs now carry exactly the canonical frontmatte
 
 - Live-daemon matchedDocs verification is deferred until every advisor-attached session ends and a fresh session respawns the daemon with the doc-trigger flag enabled.
 - The spec stub inventory overcounted assets (27 including READMEs vs. the checker's 20 in-scope). Scope and outcome are unaffected.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/014-sk-code` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment`

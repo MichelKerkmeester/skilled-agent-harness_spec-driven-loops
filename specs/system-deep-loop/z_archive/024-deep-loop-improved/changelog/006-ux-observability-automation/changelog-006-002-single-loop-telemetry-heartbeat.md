@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation/002-single-loop-telemetry-heartbeat` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation`
-
 ### Summary
 
 Added step_telemetry_heartbeat (started/progress/terminal lifecycle rows) to deep_research_auto.yaml and a serialized-diff gate in atomic-state.ts suppressing no-change telemetry row writes. 11/11 atomic-state tests pass; YAML parses.
@@ -55,3 +52,6 @@ Added step_telemetry_heartbeat (started/progress/terminal lifecycle rows) to dee
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation/002-single-loop-telemetry-heartbeat` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/006-ux-observability-automation`

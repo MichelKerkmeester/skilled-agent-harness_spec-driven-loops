@@ -8,8 +8,6 @@
 
 CocoIndex Code is a powerful semantic code search tool that understands 28+ programming languages, but it was barely used in practice. The hooks that run at session startup failed because the TypeScript source files were never compiled to JavaScript. The CocoIndex MCP server was not registered for Claude Code sessions. There was only one MCP tool (search), so managing the index required dropping to the command line. And despite documentation saying "use CocoIndex first," AI agents routinely skipped it in favor of simpler text search. This phase fixes the compilation blocker, registers CocoIndex for automatic loading, adds three new MCP tools for index management and quality feedback, enforces CocoIndex-first routing across all four AI runtimes, and wires semantic search results into the compaction pipeline so they survive context window resets.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/012-cocoindex-ux-utilization/`
-
 ---
 
 ## What Changed
@@ -157,3 +155,5 @@ CocoIndex Code is a powerful semantic code search tool that understands 28+ prog
 ## Upgrade
 
 No migration required. The new MCP tools and routing changes are additive. If CocoIndex is not running, all hooks and tools degrade gracefully -- they skip CocoIndex sections and return informative errors without blocking other functionality.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/012-cocoindex-ux-utilization/`

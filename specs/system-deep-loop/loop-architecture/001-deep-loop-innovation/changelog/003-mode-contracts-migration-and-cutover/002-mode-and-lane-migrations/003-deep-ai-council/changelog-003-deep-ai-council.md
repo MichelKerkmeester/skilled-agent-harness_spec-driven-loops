@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council` (Level 2)
-
 ### Summary
 
 This phase-parent migrates the multi-seat Deep AI Council deliberation onto the shared typed event-ledger substrate through seven concern children, preserving replayable run state, sealed artifacts, independent verification, resumability, shadow parity, and a rollback-guarded mode gate. Each child owns its own scope, plan, and verification. Per the phase documentation map the children are delivered; the lane remains in progress.
@@ -30,9 +28,9 @@ This phase-parent migrates the multi-seat Deep AI Council deliberation onto the 
 | `006-shadow-parity` | Run the typed event-ledger path beside the legacy council emitter against the same frozen execution and compare canonical behavior projections event-for-event. |
 | `007-rollback-and-mode-gate` | Implement the additive-dark rollback switch and independent mode gate for the Deep AI Council migration to the typed event-ledger substrate. |
 
-## 2026-08-16
-
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council` (Level 2)
+
+## 2026-08-16
 
 ### Summary
 
@@ -43,3 +41,6 @@ The Deep AI Council migration lane is now Complete, with all seven concern child
 - All 7 leaves Complete.
 - Certificates-and-receipts verified green at 16/16; resume-adapter at 10/10.
 - Shadow-parity at 41/41; rollback-gate at 32/32.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council` (Level 2)
+

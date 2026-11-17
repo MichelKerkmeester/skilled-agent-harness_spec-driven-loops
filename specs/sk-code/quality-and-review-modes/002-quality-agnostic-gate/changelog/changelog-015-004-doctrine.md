@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/sk-code/015-quality-agnostic-gate/004-doctrine` (Level 2)
-> Parent packet: `specs/sk-code/015-quality-agnostic-gate`
-
 ### Summary
 
 A repository with no declared surface can now finish the quality gate. Iron Law 3 gives an UNKNOWN surface the universal floor and the quality runner's built-in checks until the operator names its surface and commands, and the SKILLED house checklist no longer claims to apply to every repository.
@@ -91,3 +88,6 @@ A repository with no declared surface can now finish the quality gate. Iron Law 
 - The hub route still loads the SKILLED house checklist on every surface. ROUTER.md lists universal-checklist.md in its CODE_QUALITY rows, which phase 002 already recorded. ROUTER.md belongs to phase 005, so the title now says SKILLED while that route does not.
 - The committed trigger index still holds the two old trigger phrases. The retitle replaced them in the checklist, and the trigger-index rebuild workflow refreshes the index after the change reaches main.
 - Older punctuation stays in lines this phase did not touch. The frontmatter descriptions of two quality checklists and one sentence in sk-code-quality/SKILL.md section 3 still hold an em dash, and the validator accepts them.
+
+> Spec folder: `specs/sk-code/015-quality-agnostic-gate/004-doctrine` (Level 2)
+> Parent packet: `specs/sk-code/015-quality-agnostic-gate`

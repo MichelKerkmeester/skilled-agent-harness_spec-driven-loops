@@ -19,9 +19,6 @@ contextType: "research"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/001-template-level-consolidation-research` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
-
 ### Summary
 
 An autonomous 10-iteration deep-research loop converged on a PARTIAL consolidation recommendation for the spec-kit templates folder, replacing months of guesswork with a 4-phase gated implementation plan and concrete numbers (25 markdown files / 4,087 LOC of duplicate rendered output identified for eventual deletion). The synthesis sits in research/research.md (29.7 KB, 17 sections) and feeds directly into a follow-on implementation packet , , ,  no further investigation needed.
@@ -76,3 +73,6 @@ An autonomous 10-iteration deep-research loop converged on a PARTIAL consolidati
 - Phase 2: resolver wrapper with path, content, metadata modes
 - Phase 3: consumer migration with strict-mode CI
 - Phase 4: deletion of 25 markdown files / 4,087 LOC from templates/level_1/, level_2/, level_3/, level_3+/ (optional, gated on Phase 3 success)
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/001-template-level-consolidation-research` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

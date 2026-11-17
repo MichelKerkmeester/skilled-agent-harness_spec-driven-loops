@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-11
 
-> Spec folder: `specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci` (Level 1)
-> Parent packet: `specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation`
-
 ### Summary
 
 A new disagreement between the advisor's Python and TypeScript scorers now fails CI, and so does a new prompt shared between the holdout and any test that scores prompts. Before this phase no workflow ran the divergence ratchet, and the ratchet passed only on a machine where the advisor daemon had built a skill graph.
@@ -65,3 +62,6 @@ A new disagreement between the advisor's Python and TypeScript scorers now fails
 - Live-daemon parity is not covered. The ratchet shows harness-regime parity only, as its header says. A prompt such as rr-iter3-168 can route differently in the live daemon and still pass.
 - The version may collide at merge. Sibling phases bump system-skill-advisor in parallel, so the integrator may renumber 0.15.4.0.
 - Pre-existing advisor suite failures. Four test files fail in this worktree with or without this change: python-compat, advisor-corpus-parity, advisor-graph-health and skill-advisor-cli-parity. They are outside this phase's scope.
+
+> Spec folder: `specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci` (Level 1)
+> Parent packet: `specs/sk-code/011-sk-code-poinytail-based-refinement/021-open-ends-remediation`

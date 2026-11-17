@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening`
-
 ### Summary
 
 This leaf pins the feedback safety posture in code, tests, and phase docs without activating any feedback-driven reducer. Public memory writes can no longer forge reserved feedback event or artifact types. Feedback capture and batch learning remain shadow-only: the ledger can write diagnostic rows, but ranking, retention, and FSRS state are untouched. Three invariants any future reducer must honor are recorded as inert contract helpers: symmetric damping, rare-but-correct protection, and constitutional immunity. Active reducer work under 005 is explicitly deferred and coordinated as diagnostics-first.
@@ -64,3 +61,6 @@ This leaf pins the feedback safety posture in code, tests, and phase docs withou
 
 - Active reducer work (ranking, retention, FSRS mutation) remains deferred until ledger quality is measured; the concrete thresholds that justify enabling a reducer are defined in the 005 diagnostics-first children.
 - Any future reducer that mutates memory must inject automated `__provenanceContext` so it remains governed by the Phase 1 provenance overwrite guard.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening`

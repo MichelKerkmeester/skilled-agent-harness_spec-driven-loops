@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/008-tier-d-documentation-execution` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor`
-
 ### Summary
 
 Three Tier D documentation items from the 007 deferred decisions list were completed. The Devin hooks configuration file was migrated to point UserPromptSubmit and SessionStart to their correct new skill-owner paths. Deprecation banners with a 90-day removal window were added to all four OLD hook README directories. A cross-reference table mapping all seven catalog groups to playbook sections was added to the playbook root. Two remaining Tier D items stay as they are per the deferred decisions recommendations.
@@ -66,3 +63,6 @@ Three Tier D documentation items from the 007 deferred decisions list were compl
 - Devin runtime must restart to pick up the new hook paths from `.devin/hooks.v1.json`
 - OLD hook directory removal can proceed after the 90-day deprecation window elapses (target: 2026-08-16) once no remaining consumers point at the old paths
 - F35 and F36 remain status quo per deferred decisions document sections 5 and 6
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/008-tier-d-documentation-execution` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor`

@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-05-21
 
-> Spec folder: `.opencode/specs/sk-prompt/004-sk-prompt-small-model-optimization/007-sk-prompt-small-model-rename` (Level 2)
-> Parent packet: `.opencode/specs/sk-prompt/004-sk-prompt-small-model-optimization`
-
 ### Summary
 
 A coordinated rename pass across 22 live-reference surfaces, plus advisor reindex, plus parent metadata reconciliation.
@@ -89,3 +86,6 @@ A coordinated rename pass across 22 live-reference surfaces, plus advisor reinde
 - Pin CHK-FIX-007 evidence to commit SHA after the rename commit lands on `main`.
 - Consider tightening `system-rerank-sidecar` `edges.prerequisite_for[0]` weight from 0.3 into the recommended [0.7, 1.0] band (compiler still emits a soft WEIGHT-BAND warning; non-blocking).
 - Packet 115 (queued by the user): rename `deep-ai-council` skill → `sk-ai-council` and `deep-ai-council.md` agent → `ai-council.md`, repo-wide reference propagation.
+
+> Spec folder: `.opencode/specs/sk-prompt/004-sk-prompt-small-model-optimization/007-sk-prompt-small-model-rename` (Level 2)
+> Parent packet: `.opencode/specs/sk-prompt/004-sk-prompt-small-model-optimization`

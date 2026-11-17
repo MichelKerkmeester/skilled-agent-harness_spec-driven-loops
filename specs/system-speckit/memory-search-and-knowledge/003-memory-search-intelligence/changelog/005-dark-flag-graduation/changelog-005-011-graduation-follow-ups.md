@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/007-graduation-follow-ups` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`
-
 ### Summary
 
 This phase parent rolled up the four production-readiness follow-ups that the 009 pre-graduation validation required before any dark flag could be flipped on evidence. The code-graph child wired the bitemporal close-and-insert writer through the full reindex path and set the degree-cap default to 15 from a benchmark sweep. The deep-loop child redefined the lag metric to a true stall detector and added a title-overlap gate to the near-duplicate dedup so distinct same-body findings with disjoint titles no longer collapse. The search child added an append-exempt tier to the serializer trim so tail-appended rows survive the token-budget cut and wired a density probe into the true-citation ledger. The advisor child documented the implicit self-recommendation penalty with a durable WHY comment, corrected the alias gap in the guard-off branch, and locked both with a regression test. Each change stays behind its existing default-off flag, with the lone deliberate exception of the deep-loop gauge defaults whose committed source values remain 0 while their recommended production values are documented and proven.
@@ -105,3 +102,6 @@ This phase parent rolled up the four production-readiness follow-ups that the 00
 - **Code-graph (001):** The bitemporal validity columns have no covering indexes. A large-scale as-of read could degrade. Deferred and default-off.
 - **Deep-loop (002):** The committed gauge defaults remain 0. Flipping them to the recommended production values (heartbeat 30s, lag-ceiling 120000ms) requires a separate graduation step that also migrates `executor-config.vitest.ts` lines 232-233 and the `fanout-run.cjs` silent-when-off test.
 - **Advisor (004):** The full advisor cli test pass runs after this phase before a parent-level completion claim.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/007-graduation-follow-ups` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation`

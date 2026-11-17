@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`
-
 ### Summary
 
 The embedding stack lacked an operator-visible diagnostics surface and would dead-reckon on model-switch correctness. Cold starts with a first-embed model download were falsely declared failed because the client timeout did not distinguish an unreachable server from one that was reporting loading. Three features were shipped on top of the selector, shared socket, client resilience, server liveness and supervision foundations from prior phases.
@@ -72,3 +69,6 @@ The embedding stack lacked an operator-visible diagnostics surface and would dea
 
 - Live model-server probe deferred to phases 004 and 005. The `embedder_status` handler was verified against mocked transports and an end-to-end live two-launcher probe lands in phase 005.
 - The dimension drift warning relies on the database-layer dimension constraint as the hard backstop. The warning is diagnostic. The vector store still rejects a dimension-mismatched insert, so the warning improves the error message rather than being the sole guard.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`

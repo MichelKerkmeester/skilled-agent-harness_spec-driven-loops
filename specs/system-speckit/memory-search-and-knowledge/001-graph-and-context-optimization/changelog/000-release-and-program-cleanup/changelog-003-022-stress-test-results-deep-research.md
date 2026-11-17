@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/022-stress-test-results-deep-research` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 The v1.0.3 stress cycle (packet 021) returned a CONDITIONAL verdict. The live handler probe timed out at the embedding-readiness gate after 30 seconds, so all telemetry samples were collected via a packet-local runner rather than full live handler emission. That caveat left several questions about runtime behavior, harness parity and next-step planning unanswered.
@@ -68,3 +65,6 @@ This research packet ran 5 focused iterations against the v1.0.3 artifacts, v1.0
 - Implement the smallest harness change identified in RQ3 so the search-quality harness natively emits SearchDecisionEnvelope, audit and shadow records without a packet-local wrapper.
 - Evaluate W4 trigger thresholds against a larger sample before acting on the tuning candidates flagged as P2 speculation in this research.
 - Decide whether Phase K prioritizes corpus expansion or live-handler coverage as its primary delta over v1.0.3.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/022-stress-test-results-deep-research` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

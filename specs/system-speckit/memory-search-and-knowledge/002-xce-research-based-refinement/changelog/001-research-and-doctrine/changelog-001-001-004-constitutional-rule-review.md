@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/004-constitutional-rule-review` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`
-
 ### Summary
 
 Adopted peck's T2 teaching (bounded reflection with promotion-on-recurrence) by giving constitutional rules a reviewable age. Each of the 13 active rule files now carries `last_confirmed` and `last_confirmed_source` frontmatter backfilled from `git log -1 --format=%cs`. A standalone Node diagnostic lists active rules sorted by staleness with a `review_by` deadline. The memory reference documents a 180-day review cadence. No constitutional rule's decay exemption, search boost, or always-surface behavior was changed.
@@ -60,3 +57,6 @@ Adopted peck's T2 teaching (bounded reflection with promotion-on-recurrence) by 
 
 - This phase informs retirement decisions only. It does not change the constitutional tier's decay exemption or boost.
 - No automatic retirement is implemented. Stale output is a review signal for a human to act on.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/004-constitutional-rule-review` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`

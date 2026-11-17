@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/030-client-side-reconnect-survival` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 Status: NOT STARTED. This phase is a planning artifact, not shipped work. It was opened from an investigation into why Claude Code still needs a manual /mcp after a client-side MCP transport drop, even though v3.5.0.4 made the daemon survive session disposal. The investigation found the daemon and launcher stay alive; only Claude's client↔launcher stdio link drops, and stdio servers get no client-side auto-reconnect.
@@ -48,3 +45,6 @@ _No file-level detail recorded._
 - Capture and classify one real disconnect from the launcher log (idle-reap vs transport error vs orphan-exit)
 - If idle-reap confirmed: flag-gated default-off keepalive notification emitter in launcher-session-proxy.cjs
 - Confirm stdout hygiene: trace writeLeaseHeldDiagnostic reachability on the serving path and reroute to stderr if reachable
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/030-client-side-reconnect-survival` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

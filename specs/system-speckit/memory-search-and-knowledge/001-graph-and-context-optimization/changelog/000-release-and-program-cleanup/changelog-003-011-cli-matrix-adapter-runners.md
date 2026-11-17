@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/011-cli-matrix-adapter-runners` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 Packet 035's runtime matrix execution validation returned a CONDITIONAL verdict because 42 of 70 external CLI cells had no runner. No complete manifest, no per-CLI adapter tree. No meta-aggregator existed. This left packet 030's F1-F14 feature matrix design unexecutable for five external CLI executors.
@@ -86,3 +83,6 @@ Operators can now route any of the 69 applicable external CLI cells through type
 - Split and harden the F12 progressive validator timeout. Packet 039 owns this work.
 - Create the F13 native/inline stress-cycle runner. Packet 040 owns this work.
 - Update packet 035 findings once real adapter runs produce outcomes. A later verification packet should consume these runners and publish new findings.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/011-cli-matrix-adapter-runners` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-27
 
-> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install` (Level 2)
-> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`
-
 ### Summary
 
 Phase 022 closes the four items phase 021 left open:
@@ -67,3 +64,6 @@ sk-git is now 1.9.7.0.
 
 - Private `local-*` skills are not linked into worktrees; linking them changes what advisor and graph tests see in a worktree.
 - The rr-iter3-168 live margin is one millionth, held by the bound rather than by evidence.
+
+> Spec folder: `specs/system-speckit/054-weak-model-spec-authoring/022-advisor-routing-and-local-install` (Level 2)
+> Parent packet: `specs/system-speckit/054-weak-model-spec-authoring`

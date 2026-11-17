@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-10-26
 
-> Spec folder: `specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor` (Level 2)
-> Parent packet: `specs/sk-code/015-quality-agnostic-gate`
-
 ### Summary
 
 A repository can now commit .sk-code/quality.json to name its own checks, and the quality runner runs them. In a temporary repository with a package.json that holds lint and test scripts, /doctor:sk-code quality planned one check, lint, as not required, wrote the file on --apply, refused a second write with CONFIG_EXISTS and then checked the file clean.
@@ -107,3 +104,6 @@ A repository can now commit .sk-code/quality.json to name its own checks, and th
 - A bare /doctor:sk-code matches no bridge by slash command. The command still runs setup, and the advisor matches a typed target, as it does for /doctor:git.
 - The battery is slower. It took 33 seconds against 23 before the quality leg, most of it the quality suite. The design sets no budget, so the increase is reported and not gated.
 - A long file list can pass the argument limit. {files} passes every matching file of a group in one argv, and such a run reads ERROR. The reference names it.
+
+> Spec folder: `specs/sk-code/015-quality-agnostic-gate/003-config-and-doctor` (Level 2)
+> Parent packet: `specs/sk-code/015-quality-agnostic-gate`

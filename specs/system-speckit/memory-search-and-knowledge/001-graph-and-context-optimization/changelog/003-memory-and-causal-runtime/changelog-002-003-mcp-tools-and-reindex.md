@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/003-mcp-tools-and-reindex`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`
-
 ### Summary
 
 The swap mechanism built in phase 002 had no operator-facing surface. Calling `embedder_set` required direct database access. There was no way to list available embedders, monitor re-index progress or cancel a running job from the MCP protocol layer.
@@ -88,3 +85,6 @@ Phase 003 wired the swap mechanism into three new MCP tools and a background orc
 - Re-index pauses when Ollama is unreachable mid-run. Implement a retry budget so transient network outages do not stall long-running jobs permanently.
 - Cancel does not roll back partial writes to `vec_<newdim>`. Document that partial tables are safe to overwrite on retry. Add a cleanup sweep for orphaned partial tables on startup.
 - Large corpora above 100k memories may require tuning the default batch size of 50 via `EMBEDDER_REINDEX_BATCH_SIZE` to avoid OOM or timeout pressure.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/003-mcp-tools-and-reindex`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

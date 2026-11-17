@@ -8,8 +8,6 @@
 
 This phase took the deep-research packet from a partly aligned documentation pass to a fully executable and verified contract. It tightened lineage and reducer semantics, synchronized all runtime mirrors and workflow assets to the same packet model, added the missing machine-readable helper surfaces, and closed the phase packet with passing focused tests plus strict validation.
 
-> Spec folder: `.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements/`
-
 ---
 
 ## Research Contract and State Model (3)
@@ -192,3 +190,5 @@ This phase took the deep-research packet from a partly aligned documentation pas
 ## Upgrade
 
 No migration is required for consumers of the shipped deep-research packet. The main practical change is that the packet contract is now both clearer and safer to maintain: helper execution, reducer refresh, runtime parity, and packet closeout all point at the same live surfaces.
+
+> Spec folder: `.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements/`

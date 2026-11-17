@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/038-generator-hardening` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Shipped three additive hardening behaviors over the already-idempotent graph-metadata generator. A persisted `source_fingerprint` proves the derived fields are fresh, one shared `listPhaseChildren` enumeration keeps the parent classification and the derived `children_ids` from disagreeing, and access and freshness telemetry moved to an index-layer store so a read no longer dirties an unchanged file. All three shipped behind the default-OFF `SPECKIT_GENERATOR_HARDENING` flag with the strict read under the existing grandfather report mode, so flag-off behavior is byte-identical.
@@ -68,3 +65,6 @@ Shipped three additive hardening behaviors over the already-idempotent graph-met
 ### Follow-Ups
 
 - The phase shipped default-OFF, with the canonical freshness write in `generate-context.ts` left in place and a scoped migration named as the graduation step. `SPECKIT_GENERATOR_HARDENING` later GRADUATED to default-ON after the phase 039 migration was re-run with the flag set, which backfilled `source_fingerprint` tree-wide and cleared the missing-fingerprint mass-fail the benchmark measured.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/038-generator-hardening` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/002-edge-explanation-impact-uplift` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance`
-
 ### Summary
 
 The code-graph edge metadata carried `confidence`, `detectorProvenance`, `evidenceClass` but gave operators no `reason` or `step` fields explaining why a relation was inferred. The `computeBlastRadius` function grouped files by depth but produced no risk classification, no confidence threshold filtering, no ambiguity surfacing, no structured failure states.
@@ -80,3 +77,6 @@ This phase added `reason` and `step` as graph-local JSON fields inside the exist
 
 - Re-run `python3 .opencode/skills/sk-doc/scripts/validate_document.py` against the feature catalog and playbook entries to capture numeric DQI scores against the current rubric to close R-007-20.
 - Address the cosmetic validate.sh template-section conformance failure tracked as P2 cleanup in 010/007 when the next maintenance window opens.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/002-edge-explanation-impact-uplift` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance`

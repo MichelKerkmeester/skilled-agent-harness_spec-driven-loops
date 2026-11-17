@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 The hook contract docs and adapter scaffolding described how Claude Code, Codex CLI, GitHub Copilot CLI, Gemini CLI and OpenCode should receive Spec Kit prompt and lifecycle context. That contract had never been tested with a live execution pass. Each runtime CLI was invoked. Its hook or plugin signal was observed. Results were saved as JSONL evidence.
@@ -80,3 +77,6 @@ A five-cell verdict matrix was produced. Four cells returned FAIL due to auth, k
 - Determine whether runtime auth and state-directory failures belong in operator setup documentation or in dedicated per-runtime remediation packets.
 - Rerun the matrix on a host where all five CLIs are fully authenticated to confirm hook-code PASS verdicts.
 - Investigate why the Gemini CLI blocks at an interactive auth prompt rather than returning a nonzero exit code when credentials are absent.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

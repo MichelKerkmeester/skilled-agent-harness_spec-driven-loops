@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/002-semantic-routing-lane` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`
-
 ### Summary
 
 The skill advisor scoring engine carried a dormant semantic shadow lane at weight zero that provided no real cosine-similarity signal for intent-based recommendations. This packet defined the strategy for converting that lane into a live cosine lane using the local EmbeddingGemma runtime. Implementation was shipped across 10 sibling phases covering embedding cache wiring, ablation sweeps, weight rebalancing, metadata quality audits and routing calibration. The phase tree was also reorganized: children were promoted to direct siblings and 46 folder moves consolidated 17 phases into 7 themed parent packets.
@@ -59,3 +56,6 @@ The skill advisor scoring engine carried a dormant semantic shadow lane at weigh
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/002-semantic-routing-lane` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine`

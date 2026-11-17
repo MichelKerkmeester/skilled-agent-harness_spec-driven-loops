@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/001-preconditions-and-build` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation`
-
 ### Summary
 
 This phase brought the environment to a known-good state before any scenario ran. Both MCP servers compile clean, the hook-disable flag is unset, evidence workspaces exist, and both CLI executors are authenticated. The 46-scenario run that follows will measure the real system instead of a stale build.
@@ -57,3 +54,6 @@ This phase brought the environment to a known-good state before any scenario ran
 
 - Shell `DEEPSEEK_API_KEY` is unset. Dispatch works because opencode reads its own credential store, but a raw-shell DeepSeek call would still need the env var.
 - `skill_graph_status` reports 21 skills versus `advisor_status` 23. The graph DB indexes 21 while the advisor counts 23 discovered `graph-metadata.json` files (2 extra are non-graph entries). This is expected and documented in phase 002.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/001-preconditions-and-build` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation`

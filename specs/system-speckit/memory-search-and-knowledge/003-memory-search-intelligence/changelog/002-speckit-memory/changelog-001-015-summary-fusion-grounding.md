@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 This phase shipped shadow-gated summary and community fusion code, plus a default-off read-only grounding prelude over existing summaries. The fused lane is registered across routing, telemetry, ranked-list adaptation, RRF fusion and adaptive weights and the legacy inject paths are stood down to avoid double-counting. The benchmark delta, weight retune and persistent two-tier world-summary hierarchy remain pending because live benchmark and schema work were out of scope.
@@ -56,10 +53,10 @@ _Detailed file-level changes live in the phase spec and tasks._
 - Retune the affected RRF weights against measured data.
 - Build the persistent world-summary hierarchy only in a schema-migration packet.
 
-## 2026-07-01
-
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding` (Level 2)
 > Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
+
+## 2026-07-01
 
 ### Summary
 
@@ -72,3 +69,7 @@ The fused summary and community lane this phase shipped shadow-gated behind `SPE
 ### Follow-Ups
 
 - No further revisit planned, the question is closed with a measured negative result.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
+

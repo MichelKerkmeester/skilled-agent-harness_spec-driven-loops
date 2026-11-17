@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/003-align-arc-020-spec-docs-with-sk-doc` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2`
-
 ### Summary
 
 Arc 020 closed the deferred-P2 behavior and API changes across six child packets, but 24 of those child docs carried H2 headings that did not conform to sk-doc ALL CAPS rules. Stale packet documentation weakens future memory retrieval and handoff quality even when the underlying runtime is correct. This phase audited all 36 arc 020 child markdown docs for H2 casing, ADR evidence rows, continuity frontmatter completeness and stale citations. The 24 drifted docs were corrected with mechanical uppercase fixes only. Seven runtime skill surfaces were also checked for evergreen packet-ID hygiene and doctor script shell headers. No violations were found and no edits were made. All strict validations for the arc 020 children, this packet and the arc 021 parent exited 0.
@@ -59,3 +56,6 @@ Arc 020 closed the deferred-P2 behavior and API changes across six child packets
 
 - Prose quality improvements beyond required structure and evidence drift fixes were intentionally out of scope for this phase.
 - Runtime skill surfaces were not edited because no current-state evergreen violations or doctor header drift were found. If future skill updates introduce mutable packet-ID citations, a follow-on sweep should target those surfaces.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/003-align-arc-020-spec-docs-with-sk-doc` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-28
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/002-search-query-rag-optimization` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`
-
 ### Summary
 
 Phase C found that search optimization work had no shared outcome evidence. Two P1 findings required resolution before ranking changes could land. The search-quality harness and corpus had to exist first (F-001 and F-020). An explicit query-plan contract was required before query intelligence could be calibrated (F-004).
@@ -78,3 +75,6 @@ F-001, F-020 and F-004 are closed. F-002 through F-019 are deferred to workstrea
 
 - Runtime regression measurement is deferred. The harness baseline proves infrastructure only. Future packets should run larger corpus measurements before changing ranking or rerank behavior.
 - Workstreams 3 through 7 remain planned. Composed RAG trust tree, conditional rerank, advisor learned weights, CocoIndex overfetch calibration and code graph degraded-readiness stress cells each need harness data before changes land.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/002-search-query-rag-optimization` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass`

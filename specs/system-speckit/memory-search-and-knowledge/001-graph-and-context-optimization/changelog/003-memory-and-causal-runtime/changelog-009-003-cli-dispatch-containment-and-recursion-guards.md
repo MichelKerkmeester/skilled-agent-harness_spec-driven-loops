@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/003-cli-dispatch-containment-and-recursion-guards` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`
-
 ### Summary
 
 Deep-loop CLI dispatch paths used raw shell branches with inconsistent timeout handling and prose-only self-invocation guards. Those gaps allowed same-runtime and two-hop cross-runtime recursion loops to form before lower-level daemon fixes could run. Phase 003 centralized dispatch supervision by extending `executor-audit.ts` with a four-layer pre-spawn recursion guard, a `buildExecutorDispatchEnv` helper that appends to `SPECKIT_CLI_DISPATCH_STACK` without mutating the parent environment plus an async supervisor (`runAuditedExecutorCommandAsync`) that owns POSIX detached process groups with a `SIGTERM`-grace-to-`SIGKILL` timeout ladder. Twenty-two unit and integration tests prove nested-CLI rejection, env and ancestry guard layers, lockfile guard layers, typed dispatch failure rows and cleanup of a child-plus-grandchild that ignores `SIGTERM`.
@@ -72,3 +69,6 @@ Deep-loop CLI dispatch paths used raw shell branches with inconsistent timeout h
 - `runAuditedExecutorCommand` remains synchronous for compatibility. The process-group timeout ladder requires `runAuditedExecutorCommandAsync`. Callers that need full escalation semantics should migrate to the async path.
 - The process-group integration fixture is skipped on Windows because POSIX negative-PID group signaling is the tested contract.
 - Phase 004 can build on the guarded dispatch surface to address deep-loop locks, JSONL state and recovery without re-scoping the CLI containment layer.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/003-cli-dispatch-containment-and-recursion-guards` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation`

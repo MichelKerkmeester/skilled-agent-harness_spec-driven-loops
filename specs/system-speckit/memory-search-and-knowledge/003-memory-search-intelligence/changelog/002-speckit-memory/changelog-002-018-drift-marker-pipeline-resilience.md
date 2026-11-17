@@ -14,10 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-11
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/018-drift-marker-pipeline-resilience` (Level recorded in phase evidence)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
-> Historical alias: `013-drift-marker-pipeline-resilience`
-
 ### Summary
 
 This migration index makes the shipped phase discoverable at its final packet-local path without rewriting its historical identity. The allowed implementation evidence records: Both fixes implemented in the single file plan.md scoped, exactly per the approved approach -- no deviations required.
@@ -49,3 +45,7 @@ This migration index makes the shipped phase discoverable at its final packet-lo
 ### Follow-Ups
 
 - None in the allowed evidence set.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/018-drift-marker-pipeline-resilience` (Level recorded in phase evidence)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory`
+> Historical alias: `013-drift-marker-pipeline-resilience`

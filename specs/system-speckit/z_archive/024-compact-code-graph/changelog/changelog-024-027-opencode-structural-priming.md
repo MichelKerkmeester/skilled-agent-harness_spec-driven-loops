@@ -8,8 +8,6 @@
 
 Hookless runtimes needed a clearer answer than "the code graph exists". They needed to know whether the graph was ready, stale, or missing, and they needed that answer to stay consistent across auto-prime, bootstrap, resume, and health checks. This phase delivered that shared structural bootstrap contract, with OpenCode-first wording and a single canonical recovery recommendation.
 
-> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/027-opencode-structural-priming/`
-
 ---
 
 ## New Features (3)
@@ -87,3 +85,5 @@ Hookless runtimes needed a clearer answer than "the code graph exists". They nee
 ## Upgrade
 
 No migration required. This phase is additive and contract-focused: it standardizes how hookless runtimes describe and recover structural context without changing the core graph tools themselves.
+
+> Spec folder: `.opencode/specs/system-spec-kit/024-compact-code-graph/027-opencode-structural-priming/`

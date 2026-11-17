@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-04-20
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
-
 ### Summary
 
 Phase 027 shipped a unified advisor architecture across seven child packets. The work moved durable advisor behavior into the system-spec-kit MCP server while preserving legacy Python and plugin caller compatibility. The daemon provides chokidar-based watcher, single-writer lease, generation freshness, and benchmark gating. The native scorer implements five-lane fusion with regression-protection parity. MCP tools expose recommendation, status, and validation. Compatibility shims route Python and plugin callers to native behavior.
@@ -67,3 +64,6 @@ Phase 027 shipped a unified advisor architecture across seven child packets. The
 - Fix advisor unavailable fail-open: `advisor_recommend` scores during corrupt/unavailable graph states.
 - Add authority gating to public `skill_graph_scan`.
 - Add regression tests for active invariants (unavailable fail-open, untrusted scan rejection, corruption rebuild, path redaction).
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/009-byte-offset-log-regions` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`
-
 ### Summary
 
 Stamp logOffset/logSize/logPath on iteration records (post-dispatch-validate.ts) + optional schema fields (deep_research_auto.yaml) + dashboard surfacing in reduce-state.cjs. 23 vitest + workflows node test pass; typecheck green. Corrected two wrong spec paths (reduce-state lives in deep-loop-workflows; auto yaml in commands/deep/assets).
@@ -58,3 +55,6 @@ Stamp logOffset/logSize/logPath on iteration records (post-dispatch-validate.ts)
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/009-byte-offset-log-regions` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

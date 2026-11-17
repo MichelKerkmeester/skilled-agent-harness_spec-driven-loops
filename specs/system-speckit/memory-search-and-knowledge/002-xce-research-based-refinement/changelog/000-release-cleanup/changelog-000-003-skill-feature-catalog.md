@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`
-
 ### Summary
 
 The system-spec-kit feature catalog gained 15 missing current-state entries for shipped 027 features. The pass kept the existing catalog shape, skipped a duplicate spec-memory CLI entry that was already covered, and reconciled the mutation count self-check from 12 to 13.
@@ -53,3 +50,6 @@ The system-spec-kit feature catalog gained 15 missing current-state entries for 
 ### Follow-Ups
 
 - Unrelated root catalog drift outside the touched self-check remains documented as pre-existing scope.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup`

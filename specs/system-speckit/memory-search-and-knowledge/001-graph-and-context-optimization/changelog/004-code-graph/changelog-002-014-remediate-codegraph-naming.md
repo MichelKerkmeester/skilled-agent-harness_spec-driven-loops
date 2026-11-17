@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-25
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/014-remediate-codegraph-naming` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`
-
 ### Summary
 
 The 014 deprecation renamed code-graph's handlers and tools to their own identifiers (`status.ts`, `scan.ts`, `verify.ts`, `code_graph_*` tools, tree-sitter engine) but the skill's documentation was never updated. Docs still referenced phantom `ccc-status.ts`, `ccc-reindex.ts`, `ccc-feedback.ts` handlers, a deleted `lib/ccc/` adapter, a deleted `07--ccc-integration` catalog section, dead schema fields, ghost test names. The 013 post-deprecation deep-review (iterations 5 to 7) surfaced this class. Exact grep verification confirmed the scope.
@@ -81,3 +78,6 @@ Thirteen system-code-graph docs were edited in a single commit (`8a33bdffba`). B
 
 - Remaining 013 deep-review residue findings outside system-code-graph scope require a separate remediation pass: `.gemini/GEMINI.md` coco routing (P0), `/memory:manage` ccc subcommand, advisor `database/skill-graph.json`, `.gitignore`, `.opencode/bin/lib/sidecar-env-allowlist.cjs` `RERANK_`, the system-spec-kit `250-session-start` `.venv/bin/ccc` playbook.
 - Several docs cite `mcp_server/tool-schemas.ts`. That file's existence and accuracy were not audited in this pass (no ccc content). A follow-up should verify the path and the schema descriptions are current.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/014-remediate-codegraph-naming` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index`

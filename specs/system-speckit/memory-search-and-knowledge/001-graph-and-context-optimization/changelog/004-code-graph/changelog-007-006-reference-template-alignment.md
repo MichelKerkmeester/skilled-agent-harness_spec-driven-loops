@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/006-reference-template-alignment` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`
-
 ### Summary
 
 The `system-code-graph` references were root-level kebab-case files with no domain grouping and a static router map. Active docs in `README.md` and `ARCHITECTURE.md` pointed at those root paths, making them stale-prone whenever references moved. The SKILL.md router used no path-guard, no inventory checks. Fallback behavior was not aligned with the sk-doc skill pattern.
@@ -83,3 +80,6 @@ All 16 reference and stub files passed sk-doc blocking validation. The skill and
 
 - Historical changelogs and archived provenance files were not rewritten. Compatibility stubs preserve those links.
 - Future router updates should continue to target canonical subdomain references, not root stubs.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/006-reference-template-alignment` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`

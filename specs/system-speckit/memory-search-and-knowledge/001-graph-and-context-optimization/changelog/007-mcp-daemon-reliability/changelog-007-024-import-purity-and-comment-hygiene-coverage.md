@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/024-import-purity-and-comment-hygiene-coverage` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 The two open follow-ups from the daemon-reliability cross-check are closed. Importing the code-index launcher no longer rewrites your environment or prints to stderr, and the comment-hygiene checker now catches the perishable-label classes that used to slip past it. Two gpt-5.5 agents implemented the fixes in parallel on disjoint files.
@@ -64,3 +61,6 @@ The two open follow-ups from the daemon-reliability cross-check are closed. Impo
 - F-notation stays review-owned. The checker does not flag F\d+ finding labels because the false-positive rate is too high. Genuine F labels rely on review.
 - Repo-wide label backlog remains. About forty single-number DR-N labels and others elsewhere in the tree are not scrubbed here. They are a separate follow-on.
 - No git pre-commit wiring yet. The extended checker runs through the PostToolUse hook. Wiring it into git pre-commit waits until the repo-wide backlog is scrubbed, so it does not block concurrent sessions.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/024-import-purity-and-comment-hygiene-coverage` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

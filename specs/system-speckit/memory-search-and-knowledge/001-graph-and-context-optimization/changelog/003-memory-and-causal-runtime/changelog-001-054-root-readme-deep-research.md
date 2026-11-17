@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-05-15
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/054-root-readme-deep-research` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 Phase D (055-root-readme-realignment) ran a deliberately shallow single-pass audit that sampled rather than exhaustively covered the root README. It found 16 claims, marked 1 DRIFTED and 1 UNVERIFIED and shipped 12 surgical edits. This phase ran the deeper sweep Phase D skipped.
@@ -70,3 +67,6 @@ Twenty cli-devin SWE 1.6 iterations ran across 7 thematic tracks covering counts
 - The 20-iteration cap is not a quality guarantee. If significant drift exists beyond what this sweep discovered, a follow-on research packet may be needed.
 - Track 3 (HVR voice) surfaced 185 violations concentrated in punctuation. A follow-on prose-specialist pass could cover any remaining non-punctuation HVR drift that cli-devin SWE 1.6 may have underweighted.
 - cli-devin SWE 1.6 is optimized for code research rather than prose audit. A follow-on with a prose-specialist model could improve Track 3 coverage quality if uneven iteration quality is observed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/054-root-readme-deep-research` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

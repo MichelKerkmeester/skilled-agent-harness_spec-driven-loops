@@ -20,9 +20,6 @@ contextType: "implementation"
 
 ## 2026-05-30
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`
-
 ### Summary
 This parent packet aggregates followup hardening tasks after the main infra investigations in 014. Each child addresses a specific followup item: live reap coverage, substrate scenarios, worktree dispatch rules, cli-* propagation, substrate 2nd daemon wiring, and SessionStart guard wiring.
 
@@ -57,3 +54,6 @@ This parent packet aggregates followup hardening tasks after the main infra inve
 
 ### Follow-Ups
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`

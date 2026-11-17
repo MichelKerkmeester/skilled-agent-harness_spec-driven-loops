@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-12
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`
-
 ### Summary
 
 Under Setup A (EmbeddingGemma-300m), every search call through the cocoindex MCP and CLI path returned `msgspec.DecodeError: Input data was truncated`. Direct sqlite-vec KNN queries against the same `target_sqlite.db` succeeded, proving the data layer was healthy. The root cause was that the daemon search path constructed a full CocoIndex Rust `Environment` before querying SQLite. With the 1335-row markdown stall in effect, that construction blocked indefinitely before any `SearchResponse` was sent.
@@ -69,3 +66,6 @@ Explicit refresh/index remains blocked. The `cocoindex._internal.core.abi3.so` b
 - Patch or fork the `cocoindex._internal.core.abi3.so` Rust core so `core.Environment(...)` can initialize without `Operation not permitted (os error 1)`. This unblocks explicit refresh/index and restores full language-sweep coverage beyond the current markdown-only 1335 rows.
 - After the Rust-core fix lands, re-run `ccc index` and confirm `SELECT language, COUNT(*) FROM code_chunks_vec GROUP BY language` returns non-zero rows for at least three source-code languages (python, typescript, go).
 - The `mcp-coco-index` skill was removed in a later chore commit. Confirm the patched `daemon.py` and `client.py` source is preserved or re-integrated wherever the cocoindex skill resurfaces.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation`

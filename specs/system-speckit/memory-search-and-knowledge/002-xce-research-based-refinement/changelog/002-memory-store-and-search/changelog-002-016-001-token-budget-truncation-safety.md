@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/001-token-budget-truncation-safety` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
-
 ### Summary
 
 A search that found five good results was rendering only one. The token-budget truncation step had two failure modes. It broke the materialization loop on the first entry that did not fit, so a single large `includeContent` body could swallow the budget and drop every result behind it. And the summary fallback that would have salvaged the overflow only fired when `includeContent` was true, so the common metadata-only call (which passes false) discarded the remainder outright. This phase makes truncation skip an oversized entry and keep going rather than break, floors a minimum of `min(limit, 3)` materialized results so a non-empty search never renders empty, promotes summaries on overflow regardless of `includeContent`, and routes whatever still does not fit through a progressive remainder so callers can page it instead of losing it. Weak and low-signal queries, which used to be assigned the smallest budget tier, now get the full budget so the trim does not start from a starved baseline.
@@ -58,3 +55,6 @@ A search that found five good results was rendering only one. The token-budget t
 ### Follow-Ups
 
 - Live confirmation that the originally weak two-word queries now render the full result set is gated on the daemon recycle and the deferred corpus reindex.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/001-token-budget-truncation-safety` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`

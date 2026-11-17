@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening`
-
 ### Summary
 
 `sk-deep-research` and `sk-deep-review` originally hardcoded `model: opus` at YAML dispatch and forbade direct CLI-in-a-loop. This phase made executor selection a first-class, YAML-owned dispatch branch with a Zod-validated config schema, per-kind flag compatibility, and JSONL audit logging. The feature built itself using the executor it was shipping (cli-codex gpt-5.4 high fast dogfooding). Two sub-phases shipped on the same day: 001-executor-feature (native + cli-codex, 62 new tests) and 002-runtime-matrix (cli-gemini + cli-claude-code, adding 54 more tests). A 30-iteration deep-research dogfood pass via cli-codex produced 12 R-IDs (R1-R12), closed in a downstream remediation packet.
@@ -71,3 +68,6 @@ Two sub-phase commits plus CF-026 remediation commit. Consolidation at packet le
 
 - **cli-copilot `--allow-all-tools` blocker**: Copilot CLI requires broad tool permissions. Narrower permission surface is a future enhancement.
 - **Downstream remediation**: R1-R12 findings from dogfood pass closed in `002-cli-executor-remediation` packet.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening`

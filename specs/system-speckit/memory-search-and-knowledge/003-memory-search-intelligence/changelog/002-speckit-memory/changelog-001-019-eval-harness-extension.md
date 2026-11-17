@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 The eval harness now has the C9 diagnostic and metric spine. `runAblation` can emit optional diagnostic snapshots, derive label views with memory metadata and report three corpus metric lanes: gate-verdict confusion, reliability calibration and cold-start appearance. The A8 promotion-gate work remains pending because it needs generalized ledger schema and live gate validation.
@@ -53,3 +50,6 @@ _No file-level detail recorded in the generated changelog._
 - Build the generalized promotion-gate ledger before class-specific gates.
 - Validate label-source routing with a live gate run.
 - Keep production flag promotion tied to clean multi-cycle evidence.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

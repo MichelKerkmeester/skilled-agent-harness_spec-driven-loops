@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/001-fix-deferred-p2s-for-test-only-and-shared-exports` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes`
-
 ### Summary
 
 Two P2 findings (F44 and F109) had been deferred because the mcp-server embedders barrel exposed `listSupportedDimensions` and `EmbedderManifest` through a public surface that only test files consumed. A grep-based consumer inventory confirmed zero live production importers for both symbols. Test consumers in `embedder-registry.vitest.ts` were refactored to direct shared-module imports. The barrel re-exports were then deleted. Typecheck passed after each edit stage. The full embedders vitest suite of 4 files and 40 tests passed with no regressions. Final strict spec validation exited 0.
@@ -62,3 +59,6 @@ Two P2 findings (F44 and F109) had been deferred because the mcp-server embedder
 
 - Commit is intentionally left to the parent agent.
 - The broad `rg -l` inventory includes sibling `system-skill-advisor` shared-embedder shim references. Those are outside this packet and not affected by the `system-spec-kit` barrel cleanup.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/001-fix-deferred-p2s-for-test-only-and-shared-exports` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes`

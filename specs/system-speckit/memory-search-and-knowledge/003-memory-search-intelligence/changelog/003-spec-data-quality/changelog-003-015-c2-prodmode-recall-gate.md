@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`
-
 ### Summary
 
 Status PLANNED. This phase is scaffolded and not yet implemented. No code change has landed and nothing below has shipped. The section describes the change the phase will make once it is built.
@@ -54,3 +51,6 @@ Status PLANNED. This phase is scaffolded and not yet implemented. No code change
 
 - Build this gate per plan.md. It is GO-on-cost and buildable-now, two narrow files reusing the export already present at line 361 plus the shared eval-metrics functions, with the gate-owned copy-DB and orchestration it must replicate.
 - A retrieval-class candidate earns a promotion only after the prod-mode completeRecall@3/@5/@8 benchmark rises AND the order-sensitive NDCG@K and top1 hold, because eval-mode gains do not transfer. The eval lens runs forceAllChannels with no truncation while the prod path applies the cliff-conditional confidence cut over the never-cut-below-3 minimum and the token budget. `DEFAULT_MIN_RESULTS = 3` is a floor not a cap, so the @5/@8 columns are the prod window the gate must read, not a hidden band.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/003-spec-data-quality`

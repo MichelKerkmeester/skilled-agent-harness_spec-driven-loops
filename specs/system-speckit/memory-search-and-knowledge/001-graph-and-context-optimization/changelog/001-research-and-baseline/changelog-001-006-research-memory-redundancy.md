@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-09
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/006-research-memory-redundancy` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline`
-
 ### Summary
 
 The completed memory-redundancy research had no coordination layer to propagate its conclusions. The 006 follow-on folder existed as a partly scaffolded handoff without the Level 3 closeout docs required for validation. Parent research surfaces and downstream packet docs still implied richer memory artifacts than the research now recommends. Runtime implementation ownership was unresolved.
@@ -71,3 +68,6 @@ The packet docs were normalized to the active Level 3 template shape and the mis
 - Verify `../../002-fix-memory-quality/` has accepted the explicit runtime ownership transfer recorded here before closing the parent packet.
 - Confirm `../../001-cache-warning-hooks/` and `../../z_archive/research-governance-contracts/012-cached-sessionstart-consumer-gated/` apply the compact-wrapper assumption alignment without additional scope growth.
 - Save packet findings to memory index once the parent research lane is fully closed.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/006-research-memory-redundancy` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline`

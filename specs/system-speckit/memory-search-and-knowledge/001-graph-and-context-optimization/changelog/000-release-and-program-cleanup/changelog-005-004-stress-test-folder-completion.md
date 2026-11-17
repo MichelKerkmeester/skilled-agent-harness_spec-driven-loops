@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/004-stress-test-folder-completion` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`
-
 ### Summary
 
 Packet 037/005 had migrated only two filename-matching files into the stress folder, leaving the bulk of stress coverage scattered across the default test tree. This packet completed the migration using content-based discovery. Every file whose imports or test descriptions indicated stress, benchmark, concurrency or degraded-state intent was classified and moved into a subsystem folder under `mcp_server/stress_test/`. A dedicated `vitest.stress.config.ts` now routes `npm run stress` to the stress surface only. The default Vitest config explicitly excludes `stress_test/**` to keep unit and integration feedback fast. A `migration-plan.md` ledger records each candidate, its classification rationale and the ambiguous mixed-suite files intentionally left in `tests/`.
@@ -68,3 +65,6 @@ Packet 037/005 had migrated only two filename-matching files into the stress fol
 - Rename metadata was not staged by this runtime. `git mv` failed because the sandbox could not create `.git/index.lock`. Files were moved with filesystem moves and can be detected as renames when committed by the orchestrator.
 - Mixed suites remain in `tests/`. This is intentional and documented in `migration-plan.md`.
 - The default test suite is not clean in this workspace. Unrelated failures across hook, graph metadata, modularization and code-graph suites preceded the hang. Verify those suites in a clean environment.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/004-stress-test-folder-completion` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test`

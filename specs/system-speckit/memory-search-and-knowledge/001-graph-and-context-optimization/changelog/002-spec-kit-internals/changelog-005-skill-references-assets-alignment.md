@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-02
 
-> Spec folder: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/005-skill-reference-asset-doc-alignment` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
-
 ### Summary
 
 Round 5 audited the remaining AI-facing system-spec-kit documentation surfaces that earlier cleanup rounds did not cover thoroughly. The audit swept `SKILL.md`, all files under `references/` (hooks, structure, templates, validation, workflows, root Markdown), and all Markdown files under `assets/`. Stale references to deleted paths (compose.sh, wrap-all-templates, level_N/ directories, the old architecture label) were removed or rewritten. Current-feature notes were added where they naturally belong, covering validation orchestrator performance, exit-code taxonomy, save locking, path traversal rejection, and batch inline rendering.
@@ -64,3 +61,6 @@ One commit: `e60b095416`.
 - **Phase 006 (command md/yaml alignment).** Audit command Markdown and YAML workflow assets for the same stale references and missing features.
 - **Phase 007 (fleet marker sweep).** Validate and clean fleet markers.
 - **Phase 008 (z_archive marker sweep).** Validate and clean archive markers.
+
+> Spec folder: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/005-skill-reference-asset-doc-alignment` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

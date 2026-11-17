@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-19
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection` (Level 2)
-> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
-
 ### Summary
 
 Delivered the canonical persistence boundary the deep-loop modes never had. A plain JSON record through a shell command now becomes an authorized, fenced, receipted ledger event, and the legacy state file is materialised from that ledger.
@@ -30,3 +27,6 @@ Delivered the canonical persistence boundary the deep-loop modes never had. A pl
 ### Status
 
 Complete. Authorization precedes the fence; projection refresh failure does not fail a durable append.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection` (Level 2)
+> Parent packet: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`

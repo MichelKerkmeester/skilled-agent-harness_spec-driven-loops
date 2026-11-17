@@ -12,8 +12,6 @@ contextType: "implementation"
 
 ## 2026-08-13
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review` (Level 2)
-
 ### Summary
 
 This phase-parent migrates Deep Review from its legacy scope, dimension-pass, convergence, and review-report loop to the shared typed event-ledger substrate through seven independently gated concern children. It reuses the shared review-loop contract that deep-alignment also consumes, so the migration stays compatible with the sibling lane. The parent tracks the shared theme only; each child owns its own scope, plan, and verification. Per the phase documentation map the children are delivered; the lane remains in progress.
@@ -30,9 +28,9 @@ This phase-parent migrates Deep Review from its legacy scope, dimension-pass, co
 | `006-shadow-parity` | Plan the Deep Review migration in shadow beside the legacy emitter, comparing normalized projections event-for-event until every parity and fail-closed cutover criterion is green. |
 | `007-rollback-and-mode-gate` | Plan the Deep Review rollback switch and independent migration gate: fail-closed authority control, a bounded rollback window, and shadow-parity acceptance. |
 
-## 2026-08-16
-
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review` (Level 2)
+
+## 2026-08-16
 
 ### Summary
 
@@ -43,3 +41,6 @@ The Deep Review migration lane is now Complete, with all seven concern children 
 - All 7 leaves Complete, including sealed-artifacts.
 - Rollback-gate green at 84/84 after resolving a parity exit-status independence probe that had only timed out.
 - Cross-consumer `identity_registry` validation fix landed across the mode parity adapters.
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review` (Level 2)
+

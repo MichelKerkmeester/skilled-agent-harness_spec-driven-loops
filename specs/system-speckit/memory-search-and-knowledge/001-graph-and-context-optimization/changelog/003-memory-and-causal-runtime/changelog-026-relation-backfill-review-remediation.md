@@ -18,8 +18,6 @@ contextType: "implementation"
 
 ## 2026-06-04
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/026-relation-backfill-review-remediation` (Level 3)
-
 ### Summary
 
 A deep review of the relation-inference backfill subsystem surfaced a confirmed data-integrity defect (SEC-001). The supersession `contradicts` collector and the lineage `caused` collector emit the SAME directed pair, because lineage is reciprocal (`A.superseded_by=B` AND `B.predecessor=A`). In a committed run with `contradicts:true`, the `caused` edge inserted first, then the `contradicts` edge triggered contradiction-detection, which silently set `invalid_at` on the just-created valid `caused` edge, mislabeling an evolution as a contradiction and corrupting traversal. It would do the same to a pre-existing manual or higher-strength edge on that pair.
@@ -73,3 +71,5 @@ This packet added a relation-agnostic conflict guard that suppresses any conflic
 - Supersession `contradicts` is intentionally NOT auto-created on a pair that already carries a valid conflicting edge. An explicit `contradicts` can still be added via `memory_causal_link` if a real contradiction (not an evolution) is recorded.
 - Structurally, `caused` stays below the 5% coverage target because `supports` dominates the inferred distribution. The production run raised total coverage 39.91% to 43.59% and `caused` from 3 to 103 edges, still under target.
 - When both a similarity `supports` and a supersession `contradicts` candidate target the same pair, the first-inserted (`supports`) wins and the `contradicts` is skipped. This is deterministic by insert order, not a value judgement between the two signals.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/026-relation-backfill-review-remediation` (Level 3)

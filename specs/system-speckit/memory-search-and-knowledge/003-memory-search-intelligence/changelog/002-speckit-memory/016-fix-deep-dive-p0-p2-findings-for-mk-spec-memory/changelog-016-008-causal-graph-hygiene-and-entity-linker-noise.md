@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-07-04
 
-> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/008-causal-graph-hygiene-and-entity-linker-noise/` (Level 3)
-> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`
-
 ### Summary
 
 The causal graph is no longer 94 percent noise. Of 33,101 edges, 31,118 were auto-created entity-linker `supports` edges at full causal strength, so a real causal edge could never outrank the co-occurrence sludge. This phase down-weighted 31,644 `entity_linker` `supports` edges from strength 0.7 to 0.05 in place. That is a provenance-scoped UPDATE rather than a delete, so the default causal read is dominated by real edges while the history is preserved for opt-in consumers. `recomputeLocal` no longer ratchets toward 1.0. The causal-links resolver stops attaching a wrong memory with a confident polarity. Placeholder surrogate titles were regenerated for 3,787 rows. The community lifecycle and graph-signals correctness bugs were fixed. Two live migrations ran under an atomic backup. Shipped in `dce35e1b37`.
@@ -65,3 +62,6 @@ The causal graph is no longer 94 percent noise. Of 33,101 edges, 31,118 were aut
 
 - Code effects apply on the next daemon-lease restart. The two live data migrations are already in effect against the corpus.
 - The Louvain to label-propagation rename and a real weighted-modularity algorithm are deferred until phase 006's eval harness can measure them.
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/008-causal-graph-hygiene-and-entity-linker-noise/` (Level 3)
+> Parent packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`

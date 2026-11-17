@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`
-
 ### Summary
 
 `memory_search` was returning RRF score distributions with Z near 1.2, below the evidence-gap threshold of 1.5, which forced the response policy into `broaden_or_ask` and blocked confident citation of results. Two cooperating bugs were responsible. The reindex path wrote only to `vec_<dim>` and never populated the `vec_memories` vec0 virtual table that the runtime KNN actually queries. Separately, the factory looked for `vec_<dim>` in the main database while ADR-012 had relocated that table into the per-embedder shard, causing the factory to default to the wrong model and dimension.
@@ -69,3 +66,6 @@ Both layers were patched in one commit (`fix(016/002/016): reindex dual-write + 
 - Extend the shard-aware factory lookup to non-ollama providers (hf-local, voyage, openai) when they adopt the same `vec_metadata` active-embedder pointer convention.
 - Add a migration script under `database/migrations/` to remove the legacy top-level `vec_metadata` table from `context-index.sqlite` once the shard layout is fully deployed.
 - Other shards that were not backfilled inherit the dual-write behavior on their next reindex run. No manual backfill is needed for those shards.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-01
 
-> Spec folder: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
-
 ### Summary
 
 The user explicitly rejected the PARTIAL backward-compat framing from phase 001 and asked for a greenfield design that prioritizes simplification. A 9-iteration deep-research loop (cli-codex gpt-5.5 high fast) explored 5 candidate designs (F, C+F hybrid, B, D, G) and converged at iteration 9 (newInfoRatio 0.06).
@@ -76,3 +73,6 @@ Three commits touched this phase: `e933c152a7`, `79e97aec92`, `bdb739d973`.
 - **Phase 003 (greenfield implementation).** Executes the 4-phase plan from this research output.
 - **Phase 004 (deferred followups).** Addresses 10 Gate 7 items deferred from the 003 implementation.
 - **Phases 005-008.** Audit and alignment sweeps for skill references, command assets, fleet markers, and archive markers.
+
+> Spec folder: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`

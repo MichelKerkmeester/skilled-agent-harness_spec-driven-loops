@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/002-server-liveness-supervision` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`
-
 ### Summary
 
 Implemented the phase-002 liveness hardening without changing the provider cascade or eager-spawn behavior. Health now carries loadStartedAt, lastSuccessfulEmbedAt, and inFlight, launcher probes reap over-age loading servers only when loadStartedAt is valid and older than the configured bound. The supervisor persists a crash-loop give-up cooldown and returns 503 with reason during cooldown. pid/lease/lock writes degrade gracefully on ENOSPC/EDQUOT/EROFS instead of crashing the launcher.
@@ -65,3 +62,6 @@ Implemented the phase-002 liveness hardening without changing the provider casca
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/002-server-liveness-supervision` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening`

@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/002-self-check-templates` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`
-
 ### Summary
 
 Newly scaffolded specs now carry artifact-local self-check guidance in the three documents authors actually fill in: spec, plan, and checklist. The guidance ships as HTML-comment blocks so the validator's strict header-order enforcement is unaffected. Each block is tailored per artifact. Spec guidance checks problem, outcome, scope, and evidence. Plan guidance checks approach, affected surfaces, and verification path. Checklist guidance names rubber-stamping as the concrete failure mode.
@@ -56,3 +53,6 @@ Newly scaffolded specs now carry artifact-local self-check guidance in the three
 
 - `implementation-summary.md.tmpl` was excluded from this phase and remains a possible follow-up.
 - The parent changelog was not updated in this phase because it was outside the approved write paths.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/002-self-check-templates` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption`

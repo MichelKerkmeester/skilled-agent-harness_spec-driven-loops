@@ -14,8 +14,6 @@ contextType: "implementation"
 
 ## 2026-05-06
 
-> Spec folder: `specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol` (Level 3)
-
 ### Summary
 
 Spec docs (Phase 1) were authored directly by claude-opus-4-7 to canonical template-anchor structure with valid sha256 frontmatter fingerprints and CHK-XXX [P*] checklist item format. Substantive Phase 2-3 implementation work (agent body §12-§15 + references + mirrors + vitest) was dispatched via cli-codex with gpt-5.5 model at --variant high --service-tier fast per user direction. The codex sandbox blocked .codex/ writes (it lives inside codex's own state path), so the codex TOML mirror was patched manually with the same 4 sections.
@@ -65,3 +63,5 @@ _No file-level detail recorded._
 - CHK-080 Validator overhead for ai-council/ recognition <10ms per packet (NFR-P02)
 - CHK-081 Council dispatch round-trip <5 minutes for 3 seats at default models (NFR-P01)
 - CHK-090 Strict validation exit 0 on packet 080
+
+> Spec folder: `specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol` (Level 3)

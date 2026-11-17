@@ -2,8 +2,6 @@
 
 This release matters because it turns the ESM (the modern JavaScript module system) migration into something people can trust, not just something that compiles. Phase 4 re-checked the seven highest-risk boundaries, cleared the full verification matrix, aligned the standards documents with the verified behavior, restored reliable MCP (Model Context Protocol, a standard way for AI clients to call tools) compatibility, and closed the parent packet with evidence. The result was 7 of 7 high-risk retests passing, 8997+ server tests passing, 483/483 scripts tests passing, and both smoke checks passing. The phase used a risk-first approach: prove the likeliest failure points first, then widen to the full release checks and documentation sync.
 
-> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/004-verification-and-standards/` (Level 1)
-
 ---
 
 ## Testing (2)
@@ -110,3 +108,5 @@ No test files changed in this phase. Verification reran existing release checks 
 No migration required.
 
 A few optional follow-up checklist items remain deferred by design, but all required closure work for this phase is complete.
+
+> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/004-verification-and-standards/` (Level 1)

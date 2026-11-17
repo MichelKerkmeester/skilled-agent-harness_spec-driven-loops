@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`
-
 ### Summary
 
 The packet-028 manual testing playbook cleanup ran against the system-spec-kit playbook package: the root index plus 410 numbered scenario files. The root index counts were rechecked against the live tree and matched. Fourteen stale source anchors were fixed across ten files, while other skills' playbook packages and packet 030 remained out of scope.
@@ -70,3 +67,6 @@ The packet-028 manual testing playbook cleanup ran against the system-spec-kit p
 
 - Treat unresolved illustrative anchors as future targeted work only if they become actionable.
 - Keep other skills' playbook packages under their own cleanup packets.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup`

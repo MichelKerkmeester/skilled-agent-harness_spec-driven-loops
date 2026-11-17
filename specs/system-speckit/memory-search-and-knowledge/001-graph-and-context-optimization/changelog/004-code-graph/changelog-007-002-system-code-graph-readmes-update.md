@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/002-system-code-graph-readmes-update` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`
-
 ### Summary
 
 The system-code-graph skill READMEs were inconsistent after the packet 010 MCP rename. The root README read like a code-folder guide rather than a human-facing skill entry point. The database README was blank. Several subdirectory READMEs omitted current apply-mode details, the new `mk-code-index` MCP namespace. Valid related-resource links were also missing.
@@ -76,3 +73,6 @@ Eight authored README files were audited and rewritten. The root README was conv
 
 - Stage and commit the eight edited README files and the packet docs when git index writes are permitted in the operator environment.
 - Verify that the database README at `mcp_server/database/README.md` was correctly carried forward after the subsequent database relocation fix in commit `2bfa312b12`.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/002-system-code-graph-readmes-update` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes`

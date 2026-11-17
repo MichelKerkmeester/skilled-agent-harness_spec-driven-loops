@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-14
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/007-skill-advisor-db-rename` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`
-
 ### Summary
 
 After the system-skill-advisor package extraction, two unrelated databases shared the filename `skill-graph.sqlite`. The spec-kit `skill_graph_*` metadata indexer wrote to `system-spec-kit/mcp_server/database/skill-graph.sqlite` while the advisor scorer projection DB used the same name under `system-skill-advisor/mcp_server/database/`. The collision caused operator confusion and produced stale old-path files on every `spec_kit_memory` startup.
@@ -75,3 +72,6 @@ The spec-kit skill metadata index was renamed to `graph-metadata-index.sqlite`. 
 - The broader advisor package suite still fails at 164 of 224 passing tests. The remaining failures are outside the scope of this DB rename and require a separate remediation packet.
 - Memory MCP startup still logs a pre-existing `skill_id` versus folder-name mismatch warning for `system-skill-advisor/graph-metadata.json`. That warning is unrelated to DB filename paths and does not block startup.
 - Moving `skill_graph_*` MCP tools from `spec_kit_memory` to `system_skill_advisor` (Option A) was intentionally deferred. A future topology consolidation packet can evaluate that change independently.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/007-skill-advisor-db-rename` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction`

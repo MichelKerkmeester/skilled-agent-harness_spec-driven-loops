@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/009-shutdown-durability` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`
-
 ### Summary
 
 Packet 008 added a close-time WAL TRUNCATE checkpoint, but two durability gaps remained. The context server only registered SIGTERM and SIGINT handlers while the launcher forwarded all four signals: SIGTERM, SIGINT, SIGHUP, SIGQUIT. Any SIGHUP or SIGQUIT would terminate the daemon without entering the graceful shutdown path, skipping the checkpoint. The launcher also gave children exactly 5000ms before sending SIGKILL, equal to the daemon's own shutdown deadline, creating a race where the SIGKILL could arrive before the synchronous checkpoint completed.
@@ -63,3 +60,6 @@ This packet closed both gaps. SIGHUP and SIGQUIT now route to `fatalShutdown(...
 - Run CHK-022 targeted vitest suites to confirm no regressions in the daemon-lifecycle test set.
 - Run CHK-023 to confirm the `fatalShutdown`/`vectorIndex` source-order regex assertion still passes after any future refactor.
 - Consider the slow-drain-starves-checkpoint residual risk when the fileWatcher drain takes close to the 5000ms deadline. Packet 010 (autocheckpoint and periodic TRUNCATE) mitigates the at-rest WAL growth but the deadline budget issue remains open.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/009-shutdown-durability` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-05-18
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack/003-install-guide-docs`
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack`
-
 ### Summary
 
 The skill-advisor docs had no guidance on the pluggable embedder layer that shipped in `010/001`. A new operator landing on either file had no way to identify the current active default, the available alternatives or the correct swap surface. Surgical additions were authored against the actual source-of-truth files rather than the planning-era spec assumptions.
@@ -65,3 +62,6 @@ The skill-advisor docs had no guidance on the pluggable embedder layer that ship
 - Ship `010/004` writer cross-wiring to close the read/write asymmetry and allow the active pointer to be flipped to jina-v3.
 - Add a parity check for the `registry.ts` manifest table against `INSTALL_GUIDE.md` section 12.2 to prevent doc-rot when candidates are added.
 - Consider extending the canonical `embedder-pluggability.md` narrative to cover skill-advisor explicitly if cross-skill operator confusion arises.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack/003-install-guide-docs`
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack`

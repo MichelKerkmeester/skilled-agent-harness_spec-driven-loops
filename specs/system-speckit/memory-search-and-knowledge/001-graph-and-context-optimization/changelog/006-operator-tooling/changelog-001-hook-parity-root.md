@@ -15,8 +15,6 @@ contextType: "implementation"
 
 ## 2026-04-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 1, Phase Parent)
-
 ### Summary
 
 This phase parent groups 17 child phases spanning 2026-04-21 to 2026-04-23. Each child phase shipped independently and carries its own changelog with full detail. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-phase summary, verification, and files changed.
@@ -68,3 +66,5 @@ This phase parent groups 17 child phases spanning 2026-04-21 to 2026-04-23. Each
 ### Follow-Ups
 
 - None.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 1, Phase Parent)

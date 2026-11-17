@@ -12,9 +12,6 @@ contextType: "implementation"
 
 ## 2026-06-21
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`
-
 ### Summary
 
 This phase is research, not a build, and it closes a 10-iteration deep research on a memory-search reranker with the verdict CONDITIONAL-GO. The recommended lever is a demote-only, score-mutating, per-memory Beta-posterior penalty placed pre-truncation behind a new default-off `SPECKIT_CITATION_RERANK` switch. Under a synthesized full-coverage ledger the prototype moved completeRecall@3 from 0.0357 to 0.2116, the oracle ceiling, but the real-data eval-gate delta is 0.000 by construction because the gold set and the strong-negative set do not intersect. No reranker code shipped, the prototype ran on a live-DB copy and is not committed.
@@ -52,3 +49,6 @@ This phase is research, not a build, and it closes a 10-iteration deep research 
 - PREREQ-A: enable the true-citation emitter and accumulate real used and not-used pairs until the gold-and-ledger intersection is materially above the current 0.4 percent at the eval golds' top-3 neighbors.
 - PREREQ-B: a corpus geometry that exhibits a reliable-negative distractor at fused rank 1 to 3 above a gold at fused rank 4 to 8, which occurs 0 of 6 on real data today.
 - A measured prod win waits on real ledger density plus that corpus geometry, the design is preserved and ready.
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory`

@@ -18,9 +18,6 @@ contextType: "implementation"
 
 ## 2026-04-24
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix`
-
 ### Summary
 
 Reviewers and successor phases had no quick way to answer "what files did this packet touch" without reading `implementation-summary.md` end to end or diffing git. A prior one-off artifact in the 005/path-references-audit proved the value of a flat categorized path ledger but was never promoted to a reusable shape.
@@ -78,3 +75,6 @@ This phase promoted that shape to a first-class optional cross-cutting template.
 
 - Add an optional `resource-map-emit.sh` helper that scans `git diff` for a packet and emits a draft of the file so authors do not fill path rows by hand.
 - Backfill the template into high-traffic spec folders during their next touch.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix`

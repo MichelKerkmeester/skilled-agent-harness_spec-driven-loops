@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/010-validate-sh-template-detection` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`
-
 ### Summary
 
 Nothing in validate.sh caught a folder that claims Complete while its own docs are still untouched scaffold templates. A new rule closes that gap, confirmed against both synthetic fixtures and a real, previously undetected live instance, and a significant limitation in how new rules reach the default validation path was discovered and documented.
@@ -51,3 +48,6 @@ Nothing in validate.sh caught a folder that claims Complete while its own docs a
 
 - The default validate.sh invocation path does not read the shell rule registry at all, so `SCAFFOLD_NEVER_TOUCHED` and `COMMENT_HYGIENE_MARKER` only run through explicit `SPECKIT_RULES` invocation. Porting registry rules into the Node orchestrator, or making it discover them dynamically, is a real, separate follow-up.
 - `008/003-model-benchmark-reducer-ledger`'s own scaffold docs remain unfixed, the same class as the many other pre-existing instances across phases 002 through 007, correctly out of scope for this phase.
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/010-validate-sh-template-detection` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation`

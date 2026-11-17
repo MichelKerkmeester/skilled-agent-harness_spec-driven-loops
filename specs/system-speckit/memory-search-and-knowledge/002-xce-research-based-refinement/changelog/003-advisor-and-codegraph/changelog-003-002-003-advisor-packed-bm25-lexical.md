@@ -15,9 +15,6 @@ contextType: "implementation"
 
 ## 2026-06-10
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`
-
 ### Summary
 
 The advisor gained a packed BM25F lexical scorer for shadow evaluation only. Existing token-overlap lexical scoring remains the only live lexical contribution, and the BM25 flag is default-off so live recommendation outputs remain unchanged until a future promotion phase.
@@ -58,3 +55,6 @@ The advisor gained a packed BM25F lexical scorer for shadow evaluation only. Exi
 ### Follow-Ups
 
 - Future promotion must wire BM25 into advisor_validate baselines and make a separate promotion decision.
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`

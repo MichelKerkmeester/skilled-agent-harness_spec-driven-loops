@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/003-pc005-bench-doc-and-gates` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation`
-
 ### Summary
 
 The PC-005 benchmark scenario doc was missing the required `--dataset` flag, and the p95 latency gates were calibrated tighter than the documented performance envelope. The doc now specifies correct invocation with `--dataset` and `--runs 1` smoke guidance, the warm p95 gate uses the documented 50 ms default, and the cold p95 gate is advisory by default to reflect per-prompt subprocess startup scope. The native TypeScript scorer was unchanged and passes at 3.69 ms (warm) and 6.71 ms (cold).
@@ -53,3 +50,6 @@ The PC-005 benchmark scenario doc was missing the required `--dataset` flag, and
 ### Follow-Ups
 
 - Cold-subprocess p95 needs host calibration before enforcing. It measures per-prompt process startup, so it stays advisory by default.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/003-pc005-bench-doc-and-gates` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation`

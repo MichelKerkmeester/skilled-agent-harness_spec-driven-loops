@@ -16,9 +16,6 @@ contextType: "implementation"
 
 ## 2026-04-23
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
-
 ### Summary
 
 Packet 008 hardened the OpenCode skill-advisor plugin across three deferred P2 items from the earlier hook-surface audit. All plugin runtime state is now per-instance closure state. Concurrent identical cache misses share one in-flight bridge promise. Bridge stdin payload, advisor briefs, and cache entries are bounded with configurable caps. Cache insertion now routes through eviction when the cap is exceeded.
@@ -61,3 +58,6 @@ Packet 008 hardened the OpenCode skill-advisor plugin across three deferred P2 i
 
 - Global package build still fails in unrelated files outside this packet scope.
 - Copilot hook wiring mismatch still deferred from earlier packets.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`

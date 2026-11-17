@@ -18,9 +18,6 @@ contextType: "research"
 
 ## 2026-04-29
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/020-enterprise-readiness-verification-expansion-research` (Level 2)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`
-
 ### Summary
 
 Phases C through E delivered W3 to W7 (composed RAG trust tree, conditional rerank, advisor shadow weights, CocoIndex adaptive overfetch, degraded-readiness stress cells), all passing measurement gates against synthetic fixtures. The open question was whether any of those workstreams were actually wired into the production call paths that operators reach at runtime.
@@ -70,3 +67,6 @@ The loop also catalogued enterprise-readiness expansion candidates (RBAC, SLA en
 - Implement a `SearchDecisionEnvelope` contract to make W3 to W7 observable through a shared telemetry path before changing ranking or refusal behavior.
 - Schedule empty-folder cleanup in a follow-on implementation packet. The audit identified deletion candidates but deletion was out of scope for this research phase.
 - Replace synthetic fixture evidence in W5 and W7 with runtime-like telemetry before promoting either workstream to default-on.
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/020-enterprise-readiness-verification-expansion-research` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings`

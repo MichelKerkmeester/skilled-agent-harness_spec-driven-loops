@@ -14,9 +14,6 @@ contextType: "implementation"
 
 ## 2026-06-29
 
-> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/003-atomic-state-deferred-writer` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`
-
 ### Summary
 
 Added createDeferredAtomicWriter(): coalesces superseded per-path content with version dirty-again reflush plus flushNow()/close() drain; JSONL stays immediate. Unit tests pass.
@@ -54,3 +51,6 @@ Added createDeferredAtomicWriter(): coalesces superseded per-path content with v
 - [Implement core feature 1]
 - [Implement core feature 2]
 - [Implement core feature 3]
+
+> Spec folder: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime/003-atomic-state-deferred-writer` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/030-deep-loop-improved/002-deep-loop-runtime`

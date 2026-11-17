@@ -17,9 +17,6 @@ contextType: "implementation"
 
 ## 2026-05-31
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation` (Level 1)
-> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor`
-
 ### Summary
 
 The documentation quality refactor phases 002 through 005 deferred a set of findings from the research synthesis. This phase closed the easy mechanical cross-links, added source file references to playbook scenarios, re-verified false-positive path mismatches, and swept 943 Oxford commas across all authored markdown files. The remaining decision-dependent backlog stays documented in Known Limitations.
@@ -69,3 +66,6 @@ The documentation quality refactor phases 002 through 005 deferred a set of find
 - F4 `.devin` hooks migration and F6 dual hook location resolution need architectural decisions
 - F35 catalog table of contents renumber, F36 numbering gap and F37 catalog-to-playbook asymmetry deferred per existing open questions
 - Three of five new reference documents deferred until a specific operator need surfaces
+
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation` (Level 1)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor`

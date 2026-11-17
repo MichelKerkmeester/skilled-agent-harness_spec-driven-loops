@@ -2,8 +2,6 @@
 
 This phase now records two layers of work: the parent stabilization pass that repaired indexing and adaptive-fusion drift after the repository move, and the nested `001` through `009` child phases that expanded adaptive feedback, retrieval behavior, graph search, and supporting tooling. The parent wrapper still leaves fresh restart and final validator evidence open, but the underlying child phases carry substantial completed implementation and verification work that the earlier changelog did not reflect.
 
-> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion` (Level 1 parent with nested child phases)
-
 ---
 
 ## Indexing and Runtime Stabilization (5)
@@ -140,3 +138,5 @@ This subtree delivered substantial verified implementation work, even though the
 No migration required.
 
 Treat this changelog as a subtree summary: the parent `011` wrapper still expects fresh-session follow-up evidence, but the nested adaptive-fusion phases beneath it document substantial completed implementation and verification work.
+
+> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion` (Level 1 parent with nested child phases)
