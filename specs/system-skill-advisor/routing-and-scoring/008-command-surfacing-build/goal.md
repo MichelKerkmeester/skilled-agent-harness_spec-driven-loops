@@ -406,6 +406,7 @@ and findings belong here.
 | Review pass thirteen | 3 P1 fixed | data-13 converged, mention-13 hit maxIterationsReached; later request clause read first, refusal must end its clause, six leaking advisor phrases removed with P08 and P09 declined in ADR-001; after-pass-13.txt 2385 passed 0 failed both ways, floors unchanged; pass fourteen follows |
 | Review pass fourteen | Closed by operator decision | data-14 P1 fixed (four generic advisor phrases, eight ordinary prompts no longer top the advisor); mention-14's two P1 mirror pass thirteen, a fresh Opus read judged the patching non-converging, the operator accepted the no-lead refusal class as a known limit graded P2 for new wordings (Q088); after-pass-14.txt 2385 passed 0 failed both ways, floors unchanged; Q086 to Q088 recorded |
 | Merge origin/main 0d1c89d4e3a | Done | 18 commits; main's sk-create-skill README taken with /create:sk-skill re-applied, trigger index regenerated; after-merge-3.txt: 2385 passed 0 failed both ways, doctor 1289/0, bin 198/0, decision-capture 99/0, FLOOR and EVAL unchanged |
+| Final alignment run 20261117T051824Z | 0 P0, 2 P1 fixed | battery 160 pass 2 P2 fail, probes 16/16; A-1 run command offered on an unled refusal fixed by requiring request evidence for run-policy commands, B-S2-01 Vibe added to SKILL.md; after-final-alignment.txt 2391 passed 0 failed both ways, FLOOR and EVAL unchanged; closing alignment rerun follows |
 
 ### Deviations and findings
 

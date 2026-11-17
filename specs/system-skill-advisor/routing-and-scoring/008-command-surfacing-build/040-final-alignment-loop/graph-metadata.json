@@ -48,10 +48,12 @@
       ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
       ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md",
       ".skilled/skills/system-skill-advisor/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/SKILL.md",
       "scratch/rule-diag.mjs",
       "scratch/before.txt",
       "scratch/after.txt",
       "scratch/after-pass-13.txt",
+      "scratch/after-final-alignment.txt",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
       "scratch/probes.json"
     ],
@@ -117,6 +119,12 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "rule-diag.mjs",
         "kind": "file",
         "path": "scratch/rule-diag.mjs",
@@ -138,6 +146,12 @@
         "name": "after-pass-13.txt",
         "kind": "file",
         "path": "scratch/after-pass-13.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-final-alignment.txt",
+        "kind": "file",
+        "path": "scratch/after-final-alignment.txt",
         "source": "derived"
       },
       {
@@ -187,23 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A reader who refuses or questions a command still gets it offered in four shapes: a refusal after the name (\"/create:readme is not what I want, do not run it\"), the command named as a document (\"read the /create:readme document and tell me what it does\"), a wrapper the fold keeps such as `[/create:readme]`, and a doc path such as `/create:readme.md` beside a led refusal",
     "created_at": "2026-11-16T21:16:16Z",
-    "last_save_at": "2026-11-17T05:04:07.793Z",
+    "last_save_at": "2026-11-17T06:35:04.097Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bac3b5997ca20fce8f77997c89c610d0f987631661826a7f8d6a24ac5f6e031d",
+    "source_fingerprint": "sha256:11fd2b8a79f9ec865464c5f618bf94dea86d928e4f08e03c3fa17afdf50863ef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "42e10e26e0295537bc182b09b265bfe30e15c09ef54cf9492ea305c7924fc6ea",
       "plan.md": "d6d419b42c4bac0d92811eda01ff66fd1d6dd0bc1c389bae3438941a4291db99",
       "tasks.md": "0df15608159450a393bfede1885e3e9f0708742086dcdd3510a14babca6e3f31",
       "decision-record.md": "fd32dd4976ef3da43fd35ac5414a6a7bc8ada3285c843dda90cc52f9a6cc0dd0",
-      "implementation-summary.md": "2d609c5dcb404182629cecd5fd531ca773798b39f75ec49aca596666f7300820"
+      "implementation-summary.md": "944f75048d9150f7a9c098d3b9eefba7901a96d7554861877fd46ab321b54690"
     },
     "last_active_at": null
   }

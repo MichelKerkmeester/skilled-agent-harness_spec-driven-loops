@@ -422,6 +422,15 @@ const COMMAND_DECLINED_BY_PRONOUN = new RegExp(`(?:^|[,.;!?\\n]|\\b(?:but|and|so
 // not only a read.
 const COMMAND_AS_DOCUMENT = /^(?: command)?(?:'s)? (?:doc|docs|document|documentation|file|page|source|definition|markdown)\b/;
 
+// A command whose policy is run acts without asking, so an unled naming of it is
+// read as a request only on positive evidence: a use verb shortly before it, or
+// the name opening the prompt or a sentence. "no need for /doctor:deep-loop"
+// names no lead the lists know, and must not start the command on that alone.
+function runCommandRequested(before: string, name: string): boolean {
+  return new RegExp(`(?:^|[.!?;:\\n] *)(?:(?:please|now|just|then|and) )*${name}$`).test(before)
+    || new RegExp(`\\b${COMMAND_USE_VERB} ${COMMAND_GAP_WORDS}(?:the )?${name}$`).test(before);
+}
+
 // A prompt names a command to refuse it or to ask about it as often as it names
 // one to run it, so an offer must read the naming before it trusts the name. The
 // text is folded first, because a keyed apostrophe or a run of spaces must not
@@ -453,6 +462,7 @@ export function commandOnlyMentioned(prompt: string, command: string): boolean {
   const spellings = [current, ...Object.keys(RETIRED_COMMANDS).filter((retired) => RETIRED_COMMANDS[retired] === current)]
     .sort((left, right) => right.length - left.length);
   const name = `(?:${spellings.map(escapePhrase).join('|')})`;
+  const runsWithoutAsking = TRACKED_COMMANDS[current]?.policy === 'run';
   const occurrences = [...text.matchAll(new RegExp(`(?:^|[^a-z0-9_/])${name}(?![a-z0-9_-]|[./][a-z0-9])`, 'g'))];
   if (occurrences.length === 0) return false;
   return occurrences.every((occurrence) => {
@@ -471,7 +481,7 @@ export function commandOnlyMentioned(prompt: string, command: string): boolean {
     ));
     if (led) return true;
     const bareLead = new RegExp(`(?:^|[^a-z0-9_/])${COMMAND_BARE_ASK_LEAD}${COMMAND_OR_LIST}${name}$`).test(before);
-    if (!bareLead) return false;
+    if (!bareLead) return runsWithoutAsking && !runCommandRequested(before, name);
     const sentenceEnd = tail.search(/[.!\n]/);
     const sentence = sentenceEnd === -1 ? tail : tail.slice(0, sentenceEnd);
     // A chat question often leaves the question mark off, so a bare ask word that

@@ -229,6 +229,19 @@ describe('a command the prompt only mentions', () => {
     expect(commandOnlyMentioned('/create:diff file a.md b.md', '/create:diff')).toBe(false);
   });
 
+  // A run command acts without asking, so an unled naming of it needs a use verb
+  // or the name opening a sentence before it counts as a request.
+  it.each([
+    ['no need for /doctor:deep-loop, I will handle it myself', '/doctor:deep-loop', true],
+    ['the /doctor:speckit output looked odd yesterday', '/doctor:speckit', true],
+    ['/doctor:deep-loop', '/doctor:deep-loop', false],
+    ['please run /doctor:deep-loop on this packet', '/doctor:deep-loop', false],
+    ['the loop stalled. /doctor:deep-loop now', '/doctor:deep-loop', false],
+    ['can you kick off /doctor:speckit for me', '/doctor:speckit', false],
+  ])('reads the run command naming %s as a mention: %s', (prompt, command, mentioned) => {
+    expect(commandOnlyMentioned(prompt, command)).toBe(mentioned);
+  });
+
   // A doc path that holds the name is a file, not a naming, so it cannot undo the
   // refusal of the command itself.
   it('reads a led refusal beside a doc path of the same command as a mention', () => {

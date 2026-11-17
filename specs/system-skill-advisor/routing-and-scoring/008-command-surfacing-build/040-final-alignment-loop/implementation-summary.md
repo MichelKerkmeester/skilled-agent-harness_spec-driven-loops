@@ -70,6 +70,7 @@ The final alignment run and review pass twelve found these gaps after the earlie
 | `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts` | Modified | 17 new cases and twelve wrapper pairs in the invariance matrix |
 | `.skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md` | Modified | The third prompt |
 | `.skilled/skills/system-skill-advisor/graph-metadata.json`, `runtime/scripts/skill-graph.json` | Modified | The advisor intent phrase "vibe prompt hook" and the recompiled graph |
+| `.skilled/skills/system-skill-advisor/SKILL.md` | Modified | Names Mistral Vibe among the prompt-time consumers |
 | `decision-record.md`, `scratch/rule-diag.mjs` | Created | ADR-001 for P05, and the row-id diagnostic |
 <!-- /ANCHOR:what-built -->
 
@@ -91,6 +92,7 @@ The final alignment run and review pass twelve found these gaps after the earlie
 | A document naming needs a determiner | A typed request puts its argument after the name, as in `/create:diff file a.md b.md`, while "read the /create:readme document" names it |
 | Decline probes P05, P08 and P09 (ADR-001) | `/doctor:helper` ranks `/doctor:skill-advisor rebuild` first for P05. P08 and P09 needed common words that pulled ordinary prompts to the advisor |
 | A refusal of "it" must end its clause, and a later request clause is read first | "don't run it twice" limits a run and "read the docs, then run it" asks for one, review pass thirteen |
+| A run command needs request evidence | It acts without asking, so an unled naming such as "no need for /doctor:deep-loop" offers it only after a use verb or at a sentence start, the exception the operator kept in the limit class |
 | Drop the wrapper marks everywhere, not only next to a name | They carry no lead word, so dropping them changes no lead reading, and the invariance matrix checks every fixture |
 <!-- /ANCHOR:decisions -->
 
@@ -104,6 +106,7 @@ The final alignment run and review pass twelve found these gaps after the earlie
 | Guards test | PASS, 185 passed, 16 new cases fail on `b8ebee37d75` |
 | Full suite, flag unset and set | PASS, 2385 passed 0 failed both ways (`scratch/after-pass-13.txt`) |
 | `FLOOR`, `EVAL`, stored sets | PASS, 24/44 0/35 2/44, [160,49,21,5], unchanged |
+| Final alignment run `20261117T051824Z` | 0 P0, 2 P1 fixed: a run command offered on an unled refusal, and Vibe missing from SKILL.md; gate `scratch/after-final-alignment.txt` 2391 passed 0 failed both ways, floors unchanged |
 | Generic advisor phrases | Fixed: four ordinary prompts from review pass fourteen no longer top the advisor |
 | Alignment probes | 11 of 15: P05, P08 and P09 waived (ADR-001), P04 overturned by the run's critic |
 | Ordinary-word leak check | PASS, none of the five review prompts tops the advisor |
