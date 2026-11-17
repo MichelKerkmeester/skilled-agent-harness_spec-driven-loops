@@ -8,27 +8,29 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop"
-    last_updated_at: "2026-11-17T05:04:07Z"
+    last_updated_at: "2026-11-17T08:06:16Z"
     last_updated_by: "generate-context"
-    recent_action: "Closed review pass fourteen; limit class recorded"
-    next_safe_action: "Run the final alignment on the branch"
+    recent_action: "Amended the goal criterion and closed phase 040"
+    next_safe_action: "Run the push and open the PR after the operator clears the session goal"
     packet_purpose: "Purpose: A refused or questioned command is never offered in those shapes, a request still is, the playbook passes as written, and the four advisor tasks rank the advisor first without moving the floors."
     blockers: []
     key_files:
-      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/implementation-summary.md"
-      - ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      - "goal.md"
+      - "decision-record.md"
+      - "040-final-alignment-loop/implementation-summary.md"
+      - "040-final-alignment-loop/decision-record.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:03780d675f57baf113eec92eb75b76eb3ff283b5a49790cc65b62ada25a27bc9"
       session_id: "scaffold-040-final-alignment-loop"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "77af2d6d-58e8-4180-b6da-697f12833f71"
       workspace: "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research"
-      savedAt: "2026-11-17T05:04:07Z"
+      savedAt: "2026-11-17T08:06:16Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 96
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

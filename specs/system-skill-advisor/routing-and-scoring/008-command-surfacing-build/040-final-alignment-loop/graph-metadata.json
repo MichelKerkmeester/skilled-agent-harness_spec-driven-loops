@@ -207,7 +207,7 @@
     ],
     "causal_summary": "A reader who refuses or questions a command still gets it offered in four shapes: a refusal after the name (\"/create:readme is not what I want, do not run it\"), the command named as a document (\"read the /create:readme document and tell me what it does\"), a wrapper the fold keeps such as `[/create:readme]`, and a doc path such as `/create:readme.md` beside a led refusal",
     "created_at": "2026-11-16T21:16:16Z",
-    "last_save_at": "2026-11-17T07:55:22.147Z",
+    "last_save_at": "2026-11-17T08:06:16.152Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:861c7e18759c2eb838175d130b508e768ce50d5d296184b48c388538093a84ce",
+    "source_fingerprint": "sha256:6b4bf9dafa9902e05a2ddf18a524a8581fee27245a4d93cb5cfe0a3846207a57",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "edda14a6e9d7a3604f9c3c69fcb4b7b94ba184df698c6e95afe7e61c89c1a4b6",
       "plan.md": "d6d419b42c4bac0d92811eda01ff66fd1d6dd0bc1c389bae3438941a4291db99",
       "tasks.md": "f43b4a28b29307ac8fbef4100756310a4e5dbbe24051a27eb01c8065c8eeeb84",
-      "decision-record.md": "4f41af5b2a8b6531f57bc0a2e65cd82c9b464c6b10c9bfe32d9fa1895b2a6c0f",
-      "implementation-summary.md": "466b0260f1a38025990b7025c437b80b11619139752c6513532ef9639135b891"
+      "decision-record.md": "0d971fb83fdde14830f11952a192277f57eb40c266376e46ebb52861f84a47bd",
+      "implementation-summary.md": "4e57c9a42c8335d1dddecf0993845294951efa961f021e44234b201d920616e8"
     },
     "last_active_at": null
   }
