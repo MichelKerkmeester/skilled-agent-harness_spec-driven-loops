@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8cd81cee5a60ab2a2211404cb7e05dfda2b47de77704a4cf0786b5ca37f00c57",
+  "manifestHash": "5aeba7297922a04aeaa5b3b0412644cbd00fd221073b5dbe44f662a06eafc0a9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14409,6 +14409,9 @@
     ],
     "barter remove set operations after sets record": [
       "barter remove set operations after sets record"
+    ],
+    "barter state schema version 2": [
+      "barter state schema version 2"
     ],
     "barter symlinks readme": [
       "barter symlinks readme"
@@ -58175,6 +58178,9 @@
     ],
     "handover state routing correction": [
       "handover_state routing correction"
+    ],
+    "handover to barter hardened overlay engine": [
+      "handover to barter hardened overlay engine"
     ],
     "handover to barter overlay follow up": [
       "handover to barter overlay follow up"
