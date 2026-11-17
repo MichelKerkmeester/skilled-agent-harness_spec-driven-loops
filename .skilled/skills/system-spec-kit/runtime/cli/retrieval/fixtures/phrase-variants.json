@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c117774655f3097e32c0c5dfb8d6801c8e090bfa46818dd46082ae59cd4dad0c",
+  "manifestHash": "18603fcb45083e09faa1a0e4baddb079c6417d6cf9196b9ab1b016a7680ee2fa",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7285,6 +7285,9 @@
     ],
     "054 handover": [
       "054 handover"
+    ],
+    "054 handover review remediation operator decisions": [
+      "054-handover-review-remediation operator decisions"
     ],
     "054 implementation summary": [
       "054 implementation summary"
@@ -58416,6 +58419,15 @@
     "handover review remediation": [
       "handover review remediation"
     ],
+    "handover review remediation implementation summary": [
+      "handover review remediation implementation summary"
+    ],
+    "handover review remediation plan": [
+      "handover review remediation plan"
+    ],
+    "handover review remediation tasks": [
+      "handover review remediation tasks"
+    ],
     "handover state routing": [
       "handover_state routing"
     ],
@@ -85019,6 +85031,9 @@
     ],
     "phase 53 handover deep review": [
       "phase 53 handover deep review"
+    ],
+    "phase 54 handover review remediation": [
+      "phase 54 handover review remediation"
     ],
     "phase 54 v4 0 0 13 changelog opencode": [
       "phase 54 v4 0 0 13 changelog opencode"
@@ -134499,11 +134514,17 @@
     "withdraw deferred hand over": [
       "withdraw deferred hand-over"
     ],
+    "withdraw on prompt error logging": [
+      "withdraw on prompt error logging"
+    ],
     "withdrawn acceptance criterion": [
       "withdrawn acceptance criterion"
     ],
     "withdrawn notice pi opencode": [
       "withdrawn notice pi opencode"
+    ],
+    "withdrawonprompt shared helper": [
+      "withdrawOnPrompt shared helper"
     ],
     "withhold a command where none fits": [
       "withhold a command where none fits"

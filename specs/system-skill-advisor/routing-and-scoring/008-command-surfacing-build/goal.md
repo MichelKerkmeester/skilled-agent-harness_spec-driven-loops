@@ -415,6 +415,7 @@ and findings belong here.
 | Merge origin/main 23b0c3c70b6 | Done | 3 commits, another packet's spec docs and the trigger index only, no code; trigger index regenerated and checked |
 | Final checks | Done | criterion 5 converged on coverage only (segment five: ux-5 converged, performance-5 and cross-cli-5 hit the cap, 0.05 never reached, every rank built or declined); withdrawal rule over-reach recorded as 040 known limit 3 (P2 under Q088); alignment builders kept in 040/scratch/alignment-prompts; orphan answer sessions listed in 040/scratch/orphan-answer-sessions.txt for the operator |
 | Q089 criterion amendment | Done | operator chose to amend the review and alignment criterion to 0 P0 with every P1 fixed or accepted (Q088, 040 ADR-002); all 40 phases Complete with strict RESULT: PASSED |
+| Merge origin/main a0ee8313ae1 and push to main | In progress | operator asked to commit, push and merge to main (lifts D2 for this push); main's v4.0.2.1 changelog rewrite taken with the branch's /create:sk-skill, hook health, targets=none and no-change facts re-applied; advisor 2395/0, handover 1055/0, doctor 1303/0 |
 
 ### Deviations and findings
 
