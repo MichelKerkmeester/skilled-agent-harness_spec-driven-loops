@@ -24,6 +24,7 @@ type LineageDataFixture = {
 
 const {
   mergeResearchRegistries,
+  mergeResearchFrontier,
   mergeReviewRegistries,
   buildAttributionMd,
   reconstructReviewRegistryFromState,
@@ -32,8 +33,16 @@ const {
 } = require('../../scripts/fanout-merge.cjs') as {
   mergeResearchRegistries: (
     lineageData: LineageDataFixture[],
-    options?: { enableNearDuplicateDedup?: boolean },
+    options?: { enableNearDuplicateDedup?: boolean; frontierPartition?: Record<string, string[]> | null },
   ) => Record<string, unknown>;
+  mergeResearchFrontier: (
+    lineageData: LineageDataFixture[],
+    frontierPartition?: Record<string, string[]> | null,
+  ) => {
+    nodes: Array<{ nodeId: string; status: string; lineage: string; [key: string]: unknown }>;
+    stats: Record<string, number>;
+    partitionGuard?: { passed: boolean; missing: string[] };
+  };
   mergeReviewRegistries: (
     lineageData: LineageDataFixture[],
     options?: { enableNearDuplicateDedup?: boolean },
@@ -2074,5 +2083,63 @@ describe('mergeReviewRegistries — coverage surfaces', () => {
     const withBare = mergeReviewRegistries([lineageA, bare]);
     const alone = mergeReviewRegistries([lineageA]);
     expect(surfaces(withBare)).toBe(surfaces(alone));
+  });
+});
+
+describe('research frontier merge', () => {
+  const frontierNode = (nodeId: string, status: string) => ({ nodeId, status });
+
+  const registryWithFrontier = (nodes: Array<{ nodeId: string; status: string }>) => ({
+    keyFindings: [],
+    openQuestions: [],
+    resolvedQuestions: [],
+    ruledOutDirections: [],
+    metrics: {},
+    frontier: { nodes, stats: {} },
+  });
+
+  const lineageA: LineageDataFixture = {
+    label: 'a',
+    registry: registryWithFrontier([frontierNode('F-1-001', 'open'), frontierNode('F-2-003', 'exhausted')]),
+  };
+  const lineageB: LineageDataFixture = {
+    label: 'b',
+    registry: registryWithFrontier([frontierNode('F-1-002', 'answered'), frontierNode('F-2-003', 'open')]),
+  };
+
+  const withoutFrontier = ({ label, registry }: LineageDataFixture): LineageDataFixture => {
+    const { frontier: _frontier, ...rest } = registry as Record<string, unknown>;
+    return { label, registry: rest };
+  };
+
+  it('merges each lineage frontier with its label', () => {
+    const frontier = mergeResearchFrontier([lineageA, lineageB]);
+    expect(frontier.nodes).toHaveLength(4);
+    expect(frontier.nodes.filter((node) => node.nodeId === 'F-2-003').map((node) => node.lineage)).toEqual(['a', 'b']);
+    expect(frontier.stats.total).toBe(4);
+    expect(frontier.stats.open).toBe(2);
+    expect(frontier.stats.exhausted).toBe(1);
+    expect(frontier.stats.answered).toBe(1);
+  });
+
+  it('adds no frontier key when no lineage has one', () => {
+    const merged = mergeResearchRegistries([withoutFrontier(lineageA), withoutFrontier(lineageB)]);
+    expect(Object.prototype.hasOwnProperty.call(merged, 'frontier')).toBe(false);
+  });
+
+  it('passes the guard when every partitioned node is reported', () => {
+    const merged = mergeResearchRegistries([lineageA, lineageB], {
+      frontierPartition: { a: ['F-1-001'], b: ['F-1-002'] },
+    });
+    const frontier = merged.frontier as { partitionGuard?: { passed: boolean; missing: string[] } };
+    expect(frontier.partitionGuard).toEqual({ passed: true, missing: [] });
+  });
+
+  it('fails the guard when a partitioned node is missing from every lineage', () => {
+    const merged = mergeResearchRegistries([lineageA, lineageB], {
+      frontierPartition: { a: ['F-1-001', 'F-1-004'], b: ['F-1-002'] },
+    });
+    const frontier = merged.frontier as { partitionGuard?: { passed: boolean; missing: string[] } };
+    expect(frontier.partitionGuard).toEqual({ passed: false, missing: ['F-1-004'] });
   });
 });

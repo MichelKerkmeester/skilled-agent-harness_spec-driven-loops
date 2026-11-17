@@ -79,12 +79,15 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase spec authored | Done | `spec.md`, `plan.md`, `tasks.md` written 2026-11-17 |
-| Implementation | Pending | Not started |
+| Implementation | Done on branch | 13 commits on `worktrees/467-ed-010-research-frontier-mode`, head `6d4adc8ef41` plus the closure commit; T001-T026 and T029 done |
+| Merge-time steps | Open | T027, T028 (@markdown in integration), T030 full suite, T031-T032 pilot (D-010-04). Next task on resume: T030 at the merge gate |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| Golden and the agent persona | The lineage prompt embeds the agent definition, so the leaf-contract row changed default bytes. The check now strips only that paragraph (D-010-02). |
+| Close status was dropped | The reducer case for the close rule showed `buildQuestionFields` dropped `frontierStatus`; it now carries it. |
 | Criteria grouping | The rows of `acceptance-criteria.md` are grouped into seven criteria; closure still requires every row there to be `Met`, `Waived` or `Superseded`. |
 | Plan review 2026-11-17 | The Fable 5.2 plan review (`../scratch/fable-5-2-plan-review.md`, F010-1 to F010-6, X-1, X-2, X-6, X-7) added the seed step, the node store, the fan-out passthrough and merged `frontier`, the binding surfaces, the `{frontier_block}` variable, the `renderDashboard` target, the docs, contract and mirror tasks, and the `npm test` form. The stuck and pivot checks are YAML wording checks, so they left the criteria for `acceptance-criteria.md`. |
 <!-- /ANCHOR:log -->

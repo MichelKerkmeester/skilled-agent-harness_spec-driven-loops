@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.9.0
+version: 1.14.10.0
 ---
 
 # deep-research
@@ -123,6 +123,8 @@ A normalized score above 0.60 nominates STOP. The legal-stop gates then check th
 The shipped config floors convergence at 3 rounds, sets `stuckThreshold` to 3 and caps a run at 10 rounds and 120 minutes. Lower `--convergence` asks for more rounds. Raise it when the loop should finish sooner.
 
 `--convergence-mode` changes the stop path. `off` disables convergence STOP while the hard caps stay active. `sliding-window` scores novelty over a bounded window. `divergent` sends an eligible legal stop into one bounded pivot round instead of synthesis, then returns to the loop.
+
+`--depth-mode=expansive` lets a run grow its own questions. A seed step writes 3 to 6 depth-1 nodes before iteration 1, and the leaf may propose children only when its prompt carries a frontier block. An admission step before the reducer applies six checks in order, relevance, dedupe, depth, fan-out, budget and cycle, and prunes the proposal on the first failure. Next Focus reads the shallowest open node first and writes it as a frontier line, so visiting a node does not read as answering it. While a node stays open the frontier vetoes a soft convergence stop, which never outranks the iteration cap or the other hard stops, and the caps are `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split and `maxFrontierNodes`.
 
 ### Stop Reasons
 

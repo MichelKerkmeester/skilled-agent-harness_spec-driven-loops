@@ -11,7 +11,7 @@
 // eight-value set; the finer cause travels in reasonDetail as
 // maxIterationsReached, consecutiveFailures, stuckThresholdReached,
 // convergenceModeOff, stopPolicyMaxIterations, noStopCandidate,
-// minIterationsNotReached,
+// minIterationsNotReached, frontierOpen,
 // qualityGuardFailed, all_questions_answered, all_dimensions_clean,
 // composite_converged, graphStopBlocked, graph_convergence_continue,
 // graphDecisionMissing, or the name of a failed gate.
@@ -60,6 +60,8 @@ const CONVERGENCE_FLAGS = [
   'configPath',
   'convergenceMode',
   'convergence_mode',
+  'depthMode',
+  'depth_mode',
   'fixReplayPassingRows',
   'fixReplayRequiredRows',
   'graphNoveltyFloor',
@@ -1179,6 +1181,18 @@ function buildStopDecision(input) {
     return emit('CONTINUE', null, 'minIterationsNotReached', gatesAt(false), []);
   }
 
+  // An expansive run that still holds open frontier nodes turns a soft stop
+  // candidate into another iteration. It never creates a stop, and everything
+  // above it (cap, failures, stuck recovery, off, max-iterations, the floor)
+  // still wins.
+  const depthFacts = loopType === 'review' ? review : research;
+  if (config.depthMode === 'expansive'
+    && !candidate.hardStop
+    && Number.isFinite(depthFacts.frontierOpen)
+    && depthFacts.frontierOpen > 0) {
+    return emit('CONTINUE', null, 'frontierOpen', gatesAt(false), []);
+  }
+
   const evaluated = gatesAt(candidate.hardStop);
   if (loopType === 'review' && evaluated.failed.length > 0) {
     return emit('BLOCKED', 'blockedStop', evaluated.failed[0], evaluated, evaluated.failed);
@@ -1368,6 +1382,7 @@ function stopDecisionConfig(config, loopType, args) {
     ?? 0;
   const modeFlagGiven = args.convergenceMode !== undefined || args.convergence_mode !== undefined;
   const configMode = antiConvergence.convergenceMode;
+  const depthModeValue = args.depthMode ?? args.depth_mode ?? antiConvergence.depthMode;
   return {
     maxIterations,
     // A floor above the cap could never be reached; cap it at the cap.
@@ -1380,6 +1395,9 @@ function stopDecisionConfig(config, loopType, args) {
     convergenceMode: modeFlagGiven
       ? readConvergenceModeConfig(args).mode
       : typeof configMode === 'string' && configMode !== '' ? configMode : 'default',
+    // Only an expansive run carries the key, so a default run echoes the same
+    // config bytes it did before the depth mode existed.
+    ...(depthModeValue === 'expansive' ? { depthMode: 'expansive' } : {}),
   };
 }
 
@@ -1443,6 +1461,9 @@ function stopDecisionResearchFacts(registry, evidenceRecords, graph) {
     answeredQuestionSourceCounts: isPlainObject(graph) && graph.failed === true
       ? null
       : answeredQuestionSourceCounts(graph?.nodes, graph?.edges),
+    ...(isPlainObject(registry.frontier) && Array.isArray(registry.frontier.nodes)
+      ? { frontierOpen: registry.frontier.nodes.filter((node) => node?.status === 'open' || node?.status === 'active').length }
+      : {}),
   };
 }
 

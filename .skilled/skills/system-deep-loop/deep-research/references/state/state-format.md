@@ -9,7 +9,7 @@ trigger_phrases:
   - "research packet location"
 importance_tier: important
 contextType: implementation
-version: 1.14.0.30
+version: 1.14.1.0
 ---
 
 # State Format Reference
@@ -75,6 +75,14 @@ This avoids an unnecessary `pt-01` wrapper on first runs.
 **Example (first run on a child phase):** `.../026-graph.../019-system-hardening/001-initial-research/004-desc-regen/` writes to `004-desc-regen/research/` directly.
 
 **Example (subsequent run with prior content for a different target):** `004-desc-regen/research/004-desc-regen-pt-02/` (pt-NN allocated as a sibling to the prior content).
+
+### Frontier Node Store (expansive depth only)
+
+`research/frontier-nodes.jsonl` is the node-status store for a run started with `--depth-mode=expansive`. A default run never creates it. Rows are append-only and carry `{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}`. The last row for a node wins, so a status change is one more row rather than an edit. `runtime/scripts/frontier-admit.cjs` is the only writer.
+
+Statuses are `open`, `active`, `answered`, `blocked`, `exhausted`, `abstained` and `pruned`. A frontier question resolves when its node reaches a terminal status.
+
+The reducer projects the store as `registry.frontier {nodes, stats, budget}`, applies the depth budget so an unspent share rolls down to the next depth only, closes a spent band's open nodes as `exhausted` with reason `budget`, and adds a `## 6B. FRONTIER` dashboard section.
 
 ---
 

@@ -134,6 +134,7 @@ describe('prompt-pack', () => {
       state_paths_delta_pattern: '.skilled/skills/system-deep-loop/deep-research/runtime/deltas/iter-002.jsonl',
       pivot_lineage: 'Pivot pivot-1-abc123def456 selected candidate-001 from source iteration 2.',
       saturated_directions: '- Graph event capture',
+      frontier_block: '',
     });
 
     const reviewRendered = renderPromptPack(reviewTemplatePath, {
@@ -212,6 +213,7 @@ function researchBindings(iterationPattern: string): Record<string, string | num
     state_paths_delta_pattern: 'specs/demo/research/deltas/iter-002.jsonl',
     pivot_lineage: 'none',
     saturated_directions: '- none',
+    frontier_block: '',
   };
 }
 
@@ -322,5 +324,32 @@ describe('review prompt pack dimension list', () => {
     );
 
     expect(rendered).toContain('## REVIEW DIMENSIONS\n\ncorrectness, security, traceability, maintainability, performance\n');
+  });
+});
+
+describe('research frontier block', () => {
+  const EMPTY_FRONTIER_BLOCK = '';
+  const RENDERED_FRONTIER_BLOCK = '\n\nFRONTIER (expansive depth)\nCurrent node: F-1-001';
+
+  function renderWithFrontierBlock(frontierBlock: string): string {
+    return renderPromptPack(researchPackPath, {
+      ...researchBindings('specs/demo/research/iterations/iteration-002.md'),
+      frontier_block: frontierBlock,
+    });
+  }
+
+  it('an empty frontier block leaves the saturated-directions line untouched', () => {
+    const rendered = renderWithFrontierBlock(EMPTY_FRONTIER_BLOCK);
+
+    expect(rendered).not.toContain('FRONTIER (expansive depth)');
+    expect(rendered).toContain('Saturated Directions: - none\n\n## STATE FILES');
+  });
+
+  it('a frontier block lands between the saturated-directions line and the state files', () => {
+    const rendered = renderWithFrontierBlock(RENDERED_FRONTIER_BLOCK);
+
+    expect(rendered).toContain(
+      'Saturated Directions: - none\n\nFRONTIER (expansive depth)\nCurrent node: F-1-001\n\n## STATE FILES',
+    );
   });
 });

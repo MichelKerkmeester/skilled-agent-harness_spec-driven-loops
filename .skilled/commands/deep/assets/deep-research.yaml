@@ -71,6 +71,7 @@ user_inputs:
   max_iterations: "[MAX_ITERATIONS] - Maximum loop iterations. Default: 10."
   convergence_threshold: "[CONVERGENCE_THRESHOLD] - Stop threshold. Default: 0.05."
   convergence_mode: "[default|off|sliding-window|divergent] - Convergence policy modifier. Default: default."
+  depth_mode: "[default|expansive] - Opt-in frontier growth. expansive seeds depth-1 frontier nodes, admits leaf frontier_proposal rows and vetoes a convergence stop while nodes stay open. Default: default."
   stop_policy: "[convergence|max-iterations] - Convergence stop policy; max-iterations forces the loop to run every iteration. Default: convergence."
   dry_run: "[DRY_RUN] - Boolean pre-flight flag. Default: false."
   lineage_timeout_hours: "[LINEAGE_TIMEOUT_HOURS] - Optional per-lineage wall-clock ceiling in hours for fan-out runs, at most 4. Default: unset, which keeps the 4 hour ceiling."
@@ -338,6 +339,27 @@ workflow:
     status: "FAIL"
     message: "Usage error (extend-with-fanout): --extend extends a single-executor research run only. This config has fanout executors, so nothing was spawned and the run is unchanged."
 
+  step_frontier_seed:
+    description: "Seed the depth-1 frontier before any fan-out lineage spawns"
+    enabled_when: "depth_mode == 'expansive'"
+    skip_when: "config.fanout is absent"
+    dry_run_boundary: "state-mutation"
+    instructions: |
+      Fan-out jumps from step_fanout_spawn to phase_synthesis and never reaches
+      phase_init, so the seed runs here or not at all. fanout-run.cjs then splits
+      the seeded depth-1 nodes round-robin across the lineages.
+      Decompose {research_topic} into 3 to 6 depth-1 sub-questions that together
+      cover the topic. Write them as a JSON array to {artifact_dir}/frontier-seed.json,
+      one object per sub-question: {"question": "...", "scope": "<path, module or
+      area>", "evidence": "<repo path or topic phrase that grounds it>"}. Then run
+      the command. frontier-admit.cjs is the only writer of the node store and the
+      frontier inbox rows; never write either file by hand.
+    command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json"'
+    working_directory: "{repo_root}"
+    outputs:
+      - frontier_seed_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
+    on_failure: "Halt with the command's stderr line. A run that asked for expansive depth must not start without its seeded frontier."
+
   step_fanout_spawn:
     description: "Spawn fan-out lineages; skip and proceed to phase_init normally when single-executor"
     skip_when: "config.fanout is absent"
@@ -365,7 +387,8 @@ workflow:
             --base-artifact-dir {artifact_dir} \
             --convergence-threshold {convergence_threshold} \
             --stop-policy {stop_policy} \
-            --convergence-mode {convergence_mode}
+            --convergence-mode {convergence_mode} \
+            --depth-mode {depth_mode}
         working_directory: "{repo_root}"
         wait_for_completion: true
         optional_flags: "When lineage_timeout_hours is bound, append `--lineage-timeout-hours {lineage_timeout_hours}` to the command. When it is unset, append nothing, which keeps the 4 hour ceiling."
@@ -380,7 +403,7 @@ workflow:
       step_preflight_contract:
         action: "Validate required setup bindings and executable workflow contract before any file writes"
         verify:
-          - required_values_present: [research_topic, spec_folder, lineage_mode, max_iterations, convergence_threshold, convergence_mode, stop_policy]
+          - required_values_present: [research_topic, spec_folder, lineage_mode, max_iterations, convergence_threshold, convergence_mode, depth_mode, stop_policy]
           - dry_run_normalized: "Boolean true or false before workflow loading; absent flag resolves to false."
           - spec_folder_is_within: "specs/ or .opencode/specs/ (canonicalize alias roots before validation)"
           - unresolved_placeholders: "FAIL if any user-facing template references placeholders not produced by earlier steps"
@@ -699,6 +722,12 @@ workflow:
           convergenceThreshold: "{convergence_threshold}"
           stopPolicy: "{stop_policy}"
           antiConvergence.convergenceMode: "{convergence_mode}"
+          antiConvergence.depthMode: "{depth_mode}"
+          expansiveDepth.maxDepth: 3
+          expansiveDepth.maxChildrenPerNode: 6
+          expansiveDepth.budgetSplit: { depth1: 0.5, depth2: 0.35, depth3: 0.15 }
+          # The node cap follows the iteration budget, so admission stops before a spent budget becomes the usual close reason.
+          expansiveDepth.maxFrontierNodes: "{max_iterations}"
           antiConvergence.divergent: {}
           stuckThreshold: 3
           minIdeaObservations: 2
@@ -719,6 +748,25 @@ workflow:
           nextRunAt: null
           remainingDelayMs: null
         output: "{state_paths.config}"
+
+      step_frontier_seed:
+        description: "Seed the depth-1 frontier so iteration 1 already has open nodes"
+        enabled_when: "depth_mode == 'expansive'"
+        skip_when: "config.fanout_lineage_artifact_dir is present"
+        skip_reason: "A fan-out lineage receives its share of the parent's seeded nodes from fanout-run.cjs; seeding again would duplicate them."
+        dry_run_boundary: "state-mutation"
+        instructions: |
+          Decompose {research_topic} into 3 to 6 depth-1 sub-questions that together
+          cover the topic. Write them as a JSON array to {artifact_dir}/frontier-seed.json,
+          one object per sub-question: {"question": "...", "scope": "<path, module or
+          area>", "evidence": "<repo path or topic phrase that grounds it>"}. Then run
+          the command. frontier-admit.cjs is the only writer of the node store and the
+          frontier inbox rows; never write either file by hand.
+        command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json"'
+        working_directory: "{repo_root}"
+        outputs:
+          - frontier_seed_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
+        on_failure: "Halt with the command's stderr line. A run that asked for expansive depth must not start without its seeded frontier."
 
       step_create_state_log:
         action: "Open the research run by appending deep_research.run_initialized through the gateway"
@@ -1013,6 +1061,7 @@ workflow:
           - min_iterations_clamped: "Boolean true when min_iterations_raw > max_iterations"
           - min_iterations_guard_already_passed: "Boolean true when the floor had already cleared before this iteration: iteration_count - 1 >= effective_min_iterations"
           - convergence_mode: "Extract antiConvergence.convergenceMode when it is one of 'default', 'off', 'sliding-window', or 'divergent'; default to 'default'"
+          - depth_mode: "Extract antiConvergence.depthMode when it is 'expansive'; any other or missing value is 'default'"
           - stop_policy: "Extract stopPolicy from deep-research-config.json, default 'convergence'. Valid values: convergence, max-iterations."
           - convergence_mode_warning: "Boolean true when antiConvergence.convergenceMode is present with an unsupported value; use 'default'"
           - rejected_patterns_count: "Read registry.rejectedPatterns length when registry exists, else 0"
@@ -1091,7 +1140,7 @@ workflow:
       step_graph_convergence:
         action: "Run convergence.cjs once: it evaluates the coverage graph, persists the graph snapshot and computes the whole stop decision"
         dry_run_event_policy: preview-only
-        bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --convergence-mode "{convergence_mode}" --persist-snapshot --iteration "{current_iteration}" --stop-decision --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.registry}" --iteration-count "{iteration_count}"'
+        bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --convergence-mode "{convergence_mode}" --depth-mode "{depth_mode}" --persist-snapshot --iteration "{current_iteration}" --stop-decision --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.registry}" --iteration-count "{iteration_count}"'
         note: "The script is the only place the stop decision is computed. step_check_convergence branches on its stop_decision output."
         outputs:
           - graph_decision: "Tool decision value (CONTINUE | STOP_ALLOWED | STOP_BLOCKED), else null when unavailable"
@@ -1207,6 +1256,7 @@ workflow:
               eligible_reasons: [composite_converged, all_questions_answered]
               excluded_reasons: [maxIterationsReached, blockedStop, stuckRecovery, minIterationsNotReached, error, manualStop, userPaused, maxDurationReached]
               fail_closed: "Any missing or ambiguous reason uses if_existing_terminal_path without preparing a pivot."
+              frontier_gate: "Under depth_mode == 'expansive' the pivot is eligible only once registry.frontier holds no open or active node. The frontierOpen stop veto already returns CONTINUE while one is open, so this gate records the order rather than adding a second check. Candidates the pivot opens re-enter breadth through step_frontier_admit as frontier_proposal rows."
             steps:
               step_prepare_divergent_pivot:
                 action: "Generate state-grounded research candidates and prepare or resume the pivot transaction"
@@ -1371,6 +1421,19 @@ workflow:
         if_stuck_recovery:
           dry_run_event_policy: preview-only
           append_jsonl: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          if_expansive_open_node:
+            when: "depth_mode == 'expansive' AND the latest iteration focus starts with 'Frontier node <id>' AND that node is open or active in registry.frontier.nodes"
+            extract:
+              - active_frontier_node_id: "The node id in the latest iteration focus, which the reducer writes as 'Frontier node <id> (depth N, scope S): <question>'"
+            note: "The stuckRecovery append above stays on this path: the loop counters reset stuckCount on that event, and without it the next low-yield iteration would close the next node after one iteration."
+            command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs close --artifact-dir "{artifact_dir}" --node-id "{active_frontier_node_id}" --status exhausted --reason stuck --iteration "{current_iteration}"'
+            then_command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
+            working_directory: "{repo_root}"
+            log: "Stuck on frontier node {active_frontier_node_id}; closed it as exhausted and moved to the next open node."
+            set: { next_focus: "The refreshed NEXT FOCUS section of {state_paths.strategy}" }
+            skip_global_recovery: true
+          if_no_open_node:
+            action: "Fall through to the global recovery below."
           log: "Stuck detected ({stuck_count} consecutive no-progress). Entering recovery."
           set: { next_focus: "RECOVERY: Widen scope. Try fundamentally different approach. Least-explored question: {least_explored}" }
         if_continue:
@@ -1535,6 +1598,8 @@ workflow:
             renderer: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts#renderPromptPack"
             output_path: "{state_paths.prompt_dir}/iteration-{current_iteration}.md"
             dry_run_output: "Render in memory and print to terminal preview; do not write output_path."
+            bind_before_render:
+              frontier_block: "Empty string unless depth_mode == 'expansive'. Under expansive, the exact stdout of: node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs block --artifact-dir \"{artifact_dir}\" --focus \"{next_focus}\". Pass it verbatim; an empty stdout means the leaf gets no frontier block and proposes nothing."
             variables:
               state_summary: "{state_summary}"
               research_topic: "{research_topic}"
@@ -1547,6 +1612,7 @@ workflow:
               last_3_summaries: "{last_3_summaries}"
               pivot_lineage: "{pivot_lineage}"
               saturated_directions: "{saturated_directions}"
+              frontier_block: "{frontier_block}"
               state_paths_config: "{state_paths.config}"
               state_paths_state_log: "{state_paths.state_log}"
               state_paths_strategy: "{state_paths.strategy}"
@@ -1736,6 +1802,26 @@ workflow:
         if_absent:
           action: "Continue to state reduction"
 
+      step_frontier_admit:
+        action: "Admit this iteration's frontier_proposal rows as new frontier questions before the reducer runs"
+        enabled_when: "depth_mode == 'expansive'"
+        dry_run_boundary: "state-mutation"
+        instructions: |
+          The leaf only proposes; this step decides. Before the command, write a JSON
+          array of strings to {artifact_dir}/frontier-known-texts.json holding every
+          registry question text (keyQuestions[].text in {state_paths.registry}), every
+          rejected pattern (rejectedPatterns[].pattern) and every line under the
+          strategy's Exhausted Approaches section, so a proposal that repeats settled
+          work is pruned as a duplicate. An absent registry gives an empty array.
+          The helper runs the six admission checks in order (relevance, dedupe, depth,
+          fan-out, budget, cycle), appends one inbox row with origin frontier per
+          admitted node and records every pruned proposal with its reason.
+        command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs admit --artifact-dir "{artifact_dir}" --iteration "{current_iteration}" --input "{state_paths.delta_pattern with NNN = current_iteration}" --known-texts "{artifact_dir}/frontier-known-texts.json"'
+        working_directory: "{repo_root}"
+        outputs:
+          - frontier_admit_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
+        on_failure: "Log the stderr line as a config_warning bookkeeping event and continue to step_reduce_state; a failed admission leaves the frontier as it was and never blocks the iteration."
+
       step_reduce_state:
         action: "Run the reducer to synchronize registry, dashboard, and strategy"
         dry_run_boundary: "reducer-refresh"
@@ -1764,6 +1850,18 @@ workflow:
         note: "Skips with an informational line and exit 0 when this iteration carries no graph events."
         command: |
           node .skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs --delta-dir "{state_paths.delta_dir}" --state-log "{state_paths.state_log}" --iteration "{current_iteration}" --spec-folder "{spec_folder}" --session-id "{config.lineage.sessionId}"
+
+      step_frontier_graph_upsert:
+        action: "Mirror the frontier into the coverage graph so traversal does not depend on the leaf emitting graph events"
+        enabled_when: "depth_mode == 'expansive'"
+        dry_run_boundary: "state-mutation"
+        note: "Pruned nodes are never written. A node that closed exhausted, blocked or abstained is re-kinded from QUESTION to a CLAIM marked closed, so it stops lowering question coverage and source diversity. Open, active and answered nodes stay QUESTION nodes linked to their parent by DERIVED_FROM."
+        command: |
+          node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs graph --artifact-dir "{artifact_dir}" --output "{artifact_dir}/frontier-graph-events.jsonl"
+          node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type research --session-id "{config.lineage.sessionId}" --events "{artifact_dir}/frontier-graph-events.jsonl"
+        skip_second_command_when: "the first command prints nodes 0"
+        working_directory: "{repo_root}"
+        on_failure: "Log the stderr line as a config_warning bookkeeping event and continue; the frontier store and registry stay authoritative."
 
       step_refresh_lineage_context:
         action: "Refresh the focused context line from lineage-local state before the next prompt render"
@@ -2243,3 +2341,4 @@ reference_only_appendix:
       - "Check whether 3+ independent unanswered questions justify a wave."
       - "Dispatch up to 3 parallel agents on distinct questions."
       - "Score wave results by median newInfoRatio and promote top branches."
+      - "Live breadth growth is the opt-in --depth-mode=expansive frontier (step_frontier_seed, step_frontier_admit); waves stay reference-only."

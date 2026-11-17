@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Not built yet. This phase is Planned; the summary records that no code has changed and what will be recorded once the build runs."
+description: "Built on its branch: --depth-mode=expansive seeds, admits, projects, steers, vetoes and closes a research frontier, and default runs keep their bytes. The pilot, playbook, changelog and full suite run at the integration merge gate."
 trigger_phrases:
   - "research frontier mode implementation summary"
 importance_tier: "normal"
@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode"
     last_updated_at: "2026-11-17T18:12:37Z"
     last_updated_by: "generate-context"
-    recent_action: "Plan review applied; decisions recorded"
-    next_safe_action: "Run step-0 executor probes, then build wave 1"
+    recent_action: "Built T001-T026 and T029 on the phase branch; closure docs written"
+    next_safe_action: "Merge into integration, then run T030 full suite and the T031 pilot"
     packet_purpose: "Purpose: With `--depth-mode=expansive`, a research run discovers new scope as typed proposals, admits it under fixed bounds, steers focus to it breadth-first, refuses to stop while admitted nodes are open within budget and still reaches a clean stop when every node is terminal; without the flag, nothing c..."
     blockers: []
     key_files:
@@ -27,7 +27,7 @@ _memory:
       savedAt: "2026-11-17T18:12:37Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 0
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -41,12 +41,11 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 010-research-frontier-mode |
-| **Completed** | Not completed; status Planned |
+| **Completed** | Built on branch `worktrees/467-ed-010-research-frontier-mode` 2026-11-17; merge-time steps open |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -54,61 +53,109 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-Nothing is built yet. This phase is Planned and waits on phases 004-007; no runtime, workflow or test file has changed.
+`--depth-mode=expansive` lets a research run grow its own questions. It seeds depth-1 nodes, admits leaf proposals under six fixed checks, steers to the shallowest open node, refuses a soft stop while nodes are open and closes every node cleanly. A run without the flag, or with `--depth-mode=default`, renders the same registry, dashboard, focus, prompt pack, lineage prompt and stop config as before.
 
 ### Opt-in expansive depth mode for deep-research
 
-Once built, `--depth-mode=expansive` lets a research run grow its counted question set from leaf proposals, steer to the shallowest open node, refuse a premature stop while nodes are open and close every node cleanly. The planned work is in `plan.md` and `tasks.md`.
+`frontier-admit.cjs` is the only writer of `research/frontier-nodes.jsonl` and the frontier inbox rows. The reducer projects the store as `registry.frontier`, resolves a question when its node closes and applies the 50/35/15 depth budget. The stop decision vetoes a soft stop with `frontierOpen` after the iteration floor. Fan-out deals the seeded nodes across lineages and the merge checks the partition.
 
 ### Files Changed
 
-| File | Action | Purpose |
-|------|--------|---------|
-| None | Not started | No file has changed; the planned file list is in `spec.md` section 3 |
+| File | Purpose |
+|------|---------|
+| `.claude/agents/deep-research.md` | `frontier_proposal` leaf-contract row |
+| `.codex/agents/deep-research.toml` | `frontier_proposal` leaf-contract row |
+| `.dsh/agents/deep-research.patch.yml` | `frontier_proposal` leaf-contract row |
+| `.pi/agents/deep-research.md` | `frontier_proposal` leaf-contract row |
+| `.skilled/agents/deep-research.md` | `frontier_proposal` leaf-contract row |
+| `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown` | Regenerated compiled contract |
+| `.skilled/commands/deep/assets/deep-research-presentation.txt` | `depth_mode` bindings |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Bindings, config write, seed, admit, graph mirror, stuck close, pivot gate, frontier block, wave pointer |
+| `.skilled/commands/deep/research.md` | `--depth-mode` flag row |
+| `.skilled/skills/system-deep-loop/deep-research/README.md` | `--depth-mode` paragraph |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md` | Expansive depth section |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | `antiConvergence.depthMode` and `expansiveDepth` caps |
+| `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` | `{frontier_block}` token |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Frontier reference section |
+| `.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md` | Frontier reference section |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Frontier reference section |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Frontier reference section |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Frontier projection, close rule, Next Focus branch, depth budget, dashboard section |
+| `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | `--depth-mode` flag, expansive-only `depthMode` echo, `frontierOpen` facts and veto |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Merged `frontier` and the partition guard |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Depth-mode passthrough, round-robin partition, lineage stores before spawn, summary record |
+| `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | Create: seed, six-check admission, close, block and graph projection; the only node-store writer |
+| `.skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/dashboard.md` | Golden baseline captured before any depth-mode code |
+| `.skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/lineage-prompt.txt` | Golden baseline captured before any depth-mode code |
+| `.skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/next-focus.txt` | Golden baseline captured before any depth-mode code |
+| `.skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/prompt-pack.md` | Golden baseline captured before any depth-mode code |
+| `.skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/registry.json` | Golden baseline captured before any depth-mode code |
+| `.skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/stop-decision-config.json` | Golden baseline captured before any depth-mode code |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Tests for the changes above |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts` | Tests for the changes above |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Tests for the changes above |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts` | Tests for the changes above |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/optimizer-manifest-anti-convergence.vitest.ts` | Tests for the changes above |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts` | Tests for the changes above |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/research-depth-mode-golden.vitest.ts` | Tests for the changes above |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts` | Tests for the changes above |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts` | Tests for the changes above |
+| `.skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json` | Locks `antiConvergence.depthMode` |
+| `.vibe/agents/deep-research.toml` | `frontier_proposal` leaf-contract row |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Not delivered. Delivery will follow `tasks.md`: golden baseline first, then the eight build steps, then the full suite and the target-2 pilot.
+The golden baseline was captured first, on the untouched tree. Each change then went to DeepSeek on the Pi lane as a one-change brief, and every diff was read and its check rerun before a commit. The order was config and lock, flag bindings, admission helper, reducer, veto, workflow steps, leaf contract and mirrors, prompt block, fan-out, merge, then docs. The compiled contract was regenerated by the pre-commit hook and confirmed with `--write`, which gave no diff. A CLI smoke on a scratch packet ran seed, admit, block, reduce, graph and the stop decision end to end.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
 | Separate `--depth-mode` flag, not a fifth `--convergence-mode` value | A convergence-mode value would exclude `divergent` and `sliding-window`, which the frontier must compose with |
 | Frontier data travels through delta and inbox rows | The research state-log upcast drops non-core fields, and widening it would change every research run |
+| Closed nodes become closed CLAIMs in the graph (D-010-01) | They stop lowering question coverage and source diversity while CLAIM touches only claim verification |
+| The golden strips only the expansive-only persona paragraph (D-010-02, ADR-006; AC-001 waived pending operator ratification) | The lineage prompt embeds the agent file, which the leaf contract had to change |
+| The partition guard reports instead of aborting (D-010-03) | One crashed lineage should not cost the fan-out its synthesis |
+| The pilot runs at the merge gate (D-010-04) | A live loop does not fit the branch's turn budget; the CLI smoke covers the pipeline |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| Spec validation | `validate.sh --strict` on this folder; result recorded by the authoring run |
-| Build checks | Not run; nothing is built |
+| Golden byte identity | `npx vitest run research-depth-mode-golden.vitest`: 12 passed |
+| Admission | `npx vitest run frontier-admit.vitest`: 24 passed |
+| Reducer | `npx vitest run deep-research-reduce-state.vitest`: 48 passed |
+| Stop decision | `npx vitest run stop-decision.vitest`: 79 passed; `stop-decision-yaml-contract.vitest`: 22 passed |
+| Fan-out | `npx vitest run fanout-run.vitest`: 203 passed; `fanout-merge.vitest`: 84 passed |
+| Prompt and config | `prompt-pack.vitest` 18, `optimizer-manifest-anti-convergence.vitest` 4, `convergence-script.vitest` 38, `loop-counters-derivation.vitest` 17, `fanout-loop-prompt-in-process` 8: all passed |
+| Contracts and docs | `check-contract-drift.vitest` 9, `compile-command-contracts.vitest` 17, `check-documentation-drift.vitest` 11: all passed; `validate_document.py` 0 issues on each changed doc |
+| Mirrors | `check-agent-mirror-sync.cjs`: all comparable mirrors in sync |
+| Syntax | `node --check` exits 0 on all five changed `.cjs` files |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **Not started.** The phase cannot begin until phases 004, 005, 006 and 007 are merged; `plan.md` ADR-001 to ADR-005 were accepted as proposed on 2026-11-17.
+1. **Pilot not run on the branch.** The target-2 pilot (T031, T032) runs at the integration merge gate. Until then the live loop is covered only by unit suites and the CLI smoke.
+2. **Playbook and changelog pending.** @markdown writes them in integration after the merge (T027, T028).
+3. **Full suite pending.** The whole deep-loop suite runs at the merge gate (T030). Earlier integration gates showed one unrelated flaky test per run.
+4. **Focus must be copied verbatim.** Node visits, the depth budget and the stuck close all find a node through the iteration's `focus` text, `Frontier node <id> ...`. A leaf that paraphrases its focus leaves visits at 0, so the budget never spends and the stuck close cannot find the node. Check this first in the pilot.
+5. **CLI lineage prompt bytes.** A default CLI lineage now carries the expansive-only leaf-contract paragraph in its embedded persona. AC-001 is waived for that one artifact under ADR-006, pending operator ratification.
 <!-- /ANCHOR:limitations -->
 
 ---

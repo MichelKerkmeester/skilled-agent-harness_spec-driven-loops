@@ -17,6 +17,7 @@ interface StopConfig {
   stopPolicy: string;
   stuckThreshold: number;
   convergenceMode: string;
+  depthMode?: string;
 }
 
 interface IterationRecord {
@@ -29,6 +30,7 @@ interface ResearchFacts {
   totalQuestions: number;
   answeredQuestionSourceCounts: Record<string, number> | null;
   iterationRecords: IterationRecord[];
+  frontierOpen?: number;
 }
 
 interface ReviewApplicability {
@@ -138,6 +140,7 @@ interface StopDecision {
 
 const {
   buildStopDecision,
+  buildStopDecisionInput,
   combineGraphDecision,
   computeStopSignals,
   evaluateResearchQualityGuards,
@@ -146,6 +149,12 @@ const {
   reviewUnfinishedCoreProtocols,
 } = requireCjs('../../scripts/convergence.cjs') as {
   buildStopDecision: (input: StopDecisionInput) => StopDecision;
+  buildStopDecisionInput: (
+    args: Record<string, unknown>,
+    loopType: string,
+    files: Record<string, unknown>,
+    graph: Record<string, unknown>,
+  ) => StopDecisionInput;
   combineGraphDecision: (
     candidate: { reasonDetail: string },
     graphDecision: GraphDecision | null | undefined,
@@ -1013,5 +1022,130 @@ describe('enum contract', () => {
       }
       expect(decision.stopReason === null).toBe(decision.decision === 'CONTINUE');
     }
+  });
+});
+
+describe('frontierOpen veto', () => {
+  const composite = (overrides: InputOverrides = {}) => researchInput({
+    ratios: [0.5, 0.01, 0.01, 0.01],
+    ...overrides,
+    config: { depthMode: 'expansive', ...(overrides.config ?? {}) },
+    research: { answeredCount: 9, totalQuestions: 10, frontierOpen: 2, ...(overrides.research ?? {}) },
+  });
+
+  const cases: Array<[string, InputOverrides, string, string]> = [
+    ['open nodes veto the stop', {}, 'CONTINUE', 'frontierOpen'],
+    ['an empty frontier lets the stop through', { research: { frontierOpen: 0 } }, 'STOP', 'composite_converged'],
+    ['no depth mode leaves the veto off', { config: { depthMode: undefined } }, 'STOP', 'composite_converged'],
+    ['the cap still wins', { iterationCount: 10 }, 'STOP', 'maxIterationsReached'],
+    ['convergence mode off still wins', { config: { depthMode: 'expansive', convergenceMode: 'off' } }, 'CONTINUE', 'convergenceModeOff'],
+    ['max-iterations policy still wins', { config: { depthMode: 'expansive', stopPolicy: 'max-iterations' } }, 'CONTINUE', 'stopPolicyMaxIterations'],
+    ['the floor still comes first', { iterationCount: 2 }, 'CONTINUE', 'minIterationsNotReached'],
+    ['stuck recovery still comes first', { stuckCount: 3 }, 'STUCK_RECOVERY', 'stuckThresholdReached'],
+  ];
+
+  it('the base fixture is a composite_converged stop without the veto', () => {
+    const decision = buildStopDecision(composite({ research: { frontierOpen: 0 } }));
+
+    expect(decision.reasonDetail).toBe('composite_converged');
+  });
+
+  it.each(cases)('expansive composite candidate: %s', (_label, overrides, decision, reasonDetail) => {
+    const result = buildStopDecision(composite(overrides));
+
+    expect(result.decision).toBe(decision);
+    expect(result.reasonDetail).toBe(reasonDetail);
+  });
+
+  it('never vetoes the all_questions_answered hard path when the frontier is empty', () => {
+    const decision = buildStopDecision(researchInput({
+      config: { depthMode: 'expansive' },
+      research: { frontierOpen: 0 },
+    }));
+
+    expect(decision.reasonDetail).toBe('all_questions_answered');
+  });
+
+  it('carries depthMode into the resolved config only for expansive runs', () => {
+    const graph = { nodes: [], edges: [] };
+    const files = { config: { maxIterations: 10 }, registry: {}, stateLogRows: [] };
+
+    const defaultConfig = buildStopDecisionInput({ depthMode: 'default' }, 'research', files, graph).config;
+    expect(Object.prototype.hasOwnProperty.call(defaultConfig, 'depthMode')).toBe(false);
+
+    const flagConfig = buildStopDecisionInput({ depthMode: 'expansive' }, 'research', files, graph).config;
+    expect(flagConfig.depthMode).toBe('expansive');
+
+    const configConfig = buildStopDecisionInput({}, 'research', {
+      config: { maxIterations: 10, antiConvergence: { depthMode: 'expansive' } },
+      registry: {},
+      stateLogRows: [],
+    }, graph).config;
+    expect(configConfig.depthMode).toBe('expansive');
+  });
+
+  it('projects the open and active frontier nodes into the research facts', () => {
+    const graph = { nodes: [], edges: [] };
+
+    const withFrontier = buildStopDecisionInput({ depthMode: 'expansive' }, 'research', {
+      config: { maxIterations: 10 },
+      registry: { frontier: { nodes: [{ status: 'open' }, { status: 'active' }, { status: 'exhausted' }] } },
+      stateLogRows: [],
+    }, graph);
+    expect(withFrontier.research?.frontierOpen).toBe(2);
+
+    const withoutFrontier = buildStopDecisionInput({ depthMode: 'expansive' }, 'research', {
+      config: { maxIterations: 10 },
+      registry: {},
+      stateLogRows: [],
+    }, graph);
+    expect(Object.prototype.hasOwnProperty.call(withoutFrontier.research ?? {}, 'frontierOpen')).toBe(false);
+  });
+
+  describe('focusAlignment under expansive depth', () => {
+    const offFocusRecords = [
+      {
+        answeredQuestions: ['Which caps does admission read?'],
+        keyQuestions: ['What should be checked?'],
+      },
+    ];
+
+    it('an off-focus frontier answer alone never stops the run', () => {
+      const decision = buildStopDecision(
+        composite({ research: { frontierOpen: 0, iterationRecords: offFocusRecords } }),
+      );
+
+      expect(decision.decision).toBe('CONTINUE');
+      expect(decision.reasonDetail).toBe('qualityGuardFailed');
+      expect(decision.blockedBy).toEqual(['focusAlignment']);
+    });
+
+    it('open frontier nodes continue before the guard is consulted', () => {
+      const decision = buildStopDecision(
+        composite({ research: { frontierOpen: 2, iterationRecords: offFocusRecords } }),
+      );
+
+      expect(decision.decision).toBe('CONTINUE');
+      expect(decision.reasonDetail).toBe('frontierOpen');
+    });
+
+    it('a frontier answer listed in keyQuestions passes the guard', () => {
+      const decision = buildStopDecision(
+        composite({
+          research: {
+            frontierOpen: 0,
+            iterationRecords: [
+              {
+                answeredQuestions: ['Which caps does admission read?'],
+                keyQuestions: ['Which caps does admission read?', 'What should be checked?'],
+              },
+            ],
+          },
+        }),
+      );
+
+      expect(decision.decision).toBe('STOP');
+      expect(decision.reasonDetail).toBe('composite_converged');
+    });
   });
 });

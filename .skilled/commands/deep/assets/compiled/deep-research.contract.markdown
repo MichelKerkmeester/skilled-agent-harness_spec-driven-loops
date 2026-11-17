@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "9ba3b0f27e0b6dd264d9e2f91f4cb1e98489484dcf0a632c164fba3401d1078c",
+      "sha256": "c7d16b837af6187ad17d2dc73454933fdfaffdfde069e22c1abe36cb1e339c56",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "a56739d6100f7836bc05f163b203d5cac71d6002c51f75c234e6d3f08239ac3a",
+      "sha256": "67f5bf9b68676614162ac1b22edf2b95a0385df21f775464bed0c2dbfe76dfa6",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research.yaml",
-      "sha256": "eaa6cba5efe583152d7ade1c83f02982332255cb865d3ee25e3b57f7c082d2c4",
+      "sha256": "cb63c43c2f80a473e6baf3c0695714fb538fd6b2681e87c57edf15a0fffa72e1",
       "section": "full"
     },
     {
@@ -37,12 +37,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "20beccae28bfeea38efb77043dba2fd1c845d5cf0d4d940541f6b016e5e72a9b",
+      "sha256": "6937e548345113dcff8bcc6d789814ca2fa54d3cc07dae22b411f221355f0772",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "80cac78a2d27a2e9c8d5fc3c27d31459ba0273b1b070b38b747c9f6df0d260cf",
+      "sha256": "e5aa5ea7531a49f097685cf821521cd2eaf81fdec17578b9fe4273d7785085e7",
       "section": "full"
     },
     {
@@ -52,17 +52,17 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
-      "sha256": "65039d1b5133043feeca3658134aada16c3e039367ac9a5eedd1bd07595bffb6",
+      "sha256": "b298015df4c11657d778de123f320c04ca8c2bb56fca1678f69bbe702ba2d463",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
-      "sha256": "b36241a4f42956dd164d06ee13f557d44b1698718aaf914d36f948ab20a67848",
+      "sha256": "ae4ffa50477e05ad88c9e805e03db93067ed189703be870d0e92105d66a612f0",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
-      "sha256": "7840a5e706061b1f8c522c01b7d84c305aa012fb0aa2f6ece232b0b71b366b1e",
+      "sha256": "2065ca554cf16408fa46631c2f1bd6c765f6aab14be190e7f2076b44ad04aac8",
       "section": "full"
     },
     {
@@ -72,12 +72,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "7103907ac5f9f739c4f673d3db85d95bd51fb9ca6254bbd5e7fa575d2bef3696",
+      "sha256": "308a20ec7f0f8532cda893e727bbe258e290fdbb298b8cee2270ee5aa5e19765",
       "section": "full"
     },
     {
       "path": ".skilled/agents/deep-research.md",
-      "sha256": "04a83e4e80e8d8aeb29ea2de756f530f7a95bbac5f3d822397c4acc0d3b1d486",
+      "sha256": "80922c620cf597aaf3f27b7b0da00a163d7f9f8196fb9fbc6daf18c3d17dce60",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "e3e022399721d432aec5596470a83ec92ddae2049bddb784d961c1f0f8577e39"
+  "compiledBodyDigest": "08e08db86fb652351d7207a53ffe6178a7e75c4b6f257f7a6186ed393f84a826"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -187,6 +187,7 @@ PRE-BOUND SETUP ANSWERS:
   maxIterations: 10  # positive integer
   convergenceThreshold: 0.05  # decimal 0..1
   convergence_mode: default  # default | off | sliding-window | divergent
+  depth_mode: default  # default | expansive (opt-in frontier growth)
   lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
   extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
   extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the duration budget, default the prior budget
@@ -211,6 +212,7 @@ Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default;
 | `maxIterations`         | Y        | flag `--max-iterations`, marker `maxIterations`, or default                                                                                                                                            | `10`                               | N                                                       |
 | `convergenceThreshold`  | Y        | flag `--convergence`, marker `convergenceThreshold`, or default                                                                                                                                        | `0.05`                             | N                                                       |
 | `convergence_mode`      | Y        | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default                                                                                                  | `default`                          | N                                                       |
+| `depth_mode`            | Y        | flag `--depth-mode=default|expansive`, marker `depth_mode`, or default `default`                                                                                                                       | `default`                          | N                                                       |
 | `stop_policy`           | Y        | flag `--stop-policy=convergence|max-iterations`, marker `stop_policy`, or default                                                                                                                      | `convergence`                      | N                                                       |
 | `lineage_mode`          | Y        | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default                                                                                                         | `auto`                             | N                                                       |
 | `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |
@@ -258,6 +260,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --max-iterations=N -> maxIterations = N
    |-- --convergence=N -> convergenceThreshold = N
    |-- --convergence-mode=default|off|sliding-window|divergent -> antiConvergence.convergenceMode = value
+   |-- --depth-mode=default|expansive -> antiConvergence.depthMode = value
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --restart -> lineage_mode = restart
    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
@@ -294,6 +297,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - `--service-tier` -> `config.executor.serviceTier`
    - `--executor-timeout` -> `config.executor.timeoutSeconds`
    - `--convergence-mode` -> `antiConvergence.convergenceMode`
+   - `--depth-mode` -> `antiConvergence.depthMode`
 
    Validation hook:
    - `parseExecutorConfig` from `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` runs at config-write time
@@ -352,6 +356,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - maxIterations = [from Q3 or flag or default 10]
    - convergenceThreshold = [from flag or default 0.05]
    - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
+   - depth_mode = [from flag, marker, or default `default`; one of `default`, `expansive`]
     - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.kind/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
 
 9. SET STATUS: PASSED
@@ -365,7 +370,7 @@ NEVER split questions into multiple prompts
 
 **Phase Output:**
 - `research_topic` | `spec_choice` | `spec_path`
-- `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode`
+- `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode` | `depth_mode`
 ~~~
 <!-- END renderBlocks.confirm -->
 
