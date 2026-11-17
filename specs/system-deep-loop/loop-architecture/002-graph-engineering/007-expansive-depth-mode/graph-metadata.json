@@ -29,6 +29,7 @@
       "expansive depth sub mode for deep research",
       "expansive depth mode plan",
       "expansive depth mode tasks",
+      "007-expansive-depth-mode operator decisions",
       "expansive depth mode implementation summary",
       "depth-mode expansive",
       "frontier veto",
@@ -44,10 +45,10 @@
       "research",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
-      "depth-mode",
-      "frontier"
+      "007-expansive-depth-mode",
+      "operator",
+      "decisions",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -55,6 +56,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
       "research/inbox.jsonl",
@@ -70,8 +72,7 @@
       "research_archive/20261117T103614Z/iterations/iteration-001.md",
       "research_archive/20261117T103614Z/research.md",
       "scratch/research-fable-5-2-draft.md",
-      ".skilled/commands/deep/assets/deep-research.yaml",
-      ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md"
+      ".skilled/commands/deep/assets/deep-research.yaml"
     ],
     "entities": [
       {
@@ -90,6 +91,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -165,12 +172,6 @@
         "source": "derived"
       },
       {
-        "name": "loop-protocol.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -221,22 +222,24 @@
     ],
     "causal_summary": "The deep-research and deep-review loops converge on the three to five questions seeded at init and stop once novelty drops, so a broad target such as \"research the last 100 commits for bugs, drift and improvements\" or \"analyze system-skill-advisor for chat-time auto-utilization\" gets a narrow, shallow answer",
     "created_at": "2026-11-17T07:53:58Z",
-    "last_save_at": "2026-11-17T16:54:18.192Z",
+    "last_save_at": "2026-11-17T16:56:11.448Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0429fa4f76a9f2fabd224d3b300f086bbbd36bdd09c1163ce17c7428e54b5831",
+    "source_fingerprint": "sha256:ffb9bfe5269da7757770da32c1444ccc03a39b6ce31f38b8a1f987b81615faf0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "42798bf071d0393de728f9e0803f5626d61dd103be467f5660aaf875c9cf61c1",
       "plan.md": "6a56a3aaa01f0331b6c583bb878c61d031938abfeddad6ebb39c9e3ea0cac9fd",
       "tasks.md": "2bd96d25454ae3e7bf9fea94cadc73dac0e5379c35aaeb83792afd7a17257727",
+      "decision-record.md": "59a05e6443aaa20c7e149d591c40e500f158e48ce8d646f534fca79d39c16b33",
       "implementation-summary.md": "2088c1e4437f3061bd63975059960c6ebb10e14588be75e53898d13f9a592446",
       "research/research.md": "388f865f2096176f5124d2d49da58ef45c08c4c78a63a1293ccc05b0592f3de0"
     },
