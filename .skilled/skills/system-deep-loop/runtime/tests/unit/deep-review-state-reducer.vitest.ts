@@ -242,6 +242,25 @@ describe('reduceReviewState — iteration numbering', () => {
     expect(result.dashboard).not.toContain('- Iteration: 3 of 5');
   });
 
+  it('shows a landed iteration as error when the still-fails row follows it', () => {
+    // A landed iteration that fails verification with a reason that skips the redispatch
+    // still gets the workflow's error row, and the later row replaces the landed one.
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 5, reviewTarget: 'landed-then-error' }));
+    const records = [
+      { type: 'iteration', iteration: 1, run: 1, status: 'complete', focus: 'dim-1', newFindingsRatio: 0.5, findingsSummary: { P0: 0, P1: 0, P2: 0 } },
+      { type: 'iteration', iteration: 2, run: 2, status: 'complete', focus: 'dim-2', newFindingsRatio: 0.4, findingsSummary: { P0: 0, P1: 1, P2: 0 } },
+      { type: 'iteration', iteration: 2, run: 2, status: 'error', focus: 'dim-2', findingsCount: 0, newFindingsRatio: 0.0, findingsSummary: { P0: 0, P1: 0, P2: 0 } },
+    ];
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${records.map((record) => JSON.stringify(record)).join('\n')}\n`);
+    writeFileSync(join(reviewDir, 'deep-review-strategy.md'), '# Deep Review Strategy\n\nNo machine sections here at all.\n');
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+
+    expect(result.dashboard).toContain('- Iteration: 2 of 5');
+    expect(result.dashboard).toContain('| 2 | dim-2 | - | 0.00 | 0/0/0 | error |');
+  });
+
   it('numbers a dashboard progress row from `iteration` when the record carries no `run`', () => {
     // `iteration` is the canonical iteration-record field and the fan-out validator
     // accepts nothing else, so a record that honours the contract must still render

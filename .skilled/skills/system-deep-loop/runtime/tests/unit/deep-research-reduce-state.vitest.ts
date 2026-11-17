@@ -515,6 +515,24 @@ describe('deep-research reduce-state recovery gate', () => {
     expect(result.dashboard).toContain('redispatched attempt');
   });
 
+  it('shows a landed run as error when the still-fails row follows it', () => {
+    // A landed iteration that fails verification with a reason that skips the redispatch
+    // still gets the workflow's error row, and the later row replaces the landed one.
+    const specFolder = makeTempSpec();
+    writeState(specFolder, [
+      { type: 'iteration', run: 1, status: 'complete', focus: 'first', newInfoRatio: 0.4, findingsCount: 1 },
+      { type: 'iteration', run: 2, status: 'complete', focus: 'landed focus', newInfoRatio: 0.3, findingsCount: 2 },
+      { type: 'iteration', run: 2, status: 'error', focus: 'landed focus', newInfoRatio: 0.0, findingsCount: 0 },
+    ].map((record) => JSON.stringify(record)).join('\n') + '\n');
+
+    const result = reduceResearchState(specFolder, { write: false });
+
+    expect(result.registry.metrics.iterationsCompleted).toBe(2);
+    expect(result.registry.metrics.convergenceScore).toBe(0);
+    expect(result.dashboard).toContain('| 2 | landed focus | - | 0.00 | 0 | error |');
+    expect(result.dashboard).toContain('Latest iteration reported error status.');
+  });
+
   it('promotes inbox questions with provenance into registry, strategy, and dashboard output', () => {
     const specFolder = makeTempSpec();
     writeState(specFolder, `${JSON.stringify({
