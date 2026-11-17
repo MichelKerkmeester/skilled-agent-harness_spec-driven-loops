@@ -70,7 +70,8 @@ Each command stub names its canonical file under `.skilled/commands/` and passes
 | `skills`, `repo-rules` | Links | The skill library and the repo rule set |
 | `manual-testing-playbook` | Link | Points at the cli-pi playbook |
 | `mcp.json`, `settings.json` | Authored | The server and the project settings |
-| `models.json`, `pi-*-config.json` | Authored | Provider blocks and per-package settings |
+| `models.json`, `pi-blackhole-config.json`, `pi-cache-optimizer-config.json` | Authored | Provider blocks and per-package settings |
+| `pi-fast-mode-w-subagent-support-config.json`, `deep-pi-stats.json` | Local state, git-ignored | Written at run time, never committed |
 | `custom-providers.md`, `PLUGINS.md` | Authored | Provider and package notes |
 | `statusline.sh` | Authored | The command behind the status line |
 | `types/` | Authored | Declarations for `tsconfig.pi.json` |
@@ -90,7 +91,7 @@ node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-regis
 
 The agents check prints `[pi-agent-sync] PASS: 11 agents are in sync.` The prompts check prints `[pi-prompt-sync] PASS: 46 prompts are in sync.` The extensions check prints `[hook-registration-sync] PASS: 4 registration files match the 36-hook registry; 22 Pi extensions resolve.` Each exits 0.
 
-The [runtime mirrors check](./prompts/doctor-runtime-mirrors.md) (`/doctor-runtime-mirrors`) runs every runtime's checks at once and writes nothing.
+The [runtime mirrors check](./prompts/doctor-runtime-mirrors.md) (`/doctor-runtime-mirrors`) runs the mirror, generator and roster checks for every runtime at once and writes nothing. It does not run the hook-registration check, so run that from the shell.
 
 ---
 

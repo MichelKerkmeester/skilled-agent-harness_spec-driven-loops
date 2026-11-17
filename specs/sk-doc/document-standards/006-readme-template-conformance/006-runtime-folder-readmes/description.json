@@ -6,7 +6,7 @@
     "phase",
     "runtime-folder-readmes"
   ],
-  "lastUpdated": "2026-11-17T14:03:36.601Z",
+  "lastUpdated": "2026-11-17T17:07:56.495Z",
   "specId": "006",
   "folderSlug": "runtime-folder-readmes",
   "parentChain": [
@@ -14,9 +14,10 @@
     "document-standards",
     "006-readme-template-conformance"
   ],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "16-11-26_20-27__phase-planned.md",
-    "17-11-26_15-03__phase-006-drive-in-progress.md"
+    "17-11-26_15-03__phase-006-drive-in-progress.md",
+    "17-11-26_18-07__phase-006-closed-with-one-blocked-criterion.md"
   ]
 }

@@ -30,7 +30,7 @@ One row for each path in this folder, with the mechanism that keeps it in step.
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
 | `agents/<name>/AGENT.md` | one relative link per profile, inside a folder named for the agent | `.claude/agents/<name>.md` | Yes. `sync-runtime-mirrors.cjs --check` names a link that is missing or aimed at the wrong file, and a folder nothing expects |
-| `hooks/*` | one relative link per command in `hooks.v1.json` | the `.skilled/` path that command names | Yes. The same check catches a missing link and one aimed elsewhere |
+| `hooks/*` | one relative link per distinct script that `hooks.v1.json` runs | the `.skilled/` path that command names | Yes. The same check catches a missing link and one aimed elsewhere |
 | `hooks/README.md` | authored | none | No. It is the link index, and nothing generates it |
 | `hooks.v1.json` | generated | `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` | Yes. `sync-hook-registrations.cjs --check` names a file that differs from the registry |
 | `config.json` | authored | none | No. No generator writes it |
@@ -148,7 +148,7 @@ tools: Read, Bash, Grep, Glob
 | Hook registrations | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check` | 0 in sync / 1 drift / 2 when the check cannot run |
 | Agent and hook links | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 in sync / 1 drift |
 | Roster coverage | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 covered / 1 drift / 2 when the checker cannot run |
-| Every runtime at once | `/doctor:runtime-mirrors` | read-only |
+| Mirror, generator and roster checks for every runtime | `/doctor:runtime-mirrors`, from a Claude Code, OpenCode, Codex, Cursor or Pi session | read-only |
 
 A pass prints a verdict line. The registration check prints a `[hook-registration-sync] PASS:` line with its file and registry counts. The link check prints a visibility line first, then `[runtime-mirror-sync] PASS: 260 mirrors across 10 trees are in sync.` The roster check prints one `OK` line per runtime and ends with `STATUS=OK`. A drift finding prints one line per bad path before the exit code. A link that is missing or aimed elsewhere carries a `MISSING` or `STALE` prefix, and an entry nothing expects carries `EXTRA`. None of these commands writes.
 

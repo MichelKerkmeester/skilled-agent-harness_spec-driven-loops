@@ -139,7 +139,7 @@ The stub copies the command name and the canonical path. It does not copy the co
 | Generated prompts | `node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check` | 0 ok / 1 drift |
 | Extension entries | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check` | 0 ok / 1 drift / 2 usage or registry error |
 | Roster coverage | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 covered / 1 drift / 2 checker error |
-| Everything at once | `/doctor-runtime-mirrors` | read-only |
+| Mirror, generator and roster checks for every runtime | `/doctor-runtime-mirrors` | read-only |
 
 Each check prints a pass line or one line for each problem it finds. The agents check prints `[pi-agent-sync] PASS: 11 agents are in sync.` The prompts check prints `[pi-prompt-sync] PASS: 46 prompts are in sync.` The extension check prints `[hook-registration-sync] PASS: 4 registration files match the 36-hook registry; 22 Pi extensions resolve.` The roster check ends with `STATUS=OK agent-roster-mirror: every runtime covers the canonical roster`.
 

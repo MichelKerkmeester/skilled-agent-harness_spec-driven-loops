@@ -113,7 +113,7 @@ The mirror generator does more than fill a gap. In check mode it reports a real 
 | Hook registrations | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check` | 0 in sync / 1 on drift / 2 on a registry it cannot render |
 | Gate pointer blocks | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check` | 0 in sync / 1 on drift / 2 on a missing source line |
 | Roster coverage | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 covered / 1 on drift / 2 on a checker error |
-| Everything at once | `/doctor-runtime-mirrors` | read-only |
+| Mirror, generator and roster checks for every runtime | `/doctor-runtime-mirrors` | read-only |
 
 Each check ends with a verdict line. The mirror check prints a `PASS` line with its mirror and tree counts. The hook check prints a `PASS` line with the registry count. The pointer check prints `PASS`. The roster check ends with `STATUS=OK`.
 

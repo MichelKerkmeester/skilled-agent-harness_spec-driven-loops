@@ -39,8 +39,8 @@ _memory:
 
 **Packet:** sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes
 **Level:** 2
-**Status:** Draft
-**Date:** 2026-11-16
+**Status:** Blocked
+**Date:** 2026-11-17
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,15 +53,15 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the 16 files, When `h2model.py` and a read of the opening run on each, Then each README opens OVERVIEW with a four-row At a Glance table, and every H2 in each file is numbered, ALL CAPS, named in its scaffold's section model and preceded by `---` | `h2model.py` and a read of each opening, recorded per file in `implementation-summary.md` | Unmet | - |
-| AC-002 | REQ-002 | Given the 16 files, When `validate_document.py` runs on each, Then each prints `VALID` | The after run of the baseline script, one `✅ VALID` per line | Unmet | - |
-| AC-003 | REQ-003 | Given the 16 files, When `hvr_scan.py` runs on each, Then each reports `hard blockers: 0` | The after run of the baseline script, `hard=0` on all 16 lines | Unmet | - |
-| AC-004 | REQ-004 | Given the 16 files, When the link checker runs over them, Then it reports 0 problems for outbound links and for anchored links into them from the rest of the repository | `readme_links.py` prints `0 problems` | Unmet | - |
-| AC-005 | REQ-005 | Given a rewritten README, When a session that did not write it checks each path, command, count and list against the runtime folder, its generators and its drift checks, Then every claim holds or was corrected | The review record in `implementation-summary.md`, one line per README | Unmet | - |
-| AC-006 | REQ-006 | Given the rewritten READMEs and the rebuilt verdict baseline, When opencode-compat-layout.test.cjs, the verdict parity test and the sk-doc suite run, Then all pass | The commands and their pass lines in `implementation-summary.md` | Unmet | - |
-| AC-007 | REQ-007 | Given a command block in a README, When a reader looks below it, Then the expected output or result is stated | Review of each README's code blocks, recorded with AC-005 | Unmet | - |
-| AC-008 | REQ-008 | Given the baseline ceilings, When the voice scan runs after the rewrite, Then no README's mechanical ceiling is lower than its baseline | Before and after ceilings side by side in `implementation-summary.md` | Unmet | - |
-| AC-009 | REQ-009 | Given the phase is done, When `implementation-summary.md` is read, Then it holds the before and after validator, voice and link results for all 16 files | `implementation-summary.md` Verification section | Unmet | - |
+| AC-001 | REQ-001 | Given the 16 files, When `h2model.py` and a read of the opening run on each, Then each README opens OVERVIEW with a four-row At a Glance table, and every H2 in each file is numbered, ALL CAPS, named in its scaffold's section model and preceded by `---` | `h2model.py` printed `EXACT` for 15 files and `SUBSET` for `.opencode/SYNC.md`, and the At a Glance check printed `PASS rows=4` for all 8 READMEs | Met | - |
+| AC-002 | REQ-002 | Given the 16 files, When `validate_document.py` runs on each, Then each prints `VALID` | `baseline-006-after.tsv`: 16 of 16 `✅ VALID` | Met | - |
+| AC-003 | REQ-003 | Given the 16 files, When `hvr_scan.py` runs on each, Then each reports `hard blockers: 0` | `baseline-006-after.tsv`: `hard=0` on all 16 lines | Met | - |
+| AC-004 | REQ-004 | Given the 16 files, When the link checker runs over them, Then it reports 0 problems for outbound links and for anchored links into them from the rest of the repository | `readme_links.py` printed `0 problems` over 157 outbound links | Met | - |
+| AC-005 | REQ-005 | Given a rewritten README, When a session that did not write it checks each path, command, count and list against the runtime folder, its generators and its drift checks, Then every claim holds or was corrected | Review Record in `implementation-summary.md`, one line per file, plus the blocking review's ten confirmed fixes | Met | - |
+| AC-006 | REQ-006 | Given the rewritten READMEs and the rebuilt verdict baseline, When opencode-compat-layout.test.cjs, the verdict parity test and the sk-doc suite run, Then all pass | `opencode-compat-layout.test.cjs` `pass 21` and `PARITY PASS`, but the sk-doc suite exits 1 on `test_check_changelog_shape.py`, the changelog failure that also blocks phase 005, outside this phase | Unmet | - |
+| AC-007 | REQ-007 | Given a command block in a README, When a reader looks below it, Then the expected output or result is stated | All 15 health-block commands in the 8 READMEs and all 34 drift-table commands in the 8 manifests rerun, each exit 0 with its stated line | Met | - |
+| AC-008 | REQ-008 | Given the baseline ceilings, When the voice scan runs after the rewrite, Then no README's mechanical ceiling is lower than its baseline | Before and after ceilings in `implementation-summary.md`. None ends below its baseline | Met | - |
+| AC-009 | REQ-009 | Given the phase is done, When `implementation-summary.md` is read, Then it holds the before and after validator, voice and link results for all 16 files | `implementation-summary.md` Verification section | Met | - |
 
 ### Status values
 
@@ -89,5 +89,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-The rewrite has not started, so every criterion is still unmet.
+AC-006 is unmet. The sk-doc suite fails on a changelog test outside this phase, and every other criterion is met.
 <!-- /ANCHOR:closure -->

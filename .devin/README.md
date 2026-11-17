@@ -63,7 +63,7 @@ Devin also carries config files of its own. `mcp_config.json` registers the Code
 | `hooks/` | Links and a README | A discovery mirror of the hook scripts. Its `README.md` is authored |
 | `hooks.v1.json` | Generated | Rendered from `hook-registry.json`, with the event names at the top level |
 | `config.json` | Authored | Turns off the Claude import and denies dotenv reads and writes |
-| `config.local.json` | Authored | This machine's permission allow and deny lists |
+| `config.local.json` | Per machine | This machine's permission allow and deny lists. Git does not track it, so a fresh clone has none |
 | `mcp_config.json` | Authored | Devin's own MCP file |
 | `repo-rules`, `manual-testing-playbook` | Links | The rule files and the `cli-devin` playbook |
 | `README.md`, `SYNC.md` | Authored | The documentation |
@@ -92,14 +92,14 @@ node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs
 
 Expected: an `OK` line for each runtime and `STATUS=OK`, then exit 0.
 
-A `/doctor:runtime-mirrors` run covers every runtime's checks at once and writes nothing.
+A `/doctor:runtime-mirrors` run from a Claude Code, OpenCode, Codex, Cursor or Pi session covers the mirror, generator and roster checks for every runtime and writes nothing. Devin has no command loader of its own, and the doctor does not run the hook-registration check.
 
 ---
 
 ## 6. LIMITS AND KNOWN GAPS
 
 - **Devin cuts each rule file at 16,384 bytes.** Keep hard rules in the first 16 KB of a file.
-- **Bypass mode skips the approval hook.** This repository dispatches Devin with `--permission-mode bypass`. `PermissionRequest` never fires under it, while `PreToolUse` still does, so the spec gate and the dispatch guard stay active.
+- **Bypass mode skips the approval hook.** This repository dispatches Devin with `--permission-mode dangerous`, which `bypass` aliases. `PermissionRequest` never fires under it, while `PreToolUse` still does, so the spec gate and the dispatch guard stay active.
 - **Strict YAML has no gate.** Nothing blocks an unquoted colon in a `description:` line at commit time, and Devin then drops the whole file with no message.
 - **`PostCompaction` has not been seen firing.** A dispatch is too short to trigger a compaction.
 - **A hand edit to `hooks.v1.json` does not last.** The next sync overwrites it.

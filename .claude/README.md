@@ -81,7 +81,7 @@ node .skilled/bin/check-agent-mirror-sync.cjs --all
 node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check
 ```
 
-The first prints `[runtime-mirror-sync] PASS: 260 mirrors across 10 trees are in sync.` and exits 0. The second prints one line per compared mirror, two per agent here, and ends with `OK`, then exits 0. The third prints `[hook-registration-sync] PASS: 4 registration files match the 36-hook registry; 22 Pi extensions resolve.` and exits 0. The counts follow the tree each run read, so treat them as the current figure. `/doctor:runtime-mirrors` runs every runtime's checks at once and writes nothing.
+The first prints a visibility line, then `[runtime-mirror-sync] PASS: 260 mirrors across 10 trees are in sync.`, and exits 0. The second compares each agent's Claude copy without output. It prints a line only for each mirror it does not compare, the OpenCode link and the dsh patch, two per agent, then ends with `OK` and exits 0. The third prints `[hook-registration-sync] PASS: 4 registration files match the 36-hook registry; 22 Pi extensions resolve.` and exits 0. The counts follow the tree each run read, so treat them as the current figure. `/doctor:runtime-mirrors` runs the mirror, generator and roster checks for every runtime at once and writes nothing. It does not run `sync-hook-registrations.cjs --check`, so run that from the shell.
 
 ---
 
@@ -89,7 +89,7 @@ The first prints `[runtime-mirror-sync] PASS: 260 mirrors across 10 trees are in
 
 - **The agent fork is compared as token sets.** A reworded sentence that reuses the same words passes, so the pair can differ in wording while the check stays green.
 - **`agents/README.txt` has no check.** A new agent file can sit in `agents/` and never appear in the roster beside it.
-- **The instructions depend on a file outside this repository.** Claude Code reads `CLAUDE.md`, and this checkout has none, so a machine without the `@AGENTS.md` pointer starts with no shared rules. `/doctor:agents-md` reports the missing pointer.
+- **The instructions depend on a file outside this repository.** Claude Code reads `CLAUDE.md`, and this checkout has none, so a machine without the `@AGENTS.md` pointer starts with no shared rules. `/doctor:agents-md` checks only a root `CLAUDE.md`, so it cannot see your user file. Read `~/.claude/CLAUDE.md` to confirm the pointer.
 - **The checks prove discovery, not behavior.** They show that each path resolves from this folder. They cannot show how a given Claude Code release uses it.
 
 ---

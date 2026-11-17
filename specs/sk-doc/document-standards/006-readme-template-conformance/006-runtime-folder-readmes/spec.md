@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Blocked |
 | **Created** | 2026-11-16 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
