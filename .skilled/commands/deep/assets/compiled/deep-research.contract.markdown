@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "9ba3b0f27e0b6dd264d9e2f91f4cb1e98489484dcf0a632c164fba3401d1078c",
+      "sha256": "c7d16b837af6187ad17d2dc73454933fdfaffdfde069e22c1abe36cb1e339c56",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "a56739d6100f7836bc05f163b203d5cac71d6002c51f75c234e6d3f08239ac3a",
+      "sha256": "67f5bf9b68676614162ac1b22edf2b95a0385df21f775464bed0c2dbfe76dfa6",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research.yaml",
-      "sha256": "307677cfdfcdffe98be74cca0ba68a23659bb9cc7f94c60d549d7a0b0d74684c",
+      "sha256": "b58837a3507ee49cb2d507ae05d260d947b4aa7ebe51d83aae645b21f0d5e11c",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "e3e022399721d432aec5596470a83ec92ddae2049bddb784d961c1f0f8577e39"
+  "compiledBodyDigest": "08e08db86fb652351d7207a53ffe6178a7e75c4b6f257f7a6186ed393f84a826"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -187,6 +187,7 @@ PRE-BOUND SETUP ANSWERS:
   maxIterations: 10  # positive integer
   convergenceThreshold: 0.05  # decimal 0..1
   convergence_mode: default  # default | off | sliding-window | divergent
+  depth_mode: default  # default | expansive (opt-in frontier growth)
   lineage_mode: auto  # one of: auto | resume | restart | completed-continue (set by --extend=N)
   extend: ""  # optional positive integer N from --extend=N: extends a completed run by N iterations
   extend_minutes: ""  # optional positive integer M from --extend-minutes=M: minutes added to the duration budget, default the prior budget
@@ -211,6 +212,7 @@ Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default;
 | `maxIterations`         | Y        | flag `--max-iterations`, marker `maxIterations`, or default                                                                                                                                            | `10`                               | N                                                       |
 | `convergenceThreshold`  | Y        | flag `--convergence`, marker `convergenceThreshold`, or default                                                                                                                                        | `0.05`                             | N                                                       |
 | `convergence_mode`      | Y        | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default                                                                                                  | `default`                          | N                                                       |
+| `depth_mode`            | Y        | flag `--depth-mode=default|expansive`, marker `depth_mode`, or default `default`                                                                                                                       | `default`                          | N                                                       |
 | `stop_policy`           | Y        | flag `--stop-policy=convergence|max-iterations`, marker `stop_policy`, or default                                                                                                                      | `convergence`                      | N                                                       |
 | `lineage_mode`          | Y        | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default                                                                                                         | `auto`                             | N                                                       |
 | `extend` | N | flag `--extend=N` (positive integer); sets `lineage_mode=completed-continue` on a completed run; refused with fan-out | none | N |
@@ -258,6 +260,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --max-iterations=N -> maxIterations = N
    |-- --convergence=N -> convergenceThreshold = N
    |-- --convergence-mode=default|off|sliding-window|divergent -> antiConvergence.convergenceMode = value
+   |-- --depth-mode=default|expansive -> antiConvergence.depthMode = value
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --restart -> lineage_mode = restart
    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
@@ -294,6 +297,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - `--service-tier` -> `config.executor.serviceTier`
    - `--executor-timeout` -> `config.executor.timeoutSeconds`
    - `--convergence-mode` -> `antiConvergence.convergenceMode`
+   - `--depth-mode` -> `antiConvergence.depthMode`
 
    Validation hook:
    - `parseExecutorConfig` from `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` runs at config-write time
@@ -352,6 +356,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - maxIterations = [from Q3 or flag or default 10]
    - convergenceThreshold = [from flag or default 0.05]
    - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
+   - depth_mode = [from flag, marker, or default `default`; one of `default`, `expansive`]
     - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.kind/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
 
 9. SET STATUS: PASSED
@@ -365,7 +370,7 @@ NEVER split questions into multiple prompts
 
 **Phase Output:**
 - `research_topic` | `spec_choice` | `spec_path`
-- `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode`
+- `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode` | `depth_mode`
 ~~~
 <!-- END renderBlocks.confirm -->
 

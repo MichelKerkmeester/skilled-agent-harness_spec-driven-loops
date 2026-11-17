@@ -60,6 +60,8 @@ const CONVERGENCE_FLAGS = [
   'configPath',
   'convergenceMode',
   'convergence_mode',
+  'depthMode',
+  'depth_mode',
   'fixReplayPassingRows',
   'fixReplayRequiredRows',
   'graphNoveltyFloor',

@@ -80,3 +80,32 @@ describe.each(FILES)('%s', (file) => {
     });
   }
 });
+
+// The opt-in depth mode must be bound everywhere the convergence mode is, so an
+// unbound value can never reach convergence.cjs as an empty argument.
+describe('deep-research binds depth_mode beside convergence_mode', () => {
+  const yaml = readFileSync(resolve(ASSETS, 'deep-research.yaml'), 'utf8');
+  const presentation = readFileSync(resolve(ASSETS, 'deep-research-presentation.txt'), 'utf8');
+
+  it('declares depth_mode in user_inputs and requires it in the preflight contract', () => {
+    expect(yaml).toMatch(/\n  depth_mode: "\[default|expansive\]/);
+    expect(yaml).toContain('convergence_mode, depth_mode, stop_policy]');
+  });
+
+  it('writes the depth mode at config creation and extracts it in step_read_state', () => {
+    expect(yaml).toContain('antiConvergence.depthMode: "{depth_mode}"');
+    expect(yaml).toMatch(/- depth_mode: "Extract antiConvergence\.depthMode/);
+  });
+
+  it('passes --depth-mode to the convergence.cjs stop decision', () => {
+    const invocation = yaml.split('\n').find((line) => line.includes('runtime/scripts/convergence.cjs') && line.includes('--stop-decision'));
+    expect(invocation).toContain('--convergence-mode "{convergence_mode}" --depth-mode "{depth_mode}"');
+  });
+
+  it('binds depth_mode in the presentation default, input table, resolution and bound values', () => {
+    expect(presentation).toContain('depth_mode: default  # default | expansive');
+    expect(presentation).toContain('| `depth_mode`');
+    expect(presentation).toContain('|-- --depth-mode=default|expansive -> antiConvergence.depthMode = value');
+    expect(presentation).toContain('- depth_mode = [from flag, marker, or default `default`');
+  });
+});
