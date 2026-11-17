@@ -179,4 +179,10 @@ describe('deep-research wires the expansive frontier steps', () => {
       wf.phase_loop.steps.step_handle_convergence.if_stop.if_divergent_eligible.eligibility_contract;
     expect(contract.frontier_gate).toContain('no open or active node');
   });
+
+  it('passes the depth mode to the fan-out runner', () => {
+    const command = wf.step_fanout_spawn.sub_steps.step_fanout_spawn_cli.command as string;
+    expect(command).toContain('--depth-mode {depth_mode}');
+    expect(command).toContain('--convergence-mode {convergence_mode} \\\n');
+  });
 });

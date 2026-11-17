@@ -29,7 +29,7 @@ const {
 
 const FANOUT_FLAGS = [
   'specFolder', 'loopType', 'researchTopic', 'reviewFocus', 'reviewTarget', 'reviewTargetType', 'fanoutConfigJson', 'baseArtifactDir',
-  'convergenceThreshold', 'lineageTimeoutHours', 'stopPolicy', 'convergenceMode', 'containmentMode',
+  'convergenceThreshold', 'lineageTimeoutHours', 'stopPolicy', 'convergenceMode', 'depthMode', 'containmentMode',
   'noMetadataRefresh', 'preDispatchWaitMs', 'stallWatchdogMs', 'maxCostUnitsPerLineage',
   'maxAggregateCostUnits', 'maxTokensPerLineage', 'maxTokenBudget', 'maxTokenBudgetPerLineage',
   'costUnitsPerIteration', 'estimatedTokensPerIteration', 'allowSingleLineage',
@@ -301,6 +301,36 @@ function normalizeConvergenceMode(raw) {
     throw inputError(`convergenceMode must be one of: ${allowed.join(', ')}`);
   }
   return raw;
+}
+
+function normalizeDepthMode(raw) {
+  if (raw === undefined || raw === false || raw === null || raw === '' || raw === 'default') return null;
+  if (raw !== 'expansive') throw inputError('depthMode must be one of: default, expansive');
+  return raw;
+}
+
+// Open depth-1 nodes are dealt round-robin in node-id order, so the same seed
+// always gives each lineage the same share and the merge guard can check it.
+function partitionFrontierNodes(baseArtifactDir, labels) {
+  const { readNodeStore } = require('./frontier-admit.cjs');
+  const nodes = [...readNodeStore(path.join(baseArtifactDir, 'frontier-nodes.jsonl')).values()]
+    .filter((node) => node.depth === 1 && (node.status === 'open' || node.status === 'active'))
+    .sort((left, right) => left.nodeId.localeCompare(right.nodeId));
+  const partition = Object.fromEntries(labels.map((label) => [label, []]));
+  nodes.forEach((node, index) => { partition[labels[index % labels.length]].push(node); });
+  return partition;
+}
+
+// A lineage starts from its own store and inbox. They are written only when the
+// lineage has no store yet, so a resumed lineage keeps the nodes it already closed.
+function writeLineageFrontierStore(lineageDir, nodes) {
+  const storePath = path.join(lineageDir, 'frontier-nodes.jsonl');
+  if (fs.existsSync(storePath) || nodes.length === 0) return false;
+  fs.mkdirSync(lineageDir, { recursive: true });
+  fs.writeFileSync(storePath, nodes.map((node) => `${JSON.stringify(node)}\n`).join(''), 'utf8');
+  const inboxRows = nodes.map((node) => JSON.stringify({ id: node.nodeId, text: node.question, source: 'frontier', origin: 'frontier', injectedAtIteration: 0 }));
+  fs.appendFileSync(path.join(lineageDir, 'inbox.jsonl'), `${inboxRows.join('\n')}\n`, 'utf8');
+  return true;
 }
 
 function normalizeStopPolicy(raw) {
@@ -1648,6 +1678,13 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
       `- Every iteration covers its dimension AND the operator review focus bound as review_focus, and the narrative says how that iteration addressed the focus.`,
     );
   }
+  if (options.depthMode === 'expansive' && loopType === 'research' && leafContract.length > 0) {
+    leafContract.splice(
+      leafContract.length - 1,
+      0,
+      `- Expansive depth: work the frontier nodes bound as frontier_scope. Propose follow-up questions only as frontier_proposal delta rows under the node your focus names, at most the slots its FRONTIER block allows, and never write the inbox or the node store.`,
+    );
+  }
   const hasIterationCap = typeof lineage.iterations === 'number' && lineage.iterations > 0;
   const stopPolicy = options.stopPolicy || 'convergence';
   const stopClause = hasIterationCap && stopPolicy === 'max-iterations'
@@ -1677,6 +1714,10 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
   }
   if (options.convergenceMode) {
     params.push(`  config.convergenceMode: ${options.convergenceMode}`);
+  }
+  if (options.depthMode === 'expansive') {
+    params.push(`  config.depthMode: expansive`);
+    params.push(`  frontier_scope: ${(options.frontierScope || []).join(', ') || 'none'}`);
   }
   // Review lineages scope by spec_folder but the auto-workflow preflight
   // still requires the same review setup bindings the native command path pre-binds.
@@ -1769,6 +1810,7 @@ function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, opti
     `--convergence=${convergenceThreshold}`,
     `--stop-policy=${stopPolicy}`,
     ...(options.convergenceMode ? [`--convergence-mode=${options.convergenceMode}`] : []),
+    ...(options.depthMode === 'expansive' ? ['--depth-mode=expansive'] : []),
     `--fanout-lineage-artifact-dir=${lineageDir}`,
     '--lineage-mode=auto',
   ];
@@ -1796,6 +1838,7 @@ function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, opti
     `convergenceThreshold: ${convergenceThreshold}`,
     `stop_policy: ${stopPolicy}`,
     ...(options.convergenceMode ? [`convergence_mode: ${options.convergenceMode}`] : []),
+    ...(options.depthMode === 'expansive' ? ['depth_mode: expansive', `frontier_scope: ${(options.frontierScope || []).join(', ') || 'none'}`] : []),
     `config.fanout_lineage_artifact_dir: ${lineageDir}`,
   ].join('\n');
 }
@@ -3579,6 +3622,7 @@ async function main() {
   assertLineageTimeoutHoursOverrideWithinCeiling(lineageTimeoutHoursOverride);
   const stopPolicy = normalizeStopPolicy(args.stopPolicy);
   const convergenceMode = normalizeConvergenceMode(args.convergenceMode);
+  const depthMode = loopType === 'research' ? normalizeDepthMode(args.depthMode) : null;
   const containmentModeOverride = normalizeContainmentMode(args.containmentMode);
 
   const {
@@ -3722,6 +3766,12 @@ async function main() {
   // LEAF review agent with a full-loop prompt, which is invalid; keep full-loop
   // ownership here so all lineages share the same retries and artifact validation.
   const cliLineages = allLineages;
+  const frontierPartition = depthMode === 'expansive'
+    ? partitionFrontierNodes(baseArtifactDir, cliLineages.map((lineage) => lineage.label))
+    : null;
+  const frontierPartitionSummary = frontierPartition
+    ? { frontier_partition: Object.fromEntries(Object.entries(frontierPartition).map(([label, nodes]) => [label, nodes.map((node) => node.nodeId)])) }
+    : {};
   const checkpointPath = waitCheckpointPath(baseArtifactDir);
   const resumeWaiting = await resumeWaitingCheckpoint({
     checkpointPath,
@@ -3809,6 +3859,7 @@ async function main() {
       spec_folder: specFolder,
       base_artifact_dir: baseArtifactDir,
       total_cli_lineages: cliLineages.length,
+      ...frontierPartitionSummary,
       stopped: true,
       stopped_signal: signal,
       stopped_at_iso: stoppedAtIso,
@@ -3841,6 +3892,8 @@ async function main() {
       const attempt = Number.isFinite(Number(context.attempt)) ? Number(context.attempt) : 1;
       const livenessKey = `${lineage.label}:${attempt}`;
       const lineageDir = path.join(lineagesDir, lineage.label);
+      if (frontierPartition) writeLineageFrontierStore(lineageDir, frontierPartition[lineage.label] || []);
+      const frontierScope = frontierPartition ? (frontierPartition[lineage.label] || []).map((node) => node.nodeId) : [];
 
       const budgetDecision = evaluateLineageBudgetCap({
         lineage,
@@ -3882,6 +3935,8 @@ async function main() {
       const prompt = buildLoopPrompt(loopType, specFolder, promptLineageDir, sessionId, lineage, researchTopic, {
         convergenceThreshold,
         convergenceMode,
+        depthMode,
+        frontierScope,
         stopPolicy,
         reviewFocus,
         reviewTarget: reviewTargetBinding.target,
@@ -3932,6 +3987,8 @@ async function main() {
           sessionId,
           convergenceThreshold,
           convergenceMode,
+          depthMode,
+          frontierScope,
           stopPolicy,
           researchTopic,
           reviewFocus,
@@ -4599,6 +4656,7 @@ async function main() {
     spec_folder: specFolder,
     base_artifact_dir: baseArtifactDir,
     total_cli_lineages: cliLineages.length,
+    ...frontierPartitionSummary,
     orphaned_lineages: orphanedLineages,
     ...finalSummary,
   });
@@ -4676,6 +4734,9 @@ module.exports = {
   buildLoopPrompt,
   buildNativeCommandInput,
   normalizeReviewFocus,
+  normalizeDepthMode,
+  partitionFrontierNodes,
+  writeLineageFrontierStore,
   REVIEW_FOCUS_MAX_LENGTH,
   findMaxIterationsPolicyViolation,
   isMaxIterationsStopReason,

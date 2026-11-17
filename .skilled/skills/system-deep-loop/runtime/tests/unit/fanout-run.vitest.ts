@@ -572,8 +572,37 @@ afterEach(() => {
 });
 
 const fanoutRunScript = resolve(runtimeRoot, 'scripts', 'fanout-run.cjs');
-const { withAgentPersona } = requireCjs(fanoutRunScript) as {
+const {
+  withAgentPersona,
+  buildLoopPrompt,
+  buildNativeCommandInput,
+  normalizeDepthMode,
+  partitionFrontierNodes,
+  writeLineageFrontierStore,
+} = requireCjs(fanoutRunScript) as {
   withAgentPersona: (agentName: string, prompt: string, repoRoot: string) => string;
+  buildLoopPrompt: (
+    loopType: 'research' | 'review',
+    specFolder: string,
+    lineageDir: string,
+    sessionId: string,
+    lineage: { label: string; kind: string; model?: string; iterations?: number },
+    researchTopic: string | null,
+    options?: { stopPolicy?: string; depthMode?: string | null; frontierScope?: string[] },
+  ) => string;
+  buildNativeCommandInput: (
+    loopType: 'research' | 'review',
+    specFolder: string,
+    lineageDir: string,
+    lineage: { label: string; kind: string; iterations?: number },
+    options?: { researchTopic?: string; depthMode?: string | null; frontierScope?: string[] },
+  ) => string;
+  normalizeDepthMode: (raw: unknown) => string | null;
+  partitionFrontierNodes: (
+    baseArtifactDir: string,
+    labels: string[],
+  ) => Record<string, Array<{ nodeId: string }>>;
+  writeLineageFrontierStore: (lineageDir: string, nodes: Array<Record<string, unknown>>) => boolean;
 };
 const reviewWorkflowPath = resolve(
   runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-review.yaml',
@@ -6470,5 +6499,223 @@ describe('fanout-run.cjs — foreign live-run lock discovery', () => {
     const foreign = await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir });
     expect(foreign).toHaveLength(1);
     expect(foreign[0]?.endsWith(join('002-phase-b', 'research', 'lineages', 'luna-max'))).toBe(true);
+  });
+});
+
+describe('fanout-run.cjs — expansive depth frontier', () => {
+  function frontierNodeRow(
+    nodeId: string,
+    overrides: Record<string, unknown> = {},
+  ): Record<string, unknown> {
+    return {
+      nodeId,
+      parentId: 'root',
+      depth: 1,
+      status: 'open',
+      question: `Question ${nodeId}?`,
+      scope: 'lib',
+      reason: null,
+      iteration: 0,
+      ...overrides,
+    };
+  }
+
+  function writeNodeStore(dir: string, rows: Array<Record<string, unknown>>): void {
+    writeFileSync(
+      join(dir, 'frontier-nodes.jsonl'),
+      rows.map((row) => `${JSON.stringify(row)}\n`).join(''),
+      'utf8',
+    );
+  }
+
+  // The stub copies the store before it writes the export record, so a copy proves the
+  // runner wrote the store before the executor started rather than after the lane settled.
+  function writeFrontierCaptureVibeStub(binDir: string): string {
+    const stubPath = join(binDir, 'vibe');
+    writeFileSync(stubPath, [
+      '#!/bin/sh',
+      'if [ "$1" = "--version" ]; then printf "vibe 3.1.2\\n"; exit 0; fi',
+      'lineage_dir=$(dirname "$VIBE_HOME")',
+      'output_dir=""',
+      'while [ $# -gt 0 ]; do',
+      '  case "$1" in',
+      '    --output-dir) output_dir="$2"; shift 2 ;;',
+      '    *) shift ;;',
+      '  esac',
+      'done',
+      'mkdir -p "$lineage_dir" "$output_dir"',
+      'printf "ok\\n" > "$lineage_dir/research.md"',
+      'if [ -f "$lineage_dir/frontier-nodes.jsonl" ]; then cp "$lineage_dir/frontier-nodes.jsonl" "$lineage_dir/seen-at-spawn.jsonl"; fi',
+      'printf \'{"exit_code":0,"outcome":"completed"}\\n\' > "$output_dir/export.json"',
+      'printf "vibe-frontier\\n"',
+      'exit 0',
+      '',
+    ].join('\n'), { mode: 0o755 });
+    return stubPath;
+  }
+
+  it('normalizes the depth mode', () => {
+    expect(normalizeDepthMode(undefined)).toBeNull();
+    expect(normalizeDepthMode('default')).toBeNull();
+    expect(normalizeDepthMode('expansive')).toBe('expansive');
+    expect(() => normalizeDepthMode('deep')).toThrow(/depthMode must be one of/);
+  });
+
+  it('deals open depth-1 nodes round-robin in node-id order', () => {
+    const dir = makeTempDir('fanout-run-frontier-partition-');
+    writeNodeStore(dir, [
+      frontierNodeRow('F-1-003'),
+      frontierNodeRow('F-1-001'),
+      frontierNodeRow('F-1-002'),
+      frontierNodeRow('F-2-004', { depth: 2, parentId: 'F-1-001' }),
+      frontierNodeRow('F-1-005', { status: 'exhausted' }),
+    ]);
+
+    const partition = partitionFrontierNodes(dir, ['a', 'b']);
+    expect(Object.fromEntries(
+      Object.entries(partition).map(([label, nodes]) => [label, nodes.map((node) => node.nodeId)]),
+    )).toEqual({ a: ['F-1-001', 'F-1-003'], b: ['F-1-002'] });
+  });
+
+  it('writes a lineage store and inbox once', () => {
+    const lineageDir = makeTempDir('fanout-run-frontier-store-');
+    const nodes = [frontierNodeRow('F-1-001'), frontierNodeRow('F-1-002')];
+
+    expect(writeLineageFrontierStore(lineageDir, nodes)).toBe(true);
+    const storeLines = readFileSync(join(lineageDir, 'frontier-nodes.jsonl'), 'utf8').trim().split('\n');
+    const inboxLines = readFileSync(join(lineageDir, 'inbox.jsonl'), 'utf8').trim().split('\n');
+    expect(storeLines).toHaveLength(2);
+    expect(inboxLines).toHaveLength(2);
+    const inboxRows = inboxLines.map((line) => JSON.parse(line) as { id?: string; origin?: string });
+    expect(inboxRows.map((row) => row.id)).toEqual(['F-1-001', 'F-1-002']);
+    expect(inboxRows.every((row) => row.origin === 'frontier')).toBe(true);
+
+    // A lineage that already carries a store has closed nodes in it; a second seed
+    // would re-offer them and reopen work the lineage is done with.
+    expect(writeLineageFrontierStore(lineageDir, nodes)).toBe(false);
+    expect(readFileSync(join(lineageDir, 'frontier-nodes.jsonl'), 'utf8').trim().split('\n')).toHaveLength(2);
+    expect(readFileSync(join(lineageDir, 'inbox.jsonl'), 'utf8').trim().split('\n')).toHaveLength(2);
+  });
+
+  it('adds no depth-mode bytes to a default lineage prompt or native input', () => {
+    const lineage = { label: 'a', kind: 'cli-opencode', model: 'm', iterations: 2 };
+    const baseline = buildLoopPrompt(
+      'research',
+      'specs/x',
+      '/tmp/x/lineages/a',
+      'sid',
+      lineage,
+      'Topic',
+      { stopPolicy: 'convergence' },
+    );
+    const explicitDefault = buildLoopPrompt(
+      'research',
+      'specs/x',
+      '/tmp/x/lineages/a',
+      'sid',
+      lineage,
+      'Topic',
+      { stopPolicy: 'convergence', depthMode: null, frontierScope: [] },
+    );
+
+    expect(explicitDefault).toBe(baseline);
+    for (const prompt of [baseline, explicitDefault]) {
+      expect(prompt).not.toContain('frontier_scope:');
+      expect(prompt).not.toContain('depthMode');
+      expect(prompt).not.toContain('Expansive depth');
+    }
+
+    const nativeInput = buildNativeCommandInput(
+      'research',
+      'specs/x',
+      '/tmp/x/lineages/a',
+      { label: 'a', kind: 'native', iterations: 2 },
+      { researchTopic: 'Topic' },
+    );
+    expect(nativeInput).not.toContain('--depth-mode');
+    expect(nativeInput).not.toContain('frontier_scope:');
+  });
+
+  it('binds the frontier scope under expansive', () => {
+    const lineage = { label: 'a', kind: 'cli-opencode', model: 'm', iterations: 2 };
+    const prompt = buildLoopPrompt(
+      'research',
+      'specs/x',
+      '/tmp/x/lineages/a',
+      'sid',
+      lineage,
+      'Topic',
+      { stopPolicy: 'convergence', depthMode: 'expansive', frontierScope: ['F-1-001', 'F-1-003'] },
+    );
+
+    expect(prompt).toContain('  config.depthMode: expansive');
+    expect(prompt).toContain('  frontier_scope: F-1-001, F-1-003');
+    expect(prompt).toContain('- Expansive depth:');
+
+    const nativeInput = buildNativeCommandInput(
+      'research',
+      'specs/x',
+      '/tmp/x/lineages/a',
+      { label: 'a', kind: 'native', iterations: 2 },
+      { researchTopic: 'Topic', depthMode: 'expansive', frontierScope: ['F-1-002'] },
+    );
+    expect(nativeInput).toContain('--depth-mode=expansive');
+    expect(nativeInput).toContain('frontier_scope: F-1-002');
+  });
+
+  it('writes the lineage store before spawn and records the partition', async () => {
+    const binDir = makeTempDir('fanout-run-frontier-spawn-bin-');
+    writeFrontierCaptureVibeStub(binDir);
+    const baseDir = makeTempDir('fanout-run-frontier-spawn-base-');
+    writeNodeStore(baseDir, [frontierNodeRow('F-1-001'), frontierNodeRow('F-1-002')]);
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'vibe-frontier', kind: 'cli-mistral-vibe', model: 'deepseek-flash', iterations: 1 }],
+      concurrency: 1,
+      maxRetries: 0,
+    });
+
+    await spawnFanout('frontier-spawn', [
+      '--spec-folder', 'specs/test-fanout-frontier',
+      '--loop-type', 'research',
+      '--fanout-config-json', fanoutConfig,
+      '--base-artifact-dir', baseDir,
+      '--research-topic', 'Topic',
+      '--no-metadata-refresh',
+      '--depth-mode', 'expansive',
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
+
+    const seenPath = join(baseDir, 'lineages', 'vibe-frontier', 'seen-at-spawn.jsonl');
+    expect(existsSync(seenPath)).toBe(true);
+    expect(readFileSync(seenPath, 'utf8').trim().split('\n')).toHaveLength(2);
+    const summary = JSON.parse(readFileSync(join(baseDir, 'orchestration-summary.json'), 'utf8')) as {
+      frontier_partition?: Record<string, string[]>;
+    };
+    expect(summary.frontier_partition).toEqual({ 'vibe-frontier': ['F-1-001', 'F-1-002'] });
+  });
+
+  it('a default depth mode writes no lineage store and records no partition', async () => {
+    const binDir = makeTempDir('fanout-run-frontier-default-bin-');
+    writeFrontierCaptureVibeStub(binDir);
+    const baseDir = makeTempDir('fanout-run-frontier-default-base-');
+    writeNodeStore(baseDir, [frontierNodeRow('F-1-001'), frontierNodeRow('F-1-002')]);
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'vibe-default', kind: 'cli-mistral-vibe', model: 'deepseek-flash', iterations: 1 }],
+      concurrency: 1,
+      maxRetries: 0,
+    });
+
+    await spawnFanout('frontier-default', [
+      '--spec-folder', 'specs/test-fanout-frontier',
+      '--loop-type', 'research',
+      '--fanout-config-json', fanoutConfig,
+      '--base-artifact-dir', baseDir,
+      '--research-topic', 'Topic',
+      '--no-metadata-refresh',
+      '--depth-mode', 'default',
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
+
+    expect(existsSync(join(baseDir, 'lineages', 'vibe-default', 'frontier-nodes.jsonl'))).toBe(false);
+    const summary = JSON.parse(readFileSync(join(baseDir, 'orchestration-summary.json'), 'utf8')) as Record<string, unknown>;
+    expect(Object.prototype.hasOwnProperty.call(summary, 'frontier_partition')).toBe(false);
   });
 });

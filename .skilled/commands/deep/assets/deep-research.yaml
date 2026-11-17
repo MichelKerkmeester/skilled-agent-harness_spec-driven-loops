@@ -387,7 +387,8 @@ workflow:
             --base-artifact-dir {artifact_dir} \
             --convergence-threshold {convergence_threshold} \
             --stop-policy {stop_policy} \
-            --convergence-mode {convergence_mode}
+            --convergence-mode {convergence_mode} \
+            --depth-mode {depth_mode}
         working_directory: "{repo_root}"
         wait_for_completion: true
         optional_flags: "When lineage_timeout_hours is bound, append `--lineage-timeout-hours {lineage_timeout_hours}` to the command. When it is unset, append nothing, which keeps the 4 hour ceiling."
