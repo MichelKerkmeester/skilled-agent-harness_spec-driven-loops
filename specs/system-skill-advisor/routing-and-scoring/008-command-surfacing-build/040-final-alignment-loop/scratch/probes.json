@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T22:27:33.862Z",
+  "generatedAt": "2026-11-17T05:03:41.276Z",
   "probes": "/Users/michelkerkmeester/.local/state/local-skilled-alignment/352-command-surfacing-research/20261116T195539Z/probes-input.json",
   "counts": {
     "pass": 11,
@@ -32,7 +32,7 @@
       "reason": null,
       "actual": "sk-doc",
       "actualMode": "sk-create-readme",
-      "confidence": 0.927,
+      "confidence": 0.9269,
       "runnerUp": "system-spec-kit"
     },
     {
@@ -46,7 +46,7 @@
       "reason": null,
       "actual": "sk-doc",
       "actualMode": "sk-create-readme",
-      "confidence": 0.9356,
+      "confidence": 0.9355,
       "runnerUp": "system-spec-kit"
     },
     {
@@ -117,7 +117,7 @@
       "actual": "sk-doc",
       "actualMode": null,
       "confidence": 0.82,
-      "runnerUp": "system-spec-kit"
+      "runnerUp": "cli-external-orchestration"
     },
     {
       "id": "P09",
@@ -158,7 +158,7 @@
       "reason": null,
       "actual": "sk-git",
       "actualMode": null,
-      "confidence": 0.8899,
+      "confidence": 0.8898,
       "runnerUp": null
     },
     {
@@ -200,7 +200,7 @@
       "reason": null,
       "actual": "system-deep-loop",
       "actualMode": "review",
-      "confidence": 0.927,
+      "confidence": 0.9269,
       "runnerUp": "sk-code"
     },
     {
@@ -214,7 +214,7 @@
       "reason": null,
       "actual": "sk-doc",
       "actualMode": "sk-create-readme",
-      "confidence": 0.945,
+      "confidence": 0.9449,
       "runnerUp": "system-spec-kit"
     }
   ]

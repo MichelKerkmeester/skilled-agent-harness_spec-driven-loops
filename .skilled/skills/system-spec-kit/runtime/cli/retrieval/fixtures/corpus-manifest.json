@@ -1,5 +1,5 @@
 {
-  "corpusHash": "18f65cc8f28353427449b7dbdea18180435648492684f613d0226905781c5104",
+  "corpusHash": "628027862de0c9dfb826122e015b45ab929070b6e0c0ef74bef0e2b2728d756b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28108,
+  "includedPathCount": 28110,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -19344,6 +19344,8 @@
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-1.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-10.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-11.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-12.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-13.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-2.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-3.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-4.md",
@@ -28140,7 +28142,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "598d8f7fc8fd3162fdaebb4476b4d64c1f02fadacbd51eb3593d4820f924366b",
+  "manifestHash": "4c2db51706a1a1d9cafb1d9f88f15ed51dbd705dd1a13124a8c643a8b9983635",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

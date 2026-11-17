@@ -1,0 +1,242 @@
+{
+  "type": "iteration",
+  "iteration": 1,
+  "run": 1,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "status": "complete",
+  "focus": "correctness - the pass-fourteen pronoun-refusal end anchor and the document-naming then guard",
+  "dimensions": ["correctness"],
+  "filesReviewed": [
+    ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1-572",
+    ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:1-621",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-brief-14.txt:1-10",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-scope-14.txt:1-5",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/spec.md:52-58",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/implementation-summary.md:78-90",
+    ".skilled/skills/sk-code/sk-code-review/references/review-core.md:1-120"
+  ],
+  "findingsCount": 3,
+  "findingsSummary": { "P0": 0, "P1": 2, "P2": 1 },
+  "findingsNew": { "P0": 0, "P1": 2, "P2": 1 },
+  "findingDetails": [
+    {
+      "id": "R1-P1-001",
+      "severity": "P1",
+      "title": "A refusal whose object carries a reason or a repeat adverb is read as a request",
+      "dimension": "correctness",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:415",
+      "disposition": "active",
+      "findingClass": "correctness-regression",
+      "scopeProof": "Ran the exported guard and consumer on five prompts; all return the request reading. The removed pattern ended at it\\b, so the same inputs read as mentions before this branch.",
+      "affectedSurfaceHints": ["commandOnlyMentioned:463", "typedCommandForTop:259", "attachCommand:533"],
+      "type": "behavioral",
+      "claim": "A refusal after the name whose object is followed by a reason or a repeat adverb is read as a request, so a mutating command is offered against the refusal.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:415",
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:463",
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:533"
+      ],
+      "counterevidenceSought": "Checked the leading decline leads for a refusal before the name; the refusal here is after it. Checked the ask-by-pronoun and document rules; neither matches. The new fixtures carry no trailing reason.",
+      "alternativeExplanation": "The author may read any qualifier after it as a limit, as with don't run it twice. Rejected for again and because: the clause refuses the run and the prompt has no request.",
+      "finalSeverity": "P1",
+      "confidence": 0.94,
+      "downgradeTrigger": "Downgrade if a corpus shows a prompt of this shape whose author meant to run the command."
+    },
+    {
+      "id": "R1-P1-002",
+      "severity": "P1",
+      "title": "A document naming followed by any then clause is read as a request",
+      "dimension": "correctness",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:465",
+      "disposition": "active",
+      "findingClass": "rule-precedence",
+      "scopeProof": "Ran the guard and consumer on four prompts; the document naming returns a mention without then and a request with it. The pronoun rule already carries '... then run it', so the guard only adds read-only follow-ups.",
+      "affectedSurfaceHints": ["attachCommand:533", "attachCommand:549-552", "COMMAND_AS_DOCUMENT:423"],
+      "type": "behavioral",
+      "claim": "A prompt that names a command as a document and then asks a read-only or unrelated follow-up is read as a request for the command.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:465",
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:423",
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:549"
+      ],
+      "counterevidenceSought": "Checked whether the pronoun rule needs the then guard: it already matches ', then run it'. Checked the determiner and occurrence boundaries; both pass for 'the /deep:review command file'.",
+      "alternativeExplanation": "The guard may intend any then clause to mark work. Rejected because then tell me and then run the test suite ask for something other than the named command.",
+      "finalSeverity": "P1",
+      "confidence": 0.93,
+      "downgradeTrigger": "Downgrade if the accepted reading is that any then clause in a prompt naming the command is a request for it."
+    },
+    {
+      "id": "R1-P2-001",
+      "severity": "P2",
+      "title": "The new fixtures pin neither boundary the two rules changed",
+      "dimension": "correctness",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:210",
+      "disposition": "active",
+      "findingClass": "test-coverage-gap",
+      "scopeProof": "Read both fixture tables at 202-218 and 221-229; the only then row asserts a request and the only post-name refusals end at it.",
+      "affectedSurfaceHints": ["tests:210-218", "REFUSE8:42-51", "document table:221-226"]
+    }
+  ],
+  "traceabilityChecks": { "results": [] },
+  "newFindingsRatio": 1.0,
+  "noveltyJustification": "All three findings are new to this lineage: two P1s on the two changed rules and one P2 on the fixtures. No refinement rows.",
+  "sessionId": "fanout-mention-14-1794868189353-tsxtos",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-16T22:44:50Z",
+  "durationMs": 470000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "Two runtime files govern whether a mutating command is offered; not a trivial target and not a whole-skill audit.",
+    "evidenceRefs": [
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:442",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:138"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts"
+    ],
+    "selectionReason": "Both are the pass-fourteen scope files for the mention area; the guard and its fixtures are the whole produced surface of the two changed rules.",
+    "discoveryMethods": ["direct_read", "exact_search", "negative_test_inspection"],
+    "omittedHighRiskTargets": [],
+    "graphStatus": "available",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": [
+      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-scope-14.txt:2-3",
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:442"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": ["rule_precedence", "clause_boundary", "test_boundary_pinning", "typed_command_boundary"],
+    "covered": ["rule_precedence", "clause_boundary", "test_boundary_pinning"],
+    "ruledOut": ["typed_command_boundary"],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graph"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"],
+      "bugClass": "clause_boundary",
+      "hypothesis": "The clause-end anchor rejects a refusal whose object carries a reason.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:409-415",
+          "result": "The anchor sits after it, allowing only five trailing words before the end or punctuation.",
+          "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:415"]
+        },
+        {
+          "method": "negative_test_inspection",
+          "queryOrPath": "concrete prompts through commandOnlyMentioned",
+          "result": "five refusal-with-reason prompts return false and the consumer offers the command.",
+          "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:463"]
+        }
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "R1-P1-001",
+      "rationale": "The refusal ends its clause, so the comment's own contract is violated and a mutating command is offered."
+    },
+    {
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"],
+      "bugClass": "rule_precedence",
+      "hypothesis": "The document rule is suppressed by any then in the clause, including a read-only follow-up.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:465-466",
+          "result": "The then test gates the document return on the whole clause rather than on a work verb.",
+          "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:465"]
+        },
+        {
+          "method": "producer_consumer_trace",
+          "queryOrPath": "attachCommand with a single review route",
+          "result": "the consumer offers /deep:review for a prompt that only reads the command file.",
+          "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:533"]
+        }
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "R1-P1-002",
+      "rationale": "A document read with a then follow-up is misread as a request and the costly command is attached."
+    },
+    {
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts"],
+      "bugClass": "test_boundary_pinning",
+      "hypothesis": "The new rows do not pin the read-only side of either boundary, so a later widening stays green.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:200-229",
+          "result": "No row carries a refusal with a trailing reason and no row pairs a document naming with a read-only then clause.",
+          "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:210"]
+        }
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "R1-P2-001",
+      "rationale": "A failing-first row for either shape would have caught the regression."
+    },
+    {
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"],
+      "bugClass": "typed_command_boundary",
+      "hypothesis": "The occurrence boundary may read a doc path or a longer name as a naming.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:456",
+          "result": "The lookahead rejects a path or extension continuation and the suite pins both cases.",
+          "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:456"]
+        }
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "The boundary and its tests already reject the doc path and the longer command name; no new input was found.",
+      "rationale": "Existing coverage is adequate for this class."
+    }
+  ],
+  "graphEvents": [
+    { "type": "node", "id": "dimension:correctness", "kind": "DIMENSION", "label": "correctness" },
+    { "type": "node", "id": "file:command-attach-ts", "kind": "FILE", "label": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts" },
+    { "type": "node", "id": "file:command-attach-guards-vitest-ts", "kind": "FILE", "label": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts" },
+    { "type": "node", "id": "file:review-brief-14-txt", "kind": "FILE", "label": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-brief-14.txt" },
+    { "type": "node", "id": "file:review-scope-14-txt", "kind": "FILE", "label": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-scope-14.txt" },
+    { "type": "node", "id": "file:040-spec-md", "kind": "FILE", "label": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/spec.md" },
+    { "type": "node", "id": "file:040-implementation-summary-md", "kind": "FILE", "label": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/implementation-summary.md" },
+    { "type": "node", "id": "file:review-core-md", "kind": "FILE", "label": ".skilled/skills/sk-code/sk-code-review/references/review-core.md" },
+    { "type": "node", "id": "finding:R1-P1-001", "kind": "FINDING", "label": "A refusal whose object carries a reason is read as a request" },
+    { "type": "node", "id": "finding:R1-P1-002", "kind": "FINDING", "label": "A document naming followed by any then clause is read as a request" },
+    { "type": "node", "id": "finding:R1-P2-001", "kind": "FINDING", "label": "The new fixtures pin neither boundary" },
+    { "type": "node", "id": "evidence:R1-P1-001", "kind": "EVIDENCE", "label": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:415" },
+    { "type": "node", "id": "evidence:R1-P1-002", "kind": "EVIDENCE", "label": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:465" },
+    { "type": "node", "id": "evidence:R1-P2-001", "kind": "EVIDENCE", "label": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:210" },
+    { "type": "edge", "id": "covers:correctness:command-attach-ts", "relation": "COVERS", "source": "dimension:correctness", "target": "file:command-attach-ts" },
+    { "type": "edge", "id": "covers:correctness:guards", "relation": "COVERS", "source": "dimension:correctness", "target": "file:command-attach-guards-vitest-ts" },
+    { "type": "edge", "id": "covers:correctness:brief", "relation": "COVERS", "source": "dimension:correctness", "target": "file:review-brief-14-txt" },
+    { "type": "edge", "id": "covers:correctness:scope", "relation": "COVERS", "source": "dimension:correctness", "target": "file:review-scope-14-txt" },
+    { "type": "edge", "id": "covers:correctness:040-spec", "relation": "COVERS", "source": "dimension:correctness", "target": "file:040-spec-md" },
+    { "type": "edge", "id": "covers:correctness:040-summary", "relation": "COVERS", "source": "dimension:correctness", "target": "file:040-implementation-summary-md" },
+    { "type": "edge", "id": "covers:correctness:review-core", "relation": "COVERS", "source": "dimension:correctness", "target": "file:review-core-md" },
+    { "type": "edge", "id": "in-dimension:R1-P1-001", "relation": "IN_DIMENSION", "source": "finding:R1-P1-001", "target": "dimension:correctness" },
+    { "type": "edge", "id": "in-dimension:R1-P1-002", "relation": "IN_DIMENSION", "source": "finding:R1-P1-002", "target": "dimension:correctness" },
+    { "type": "edge", "id": "in-dimension:R1-P2-001", "relation": "IN_DIMENSION", "source": "finding:R1-P2-001", "target": "dimension:correctness" },
+    { "type": "edge", "id": "in-file:R1-P1-001", "relation": "IN_FILE", "source": "finding:R1-P1-001", "target": "file:command-attach-ts" },
+    { "type": "edge", "id": "in-file:R1-P1-002", "relation": "IN_FILE", "source": "finding:R1-P1-002", "target": "file:command-attach-ts" },
+    { "type": "edge", "id": "in-file:R1-P2-001", "relation": "IN_FILE", "source": "finding:R1-P2-001", "target": "file:command-attach-guards-vitest-ts" },
+    { "type": "edge", "id": "evidence-for:R1-P1-001", "relation": "EVIDENCE_FOR", "source": "evidence:R1-P1-001", "target": "finding:R1-P1-001" },
+    { "type": "edge", "id": "evidence-for:R1-P1-002", "relation": "EVIDENCE_FOR", "source": "evidence:R1-P1-002", "target": "finding:R1-P1-002" },
+    { "type": "edge", "id": "evidence-for:R1-P2-001", "relation": "EVIDENCE_FOR", "source": "evidence:R1-P2-001", "target": "finding:R1-P2-001" }
+  ]
+}

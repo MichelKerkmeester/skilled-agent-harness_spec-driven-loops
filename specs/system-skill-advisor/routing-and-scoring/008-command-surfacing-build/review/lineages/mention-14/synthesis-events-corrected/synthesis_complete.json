@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"fanout-mention-14-1794868189353-tsxtos","sessionId":"fanout-mention-14-1794868189353-tsxtos"},"data":{"mode":"review","totalIterations":8,"activeP0":0,"activeP1":2,"activeP2":1,"dimensionCoverage":1,"verdict":"FAIL","releaseReadinessState":"in-progress","stopReason":"maxIterationsReached"}}

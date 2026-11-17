@@ -1,0 +1,15 @@
+{
+  "registryPath": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/data-14/deep-review-findings-registry.json",
+  "dashboardPath": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/data-14/deep-review-dashboard.md",
+  "strategyPath": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/data-14/deep-review-strategy.md",
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 1,
+  "searchDebtCount": 0,
+  "corruptionCount": 0,
+  "strategyWarning": null,
+  "resourceMapPath": null,
+  "resourceMapSkipped": null,
+  "resourceMapSkipReason": null
+}

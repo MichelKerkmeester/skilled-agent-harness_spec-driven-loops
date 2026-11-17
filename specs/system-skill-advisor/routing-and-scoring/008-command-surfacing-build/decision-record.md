@@ -144,6 +144,9 @@ Q069 to Q073 above, as asked.
 | Q083 | Recompile and reindex the skill graph on this branch so the freshness check passes. | Not stated. | None | 039-main-sk-doc-routing-repair REQ-005, skill-graph.json |
 | Q084 | Add TEMP and TMP to the operator-local surface map's platform tokens. | Not stated. | None | goal criterion 6, local surface-map.yaml env_check.platform_tokens |
 | Q085 | Close capped: commit the merge, run one narrow review pass and one alignment run, and record a repeated P1 in the mention check as a known limit instead of patching again. | Not stated. | None | goal criteria 4 and 6, review/review-report.md, goal.md log |
+| Q086 | Run the full loop: fix every P1 from the final alignment run and review pass twelve, the mention check ones included, then rerun review and alignment. | Not stated. | None | 040-final-alignment-loop REQ-001 to REQ-005 |
+| Q087 | Ask a fresh Opus agent for an independent read before choosing how to close the mention check loop. | Not stated. | None | review/review-report.md pass fourteen, 040 T011 |
+| Q088 | Stop patching the mention check, record the no-lead refusal or question class as a known limit graded P2 for new wordings, fix the generic advisor phrases and run the final alignment. | Not stated. | None | 040 implementation-summary Known Limitations, REQ-005, the alignment lane and critic rules |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1691,6 +1694,66 @@ Full rigor, no cap
 Answer:
 ```text
 Finish, capped (Recommended)
+```
+
+### Q086
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:toolu_01VCjKu3wQjETXWhdEuA7po6:0 -->
+
+Question:
+```text
+The final alignment run reports 0 P0 and 7 P1. Two (D1, E-1) are more mention-check gaps, which your capped rule makes known limits. B-01 is a one-line playbook fix. Four (PRB-02 to PRB-05) are new routing probes expecting the advisor skill, for skill-graph rebuild, the Vibe hook setup and the behaviour arena. How should I handle the probes and B-01?
+```
+
+Options:
+```text
+Fix probes once, then close (Recommended)
+Fix B-01 only, close now
+Full loop
+```
+
+Answer:
+```text
+Full loop
+```
+
+### Q087
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:toolu_01CwbxdMRndK14WBMQR91E6K:0 -->
+
+Question:
+```text
+Review passes 12 to 14 each found new P1s in the command mention check, and each fix flips a case on the other side ("don't run it twice" vs "don't run it again, it broke things"). Pass 14 also found older advisor intent phrases pulling prompts like "route request to the backend service" to the advisor. The code at e626653ce79 passes 2385/0 with every floor unchanged. How should I close?
+```
+
+Options:
+```text
+Record limits, run alignment (Recommended)
+Rework the mention check
+Keep looping
+```
+
+Answer:
+```text
+Ask fresh opus
+```
+
+### Q088
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:toolu_016sEZ4fKgbFhypBz6LntJ5f:0 -->
+
+Question:
+```text
+The fresh Opus agent recommends stopping the regex patching. Record "a refusal or question with no lead before the command name reads as a request" as a known limit class, and change the review brief so a new wording of a recorded class is P2, not P1 (P1 only if it breaks a pinned fixture or offers a command that acts without asking). Then fix the older generic advisor phrases and run the final alignment. Do you approve?
+```
+
+Options:
+```text
+Approve (a) + brief change (Recommended)
+Approve, skip phrase fix
+Rework instead (b)
+```
+
+Answer:
+```text
+Approve (a) + brief change (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

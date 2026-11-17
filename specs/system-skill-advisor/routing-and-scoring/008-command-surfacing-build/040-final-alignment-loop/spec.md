@@ -125,7 +125,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |----|-------------|
 | REQ-003 | The playbook scenario's third prompt tops `/doctor:update` through the Claude hook |
 | REQ-004 | The four probe prompts top system-skill-advisor through `run-probes.cjs` |
-| REQ-005 | Review pass thirteen converges and the full alignment run reports 0 P0 and 0 P1, or each remaining one is recorded with the operator's decision |
+| REQ-005 | The review passes and the full alignment run report 0 P0 and 0 P1, or each remaining one is recorded with the operator's decision, including the known limit class the operator accepted on 2026-11-17 |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

@@ -1,0 +1,3 @@
+{"type":"classification","iteration":8,"detail":"Last under the cap: both core protocols remain partial because the two P1s are open; no legal STOP is available before maxIterations."}
+{"type":"traceability","protocolId":"spec_code","status":"partial","iteration":8}
+{"type":"traceability","protocolId":"checklist_evidence","status":"partial","iteration":8}

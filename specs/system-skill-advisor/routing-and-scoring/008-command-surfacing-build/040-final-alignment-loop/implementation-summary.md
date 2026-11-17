@@ -8,17 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop"
-    last_updated_at: "2026-11-16T21:16:17Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-17T05:04:07Z"
+    last_updated_by: "generate-context"
+    recent_action: "Closed review pass fourteen; limit class recorded"
+    next_safe_action: "Run the final alignment on the branch"
+    packet_purpose: "Purpose: A refused or questioned command is never offered in those shapes, a request still is, the playbook passes as written, and the four advisor tasks rank the advisor first without moving the floors."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/implementation-summary.md"
+      - ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-040-final-alignment-loop"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "77af2d6d-58e8-4180-b6da-697f12833f71"
+      workspace: "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research"
+      savedAt: "2026-11-17T05:04:07Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 96
     open_questions: []
     answered_questions: []
 ---
@@ -94,6 +104,7 @@ The final alignment run and review pass twelve found these gaps after the earlie
 | Guards test | PASS, 185 passed, 16 new cases fail on `b8ebee37d75` |
 | Full suite, flag unset and set | PASS, 2385 passed 0 failed both ways (`scratch/after-pass-13.txt`) |
 | `FLOOR`, `EVAL`, stored sets | PASS, 24/44 0/35 2/44, [160,49,21,5], unchanged |
+| Generic advisor phrases | Fixed: four ordinary prompts from review pass fourteen no longer top the advisor |
 | Alignment probes | 11 of 15: P05, P08 and P09 waived (ADR-001), P04 overturned by the run's critic |
 | Ordinary-word leak check | PASS, none of the five review prompts tops the advisor |
 | Playbook prompt through the Claude hook | PASS, `/doctor:update (ask)` parent, `(parent-named only)` child |
@@ -104,7 +115,8 @@ The final alignment run and review pass twelve found these gaps after the earlie
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Underscore emphasis is not dropped.** A command name may hold an underscore, so `_/create:readme_` after a refusal can still read as a request. Write the name plain or in backticks.
+1. **A refusal or question with no lead word directly before the command name reads as a request.** The mention check reads a fixed list of leads ("do not run", "what does" and the like) and treats any other wording as a request, so "please refrain from /deep:review" or "never mind /create:readme" still offers the command. This includes a refusal of "it" after the name that carries a reason or a repeat adverb ("don't run it again, it broke things") and a document naming followed by a then clause. The operator accepted this class on 2026-11-17 after review passes thirteen and fourteen swung between its two sides. A new wording of it is graded P2 in review and alignment, and P1 only when it breaks a pinned fixture or offers a command whose policy is run. Every command that writes is start or ask, so the worst case is one unwanted setup question, and the reader's own words sit beside the brief.
+2. **Underscore emphasis is not dropped.** A command name may hold an underscore, so `_/create:readme_` after a refusal can still read as a request. Write the name plain or in backticks.
 <!-- /ANCHOR:limitations -->
 
 ---

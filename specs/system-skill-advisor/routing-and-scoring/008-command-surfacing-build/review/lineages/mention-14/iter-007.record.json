@@ -1,0 +1,64 @@
+{
+  "type": "iteration",
+  "iteration": 7,
+  "run": 7,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "status": "complete",
+  "focus": "correctness fixture invariance - wrapper matrix, retired-name loop and the missing mention rows",
+  "dimensions": ["correctness"],
+  "filesReviewed": [
+    ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:39-73",
+    ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:138-229",
+    ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:442-482"
+  ],
+  "findingsCount": 0,
+  "findingsSummary": { "P0": 0, "P1": 0, "P2": 0 },
+  "findingsNew": { "P0": 0, "P1": 0, "P2": 0 },
+  "findingDetails": [],
+  "traceabilityChecks": { "results": [] },
+  "newFindingsRatio": 0.0,
+  "noveltyJustification": "No new finding: wrapper invariance holds for the new rows by hand-check, and the two missing mention rows are the same gap already recorded as R1-P2-001.",
+  "sessionId": "fanout-mention-14-1794868189353-tsxtos",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-16T22:58:29Z",
+  "durationMs": 80000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "Fixture-invariance pass over the guard suite that pins the two changed rules.",
+    "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:179"]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+    ],
+    "selectionReason": "The invariance loops live in the suite; the guard is the behavior they assert.",
+    "discoveryMethods": ["direct_read", "negative_test_inspection"],
+    "omittedHighRiskTargets": [],
+    "graphStatus": "available",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:184-197"]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graph"
+  },
+  "searchLedger": [],
+  "graphEvents": [
+    { "type": "node", "id": "dimension:correctness", "kind": "DIMENSION", "label": "correctness" },
+    { "type": "node", "id": "file:command-attach-ts", "kind": "FILE", "label": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts" },
+    { "type": "node", "id": "file:command-attach-guards-vitest-ts", "kind": "FILE", "label": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts" },
+    { "type": "edge", "id": "covers:correctness:command-attach-ts", "relation": "COVERS", "source": "dimension:correctness", "target": "file:command-attach-ts" },
+    { "type": "edge", "id": "covers:correctness:guards", "relation": "COVERS", "source": "dimension:correctness", "target": "file:command-attach-guards-vitest-ts" }
+  ]
+}

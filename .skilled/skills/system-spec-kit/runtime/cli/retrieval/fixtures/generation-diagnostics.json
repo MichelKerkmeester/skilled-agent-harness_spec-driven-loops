@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6894,
+    "missing-frontmatter": 6896,
     "ok": 19587,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28108,
+  "documentsScanned": 28110,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "598d8f7fc8fd3162fdaebb4476b4d64c1f02fadacbd51eb3593d4820f924366b",
+  "manifestHash": "4c2db51706a1a1d9cafb1d9f88f15ed51dbd705dd1a13124a8c643a8b9983635",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -41721,6 +41721,18 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-11.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-12.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report-pass-13.md",
       "reason": "no opening frontmatter delimiter"
     },
     {

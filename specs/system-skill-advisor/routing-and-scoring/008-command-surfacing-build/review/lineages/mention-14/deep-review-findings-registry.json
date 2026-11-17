@@ -1,0 +1,452 @@
+{
+  "sessionId": "fanout-mention-14-1794868189353-tsxtos",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 8,
+    "timestamp": "2026-11-16T23:05:01.380Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "A refusal whose object carries a reason or a repeat adverb is read as a request",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 415,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "A document naming followed by any then clause is read as a request",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 465,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "The new fixtures pin neither boundary the two rules changed",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+      "line": 210,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 8,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": [
+      "coverage"
+    ]
+  },
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 1
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "evidenceDensity": 1,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 1
+  },
+  "candidateCoverage": {
+    "covered": [
+      "clause_boundary",
+      "rule_precedence",
+      "test_boundary_pinning"
+    ],
+    "ruledOut": [
+      "backtracking_dos",
+      "command_name_escaping",
+      "markup_fold_consent",
+      "regex_injection",
+      "typed_command_boundary"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "rule_precedence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "clause_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "test_boundary_pinning": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "typed_command_boundary": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "regex_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "backtracking_dos": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "markup_fold_consent": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "command_name_escaping": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "typed_command_boundary",
+      "disposition": "ruled_out",
+      "rationale": "Existing coverage is adequate for this class.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:456"
+      ],
+      "reason": "The boundary and its tests already reject the doc path and the longer command name; no new input was found."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-201",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "regex_injection",
+      "disposition": "ruled_out",
+      "rationale": "escapePhrase covers every metacharacter and the vocabulary lists are constants",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:316-318",
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:455"
+      ],
+      "reason": "no prompt substring is interpolated into a pattern"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "backtracking_dos",
+      "disposition": "ruled_out",
+      "rationale": "the patterns have only fixed alternatives and bounded optional groups",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:415"
+      ],
+      "reason": "measured linear behavior on the adversarial shapes"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "markup_fold_consent",
+      "disposition": "ruled_out",
+      "rationale": "the invariance is already pinned by the wrapper matrix in the suite",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:443-451"
+      ],
+      "reason": "the fold only removes marks and cannot insert a lead"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "command_name_escaping",
+      "disposition": "ruled_out",
+      "rationale": "no untrusted name is accepted anyway; the table is generated",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:455",
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:466"
+      ],
+      "reason": "escaping covers the whole name before either pattern is built"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "typed_command_boundary",
+      "disposition": "ruled_out",
+      "rationale": "Existing coverage is adequate for this class.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:456"
+      ],
+      "proof": "The boundary and its tests already reject the doc path and the longer command name; no new input was found."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-201",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "regex_injection",
+      "disposition": "ruled_out",
+      "rationale": "escapePhrase covers every metacharacter and the vocabulary lists are constants",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:316-318",
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:455"
+      ],
+      "proof": "no prompt substring is interpolated into a pattern"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "backtracking_dos",
+      "disposition": "ruled_out",
+      "rationale": "the patterns have only fixed alternatives and bounded optional groups",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:415"
+      ],
+      "proof": "measured linear behavior on the adversarial shapes"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "markup_fold_consent",
+      "disposition": "ruled_out",
+      "rationale": "the invariance is already pinned by the wrapper matrix in the suite",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:443-451"
+      ],
+      "proof": "the fold only removes marks and cannot insert a lead"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "command_name_escaping",
+      "disposition": "ruled_out",
+      "rationale": "no untrusted name is accepted anyway; the table is generated",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:455",
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:466"
+      ],
+      "proof": "escaping covers the whole name before either pattern is built"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graph"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 0,
+      "partial": 2,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/spec.md:57",
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/implementation-summary.md:83",
+          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:415",
+          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:465"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "summary": "Unchanged from iteration 3: the document-naming shape with a then follow-up is offered, and the refusal rule requires the pronoun rather than the refusal to end the clause."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/acceptance-criteria.md:60",
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/040-final-alignment-loop/tasks.md:131"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "AC-005 is Unmet for pass 14 (two P1 open); CHK-FIX-002 does not cover the two new boundary shapes."
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "spec_code",
+      "checklist_evidence"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

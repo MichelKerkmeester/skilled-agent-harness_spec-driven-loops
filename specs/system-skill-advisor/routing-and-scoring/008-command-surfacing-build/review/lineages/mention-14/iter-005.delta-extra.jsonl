@@ -1,0 +1,2 @@
+{"type":"classification","iteration":5,"detail":"Replay confirms both P1s active; the five-word allowlist behaves as written; no request-reads-as-mention found in these two rules."}
+{"type":"ruled_out","iteration":5,"direction":"Downgrading R1-P1-001 on the ground that again implies a prior run","reason":"The probe uses keeps failing and is broken, where the clause refuses a further run and the prompt contains no request."}

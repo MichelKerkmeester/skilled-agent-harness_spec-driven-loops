@@ -19,14 +19,14 @@
     "complete",
     "workflow"
   ],
-  "lastUpdated": "2026-11-16T21:18:13.710Z",
+  "lastUpdated": "2026-11-17T05:04:07.793Z",
   "specId": "008",
   "folderSlug": "command-surfacing-build",
   "parentChain": [
     "system-skill-advisor",
     "routing-and-scoring"
   ],
-  "memorySequence": 11,
+  "memorySequence": 12,
   "memoryNameHistory": [
     "12-11-26_21-58__rebased-the-branch-onto-main-closed-phase-003.md",
     "13-11-26_16-02__resumed-the-command-surfacing-build-from-the.md",
@@ -38,6 +38,7 @@
     "14-11-26_05-58__diagnosed-the-failing-capture-date-test-as-a.md",
     "14-11-26_05-59__diagnosed-the-failing-capture-date-test-as-a.md",
     "14-11-26_06-30__restored-the-command-offer-on-the-lost-tune-row.md",
-    "16-11-26_20-23__command-surfacing-build-the-command-mention-check.md"
+    "16-11-26_20-23__command-surfacing-build-the-command-mention-check.md",
+    "17-11-26_06-04__command-surfacing-build-phase-040-the-command.md"
   ]
 }
