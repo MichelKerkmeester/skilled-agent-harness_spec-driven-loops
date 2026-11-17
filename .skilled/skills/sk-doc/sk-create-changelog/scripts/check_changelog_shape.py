@@ -232,6 +232,10 @@ def check_spec_position(lines, offset, spec):
     several = len(spec) > 1
     for number, _line in spec:
         index = number - offset - 1
+        # A spec line straight under another quoted line is part of that
+        # blockquote, which the line above it already placed.
+        if index > 0 and lines[index - 1].startswith(">"):
+            continue
         end = index + 1
         while end < len(lines) and lines[end].startswith(">"):
             end += 1

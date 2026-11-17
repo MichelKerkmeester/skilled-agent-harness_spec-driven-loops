@@ -262,3 +262,8 @@ def test_html_tag_lines_are_not_prose():
     thirteen = (" ".join(["word"] * 13) + ".\n\n") * 40
     folds = "<details>\n<summary><b>Smaller fixes</b></summary>\n\n</details>\n\n" * 40
     assert rules(expanded(extra=thirteen + folds)) == ["sentence-mean"]
+
+
+def test_consecutive_spec_lines_are_one_block():
+    two = "> Spec folder: `specs/demo/001-a`\n> Spec folder: `specs/demo/002-b`"
+    assert rules(expanded(spec=two)) == []

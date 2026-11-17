@@ -269,6 +269,6 @@ For future work, treat these behaviors as the new baseline:
 - New `contextType` values should use the canonical set, not legacy aliases.
 - Search and memory-save fixes described here are part of the shipped state and should not be reworked around as if they were temporary patches.
 
-> Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement` (Level 2)
+&nbsp;
 
 > Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement` (Level 2)

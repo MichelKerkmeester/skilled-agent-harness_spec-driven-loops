@@ -76,9 +76,9 @@ doctrine reachability, catalog and README truth, confirm-variant parity, ledger 
 containment and severity language, and routing doctrine and discovery. It closes with all six
 completion criteria checked.
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation` (Phase Parent)
+&nbsp;
 
----
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation` (Phase Parent)
 
 ## 2026-08-24
 
@@ -90,9 +90,9 @@ The whole-system gate was re-measured on the finalized tree and returns a litera
 
 This is the line the 2026-08-16 entry below held as gated: the cutovers and retirements it described as waiting on a human decision were executed here. The change lands on the mainline with the `012` packet's merge.
 
-> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
+&nbsp;
 
----
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
 
 ## 2026-08-16
 
