@@ -1,5 +1,5 @@
 {
-  "corpusHash": "73859b8e520391a615442b56647ccea1e65676f4af560382f9d809aabfbbcb04",
+  "corpusHash": "76c1d9f4edae454bbd7253ed22997841a7473fde1f61761ad28d9e5d24ab9573",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27968,
+  "includedPathCount": 27995,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12951,6 +12951,33 @@
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/052-duplicate-hop-title-numbers/plan.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/052-duplicate-hop-title-numbers/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/052-duplicate-hop-title-numbers/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review-archive/20261117T064455Z/deep-review-dashboard.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review-archive/20261117T064455Z/deep-review-strategy.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review-archive/20261117T064455Z/prompts/iteration-1.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review-archive/20261117T064629Z/deep-review-dashboard.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review-archive/20261117T064629Z/deep-review-strategy.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review-archive/20261117T064629Z/prompts/iteration-1.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review-archive/20261117T064629Z/prompts/iteration-2.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review-archive/20261117T064629Z/prompts/iteration-3.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/deep-review-dashboard.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/deep-review-strategy.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/iterations/iteration-001.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/iterations/iteration-002.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/iterations/iteration-003.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/iterations/iteration-004.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/iterations/iteration-005.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/prompts/iteration-1.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/prompts/iteration-2.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/prompts/iteration-3.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/prompts/iteration-4.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/prompts/iteration-5.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/resource-map.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/review/review-report.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/research.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
@@ -28000,7 +28027,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "fb1eb0d75e0b2ea6148d1431e001c782241444f3ce7df67aa4cf237fa96c92cc",
+  "manifestHash": "8c450e0ff080b863e4a05dddc7b56667ab4523fd8dc14bed9868cfa5b1ee3361",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32404,6 +32431,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/052-duplicate-hop-title-numbers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review/scratch",
       "reason": "excluded directory"
     },
     {
