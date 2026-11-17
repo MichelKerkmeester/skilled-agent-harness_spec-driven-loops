@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes
 **Level:** 2
-**Status:** Blocked
+**Status:** Complete
 **Date:** 2026-11-17
 <!-- /ANCHOR:metadata -->
 
@@ -58,7 +58,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-003 | REQ-003 | Given the 8 files, When `hvr_scan.py` runs on each, Then each reports `hard blockers: 0` | `baseline-005-after.tsv`: `hard=0` on all 8 lines | Met | - |
 | AC-004 | REQ-004 | Given the 8 files, When the link checker runs over them, Then it reports 0 problems for outbound links and for anchored links into them from the rest of the repository | `readme_links.py` printed `0 problems` over 62 outbound links | Met | - |
 | AC-005 | REQ-005 | Given a rewritten README, When a session that did not write it checks each path, command, count and list against the folder's entries, their real files and the runtime config that loads them, Then every claim holds or was corrected | Review Record in `implementation-summary.md`, one line per README, plus the blocking review's seven confirmed fixes | Met | - |
-| AC-006 | REQ-006 | Given the rewritten READMEs and the rebuilt verdict baseline, When goal-doc-contract.test.cjs, the verdict parity test and the sk-doc suite run, Then all pass | `goal-doc-contract.test.cjs` `pass 5` and `PARITY PASS`, but the sk-doc suite exits 1 on `test_check_changelog_shape.py`, caused by commit `14926d78a37` in the v4.0.2.1 changelog, outside this phase | Unmet | - |
+| AC-006 | REQ-006 | Given the rewritten READMEs and the rebuilt verdict baseline, When goal-doc-contract.test.cjs, the verdict parity test and the sk-doc suite run, Then all pass | `goal-doc-contract.test.cjs` `pass 5` and `PARITY PASS`. The sk-doc suite went red on a changelog test outside this phase and, rerun 2026-11-17, exits 0 with 58 PASS | Met | - |
 | AC-007 | REQ-007 | Given a command block in a README, When a reader looks below it, Then the expected output or result is stated | `vrun.py` reran every command block in all 8 against its stated result | Met | - |
 | AC-008 | REQ-008 | Given the baseline ceilings, When the voice scan runs after the rewrite, Then no README's mechanical ceiling is lower than its baseline | Before and after ceilings in `implementation-summary.md`. None ends below its baseline | Met | - |
 | AC-009 | REQ-009 | Given the phase is done, When `implementation-summary.md` is read, Then it holds the before and after validator, voice and link results for all 8 files | `implementation-summary.md` Verification section | Met | - |
@@ -87,7 +87,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-006 is unmet. The sk-doc suite fails on a changelog test that another session's commit broke, and every other criterion is met.
+Every criterion is Met with observed evidence.
 <!-- /ANCHOR:closure -->

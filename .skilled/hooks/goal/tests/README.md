@@ -14,29 +14,66 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`.skilled/hooks/goal/tests/` holds the DSH test suite for the goal concern. `dsh-goal.test.mjs` runs under `node --test`. It drives both DSH adapters through the shared support module at `.skilled/hooks/shared/tests/dsh-plugin-harness.mjs`.
+`.skilled/hooks/goal/tests/` holds the DSH test suite for the goal concern. It runs under `node --test` and covers the manage adapter and the context adapter from `../dsh/`.
 
-Most cases stub the manage CLI. One case spawns the real `../bin/goal.cjs` and the real core against a fixture repository in a temp directory. That case compares the injected `chatSlice` with the CLI `chat_slice=` output.
+Most cases stub the manage CLI and the goal core. One case imports the real core and spawns the real `../bin/goal.cjs` against a fixture packet in a temp directory. It compares the text the context adapter injects with the `chat_slice=` line that the CLI prints.
 
-The suite covers the action set, the CLI grammar and the session scope flags. It checks the failed envelope, the brief on an operator turn and the verify note on the next idle status. The leaf gate and the disabled gate get their own cases. Both adapters' throw policy is asserted too.
+The suite asserts the action set, the CLI grammar and the session scope flags. It checks the failed envelope, the tool on an interactive agent and the brief on an operator turn. It covers the verify note at idle, the leaf gate and the disabled gate, plus the `fail-open` policy of both adapters.
 
-Only DSH runs these two adapters. DSH loads both through `.dsh/plugins/repo-guards/index.mjs`. The manage adapter registers the `/goal-dsh` command and the `dsh_goal` tool, then hooks `agent/created`, `agent/pre-step`, `agent/turn-stopping` and `agent/status`. The context adapter hooks `agent/created` alone.
-
-Both adapters declare `fail-open`. On a thrown core in the pre-step hook, the manage adapter logs one warning and returns the downstream result. The context adapter logs one warning and injects nothing.
+Every adapter case builds its adapter through the shared test module `../../shared/tests/dsh-plugin-harness.mjs`. Two unit cases check `GOAL_ACTIONS` and `goalCliArgs` directly and build no adapter. A fake plugin context records the handlers, commands and log lines. A fake agent records injected messages and registered tools. No case starts a DSH process.
 
 ---
 
-## 2. FILES
+## 2. ARCHITECTURE
+
+The suite imports production code and test support from four places.
+
+```text
+╭──────────────────────────────────────────────────────────╮
+│                       goal/tests/                        │
+│                                                          │
+│   dsh-goal.test.mjs                                      │
+│     -> dsh/goal-manage.mjs     command, tool, turn hooks │
+│     -> dsh/goal-context.mjs    packet chat slice         │
+│     -> lib/goal-core.cjs       real core in one case     │
+│     -> shared test helpers     fake context and agent    │
+│                                                          │
+│   bin/goal.cjs is spawned by the one context case        │
+╰──────────────────────────────────────────────────────────╯
+```
+
+The manage cases drive `registerGoalManage`. It registers the `goal-dsh` command, the `dsh_goal` tool on `agent/created` and handlers for `agent/pre-step`, `agent/turn-stopping` and `agent/status`.
+
+The context cases drive `registerGoalContext`. It hooks `agent/created` alone.
+
+---
+
+## 3. FILES
 
 | File | Responsibility |
 |---|---|
-| `dsh-goal.test.mjs` | The DSH goal suite. It covers both adapters and the manage CLI bridge. |
+| `dsh-goal.test.mjs` | The whole suite. It imports both adapters, the goal core and the shared test module, then asserts what an adapter does on a named event. |
 
-The suite asserts the `dsh_goal` action set and maps each action onto the CLI grammar. It runs `/goal-dsh` under the session scope and checks the failed envelope. It compares the injected slice with the CLI `chat_slice=` output and asserts one log line on a thrown core. A failed assertion fails the test process with a nonzero status. Temporary repositories are removed in `finally`.
+A failed assertion throws, so the test process exits nonzero. The real-CLI case removes its temp directory in a `finally` block.
 
 ---
 
-## 3. VALIDATION
+## 4. BOUNDARIES AND FLOW
+
+| Boundary | Rule |
+|---|---|
+| Manage CLI | Cases pass a `runCli` stub that records an argv and returns canned stdout. The real-CLI case spawns the CLI instead. |
+| Goal core | `stubCore()` supplies the calls the manage adapter reads. The real-CLI case passes the real core to the context adapter. |
+| Runtime | `pluginHarness()` and `adapterHarness()` supply fake contexts. `fakeAgent()` supplies a session, so no DSH plugin loader runs. |
+| Temp state | `tempDir()` creates a directory under the system temp path and `cleanup()` removes it. |
+
+A manage case registers the adapter on a `pluginHarness` context, fires one event with a fake agent and reads the recorded argv, tool or notice. A context case registers the adapter on an `adapterHarness`, fires `agent/created` and reads what the agent injected.
+
+The verify note waits for idle. `agent/turn-stopping` records the turn and holds a pending note when the verdict is not `met`. The next `agent/status` with `idle` injects that note once and clears it.
+
+---
+
+## 5. VALIDATION
 
 Run from the repository root.
 
@@ -44,12 +81,14 @@ Run from the repository root.
 node --test .skilled/hooks/goal/tests/dsh-goal.test.mjs
 ```
 
-Expected result: every test passes and the process exits 0.
+Expected output: a pass line for every test, then `fail 0` in the summary and exit status 0.
 
 ---
 
-## 4. RELATED
+## 6. RELATED
 
-- [`../README.md`](../README.md): the concern index, with the action set and the state layout.
-- [`../dsh/goal-manage.mjs`](../dsh/goal-manage.mjs): the command, tool and per-turn adapter under test.
-- [`../dsh/goal-context.mjs`](../dsh/goal-context.mjs): the packet context adapter under test.
+- [Goal concern index](../README.md): the runtime coverage table and the switches.
+- [Manage adapter](../dsh/goal-manage.mjs): the command, tool and turn handlers under test.
+- [Context adapter](../dsh/goal-context.mjs): the packet chat slice under test.
+- [Shared test helpers](../../shared/tests/README.md): the fake context, agent and notice helpers.
+- [Manage CLI](../bin/goal.cjs): the router that one case spawns.

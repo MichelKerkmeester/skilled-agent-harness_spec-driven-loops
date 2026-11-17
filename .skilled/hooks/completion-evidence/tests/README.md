@@ -1,6 +1,6 @@
 ---
 title: "Completion Tests: DSH Adapter Parity Suite"
-description: "node --test suite that checks the DSH completion-evidence adapter against the shared core and asserts its fail-open throw policy."
+description: "node --test suite that drives the DSH completion-evidence adapter through the shared core and checks its fail-open throw path."
 trigger_phrases:
   - "dsh completion tests"
   - "completion evidence parity tests"
@@ -14,9 +14,11 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`.skilled/hooks/completion-evidence/tests/` holds one `node --test` suite for the DSH completion-evidence adapter. The suite imports the real shared core and the adapter. It builds a plugin context with the shared DSH test helpers. The suite then drives the `agent/turn-stopping` handler on that context.
+`.skilled/hooks/completion-evidence/tests/` holds the test suite for the DSH completion-evidence adapter. The folder carries no adapter of its own. The adapter sits in `../dsh/`. The decision rule it calls sits in the shared core.
 
-The folder holds no runtime adapter. The per-runtime suites live with their owning skills. The DSH `repo-guards` bundle registers the adapter at `.dsh/plugins/repo-guards/index.mjs`. The suite calls the adapter's register function on a fake context instead.
+A case registers the adapter on a fake DSH context. It then fires `agent/turn-stopping`. Then it reads what the handler injected and logged. No runtime starts.
+
+The suite covers two behaviors. The parity case confirms the adapter follows the core when the core reads no completion claim. The throw case confirms a failing core cannot break the turn.
 
 ---
 
@@ -24,13 +26,64 @@ The folder holds no runtime adapter. The per-runtime suites live with their owni
 
 | File | Responsibility |
 |---|---|
-| `dsh-completion-evidence.test.mjs` | The `node --test` suite for the DSH adapter. |
+| `dsh-completion-evidence.test.mjs` | The `node --test` suite for the DSH adapter. It drives the stop handler and asserts both paths. |
 
-The parity case feeds a message with no completion claim. The core returns false for that text, so the handler injects nothing. The throw case swaps in a core whose claim check throws. The handler logs one warning and injects nothing, while the suite asserts `ERROR_POLICY` is `fail-open`. The rig records log lines, so a case can assert on the warning count. Each case also stubs `inject` to catch a notice.
+The file imports the real core and the real adapter. It imports the shared test helpers from `../../shared/tests/dsh-plugin-harness.mjs`.
+
+The parity case builds a turn 2 snapshot whose last assistant message is `I will continue checking the work.` It first checks that the core reads no claim in that text. The handler then runs and the suite asserts no injection.
+
+The throw case asserts `ERROR_POLICY` is `fail-open`. It gives the adapter a core whose `detectCompletionClaim()` throws. It fires the same event with an empty event list. The adapter catches the throw, so the suite asserts no injection and one logged warning. The adapter writes that line through `ctx.logger.warn`. The fake context records it.
 
 ---
 
-## 3. VALIDATION
+## 3. BOUNDARIES AND FLOW
+
+| Boundary | Rule |
+|---|---|
+| Imports | The real adapter and core modules, not a stub. The shared test helpers supply the fake context. |
+| Test doubles | `adapterHarness()` keeps one handler per event and records every log line. `enabled` answers the switch check with true. |
+| Ownership | The suite owns no runtime entry and no production code. The adapter and the core live outside this folder. |
+
+A case follows one path.
+
+```text
+╭──────────────────────────────────────────╮
+│ node --test                              │
+╰──────────────────────────────────────────╯
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ adapterHarness()                         │
+│ fake context and recorded log lines      │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ registerCompletionEvidence               │
+│ real core, or a core that throws         │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ handlers.get('agent/turn-stopping')      │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ claimTextFromSession                     │
+│ then detectCompletionClaim               │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+╭──────────────────────────────────────────╮
+│ nothing injected                         │
+│ plus one warning on the throw path       │
+╰──────────────────────────────────────────╯
+```
+
+---
+
+## 4. VALIDATION
 
 Run from the repository root.
 
@@ -38,12 +91,15 @@ Run from the repository root.
 node --test .skilled/hooks/completion-evidence/tests/dsh-completion-evidence.test.mjs
 ```
 
-Expected result: both cases pass.
+Expected result: `pass 2` and `fail 0`, with exit status 0.
+
+The suite needs only Node. It reads no fixture file and starts no runtime.
 
 ---
 
-## 4. RELATED
+## 5. RELATED
 
-- [`../README.md`](../README.md): the completion concern, the core decision rule and the runtime delivery table.
-- [`../dsh/completion-evidence.mjs`](../dsh/completion-evidence.mjs): the adapter under test.
-- [`../../../skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs`](../../../skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs): the shared core the parity case compares against.
+- [The completion concern](../README.md) covers the adapter and its switches.
+- [The adapter under test](../dsh/completion-evidence.mjs) registers the stop handler and builds the notice.
+- [The shared completion core](../../../skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs) holds the claim check and the evidence decision.
+- [The shared DSH test helpers](../../shared/tests/README.md) document the fake context and the recorded log lines.

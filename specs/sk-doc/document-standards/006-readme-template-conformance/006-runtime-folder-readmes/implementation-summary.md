@@ -10,11 +10,10 @@ _memory:
     packet_pointer: "sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes"
     last_updated_at: "2026-11-17T17:07:56Z"
     last_updated_by: "generate-context"
-    recent_action: "Closed phase 006 docs with the sk-doc suite criterion blocked"
-    next_safe_action: "Commit the remaining 006 paths, push, then start phase 007"
+    recent_action: "Closed the sk-doc suite criterion after the changelog test passed again"
+    next_safe_action: "None: the phase is complete"
     packet_purpose: "Purpose: Each runtime folder README and sync manifest follows its scaffold in the runtime folder template, passes the validator and the voice scan with zero hard blockers, and states only surfaces, commands and checks the folder confirms."
-    blockers:
-      - "sk-doc suite red on a changelog shape test"
+    blockers: []
     key_files:
       - "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/implementation-summary.md"
       - "specs/sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes/tasks.md"
@@ -30,7 +29,7 @@ _memory:
       savedAt: "2026-11-17T17:07:56Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -124,7 +123,7 @@ Before numbers come from `baseline-006-before.tsv`, taken before the canary ran.
 | `opencode-compat-layout.test.cjs` | `pass 21`, `fail 0` before and after |
 | `check-markdown-links.cjs` | `7821 files, 15212 links checked, 0 broken`, exit 0 |
 | `test_readme_verdict_parity.py` | `PARITY PASS: verdict diff is empty`, 1,246 files |
-| sk-doc `run-script-tests.sh` | Blocked, exit 1: 57 PASS and 1 FAIL, `test_check_changelog_shape.py::test_the_model_entry_passes_every_rule`, the same failure that blocks phase 005. No file in this phase is read by that test, and goal D3 bars a hand edit to a changelog |
+| sk-doc `run-script-tests.sh` | At commit: exit 1, 57 PASS and 1 FAIL in `test_check_changelog_shape.py`, a changelog test outside this phase. Rerun 2026-11-17 after that test was fixed elsewhere: 58 PASS, `all sk-doc script tests passed`, exit 0 |
 | Secret scan over the 16 files | 6 hits on token, secret or API key, all prose about those features. No key-shaped string, no user path and no scratchpad path |
 | Scope of the change | `git status` over the eight runtime folders shows exactly the 15 modified files and the new `.vibe/README.md` |
 | Blocking `@review` | CHANGES REQUESTED, 150 claims sampled. Three P1 and seven P2 findings, all confirmed in the code and applied across twelve files, then every gate above was rerun |
@@ -162,7 +161,7 @@ One line per file. Every reviewer session was separate from the writer of the fi
 ## Known Limitations
 
 1. **The template still says `.vibe/` has no README.** `runtime-folder-template.md:36` reads "`.vibe/` has only a `SYNC.md` so far", which this phase makes false. Goal D3 bars a template edit here, so the line waits for a template change.
-2. **The sk-doc suite is red for a reason outside this phase.** `test_check_changelog_shape.py` fails on the v4.0.2.1 changelog entry, as in phase 005. T011 and AC-006 stay blocked until that entry or the test changes, and rerunning `run-script-tests.sh` then closes both.
+2. **The sk-doc suite was red for a while for a reason outside this phase.** `test_check_changelog_shape.py` failed on a changelog entry another session was rewriting, so T011 and AC-006 stayed blocked at commit time. The suite passes again as of 2026-11-17, and both rows are now closed.
 3. **One dsh route patch comment is stale.** `.dsh/patches/route-opencode-go-deepseek.patch.yml:2` still calls the endpoint unverified after the keyed run that proved it. Goal D3 keeps runtime configs unchanged, so the README states the proven fact and the comment waits.
 4. **Two doctor commands check less than a reader might expect.** `/doctor:runtime-mirrors` runs no hook-registration or pointer check, and `/doctor:agents-md` reads only a root `CLAUDE.md`, so it reports a missing pointer on a machine that keeps it in `~/.claude/CLAUDE.md`. The docs now say both. The commands themselves are outside this phase.
 5. **Fact checks sampled each file's claims.** Every claim a reviewer named was checked, but prose can still hold a claim nobody tested.
