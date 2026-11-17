@@ -1,6 +1,6 @@
 ---
-title: "Task Dispatch Hooks: Deep-Loop Guard + Fable Subagent Policy"
-description: "PreToolUse guards for Task/subagent dispatches: deep-loop loop-repeat protection shared across runtimes, plus Claude's Fable-model subagent policy."
+title: "Task Dispatch Guard: Deep-Loop and Child Model Policy"
+description: "Checks dispatches for mode mismatches and repeated hand-offs across runtime adapters. A separate Claude hook checks child model overrides when the parent uses a restricted model."
 trigger_phrases:
   - "task dispatch guard"
   - "deep loop guard"
@@ -8,60 +8,41 @@ trigger_phrases:
   - "opencode task dispatch guard"
   - "opencode deep loop guard"
   - "opencode task execute before"
+importance_tier: "normal"
+contextType: "reference"
 ---
 
-# Task Dispatch Hooks: Deep-Loop Guard + Fable Subagent Policy
+# Task Dispatch Guard: Deep-Loop and Child Model Policy
 
 ---
 
 ## 1. OVERVIEW
 
-`subagent-dispatch-guard/` gates Task dispatches before they execute. The main concern is deep-loop protection. `lib/subagent-dispatch-guard.cjs` recognizes dispatches that target deep-loop sub-agents. It separates a bounded external handoff from repeated handoffs that recreate a command-owned iteration loop outside its parent command. A second guard, Claude only, enforces the Fable-model subagent policy.
+`subagent-dispatch-guard/` checks subagent hand-offs before covered runtimes run them. Its shared core compares declared modes with the deep-loop registry and tracks repeated hand-offs to loop executors. Claude also runs a separate child-model check.
 
-The core returns a transport-free `allow`/`warn`/`reject` decision. Adapters translate it into their runtime's envelope. Warning state persists under `.skilled/skills/.state/loop-guard/`, so OpenCode and Claude share one bounded audit trail. The core performs the loop-state persistence and state-directory maintenance. It never writes stdout or stderr. It never writes the warning log itself. The adapter appends warnings and audits, so both runtimes share one bounded log path.
+The shared policy lives in `lib/subagent-dispatch-guard.cjs`. The Claude model check lives in `claude/fable-subagent-guard.mjs`.
 
-Claude, Cursor, Devin, DSH, OpenCode, Pi and Vibe each run the guard. Codex has no adapter.
+The concern key is `task-dispatch`. Its kill switch is `SYSTEM_TASK_DISPATCH_DISABLED`. `SYSTEM_HOOKS_DISABLED=1` is the master switch.
 
 ---
 
 ## 2. HOW IT WORKS
 
-`evaluateDispatch` returns `{ decision, detail, warnings, audits }`. Check 1 runs first and short-circuits to `reject` under the mode-reject env before Check 2 can run. A reject returns before its detail is added to `warnings`. So only a non-rejecting mismatch is recorded as a warning. Check 2 runs only when Check 1 does not reject.
+`evaluateDispatch` returns a decision and optional details.
 
-**Check 1. Deep Route mode mismatch.** `resolveTargetIdentity` parses `target_agent=@<name>` or `Agent: @<name>` from the prompt body first. It falls back to `subagent_type` only when that value is not the generic `general` placeholder that `orchestrate` sets for every call. The core loads the agent's registered workflow modes from `mode-registry.json`. A `mode=` the agent is not registered for warns, or rejects under `SYSTEM_DEEP_LOOP_GUARD_REJECT=1`.
-
-```text
-system-deep-loop-guard: Deep Route mode mismatch -- dispatch targets subagent_type="<agent>" (registry modes="<a|b>") but the prompt declares mode="<mode>"
-```
-
-**Check 2. Loop-like repeated hand-off.** `deep-research` and `deep-review` are the command-owned loop executors. The core records each non-command-driven dispatch to them in per-session state. A dispatch is command-driven only when the prompt carries an `Iteration: N of M` marker and a `Config: <path>` line.
-
-That path must resolve to a real on-disk deep-loop config with `mode` + `maxIterations`. Marker text alone is not enough, so injected content cannot gain command authority. The second non-command-driven hand-off warns. The third, under `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1`, rejects.
-
-```text
-system-deep-loop-guard: loop-like repeated dispatch -- "<agent>" received <N> non-command-driven hand-offs in this session without a command-driven iteration marker; command-owned loop executors should be dispatched by their parent /deep:* command, not repeatedly handed off by another agent.
-```
-
-Warnings are injected into the model's context as `additionalContext`, newline-joined when several apply. A reject becomes the denial reason. A warn appends a `[system-deep-loop-guard] WARN:` line to the shared bounded log `guard-warnings.log` in the state directory. That log caps at 256 KB by default and rotates to `.1`.
-
-Because a reject returns before its detail is added to `warnings`, the Claude, Devin and OpenCode adapters write no WARN line for a reject. Only the Pi adapter logs the reject detail. Generic subagents (`context`/`review`/`write`/`debug`) and `ai-council` are intentionally excluded from loop-repeat counting.
-
-**Fable guard.** `claude/fable-subagent-guard.mjs` fires when the main session runs on a Fable model. It reads the last `"model":"claude-…"` field from the session transcript tail (2 MB). It skips sidechain entries, so a permitted subagent's own model never masks the parent. It denies the dispatch shapes below, each with its own reason.
-
-| Shape | Denial reason |
+| Decision | Meaning |
 |---|---|
-| `subagent_type: "fork"` | `Main session runs on <model>; fork subagents always inherit the parent model, so a fork would run on Fable. Dispatch a non-fork agent with model: "opus" or model: "sonnet" instead.` |
-| call omits `model` | `Main session runs on <model>; a subagent without a model override inherits Fable. Pass model: "opus" or model: "sonnet" on the Agent call.` |
-| `model` not `opus`/`sonnet` | `Main session runs on <model>; subagent model "<requested>" is not permitted. Only "opus" or "sonnet" subagents may be dispatched while Fable drives the main loop.` |
+| `allow` | The core found no policy issue. |
+| `warn` | The core returned warning text for the adapter. |
+| `reject` | The core returned a rejection detail. |
 
-It fails open when the transcript is missing or unreadable.
+`resolveTargetIdentity` reads `target_agent=@name` or an `Agent: @name` line from the prompt. It falls back to the subagent type unless that value is `general`. `loadRegistryAgents` reads `.skilled/skills/system-deep-loop/mode-registry.json`. For a registered target, a declared mode outside its registered modes warns when `SYSTEM_DEEP_LOOP_GUARD_REJECT` is unset and rejects when it is `1`. The Vibe adapter sets it to `1` when unset, so Vibe rejects a mismatch by default.
 
-| Boundary | Rule |
-|---|---|
-| Imports | The core imports Node builtins only. Adapters import `../lib/` and, in CommonJS, `../../shared/hook-adapter-shared.cjs` plus `../../shared/hook-flags.cjs`. The Cursor adapter imports `hook-flags.mjs` and shells out to the Claude adapter by repo-relative path. |
-| State | Loop-repeat counters and warning logs live in `.skilled/skills/.state/loop-guard/`. The core writes the loop-repeat counters, and the adapters append the warning log, so all runtimes share one bounded log. State files are session-keyed and written atomically (temp + rename). |
-| Decisions | `allow`, `warn` or `reject`. Reject is reserved for a confirmed mode mismatch under the reject env, a confirmed loop-recreation at count 3 or more under the reject-loop env, and the Fable policy's forbidden shapes. |
-| Failure | The core fails open on malformed input, a missing registry or state, or any internal error. A persistence failure under a reject env emits an audit line through `appendRejectModeDegradedAudit` and still allows the dispatch. |
+`isCommandDrivenIteration` checks the `Iteration: N of M` marker and a `Config:` path to an existing JSON file inside the project whose object has a string `mode` and a numeric `maxIterations`. For dispatches with a session ID, `recordLoopDispatch` counts non-command-driven hand-offs to `deep-research` and `deep-review`. The second such hand-off warns. The third rejects when `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1`.
+
+The shared-core adapters append warnings and degraded-mode audit lines to `.skilled/skills/.state/loop-guard/guard-warnings.log` when the state directory is writable. The core stores the loop counts there. OpenCode runs `sweepStaleLoopGuardStates` when a session starts.
+
+Claude's `fable-subagent-guard.mjs` reads the last main-loop model in the transcript tail and skips sidechain entries. When that model matches `fable`, the hook denies a fork or a dispatch without an allowed model override. A missing or unreadable transcript returns without output.
 
 ---
 
@@ -69,33 +50,22 @@ It fails open when the transcript is missing or unreadable.
 
 | Runtime | Event | Entry in this folder | Real file | What the runtime shows |
 |---|---|---|---|---|
-| Claude | `PreToolUse` on `Task` | `claude/task-dispatch-guard.cjs` | `.skilled/hooks/subagent-dispatch-guard/claude/task-dispatch-guard.cjs` | A deny with the reason, or the warnings as context. |
-| Claude | `PreToolUse` on `Task\|Agent` | `claude/fable-subagent-guard.mjs` | `.skilled/hooks/subagent-dispatch-guard/claude/fable-subagent-guard.mjs` | A deny with the reason for the shape it matched. |
-| Cursor | `preToolUse` on `Task` | `cursor/task-dispatch-guard.mjs` | `.skilled/hooks/subagent-dispatch-guard/cursor/task-dispatch-guard.mjs` | A deny with both messages, or an allow with one message. |
-| Devin | `PreToolUse` on `run_subagent` | `devin/task-dispatch-guard.cjs` | `.skilled/hooks/subagent-dispatch-guard/devin/task-dispatch-guard.cjs` | A deny with the reason, or the warnings as context. |
-| DSH | `tools/pre-execute` | `dsh/task-dispatch-guard.mjs` | `.skilled/hooks/subagent-dispatch-guard/dsh/task-dispatch-guard.mjs` | Nothing. The hand-off always proceeds. |
-| OpenCode | `session.created, tool.execute.before` | `opencode/system-deep-loop-guard.js` | `.opencode/plugins/system-deep-loop-guard.js` | A thrown error on a reject. Warnings stay in the log. |
-| Pi | `tool_call` on `subagent` | `pi/task-dispatch-guard.ts` | `.skilled/hooks/subagent-dispatch-guard/pi/task-dispatch-guard.ts` | A `reason` on the call, never a block. |
-| Vibe | `pre_tool` on `agents_spawn` | `vibe/deep-loop-guard.mjs` | `.vibe/plugins/repo-guards/deep-loop-guard.mjs` | A deny object with the reason, or nothing. |
-| Codex | None | None | None | `n/a`: codex-cli 0.160 fires `PreToolUse` on `spawn_agent` as `collaborationspawn_agent`, but a captured payload carries the spawn `message` encrypted beside `task_name` and `fork_turns`, so the guard's prompt and target checks have nothing to read. No adapter is wired. |
+| Claude | `PreToolUse` on `Task` and `Task|Agent` | `claude/task-dispatch-guard.cjs` and `claude/fable-subagent-guard.mjs` | `.skilled/hooks/subagent-dispatch-guard/claude/task-dispatch-guard.cjs` and `.skilled/hooks/subagent-dispatch-guard/claude/fable-subagent-guard.mjs` | Denies policy rejects and adds shared-core warnings as context. Malformed input or an internal error approves silently. The model check denies calls without an allowed override. |
+| Codex | None | None | None | No task-dispatch adapter runs. |
+| Cursor | `preToolUse` on `Task` | `cursor/task-dispatch-guard.mjs` | `.skilled/hooks/subagent-dispatch-guard/cursor/task-dispatch-guard.mjs` | Returns an allow or deny object. Warnings appear in `agent_message`. A spawn error or non-JSON output allows the call. |
+| Devin | `PreToolUse` on `run_subagent` | `devin/task-dispatch-guard.cjs` | `.skilled/hooks/subagent-dispatch-guard/devin/task-dispatch-guard.cjs` | Denies policy rejects and adds warnings as `additionalContext`. Malformed input or an internal error approves silently. |
+| OpenCode | `tool.execute.before` on `task` and `session.created` for the state sweep | `opencode/system-deep-loop-guard.js` | `.opencode/plugins/system-deep-loop-guard.js` | Throws on a policy reject and swallows other plugin errors. Warnings go to the shared state log. |
+| Pi | `tool_call` on `subagent` | `pi/task-dispatch-guard.ts` | `.skilled/hooks/subagent-dispatch-guard/pi/task-dispatch-guard.ts` | Returns advisory text in `reason` and never blocks the call. An error returns no reason. |
+| DSH | `tools/pre-execute` on `subagent` or `subagent_fork` | `dsh/task-dispatch-guard.mjs` | `.skilled/hooks/subagent-dispatch-guard/dsh/task-dispatch-guard.mjs` | Logs warnings and audits, then calls `next()`. An error is logged and the hand-off proceeds. |
+| Vibe | `pre_tool` on `agents_spawn` | `vibe/deep-loop-guard.mjs` | `.vibe/plugins/repo-guards/deep-loop-guard.mjs` | Denies policy rejects and writes warnings to stderr. An internal error writes a warning and exits 0. |
 
-Claude registers both guards in `.claude/settings.json`. The first reads `tool_name: 'Task'` and takes `subagent_type` or `subagentType` plus `prompt`. It resolves the project directory from `payload.cwd` or `CLAUDE_PROJECT_DIR`. A reject becomes `permissionDecision: 'deny'` with the reason. A warn becomes `additionalContext`, with warnings joined with `\n`. Malformed stdin, a missing payload or any internal error approves silently.
+Claude registers both guards in `.claude/settings.json` under `PreToolUse`. Its matchers are `Task` and `Task|Agent`, with a 5-second timeout for each. Codex has no task-dispatch entry in `.codex/hooks.json`.
 
-The Fable guard reads the active model from `payload.transcript_path`. It denies with `permissionDecision: 'deny'`. It returns without output when the transcript is missing or unreadable.
+Cursor registers `preToolUse` with the `Task` matcher in `.cursor/hooks.json` and sets a 10-second timeout. Devin registers `PreToolUse` in `.devin/hooks.v1.json` with the `^run_subagent$` matcher and a 5-second timeout.
 
-Devin registers the guard in `.devin/hooks.v1.json` under the matcher `^run_subagent$`. It reads `tool_name: 'run_subagent'` and accepts `subagent_type`, `subagentType`, `agent_type` or `agentType`. A whitespace-only `cwd` falls back to `DEVIN_PROJECT_DIR`. It returns the same deny and advisory envelope as Claude.
+OpenCode discovers JavaScript plugins through the flat glob over `.opencode/plugins/`. Pi's extension entry is `.pi/extensions/task-dispatch-guard.ts`. The DSH `repo-guards` bundle imports this adapter through `.dsh/plugins/repo-guards/index.mjs`. Vibe registers `deep-loop-guard` in `.vibe/hooks.toml`.
 
-Cursor registers the guard in `.cursor/hooks.json` under `preToolUse` with the matcher `Task`. It forwards `tool_input` unchanged, with `cwd` taken from `workspace_roots[0]`, and runs the Claude adapter with a 5-second timeout. It translates `hookSpecificOutput` into `{permission: 'deny', user_message, agent_message}` with exit 2, or `{permission: 'allow', agent_message}`. A spawn error or non-JSON output approves.
-
-OpenCode loads the plugin from `.opencode/plugins/`. It reads `input.tool: 'task'` and takes `args.subagent_type` or `args.subagentType` plus `args.prompt`. A reject throws `Error(result.detail)`, which OpenCode treats as a denial from a `before` hook. A warn only reaches the state log, never stdout or stderr. Any other error inside the plugin is swallowed. OpenCode alone runs the state-directory sweep, on `session.created`, through `sweepStaleLoopGuardStates`.
-
-Pi registers the guard through `.pi/extensions/task-dispatch-guard.ts`, a one-line re-export. It loads the core from `../lib/`. It reads `event.toolName: 'subagent'` and returns a `reason` for a reject or a warning. It never blocks. A throw returns nothing. `~ partial`: workflow-nested (`runs.run`) dispatches are not yet covered.
-
-DSH registers the guard in `.dsh/plugins/repo-guards/index.mjs`, which imports `.dsh/plugins/repo-guards/adapters/task-dispatch-guard.mjs`. That file is a link to `dsh/task-dispatch-guard.mjs`. It listens on `tools/pre-execute` for `subagent` and `subagent_fork`. It skips a call that carries an `action` or `resume` string and a call with no prompt. It records warnings and audits, then always calls `next()`. A throw is logged through `ctx.logger.warn` and the hand-off still proceeds.
-
-Vibe registers the hook in `.vibe/hooks.toml` as `deep-loop-guard`, a `pre_tool` hook with `strict = true` matching `agents_spawn`. It reads `config_name` plus the spawn `message`. It supplies `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` and `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` when the operator set neither, because a `pre_tool` hook can only deny. Warnings go to stderr. A throw allows and reports on stderr.
-
-OpenCode's real plugin cannot live in this tree, because its loader globs `.opencode/plugins/` by a flat pattern. So `opencode/system-deep-loop-guard.js` is a browsability-only symlink back into that folder. Nothing loads through it.
+The OpenCode and Vibe entries in this folder are links to their runtime files.
 
 ---
 
@@ -103,36 +73,18 @@ OpenCode's real plugin cannot live in this tree, because its loader globs `.open
 
 ```text
 subagent-dispatch-guard/
-+-- README.md
-+-- claude/
-|   +-- README.md
-|   +-- task-dispatch-guard.cjs
-|   `-- fable-subagent-guard.mjs
-+-- cursor/
-|   +-- README.md
-|   `-- task-dispatch-guard.mjs
-+-- devin/
-|   +-- README.md
-|   `-- task-dispatch-guard.cjs
-+-- dsh/
-|   +-- README.md
-|   `-- task-dispatch-guard.mjs
-+-- lib/
-|   +-- README.md
-|   `-- subagent-dispatch-guard.cjs
-+-- opencode/
-|   `-- system-deep-loop-guard.js -> ../../../../.opencode/plugins/system-deep-loop-guard.js
-+-- pi/
-|   +-- README.md
-|   `-- task-dispatch-guard.ts
-+-- tests/
-|   +-- README.md
-|   `-- dsh-task-dispatch-guard.test.mjs
-`-- vibe/
-    `-- deep-loop-guard.mjs -> ../../../../.vibe/plugins/repo-guards/deep-loop-guard.mjs
++-- claude/     task-dispatch-guard.cjs, fable-subagent-guard.mjs
++-- cursor/     task-dispatch-guard.mjs
++-- devin/      task-dispatch-guard.cjs
++-- dsh/        task-dispatch-guard.mjs
++-- lib/        subagent-dispatch-guard.cjs
++-- opencode/   system-deep-loop-guard.js (link)
++-- pi/         task-dispatch-guard.ts
++-- tests/      dsh-task-dispatch-guard.test.mjs
+`-- vibe/      deep-loop-guard.mjs (link)
 ```
 
-The `opencode/` and `vibe/` folders each hold one link. Every other entry is a real file.
+The OpenCode link points to `.opencode/plugins/system-deep-loop-guard.js`. The Vibe link points to `.vibe/plugins/repo-guards/deep-loop-guard.mjs`.
 
 ---
 
@@ -140,63 +92,55 @@ The `opencode/` and `vibe/` folders each hold one link. Every other entry is a r
 
 | File | Responsibility |
 |---|---|
-| `lib/subagent-dispatch-guard.cjs` | Owns registry indexing (`loadRegistryAgents`), target identity resolution (`resolveTargetIdentity`), Deep Route mode-mismatch detection, command-driven iteration recognition (`isCommandDrivenIteration`), session-scoped loop-repeat state (`recordLoopDispatch`), the bounded warning log contract (`appendWarningLog`), age-based state sweep, archive and prune (`sweepStaleLoopGuardStates`) and the runtime-neutral `evaluateDispatch` entrypoint. It never writes stdout or stderr. |
-| `claude/task-dispatch-guard.cjs` | Claude `PreToolUse(Task)` adapter. Returns warnings as `additionalContext` and rejections through Claude's `permissionDecision: 'deny'` form. |
-| `claude/fable-subagent-guard.mjs` | Claude-only `PreToolUse(Task\|Agent)` Fable-model policy. Reads the active model from the session transcript and denies `fork`, a missing `model` and a `model` outside opus or sonnet. |
-| `devin/task-dispatch-guard.cjs` | Devin `PreToolUse(run_subagent)` adapter over the same core. Accepts the four `subagent_type` and `agent_type` field aliases. |
-| `cursor/task-dispatch-guard.mjs` | Cursor `preToolUse` adapter on the `Task` matcher. `spawnSync`s the Claude adapter and translates its envelope into Cursor's permission shape. |
-| `dsh/task-dispatch-guard.mjs` | DSH `tools/pre-execute` adapter. Records warnings and audits, then lets the hand-off proceed. |
-| `pi/task-dispatch-guard.ts` | Pi `tool_call` adapter on the `subagent` tool. Turns every core rejection into an advisory reason. |
-| `opencode/system-deep-loop-guard.js` | Browsability link to the OpenCode plugin. Nothing loads through it. |
-| `.opencode/plugins/system-deep-loop-guard.js` | OpenCode plugin. `tool.execute.before` runs the policy and `event` on `session.created` runs the state-directory sweep. |
-| `.vibe/plugins/repo-guards/deep-loop-guard.mjs` | Vibe `pre_tool` hook on `agents_spawn`. Denies a spawn the core rejects and reports warnings on stderr. |
-| `tests/dsh-task-dispatch-guard.test.mjs` | Node test file for the DSH adapter. It checks core parity and the fail-open policy. |
+| `lib/subagent-dispatch-guard.cjs` | Exports the shared mode and loop-repeat policy. |
+| `.claude/settings.json` | Registers both Claude adapters. |
+| `.codex/hooks.json` | Codex hook settings. It has no task-dispatch entry. |
+| `.cursor/hooks.json` | Registers the Cursor Task adapter. |
+| `.devin/hooks.v1.json` | Registers the Devin `run_subagent` adapter. |
+| `.opencode/plugins/system-deep-loop-guard.js` | OpenCode plugin that calls the shared core. |
+| `.pi/extensions/task-dispatch-guard.ts` | Pi extension re-export. |
+| `.dsh/plugins/repo-guards/index.mjs` | Registers the adapter in the DSH guard bundle. |
+| `.vibe/hooks.toml` | Registers the Vibe pre-tool hook. |
+| `.skilled/hooks/shared/hook-flags.cjs` | Resolves the concern switch and the master switch. |
 
 ---
 
 ## 6. CONFIGURATION
 
-The concern key is `task-dispatch`, which differs from the folder name. The guard is on by default. A disable switch is on when its value is `1`, `true`, `yes` or `on`, in any case. The two reject switches act only on exactly `1`.
+The concern is on by default. Its kill switches resolve from the process environment or `.skilled/hooks/hook-flags.env`. The environment wins over that file.
 
 | Variable | Effect |
 |---|---|
-| `SYSTEM_TASK_DISPATCH_DISABLED=1` | Full no-op on every runtime. The shared resolver (`isHookEnabled('task-dispatch')`) short-circuits every adapter, including the Fable guard. |
-| `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
-| `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` | Escalates a Deep Route mode mismatch from `warn` to `reject`. Off by default, so the mismatch is advisory unless this is set. |
-| `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` | Escalates a confirmed loop-recreation at count 3 or more from `warn` to `reject`. Off by default. |
-| `SYSTEM_DEEP_LOOP_GUARD_WARNING_LOG_MAX_BYTES` | Warning-log size cap before rotation (default 256 KB). |
-| `SYSTEM_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS` | Days an untouched per-session state file stays active before archiving (default 2). |
-| `SYSTEM_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS` | Days an archived state file survives before pruning (default 90). |
-| `SYSTEM_DEEP_LOOP_GUARD_SWEEP_INTERVAL_MS` | Throttle for the state-directory sweep (default 1 hour). |
+| `SYSTEM_TASK_DISPATCH_DISABLED=1` | Disables this concern on every runtime with an adapter. |
+| `MK_TASK_DISPATCH_DISABLED=1` | Legacy alias for the concern switch. |
+| `SYSTEM_HOOKS_DISABLED=1` | Disables this concern and the other hooks that honor the master switch. |
+| `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` | Rejects a mode mismatch instead of warning. The core reads exactly `1`. |
+| `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` | Rejects the third non-command-driven hand-off. The core reads exactly `1`. |
+| `SYSTEM_DEEP_LOOP_GUARD_WARNING_LOG_MAX_BYTES` | Warning-log size cap. The default is 256 KiB. |
+| `SYSTEM_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS` | Days before the sweep archives an untouched session state file. The default is 2. |
+| `SYSTEM_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS` | Days before the sweep removes an archived state file. The default is 90. |
+| `SYSTEM_DEEP_LOOP_GUARD_SWEEP_INTERVAL_MS` | Sweep throttle. The default is one hour. |
 
-The resolver also accepts `MK_TASK_DISPATCH_DISABLED` as an alias for this switch.
-
-Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env`. That file is a gitignored copy of `hook-flags.env.example`. The environment always wins over the file, so a persisted default can be overridden for a single session.
+The kill switch accepts all four values: `1`, `true`, `yes` and `on`, regardless of case. The two reject switches and tuning values are read from the process environment.
 
 ---
 
 ## 7. VALIDATION
 
-Run from the repository root.
+The [Claude adapter suite](../../../.opencode/plugins/tests/claude-task-dispatch-guard.test.cjs) exercises its hook. The [OpenCode plugin suite](../../../.opencode/plugins/tests/system-deep-loop-guard.test.cjs) covers the plugin. The [DSH adapter suite](./tests/dsh-task-dispatch-guard.test.mjs) covers its bundle adapter.
+
+Run this smoke check from the repository root.
 
 ```bash
-node --test .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs .opencode/plugins/tests/system-deep-loop-guard.test.cjs .skilled/hooks/subagent-dispatch-guard/tests/dsh-task-dispatch-guard.test.mjs
+SYSTEM_TASK_DISPATCH_DISABLED=1 node .skilled/hooks/subagent-dispatch-guard/claude/task-dispatch-guard.cjs < /dev/null
 ```
 
-Expected result: all tests pass, including the forged-iteration-marker regression cases.
-
-```bash
-node -e "import('./.opencode/plugins/system-deep-loop-guard.js').then(()=>console.log('ok'))"
-```
-
-Expected result: `ok`, with no module-resolution error. That confirms the OpenCode adapter still resolves this core.
+Expected result: no output and exit status 0.
 
 ---
 
 ## 8. RELATED
 
-- [`../README.md`](../README.md): the hooks tree, with the switch index and the coverage matrix.
-- [`../../skills/.state/loop-guard/README.md`](../../skills/.state/loop-guard/README.md): the shared state directory contract.
-- [`../injection-contract.md`](../injection-contract.md): decision visibility per runtime.
-- [`../shared/README.md`](../shared/README.md): the shared stdin parser and kill-switch resolver the adapters use.
-- [`../../skills/system-deep-loop/SKILL.md`](../../skills/system-deep-loop/SKILL.md): the deep-loop workflow whose `mode-registry.json` and command-owned executors this guard protects.
+- [hooks index](../README.md): the hook coverage matrix and switch index.
+- [shared switch resolver](../shared/README.md): the shared kill-switch rules.
+

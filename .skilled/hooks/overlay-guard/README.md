@@ -1,15 +1,15 @@
 ---
-title: "Overlay Guard: Refuse Edits to Overlay-Owned Files"
-description: "Pre-write guard that refuses an edit to a file a vendored Skilled tree's overlay owns and names the overlay file to edit. With strict writes on it also refuses a vendored write no overlay owns. One runtime-neutral core, a thin adapter per runtime and a Vibe hook."
+title: 'Overlay Guard: Refuse Edits to Overlay-Owned Files'
+description: 'Pre-write guard that refuses writes to overlay-owned files across eight runtimes and returns the engine refusal line.'
 trigger_phrases:
-  - "overlay guard"
-  - "overlay owned file"
-  - "pre write overlay guard"
-  - "opencode overlay guard"
-  - "opencode overlay owned write"
-  - "opencode plugin link"
-importance_tier: "normal"
-contextType: "reference"
+  - 'overlay guard'
+  - 'overlay owned file'
+  - 'pre write overlay guard'
+  - 'opencode overlay guard'
+  - 'opencode overlay owned write'
+  - 'opencode overlay plugin link'
+importance_tier: 'normal'
+contextType: 'reference'
 ---
 
 # Overlay Guard: Refuse Edits to Overlay-Owned Files
@@ -18,75 +18,59 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-`overlay-guard/` stops an agent from editing a file that an overlay owns in a project that vendors Skilled. A vendored tree is replaced wholesale at each re-pin, and the overlay engine then puts the project's own versions back. An edit made directly to one of those files is lost at the next re-pin. The guard refuses that edit before it is written and names the overlay file to edit instead.
+`overlay-guard/` checks a file write before the runtime applies it. If the overlay engine owns the destination, it refuses the call and names the overlay copy to edit.
 
-The concern is one runtime-neutral core plus a thin adapter per runtime. The core never judges ownership itself. It asks the overlay engine's `--guard` query once per path, so the engine stays the only reader of the overlay setting and the manifest. Two outcomes exist: `allow` (stay silent) and `deny` (refuse with the engine's message).
+The shared policy lives in `lib/overlay-guard.cjs`. The core asks `.skilled/commands/doctor/scripts/overlay-engine.cjs` to read the overlay setting and manifest. It does not read either itself.
 
-A project can widen what the engine refuses with `"strictWrites": true` in its overlay manifest. The engine then also refuses a new file or an edit to an upstream file no overlay owns. The paths it covers are `.skilled`, a runtime folder or a root file the manifest names. Its line names the overlay path to create or the `apply --adopt` command to run.
+The concern key is `overlay-guard`. `SYSTEM_OVERLAY_GUARD_DISABLED=1` turns off this concern. `SYSTEM_HOOKS_DISABLED=1` turns off every repository hook.
 
-The guard needs no setting of its own for this, because it passes the engine's answer on. The key is off unless the project sets it.
-
-The guard is pre-write only. It never applies overlays, captures a live edit or writes any file. A refused call leaves the tree byte-identical. After the operator edits the overlay, running the engine's `apply` is a separate, explicit step.
-
-It ships to every Skilled repository, and nearly all of them have no overlays. In a tree with no overlay manifest it allows on two file-existence checks, without loading the engine or starting a process, and prints nothing.
+The guard never applies an overlay or changes the target file.
 
 ---
 
 ## 2. HOW IT WORKS
 
-The guard runs before a file write. It takes the path or paths the write names and resolves each against the session directory. Then it decides:
+`evaluateWrite()` resolves each path against the session directory. It asks the engine to run `--guard` once for each unique path. One `refuse:` line denies the call. An `allow` answer for every path lets the runtime continue.
 
-| Condition | Decision |
-|---|---|
-| The call names no path | `allow` |
-| Neither `.skilled-overlays.json` nor `skilled-overlays/` exists at the tree root | `allow` at once, nothing loaded or spawned |
-| The engine resolves the overlay folder and finds no `overlay-manifest.json` there | `allow`, no process spawned |
-| The engine's `--guard` exits 1 for any named path | `deny` with the engine's `refuse:` line |
-| The engine's `--guard` exits 0 for every path | `allow` |
-| The engine errors, times out or cannot read the setting | `allow`, with a note the adapter prints on stderr, or logs in OpenCode and DSH |
+`fileFieldPath()` reads a path from a tool input. `pathsFromPatch()` reads file headers and move targets from a patch body.
 
-The refusal is the engine's own line, for example:
+| Engine result | Decision | Effect |
+|---|---|---|
+| `refuse:` for any path | `deny` | The runtime blocks the call and shows the engine line. |
+| `allow` for each path | `allow` | The runtime continues. |
+| No paths or no manifest | `allow` | The core starts no engine process. |
+| Engine error or timeout | `allow` | The adapter reports a note through its runtime. |
 
-```text
-refuse: .skilled/owned/target.txt is owned by skilled-overlays/files/owned.txt; edit the overlay, then run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
-```
+With `strictWrites: true`, the engine can also refuse writes to unowned paths inside the manifest's vendored scope.
 
-The core defaults its tree root to its own location, four levels above `lib/`. That is the same tree the engine treats as its default root. A path the engine could not judge is never refused. Only an engine `refuse:` answer blocks a write.
+When neither `.skilled-overlays.json` nor `skilled-overlays/` exists at the tree root, the core allows after two existence checks. It does not start the engine. If the engine cannot read the setting or it errors or times out, the core allows the write and adds a note.
+
+The core does not inspect shell command text. A file change made through a shell command bypasses this guard.
 
 ---
 
 ## 3. RUNTIME COVERAGE
 
-| Runtime | Event | Entry in this folder | Real file | What the runtime shows |
+| Runtime | Event | Entry in this folder | Real file | Deny response |
 |---|---|---|---|---|
-| Claude | `PreToolUse` | `claude/overlay-guard.cjs` | `.skilled/hooks/overlay-guard/claude/overlay-guard.cjs` | A denied call, with `permissionDecision: "deny"` and the engine's reason. |
-| Codex | `PreToolUse` | `codex/overlay-guard.cjs` | `.skilled/hooks/overlay-guard/codex/overlay-guard.cjs` | The same deny envelope, with the engine's reason. |
-| Cursor | `preToolUse` | `cursor/overlay-guard.mjs` | `.skilled/hooks/overlay-guard/cursor/overlay-guard.mjs` | `{"permission":"deny"}` and exit 2, with the reason in both messages. |
-| Devin | `PreToolUse` | `devin/overlay-guard.cjs` | `.skilled/hooks/overlay-guard/devin/overlay-guard.cjs` | The same deny envelope, with the engine's reason. |
-| Pi | `tool_call` | `pi/overlay-guard.ts` | `.skilled/hooks/overlay-guard/pi/overlay-guard.ts` | `{ block: true, reason }`. |
-| DSH | `tools/pre-execute` | `dsh/overlay-guard.mjs` | `.skilled/hooks/overlay-guard/dsh/overlay-guard.mjs` | `{ kind: 'deny', reason }`. |
-| OpenCode | `tool.execute.before` | `opencode/overlay-guard.js` | `.opencode/plugins/overlay-guard.js` | A thrown error carrying the engine's `refuse:` line. |
-| Vibe | `pre_tool` | `vibe/overlay-guard.mjs` | `.vibe/plugins/repo-guards/overlay-guard.mjs` | A `{"decision":"deny","reason":...}` object on stdout, with exit 0. |
+| Claude | `PreToolUse` | `claude/overlay-guard.cjs` | `.skilled/hooks/overlay-guard/claude/overlay-guard.cjs` | `permissionDecision: deny` envelope on stdout, exit 0. |
+| Codex | `PreToolUse` | `codex/overlay-guard.cjs` | `.skilled/hooks/overlay-guard/codex/overlay-guard.cjs` | `permissionDecision: deny` envelope on stdout, exit 0. |
+| Cursor | `preToolUse` | `cursor/overlay-guard.mjs` | `.skilled/hooks/overlay-guard/cursor/overlay-guard.mjs` | `permission: deny` envelope with the reason, exit 2. |
+| Devin | `PreToolUse` | `devin/overlay-guard.cjs` | `.skilled/hooks/overlay-guard/devin/overlay-guard.cjs` | `permissionDecision: deny` envelope on stdout, exit 0. |
+| OpenCode | `tool.execute.before` | `opencode/overlay-guard.js` | `.opencode/plugins/overlay-guard.js` | Throws an error with the engine refusal line. |
+| Pi | `tool_call` | `pi/overlay-guard.ts` | `.skilled/hooks/overlay-guard/pi/overlay-guard.ts` | Returns `{ block: true, reason }`. |
+| DSH | `tools/pre-execute` | `dsh/overlay-guard.mjs` | `.skilled/hooks/overlay-guard/dsh/overlay-guard.mjs` | Returns `{ kind: 'deny', reason }`. |
+| Vibe | `pre_tool` | `vibe/overlay-guard.mjs` | `.vibe/plugins/repo-guards/overlay-guard.mjs` | Writes a deny object to stdout, exit 0. |
 
-Claude matches `Write\|Edit\|MultiEdit` and reads `tool_input.file_path`. Codex matches `apply_patch\|edit` and reads a path field or every `*** Add/Update/Delete File:` header and `*** Move to:` target in the patch. Cursor matches `Write` and reads `tool_input.file_path`, with the workspace root from `workspace_roots[0]`. Devin matches `^(edit\|write)$` and reads `tool_input.file_path`.
+Claude registers in `.claude/settings.json` on `PreToolUse` with matcher `Write|Edit|MultiEdit` and a 10 second timeout. Codex registers in `.codex/hooks.json` on `PreToolUse` with matcher `apply_patch|edit` and a 10 second timeout. Cursor registers in `.cursor/hooks.json` on `preToolUse` with matcher `Write` and a 10 second timeout. Its registration has no fallback chain, so exit 2 reaches Cursor. Devin registers in `.devin/hooks.v1.json` on `PreToolUse` with matcher `^(edit|write)$` and a 10 second timeout.
 
-Pi matches the tools `edit` and `write` and reads `input.path`. DSH matches the tools `write`, `edit` and `apply_patch` and reads a path field or every file header in the patch. OpenCode matches the tools `write`, `edit`, `multiedit`, `patch` and `apply_patch`. It reads the `file_path`, `filePath` or `path` field. For a patch it also reads every `*** Add/Update/Delete File:` header and `*** Move to:` target in the body.
+The `overlay-guard` entry in `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` supplies those four registrations and Pi's extension entry. OpenCode loads JavaScript plugins through a flat glob over `.opencode/plugins/`. Pi discovers `.pi/extensions/overlay-guard.ts`, which re-exports `pi/overlay-guard.ts`.
 
-Vibe matches `bash`, `process_start`, `write_file` and `edit` and reads `tool_input.file_path`. The hook judges only `write` and `edit`, so a `bash` or `process_start` call is allowed.
+The DSH bundle at `.dsh/plugins/repo-guards/index.mjs` imports the adapter through `.dsh/plugins/repo-guards/adapters/overlay-guard.mjs`. That link points to `dsh/overlay-guard.mjs`. Vibe registers `overlay-guard` in `.vibe/hooks.toml` as a strict `pre_tool` hook with match `re:write_file|edit`. It checks both the session directory and this checkout.
 
-Shell commands are not parsed. A write made through `Bash`, `exec` or `Shell` is not guarded.
+An engine failure does not create a denial. If none of the checks returns a refusal, the adapter allows the write. Claude and Codex approve with exit 0 and no stdout when allowed. Devin uses the same output path. Cursor returns its allow envelope. Pi returns `undefined`. DSH calls `next()` and logs notes. OpenCode writes notes to its bounded log. Vibe allows with empty stdout.
 
-The Cursor registration carries no fallback chain. Cursor blocks on exit 2, and a `|| { fallback }` chain would run on that exit. It would append an allow envelope and exit 0, so the refusal would never reach Cursor.
-
-Pi loads through `.pi/extensions/overlay-guard.ts`, a one-line entry file that re-exports `pi/overlay-guard.ts`. Pi discovers it through that entry file and loads it from this folder, so its imports are relative to this folder.
-
-DSH loads through the repo-guards bundle, whose `.dsh/plugins/repo-guards/adapters/overlay-guard.mjs` links back to `dsh/overlay-guard.mjs`.
-
-OpenCode loads its plugin from `.opencode/plugins/overlay-guard.js`, and `opencode/overlay-guard.js` is a relative symlink back to it. Nothing loads through that link, because the OpenCode loader globs only `.opencode/plugins/*.js`. The plugin judges paths against the project directory it receives. It writes its notes to a log capped at 256 KB and rotated to `.1`.
-
-Vibe registers the hook in `.vibe/hooks.toml` as a `pre_tool` hook named `overlay-guard`, with `strict = true`. The hook judges the session directory and this checkout, so a session started elsewhere still covers this tree.
-
-A malformed payload allows the write silently. Only an internal error prints one `overlay-guard:` line on stderr. Claude, Codex, Cursor, Devin and Vibe print that line. Cursor's allow also prints `{"permission":"allow"}`. Pi returns nothing. DSH logs through the plugin logger and calls `next()`. OpenCode appends a line to its log file.
+An internal error does not block a write. Claude, Codex, Devin and Cursor print one line to stderr. Pi swallows the error. DSH logs through the plugin logger. OpenCode writes to its log. Vibe prints one line to stderr.
 
 ---
 
@@ -95,37 +79,39 @@ A malformed payload allows the write silently. Only an internal error prints one
 ```text
 overlay-guard/
 +-- README.md
-+-- lib/
-|   +-- README.md
-|   +-- overlay-guard.cjs        # runtime-neutral core
-|   `-- overlay-guard.test.cjs   # node --test suite for the core and five adapters
 +-- claude/
 |   +-- README.md
-|   `-- overlay-guard.cjs        # PreToolUse adapter
+|   `-- overlay-guard.cjs
 +-- codex/
 |   +-- README.md
-|   `-- overlay-guard.cjs        # PreToolUse adapter, reads apply_patch headers
+|   `-- overlay-guard.cjs
 +-- cursor/
 |   +-- README.md
-|   `-- overlay-guard.mjs        # preToolUse adapter, Cursor permission envelope
+|   `-- overlay-guard.mjs
 +-- devin/
 |   +-- README.md
-|   `-- overlay-guard.cjs        # PreToolUse adapter
+|   `-- overlay-guard.cjs
 +-- dsh/
 |   +-- README.md
-|   `-- overlay-guard.mjs        # tools/pre-execute adapter
+|   `-- overlay-guard.mjs
++-- lib/
+|   +-- README.md
+|   +-- overlay-guard.cjs
+|   `-- overlay-guard.test.cjs
 +-- opencode/
-|   `-- overlay-guard.js         # tool.execute.before adapter, a link to the plugin
+|   `-- overlay-guard.js -> .opencode/plugins/overlay-guard.js
 +-- pi/
 |   +-- README.md
-|   `-- overlay-guard.ts         # Pi tool_call extension
-+-- vibe/
-|   `-- overlay-guard.mjs        # pre_tool guard, a link to .vibe/plugins/repo-guards/overlay-guard.mjs
-`-- tests/
-    +-- README.md
-    +-- dsh-overlay-guard.test.mjs
-    `-- opencode-overlay-guard.test.mjs
+|   `-- overlay-guard.ts
++-- tests/
+|   +-- README.md
+|   +-- dsh-overlay-guard.test.mjs
+|   `-- opencode-overlay-guard.test.mjs
+`-- vibe/
+    `-- overlay-guard.mjs -> .vibe/plugins/repo-guards/overlay-guard.mjs
 ```
+
+The runtime folders with READMEs cover Claude, Codex, Cursor, Devin, DSH and Pi. The OpenCode and Vibe folders point to their real plugin files.
 
 ---
 
@@ -133,61 +119,55 @@ overlay-guard/
 
 | File | Responsibility |
 |---|---|
-| `lib/overlay-guard.cjs` | The policy: the no-manifest fast exit, the engine's manifest lookup, one `--guard` spawn per path with a 3-second timeout and the `allow` or `deny` decision. Also the payload helpers the adapters share. Node builtins only, and it never writes stdout or stderr. |
-| `claude/overlay-guard.cjs`, `devin/overlay-guard.cjs` | Read the matched payload, evaluate the core, deny on an owned path, print notes on stderr. |
-| `codex/overlay-guard.cjs` | The same, plus every path an `apply_patch` body names. One owned path refuses the whole call. |
-| `cursor/overlay-guard.mjs` | Cursor's permission envelope, with the workspace root from `workspace_roots[0]`. |
-| `pi/overlay-guard.ts` | Filters on `edit` and `write`, honors the kill-switch, dynamic-imports the core. |
-| `dsh/overlay-guard.mjs` | Registers on `tools/pre-execute`, judges `write`, `edit` and `apply_patch`, logs a note through the plugin logger. |
-| `opencode/overlay-guard.js` | A browsability link to the OpenCode plugin, which throws the engine's refusal in `tool.execute.before` and writes its notes to a log because OpenCode paints console output onto the prompt line. |
-| `.vibe/plugins/repo-guards/overlay-guard.mjs` | The Vibe hook. It judges the session directory and this checkout, then prints the deny object. |
-
-The adapters in this folder import `../lib/` and `../../shared/`. The OpenCode plugin and the Vibe hook reach the same files from their own folders.
-
-The registrations come from the `overlay-guard` entry in `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json`, rendered by `sync-hook-registrations.cjs` in the same folder. That entry covers Claude, Codex, Cursor, Devin and Pi. DSH registers through its repo-guards bundle, OpenCode through its plugin folder and Vibe through `.vibe/hooks.toml`.
+| `lib/overlay-guard.cjs` | Shared policy and payload helpers. |
+| `../../commands/doctor/scripts/overlay-engine.cjs` | Reads overlay settings and answers the `--guard` query. |
+| `../shared/hook-flags.cjs` | Resolves the concern switch and master switch. |
+| `../../skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` | Holds registration data for Claude, Codex, Cursor, Devin and Pi. |
 
 ---
 
 ## 6. CONFIGURATION
 
-The guard is enabled by default. Truthy disable values are `1`, `true`, `yes` and `on` (case-insensitive).
+The concern is on by default. Any of `1`, `true`, `yes` or `on` disables either switch, regardless of case.
 
-| Variable | Effect |
+| Switch | Effect |
 |---|---|
-| `SYSTEM_OVERLAY_GUARD_DISABLED=1` | Full no-op in every runtime. Each adapter checks the shared resolver and does nothing when it is off. DSH then registers no handler. |
-| `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
+| `SYSTEM_OVERLAY_GUARD_DISABLED=1` | Turns off this guard across runtimes. |
+| `SYSTEM_HOOKS_DISABLED=1` | Turns off every repository hook. |
 
-Set a flag inline for one command or export it for a session. To keep it, write it in `.skilled/hooks/hook-flags.env`, a gitignored copy of `hook-flags.env.example`. The environment always wins over the file.
-
-The overlay folder itself is the engine's setting, `overlayDir`, read from `.skilled-overlays.json` at the tree root and defaulting to `skilled-overlays/`. The guard does not read that value. It asks the engine.
+Set a switch inline or export it for a session. To keep it, copy `.skilled/hooks/hook-flags.env.example` to `.skilled/hooks/hook-flags.env`. The environment takes precedence over the file.
 
 ---
 
 ## 7. VALIDATION
 
-```bash
-node --test .skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs
-```
+The core suite covers the policy and five runtime adapters in [`lib/overlay-guard.test.cjs`](./lib/overlay-guard.test.cjs). The DSH suite is in [`tests/dsh-overlay-guard.test.mjs`](./tests/dsh-overlay-guard.test.mjs). The OpenCode suite is in [`tests/opencode-overlay-guard.test.mjs`](./tests/opencode-overlay-guard.test.mjs).
 
-Expected result: all tests pass.
+Run the DSH suite from the repository root.
 
 ```bash
-node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check
+node --test .skilled/hooks/overlay-guard/tests/dsh-overlay-guard.test.mjs
 ```
 
-Expected result: `PASS`, with the four registration files matching the registry and every Pi extension resolving.
+Expected result: every test passes and the command exits 0.
+
+Run the disabled-switch smoke check from the repository root.
+
+```bash
+SYSTEM_OVERLAY_GUARD_DISABLED=1 node .skilled/hooks/overlay-guard/claude/overlay-guard.cjs < /dev/null
+```
+
+Expected result: no stdout or stderr and exit status 0.
 
 ---
 
 ## 8. RELATED
 
-- [`../README.md`](../README.md): the unified hooks tree this concern lives in.
-- [`../shared/README.md`](../shared/README.md): the shared stdin parser and kill-switch resolver the adapters use.
-- [`../../commands/doctor/overlay.md`](../../commands/doctor/overlay.md): the overlay command and the engine whose `--guard` query this hook asks.
-- [`../../../.opencode/plugins/overlay-guard.js`](../../../.opencode/plugins/overlay-guard.js): the OpenCode plugin this folder links to.
-- [`../../../.vibe/plugins/repo-guards/overlay-guard.mjs`](../../../.vibe/plugins/repo-guards/overlay-guard.mjs): the Vibe hook.
+- [hooks tree](../README.md): the shared runtime coverage matrix.
+- [shared hook helpers](../shared/README.md): the switch resolver used by the adapters.
+- [OpenCode plugin discovery](../../../.opencode/plugins/README.md): how OpenCode loads plugins from its local folder.
+- [DSH guard bundle](../../../.dsh/plugins/repo-guards/README.md): how the bundle registers this adapter.
 
 <!-- readme-check
-allow-ref .skilled/owned/target.txt | an illustrative refusal line, not a path in this checkout
-allow-ref .skilled-overlays.json | the overlay setting file at the root of a project that vendors Skilled
+allow-ref .skilled-overlays.json | the overlay setting file sits at the root of a host repository that vendors Skilled, not in this checkout
 -->

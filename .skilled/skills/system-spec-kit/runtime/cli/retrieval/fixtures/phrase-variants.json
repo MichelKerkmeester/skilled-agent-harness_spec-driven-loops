@@ -1,5 +1,5 @@
 {
-  "manifestHash": "980a47abed8621807abdbc1aeeaef96323ca2b8d7757d79802a3e97dcdcea77f",
+  "manifestHash": "a5d333c0d2054e872bda53f6566d0d54df2916def99c9eb710126638e312c0e9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -78120,6 +78120,9 @@
     ],
     "opencode overlay owned write": [
       "opencode overlay owned write"
+    ],
+    "opencode overlay plugin link": [
+      "opencode overlay plugin link"
     ],
     "opencode parallel detached session": [
       "opencode parallel detached session"

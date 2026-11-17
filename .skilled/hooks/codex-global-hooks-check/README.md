@@ -1,6 +1,6 @@
 ---
 title: "Codex Global Hooks Check: Session-Start Drift Check"
-description: "Checks at session start that Codex's user-global hook file holds no copy of this repository's hooks. Six runtimes run the check. Codex owns the file and is not a host."
+description: "Checks the Codex user-global hook file for duplicate or orphaned repository entries. Claude, Cursor, Devin, OpenCode, Pi and DSH run the check at session start."
 trigger_phrases:
   - "codex global hooks check"
   - "codex hook drift"
@@ -26,68 +26,60 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-`codex-global-hooks-check/` indexes one check: `node .skilled/bin/install-codex-hooks.mjs --check`. The check reads Codex's user-global hook file, `~/.codex/hooks.json`. It reports every entry there that belongs to this repository.
+`codex-global-hooks-check/` indexes the check for duplicate and stale Codex hook entries. The installer compares the project hook list in `.codex/hooks.json` with the user-global file at `~/.codex/hooks.json`.
 
-Codex loads the repository's `.codex/hooks.json` itself for a trusted checkout. A copy of those entries in the user-global file makes each hook run twice per event. An entry whose adapter was renamed runs a file that no longer exists. The check reports both kinds and writes nothing.
+The shared check lives in `.skilled/bin/install-codex-hooks.mjs`. Claude, Cursor, Devin, OpenCode, Pi and DSH run it at session start. Codex has no runtime entry for the check. Its user-global file is the target.
 
-Six runtimes run the check when a session starts. Claude, Cursor, Devin and OpenCode each have a folder here that holds one link to the real file. Pi and DSH run the check from their session-start adapters in `system-spec-kit`. Neither Codex nor Vibe runs it.
-
-The folder answers to two concern keys. `hook-install` gates the installer. `codex-watchdog` gates the OpenCode plugin.
+Two concern keys control these paths. `hook-install` uses `SYSTEM_HOOK_INSTALL_DISABLED`. `codex-watchdog` uses `CODEX_HOOKS_WATCHDOG_DISABLED`. `SYSTEM_HOOKS_DISABLED` turns off both concerns.
 
 ---
 
 ## 2. HOW IT WORKS
 
-`install-codex-hooks.mjs` compares a source with a target. The source is the repository's `.codex/hooks.json`. The target is `~/.codex/hooks.json`. A hook's identity is the first adapter path in its command.
+The installer matches hooks by the first recognized script path in each command. It checks for project-owned paths copied into the user-global file. It also finds a stale script path that starts with `.skilled/` or `.opencode/` when that script no longer exists in the checkout.
 
-| Mode | Command | Effect |
+| Drift | Condition |
+|---|---|
+| `duplicate` | The user-global file contains a hook identity found in `.codex/hooks.json`. |
+| `orphaned` | The user-global file names a script path starting with `.skilled/` or `.opencode/` that no longer exists. |
+| `structure` | The target changes without a named duplicate or orphan, such as when an empty group disappears. |
+
+Every other entry stays untouched. The installer never adds hooks.
+
+| Mode | Command | Result |
 |---|---|---|
-| Check | `node .skilled/bin/install-codex-hooks.mjs --check` | Writes nothing. Exits 0 on a clean target and 1 on drift. |
-| Dry run | `node .skilled/bin/install-codex-hooks.mjs --dry-run` | Prints a JSON report with a `drift` object. Writes nothing. |
-| Reconcile | `node .skilled/bin/install-codex-hooks.mjs` | Removes the repository's entries from the target. Prints a JSON report. |
+| Check | `node .skilled/bin/install-codex-hooks.mjs --check` | Reads the project file and reads the target when it exists. A clean target prints `install-codex-hooks: OK <target>` and exits 0. Drift prints `install-codex-hooks: DRIFT <target> (...)` to stderr and exits 1. |
+| Dry run | `node .skilled/bin/install-codex-hooks.mjs --dry-run` | Prints a JSON report and writes nothing. |
+| Reconcile | `node .skilled/bin/install-codex-hooks.mjs` | Removes project-owned entries and orphaned paths. It writes only when the target changes. |
 
-`--check` and `--dry-run` cannot be combined.
+`--check` and `--dry-run` cannot be combined. When an existing target changes, reconcile copies it to `<target>.bak-<timestamp>`. It then writes a temporary file and renames it over the target while keeping the file mode.
 
-The check names three kinds of drift:
-
-- `duplicate`: the target holds an entry that the source file also holds.
-- `orphaned`: the target holds an entry under `.skilled/` or `.opencode/` whose adapter is missing on disk.
-- `structure`: the target would change without naming an entry, such as an empty group being dropped.
-
-Every other entry belongs to someone else. The installer keeps it untouched in every mode.
-
-Reconcile only removes entries and never adds one. When the target changes, it first copies the file to `<target>.bak-<timestamp>`. Then it writes a temp file and renames it over the target. The file mode stays the same.
-
-A run that can write refuses to start from a linked worktree, so a reconcile never anchors to a checkout that may soon be removed. It exits 1 and names the primary checkout. Pass `--allow-worktree` to run it there. `--check` writes nothing, so it runs from a linked worktree too, and a session that starts there gets no warning while the target is clean. A missing `git` binary skips this guard.
+The check runs from linked worktrees because it writes nothing. A dry run or reconcile from a linked worktree needs `--allow-worktree`. The guard treats the checkout as primary when Git is unavailable.
 
 ---
 
 ## 3. RUNTIME COVERAGE
 
-| Runtime | Event | Entry in this folder | Real file | What the runtime shows |
+| Runtime | Event | Runtime entry | Real file | What the runtime shows |
 |---|---|---|---|---|
-| Claude | `SessionStart` | `claude/install-codex-hooks.mjs` | `.skilled/bin/install-codex-hooks.mjs` | On a failed check, one context line. |
-| Cursor | `sessionStart` | `cursor/install-codex-hooks.mjs` | `.skilled/bin/install-codex-hooks.mjs` | On a failed check, `permission: "allow"` with one `agent_message`. |
-| Devin | `SessionStart` | `devin/install-codex-hooks.mjs` | `.skilled/bin/install-codex-hooks.mjs` | On a failed check, one echoed line. |
-| OpenCode | `session.created` | `opencode/codex-hooks-watchdog.js` | `.opencode/plugins/codex-hooks-watchdog.js` | On a failed check, one line in a log file. |
-| Pi | `session_start` | None | `.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts` | On a failed check, its output as a warning. |
-| DSH | `agent/created` | None | `.skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs` | On a failed check, its output as an injected notice. |
-| Codex | None | None | None | Nothing. Codex owns the target file and does not check itself. |
-| Vibe | None | None | None | Nothing. No registration runs the check. |
+| Claude | `SessionStart` | `node .skilled/bin/install-codex-hooks.mjs --check` | `.skilled/bin/install-codex-hooks.mjs` | Adds one context line on failure. The check output stays hidden. |
+| Codex | None | None | None | Nothing. The installer checks Codex user-global hooks from other runtimes. |
+| Cursor | `sessionStart` | `node .skilled/bin/install-codex-hooks.mjs --check` | `.skilled/bin/install-codex-hooks.mjs` | Keeps permission at `allow` and sends an `agent_message` on failure. |
+| Devin | `SessionStart` | `node .skilled/bin/install-codex-hooks.mjs --check` | `.skilled/bin/install-codex-hooks.mjs` | Prints one warning line on failure. |
+| OpenCode | `session.created` | `.opencode/plugins/*.js` | `.opencode/plugins/codex-hooks-watchdog.js` | Logs one line on failure. The plugin writes no stdout or stderr. |
+| Pi | `session_start` for `startup` or `new` | `.pi/extensions/session-start-advisories.ts` | `.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts` | Shows non-empty check output as a warning and hides the clean `OK` line. |
+| DSH | `agent/created` for `startup` | `.dsh/plugins/repo-guards/index.mjs` | `.skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs` | Adds a notice when the check prints warning text. It skips fan-out leaves. |
+| Vibe | None | None | None | Nothing. Its startup guard list does not run this check. |
 
-Session start continues on every runtime. A failed check never blocks a turn.
+Claude uses `.claude/settings.json` with a five-second timeout. Cursor uses `.cursor/hooks.json` with a ten-second timeout. Devin uses `.devin/hooks.v1.json` with a five-second timeout. Their generated entries come from `hook-registry.json`.
 
-Claude, Cursor and Devin register the check in `hook-registry.json` under the id `install-codex-hooks`. Claude and Devin give it 5 seconds and Cursor gives it 10. On failure each one shows this line:
+OpenCode registers through `.opencode/plugins/*.js`. The watchdog listens for `session.created` and gives the check five seconds.
 
-```text
-[codex-hooks] drift detected - run: node .skilled/bin/install-codex-hooks.mjs --check
-```
+Pi registers through `.pi/extensions/session-start-advisories.ts`. The extension re-exports the Pi implementation in the table. The `install-codex-hooks` row in `hook-registry.json` names that extension. Pi runs it for `startup` or `new` sessions.
 
-No registration names a path in this folder. The four links exist for browsing. Nothing loads through them.
+DSH registers through `.dsh/plugins/repo-guards/index.mjs`. The bundle imports `session-start-advisories.mjs` through `.dsh/plugins/repo-guards/adapters/session-start-advisories.mjs`. The adapter runs at startup and skips fan-out leaves.
 
-The OpenCode plugin runs the check once per session with a 5-second timeout. It remembers 1000 session ids and drops the oldest when the set is full. On a failed check it appends one line to `.skilled/logs/codex-hooks-watchdog.log`. It empties that log once the file passes 256 KB. The plugin never writes to stdout or stderr, because OpenCode paints plugin output onto the prompt line. Every error inside the plugin ends as a no-op.
-
-Pi runs the check on a `session_start` event with the reason `startup` or `new`. DSH runs it when an agent is created at startup. A fan-out leaf skips it. Both adapters also stop when the `session-lifecycle` concern is off. Both show what the check prints only when it exits non-zero. A clean run prints an `OK` line and exits 0, so neither shows anything then.
+Codex stores its project hook list in `.codex/hooks.json`, which the installer reads as its source. That file has no registration for this check. Vibe registers its session-start composer in `.vibe/hooks.toml`. The composer uses a startup guard list that does not include the installer.
 
 ---
 
@@ -96,11 +88,19 @@ Pi runs the check on a `session_start` event with the reason `startup` or `new`.
 ```text
 codex-global-hooks-check/
 +-- README.md
-+-- claude/    install-codex-hooks.mjs -> ../../../bin/install-codex-hooks.mjs
-+-- cursor/    install-codex-hooks.mjs -> ../../../bin/install-codex-hooks.mjs
-+-- devin/     install-codex-hooks.mjs -> ../../../bin/install-codex-hooks.mjs
-`-- opencode/  codex-hooks-watchdog.js -> ../../../../.opencode/plugins/codex-hooks-watchdog.js
++-- claude/
+|   `-- install-codex-hooks.mjs
++-- cursor/
+|   `-- install-codex-hooks.mjs
++-- devin/
+|   `-- install-codex-hooks.mjs
+`-- opencode/
+    `-- codex-hooks-watchdog.js
 ```
+
+The runtime folders have no separate README. This file covers their index entries.
+
+The Claude entry links to `../../../bin/install-codex-hooks.mjs` from its folder. Cursor and Devin use the same target. The OpenCode entry links to `../../../../.opencode/plugins/codex-hooks-watchdog.js` for browsing. OpenCode loads the plugin from `.opencode/plugins/`.
 
 ---
 
@@ -108,79 +108,64 @@ codex-global-hooks-check/
 
 | File | Responsibility |
 |---|---|
-| `.skilled/bin/install-codex-hooks.mjs` | The installer. It parses arguments, matches hook identities, classifies drift and writes the target with a backup. |
-| `.opencode/plugins/codex-hooks-watchdog.js` | The OpenCode plugin. It exports `MkCodexHooksWatchdogPlugin` through `dualPlugin` and calls the installer with `--check`. |
-| `.codex/hooks.json` | The project hook file Codex loads. The installer reads it to learn which entries the repository owns. |
-| `~/.codex/hooks.json` | The user-global file the check reads and reconcile cleans. It lives outside the repository. |
-| `.skilled/hooks/shared/hook-flags.cjs` | The switch resolver. The installer and the plugin both call `isHookEnabled`. |
-| `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` | Holds the `install-codex-hooks` entry for Claude, Cursor and Devin. |
+| `.skilled/bin/install-codex-hooks.mjs` | Reads the project and user-global files, classifies drift and checks or reconciles entries. |
+| `.skilled/bin/lib/user-hook-file.mjs` | Finds hook identities and orphan paths. It guards writes and replaces changed files through a temporary file. |
+| `.opencode/plugins/codex-hooks-watchdog.js` | Runs the read-only check at `session.created` and appends failures to `.skilled/logs/codex-hooks-watchdog.log`. |
+| `.skilled/hooks/shared/hook-flags.cjs` | Resolves the `hook-install` and `codex-watchdog` switches. |
+| `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` | Canonical runtime binding registry. It feeds the generated settings files and names the Pi extension entry. |
+| `.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts` | Runs the installer check in the Pi startup advisory chain. |
+| `.skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs` | Runs the installer check in the DSH startup advisory chain. |
+| `.codex/hooks.json` | Supplies the project hook list that the installer compares with the user-global file. |
 
 ---
 
 ## 6. CONFIGURATION
 
-The check is on by default. A switch is on when its value is `1`, `true`, `yes` or `on`, in any case.
+Both concern keys are enabled by default. The resolver treats `1`, `true`, `yes` or `on` as a switch value in any letter case.
 
 | Switch | Concern key | Effect |
 |---|---|---|
-| `SYSTEM_HOOK_INSTALL_DISABLED=1` | `hook-install` | The installer exits 0 at once in every mode. Pi and DSH skip the check. |
-| `CODEX_HOOKS_WATCHDOG_DISABLED=1` | `codex-watchdog` | The OpenCode plugin skips the check. |
-| `SYSTEM_HOOKS_DISABLED=1` | Every concern | Turns off both, along with every other repository hook. |
+| `SYSTEM_HOOK_INSTALL_DISABLED=1` | `hook-install` | Skips the installer check on each runtime that calls it. |
+| `CODEX_HOOKS_WATCHDOG_DISABLED=1` | `codex-watchdog` | Disables the OpenCode watchdog. |
+| `SYSTEM_HOOKS_DISABLED=1` | Every concern | Disables both concerns along with other repository hooks. |
 
-The first switch silences the check on every runtime, because each one calls the installer. The second silences only the OpenCode plugin.
+`MK_HOOK_INSTALL_DISABLED` also disables `hook-install`. `CODEX_WATCHDOG_DISABLED` and `MK_CODEX_WATCHDOG_DISABLED` remain aliases for `codex-watchdog`. So does `MK_CODEX_HOOKS_WATCHDOG_DISABLED`.
 
-Older names still work. `MK_HOOK_INSTALL_DISABLED` also turns off `hook-install`. `CODEX_WATCHDOG_DISABLED`, `MK_CODEX_WATCHDOG_DISABLED` and `MK_CODEX_HOOKS_WATCHDOG_DISABLED` also turn off `codex-watchdog`.
+Set a switch in the environment for one command or export it for a session. To persist switches, copy the [example switch file](../hook-flags.env.example) to `.skilled/hooks/hook-flags.env`. The environment takes precedence over that file.
 
-Set a switch inline for one command or export it for a session. To keep it, write it in `.skilled/hooks/hook-flags.env`, a gitignored copy of `hook-flags.env.example`. The environment wins over the file.
-
-The installer takes these flags:
+The installer accepts these flags:
 
 | Flag | Effect |
 |---|---|
-| `--repo <path>` | The repository root. The default is two levels above the installer. |
-| `--source <file>` | The source hook file. The default is `<repo>/.codex/hooks.json`. |
-| `--target <file>` | The target hook file. The default is `~/.codex/hooks.json`. |
-| `--check` | Report drift and write nothing. |
-| `--dry-run` | Print the report and write nothing. |
-| `--allow-worktree` | Run a reconcile or a dry run from a linked worktree. `--check` needs no flag there. |
+| `--repo <path>` | Sets the repository root. The default is two levels above the installer. |
+| `--source <file>` | Sets the project hook file. The default is `<repo>/.codex/hooks.json`. |
+| `--target <file>` | Sets the user-global hook file. The default is `~/.codex/hooks.json`. |
+| `--check` | Reports drift without writing. |
+| `--dry-run` | Prints the report without writing. |
+| `--allow-worktree` | Allows a dry run or reconcile from a linked worktree. |
 
 ---
 
 ## 7. VALIDATION
 
-Run from the repository root, in the primary checkout or a linked worktree.
+The installer cases are in `.skilled/bin/tests/install-codex-hooks-source-root.test.cjs`. They cover source-root aliases and linked worktrees. They also check that duplicates and orphaned entries are removed while unrelated entries stay.
+
+Pi and DSH advisory behavior has tests in `.skilled/hooks/session-lifecycle/tests/pi-session-start-advisories.test.ts` and `.skilled/hooks/session-lifecycle/tests/dsh-session-lifecycle.test.mjs`.
+
+Run this smoke check from the repository root. It sets the installer switch, so the command returns before reading either hook file.
 
 ```bash
-node .skilled/bin/install-codex-hooks.mjs --check; echo "exit: $?"
+SYSTEM_HOOK_INSTALL_DISABLED=1 node .skilled/bin/install-codex-hooks.mjs --check
 ```
 
-Expected result on a clean target: `install-codex-hooks: OK <target>` and `exit: 0`. On drift the installer prints `install-codex-hooks: DRIFT <target>` with the counts on stderr, then `exit: 1`.
-
-```bash
-SYSTEM_HOOK_INSTALL_DISABLED=1 node .skilled/bin/install-codex-hooks.mjs --check; echo "exit: $?"
-```
-
-Expected result: `exit: 0` and no other output.
-
-```bash
-node -e "import('./.opencode/plugins/codex-hooks-watchdog.js').then(m => console.log('ok', typeof m.default))"
-```
-
-Expected result: `ok object`.
-
-```bash
-find .skilled/hooks/codex-global-hooks-check -type l | wc -l
-```
-
-Expected result: `4`.
+Expected result: no output and exit status 0.
 
 ---
 
 ## 8. RELATED
 
-- [`../README.md`](../README.md): the hooks tree, with the switch index and the coverage matrix.
-- [`../shared/README.md`](../shared/README.md): the switch resolver both concern keys go through.
-- [`../session-lifecycle/README.md`](../session-lifecycle/README.md): the session-start adapters that run the check on Pi and DSH.
-- [`../../bin/install-codex-hooks.mjs`](../../bin/install-codex-hooks.mjs): the installer.
-- [`../../../.opencode/plugins/codex-hooks-watchdog.js`](../../../.opencode/plugins/codex-hooks-watchdog.js): the OpenCode plugin.
-- [`../../../.codex/README.md`](../../../.codex/README.md): how Codex loads the project hook file.
+- [hooks index](../README.md): the concern tree and runtime coverage matrix.
+- [switch resolver](../shared/README.md): flag names, aliases and precedence.
+- [session lifecycle adapters](../session-lifecycle/README.md): the Pi and DSH startup advisory chains.
+- [runtime mirror registry](../../skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json): the generated runtime bindings.
+

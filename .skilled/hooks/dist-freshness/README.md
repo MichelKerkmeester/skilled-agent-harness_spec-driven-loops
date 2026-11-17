@@ -1,6 +1,6 @@
 ---
-title: "Dist Freshness Hook: Self-Healing Stale Builds"
-description: "Detects a stale compiled dist build and rebuilds it so runtime code paths that import compiled scripts never lag their TypeScript sources. OpenCode plugin owns the projection; a per-runtime shell check surfaces a banner on the editor runtimes."
+title: "Dist Freshness: Check and Rebuild Stale Compiled Output"
+description: "Checks compiled package output against its sources and reports stale builds. Session-start shell checks can rebuild stale output."
 trigger_phrases:
   - "dist freshness guard"
   - "stale dist rebuild"
@@ -23,84 +23,52 @@ importance_tier: "important"
 contextType: "reference"
 ---
 
-# Dist Freshness Hook: Self-Healing Stale Builds
+# Dist Freshness: Check and Rebuild Stale Compiled Output
 
 ---
 
 ## 1. OVERVIEW
 
-`dist-freshness/` indexes the concern that keeps compiled `dist/` output from lagging its TypeScript sources. Several repository packages publish compiled entrypoints that other code imports at runtime. A stale checkout build breaks every consumer without a word. This concern compares the compiled output against its sources and rebuilds a stale package. It is the hook behind the `DIST REBUILT: <package> -- self-healed a stale build at session start` line.
+`dist-freshness/` checks compiled `dist/` output against package sources. A stale result produces a warning. The `--all` shell check can rebuild stale packages at session start.
 
-The concern has two faces that share one checker core. The OpenCode plugin owns the projection, the signal that reaches the agent mid-session. The per-runtime shell check backs the editor runtimes with a stdout banner.
+The shared core is `.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs`. The Python wrapper is `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh`. It runs the core through `node`. The OpenCode plugin imports the core directly.
 
-- **OpenCode plugin** (`.opencode/plugins/system-dist-freshness-guard.js`) owns the projection. It checks every watched package at session start and re-checks before a risky Bash dispatch. It invalidates on a source edit and injects a bounded brief per turn from a short-lived cache.
-- **Per-runtime shell check** (`check-dist-staleness.sh`, a Python 3 program behind a `.sh` name) backs the editor runtimes. It runs edited-file-scoped after an edit and cross-package once per session start. It prints a bounded banner on stdout.
-
-Both faces fail open. A check error, a missing checker, a spawn failure, a log write failure or a build failure leaves the existing build in place. No path blocks the session.
+The concern key is `dist-freshness`. Its switch is `SYSTEM_DIST_FRESHNESS_DISABLED`. `SYSTEM_HOOKS_DISABLED` disables this concern and every other repository hook.
 
 ---
 
 ## 2. HOW IT WORKS
 
-`MkDistFreshnessGuardPlugin(ctx)` registers three hook names over the same `checkAllFreshness` core.
+The core exposes `checkAllFreshness()`, `checkFileFreshness()`, `formatWarning()` and `formatCheckError()`. `checkAllFreshness()` checks every package in the registry. `checkFileFreshness()` maps one source path to its package.
 
-| Hook | Trigger | Action |
-|---|---|---|
-| `event` (`session.created`) | New session | Dedupes by session id, then force-refreshes diagnostics and logs them |
-| `event` (`session.deleted` / `server.instance.disposed` / `global.disposed`) | Session or instance teardown | Drops the session from the warned set, and clears the cache on instance dispose |
-| `tool.execute.before` (`bash`) | A Bash command matching `opencode\s+run` or `\bvalidate\.sh\b` | Force-refreshes diagnostics before a risky command trusts local dist |
-| `tool.execute.before` (mutating tools) | `write` / `edit` / `patch` / `multiedit` / `apply_patch` / `apply-patch` on a watched source file | Invalidates the diagnostic cache so the next turn re-checks |
-| `experimental.chat.system.transform` | Every chat turn | Injects a bounded brief (`[dist-freshness-guard] ...`) into `output.system` from a 120-second TTL cache |
+The wrapper sends `--all` to `check-all`. With a file path, it runs `check-file`. Single-file mode warns but does not rebuild. The `--all` mode can rebuild stale packages. Rebuilding is on by default. Set `SPECKIT_DIST_AUTO_REBUILD=0` to keep that mode in warning-only behavior.
 
-The trigger regex is `/\bopencode\d*\s+run\b|\bvalidate\.sh\b/i`. It ignores case and accepts a digit after `opencode`.
+The OpenCode plugin refreshes on `session.created`. Before a Bash command runs, it refreshes again when the text matches `/\bopencode\d*\s+run\b|\bvalidate\.sh\b/i`. A mutating tool call clears the diagnostic cache when its path may belong to a watched package. A system transform injects stale or check-error details from the cache, which expires after 120 seconds.
 
-The warned set holds at most 1000 session ids and drops the oldest first. The diagnostic cache lives 120 seconds. Diagnostics are capped at 8 lines.
-
-The plugin never writes stdout or stderr. OpenCode's TUI paints plugin console output onto the prompt input line, where it sticks and corrupts the session. The plugin appends to a bounded workspace log instead, `.skilled/logs/dist-freshness-guard.log`. That log caps at 256 KB and rotates to `.log.1`. Every error path is fail-open, and every one except a failed log write is logged.
-
-`check-dist-staleness.sh` has two modes.
-
-| Mode | Invocation | Scope | Auto-rebuild |
-|---|---|---|---|
-| Single-file | `check-dist-staleness.sh <file>` | The one watched package that owns `<file>`, fast and targeted | No, warns only |
-| All-packages | `check-dist-staleness.sh --all` | Every watched package, cross-package coverage | Yes, when `SPECKIT_DIST_AUTO_REBUILD` is on (default) |
-
-The script exits 0 on every path except an unknown option, which exits 2. On a stale package it prints `STALE DIST WARNING: <package> -- run: <rebuildCommand>`. On a check error it prints `DIST FRESHNESS CHECK ERROR: <package> -- <message>`. On a successful session-start rebuild it prints `DIST REBUILT: <package> -- self-healed a stale build at session start`.
-
-The script runs the checker with `node` and an 8-second timeout. The rebuild runs with a 180-second timeout and falls back to the warning on any failure.
-
-The single-file check after an edit comes from `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs`, not from this folder, as [`../post-edit-quality/README.md`](../post-edit-quality/README.md) describes.
+The plugin writes diagnostics to `.skilled/logs/dist-freshness-guard.log`. The active log rotates at 256 KB to `.log.1`. The plugin writes no stdout or stderr.
 
 ---
 
 ## 3. RUNTIME COVERAGE
 
-The coverage matrix marks the projection OpenCode-owned. The system-context injection that reaches the agent mid-session is OpenCode-only. The editor runtimes carry the per-runtime shell check, which surfaces a stdout banner instead.
-
-| Runtime | Event | Entry in this folder | Real file | What the runtime shows |
+| Runtime | Event | Entry in this folder | Real file | What it shows |
 |---|---|---|---|---|
-| Claude | `SessionStart [id check-dist-staleness, timeout 5]` | `claude/check-dist-staleness.sh` | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | The stdout banner. A nonzero exit returns one `additionalContext` note and a stderr drift line. |
-| Codex | `SessionStart [id check-dist-staleness, timeout 5]` | `codex/check-dist-staleness.sh` | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | The stdout banner. A nonzero exit returns one `additionalContext` note and a stderr drift line. |
-| Cursor | `sessionStart [id check-dist-staleness, timeout 10]` | `cursor/check-dist-staleness.sh` | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | The stdout banner. A missing script returns one `agent_message`. |
-| Devin | `SessionStart [id check-dist-staleness, timeout 5]` | `devin/check-dist-staleness.sh` | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | The stdout banner only. No fallback line is registered. |
-| OpenCode | `experimental.chat.system.transform, global.disposed, server.instance.disposed, session.created, session.deleted, tool.execute.before` | `opencode/system-dist-freshness-guard.js` | `.opencode/plugins/system-dist-freshness-guard.js` | A bounded brief in the system context, plus one line in the log. |
-| Pi | `session_start` | None | `.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts` | A warning notification, whenever the script prints anything. |
-| DSH | `agent/created` | None | `.skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs` | An injected notice, prefixed with the check's label. |
-| Vibe | `session_start`, `post_tool` | `vibe/dist-freshness.mjs` | `.vibe/plugins/repo-guards/dist-freshness.mjs` | A banner appended to the tool result as `hook_specific_output.additional_context`. |
+| Claude | `SessionStart` | `claude/check-dist-staleness.sh` (browsing symlink) | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | Stdout banner. The wrapper adds an `additionalContext` note if the command fails. |
+| Codex | `SessionStart` | `codex/check-dist-staleness.sh` (browsing symlink) | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | Stdout banner. The wrapper adds an `additionalContext` note if the command fails. |
+| Cursor | `sessionStart` | `cursor/check-dist-staleness.sh` (browsing symlink) | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | Stdout banner. The wrapper sends an `agent_message` if the command fails. |
+| Devin | `SessionStart` | `devin/check-dist-staleness.sh` (browsing symlink) | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | Stdout banner. No fallback is registered. |
+| OpenCode | `session.created`, `session.deleted`, `server.instance.disposed`, `global.disposed`, `tool.execute.before` and `experimental.chat.system.transform` | `opencode/system-dist-freshness-guard.js` (browsing symlink) | `.opencode/plugins/system-dist-freshness-guard.js` | Stale or error details enter system context and the workspace log. |
+| Pi | `session_start` | None (session-start bundle) | `.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts` | A warning notification appears when the check prints text. A clean check stays silent. |
+| DSH | `agent/created` on startup | None (guard bundle) | `.skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs` | A labeled notice is injected when the check prints text. Fan-out leaves skip the check. |
+| Vibe | `session_start` and `post_tool` | `vibe/dist-freshness.mjs` (browsing symlink) | Session start: `.skilled/hooks/session-lifecycle/vibe/session-start.mjs`<br>Post-tool: `.vibe/plugins/repo-guards/dist-freshness.mjs` | Startup and tool warnings go into `hook_specific_output.additional_context`. |
 
-Claude, Codex, Cursor and Devin run the check with `--all` at session start. The registry id is `check-dist-staleness`. Claude, Codex and Devin give it 5 seconds and Cursor gives it 10. The registered command runs the script with `python3`, as `.claude/settings.json` line 206 shows.
+The shared registry gives the shell check the ID `check-dist-staleness`. It maps the startup commands in `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json` and `.devin/hooks.v1.json`. Each command runs the Python checker with `--all`. The timeout is 5 seconds except for Cursor, which uses 10 seconds.
 
-No registration names a path in this folder. The links exist for browsing and nothing loads through them.
+OpenCode loads the plugin through the flat `.opencode/plugins/*.js` glob. Pi loads `.pi/extensions/session-start-advisories.ts`, which re-exports its adapter. The DSH bundle in `.dsh/plugins/repo-guards/index.mjs` registers the session-start adapter.
 
-OpenCode's real plugin cannot live in this tree, because its loader globs `.opencode/plugins/` by a flat pattern. So `opencode/system-dist-freshness-guard.js` is a browsability-only symlink back into that folder. Nothing loads through it.
+Vibe registers its `session_start` hook and two `post_tool` checks in `.vibe/hooks.toml`. The session-start entry runs `.skilled/hooks/session-lifecycle/vibe/session-start.mjs`. The post-tool entries run `.vibe/plugins/repo-guards/dist-freshness.mjs`.
 
-Pi and DSH run the check from their session-start advisories, under the concern `dist-freshness`. The check is bundled into `session-start-advisories`, so neither runtime has an entry in this folder. Both pass on whatever the script prints, so a clean run shows nothing. Both stop when the `session-lifecycle` concern is off. DSH also skips a fan-out leaf.
-
-`.skilled/hooks/session-lifecycle/vibe/session-start.mjs` runs the check with `--all` and adds its output to the session-start `additional_context`.
-
-Vibe has two `post_tool` hooks in `.vibe/hooks.toml`, `dist-freshness-edit` and `dist-freshness-shell`. Both run `.vibe/plugins/repo-guards/dist-freshness.mjs`. The first matches `write_file` and `edit` and checks the one edited file. The second matches `bash` and `process_start` and reports only, when the command runs `validate.sh` or a headless dispatch. It runs the check with `--all` and with `SPECKIT_DIST_AUTO_REBUILD` set to `0`.
-
-The entry is non-strict, so a check failure leaves the tool result intact. The coverage matrix in [`../README.md`](../README.md) marks Vibe `✓ covered` for this concern. It marks Pi and DSH `by-design`, because the check is bundled into `session-start-advisories`.
+The runtime entries in this folder are browsing symlinks. Claude, Codex, Cursor and Devin call the shared Python script directly. OpenCode and Vibe load the real files shown in the table. Pi and DSH run the checker through their session-start adapters.
 
 ---
 
@@ -109,13 +77,15 @@ The entry is non-strict, so a check failure leaves the tool result intact. The c
 ```text
 dist-freshness/
 +-- README.md
-+-- claude/    check-dist-staleness.sh -> ../../../skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh
-+-- codex/     check-dist-staleness.sh -> ../../../skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh
-+-- cursor/    check-dist-staleness.sh -> ../../../skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh
-+-- devin/     check-dist-staleness.sh -> ../../../skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh
-+-- opencode/  system-dist-freshness-guard.js -> ../../../../.opencode/plugins/system-dist-freshness-guard.js
-`-- vibe/      dist-freshness.mjs -> ../../../../.vibe/plugins/repo-guards/dist-freshness.mjs
++-- claude/check-dist-staleness.sh
++-- codex/check-dist-staleness.sh
++-- cursor/check-dist-staleness.sh
++-- devin/check-dist-staleness.sh
++-- opencode/system-dist-freshness-guard.js
+`-- vibe/dist-freshness.mjs
 ```
+
+Pi and DSH have no directory here because their checks run inside session-start adapters.
 
 ---
 
@@ -123,27 +93,26 @@ dist-freshness/
 
 | File | Responsibility |
 |---|---|
-| `.opencode/plugins/system-dist-freshness-guard.js` | The OpenCode plugin. It exports `MkDistFreshnessGuardPlugin(ctx)` and imports `../hooks/shared/hook-flags.cjs` and `../skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs`, so nothing comes from outside the repository. Session-start refresh, risky-Bash refresh, mutation invalidation, per-turn injection from a 120-second cache, bounded audit log. Fail-open on every path. |
-| `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | The per-runtime shell check, a Python 3 program. Single-file and `--all` modes, stdout banner, session-start auto-rebuild. It exits 0 on every path except an unknown option, which exits 2. |
-| `.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs` | The shared checker core both faces call. It holds `checkAllFreshness`, `check-file`, `check-all`, `formatWarning`, `formatCheckError` and `packageForSourceFile`. |
-| `.skilled/hooks/shared/hook-flags.cjs` | The shared kill-switch resolver the plugin imports, through `isHookEnabled('dist-freshness')`. The shell check re-implements the same resolution from `hook-flags.env`. |
-| `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` | Runs the same script in single-file mode after an edit. |
-
-The shell check runs the core through `node .../dist-freshness.cjs`. The plugin loads it in-process with `require`.
+| `.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs` | Shared package registry and freshness checks. |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | Python wrapper used by the runtime checks. |
+| `.opencode/plugins/system-dist-freshness-guard.js` | OpenCode plugin for lifecycle checks and system-context injection. |
+| `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` | ID and runtime bindings for the shell check. |
+| `.skilled/hooks/shared/hook-flags.cjs` | Concern and master switch resolver used by the OpenCode plugin. |
+| `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` | Exports `runDistStalenessCheck()` for a single-file edit check. |
 
 ---
 
 ## 6. CONFIGURATION
 
-The concern is enabled by default. A switch is on when its value is `1`, `true`, `yes` or `on`, in any case.
+The concern is on by default. The kill switches turn it off when their value is `1`, `true`, `yes` or `on`, in any case.
 
-| Variable | Effect |
-|---|---|
-| `SYSTEM_DIST_FRESHNESS_DISABLED=1` | Canonical kill-switch. The plugin short-circuits, because `isHookEnabled` returns false. The shell check exits 0 at once. |
-| `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repository hook. |
-| `SPECKIT_DIST_AUTO_REBUILD=0` | Turns off session-start auto-rebuild, which is on by default. It is not a kill-switch. The check stays active and a stale build warns instead of rebuilding. |
+| Switch | Concern key | Effect |
+|---|---|---|
+| `SYSTEM_DIST_FRESHNESS_DISABLED=1` | `dist-freshness` | Turns off this concern across the runtime adapters. |
+| `SYSTEM_HOOKS_DISABLED=1` | Every concern | Turns off all repository hooks. |
+| `SPECKIT_DIST_AUTO_REBUILD=0` | Shell checker | Stops `--all` from rebuilding stale output. The check still reports a warning. |
 
-Set a flag inline for one command or export it for a session. To keep it, write it in `.skilled/hooks/hook-flags.env`, a gitignored copy of `hook-flags.env.example`. The environment wins over the file, so a persisted default can be overridden for a single session.
+Set the first two switches inline or export them for a session. To persist them, write them in `.skilled/hooks/hook-flags.env`, a gitignored copy of `.skilled/hooks/hook-flags.env.example`. Environment values override the file. `SPECKIT_DIST_AUTO_REBUILD` is read from the process environment.
 
 ---
 
@@ -152,39 +121,22 @@ Set a flag inline for one command or export it for a session. To keep it, write 
 Run from the repository root.
 
 ```bash
-node -e "import('./.opencode/plugins/system-dist-freshness-guard.js').then(m => console.log('ok', typeof m.default))"
+node --test .vibe/plugins/repo-guards/tests/dist-freshness.test.mjs
 ```
 
-Expected result: `ok object`, the dual plugin export.
+Expected result: every test passes and none fails.
 
 ```bash
-python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all; echo "exit: $?"
+SYSTEM_DIST_FRESHNESS_DISABLED=1 python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all
 ```
 
-Expected result: `exit: 0`, with a `STALE DIST WARNING` / `DIST REBUILT` / `DIST FRESHNESS CHECK ERROR` line per affected package, or no output when every package is fresh.
-
-```bash
-SYSTEM_DIST_FRESHNESS_DISABLED=1 python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all; echo "exit: $?"
-```
-
-Expected result: `exit: 0`, no output.
-
-```bash
-find .skilled/hooks/dist-freshness -type l | wc -l
-```
-
-Expected result: `5`.
+Expected result: no output and exit status 0.
 
 ---
 
 ## 8. RELATED
 
-- [`../README.md`](../README.md): the hooks tree, with the kill-switch index and the coverage matrix.
-- [`../shared/README.md`](../shared/README.md): the shared kill-switch resolver the plugin uses.
-- [`../post-edit-quality/README.md`](../post-edit-quality/README.md): the router that runs the single-file check after an edit.
-- [`../../../.opencode/plugins/README.md`](../../../.opencode/plugins/README.md): the OpenCode plugins folder that loads `system-dist-freshness-guard.js`.
-- [`../../skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh`](../../skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh): the per-runtime shell check's real home.
+- [hooks coverage matrix](../README.md): runtime coverage for the hooks tree.
+- [shared freshness core](../../skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs): package freshness logic.
+- [Python checker](../../skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh): the runtime command wrapper.
 
-<!-- readme-check
-allow-ref .../dist-freshness.cjs | an ellipsis shorthand for the checker directory, named beside its full path
--->

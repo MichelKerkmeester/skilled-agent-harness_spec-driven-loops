@@ -1,5 +1,5 @@
 {
-  "manifestHash": "980a47abed8621807abdbc1aeeaef96323ca2b8d7757d79802a3e97dcdcea77f",
+  "manifestHash": "a5d333c0d2054e872bda53f6566d0d54df2916def99c9eb710126638e312c0e9",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -103111,6 +103111,9 @@
     "opencode overlay owned write": [
       123
     ],
+    "opencode overlay plugin link": [
+      123
+    ],
     "opencode parallel detached session": [
       507
     ],
@@ -103186,8 +103189,7 @@
       3258
     ],
     "opencode plugin link": [
-      114,
-      123
+      114
     ],
     "opencode plugin loader": [
       14510,
