@@ -297,6 +297,10 @@ Its first line MUST be the canonical iteration record built in Step 8.
 Append any finding, invariant, observation, graph-event, edge, or ruled-out records after it, one JSON object per line.
 Never overwrite an existing delta file.
 
+**Frontier proposals (expansive depth runs only).** When the iteration prompt carries a FRONTIER block, you may append `frontier_proposal` rows to the delta, at most the number that block allows, one per follow-up question the evidence opened inside the node you were working:
+`{"type":"frontier_proposal","parentId":"<the node id the prompt named>","question":"<one new question, not a restatement of an existing one>","scope":"<path, module or area>","evidence":"<file:line or URL that opened it>","budget":<optional positive integer, never above the parent's>}`
+You only propose. The workflow's admission step decides, and it prunes a row that lacks evidence or scope, repeats a known question, or would exceed the depth, fan-out or budget caps. Never write `research/inbox.jsonl` or `research/frontier-nodes.jsonl`, and never emit a `frontier_proposal` row when the prompt has no FRONTIER block.
+
 **newInfoRatio calculation**:
 - Fully new findings count as 1.0.
 - Partially new findings count as 0.5.
